@@ -1196,7 +1196,7 @@ class Person(SourceNote):
          self.urls,
          self.lds_bapt, self.lds_endow, self.lds_seal,
          self.complete, self.source_list, self.note) = data
-
+            
     def set_complete(self,val):
         self.complete = val
 
@@ -2980,6 +2980,18 @@ class GrampsDB:
         if data:
             person = Person()
             person.unserialize(data)
+            return person
+        else:
+            return None
+
+    def try_to_find_person_from_gramps_id(self,val):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+
+        data = self.idtrans.get(str(val))
+        if data:
+            person = Person()
+            person.unserialize(cPickle.loads(data))
             return person
         else:
             return None

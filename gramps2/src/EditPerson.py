@@ -289,7 +289,7 @@ class EditPerson:
         build_dropdown(self.surname,self.db.get_surnames())
             
         self.gid.set_text(person.get_gramps_id())
-        self.gid.set_editable(GrampsCfg.id_edit)
+        self.gid.set_editable(1)
 
         self.lds_baptism = RelLib.LdsOrd(self.person.get_lds_baptism())
         self.lds_endowment = RelLib.LdsOrd(self.person.get_lds_endowment())
@@ -1450,14 +1450,11 @@ class EditPerson:
         self.birth.set_place_id(self.get_place(self.bplace,1))
 
         if idval != self.person.get_gramps_id():
-            m = self.db.get_person_keys() 
-            if not m.has_key(idval):
-                if m.has_key(self.person.get_gramps_id()):
-                    del m[self.person.get_gramps_id()]
-                    m[idval] = self.person
+            person = self.db.try_to_find_person_from_gramps_id(idval)
+            if not person:
                 self.person.set_gramps_id(idval)
             else:
-                n = GrampsCfg.nameof(m[idval])
+                n = GrampsCfg.nameof(person)
                 msg1 = _("GRAMPS ID value was not changed.")
                 msg2 = _("You have attempted to change the GRAMPS ID to a value "
                          "of %(grampsid)s. This value is already used by %(person)s.") % {

@@ -492,7 +492,7 @@ class Gallery(ImageSelect):
                 u = urllib.URLopener()
                 try:
                     tfile,headers = u.retrieve(d)
-                except IOError, msg:
+                except (IOError,OSError), msg:
                     t = _("Could not import %s") % d
                     ErrorDialog(t,str(msg))
                     return
@@ -1233,3 +1233,4 @@ class DeleteMediaQuery:
         self.db.add_transaction(trans,_("Remove Media Object"))
         if self.update:
             self.update()
+
