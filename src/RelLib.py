@@ -302,6 +302,7 @@ class Place(SourceNote):
             for loc in source.alt_loc:
                 self.alt_loc = Location(loc)
             self.handle = source.handle
+            self.gramps_id = source.gramps_id
             self.urls = []
             for u in source.urls:
                 self.urls.append(Url(u))
@@ -315,15 +316,17 @@ class Place(SourceNote):
             self.main_loc = None
             self.alt_loc = []
             self.handle = ""
+            self.gramps_id = ""
             self.urls = []
             self.media_list = []
 
     def serialize(self):
-        return (self.handle, self.title, self.long, self.lat, self.main_loc,
-                self.alt_loc, self.urls, self.media_list, self.source_list, self.note)
+        return (self.handle, self.gramps_id, self.title, self.long, self.lat,
+                self.main_loc, self.alt_loc, self.urls, self.media_list,
+                self.source_list, self.note)
 
     def unserialize(self,data):
-        (self.handle, self.title, self.long, self.lat, self.main_loc,
+        (self.handle, self.gramps_id, self.title, self.long, self.lat, self.main_loc,
          self.alt_loc, self.urls, self.media_list, self.source_list,
          self.note) = data
             
@@ -346,6 +349,14 @@ class Place(SourceNote):
     def get_handle(self):
         """Returns the database handle for the place object"""
         return self.handle
+
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
 
     def set_title(self,name):
         """Sets the title of the place object"""
@@ -415,13 +426,14 @@ class Place(SourceNote):
         case city, upper case county, upper case state, upper case country"""
         
         if self.main_loc:
-            return [self.title,self.handle,self.main_loc.parish,self.main_loc.city,
+            return [self.title,self.gramps_id,self.main_loc.parish,self.main_loc.city,
                     self.main_loc.county,self.main_loc.state,self.main_loc.country,
                     self.title.upper(), self.main_loc.parish.upper(),
                     self.main_loc.city.upper(), self.main_loc.county.upper(),
                     self.main_loc.state.upper(), self.main_loc.country.upper()]
         else:
-            return [self.title,self.handle,'','','','','',self.title.upper(), '','','','','']
+            return [self.title,self.gramps_id,'','','','','',
+                    self.title.upper(), '','','','','']
         
 #-------------------------------------------------------------------------
 #
@@ -636,23 +648,25 @@ class MediaObject(SourceNote):
             self.mime = source.mime
             self.desc = source.desc
             self.handle = source.handle
+            self.gramps_id = source.gramps_id
             self.thumb = source.thumb
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
         else:
             self.handle = ""
+            self.gramps_id = ""
             self.path = ""
             self.mime = ""
             self.desc = ""
             self.thumb = None
 
     def serialize(self):
-        return (self.handle, self.path, self.mime, self.desc, self.attrlist,
-                self.source_list, self.note)
+        return (self.handle, self.gramps_id, self.path, self.mime,
+                self.desc, self.attrlist, self.source_list, self.note)
 
     def unserialize(self,data):
-        (self.handle, self.path, self.mime, self.desc, self.attrlist,
-         self.source_list, self.note) = data
+        (self.handle, self.gramps_id, self.path, self.mime, self.desc,
+         self.attrlist, self.source_list, self.note) = data
     
     def set_handle(self,handle):
         """Sets the database handle for the place object"""
@@ -661,6 +675,14 @@ class MediaObject(SourceNote):
     def get_handle(self):
         """Returns the database handle for the place object"""
         return self.handle
+
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
 
     def set_mime_type(self,type):
         self.mime = type
@@ -1267,6 +1289,14 @@ class Person(SourceNote):
         """returns the database handle for the Person"""
         return self.handle
 
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
+
     def set_nick_name(self,name):
         """sets the nickname for the Person"""
         self.nickname = name
@@ -1617,6 +1647,7 @@ class Event(DataObj):
             self.name = source.name
             self.cause = source.cause
             self.handle = source.handle
+            self.gramps_id = source.gramps_id
             self.media_list = [MediaRef(media_id) for media_id in source.media_list]
             try:
                 if source.witness:
@@ -1632,7 +1663,8 @@ class Event(DataObj):
             self.name = ""
             self.cause = ""
             self.witness = None
-            self.handle = None
+            self.handle = ""
+            self.gramps_id = ""
             self.media_list = []
 
     def clone(self,source):
@@ -1642,6 +1674,7 @@ class Event(DataObj):
         self.name = source.name
         self.cause = source.cause
         self.handle = source.handle
+        self.gramps_id = source.gramps_id
         self.private = source.private
         self.source_list = source.source_list[:]
         self.note = source.note
@@ -1655,12 +1688,12 @@ class Event(DataObj):
             self.witness = None
 
     def serialize(self):
-        return (self.handle, self.name, self.date, self.description,
+        return (self.handle, self.gramps_id, self.name, self.date, self.description,
                 self.place, self.cause, self.private, self.source_list,
                 self.note, self.witness, self.media_list)
 
     def unserialize(self,data):
-        (self.handle, self.name, self.date, self.description,
+        (self.handle, self.gramps_id, self.name, self.date, self.description,
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness, self.media_list) = data
 
@@ -1683,6 +1716,14 @@ class Event(DataObj):
     def get_handle(self):
         """Returns the database handle for the place object"""
         return self.handle
+
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
 
     def get_witness_list(self):
         return self.witness
@@ -1865,6 +1906,7 @@ class Family(SourceNote):
         self.type = const.FAMILY_MARRIED
         self.event_list = []
         self.handle = ""
+        self.gramps_id = ""
         self.media_list = []
         self.attribute_list = []
         self.lds_seal = None
@@ -1872,20 +1914,16 @@ class Family(SourceNote):
 
 
     def serialize(self):
-        return (self.handle, self.father_handle, self.mother_handle,
+        return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
                 self.child_list, self.type, self.event_list,
                 self.media_list, self.attribute_list, self.lds_seal,
-                self.complete,
-                self.source_list,
-                self.note)
+                self.complete, self.source_list, self.note)
 
     def unserialize(self, data):
-        (self.handle, self.father_handle, self.mother_handle,
+        (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          self.child_list, self.type, self.event_list,
          self.media_list, self.attribute_list, self.lds_seal,
-         self.complete,
-         self.source_list,
-         self.note) = data
+         self.complete, self.source_list, self.note) = data
 
     def set_complete(self,val):
         self.complete = val
@@ -1923,6 +1961,14 @@ class Family(SourceNote):
     def get_handle(self) :
         """returns the database handle for the Family"""
        	return unicode(self.handle)
+
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
 
     def set_relationship(self,type):
         """assigns a string indicating the relationship between the
@@ -2049,18 +2095,19 @@ class Source:
         self.note = Note()
         self.media_list = []
         self.handle = ""
+        self.gramps_id = ""
         self.abbrev = ""
 
     def serialize(self):
-        return (self.handle,self.title,self.author,self.pubinfo,
-                self.note,self.media_list,self.abbrev)
+        return (self.handle, self.gramps_id, self.title, self.author,
+                self.pubinfo, self.note, self.media_list, self.abbrev)
 
     def unserialize(self,data):
-        (self.handle,self.title,self.author,self.pubinfo,
-         self.note,self.media_list,self.abbrev) = data
+        (self.handle, self.gramps_id, self.title, self.author,
+         self.pubinfo, self.note, self.media_list, self.abbrev) = data
         
     def get_display_info(self):
-        return [self.title,self.handle,self.author,self.title.upper(),self.author.upper()]
+        return [self.title,self.gramps_id,self.author,self.title.upper(),self.author.upper()]
 
     def set_handle(self,handle):
         """sets the gramps' ID for the Source instance"""
@@ -2069,6 +2116,14 @@ class Source:
     def get_handle(self):
         """returns the gramps' ID of the Source instance"""
         return self.handle
+
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
 
     def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Source instance's image list"""

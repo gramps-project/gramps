@@ -133,23 +133,27 @@ class SourceModel(BaseModel):
             self.column_author,
             self.column_abbrev,
             self.column_pubinfo,
+            self.column_handle,
             ]
         BaseModel.__init__(self,db)
 
     def column_title(self,data):
-        return unicode(data[1])
-
-    def column_author(self,data):
         return unicode(data[2])
 
-    def column_abbrev(self,data):
-        return unicode(data[3])
-
-    def column_id(self,data):
+    def column_handle(self,data):
         return unicode(data[0])
 
-    def column_pubinfo(self,data):
+    def column_author(self,data):
+        return unicode(data[3])
+
+    def column_abbrev(self,data):
         return unicode(data[4])
+
+    def column_id(self,data):
+        return unicode(data[1])
+
+    def column_pubinfo(self,data):
+        return unicode(data[5])
 
 #-------------------------------------------------------------------------
 #
@@ -171,48 +175,52 @@ class PlaceModel(BaseModel):
             self.column_country,
             self.column_longitude,
             self.column_latitude,
+            self.column_handle,
             ]
         BaseModel.__init__(self,db)
 
     def column_name(self,data):
-        return unicode(data[1])
-
-    def column_longitude(self,data):
         return unicode(data[2])
 
-    def column_latitude(self,data):
+    def column_handle(self,data):
+        return unicode(data[0])
+
+    def column_longitude(self,data):
         return unicode(data[3])
 
+    def column_latitude(self,data):
+        return unicode(data[4])
+
     def column_id(self,data):
-        return unicode(data[0])
+        return unicode(data[1])
 
     def column_parish(self,data):
         try:
-            return data[4].get_parish()
+            return data[5].get_parish()
         except:
             return u''
 
     def column_city(self,data):
         try:
-            return data[4].get_city()
+            return data[5].get_city()
         except:
             return u''
         
     def column_county(self,data):
         try:
-            return data[4].get_county()
+            return data[5].get_county()
         except:
             return u''
     
     def column_state(self,data):
         try:
-            return data[4].get_state()
+            return data[5].get_state()
         except:
             return u''
 
     def column_country(self,data):
         try:
-            return data[4].get_country()
+            return data[5].get_country()
         except:
             return u''
 
@@ -236,13 +244,13 @@ class MediaModel(BaseModel):
         BaseModel.__init__(self,db)
 
     def column_description(self,data):
-        return unicode(data[3])
+        return unicode(data[4])
 
     def column_path(self,data):
-        return unicode(data[1])
-
-    def column_mime(self,data):
         return unicode(data[2])
 
+    def column_mime(self,data):
+        return unicode(data[3])
+
     def column_id(self,data):
-        return unicode(data[0])
+        return unicode(data[1])

@@ -268,7 +268,7 @@ class PedigreeView:
         self.canvas_items.append(self.anchor_txt)
 
         for family_handle in self.active_person.get_family_handle_list():
-            family = self.parent.db.find_family_from_handle(family_handle)
+            family = self.parent.db.get_family_from_handle(family_handle)
             if len(family.get_child_handle_list()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
                                                       self.on_show_child_menu)
@@ -490,7 +490,7 @@ class PedigreeView:
             mrel = (m != "Birth")
             frel = (f != "Birth")
 
-        family = self.parent.db.find_family_from_handle(family_handle)
+        family = self.parent.db.get_family_from_handle(family_handle)
         list[index] = (person,val)
         if family != None:
             father_handle = family.get_father_handle()
@@ -573,7 +573,7 @@ class PedigreeView:
         fam_list = person.get_family_handle_list()
         no_spouses = 1
         for fam_id in fam_list:
-            family = self.parent.db.find_family_from_handle(fam_id)
+            family = self.parent.db.get_family_from_handle(fam_id)
             if family.get_father_handle() == person.get_handle():
                 sp_id = family.get_mother_handle()
             else:
@@ -604,7 +604,7 @@ class PedigreeView:
         pfam_list = person.get_parent_family_handle_list()
         no_siblings = 1
         for (f,mrel,frel) in pfam_list:
-            fam = self.parent.db.find_family_from_handle(f)
+            fam = self.parent.db.get_family_from_handle(f)
             sib_list = fam.get_child_handle_list()
             for sib_id in sib_list:
                 if sib_id == person.get_handle():
@@ -774,7 +774,7 @@ def find_children(db,p):
     """
     childlist = []
     for family_handle in p.get_family_handle_list():
-        family = db.find_family_from_handle(family_handle)
+        family = db.get_family_from_handle(family_handle)
         for child_handle in family.get_child_handle_list():
             childlist.append(child_handle)
     return childlist
@@ -790,7 +790,7 @@ def find_parents(db,p):
     """
     parentlist = []
     for (f,mrel,frel) in p.get_parent_family_handle_list():
-        family = db.find_family_from_handle(f)
+        family = db.get_family_from_handle(f)
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
         if father_handle not in parentlist:

@@ -191,7 +191,7 @@ class EditSource:
         f_attr_list = []
         p_list = []
         for key in self.db.get_place_handle_keys():
-            p = self.db.get_place_handle(key) 
+            p = self.db.get_place_from_handle(key) 
             name = p.get_title()
             for sref in p.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
@@ -201,7 +201,7 @@ class EditSource:
             name = GrampsCfg.get_nameof()(p)
             for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 if event_handle:
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     for sref in event.get_source_references():
                         if sref.get_base_handle() == self.source.get_handle():
                             p_event_list.append((name,event.get_name()))
@@ -224,7 +224,7 @@ class EditSource:
                 if sref.get_base_handle() == self.source.get_handle():
                     m_list.append(name)
         for family_handle in self.db.get_family_keys():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             f_id = family.get_father_handle()
             m_id = family.get_mother_handle()
             if f_id:

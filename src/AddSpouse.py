@@ -213,17 +213,12 @@ class AddSpouse:
         """
         person = epo.person
         trans = self.db.start_transaction()
-        id = person.get_handle()
-        if id == "":
-            id = self.db.add_person(person,trans)
-        else:
-            self.db.add_person_no_map(person,id,trans)
+        handle = self.db.add_person(person,trans)
 
-        person = self.db.get_person_from_handle(id)
         n = person.get_primary_name().get_name()
         self.db.add_transaction(trans,_('Add Person (%s)' % n))
         self.addperson(person)
-        self.update_data(id)
+        self.update_data(handle)
         
         self.slist = PeopleModel.PeopleModel(self.db)
         self.slist.rebuild_data()

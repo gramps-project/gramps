@@ -631,11 +631,7 @@ class FamilyView:
         
     def new_spouse_after_edit(self,epo,trans):
 
-        if epo.person.get_handle() == "":
-            self.parent.db.add_person(epo.person,trans)
-        else:
-            self.parent.db.add_person_no_map(epo.person,epo.person.get_handle(),trans)
-
+        self.parent.db.add_person(epo.person,trans)
         self.family = self.parent.db.new_family(trans)
 
         self.parent.people_view.add_to_person_list(epo.person,0)
@@ -700,11 +696,7 @@ class FamilyView:
             
     def new_child_after_edit(self,epo,trans):
         
-        if epo.person.get_handle() == "":
-            self.parent.db.add_person(epo.person,trans)
-        else:
-            self.parent.db.add_person_no_map(epo.person,epo.person.get_handle(),trans)
-            
+        self.parent.db.add_person(epo.person,trans)
         self.parent.people_view.add_to_person_list(epo.person,0)
 
         if not self.family:
@@ -796,8 +788,9 @@ class FamilyView:
             self.parent.db.commit_person(self.person,trans)
             self.parent.db.delete_family(self.family.get_handle(),trans)
             if len(self.person.get_family_handle_list()) > 0:
-                family_handle = self.person.get_family_handle_list()[0]
-                self.load_family(self.parent.db.find_family_from_handle(family_handle))
+                handle = self.person.get_family_handle_list()[0]
+                family = self.parent.db.find_family_from_handle(handle,trans)
+                self.load_family(family)
             else:
                 self.load_family(self.family)
         else:
@@ -906,7 +899,7 @@ class FamilyView:
         for f in splist:
             if not f:
                 continue
-            fm = self.parent.db.find_family_no_map(f,None)
+            fm = self.parent.db.find_family_from_handle(f,None)
             
             if fm.get_father_handle() == self.person.get_handle():
                 sp_id = fm.get_mother_handle()
@@ -937,7 +930,7 @@ class FamilyView:
             self.spouse_selection.select_iter(iter)
         elif len(flist) > 0:
             fid = splist[0]
-            fam = self.parent.db.find_family_from_handle(fid)
+            fam = self.parent.db.get_family_from_handle(fid)
             self.display_marriage(fam)
             iter = flist[fid]
             self.spouse_selection.select_iter(iter)
@@ -961,7 +954,7 @@ class FamilyView:
         list = person.get_parent_family_handle_list()
 
         for (f,mrel,frel) in list:
-            fam = self.parent.db.find_family_from_handle(f)
+            fam = self.parent.db.get_family_from_handle(f)
             father_handle = fam.get_father_handle()
             mother_handle = fam.get_mother_handle()
             f = self.parent.db.get_person_from_handle(father_handle)
@@ -1006,7 +999,7 @@ class FamilyView:
         if not family:
             self.family = None
             return
-        self.family = self.parent.db.find_family_from_handle(family.get_handle())
+        self.family = self.parent.db.get_family_from_handle(family.get_handle())
 
         if self.family.get_father_handle() == self.person.get_handle():
             sp_id = self.family.get_mother_handle()

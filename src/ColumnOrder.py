@@ -61,15 +61,15 @@ class ColumnOrder:
         self.glade.get_widget('cancelbutton').connect('clicked',self.cancel_clicked)
 
         for item in self.arglist:
-            iter = self.model.append()
-            self.model.set(iter,0,item[0],1,column_names[item[1]],2,item[1])
+            node = self.model.append()
+            self.model.set(node,0,item[0],1,column_names[item[1]],2,item[1])
 
     def ok_clicked(self,obj):
         newlist = []
         for i in range(0,len(self.arglist)):
-            iter = self.model.get_iter((int(i),))
-            newlist.append((self.model.get_value(iter,0),
-                            self.model.get_value(iter,2)))
+            node = self.model.get_iter((int(i),))
+            newlist.append((self.model.get_value(node,0),
+                            self.model.get_value(node,2)))
         self.callback(newlist)
         self.top.destroy()
 
@@ -77,7 +77,7 @@ class ColumnOrder:
         self.top.destroy()
 
     def toggled(self, cell, path, model):
-        iter = model.get_iter((int(path),))
-        value = model.get_value(iter,0)
+        node = model.get_iter((int(path),))
+        value = model.get_value(node,0)
         value = not value
-        model.set(iter,0,value)
+        model.set(node,0,value)

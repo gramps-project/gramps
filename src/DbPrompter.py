@@ -128,32 +128,32 @@ class ExistingDbPrompter:
                                             gtk.RESPONSE_OK))
         choose.set_local_only(gtk.FALSE)
         # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('Automatic'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('Automatic'))
+        mime_filter.add_pattern('*')
+        choose.add_filter(mime_filter)
         
         # Always add native format filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_mime_type(const.app_gramps)
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GRAMPS databases'))
+        mime_filter.add_mime_type(const.app_gramps)
+        choose.add_filter(mime_filter)
 
         # Always add native format filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS XML databases'))
-        filter.add_mime_type(const.app_gramps_xml)
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GRAMPS XML databases'))
+        mime_filter.add_mime_type(const.app_gramps_xml)
+        choose.add_filter(mime_filter)
 
         # Always add native format filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('GEDCOM'))
-        filter.add_mime_type(const.app_gedcom)
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GEDCOM'))
+        mime_filter.add_mime_type(const.app_gedcom)
+        choose.add_filter(mime_filter)
 
         # Add more data type selections if opening existing db
-        for (importData,filter,mime_type) in Plugins._imports:
-            choose.add_filter(filter)
+        for (importData,mime_filter,mime_type) in Plugins._imports:
+            choose.add_filter(mime_filter)
         
         response = choose.run()
         if response == gtk.RESPONSE_OK:
@@ -176,7 +176,7 @@ class ExistingDbPrompter:
                 self.parent.read_file(filename)
                 return 1
             (junk,the_file) = os.path.split(filename)
-            for (importData,filter,mime_type) in Plugins._imports:
+            for (importData,mime_filter,mime_type) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     QuestionDialog.OkDialog( _("Opening non-native format"), 
@@ -234,10 +234,10 @@ class ImportDbPrompter:
                                             gtk.RESPONSE_OK))
         choose.set_local_only(gtk.FALSE)
         # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('Automatic'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('Automatic'))
+        mime_filter.add_pattern('*')
+        choose.add_filter(mime_filter)
         
 #   FIXME: Uncomment when we have grdb importer
 #
@@ -248,8 +248,8 @@ class ImportDbPrompter:
 #        choose.add_filter(filter)
 
         # Add more data type selections if opening existing db
-        for (importData,filter,mime_type) in Plugins._imports:
-            choose.add_filter(filter)
+        for (importData,mime_filter,mime_type) in Plugins._imports:
+            choose.add_filter(mime_filter)
         
         response = choose.run()
         if response == gtk.RESPONSE_OK:
@@ -262,7 +262,7 @@ class ImportDbPrompter:
 #                self.parent.read_file(filename)
 #                return 1
             (junk,the_file) = os.path.split(filename)
-            for (importData,filter,mime_type) in Plugins._imports:
+            for (importData,mime_filter,mime_type) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     importData(self.parent.db,filename)
@@ -308,16 +308,16 @@ class NewNativeDbPrompter:
         self.parent.clear_database()
 
         # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('Automatic'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('Automatic'))
+        mime_filter.add_pattern('*')
+        choose.add_filter(mime_filter)
         
         # Always add native format filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_mime_type('application/x-gramps')
-        choose.add_filter(filter)
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GRAMPS databases'))
+        mime_filter.add_mime_type('application/x-gramps')
+        choose.add_filter(mime_filter)
 
         new_filename = Utils.get_new_filename('grdb')
         

@@ -138,7 +138,7 @@
         <applyto>/apps/gramps/preferences/oprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>F%04d</default>
+        <default>O%04d</default>
         <locale name="C">
           <short>Default media object GRAMPS ID pattern</short>
           <long>The new GRAMPS IDs for the media object are generated 
@@ -151,7 +151,7 @@
         <applyto>/apps/gramps/preferences/pprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>F%04d</default>
+        <default>P%04d</default>
         <locale name="C">
           <short>Default place GRAMPS ID pattern</short>
           <long>The new GRAMPS IDs for the place are generated according
@@ -164,7 +164,7 @@
         <applyto>/apps/gramps/preferences/sprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>F%04d</default>
+        <default>S%04d</default>
         <locale name="C">
           <short>Default source GRAMPS ID pattern</short>
           <long>The new GRAMPS IDs for the source are generated according

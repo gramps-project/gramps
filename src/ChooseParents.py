@@ -306,7 +306,7 @@ class ChooseParents:
             fam = self.db.find_family_from_handle(family_handle)
             for handle in [fam.get_father_handle(), fam.get_mother_handle()] + \
                     fam.get_child_handle_list():
-                if id:
+                if handle:
                     self.exclude[handle] = 1
 
     def redrawf(self):
@@ -569,28 +569,23 @@ class ChooseParents:
         depending on the gender of the person."""
 
         person = epo.person
-        id = person.get_handle()
+        handle = person.get_handle()
         name = person.get_primary_name().get_surname()
-
-        if id == "":
-            id = self.db.add_person(person,trans)
-        else:
-            self.db.add_person_no_map(person,id,trans)
-
+        self.db.add_person(person,trans)
         self.type = self.prel.get_active()
 
         if self.type == const.FAMILY_CIVIL_UNION:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.male:
             self.redrawf()
-            path = self.father_nsort.on_get_path(id)
+            path = self.father_nsort.on_get_path(handle)
             top_path = self.father_nsort.on_get_path(name)
             self.father_list.expand_row(top_path,0)
             self.father_selection.select_path(path)
             self.father_list.scroll_to_cell(path,None,1,0.5,0)
         else:
             self.redrawm()
-            path = self.mother_nsort.on_get_path(id)
+            path = self.mother_nsort.on_get_path(handle)
             top_path = self.mother_nsort.on_get_path(name)
             self.mother_list.expand_row(top_path,0)
             self.mother_selection.select_path(path)
