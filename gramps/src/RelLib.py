@@ -1019,7 +1019,7 @@ class Event(DataObj):
             return 0
         if self.place != other.place:
             return 0
-        if compare_dates(self.date,other.date):
+        if compare_dates(self.getDateObj(),other.getDateObj()):
             return 0
         if self.description != other.description:
             return 0
@@ -1453,6 +1453,26 @@ class RelDataBase:
     def __init__(self):
         """creates a new RelDataBase"""
         self.new()
+        self.iprefix = "I%d"
+        self.sprefix = "S%d"
+        self.oprefix = "O%d"
+        self.pprefix = "P%d"
+        self.fprefix = "F%d"
+
+    def set_iprefix(self,val):
+        self.iprefix = val + "%d"
+
+    def set_sprefix(self,val):
+        self.sprefix = val + "%d"
+
+    def set_oprefix(self,val):
+        self.oprefix = val + "%d"
+
+    def set_pprefix(self,val):
+        self.pprefix = val + "%d"
+
+    def set_fprefix(self,val):
+        self.fprefix = val + "%d"
 
     def new(self):
         """initializes the RelDataBase to empty values"""
@@ -1592,10 +1612,10 @@ class RelDataBase:
 
     def addPerson(self,person):
         """adds a Person to the database, assigning a gramps' ID"""
-        index = "I%d" % self.pmapIndex
+        index = self.iprefix % self.pmapIndex
         while self.personMap.has_key(index):
             self.pmapIndex = self.pmapIndex + 1
-            index = "I%d" % self.pmapIndex
+            index = self.iprefix % self.pmapIndex
         person.setId(index)
         self.personMap[index] = person
         self.pmapIndex = self.pmapIndex + 1
@@ -1643,10 +1663,10 @@ class RelDataBase:
         """adds a Source instance to the database, assigning it a gramps'
         ID number"""
         
-        index = "S%d" % self.smapIndex
+        index = self.sprefix % self.smapIndex
         while self.sourceMap.has_key(index):
             self.smapIndex = self.smapIndex + 1
-            index = "S%d" % self.smapIndex
+            index = self.sprefix % self.smapIndex
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
@@ -1693,10 +1713,10 @@ class RelDataBase:
         """adds an Object instance to the database, assigning it a gramps'
         ID number"""
         
-        index = "O%d" % self.omapIndex
+        index = self.oprefix % self.omapIndex
         while self.objectMap.has_key(index):
             self.omapIndex = self.omapIndex + 1
-            index = "O%d" % self.omapIndex
+            index = self.oprefix % self.omapIndex
         object.setId(index)
         self.objectMap[index] = object
         self.omapIndex = self.omapIndex + 1
@@ -1743,10 +1763,10 @@ class RelDataBase:
         """adds a Place instance to the database, assigning it a gramps'
         ID number"""
 
-        index = "P%d" % self.lmapIndex
+        index = self.pprefix % self.lmapIndex
         while self.placeMap.has_key(index):
             self.lmapIndex = self.lmapIndex + 1
-            index = "P%d" % self.lmapIndex
+            index = self.pprefix % self.lmapIndex
         place.setId(index)
         self.placeMap[index] = place
         self.lmapIndex = self.lmapIndex + 1
@@ -1792,10 +1812,10 @@ class RelDataBase:
 
     def newFamily(self):
         """adds a Family to the database, assigning a gramps' ID"""
-        index = "F%d" % self.fmapIndex
+        index = self.fprefix % self.fmapIndex
         while self.familyMap.has_key(index):
             self.fmapIndex = self.fmapIndex + 1
-            index = "F%d" % self.fmapIndex
+            index = self.fprefix % self.fmapIndex
         self.fmapIndex = self.fmapIndex + 1
         family = Family()
         family.setId(index)
