@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -113,10 +113,23 @@ class DateDisplay:
     _qual_str = ("","estimated ","calculated ")
 
     def __init__(self,format=None):
-        pass
+        self.display_cal = [
+            self._display_gregorian,
+            self._display_julian,
+            self._display_hebrew,
+            self._display_french,
+            self._display_persian,
+            self._display_islamic,
+            ]
+
+        self.verify_format(format)
+        if format == None:
+            self.format = 0
+        else:
+            self.format = format
 
     def set_format(self,format):
-        pass
+        self.format = format
 
     def verify_format(self,format):
         pass
@@ -188,72 +201,6 @@ class DateDisplay:
         """
         return date.get_text()
         
-
-class DateDisplayEn(DateDisplay):
-    """
-    English language date display class. 
-    """
-
-    formats = (
-        "YYYY-MM-DD (ISO)", "Numerical", "Month Day, Year",
-        "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
-        )
-
-    def __init__(self,format=None):
-        """
-        Creates a DateDisplay class that converts a Date object to a string
-        of the desired format. The format value must correspond to the format
-        list value (DateDisplay.format[]).
-        """
-
-        DateDisplay.__init__(self,format)
-
-        self.verify_format(format)
-        if format == None:
-            self.format = 0
-        else:
-            self.format = format
-
-        self.display_cal = [
-            self._display_gregorian,
-            self._display_julian,
-            self._display_hebrew,
-            self._display_french,
-            self._display_persian,
-            self._display_islamic,
-            ]
-
-    def set_format(self,format):
-        self.format = format
-
-    def display(self,date):
-        """
-        Returns a text string representing the date.
-        """
-        mod = date.get_modifier()
-        cal = date.get_calendar()
-        qual = date.get_quality()
-        start = date.get_start_date()
-
-        qual_str = self._qual_str[qual]
-        
-        if mod == Date.MOD_TEXTONLY:
-            return date.get_text()
-        elif start == Date.EMPTY:
-            return ""
-        elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sfrom %s to %s%s" % (qual_str,d1,d2,self.calendar[cal])
-        elif mod == Date.MOD_RANGE:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sbetween %s and %s%s" % (qual_str,d1,d2,
-                                              self.calendar[cal])
-        else:
-            text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],
-                                 text,self.calendar[cal])
 
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])
@@ -332,3 +279,51 @@ class DateDisplayEn(DateDisplay):
 
     def _display_islamic(self,date_val):
         return self._display_calendar(date_val,self._islamic)
+
+class DateDisplayEn(DateDisplay):
+    """
+    English language date display class. 
+    """
+
+    formats = (
+        "YYYY-MM-DD (ISO)", "Numerical", "Month Day, Year",
+        "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
+        )
+
+    def __init__(self,format=None):
+        """
+        Creates a DateDisplay class that converts a Date object to a string
+        of the desired format. The format value must correspond to the format
+        list value (DateDisplay.format[]).
+        """
+
+        DateDisplay.__init__(self,format)
+
+    def display(self,date):
+        """
+        Returns a text string representing the date.
+        """
+        mod = date.get_modifier()
+        cal = date.get_calendar()
+        qual = date.get_quality()
+        start = date.get_start_date()
+
+        qual_str = self._qual_str[qual]
+        
+        if mod == Date.MOD_TEXTONLY:
+            return date.get_text()
+        elif start == Date.EMPTY:
+            return ""
+        elif mod == Date.MOD_SPAN:
+            d1 = self.display_cal[cal](start)
+            d2 = self.display_cal[cal](date.get_stop_date())
+            return "%sfrom %s to %s%s" % (qual_str,d1,d2,self.calendar[cal])
+        elif mod == Date.MOD_RANGE:
+            d1 = self.display_cal[cal](start)
+            d2 = self.display_cal[cal](date.get_stop_date())
+            return "%sbetween %s and %s%s" % (qual_str,d1,d2,
+                                              self.calendar[cal])
+        else:
+            text = self.display_cal[date.get_calendar()](start)
+            return "%s%s%s%s" % (qual_str,self._mod_str[mod],
+                                 text,self.calendar[cal])
