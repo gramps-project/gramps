@@ -296,9 +296,6 @@ class Gramps:
         self.redolabel   = self.gtop.get_widget('redolabel')
         self.open_recent = self.gtop.get_widget('open_recent1')
 
-        self.db.set_undo_callback(self.undo_callback)
-        self.db.set_redo_callback(self.redo_callback)
-
         self.child_model = gtk.ListStore(
             gobject.TYPE_INT, gobject.TYPE_STRING, gobject.TYPE_STRING,
             gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING, 
@@ -477,25 +474,22 @@ class Gramps:
             self.build_recent_menu()
 
     def undo_callback(self,text):
-        if text == None:
-            self.undolabel.set_sensitive(0)
-            self.undolabel.get_children()[0].set_text(_("_Undo"))
-            self.undolabel.get_children()[0].set_use_underline(1)
-        else:
-            self.undolabel.set_sensitive(1)
-            label = self.undolabel.get_children()[0]
+        self.undolabel.set_sensitive(bool(text))
+        label = self.undolabel.get_children()[0]
+        if text:
             label.set_text(text)
-            label.set_use_underline(1)
+        else:
+            label.set_text(_("_Undo"))
+        label.set_use_underline(1)
 
     def redo_callback(self,text):
-        if text == None:
-            self.redolabel.set_sensitive(0)
-            self.redolabel.get_children()[0].set_text(_("_Redo"))
-        else:
-            self.redolabel.set_sensitive(1)
-            label = self.redolabel.get_children()[0]
+        self.redolabel.set_sensitive(bool(text))
+        label = self.redolabel.get_children()[0]
+        if text:
             label.set_text(text)
-            label.set_use_underline(1)
+        else:
+            label.set_text(_("_Redo"))
+        label.set_use_underline(1)
 
     def undo(self,*args):
         self.db.undo()
@@ -1211,12 +1205,13 @@ class Gramps:
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
             return 0
 
-
         self.topWindow.set_resizable(True)
+        # Undo/Redo always start with standard labels and insensitive state
+        self.undo_callback(None)
+        self.redo_callback(None)
+        # The rest depends on readonly-ness of the database
         self.gtop.get_widget('import1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('abandon').set_sensitive(not self.db.readonly)
-        self.gtop.get_widget('undolabel').set_sensitive(not self.db.readonly)
-        self.gtop.get_widget('redolabel').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('add_item').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('remove_item').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('merge').set_sensitive(not self.db.readonly)
@@ -1686,6 +1681,10 @@ class Gramps:
             self.db.set_researcher(owner)
 
         self.setup_bookmarks()
+
+        self.db.set_undo_callback(self.undo_callback)
+        self.db.set_redo_callback(self.redo_callback)
+
         if self.db.need_upgrade():
             if callback:
                 callback(_('Upgrading database...'))
