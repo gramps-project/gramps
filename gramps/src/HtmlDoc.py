@@ -262,6 +262,7 @@ class HtmlDoc(TextDoc):
 	if no_pil:
 	    return
 
+        self.empty = 0
 	im = PIL.Image.open(name)
         nx,ny = im.size
 
@@ -292,7 +293,7 @@ class HtmlDoc(TextDoc):
         except:
             return
 
-        self.f.write('<img src="images/%s" width="%d" height="%d">\n' % \
+        self.f.write('<img src="images/%s" border="0" width="%d" height="%d">\n' % \
                      (refname,pixx,pixy))
 
     def start_table(self,name,style):
