@@ -115,7 +115,7 @@ SUBDIRS = docgen filters plugins data po calendars
 GVFSINC = @GPREF@
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
-CLEANFILES = ${INTLLIBS} grampslib.so
+CLEANFILES = $(INTLLIBS) grampslib.so
 MOSTLYCLEANFILES = 
 
 
@@ -203,8 +203,9 @@ pkgpython_PYTHON = \
 	WriteXML.py
 
 
-# Use GNU make's ':=' syntax for nice wildcard use.
+# Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
+# The latter is more portable and POSIX-friendly :)
 GLADEFILES = \
 	config.glade\
 	dialog.glade\
@@ -242,17 +243,16 @@ GRAPHICS = \
 
 
 # Other stuff that we need to install
-pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
+nodist_pkgdata_DATA = grampslib.so $(INTLLIBS)
 
-EXTRA_DIST = grampslib.i
-
-DIST_SOURCES = intl.c grampslib_wrap.c
-dist_pkgdata_DATA = ${pkgdata_DATA} 
+EXTRA_DIST = grampslib.i intl.c grampslib_wrap.c
 subdir = src
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = const.py
+DIST_SOURCES =
 py_compile = $(top_srcdir)/py-compile
-DATA = $(dist_pkgdata_DATA) $(pkgdata_DATA)
+DATA = $(dist_pkgdata_DATA) $(nodist_pkgdata_DATA)
 
 
 RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
@@ -313,20 +313,20 @@ uninstall-dist_pkgdataDATA:
 	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
 	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
 	done
-pkgdataDATA_INSTALL = $(INSTALL_DATA)
-install-pkgdataDATA: $(pkgdata_DATA)
+nodist_pkgdataDATA_INSTALL = $(INSTALL_DATA)
+install-nodist_pkgdataDATA: $(nodist_pkgdata_DATA)
 	@$(NORMAL_INSTALL)
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	@list='$(pkgdata_DATA)'; for p in $$list; do \
+	@list='$(nodist_pkgdata_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
+	  echo " $(nodist_pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
+	  $(nodist_pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
 	done
 
-uninstall-pkgdataDATA:
+uninstall-nodist_pkgdataDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkgdata_DATA)'; for p in $$list; do \
+	@list='$(nodist_pkgdata_DATA)'; for p in $$list; do \
 	  f="`echo $$p | sed -e 's|^.*/||'`"; \
 	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
 	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
@@ -468,7 +468,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(DATA)
+all-am: Makefile $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
 	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir) $(DESTDIR)$(pkgdatadir) $(DESTDIR)$(pkgdatadir)
@@ -516,7 +516,7 @@ info: info-recursive
 info-am:
 
 install-data-am: install-data-local install-dist_pkgdataDATA \
-	install-pkgdataDATA install-pkgpythonPYTHON
+	install-nodist_pkgdataDATA install-pkgpythonPYTHON
 
 install-exec-am:
 
@@ -535,58 +535,65 @@ mostlyclean: mostlyclean-recursive
 mostlyclean-am: mostlyclean-generic
 
 uninstall-am: uninstall-dist_pkgdataDATA uninstall-info-am \
-	uninstall-local uninstall-pkgdataDATA uninstall-pkgpythonPYTHON
+	uninstall-local uninstall-nodist_pkgdataDATA \
+	uninstall-pkgpythonPYTHON
 
 uninstall-info: uninstall-info-recursive
 
-.PHONY: $(RECURSIVE_TARGETS) GTAGS all all-am check check-am clean \
-	clean-generic clean-recursive distclean distclean-generic \
+.PHONY: $(RECURSIVE_TARGETS) GTAGS all all-am all-local check check-am \
+	clean clean-generic clean-recursive distclean distclean-generic \
 	distclean-recursive distclean-tags distdir dvi dvi-am \
 	dvi-recursive info info-am info-recursive install install-am \
 	install-data install-data-am install-data-local \
 	install-data-recursive install-dist_pkgdataDATA install-exec \
 	install-exec-am install-exec-recursive install-info \
 	install-info-am install-info-recursive install-man \
-	install-pkgdataDATA install-pkgpythonPYTHON install-recursive \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am installdirs-recursive maintainer-clean \
-	maintainer-clean-generic maintainer-clean-recursive mostlyclean \
-	mostlyclean-generic mostlyclean-recursive tags tags-recursive \
-	uninstall uninstall-am uninstall-dist_pkgdataDATA \
-	uninstall-info-am uninstall-info-recursive uninstall-local \
-	uninstall-pkgdataDATA uninstall-pkgpythonPYTHON \
+	install-nodist_pkgdataDATA install-pkgpythonPYTHON \
+	install-recursive install-strip installcheck installcheck-am \
+	installdirs installdirs-am installdirs-recursive \
+	maintainer-clean maintainer-clean-generic \
+	maintainer-clean-recursive mostlyclean mostlyclean-generic \
+	mostlyclean-recursive tags tags-recursive uninstall \
+	uninstall-am uninstall-dist_pkgdataDATA uninstall-info-am \
+	uninstall-info-recursive uninstall-local \
+	uninstall-nodist_pkgdataDATA uninstall-pkgpythonPYTHON \
 	uninstall-recursive
 
 
-all: ${INTLLIBS} grampslib.so
+all-local: $(INTLLIBS) grampslib.so
 
-# These can prbably be done in a better or more elegant/generic way 
+# These can probably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
-intl22.so: intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ intl.c
+intl22.so: $(srcdir)/intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ $(srcdir)/intl.c
 
-grampslib.so: grampslib_wrap.c
-	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c $(LDFLAGS) 
+grampslib.so: $(srcdir)/grampslib_wrap.c
+	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
 # But, since the template depends on everything from here, we allow this
 # one exception.
-trans: po/template.po
+# Build po/template.po.
+.PHONY: trans
+trans:
 	./build_po
 
-check: 
+pycheck: 
+	for d in $(SUBDIRS) ; do \
+          (cd $$d; make pycheck); \
+	done;
 	pychecker $(pkgpython_PYTHON)
 
 install-data-local:
-	${INSTALL} -d ${prefix}/share/pixmaps
-	${INSTALL_DATA} gramps.png ${prefix}/share/pixmaps
-	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
-	${INSTALL_DATA} gramps.desktop ${prefix}/share/gnome/apps/Applications
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
+	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
+	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 
 uninstall-local:
-	-rm ${prefix}/share/pixmaps/gramps.png
-	-rm ${prefix}/share/gnome/apps/Applications/gramps.desktop
+	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
+	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

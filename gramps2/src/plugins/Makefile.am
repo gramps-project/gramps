@@ -15,6 +15,8 @@ pkgpython_PYTHON = \
 	DetDescendantReport.py\
 	EventCmp.py\
 	FamilyGroup.py\
+	FtmStyleAncestors.py\
+	FtmStyleDescendants.py\
 	FilterEditor.py\
 	GraphViz.py\
 	IndivComplete.py\
@@ -31,7 +33,9 @@ pkgpython_PYTHON = \
 	Verify.py\
 	WebPage.py\
 	WriteGedcom.py\
-	WritePkg.py
+	WritePkg.py\
+	eval.py\
+	leak.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
