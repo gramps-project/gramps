@@ -46,6 +46,7 @@ class Photo:
         self.path = ""
         self.desc = ""
         self.private = 0
+        self.proplist = None
 
     def setPath(self,path):
         self.path = path
@@ -64,6 +65,15 @@ class Photo:
 
     def getDescription(self):
         return self.desc
+
+    def addProperty(self,key,value):
+        if self.proplist == None:
+            self.proplist = { key: value}
+        else:
+            self.proplist[key] = value;
+
+    def getPropertyList(self):
+        return self.proplist
 
 #-------------------------------------------------------------------------
 #
@@ -854,7 +864,10 @@ class RelDataBase:
         return self.sourceMap
 
     def addPerson(self,person):
-        index = str(self.pmapIndex)
+        index = "I%d" % self.pmapIndex
+        while self.personMap.has_key(index):
+            self.pmapIndex = self.pmapIndex + 1
+            index = "I%d" % self.pmapIndex
         person.setId(index)
         self.personMap[index] = person
         self.pmapIndex = self.pmapIndex + 1
@@ -917,11 +930,7 @@ class RelDataBase:
         id = str(id)
         person.setId(id)
         self.personMap[id] = person
-        try:
-            val = int(id)
-            self.pmapIndex = max(self.pmapIndex,val)+1
-        except:
-            pass
+        self.pmapIndex = self.pmapIndex+1
         return id
 
     def findPersonNoMap(self,idVal):
@@ -943,7 +952,10 @@ class RelDataBase:
         return self.smapIndex
 
     def addSource(self,source):
-        index = str(self.smapIndex)
+        index = "S%d" % self.smapIndex
+        while self.sourceMap.has_key(index):
+            self.smapIndex = self.smapIndex + 1
+            index = "S%d" % self.smapIndex
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
@@ -962,11 +974,7 @@ class RelDataBase:
         index = str(index)
         source.setId(index)
         self.sourceMap[index] = source
-        try:
-            val = int(index)
-            self.smapIndex = max(self.smapIndex,val) + 1
-        except:
-            pass
+        self.smapIndex = self.smapIndex + 1
         return index
 
     def findSourceNoMap(self,idVal):
@@ -979,11 +987,14 @@ class RelDataBase:
         return source
 
     def newFamily(self):
-        id = str(self.fmapIndex)
+        index = "F%d" % self.fmapIndex
+        while self.familyMap.has_key(index):
+            self.fmapIndex = self.fmapIndex + 1
+            index = "F%d" % self.fmapIndex
         self.fmapIndex = self.fmapIndex + 1
         family = Family()
-        family.setId(id)
-        self.familyMap[id] = family
+        family.setId(index)
+        self.familyMap[index] = family
         return family
 
     def newFamilyNoMap(self,id):
@@ -991,11 +1002,7 @@ class RelDataBase:
         id = str(id)
         family.setId(id)
         self.familyMap[id] = family
-        try:
-            val = int(id)
-            self.fmapIndex = max(self.fmapIndex,val) + 1
-        except:
-            pass
+        self.fmapIndex = self.fmapIndex + 1
         return family
 
     def findFamily(self,idVal,map):

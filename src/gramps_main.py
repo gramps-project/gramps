@@ -875,9 +875,9 @@ def save_file(filename):
     except OSError, msg:
         GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
         return
-    except:
-        GnomeErrorDialog(_("Could not create %s") % filename)
-        return
+#    except:
+#        GnomeErrorDialog(_("Could not create %s") % filename)
+#        return
 
     database.setSavePath(old_file)
     utils.clearModified()
@@ -1954,11 +1954,11 @@ def load_tree_values(person,index,max,pv_text,tip):
     bdate = person.getBirth().getDate()
     ddate = person.getDeath().getDate()
     if bdate and ddate:
-        text = msg + "\nb. " + bdate + "\n" + "d. " +  ddate
+        text = "%s\nb. %s\nd. %s" % (msg, bdate,ddate)
     elif bdate and not ddate:
-        text = msg + "\nb. " + bdate
+        text = "%s\nb. %s" % (msg, bdate)
     elif not bdate and ddate:
-        text = msg + "\nd. " + ddate
+        text = "%s\nb. %s" % (msg, ddate)
     else:
         text = msg
     tip[index] = text

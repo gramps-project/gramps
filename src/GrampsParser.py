@@ -339,21 +339,25 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_photo(self,attrs):
         photo = Photo()
-        if attrs.has_key("descrip"):
-            photo.setDescription(u2l(attrs["descrip"]))
-        src = u2l(attrs["src"])
-        if src[0] != os.sep:
-            photo.setPath("%s%s%s" % (self.base,os.sep,src))
-            photo.setPrivate(1)
-        else:
-            photo.setPath(src)
-            photo.setPrivate(0)
-        if self.family:
-            self.family.addPhoto(photo)
-        elif self.source:
-            self.source.addPhoto(photo)
-        else:
-            self.person.addPhoto(photo)
+        for key in attrs.keys():
+            if key == "descrip":
+                photo.setDescription(u2l(attrs["descrip"]))
+            elif key == "src":
+                src = u2l(attrs["src"])
+                if src[0] != os.sep:
+                    photo.setPath("%s%s%s" % (self.base,os.sep,src))
+                    photo.setPrivate(1)
+                else:
+                    photo.setPath(src)
+                    photo.setPrivate(0)
+                if self.family:
+                    self.family.addPhoto(photo)
+                elif self.source:
+                    self.source.addPhoto(photo)
+                else:
+                    self.person.addPhoto(photo)
+            else:
+                photo.addProperty(key,attrs[key])
 
     #---------------------------------------------------------------------
     #
