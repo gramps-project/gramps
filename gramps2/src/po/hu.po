@@ -1,3 +1,6 @@
+# translation of hu.po to 
+# translation of hu.po to
+# translation of hu.po to
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
@@ -7,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2004-01-09 12:18+0100\n"
+"PO-Revision-Date: 2004-01-12 19:28+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -234,7 +237,7 @@ msgstr "Szülők kiválasztása"
 #: plugins/EventCmp.py:306 plugins/FamilyGroup.py:153 plugins/GraphViz.py:398
 #: plugins/GraphViz.py:399
 msgid "Birth"
-msgstr "Születési ideje és helye"
+msgstr "Születés"
 
 #: ChooseParents.py:223 ChooseParents.py:299 ChooseParents.py:537
 #: ChooseParents.py:538
@@ -935,7 +938,7 @@ msgstr "Család tulajdonságok:"
 #: GenericFilter.py:1181 choose.glade:630 edit_person.glade:1393
 #: gramps.glade:3464 imagesel.glade:693
 msgid "Title:"
-msgstr "Titulus:"
+msgstr "Megnevezés:"
 
 #: GenericFilter.py:1181 edit_person.glade:1321
 msgid "Suffix:"
@@ -1199,7 +1202,7 @@ msgstr "Keresés"
 
 #: GrampsCfg.py:117
 msgid "Report Preferences"
-msgstr "Összesítő tulajdonságai"
+msgstr "Összesítők tulajdonságai"
 
 #: GrampsCfg.py:118 StartupDialog.py:141
 msgid "Researcher Information"
@@ -1396,7 +1399,7 @@ msgstr "Duplakattintás kijelöli %s-t"
 
 #: PeopleStore.py:56 gramps_main.py:104
 msgid "Death date"
-msgstr "Halálozás ideje"
+msgstr "Elhalálozási idő"
 
 #: PeopleStore.py:244 PeopleView.py:254 PeopleView.py:273 gramps_main.py:953
 #: gramps_main.py:1532
@@ -1461,7 +1464,7 @@ msgstr "_Alkalmazás"
 
 #: Plugins.py:276
 msgid "Report Selection"
-msgstr "Összesítő kiválasztása"
+msgstr "Összesítő kiválasztás"
 
 #: Plugins.py:277 plugins.glade:248
 msgid "Select a report from those available on the left."
@@ -2123,7 +2126,7 @@ msgstr "Módosította"
 
 #: VersionControl.py:117
 msgid "Revision"
-msgstr "Felülvizsgálás"
+msgstr "Ellenőrzés"
 
 #: VersionControl.py:118 plugins/FilterEditor.py:252
 msgid "Comment"
@@ -2196,7 +2199,7 @@ msgstr "<b>Információ</b>"
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
-msgstr "GRAMPS (leszármazáskutató és elemző programrendszer) egy családfakutató program."
+msgstr "GRAMPS (leszármazáskutató és elemző programrendszer) családfakutató program."
 
 #: const.py:125
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -2226,7 +2229,7 @@ msgstr "Fogadott"
 #: const.py:175 const.py:495 const.py:503 gramps.glade:1455
 #: mergedata.glade:218
 msgid "Other"
-msgstr "Más"
+msgstr "Egyéb"
 
 #: const.py:184 srcsel.glade:459
 msgid "Very High"
@@ -2378,7 +2381,7 @@ msgstr "Állampolgárságot nyer"
 
 #: const.py:314
 msgid "Nobility Title"
-msgstr "Nemesi titulus"
+msgstr "Nemesi megnevezés"
 
 #: const.py:315
 msgid "Number of Marriages"
@@ -2521,7 +2524,7 @@ msgstr "Francia"
 #: dialog.glade:471 dialog.glade:1076 dialog.glade:2083 dialog.glade:2715
 #: imagesel.glade:576
 msgid "_Private record"
-msgstr "_Bizalmas mező"
+msgstr "_Bizalmas"
 
 #: dialog.glade:515 dialog.glade:1185 dialog.glade:2307 dialog.glade:3370
 #: gramps.glade:5807 imagesel.glade:1554 marriage.glade:313
@@ -3321,7 +3324,7 @@ msgstr "_Felhasználói kézikönyv"
 
 #: gramps.glade:579
 msgid "_FAQ"
-msgstr "_GYÍK"
+msgstr "_GYIK (FAQ)"
 
 #: gramps.glade:606
 msgid "GRAMPS _home page"
@@ -3565,7 +3568,7 @@ msgstr ""
 
 #: gramps.glade:3802 gramps.glade:4240 gramps.glade:5046
 msgid "_Show all"
-msgstr "_Minden megjelenítése"
+msgstr "_Mindent megmutat"
 
 #: gramps.glade:3848 marriage.glade:140
 msgid "_Relationship type:"
@@ -6112,11 +6115,11 @@ msgstr "Nem lett módosítva"
 
 #: plugins/PatchNames.py:104
 msgid "No titles or nicknames were found"
-msgstr "Nincsen sem titulus, sem becenév."
+msgstr "Nincsen se megnevezés, sem becenév."
 
 #: plugins/PatchNames.py:125
 msgid "Name and title extraction tool"
-msgstr "Név és titulus kifejtő eszköz"
+msgstr "Név és megnevezés kifejtő eszköz"
 
 #: plugins/PatchNames.py:133 plugins/SimpleBookTitle.py:337
 msgid "Select"
@@ -6135,8 +6138,8 @@ msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
 msgstr ""
-"Becenevek után keresés az egész adatbázisban, hogy ezeket fel lehessen "
-"használni a személyek keresztnevénél."
+"Becenevek és megnevezések után keresés az egész adatbázisban, "
+"hogy ezeket fel lehessen használni a személyek keresztnevénél."
 
 #: plugins/ReadGedcom.py:74
 msgid "Import from GEDCOM"
@@ -6338,7 +6341,7 @@ msgstr "Copyright %d %s"
 
 #: plugins/SimpleBookTitle.py:280
 msgid "Simple Book Title"
-msgstr "Egyszerű könyvcím"
+msgstr "Rövidített könyvcím"
 
 #: plugins/SimpleBookTitle.py:284
 msgid "Title Page for GRAMPS Book"
@@ -6375,7 +6378,7 @@ msgstr "Egy objektum kiválasztása"
 
 #: plugins/SimpleBookTitle.py:565
 msgid "Title Page"
-msgstr "Cím oldal"
+msgstr "Címoldal"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
@@ -6853,7 +6856,7 @@ msgstr "Nem lehet létrehozni a könyvtárat : %s"
 
 #: plugins/WebPage.py:906
 msgid "Include a link to the index page"
-msgstr "egy hivatkozás hozzáadása az index oldalhoz"
+msgstr "Index oldali hivatkozás hozzáadása"
 
 #: plugins/WebPage.py:907 plugins/pafexport.glade:276
 msgid "Do not include records marked private"
@@ -6989,11 +6992,11 @@ msgstr "Exportálás CD-re"
 
 #: plugins/WriteFtree.py:55
 msgid "Export to Web Family Tree"
-msgstr "Web Family Tree -be exportálás"
+msgstr "Exportálás Web Family Tree formátumba"
 
 #: plugins/WriteGedcom.py:62
 msgid "Export to GEDCOM"
-msgstr "GEDCOM formátumba exportálás"
+msgstr "Exportálás GEDCOM formátumba"
 
 #: plugins/WriteGedcom.py:379 plugins/WriteGedcom.py:514
 msgid "GEDCOM export"
@@ -7354,7 +7357,7 @@ msgid ""
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Lentebb olvashatóak a becenevek és titulusok amiket a GRAMPS az adatbázisból "
+"Lentebb olvashatóak a becenevek és megnevezések amiket a GRAMPS az adatbázisból "
 "ki tudott keresni.\n"
 "Ha elfogadja a változtatásokat, GRAMPS módosítani fogja a kiválasztott\n"
 "mezőket."
@@ -7497,7 +7500,7 @@ msgstr "Az alapértelmezett könyvtár az adatbázisok tárolására"
 
 #: preferences.glade:389
 msgid "_Do not compress XML data file"
-msgstr "_Ne tömörítse az XML fáljt"
+msgstr "_Ne tömörítse az XML adatbázis fájlt"
 
 #: preferences.glade:411
 msgid "_Automatically load last database"
@@ -7609,7 +7612,7 @@ msgstr "_Dátum formátum:"
 
 #: preferences.glade:1303
 msgid "_Show calendar format selection menu"
-msgstr "_Naptár formátum választó megjelenítése"
+msgstr "_Naptár választó megjelenítése"
 
 #: preferences.glade:1324
 msgid "<b>Display formats</b>"
@@ -7697,23 +7700,19 @@ msgstr "<b>Összeítő Tulajdonságai</b>"
 
 #: preferences.glade:2256
 msgid "Make a _reference to the object when the object is dropped"
-msgstr "Egy hivatkozás létrehozása az objektumhoz mikor egy új kerül használatba"
+msgstr "Egy hivatkozás létrehozása az új objektum használatakor"
 
 #: preferences.glade:2279
 msgid "Make a local _copy when the object is dropped"
-msgstr "_Egy helyi másolat készítése mikor egy új objektum kerül használatba"
+msgstr "_Egy helyi másolat készítése az új objektum használatakor"
 
 #: preferences.glade:2303
 msgid "Display _global properties editor when object is dropped"
-msgstr ""
-"_Globális tulajdonságszerkesztő megnyitása mikor egy új objektum kerül "
-"használatba"
+msgstr "_Globális tulajdonságszerkesztő megnyitása az új objektum használatakor"
 
 #: preferences.glade:2326
 msgid "Display _local properties editor when object is dropped"
-msgstr ""
-"_Helyi tulajdonságszerkesztő megnyitása mikor egy új objektum kerül "
-"használatba"
+msgstr "_Helyi tulajdonságszerkesztő megnyitása az új objektum használatakor"
 
 #: preferences.glade:2347
 msgid "<b>Drag and drop from an external source</b>"
@@ -7721,7 +7720,7 @@ msgstr "<b>Drag and drop egy külső forrásból</b>"
 
 #: preferences.glade:2371
 msgid "<b>Drag and drop from an internal source</b>"
-msgstr "<b>Drag and drop egy első forrásból</b>"
+msgstr "<b>Drag and drop egy belső forrásból</b>"
 
 #: preferences.glade:2461
 msgid "_Family:"
@@ -7781,7 +7780,7 @@ msgstr "_Adatbázis:"
 
 #: revision.glade:162
 msgid "_Revert to an older version from revision control"
-msgstr "_Biztonsági másolatból való régebbi verzióhoz visszatérés"
+msgstr "_Régebbi biztonsági másolathoz visszatérés"
 
 #: revision.glade:400
 msgid "Comment:"
