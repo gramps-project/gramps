@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- $Id$ -->
+
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="keybind">
       <title>Keybindings reference</title>
@@ -12,16 +14,25 @@
         <title>People View</title>
         <para>The following bindings are available in the People View:</para>
         
-          <variablelist>
-
-          <varlistentry><term>ENTER</term>
-          <listitem><para> Invoke <guilabel>Edit Person</guilabel> dialog 
-          with the selected person.
-          </para></listitem>
-          </varlistentry>
-
-
-          </variablelist>
+        <informaltable frame="topbot"> 
+        <tgroup cols="2"> 
+        <colspec colname="col1"/> 
+        <colspec colname="col2"/> 
+        <thead> 
+        <row valign="top">
+          <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+          <entry colname="col2" valign="top"><para>Function</para></entry> 
+        </row> 
+        </thead>
+        <tbody> 
+        <row valign="top"> 
+          <entry><para><guilabel>Enter</guilabel></para></entry> 
+          <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog 
+          with the selected person.</para></entry> 
+        </row>  
+        </tbody> 
+        </tgroup>
+        </informaltable> 
 
         </sect3>
 
@@ -29,44 +40,211 @@
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="keybind-family">
         <title>Family View</title>
-        <para>The following bindings are available in the Family View:</para>
+        <para>The bindings available in the Family View depend on where the
+        focus is. The following tables list the bindings for all focus 
+        targets.</para>
         
           <variablelist>
 
-          <varlistentry><term>ENTER</term>
-          <listitem><para> When focus is on the active person, invoke 
-          <guilabel>Edit Person</guilabel> dialog with the active person. 
-          When focus is in the <guilabel>Spouse</guilabel> box, edit the 
-          relationship between the active person and the selected spouse.
-          When focus is in the parents' box, edit relationship between the 
-          selected parents and the active person/selected spouse. When focus
-          is in the children box, edit relationship between the selected 
-          child and his/her parents (active person and selected spouse).
-          </para>
-          <para>In all cases, pressing <guilabel>ENTER</guilabel> somewhere is
-          equivalent to double-clicking on the appropriate selection.
-          </para>
+          <varlistentry><term>Focus on the Active Person</term>
+          <listitem>
+
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog with 
+            the active person.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Ctrl+Down</guilabel> 
+            or <guilabel>Ctrl+Right</guilabel></para></entry> 
+            <entry><para>Swap the Active Person and the selected spouse.
+            Use <guilabel>Ctrl+Down</guilabel> in standard Family View and
+            <guilabel>Ctrl+Right</guilabel> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+
           </listitem>
           </varlistentry>
 
-          <varlistentry><term>Shift+ENTER</term>
-          <listitem><para> When focus is on the <guilabel>Spouse</guilabel> 
-          box, invoke <guilabel>Edit Person</guilabel> dialog with the 
-          selected spouse. When focus is in the children box, 
-          invoke <guilabel>Edit Person</guilabel> dialog with the the selected 
-          child.
-          </para>
-          <para>In all cases, pressing <guilabel>Shift+ENTER</guilabel> 
-          somewhere is equivalent to shift-clicking on the appropriate 
-          selection.
-          </para>
+
+          <varlistentry><term>Focus on the Spouse box</term>
+          <listitem>
+          
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para>Edit relationship between the Active Person and 
+            the selected spouse.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Shift+Enter</guilabel></para></entry> 
+            <entry><para>Edit the personal information for the selected
+            spouse.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Insert</guilabel></para></entry> 
+            <entry><para>Add a person from the database to the spouse 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Shift+Insert</guilabel></para></entry> 
+            <entry><para>Add a new person to the database and to the spouse 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Delete</guilabel></para></entry> 
+            <entry><para>Delete the selected spouse from the spouse 
+            list. The spouse is not deleted from the database.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Ctrl+Up</guilabel> 
+            or <guilabel>Ctrl+Left</guilabel></para></entry> 
+            <entry><para>Swap the selected spouse and the Active Person.
+            Use <guilabel>Ctrl+Down</guilabel> in standard Family View and
+            <guilabel>Ctrl+Right</guilabel> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+          
           </listitem>
           </varlistentry>
 
 
+          <varlistentry><term>Focus on the Parents box</term>
+          <listitem>
+          
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para>Edit relationship between the parents and their 
+            child (either the Active Person or the selected spouse, depending 
+            which parents box the focus is in).</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Insert</guilabel></para></entry> 
+            <entry><para>Add a new set of parents from the database to the 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Shift+Insert</guilabel></para></entry> 
+            <entry><para>Add a new set of parents to the database and to the 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Delete</guilabel></para></entry> 
+            <entry><para>Delete the selected parents from the list. 
+            The parents are not deleted from the database.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Ctrl+Right</guilabel> 
+            or <guilabel>Ctrl+Down</guilabel></para></entry> 
+            <entry><para>Make the selected parents the active family.
+            Use <guilabel>Ctrl+Right</guilabel> in standard Family View and
+            <guilabel>Ctrl+Down</guilabel> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+          
+          </listitem>
+          </varlistentry>
+
+
+          <varlistentry><term>Focus on the Children box</term>
+          <listitem>
+          
+          <informaltable frame="topbot"> 
+          <tgroup cols="2"> 
+          <colspec colname="col1"/> 
+          <colspec colname="col2"/> 
+          <thead> 
+          <row valign="top">
+            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
+            <entry colname="col2" valign="top"><para>Function</para></entry> 
+          </row> 
+          </thead>
+          <tbody> 
+          <row valign="top"> 
+            <entry><para><guilabel>Enter</guilabel></para></entry> 
+            <entry><para>Edit relationship between the child and his/her  
+            parents (the Active Person and the selected 
+            spouse).</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Shift+Enter</guilabel></para></entry> 
+            <entry><para>Edit the personal information for the selected
+            child.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Insert</guilabel></para></entry> 
+            <entry><para>Add a new person from the database to the children 
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Shift+Insert</guilabel></para></entry> 
+            <entry><para>Add a new person to the database and to the children
+            list.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Delete</guilabel></para></entry> 
+            <entry><para>Delete the selected child from the list. 
+            The child is not deleted from the database.</para></entry> 
+          </row>  
+          <row valign="top"> 
+            <entry><para><guilabel>Ctrl+Left</guilabel> 
+            or <guilabel>Ctrl+Up</guilabel></para></entry> 
+            <entry><para>Make the selected child the Active Person.
+            Use <guilabel>Ctrl+Left</guilabel> in standard Family View and
+            <guilabel>Ctrl+Up</guilabel> in alternative Family  
+            View.</para></entry> 
+          </row>  
+          </tbody> 
+          </tgroup>
+          </informaltable> 
+          
+          </listitem>
+          </varlistentry>
 
           </variablelist>
 
         </sect3>
 
       </sect2>
+

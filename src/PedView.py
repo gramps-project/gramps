@@ -314,12 +314,12 @@ class PedigreeView:
                     cname = GrampsCfg.nameof(child)
                     menuitem = gtk.MenuItem(None)
                     if find_children(child):
-                        label = gtk.Label('<i>%s</i>' % cname)
+                        label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
                         label = gtk.Label(cname)
                     label.set_use_markup(gtk.TRUE)
                     label.show()
-                    label.set_justify(gtk.JUSTIFY_LEFT)
+                    label.set_alignment(0,0)
                     menuitem.add(label)
                     myMenu.append(menuitem)
                     menuitem.set_data(_PERSON,child)

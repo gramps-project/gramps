@@ -1,4 +1,4 @@
-Version 0.98.0
+Version 0.98.0 -- the "Round me off" release
 * More compliance with GNOME HIG.
 * New BookReport dialog layout.
 * Person View uses a tree format instead of list format.
@@ -19,6 +19,9 @@ Version 0.98.0
   appear in post-1.0 releases.
 * Tab labels in tabbed dialogs reflect the presence of data (bold).
 * Help button available in most dialogs.
+* Keyboard navigation and functionality in Family View.
+* In Pedigree View, children are marked up differently in popup menus 
+  depending on whether they have children.
 * Bugfixes.
 
 Version 0.9.5 -- the "Fix me up" release
