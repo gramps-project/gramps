@@ -103,20 +103,18 @@ class CheckIntegrity:
 
         family_list = self.db.getFamilyMap().values()[:]
         for family in family_list:
-            child_list = family.getChildList()[:]
-            num_kids = len(child_list)
-            father = family.getFather()
-            mother = family.getMother()
+            if family.getFather() == None and family.getMother() == None:
+                utils.modified()
+                self.empty_family.append(family)
+                self.delete_empty_family(family)
 
-            if num_kids == 0:
-                if father or mother:
-                    continue
-                elif not father and not mother:
-                    self.db.deleteFamily(family)
-                elif automatic:
-                    self.db.deleteFamily(family)
-                else:
-                    self.empty_family.append(family)
+    def delete_empty_family(self,family):
+        for child in self.db.getPersonMap().values():
+            if child.getMainFamily() == family:
+                child.setMainFamily(None)
+            else:
+                child.removeAltFamily(family)
+        self.db.deleteFamily(family)
 
     #-------------------------------------------------------------------------
     #

@@ -272,21 +272,28 @@ def make_date(subdate,mmap):
     year_valid = subdate.getYearValid()
 
     if not day_valid:
-        if not mon_valid:
+        try:
+            if not mon_valid:
+                retval = str(year)
+            elif not year_valid:
+                retval = mmap[mon]
+            else:
+                retval = "%s %d" % (mmap[mon],year)
+        except IndexError:
+            print "Month index error - %d" % mon
             retval = str(year)
-        elif not year_valid:
-            retval = mmap[mon]
-        else:
-            retval = "%s %d" % (mmap[mon],year)
     elif not mon_valid:
         retval = str(year)
     else:
-        month = mmap[mon]
-        if not year_valid:
-            retval = "%d %s ????" % (day,month)
-        else:
-            retval = "%d %s %d" % (day,month,year)
-
+        try:
+            month = mmap[mon]
+            if not year_valid:
+                retval = "%d %s ????" % (day,month)
+            else:
+                retval = "%d %s %d" % (day,month,year)
+        except IndexError:
+            print "Month index error - %d" % mon
+            retval = str(year)
     if mode == Date.SingleDate.about:
         retval = "ABT %s"  % retval
     elif mode == Date.SingleDate.before:
@@ -330,20 +337,28 @@ def ged_subdate(date):
     if not date.getValid():
         return ""
     elif not date.getDayValid():
-        if not date.getMonthValid():
+        try:
+            if not date.getMonthValid():
+                retval = str(date.year)
+            elif not date.getYearValid():
+                retval = "(%s)" % Date.SingleDate.emname[date.month]
+            else:	
+                retval = "%s %d" % (Date.SingleDate.emname[date.month],date.year)
+        except IndexError:
+            print "Month index error - %d" % date.month
             retval = str(date.year)
-        elif not date.getYearValid():
-            retval = "(%s)" % Date.SingleDate.emname[date.month]
-        else:	
-            retval = "%s %d" % (Date.SingleDate.emname[date.month],date.year)
     elif not date.getMonthValid():
         retval = str(date.year)
     else:
-        month = Date.SingleDate.emname[date.month]
-        if not date.getYearValid():
-            retval = "(%d %s)" % (date.day,month)
-        else:
-            retval = "%d %s %d" % (date.day,month,date.year)
+        try:
+            month = Date.SingleDate.emname[date.month]
+            if not date.getYearValid():
+                retval = "(%d %s)" % (date.day,month)
+            else:
+                retval = "%d %s %d" % (date.day,month,date.year)
+        except IndexError:
+            print "Month index error - %d" % date.month
+            retval = str(date.year)
 
     if date.mode == Date.SingleDate.about:
         retval = "ABT %s"  % retval

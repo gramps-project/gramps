@@ -428,8 +428,8 @@ class MergePeople:
                         else:
                             index = 0
                             for fam in child.getAltFamilies():
-                                if fam == src_family:
-                                    child.getAltFamilies()[index] = tgt_family
+                                if fam[0] == src_family:
+                                    child.getAltFamilies()[index] = (tgt_family,fam[1],fam[2])
                                 index = index + 1
 
                 # add family events from the old to the new
@@ -449,13 +449,13 @@ class MergePeople:
 
                 del self.db.getFamilyMap()[src_family.getId()]
             else:
-                self.remove_marriage(src_family,self.p2)
                 if src_family not in self.p1.getFamilyList():
                     self.p1.addFamily(src_family)
                     if self.p1.getGender() == RelLib.Person.male:
                         src_family.setFather(self.p1)
                     else:
                         src_family.setMother(self.p1)
+                self.remove_marriage(src_family,self.p2)
 
         # a little debugging here
         
@@ -467,22 +467,22 @@ class MergePeople:
                 fam.setFather(self.p1)
             if self.p2 == fam.getMother():
                 fam.setMother(self.p1)
+            if fam.getFather() == None and fam.getMother() == None:
+                self.delete_empty_family(self)
                 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def remove_marriage(self,family,person):
-        if not person:
-            return
-        index = 0
-        for fam in person.getFamilyList():
-            if fam == family:
-                del person.getFamilyList()[index]
-                return
-            index = index + 1
+        if person:
+            person.removeFamily(family)
+            if family.getFather() == None and family.getMother() == None:
+                self.delete_empty_family(family)
 
+    def delete_empty_family(self,family):
+        for child in family.getChildList():
+            if child.getMainFamily() == family:
+                child.setMainFamily(None)
+            else:
+                child.removeAltFamily(family)
+        self.db.deleteFamily(family)
 
 def compare_people(p1,p2):
 
