@@ -924,7 +924,7 @@ def on_primary_photo_clicked(obj):
     thumb = edit_person_obj.db.getSavePath() + os.sep + ".thumb" + os.sep + \
             "i%d" % edit_person_obj.person.getId()
     
-    mk_thumb(savePhoto,thumb,const.picWidth)
+    RelImage.mk_thumb(savePhoto,thumb,const.picWidth)
     edit_person_obj.load_photo(thumb)
     utils.modified()
 
