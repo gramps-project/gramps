@@ -1,3 +1,7 @@
+2003-09-19  Tim Waugh  <twaugh@redhat.com>
+	* src/Makefile.am: Fix build when builddir != srcdir.
+	* gramps.spec.in: Ship grampslib.so.
+
 2003-09-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Makefile.am: Install grampslib under $pkglibdir/$PACKAGE
 	* src/Makefile.in: Likewise. 
