@@ -138,6 +138,115 @@ class Everyone(Rule):
 
 #-------------------------------------------------------------------------
 #
+# RelationshipPathBetween
+#
+#-------------------------------------------------------------------------
+class RelationshipPathBetween(Rule):
+    """Rule that checks for a person that is a descendant of a specified person
+    not more than N generations away"""
+
+    labels = [ _('ID:'), _('ID:') ]
+    
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
+    def name(self):
+        return "Relationship path between two people"
+
+    def category(self): 
+        return _('Relationship filters')
+
+    def description(self):
+        return _("Matches the ancestors of two people back to a common ancestor, producing "
+                 "the relationship path between two people.")
+
+    def desc_list(self, p, map, first):
+        if not first:
+            map[p.getId()] = 1
+        
+        for fam in p.getFamilyList():
+            for child in fam.getChildList():
+                self.desc_list(child,map,0)
+    
+    def apply_filter(self,rank,person,plist,pmap):
+        if person == None:
+            return
+        plist.append(person)
+        pmap[person.getId()] = rank
+        
+        family = person.getMainParents()
+        if family != None:
+            self.apply_filter(rank+1,family.getFather(),plist,pmap)
+            self.apply_filter(rank+1,family.getMother(),plist,pmap)
+
+    def apply(self,db,p):
+        if not self.init:
+            self.init = 1
+            root1 = db.getPerson(self.list[0])
+            root2 = db.getPerson(self.list[1])
+            self.init_list(root1,root2)
+        return self.map.has_key(p.getId())
+
+    def init_list(self,p1,p2):
+
+        firstMap = {}
+        firstList = []
+        secondMap = {}
+        secondList = []
+        common = []
+        rank = 9999999
+
+        self.apply_filter(0,p1,firstList,firstMap)
+        self.apply_filter(0,p2,secondList,secondMap)
+        
+        for person in firstList:
+            if person in secondList:
+                new_rank = firstMap[person.getId()]
+                if new_rank < rank:
+                    rank = new_rank
+                    common = [ person ]
+                elif new_rank == rank:
+                    common.append(person)
+
+        path1 = { p1.getId() : 1}
+        path2 = { p2.getId() : 1}
+
+        print common[0].getId()
+        print common[1].getId()
+        
+        for person in common:
+            new_map = {}
+            self.desc_list(person,new_map,1)
+            self.get_intersection(path1,firstMap,new_map)
+            self.get_intersection(path2,secondMap,new_map)
+
+        print "Common Ancestor desc"
+        print new_map
+        print "p1 ancestors"
+        print path1
+        print "p2 ancestors"
+        print path2
+        
+        for e in path1:
+            self.map[e] = 1
+        for e in path2:
+            self.map[e] = 1
+        for e in common:
+            self.map[e.getId()] = 1
+
+        print path1
+        print path2
+        print self.map
+
+    def get_intersection(self,target, map1, map2):
+        for e in map1.keys():
+            if map2.has_key(e):
+                target[e] = map2[e]
+        
+#-------------------------------------------------------------------------
+#
 # HasIdOf
 #
 #-------------------------------------------------------------------------
@@ -1288,38 +1397,39 @@ class GenericFilter:
 #
 #-------------------------------------------------------------------------
 tasks = {
-    _("Everyone")                        : Everyone,
-    _("Has the Id")                      : HasIdOf,
-    _("Has a name")                      : HasNameOf,
-    _("Has the relationships")           : HasRelationship,
-    _("Has the death")                   : HasDeath,
-    _("Has the birth")                   : HasBirth,
-    _("Is a descendant of")              : IsDescendantOf,
-    _("Is a descendant family member of"): IsDescendantFamilyOf,
-    _("Is a descendant of filter match") : IsDescendantOfFilterMatch,
+    _("Everyone")                             : Everyone,
+    _("Has the Id")                           : HasIdOf,
+    _("Has a name")                           : HasNameOf,
+    _("Has the relationships")                : HasRelationship,
+    _("Has the death")                        : HasDeath,
+    _("Has the birth")                        : HasBirth,
+    _("Is a descendant of")                   : IsDescendantOf,
+    _("Is a descendant family member of")     : IsDescendantFamilyOf,
+    _("Is a descendant of filter match")      : IsDescendantOfFilterMatch,
     _("Is a descendant of person not more than N generations away")
-                                         : IsLessThanNthGenerationDescendantOf,
+                                              : IsLessThanNthGenerationDescendantOf,
     _("Is a descendant of person at least N generations away")
-                                         : IsMoreThanNthGenerationDescendantOf,
-    _("Is a child of filter match")      : IsChildOfFilterMatch,
-    _("Is an ancestor of")               : IsAncestorOf,
-    _("Is an ancestor of filter match")  : IsAncestorOfFilterMatch,
+                                              : IsMoreThanNthGenerationDescendantOf,
+    _("Is a child of filter match")           : IsChildOfFilterMatch,
+    _("Is an ancestor of")                    : IsAncestorOf,
+    _("Is an ancestor of filter match")       : IsAncestorOfFilterMatch,
     _("Is an ancestor of person not more than N generations away")
-                                         : IsLessThanNthGenerationAncestorOf,
+                                              : IsLessThanNthGenerationAncestorOf,
     _("Is an ancestor of person at least N generations away")
-                                         : IsMoreThanNthGenerationAncestorOf,
-    _("Is a parent of filter match")     : IsParentOfFilterMatch,
-    _("Has a common ancestor with")      : HasCommonAncestorWith,
+                                              : IsMoreThanNthGenerationAncestorOf,
+    _("Is a parent of filter match")          : IsParentOfFilterMatch,
+    _("Has a common ancestor with")           : HasCommonAncestorWith,
     _("Has a common ancestor with filter match")
-                                         : HasCommonAncestorWithFilterMatch,
-    _("Is a female")                     : IsFemale,
-    _("Is a male")                       : IsMale,
-    _("Has the personal event")          : HasEvent,
-    _("Has the family event")            : HasFamilyEvent,
-    _("Has the personal attribute")      : HasAttribute,
-    _("Has the family attribute")        : HasFamilyAttribute,
-    _("Matches the filter named")        : MatchesFilter,
-    _("Is spouse of filter match")       : IsSpouseOfFilterMatch,
+                                              : HasCommonAncestorWithFilterMatch,
+    _("Is a female")                          : IsFemale,
+    _("Is a male")                            : IsMale,
+    _("Has the personal event")               : HasEvent,
+    _("Has the family event")                 : HasFamilyEvent,
+    _("Has the personal attribute")           : HasAttribute,
+    _("Has the family attribute")             : HasFamilyAttribute,
+    _("Matches the filter named")             : MatchesFilter,
+    _("Is spouse of filter match")            : IsSpouseOfFilterMatch,
+    _("Relationship path between two people") : RelationshipPathBetween,
     }
 
 #-------------------------------------------------------------------------
@@ -1442,7 +1552,6 @@ class FilterParser(handler.ContentHandler):
             
     def characters(self, data):
         pass
-
 
 #-------------------------------------------------------------------------
 #

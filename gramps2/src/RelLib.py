@@ -2203,7 +2203,8 @@ class GrampsDB(Persistent):
 
     def sortPersonKeys(self):
         keys = self.personTable.keys()
-        keys.sort(self.sortbyname)
+        if type(keys) == type([]):
+            keys.sort(self.sortbyname)
         return keys
 
     def getPersonDisplay(self,key):
@@ -2730,7 +2731,8 @@ class GrampsDB(Persistent):
 
     def sortPlaceKeys(self):
         keys = self.placeTable.keys()
-        keys.sort(self.sortbyplace)
+        if type(keys) == type([]):
+            keys.sort(self.sortbyplace)
         return keys
 
     def getPlaceKeys(self):
