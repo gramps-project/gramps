@@ -1,4 +1,5 @@
 2003-06-27  Tim Waugh  <twaugh@redhat.com>
+	* src/PlaceView.py: Fix removal of unreferenced places.
 	* src/plugins/WebPage.py: Make source links work.
 	* src/EditPerson.py: Place keys are unicode.
 	* src/plugins/Ancestors.py: Include source reference notes.  Made
