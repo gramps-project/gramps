@@ -1,3 +1,8 @@
+2003-09-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py: set z-index properly for paths
+	so they appear over text, fix font for draw_text
+	* src/docgen/OpenDrawDoc.py: deleted, superceded by OpenofficeDoc.py
+
 2003-09-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/WriteGedcom.py (cl_setup): Define newline char.
 	* src/plugins/WriteFtree.py: Provide command line interface. 
