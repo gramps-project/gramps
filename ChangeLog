@@ -1,5 +1,15 @@
 2003-08-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PaperMenu.py: Add A3 size to the default size list.
+	* src/plugins/FamilyGroup.py: Remove setup() call.
+	* src/plugins/IndivSummary.py: Enable translation for an event type. 
+	* src/plugins/FtmStyleAncestors.py: Space after full stop. 
+	* src/const.py.in (display_pevent): Try translating string if not 
+	found in the _pe_e2l dictionary. Useful for translating Birth and 
+	Death events which are not in the dictionary as non-editable events. 
+	Seems harmless in the display function ;
+	(display_fevent, display_event, display_pattr, display_fattr, 
+	display_attr, display_frel): Likewise. Might be useful in some 
+	cases and seems totally harmless. 
 
 2003-08-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: set menu title

@@ -226,7 +226,7 @@ def display_fevent(st):
     if _fe_e2l.has_key(st):
         return _fe_e2l[st]
     else:
-        return st
+        return _(st)
 
 #-------------------------------------------------------------------------
 #
@@ -335,7 +335,7 @@ def display_pevent(st):
     if _pe_e2l.has_key(st):
         return _pe_e2l[st]
     else:
-        return st
+        return _(st)
 
 #-------------------------------------------------------------------------
 #
@@ -360,7 +360,7 @@ def display_event(st):
     elif _fe_e2l.has_key(st):
         return _fe_e2l[st]
     else:
-        return st
+        return _(st)
 
 def save_event(st):
     if _pe_l2e.has_key(st):
@@ -404,7 +404,7 @@ def display_pattr(st):
     if _pa_e2l.has_key(st):
         return _pa_e2l[st]
     else:
-        return st
+        return _(st)
 
 #-------------------------------------------------------------------------
 #
@@ -443,7 +443,7 @@ def display_fattr(st):
     if _fa_e2l.has_key(st):
         return _fa_e2l[st]
     else:
-        return st
+        return _(st)
 
 #-------------------------------------------------------------------------
 #
@@ -468,7 +468,7 @@ def display_attr(st):
     elif _fa_e2l.has_key(st):
         return _fa_e2l[st]
     else:
-        return st
+        return _(st)
 
 def save_attr(st):
     if _pa_l2e.has_key(st):
@@ -524,7 +524,7 @@ def display_frel(st):
     if _fr_e2l.has_key(st):
         return _fr_e2l[st]
     else:
-        return st
+        return _(st)
 
 #-------------------------------------------------------------------------
 #

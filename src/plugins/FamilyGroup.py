@@ -400,7 +400,6 @@ class FamilyGroupDialog(Report.TextReportDialog):
         try:
             MyReport = FamilyGroup(self.db, self.report_menu, 
                 self.doc, self.target_path)
-            MyReport.setup()
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
