@@ -82,7 +82,7 @@ def by_date(a,b):
 #------------------------------------------------------------------------
 class HtmlLinkDoc(HtmlDoc.HtmlDoc):
     """
-    Version of the HtmlDoc class the provides the ability to create a link
+    Version of the HtmlDoc class that provides the ability to create a link
     """
     def write_linktarget(self,path):
         self.f.write('<A NAME="%s"></A>' % path)
@@ -946,8 +946,8 @@ class WebReportDialog(Report.ReportDialog):
         return "webpage.xml"
     
     def get_report_generations(self):
-        """Default to ten generations, no page break box."""
-        return (10, 0)
+        """No generations, no page break box."""
+        return (0, 0)
 
     def get_report_filters(self):
         """Set up the list of possible content filters."""
