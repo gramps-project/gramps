@@ -41,8 +41,8 @@ class Sorter:
         self.column_map = column_map
         self.key = key
         self.top_window = top_window
-        (self.col,self.sort) = GrampsCfg.get_sort_cols(self.key,0,GTK.SORT_DESCENDING)
-        self.change_sort(0)
+        (self.col,self.sort) = GrampsCfg.get_sort_cols(self.key,0,GTK.SORT_ASCENDING)
+        self.change_sort(self.col,0)
         self.clist.connect('click-column',self.click)
 
     def sort_col(self):
@@ -86,15 +86,11 @@ class Sorter:
             (sort_col,arrow) = self.column_map[column]
         except:
             return
+
         for (i,a) in self.column_map:
             if arrow != a:
                 a.hide()
         arrow.show()
-
-        self.clist.set_sort_column(sort_col)
-        self.clist.set_sort_type(self.sort)
-
-        self.sort_list()
 
         if change:
             if self.col == column:
@@ -107,6 +103,12 @@ class Sorter:
             else:
                 self.sort = GTK.SORT_ASCENDING
                 arrow.set(GTK.ARROW_DOWN,2)
+
+        self.clist.set_sort_column(sort_col)
+        self.clist.set_sort_type(self.sort)
+
+        self.sort_list()
+
         self.col = column
 
         if len(self.clist.selection) > 1:

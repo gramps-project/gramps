@@ -1630,12 +1630,17 @@ class Gramps:
         GrampsCfg.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     
+        self.statusbar.set_progress(1.0)
+        self.full_update()
+
         person = self.db.getDefaultPerson()
         if person:
             self.active_person = person
+        elif self.person_list.rows > 0:
+            id = self.person_list.get_row_data(0)
+            self.active_person = self.db.getPerson(id)
 
-        self.statusbar.set_progress(1.0)
-        self.full_update()
+        self.goto_active_person()
         self.statusbar.set_progress(0.0)
         return 1
     
