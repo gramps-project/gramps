@@ -26,6 +26,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -40,7 +41,6 @@ import Report
 import GenericFilter
 import Errors
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -55,10 +55,9 @@ import gtk
 #
 #------------------------------------------------------------------------
 _person_handle = ""
-_max_gen = 0
-_pg_brk = 0
 _filter_num = 0
-_options = ( _person_handle, _max_gen, _pg_brk, _filter_num )
+_use_srcs = 0
+_options = ( _person_id, _filter_num, _use_srcs )
 
 #------------------------------------------------------------------------
 #
@@ -590,14 +589,12 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
 
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        self.max_gen = int(self.options[1])
-        self.pg_brk = int(self.options[2])
-        self.filter_num = int(self.options[3])
+        self.filter_num = int(self.options[1])
+        self.use_srcs = int(self.options[2])
         self.new_person = None
 
-        self.generations_spinbox.set_value(self.max_gen)
-        self.pagebreak_checkbox.set_active(self.pg_brk)
         self.filter_combo.set_history(self.filter_num)
+        self.use_srcs_checkbox.set_active(self.use_srcs)
 
         self.window.run()
 
@@ -606,6 +603,11 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
 
     def get_report_filters(self):
         return _get_report_filters(self.person)
+
+    def add_user_options(self):
+        self.use_srcs_checkbox = gtk.CheckButton(_('Include Source Information'))
+        self.use_srcs_checkbox.show()
+        self.add_option('',self.use_srcs_checkbox)
 
     #------------------------------------------------------------------------
     #
@@ -638,9 +640,15 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.filter_num = self.filter_combo.get_history()
-        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk, self.filter_num )
+        self.use_srcs = self.use_srcs_checkbox.get_active()
+        self.options = ( self.person.getId(), self.filter_num, self.use_srcs )
         self.style_name = self.selected_style.get_name()
 
+    def get_report_generations(self):
+        """Return the default number of generations to start the
+        spinbox (zero to disable) and whether or not to include the
+        'page break between generations' check box"""
+        return (0, 0)
 
 #------------------------------------------------------------------------
 #
@@ -653,15 +661,12 @@ def write_book_item(database,person,doc,options,newpage=0):
     try:
         if options[0]:
             person = database.get_person_from_handle(options[0])
-        max_gen = int(options[1])
-        pg_brk = int(options[2])
-        filter_num = int(options[3])
+        filter_num = int(options[1])
         filters = _get_report_filters(person)
-        filter = filters[filter_num]
-#        act = self.use_srcs.get_active()
+        the_filter = filters[filter_num]
+        act = int(options[2])
         
-        return IndivComplete(database, person, None, doc, filter, 0, newpage)
-#        return IndivComplete(database, person, None, doc, filter, act, newpage)
+        return IndivComplete(database, person, None, doc, the_filter, act, newpage)
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
