@@ -1,3 +1,10 @@
+2003-12-17  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py
+	(ComprehensiveAncestorsReport.write_report): No need for separate
+	clauses when using write_note, since output is not delayed here.
+	(ComprehensiveAncestorsReport.long_notes): Handle pre-formatted
+	notes on events.
+
 2003-12-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PlaceView.py: Make sure to add new place after edit
 	* src/AddMedia.py: unicode conversion from gtk.Entry

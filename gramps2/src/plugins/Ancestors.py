@@ -152,12 +152,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 note = source.getNote ()
                 format = source.getNoteFormat ()
                 if note:
-                    if format == 0:
-                        self.doc.start_paragraph ("AR-Details")
-                        self.doc.write_text (note)
-                        self.doc.end_paragraph ()
-                    else:
-                        self.doc.write_note (note, format, "AR-Details")
+                    self.doc.write_note (note, format, "AR-Details")
 
                 i += 1
 
@@ -439,7 +434,9 @@ class ComprehensiveAncestorsReport (Report.Report):
         if placename:
             info += _(' in %(place)s') % {'place': placename}
         note = event.getNote ()
-        if note or description:
+        note_format = event.getNoteFormat ()
+        inline_note = note and (note_format == 0)
+        if inline_note or description:
             info += ' ('
             if description:
                 info += description
@@ -747,10 +744,22 @@ class ComprehensiveAncestorsReport (Report.Report):
                             ': ' + name.getRegularName ()]))
             paras.append ((self.doc.end_paragraph, []))
 
+        for event in [person.getBirth (), person.getDeath ()]:
+            note = event.getNote ()
+            note_format = event.getNoteFormat ()
+            if note and (note_format != 0):
+                paras.append ((self.doc.write_note, [note, format,
+                                                     'AR-Details']))
+
         for event in events:
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))
+            note = event.getNote ()
+            note_format = event.getNoteFormat ()
+            if note and (note_format != 0):
+                paras.append ((self.doc.write_note, [note, format,
+                                                     'AR-Details']))
 
         for address in addresses:
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
