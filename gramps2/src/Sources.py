@@ -410,13 +410,14 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
-        values = self.db.source_map.values()
-        values.sort(by_title)
+        keys = self.db.get_source_keys()
+        keys.sort(self.db.sortbysource)
         
         sel_child = None
         self.list = []
         self.active_source = sel
-        for src in values:
+        for src_id in keys:
+            src = self.db.find_source_from_id(src_id)
             l = gtk.Label("%s [%s]" % (src.get_title(),src.get_id()))
             l.show()
             l.set_alignment(0,0.5)

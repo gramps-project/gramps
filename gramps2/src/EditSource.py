@@ -368,8 +368,10 @@ class DelSrcQuery:
 
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for v in p.get_event_list() + [p.get_birth(), p.get_death()]:
-                self.delete_source(v)
+            for v_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
+                v = self.db.find_event_from_id(v_id)
+                if v:
+                    self.delete_source(v)
 
             for v in p.get_attribute_list():
                 self.delete_source(v)
@@ -380,17 +382,22 @@ class DelSrcQuery:
             for v in p.get_address_list():
                 self.delete_source(v)
 
-        for p in self.db.get_family_id_map().values():
-            for v in p.get_event_list():
-                self.delete_source(v)
+        for p_id in self.db.get_family_keys():
+            p = self.db.find_family_from_id(p_id)
+            for v_id in p.get_event_list():
+                v = self.db.find_event_from_id(v_id)
+                if v:
+                    self.delete_source(v)
 
             for v in p.get_attribute_list():
                 self.delete_source(v)
 
-        for p in self.db.get_object_map().values():
+        for p_id in self.db.get_object_keys():
+            p = self.db.find_object_from_id(p_id)
             self.delete_source(p)
 
         for key in self.db.get_place_id_keys():
-            self.delete_source(self.db.get_place_id(key))
+            p = self.db.find_place_from_id(key)
+            self.delete_source(self.db.find_place_from_id(key))
 
         self.update(0)

@@ -2929,9 +2929,19 @@ class GrampsDB:
         return self.media_map.keys()
 
     def sortbysource(self,f,s):
-        f1 = self.source_map[f].title.upper()
-        s1 = self.source_map[s].title.upper()
-        return cmp(f1,s1)
+        if self.source_map.get(str(f)):
+            f1 = Source()
+            f1.unserialize(self.source_map.get(str(f)))
+        else:
+            return 0
+        if self.source_map.get(str(s)):
+            s1 = Source()
+            s1.unserialize(self.source_map.get(str(s)))
+        else:
+            return 0
+        f2 = f1.get_title().upper()
+        s2 = s1.get_title().upper()
+        return cmp(f2,s2)
 
     def set_source_keys(self):
         keys = self.source_map.keys()
