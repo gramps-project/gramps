@@ -208,6 +208,7 @@ class Gramps:
 
         self.sidebar_btn = self.gtop.get_widget("sidebar1")
         self.filter_btn  = self.gtop.get_widget("filter1")
+        self.toolbar_btn = self.gtop.get_widget("toolbar2")
         self.statusbar   = self.gtop.get_widget("statusbar")
 
         self.filter_list = self.gtop.get_widget("filter_list")
@@ -215,6 +216,7 @@ class Gramps:
         self.merge_button= self.gtop.get_widget("merge")
         self.canvas      = self.gtop.get_widget("canvas1")
         self.toolbar     = self.gtop.get_widget("toolbar1")
+        self.toolbardock = self.gtop.get_widget("dockitem2")
         self.filter_text = self.gtop.get_widget('filter')
         self.filter_inv  = self.gtop.get_widget("invert")
         self.qual_label  = self.gtop.get_widget("qual")
@@ -233,6 +235,9 @@ class Gramps:
 
         self.use_filter = GrampsCfg.get_filter()
         self.filter_btn.set_active(self.use_filter)
+
+        self.use_toolbar = GrampsCfg.get_toolbar_on()
+        self.toolbar_btn.set_active(self.use_toolbar)
 
         self.child_model = gtk.ListStore(
             gobject.TYPE_INT, gobject.TYPE_STRING, gobject.TYPE_STRING,
@@ -312,6 +317,7 @@ class Gramps:
             "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
             "on_merge_activate" : self.on_merge_activate,
             "on_sidebar1_activate" : self.on_sidebar_activate,
+            "on_toolbar2_activate" : self.on_toolbar_activate,
             "on_filter1_activate" : self.on_filter_activate,
             "on_places_activate" : self.on_places_activate,
             "on_preferences1_activate" : self.on_preferences_activate,
@@ -351,6 +357,7 @@ class Gramps:
         self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
 
         self.topWindow.show()
+        self.enable_toolbar(self.use_toolbar)
 
     def redraw_histmenu(self):
         """Create the history submenu of the Go menu"""
@@ -609,6 +616,17 @@ class Gramps:
     def on_filter_activate(self,obj):
         self.enable_filter(obj.get_active())
         GrampsCfg.save_filter(obj.get_active())
+
+    def on_toolbar_activate(self,obj):
+        val = obj.get_active()
+        self.enable_toolbar(val)
+
+    def enable_toolbar(self,val):
+        if val:
+            self.toolbardock.show()
+        else:
+            self.toolbardock.hide()
+        GrampsCfg.save_toolbar_on(val)
 
     def build_plugin_menus(self):
         export_menu = self.gtop.get_widget("export1")
