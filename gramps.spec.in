@@ -28,6 +28,7 @@ Requires: pygtk2-libglade >= 1.99
 BuildRequires: scrollkeeper >= @SCROLLKEEPER_BUILD_REQUIRED@
 BuildRequires: automake >= 1.6
 BuildRequires: autoconf >= 2.52
+BuildRequires: rpm >= 4.1
 
 %description
 gramps (Genealogical Research and Analysis Management Programming
