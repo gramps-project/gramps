@@ -361,7 +361,7 @@ class FtmAncestorReport(Report.Report):
                     'endnotes' : self.endnotes(event),
                     })
             else:
-                self.doc.write_text(_('She married %(spouse)s%(endnotes)s ') % {
+                self.doc.write_text(_('She married %(spouse)s%(endnotes)s.') % {
                     'spouse' : spouse.getPrimaryName().getRegularName(),
                     'endnotes' : self.endnotes(event),
                     })

@@ -178,7 +178,7 @@ class IsDescendantOf(Rule):
     def search(self,p):
         if self.map.has_key(p.getId()) == 1:
             raise Errors.FilterError(_("Loop detected while applying filter"),
-                               _("A relationship loop was detected between %s [%s]"
+                               _("A relationship loop was detected between %s [%s] "
                                  "and %s [%s]. This is probably due to an error in the "
                                  "database.") % (self.orig.getPrimaryName().getName(),
                                                  self.orig.getId(),
@@ -215,7 +215,7 @@ class IsDescendantFamilyOf(Rule):
     def search(self,p,val):
         if self.map.has_key(p.getId()):
             Errors.FilterError(_("Loop detected while applying filter"),
-                               _("A relationship loop was detected between %s [%s]"
+                               _("A relationship loop was detected between %s [%s] "
                                  "and %s [%s]. This is probably due to an error in the "
                                  "database.") % (self.orig.getPrimaryName().getName(),
                                                  self.orig.getId(),
@@ -264,7 +264,7 @@ class IsAncestorOf(Rule):
     def search(self,p):
         if self.map.has_key(p.getId()) == 1:
             raise Errors.FilterError(_("Loop detected while applying filter"),
-                                     _("A relationship loop was detected between %s [%s]"
+                                     _("A relationship loop was detected between %s [%s] "
                                        "and %s [%s]. This is probably due to an error in the "
                                        "database.") % (self.orig.getPrimaryName().getName(),
                                                        self.orig.getId(),
