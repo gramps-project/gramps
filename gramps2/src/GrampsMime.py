@@ -55,7 +55,7 @@ def get_type(file):
 def mime_type_is_defined(type):
     """"Return True if a description for a mime type exists"""
     try:
-        type = get_mime_type(file)
+        mime_get_description(type)
         return True
     except:
         return False
