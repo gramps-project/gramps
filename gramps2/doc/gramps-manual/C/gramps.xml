@@ -746,10 +746,9 @@
       <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
       records marked private</guilabel> to disable the output of private
       records. Check <guilabel>Restrict data on living people</guilabel>
-      to 
- <!--
-[ FIXME: What exactly? ] 
--->
+      to limit living people's data to family ties. With this option, 
+      information concerning birth, death, addresses, various events, 
+      etc. will be omitted in the exported GEDCOM file.
       </para>
 
       <para>Upon starting the export, <application>&app;</application> will 
@@ -797,15 +796,133 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit"> 
       <title>Editing</title> 
-	<para> </para>
-<!--
-[ FIXME: STOPPED HERE ] 
--->
+	<para> Editing of any portion of data allows you to amend and 
+	modify information stored in the database. The available editing 
+	options include editing personal data, relationship data, data about
+	children and parents, information about sources, places, and media
+	objects used in the database. In short, any data stored in the 
+	database can be edited! Adding new pieces of information is in fact
+	creating an appropriate empty data structure and subsequent 
+	editing of that empty structure. </para>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-pers"> 
         <title>Edit Personal Data</title> 
-	<para> </para>
+	<para> Editing of personal data can be performed in the 
+	following ways. </para>
+	<variablelist>
+	<varlistentry><term>From People View:</term><listitem><para> 
+	  Double-click the name of the person whose data you would like 
+	  to edit, or select the name by single click and then click
+	  <guibutton>Edit</guibutton> on the toolbar.
+	  </para></listitem></varlistentry>
+	<varlistentry><term>From Family View:</term><listitem><para>
+	  Move the mouse into the <guilabel>Active person</guilabel> box, 
+	  then double-click.
+	  </para></listitem></varlistentry>
+	</variablelist>
+	
+	<para> With either method, the following <guilabel>Edit 
+	Person</guilabel> dialog will appear: </para>
+
+	<!-- ==== Figure: Edit Person dialog ==== -->
+	<figure id="edit-pers-fig"> 
+	<title>Edit Person dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+	
+	<para> The top of the window shows the name of the person whose 
+	data is being edited. The main part of the window displays nine 
+	notebook tabs containing different categories of available 
+	information. You can bring any tab to the top for viewing
+	or editing by clicking on the appropriate tab heading. 
+	The bottom part has <guilabel>OK</guilabel> and
+	<guibutton>Cance</guibutton> buttons. Clicking <guibutton>OK</guibutton> 
+	at any time will apply all the changes made in all tabs and close the
+	dialog window. Clicking <guilabel>Cancel</guilabel> at any time will 
+	close the window without applying any changes. If any of the data
+	in any tab was modified, the alert window will appear with the 
+	choices of closing the dialog without saving changes, cancelling the
+	initial cancel request, or saving the changes. 
+	</para>
+
+	<para>
+	The tabs provide the following information categories of 
+	personal data:
+	</para>
+
+	<variablelist>
+		<varlistentry><term><guilabel>General</guilabel></term>
+		<listitem><para> 
+	<guilabel>General</guilabel> tab allows editing of 
+	the most general information about the person. This includes text 
+	entry fields of <guilabel>Given name</guilabel>, 
+	<guilabel>Family name</guilabel>, <guilabel>Family prefix</guilabel> 
+	(such as de or van), <guilabel>Suffix</guilabel> (e.g. Jr. or III), 
+	<guilabel>Title</guilabel> (e.g. Dr. or Rev.), 
+	<guilabel>Nickname</guilabel> (Bob for Robert), 
+	<guilabel>Type</guilabel> of the name (birth name, married name, etc.)
+	and <guilabel>Date</guilabel> and <guilabel>Place</guilabel> of birth 
+	and death. Some of these (<guilabel>Family name</guilabel>,
+	<guilabel>Type</guilabel>, and both <guilabel>Place</guilabel> fileds), 
+	in addition to typing the data in, allow to choose the corresponding
+	contents from the drop-down menus by clicking on a down-arrow button
+	located immediately to the right of the text entry field. The 
+	available menu choices are formed from the information already stored 
+	in the database. Also, when you start to type within these fields, 
+	<application>&app;</application> will try to guess the remainder of 
+	the text by using the same choices that are available from the
+	corresponding menu. To accept the highlighted guess and move to 
+	the next field, press <keycap>Tab</keycap>. </para>
+	
+	<para>
+	The <guilabel>Gender</guilabel> radio buttons offers
+	the choice of person's gender between <guilabel>male</guilabel>,
+	<guilabel>female</guilabel>, and <guilabel>unknown</guilabel>. 
+	The buttons <guibutton>Source...</guibutton> and 
+	<guibutton>Note...</guibutton> allow to add or modify the data about 
+	the sources of the name information and any notes relevant to it. 
+	Similarly, clicking <guibutton>Edit..</guibutton> buttons located by the
+	birth and death <guilabel>Date</guilabel> fields allows to edit the
+	corresponding events of birth and death. 
+	The field <guilabel>ID</guilabel> displays internal 
+	<application>&app;</application> ID number which identifies user in the
+	databse. Finally, the <guilabel>Image</guilabel> area shows the first
+	image available in the <guilabel>Gallery</guilabel> of this person.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+	
+	<variablelist>
+		<varlistentry><term><guilabel>Names</guilabel></term>
+		<listitem>
+	<para> <guilabel>Names</guilabel> tab shows information concerning 
+	alternate names of the person and the controls allowing its
+	modification. The bottom part displays the list of all alternate names
+	of the person stored in the database. The top part shows the details 
+	of the currently selected name in the list (if any). The buttons
+	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
+	and <guibutton>Delete</guibutton> allow to correspondingly add, 
+	modify, and remove an alternate name record from the database. 
+	The two latter buttons become available only when an alternate name
+	is selected from the list. 
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+	
+<!--	<guilabel>General</guilabel>, <guilabel>Names</guilabel>,
+	<guilabel>Events</guilabel>, <guilabel>Attributes</guilabel>,
+	<guilabel>Addresses</guilabel>, <guilabel>Notes</guilabel>,
+	<guilabel>Gallery</guilabel>, <guilabel>Internet</guilabel>, and
+	<guilabel>LDS</guilabel>.  -->
+
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
