@@ -459,10 +459,8 @@ class SingleDate:
         return "%s%s%s" % (y,m,d)
         
     def getSaveDate(self):
-        retval = ""
-        
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
-            pass
+            return ""
         elif self.day == UNDEF:
             if self.month == UNDEF:
                 retval = str(self.year)
@@ -485,11 +483,9 @@ class SingleDate:
             retval = "BEFORE" + " " + retval
         elif self.mode == SingleDate.after:
             retval = "AFTER" + " " + retval
-            
         return retval
 
-    def getFmt1(self):
-
+    def get_fmt1(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -514,10 +510,9 @@ class SingleDate:
             retval = _("before") + ' ' + retval
         elif self.mode == SingleDate.after:
             retval = _("after") + ' ' + retval
-
         return retval
 
-    def getFmt2(self):
+    def get_fmt2(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.month != UNDEF and self.month != UNDEF:
@@ -547,7 +542,7 @@ class SingleDate:
 
         return retval
 
-    def getFmt3(self):
+    def get_fmt3(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -574,10 +569,9 @@ class SingleDate:
             retval = "%s %s" % (_("BEFORE"),retval)
         elif self.mode == SingleDate.after:
             retval = "%s %s" % (_("AFTER"),retval)
-
         return retval
 
-    def getFmt10(self):
+    def get_fmt10(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -663,13 +657,13 @@ class SingleDate:
 
         return retval
 
-    def getFmt4(self):
+    def get_fmt4(self):
         return self.get_mmddyyyy("/")
 
-    def getFmt5(self):
+    def get_fmt5(self):
         return self.get_mmddyyyy("-")
 
-    def getFmt8(self):
+    def get_fmt8(self):
         return self.get_mmddyyyy(".")
 
     def get_ddmmyyyy(self,sep):
@@ -701,22 +695,22 @@ class SingleDate:
 
         return retval
 
-    def getFmt6(self):
+    def get_fmt6(self):
         return self.get_ddmmyyyy("/")
 
-    def getFmt7(self):
+    def get_fmt7(self):
         return self.get_ddmmyyyy("-")
 
-    def getFmt9(self):
+    def get_fmt9(self):
         return self.get_ddmmyyyy(".")
 
-    def getFmt11(self):
+    def get_fmt11(self):
         return self.get_yyyymmdd("/")
 
-    def getFmt12(self):
+    def get_fmt12(self):
         return self.get_yyyymmdd("-")
 
-    def getFmt13(self):
+    def get_fmt13(self):
         return self.get_yyyymmdd(".")
 
     #--------------------------------------------------------------------
@@ -724,9 +718,9 @@ class SingleDate:
     # 
     #
     #--------------------------------------------------------------------
-    fmtFunc = [ getFmt1, getFmt2, getFmt3, getFmt4, getFmt5, getFmt6,
-                getFmt7, getFmt8, getFmt9, getFmt10, getFmt11, getFmt12,
-                getFmt13]
+    fmtFunc = [ get_fmt1, get_fmt2, get_fmt3, get_fmt4, get_fmt5, get_fmt6,
+                get_fmt7, get_fmt8, get_fmt9, get_fmt10, get_fmt11, get_fmt12,
+                get_fmt13]
 
     def display_calendar(self,month_map):
         if self.year==UNDEF:
@@ -735,7 +729,7 @@ class SingleDate:
             elif self.day == UNDEF:
                 return month_map[self.month]
             else:
-                return "%02 %s" % (self.day,month_map[self.month])
+                return "%02d %s" % (self.day,month_map[self.month])
         elif self.month == UNDEF:
             return str(self.year)
         elif self.day == UNDEF:

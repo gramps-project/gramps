@@ -89,5 +89,5 @@ def on_ok_clicked(obj):
 #------------------------------------------------------------------------
 from Plugins import register_import
 
-register_import(readData,_("Import from Gramps"))
+register_import(readData,_("Import from GRAMPS"))
 
