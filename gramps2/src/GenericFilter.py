@@ -580,6 +580,11 @@ class HasNameOf(Rule):
         return 0
 
     
+#-------------------------------------------------------------------------
+#
+# MatchesFilter
+#
+#-------------------------------------------------------------------------
 class MatchesFilter(Rule):
     """Rule that checks against another filter"""
 
@@ -594,7 +599,7 @@ class MatchesFilter(Rule):
                 return filter.check(p)
         for filter in CustomFilters.get_filters():
             if filter.get_name() == self.list[0]:
-                return filter.check(p)
+                return filter.check(db,p)
         return 0
     
 #-------------------------------------------------------------------------

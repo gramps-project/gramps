@@ -35,11 +35,11 @@ import Utils
 from intl import gettext as _
 
 _name2list = {
-    _('Personal Event')     : const.personalEvents,
-    _('Family Event')       : const.marriageEvents,
-    _('Personal Attribute') : const.personalAttributes,
-    _('Family Attribute')   : const.familyAttributes,
-    _('Relationship Type')  : const.familyRelations,
+    _('Personal event:')     : const.personalEvents,
+    _('Family event:')       : const.marriageEvents,
+    _('Personal attribute:') : const.personalAttributes,
+    _('Family attribute:')   : const.familyAttributes,
+    _('Relationship type:')  : const.familyRelations,
 }
 
 class FilterEditor:
@@ -47,7 +47,7 @@ class FilterEditor:
         self.db = db
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
-        
+
         self.editor = gtk.glade.XML(const.filterFile,'filter_list')
         self.editor_top = self.editor.get_widget('filter_list')
         self.filter_list = self.editor.get_widget('filters')
@@ -265,9 +265,18 @@ class FilterEditor:
                 l = gtk.Label(v1)
                 l.set_alignment(1,0.5)
                 l.show()
-                if v == 'Place':
+                if v == 'Place:':
                     t = gtk.Combo()
                     AutoComp.AutoCombo(t,self.pmap.keys())
+                    tlist.append(t.entry)
+                elif v == 'Filter name:':
+                    t = gtk.Combo()
+                    flist = []
+                    for f in self.filterdb.get_filters():
+                        flist.append(f.get_name())
+                    flist.sort()
+                    AutoComp.AutoCombo(t,flist)
+                    tlist.append(t.entry)
                 elif _name2list.has_key(v1):
                     t = gtk.Combo()
                     _name2list[v1].sort()
