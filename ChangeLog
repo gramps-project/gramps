@@ -1,4 +1,9 @@
 2004-11-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/PatchNames.py: add the ability to detect
+	common surname prefixes
+	* src/plugins/patchnames.glade: clean up description
+	* src/plugins/TimeLine.py: detect invalid date range in
+	report to prevent divide by zero error.
 	* src/gramps.glade: add privacy fields and fix add/edit/remove
 	buttons
 	* src/Sources.py: add support for privacy flags

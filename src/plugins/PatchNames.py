@@ -53,9 +53,20 @@ from gettext import gettext as _
 # constants
 #
 #-------------------------------------------------------------------------
+
+prefix_list = [
+    "de", "van", "von", "di", "le", "du", "dela", "della",
+    "des", "vande", "ten", "da", "af", "den", "das", "dello",
+    "del", "en", "ein", "el" "et", "les", "lo", "los", "un",
+    "um", "una", "uno",
+    ]
+
+
 _title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
 _nick_re = re.compile(r"(.+)\s*[(\"](.*)[)\"]")
-
+_fn_prefix_re = re.compile("(.*)\s+(%s)\s*$" % '|'.join(prefix_list),re.IGNORECASE)
+_sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),re.IGNORECASE)
+                
 #-------------------------------------------------------------------------
 #
 # Search each name in the database, and compare the firstname against the
@@ -86,21 +97,35 @@ class PatchNames:
         self.child_windows = {}
         self.title_list = []
         self.nick_list = []
+        self.prefix1_list = []
+        self.prefix2_list = []
 
         for key in self.db.get_person_handles(sort_handles=False):
         
             person = self.db.get_person_from_handle(key)
             first = person.get_primary_name().get_first_name()
+            sname = person.get_primary_name().get_surname()
             match = _title_re.match(first)
             if match:
                 groups = match.groups()
                 self.title_list.append((key,groups[0],groups[1]))
+                continue
             match = _nick_re.match(first)
             if match:
                 groups = match.groups()
                 self.nick_list.append((key,groups[0],groups[1]))
+                continue
+            match = _fn_prefix_re.match(first)
+            if match:
+                groups = match.groups()
+                self.prefix1_list.append((key,groups[0],groups[1]))
+                continue
+            match = _sn_prefix_re.match(sname)
+            if match:
+                groups = match.groups()
+                self.prefix2_list.append((key,groups[1],groups[0]))
 
-        if self.nick_list or self.title_list:
+        if self.nick_list or self.title_list or self.prefix1_list or self.prefix2_list:
             self.display()
         else:
             OkDialog(_('No modifications made'),
@@ -153,6 +178,8 @@ class PatchNames:
 
         self.nick_hash = {}
         self.title_hash = {}
+        self.prefix1_hash = {}
+        self.prefix2_hash = {}
         
         for (id,name,nick) in self.nick_list:
             p = self.db.get_person_from_handle(id)
@@ -175,6 +202,28 @@ class PatchNames:
             self.model.set_value(handle,3,nick)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.title_hash[id] = handle
+
+        for (id,prefix,fname) in self.prefix1_list:
+            p = self.db.get_person_from_handle(id)
+            gid = p.get_gramps_id()
+            handle = self.model.append()
+            self.model.set_value(handle,0,1)
+            self.model.set_value(handle,1,gid)
+            self.model.set_value(handle,2,_('Prefix'))
+            self.model.set_value(handle,3,fname)
+            self.model.set_value(handle,4,p.get_primary_name().get_name())
+            self.prefix1_hash[id] = handle
+
+        for (id,prefix,fname) in self.prefix2_list:
+            p = self.db.get_person_from_handle(id)
+            gid = p.get_gramps_id()
+            handle = self.model.append()
+            self.model.set_value(handle,0,1)
+            self.model.set_value(handle,1,gid)
+            self.model.set_value(handle,2,_('Prefix'))
+            self.model.set_value(handle,3,fname)
+            self.model.set_value(handle,4,p.get_primary_name().get_name())
+            self.prefix2_hash[id] = handle
 
         self.add_itself_to_menu()
         self.window.show()
@@ -221,6 +270,26 @@ class PatchNames:
                 name.set_title(grp[1].strip())
                 self.db.commit_person(p,self.trans)
 
+        for grp in self.prefix1_list:
+            handle = self.prefix1_hash[grp[0]]
+            val = self.model.get_value(handle,0)
+            if val:
+                p = self.db.get_person_from_handle(grp[0])
+                name = p.get_primary_name()
+                name.set_first_name(grp[1].strip())
+                name.set_surname_prefix(grp[2].strip())
+                self.db.commit_person(p,self.trans)
+
+        for grp in self.prefix2_list:
+            handle = self.prefix2_hash[grp[0]]
+            val = self.model.get_value(handle,0)
+            if val:
+                p = self.db.get_person_from_handle(grp[0])
+                name = p.get_primary_name()
+                name.set_surname(grp[1].strip())
+                name.set_surname_prefix(grp[2].strip())
+                self.db.commit_person(p,self.trans)
+
         self.db.transaction_commit(self.trans,_("Extract information from names"))
         self.close(obj)
         self.cb(1)
@@ -237,6 +306,6 @@ register_tool(
     _("Extract information from names"),
     category=_("Database Processing"),
     description=_("Searches the entire database and attempts to "
-                  "extract titles and nicknames that may be embedded "
-                  "in a person's given name field.")
+                  "extract titles, nicknames and surname prefixes ",
+                  "that may be embedded in a person's given name field.")
     )

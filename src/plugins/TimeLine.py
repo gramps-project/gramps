@@ -157,6 +157,13 @@ class TimeLine:
 
         (low,high) = self.find_year_range()
 
+        if low == high:
+            if self.standalone:
+                self.d.close()
+            ErrorDialog(_("Report could not be created"),
+                        _("The range of dates chosen was not valid"))
+            return
+
         st_size = self.name_size()
 
         font = self.d.style_list['TLG-Name'].get_font()
