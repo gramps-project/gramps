@@ -332,15 +332,17 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         bh = box_style.get_height()
         bw = box_style.get_width()
         self.f.write('gsave\n')
-#        if box_style.get_shadow():
-        self.f.write('newpath\n')
-        self.f.write('%f cm %f cm moveto\n' % self.translate(x+0.15,y+0.15))
-        self.f.write('0 -%f cm rlineto\n' % bh)
-        self.f.write('%f cm 0 rlineto\n' % bw)
-        self.f.write('0 %f cm rlineto\n' % bh)
-        self.f.write('closepath\n')
-        self.f.write('.5 setgray\n')
-        self.f.write('fill\n')
+
+        shadsize = box_style.get_shadow_space()
+        if box_style.get_shadow():
+            self.f.write('newpath\n')
+            self.f.write('%f cm %f cm moveto\n' % self.translate(x+shadsize,y+shadsize))
+            self.f.write('0 -%f cm rlineto\n' % bh)
+            self.f.write('%f cm 0 rlineto\n' % bw)
+            self.f.write('0 %f cm rlineto\n' % bh)
+            self.f.write('closepath\n')
+            self.f.write('.5 setgray\n')
+            self.f.write('fill\n')
         self.f.write('newpath\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x,y))
         self.f.write('0 -%f cm rlineto\n' % bh)
@@ -364,7 +366,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             mar = 10/28.35
             f_in_cm = p.get_font().get_size()/28.35
             fs = f_in_cm * 1.2
-            center = y + (bh + fs)/2.0 + (fs*0.2)
+            center = y + (bh + fs)/2.0 + (fs*shadsize)
             ystart = center - (fs/2.0) * nlines
             for i in range(nlines):
                 ypos = ystart + (i * fs)
