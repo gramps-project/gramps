@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,6 +81,7 @@ class AddSpouse:
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
+        self.showall = self.glade.get_widget('showall')
 
         titles = [ (_('Name'),3,200), (_('ID'),1,50), (_('Birth date'),4,50),
                    ('',0,50), ('',0,0)]
@@ -101,6 +102,7 @@ class AddSpouse:
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
+            "on_show_toggled"          : self.on_show_toggled,
             "on_new_spouse_clicked"    : self.new_spouse_clicked,
             "on_rel_type_changed"      : self.relation_type_changed,
             "destroy_passed_object"    : Utils.destroy_passed_object
@@ -111,7 +113,7 @@ class AddSpouse:
         
     def select_row(self,obj):
         """
-        Called with a row has be unselected. Used to ensable the OK button
+        Called with a row has be unselected. Used to enable the OK button
         when a row has been selected.
         """
 
@@ -202,6 +204,9 @@ class AddSpouse:
         # the potential spouse list. If Partners is selected, use
         # the same gender as the current person.
         gender = self.person.getGender()
+        bday = self.person.getBirth().getDateObj()
+        dday = self.person.getDeath().getDateObj()
+
         if text == _("Partners"):
             if gender == RelLib.Person.male:
                 sgender = const.female
@@ -215,10 +220,49 @@ class AddSpouse:
             
         self.entries = []
         self.slist.clear()
+        self.slist.new_model()
         for key in self.db.getPersonKeys():
             data = self.db.getPersonDisplay(key)
             if data[2] == sgender:
                 continue
+
+            if not self.showall.get_active():
+                pdday = self.db.getPerson(key).getDeath().getDateObj()
+                pbday = self.db.getPerson(key).getBirth().getDateObj()
+
+                if bday.getYearValid():
+                    if pbday.getYearValid():
+                        # reject if person birthdate differs more than
+                        # 100 years from spouse birthdate 
+                        if abs(pbday.getYear() - bday.getYear()) > 100:
+                            continue
+
+                    if pdday.getYearValid():
+                        # reject if person birthdate is after the spouse deathdate 
+                        if bday.getLowYear() + 10 > pdday.getHighYear():
+                            continue
+                
+                        # reject if person birthdate is more than 100 years 
+                        # before the spouse deathdate
+                        if bday.getHighYear() + 100 < pdday.getLowYear():
+                            continue
+
+                if dday.getYearValid():
+                    if pbday.getYearValid():
+                        # reject if person deathdate was prior to 
+                        # the spouse birthdate 
+                        if dday.getHighYear() < pbday.getLowYear() + 10:
+                            continue
+
+                    if pdday.getYearValid():
+                        # reject if person deathdate differs more than
+                        # 100 years from spouse deathdate 
+                        if abs(pdday.getYear() - dday.getYear()) > 100:
+                            continue
+
             self.slist.add([data[0],data[1],data[3],data[5],data[6]],key,person==key)
 
+        self.slist.connect_model()
 
+    def on_show_toggled(self,obj):
+        self.update_data()
