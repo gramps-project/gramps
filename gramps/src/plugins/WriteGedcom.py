@@ -403,12 +403,12 @@ def write_person(g,person):
     g.write("0 @I%s@ INDI\n" % person.getId())
 
     write_person_name(g,person.getPrimaryName(),person.getNickName())
-    for name in person.getAlternateNames():
-        write_person_name(g,name,"")
+#    for name in person.getAlternateNames():
+#        write_person_name(g,name,"")
     
     if person.getGender() == Person.male:
         g.write("1 SEX M\n")
-    else:	
+    elif person.getGender() == Person.female:	
         g.write("1 SEX F\n")
 
     if not probably_alive(person):
@@ -466,19 +466,20 @@ def write_person(g,person):
         for addr in person.getAddressList():
             if private and addr.getPrivacy():
                 continue
-            write_long_text(g,"RESI",1,addr.getStreet())
+            g.write("1 RESI\n")
+            write_long_text(g,"ADDR",2,addr.getStreet())
             if addr.getCity() != "":
-                g.write("2 CITY %s\n" % addr.getCity())
+                g.write("3 CITY %s\n" % addr.getCity())
             if addr.getState() != "":
-                g.write("2 STAE %s\n" % addr.getState())
+                g.write("3 STAE %s\n" % addr.getState())
             if addr.getPostal() != "":
-                g.write("2 POST %s\n" % addr.getPostal())
+                g.write("3 POST %s\n" % addr.getPostal())
             if addr.getCountry() != "":
-                g.write("2 CTRY %s\n" % addr.getCountry())
+                g.write("3 CTRY %s\n" % addr.getCountry())
             if addr.getNote() != "":
-                write_long_text(g,"NOTE",2,addr.getNote())
+                write_long_text(g,"NOTE",3,addr.getNote())
             for srcref in addr.getSourceRefList():
-                write_source_ref(g,2,srcref)
+                write_source_ref(g,3,srcref)
 
     family = person.getMainFamily()
     if family != None and family in family_list:

@@ -907,6 +907,10 @@ class GedcomParser:
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
                 address.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
+	    elif matches[1] == "ADDR":
+                self.addr = Address()
+                self.addr.setStreet(matches[2] + self.parse_continue_data(2))
+                self.parse_address(self.addr,2)
             elif matches[1] == "PLAC":
                 address.setStreet(matches[2])
                 self.parse_address(address,level+1)
