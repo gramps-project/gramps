@@ -161,6 +161,9 @@ class DrawDoc:
     def end_page(self):
         pass
 
+    def draw_arc(self,style,x1,y1,x2,y2,angle,extent):
+        pass
+
     def draw_path(self,style,path):
         pass
     
@@ -179,3 +182,15 @@ class DrawDoc:
     def draw_line(self,style,x1,y1,x2,y2):
 	pass
 
+    def start_path(self,style,x,y):
+        pass
+
+    def line_to(self,x,y):
+        pass
+
+    def arc_to(self,x,y):
+        pass
+
+    def end_path(self):
+        pass
+    
