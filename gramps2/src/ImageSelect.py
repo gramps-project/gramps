@@ -66,6 +66,7 @@ import DateHandler
 import Date
 import ImgManip
 from QuestionDialog import ErrorDialog
+from DdTargets import DdTargets
 
 _IMAGEX = 140
 _IMAGEY = 150
@@ -228,7 +229,8 @@ class Gallery(ImageSelect):
 
         self.commit = commit
         if path:
-            icon_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, _drag_targets,
+            icon_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                    [DdTargets.MEDIAOBJ.target()]+_drag_targets,
                                     gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
             icon_list.connect('event',self.item_event)
             icon_list.connect("drag_data_received",
@@ -292,7 +294,7 @@ class Gallery(ImageSelect):
                 icon_index = self.get_index(widget,event.x,event.y)-1
                 self.sel_obj = self.dataobj.get_media_list()[icon_index]
                 if self.drag_item:
-                    widget.drag_begin(_drag_targets,
+                    widget.drag_begin([DdTargets.MEDIAOBJ.target()]+_drag_targets,
                                       gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
                                       self.button, event)
                     
@@ -547,6 +549,7 @@ class Gallery(ImageSelect):
             return
         data = self.p_map[self.drag_item]
         selection_data.set(selection_data.target, 8, data[4])
+        print "dragging ", repr(data[4]), " with target ", repr(selection_data.target)
         self.drag_item = None
         
     def on_add_media_clicked(self, obj):

@@ -406,6 +406,25 @@ class ScratchPadText(ScratchPadWrapper):
                "%s" % (_("Text"),
                        escape(self._obj))
 
+class ScratchMediaObj(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.MEDIAOBJ]
+    DRAG_TARGET  = DdTargets.MEDIAOBJ
+    ICON         = LINK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadWrapper.__init__(self,db,obj)
+        self._type  = _("Media Object")
+
+        self._title = ""
+        self._value = ""
+
+    def tooltip(self):
+        global escape
+        return "<big><b>%s</b></big>\n"\
+               "%s" % (_("Media Object"),
+                       escape(self._obj))
+
 
 #-------------------------------------------------------------------------
 #
@@ -498,6 +517,8 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadSourceRef)
         self.register_wrapper_class(ScratchPadName)
         self.register_wrapper_class(ScratchPadText)
+        self.register_wrapper_class(ScratchMediaObj)
+        
 
     def register_wrapper_class(self,wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:            
