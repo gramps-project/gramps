@@ -221,5 +221,5 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 from PluginMgr import register_relcalc
 
 register_relcalc(RelationshipCalculator,
-    ["fr","FR","fr_FR","francais","Francais","fr_FR.UTF8","fr_FR@euro","fr_FR.UTF8@euro",
-            "french","French", "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8"])
+    ["fr", "FR", "fr_FR", "fr_CA", "francais", "Francais", "fr_FR.UTF8", "fr_FR@euro", "fr_FR.UTF8@euro",
+            "french","French", "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8", "fr_CA.UTF-8"])
