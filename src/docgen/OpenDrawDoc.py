@@ -108,6 +108,8 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         self.f.write('style:font-pitch="variable"/>\n')
         self.f.write('</office:font-decls>\n')
         self.f.write('<office:automatic-styles>\n')
+        self.f.write('<style:style style:name="GSuper" style:family="text">')
+        self.f.write('<style:properties style:text-position="super 58%"/>')
 	self.f.write('<style:style style:name="P1" style:family="paragraph">\n')
 	self.f.write('<style:properties fo:margin-left="0cm" ')
 	self.f.write('fo:margin-right="0cm" fo:text-indent="0cm"/>\n')
@@ -366,8 +368,13 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         self.f.write('</text:p>\n')
 
     def write_text(self,text):
-        text = string.replace(text,'\t','<text:tab-stop/>')
-        text = string.replace(text,'\n','<text:line-break/>')
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace('\t','<text:tab-stop/>')
+        text = text.replace('\n','<text:line-break/>')
+        text = text.replace('<','&lt;');
+        text = text.replace('>','&gt;');
+        text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
+        text = text.replace('&lt;/super&gt;','</text:span>')
 	self.f.write(text)
 
     def _write_manifest(self):

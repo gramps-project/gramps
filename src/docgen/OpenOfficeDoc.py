@@ -113,6 +113,10 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write('style:font-pitch="variable"/>\n')
         self.f.write('</office:font-decls>\n')
         self.f.write('<office:automatic-styles>\n')
+        self.f.write('<style:style style:name="GSuper" style:family="text">')
+        self.f.write('<style:properties style:text-position="super 58%"/>')
+        self.f.write('</style:style>\n')
+
         for style_name in self.style_list.keys():
 	    style = self.style_list[style_name]
             self.f.write('<style:style style:name="NL')
@@ -525,6 +529,8 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         text = string.replace(text,'<','&lt;');
         text = string.replace(text,'>','&gt;');
         text = string.replace(text,'\n','<text:line-break/>')
+        text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
+        text = text.replace('&lt;/super&gt;','</text:span>')
 	self.f.write(text)
 
     def _write_manifest(self):
