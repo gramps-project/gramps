@@ -66,7 +66,7 @@ class ChooseParents:
     Displays the Choose Parents dialog box, allowing the parents
     to be edited.
     """
-    def __init__(self,db,person,family,family_update,full_update,parent_window=None):
+    def __init__(self,db,person,family,family_update,full_update):
         """
         Creates a ChoosePerson dialog box.
 
@@ -139,19 +139,14 @@ class ChooseParents:
         self.redrawm()
         
         self.glade.signal_autoconnect({
+            "on_save_parents_clicked"  : self.save_parents_clicked,
             "on_add_parent_clicked"    : self.add_parent_clicked,
             "on_prel_changed"          : self.parent_relation_changed,
             "on_showallf_toggled"      : self.showallf_toggled,
             "on_showallm_toggled"      : self.showallm_toggled,
+            "destroy_passed_object"    : Utils.destroy_passed_object,
             "on_help_familyDialog_clicked"  : self.on_help_clicked,
             })
-
-        if parent_window:
-            self.top.set_transient_for(parent_window)
-        self.val = self.top.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.save_parents_clicked()
-        self.top.destroy()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -383,7 +378,7 @@ class ChooseParents:
                 self.mmodel.find(mother.getId())
                 self.mmodel.center_selected()
 
-    def save_parents_clicked(self):
+    def save_parents_clicked(self,obj):
         """
         Called with the OK button nis pressed. Saves the selected people as parents
         of the main perosn.
@@ -423,6 +418,7 @@ class ChooseParents:
         else:    
             self.family = None
 
+        Utils.destroy_passed_object(obj)
         if self.family:
             self.family.setRelationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)

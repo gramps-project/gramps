@@ -1,3 +1,7 @@
+2003-11-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ChooseParents.py (ChooseParents.__init__): Revert the dialog 
+	back to being non-modal (otherwise adding new people is impossible).
+
 2003-11-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/fr.po: Fix format line. 
 
