@@ -227,7 +227,6 @@ class Gallery(ImageSelect):
         self.root = self.iconlist.root()        
 
         # Local object variables
-        self.selectedIcon = -1
         self.x = 0
         self.y = 0
         self.remember_x = -1
@@ -283,10 +282,8 @@ class Gallery(ImageSelect):
         elif event.type == gtk.gdk.BUTTON_RELEASE:
             self.button = 0
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            #Change the item's color.
             LocalMediaProperties(photo,self.path,self)
             return gtk.TRUE
-
         elif event.type == gtk.gdk.MOTION_NOTIFY:
             if event.state & gtk.gdk.BUTTON1_MASK:
                 # Get the new position and move by the difference
@@ -395,10 +392,6 @@ class Gallery(ImageSelect):
             self.iconlist.set_scroll_region(0,0,self.x,self.cy)
         else:
             self.iconlist.set_scroll_region(0,0,self.x,self.y)
-
-    def on_photo_select_icon(self, obj,iconNumber,event):
-        """User clicked on a photo.  Remember which one."""
-        self.selectedIcon = iconNumber
 
     def get_index(self,obj,x,y):
         x_offset = x/(_IMAGEX+_PAD)
@@ -556,7 +549,7 @@ class Gallery(ImageSelect):
     
     def popup_edit_photo(self, obj):
         """Open this picture in a picture editor"""
-        photo = self.dataobj.getPhotoList()[self.selectedIcon]
+        photo = obj.get_data('o')
         if os.fork() == 0:
             os.execvp(const.editor,[const.editor,
                                     photo.getReference().getPath()])
@@ -564,7 +557,7 @@ class Gallery(ImageSelect):
     def popup_convert_to_private(self, obj):
         """Copy this picture into gramps private database instead of
         leaving it as an external data object."""
-        photo = self.dataobj.getPhotoList()[self.selectedIcon]
+        photo = obj.get_data('o')
         object = photo.getReference()
         name = RelImage.import_media_object(object.getPath(),self.path,
                                             object.getId())
@@ -574,9 +567,8 @@ class Gallery(ImageSelect):
     def popup_change_description(self, obj):
         """Bring up a window allowing the user to edit the description
         of a picture."""
-        if self.selectedIcon >=0:
-            photo = self.dataobj.getPhotoList()[self.selectedIcon]
-            LocalMediaProperties(photo,self.path,self)
+        photo = obj.get_data('o')
+        LocalMediaProperties(photo,self.path,self)
 
 #-------------------------------------------------------------------------
 #
