@@ -1,3 +1,12 @@
+2003-12-17  Michel Guitel  <michel.guitel@free.fr>
+	* doc/gramps-manual/fr/cmdline.xml:
+	* doc/gramps-manual/fr/faq.xml:
+	* doc/gramps-manual/fr/filtref.xml:
+	* doc/gramps-manual/fr/getstart.xml:
+	* doc/gramps-manual/fr/gramps-manual.xml:
+	* doc/gramps-manual/fr/keybind.xml:
+	* doc/gramps-manual/fr/mainwin.xml:
+
 2003-12-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/revision.glade: removed unused call (on_help_dbopen_clicked)
 	* src/gramps_main.py: don't add places twice after an edit of a person

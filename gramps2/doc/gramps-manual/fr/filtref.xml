@@ -1,77 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-	  User Manual for Gramps - a GTK+/GNOME based genealogy program
-
-	  Copyright (C) 2003  Alexander Roitman
-
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
+        User Manual for Gramps - a GTK+/GNOME based genealogy program
+        Copyright (C) 2003  Alexander Roitman
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the GNU Free Documentation
+        License (GFDL), Version 1.1 or any later version published
+        by the Free Software Foundation with no Invariant Sections,
+        no Front-Cover Texts, and no Back-Cover Texts.
+          A copy of the license is included in the file COPYING-DOCS
           distributed with this manual.
 -->
-
 <!-- $Id$ -->
-
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
-      <title>Filter rules reference</title>
-      <para>This appendix lists of all the filter rules currently defined 
-      in &app;. Each of these rules is available for use when creating custom 
-      filters. The rules are listed by their categories. 
+      <title>Documentation de reference sur les r?gles de filtrage</title>
+      <para>Cette annexe d?crit les fonctions de filtrage actuellement d?finies
+      dans &app;. Ces r?gles sont disponibles quand vous cr?ez des filtres
+      personnalis?s. Elles sont ici pr?sent?es par cat?gories. 
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-general">
-        <title>General filters</title>
-        <para>This category includes the following most general rules:</para>
+        <title>Filtres g?n?raux</title>
+        <para>Cette cat?gorie comprend les fonctions les plus g?n?rales : </para>
         
           <variablelist>
 
-          <varlistentry><term>Everyone</term>
-          <listitem><para> This rule matches any person in the database.
-          As such it is not very useful on its own except for testing purposes.
-          However, it may be useful in combinations with other rules. 
+          <varlistentry><term>Tout le monde</term>
+          <listitem><para> Cette fonction accepte toutes les personnes de la base de donn?es. 
+          Elle n'est pas tr?s utile seule sauf pour tester. Par contre, elle
+	  sert en combinaison avec d'autres fonctions. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a name</term>
-          <listitem><para> This rule matches any person whose name 
-          matches the specified value in full or in part. For example, 
-          Marta Ericsdotter will be matched by the rule using the 
-          value "eric" for the family name. 
+          <varlistentry><term>Noms qui contiennent une cha?ne</term>
+          <listitem><para> Cette fonction s?lectionne toutes les personnes
+	  dont l'identit? contient la cha?ne donn?e. Par exemple, 
+	  Jacques Dupont, Jean Dupond et seront s?lectionn?s par cette
+	  fonction, utilis?e avec la valeur "pon". 
           </para>
 
-          <para> Separate values can be used for Given name, Family name, 
-          Suffix, and the Title. The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          name. To use just one value, leave the other values empty. 
+          <para> Des cha?nes s?par?es peuvent ?tre utilis?es pour
+	  le pr?nom, le nom de famille, le suffixe et le titre.
+	  La fonction s?lectionne un individu quand toutes les cha?nes
+	  non vides font partie du nom d'une personne. Si vous voulez
+	  utiliser une seule valeur, laissez les autres vides.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the Id</term>
-          <listitem><para> This rule matches any person with a specified
-          &app; ID. The rule returns a match only if the ID is matched 
-          exactly. 
+          <varlistentry><term>A l'identifiant</term>
+          <listitem><para> Cette fonction s?lectionne la personne ayant
+	  exactement l'identifiant &app; donn?. 
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made. 
+          <para> Vous pouvez entrer l'identifiant dans un champ texte,
+	  ou bien s?lectionner une personne dans la liste en cliquant le bouton
+          <guibutton>Select...</guibutton>. Dans ce cas, l'identifiant appara?tra
+	  dans le champ de saisie de texte apr?s la s?lection. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a female</term>
-          <listitem><para> This rule matches any female person. 
+          <varlistentry><term>Est une femme</term>
+          <listitem><para> Cette fonction s?lectionne les femmes.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a male</term>
-          <listitem><para> This rule matches any male person. 
+          <varlistentry><term>Est un homme</term>
+          <listitem><para> Ce filtre s?lectionne les hommes.
           </para></listitem>
           </varlistentry>
 
@@ -81,18 +76,17 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-event">
-        <title>Event filters</title>
-        <para>This category includes the following rules that match people
-        based on their recorded events:</para>
+        <title>Fonctions sur ?v?nements</title>
+        <para>Cette cat?gorie regroupe les fonctions qui utilisent les ?v?nements des personnes : </para>
           <variablelist>
 
-          <varlistentry><term>Has the birth</term>
-          <listitem><para> This rule matches people whose birth event 
-          matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's birth event matches 
-          the value partially. The matching rules are case-insensitive. 
-          For example, anyone born in Sweden will be matched by the rule 
-          using the value "sw" for the Place. 
+          <varlistentry><term>A la naissance</term>
+          <listitem><para>Cette fonction s?lectionne les personnes dont
+          la naissance correspond aux valeurs donn?es pour Date, Lieu, et Description. 
+	  La correspondance est faite m?me quand l'?v?nement n'est que partiellement
+	  identique. Les correspondances sont insensibles ? la casse des caract?res.
+	  Par exemple, toute personne n?e en France sera s?lectionn?e par 
+	  la valeur "fr" pour le lieu. 
           </para>
 
           <para> The rule returns a match if and only if 
@@ -325,31 +319,30 @@
         </sect3> 
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-relat">
+        <sect3 id="filtref-relat">
         <title>Relationship filters</title>
         <para>This category includes the following rules that match people
         based on their mutual relationship:</para>
           <variablelist>
-
           <varlistentry><term>Relationship path between two people</term>
-          <listitem><para> This rule matches all ancestors of both people
-          back to their common ancestors (if exist). This produces the 
-          &quot;relationship path&quot; between these two people, through
-          their common ancestors. 
-          </para>
-          
-          <para> You can either enter the ID of each person into the 
-          appropriate text entry fields, or select people from the list by 
-          clicking their <guibutton>Select...</guibutton> buttons. In the 
-          latter case, the ID will appear in the text field after the 
-          selection was made.
-          </para>
-          </listitem>
-          </varlistentry>
+           <listitem><para> This rule matches all ancestors of both people
+           back to their common ancestors (if exist). This produces the
+           &quot;relationship path&quot; between these two people, through
+           their common ancestors.
+           </para>
 
-          </variablelist>
-        </sect3>
-        
+           <para> You can either enter the ID of each person into the
+           appropriate text entry fields, or select people from the list by
+           clicking their <guibutton>Select...</guibutton> buttons. In the
+           latter case, the ID will appear in the text field after the
+           selection was made.
+           </para>
+           </listitem>
+           </varlistentry>
+
+           </variablelist>
+         </sect3>
+
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-misc">
         <title>Miscellaneous filters</title>

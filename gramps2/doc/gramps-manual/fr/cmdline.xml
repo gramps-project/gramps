@@ -1,86 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+        User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+        Copyright (C) 2003  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the GNU Free Documentation
+        License (GFDL), Version 1.1 or any later version published
+        by the Free Software Foundation with no Invariant Sections,
+        no Front-Cover Texts, and no Back-Cover Texts.
+          A copy of the license is included in the file COPYING-DOCS
           distributed with this manual.
 -->
-
 <!-- $Id$ -->
 
       <!-- =============== Appendices Subsection ================ -->
   <sect2 id="append-cmdline">
-  <title>Command line reference</title>
-  <para>This appendix provides the reference to the command line 
-  capabilities available when launching &app; from the terminal. </para>
+	  <title>Manuel de r?f?rence pour l'utilisation en ligne de commande</title>
+	  <para>Cette annexe d?crit les possibilit?s offertes par &app; en 
+  ligne de commande, depuis un terminal. </para>
   
-  <para>Let us note here that &app; was designed to be an interactive 
-  program. Therefore it uses graphical display and cannot run from the 
-  true non-graphical console. It would take an enormous amount of effort 
-  to enable it to run in a text-only terminal. This is why the set of 
-  command line options does not aim to completely get rid of dependency
-  on the graphical display. Rather, it merely makes certain (typical) tasks 
-  more convenient. It also allows one to execute these tasks from the scripts. 
-  However, the graphical display must be accessible at all times! 
+  <para>Notons ici que &app; est ?crit pour ?tre pilot? ? travers
+  son interface graphique. Il ne peut pas ?tre utilis? dans un mode
+  strictement limit? au texte. Les modifications pour le faire seraient
+  tr?s importantes. C'est pourquoi les options de la ligne de commande
+  ne visent pas l'ind?pendance par rapport au mode graphique.
+  En fait, elles rendent seulement certaines t?ches fr?quentes plus
+  commodes et ex?cutables depuis des scripts. L'affichage
+  graphique doit cependant toujours ?tre accessible.
   </para>
 
-  <para>To summarize, the use of the command line options provides 
-  non-interactive behavior, but does not get rid of graphical display
-  dependency. Take it or leave it! 
+  <para>En r?sum?, les options de la ligne de commande fournissent
+	  un mode non-interactif mais n'affranchissent pas d'un
+	  affichage graphique. C'est comme ?? !
   </para>
 
 
       <sect3 id="cmdline-options">
-      <title>Available options</title>
+      <title>Options disponibles</title>
 
-      <para>Here is the list of the command line options in &app;:
-      </para>
-
+      <para>Voici la liste des options de lancement de &app; : </para>
           <variablelist>
-
-          <varlistentry><term>Format options</term>
-          <listitem><para> The format of any file destined for import or export
-          can be specified with the 
+          <varlistentry><term>Options de format</term>
+          <listitem><para> Le format des fichiers de lecture ou d'?criture est donn? par l'option
           	<command>-f</command> <replaceable>format</replaceable>
-          option. The <replaceable>format</replaceable> can be one of the 
-          following:
-          
+          <replaceable>format</replaceable> est ? choisir parmi un des choix suivants :
           	<variablelist>
-
           	<varlistentry><term>gramps</term>
-          	<listitem><para> &app; database. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename represents a directory. 
+          	<listitem><para> &app; chemin. Ce format est disponible 
+		en lecture comme en ?criture. Il est devin? d'apr?s la nature
+		la nature (fichier ou r?pertoire) du chemin. 
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
-          	<listitem><para> GEDCOM file. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename ends with .ged
+          	<listitem><para> fichier GEDCOM. Ce format est disponible 
+		en lecture comme en ?criture. Il est devin?
+                si le nom de fichier a comme suffixe .ged.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
-          	<listitem><para> &app; package. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename ends with .tgz
+          	<listitem><para> &app; package. Ce format est disponible 
+		en lecture comme en ?criture. Il est devin?
+                si le nom de fichier a comme suffixe .tgz .
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
-          	<listitem><para> Web Family Tree. This format is available 
-                for export only. When not specified, it can be guessed 
-                if the filename ends with .wft
+          	<listitem><para>Web Family Tree. Ce format est disponible 
+		en ?criture seulement. Il est devin?
+                si le nom de fichier a comme suffixe .wft.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>iso</term>
-          	<listitem><para> CD image. This format is available 
-                for export only. It must always be specified explicitly. 
+          	<listitem><para>image de CD. Ce format  est disponible
+		en ?criture seulement. Il doit toujours ?tre
+		pr?cis? explicitement.
                 </para></listitem></varlistentry>
 
           	</variablelist>
@@ -88,72 +81,63 @@
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Import options</term>
-          <listitem><para> The files destined for import can be specified with 
-          the 
-          	<command>-i</command> <replaceable>filename</replaceable>
-          option. The format can be specified with the <command>-f</command> 
-          option immediately following the <replaceable>filename</replaceable>. 
-          If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps</term> 
-          format, the <replaceable>filename</replaceable> is actually the 
-          name of directory under which the gramps database resides. For 
-          <term>gedcom</term> and <term>gramps-pkg</term>, the 
-          <replaceable>filename</replaceable> is the name of the 
-          corresponding file.
-          </para>
+          <varlistentry><term>Options de lecture</term>
+          <listitem><para> Les fichiers ? lire sont sp?cifi?s avec l'option 
+			  <command>-i</command> <replaceable>chemin</replaceable>.
+          Le format peut ?tre pr?cis? avec l'option <command>-f</command> 
+          imm?diatement apr?s le <replaceable>chemin</replaceable>. 
+	  Si le format n'est pas pr?cis?, il sera devin? d'apr?s le 
+          <replaceable>chemin</replaceable> donn?. Pour le format <term>gramps</term>, 
+          le <replaceable>chemin</replaceable> est en fait le 
+          nom du r?pertoire dans lequel les donn?es gramps sont plac?es. Pour les formats 
+          <term>gedcom</term> et <term>gramps-pkg</term>, le 
+          <replaceable>chemin</replaceable> est le nom du fichier de donn?es. </para>
 
-          <para>When more than one input file is given, each has to be preceded
-          by  <command>-i</command> flag. The files are imported in the 
-          specified order, i.e. 
-          <command>-i</command> <replaceable>file1</replaceable> 
-          <command>-i</command> <replaceable>file2</replaceable> 
-          and 
-          <command>-i</command> <replaceable>file2</replaceable> 
-          <command>-i</command> <replaceable>file1</replaceable> 
-          might produce different gramps IDs in the resulting database.
+	  <para>Quand plusieurs fichiers sont ? lire, chaque nom de fichier doit ?tre
+	  pr?c?d? par une commande <command>-i</command>. 
+	  Les fichiers sont lus dans l'ordre des arguments, c'est ? dire que 
+          <command>-i</command> <replaceable>chemin1</replaceable> 
+          <command>-i</command> <replaceable>chemin2</replaceable> 
+          et 
+          <command>-i</command> <replaceable>chemin2</replaceable> 
+          <command>-i</command> <replaceable>chemin1</replaceable> 
+	  peuvent ne pas donner les m?mes identifications gramps dans les donn?es apr?s chargement.
           </para></listitem>
           </varlistentry>
 
-
-          <varlistentry><term>Export options</term>
-          <listitem><para> The files destined for export can be specified with 
-          the 
-          	<command>-o</command> <replaceable>filename</replaceable>
-          option. The format can be specified with the <command>-f</command> 
-          option immediately following the <replaceable>filename</replaceable>. 
-          If not specified, the guess will be attempted based on 
-          the <replaceable>filename</replaceable>. For <term>gramps</term> 
-          and <term>iso</term> formats, the <replaceable>filename</replaceable> 
-          is actually the name of directory the gramps database will be written 
-          into. For <term>gedcom</term>, <term>wft</term>, 
-          and <term>gramps-pkg</term>, the <replaceable>filename</replaceable> 
-          is the name of the resulting file.
+          <varlistentry><term>Options d'?criture</term>
+          <listitem><para> Les fichiers ? ?crire sont pr?cis?s par l'option 
+	  <command>-o</command> <replaceable>chemin</replaceable>.
+          Le format peut ?tre sp?cifi? par l'option <command>-f</command> 
+          plac?e imm?diatement apr?s le <replaceable>chemin</replaceable>. 
+          Si ce n'est pas le cas, il sera devin? d'apr?s le 
+          <replaceable>chemin</replaceable>. Pour les formats <term>gramps</term> 
+          et <term>iso</term>, le <replaceable>chemin</replaceable> 
+          est en fait le nom du r?pertoire o? seront ?crites les donn?es gramps. 
+          Pour les formats <term>gedcom</term>, <term>wft</term>, 
+          et <term>gramps-pkg</term>, le <replaceable>chemin</replaceable> 
+          est le nom du fichier ?crit.
           </para>
 
-          <para> When more than one output file is given, each has to be 
-          preceded by <command>-o</command> flag. The files are written one 
-          by one, in the specified order.
-          </para></listitem>
+          <para>Quand plusieurs fichiers de sortie sont pr?cis?s, chacun doit ?tre
+          pr?c?d? par une option <command>-o</command> . Les fichiers sont ?crits 
+	  un par un dans l'ordre des arguments. </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Action options</term>
-          <listitem><para> The action to perform on the imported data can be 
-          specified with the 
-          	<command>-a</command> <replaceable>action</replaceable>
-          option. This is done after all imports are successfully completed. 
-          Currently available actions are <term>summary</term> (same as 
-          <menuchoice><guimenu>Reports</guimenu><guisubmenu>View</guisubmenu>
+          <varlistentry><term>Options d'action</term>
+          <listitem><para>L'action ? ex?cuter sur les donn?es lues peut ?tre pr?cis?e
+          avec l'option <command>-a</command> <replaceable>action</replaceable>.
+          Ceci est fait apr?s que toutes les lectures ont ?t? faites avec succ?s. 
+          Les actions actuellement disponibles sont <term>summary</term> (comme 
+          <menuchoice><guimenu>Reports</guimenu> <guisubmenu>View</guisubmenu>
 	  <guimenuitem>Summary</guimenuitem></menuchoice>)
-          and <term>check</term> (same as 
-          <menuchoice><guimenu>Tools</guimenu>
+          et <term>check</term> (comme <menuchoice><guimenu>Tools</guimenu>
           <guisubmenu>Database Processing</guisubmenu>
 	  <guimenuitem>Check and Repair</guimenuitem></menuchoice>).
           </para>
 
-          <para>When more than one output action is given, each has to be 
-          preceded by <command>-a</command> flag. The actions are performed 
-          one by one, in the specified order.
+          <para>Si plusieurs actions de sorties sont donn?es, chacune doit ?tre pr?c?d?e par une option
+          <command>-a</command>. Les actions sont ex?cut?es une par une dans l'ordre des arguments.
           </para></listitem>
           </varlistentry>
 
@@ -161,86 +145,84 @@
 
       </sect3>
 
-
       <sect3 id="cmdline-operation">
       <title>Operation</title>
       
-       <para>The order of <command>-i</command>, <command>-o</command>, 
-       or <command>-a</command> options with respect to each does not matter. 
-       The actual execution order always is: all imports (if any) -> all 
-       exports (if any) -> all actions (if any).</para>
+       <para>L'ordre des options <command>-i</command>, <command>-o</command>, 
+       ou <command>-a</command> entre elles n'a pas de signification.
+       L'ordre r?el d'ex?cution est toujours : les lectures (s'il y en a) puis les
+       ?critures (s'il y en a) et enfin les actions (s'il y en a).</para>
+
+       <para>Si aucune option<command>-i</command> n'est donn?e, gramps ouvrira
+       sa fen?tre principale et commencera une session interactive avec un ensemble vide de donn?es
+       puisqu'il n'y a pas de donn?es ? traiter.</para>
                                                                                 
-       <para>If no <command>-i</command> option is given, gramps will launch 
-       its main window and start the usual interactive session with the empty 
-       database (since there is no data to process, anyway).</para>
+       <para>Si aucune option<command>-o</command> ou <command>-a</command> n'est donn?e,
+       gramps ouvrira sa fen?tre principale et commencera une session interactive
+       avec les donn?es lues. Cet ensemble de donn?es se situe dans le r?pertoire
+       <replaceable>~/.gramps/import</replaceable> .</para>
                                                                                 
-       <para>If no <command>-o</command> or <command>-a</command> options 
-       are given, gramps will launch its main window and start the usual 
-       interactive session with the database resulted from all imports. 
-       This database resides under 
-       <replaceable>~/.gramps/import</replaceable> directory.</para>
-                                                                                
-       <para>Any errors encountered during import, export, or action, will 
-       be either dumped to stdout (if these are exceptions handled by gramps) 
-       or or to stderr (if these are not handled). Use usual shell redirections 
-       of stdout and stderr to save messages and errors in files.</para>
+       <para>Les erreurs trouv?es pendant les phases de lecture, d'?criture et d'action sont
+       rapport?es soit sur la sortie standard quand elles sont g?r?es par gramps,
+       soit sur la sortie d'erreur dans le cas contraire. Utilisez les redirections
+       du shell pour les conserver dans des fichiers. </para>
 
       </sect3>
 
       <sect3 id="cmdline-examples">
-      <title>Examples</title>
-        <para>To import four databases (whose formats can be  determined from  
-        their names) and then check the resulting database for errors, one may 
-        type:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
+      <title>Exemples</title>
+        <para>Lecture de quatre bases de donn?es dont les formats peuvent ?tre devin?s d'apr?s les noms,
+        puis v?rification des donn?es : </para>
+        <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
+        <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
         <command>-i</command> <replaceable>~/db3</replaceable> 
-        <command>-i</command> <replaceable>file4.wft</replaceable> 
+        <command>-i</command> <replaceable>chemin4.wft</replaceable> 
         <command>-a</command> <replaceable>check</replaceable>
         </para> 
         
-        <para>To explicitly specify the formats in the above  example, append 
-        filenames with appropriate <command>-f</command> options:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
+        <para>Si vous voulez pr?ciser les formats de fichiers dans l'exemple ci-dessus, 
+        compl?tez les noms de fichiers par les options
+         <command>-f</command> appropri?es : </para>
+        <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
           <command>-f</command> <replaceable>gedcom</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
+        <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
           <command>-f</command> <replaceable>gramps-pkg</replaceable> 
         <command>-i</command> <replaceable>~/db3</replaceable> 
           <command>-f</command> <replaceable>gramps</replaceable> 
-        <command>-i</command> <replaceable>file4.wft</replaceable> 
+        <command>-i</command> <replaceable>chemin4.wft</replaceable> 
           <command>-f</command> <replaceable>wft</replaceable> 
         <command>-a</command> <replaceable>check</replaceable>
         </para>
 
-       <para>To record the database resulting from all imports, supply 
-       <command>-o</command> flag (use <command>-f</command>
-       if the filename does not allow gramps to guess the format):</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-        <command>-o</command> <replaceable>~/new-package</replaceable> 
+       <para>Pour enregistrer le r?sultat des lectures, donnez l'option
+       <command>-o</command> (utilisez l'option <command>-f</command>
+       si le nom de fichier ne permet pas ? gramps de deviner le format) : </para>
+        <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
+        <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
+        <command>-o</command> <replaceable>~/nouvel-ensemble-gramps</replaceable> 
           <command>-f</command> <replaceable>gramps-pkg</replaceable> 
         </para>
                                                                                 
-       <para>To save any error messages of the above example into files
-       <replaceable>outfile</replaceable> and 
-       <replaceable>errfile</replaceable>, run:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
-        <command>-o</command> <replaceable>~/new-package</replaceable> 
+       <para>Pour sauver les erreurs de l'exemple pr?c?dent dans les fichiers
+       <replaceable>sortie</replaceable> et 
+       <replaceable>erreur</replaceable>, lancez : </para>
+        <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
+        <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
+        <command>-o</command> <replaceable>~/nouvel-ensemble-gramps</replaceable> 
         <command>-f</command> <replaceable>gramps-pkg</replaceable> 
-        &gt;<replaceable>outfile</replaceable> 
-        2&gt;<replaceable>errfile</replaceable> 
+        &gt;<replaceable>sortie</replaceable> 
+        2&gt;<replaceable>erreur</replaceable> 
         </para>
 
-       <para>To import three databases and start interactive gramps 
-       session with the result:</para>
-        <para><command>gramps -i</command> <replaceable>file1.ged</replaceable> 
-        <command>-i</command> <replaceable>file2.tgz</replaceable> 
+       <para>Pour lire trois ensembles de donn?es puis lancer une session interactive de gramps 
+       sur le tout : </para>
+        <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
+        <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
         <command>-i</command> <replaceable>~/db3</replaceable> 
         </para> 
                                                                                 
-       <para>Finally, to start normal interactive session type:</para>
-       <para> <command>gramps </command></para>
+       <para>Enfin, pour lancer une session interactive normale, entrez : </para>
+       <para> <command>gramps</command></para>
                                                                                 
       </sect3>
 
