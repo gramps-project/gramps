@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 # Copyright (C) 2003  Tim Waugh
 #
 # This program is free software; you can redistribute it and/or modify
@@ -700,9 +700,9 @@ class ComprehensiveAncestorsReport (Report.Report):
         if suffix:
             name += ', ' + suffix
 
-        type = primary.get_type ()
-        if type != 'Birth Name':
-            name += ' (%s)' % const.NameTypesMap.find_value (type)
+        the_type = primary.get_type ()
+        if the_type != 'Birth Name':
+            name += ' (%s)' % const.NameTypesMap.find_value (the_type)
 
         name += self.cite_sources (primary.get_source_references ())
         return name
