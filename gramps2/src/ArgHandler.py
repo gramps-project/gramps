@@ -143,7 +143,7 @@ class ArgHandler:
             for fn in files:
                 if os.path.isfile(os.path.join(self.impdir_path,fn)):
                     os.remove(os.path.join(self.impdir_path,fn))
-            self.parent.clear_database(0)
+            self.parent.clear_database()
             self.parent.db.setSavePath(self.impdir_path)
             for imp in imports:
                 print "Importing: file %s, format %s." % (imp[0],imp[1])

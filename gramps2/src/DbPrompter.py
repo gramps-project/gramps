@@ -72,7 +72,7 @@ class DbPrompter:
 
     def open_ok_clicked(self,obj):
         if self.new.get_active():
-            self.db.clear_database(0)
+            self.db.clear_database()
             self.save_as_activate()
         else:
             self.open_activate()
