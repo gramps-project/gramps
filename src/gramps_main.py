@@ -942,6 +942,11 @@ class Gramps:
         all.add_rule(GenericFilter.PeoplePrivate([]))
         filter_list.append(all)
 
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Witnesses"))
+        all.add_rule(GenericFilter.IsWitness([]))
+        filter_list.append(all)
+
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(self.filter_model.default_index())

@@ -1,3 +1,15 @@
+2005-03-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (Rule,GenericFilter): New methods prepare() and
+	reset(), that are called before/after a filter is applied, to properly
+	support query caches; (IsWitness): new filter;
+	(RelationshipPathBetween,IsDescendantOf,IsLessThanNthGenerationDescendantOf,
+	IsMoreThanNthGenerationDescendantOf,IsChildOfFilterMatch,IsSiblingOfFilterMatch,
+	IsAncestorOf,IsAncestorOfFilterMatch,IsLessThanNthGenerationAncestorOf,
+	IsMoreThanNthGenerationAncestorOf,IsParentOfFilterMatch,HasCommonAncestorWith):
+	use prepare() and reset() to create a proper query cache. Currently the
+	cache was only created once after object creation and never updated.
+	* src/gramps_main.py: Add new filters to the menu.
+	
 2005-03-11  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (SourceNote): Add methods for detection and removal
 	source references in itself and child objects; (SourceNote,Person,
