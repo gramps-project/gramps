@@ -12,6 +12,8 @@
 	(draw_bar): Support for filling with color.
 	* src/ReportUtils.py (draw_legend): Correct vertical offset.
 
+	* src/docgen/OpenOfficeDoc.py: Typo.
+
 2005-02-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditSource.py: commit events after deleting sources
 	* src/Marriage.py: disable buttons in readonly mode
