@@ -1,3 +1,6 @@
+2004-01-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/AncestorChart2.py: more multipage improvements
+
 2004-01-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 	* src/errdialogs.glade: Add check button to the missing media dialog.
