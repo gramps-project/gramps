@@ -243,6 +243,12 @@ class GnomePrintParagraph:
         """
         return self.fontstyle
 
+    def get_alignment(self):
+        """
+        Return requested alignment of the paragraph
+        """
+        return self.style.get_alignment()
+
     def get_width(self):
         """
         Determine the width of the paragraph if not formatted.
@@ -693,10 +699,19 @@ class LPRDoc(BaseDoc.BaseDoc):
                 continue
             if avail_width >= get_text_width(text,fontstyle):
                 avail_width -= get_text_width(text,fontstyle)
+                if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
+                    x = x + 0.5 * avail_width
+                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
+                    x = x + avail_width
+                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
+                    pass
+                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
+                    pass
+
                 self.__pc.setfont(find_font_from_fontstyle(fontstyle))
                 self.__pc.moveto(x, y)
-                x = x + get_text_width(text,fontstyle)
                 self.__pc.show(text)
+                x = x + get_text_width(text,fontstyle)
             else:
                 #divide up text and print
                 if x == left_margin or directive == _SUPER \
@@ -708,7 +723,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                     if get_text_width(the_text + element + " ",fontstyle) < avail_width:
                         the_text = the_text + element + " "
                     else:
-                        #__text contains as many words as this __width allows
+                        # the_text contains as much as avail_width allows
                         self.__pc.setfont(find_font_from_fontstyle(fontstyle))
                         self.__pc.moveto(x, y)
                         self.__pc.show(the_text)
@@ -738,8 +753,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def __output_table(self):
         """do calcs on data in table and output data in a formatted way"""
-        __min_col_size = [self.right_margin - self.left_margin] \
-                                                        * self.__ncols
+        __min_col_size = [0] * self.__ncols
         __max_vspace = [0] * len(self.__table_data)
 
         for __row_num in range(len(self.__table_data)):
@@ -751,7 +765,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
                 for paragraph in __row[__col]:
                     __min = paragraph.get_min_width()
-                    if __min < __min_col_size[__col]:
+                    if __min > __min_col_size[__col]:
                         __min_col_size[__col] = __min
 
                     __max = paragraph.get_height(
@@ -759,22 +773,16 @@ class LPRDoc(BaseDoc.BaseDoc):
                     if __max > __max_vspace[__row_num]:
                         __max_vspace[__row_num] = __max
 
-        #now we have an idea of the max size of each column
-        #now output data in the table
-        #find total width that the table needs to be.
-        #later this value may be used to cut the longest columns down
-        #so that data fits on the width of the page
+        #is table width larger than the width of the paper?
         __min_table_width = 0
         for __size in __min_col_size:
             __min_table_width = __min_table_width + __size
 
-        #is table width larger than the width of the paper?
         if __min_table_width > (self.right_margin - self.left_margin):
             print "Table does not fit onto the page.\n"
 
         #for now we will assume left justification of tables
         #output data in table
-
         for __row_num in range(len(self.__table_data)):
             __row = self.__table_data[__row_num]
             __x = self.left_margin         #reset so that x is at margin
