@@ -1,3 +1,6 @@
+2004-11-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/WriteGedcom.py: Remove extraneous import.
+
 2004-11-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateHandler.py: add handlers for fr_FR
 	* src/DateParser.py: add parser for french

@@ -52,7 +52,6 @@ import GedcomInfo
 import Errors
 import ansel_utf8
 import Utils
-import Date
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
