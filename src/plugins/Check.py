@@ -41,7 +41,7 @@ def runTool(database,active_person,callback):
     try:
         checker = CheckIntegrity(database)
         checker.check_for_broken_family_links()
-        checker.cleanup_missing_photos()
+        checker.cleanup_missing_photos(0)
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
         errs = checker.build_report(0)
@@ -94,7 +94,7 @@ class CheckIntegrity:
                     Utils.modified()
                     self.broken_links.append((child,family))
 
-    def cleanup_missing_photos(self):
+    def cleanup_missing_photos(self,cl=0):
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
@@ -160,13 +160,18 @@ class CheckIntegrity:
         for ObjectId in ObjectMap.keys():
             photo_name = ObjectMap[ObjectId].getPath()
             if not os.path.isfile(photo_name):
-                MissingMediaDialog(_("Media object could not be found"),
-                    _("%(file_name)s is referenced in the database, but no longer exists. " 
-                    "The file may have been deleted or moved to a different location. " 
-                    "You may choose to either remove the reference from the database, " 
-                    "keep the reference to the missing file, or select a new file." 
-                    ) % { 'file_name' : photo_name },
-                remove_clicked, leave_clicked, select_clicked)
+                if cl:
+                    print "Warning: media file %s was not found." \
+                        % os.path.basename(photo_name)
+                    self.bad_photo.append(ObjectMap[ObjectId])
+                else:
+                    MissingMediaDialog(_("Media object could not be found"),
+                        _("%(file_name)s is referenced in the database, but no longer exists. " 
+                        "The file may have been deleted or moved to a different location. " 
+                        "You may choose to either remove the reference from the database, " 
+                        "keep the reference to the missing file, or select a new file." 
+                        ) % { 'file_name' : photo_name },
+                    remove_clicked, leave_clicked, select_clicked)
 
     def cleanup_empty_families(self,automatic):
         for key in self.db.getFamilyMap().keys():

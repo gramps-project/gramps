@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,10 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-
-#
-# Modified by Alex Roitman to handle media object files.
 #
 
 #-------------------------------------------------------------------------
@@ -61,7 +57,7 @@ except:
 # Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback):
+def importData(database, filename, callback,cl=0):
 
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
@@ -90,29 +86,55 @@ def importData(database, filename, callback):
         else:
             xml_file = open(filename,"r")
     except IOError,msg:
-        ErrorDialog(_("%s could not be opened") % filename,str(msg))
-        return 0
+        if cl:
+            print "Error: %s could not be opened Exiting." % filename
+            print msg
+            os._exit(1)
+        else:
+            ErrorDialog(_("%s could not be opened") % filename,str(msg))
+            return 0
     except:
-        ErrorDialog(_("%s could not be opened") % filename)
-        return 0
+        if cl:
+            print "Error: %s could not be opened. Exiting." % filename
+            os._exit(1)
+        else:
+            ErrorDialog(_("%s could not be opened") % filename)
+            return 0
         
     try:
         parser.parse(xml_file)
     except IOError,msg:
-        ErrorDialog(_("Error reading %s") % filename,str(msg))
-        import traceback
-        traceback.print_exc()
-        return 0
+        if cl:
+            print "Error reading %s" % filename
+            print msg
+            import traceback
+            traceback.print_exc()
+            os._exit(1)
+        else:
+            ErrorDialog(_("Error reading %s") % filename,str(msg))
+            import traceback
+            traceback.print_exc()
+            return 0
     except ExpatError, msg:
-        ErrorDialog(_("Error reading %s") % filename,
-                    _("The file is probably either corrupt or not a valid GRAMPS database."))
-        return 0
+        if cl:
+            print "Error reading %s" % filename
+            print "The file is probably either corrupt or not a valid GRAMPS database."
+            os._exit(1)
+        else:
+            ErrorDialog(_("Error reading %s") % filename,
+                        _("The file is probably either corrupt or not a valid GRAMPS database."))
+            return 0
     except ValueError, msg:
         pass
     except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-        return 0
+        if cl:
+            import traceback
+            traceback.print_exc()
+            os._exit(1)
+        else:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+            return 0
 
     xml_file.close()
     
@@ -190,14 +212,18 @@ def importData(database, filename, callback):
         try:
 	    shutil.copy2(oldfile,newfile)
         except:
-            # File is lost => ask what to do
-            MissingMediaDialog(_("Media object could not be found"),
-	        _("%(file_name)s is referenced in the database, but no longer exists. " 
-                    "The file may have been deleted or moved to a different location. " 
-                    "You may choose to either remove the reference from the database, " 
-                    "keep the reference to the missing file, or select a new file." 
-                    ) % { 'file_name' : oldfile },
-                remove_clicked, leave_clicked, select_clicked)
+            if cl:
+                print "Warning: media file %s was not found," \
+                    % os.path.basename(oldfile), "so it was ignored."
+            else:
+                # File is lost => ask what to do
+                MissingMediaDialog(_("Media object could not be found"),
+	            _("%(file_name)s is referenced in the database, but no longer exists. " 
+                        "The file may have been deleted or moved to a different location. " 
+                        "You may choose to either remove the reference from the database, " 
+                        "keep the reference to the missing file, or select a new file." 
+                        ) % { 'file_name' : oldfile },
+                    remove_clicked, leave_clicked, select_clicked)
 
     del parser
     return 1

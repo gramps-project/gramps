@@ -143,6 +143,10 @@ class PackageWriter:
                 self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
                 if obj.getMimeType()[0:5] == "image":
                     self.make_thumbnail(base,root,obj.getPath())
+            else:
+                print "Warning: media file %s was not found," % root,\
+                    "so it was ignored."
+            
         # Write XML now
         g = gnome.vfs.create('burn:///%s/data.gramps' % base,gnome.vfs.OPEN_WRITE )
         gfile = WriteXML.XmlWriter(self.db,None,1)

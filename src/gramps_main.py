@@ -116,6 +116,7 @@ class Gramps:
         self.bookmarks = None
         self.c_details = 6
         self.id2col = {}
+        self.cl = 0
 
         gtk.rc_parse(const.gtkrcFile)
 
@@ -140,7 +141,6 @@ class Gramps:
         self.relationship = Plugins.relationship_function()
         self.init_interface()
 
-        self.cl = 1
         if args:
             try:
                 options,leftargs = getopt.getopt(args,
@@ -153,8 +153,8 @@ class Gramps:
             if leftargs:
                 print "Unrecognized option: %s" % leftargs[0]
                 os._exit(1)
-            outfname = ''
-            action = ''
+            exports = []
+            actions = []
 	    imports = []
             for opt_ix in range(len(options)):
                 o = options[opt_ix][0][1]
@@ -199,14 +199,15 @@ class Gramps:
                     else:
                         print "Unrecognized format for output file %s" % outfname
                         os._exit(1)
+                    exports.append((outfname,outformat))
                 elif o == 'a':
                     action = options[opt_ix][1]
                     if action not in [ 'check', 'summary' ]:
                         print "Unknown action: %s." % action
                         os._exit(1)
+                    actions.append(action)
             
-            if not (outfname or action):
-                self.cl = 0
+            self.cl = bool(exports or actions)
 
             if imports:
                 # Create dir for imported database(s)
@@ -215,16 +216,18 @@ class Gramps:
                     try:
                         os.mkdir(self.impdir_path,0700)
                     except:
-                        print "Could not create import directory %s" % impdir_path 
-                        return
+                        print "Could not create import directory %s. Exiting." \
+                            % impdir_path 
+                        os._exit(1)
                 elif not os.access(self.impdir_path,os.W_OK):
-                    print "Import directory %s is not writable" % self.impdir_path 
-                    return
+                    print "Import directory %s is not writable. Exiting." \
+                        % self.impdir_path 
+                    os._exit(1)
                 # and clean it up before use
                 files = os.listdir(self.impdir_path) ;
                 for fn in files:
-                    if os.path.isfile(fn):
-                        os.remove( os.path.join(self.impdir_path,fn) )
+                    if os.path.isfile(os.path.join(self.impdir_path,fn)):
+                        os.remove(os.path.join(self.impdir_path,fn))
 
                 self.clear_database(0)
                 self.db.setSavePath(self.impdir_path)
@@ -232,15 +235,21 @@ class Gramps:
                     print "Importing: file %s, format %s." % (imp[0],imp[1])
                     self.cl_import(imp[0],imp[1])
 
-            if outfname:
-                print "Exporting: file %s, format %s." % (outfname,outformat)
-                self.cl_export(outfname,outformat)
+            for expt in exports:
+                print "Exporting: file %s, format %s." % (expt[0],expt[1])
+                self.cl_export(expt[0],expt[1])
 
-            if action:
+            for action in actions:
                 print "Performing action: %s." % action
                 self.cl_action(action)
             
             if self.cl:
+                print "Cleaning up."
+                # clean import dir up after use
+                files = os.listdir(self.impdir_path) ;
+                for fn in files:
+                    if os.path.isfile(os.path.join(self.impdir_path,fn)):
+                        os.remove(os.path.join(self.impdir_path,fn))
                 print "Exiting."
                 os._exit(0)
 
@@ -960,7 +969,7 @@ class Gramps:
         elif format == 'gramps':
             try:
                 dbname = os.path.join(filename,const.xmlFile)
-                ReadXML.importData(self.db,dbname,None)
+                ReadXML.importData(self.db,dbname,None,self.cl)
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
@@ -1051,6 +1060,9 @@ class Gramps:
                         g = open(oldfile,"rb")
                         t.add_file(base,mtime,g)
                         g.close()
+                    else:
+                        print "Warning: media file %s was not found," % base,\
+                            "so it was ignored."
             except:
                 print "Error exporting media files to %s" % filename
                 os._exit(1)
@@ -1074,7 +1086,7 @@ class Gramps:
                 print "Error exporting %s" % filename
                 os._exit(1)
         else:
-            print "Invalid format:  %s" % format
+            print "Invalid format: %s" % format
             os._exit(1)
 
     def cl_action(self,action):
@@ -1082,15 +1094,16 @@ class Gramps:
             import Check
             checker = Check.CheckIntegrity(self.db)
             checker.check_for_broken_family_links()
-            checker.cleanup_missing_photos()
+            checker.cleanup_missing_photos(1)
             checker.check_parent_relationships()
             checker.cleanup_empty_families(0)
             errs = checker.build_report(1)
             if errs:
                 checker.report(1)
         elif action == 'summary':
-            print "Command-line summary is not implemented yet."
-            os._exit(0)
+            import Summary
+            text = Summary.build_report(self.db,None)
+            print text
         else:
             print "Unknown action: %s." % action
             os._exit(1)
@@ -1175,14 +1188,18 @@ class Gramps:
                 if os.path.isfile(oldfile):
                     RelImage.import_media_object(oldfile,filename,base)
                 else:
-                    # File is lost => ask what to do
-                    MissingMediaDialog(_("Media object could not be found"),
-	                _("%(file_name)s is referenced in the database, but no longer exists. " 
-                            "The file may have been deleted or moved to a different location. " 
-                            "You may choose to either remove the reference from the database, " 
-                            "keep the reference to the missing file, or select a new file." 
-                            ) % { 'file_name' : oldfile },
-                        remove_clicked, leave_clicked, select_clicked)
+                    if self.cl:
+                        print "Warning: media file %s was not found," \
+                            % os.path.basename(oldfile), "so it was ignored."
+                    else:
+                        # File is lost => ask what to do
+                        MissingMediaDialog(_("Media object could not be found"),
+	                    _("%(file_name)s is referenced in the database, but no longer exists. " 
+                                "The file may have been deleted or moved to a different location. " 
+                                "You may choose to either remove the reference from the database, " 
+                                "keep the reference to the missing file, or select a new file." 
+                                ) % { 'file_name' : oldfile },
+                            remove_clicked, leave_clicked, select_clicked)
 
     def save_file(self,filename,comment):        
 
