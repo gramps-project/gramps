@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,17 +18,39 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GNOME/GTK+ modules
+#
+#-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+from gtk.gdk import pixbuf_new_from_file
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import const
 import GrampsKeys
 
-from gettext import gettext as _
+ICON = pixbuf_new_from_file(const.icon)
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
+        self.top.set_icon(ICON)
         self.dontask = self.xml.get_widget('dontask')
         self.task1 = task1
         self.task2 = task2
@@ -40,7 +62,6 @@ class SaveDialog:
         label2 = self.xml.get_widget('label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
-
         self.top.show()
         if parent:
             self.top.set_transient_for(parent)
@@ -57,6 +78,7 @@ class QuestionDialog:
     def __init__(self,msg1,msg2,label,task,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
+        self.top.set_icon(ICON)
         self.top.set_title('')
 
         label1 = self.xml.get_widget('label1')
@@ -81,6 +103,7 @@ class QuestionDialog2:
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
+        self.top.set_icon(ICON)
         self.top.set_title('')
 
         label1 = self.xml.get_widget('label1')
@@ -106,6 +129,7 @@ class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog","gramps")
         self.top = self.xml.get_widget('optiondialog')
+        self.top.set_icon(ICON)
         self.top.set_title('')
 
         label1 = self.xml.get_widget('label1')
@@ -138,6 +162,7 @@ class ErrorDialog:
         
         self.xml = gtk.glade.XML(const.errdialogsFile,"errdialog","gramps")
         self.top = self.xml.get_widget('errdialog')
+        self.top.set_icon(ICON)
         
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
@@ -155,6 +180,7 @@ class WarningDialog:
         
         self.xml = gtk.glade.XML(const.errdialogsFile,"warndialog","gramps")
         self.top = self.xml.get_widget('warndialog')
+        self.top.set_icon(ICON)
         
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
@@ -172,6 +198,7 @@ class OkDialog:
 
         self.xml = gtk.glade.XML(const.errdialogsFile,"okdialog","gramps")
         self.top = self.xml.get_widget('okdialog')
+        self.top.set_icon(ICON)
 
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
@@ -188,6 +215,7 @@ class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
+        self.top.set_icon(ICON)
         self.task1 = task1
         self.task2 = task2
         self.task3 = task3

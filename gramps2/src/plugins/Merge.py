@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +24,23 @@
 
 #-------------------------------------------------------------------------
 #
+# standard python models
+#
+#-------------------------------------------------------------------------
+import os
+from gettext import gettext as _ 
+
+#-------------------------------------------------------------------------
+#
+# GNOME libraries
+#
+#-------------------------------------------------------------------------
+import gtk 
+import gtk.glade
+from gnome import help_display
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -33,23 +50,6 @@ import soundex
 import NameDisplay
 import ListModel
 import MergeData
-from gettext import gettext as _ 
-
-#-------------------------------------------------------------------------
-#
-# standard python models
-#
-#-------------------------------------------------------------------------
-import string
-import os
-
-#-------------------------------------------------------------------------
-#
-# GNOME libraries
-#
-#-------------------------------------------------------------------------
-import gtk 
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +75,10 @@ class Merge:
     def __init__(self,database,callback,parent):
         self.db = database
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
         self.map = {}
         self.list = []
         self.index = 0
@@ -110,24 +113,30 @@ class Merge:
         self.menu = top.get_widget("menu")
         self.menu.set_menu(my_menu)
 
-        self.dialog_window = top.get_widget('dialog')
-        Utils.set_titles(self.dialog_window, top.get_widget('title'),
+        self.window = top.get_widget('dialog')
+        self.window.set_icon(self.parent.topWindow.get_icon())
+        Utils.set_titles(self.window, top.get_widget('title'),
                          _('Merge people'))
 
         top.signal_autoconnect({
-            "on_merge_ok_clicked" : self.on_merge_ok_clicked,
+            "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
             "destroy_passed_object" : self.close,
-            "on_delete_merge_event"   : self.on_delete_event,
+            "on_help_clicked"       : self.on_help_clicked,
+            "on_delete_merge_event" : self.on_delete_event,
             })
         self.add_itself_to_menu()
-        self.dialog_window.show()
+        self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-db')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
 
     def close(self,obj):
         self.remove_itself_from_menu()
-        self.dialog_window.destroy()
+        self.window.destroy()
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
@@ -141,7 +150,7 @@ class Merge:
         self.parent_menu_item.destroy()
 
     def present(self,obj):
-        self.dialog_window.present()
+        self.window.present()
 
     def ancestors_of(self,p1_id,id_list):
         if (not p1_id) or (p1_id in id_list):
@@ -174,6 +183,7 @@ class Merge:
     def find_potentials(self,thresh):
         top = gtk.glade.XML(self.glade_file,"message","gramps")
         self.topWin = top.get_widget("message")
+        self.topWin.set_icon(self.parent.topWindow.get_icon())
         self.progress = top.get_widget("progressbar1")
 
         Utils.set_titles(self.topWin,top.get_widget('title'),
@@ -241,16 +251,17 @@ class Merge:
     def show(self):
         top = gtk.glade.XML(self.glade_file,"mergelist","gramps")
         self.window = top.get_widget("mergelist")
-        self.win_show_key = self.window
+        self.window.set_icon(self.parent.topWindow.get_icon())
 
         Utils.set_titles(self.window, top.get_widget('title'),
                          _('Potential Merges'))
         
         self.mlist = top.get_widget("mlist")
         top.signal_autoconnect({
-            "destroy_passed_object" : self.close_show,
-            "on_do_merge_clicked" : self.on_do_merge_clicked,
-            "on_delete_show_event" : self.on_delete_show_event,
+            "destroy_passed_object" : self.close,
+            "on_do_merge_clicked"   : self.on_do_merge_clicked,
+            "on_help_show_clicked"  : self.on_help_clicked,
+            "on_delete_show_event"  : self.on_delete_event,
             })
 
         mtitles = [(_('Rating'),3,75),(_('First Person'),1,200),
@@ -259,29 +270,8 @@ class Merge:
                                         event_func=self.on_do_merge_clicked)
         
         self.redraw()
-        self.add_show_to_menu()
+        self.add_itself_to_menu()
         self.window.show()
-
-    def on_delete_show_event(self,obj,b):
-        self.remove_show_from_menu()
-
-    def close_show(self,obj):
-        self.remove_show_from_menu()
-        self.window.destroy()
-
-    def add_show_to_menu(self):
-        self.parent.child_windows[self.win_show_key] = self.window
-        self.show_parent_menu_item = gtk.MenuItem(_('Potential Merges'))
-        self.show_parent_menu_item.connect("activate",self.present_show)
-        self.show_parent_menu_item.show()
-        self.parent.winsmenu.append(self.show_parent_menu_item)
-
-    def remove_show_from_menu(self):
-        del self.parent.child_windows[self.win_show_key]
-        self.show_parent_menu_item.destroy()
-
-    def present_show(self,obj):
-        self.window.present()
 
     def redraw(self):
         list = []
@@ -423,8 +413,8 @@ class Merge:
         if name.get_first_name() == name1.get_first_name():
             return 1
         else:
-            list1 = string.split(name.get_first_name())
-            list2 = string.split(name1.get_first_name())
+            list1 = name.get_first_name().split()
+            list2 = name1.get_first_name().split()
 
             if len(list1) < len(list2):
                 return self.list_reduce(list1,list2)
@@ -452,8 +442,8 @@ class Merge:
         if name1 == name2:
             return 1
 
-        list1 = string.split(string.replace(name1,","," "))
-        list2 = string.split(string.replace(name2,","," "))
+        list1 = name1.replace(","," ").split()
+        list2 = name2.replace(","," ").split()
 
         value = 0
         for name in list1:

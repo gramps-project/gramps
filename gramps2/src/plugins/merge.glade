@@ -77,7 +77,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">20</property>
@@ -150,6 +150,20 @@
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_do_merge_clicked"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button13">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_help_show_clicked" last_modification_time="Thu, 24 Mar 2005 06:04:48 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -278,6 +292,20 @@
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_merge_ok_clicked" object="dialog"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button14">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_help_clicked" last_modification_time="Thu, 24 Mar 2005 06:05:18 GMT"/>
 	    </widget>
 	  </child>
 	</widget>

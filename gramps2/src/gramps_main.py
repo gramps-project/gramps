@@ -1079,7 +1079,7 @@ class Gramps:
         """Clear out the database if permission was granted"""
         return
     
-    def tool_callback(self,val):
+    def tool_callback(self,epo,val):
         if val:
             self.import_tool_callback()
 
