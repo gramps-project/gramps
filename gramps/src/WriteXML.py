@@ -380,6 +380,9 @@ def exportData(database, filename, callback):
             write_family_id(g,family,2)
             write_ref(g,"father",family.getFather(),3)
             write_ref(g,"mother",family.getMother(),3)
+            pos = family.getPosition()
+            if pos != None:
+               g.write('      <pos x="%d" y="%d"/>\n'% pos)
 
             for event in family.getEventList():
                 dump_event(g,event,3)
@@ -488,7 +491,7 @@ def exportData(database, filename, callback):
                     g.write('/>\n')
             if place.getNote() != "":
                 writeNote(g,"note",place.getNote(),3)
-            dump_source_ref(g,event.getSourceRef(),3)
+            dump_source_ref(g,place.getSourceRef(),3)
             g.write("    </placeobj>\n")
         g.write("  </places>\n")
 
