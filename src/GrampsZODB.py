@@ -110,7 +110,7 @@ class PersonMap(Persistent, UserDict):
     def __setitem__(self, key, value):
         if not isinstance(value, PersonWrapper):
             # Create the PersonWrapper.
-            assert isinstance(value, Person)
+            assert isinstance(value, RelLib.Person)
             value = PersonWrapper(value, self)
         self.data[key] = value
 
