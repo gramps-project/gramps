@@ -764,7 +764,20 @@ def marriage_edit(family):
 # 
 #
 #-------------------------------------------------------------------------
+def tool_callback(val):
+    if val:
+        full_update()
+        
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 def full_update():
+    global id2col
+    
+    id2col = {}
+    person_list.clear()
     gtop.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
     clist = gtop.get_widget("child_list")
     clist.set_column_visibility(4,Config.show_detail)
@@ -898,7 +911,7 @@ def update_source_after_edit(source):
 #-------------------------------------------------------------------------
 def on_tools_clicked(obj):
     if active_person:
-        Plugins.ToolPlugins(database,active_person,update_display)
+        Plugins.ToolPlugins(database,active_person,tool_callback)
 
 #-------------------------------------------------------------------------
 #
@@ -2333,16 +2346,6 @@ def apply_filter():
     global id2col
     global alt2col
     
-    people = database.getPersonMap().values()
-
-    names = []
-    altnames = []
-    for person in people:
-        names.append((person.getPrimaryName(),person,0))
-        if Config.hide_altnames == 0:
-            for name in person.getAlternateNames():
-                names.append((name,person,1))
-
     person_list.freeze()
 
     datacomp = DataFilter.compare
@@ -2378,6 +2381,9 @@ def apply_filter():
                                   sort.build_sort_name(name),sort_bday,sort_dday])
             person_list.set_row_data(0,pos)
 
+            if Config.hide_altnames:
+                continue
+                
             for name in person.getAlternateNames():
                 pos = (person,1)
                 new_alt2col[person].append(pos)

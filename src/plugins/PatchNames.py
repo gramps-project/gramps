@@ -23,12 +23,19 @@
 import os
 import re
 import intl
+import utils
+
 _ = intl.gettext
 
 from gnome.ui import *
 
+import libglade
 import RelLib
 import utils
+
+title_list = []
+nick_list = []
+cb = None
 
 #-------------------------------------------------------------------------
 #
@@ -39,46 +46,72 @@ import utils
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
 
+    global cb
+
+    cb = callback
     title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
     nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
-    title_count = 0
-    nick_count = 0
     
     personMap = database.getPersonMap()
     for key in personMap.keys():
         
-        person = personMap[key] 
-        name = person.getPrimaryName()
-        first = name.getFirstName()
+        person = personMap[key]
+        first = person.getPrimaryName().getFirstName()
         match = title_re.match(first)
         if match:
             groups = match.groups()
-            name.setFirstName(groups[1])
-            name.setTitle(groups[0])
-            title_count = title_count + 1
+            title_list.append((person,groups[0],groups[1]))
+
         match = nick_re.match(first)
         if match:
             groups = match.groups()
-            name.setFirstName(groups[0])
-            person.setNickName(groups[1])
-            nick_count = nick_count + 1
+            nick_list.append((person,groups[0],groups[1]))
 
-    if nick_count == 1:
-        msg = _("1 nickname was extracted")
+    msg = ""
+    if len(nick_list) > 0 or len(title_list) > 0:
+        if len(nick_list) > 0:
+            for name in nick_list:
+                msg = msg + _("%s will be extracted as a nickname from %s\n") % \
+                      (name[2],name[0].getPrimaryName().getName())
+
+        if len(title_list) > 0:
+            for name in title_list:
+                msg = msg + _("%s will be extracted as a title from %s\n") % \
+                      (name[0].getPrimaryName().getName(),name[1])
+
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "patchnames.glade"
+
+        top = libglade.GladeXML(glade_file,"summary")
+        top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_ok_clicked" : on_ok_clicked
+            })
+        top.get_widget("textwindow").show_string(msg)
     else:
-        msg = _("%d nicknames were extracted\n") % nick_count
+        GnomeOkDialog(_("No titles or nicknames were found"))
+        callback(0)
 
-    if title_count == 1:
-        msg = msg + "\n" + _("1 title was extracted")
-    else:
-        msg = msg + "\n" + _("%d titles were extracted") % title_count
-
-    if nick_count > 0 or title_count > 0:
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_ok_clicked(obj):
+    for grp in nick_list:
+        name = grp[0].getPrimaryName()
+        name.setFirstName(grp[1])
+        grp[0].setNickName(grp[2])
         utils.modified()
-        
-    box = GnomeOkDialog(msg)
-    box.show()
-    callback(1)
+
+    for grp in title_list:
+        name = grp[0].getPrimaryName()
+        name.setFirstName(grp[2])
+        name.setTitle(grp[1])
+        utils.modified()
+
+    utils.destroy_passed_object(obj)
+    cb(1)
         
 #-------------------------------------------------------------------------
 #
@@ -88,6 +121,11 @@ def runTool(database,active_person,callback):
 def get_description():
     return _("Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field.")
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def get_name():
     return _("Database Processing/Extract information from names")
 
