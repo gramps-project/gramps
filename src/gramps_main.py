@@ -549,7 +549,8 @@ class Gramps:
                         haveit.append(pid)
                         person = self.db.get_person_from_handle(pid)
                         item = gtk.MenuItem("_%d. %s [%s]" % 
-                                            (num,person.get_primary_name().get_name(),pid))
+                                            (num,person.get_primary_name().get_name(),
+                                             person.get_gramps_id()))
                         item.connect("activate",self.bookmark_callback,person.get_handle())
                         item.show()
                         gomenu.append(item)
