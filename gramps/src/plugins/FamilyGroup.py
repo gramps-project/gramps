@@ -29,9 +29,10 @@ import string
 import FindDoc
 import utils
 import intl
+_ = intl.gettext
 
 from TextDoc import *
-_ = intl.gettext
+from StyleEditor import *
 
 from gtk import *
 from gnome.ui import *
@@ -44,6 +45,8 @@ from libglade import *
 #------------------------------------------------------------------------
 active_person = None
 db = None
+styles = StyleSheet()
+style_sheet_list = None
 
 #------------------------------------------------------------------------
 #
@@ -58,43 +61,6 @@ class FamilyGroup:
         self.output = output
         self.doc = doc
 
-        para = ParagraphStyle()
-        font = FontStyle()
-        font.set_size(4)
-        para.set_font(font)
-        self.doc.add_style('blank',para)
-        
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(16)
-        font.set_bold(1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        self.doc.add_style('Title',para)
-
-        font = FontStyle()
-        font.set_type_face(FONT_SERIF)
-        font.set_size(10)
-        font.set_bold(0)
-        para = ParagraphStyle()
-        para.set_font(font)
-        self.doc.add_style('Normal',para)
-
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(10)
-        font.set_bold(1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        self.doc.add_style('ChildText',para)
-
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(12)
-        font.set_bold(1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        self.doc.add_style('ParentName',para)
 
         cell = TableCellStyle()
         cell.set_padding(0.2)
@@ -383,6 +349,7 @@ def report(database,person):
     global topDialog
     global glade_file
     global db
+    global style_sheet_list
     
     active_person = person
     db = database
@@ -398,12 +365,54 @@ def report(database,person):
     label.set_text(_("Family Group Report for %s") % name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
+        "on_style_edit_clicked" : on_style_edit_clicked,
         "on_save_clicked" : on_save_clicked
         })
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
     FindDoc.get_text_doc_menu(topDialog.get_widget("format"),1,option_switch)
+    styles.clear()
+    
+    para = ParagraphStyle()
+    font = FontStyle()
+    font.set_size(4)
+    para.set_font(font)
+    styles.add_style('blank',para)
+        
+    font = FontStyle()
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_size(16)
+    font.set_bold(1)
+    para = ParagraphStyle()
+    para.set_font(font)
+    styles.add_style('Title',para)
+
+    font = FontStyle()
+    font.set_type_face(FONT_SERIF)
+    font.set_size(10)
+    font.set_bold(0)
+    para = ParagraphStyle()
+    para.set_font(font)
+    styles.add_style('Normal',para)
+
+    font = FontStyle()
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_size(10)
+    font.set_bold(1)
+    para = ParagraphStyle()
+    para.set_font(font)
+    styles.add_style('ChildText',para)
+
+    font = FontStyle()
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_size(12)
+    font.set_bold(1)
+    para = ParagraphStyle()
+    para.set_font(font)
+    styles.add_style('ParentName',para)
+    style_sheet_list = StyleSheetList("family_group",styles)
+    build_menu(None)
 
     frame = topDialog.get_widget("spouse")
     option_menu = topDialog.get_widget("spouse_menu")
@@ -424,6 +433,30 @@ def report(database,person):
         item.show()
         my_menu.append(item)
     option_menu.set_menu(my_menu)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def on_style_edit_clicked(obj):
+    StyleListDisplay(style_sheet_list,build_menu,None)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def build_menu(object):
+    menu = topDialog.get_widget("style_menu")
+
+    myMenu = GtkMenu()
+    for style in style_sheet_list.get_style_names():
+        menuitem = GtkMenuItem(style)
+        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
+        menuitem.show()
+        myMenu.append(menuitem)
+    menu.set_menu(myMenu)
 
 #------------------------------------------------------------------------
 #

@@ -40,8 +40,8 @@ except:
 
 class OpenOfficeDoc(TextDoc):
 
-    def __init__(self,type,orientation):
-        TextDoc.__init__(self,type,orientation)
+    def __init__(self,styles,type,orientation):
+        TextDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0

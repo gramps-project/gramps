@@ -32,6 +32,8 @@ import intl
 _ = intl.gettext
 
 from TextDoc import *
+from StyleEditor import *
+
 import FindDoc
 
 from gtk import *
@@ -45,6 +47,8 @@ from libglade import *
 #------------------------------------------------------------------------
 active_person = None
 db = None
+styles = StyleSheet()
+style_sheet_list = None
 
 #------------------------------------------------------------------------
 #
@@ -97,36 +101,7 @@ class AncestorReport:
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(16)
-        font.set_bold(1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set_top_border(0.2)
-        para.set_bottom_border(0.2)
-        para.set_padding(1)
-        self.doc.add_style("Title",para)
 
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(14)
-        font.set_bold(1)
-        font.set_italic(1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(2)
-        para.set_top_border(0.15)
-        para.set_bottom_border(0.15)
-        para.set_padding(1)
-        self.doc.add_style("Header",para)
-
-        para = ParagraphStyle()
-        para.set_first_indent(-0.75)
-        para.set_left_margin(1.0)
-        para.set_padding(1)
-        self.doc.add_style("ListEntry",para)
         try:
             self.doc.open(output)
         except IOError,msg:
@@ -171,13 +146,13 @@ class AncestorReport:
             if generation == 0 or key >= 2**generation:
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
-                self.doc.start_paragraph("Header")
+                self.doc.start_paragraph("Generation")
                 t = _("%s Generation") % AncestorReport.gen[generation+1]
                 self.doc.write_text(t)
                 self.doc.end_paragraph()
                 generation = generation + 1
 
-            self.doc.start_paragraph("ListEntry")
+            self.doc.start_paragraph("Entry")
             person = self.map[key]
             name = person.getPrimaryName().getRegularName()
         
@@ -307,6 +282,7 @@ def report(database,person):
     global topDialog
     global glade_file
     global db
+    global style_sheet_list
     
     active_person = person
     db = database
@@ -321,11 +297,53 @@ def report(database,person):
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
     FindDoc.get_text_doc_menu(topDialog.get_widget("format"),0,option_switch)
         
+    styles.clear()
+    font = FontStyle()
+    font.set(face=FONT_SANS_SERIF,size=16,bold=1)
+    para = ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(1)
+    para.set(tborder=0.2,bborder=0.2,pad=1)
+    styles.add_style("Title",para)
+
+    font = FontStyle()
+    font.set(face=FONT_SANS_SERIF,size=14,italic=1)
+    para = ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(2)
+    para.set_top_border(0.15)
+    para.set(tborder=0.15,pad=1)
+    styles.add_style("Generation",para)
+
+    para = ParagraphStyle()
+    para.set(first_indent=-0.75,lmargin=1.0,pad=1)
+    styles.add_style("Entry",para)
+
+    style_sheet_list = StyleSheetList("ancestor_report",styles)
+    build_menu(None)
+
     topDialog.get_widget("labelTitle").set_text("Ahnentafel Report for " + name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
+        "on_style_edit_clicked" : on_style_edit_clicked,
         "on_save_clicked" : on_save_clicked
         })
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def build_menu(object):
+    menu = topDialog.get_widget("style_menu")
+
+    myMenu = GtkMenu()
+    for style in style_sheet_list.get_style_names():
+        menuitem = GtkMenuItem(style)
+        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
+        menuitem.show()
+        myMenu.append(menuitem)
+    menu.set_menu(myMenu)
 
 #------------------------------------------------------------------------
 #
@@ -339,6 +357,14 @@ def option_switch(obj):
         notebook.set_page(0)
     else:
         notebook.set_page(1)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def on_style_edit_clicked(obj):
+    StyleListDisplay(style_sheet_list,build_menu,None)
     
 #------------------------------------------------------------------------
 #
@@ -363,8 +389,10 @@ def on_save_clicked(obj):
     
     item = topDialog.get_widget("format").get_menu().get_active()
     format = item.get_data("name")
+
+    styles = topDialog.get_widget("style_menu").get_menu().get_active().get_data("d")
     
-    doc = FindDoc.make_text_doc(format,paper,orien,template)
+    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
 
     MyReport = AncestorReport(db,active_person,outputName,max_gen,pgbrk,doc)
     MyReport.write_report()
@@ -442,10 +470,3 @@ def get_xpm_image():
         "                                                ",
         "                                                ",
         "                                                "]
-
-
-
-
-
-
-
