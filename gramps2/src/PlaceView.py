@@ -85,7 +85,6 @@ class PlaceView:
             column.set_min_width(title[2])
             self.list.append_column(column)
 
-        self.list.set_search_column(0)
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
@@ -94,7 +93,6 @@ class PlaceView:
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING)
         self.list.set_model(self.model)
-        self.list.get_column(0).clicked()
         self.selection = self.list.get_selection()
         self.list.connect('button-press-event',self.button_press)
         self.topWindow = self.glade.get_widget("gramps")
@@ -117,7 +115,7 @@ class PlaceView:
                                    gobject.TYPE_STRING)
         self.id2col = {}
 
-        for key in self.db.getPlaceKeys():
+        for key in self.db.sortPlaceKeys():
             val = self.db.getPlaceDisplay(key)
                 
             iter = self.model.append()
@@ -129,7 +127,6 @@ class PlaceView:
                            12, val[12]
                            )
         self.list.set_model(self.model)
-        self.list.get_column(0).clicked()
         
     def goto(self,id):
         self.selection.unselect_all()

@@ -31,7 +31,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from re import compile
-from string import strip, upper
 import os
 
 #-------------------------------------------------------------------------
@@ -446,21 +445,21 @@ class Researcher:
     def set(self,name,addr,city,state,country,postal,phone,email):
         """sets the information about the database owner"""
         if name:
-            self.name = strip(name)
+            self.name = name.strip()
         if addr:
-            self.addr = strip(addr)
+            self.addr = addr.strip()
         if city:
-            self.city = strip(city)
+            self.city = city.strip()
         if state:
-            self.state = strip(state)
+            self.state = state.strip()
         if country:
-            self.country = strip(country)
+            self.country = country.strip()
         if postal:
-            self.postal = strip(postal)
+            self.postal = postal.strip()
         if phone:
-            self.phone = strip(phone)
+            self.phone = phone.strip()
         if email:
-            self.email = strip(email)
+            self.email = email.strip()
 
 class Location:
     """Provides information about a place, including city, county, state,
@@ -1897,8 +1896,7 @@ class Source:
         self.abbrev = ""
         
     def getDisplayInfo(self):
-        return [self.title,self.id,self.author,upper(self.title),
-                upper(self.author)]
+        return [self.title,self.id,self.author,self.title.upper(),self.author.upper()]
 
     def setId(self,newId):
         """sets the gramps' ID for the Source instance"""
@@ -2738,6 +2736,15 @@ class GrampsDB:
         
     def getSourceKeys(self):
         return self.sourceTable.keys()
+
+    def sortbysource(self,f,s):
+        return cmp(self.sourceTable[f][3],self.placTable[s][3])
+
+    def sortSourceKeys(self):
+        keys = self.sourceTable.keys()
+        if type(keys) == type([]):
+            keys.sort(self.sortbyplace)
+        return keys
     
     def getSourceDisplay(self,key):
         return self.sourceTable[key]
