@@ -17,6 +17,8 @@
 	* src/DateEdit.py: Use DateHandler instead of low-level DateDisplay;
 	(check): Display yellow LED for anything other than regular dates.
 
+	* src/DateEdit.py: Use new Date's set() method. Enable help.
+
 2004-09-19 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Date.py (is_equal): Add method -- needed to compare dates
 	for being identical, since __cmp__ only compares the sorting value

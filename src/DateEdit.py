@@ -52,6 +52,7 @@ import gtk
 import gtk.gdk
 import gtk.glade
 import gobject
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -62,6 +63,7 @@ import Date
 import DateHandler
 import const
 import Utils
+import QuestionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -83,6 +85,7 @@ QUAL_TEXT = (
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 dd = DateHandler.create_display()
+dp = DateHandler.create_parser()
 
 CAL_TO_MONTHS_NAMES = { 
     Date.CAL_GREGORIAN  : dd._MONS,
@@ -113,8 +116,6 @@ class DateEdit:
         button_obj is pressed. 
         """
 
-        self.dp = DateHandler.create_parser()
-        self.dd = DateHandler.create_display()
         self.date_obj = date_obj
         self.text_obj = text_obj
         self.button_obj = button_obj
@@ -147,7 +148,7 @@ class DateEdit:
         text = unicode(self.text_obj.get_text())
         if text != self.text:
             self.text = text
-            self.date_obj.copy(self.dp.parse(text))
+            self.date_obj.copy(dp.parse(text))
             self.check()
 
     def invoke_date_editor(self,obj):
@@ -160,11 +161,8 @@ class DateEdit:
         the_date = date_dialog.return_date
         if the_date:
             self.date_obj.copy(the_date)
-            self.text_obj.set_text(self.dd.display(self.date_obj))
+            self.text_obj.set_text(dd.display(self.date_obj))
             self.check()
-            print "The date was built as follows:", self.date_obj
-        else:
-            print "Cancel was pressed, date not changed."
         
 #-------------------------------------------------------------------------
 #
@@ -245,28 +243,33 @@ class DateEditorDialog:
         self.text_entry = self.top.get_widget('date_text_entry')
         self.text_entry.set_text(self.date.get_text())
         
-        # The dialog is modal -- since dates don't have name, we don't
+        # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
-        # loose track of which is which.
+        # loose track of which is which. Much like opening files.
         if parent_window:
             self.top_window.set_transient_for(parent_window)
-        response = self.top_window.run()
-
+        
         self.return_date = None
-
-        if response == gtk.RESPONSE_HELP:
-            # Here be help :-)
-            print "Help is not hooked up yet, sorry. Exiting now."
-        elif response == gtk.RESPONSE_OK:
-            (the_quality,the_modifier,the_calendar,the_value,the_text) = \
+        while 1:
+            response = self.top_window.run()
+            if response == gtk.RESPONSE_HELP:
+                try:
+                    gnome.help_display('gramps-manual','index')
+                except gobject.GError, msg:
+                    QuestionDialog.ErrorDialog(_("Could not open help"),str(msg))
+            elif response == gtk.RESPONSE_OK:
+                (the_quality,the_modifier,the_calendar,the_value,the_text) = \
                                         self.build_date_from_ui()
-            self.return_date = Date.Date(self.date)
-            self.return_date.set(
-                quality=the_quality,
-                modifier=the_modifier,
-                calendar=the_calendar,
-                value=the_value)
-            self.return_date.set_text_value(the_text)
+                self.return_date = Date.Date(self.date)
+                self.return_date.set(
+                    quality=the_quality,
+                    modifier=the_modifier,
+                    calendar=the_calendar,
+                    value=the_value,
+                    text=the_text)
+                break
+            else:
+                break
         self.top_window.destroy()
 
     def build_date_from_ui(self):
@@ -337,7 +340,7 @@ class DateEditorDialog:
 
     def switch_calendar(self,obj):
         """
-        Change month names and convert the date on the calendar 
+        Change month names and convert the date based on the calendar 
         selected via the menu.
         """
         
@@ -350,8 +353,8 @@ class DateEditorDialog:
                 quality=the_quality,
                 modifier=the_modifier,
                 calendar=old_cal,
-                value=the_value)
-        self.date.set_text_value(the_text)
+                value=the_value,
+                text=the_text)
 
         self.date.convert_calendar(new_cal)
         
