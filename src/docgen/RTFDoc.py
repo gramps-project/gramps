@@ -362,6 +362,7 @@ class RTFDoc(TextDoc.TextDoc):
         if self.opened == 0:
             self.opened = 1
             self.text = self.text + '{%s ' % self.font_type
+
         for i in text:
             if ord(i) > 127:
                 self.text = self.text + '\\\'%2x' % ord(i)
@@ -369,5 +370,8 @@ class RTFDoc(TextDoc.TextDoc):
                 self.text = self.text + '\\%s' % i
             else:
                 self.text = self.text + i
+
+        self.text = self.text.replace('<super>','{{\*\updnprop5801}\up10 ')
+        self.text = self.text.replace('</super>','}}')
 
 Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1,".rtf")
