@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,8 @@ def utf8_to_latin(s):
     return s.encode('iso-8859-1','replace')
 
 def latin_to_utf8(s):
-    return unicode(s,'iso-8859-1')
-
+    if type(s) == type(u''):
+        return s
+    else:
+        return unicode(s,'iso-8859-1')
     
