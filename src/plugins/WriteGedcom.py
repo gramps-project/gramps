@@ -27,6 +27,7 @@ import time
 import const
 import utils
 import intl
+import Date
 _ = intl.gettext
 
 from gtk import *
@@ -47,6 +48,17 @@ people_list = []
 family_list = []
 source_list = []
 adopt_mode = 1
+
+_hmonth = [ "", "ELUL", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR",
+            "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL" ]
+
+_fmonth = [
+    "",     "VEND", "BRUM", "FRIM", "NIVO", "PLUV", "VENT",
+    "GERM", "FLOR", "PRAI", "MESS", "THER", "FRUC", "EXTR"]
+
+_month = [
+    "",    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 #-------------------------------------------------------------------------
 #
@@ -304,8 +316,11 @@ def write_long_text(g,tag,level,note):
 #
 #-------------------------------------------------------------------------
 def dump_event_stats(g,event):
-    if event.getSaveDate() != "":
-        g.write("2 DATE %s\n" % cnvtxt(event.getSaveDate()))
+    dateobj = event.getDateObj()
+    if not dateobj.isEmpty():
+        print_date(g,"2 DATE",dateobj)
+    elif dateobj.getText() != "":
+        g.write("2 DATE %s\n" % cnvtxt(dateobj.getText()))
     if event.getPlaceName() != "":
         g.write("2 PLAC %s\n" % cnvtxt(event.getPlaceName()))
     if event.getCause() != "":
@@ -314,6 +329,70 @@ def dump_event_stats(g,event):
         write_long_text(g,"NOTE",2,event.getNote())
     for srcref in event.getSourceRefList():
         write_source_ref(g,2,srcref)
+
+def print_date(g,prefix,date):
+    if date.get_calendar() == Date.GREGORIAN:
+        cal = ''
+        if date.isRange():
+            val = "FROM %s TO %s" % (make_date(date.get_start_date(),_month),
+                                     make_date(date.get_stop_date(),_month))
+        else:
+            val = make_date(date.get_start_date(),_month)
+    elif date.get_calendar() == Date.HEBREW:
+        cal = '@#HEBREW@ '
+        if date.isRange():
+            val = "FROM %s TO %s" % (make_date(date.get_start_date(),_hmonth),
+                                     make_date(date.get_stop_date(),_hmonth))
+        else:
+            val = make_date(date.get_start_date(),_hmonth)
+    elif date.get_calendar() == Date.FRENCH:
+        cal = '@#FRENCH R@ '
+        if date.isRange():
+            val = "FROM %s TO %s" % (make_date(date.get_start_date(),_fmonth),
+                                     make_date(date.get_stop_date(),_fmonth))
+        else:
+            val = make_date(date.get_start_date(),_fmonth)
+    else:
+        cal = '@#JULIAN@ '
+        if date.isRange():
+            val = "FROM %s TO %s" % (make_date(date.get_start_date(),_month),
+                                     make_date(date.get_stop_date(),_month))
+        else:
+            val = make_date(date.get_start_date(),_month)
+    g.write("%s %s%s\n" % (prefix,cal,val))
+
+def make_date(subdate,mmap):
+    retval = ""
+    day = subdate.getDay()
+    mon = subdate.getMonth()
+    year = subdate.getYear()
+    mode = subdate.getModeVal()
+
+    print day,mon,year
+    if day == Date.UNDEF:
+        if mon == Date.UNDEF:
+            retval = str(year)
+        elif year == Date.UNDEF:
+            retval = mmap[mon]
+        else:	
+            retval = "%s %d" % (mmap[mon],year)
+    elif mon == Date.UNDEF:
+        retval = str(year)
+    else:
+        month = mmap[mon]
+        if year == Date.UNDEF:
+            retval = "%d %s ????" % (day,month)
+        else:
+            retval = "%d %s %d" % (day,month,year)
+
+    if mode == Date.SingleDate.about:
+        retval = "ABT %s"  % retval
+    elif mode == Date.SingleDate.before:
+        retval = "BEFORE" + " " + retval
+    elif mode == Date.SingleDate.after:
+        retval = "AFTER" + " " + retval
+            
+    return retval
         
 def fmtline(text,limit,level):
     new_text = []

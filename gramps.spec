@@ -1,4 +1,4 @@
-%define ver      0.6.2
+%define ver      0.7.0pre
 %define rel      1
 %define prefix   /usr
 
@@ -13,10 +13,10 @@ BuildRoot: /var/tmp/%{name}-%{version}-root
 
 URL: http://gramps.sourceforge.net
 
-Requires: python = 1.5.2
+Requires: python >= 1.5.2
 Requires: pygnome >= 1.0.53
 Requires: pygnome-libglade
-Requires: PyXML
+Requires: pyexpat.so
 
 %description
 gramps (Genealogical Research and Analysis Management Programming

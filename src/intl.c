@@ -124,10 +124,22 @@ static struct PyMethodDef PyIntl_Methods[] = {
 };
 
 void
-initintl()
+#ifdef VER15
+initintl15()
+#elif VER20
+initintl20()
+#elif VER21
+initintl21()
+#endif
 {
   PyObject *m,*d;
-  m=Py_InitModule("intl",PyIntl_Methods);
+#ifdef VER15
+  m=Py_InitModule("intl15",PyIntl_Methods);
+#elif VER20
+  m=Py_InitModule("intl20",PyIntl_Methods);
+#elif VER21
+  m=Py_InitModule("intl21",PyIntl_Methods);
+#endif
   d = PyModule_GetDict(m);
   PyDict_SetItemString(d,"LC_CTYPE",PyInt_FromLong(LC_CTYPE));
   PyDict_SetItemString(d,"LC_NUMERIC",PyInt_FromLong(LC_NUMERIC));

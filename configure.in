@@ -6,6 +6,10 @@ dnl Checks for programs.
 PACKAGE=gramps
 
 AC_PATH_PROG(PYTHON, python)
+AC_PATH_PROG(PYTHON15, python1.5)
+AC_PATH_PROG(PYTHON20, python2.0)
+AC_PATH_PROG(PYTHON21, python2.1)
+AC_PATH_PROG(PYTHON22, python2.2)
 AC_PATH_PROG(ZIP, zip)
 
 changequote(<<, >>)dnl
@@ -175,20 +179,62 @@ dnl Checks for libraries.
 dnl Checks for header files.
 
 AC_MSG_CHECKING(for headers required to compile python extensions)
-py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
-py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
-PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
-if test "$py_prefix" != "$py_exec_prefix"; then
-  PYTHON_INCLUDES="$PYTHON_INCLUDES -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
+
+echo $PYTHON15
+if test "$PYTHON15" != ""; then
+  py_prefix=`$PYTHON15 -c "import sys; print sys.prefix"`
+  py_exec_prefix=`$PYTHON15 -c "import sys; print sys.exec_prefix"`
+  P15_INCLUDES="-I${py_prefix}/include/python1.5"
+  if test -f "${py_exec_prefix}/include/python1.5/Python.h"
+  then
+    INTLLIBS="intl15.so "
+  fi
 fi
-AC_SUBST(PYTHON_INCLUDES)
-dnl check if the headers exist:
-if test -f "${py_exec_prefix}/include/python${PYTHON_VERSION}/Python.h"
-then
-  AC_MSG_RESULT(ok)
-else
-  AC_MSG_ERROR([not found])
+AC_SUBST(P15_INCLUDES)
+
+if test "$PYTHON20" != ""; then
+  py_prefix=`$PYTHON20 -c "import sys; print sys.prefix"`
+  py_exec_prefix=`$PYTHON20 -c "import sys; print sys.exec_prefix"`
+  P20_INCLUDES="-I${py_prefix}/include/python2.0"
+  if test -f "${py_exec_prefix}/include/python2.0/Python.h"
+  then
+    INTLLIBS="${INTLLIBS}intl20.so "
+  fi
 fi
+AC_SUBST(P20_INCLUDES)
+
+if test "$PYTHON21" != ""; then
+  py_prefix=`$PYTHON21 -c "import sys; print sys.prefix"`
+  py_exec_prefix=`$PYTHON21 -c "import sys; print sys.exec_prefix"`
+  P21_INCLUDES="-I${py_prefix}/include/python2.1"
+  if test "$py_prefix" != "$py_exec_prefix"; then
+    P21_INCLUDES="$P21_INCLUDES -I${py_exec_prefix}/include/python2.1" 
+  fi
+  if test -f "${py_exec_prefix}/include/python2.1/Python.h"
+  then
+    INTLLIBS="${INTLLIBS}intl21.so "
+  fi
+fi
+AC_SUBST(P21_INCLUDES)
+
+if test "$PYTHON22" != ""; then
+  INTLLIBS="${INTLLIBS}intl22.so "
+  py_prefix=`$PYTHON22 -c "import sys; print sys.prefix"`
+  py_exec_prefix=`$PYTHON22 -c "import sys; print sys.exec_prefix"`
+  P22_INCLUDES="-I${py_prefix}/include/python2.2"
+  if test "$py_prefix" != "$py_exec_prefix"; then
+    P22_INCLUDES="$P22_INCLUDES -I${py_exec_prefix}/include/python2.2" 
+  fi
+  if test -f "${py_exec_prefix}/include/python2.2/Python.h"
+  then
+    INTLLIBS="${INTLLIBS}intl22.so "
+  fi
+fi
+
+AC_SUBST(P22_INCLUDES)
+AC_SUBST(INTLLIBS)
+
+AC_MSG_RESULT(ok)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 
