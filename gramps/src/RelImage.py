@@ -63,7 +63,7 @@ def import_media_object(filename,path,base):
         
         try:
             path = "%s/%s" % (thumb,base)
-        
+
             mk_thumb(filename,path,const.thumbScale)
         
             if type == "image/jpeg":
