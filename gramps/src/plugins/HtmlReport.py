@@ -171,7 +171,7 @@ def probably_alive(person):
     if death.getDate() != "":
         return 0
     if birth.getDate() != "":
-        year = birth.getDateObj().getYear()
+        year = birth.getDateObj().get_start_date().getYear()
         time_struct = time.localtime(time.time())
         current_year = time_struct[0]
         if year != -1 and current_year - year > 110:
