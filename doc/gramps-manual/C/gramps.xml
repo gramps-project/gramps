@@ -331,7 +331,7 @@
 	of the &app; window. It displays the 
 	progress of time consuming operations, such as opening and saving 
 	large data bases, importing and exporting to other formats, generating 
-	web-sites, etc. </para></listitem>
+	web sites, etc. </para></listitem>
       </varlistentry>
       <varlistentry><term>Statusbar</term>
 	<listitem><para>The statusbar is located to the right of the progress
@@ -1932,16 +1932,14 @@
 	without saving changes, canceling the initial cancel request, or saving 
 	the changes. </para> 
 
-	<para>Note that this dialog does not let you
-	modify sources or create new sources. It only allows you to make a
-	reference to the existing source. To add or modify a source, switch to
-	the Sources View and click <guibutton>Add</guibutton> or
-	<guibutton>Edit</guibutton> on the toolbar, as appropriate. </para> 
-	
 	<para> The source can be selected from available sources listed in the
-	<guilabel>Title</guilabel> drop-down menu. You can also set the 
-	details specific for this particular reference: confidence,
-	volume/file/page. date, text, and comments. Choose the confidence 
+	<guilabel>Title</guilabel> drop-down menu. If the source you are
+	referencing is not present in the database yet, you can enter it into
+	the database. To do this, click <guibutton>New...</guibutton> button 
+	and enter source information into the invoked <guilabel>Source 
+	Editor</guilabel> dialog. You can also set the details specific for 
+	this particular reference: confidence, volume/file/page. date, text, 
+	and comments. Choose the confidence 
 	level from the <guilabel>Confidence</guilabel> drop-down menu. 
 	The rest of the details can be typed in the appropriate text entry
 	fields. </para>
