@@ -26,6 +26,7 @@
 import os
 import const
 import intl
+from gnome.ui import *
 
 _ = intl.gettext
 
@@ -76,11 +77,18 @@ def import_photo(filename,path,prefix):
 #-------------------------------------------------------------------------
 def scale_image(path,size):
     import GdkImlib
+
+    try:
+        image1 = GdkImlib.Image(path)
+    except:
+        GnomeWarningDialog(_("Could load load image file %s") % path)
+        return
     
-    image1 = GdkImlib.Image(path)
     width  = image1.rgb_width
     height = image1.rgb_height
 
     scale = size / float(max(width,height))
     image2 = image1.clone_scaled_image(int(scale*width), int(scale*height))
     return image2
+
+
