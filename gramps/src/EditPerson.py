@@ -270,7 +270,8 @@ class EditPerson:
         self.ntype_field.set_popdown_strings(types)
         self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
         self.ntype_field.entry.set_text(_(self.pname.getType()))
-
+        t = self.pname.getType()
+        
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
         elif person.getGender() == Person.female:
@@ -1372,7 +1373,7 @@ def update_ord(func,ord,date,temple,stat,place):
 #
 #-------------------------------------------------------------------------
 def disp_name(name):
-    return [name.getName(),name.getType(),Utils.get_detail_flags(name)]
+    return [name.getName(),_(name.getType()),Utils.get_detail_flags(name)]
 
 #-------------------------------------------------------------------------
 #

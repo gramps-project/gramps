@@ -147,7 +147,7 @@
 
 	  <widget>
 	    <class>GtkPixmap</class>
-	    <name>pixmap1</name>
+	    <name>image</name>
 	    <filename>gramps.xpm</filename>
 	    <xalign>0</xalign>
 	    <yalign>0.5</yalign>
@@ -163,7 +163,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label60</name>
+	    <name>title</name>
 	    <label>Tool Selection</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -327,7 +327,7 @@
 
       <widget>
 	<class>GtkTree</class>
-	<name>tree1</name>
+	<name>tree</name>
 	<border_width>5</border_width>
 	<width>250</width>
 	<height>300</height>
@@ -379,7 +379,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>report_title</name>
+	    <name>title</name>
 	    <label>Report Selection</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>

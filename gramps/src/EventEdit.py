@@ -99,7 +99,8 @@ class EventEditor:
         self.window.editable_enters(self.cause_field);
         self.window.editable_enters(self.descr_field);
 
-        AutoComp.AutoCombo(self.event_menu,list)
+        AutoComp.AutoEntry(self.event_menu.entry,list)
+        self.event_menu.set_popdown_strings(list)
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
         
         if event != None:
