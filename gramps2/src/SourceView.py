@@ -95,7 +95,9 @@ class SourceView:
         self.list.get_selection().select_iter(self.map[id])
 
     def load_sources(self):
-        self.model.clear()
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING)
         self.map = {}
         
         for key in self.db.getSourceKeys():
@@ -106,6 +108,8 @@ class SourceView:
             self.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                            3, val[3], 4, val[4])
             self.list.connect('button-press-event',self.button_press)
+        self.list.set_model(self.model)
+        self.list.get_column(0).clicked()
                 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
