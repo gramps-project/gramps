@@ -652,7 +652,7 @@ def get_config_color(name,defval):
     r = gnome.config.get_int("/gramps/color/" + name + ".r")
     g = gnome.config.get_int("/gramps/color/" + name + ".g")
     b = gnome.config.get_int("/gramps/color/" + name + ".b")
-    if not r:
+    if r == None:
         return defval
     else:
         return (r,g,b)
