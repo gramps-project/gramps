@@ -3,7 +3,7 @@
 SUBDIRS = gramps-manual
 
 man_IN_FILES = gramps.1.in
-man_MANS = ${man_IN_FILES:.1.in=.1}
+man_MANS = $(man_IN_FILES:.1.in=.1)
 
 EXTRA_DIST = $(man_MANS) $(man_IN_FILES) xmldocs.make omf.make
 
