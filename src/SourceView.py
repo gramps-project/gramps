@@ -89,7 +89,6 @@ class SourceView:
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING)
         self.list.set_model(self.model)
-        self.list.get_column(0).clicked()
         self.topWindow = self.glade.get_widget("gramps")
 
     def change_db(self,db):
@@ -117,7 +116,6 @@ class SourceView:
                            3, val[3], 4, val[4])
             self.list.connect('button-press-event',self.button_press)
         self.list.set_model(self.model)
-        self.list.get_column(0).clicked()
                 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
