@@ -823,7 +823,7 @@ def on_event_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_switch_page(obj,a,page):
-    if page == 4:
+    if page == 6:
         obj.get_data(EDITPERSON).load_images()
 
 #-------------------------------------------------------------------------
