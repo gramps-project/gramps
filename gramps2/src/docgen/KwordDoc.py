@@ -437,7 +437,24 @@ class KwordDoc(TextDoc.TextDoc):
         pass
 
     def write_text(self,text):
-        text = string.replace(text,'&','&amp;');       # Must be first
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace('<','&lt;');
+        text = text.replace('>','&gt;');
+
+        pos = text.find('&lt;super&gt;')
+        if pos >= 0:
+            self.start_pos = len(self.text)+pos
+            text = text.replace('&lt;super&gt;','')
+        pos = text.find('&lt;/super&gt;')
+        if pos >= 0:
+            end = len(self.text)+pos - self.start_pos
+            text = text.replace('&lt;super&gt;','')
+
+            txt = '<FORMAT id="1" pos="%d" len="%d">\n' % (self.start_pos, end)
+            txt = txt + '<VERTALIGN value="2"/></FORMAT>\n'
+            text = text.replace('&lt;/super&gt;','')
+            self.format_list.append(txt)
+
 	self.text = self.text + text
 
 Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1,".kwd")
