@@ -79,9 +79,9 @@ def build_report(database,person):
         
     for person_id in personList:
         person = database.try_to_find_person_from_id(person_id)
-	if not person:
-	    continue
-	length = len(person.get_media_list())
+        if not person:
+            continue
+        length = len(person.get_media_list())
         if length > 0:
             with_photos = with_photos + 1
             total_photos = total_photos + length

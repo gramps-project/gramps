@@ -299,15 +299,15 @@ class ArgHandler:
                 print "Temporary directory %s is not writable" % tmpdir_path 
                 os._exit(1)
             else:    # tempdir exists and writable -- clean it up if not empty
-	        files = os.listdir(tmpdir_path) ;
+                files = os.listdir(tmpdir_path) ;
                 for fn in files:
                     os.remove( os.path.join(tmpdir_path,fn) )
 
             try:
                 import TarFile
                 t = TarFile.ReadTarFile(filename,tmpdir_path)
-	        t.extract()
-	        t.close()
+                t.extract()
+                t.close()
             except:
                 print "Error extracting into %s" % tmpdir_path 
                 os._exit(1)
