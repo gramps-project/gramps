@@ -1,5 +1,7 @@
 2003-10-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py: Correct behavior for right-click popup menu.
+	* src/PedView.py: Correct colors so that they work with dark and
+	high-contrast themes.
 
 2003-10-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: widen the ChildSelect window
