@@ -17,217 +17,217 @@
 
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="faq">
-      <title>Frequently Asked Questions</title>
-      <para>This appendix contains the list of questions that frequently come 
-      up in mailing list discussions and forums. This list is by no means 
-      complete. If you would like to add questions/answers to this list, 
-      please email your suggestions to <ulink url="mailto:gramps-devel@lists.sf.net"  
+      <title>ЧАсто задаваемые Вопросы</title>
+      <para>Это приложение содержит список вопросов, часто возникающих в форумах 
+      и дискуссиях по спискам рассылки. Этот список никоим образом не является полным. 
+      Если Вы хотите добавить вопросы/ответы к этому списку, пожалуйста пошлите Ваши 
+      предложения по адресу <ulink url="mailto:gramps-devel@lists.sf.net"  
       type="mailto">gramps-devel@lists.sf.net</ulink>
       </para>
       
       <variablelist>
 
 
-      <varlistentry><term>What is &app;?</term>
-      <listitem><para> &app; is the Genealogical Research and Analysis 
-      Management Program System. In other words, it is a personal genealogy 
-      program letting you store, edit, and research genealogical data using 
-      the powers of your computer. 
+      <varlistentry><term>Что такое &app;?</term>
+      <listitem><para> &app; -- это Система Программирования для Управления 
+      Генеалогического Исследования и Анализа. Другими словами, это персональная 
+      генеалогическая программа, позволяющая Вам хранить, редактировать и исследовать 
+      генеалогические данные, используя мощность Вашего компьютера. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Where do I get it and how much does it cost?</term>
+      <varlistentry><term>Где можно получить &app; и сколько это стоит?</term>
       <listitem><para> 
-&app; can be downloaded from <ulink url="http://sf.net/projects/gramps" 
-type="http">http://sf.net/projects/gramps</ulink> at no charge. 
-&app; is an Open Source project covered by the GNU General Public License. 
-You have full access to the source code and are allowed to distribute the 
-program and source code freely. 
+&app; можно загрузить с сайта <ulink url="http://sf.net/projects/gramps" 
+type="http">http://sf.net/projects/gramps</ulink> беспллатно. 
+&app; является проектом Открытого кода, распространяемым по лицензии 
+GNU General Public License. Вы имеете полный доступ к исходному коду и можете
+свободно распространять программу и исхожный код.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Does it work with Windows (tm)?</term>
+      <varlistentry><term>Работает ли это с Windows (tm)?</term>
       <listitem><para> 
-No. &app; uses the GTK and GNOME libraries. While the GTK libraries 
-have been ported to Windows, the GNOME libraries have not.
-This, however, may change in the future. 
+Нет. &app; использует библиотеки GTK и GNOME. В то время, как библиотеки GTK 
+перенесены на Windows, библиотеки GNOME -- нет. Однако. это может измениться
+в будущем.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Does it work with the Mac?</term>
+      <varlistentry><term>Работает ли это с Mac?</term>
       <listitem><para> 
-The Fink project (<ulink url="http://fink.sf.net" 
-type="http">http://fink.sf.net</ulink>) has ported an old version of 
-&app; (0.8.0) to OSX. The Mac OSX port is not directly supported by 
-the &app; project, primarily because none of the &app; developers 
-have access to Mac OSX.</para>
+Проект Fink (<ulink url="http://fink.sf.net" 
+type="http">http://fink.sf.net</ulink>) перенёс на OSX старую версию &app; (0.8.0). 
+Проект &app; не поддерживает эти усилия напрямую, главным образом потому, 
+что никто из разработчиков &app; не имеет доступа к Mac OSX.</para>
 
-<para>The GNOME 2 version of &app; (0.9.x) does not appear to have been 
-ported by the Fink project. Please contact the Fink project for more
-information.
+<para>Проект Fink пока не перенёс на OSX версию для GNOME 2 (&app; 0.9.x).
+Пожалуйста, свяжитесь с разработчиками проекта Fink для более подробной информации.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Does it work with KDE?</term>
+      <varlistentry><term>Работает ли это с KDE?</term>
       <listitem><para> 
-Yes, as long as the required GNOME libraries are installed.
+      Да, если установлены требуемые библиотеки GNOME.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Do I really have to have GNOME installed?</term>
-      <listitem><para> Yes, but you do not have to be running the GNOME desktop.
+      <varlistentry><term>Должен ли GNOME быть на самом деле установлен?</term>
+      <listitem><para> Да, но Вы не обязаны работать в среде GNOME.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What version of GNOME do I need?</term>
+      <varlistentry><term>Какая версия GNOME мне нужна?</term>
       <listitem><para> 
-The latest versions of gramps (0.9.0 and higher) require GNOME 2.0 or higher.
-Previous versions required GNOME 1.X. 
+      Последние версии &app; (0.9.0 и выше) требуют GNOME 2.0 или выше.
+      Предыдущие версии требуют GNOME 1.X. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Is &app; compatible with 
-      other genealogical software (GenApps)?</term>
-      <listitem><para> 
-&app; makes every effort to maintain compatibility with GEDCOM, the general
-standard of recording genealogical information. We have import and export
-filters that enable &app; to read and write GEDCOM files. </para>
+      <varlistentry><term>Сoвместима ли &app; с другими генеалогическими 
+      программами?</term>
+      <listitem><para> &app; прилагает все усилия, чтобы поддерживать соместимость
+      с GEDCOM -- общим стандартом записи генеалогической информации. У нас есть 
+      фильтры для импорта и экспорта, позводяющие &app; читать и записывать файлы
+      GEDCOM. </para>
 
 <para>
-It is important to understand that the GEDCOM standard is poorly implemented --
-virtually every genealogical software has its own "flavor" of GEDCOM. As we
-learn about new flavor, the import/export filters can be created very quickly.
-However, finding out about the unknown flavors requires user feedback. 
-Please feel free to inform us about any GEDCOM flavor not supported by &app;, 
-and we will do our best to support it! 
+Здесь важно отметить, что стандард GEDCOM обычно плохо реализован -- практически 
+каждая генеалогическая программа имеет свой "сорт" GEDCOM. Когда мы узнаём о 
+новом сорте, фильтры импорта/экспорта могут быть создны очень быстро. Однако, 
+получение информации о новом сорте требует участия пользователей. Пожалуйста, 
+не стесняйтесь информировать нас о любом сорте GEDCOM, не поддерживаемом &app;, 
+и мы примем все меры, чтобы поддерживать его! 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can &app; read files created by GenApp X?</term>
-      <listitem><para> See above.
+      <varlistentry><term>Может ли &app; читать файлы, созданные Программой X?</term>
+      <listitem><para> Смотри выше.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can &app; write files readable by GenApp X?</term>
-      <listitem><para> See above.
+      <varlistentry><term>Может ли &app; записывать файлы, читаемые Программой X?</term>
+      <listitem><para> Смотри выше.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can &app; print a genealogical tree for my family?</term>
+      <varlistentry><term>Может ли &app; напечатать Генелогическое Дерево для 
+      моей семьи?</term>
       <listitem><para> 
-Yes. Different people have different ideas of what a genealogical tree is. 
-Some think of it as a chart going from the distant ancestor and listing 
-all his/her descendants and their families. Others think it should be a 
-chart going from the person back in time, listing the ancestors and their 
-families. Yet other people think of a table, text report, etc. </para>
+      Да. Разные люди имеют различные представления о том, что такое генеалогическое 
+      дерево. Некоторые представляют себе схему (граф), идущую от далёкего предка 
+      и перечисляющую его потомков и их семьи. Другие думают, что это граф, идущий от 
+      лица назад во времени, перечисляя предков и из семьи. Третьи имеют в виду таблицу, 
+      текстовый отчет, и т.д. </para>
 
-<para>
-&app; can produce any of the above, and many more different charts and 
-reports. Moreover, the plugin architechture enables users (you) to create 
-their own plugins which could be new reports, charts, or research tools. 
+      <para> &app; может произвести всё из перечисленного выше, а также много других 
+      схем и отчётов. Более того, архитектура расширений позволяет пользователям (Вам)
+      создавать их собственные расширения, которыми могут являтся новые отчёты, 
+      схемы, или инструменты для исследования. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>In what formats can &app; output its reports?</term>
+      <varlistentry><term>В каких форматах &app; может выводить свои отчёты?</term>
       <listitem><para> 
-Text reports are available in HTML, PDF, AbiWord, KWord, LaTeX, RTF, and
-OpenOffice formats. Graphical reports (charts and diagrams) are available in
-PostScript, PDF, SVG, OpenOffice and GraphViz formats. 
+      Текстовые отчёты доступны в форматах HTML, PDF, AbiWord, KWord, LaTeX, RTF, и 
+      OpenOffice. Графические отчёты доступны в форматах PostScript, PDF, SVG, OpenOffice 
+      и GraphViz. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Is &app; compatible with the Internet?</term>
+      <varlistentry><term>Совместима лм &app; с Интернетом?</term>
       <listitem><para> 
-&app; can store web addresses and direct your browser to them. It can import
-data that you download from the Internet. It can export data that you could 
-send over the Internet. &app; is familiar with the standard file formats 
-widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and 
-WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that, 
-there is little that a genealogical program can do with the Internet :-) 
+      &app; может хранить веб-адреса и напрвлять Ваш браузер на них. Она может 
+      импортировать данные так, чтобы Вы могли послать их по Интернету. &app; понимает 
+      стандартные форматы файлов, используемые в Интернете (т.е. изображения JPEG, PNG 
+      и GIF, звукозаписи MP3, OGG и WAV, фильмы QuickTime, MPEG и AVI, и т.д.). 
+      Помимо этого, генеалогическая программа не может делать ничего с Интернетом :-) 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can I create custom reports/filters/whatever?</term>
+      <varlistentry><term>Могу ли я создавать отчёты/фильтры/ещё что-нибудь 
+      по заказу?</term>
       <listitem><para> 
-Yes. There are many levels of customization. One is creating or modifying 
-the templates used for the reports. This gives you some control over 
-the fonts, colors, and some layout of the reports. You can also use &app; 
-controls in the report dialogs to tell what contents should be used for a 
-particular report. In addition to this, you have an ability to create your 
-own filters -- this is useful in selecting people based on criteria set 
-by you. You can combine these filters to create new, more complex filters. 
-Finally, you have an option to create your own plugins. These may be new 
-reports, research tools, import/export filters, etc. This assumes some 
-knowledge of programming in Python. 
+      Да. Существует много уровней настраиваемости. Один состоит в создании или 
+      модификации образцов для отчётов. Это даёт Вам определённый контроль над 
+      шрифтами, цветом и определёнными аспектами расположения информации в отчётах. 
+      Также, Вы можете управление в диалогах отчётов &app;, чтобы указать, какое 
+      содержание должно быть использовано для данного отчёта. В дополнение к этому, 
+      у Вас есть возможность создавать Ваши собственные фильтры -- это удобно для 
+      выбора людей по критерию, выбранному Вами. Вы можете комбинировать эти фильтры 
+      для создания новых, более мощных, фильтров. Наконец, у Вас есть возможность 
+      создавать Ваши собственные расширения. Ими могут быть новые отчёты, инструменты 
+      для исследования, фильры импорта/экспорта, и т.д. Это предполагает умение 
+      программировать на языке Python. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What standards does &app; support?</term>
+      <varlistentry><term>Какие стандарты поддерживает &app;?</term>
       <listitem><para> 
-The nice thing about the standards is that there never is a shortage of 
-them :-). &app; is tested to support the following flavors of GEDCOM: 
-GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
-GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
-Visual Genealogie. 
+      Хорошей чертой стандартов является их изобилие :-). Проверено, что &app; 
+      подерживаеь следующие разновидности GEDCOM: GEDCOM5.5, Brother's Keeper, 
+      Family Origins, Familty Tree Maker, Ftree, GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, 
+      Reunion и Visual Genealogie. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What is the maximum database 
-      size (bytes) &app; can handle?</term>
+      <varlistentry><term>Каков максимальный размер базы данных, с которой может
+      работать &app;?</term>
       <listitem><para> 
-&app; has no hard limits on the size of a database that it can handle. 
-In reality, however, there are practical limits. Currently &app; loads all 
-data into memory, so the limiting factor tends to be the available memory 
-on the system. 
+      &app; не имеет жестких ограничений на размер базы данных, с которой можно работать.
+      Реально же, существуют практические ограничения. В настоящий момент, &app; 
+      загружает все данные в память, так что ограничивающим фактором является количество 
+      памяти в системе. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>How many people can &app; database handle?</term>
+      <varlistentry><term>Сколько людей может быть в базе данных &app;?</term>
       <listitem><para> 
-We have found that on a typical system, &app; tends to bog down after the
-database has around 15,000 people. Again, this is dependant on how much
-memory you have. 
+      Мы обнаружили, что на типичной системе &app; начинает тормозить после того, как 
+      база данных насчитывает около 15.000 людей. Опять-таки, это зависит от того, сколько
+      памяти имеет Ваша система.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why is &app; running so slowly?</term>
+      <varlistentry><term>Почему &app; работает так медленно?</term>
       <listitem><para> 
-If &app; seems too slow to you, it is most likely that you have a large
-database. Currently, &app; loads all the database into memory, therefore 
-large databases tend to be less than responsive. Specifically, the system 
-can be virtually brought to its knees if swapping is needed for &app;' data.
+      Если Вам кажется, что &app; работает очень медленно, вероятнее всего Ваша база
+      данных очень велика. В настоящий момент, &app; загружает все данные в память, 
+      поэтому большие базы данных приводят к более медленной реакции. В частности, 
+      система может быть поставлена на колени, если для данных &app; необходима 
+      вируальная память (swapping). 
 </para> <para>
-This will be addressed in the next stable release following version 1.0. 
-Temporarily, adding more memory could make a huge difference, but we realize
-that this is a poor way of treating the problem. If you would like to help 
-with the implementation of the real database backend, please don't hesitate 
-to email us at <ulink url="mailto:gramps-devel@lists.sf.net" 
+Эта проблема будет решена в стабильной версии, следующей за версией 1.0. 
+В настоящий момент, добавление памяти может сильно повлиять на работу &app;, 
+однако мы понимаем, что это неправильный способ решения проблемы. Если Вы хотите 
+помочь с реализацией поддержки полноценной базы данных, пожалуйста, не стесняйтесь
+написать нам по адресу <ulink url="mailto:gramps-devel@lists.sf.net" 
 type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>My database is really big. 
-      Is there a way around loading all the data into memory?</term>
+      <varlistentry><term>Моя база данных очень велика. Есть ли способ избежать 
+      загрузки всех данных в память?</term>
       <listitem><para> 
-Currently, there is no way around it. However, this is our biggest priority
-after releasing  version 1.0. The real database backend will be incorporated 
-in the next stable release (1.2) which will dramatically improve performance 
-in both speed and memory usage.
+      В настоящий момент, такого способа нет. Однако, это наш главный приоритет 
+      после выпуска версии 1.0. Поддержка полноценной базы данных буддет встроена
+      в следующую стабильную версию (1.2), что должно существенно улучшить 
+      характеристики работы, как по скорости, так и по использованию памяти. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why are non-latin characters displayed 
-      as garbage in PDF/PS reports?</term>
+      <varlistentry><term>Почему не-латинские символы воспроизводятся в отчётах 
+      PDF/PS как мусор?</term>
       <listitem><para> 
-This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
-reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
-but then it would have to be embedded in the file. This is problematic since 
-every system has different idea about fonts and their setup.</para>
+      Это известная проблема -- PS (и PDF) содержат встроенные шрифты, которые отражают 
+      в основном набор символов latin-1. В принципе, любой шрифт может быть использован 
+      в PS/PDF, но тогда он должен быть загружен в файл. Это проблематично, так как каждая
+      система имеет свои понятия о шрифтах и их настройках.</para>
 
 <para>
-This should be resolved as we move to gnome-print. In the meantime, a useable 
-workaround is to generate reports in OpenOffice.org format and then export 
-to PDF from the OpenOffice.org application.
+Это должно быть решено, когда мы перейдём к gnome-print. Пока, в качестве временной 
+меры, Вы можете выводить отчёты в формате OpenOffice.org, а потом экспортировать 
+в PDF из программы OpenOffice.org. 
       </para></listitem>
       </varlistentry>
 

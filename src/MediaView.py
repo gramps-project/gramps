@@ -75,7 +75,7 @@ class MediaView:
         self.preview = glade.get_widget("preview")
 
         self.column_headers = [(_('Title'),4,350), (_('ID'),1,50),
-                               (_('Type'),2,70), ('Path',3,150), ('',4,0) ]
+                               (_('Type'),2,70), (_('Path'),3,150), ('',4,0) ]
 
         self.id2col = {}
         self.selection = self.list.get_selection()
