@@ -913,10 +913,11 @@ class Gramps:
                 levenbg = ListColors.evenbg
                 levenfg = ListColors.evenfg
 
-                oddbg = gtk.GdkColor(loddbg[0],loddbg[1],loddbg[2])
-                oddfg = gtk.GdkColor(loddfg[0],loddfg[1],loddfg[2])
-                evenbg = gtk.GdkColor(levenbg[0],levenbg[1],levenbg[2])
-                evenfg = gtk.GdkColor(levenfg[0],levenfg[1],levenfg[2])
+                cmap = self.topWindow.get_colormap()
+                oddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
+                oddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
+                evenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
+                evenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
                 rows = self.person_list.rows
                 for i in range(0,rows,2):
                     self.person_list.set_background(i,oddbg)
@@ -1031,12 +1032,13 @@ class Gramps:
                 levenbg = ListColors.evenbg
                 levenfg = ListColors.evenfg
                 lafg = ListColors.ancestorfg
-                
-                oddbg = gtk.GdkColor(loddbg[0],loddbg[1],loddbg[2])
-                oddfg = gtk.GdkColor(loddfg[0],loddfg[1],loddfg[2])
-                evenbg = gtk.GdkColor(levenbg[0],levenbg[1],levenbg[2])
-                evenfg = gtk.GdkColor(levenfg[0],levenfg[1],levenfg[2])
-                ancestorfg = gtk.GdkColor(lafg[0],lafg[1],lafg[2])
+
+                cmap = self.topWindow.get_colormap()
+                oddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
+                oddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
+                evenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
+                evenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
+                ancestorfg = cmap.alloc(lafg[0],lafg[1],lafg[2])
                 rows = clist.rows
                 for i in range(0,rows):
                     clist.set_background(i,(evenbg,oddbg)[i%2])
