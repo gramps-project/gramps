@@ -262,7 +262,7 @@ class Person(PrimaryObject,SourceNote):
         a form that it can use.
         """
         return (self.handle, self.gramps_id, self.gender, 
-                self.primary_name, self.alternate_names, self.nickname, 
+                self.primary_name, self.alternate_names, unicode(self.nickname), 
                 self.death_handle, self.birth_handle, self.event_list,
                 self.family_list, self.parent_family_list,
                 self.media_list, self.address_list, self.attribute_list,
@@ -1195,8 +1195,9 @@ class Source(PrimaryObject):
         self.abbrev = ""
 
     def serialize(self):
-        return (self.handle, self.gramps_id, self.title, self.author,
-                self.pubinfo, self.note, self.media_list, self.abbrev,
+        return (self.handle, self.gramps_id, unicode(self.title),
+                unicode(self.author), unicode(self.pubinfo),
+                unicode(self.note), self.media_list, unicode(self.abbrev),
                 self.change,self.datamap)
 
     def unserialize(self,data):
@@ -1205,8 +1206,8 @@ class Source(PrimaryObject):
         back into the data in an Event structure.
         """
         (self.handle, self.gramps_id, self.title, self.author,
-         self.pubinfo, self.note, self.media_list, self.abbrev,
-         self.change,self.datamap) = data
+         self.pubinfo, self.note, self.media_list,
+         self.abbrev, self.change, self.datamap) = data
         
     def get_display_info(self):
         return [self.title,self.gramps_id,self.author,

@@ -123,6 +123,8 @@ class EditSource:
             "on_sourceEditor_ok_clicked" : self.on_source_apply_clicked,
             "on_sourceEditor_cancel_clicked" : self.close,
             "on_sourceEditor_delete_event" : self.on_delete_event,
+            "on_delete_data_clicked" : self.on_delete_data_clicked,
+            "on_add_data_clicked" : self.on_add_data_clicked,
             })
 
         if self.source.get_handle() == None:
@@ -131,6 +133,7 @@ class EditSource:
 
         self.datalist = self.top_window.get_widget('datalist')
         colno = 0
+        first = True
         for title in [ (_('Key'),0,175), (_('Value'),1,150)]:
             renderer = gtk.CellRendererText()
             renderer.set_property('editable',True)
@@ -142,14 +145,17 @@ class EditSource:
             column.set_min_width(title[2])
             column.set_sort_column_id(title[1])
             self.datalist.append_column(column)
+            if first:
+                first = False
+                self.key_cell = renderer
+                self.key_col = column
 
         self.data_model = gtk.ListStore(str,str)
         self.datalist.set_model(self.data_model)
         dmap = self.source.get_data_map()
         for item in dmap.keys():
             self.data_model.append(row=[item,dmap[item]])
-        self.data_model.append(row=['',''])
-            
+
         if parent_window:
             self.top.set_transient_for(parent_window)
 
@@ -158,12 +164,25 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
+        self.data_sel = self.datalist.get_selection()
+
+    def on_add_data_clicked(self,widget):
+        node = self.data_model.append(row=['',''])
+        self.data_sel.select_iter(node)
+        path = self.data_model.get_path(node)
+        self.datalist.set_cursor_on_cell(path,
+                                         focus_column=self.key_col,
+                                         focus_cell=None,
+                                         start_editing=True)
+
+    def on_delete_data_clicked(self,widget):
+        (model,node) = self.data_sel.get_selected()
+        if node:
+            model.remove(node)
 
     def edit_cb(self, cell, path, new_text, data):
         iter = self.data_model.get_iter(path)
         self.data_model.set_value(iter,data,new_text)
-        if int(path)+1 == len(self.data_model):
-            self.data_model.append(row=['',''])
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -357,11 +376,12 @@ class EditSource:
             self.source.set_note_format(format)
 
         new_map = {}
-        for val in range(0,len(self.data_model)-1):
+        for val in range(0,len(self.data_model)):
             node = self.data_model.get_iter(val)
             key = self.data_model.get_value(node,0)
-            value = self.data_model.get_value(node,1) 
-            new_map[key] = value
+            value = self.data_model.get_value(node,1)
+            if key:
+                new_map[unicode(key)] = unicode(value)
         if new_map != self.source.get_data_map():
             self.source.set_data_map(new_map)
         
