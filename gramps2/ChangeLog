@@ -1,3 +1,7 @@
+2003-08-18  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/preferences.glade: Provide hotkeys for the new default view 
+	options. 
+
 2003-08-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py: Better behavior for the history menu.
 
