@@ -40,6 +40,7 @@ gdir_PYTHON = \
 	DateHandler.py\
 	DateDisplay.py\
 	DbPrompter.py\
+	DdTargets.py\
 	DisplayModels.py\
 	DisplayTrace.py\
 	EditPerson.py\

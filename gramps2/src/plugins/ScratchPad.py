@@ -54,39 +54,41 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #-------------------------------------------------------------------------
 
-text_targets =  ['text/plain',
-                 'TEXT',
-                 'STRING',
-                 'COMPOUND_TEXT',
-                 'UTF8_STRING']
+from DdTargets import DdTargets
 
-text_tgts = [('text/plain',0,0),
-             ('TEXT', 0, 1),
-             ('STRING', 0, 2),
-             ('COMPOUND_TEXT', 0, 3),
-             ('UTF8_STRING', 0, 4)]
+##text_targets =  ['text/plain',
+##                 'TEXT',
+##                 'STRING',
+##                 'COMPOUND_TEXT',
+##                 'UTF8_STRING']
 
-gramps_targets = ['url',
-                  'pevent',
-                  'pattr',
-                  'paddr',
-                  'srcref']
+##text_tgts = [('text/plain',0,0),
+##             ('TEXT', 0, 1),
+##             ('STRING', 0, 2),
+##             ('COMPOUND_TEXT', 0, 3),
+##             ('UTF8_STRING', 0, 4)]
 
-pycode_tgts = [('url', 0, 0),
-               ('pevent', 0, 1),
-               ('pattr', 0, 2),
-               ('paddr', 0, 3),
-               ('srcref', 0, 4)] + text_tgts
+##gramps_targets = ['url',
+##                  'pevent',
+##                  'pattr',
+##                  'paddr',
+##                  'srcref']
+
+##pycode_tgts = [('url', 0, 0),
+##               ('pevent', 0, 1),
+##               ('pattr', 0, 2),
+##               ('paddr', 0, 3),
+##               ('srcref', 0, 4)] + text_tgts
                
 
-TEXT_TARGET = 'TEXT'
+##TEXT_TARGET = 'TEXT'
 
-target_map = {'url':[('url', 0, 0)],
-              'pevent': [('pevent', 0, 1)],
-              'pattr': [('pattr', 0, 2)],
-              'paddr': [('paddr', 0, 3)],
-              'srcref': [('srcref', 0, 4)],
-              TEXT_TARGET: text_tgts}
+##target_map = {'url':[('url', 0, 0)],
+##              'pevent': [('pevent', 0, 1)],
+##              'pattr': [('pattr', 0, 2)],
+##              'paddr': [('paddr', 0, 3)],
+##              'srcref': [('srcref', 0, 4)],
+##              TEXT_TARGET: text_tgts}
 
 
 
@@ -149,8 +151,9 @@ class ScratchPadWindow:
             "on_scratchPad_delete_event": self.on_delete_event
             })
 
-        self.object_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, pycode_tgts,
-                                           ACTION_COPY)
+        self.object_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                       DdTargets.all_targets(),
+                                       ACTION_COPY)
 
         self.object_list.connect('drag_data_get', self.object_drag_data_get)
         self.object_list.connect('drag_begin', self.object_drag_begin)
@@ -259,8 +262,6 @@ class ScratchPadWindow:
         self.redraw_object_list()
 
     def on_object_select_row(self,obj):
-        global target_map
-        global TEXT_TARGET
         
         o = self.otree.get_selected_objects()
         
@@ -271,19 +272,19 @@ class ScratchPadWindow:
 
             # union with gramps_types
             if len([target for target \
-                    in obj_targets if target in gramps_targets]) > 0:
+                    in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
 
                 exec 'data = %s' % o[0]['data']
                 exec 'mytype = "%s"' % data[0]
-                target = target_map[mytype]
+                target = DdTargets.get_dd_type_from_type_name(mytype).target()
             
             # Union with text targets
             elif len([target for target \
-                      in obj_targets if target in text_targets]) > 0:
-                target = target_map[TEXT_TARGET]
+                      in obj_targets if DdTargets.is_text_type(target)]) > 0:
+                target = DdTargets.TEXT.target()
 
             self.object_list.drag_source_unset()
-            self.object_list.drag_source_set(BUTTON1_MASK, target, ACTION_COPY)
+            self.object_list.drag_source_set(BUTTON1_MASK, [target], ACTION_COPY)
 
         
     def on_update_object_clicked(self, obj):
@@ -293,9 +294,6 @@ class ScratchPadWindow:
         return
 
     def object_drag_data_get(self,widget, context, sel_data, info, time):
-
-        global gramps_targets
-        global text_targets
         
         o = self.otree.get_selected_objects()
         
@@ -306,7 +304,7 @@ class ScratchPadWindow:
 
             # union with gramps_types
             if len([target for target \
-                    in obj_targets if target in gramps_targets]) > 0:
+                    in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
 
                 exec 'data = %s' % o[0]['data']
                 exec 'mytype = "%s"' % data[0]
@@ -317,7 +315,7 @@ class ScratchPadWindow:
             
             # Union with text targets
             elif len([target for target \
-                      in obj_targets if target in text_targets]) > 0:
+                      in obj_targets if DdTargets.is_text_type(target)]) > 0:
                 send_data = str(o[0]['data'])
 
             sel_data.set(sel_data.target, bits_per, send_data)
@@ -335,9 +333,6 @@ class ScratchPadWindow:
     def redraw_object_list(self):
         """Redraws the address list"""
 
-        global gramps_targets
-        global text_targets
-
         self.otree.clear()
         
         for obj in self.olist:
@@ -345,7 +340,7 @@ class ScratchPadWindow:
 
             # union with gramps_types
             if len([target for target \
-                    in obj_targets if target in gramps_targets]) > 0:
+                    in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
                 
                 exec 'unpack_data = %s' % obj['data']
                 exec 'mytype = "%s"' % unpack_data[0]
@@ -353,7 +348,7 @@ class ScratchPadWindow:
 
                 node = None
 
-                if mytype == 'paddr':                
+                if mytype == DdTargets.ADDRESS.drag_type:                
                     location = "%s %s %s %s" % (data.get_street(),data.get_city(),
                                                 data.get_state(),data.get_country())
                     node = self.otree.add([_("Address"),
@@ -361,23 +356,23 @@ class ScratchPadWindow:
                                            location,
                                            self.generate_addr_tooltip(data)],obj)
 
-                elif mytype == 'pevent':
+                elif mytype == DdTargets.EVENT.drag_type:
                     node = self.otree.add([_("Event"),
                                            const.display_pevent(data.get_name()),
                                            data.get_description(),
                                            self.generate_event_tooltip(data)],obj)
 
-                elif mytype == 'url':
+                elif mytype == DdTargets.URL.drag_type:
                     node = self.otree.add([_("Url"),
                                            data.get_path(),
                                            data.get_description(),
                                            self.generate_url_tooltip(data)],obj)
-                elif mytype == 'pattr':
+                elif mytype == DdTargets.ATTRIBUTE.drag_type:
                     node = self.otree.add([_("Attribute"),
                                            const.display_pattr(data.get_type()),
                                            data.get_value(),
                                            self.generate_pattr_tooltip(data)],obj)
-                elif mytype == 'srcref':
+                elif mytype == DdTargets.SOURCEREF.drag_type:
                     base = self.db.get_source_from_handle(data.get_base_handle())
                     node = self.otree.add([_("SourceRef"),
                                            base.get_title(),
@@ -386,7 +381,7 @@ class ScratchPadWindow:
 
             # Union with text targets
             elif len([target for target \
-                      in obj_targets if target in text_targets]) > 0:
+                      in obj_targets if DdTargets.is_text_type(target)]) > 0:
                 node = self.otree.add([_("Text"),
                                        "",
                                        obj['data'],
