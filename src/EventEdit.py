@@ -39,6 +39,7 @@ import Utils
 import GrampsCfg
 import AutoComp
 
+from DateEdit import DateEdit
 from Date import compare_dates
 from RelLib import *
 from intl import gettext
@@ -121,6 +122,7 @@ class EventEditor:
         else:
             if (def_placename):
                 self.place_field.set_text(def_placename)
+        self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
 
         if not read_only:
             self.name_field.select_region(0, -1)

@@ -484,6 +484,17 @@
 	  </widget>
 
 	  <widget>
+	    <class>GnomePixmap</class>
+	    <name>date_stat</name>
+	    <width>10</width>
+	    <child>
+	      <padding>5</padding>
+	      <expand>False</expand>
+	      <fill>True</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
 	    <class>GtkOptionMenu</class>
 	    <name>calendar</name>
 	    <visible>False</visible>

@@ -3,10 +3,13 @@
 import traceback
 import intl
 import os
+import GdkImlib
 import gtk
 import gnome.ui
 import gnome.config
 import locale
+import gramps_main 
+import sys
 
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
@@ -17,10 +20,6 @@ intl.textdomain("gramps")
 intl.bindtextdomain("gramps",loc)
 
 locale.setlocale(locale.LC_NUMERIC,"C")
-
-import gramps_main 
-import sys
-import locale
 
 if len(sys.argv) > 1:
     arg = sys.argv[1]

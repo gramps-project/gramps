@@ -318,8 +318,18 @@ class Gramps:
         
     def on_find_activate(self,obj):
         """Display the find box"""
-        Find.Find(self.person_list,self.find_goto_to,
-                  self.database.getPersonMap().values())
+        if self.notebook.get_current_page() == 4:
+            Find.FindPlace(self.place_view.place_list,self.find_goto_place,
+                           self.database.getPlaceMap().values())
+        elif self.notebook.get_current_page() == 3:
+            Find.FindSource(self.source_view.source_list,self.find_goto_source,
+                           self.database.getSourceMap().values())
+        elif self.notebook.get_current_page() == 5:
+            Find.FindMedia(self.media_view.media_list,self.find_goto_media,
+                           self.database.getObjectMap().values())
+        else:
+            Find.FindPerson(self.person_list,self.find_goto_to,
+                            self.database.getPersonMap().values())
 
     def on_findname_activate(self,obj):
         """Display the find box"""
@@ -330,6 +340,18 @@ class Gramps:
         self.change_active_person(person)
         self.goto_active_person()
         self.update_display(0)
+
+    def find_goto_place(self,row):
+        """Find callback to jump to the selected place"""
+        self.place_view.moveto(row)
+
+    def find_goto_source(self,row):
+        """Find callback to jump to the selected source"""
+        self.source_view.moveto(row)
+
+    def find_goto_media(self,row):
+        """Find callback to jump to the selected media"""
+        self.media_view.moveto(row)
 
     def on_gramps_home_page_activate(self,obj):
         import gnome.url
