@@ -373,7 +373,7 @@ class Date:
         """
         return self.text
 
-    def set(self,quality,modifier,calendar,value):
+    def set(self,quality,modifier,calendar,value,text=None):
         """
         Sets the date to the specified value. Parameters are:
 
@@ -387,6 +387,8 @@ class Date:
                    non-compound date, the format is (DD,MM,YY,slash)
                    and for a compound date the tuple stores data as
                    (DD,MM,YY,slash1,DD,MM,YY,slash2)
+        text     - A text string holding either the verbatim user input
+                   or a comment relating to the date.
 
         The sort value is recalculated.
         """
@@ -398,6 +400,8 @@ class Date:
         month = max(value[_POS_MON],1)
         day = max(value[_POS_DAY],1)
         self.sortval = _calendar_convert[calendar](year,month,day)
+        if text:
+            self.text = text
 
     def convert_calendar(self,calendar):
         """
@@ -430,8 +434,7 @@ class Date:
 
     def set_text_value(self,text):
         """
-        Sets the day to a text string, and assigns the sort value
-        to zero.
+        Sets the text string to a given text.
         """
         self.text = text
 
@@ -446,3 +449,15 @@ class Date:
         Returns True if the date is a date range or a date span.
         """
         return self.modifier == MOD_RANGE or self.modifier == MOD_SPAN
+
+    def is_regular(self):
+        """
+        Returns True if the date is a regular date.
+        
+        The regular date is a single exact, i.e. not text-only, not a range 
+        or a span, not estimated/calculated, not about/before/after date,
+        and having year, month, and day other than zero.
+        """
+        return self.modifier == MOD_NONE and self.quality == QUAL_NONE\
+                    and self.get_year_valid() and self.get_month_valid\
+                    and self.get_day_valid()

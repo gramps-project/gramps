@@ -73,7 +73,6 @@ import DbPrompter
 import TipOfDay
 import ArgHandler
 import Exporter
-import DateDisplay
 
 from QuestionDialog import *
 
