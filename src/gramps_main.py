@@ -397,29 +397,34 @@ class Gramps:
         item.show()
         gomenu.append(item)
 
-        if len(self.history) > 0:
-            # Draw separator
-            item = gtk.MenuItem()
-            item.show()
-            gomenu.append(item)
-
-            pids = self.mhistory[:]
-            pids.reverse()
-            num = 0
-            haveit = []
-            for pid in pids:
-                if num >= 10:
-                    break
-                if pid not in haveit:
-                    haveit.append(pid)
-                    person = self.db.getPerson(pid)
-                    item = gtk.MenuItem("_%d. %s [%s]" % 
-                        (num,person.getPrimaryName().getName(),pid))
-                    item.connect("activate",self.bookmark_callback,person)
-                    item.show()
-                    gomenu.append(item)
-                    num = num + 1
-        else:
+        try:
+            if len(self.history) > 0:
+                # Draw separator
+                item = gtk.MenuItem()
+                item.show()
+                gomenu.append(item)
+                
+                pids = self.mhistory[:]
+                pids.reverse()
+                num = 0
+                haveit = []
+                for pid in pids:
+                    if num >= 10:
+                        break
+                    if pid not in haveit:
+                        haveit.append(pid)
+                        person = self.db.getPerson(pid)
+                        item = gtk.MenuItem("_%d. %s [%s]" % 
+                                            (num,person.getPrimaryName().getName(),pid))
+                        item.connect("activate",self.bookmark_callback,person)
+                        item.show()
+                        gomenu.append(item)
+                        num = num + 1
+            else:
+                self.back.set_sensitive(0)
+                self.forward.set_sensitive(0)
+        except:
+            self.history = []
             self.back.set_sensitive(0)
             self.forward.set_sensitive(0)
 

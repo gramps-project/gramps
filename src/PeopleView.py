@@ -90,7 +90,7 @@ class PeopleView:
             except:
                 self.parent.change_active_person(None)
                 self.person_tree.unselect()
-
+                
     def change_alpha_page(self,obj,junk,page):
         """Change the page. Be careful not to take action while the pages
         are begin removed. If clearing_tabs is set, then we don't do anything"""
