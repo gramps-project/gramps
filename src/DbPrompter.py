@@ -98,7 +98,7 @@ class DbPrompter:
                                             gtk.RESPONSE_CANCEL,
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
-            
+        choose.set_local_only(gtk.FALSE)
         filter = gtk.FileFilter()
         filter.set_name(_('GRAMPS databases'))
         filter.add_pattern('*.grdb')

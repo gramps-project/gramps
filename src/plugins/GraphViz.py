@@ -428,7 +428,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
                     else:
                         file.write('style=solid')
                     file.write('];\n')
-                if mother_id and person_dict.has_key(mother.get_id()):
+                if mother_id and person_dict.has_key(mother_id):
                     mid = string.replace(mother_id,'-','_')
                     file.write('p%s -> p%s ['  % (pid, mid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %

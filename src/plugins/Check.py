@@ -232,8 +232,8 @@ class CheckIntegrity:
                         select_clicked()
 
     def cleanup_empty_families(self,automatic):
-        for key in self.db.get_family_keys():
-            family = self.db.find_family_from_id(key)
+        for family_id in self.db.get_family_keys():
+            family = self.db.find_family_from_id(family_id)
             if not family.get_father_id() and not family.get_mother_id():
                 self.empty_family.append(family_id)
                 self.delete_empty_family(family_id)

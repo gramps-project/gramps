@@ -1,4 +1,3 @@
-#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2004  Donald N. Allingham
@@ -357,7 +356,7 @@ class Gramps:
     def undo(self,*args):
         self.db.undo()
         if self.active_person:
-            p = self.db.try_to_find_person_from_id(self.active_person.get_id())
+            p = self.db.try_to_find_person_from_id(self.active_person.get_id(),None)
             self.change_active_person(p)
         self.place_view.change_db(self.db)
         self.people_view.change_db(self.db)
@@ -882,11 +881,19 @@ class Gramps:
     
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
-        gnome.help_display('gramps-manual','index')
+        try:
+            gnome.help_display('gramps-manual','index')
+        except gobject.GError, msg:
+            ErrorDialog(_("Could not open help"),
+                        str(msg))
 
     def on_faq_activate(self,obj):
         """Display FAQ"""
-        gnome.help_display('gramps-manual','faq')
+        try:
+            gnome.help_display('gramps-manual','faq')
+        except gobject.GError, msg:
+            ErrorDialog(_("Could not open help"),
+                        str(msg))
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
@@ -948,6 +955,10 @@ class Gramps:
             self.change_active_person(self.find_initial_person())
         else:
             self.goto_active_person()
+
+        self.place_view.change_db(self.db)
+        self.source_view.change_db(self.db)
+        self.media_view.change_db(self.db)
             
     def full_update(self):
         """Brute force display update, updating all the pages"""
@@ -988,7 +999,11 @@ class Gramps:
 
     def on_help_dbopen_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','open-db')
+        try:
+            gnome.help_display('gramps-manual','open-db')
+        except gobject.GError, msg:
+            ErrorDialog(_("Could not open help"),
+                        str(msg))
         self.dbopen_button = self.dbopen_fs.run()
 
     def auto_save_load(self,filename):
@@ -1076,7 +1091,7 @@ class Gramps:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.find_object_from_id(ObjectId)
+            mobj = self.db.find_object_from_id(ObjectId,trans)
             for p in self.db.get_family_id_map().values():
                 nl = p.get_media_list()
                 for o in nl:
@@ -1132,13 +1147,13 @@ class Gramps:
                 name = choose.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
-                    object = self.db.find_object_from_id(ObjectId)
+                    object = self.db.find_object_from_id(ObjectId,trans)
                     object.set_path(name)
             choose.destroy()
 
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_object_keys():
-            object = self.db.find_object_from_id(ObjectId)
+            object = self.db.find_object_from_id(ObjectId,trans)
             if 0:
                 oldfile = object.get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
@@ -1261,6 +1276,8 @@ class Gramps:
     def delete_person_response(self):
         trans = self.db.start_transaction()
         
+        n = self.active_person.get_primary_name().get_regular_name()
+
         if self.db.get_default_person() == self.active_person:
             self.db.set_default_person(None)
 
@@ -1271,7 +1288,7 @@ class Gramps:
             if self.active_person.get_id() == family.get_father_id():
                 if family.get_mother_id() == None:
                     for child_id in family.get_child_id_list():
-                        child = self.db.find_person_from_id(child_id)
+                        child = self.db.find_person_from_id(child_id,trans)
                         child.remove_parent_family_id(family.get_id())
                         self.db.commit_person(child,trans)
                     self.db.delete_family(family.get_id(),trans)
@@ -1280,7 +1297,7 @@ class Gramps:
             else:
                 if family.get_father_id() == None:
                     for child_id in family.get_child_id_list():
-                        child = self.db.find_person_from_id(child_id)
+                        child = self.db.find_person_from_id(child_id,trans)
                         child.remove_parent_family_id(family)
                         self.db.commit_person(child,trans)
                     self.db.delete_family(family,trans)
@@ -1300,10 +1317,9 @@ class Gramps:
         self.db.remove_person_id(id, trans)
 
         if self.hindex >= 0:
-            self.active_person = self.db.find_person_from_id(self.history[self.hindex])
+            self.active_person = self.db.find_person_from_id(self.history[self.hindex],trans)
         else:
             self.change_active_person(None)
-        n = self.active_person.get_primary_name().get_regular_name()
         self.db.add_transaction(trans,_("Delete Person (%s)") % n)
         self.redraw_histmenu()
 
@@ -1326,7 +1342,8 @@ class Gramps:
             self.modify_statusbar()
         elif self.active_person == None or \
                person.get_id() != self.active_person.get_id():
-            self.active_person = self.db.find_person_from_id(person.get_id())
+            self.active_person = self.db.find_person_from_id(person.get_id(),
+                                                             None)
             self.modify_statusbar()
             self.set_buttons(1)
             if person:
@@ -1352,7 +1369,8 @@ class Gramps:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
         else:
-            self.active_person = self.db.find_person_from_id(person.get_id())
+            self.active_person = self.db.find_person_from_id(person.get_id(),
+                                                             None)
             self.set_buttons(1)
         
     def modify_statusbar(self):
@@ -1656,7 +1674,7 @@ class Gramps:
         
     def bookmark_callback(self,obj,person_id):
         old_person = self.active_person
-        person = self.db.find_person_from_id(person_id)
+        person = self.db.find_person_from_id(person_id,None)
         try:
             self.change_active_person(person)
             self.update_display(0)

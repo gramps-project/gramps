@@ -366,13 +366,13 @@ class PedigreeView:
 
             childlist = find_children(self.active_person)
             if len(childlist) == 1:
-                child = self.parent.db.find_person_from_id(childlist[0])
+                child = self.parent.db.find_person_from_id(childlist[0],None)
                 if child:
                     self.load_canvas(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_id in childlist:
-                    child = self.parent.db.find_person_from_id(child_id)
+                    child = self.parent.db.find_person_from_id(child_id,None)
                     cname = GrampsCfg.nameof(child)
                     menuitem = gtk.MenuItem(None)
                     if find_children(child):
@@ -485,11 +485,11 @@ class PedigreeView:
         if family != None:
             father_id = family.get_father_id()
             if father_id != None:
-                father = self.parent.db.find_person_from_id(father_id)
+                father = self.parent.db.find_person_from_id(father_id,None)
                 self.find_tree(father,(2*index)+1,depth+1,list,frel)
             mother_id = family.get_mother_id()
             if mother_id != None:
-                mother = self.parent.db.find_person_from_id(mother_id)
+                mother = self.parent.db.find_person_from_id(mother_id,None)
                 self.find_tree(mother,(2*index)+2,depth+1,list,mrel)
 
     def on_canvas1_event(self,obj,event):

@@ -88,6 +88,10 @@ class PeopleModel(gtk.GenericTreeModel):
             self.rebuild_data()
 
         self.connect('row-deleted',self.on_row_deleted)
+        self.connect('row-inserted',self.on_row_inserted)
+
+    def on_row_inserted(self,model,path,iter):
+        print "row inserted",model,path,iter
 
     def on_row_deleted(self,model,path):
         surname = self.top_path2iter[path[0]]
@@ -123,7 +127,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
         for person_id in self.db.get_person_keys():
             
-            person = self.db.find_person_from_id(person_id)
+            person = self.db.find_person_from_id(person_id,None)
             surname = unicode(person.get_primary_name().get_surname())
 
             if self.sname_sub.has_key(surname):
@@ -149,6 +153,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def add_person(self,person):
         pid = person.get_id()
+        need = 0
         surname = person.get_primary_name().get_surname()
         if self.sname_sub.has_key(surname):
             self.sname_sub[surname].append(pid)
@@ -164,11 +169,10 @@ class PeopleModel(gtk.GenericTreeModel):
                     self.top_path2iter[sval] = name
                 if name == surname:
                     inscol = (sval,)
+                    need = 1
                 sval += 1
-                
-            self.row_inserted(inscol,self.get_iter(inscol))
 
-        inscol = 0
+        column = 0
         val = 0
         entries = self.sname_sub[surname]
         entries.sort(self.byname)
@@ -177,11 +181,13 @@ class PeopleModel(gtk.GenericTreeModel):
             self.iter2path[person_id] = tpl
             self.path2iter[tpl] = person_id
             if person_id == pid:
-                inscol = val
+                column = val
             val += 1
 
         col = self.top_iter2path[surname]
-        mypath = (col[0],inscol)
+        mypath = (col[0],column)
+        if need:
+            self.row_inserted(inscol,self.get_iter(inscol))
         self.row_inserted(mypath,self.get_iter(mypath))
 
     def byname(self,f,s):

@@ -852,7 +852,7 @@ class WebReport(Report.Report):
                 doc.write_text(_("Section %s") % n)
                 doc.end_paragraph()
 
-                n_rows = len(p_list)/self.n_cols
+                n_rows = len(p_id_list)/self.n_cols
                 td_width = 100/self.n_cols
 
                 doc.write_raw('<table width="100%" border="0">')
