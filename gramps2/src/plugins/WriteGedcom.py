@@ -437,7 +437,6 @@ class GedcomWriter:
         act_tgt = self.target_menu.get_active()
 
         self.target_ged =  act_tgt.get_data("data")
-        self.nl = self.target_ged.get_endl()
 
         self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
@@ -456,6 +455,7 @@ class GedcomWriter:
         else:
             self.cnvtxt = keep_utf8
 
+        self.nl = self.cnvtxt(self.target_ged.get_endl())
         name = self.topDialog.get_widget("filename").get_text()
 
         if cfilter == None:
