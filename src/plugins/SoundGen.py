@@ -62,7 +62,8 @@ class SoundGen:
                          _('SoundEx code generator'))
 
         self.value = self.glade.get_widget("value")
-        self.name = self.glade.get_widget("name")
+        self.autocomp = self.glade.get_widget("name_list")
+        self.name = self.autocomp.child
 
         self.name.connect('changed',self.on_apply_clicked)
 
@@ -74,8 +75,8 @@ class SoundGen:
                 names.append(lastname)
 
         names.sort()
-        self.autocomp = AutoComp.AutoCombo(self.glade.get_widget("nameList"),
-                                           names)
+
+        AutoComp.fill_combo(self.autocomp, names)
 
         if active_person:
             n = active_person.get_primary_name().get_surname()

@@ -558,3 +558,4 @@ def get_new_filename(ext):
     while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext) )):
         ix = ix + 1
     return os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext))
+

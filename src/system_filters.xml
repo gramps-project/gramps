@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <filters>
+  <filter name="asfd" function="and">
+    <rule class="Is a male">
+    </rule>
+  </filter>
+  <filter name="asfasdfasdf" function="and">
+  </filter>
 </filters>

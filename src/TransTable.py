@@ -59,6 +59,8 @@ class TransTable:
         return self.rmap.has_key(value)
 
     def get_values(self):
-        return self.map.values()
+        values = self.map.values()
+        values.sort()
+        return values
 
     
