@@ -916,7 +916,7 @@
 		      <object>propertybox</object>
 		      <last_modification_time>Sun, 30 Dec 2001 00:13:47 GMT</last_modification_time>
 		    </signal>
-		    <label>Enable LDS tab on Edit Person form</label>
+		    <label>Always display the LDS ordinance tabs</label>
 		    <active>False</active>
 		    <draw_indicator>True</draw_indicator>
 		    <child>

@@ -491,6 +491,7 @@ class OpenOfficeDoc(TextDoc):
 	self.f.write(latin_to_utf8(text))
 
     def _write_photos(self):
+        import shutil
 
         for file_tuple in self.photo_list:
             file = file_tuple[0]
@@ -500,10 +501,9 @@ class OpenOfficeDoc(TextDoc):
             image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
 
             try:
-                img = ImgManip.ImgManip(file)
-                img.jpg_thumbnail(image_name)
-            except:
-                pass
+                shutil.copy(file,image_name)
+            except IOError,msg:
+                GnomeErrorDialog(_("Error copying %s") + "\n" + msg)
 
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"

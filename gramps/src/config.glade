@@ -46,13 +46,10 @@
       <text>Welcome to GRAMPS, the Genealogical Research
 and Analysis Management Programming System.
 
-Since this is the first time you have run the program,
-some information about you needs to be gathered.
-
-This information is used to establish your ownership
-and copyright of the data you record. You may
-choose not to provide some or all of the requested 
-information.</text>
+Several options and information needs to be gathered
+before GRAMPS is ready to be used. Any of this
+information can be changed in the future in the 
+Preferences dialog under the Settings menu.</text>
       <title_color>125,104,74</title_color>
       <text_color>0,0,0</text_color>
       <background_color>225,219,197</background_color>
@@ -97,8 +94,9 @@ information.</text>
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label141</name>
-	    <label>Please enter the following information. You can change it at 
-anytime in the program's preference settings</label>
+	    <label>In order to create valid GEDCOM files, the following information
+needs to be entered. If you do not plan to generate GEDCOM 
+files, you may leave it blank.</label>
 	    <justify>GTK_JUSTIFY_LEFT</justify>
 	    <wrap>False</wrap>
 	    <xalign>0.5</xalign>
