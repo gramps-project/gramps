@@ -20,20 +20,37 @@
 
 "Database Processing/Check and repair database"
 
-import RelLib
-import Utils
-from intl import gettext as _
-
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import os
 import cStringIO
-import gtk
-import gtk.glade
-from QuestionDialog import OkDialog, MissingMediaDialog
 import shutil
 
 #-------------------------------------------------------------------------
 #
+# gtk modules
 #
+#-------------------------------------------------------------------------
+import gtk
+import gtk.glade
+
+#-------------------------------------------------------------------------
+#
+# gtk modules
+#
+#-------------------------------------------------------------------------
+import RelLib
+import Utils
+
+from intl import gettext as _
+from QuestionDialog import OkDialog, MissingMediaDialog
+
+#-------------------------------------------------------------------------
+#
+# runTool
 #
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):

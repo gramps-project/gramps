@@ -34,6 +34,7 @@ from latin_utf8 import latin_to_utf8
 import string
 import Plugins
 import ImgManip
+import Errors
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -140,7 +141,6 @@ class AbiWordDoc(TextDoc.TextDoc):
         self.f.write('height:%.3fin"/>'  % act_height)
 
     def start_superscript(self):
-        fsize = self.my_para.get_font().get_size()
         self.text = self.text + '<c props="text-position:superscript">'
 
     def end_superscript(self):

@@ -89,14 +89,12 @@ class StyleListDisplay:
         """Redraws the list of styles that are current available"""
         
         self.list.model.clear()
-        sheet = self.sheetlist.get_style_sheet("default")
         self.list.add(["default"])
 
         index = 1
         for style in self.sheetlist.get_style_names():
             if style == "default":
                 continue
-            sheet = self.sheetlist.get_style_sheet(style)
             self.list.add([style])
             index = index + 1
 

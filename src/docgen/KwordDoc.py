@@ -22,8 +22,7 @@ import TextDoc
 from latin_utf8 import latin_to_utf8
 
 import time
-import StringIO
-import string
+import cStringIO
 import gzip
 
 import Errors
@@ -51,8 +50,8 @@ class KwordDoc(TextDoc.TextDoc):
         else:
             self.filename = filename
 
-        self.f = StringIO.StringIO()
-        self.m = StringIO.StringIO()
+        self.f = cStringIO.StringIO()
+        self.m = cStringIO.StringIO()
 
         self.m.write('<?xml version="1.0" encoding="UTF-8"?>')
         self.m.write('<!DOCTYPE document-info ><document-info>\n')

@@ -176,7 +176,7 @@ def get_nephew(level):
     return _nephew_level[level]
 
 def get_niece(level):
-    return _niece_level[level],f
+    return _niece_level[level]
 
 def is_spouse(orig,other):
     for f in orig.getFamilyList():
@@ -198,9 +198,6 @@ def get_relationship(orig_person,other_person):
 
     if orig_person == None:
         return ("undefined",[])
-
-    firstName = orig_person.getPrimaryName().getRegularName()
-    secondName = other_person.getPrimaryName().getRegularName()
 
     if orig_person == other_person:
         return ('', [])

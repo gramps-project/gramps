@@ -206,7 +206,6 @@ def importData(database, filename, callback,cl=0):
     for OldMediaID in parser.MediaFileMap.keys():
         NewMediaID = parser.MediaFileMap[OldMediaID]
         oldfile = ObjectMap[NewMediaID].getPath()
-	oldpath = os.path.dirname(oldfile)
 	(junk,oldext) = os.path.splitext(os.path.basename(oldfile))
         oldfile = os.path.join(basefile,OldMediaID+oldext)
         newfile = os.path.join(newpath,NewMediaID+oldext)

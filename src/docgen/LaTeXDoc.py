@@ -38,6 +38,8 @@ import string
 import TextDoc
 import Plugins
 import ImgManip
+import Errors
+
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -206,15 +208,12 @@ class LaTeXDoc(TextDoc.TextDoc):
 	    thisstyle.font_end = thisstyle.font_end + " "
 
 	    left  = style.get_left_margin()
-	    right = style.get_right_margin()
 	    first = style.get_first_indent() + left
 	    
 	    thisstyle.leftIndent = left
 	    thisstyle.firstLineIndent = first
 	    
 	    self.latexstyle[style_name] = thisstyle
-	    
-	    
 
     def close(self):
         """Clean up and close the document"""

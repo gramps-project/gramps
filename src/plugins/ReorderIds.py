@@ -40,6 +40,7 @@ def runTool(db,active_person,callback):
 class ReorderIds:
 
     def __init__(self,db,callback):
+
         self.db = db
 
         self.reorder(db.getPersonMap(),db.iprefix,db.buildPersonDisplay)
@@ -49,7 +50,7 @@ class ReorderIds:
         self.reorder(db.getPlaceMap(),db.pprefix,db.buildPlaceDisplay)
         Utils.modified()
         callback(1)
-
+        
     def reorder(self,data_map,prefix,update):
         """Try to extract the old integer out of the id, and reuse it
         if possible. Otherwise, blindly renumber those that can't."""

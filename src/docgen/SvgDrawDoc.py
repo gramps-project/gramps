@@ -99,13 +99,11 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
 	font = p.get_font()
         size = font.get_size()
 
-        height = size*(len(text))
         width = 0
         for line in text:
             width = max(width,FontScale.string_width(font,line))
 
-        rangle = -((pi/180.0) * angle)
-
+#        rangle = -((pi/180.0) * angle)
         centerx,centery = units((x+self.lmargin,y+self.tmargin))
 
         yh = 0
@@ -116,15 +114,13 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
             ypos = (centery) 
             xd = 0
             yd = yh
-#            xd = yh * sin(-rangle)
- #           yd = yh * cos(-rangle)
-            
-            print centerx, centery, xpos, ypos, angle, line
+#           xd = yh * sin(-rangle)
+#           yd = yh * cos(-rangle)
 
             self.f.write('<text ')
             self.f.write('x="%4.2f" y="%4.2f" ' % (xpos+xd,ypos+yd))
-#            self.f.write('transform="rotate(%d) ' % angle)
-#            self.f.write(' translate(%.8f,%.8f)" ' % (-xpos,-ypos))
+#           self.f.write('transform="rotate(%d) ' % angle)
+#           self.f.write(' translate(%.8f,%.8f)" ' % (-xpos,-ypos))
             self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
             if font.get_bold():
                 self.f.write('font-weight:"bold";')

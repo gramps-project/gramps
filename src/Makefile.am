@@ -97,7 +97,6 @@ pkgpython_PYTHON = \
 # If not using GNU make, then list all files individually
 # The latter is more portable and POSIX-friendly :)
 GLADEFILES = \
-	config.glade\
 	dialog.glade\
 	edit_person.glade\
 	errdialogs.glade\

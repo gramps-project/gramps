@@ -505,7 +505,6 @@ def register_draw_doc(name,classref,paper,style, ext):
 #-------------------------------------------------------------------------
 def register_relcalc(func, languages):
     """Register a relationshp calculator"""
-    import sys
     global _relcalc_task
 
     try:
