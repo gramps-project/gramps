@@ -32,15 +32,7 @@ import intl
 _ = intl.gettext
 
 from TextDoc import *
-from OpenOfficeDoc import *
-from HtmlDoc import *
-from AbiWordDoc import *
-
-try:
-    from PdfDoc import *
-    no_pdf = 0
-except:
-    no_pdf = 1
+import FindDoc
 
 from gtk import *
 from gnome.ui import *
@@ -79,7 +71,7 @@ class AncestorReport:
         15: _("Fifteenth"),
         16: _("Sixteenth"),
         17: _("Seventeenth"),
-        18: _("Eigthteenth"),
+        18: _("Eightteenth"),
         19: _("Nineteenth"),
         20: _("Twentieth"),
         21: _("Twenty-first"),
@@ -322,39 +314,32 @@ def report(database,person):
     base = os.path.dirname(__file__)
     glade_file = base + os.sep + "ancestorreport.glade"
     topDialog = GladeXML(glade_file,"dialog1")
-    topDialog.get_widget("htmltemplate").set_sensitive(0)
 
     name = person.getPrimaryName().getRegularName()
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-
-    if no_pdf:
-        topDialog.get_widget("pdf").set_sensitive(0)
+    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),0,option_switch)
         
     topDialog.get_widget("labelTitle").set_text("Ahnentafel Report for " + name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
-        "on_save_clicked" : on_save_clicked,
-        "on_html_toggled" : on_html_toggled
+        "on_save_clicked" : on_save_clicked
         })
 
-
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def on_html_toggled(obj):
-    if obj.get_active():
-        topDialog.get_widget("htmltemplate").set_sensitive(1)
-        topDialog.get_widget("papersize").set_sensitive(0)
-        topDialog.get_widget("orientation").set_sensitive(0)
-    else:    
-        topDialog.get_widget("htmltemplate").set_sensitive(0)
-        topDialog.get_widget("papersize").set_sensitive(1)
-        topDialog.get_widget("orientation").set_sensitive(1)
-
+#------------------------------------------------------------------------
+def option_switch(obj):
+    val = obj.get_data("paper")
+    notebook = topDialog.get_widget("option_notebook")
+    if val == 1:
+        notebook.set_page(0)
+    else:
+        notebook.set_page(1)
+    
 #------------------------------------------------------------------------
 #
 # 
@@ -365,7 +350,7 @@ def on_save_clicked(obj):
     global db
 
     outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if outputName == "":
+    if not outputName:
         return
 
     max_gen = topDialog.get_widget("generations").get_value_as_int()
@@ -376,17 +361,12 @@ def on_save_clicked(obj):
     orien_obj = topDialog.get_widget("orientation").get_menu().get_active()
     orien = orien_obj.get_data("i")
     
-    if topDialog.get_widget("openoffice").get_active():
-        document = OpenOfficeDoc(paper,orien)
-    elif topDialog.get_widget("abiword").get_active():
-        document = AbiWordDoc(paper,orien)
-    elif topDialog.get_widget("pdf").get_active():
-        document = PdfDoc(paper,orien)
-    else:
-        document = HtmlDoc(template)
+    item = topDialog.get_widget("format").get_menu().get_active()
+    format = item.get_data("name")
+    
+    doc = FindDoc.make_text_doc(format,paper,orien,template)
 
-    MyReport = AncestorReport(db,active_person,outputName,\
-                              max_gen, pgbrk, document)
+    MyReport = AncestorReport(db,active_person,outputName,max_gen,pgbrk,doc)
     MyReport.write_report()
         
     utils.destroy_passed_object(obj)

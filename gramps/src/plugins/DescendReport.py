@@ -33,15 +33,7 @@ import const
 import utils
 import const
 from TextDoc import *
-from OpenOfficeDoc import *
-from AbiWordDoc import *
-from HtmlDoc import *
-try:
-    import reportlab.platypus.tables
-    from PdfDoc import *
-    no_pdf = 0
-except:
-    no_pdf = 1
+import FindDoc
 
 from gtk import *
 from gnome.ui import *
@@ -158,15 +150,28 @@ class DesReportWindow:
 
         PaperMenu.make_paper_menu(self.top.get_widget("papersize"))
         PaperMenu.make_orientation_menu(self.top.get_widget("orientation"))
+        FindDoc.get_text_doc_menu(self.top.get_widget("format"),0,\
+                                  option_switch,\
+                                  self.top.get_widget("option_notebook"))
         
         mytop = self.top.get_widget("dialog1")
-
-        if no_pdf:
-            self.top.get_widget("pdf").set_sensitive(0)
 
         mytop.set_data("o",self)
         mytop.set_data("d",db)
         mytop.show()
+        
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def option_switch(obj):
+    val = obj.get_data("paper")
+    notebook = obj.get_data("obj")
+    if val == 1:
+        notebook.set_page(0)
+    else:
+        notebook.set_page(1)
         
 #------------------------------------------------------------------------
 #
@@ -195,14 +200,14 @@ def on_save_clicked(obj):
     orien_obj = myobj.top.get_widget("orientation")
     orien = orien_obj.get_menu().get_active().get_data("i")
 
-    if myobj.top.get_widget("openoffice").get_active():
-        document = OpenOfficeDoc(paper,orien)
-    elif myobj.top.get_widget("abiword").get_active():
-        document = AbiWordDoc(paper,orien)
-    else:
-        document = PdfDoc(paper,orien)
+    template = myobj.top.get_widget("htmltemplate").get_full_path(0)
 
-    report = DescendantReport(file,myobj.person,db,document)
+    item = myobj.top.get_widget("format").get_menu().get_active()
+    format = item.get_data("name")
+    
+    doc = FindDoc.make_text_doc(format,paper,orien,template)
+
+    report = DescendantReport(file,myobj.person,db,doc)
     report.setup()
     report.report()
     report.end()

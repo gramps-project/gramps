@@ -22,6 +22,9 @@ import os
 import tempfile
 import string
 import re
+import intl
+
+_ = intl.gettext
 
 from TextDoc import *
 import const
@@ -69,7 +72,7 @@ class HtmlDoc(TextDoc):
         top_add = 1
         bottom_add = 0
 
-        if self.template != "":
+        if self.template and self.template != "":
             try:
                 templateFile = open(self.template,"r")
                 for line in templateFile.readlines():

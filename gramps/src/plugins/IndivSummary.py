@@ -32,15 +32,7 @@ import intl
 _ = intl.gettext
 
 from TextDoc import *
-from OpenOfficeDoc import *
-from HtmlDoc import *
-from AbiWordDoc import *
-try:
-    import reportlab.platypus.tables
-    from PdfDoc import *
-    no_pdf = 0
-except:
-    no_pdf = 1
+import FindDoc
 
 from gtk import *
 from gnome.ui import *
@@ -381,25 +373,28 @@ def report(database,person):
     label = topDialog.get_widget("labelTitle")
     
     label.set_text("Individual Summary for " + name)
-    if no_pdf:
-        topDialog.get_widget("pdf").set_sensitive(0)
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
+    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),0,option_switch)
 
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
-        "on_save_clicked" : on_save_clicked,
-        "on_html_toggled" : on_html_toggled
+        "on_save_clicked" : on_save_clicked
         })
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def on_html_toggled(obj):
-    topDialog.get_widget("htmltemplate").set_sensitive(obj.get_active())
+#------------------------------------------------------------------------
+def option_switch(obj):
+    val = obj.get_data("paper")
+    notebook = topDialog.get_widget("option_notebook")
+    if val == 1:
+        notebook.set_page(0)
+    else:
+        notebook.set_page(1)
 
 #------------------------------------------------------------------------
 #
@@ -411,21 +406,19 @@ def on_save_clicked(obj):
     global db
 
     outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if outputName == "":
+    if not outputName:
         return
 
     paper_obj = topDialog.get_widget("papersize")
     paper = paper_obj.get_menu().get_active().get_data("i")
     orien_obj = topDialog.get_widget("orientation")
     orien = orien_obj.get_menu().get_active().get_data("i")
+    template = topDialog.get_widget("htmltemplate").get_full_path(0)
 
-    if topDialog.get_widget("html").get_active():
-        template = topDialog.get_widget("htmlfile").get_text()
-        doc = HtmlDoc(template)
-    elif topDialog.get_widget("pdf").get_active():
-        doc = PdfDoc(paper,orien)
-    else:
-        doc = OpenOfficeDoc(paper,orien)
+    item = topDialog.get_widget("format").get_menu().get_active()
+    format = item.get_data("name")
+    
+    doc = FindDoc.make_text_doc(format,paper,orien,template)
 
     MyReport = IndivSummary(db,active_person,outputName,doc)
 

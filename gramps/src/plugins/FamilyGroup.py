@@ -26,20 +26,12 @@ import os
 import re
 import sort
 import string
+import FindDoc
 import utils
 import intl
 
-_ = intl.gettext
-
 from TextDoc import *
-from OpenOfficeDoc import *
-from HtmlDoc import *
-try:
-    import reportlab.platypus.tables
-    from PdfDoc import *
-    no_pdf = 0
-except:
-    no_pdf = 1
+_ = intl.gettext
 
 from gtk import *
 from gnome.ui import *
@@ -403,18 +395,15 @@ def report(database,person):
     family_list = person.getFamilyList()
     label = topDialog.get_widget("labelTitle")
     
-    if no_pdf == 1:
-        topDialog.get_widget("pdf").set_sensitive(0)
-    
     label.set_text(_("Family Group Report for %s") % name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
-        "on_save_clicked" : on_save_clicked,
-        "on_html_toggled" : on_html_toggled
+        "on_save_clicked" : on_save_clicked
         })
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
+    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),1,option_switch)
 
     frame = topDialog.get_widget("spouse")
     option_menu = topDialog.get_widget("spouse_menu")
@@ -436,14 +425,20 @@ def report(database,person):
         my_menu.append(item)
     option_menu.set_menu(my_menu)
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def on_html_toggled(obj):
-    topDialog.get_widget("htmltemplate").set_sensitive(obj.get_active())
-
+#------------------------------------------------------------------------
+def option_switch(obj):
+    val = obj.get_data("paper")
+    notebook = topDialog.get_widget("option_notebook")
+    
+    if val == 1:
+        notebook.set_page(0)
+    else:
+        notebook.set_page(1)
+    
 #------------------------------------------------------------------------
 #
 # 
@@ -454,7 +449,7 @@ def on_save_clicked(obj):
     global db
 
     outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if outputName == "":
+    if not outputName:
         return
 
     menu = topDialog.get_widget("spouse_menu").get_menu()
@@ -463,15 +458,13 @@ def on_save_clicked(obj):
     paper = paper_obj.get_menu().get_active().get_data("i")
     orien_obj = topDialog.get_widget("orientation")
     orien = orien_obj.get_menu().get_active().get_data("i")
+    template = topDialog.get_widget("htmlfile").get_text()
 
-    if topDialog.get_widget("html").get_active():
-        template = topDialog.get_widget("htmlfile").get_text()
-        doc = HtmlDoc(template)
-    elif topDialog.get_widget("openoffice").get_active():
-        doc = OpenOfficeDoc(paper,orien)
-    else:
-        doc = PdfDoc(paper,orien)
-
+    item = topDialog.get_widget("format").get_menu().get_active()
+    format = item.get_data("name")
+    
+    doc = FindDoc.make_text_doc(format,paper,orien,template)
+    
     MyReport = FamilyGroup(db,family,outputName,doc)
 
     MyReport.setup()
@@ -489,11 +482,3 @@ def get_description():
 
 def get_name():
     return _("Generate files/Family Group Report")
-
-
-
-
-
-
-
-
