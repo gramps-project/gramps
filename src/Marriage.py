@@ -461,6 +461,21 @@ def on_photolist_button_press_event(obj,event):
 #
 #
 #-------------------------------------------------------------------------
+def on_convert_to_private(obj):
+    epo = obj.get_data(OBJECT)
+    photo = epo.family.getPhotoList()[epo.selected_icon]
+
+    prefix = "f%s" % epo.person.getId()
+    name = RelImage.import_photo(photo.getPath(),epo.path,prefix)
+
+    photo.setPath(name)
+    photo.setPrivate(1)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_view_photo(obj):
     myobj = obj.get_data("m")
     photo = myobj.family.getPhotoList()[myobj.selectedIcon]
@@ -682,7 +697,7 @@ class EventEditor:
         self.top.get_widget("eventTitle").set_text(name) 
         self.event_menu.set_popdown_strings(const.marriageEvents)
 
-        build_confidence_menu(self.conf_menu)
+        utils.build_confidence_menu(self.conf_menu)
 
         values = self.parent.db.getPlaceMap().values()
         if event != None:
@@ -801,7 +816,7 @@ class AttributeEditor:
         if len(const.familyAttributes) > 0:
             self.attrib_menu.set_popdown_strings(const.familyAttributes)
 
-        build_confidence_menu(self.conf_menu)
+        utils.build_confidence_menu(self.conf_menu)
 
         if attrib != None:
             self.type_field.set_text(attrib.getType())

@@ -19,7 +19,6 @@
 #
 
 import os
-import sys
 import intl
 
 _ = intl.gettext

@@ -258,7 +258,7 @@ class Photo:
             if self.proplist != None:
                 self.proplist = {}
                 for p in source.proplist.keys():
-                    self.proplist[k] = source.proplist[k]
+                    self.proplist[p] = source.proplist[p]
             else:
                 self.proplist = None
         else:
@@ -1446,7 +1446,7 @@ class RelDataBase:
         if map.has_key(idVal):
             place = self.placeMap[map[idVal]]
         else:
-            palce = Place()
+            place = Place()
             map[idVal] = self.addPlace(place)
         return place
 

@@ -37,7 +37,6 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 import os
 import sys
-import string
 import re
 
 #-------------------------------------------------------------------------
@@ -178,7 +177,7 @@ def on_report_node_selected(obj):
     title = obj.get_data(TITLE)
     img = myobj.dialog.get_widget("image")
     
-    myobj.dialog.get_widget("description").set_text(DOCSTRING)
+    myobj.dialog.get_widget("description").set_text(doc)
 
     i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm)
     img.set(i,m)
@@ -233,11 +232,11 @@ def load_plugins(dir):
         match = pymod.match(name[1])
         if not match:
             continue
-        groups = match.groups()
+        plugin = match.groups()[0]
         try: 
-            plugin = __import__(groups[0])
+            __import__(plugin)
         except:
-            print _("Failed to load the module: %s") % groups[0]
+            print _("Failed to load the module: %s") % plugin
             import traceback
             traceback.print_exc()
 

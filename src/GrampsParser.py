@@ -187,7 +187,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
-    def start_coord(tag,attrs):
+    def start_coord(self,attrs):
         if attrs.has_key('lat'):
             self.placeobj.set_latitude(u2l(attrs['lat']))
         if attrs.has_key('long'):

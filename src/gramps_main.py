@@ -43,6 +43,7 @@ _ = intl.gettext
 from gtk import *
 from gnome.ui import *
 
+import GDK
 import GTK
 import libglade
 
@@ -93,6 +94,8 @@ childWindow   = None
 new_child_win = None
 add_child_win = None
 bookmarks     = None
+pevent        = []
+fevent        = []
 
 id2col        = {}
 alt2col       = {}
@@ -106,6 +109,9 @@ source_list   = None
 place_list    = None
 database      = None
 family_window = None
+nameArrow     = None
+deathArrow    = None
+dateArrow     = None
 pv            = {}
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
@@ -128,6 +134,7 @@ GIVEN       = "g"
 SURNAME     = "s"
 RELTYPE     = "d"
 PAD         = 3
+CANVASPAD   = 15
 
 #-------------------------------------------------------------------------
 #
@@ -1009,14 +1016,6 @@ def new_source_after_edit(source):
 #-------------------------------------------------------------------------
 def new_place_after_edit(place):
     database.addPlace(place)
-    update_display(0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def update_after_edit(source):
     update_display(0)
 
 #-------------------------------------------------------------------------
@@ -2324,26 +2323,21 @@ def find_tree(person,index,depth,list):
 #
 #-------------------------------------------------------------------------
 canvas_items = []
-old_gen = 0
-old_h = 0
-old_w = 0
 
 def load_canvas():
     global canvas_items
-    global old_gen,old_h,old_w
 
     if active_person == None:
         return
     
     h = 0
     w = 0
-    xpad = 15
 
     canvas = gtop.get_widget("canvas1")
     cx1,cy1,cx2,cy2 = canvas.get_allocation()
     root = canvas.root()
 
-    cw = (cx2-cx1-(2*xpad))
+    cw = (cx2-cx1-(2*CANVASPAD))
 
     style = canvas['style']
     font = style.font
@@ -2372,21 +2366,19 @@ def load_canvas():
         c.destroy()
     canvas.set_scroll_region(cx1,cy1,cx2,cy2)
 
-    xincr = cw/xdiv
-    yincr = cy2/32
+    xpts = build_x_coords(cw/xdiv)
+    ypts = build_y_coords(cy2/32.0)
 
-    xfactor = [xpad] + [xincr+xpad]*2 + [xincr*2+xpad]*4 + [xincr*3+xpad]*8 + [xincr*4+xpad]*16
-    yfactor = [ yincr*16, yincr*8,yincr*24,yincr*4,yincr*12,yincr*20, yincr*28,
-                yincr*2, yincr*6,yincr*10,yincr*14,yincr*18,yincr*22,yincr*26,
-                yincr*30, yincr, yincr*3, yincr*5, yincr*7, yincr*9, yincr*11,
-                yincr*13, yincr*15, yincr*17, yincr*19, yincr*21, yincr*23,
-                yincr*25, yincr*27, yincr*29, yincr*31]
-
-
-    if len(active_person.getFamilyList()) > 0:
-        ypos = yfactor[0]+h/2.0
+    childcnt = 0
+    for family in active_person.getFamilyList():
+        for child in family.getChildList():
+            childcnt = 1
+            break
+            
+    if childcnt != 0:
+        ypos = ypts[0]+h/2.0
         item = root.add("line",
-                        points=[xpad,ypos,xpad/4.0,ypos],
+                        points=[CANVASPAD,ypos,CANVASPAD/4.0,ypos],
                         fill_color_gdk=style.black,
                         width_pixels=3,
                         arrow_shape_a=6,
@@ -2402,35 +2394,54 @@ def load_canvas():
     for i in range(gen):
         if list[i]:
             if i < int(gen/2):
-                startx = xfactor[i]+(w/2)
-                if list[(2*i)+1]:
-                    pts = [startx,yfactor[i],
-                           startx,yfactor[(i*2)+1]+(h/2),
-                           xfactor[(i*2)+1],yfactor[(i*2)+1]+(h/2)]
-                    item = root.add("line",
-                                    width_pixels=2,
-                                    points=pts,
-                                    fill_color_gdk=style.black)
-                    item.set_data("p",list[(2*i)+1])
-                    item.connect("event",line_event)
-                    canvas_items.append(item)
-                if list[(2*i)+2]:
-                    pts = [startx,yfactor[i]+h,
-                           startx,yfactor[(i*2)+2]+(h/2),
-                           xfactor[(i*2)+2],yfactor[(i*2)+2]+(h/2)]
-                    item = root.add("line",
-                                    points=pts,
-                                    width_pixels=2,
-                                    fill_color_gdk=style.black)
-                    item.set_data("p",list[(2*i)+2])
-                    item.connect("event",line_event)
-                    canvas_items.append(item)
-            add_box(root,xfactor[i],yfactor[i],w,h,list[i],style)
+                findex = (2*i)+1 
+                mindex = findex+1
+                if list[findex]:
+                    draw_canvas_line(root, xpts[i], ypts[i], xpts[findex],
+                                     ypts[findex], h, w, list[findex], style)
+                if list[mindex]:
+                    draw_canvas_line(root,xpts[i],ypts[i], xpts[mindex],
+                                     ypts[mindex], h, w, list[mindex], style)
+            add_box(root,xpts[i],ypts[i],w,h,list[i],style)
                     
-    old_gen = gen
-    old_h = h
-    old_w = w
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def draw_canvas_line(root,x1,y1,x2,y2,h,w,data,style):
+    startx = x1+(w/2.0)
+    pts = [startx,y1, startx,y2+(h/2.0), x2,y2+(h/2.0)]
+    item = root.add("line",
+                    width_pixels=2,
+                    points=pts,
+                    fill_color_gdk=style.black)
+    item.set_data("p",data)
+    item.connect("event",line_event)
+    canvas_items.append(item)
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_x_coords(xincr):
+
+    return [CANVASPAD] + [xincr+CANVASPAD]*2 + [xincr*2+CANVASPAD]*4 +\
+           [xincr*3+CANVASPAD]*8 + [xincr*4+CANVASPAD]*16
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_y_coords(yincr):
+    return [ yincr*16, yincr*8,  yincr*24, yincr*4,  yincr*12,
+             yincr*20, yincr*28, yincr*2,  yincr*6,  yincr*10,
+             yincr*14, yincr*18, yincr*22, yincr*26, yincr*30,
+             yincr,    yincr*3,  yincr*5,  yincr*7,  yincr*9,
+             yincr*11, yincr*13, yincr*15, yincr*17, yincr*19,
+             yincr*21, yincr*23, yincr*25, yincr*27, yincr*29, yincr*31]
     
 #-------------------------------------------------------------------------
 #
@@ -2531,13 +2542,14 @@ def line_event(obj,event):
             load_canvas()
     elif event.type == GDK.ENTER_NOTIFY:
         canvas = gtop.get_widget("canvas1")
-        obj.set(fill_color_gdk=canvas['style'].bg[STATE_SELECTED])
+        obj.set(fill_color_gdk=canvas['style'].bg[STATE_SELECTED],
+                width_pixels=4)
         name = Config.nameof(obj.get_data("p"))
         msg = _("Double clicking will make %s the active person") % name
         statusbar.set_status(msg)
     elif event.type == GDK.LEAVE_NOTIFY:
         canvas = gtop.get_widget("canvas1")
-        obj.set(fill_color_gdk=canvas['style'].black)
+        obj.set(fill_color_gdk=canvas['style'].black, width_pixels=2)
         modify_statusbar()
 
 #-------------------------------------------------------------------------
@@ -2621,7 +2633,6 @@ def display_marriage(family):
 
     clist.clear()
     active_child = None
-    active_fams = family
 
     i = 0
     if family != None:
@@ -2977,6 +2988,7 @@ def main(arg):
     global statusbar,notebook
     global person_list, source_list, place_list,pv
     global topWindow
+    global nameArrow, dateArrow, deathArrow
     
     rc_parse(const.gtkrcFile)
 
@@ -2999,6 +3011,9 @@ def main(arg):
     place_list  = gtop.get_widget("place_list")
     filter_list = gtop.get_widget("filter_list")
     notebook    = gtop.get_widget(NOTEBOOK)
+    nameArrow   = gtop.get_widget("nameSort")
+    dateArrow   = gtop.get_widget("dateSort")
+    deathArrow  = gtop.get_widget("deathSort")
 
     person_list.set_column_visibility(5,0)
     person_list.set_column_visibility(6,0)
