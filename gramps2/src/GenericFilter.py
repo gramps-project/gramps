@@ -88,6 +88,12 @@ class Rule:
     
     def __init__(self,list):
         self.set_list(list)
+    
+    def prepare(self,db):
+        pass
+
+    def reset(self):
+        pass
 
     def set_list(self,list):
         assert type(list) == type([]) or list == None, "Argument is not a list"
@@ -178,9 +184,14 @@ class RelationshipPathBetween(Rule):
 
     labels = [ _('ID:'), _('ID:') ]
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        root1 = self.list[0]
+        root2 = self.list[1]
+        self.init_list(root1,root2)
+
+    def reset(self):
         self.map = {}
 
     def name(self):
@@ -205,28 +216,23 @@ class RelationshipPathBetween(Rule):
                     if child_handle:
                         self.desc_list(child_handle,map,0)
     
-    def apply_filter(self,rank,person,plist,pmap):
+    def apply_filter(self,rank,p_id,plist,pmap):
+        person = self.db.get_person_from_handle(p_id)
         if person == None:
             return
         plist.append(person)
         pmap[person.get_handle()] = rank
         
-        family = person.get_main_parents_family_handle()
+        fam_id = person.get_main_parents_family_handle()
+        family = self.db.get_family_from_handle(fam_id)
         if family != None:
             self.apply_filter(rank+1,family.get_father_handle(),plist,pmap)
             self.apply_filter(rank+1,family.get_mother_handle(),plist,pmap)
 
     def apply(self,db,p_id):
-        self.db = db
-        if not self.init:
-            self.init = 1
-            root1 = self.list[0]
-            root2 = self.list[1]
-            self.init_list(root1,root2)
         return self.map.has_key(p_id)
 
     def init_list(self,p1_id,p2_id):
-
         firstMap = {}
         firstList = []
         secondMap = {}
@@ -393,22 +399,9 @@ class IsDescendantOf(Rule):
 
     labels = [ _('ID:'), _('Inclusive:') ]
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
         self.map = {}
-
-    def name(self):
-        return 'Is a descendant of'
-
-    def category(self): 
-        return _('Descendant filters')
-    
-    def description(self):
-        return _('Matches all descendants for the specified person')
-
-    def apply(self,db,p_id):
-        self.orig_id = p_id
         self.db = db
         try:
             if int(self.list[1]):
@@ -422,6 +415,20 @@ class IsDescendantOf(Rule):
             self.init = 1
             root_id = self.list[0]
             self.init_list(root_id,first)
+
+    def reset(self):
+        self.map = {}
+
+    def name(self):
+        return 'Is a descendant of'
+
+    def category(self): 
+        return _('Descendant filters')
+    
+    def description(self):
+        return _('Matches all descendants for the specified person')
+
+    def apply(self,db,p_id):
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,first):
@@ -459,22 +466,6 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         return _("Matches people that are descendants of someone matched by a filter")
     
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-        try:
-            if int(self.list[1]):
-                first = 0
-            else:
-                first = 1
-        except IndexError:
-            first = 1
-
-        if not self.init:
-            self.init = 1
-            filt = MatchesFilter(self.list)
-            for person_handle in db.get_person_handles(sort_handles=False):
-                if filt.apply (db, person_handle):
-                    self.init_list (person_handle, first)
         return self.map.has_key(p_id)
 
 #-------------------------------------------------------------------------
@@ -488,9 +479,13 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
     labels = [ _('ID:'), _('Number of generations:') ]
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        root_id = self.list[0]
+        self.init_list(root_id,0)
+
+    def reset(self):
         self.map = {}
 
     def name(self):
@@ -504,13 +499,6 @@ class IsLessThanNthGenerationDescendantOf(Rule):
                  "not more than N generations away")
     
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_list(root_id,0)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,gen):
@@ -536,9 +524,13 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
     labels = [ _('ID:'), _('Number of generations:') ]
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        root_id = self.list[0]
+        self.init_list(root_id,0)
+
+    def reset(self):
         self.map = {}
 
     def name(self):
@@ -552,13 +544,6 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         return _("Descendant filters")
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_list(root_id,0)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id,gen):
@@ -582,9 +567,15 @@ class IsChildOfFilterMatch(Rule):
 
     labels = [ _('Filter name:') ]
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        filt = MatchesFilter(self.list)
+        for person_handle in db.get_person_handles(sort_handles=False):
+            if filt.apply (db, person_handle):
+                self.init_list (person_handle)
+
+    def reset(self):
         self.map = {}
 
     def name(self):
@@ -597,15 +588,6 @@ class IsChildOfFilterMatch(Rule):
         return _('Family filters')
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-
-        if not self.init:
-            self.init = 1
-            filt = MatchesFilter(self.list)
-            for person_handle in db.get_person_handles(sort_handles=False):
-                if filt.apply (db, person_handle):
-                    self.init_list (person_handle)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
@@ -626,9 +608,15 @@ class IsSiblingOfFilterMatch(Rule):
 
     labels = [ _('Filter name:') ]
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        filt = MatchesFilter(self.list)
+        for person_handle in db.get_person_handles(sort_handles=False):
+            if filt.apply (db, person_handle):
+                self.init_list (person_handle)
+
+    def reset(self):
         self.map = {}
 
     def name(self):
@@ -641,15 +629,6 @@ class IsSiblingOfFilterMatch(Rule):
         return _('Family filters')
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-
-        if not self.init:
-            self.init = 1
-            filt = MatchesFilter(self.list)
-            for person_handle in db.get_person_handles(sort_handles=False):
-                if filt.apply (db, person_handle):
-                    self.init_list (person_handle)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
@@ -721,9 +700,21 @@ class IsAncestorOf(Rule):
 
     labels = [ _('ID:'), _('Inclusive:') ]
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        """Assume that if 'Inclusive' not defined, assume inclusive"""
+        self.db = db
+        self.map = {}
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
+            first = 1
+        root_id = self.list[0]
+        self.init_ancestor_list(db,root_id,first)
+
+    def reset(self):
         self.map = {}
     
     def name(self):
@@ -736,21 +727,6 @@ class IsAncestorOf(Rule):
         return _("Ancestral filters")
 
     def apply(self,db,p_id):
-        """Assume that if 'Inclusive' not defined, assume inclusive"""
-        self.orig_id = p_id
-        self.db = db
-        try:
-            if int(self.list[1]):
-                first = 0
-            else:
-                first = 1
-        except IndexError:
-            first = 1
-            
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_ancestor_list(db,root_id,first)
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,db,p_id,first):
@@ -783,6 +759,21 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     def __init__(self,list):
         IsAncestorOf.__init__(self,list)
     
+    def prepare(self,db):
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
+            first = 1
+            
+        self.init = 1
+        filt = MatchesFilter(self.list)
+        for person_handle in db.get_person_handles(sort_handles=False):
+            if filt.apply (db, person_handle):
+                self.init_ancestor_list (db,person_handle,first)
+
     def name(self):
         return 'Is an ancestor of filter match'
 
@@ -794,21 +785,6 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         return _("Ancestral filters")
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        try:
-            if int(self.list[1]):
-                first = 0
-            else:
-                first = 1
-        except IndexError:
-            first = 1
-            
-        if not self.init:
-            self.init = 1
-            filt = MatchesFilter(self.list)
-            for person_handle in db.get_person_handles(sort_handles=False):
-                if filt.apply (db, person_handle):
-                    self.init_ancestor_list (db,person_handle,first)
         return self.map.has_key(p_id)
 
 #-------------------------------------------------------------------------
@@ -822,9 +798,12 @@ class IsLessThanNthGenerationAncestorOf(Rule):
 
     labels = [ _('ID:'), _('Number of generations:') ]
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        self.build_witness_list()
+
+    def reset(self):
         self.map = {}
     
     def name(self):
@@ -877,10 +856,14 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
 
     labels = [ _('ID:'), _('Number of generations:') ]
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
         self.map = {}
+        root_id = self.list[0]
+        self.init_ancestor_list(root_id,0)
+
+    def reset(self):
+        self.map = []
     
     def name(self):
         return 'Is an ancestor of person at least N generations away'
@@ -893,12 +876,6 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         return _("Ancestral filters")
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-        if not self.init:
-            self.init = 1
-            root_id = self.list[0]
-            self.init_ancestor_list(root_id,0)
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,p_id,gen):
@@ -930,9 +907,15 @@ class IsParentOfFilterMatch(Rule):
 
     labels = [ _('Filter name:') ]
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
-        self.init = 0
+    def prepare(self,db):
+        self.db = db
+        self.map = {}
+        filt = MatchesFilter(self.list)
+        for person_handle in db.get_person_handles(sort_handles=False):
+            if filt.apply (db, person_handle):
+                self.init_list (person_handle)
+
+    def reset(self):
         self.map = {}
 
     def name(self):
@@ -945,15 +928,6 @@ class IsParentOfFilterMatch(Rule):
         return _('Family filters')
 
     def apply(self,db,p_id):
-        self.orig_id = p_id
-        self.db = db
-
-        if not self.init:
-            self.init = 1
-            filt = MatchesFilter(self.list)
-            for person_handle in db.get_person_handles(sort_handles=False):
-                if filt.apply (db, person_handle):
-                    self.init_list (person_handle)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
@@ -984,12 +958,15 @@ class HasCommonAncestorWith(Rule):
     def category(self):
         return _("Ancestral filters")
 
-    def __init__(self,list):
-        Rule.__init__(self,list)
+    def prepare(self,db):
+        self.db = db
         # Keys in `ancestor_cache' are ancestors of list[0].
         # We delay the computation of ancestor_cache until the
         # first use, because it's not uncommon to instantiate
         # this class and not use it.
+        self.ancestor_cache = {}
+
+    def reset(self):
         self.ancestor_cache = {}
 
     def init_ancestor_cache(self,db):
@@ -1789,6 +1766,67 @@ class PeoplePrivate(Rule):
         return p.get_privacy()
 
 #-------------------------------------------------------------------------
+# "Witnesses"
+#-------------------------------------------------------------------------
+
+
+class IsWitness(Rule):
+    """Witnesses"""
+
+    labels = [_('Personal event:'), _('Family event:')]
+
+    def prepare(self,db):
+        self.db = db
+        self.map = []
+        self.build_witness_list()
+
+    def reset(self):
+        self.map = []
+        
+    def name(self):
+        return 'Witnesses'
+
+    def description(self):
+        return _("Matches persons who are whitness in an event")
+
+    def category(self):
+        return _('Event filters')
+
+    def apply(self,db,p_id):
+        return p_id in self.map
+
+    def build_witness_list(self):
+        event_type = None
+        if self.list and self.list[0]:
+            event_type = self.list[0]
+        if not self.list or event_type:
+            for person_handle in self.db.get_person_handles():
+                p = self.db.get_person_from_handle(person_handle)
+                self.get_witness_of_events( event_type,
+                    p.get_event_list()+[p.get_birth_handle(), p.get_death_handle()])
+        event_type = None
+        if self.list and self.list[1]:
+            event_type = self.list[1]
+        if not self.list or event_type:
+            for family_handle in self.db.get_family_handles():
+                f = self.db.get_family_from_handle(family_handle)
+                self.get_witness_of_events(event_type, f.get_event_list())
+
+    def get_witness_of_events(self, event_type, event_list):
+        if not event_list:
+            return
+        for event_handle in event_list:
+            event = self.db.get_event_from_handle(event_handle)
+            if event:
+                if event_type and not event.get_name() == event_type:
+                    continue
+                wlist = event.get_witness_list()
+                if wlist:
+                    for w in wlist:
+                        if w.get_type() == RelLib.Event.ID:
+                            self.map.append(w.get_value())
+    
+#-------------------------------------------------------------------------
 #
 # GenericFilter
 #
@@ -1910,9 +1948,13 @@ class GenericFilter:
     def apply(self,db,id_list):
         m = self.get_check_func()
         res = []
+        for rule in self.flist:
+            rule.prepare(db)
         for p_id in id_list:
             if m(db,p_id):
                 res.append(p_id)
+        for rule in self.flist:
+            rule.reset()
         return res
 
 
@@ -1971,6 +2013,7 @@ tasks = {
     unicode(_("Families with incomplete events"))      : FamilyWithIncompleteEvent,
     unicode(_("People probably alive"))                : ProbablyAlive,
     unicode(_("People marked private"))                : PeoplePrivate,
+    unicode(_("Witnesses"))                            : IsWitness,
     }
 
 #-------------------------------------------------------------------------
