@@ -245,7 +245,6 @@ src/Makefile
 src/const.py
 src/docgen/Makefile
 src/plugins/Makefile
-src/calendars/Makefile
 src/data/Makefile
 src/data/templates/Makefile
 src/po/Makefile
