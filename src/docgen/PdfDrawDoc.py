@@ -23,7 +23,7 @@
 # Standard python libraries
 #
 #-------------------------------------------------------------------------
-import string
+from math import sin, cos, pi
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +49,12 @@ try:
 except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
 
+
+_H = 'Helvetica'
+_HB = 'Helvetica-Bold'
+_T = 'Times-Roman'
+_TB = 'Times-Bold'
+    
 #-------------------------------------------------------------------------
 #
 # PdfDrawDoc
@@ -136,7 +142,8 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 
         color = stype.get_fill_color()
         
-        self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,float(color[2])/255.0))
+        self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,
+                             float(color[2])/255.0))
         
         p = self.f.beginPath()
         point = path[0]
@@ -152,11 +159,11 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         else:
             self.f.drawPath(p,stroke=1,fill=0)
 
-    def draw_wedge(self, style, centerx, centery, radius, start_angle, end_angle, short_radius=0):
+    def draw_wedge(self, style, centerx, centery, radius, start_angle,
+                   end_angle, short_radius=0):
 
         centerx += self.lmargin
         centery += self.bmargin
-        from math import sin, cos, pi
 
         def rnd(val):
             return val*cm
@@ -171,7 +178,7 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
             self.f.setDash([2,4],0)
 
         degreestoradians = pi/180.0
-        radiansdelta = degreestoradians
+        radiansdelta = degreestoradians/2
         sangle = start_angle*degreestoradians
         eangle = end_angle*degreestoradians
         while eangle<sangle:
@@ -179,7 +186,8 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         angle = sangle
 
         color = stype.get_fill_color()
-        self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,float(color[2])/255.0))
+        self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,
+                             float(color[2])/255.0))
 
         p = self.f.beginPath()
         if short_radius == 0:
@@ -212,6 +220,13 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         p.close()
         self.f.drawPath(p,stroke=1,fill=1)
 
+        delta = (eangle - sangle)/2.0
+        rad = short_radius + (radius-short_radius)/2.0
+
+        return ( (centerx + cos(sangle+delta) * rad)-self.lmargin,
+                 (centery + sin(sangle+delta) * rad)-self.tmargin)
+
+
     def draw_box(self,style,text,x,y):
         x = x + self.lmargin
         y = y + self.tmargin
@@ -238,7 +253,7 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 	if text != "":
             lines = text.split('\n')
             self.center_print(lines,font,x*cm,y*cm,w,h)
-
+            
     def draw_text(self,style,text,x,y):
         x = x + self.lmargin
         y = y + self.tmargin
@@ -250,6 +265,66 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         self.f.setStrokeColor(make_color(font.get_color()))
         self.left_print(text,font,x*cm,(y*cm)+font.get_size())
 
+    def pdf_set_font(self,font):
+        size = font.get_size()
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+            if font.get_bold():
+                self.f.setFont(_HB,size)
+            else:
+                self.f.setFont(_H,size)
+        else:
+            if font.get_bold():
+                self.f.setFont(_TB,size)
+            else:
+                self.f.setFont(_T,size)
+
+    def rotate_text(self,style,text,x,y,angle):
+
+        x += self.lmargin
+        y += self.tmargin
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+
+        size = font.get_size()
+
+        self.f.saveState()
+        self.pdf_set_font(font)
+        
+        self.f.translate(x*cm,y*cm)
+        self.f.rotate(angle)
+        self.f.setStrokeColor(make_color(font.get_color()))
+        self.f.setFillColor(make_color(font.get_color()))
+
+        val = len(text)
+        y = ((-font.get_size() * val)/2.0) + font.get_size()
+
+        for line in text:
+            self.f.drawCentredString(0,y,line.encode('iso-8859-1'))
+            y += font.get_size()
+
+        self.f.restoreState()
+
+    def center_text(self,style,text,x,y):
+        x += self.lmargin
+        y += self.tmargin
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+
+        self.f.saveState()
+        self.f.setStrokeColor(make_color(font.get_color()))
+        self.f.setFillColor(make_color(font.get_color()))
+
+        self.pdf_set_font(font)
+       
+        self.f.drawCentredString(x*cm,y*cm,text.encode('iso-8859-1'))
+        self.f.restoreState()
+
     def center_print(self,lines,font,x,y,w,h):
         l = len(lines)
         size = font.get_size()
@@ -258,19 +333,11 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 
         self.f.saveState()
         self.f.setFillColor(make_color(font.get_color()))
-        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
-            if font.get_bold():
-                self.f.setFont("Helvetica-Bold",font.get_size())
-            else:
-                self.f.setFont("Helvetica",font.get_size())
-        else:
-            if font.get_bold():
-                self.f.setFont("Times-Bold",font.get_size())
-            else:
-                self.f.setFont("Times-Roman",font.get_size())
+        self.f.setStrokeColor(make_color(font.get_color()))
+        self.pdf_set_font(font)
        
         for text in lines:
-            self.f.drawCentredString(start_x,start_y,text)
+            self.f.drawCentredString(start_x,start_y,text.encode('iso-8859-1'))
             start_y = start_y + size*1.2
         start_y = start_y + size*1.2
 
@@ -278,23 +345,13 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 
     def left_print(self,text,font,x,y):
         size = font.get_size()
-        start_y = y
-        start_x = x
 
         self.f.saveState()
-        self.f.setFillColor(make_color(font.get_color()))
-        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
-            if font.get_bold():
-                self.f.setFont("Helvetica-Bold",font.get_size())
-            else:
-                self.f.setFont("Helvetica",font.get_size())
-        else:
-            if font.get_bold():
-                self.f.setFont("Times-Bold",font.get_size())
-            else:
-                self.f.setFont("Times-Roman",font.get_size())
+        self.f.setStrokeColor(make_color(font.get_color()))
+
+        self.pdf_set_font(font)
        
-        self.f.drawString(start_x,start_y,text)
+        self.f.drawString(start_x,start_y,text.encode('iso-8859-1'))
         self.f.restoreState()
 
 

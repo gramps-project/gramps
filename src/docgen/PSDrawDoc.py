@@ -19,6 +19,8 @@
 #
 
 import string
+from math import pi, cos, sin
+        
 import cStringIO
 import Plugins
 from intl import gettext as _
@@ -37,9 +39,6 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.filename = None
         self.level = 0
 	self.page = 0
-
-    def translate(self,x,y):
-        return (x,self.height-y)
 
     def fontdef(self,para):
         font = para.get_font()
@@ -67,7 +66,10 @@ class PSDrawDoc(DrawDoc.DrawDoc):
                     font_name = "/Helvetica"
         
         return "%s findfont %d scalefont setfont\n" % (font_name,font.get_size())
-    
+
+    def translate(self,x,y):
+        return (x,self.height-y)
+
     def open(self,filename):
         if filename[-3:] != ".ps":
             self.filename = filename + ".ps"
@@ -88,6 +90,8 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%%PageOrder: Ascend\n')
         if self.orientation != TextDoc.PAPER_PORTRAIT:
             self.f.write('%%Orientation: Landscape\n')
+        else:
+            self.f.write('%%Orientation: Portrait\n')
         self.f.write('%%EndComments\n')
         self.f.write('/cm { 28.34 mul } def\n')
 
@@ -118,6 +122,23 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('showpage\n')
         self.f.write('%%PageTrailer\n')
 
+    def center_text(self,style,text,x,y):
+        x += self.lmargin
+        y += self.tmargin
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+
+        self.f.write('gsave\n')
+        self.f.write('%.4f %.4f %.4f setrgbcolor\n' % rgb_color(stype.get_color()))
+        self.f.write(self.fontdef(p))
+        self.f.write('(%s) dup stringwidth pop -2 div ' % text.encode('iso-8859-1'))
+        self.f.write('%.4f cm add %.4f cm moveto ' % self.translate(x,y))
+        self.f.write('show\n')
+        self.f.write('grestore\n')
+
     def draw_text(self,style,text,x1,y1):
         stype = self.draw_styles[style]
 	para_name = stype.get_paragraph_style()
@@ -130,6 +151,88 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write(self.fontdef(p))
         self.f.write('(%s) show grestore\n' % text)
+
+    def draw_wedge(self, style, centerx, centery, radius, start_angle,
+                   end_angle, short_radius=0):
+
+        while end_angle < start_angle:
+            end_angle += 360
+
+        p = []
+        
+        degreestoradians = pi/180.0
+        radiansdelta = degreestoradians/2
+        sangle = start_angle*degreestoradians
+        eangle = end_angle*degreestoradians
+        while eangle<sangle:
+            eangle = eangle+2*pi
+        angle = sangle
+
+        if short_radius == 0:
+            p.append((centerx,centery))
+        else:
+            origx = (centerx + cos(angle)*short_radius)
+            origy = (centery + sin(angle)*short_radius)
+            p.append((origx, origy))
+            
+        while angle<eangle:
+            x = centerx + cos(angle)*radius
+            y = centery + sin(angle)*radius
+            p.append((x,y))
+            angle = angle+radiansdelta
+        x = centerx + cos(eangle)*radius
+        y = centery + sin(eangle)*radius
+        p.append((x,y))
+
+        if short_radius:
+            x = centerx + cos(eangle)*short_radius
+            y = centery + sin(eangle)*short_radius
+            p.append((x,y))
+
+            angle = eangle
+            while angle>=sangle:
+                x = centerx + cos(angle)*short_radius
+                y = centery + sin(angle)*short_radius
+                p.append((x,y))
+                angle = angle-radiansdelta
+        self.draw_path(style,p)
+
+        delta = (eangle - sangle)/2.0
+        rad = short_radius + (radius-short_radius)/2.0
+
+        return ( (centerx + cos(sangle+delta) * rad),
+                 (centery + sin(sangle+delta) * rad))
+#        return ( (centerx + cos(sangle+delta) * rad)-self.lmargin,
+#                 (centery + sin(sangle+delta) * rad)-self.tmargin)
+
+    def rotate_text(self,style,text,x,y,angle):
+
+        x += self.lmargin
+        y += self.tmargin
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+
+        size = font.get_size()
+
+        self.f.write('gsave\n')
+        self.f.write(self.fontdef(p))
+        self.f.write('%4.2f cm %4.2f cm translate\n' % self.translate(x,y))
+        self.f.write('%4.2f rotate\n' % -angle)
+
+        self.f.write('%.4f %.4f %.4f setrgbcolor\n' % rgb_color(stype.get_color()))
+
+        val = len(text)
+        y = ((size * val)/2.0) - size
+
+        for line in text:
+            self.f.write('(%s) dup stringwidth pop -2 div  '% line.encode('iso-8859-1'))
+            self.f.write("%.4f moveto show\n" % y)
+            y -= size
+ 
+        self.f.write('grestore\n')
 
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
@@ -153,8 +256,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('closepath\n')
 
         color = stype.get_fill_color()
-        if (color[0] != 255 or color[1] != 255 or color[2] != 255) :
-            self.f.write('%.4f %.4f %.4f setrgbcolor fill\n' % rgb_color(color))
+        self.f.write('gsave %.4f %.4f %.4f setrgbcolor fill grestore\n' % rgb_color(color))
         self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(stype.get_color()))
         self.f.write('grestore\n')
 
