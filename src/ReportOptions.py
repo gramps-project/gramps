@@ -603,3 +603,151 @@ class OptionHandler:
 
     def set_person_id(self,val):
         self.person_id = val
+
+#------------------------------------------------------------------------
+#
+# Base Options class
+#
+#------------------------------------------------------------------------
+class ReportOptions:
+
+    """
+    Defines options and provides handling interface.
+    
+    This is a base Options class for the reports. All reports' options
+    classes should derive from it.
+    """
+
+    def __init__(self,name,person_id=None):
+        """
+        Initializes the class, performing usual house-keeping tasks.
+        Subclasses MUST call this in their __init__() method.
+        """
+        self.set_new_options()
+        self.enable_options()
+
+        if self.enable_dict:
+            self.options_dict.update(self.enable_dict)
+        self.handler = OptionHandler(name,self.options_dict,person_id)
+
+    def set_new_options(self):
+        """
+        Sets options specific for this report. 
+        
+        Reports that need custom options need to override this method.
+        Two dictionaries MUST be defined here: 
+
+            self.options_dict
+                This is a dictionary whose keys are option names
+                and values are the default option values.
+
+            self.options_help
+                This is a dictionary whose keys are option names
+                and values are 3- or 4- lists or tuples:
+                    ('=example","Short description",VALUES,DO_PREPEND)
+                The VALUES is either a single string (in that case
+                the DO_PREPEND does not matter) or a list/tuple of
+                strings to list. In that case, if DO_PREPEND evaluates
+                as True then each string will be preneded with the ordinal
+                number when help is printed on the command line.
+
+        NOTE:   Both dictionaries must have identical keys.
+
+        NOTE:   If a particular report does not use custom options,
+                then it should not override this method. 
+        """
+        self.options_dict = {}
+        self.options_help = {}
+
+    def enable_options(self):
+        """
+        Enables semi-common options for this report.
+        
+        The semi-common option is the option which GRAMPS is aware of,
+        but not common enough to be present in all reports. Here's the list
+        of possible keys for semi-commons:
+        
+            'filter'      - Filter number, selected among filters
+                            available for this report. If defined,
+                            get_report_filters() method must be defined
+                            which returns the list of available filters.
+
+            'max_gen'     - Maximum number of generations to consider.
+            'page_breaks' - Whether or not make page breaks between generations.
+        
+
+        A self.enable_dict dictionary MUST be defined here, whose keys
+        are the valid semi-common keys above, and whose values are the
+        desired default values for semi-commons.
+
+        NOTE:   If a particular report does not use semi-common options,
+                then it should not override this method. 
+        """
+        self.enable_dict = {}
+
+    def make_default_style(self,default_style):
+        """
+        Defines default style for this report.
+        
+        This method MUST be overridden by reports that use the
+        user-adjustable paragraph styles.
+
+        NOTE:   Unique names MUST be used for all style names, otherwise the
+                styles will collide when making a book with duplicate style
+                names. A rule of safety is to prepend style name with the
+                acronym based on report name. The following acronyms are
+                already taken:
+                    AC-     Ancestor Chart
+                    AC2-    Ancestor Chart 2 (Wall Chart)
+                    AHN-    Ahnentafel Report
+                    AR-     Comprehensive Ancestors report
+                    CBT-    Custom Book Text
+                    DG-     Descendant Graph
+                    DR-     Descendant Report
+                    DAR-    Detailed Ancestral Report
+                    DDR-    Detailed Descendant Report
+                    FGR-    Family Group Report
+                    FC-     Fan Chart
+                    FTA-    FTM Style Ancestral report
+                    FTD-    FTM Style Descendant report
+                    IDS-    Individual Complete Report
+                    IVS-    Individual Summary Report
+                    SBT-    Simple Boot Title
+                    TLG-    Timeline Graph
+        """
+        pass
+
+    def add_user_options(self,dialog):
+        """
+        Sets up UI controls (widgets) for the options specific for this report.
+
+        This method MUST be overridden by reports that define new options.
+        The single argument 'dialog' is the Report.BareReportDialog instance.
+        Any attribute of the dialog is available.
+        
+        After the widgets are defined, they MUST be added to the dialog
+        using the following call:
+                dialog.add_options(LABEL,widget)
+        
+        NOTE:   To really have any effect besides looking pretty, each widget
+                set up here must be also parsed in the parse_user_options()
+                method below.
+        """
+        pass
+
+    def parse_user_options(self,dialog):
+        """
+        Parses UI controls (widgets) for the options specific for this report.
+
+        This method MUST be overridden by reports that define new options.
+        The single argument 'dialog' is the Report.BareReportDialog instance.
+        Any attribute of the dialog is available.
+        
+        After obtaining values from the widgets, they MUST be used to set the
+        appropriate options_dict values. Otherwise the values will not have
+        any user-visible effect.
+        
+        NOTE:   Any widget parsed here MUST be defined and added to the dialog
+                in the add_user_options() method above.
+        """
+        pass

@@ -1,3 +1,10 @@
+2004-12-22 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReportOptions.py (ReportOptions): Add base Options class.
+	* src/plugins/BookReport.py (BookOptions): Derive from base class.
+	* src/plugins/TimeLine.py (TimeLineOptions): Derive from base class.
+	* src/plugins/FtmStyleDescendants.py (FtmDescendantOptions):
+	Derive from base class.
+
 2004-12-21 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/AsciiDoc.py (reformat_para): Correctly check for
 	empty paragraph.

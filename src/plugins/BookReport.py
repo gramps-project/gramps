@@ -541,13 +541,16 @@ class BookListDisplay:
 # 
 #
 #------------------------------------------------------------------------
-class BookOptions:
+class BookOptions(ReportOptions.ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'bookname'    : '',
@@ -557,9 +560,6 @@ class BookOptions:
                             BookList('books.xml').get_book_names(),
                             False),
         }
-
-        self.handler = ReportOptions.OptionHandler(name,
-                                        self.options_dict,person_id)
 
 #-------------------------------------------------------------------------
 #
