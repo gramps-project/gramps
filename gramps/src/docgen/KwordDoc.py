@@ -20,6 +20,8 @@
 
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
+
+import Utils
 import time
 import StringIO
 import os
@@ -33,17 +35,17 @@ _ = intl.gettext
 def points(val):
     inch = float(val)/2.54
     return (int(inch*72))
-    
+
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class KwordDoc(TextDoc):
 
     def open(self,filename):
         self.photo_list = []
-        
+
         if filename[-4:] != ".kwd":
             self.filename = filename + ".kwd"
         else:
@@ -130,8 +132,18 @@ class KwordDoc(TextDoc):
         self.f.write('bottom="%d" ' % points(self.height-self.bmargin))
         self.f.write('runaround="1" />\n')
 
+        self.cell_row= 0
+        self.cell_col= 0
+        self.frameset_flg= 1
+        self.table_no= 0
+        self.cell_style= ""
+        self.cell_span= 1
+
     def close(self):
-        self.f.write('</FRAMESET>\n')
+        if self.frameset_flg == 1:
+            self.f.write('</FRAMESET>\n')
+            self.frameset_flg= 0
+
         for p in self.photo_list:
             self.f.write('<FRAMESET frameType="2" frameInfo="0" ')
             self.f.write('name="%s" visible="1">\n' % p[1])
@@ -194,13 +206,17 @@ class KwordDoc(TextDoc):
                 self.f.write('<UNDERLINE value="1"/>\n')
             self.f.write('</FORMAT>\n')
             if p.get_top_border():
-                self.f.write('<TOPBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
+                self.f.write('<TOPBORDER red="0" green="0"')
+                self.f.write('blue="0" style="0" width="1"/>\n')
             if p.get_bottom_border():
-                self.f.write('<BOTTOMBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
+                self.f.write('<BOTTOMBORDER red="0" green="0" ')
+                self.f.write('blue="0" style="0" width="1"/>\n')
             if p.get_right_border():
-                self.f.write('<RIGHTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
+                self.f.write('<RIGHTBORDER red="0" green="0" ')
+                self.f.write('blue="0" style="0" width="1"/>\n')
             if p.get_left_border():
-                self.f.write('<LEFTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
+                self.f.write('<LEFTBORDER red="0" green="0" ')
+                self.f.write('blue="0" style="0" width="1"/>\n')
             if left != 0:
                 self.f.write('<TABULATOR ptpos="%d" type="0"/>\n' % points(left))
             self.f.write('</STYLE>\n')
@@ -231,7 +247,7 @@ class KwordDoc(TextDoc):
 
         self.f.close()
         self.m.close()
-        
+
     def start_page(self,orientation=None):
         pass
 
@@ -246,9 +262,9 @@ class KwordDoc(TextDoc):
         self.p = self.style_list[self.style_name]
         self.font = self.p.get_font()
         if self.font.get_type_face() == FONT_SERIF:
-            self.font_face = "times"
+            self.font_face = "Arial"
         else:
-            self.font_face = "helvetica"
+            self.font_face = "Times New Roman"
 
         if leader != None:
             self.text = leader + '\t'
@@ -259,6 +275,10 @@ class KwordDoc(TextDoc):
         self.bold_stop = len(self.text)
 
     def end_paragraph(self):
+        if self.frameset_flg == 0:
+			self.f.write('<FRAMESET>\n')
+			self.frameset_flg= 1
+
         if self.bold_start != 0 and self.bold_stop != len(self.text):
             txt = '<FORMAT>\n<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
             self.format_list.append(txt)
@@ -276,7 +296,7 @@ class KwordDoc(TextDoc):
 
         pad = points(self.p.get_padding())/2
         self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
-        
+
         if self.p.get_alignment() == PARA_ALIGN_CENTER:
             self.f.write('<FLOW value="center"/>\n')
         elif self.p.get_alignment() == PARA_ALIGN_JUSTIFY:
@@ -332,39 +352,64 @@ class KwordDoc(TextDoc):
         self.format_list.append(txt)
 
     def start_table(self,name,style_name):
-        pass
+        self.tbl= self.table_styles[style_name]
+        self.cell_left= (self.lmargin * 72)/ 2.54
+        self.tbl_width= ((self.width - self.lmargin - self.rmargin) * 72 ) / 2.54
+        self.f.write(' </FRAMESET> \n')
+        self.cell_row= 0
+        self.cell_col= 0
+        self.frameset_flg= 0
 
     def end_table(self):
-        pass
+        self.table_no= self.table_no + 1
 
     def start_row(self):
         pass
 
     def end_row(self):
-        pass
+        self.cell_row= self.cell_row + 1
+        self.cell_col= 0
+        self.cell_left= (self.lmargin * 72)/ 2.54
 
     def start_cell(self,style_name,span=1):
-        pass
+        self.cell_span= span
+        self.cell_style= style_name
+        self.cell_right = self.cell_left
+        for i in range(0,span):
+            col_width = self.tbl.get_column_width(self.cell_col+i)
+            spc = (self.tbl_width * col_width) / 100
+            self.cell_right = self.cell_right + spc
+        self.f.write('<FRAMESET removable="0" cols="%d" rows="1" ' % span)
+        self.f.write('grpMgr="Table %d" frameType="1" ' % self.table_no)
+        self.f.write('frameInfo="0" row="%d" col="%d" ' % (self.cell_row,self.cell_col))
+        self.f.write('name="Table %d Cell %d,%d" visible="1" >\n' % (self.table_no, self.cell_row, self.cell_col))
+        self.f.write('<FRAME bleftpt="2.83465" ')
+        self.f.write('copy="0" bbottompt="2.83465" btoppt="2.83465" ')
+        self.f.write('right="%d" left="%d" ' % (self.cell_right, self.cell_left))
+        self.f.write('newFrameBehaviour="1" brightpt="2.83465" ')
+        self.f.write('bottom="%d" runaroundGap="2.83465" ' % (self.cell_row*23+self.table_no*125+117))
+        self.f.write(' top="%d" autoCreateNewFrame="0" />\n' % (self.cell_row*23+self.table_no*125+95))
+        self.frameset_flg= 1
+        self.cell_col = self.cell_col + span - 1
 
     def end_cell(self):
-        pass
+        self.f.write('</FRAMESET>\n')
+        self.cell_col= self.cell_col + 1
+        self.frameset_flg= 0
+        self.cell_left= self.cell_right
 
-    def add_photo(self,name,pos,x,y):
+    def add_photo(self,name,pos,x_cm,y_cm):
 
-        im = ImgManip.ImgMapip(name)
-        nx,ny = im.size()
+        im = ImgManip.ImgManip(name)
+        (x,y)= im.size()
+        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
 
-        scale = float(nx)/float(ny)
-        x = points(x)
-        y = points(y)
-        
-        if scale > 1.0:
-            scale = 1.0/scale
-            act_width = x
-            act_height = y * scale
+        if ratio < 1:
+            act_width = x_cm
+            act_height = y_cm*ratio
         else:
-            act_width = x * scale
-            act_height = y
+            act_height = y_cm
+            act_width = x_cm/ratio
 
         index = len(self.photo_list)+1
         tag = 'pictures/picture%d.jpeg' % index
@@ -372,12 +417,12 @@ class KwordDoc(TextDoc):
         txt = '<FORMAT id="6" pos="%d" len="1">\n' % len(self.text)
         txt = txt + '<ANCHOR type="frameset" instance="%s"/>\n' % tag
         txt = txt + '</FORMAT>\n'
-        
+
         self.bold_stop = len(self.text)
         self.format_list.append(txt)
 
         self.text = self.text + '#'
-    
+
     def horizontal_line(self):
         pass
 
@@ -430,4 +475,5 @@ if __name__ == "__main__":
 
     doc.close()
 
-Plugins.register_text_doc(_("KWord"),KwordDoc,0,1,1)
+#Change to support tables (args were: 0,1,1)
+Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1)

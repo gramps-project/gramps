@@ -832,7 +832,10 @@ class ReportDialog:
         self.make_document()
 
         # Create the report object and product the report.
-        self.make_report()
+        try:
+            self.make_report()
+        except (IOError,OSError),msg:
+            GnomeErrorDialog(str(msg))
 
         # Clean up the dialog object
         self.window.destroy()

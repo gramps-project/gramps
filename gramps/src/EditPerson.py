@@ -257,20 +257,13 @@ class EditPerson:
         if GrampsCfg.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
-        
-        # initial values
-        self.get_widget("activepersonTitle").set_text(GrampsCfg.nameof(person))
-        self.suffix.set_text(self.pname.getSuffix())
 
-        self.surname_field.set_text(self.pname.getSurname())
-        self.given.set_text(self.pname.getFirstName())
+        self.write_primary_name()
 
         types = const.NameTypesMap.keys()
         types.sort()
         self.ntype_field.set_popdown_strings(types)
         self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
-        self.ntype_field.entry.set_text(_(self.pname.getType()))
-        t = self.pname.getType()
         
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
@@ -280,7 +273,6 @@ class EditPerson:
             self.is_unknown.set_active(1)
 
         self.nick.set_text(person.getNickName())
-        self.title.set_text(self.pname.getTitle())
         self.update_birth_death()
 
         self.load_person_image()
@@ -1011,6 +1003,14 @@ class EditPerson:
     def aka_double_click(self,obj,event):
         if event.button == 1 and event.type == _2BUTTON_PRESS:
             self.on_aka_update_clicked(obj)
+        elif event.button == 3:
+            menu = gtk.GtkMenu()
+            item = gtk.GtkTearoffMenuItem()
+            item.show()
+            menu.append(item)
+            Utils.add_menuitem(menu,_("Make the selected name the preferred name"),
+                               None,self.change_name)
+            menu.popup(None,None,None,0,0)
 
     def on_aka_update_clicked(self,obj):
         import NameEdit
@@ -1341,6 +1341,28 @@ class EditPerson:
         elif page == 8 and self.lds_not_loaded:
             self.lds_not_loaded = 0
             self.draw_lds()
+
+    def change_name(self,obj):
+        if len(self.name_list.selection) == 1:
+            old = self.pname
+            row = self.name_list.selection[0]
+            new = self.name_list.get_row_data(row)
+            self.nlist.remove(new)
+            self.nlist.append(old)
+            self.redraw_name_list()
+            self.pname = Name(new)
+            self.write_primary_name()
+
+    def write_primary_name(self):
+        # initial values
+        self.get_widget("activepersonTitle").set_text(GrampsCfg.nameof(self.person))
+        self.suffix.set_text(self.pname.getSuffix())
+
+        self.surname_field.set_text(self.pname.getSurname())
+        self.given.set_text(self.pname.getFirstName())
+
+        self.ntype_field.entry.set_text(_(self.pname.getType()))
+        self.title.set_text(self.pname.getTitle())
 
 def update_ord(func,ord,date,temple,stat,place):
     if not ord:
