@@ -7,7 +7,7 @@
 <widget class="GtkDialog" id="dbopen">
   <property name="width_request">450</property>
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Open a database - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -128,7 +128,7 @@
 		  <property name="visible">True</property>
 		  <property name="history_id">recentdbs</property>
 		  <property name="max_saved">10</property>
-		  <property name="browse_dialog_title" translatable="yes">Open a GRAMPS Database</property>
+		  <property name="browse_dialog_title" translatable="yes">Open a database</property>
 		  <property name="directory_entry">True</property>
 		  <property name="modal">False</property>
 

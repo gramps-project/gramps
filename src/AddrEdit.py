@@ -79,8 +79,9 @@ class AddressEditor:
         text = _("Address Editor for %s") % name
         
         title_label = self.top.get_widget("title")
-        title_label.set_text(Utils.title(text))
-        title_label.set_use_markup(gtk.TRUE)
+
+        Utils.set_titles(self.window,title_label,
+                         text,_('Address Editor'))
 
         if self.addr:
             self.srcreflist = self.addr.getSourceRefList()

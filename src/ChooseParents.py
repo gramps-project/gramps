@@ -92,10 +92,12 @@ class ChooseParents:
             self.father = None
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog")
+        self.top = self.glade.get_widget("familyDialog")
 
         text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
-        Utils.set_title_label(self.glade,text)
-        self.top = self.glade.get_widget("familyDialog")
+        Utils.set_titles(self.top,self.glade.get_widget('title'),
+                         text,_('Choose Parents'))
+        
 	self.mother_rel = self.glade.get_widget("mrel")
 	self.father_rel = self.glade.get_widget("frel")
         self.fcombo = self.glade.get_widget("prel_combo")
@@ -362,13 +364,14 @@ class ModifyParents:
         self.mother = self.family.getMother()
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents")
-
-        Utils.set_title_label(self.glade,_("Modify the Parents of %s") % GrampsCfg.nameof(self.person))
-        
         self.top = self.glade.get_widget("modparents")
+        self.title = self.glade.get_widget("title")
+
+        title = _("Modify the Parents of %s") % GrampsCfg.nameof(self.person)
+        Utils.set_titles(self.top, self.title, title, _("Modify Parents"))
+        
 	self.mother_rel = self.glade.get_widget("mrel")
 	self.father_rel = self.glade.get_widget("frel")
-        self.title = self.glade.get_widget("title")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
 

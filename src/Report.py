@@ -248,7 +248,7 @@ class ReportDialog:
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog."""
-        return(_("Base Report - GRAMPS"))
+        return('')
 
     def get_header(self, name):
         """The header line to put at the top of the contents of the

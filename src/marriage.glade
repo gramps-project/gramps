@@ -6,7 +6,7 @@
 
 <widget class="GtkDialog" id="marriageEditor">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Marriage/Relationship Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>

@@ -56,12 +56,13 @@ class EditSource:
         self.ref_not_loaded = 1
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor")
+        self.top = self.top_window.get_widget("sourceEditor")
 
-        Utils.set_title_label(self.top_window,_('Source Editor'))
+        Utils.set_titles(self.top,self.top_window.get_widget('title'),
+                         _('Source Editor'))
         
         plwidget = self.top_window.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self)
-        self.title = self.top_window.get_widget("source_title")
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.note = self.top_window.get_widget("source_note")
@@ -69,6 +70,7 @@ class EditSource:
         
         self.refinfo = self.top_window.get_widget("refinfo")
         
+        self.title = self.top_window.get_widget("source_title")
         self.title.set_text(source.getTitle())
         self.author.set_text(source.getAuthor())
         self.pubinfo.set_text(source.getPubInfo())
@@ -84,7 +86,6 @@ class EditSource:
             "on_sourceapply_clicked" : self.on_source_apply_clicked
             })
 
-        self.top = self.top_window.get_widget("sourceEditor")
 
         if self.source.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)

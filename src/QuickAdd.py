@@ -40,8 +40,9 @@ class QuickAdd:
             })
 
         self.window = self.xml.get_widget("addperson")
-
-        Utils.set_title_label(self.xml,_('Add Person'))
+        title = self.xml.get_widget('title')
+        
+        Utils.set_titles(self.window,title, _('Add Person'))
         
         self.c = AutoComp.AutoCombo(self.xml.get_widget("surnameCombo"),
                                     self.db.getSurnames())

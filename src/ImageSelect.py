@@ -95,12 +95,16 @@ class ImageSelect:
             
         self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect")
         window           = self.glade.get_widget("imageSelect")
+
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
         self.description = self.glade.get_widget("photoDescription")
         self.external    = self.glade.get_widget("private")
         self.temp_name   = ""
 
+        Utils.set_titles(window,self.glade.get_widget('title'),
+                         _('Select a media object'))
+        
         self.glade.signal_autoconnect({
             "on_savephoto_clicked" : self.on_savephoto_clicked,
             "on_name_changed" : self.on_name_changed,
@@ -599,6 +603,11 @@ class LocalMediaProperties:
         fname = self.object.getPath()
         self.change_dialog = gtk.glade.XML(const.imageselFile,
                                                "change_description")
+
+        title = _('Change local media object properties')
+        Utils.set_titles(self.change_dialog.get_widget('change_description'),
+                         self.change_dialog.get_widget('title'), title)
+        
         descr_window = self.change_dialog.get_widget("description")
         self.pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
@@ -714,6 +723,12 @@ class GlobalMediaProperties:
 
         self.path = self.db.getSavePath()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global")
+
+        title = _('Change global media object properites')
+
+        Utils.set_titles(self.change_dialog.get_widget('change_global'),
+                         self.change_dialog.get_widget('title'),title)
+        
         self.descr_window = self.change_dialog.get_widget("description")
         self.notes = self.change_dialog.get_widget("notes")
         self.pixmap = self.change_dialog.get_widget("pixmap")

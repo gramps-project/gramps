@@ -76,11 +76,11 @@ class EditPlace:
             self.srcreflist = []
 
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor")
+        self.top = self.top_window.get_widget("placeEditor")
         self.iconlist = self.top_window.get_widget('iconlist')
-
         title_label = self.top_window.get_widget('title')
-        title_label.set_text(Utils.title(_('Place Editor')))
-        title_label.set_use_markup(gtk.TRUE)
+
+        Utils.set_titles(self.top,title_label,_('Place Editor'))
 
         self.glry = ImageSelect.Gallery(place, self.path, self.iconlist, self.db, self)
         self.title = self.top_window.get_widget("place_title")
@@ -152,8 +152,6 @@ class EditPlace:
             "on_web_go_clicked"         : self.on_web_go_clicked,
             "on_apply_clicked"          : self.on_place_apply_clicked
             })
-
-        self.top = self.top_window.get_widget("placeEditor")
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top_window,self.slist,

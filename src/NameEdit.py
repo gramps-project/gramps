@@ -76,9 +76,8 @@ class NameEditor:
         alt_title = self.top.get_widget("title")
 
         tmsg = _("Alternate Name Editor for %s") % full_name
-        
-        alt_title.set_text(Utils.title(tmsg))
-        alt_title.set_use_markup(gtk.TRUE)
+
+        Utils.set_titles(self.window, alt_title, tmsg, _('Alternate Name Editor'))
 
         self.sourcetab = Sources.SourceTab(self.srcreflist, self.parent,
                                            self.top, self.slist,

@@ -5,7 +5,7 @@
 
 <widget class="GtkDialog" id="event_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Event Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -887,7 +887,7 @@
 
 <widget class="GtkDialog" id="attr_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Attribute Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -1396,7 +1396,7 @@
 
 <widget class="GtkDialog" id="loc_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Location Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -1755,7 +1755,7 @@
 
 <widget class="GtkDialog" id="addr_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Address Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -2491,7 +2491,7 @@
 
 <widget class="GtkDialog" id="url_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Internet Address Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -2738,7 +2738,7 @@
 
 <widget class="GtkDialog" id="name_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Alternate Name Editor - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
@@ -3530,7 +3530,7 @@
 
 <widget class="GtkDialog" id="witness_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Edit Witness - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
