@@ -295,7 +295,7 @@ class EventComparison:
                 added = 0
                 if first:
                     tlist = [name,birth.getDate(),death.getDate()]
-                    blist = ["",birth.getPlace(),death.getPlace()]
+                    blist = ["",birth.getPlace().get_title(),death.getPlace().get_title()]
                 else:
                     tlist = ["","",""]
                     blist = ["","",""]
@@ -305,7 +305,7 @@ class EventComparison:
                         event = mylist[0]
                         del mylist[0]
                         tlist.append(event.getDate())
-                        blist.append(event.getPlace())
+                        blist.append(event.getPlace().get_title())
                         added = 1
                     else:
                         tlist.append("")
@@ -396,8 +396,8 @@ class EventComparison:
             while done == 0:
                 added = 0
                 if first:
-                    tlist = [name,birth.getDate(),death.getDate()]
-                    blist = ["",birth.getPlace(),death.getPlace()]
+                    tlist = [name,birth.getDate(),death.getDate().get_title()]
+                    blist = ["",birth.getPlace(),death.getPlace().get_title()]
                 else:
                     tlist = ["","",""]
                     blist = ["","",""]
@@ -407,7 +407,7 @@ class EventComparison:
                         event = mylist[0]
                         del mylist[0]
                         tlist.append(event.getDate())
-                        blist.append(event.getPlace())
+                        blist.append(event.getPlace().get_title())
                         added = 1
                     else:
                         tlist.append("")

@@ -348,7 +348,7 @@ def print_event(html,name,event):
         return
     
     date = event.getDate()
-    place = event.getPlace()
+    place = event.getPlace().get_title()
 
     if date != "" or place != "":
         html.write("<H2>%s</H2>\n" % name)
@@ -465,7 +465,7 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
 
         marriage = family.getMarriage()
         if marriage and not alive and not spouse_alive:
-            place = marriage.getPlace()
+            place = marriage.getPlace().get_title()
             date = marriage.getDate()
             if place:
                 txt = _("Marriage place")

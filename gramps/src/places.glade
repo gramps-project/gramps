@@ -15,40 +15,30 @@
 </project>
 
 <widget>
-  <class>GnomeDialog</class>
+  <class>GtkDialog</class>
   <name>placeEditor</name>
   <title>Gramps - Place Editor</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
-  <position>GTK_WIN_POS_CENTER</position>
+  <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
-  <allow_shrink>False</allow_shrink>
-  <allow_grow>False</allow_grow>
+  <allow_shrink>True</allow_shrink>
+  <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
-  <auto_close>False</auto_close>
-  <hide_on_close>False</hide_on_close>
 
   <widget>
     <class>GtkVBox</class>
-    <child_name>GnomeDialog:vbox</child_name>
-    <name>dialog-vbox11</name>
+    <child_name>Dialog:vbox</child_name>
+    <name>dialog-vbox12</name>
     <homogeneous>False</homogeneous>
-    <spacing>8</spacing>
-    <child>
-      <padding>4</padding>
-      <expand>True</expand>
-      <fill>True</fill>
-    </child>
+    <spacing>0</spacing>
 
     <widget>
-      <class>GtkHButtonBox</class>
-      <child_name>GnomeDialog:action_area</child_name>
-      <name>dialog-action_area11</name>
-      <layout_style>GTK_BUTTONBOX_END</layout_style>
-      <spacing>8</spacing>
-      <child_min_width>85</child_min_width>
-      <child_min_height>27</child_min_height>
-      <child_ipad_x>7</child_ipad_x>
-      <child_ipad_y>0</child_ipad_y>
+      <class>GtkHBox</class>
+      <child_name>Dialog:action_area</child_name>
+      <name>dialog-action_area12</name>
+      <border_width>10</border_width>
+      <homogeneous>True</homogeneous>
+      <spacing>5</spacing>
       <child>
 	<padding>0</padding>
 	<expand>False</expand>
@@ -57,37 +47,55 @@
       </child>
 
       <widget>
-	<class>GtkButton</class>
-	<name>button88</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>on_apply_clicked</handler>
-	  <object>placeEditor</object>
-	  <last_modification_time>Sat, 18 Aug 2001 17:26:41 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
-      </widget>
+	<class>GtkHButtonBox</class>
+	<name>hbuttonbox25</name>
+	<layout_style>GTK_BUTTONBOX_END</layout_style>
+	<spacing>8</spacing>
+	<child_min_width>85</child_min_width>
+	<child_min_height>27</child_min_height>
+	<child_ipad_x>7</child_ipad_x>
+	<child_ipad_y>0</child_ipad_y>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
 
-      <widget>
-	<class>GtkButton</class>
-	<name>button90</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>destroy_passed_object</handler>
-	  <object>placeEditor</object>
-	  <last_modification_time>Thu, 18 Jan 2001 02:52:48 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+	<widget>
+	  <class>GtkButton</class>
+	  <name>button126</name>
+	  <can_default>True</can_default>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>clicked</name>
+	    <handler>on_apply_clicked</handler>
+	    <object>placeEditor</object>
+	    <last_modification_time>Sat, 18 Aug 2001 17:26:41 GMT</last_modification_time>
+	  </signal>
+	  <stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
+	</widget>
+
+	<widget>
+	  <class>GtkButton</class>
+	  <name>button127</name>
+	  <can_default>True</can_default>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>clicked</name>
+	    <handler>destroy_passed_object</handler>
+	    <object>placeEditor</object>
+	    <last_modification_time>Thu, 18 Jan 2001 02:52:48 GMT</last_modification_time>
+	  </signal>
+	  <stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
+	</widget>
       </widget>
     </widget>
 
     <widget>
       <class>GtkVBox</class>
-      <name>vbox26</name>
+      <name>vbox36</name>
       <homogeneous>False</homogeneous>
       <spacing>0</spacing>
       <child>
@@ -98,7 +106,7 @@
 
       <widget>
 	<class>GtkLabel</class>
-	<name>placeEditorTitle</name>
+	<name>label262</name>
 	<signal>
 	  <name>clicked</name>
 	  <handler>on_lupdatesource_clicked</handler>
@@ -120,7 +128,7 @@
 
       <widget>
 	<class>GtkHSeparator</class>
-	<name>hseparator12</name>
+	<name>hseparator13</name>
 	<child>
 	  <padding>0</padding>
 	  <expand>True</expand>
@@ -130,7 +138,7 @@
 
       <widget>
 	<class>GtkNotebook</class>
-	<name>notebook2</name>
+	<name>notebook3</name>
 	<width>450</width>
 	<height>350</height>
 	<can_focus>True</can_focus>
@@ -155,7 +163,7 @@
 
 	<widget>
 	  <class>GtkTable</class>
-	  <name>table17</name>
+	  <name>table19</name>
 	  <rows>8</rows>
 	  <columns>3</columns>
 	  <homogeneous>False</homogeneous>
@@ -164,7 +172,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label165</name>
+	    <name>label244</name>
 	    <label>Title</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -190,7 +198,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label166</name>
+	    <name>label245</name>
 	    <label>City</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -216,7 +224,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label167</name>
+	    <name>label246</name>
 	    <label>State</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -242,7 +250,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label232</name>
+	    <name>label247</name>
 	    <label>County</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -268,7 +276,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label233</name>
+	    <name>label248</name>
 	    <label>Country</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -294,7 +302,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label234</name>
+	    <name>label249</name>
 	    <label>Longitude</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -320,7 +328,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label235</name>
+	    <name>label250</name>
 	    <label>Latitude</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -346,7 +354,7 @@
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label236</name>
+	    <name>label251</name>
 	    <label>Source</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -372,7 +380,7 @@
 
 	  <widget>
 	    <class>GtkEntry</class>
-	    <name>entry5</name>
+	    <name>entry6</name>
 	    <can_focus>True</can_focus>
 	    <editable>False</editable>
 	    <text_visible>True</text_visible>
@@ -564,7 +572,7 @@
 
 	  <widget>
 	    <class>GtkButton</class>
-	    <name>button114</name>
+	    <name>button119</name>
 	    <sensitive>False</sensitive>
 	    <can_focus>True</can_focus>
 	    <label>Select</label>
@@ -589,7 +597,7 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <child_name>Notebook:tab</child_name>
-	  <name>label204</name>
+	  <name>label252</name>
 	  <label>General</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
@@ -601,7 +609,7 @@
 
 	<widget>
 	  <class>GtkScrolledWindow</class>
-	  <name>scrolledwindow23</name>
+	  <name>scrolledwindow27</name>
 	  <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
 	  <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	  <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
@@ -610,6 +618,7 @@
 	  <widget>
 	    <class>GtkText</class>
 	    <name>place_note</name>
+	    <width>500</width>
 	    <can_focus>True</can_focus>
 	    <editable>True</editable>
 	    <text></text>
@@ -619,7 +628,7 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <child_name>Notebook:tab</child_name>
-	  <name>label205</name>
+	  <name>label253</name>
 	  <label>Note</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
@@ -631,7 +640,7 @@
 
 	<widget>
 	  <class>GtkScrolledWindow</class>
-	  <name>scrolledwindow25</name>
+	  <name>scrolledwindow28</name>
 	  <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
 	  <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	  <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
@@ -639,18 +648,18 @@
 
 	  <widget>
 	    <class>GtkViewport</class>
-	    <name>viewport1</name>
+	    <name>viewport2</name>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
 
 	    <widget>
 	      <class>GtkVBox</class>
-	      <name>vbox34</name>
+	      <name>vbox37</name>
 	      <homogeneous>False</homogeneous>
 	      <spacing>0</spacing>
 
 	      <widget>
 		<class>GnomeIconList</class>
-		<name>photolist</name>
+		<name>photo_list</name>
 		<can_focus>True</can_focus>
 		<signal>
 		  <name>select_icon</name>
@@ -680,7 +689,7 @@
 
 	      <widget>
 		<class>GtkHButtonBox</class>
-		<name>hbuttonbox21</name>
+		<name>hbuttonbox23</name>
 		<layout_style>GTK_BUTTONBOX_SPREAD</layout_style>
 		<spacing>30</spacing>
 		<child_min_width>85</child_min_width>
@@ -695,13 +704,13 @@
 
 		<widget>
 		  <class>GtkButton</class>
-		  <name>add_photo</name>
+		  <name>button120</name>
 		  <can_default>True</can_default>
 		  <can_focus>True</can_focus>
 		  <signal>
 		    <name>clicked</name>
 		    <handler>on_addphoto_clicked</handler>
-		    <object>sourceEditor</object>
+		    <object>placeEditor</object>
 		    <last_modification_time>Thu, 31 May 2001 14:39:32 GMT</last_modification_time>
 		  </signal>
 		  <label>Add Image</label>
@@ -710,13 +719,13 @@
 
 		<widget>
 		  <class>GtkButton</class>
-		  <name>delete_photo</name>
+		  <name>button121</name>
 		  <can_default>True</can_default>
 		  <can_focus>True</can_focus>
 		  <signal>
 		    <name>clicked</name>
 		    <handler>on_deletephoto_clicked</handler>
-		    <object>sourceEditor</object>
+		    <object>placeEditor</object>
 		    <last_modification_time>Thu, 31 May 2001 14:39:16 GMT</last_modification_time>
 		  </signal>
 		  <label>Delete Image</label>
@@ -730,8 +739,305 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <child_name>Notebook:tab</child_name>
-	  <name>label206</name>
+	  <name>label254</name>
 	  <label>Gallery</label>
+	  <justify>GTK_JUSTIFY_CENTER</justify>
+	  <wrap>False</wrap>
+	  <xalign>0.5</xalign>
+	  <yalign>0.5</yalign>
+	  <xpad>0</xpad>
+	  <ypad>0</ypad>
+	</widget>
+
+	<widget>
+	  <class>GtkVBox</class>
+	  <name>vbox38</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkFrame</class>
+	    <name>frame2</name>
+	    <border_width>5</border_width>
+	    <label>Internet Addresses</label>
+	    <label_xalign>0</label_xalign>
+	    <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	    <child>
+	      <padding>5</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkTable</class>
+	      <name>table20</name>
+	      <rows>2</rows>
+	      <columns>2</columns>
+	      <homogeneous>False</homogeneous>
+	      <row_spacing>0</row_spacing>
+	      <column_spacing>0</column_spacing>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label255</name>
+		<label>Description</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>5</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label256</name>
+		<label>Web Address</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>5</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>0</top_attach>
+		  <bottom_attach>1</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label257</name>
+		<label>:</label>
+		<justify>GTK_JUSTIFY_LEFT</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkHBox</class>
+		<name>hbox2</name>
+		<homogeneous>False</homogeneous>
+		<spacing>0</spacing>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>0</top_attach>
+		  <bottom_attach>1</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>True</yfill>
+		</child>
+
+		<widget>
+		  <class>GtkLabel</class>
+		  <name>label258</name>
+		  <label>:</label>
+		  <justify>GTK_JUSTIFY_LEFT</justify>
+		  <wrap>False</wrap>
+		  <xalign>0</xalign>
+		  <yalign>0.5</yalign>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <child>
+		    <padding>0</padding>
+		    <expand>True</expand>
+		    <fill>True</fill>
+		  </child>
+		</widget>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>button122</name>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_browse_clicked</handler>
+		    <object>url_addr</object>
+		    <last_modification_time>Tue, 24 Apr 2001 14:16:09 GMT</last_modification_time>
+		  </signal>
+		  <label>Go</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		  <child>
+		    <padding>5</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
+		  </child>
+		</widget>
+	      </widget>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkScrolledWindow</class>
+	    <name>scrolledwindow29</name>
+	    <hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
+	    <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
+	    <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
+	    <vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkCList</class>
+	      <name>web_list</name>
+	      <width>500</width>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>select_row</name>
+		<handler>on_web_list_select_row</handler>
+		<last_modification_time>Tue, 24 Apr 2001 14:12:50 GMT</last_modification_time>
+	      </signal>
+	      <columns>2</columns>
+	      <column_widths>273,80</column_widths>
+	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	      <show_titles>True</show_titles>
+	      <shadow_type>GTK_SHADOW_IN</shadow_type>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label259</name>
+		<label>Web Address</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label260</name>
+		<label>Description</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkHButtonBox</class>
+	    <name>hbuttonbox24</name>
+	    <layout_style>GTK_BUTTONBOX_SPREAD</layout_style>
+	    <spacing>30</spacing>
+	    <child_min_width>85</child_min_width>
+	    <child_min_height>27</child_min_height>
+	    <child_ipad_x>7</child_ipad_x>
+	    <child_ipad_y>0</child_ipad_y>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>True</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkButton</class>
+	      <name>button123</name>
+	      <can_default>True</can_default>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>clicked</name>
+		<handler>on_add_url_clicked</handler>
+		<object>web_list</object>
+		<last_modification_time>Tue, 24 Apr 2001 13:49:05 GMT</last_modification_time>
+	      </signal>
+	      <label>Add</label>
+	      <relief>GTK_RELIEF_NORMAL</relief>
+	    </widget>
+
+	    <widget>
+	      <class>GtkButton</class>
+	      <name>button124</name>
+	      <can_default>True</can_default>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>clicked</name>
+		<handler>on_update_url_clicked</handler>
+		<object>web_list</object>
+		<last_modification_time>Tue, 24 Apr 2001 13:49:14 GMT</last_modification_time>
+	      </signal>
+	      <label>Edit</label>
+	      <relief>GTK_RELIEF_NORMAL</relief>
+	    </widget>
+
+	    <widget>
+	      <class>GtkButton</class>
+	      <name>button125</name>
+	      <can_default>True</can_default>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>clicked</name>
+		<handler>on_delete_url_clicked</handler>
+		<object>web_list</object>
+		<last_modification_time>Tue, 24 Apr 2001 13:55:39 GMT</last_modification_time>
+	      </signal>
+	      <label>Delete</label>
+	      <relief>GTK_RELIEF_NORMAL</relief>
+	    </widget>
+	  </widget>
+	</widget>
+
+	<widget>
+	  <class>GtkLabel</class>
+	  <child_name>Notebook:tab</child_name>
+	  <name>label261</name>
+	  <label>Internet</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>0.5</xalign>
