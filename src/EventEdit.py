@@ -88,7 +88,6 @@ class EventEditor:
             self.calendar.hide()
         
         self.top.get_widget("eventTitle").set_text(name) 
-        self.event_menu.set_popdown_strings(list)
         if read_only:
             self.event_menu.set_sensitive(0)
             self.date_field.grab_focus()
@@ -100,6 +99,7 @@ class EventEditor:
         self.window.editable_enters(self.cause_field);
         self.window.editable_enters(self.descr_field);
 
+        AutoComp.AutoCombo(self.event_menu,list)
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
         
         if event != None:
@@ -124,7 +124,6 @@ class EventEditor:
         if not read_only:
             self.name_field.select_region(0, -1)
 
-        self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_event_edit_ok_clicked" : self.on_event_edit_ok_clicked,
