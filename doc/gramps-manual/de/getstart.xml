@@ -23,51 +23,51 @@
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
-    <title>&app; starten</title>
+    <title>GRAMPS starten</title>
     <para>Sie können &app; auf folgende Arten starten:</para> 
     <variablelist>
     <varlistentry>
 	<term><guimenu>Anwendungen</guimenu> Menü</term>
 	<listitem><para>Wählen Sie <menuchoice><guisubmenu>Sonstige</guisubmenu>
-	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
+	<guimenuitem>GRAMPS</guimenuitem></menuchoice>. </para></listitem>
     </varlistentry>
     <varlistentry>
 	<term>Befehlszeile</term>
     	<listitem><para>Um &app; von der Befehlszeile zu starten, tippen Sie 
-        <command>gramps</command>, und drücken dann <keycap>Return</keycap>.</para>
+        <command>gramps</command>, und drücken dann
+	 <keycap>Return</keycap>.</para>
 	
-	<para>Wenn die möchten, dass &app; eine bestimmte Datenbank öffnet oder 
-        eine bstimmte Datei beim Programmstart importiert, können Sie den Dateinamen
-        als Befehlzeilenargument übergeben:</para>
+	<para>Wenn die möchten, dass &app; eine bestimmte Datenbank
+	öffnet oder eine bestimmte Datei beim Programmstart importiert,
+	können Sie den Dateinamen als Befehlszeilenargument übergeben:</para>
 
-	<para>
-	<command>gramps -i</command> <replaceable>filename.ged</replaceable>
-    	</para> 
-
-    	<para>wobei <replaceable>filename.ged</replaceable> der name der
-	Datei ist, die Sie öffnen oder importieren wollen. Die ausfürliche
-        Referenz zu den Befehlzeilenoptionen finden Sie in der
-        <xref linkend="append-cmdline"/>. 
-        </para></listitem>
+	  <para>
+	  <command>gramps -i</command> <replaceable>filename.ged</replaceable>
+    </para> 
+    <para>wobei <replaceable>filename.ged</replaceable> der Name der
+	  Datei ist, die Sie öffnen oder importieren wollen. Die ausführliche
+    Referenz zu den Befehlszeilenoptionen finden Sie in der
+    <xref linkend="append-cmdline"/>. 
+    </para></listitem>
     </varlistentry>
     </variablelist>
     </sect2>
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>&app; zum ersten Mal ausführen</title>
+      <title>GRAMPS zum ersten Mal ausführen</title>
     <para>
-    Beim ersten Start, &app; zeigt ein paar Dialoge für die ersten Schritte.
+    Beim ersten Start, zeigt &app; ein paar Dialoge für die ersten Schritte.
     Folgen Sie den Anweisungen, die sie durch die <guilabel>Informationen
     zum Forscher</guilabel>, <guilabel>Numerische Datumsformate</guilabel>,
     <guilabel>Unterstützung alternativer Kalender</guilabel> und <guilabel>
-    LDS-Bräuche</guilabel> Dialoge. Diese Dialog sind selbsterklärend und
+    LDS-Bräuche</guilabel> Dialoge. Diese Dialoge sind selbsterklärend und
     werden hier nicht weiter erklärt.
     </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Erste Schritte Fenster: Informationen zum Forscher</title> 
+	<title>GRAMPS Erste Schritte Fenster: Informationen zum Forscher</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -85,7 +85,7 @@
 	exportieren ungültig sein.
 	</para>
 	
-	<para>Diese Information können auch jeder Zeit im
+	<para>Diese Informationen können auch jeder Zeit im
 	<guilabel>Einstellungen</guilabel> Dialog, in der <guilabel>Verwendung</guilabel>
         Kategorie verändert werden. 
 	</para>
@@ -95,7 +95,7 @@
     <!-- ================ Getting Started Subsection  -->
       <sect2 id="choose-db-start">
       <title>Eine Datenbank bei Programmstart wählen</title> 
-      <para>Wenn &app; gestarten wurde ohne eine Datenbank zu öffnen,
+      <para>Wenn &app; gestartet wurde ohne eine Datenbank zu öffnen,
       erscheint das folgende Fenster und fragt Sie nach einer Datenbank,
       die Sie öffnen möchten.</para>
       
@@ -124,7 +124,7 @@
       Verzeichnis, wenn nötig. Das Verzeichnis, das sie angeben wird von
       &app; benutzt um die Datenbankdatei <replaceable>data.gramps
       </replaceable> so wie mögliche Kopien von Medien zu speichern.
-      Dieses Verzeichnis wird jedesmal von &app; aktualisiert, wenn die
+      Dieses Verzeichnis wird jedes Mal von &app; aktualisiert, wenn die
       Datenbank gespeichert wird.
       </para>
       
@@ -134,8 +134,8 @@
       DATEI</replaceable> öffnen. Das Verzeichnis, das Sie öffnen müssen,
       sollte die Datenbankdatei <replaceable>data.gramps</replaceable>
       enthalten so wie mögliche Kopien von Medien. So ein Verzeichnis wird
-      von &app; erstelltm, wenn Sie eine neue Datenbank beginnen und wird
-      jedesmal aktualisiert, wenn die Datenbank gespeichert wird.
+      von &app; erstellt, wenn Sie eine neue Datenbank beginnen und wird
+      jedes Mal aktualisiert, wenn die Datenbank gespeichert wird.
       </para>
 
       </sect2>
@@ -199,7 +199,7 @@
 	über &app; im Browser zu lesen. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS Home Page</term>
+	<varlistentry><term>GRAMPS Homepage</term>
 	<listitem><para>Wählen Sie diesen Eintrag um die Webseite von &app; im
         Standard-Webbrowser aufzurufen.</para></listitem>
 	</varlistentry>
