@@ -33,13 +33,13 @@ import GrampsCfg
 
 #-------------------------------------------------------------------------
 #
-#
+# Russian-specific definitions of relationships
 #
 #-------------------------------------------------------------------------
 
-_male_cousin_level = [ "двоюродный", "троюродный", "четвероюродный", ]
+_male_cousin_level = [ "", "двоюродный", "троюродный", "четвероюродный", ]
 
-_female_cousin_level = [ "двоюродная", "троюродная", "четвероюродная", ]
+_female_cousin_level = [ "", "двоюродная", "троюродная", "четвероюродная", ]
 
 _junior_male_removed_level = [ "брат", "племянник", "внучатый племянник", 
                              "правнучатый племянник", "праправнучатый племянник", ]
@@ -47,9 +47,9 @@ _junior_male_removed_level = [ "брат", "племянник", "внучаты
 _junior_female_removed_level = [ "сестра", "племянница", "внучатая племянница",
                              "правнучатая племянница", "праправнучатая племянница", ]
 
-_senior_male_removed_level = [ "дядя", "дед", "прадед", "прапрадед", ]
+_senior_male_removed_level = [ "", "дядя", "дед", "прадед", "прапрадед", ]
 
-_senior_female_removed_level = [ "тетка", "бабка", "прабабка", "прапрабабка", ]
+_senior_female_removed_level = [ "", "тетка", "бабка", "прабабка", "прапрабабка", ]
 
 _father_level = [ "", "отец", "дед", "прадед", "прапрадед", 
                  "пра-пра-прадед", "пра-пра-пра-прадед", ]
@@ -138,7 +138,7 @@ def get_relationship(orig_person,other_person):
     Returns a string representing the relationshp between the two people,
     along with a list of common ancestors (typically father,mother) 
     
-    Special cases: relation strings "undefined" and "spouse".
+    Special cases: relation strings "", "undefined" and "spouse".
     """
 
     firstMap = {}
@@ -213,17 +213,16 @@ def get_relationship(orig_person,other_person):
             return (get_nephew(firstRel-1),common)
         else:
             return (get_niece(firstRel-1),common)
-    else:
-        if secondRel > firstRel:
-            if other_person.getGender() == RelLib.Person.male:
-                return (get_senior_male_cousin(firstRel-1,secondRel-firstRel),common)
-            else:
-                return (get_senior_female_cousin(firstRel-1,secondRel-firstRel),common)
+    elif secondRel > firstRel:
+        if other_person.getGender() == RelLib.Person.male:
+            return (get_senior_male_cousin(firstRel-1,secondRel-firstRel),common)
         else:
-            if other_person.getGender() == RelLib.Person.male:
-                return (get_junior_male_cousin(secondRel-1,firstRel-secondRel),common)
-            else:
-                return (get_junior_female_cousin(firstRel-1,secondRel-firstRel),common)
+            return (get_senior_female_cousin(firstRel-1,secondRel-firstRel),common)
+    else:
+        if other_person.getGender() == RelLib.Person.male:
+            return (get_junior_male_cousin(secondRel-1,firstRel-secondRel),common)
+        else:
+            return (get_junior_female_cousin(secondRel-1,firstRel-secondRel),common)
     
 
 #-------------------------------------------------------------------------
