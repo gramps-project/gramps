@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,11 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-#
-# Modified by Alex Roitman to enable translation of warnings and errors.
-# Modified further to use cStringIO object. 
-#
-
 # $Id$
 
 "View/Verify"
@@ -34,6 +29,7 @@
 #------------------------------------------------------------------------
 import os
 import cStringIO
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -42,6 +38,7 @@ import cStringIO
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade 
+from gnome import help_display
 
 #------------------------------------------------------------------------
 #
@@ -52,33 +49,36 @@ import RelLib
 import Utils
 import Date
 
-from gettext import gettext as _
-
-
 def runTool(database,active_person,callback,parent=None):
     Verify(database,active_person,parent)
 
 #-------------------------------------------------------------------------
 #
+# Actual tool
 #
 #-------------------------------------------------------------------------
 class Verify:
     def __init__(self,database,active_person,parent):
         self.db = database
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
 
         self.top = gtk.glade.XML(self.glade_file,"verify_settings","gramps")
         self.top.signal_autoconnect({
-            "destroy_passed_object"  : self.close,
-            "on_verify_delete_event" : self.on_delete_event,
-            "on_verify_ok_clicked"   : self.on_apply_clicked
+            "destroy_passed_object" : self.close,
+            "on_verify_delete_event": self.on_delete_event,
+            "on_help_clicked"       : self.on_help_clicked,
+            "on_verify_ok_clicked"  : self.on_apply_clicked
         })
 
         self.window = self.top.get_widget('verify_settings')
+        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                      self.top.get_widget('title'),
                      _('Database Verify'))
@@ -107,6 +107,10 @@ class Verify:
     def present(self,obj):
         self.window.present()
 
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-util')
+
     def get_year(self,event_handle):
         """
         Returns the year of an event (by its id) or 0 if no event_handle 
@@ -126,18 +130,22 @@ class Verify:
 
         personList = self.db.get_person_handles(sort_handles=False)
 
-        oldage = int(self.top.get_widget("oldage").get_text())
-        hwdif = int(self.top.get_widget("hwdif").get_text())
-        cspace = int(self.top.get_widget("cspace").get_text())
-        cbspan = int(self.top.get_widget("cbspan").get_text())
-        yngmar = int(self.top.get_widget("yngmar").get_text())
-        oldmar = int(self.top.get_widget("oldmar").get_text())
-        oldmom = int(self.top.get_widget("oldmom").get_text())
-        yngmom = int(self.top.get_widget("yngmom").get_text())
-        olddad = int(self.top.get_widget("olddad").get_text())
-        yngdad = int(self.top.get_widget("yngdad").get_text())
-        wedder = int(self.top.get_widget("wedder").get_text())
-        lngwdw = int(self.top.get_widget("lngwdw").get_text())
+        oldage = self.top.get_widget("oldage").get_value_as_int()
+        hwdif  = self.top.get_widget("hwdif").get_value_as_int()
+        cspace = self.top.get_widget("cspace").get_value_as_int()
+        cbspan = self.top.get_widget("cbspan").get_value_as_int()
+        yngmar = self.top.get_widget("yngmar").get_value_as_int()
+        oldmar = self.top.get_widget("oldmar").get_value_as_int()
+        oldmom = self.top.get_widget("oldmom").get_value_as_int()
+        yngmom = self.top.get_widget("yngmom").get_value_as_int()
+        olddad = self.top.get_widget("olddad").get_value_as_int()
+        yngdad = self.top.get_widget("yngdad").get_value_as_int()
+        wedder = self.top.get_widget("wedder").get_value_as_int()
+        lngwdw = self.top.get_widget("lngwdw").get_value_as_int()
+        mxchildmom = self.top.get_widget("mxchildmom").get_value_as_int()
+        mxchilddad = self.top.get_widget("mxchilddad").get_value_as_int()
+        lngwdw = self.top.get_widget("lngwdw").get_value_as_int()
+
         estimate_age = self.top.get_widget("estimate").get_active()
 
         oldunm = 99  # maximum age at death for unmarried person 
@@ -150,6 +158,7 @@ class Verify:
             idstr = "%s (%s)" % (person.get_primary_name().get_name(),person.get_gramps_id())
 
             # individual checks
+            total_children = 0
             ageatdeath = 0
             byear = self.get_year( person.get_birth_handle() )
             bapyear = 0
@@ -398,6 +407,8 @@ class Verify:
 
                     nkids = 0
                     cbyears = []
+                    
+                    total_children = total_children + len(family.get_child_handle_list())
                     for child_handle in family.get_child_handle_list():
                         nkids = nkids+1
                         child = self.db.get_person_from_handle(child_handle)
@@ -455,53 +466,78 @@ class Verify:
                         if max(cby_diff) > cspace:
                             warn.write(_("Large age differences between children: family %s.\n") % family.get_gramps_id() )
 
+            if (person.get_gender() == RelLib.Person.MALE 
+                                and total_children > mxchilddad) \
+                        or (person.get_gender() == RelLib.Person.FEMALE 
+                                and total_children > mxchildmom):
+                warn.write(_("Too many children (%(num_children)d) for %(person_name)s.\n") % {
+                    'num_children' : total_children, 'person_name' : idstr })
+
         text = ""
-        if error:
-            text = _("ERRORS:\n") + error.getvalue() + "\n" 
-        if warn:
-            text = text + _("WARNINGS:\n") + warn.getvalue()
+        err_text = error.getvalue()
+        warn_text = warn.getvalue()
+        if err_text.strip():
+            text = _("ERRORS:\n") + err_text + "\n" 
+        if warn_text.strip():
+            text = text + _("WARNINGS:\n") + warn_text
             
         error.close()
         warn.close()
+        VerifyResults(text,self.parent)
     
-        top = gtk.glade.XML(self.glade_file,"verify_result","gramps")
-        Utils.set_titles(top.get_widget('verify_result'),
-                     top.get_widget('title'),
-                     _('Database Verify'))
+#-------------------------------------------------------------------------
+#
+# Display the results
+#
+#-------------------------------------------------------------------------
+class VerifyResults:
+    def __init__(self,text,parent):
+        self.parent = parent
+        self.text = text
+
+        self.win_key = self
+
+        base = os.path.dirname(__file__)
+        self.glade_file = base + os.sep + "verify.glade"
+
+        self.top = gtk.glade.XML(self.glade_file,"verify_result","gramps")
+        Utils.set_titles(self.top.get_widget('verify_result'),
+                     self.top.get_widget('title'),
+                     _('Database Verification Results'))
     
-        top.signal_autoconnect({
+        self.top.signal_autoconnect({
             "destroy_passed_object"  : self.close_result,
             "on_result_delete_event" : self.on_result_delete_event,
         })
     
-        self.topwin = top.get_widget("verify_result")
-        self.win_result_key = self.topwin
-        textwindow = top.get_widget("textwindow")
-        textwindow.get_buffer().set_text(text)
+        self.window = self.top.get_widget("verify_result")
+        self.window.set_icon(self.parent.topWindow.get_icon())
+        textwindow = self.top.get_widget("textwindow")
+        textwindow.get_buffer().set_text(self.text)
         
         self.add_result_to_menu()
-        self.topwin.show()
+        self.window.show()
     
     def on_result_delete_event(self,obj,b):
         self.remove_result_from_menu()
 
     def close_result(self,obj):
         self.remove_result_from_menu()
-        self.topwin.destroy()
+        self.window.destroy()
 
     def add_result_to_menu(self):
-        self.parent.child_windows[self.win_result_key] = self.topwin
-        self.result_parent_menu_item = gtk.MenuItem(_('Database Verify results'))
+        self.parent.child_windows[self.win_key] = self.window
+        self.result_parent_menu_item = gtk.MenuItem(_('Database Verification Results'))
         self.result_parent_menu_item.connect("activate",self.present_result)
         self.result_parent_menu_item.show()
         self.parent.winsmenu.append(self.result_parent_menu_item)
 
     def remove_result_from_menu(self):
-        del self.parent.child_windows[self.win_result_key]
+        del self.parent.child_windows[self.win_key]
         self.result_parent_menu_item.destroy()
 
     def present_result(self,obj):
-        self.topwin.present()
+        self.window.present()
 
 #-------------------------------------------------------------------------
 #

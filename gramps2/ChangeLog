@@ -10,6 +10,10 @@
 	(MediaRef,Url,Witness,SourceRef): Remove unneeded privacy methods.
 	* src/ImageSelect.py (GlobalMediaProperties.display_refs): Typos.
 
+	* src/plugins/Verify.py (VerifyResults): Add class for displaying
+	results; help for the settings window; single instance of the tool.
+	* src/plugins/verify.glade: HIG compliance, break things into tabs.
+
 2005-03-22  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (MediaBase): Add base class for media references;
 	(BaseObject): Add has_handle_reference, remove_handle_references,
