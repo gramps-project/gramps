@@ -671,11 +671,12 @@ class LocalMediaProperties:
         self.lists_changed = 0
         self.parent = parent
         self.db = parent.db
+        self.child_windows = []
         
         fname = self.object.get_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_description","gramps")
 
-        title = _('Change local media object properties')
+        title = _('Media Reference Editor')
         Utils.set_titles(self.change_dialog.get_widget('change_description'),
                          self.change_dialog.get_widget('title'), title)
         
@@ -730,15 +731,52 @@ class LocalMediaProperties:
             "on_update_attr_clicked": self.on_update_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_help_clicked" : self.on_help_clicked,
+            "on_ok_clicked" : self.on_ok_clicked,
+            "on_cancel_clicked" : self.close,
+            "on_local_delete_event" : self.on_delete_event,
             })
         self.redraw_attr_list()
         self.window = self.change_dialog.get_widget('change_description')
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_ok_clicked()
+        self.parent.parent.child_windows.append(self)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.parent.parent.child_windows.remove(self)
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def add_itself_to_menu(self):
+        label = _('Media Reference')
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.parent.menu.append(self.parent_menu_item)
+        self.menu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Reference Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def redraw_attr_list(self):
         self.atree.clear()
@@ -783,10 +821,10 @@ class LocalMediaProperties:
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
         
-    def on_ok_clicked(self):
+    def on_ok_clicked(self,obj):
         self.on_apply_clicked()
+        self.close(obj)
         
     def on_attr_list_select_row(self,obj):
         store,iter = self.atree.get_selected()

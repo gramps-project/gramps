@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -298,7 +298,7 @@ class SourceEditor:
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        Utils.destroy_passed_object(self.sourceDisplay)
+        self.sourceDisplay.destroy()
 
     def close_child_windows(self):
         for child_window in self.child_windows:
