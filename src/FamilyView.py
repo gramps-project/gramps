@@ -899,9 +899,10 @@ class FamilyView:
 
     def find_marriage(self,family):
         for event_id in family.get_event_list():
-            event = self.parent.db.find_event_from_id(event_id)
-            if event and event.get_name() == "Marriage":
-                return event
+            if event_id:
+                event = self.parent.db.find_event_from_id(event_id)
+                if event.get_name() == "Marriage":
+                    return event
         return None
 
     def update_list(self,model,tree,person):

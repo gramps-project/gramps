@@ -667,9 +667,10 @@ class GedcomParser:
                     event.set_name(matches[1])
                 if event.get_name() == "Marriage":
                     self.family.set_relationship("Married")
+                self.db.add_event(event)
                 self.family.add_event_id(event.get_id())
                 self.parse_family_event(event,2)
-                self.db.add_event(event)
+                self.db.commit_event(event)
 
     def parse_note_base(self,matches,obj,level,old_note,task):
         note = old_note

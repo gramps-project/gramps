@@ -1961,6 +1961,7 @@ class Family(SourceNote):
 
     def add_event_id(self,event_id):
         """adds an Event to the event list"""
+        assert(event_id != None)
         self.event_list.append(event_id)
 
     def get_event_list(self) :
@@ -2901,12 +2902,12 @@ class GrampsDB:
 
         if map.has_key(str(idVal)):
             place = Place()
-            data = self.place_map[map[str(idVal)]]
+            data = self.place_map[str(map[idVal])]
             place.unserialize(data)
         else:
             place = Place()
             if self.place_map.has_key(str(idVal)):
-                map[str(idVal)] = self.add_place(place)
+                map[idVal] = self.add_place(place)
             else:
                 place.set_id(str(idVal))
                 map[str(idVal)] = self.add_place_as(place)
@@ -3108,7 +3109,7 @@ class GrampsDB:
                 family = self.new_family()
             else:
                 family = self.new_family_no_map(str(idVal))
-            map[str(idVal)] = family.get_id()
+            map[idVal] = family.get_id()
         return family
 
     def find_source_no_conflicts(self,idVal,map):
