@@ -103,7 +103,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "GRAMPS"
-version      = "0.9.1-pre1"
+version      = "0.9.1-rc1"
 copyright    = unicode("© 2001-2003 Donald N. Allingham","iso-8859-1")
 comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "Management Programming System) is a personal "
@@ -115,7 +115,7 @@ authors      = [
     ]
 
 documenters  = [
-    'Alex Roitman',
+    'Alexander Roitman',
     ]
 
 translators = _('TRANSLATORS: Translate this to your name in your native language')
