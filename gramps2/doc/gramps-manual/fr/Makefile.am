@@ -1,7 +1,7 @@
 figdir = figures
 docname = gramps-manual
-lang = C
-omffile = gramps-manual-C.omf
+lang = fr
+omffile = gramps-manual-fr.omf
 entities = legal.xml\
 	getstart.xml\
 	mainwin.xml\

@@ -105,7 +105,7 @@ pkgpythondir = @pkgpythondir@
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-SUBDIRS = C de ru
+SUBDIRS = C fr de ru
 subdir = doc/gramps-manual
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
