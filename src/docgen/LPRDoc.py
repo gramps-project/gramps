@@ -21,6 +21,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# Written by Billy C. Earney, 2003-2004
+# Modified by Alex Roitman, 2004
+
+# $Id$
+
 """LPR document generator"""
 
 #------------------------------------------------------------------------
@@ -204,6 +209,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         #reset variables for this state 
         self.__table_data=[]
         self.__in_table=1
+        self.__tbl_style = self.table_styles[style_name]
+        self.__ncols = self.__tbl_style.get_columns()
 
     def end_table(self):
         """Close the table environment"""
@@ -395,12 +402,12 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def __output_table(self):
         """do calcs on data in table and output data in a formatted way"""
-        __max_col_size=[0]*100
-        __min_col_size=[0]*100
+        __max_col_size=[0]*self.__ncols
+        __min_col_size=[0]*self.__ncols
 
         for __row in self.__table_data:
            #do calcs on each __row and keep track on max length of each column
-           for __col in range(0,len(__row)):
+           for __col in range(self.__ncols):
               __row[__col]=__row[__col]+" "*3;   
               if __max_col_size[__col] < self.__text_width(__row[__col]):
                   __max_col_size[__col]=self.__text_width(__row[__col])
@@ -430,13 +437,12 @@ class LPRDoc(BaseDoc.BaseDoc):
 
             while __extra_length > 1:
                 print __extra_length
-                for __col in range(0, len(__max_col_size)):
+                for __col in range(self.__ncols):
                     if __extra_length<=1: break
                     if __max_col_size[__col] > __min_col_size[__col]:
                         __temp=__max_col_size[__col]-(__max_col_size[__col]/__total_table_width)*__extra_length
                     if __temp >= __min_col_size[__col]:
                         __max_col_size[__col]=__temp
-           
 
                 __total_table_width=0
                 for __value in __max_col_size:
@@ -449,7 +455,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                              #text in each row
         for __row in self.__table_data:
             __x=self.__left_margin         #reset so that x is at margin
-            for __col in range(0,len(__row)):
+            for __col in range(self.__ncols):
                 __nothing, __y=self.__print_text(__row[__col], 
                                                  self.__x, self.__y, 
                                                  __x, __x+__max_col_size[__col])
