@@ -2407,10 +2407,15 @@ class GrampsDB:
         self.eventnames = None
         self.metadata   = None
         self.undolabel  = None
+        self.redolabel  = None
 
     def set_undo_label(self,label):
         self.undolabel = label
         self.undolabel.set_sensitive(0)
+
+    def set_redo_label(self,label):
+        self.redolabel = label
+        self.redolabel.set_sensitive(0)
 
     def load(self,name,callback):
         if self.person_map:
