@@ -1,3 +1,15 @@
+2005-02-27 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DbPrompter.py (format_maker): Add mnemonic activation target
+	to the format selector label; Use new import format; don't treat
+	native formats as plugins anymore.
+	* src/PluginMgr.py: Add format name to import registration.
+	* src/ReadGedcom.py: Cleanups; Don't register already native import.
+	* src/ReadXML.py: Don't register already native import.
+	* src/data/gramps.xml: Add magic patterns for XML, GEDCOM, and GW.
+	* src/plugins/ImportGeneWeb.py: Register with format name.
+	* src/plugins/ReadNative.py: Remove obsolete file.
+	* src/plugins/ReadPkg.py: Lots of cleanups; Register with format name.
+
 2005-02-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/NavWebPage.py: add the ability to have notes
 	attached to the Introduction and Home pages

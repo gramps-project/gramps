@@ -148,10 +148,10 @@ def register_export(exportData,title,description='',config=None,filename=''):
     if description and filename:
         export_list.append((exportData,title,description,config,filename))
 
-def register_import(task, ffilter, mime=None, native_format=0):
+def register_import(task, ffilter, mime=None, native_format=0, format_name=""):
     """Register an import filter, taking the task and file filter"""
     if mime:
-        import_list.append((task, ffilter, mime, native_format))
+        import_list.append((task, ffilter, mime, native_format, format_name))
 
 
 def register_tool(
