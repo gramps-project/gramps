@@ -34,7 +34,7 @@ BuildRequires: desktop-file-utils >= 0.2.92
 
 %description
 gramps (Genealogical Research and Analysis Management Programming
-System) is a GNOME based genealogy program supporting a Python
+dlSystem) is a GNOME based genealogy program supporting a Python
 based plugin system.
 
 %prep

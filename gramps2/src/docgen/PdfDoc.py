@@ -30,7 +30,7 @@ import Plugins
 import Errors
 import ImgManip
 import FontScale
-import grampslib
+import GrampsMime
 from gettext import gettext as _
 
 _H   = 'Helvetica'
@@ -187,9 +187,9 @@ class PdfDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'application/pdf'
-            app = grampslib.default_application_command(apptype)
+            app = GrampsMime.get_application(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app)
+            os.system ('%s "$FILE" &' % app[0])
 
     def page_break(self):
         self.story.append(PageBreak())
@@ -584,31 +584,18 @@ print_label = None
 try:
     import Utils
 
-    prog = grampslib.default_application_command("application/pdf")
-    desc = grampslib.default_application_name("application/pdf")
-    if Utils.search_for(prog):
-        print_label=_("Open in %s") % desc
+    prog = GrampsMime.get_application("application/pdf")
+    type = GrampsMime.get_description("application/pdf")
+    
+    if Utils.search_for(prog[0]):
+        print_label=_("Open in %s") % prog[1]
+    else:
+        print_label=None
+    Plugins.register_text_doc(type, PdfDoc, 1, 0, 1, ".html", print_label)
+    Plugins.register_draw_doc(type, PdfDoc, 1, 1,    ".pdf",  print_label)
 except:
-    pass
-
-Plugins.register_draw_doc(
-    _("PDF"),
-    PdfDoc,
-    1,
-    1,
-    ".pdf",
-    print_label
-    )
-
-Plugins.register_text_doc(
-    name=_("PDF"),
-    classref=PdfDoc,
-    table=1,
-    paper=1,
-    style=1,
-    ext=".pdf",
-    print_report_label=print_label
-    )
+    Plugins.register_text_doc('PDF document', PdflDoc, 1, 0, 1,".pdf", None)
+    Plugins.register_draw_doc('PDF document', PdfDoc,  1, 1,   ".pdf", None)
 
 Plugins.register_book_doc(
     name=_("PDF"),

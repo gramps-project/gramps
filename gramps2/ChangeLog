@@ -1,3 +1,8 @@
+2004-04-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* GrampsMime.py: added mime types
+	* grampslib_wrap.c: removed
+	* various: more undo functionality
+
 2004-03-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* various: Add undo functionality
 

@@ -2630,11 +2630,10 @@ class GrampsDB:
         self.place2title = {}
         self.genderStats = GenderStats ()
 
-    def start_transaction(self):
-        return Transaction()
+    def start_transaction(self,msg=""):
+        return Transaction(msg)
 
     def add_transaction(self,transaction):
-        print "---- Add"
         transaction.display()
         self.translist.append(transaction)
 
@@ -2642,7 +2641,6 @@ class GrampsDB:
         if len(self.translist) == 0:
             return
         transaction = self.translist.pop()
-        print "---- undo"
         transaction.display()
 
         subitems = transaction.get_data()
@@ -2876,9 +2874,11 @@ class GrampsDB:
             self.genderStats.count_person (person, self)
         return person
 
-    def has_person_id(self,val):            #what does this function do?
-        return self.person_map.get(str(val))  #EARNEY
+    def has_person_id(self,val):    
+        return self.person_map.get(str(val))
 
+    def has_family_id(self,val):            
+        return self.family_map.get(str(val))
 
     def try_to_find_person_from_id(self,val,trans=None):
         """finds a Person in the database from the passed gramps' ID.
@@ -3044,9 +3044,6 @@ class GrampsDB:
         self.added_files.append(object)
         
         return index
-
-    def get_object(self,gid):
-        return self.media_map[str(gid)]
 
     def find_object(self,gid,map,trans=None):
         """finds an Object in the database using the gid and map
@@ -3488,8 +3485,15 @@ class GrampsDB:
 #-------------------------------------------------------------------------
 class Transaction:
 
-    def __init__(self):
+    def __init__(self,msg):
+        self.msg = msg
         self.data = []
+
+    def get_description(self):
+        return self.msg
+
+    def set_description(self,msg):
+        self.msg = msg
 
     def add(self, type, gid, data):
         self.data.append((type, gid, data))

@@ -33,7 +33,7 @@ import const
 import Errors
 import BaseDoc
 import QuestionDialog
-import grampslib
+import GrampsMime
 
 from gettext import gettext as _
 
@@ -336,9 +336,9 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'text/html'
-            app = grampslib.default_application_command(apptype)
+            app = GrampsMime.get_application_(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app)
+            os.system ('%s "$FILE" &' % app[0])
 
     def write_support_files(self):
         if self.map:
@@ -477,15 +477,16 @@ class HtmlDoc(BaseDoc.BaseDoc):
 #
 #------------------------------------------------------------------------
 
-print_label = None
 try:
     import Utils
 
-    prog = grampslib.default_application_command("text/html")
-    desc = grampslib.default_application_name("text/html")
-    if Utils.search_for(prog):
-        print_label=_("Open in %s") % desc
+    prog = GrampsMime.get_application("text/html")
+    type = GrampsMime.get_description("text/html")
+    
+    if Utils.search_for(prog[0]):
+        print_label=_("Open in %s") % prog[1]
+    else:
+        print_label=None
+    Plugins.register_text_doc(type,HtmlDoc,1,0,1,".html", print_label)
 except:
-    pass
-
-Plugins.register_text_doc(_("HTML"),HtmlDoc,1,0,1,".html", print_label)
+    Plugins.register_text_doc('HTML',HtmlDoc,1,0,1,".html", None)

@@ -265,18 +265,11 @@ class EventEditor:
         self.date_field.set_text(self.date.get_date())
         self.date_check.set_calendar(cobj())
         
-    def get_place(self,field,makenew=0):
+    def get_place(self,field,trans):
         text = strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.parent.db.get_place_id_map()[self.pmap[text]]
-            elif makenew:
-                place = RelLib.Place()
-                place.set_title(text)
-                self.parent.db.add_place(place)
-                self.pmap[text] = place.get_id()
-                self.plist.append(place)
-                return place
+                return self.parent.db.find_event_from_id(self.pmap[text])
             else:
                 return None
         else:
@@ -284,10 +277,12 @@ class EventEditor:
 
     def on_event_edit_ok_clicked(self,obj):
 
+        trans = self.db.start_transaction()
+        
         ename = unicode(self.name_field.get_text())
         self.date.set(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
-        eplace_obj = self.get_place(self.place_field,1)
+        eplace_obj = self.get_place(self.place_field,trans)
         buf = self.note_field.get_buffer()
 
         enote = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
@@ -304,17 +299,19 @@ class EventEditor:
 
         if self.event == None:
             self.event = RelLib.Event()
-            self.db.add_event(self.event)
+            self.db.add_event(self.event,trans)
             self.event.set_source_reference_list(self.srcreflist)
             self.event.set_witness_list(self.witnesslist)
             self.parent.elist.append(self.event.get_id())
         
-        self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,epriv,ecause)
+        self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
+                          epriv,ecause,trans)
+        self.db.add_transaction(trans)
         self.parent.redraw_event_list()
         self.callback(self.event)
         self.close(obj)
 
-    def update_event(self,name,date,place,desc,note,format,priv,cause):
+    def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:
             if self.event.get_place_id() != place.get_id():
                 self.event.set_place_id(place.get_id())
@@ -356,9 +353,7 @@ class EventEditor:
         if self.event.get_privacy() != priv:
             self.event.set_privacy(priv)
             self.parent.lists_changed = 1
-        trans = self.db.start_transaction()
         self.db.commit_event(self.event,trans)
-        self.db.add_transaction(trans)
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()

@@ -99,7 +99,7 @@ class SelectObject:
         self.object_model.new_model()
 
         for key in self.db.get_object_keys():
-            object = self.db.get_object(key)
+            object = self.db.find_object_from_id(key)
             title = object.get_description()
             the_id = object.get_id()
             the_type = Utils.get_mime_description(object.get_mime_type())
@@ -116,7 +116,7 @@ class SelectObject:
             return
         data = self.object_model.get_data(iter,range(self.ncols))
         the_id = data[4]
-        object = self.db.get_object(the_id)
+        object = self.db.find_object_from_id(the_id)
         the_type = Utils.get_mime_description(object.get_mime_type())
         path = object.get_path()
 
@@ -149,7 +149,7 @@ class SelectObject:
             if iter:
                 data = self.object_model.get_data(iter,range(self.ncols))
                 the_id = data[4]
-                return_value = self.db.get_object(the_id)
+                return_value = self.db.find_object_from_id(the_id)
             else:
                 return_value = None
             self.top.destroy()
