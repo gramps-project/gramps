@@ -110,7 +110,7 @@ except:
 
 try:
     import LaTeXDoc
-    _textdoc.append((_LATEX, _no_tables, _paper, _no_styles))
+    _textdoc.append((_LATEX, _has_tables, _paper, _no_styles))
 except:
     pass
 
