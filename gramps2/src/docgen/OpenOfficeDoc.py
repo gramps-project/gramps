@@ -996,4 +996,4 @@ try:
 except:
     PluginMgr.register_text_doc(_('OpenOffice.org Writer'), OpenOfficeDoc,1,1,1,".sxw", None)
     PluginMgr.register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
-    PluginMgr.register_draw_doc(_("OpenOffice.org Writer"),   OpenOfficeDoc,1,1,".sxx",None);
+    PluginMgr.register_draw_doc(_("OpenOffice.org Writer"),   OpenOfficeDoc,1,1,".sxw",None);
