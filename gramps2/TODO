@@ -29,8 +29,5 @@
   either a column in the People View or something like boldfaces "Notes" 
   tab title. I like the latter because it can be uniformly applied to 
   any notes, not only people's. Not so hard to implement. 
-* Replace ListModel with the TreeModel
-* Work out BookReport dialog so that resize is not necessary
-* Work out name capitalization options
 * Make Date parsing locale dependent, like relationship calculator
 * And a whole lot more....
