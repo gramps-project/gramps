@@ -1284,7 +1284,9 @@ class Gramps:
         self.status_text(_("autosaving..."));
         try:
             self.db.save(filename,self.quick_progress)
-            self.status_text(_("autosave complete"));
+            self.status_text(_("autosave complete"))
+            gtk.timeout_add(5000,self.modify_statusbar)
+            self.load_progress(0)
         except (IOError,OSError),msg:
             self.status_text("%s - %s" % (_("autosave failed"),msg))
         except:

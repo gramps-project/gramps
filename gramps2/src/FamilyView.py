@@ -159,13 +159,30 @@ class FamilyView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.parent.db.getPerson(id))
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            menu = gtk.Menu()
-            item = gtk.TearoffMenuItem()
-            item.show()
-            menu.append(item)
-            msg = _("Edit relationships")
-            Utils.add_menuitem(menu,msg,id,self.child_rel)
-            menu.popup(None,None,None,0,0)
+            self.build_child_menu(id)
+
+    def build_child_menu(self,id):
+        """Builds the menu that allows editing operations on the child list"""
+        entries = [
+            (_("Edit the child/parent relationships"), self.child_rel),
+            (_("Edit the selected child"),self.edit_child_callback),
+            (_("Remove the selected child"),self.remove_child_clicked),
+            ]
+        
+        menu = gtk.Menu()
+        for msg,callback in entries:
+            Utils.add_menuitem(menu,msg,id,callback)
+        menu.popup(None,None,None,0,0)
+
+    def edit_child_callback(self,obj):
+        model, iter = self.child_selection.get_selected()
+        if not iter:
+            return
+        child = self.parent.db.getPerson(self.child_model.get_value(iter,2))
+        try:
+            EditPerson.EditPerson(child, self.parent.db, self.spouse_after_edit)
+        except:
+            DisplayTrace.DisplayTrace()
 
     def child_rel(self,obj):
         person = self.parent.db.getPerson(obj.get_data(Utils.OBJECT))
@@ -178,12 +195,45 @@ class FamilyView:
         else:
             row = model.get_path(iter)
             self.display_marriage(self.person.getFamilyList()[row[0]])
+
+    def build_spouse_menu(self):
+        entries = [
+            (_("Edit relationship"), self.edit_marriage_callback),
+            (_("Remove the selected spouse"), self.remove_spouse),
+            (_("Edit the selected spouse"), self.edit_spouse_callback),
+            (_("Set the selected spouse as the preferred spouse"), self.set_preferred_spouse),
+            ]
+
+        menu = gtk.Menu()
+        for msg,callback in entries:
+            Utils.add_menuitem(menu,msg,id,callback)
+        menu.popup(None,None,None,0,0)
+
+    def set_preferred_spouse(self,obj):
+        if self.selected_spouse:
+            self.person.setPreferred(self.family)
+            self.load_family()
             
+    def edit_spouse_callback(self,obj):
+        if self.selected_spouse:
+            try:
+                EditPerson.EditPerson(self.selected_spouse, self.parent.db, self.spouse_after_edit)
+            except:
+                DisplayTrace.DisplayTrace()
+
+    def edit_marriage_callback(self,obj):
+        Marriage.Marriage(self.family,self.parent.db,
+                          self.parent.new_after_edit,
+                          self.load_family)
+
     def edit_relationship(self,obj,event):
         if event.state & gtk.gdk.SHIFT_MASK and \
            event.type == gtk.gdk.BUTTON_PRESS and \
            event.button == 1 and self.selected_spouse:
             self.parent.load_person(self.selected_spouse)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            if self.selected_spouse:
+                self.build_spouse_menu()
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
            if self.person:
                try:
@@ -573,14 +623,69 @@ class FamilyView:
                                  4,val[3],
                                  5,status,
                                  6,val[6])
-                
+
+    def build_parents_menu(self,family):
+        """Builds the menu that allows editing operations on the child list"""
+        entries = [
+            (_("Edit the child/parent relationships"), self.edit_ap_relationships),
+            (_("Remove parents"),self.del_parents_clicked),
+            ]
+        
+        menu = gtk.Menu()
+        for msg,callback in entries:
+            Utils.add_menuitem(menu,msg,family,callback)
+        menu.popup(None,None,None,0,0)
+
+    def build_sp_parents_menu(self,family):
+        """Builds the menu that allows editing operations on the child list"""
+        entries = [
+            (_("Edit the child/parent relationships"), self.edit_sp_relationships),
+            (_("Remove parents"),self.del_sp_parents),
+            ]
+
+        menu = gtk.Menu()
+        for msg,callback in entries:
+            Utils.add_menuitem(menu,msg,family,callback)
+        menu.popup(None,None,None,0,0)
+
+    def edit_ap_relationships(self,obj):
+        self.parent_editor(self.person,self.ap_selection)
+
+    def edit_sp_relationships(self,obj):
+        self.parent_editor(self.selected_spouse,self.sp_selection)
+
     def edit_ap_parents(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.person,self.ap_selection)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            plist = self.person.getParentList()
+
+            if len(plist) == 0:
+                return
+            elif len(plist) == 1:
+                family,m,r = plist[0]
+            else:
+                model, iter = self.ap_selection.get_selected()
+                path = model.get_path(iter)
+                family,m,r = plist[path[0]]
+            self.build_parents_menu(family)
 
     def edit_sp_parents(self,obj,event):
+        if self.selected_spouse == None:
+            return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            plist = self.selected_spouse.getParentList()
+            if len(plist) == 0:
+                return
+            elif len(plist) == 1:
+                family,m,r = plist[0]
+            else:
+                model, iter = self.sp_selection.get_selected()
+                path = model.get_path(iter)
+                family,m,r = plist[path[0]]
+            self.build_sp_parents_menu(family)
 
     def add_parents_clicked(self,obj):
         self.parent_add(self.person)
