@@ -1,3 +1,7 @@
+2004-01-26  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FtmStyleDescendants.py (_make_default_style, 
+	print_children): Add new style for numbering children.
+
 2004-03-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: remove unused functions, fix history
 	* src/FamilyView.py: improve reordering of children
