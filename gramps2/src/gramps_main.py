@@ -536,7 +536,7 @@ class Gramps:
         pixbuf = gtk.gdk.pixbuf_new_from_file(const.logo)
 
         if const.translators[0:11] == "TRANSLATORS":
-            trans = ""
+            trans = ''
         else:
             trans = const.translators
         
