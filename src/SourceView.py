@@ -235,5 +235,6 @@ class SourceView:
         self.update(0)
 
     def update_display_after_edit(self,place):
+        self.db.buildSourceDisplay(place.getId())
         self.update(0)
 

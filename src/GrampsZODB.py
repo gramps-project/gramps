@@ -121,7 +121,6 @@ class PersonMap(Persistent, UserDict):
         # This probably shouldn't be called anyway.
         raise NotImplementedError
     
-
 class GrampsZODB(GrampsDB):
 
     def __init__(self):
@@ -145,6 +144,9 @@ class GrampsZODB(GrampsDB):
         self.placeMap = OOBTree()
         self.personTable = OOBTree()
         self.placeTable = OOBTree()
+        self.sourceTable = OOBTree()
+        self.need_commit = 0
+        
         if self.conn:
             self.db.close()
             self.conn.close()
@@ -155,85 +157,98 @@ class GrampsZODB(GrampsDB):
         if self.conn == None:
             self.load(name,callback)
 
+    def get_object(self,tag):
+        if self.root.has_key(tag):
+            item = self.root[tag]
+        else:
+            item = OOBTree()
+            self.root[tag] = item
+            self.need_commit = 1
+        return item
+
+    def get_display_table(self,src,tag):
+        if self.root.has_key(tag):
+            table = self.root[tag]
+        else:
+            table = OOBTree()
+            for key in src.keys():
+                obj = src[key]
+                table[key] = obj.getDisplayInfo()
+            self.root[tag] = table
+            self.need_commit = 1
+        return table
+
     def load(self,name,callback):
         self.db = DB(gdbmStorage(name,'w'))
         self.conn = self.db.open()
-        root = self.conn.root()
-        need_commit = 0
-        if root.has_key('fm'):
-            self.familyMap = root['fm']
-        else:
-            self.familyMap = OOBTree()
-            root['fm'] = self.familyMap
-            need_commit = 1
-        if root.has_key('pm'):
-            self.personMap = root['pm']
+        self.root = self.conn.root()
+        self.need_commit = 0
+
+        self.familyMap = self.get_object('fm')
+
+        if self.root.has_key('pm'):
+            self.personMap = self.root['pm']
         else:
             self.personMap = PersonMap()
-            root['pm'] = self.personMap
-            need_commit = 1
-        if root.has_key('pmt'):
-            self.personTable = root['pmt']
-        else:
-            for key in self.personMap.keys():
-                person = self.personMap[key]
-                self.personTable[key] = person.getDisplayInfo()
-            root['pmt'] = self.personTable
-            need_commit = 1
-        if root.has_key('surnames'):
-            self.surnames = root['surnames']
+            self.root['pm'] = self.personMap
+            self.need_commit = 1
+
+        self.personTable = self.get_display_table(self.personMap,'pmt')
+
+        if self.root.has_key('surnames'):
+            self.surnames = self.root['surnames']
         else:
             for key in self.personMap.keys():
                 person = self.personMap[key]
                 self.addSurname(person.getPrimaryName().getSurname())
-            root['surnames'] = self.surnames
-            need_commit = 1
-        if root.has_key('sm'):
-            self.sourceMap = root['sm']
-        else:
-            self.sourceMap = OOBTree()
-            root['sm'] = self.sourceMap
-            need_commit = 1
-        if root.has_key('smt'):
-            self.sourceTable = root['smt']
-        else:
-            for key in self.sourceMap.keys():
-                src = self.sourceMap[key]
-                self.sourceTable[key] = src.getDisplayInfo()
-            root['smt'] = self.sourceTable
-            need_commit = 1
-        if root.has_key('plm'):
-            self.placeMap = root['plm']
-        else:
-            self.placeMap = OOBTree()
-            root['plm'] = self.placeMap
-            need_commit = 1
-        if root.has_key('plmt'):
-            self.placeTable = root['plmt']
-        else:
-            for key in self.placeMap.keys():
-                place = self.placeMap[key]
-                self.placeTable[key] = place.getDisplayInfo()
-            root['plmt'] = self.placeTable
-            need_commit = 1
-        if root.has_key('default'):
-            self.default = root['default']
+            self.root['surnames'] = self.surnames
+            self.need_commit = 1
+
+        self.sourceMap = self.get_object('sm')
+        self.sourceTable = self.get_display_table(self.sourceMap,'smt')
+
+        self.placeMap = self.get_object('plm')
+        self.placeTable = self.get_display_table(self.placeMap,'plmt')
+        
+        if self.root.has_key('default'):
+            self.default = self.root['default']
         else:
             self.default = None
-            root['default'] = self.default
-            need_commit = 1
-        if root.has_key('bookmarks'):
-            self.bookmarks = root['bookmarks']
+            self.root['default'] = self.default
+            self.need_commit = 1
+
+        if self.root.has_key('bookmarks'):
+            self.bookmarks = self.root['bookmarks']
         else:
             self.bookmarks = []
-            root['bookmarks'] = self.bookmarks
-            need_commit = 1
-        if need_commit:
+            self.root['bookmarks'] = self.bookmarks
+            self.need_commit = 1
+        if self.need_commit:
             get_transaction().commit()
         return 1
 
     def setDefaultPerson(self,person):
         """sets the default Person to the passed instance"""
         GrampsDB.setDefaultPerson(self,person)
-        self.conn.root()['default'] = person
+        self.root()['default'] = person
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

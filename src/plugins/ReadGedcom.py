@@ -352,6 +352,7 @@ class GedcomParser:
                     self.source.setNote(note)
                 if not self.source.getTitle():
                     self.source.setTitle("No title - ID %s" % self.source.getId())
+                self.db.buildSourceDisplay(self.source.getId())
                 self.backup()
                 return
             elif matches[1] == "TITL":
@@ -458,19 +459,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(level+1))
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,level+1)
-                event.addSourceRef(source_ref)
+                event.addSourceRef(self.handle_source(matches))
             else:
 	        self.barf(1)
                 
@@ -753,18 +742,7 @@ class GedcomParser:
                 else:
                     self.person.addEvent(event)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(2))
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,2)
+                source_ref = self.handle_source(matches)
                 self.person.getPrimaryName().addSourceRef(source_ref)
 	    elif matches[1] == "REFN":
                 if intRE.match(matches[2]):
@@ -1048,19 +1026,7 @@ class GedcomParser:
               except NameError:
                 print 'please fix the val NameError'
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(level+1))
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,level+1)
-                ord.addSourceRef(source_ref)
+                ord.addSourceRef(self.handle_source(matches))
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(level+1)
@@ -1106,19 +1072,7 @@ class GedcomParser:
             elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(level+1))
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,level+1)
-                event.addSourceRef(source_ref)
+                event.addSourceRef(self.handle_source(matches))
             elif matches[1] == "PLAC":
                 val = matches[2]
                 n = string.strip(event.getName())
@@ -1172,19 +1126,7 @@ class GedcomParser:
             elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(1))
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,level+1)
-                event.addSourceRef(source_ref)
+                event.addSourceRef(self.handle_source(matches))
             elif matches[1] == "FAMC":
                 family = self.db.findFamily(matches[2],self.fmap)
                 mrel,frel = self.parse_adopt_famc(level+1);
@@ -1264,19 +1206,7 @@ class GedcomParser:
             elif matches[1] in ["CAUS", "DATE","TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(level+1))
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,level+1)
-                attr.addSourceRef(source_ref)
+                attr.addSourceRef(self.handle_source(matches))
             elif matches[1] == "PLAC":
                 val = matches[2]
                 if attr.getValue() == "":
@@ -1323,20 +1253,7 @@ class GedcomParser:
             elif matches[1] in ["TIME","AGE","AGNC","ADDR","STAT","TEMP","HUSB","WIFE","OBJE","_CHUR"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
-                if matches[2] and matches[2][0] != "@":
-                    self.localref = self.localref + 1
-                    ref = "gsr%d" % self.localref
-                    s = self.db.findSource(ref,self.smap)
-                    source_ref.setBase(s)
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                    self.parse_source_reference(source_ref,level+1)
-                event.addSourceRef(source_ref)
+                event.addSourceRef(self.handle_source(matches))
             elif matches[1] == "PLAC":
                 val = matches[2]
                 if self.placemap.has_key(val):
@@ -1716,6 +1633,22 @@ class GedcomParser:
             dateobj.set(text)
 
         return dateobj
+
+    def handle_source(self,matches):
+        source_ref = SourceRef()
+        if matches[2] and matches[2][0] != "@":
+            self.localref = self.localref + 1
+            ref = "gsr%d" % self.localref
+            s = self.db.findSource(ref,self.smap)
+            source_ref.setBase(s)
+            s.setTitle('Imported Source #%d' % self.localref)
+            s.setNote(matches[2] + self.parse_continue_data(1))
+            self.db.buildSourceDisplay(s.getId())
+            self.ignore_sub_junk(2)
+        else:
+            source_ref.setBase(self.db.findSource(matches[2],self.smap))
+            self.parse_source_reference(source_ref,level+1)
+        return source_ref
 
     def resolve_refns(self):
         prefix = self.db.iprefix
