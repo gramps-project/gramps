@@ -101,6 +101,8 @@ class EventEditor:
             if (def_placename):
                 self.place_field.set_text(def_placename)
 
+        if (not read_only):
+            self.name_field.select_region(0, -1)
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
