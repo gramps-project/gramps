@@ -6,6 +6,15 @@
 
 	* src/WriteGrdb.py: Copy metadata; Remove redundant str conversion.
 
+	* src/ReportUtils.py (born_died_str,married_str): Use NameDisplay
+	to properly display names; (get_birth_death_strings, child_str,
+	born_str, died_str, buried_str): Add functions; (draw_legend): Use
+	correct style for the legend text, using write_at().
+	* src/docgen/OpenOffice.org (write_at): Accept paragraph style name.
+	* src/docgen/LPRDoc.org (draw_bar): Properly draw and use color
+	for the bar; (write_at): Correctly transform coordinates.
+	* src/plugins/StatisticsChart.py: Replace tabs with spaces.
+
 2005-01-29 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py (GraphVizDialog.__init__):
 	Use proper response ID;  (GraphVizGraphics.__init__): set up self.doc;

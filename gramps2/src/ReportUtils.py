@@ -21,8 +21,14 @@
 
 # $Id$
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 import Date
 import RelLib
+from NameDisplay import displayer as _nd
 
 #-------------------------------------------------------------------------
 #
@@ -115,7 +121,7 @@ def draw_legend(doc, start_x, start_y, data):
         size = pt2cm(doc.get_style(pstyle).get_font().get_size())
         
         doc.draw_bar(format, start_x, start_y, start_x + (2*size), start_y + size)
-        doc.write_at(format, legend, start_x + (3*size), start_y - (size*0.25))
+        doc.write_at(pstyle, legend, start_x + (3*size), start_y + (size*0.25))
         start_y += size * 1.3
         
 def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
@@ -312,17 +318,17 @@ def sanitize_person(db,person):
         new_person.add_family_handle(handle)
 
     # LDS ordinances
-    ord = person.get_lds_baptism()
-    if ord:
-        new_person.set_lds_baptism(ord)
+    ordinance = person.get_lds_baptism()
+    if ordinance:
+        new_person.set_lds_baptism(ordinance)
 
-    ord = person.get_lds_endowment()
-    if ord:
-        new_person.set_lds_endowment(ord)
+    ordinance = person.get_lds_endowment()
+    if ordinance:
+        new_person.set_lds_endowment(ordinance)
 
-    ord = person.get_lds_sealing()
-    if ord:
-        new_person.set_lds_sealing(ord)
+    ordinance = person.get_lds_sealing()
+    if ordinance:
+        new_person.set_lds_sealing(ordinance)
     
     return new_person
 
@@ -348,12 +354,61 @@ def roman(num):
 
 #-------------------------------------------------------------------------
 #
+# Functions commonly used in reports
+#
+#-------------------------------------------------------------------------
+def insert_images(database, doc, person, w_cm=4.0, h_cm=4.0):
+    """
+    Insert pictures of a person into the document.
+    """
+
+    photos = person.get_media_list()
+    for photo in photos :
+        object_handle = photo.get_reference_handle()
+        media_object = database.get_object_from_handle(object_handle)
+        if media_object.get_mime_type()[0:5] == "image":
+            filename = media_object.get_path()
+            doc.add_media_object(filename,"row")
+
+#-------------------------------------------------------------------------
+#
 # Strings commonly used in reports
 #
 #-------------------------------------------------------------------------
 def empty_notes():
     # Empty stab function for when endnotes are not needed
     return ""
+
+def get_birth_death_strings(database,person,empty_date="",empty_place=""):
+    """
+    Returns strings for dates and places of birth and death.
+    """
+
+    bplace = dplace = empty_place
+    bdate = ddate = empty_date
+    bdate_full = ddate_full = False
+
+    birth_handle = person.get_birth_handle()
+    if birth_handle:
+        birth = database.get_event_from_handle(birth_handle)
+        bdate = birth.get_date()
+        bplace_handle = birth.get_place_handle()
+        if bplace_handle:
+            bplace = database.get_place_from_handle(bplace_handle).get_title()
+        bdate_obj = birth.get_date_object()
+        bdate_full = bdate_obj and bdate_obj.get_day_valid()
+
+    death_handle = person.get_death_handle()
+    if death_handle:
+        death = database.get_event_from_handle(death_handle)
+        ddate = death.get_date()
+        dplace_handle = death.get_place_handle()
+        if dplace_handle:
+            dplace = database.get_place_from_handle(dplace_handle).get_title()
+        ddate_obj = death.get_date_object()
+        ddate_full = ddate_obj and ddate_obj.get_day_valid()
+
+    return (bdate,bplace,bdate_full,ddate,dplace,ddate_full)
 
 def born_died_str(database,person,endnotes=None,name_object=None,person_name=None):
     """
@@ -391,32 +446,14 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
         name_object = person.get_primary_name()
 
     if person_name == None:
-        person_name = name_object.get_regular_name()
+        person_name = _nd.display_name(name_object)
     elif person_name == 0:
         if person.get_gender() == RelLib.Person.male:
             person_name = _('He')
         else:
             person_name = _('She')
 
-    birth_handle = person.get_birth_handle()
-    bplace = ""
-    bdate = ""
-    if birth_handle:
-        birth = database.get_event_from_handle(birth_handle)
-        bdate = birth.get_date()
-        bplace_handle = birth.get_place_handle()
-        if bplace_handle:
-            bplace = database.get_place_from_handle(bplace_handle).get_title()
-
-    death_handle = person.get_death_handle()
-    dplace = ""
-    ddate = ""
-    if death_handle:
-        death = database.get_event_from_handle(death_handle)
-        ddate = death.get_date()
-        dplace_handle = death.get_place_handle()
-        if dplace_handle:
-            dplace = database.get_place_from_handle(dplace_handle).get_title()
+    bdate,bplace,ddate,dplace = get_birth_death_strings(database,person)
 
     if person.get_gender() == RelLib.Person.male:
         if bdate:
@@ -674,6 +711,8 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
                     else:
                         text = _("%(female_name)s%(endnotes)s.") % {
                         'female_name' : person_name, 'endnotes' : endnotes(name_object) }
+    if text:
+        text = text + " "
     return text
 
 def married_str(database,person,spouse,event,endnotes=None):
@@ -704,7 +743,7 @@ def married_str(database,person,spouse,event,endnotes=None):
     if not endnotes:
         endnotes = empty_notes
 
-    spouse_name = spouse.get_primary_name().get_regular_name()
+    spouse_name = _nd.display(spouse)
 
     date = event.get_date()
     place_handle = event.get_place_handle()
@@ -758,11 +797,13 @@ def married_str(database,person,spouse,event,endnotes=None):
                 text = _('She married %(spouse)s%(endnotes)s.') % {
                     'spouse' : spouse_name,
                     'endnotes' : endnotes(event)}
+    if text:
+        text = text + " "
     return text
 
-def child_str(person_gender,father_name,mother_name,dead):
+def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
     """
-    Composes a string describing marriage of a person.
+    Composes a string describing person being a child.
     
     The string is composed in the following form:
         "He/She is/was the son/daughter of father_name and mother_name"
@@ -780,8 +821,17 @@ def child_str(person_gender,father_name,mother_name,dead):
     @rtype: unicode
     """
     
+    if person_name == None:
+        person_name = _nd.display_name(person.get_primary_name())
+    elif person_name == 0:
+        if person.get_gender() == RelLib.Person.male:
+            person_name = _('He')
+        else:
+            person_name = _('She')
+
     text = ""
-    if person_gender == RelLib.Person.male:
+
+    if person.get_gender() == RelLib.Person.male:
         if mother_name and father_name:
             if dead:
                 text = _("He was the son of %(father)s and %(mother)s.") % {
@@ -830,6 +880,498 @@ def child_str(person_gender,father_name,mother_name,dead):
                 text = _("She is the daughter of %(father)s.") % {
                     'father' : father_name, }
 
+    if text:
+        text = text + " "
+    return text
+
+
+def born_str(database,person,person_name=None,empty_date="",empty_place=""):
+    """ 
+    Check birth record.
+    Statement formats name precedes this
+        was born on Date.
+        was born on Date in Place.
+        was born in Month_Year.
+        was born in Month_Year in Place.
+        was born in Place.
+        ''
+    """
+
+    if person_name == None:
+        person_name = _nd.display_name(person.get_primary_name())
+    elif person_name == 0:
+        if person.get_gender() == RelLib.Person.male:
+            person_name = _('He')
+        else:
+            person_name = _('She')
+
+    text = ""
+    
+    bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
+                get_birth_death_strings(database,person,empty_date,empty_place)
+
+    if person.get_gender() == RelLib.Person.male:
+        if bdate and bdate_full:
+            if bplace: #male, date, place
+                text = _("%(male_name)s "
+                        "was born on %(birth_date)s in %(birth_place)s.") % {
+                    'male_name' : person_name, 
+                    'birth_date' : bdate, 'birth_place' : bplace }
+            else: #male, date, no place
+                text = _("%(male_name)s was born on %(birth_date)s.") % {
+                    'male_name' : person_name, 'birth_date' : bdate }
+        elif bdate:
+            if bplace: #male, month_year, place
+                text = _("%(male_name)s "
+                        "was born in %(month_year)s in %(birth_place)s.") % {
+                    'male_name' : person_name, 
+                    'month_year' : bdate, 'birth_place' : bplace }
+            else: #male, month_year, no place
+                text = _("%(male_name)s was born in %(month_year)s.") % {
+                    'male_name' : person_name, 'month_year' : bdate }
+        else:
+            if bplace: #male, no date, place
+                text = _("%(male_name)s was born in %(birth_place)s.") % {
+                    'male_name' : person_name, 'birth_place' : bplace }
+            else: #male, no date, no place
+                text = person_name
+    else:
+        if bdate and bdate_full:
+            if bplace: #female, date, place
+                text = _("%(female_name)s "
+                        "was born on %(birth_date)s in %(birth_place)s.") % {
+                    'female_name' : person_name, 
+                    'birth_date' : bdate, 'birth_place' : bplace }
+            else: #female, date, no place
+                text = _("%(female_name)s was born on %(birth_date)s.") % {
+                    'female_name' : person_name, 'birth_date' : bdate }
+        elif bdate:
+            if bplace: #female, month_year, place
+                text = _("%(female_name)s "
+                        "was born in %(month_year)s in %(birth_place)s.") % {
+                    'female_name' : person_name, 
+                    'month_year' : bdate, 'birth_place' : bplace }
+            else: #female, month_year, no place
+                text = _("%(female_name)s was born in %(month_year)s.") % {
+                    'female_name' : person_name, 'month_year' : bdate }
+        else:
+            if bplace: #female, no date, place
+                text = _("%(female_name)s was born in %(birth_place)s.") % {
+                    'female_name' : person_name, 'birth_place' : bplace }
+            else: #female, no date, no place
+                text = person_name
+
+    if text:
+        text = text + " "
+    return text
+
+def died_str(database,person,person_name=None,empty_date="",empty_place="",
+                            age=None,age_units=0):
+    """
+    Write obit sentence.
+        FIRSTNAME died on Date
+        FIRSTNAME died on Date at the age of N Years
+        FIRSTNAME died on Date at the age of N Months
+        FIRSTNAME died on Date at the age of N Days
+        FIRSTNAME died on Date in Place
+        FIRSTNAME died on Date in Place at the age of N Years
+        FIRSTNAME died on Date in Place at the age of N Months
+        FIRSTNAME died on Date in Place at the age of N Days
+        FIRSTNAME died in Month_Year
+        FIRSTNAME died in Month_Year at the age of N Years
+        FIRSTNAME died in Month_Year at the age of N Months
+        FIRSTNAME died in Month_Year at the age of N Days
+        FIRSTNAME died in Month_Year in Place
+        FIRSTNAME died in Month_Year in Place at the age of N Years
+        FIRSTNAME died in Month_Year in Place at the age of N Months
+        FIRSTNAME died in Month_Year in Place at the age of N Days
+        FIRSTNAME died in Place
+        FIRSTNAME died in Place at the age of N Years
+        FIRSTNAME died in Place at the age of N Months
+        FIRSTNAME died in Place at the age of N Days
+        FIRSTNAME died
+        FIRSTNAME died at the age of N Years
+        FIRSTNAME died at the age of N Months
+        FIRSTNAME died at the age of N Days
+    """
+
+    if person_name == None:
+        person_name = _nd.display_name(person.get_primary_name())
+    elif person_name == 0:
+        if person.get_gender() == RelLib.Person.male:
+            person_name = _('He')
+        else:
+            person_name = _('She')
+
+    text = ""
+
+    bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
+                get_birth_death_strings(database,person,empty_date,empty_place)
+
+    if person.get_gender() == RelLib.Person.male:
+        if ddate and ddate_full:
+            if dplace: 
+                if not age_units: #male, date, place, no age
+                    text = _("%(male_name)s "
+                            "died on %(death_date)s in %(death_place)s.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace }
+                elif age_units == 1: #male, date, place, years
+                    text = _("%(male_name)s "
+                            "died on %(death_date)s in %(death_place)s "
+                            "at the age of %(age)d years.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 2: #male, date, place, months
+                    text = _("%(male_name)s "
+                            "died on %(death_date)s in %(death_place)s "
+                            "at the age of %(age)d months.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 3: #male, date, place, days
+                    text = _("%(male_name)s "
+                            "died on %(death_date)s in %(death_place)s "
+                            "at the age of %(age)d days.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace,
+                    'age' : age }
+            else:
+                if not age_units: #male, date, no place, no age
+                    text = _("%(male_name)s died on %(death_date)s.") % {
+                    'male_name' : person_name, 'death_date' : ddate }
+                elif age_units == 1: #male, date, no place, years
+                    text = _("%(male_name)s died on %(death_date)s"
+                            "at the age of %(age)d years.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'age' : age }
+                elif age_units == 2: #male, date, no place, months
+                    text = _("%(male_name)s died on %(death_date)s "
+                            "at the age of %(age)d months.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'age' : age }
+                elif age_units == 3: #male, date, no place, days
+                    text = _("%(male_name)s died on %(death_date)s "
+                            "at the age of %(age)d days.") % {
+                    'male_name' : person_name, 
+                    'death_date' : ddate, 'age' : age }
+        elif ddate:
+            if dplace: 
+                if not age_units: #male, month_year, place, no age
+                    text = _("%(male_name)s "
+                            "died in %(month_year)s in %(death_place)s.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace }
+                elif age_units == 1: #male, month_year, place, years
+                    text = _("%(male_name)s "
+                            "died in %(month_year)s in %(death_place)s "
+                            "at the age of %(age)d years.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 2: #male, month_year, place, months
+                    text = _("%(male_name)s "
+                            "died in %(month_year)s in %(death_place)s "
+                            "at the age of %(age)d mpnths.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 3: #male, month_year, place, days
+                    text = _("%(male_name)s "
+                            "died in %(month_year)s in %(death_place)s "
+                            "at the age of %(age)d days.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace,
+                    'age' : age }
+            else:
+                if not age_units: #male, month_year, no place, no age
+                    text = _("%(male_name)s died in %(month_year)s.") % {
+                    'male_name' : person_name, 'month_year' : ddate }
+                elif age_units == 1: #male, month_year, no place, years
+                    text = _("%(male_name)s died in %(month_year)s "
+                            "at the age of %(age)d years.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'age' : age }
+                elif age_units == 2: #male, month_year, no place, months
+                    text = _("%(male_name)s died in %(month_year)s "
+                            "at the age of %(age)d months.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'age' : age }
+                elif age_units == 3: #male, month_year, no place, days
+                    text = _("%(male_name)s died in %(month_year)s "
+                            "at the age of %(age)d days.") % {
+                    'male_name' : person_name, 
+                    'month_year' : ddate, 'age' : age }
+        else:
+            if dplace: 
+                if not age_units: #male, no date, place, no age
+                    text = _("%(male_name)s died in %(death_place)s.") % {
+                    'male_name' : person_name, 'death_place' : dplace }
+                elif age_units == 1: #male, no date, place, years
+                    text = _("%(male_name)s died in %(death_place)s "
+                            "at the age of %(age)d years.") % {
+                    'male_name' : person_name, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 2: #male, no date, place, months
+                    text = _("%(male_name)s died in %(death_place)s "
+                            "at the age of %(age)d months.") % {
+                    'male_name' : person_name, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 3: #male, no date, place, days
+                    text = _("%(male_name)s died in %(death_place)s "
+                            "at the age of %(age)d days.") % {
+                    'male_name' : person_name, 'death_place' : dplace,
+                    'age' : age }
+            else:
+                if not age_units: #male, no date, no place, no age
+                    text = _("%(male_name)s died.") % {
+                    'male_name' : person_name }
+                elif age_units == 1: #male, no date, no place, years
+                    text = _("%(male_name)s died "
+                            "at the age of %(age)d years.") % {
+                    'male_name' : person_name, 'age' : age }
+                elif age_units == 2: #male, no date, no place, months
+                    text = _("%(male_name)s died "
+                            "at the age of %(age)d months.") % {
+                    'male_name' : person_name, 'age' : age }
+                elif age_units == 3: #male, no date, no place, days
+                    text = _("%(male_name)s died "
+                            "at the age of %(age)d days.") % {
+                    'male_name' : person_name, 'age' : age }
+    else:
+        if ddate and ddate_full:
+            if dplace: 
+                if not age_units: #female, date, place, no age
+                    text = _("%(female_name)s "
+                            "died on %(death_date)s in %(death_place)s.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace }
+                elif age_units == 1: #female, date, place, years
+                    text = _("%(female_name)s "
+                            "died on %(death_date)s in %(death_place)s "
+                            "at the age of %(age)d years.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 2: #female, date, place, months
+                    text = _("%(female_name)s "
+                            "died on %(death_date)s in %(death_place)s "
+                            "at the age of %(age)d months.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 3: #female, date, place, days
+                    text = _("%(female_name)s "
+                            "died on %(death_date)s in %(death_place)s "
+                            "at the age of %(age)d days.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'death_place' : dplace,
+                    'age' : age }
+            else:
+                if not age_units: #female, date, no place, no age
+                    text = _("%(female_name)s died on %(death_date)s.") % {
+                    'female_name' : person_name, 'death_date' : ddate }
+                elif age_units == 1: #female, date, no place, years
+                    text = _("%(female_name)s died on %(death_date)s "
+                            "at the age of %(age)d years.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'age' : age }
+                elif age_units == 2: #female, date, no place, months
+                    text = _("%(female_name)s died on %(death_date)s "
+                            "at the age of %(age)d months.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'age' : age }
+                elif age_units == 3: #female, date, no place, days
+                    text = _("%(female_name)s died on %(death_date)s "
+                            "at the age of %(age)d days.") % {
+                    'female_name' : person_name, 
+                    'death_date' : ddate, 'age' : age }
+        elif ddate:
+            if dplace: 
+                if not age_units: #female, month_year, place, no age
+                    text = _("%(female_name)s "
+                            "died in %(month_year)s in %(death_place)s.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace }
+                elif age_units == 1: #female, month_year, place, years
+                    text = _("%(female_name)s "
+                            "died in %(month_year)s in %(death_place)s "
+                            "at the age of %(age)d years.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 2: #female, month_year, place, months
+                    text = _("%(female_name)s "
+                            "died in %(month_year)s in %(death_place)s "
+                            "at the age of %(age)d mpnths.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 3: #female, month_year, place, days
+                    text = _("%(female_name)s "
+                            "died in %(month_year)s in %(death_place)s "
+                            "at the age of %(age)d days.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'death_place' : dplace,
+                    'age' : age }
+            else:
+                if not age_units: #female, month_year, no place, no age
+                    text = _("%(female_name)s died in %(month_year)s.") % {
+                    'female_name' : person_name, 'month_year' : ddate }
+                elif age_units == 1: #female, month_year, no place, years
+                    text = _("%(female_name)s died in %(month_year)s "
+                            "at the age of %(age)d years.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'age' : age }
+                elif age_units == 2: #female, month_year, no place, months
+                    text = _("%(female_name)s died in %(month_year)s "
+                            "at the age of %(age)d months.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'age' : age }
+                elif age_units == 3: #female, month_year, no place, days
+                    text = _("%(female_name)s died in %(month_year)s "
+                            "at the age of %(age)d days.") % {
+                    'female_name' : person_name, 
+                    'month_year' : ddate, 'age' : age }
+        else:
+            if dplace: 
+                if not age_units: #female, no date, place, no age
+                    text = _("%(female_name)s died in %(death_place)s.") % {
+                    'female_name' : person_name, 'death_place' : dplace }
+                elif age_units == 1: #female, no date, place, years
+                    text = _("%(female_name)s died in %(death_place)s "
+                            "at the age of %(age)d years.") % {
+                    'female_name' : person_name, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 2: #female, no date, place, months
+                    text = _("%(female_name)s died in %(death_place)s "
+                            "at the age of %(age)d months.") % {
+                    'female_name' : person_name, 'death_place' : dplace,
+                    'age' : age }
+                elif age_units == 3: #female, no date, place, days
+                    text = _("%(female_name)s died in %(death_place)s "
+                            "at the age of %(age)d days.") % {
+                    'female_name' : person_name, 'death_place' : dplace,
+                    'age' : age }
+            else:
+                if not age_units: #female, no date, no place, no age
+                    text = _("%(female_name)s died.") % {
+                    'female_name' : person_name }
+                elif age_units == 1: #female, no date, no place, years
+                    text = _("%(female_name)s died "
+                            "at the age of %(age)d years.") % {
+                    'female_name' : person_name, 'age' : age }
+                elif age_units == 2: #female, no date, no place, months
+                    text = _("%(female_name)s died "
+                            "at the age of %(age)d months.") % {
+                    'female_name' : person_name, 'age' : age }
+                elif age_units == 3: #female, no date, no place, days
+                    text = _("%(female_name)s died "
+                            "at the age of %(age)d days.") % {
+                    'female_name' : person_name, 'age' : age }
+    if text:
+        text = text + " "
+    return text
+
+def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
+    """ 
+    Check burial record.
+    Statement formats name precedes this
+        was buried on Date.
+        was buried on Date in Place.
+        was buried in Month_Year.
+        was buried in Month_Year in Place.
+        was buried in Place.
+        ''
+    """
+
+    if person_name == None:
+        person_name = _nd.display_name(person.get_primary_name())
+    elif person_name == 0:
+        if person.get_gender() == RelLib.Person.male:
+            person_name = _('He')
+        else:
+            person_name = _('She')
+
+    text = ""
+    
+    bplace = dplace = empty_place
+    bdate = ddate = empty_date
+    bdate_full = False
+
+    burial = None
+    for event_handle in person.get_event_list():
+        event = database.get_event_from_handle(event_handle)
+        if event and event.get_name() == "Burial":
+            burial = event
+            break
+
+    if burial:
+        bdate = burial.get_date()
+        bplace_handle = burial.get_place_handle()
+        if bplace_handle:
+            bplace = database.get_place_from_handle(bplace_handle).get_title()
+        bdate_obj = burial.get_date_object()
+        bdate_full = bdate_obj and bdate_obj.get_day_valid()
+    else:
+        return text
+
+    if person.get_gender() == RelLib.Person.male:
+        if bdate and bdate_full:
+            if bplace: #male, date, place
+                text = _("%(male_name)s "
+                        "was buried on %(birth_date)s in %(birth_place)s.") % {
+                    'male_name' : person_name, 
+                    'birth_date' : bdate, 'birth_place' : bplace }
+            else: #male, date, no place
+                text = _("%(male_name)s was buried on %(birth_date)s.") % {
+                    'male_name' : person_name, 'birth_date' : bdate }
+        elif bdate:
+            if bplace: #male, month_year, place
+                text = _("%(male_name)s "
+                        "was buried in %(month_year)s in %(birth_place)s.") % {
+                    'male_name' : person_name, 
+                    'month_year' : bdate, 'birth_place' : bplace }
+            else: #male, month_year, no place
+                text = _("%(male_name)s was buried in %(month_year)s.") % {
+                    'male_name' : person_name, 'month_year' : bdate }
+        else:
+            if bplace: #male, no date, place
+                text = _("%(male_name)s was buried in %(birth_place)s.") % {
+                    'male_name' : person_name, 'birth_place' : bplace }
+            else: #male, no date, no place
+                text = _("%(male_name)s was buried.") % {
+                    'male_name' : person_name }
+    else:
+        if bdate and bdate_full:
+            if bplace: #female, date, place
+                text = _("%(female_name)s "
+                        "was buried on %(birth_date)s in %(birth_place)s.") % {
+                    'female_name' : person_name, 
+                    'birth_date' : bdate, 'birth_place' : bplace }
+            else: #female, date, no place
+                text = _("%(female_name)s was buried on %(birth_date)s.") % {
+                    'female_name' : person_name, 'birth_date' : bdate }
+        elif bdate:
+            if bplace: #female, month_year, place
+                text = _("%(female_name)s "
+                        "was buried in %(month_year)s in %(birth_place)s.") % {
+                    'female_name' : person_name, 
+                    'month_year' : bdate, 'birth_place' : bplace }
+            else: #female, month_year, no place
+                text = _("%(female_name)s was buried in %(month_year)s.") % {
+                    'female_name' : person_name, 'month_year' : bdate }
+        else:
+            if bplace: #female, no date, place
+                text = _("%(female_name)s was buried in %(birth_place)s.") % {
+                    'female_name' : person_name, 'birth_place' : bplace }
+            else: #female, no date, no place
+                text = _("%(female_name)s was buried.") % {
+                    'female_name' : person_name }
+
+    if text:
+        text = text + " "
     return text
 
 #-------------------------------------------------------------------------

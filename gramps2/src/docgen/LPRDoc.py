@@ -1070,13 +1070,28 @@ class LPRDoc(BaseDoc.BaseDoc):
         fontstyle = para_style.get_font()
 
         self.gpc.setfont(find_font_from_fontstyle(fontstyle))
-        self.gpc.moveto(cm2u(x), cm2u(y))
+        x = self.left_margin + cm2u(x)
+        y = self.top_margin - cm2u(y)
+        self.gpc.moveto(x,y)
         self.gpc.show(text)
 
     def draw_bar(self, style, x1, y1, x2, y2):
         self.brand_new_page = 0
-        self.gpc.moveto(x1, y1)
-        self.gpc.lineto(x2, y2)
+
+        style = self.draw_styles[style]
+        fill_color = [ val/255.0 for val in style.get_fill_color() ]
+        color = [ val/255.0 for val in style.get_color() ]
+
+        x = self.left_margin + cm2u(x1)
+        y = self.top_margin - cm2u(y1)
+        bh = cm2u(y2-y1)
+        bw = cm2u(x2-x1)
+
+        self.gpc.setrgbcolor(color[0],color[1],color[2])
+        self.gpc.rect_stroked(x,y,bw,-bh)
+        self.gpc.setrgbcolor(fill_color[0],fill_color[1],fill_color[2])
+        self.gpc.rect_filled(x,y,bw,-bh)
+        self.gpc.setrgbcolor(0,0,0)
 
     def draw_text(self,style,text,x,y):
         self.brand_new_page = 0
