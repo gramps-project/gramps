@@ -52,8 +52,6 @@ class StartupDialog:
         self.w.add(d)
         d.add(self.build_page1())
         d.add(self.build_page2())
-        d.add(self.build_page3())
-        d.add(self.build_page4())
         d.add(self.build_page5())
         d.add(self.build_page_last())
 
@@ -106,14 +104,6 @@ class StartupDialog:
         GrampsCfg.save_researcher_phone(unicode(self.phone.get_text()))
         GrampsCfg.save_researcher_email(unicode(self.email.get_text()))
 
-        if self.date1.get_active():
-            GrampsCfg.save_date_entry(0)
-        elif self.date2.get_active():
-            GrampsCfg.save_date_entry(1)
-        elif self.date3.get_active():
-            GrampsCfg.save_date_entry(2)
-            
-        GrampsCfg.save_calendar(self.calendar.get_active())
         GrampsCfg.save_uselds(self.lds.get_active())
         GrampsCfg.save_startup(const.startup)
         self.w.destroy()
@@ -172,72 +162,6 @@ class StartupDialog:
         self.phone.set_text(GrampsCfg.get_researcher_phone())
         self.email.set_text(GrampsCfg.get_researcher_email())
 
-        return p
-
-    def build_page3(self):
-        p = gnome.ui.DruidPageStandard()
-        p.set_title(_('Numerical date formats'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
-
-        box = gtk.VBox()
-        box.set_spacing(12)
-        p.append_item("",box,"")
-
-        label = gtk.Label(_('There are three common formats for entering dates in a numerical\n'
-                            'format. Without some type of indication, GRAMPS cannot correctly\n'
-                            'tell what format you are using. Please indicate your preferred format\n'
-                            'for entering numerical dates.'))
-        box.add(label)
-        align = gtk.Alignment(0.5,0)
-        box.add(align)
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        align.add(vbox)
-        
-        self.date1 = gtk.RadioButton(label=_("MM/DD/YYYY (United States)"))
-        self.date2 = gtk.RadioButton(label=_("DD/MM/YYYY (European)"),group=self.date1)
-        self.date3 = gtk.RadioButton(label=_("YYYY-MM-DD (ISO)"),group=self.date1)
-
-        val = GrampsCfg.get_date_entry()
-            
-        if val == 0:
-            self.date1.set_active(1)
-        elif val == 1:
-            self.date2.set_active(1)
-        elif val == 2:
-            self.date3.set_active(1)
-
-        vbox.add(self.date1)
-        vbox.add(self.date2)
-        vbox.add(self.date3)
-        
-        box.show_all()
-        return p
-
-    def build_page4(self):
-        p = gnome.ui.DruidPageStandard()
-        p.set_title(_('Alternate calendar support'))
-        p.set_title_foreground(self.fg_color)
-        p.set_background(self.bg_color)
-        p.set_logo(self.logo)
-        
-        box = gtk.VBox()
-        box.set_spacing(12)
-        p.append_item("",box,"")
-        
-        label = gtk.Label(_('By default, all dates stored by GRAMPS use the Gregorian calendar.\n'
-                            'This is normally sufficient for most users. Support may be enabled\n'
-                            'for the Julian, French Republican, and Hebrew calendar. If you believe\n'
-                            'that you will need one or more of these alternate calendars, enable\n'
-                            'alternate calendar support\n'))
-        box.add(label)
-        align = gtk.Alignment(0.5,0)
-        box.add(align)
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        box.show_all()
         return p
 
     def build_page5(self):

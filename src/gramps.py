@@ -56,6 +56,7 @@ else:
 
 try:
     locale.setlocale(locale.LC_ALL,'')
+    locale.setlocale(locale.LC_TIME,os.environ.get('LANG','C'))
 except locale.Error:
     pass
 except ValueError:

@@ -16,12 +16,12 @@ _lang = os.environ.get('LANG','C')
 
 _lang_to_parser = {
     'C'       : DateParser.DateParser,
-    'en.US'   : DateParser.DateParser,
+    'en_US'   : DateParser.DateParser,
     }
 
 _lang_to_display = {
     'C'       : DateDisplay.DateDisplay,
-    'en.US'   : DateDisplay.DateDisplay,
+    'en_US'   : DateDisplay.DateDisplay,
     }
 
 def create_parser():
@@ -48,7 +48,6 @@ def set_format(val):
     try:
         _lang_to_display[_lang].display_format = val
     except:
-        print "not found"
         pass
 
 def get_format():
