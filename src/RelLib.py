@@ -2069,17 +2069,17 @@ class GrampsDB:
         """creates a new GrampsDB"""
         self.surnames = []
         self.personTable = {}
+        self.personMap = {}
         self.placeTable = {}
+        self.placeMap = {}
         self.sourceTable = {}
+        self.sourceMap = {}
+        self.familyMap = {}
         self.iprefix = "I%d"
         self.sprefix = "S%d"
         self.oprefix = "O%d"
         self.pprefix = "P%d"
         self.fprefix = "F%d"
-        self.familyMap = {}
-        self.personMap = {}
-        self.sourceMap = {}
-        self.placeMap = {}
         self.new()
         self.added_files = []
         self.genderStats = GenderStats ()
@@ -2193,12 +2193,12 @@ class GrampsDB:
 
         self.surnames = []
         self.personMap = {}
-        self.sourceMap = {}
-        self.placeMap  = {}
-        self.objectMap = {}
         self.personTable = {}
-        self.placeTable = {}
+        self.sourceMap = {}
         self.sourceTable = {}
+        self.placeMap  = {}
+        self.placeTable = {}
+        self.objectMap = {}
         self.smapIndex = 0
         self.pmapIndex = 0
         self.fmapIndex = 0

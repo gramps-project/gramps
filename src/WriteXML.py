@@ -162,8 +162,8 @@ class XmlWriter:
         owner = self.db.getResearcher()
         familyMap = self.db.getFamilyMap()
         familyList = familyMap.keys ()
-        person_len = len(self.db.getPersonKeys())
-        family_len = len(familyList)
+        person_len = self.db.getPersonLength()
+        family_len = len(familyMap)
         source_len = len(self.db.getSourceKeys())
         place_len = len(self.db.getPlaceKeys())
         objMap = self.db.getObjectMap()
@@ -203,10 +203,13 @@ class XmlWriter:
                 self.g.write(' default="%s"' % person.getId())
             self.g.write(">\n")
 
-            keys = self.db.getPersonKeys()
-            keys.sort ()
-            for key in keys:
-                person = self.db.getPerson(key)
+            for key in self.db.sortPersonKeys():
+                try:
+                    person = self.db.getPerson(key)
+                except:
+                    print "Key error %s" % key
+                    continue
+                
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
