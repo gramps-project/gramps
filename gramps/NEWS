@@ -1,3 +1,6 @@
+Version 0.4.0
+
+
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.
 * WebPage generator now lists more information, including sources.
