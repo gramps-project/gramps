@@ -2899,17 +2899,17 @@ class GrampsDB:
         idVal - external ID number
         map - map build by findPlace of external to gramp's IDs"""
 
-        if map.has_key(idVal):
+        if map.has_key(str(idVal)):
             place = Place()
-            data = self.place_map[map[idVal]]
+            data = self.place_map[map[str(idVal)]]
             place.unserialize(data)
         else:
             place = Place()
-            if self.place_map.has_key(idVal):
-                map[idVal] = self.add_place(place)
+            if self.place_map.has_key(str(idVal)):
+                map[str(idVal)] = self.add_place(place)
             else:
-                place.set_id(idVal)
-                map[idVal] = self.add_place_as(place)
+                place.set_id(str(idVal))
+                map[str(idVal)] = self.add_place_as(place)
             self.place_map.put(str(idVal),place.serialize())
         return place
 
@@ -3082,7 +3082,7 @@ class GrampsDB:
 
         person = Person()
         if map.has_key(idVal):
-            person.serialize(self.person_map.get(str(map[idVal])))
+            person.unserialize(self.person_map.get(str(map[idVal])))
         else:
             if self.person_map.get(str(idVal)):
                 map[idVal] = self.add_person(person)
@@ -3100,15 +3100,15 @@ class GrampsDB:
         idVal - external ID number
         map - map build by findFamily of external to gramp's IDs"""
 
-        if map.has_key(idVal):
+        if map.has_key(str(idVal)):
             family = Family()
-            family.unserialize(self.family_map.get(str(map[idVal])))
+            family.unserialize(self.family_map.get(str(map[str(idVal)])))
         else:
-            if self.family_map.has_key(idVal):
+            if self.family_map.has_key(str(idVal)):
                 family = self.new_family()
             else:
-                family = self.new_family_no_map(idVal)
-            map[idVal] = family.get_id()
+                family = self.new_family_no_map(str(idVal))
+            map[str(idVal)] = family.get_id()
         return family
 
     def find_source_no_conflicts(self,idVal,map):
