@@ -1,3 +1,8 @@
+2004-02-15  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Relationship.py: More corrections.
+	* src/plugins/rel_ru.py: Corrections. 
+	* src/gramps_main.py: Corrections. 
+
 2004-02-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/RelCalc.py: Handle IDs properly
 	* src/Relationship.py: Handle IDs properly

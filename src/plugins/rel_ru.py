@@ -220,41 +220,30 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if self.is_spouse(orig_person,other_person):
             return ("spouse",[])
 
-        self.apply_filter(orig_person,0,firstList,firstMap)
-        self.apply_filter(other_person,0,secondList,secondMap)
+        try:
+            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
+            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+        except RuntimeError,msg:
+            return ("Relationship loop detected",None)
 
-        print len(firstList)
-        print len(secondList)
-            
-        for person in firstList:
-            if person in secondList:
-                new_rank = firstMap[person.get_id()]
+        for person_id in firstList:
+            if person_id in secondList:
+                new_rank = firstMap[person_id]
                 if new_rank < rank:
                     rank = new_rank
-                    common = [ person ]
+                    common = [ person_id ]
                 elif new_rank == rank:
-                    common.append(person)
+                    common.append(person_id)
 
         firstRel = -1
         secondRel = -1
 
-        length = len(common)
-    
-        if length == 1:
-            person = common[0]
-            secondRel = firstMap[person.get_id()]
-            firstRel = secondMap[person.get_id()]
-        elif length == 2:
-            p1 = common[0]
-            secondRel = firstMap[p1.get_id()]
-            firstRel = secondMap[p1.get_id()]
-        elif length > 2:
-            person = common[0]
-            secondRel = firstMap[person.get_id()]
-            firstRel = secondMap[person.get_id()]
+        if common:
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
     
         if firstRel == -1:
-            print '2'
             return ("",[])
         elif firstRel == 0:
             if secondRel == 0:
