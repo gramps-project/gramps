@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  Donald N. Allingham
+# Copyright (C) 2001-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,6 +40,9 @@ import pango
 import GrampsCfg
 from intl import gettext as _
 
+_BORN = _('b.')
+_DIED = _('d.')
+
 class DispBox:
 
     def __init__(self,root,style,x,y,w,h,person,change):
@@ -55,8 +58,9 @@ class DispBox:
         self.root = root
 
         self.name = GrampsCfg.nameof(person)
-        self.exp = "%s\nb. %s\nd. %s" % (self.name,person.getBirth().getDate(),
-                                         person.getDeath().getDate())
+        self.exp = "%s\n%s %s\n%s %s" % (self.name,
+            _BORN,person.getBirth().getDate(),
+            _DIED, person.getDeath().getDate())
         
         self.group = self.root.add(gnome.canvas.CanvasGroup,x=x,y=y)
         self.shadow = self.group.add(gnome.canvas.CanvasRect,
@@ -181,8 +185,8 @@ class PedigreeView:
         for t in list:
             if t:
                 for n in [GrampsCfg.nameof(t[0]),
-                          u'b. %s' % t[0].getBirth().getDate(),
-                          u'd. %s' % t[0].getDeath().getDate()]:
+                          u'%s %s' % (_BORN,t[0].getBirth().getDate()),
+                          u'%s %s' % (_DIED,t[0].getDeath().getDate())]:
                     try:
                         a.set_text(n,len(n))
                     except TypeError:

@@ -30,6 +30,7 @@ import gtk.glade
 
 import Utils
 
+from intl import gettext as _
 
 class EvalWindow:
 
@@ -49,7 +50,7 @@ class EvalWindow:
             })
 
         Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         "Python Evaluation Window")
+                         _("Python Evaluation Window"))
 
     def apply_clicked(self,obj):
         text = self.ebuf.get_text(self.ebuf.get_start_iter(),

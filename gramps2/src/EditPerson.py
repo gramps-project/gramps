@@ -828,7 +828,7 @@ class EditPerson:
         the close window"""
         if self.did_data_change():
             n = "<i>%s</i>" % self.person.getPrimaryName().getRegularName()
-            SaveDialog(_('Save changes to %s?' % n),
+            SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
                        self.cancel_callback,
@@ -845,7 +845,7 @@ class EditPerson:
         the close window"""
         if self.did_data_change():
             n = "<i>%s</i>" % self.person.getPrimaryName().getRegularName()
-            SaveDialog(_('Save Changes to %s?' % n),
+            SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
                        self.cancel_callback,
