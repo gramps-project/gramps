@@ -51,7 +51,7 @@
       <child>
 	<widget class="GtkLabel" id="label3">
 	  <property name="visible">True</property>
-	  <property name="label" translatable="yes">Below is a list of the nicknames and titles that GRAMPS can extract from the 
+	  <property name="label" translatable="yes">Below is a list of the nicknames, titles and family name prefixes that GRAMPS can extract from the 
 current database. If you accept the changes, GRAMPS will modify the entries
 that have been selected.</property>
 	  <property name="use_underline">False</property>
