@@ -770,7 +770,7 @@ class GrampsParser(handler.ContentHandler):
         "suffix"     : (None, stop_suffix),
         "title"      : (None, stop_title),
         "uid"        : (None, stop_uid),
-        "url"        : (None, start_url)
+        "url"        : (start_url, None)
         }
 
     #---------------------------------------------------------------------

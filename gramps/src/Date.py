@@ -120,11 +120,11 @@ class Date:
     #--------------------------------------------------------------------
     def getSaveDate(self):
 	if self.range == 1:
-	    return "FROM " + self.start.getFmt3() + " TO " + self.stop.getFmt3()
+	    return "FROM " + self.start.getSaveDate() + " TO " + self.stop.getSaveDate()
         elif self.range == -1:
             return self.text
 	else:
-            return self.start.getFmt3()
+            return self.start.getSaveDate()
 
     def isEmpty(self):
         if self.start.year == -1 and self.start.month == -1 and self.start.day == -1:
