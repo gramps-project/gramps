@@ -64,27 +64,32 @@ class ArgHandler:
     FILE                :   filename to open. 
                             All following arguments will be ignored.
     -i, --import=FILE   :   filename to import.
+    -O, --open=FILE     :   filename to open.
     -o, --output=FILE   :   filename to export.
     -f, --format=FORMAT :   format of the file preceding this option.
     
     If the filename (no flags) is specified, the interactive session is 
-    launched using data from filename. If the filename is not a natvive (grdb) format, dialog will
-    be presented to set up a grdb database.
+    launched using data from filename. If the filename is not in a natvive
+    (grdb) format, dialog will be presented to set up a grdb database.
+    In this mode (filename, no flags), the rest of the arguments is ignored.
+    This is a mode suitable by default for GUI launchers, mime type handlers,
+    and the like
     
     If no filename or -i option is given, a new interactive session (empty
-    database) is launched, since no data is goven anyway.
+    database) is launched, since no data is given anyway.
     
-    If -i option is given, but no -o or -a options are given, and interactive
-    session is launched with the FILE (specified with -i). 
+    If -O or -i option is given, but no -o or -a options are given, an
+    interactive session is launched with the FILE (specified with -i). 
     
-    If both -i and -o or -a are given, interactive session will not be 
-    launched. 
+    If both input (-O or -i) and processing (-o or -a) options are given,
+    interactive session will not be launched. 
     """
 
     def __init__(self,parent,args):
         self.parent = parent
         self.args = args
 
+        self.open_gui = None
         self.open = None
         self.exports = []
         self.actions = []
@@ -114,13 +119,34 @@ class ArgHandler:
         if leftargs:
             # if there were an argument without option, use it as a file to 
             # open and return
-            self.open = leftargs[0]
+            self.open_gui = leftargs[0]
             print "Trying to open: %s ..." % leftargs[0]
             return
 
         for opt_ix in range(len(options)):
             o,v = options[opt_ix]
-            if o in ( '-i', '--import'):
+            if o in ( '-O', '--open'):
+                fname = v
+                ftype = GrampsMime.get_type(os.path.abspath(os.path.expanduser(fname)))
+                if opt_ix<len(options)-1 \
+                            and options[opt_ix+1][0] in ( '-f', '--format'): 
+                    format = options[opt_ix+1][1]
+                    if format not in ('gedcom','gramps-xml','grdb'):
+                        print "Invalid format:  %s" % format
+                        print "Ignoring input file:  %s" % fname
+                        continue
+                elif ftype == const.app_gedcom:
+                    format = 'gedcom'
+                elif ftype == "x-directory/normal":
+                    format = 'gramps-xml'
+                elif ftype == const.app_gramps:
+                    format = 'grdb'
+                else:
+                    print "Unrecognized format for input file %s" % fname
+                    print "Ignoring input file:  %s" % fname
+                    continue
+                self.open = (fname,format)
+            elif o in ( '-i', '--import'):
                 fname = v
                 ftype = GrampsMime.get_type(os.path.abspath(os.path.expanduser(fname)))
                 if opt_ix<len(options)-1 \
@@ -222,11 +248,11 @@ class ArgHandler:
         session, write files, and/or perform actions.
         """
 
-        if self.open:
+        if self.open_gui:
             # Filename was given. Open a session with that file. Forget
             # the rest of given arguments.
             success = False
-            filename = os.path.abspath(os.path.expanduser(self.open))
+            filename = os.path.abspath(os.path.expanduser(self.open_gui))
             filetype = GrampsMime.get_type(filename) 
             if filetype == const.app_gramps:
                 print "Type: GRAMPS database"
@@ -270,8 +296,38 @@ class ArgHandler:
                 self.parent.build_recent_menu()
             return
            
-        if self.imports:
+        if self.open:
+            # Filename to open was given. Open it natively (grdb or any of
+            # the InMem formats, without setting up a new database. Then
+            # go on and process the rest of the command line arguments.
+
             self.parent.cl = bool(self.exports or self.actions)
+
+            name,format = self.open
+            success = False
+            filename = os.path.abspath(os.path.expanduser(name))
+
+            if format == 'grdb':
+                print "Type: GRAMPS database"
+            elif format == 'gedcom':
+                print "Type: GEDCOM"
+            elif format == 'gramps-xml':
+                print "Type: GRAMPS XML"
+            else:
+                print "Unknown file type: %s" % format
+                print "Exiting..." 
+                os._exit(1)
+
+            if self.auto_save_load(filename):
+                print "Opened successfully!"
+                success = True
+            else:
+                print "Error opening the file." 
+                print "Exiting..." 
+                os._exit(1)
+
+        if self.imports:
+            self.parent.cl = bool(self.exports or self.actions or self.parent.cl)
 
             # Create dir for imported database(s)
             self.impdir_path = os.path.expanduser("~/.gramps/import" )
@@ -299,7 +355,7 @@ class ArgHandler:
                 print "Importing: file %s, format %s." % imp
                 self.cl_import(imp[0],imp[1])
 
-        elif len(self.args) > 1:
+        elif len(self.args) > 1 and not self.open:
             print "No data was given -- will launch interactive session."
             print "To use in the command-line mode,", \
                 "supply at least one input file to process."
@@ -319,7 +375,8 @@ class ArgHandler:
             print "Cleaning up."
             # remove import db after use
             self.parent.db.close()
-            os.remove(self.imp_db_path)
+            if self.imports:
+                os.remove(self.imp_db_path)
             print "Exiting."
             os._exit(0)
 

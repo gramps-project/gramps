@@ -160,6 +160,7 @@ unknown      = _("unknown")
 
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 popt_table = [
+    ("open",    'O', str, None, 0, "Open file",         "FILENAME"),
     ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
     ("output",  'o', str, None, 0, "Write file",        "FILENAME"),
     ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
@@ -196,6 +197,7 @@ longopts = [
     "disable-sound",
     "enable-sound",
     "espeaker=",
+    "open=",
     "import=",
     "output=",
     "format=",
@@ -203,7 +205,7 @@ longopts = [
     "options=",
 ]
 
-shortopts = "i:o:f:a:p:?"
+shortopts = "O:i:o:f:a:p:?"
 
 #-------------------------------------------------------------------------
 #

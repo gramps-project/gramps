@@ -3,6 +3,9 @@
 	Use proper response ID;  (GraphVizGraphics.__init__): set up self.doc;
 	(EmptyDoc.init): Add empty method.
 
+	* src/ArgHandler.py: Support for opening in the command-line mode.
+	* src/const.py.in: Add -O | --open option.
+
 2005-01-29 Eero Tamminen <eerot@sf>
 	* src/plugins/StatisticsChart.py:
 	  - Added support for Don's Pie charts + color styles for it
