@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>Common tasks</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.59"><LINK
+REL="HOME"
+TITLE="Writing Extentions for gramps"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Writing Export Filters"
+HREF="writingexportfilters.html"><LINK
+REL="NEXT"
+TITLE="Authors"
+HREF="authors.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Writing Extentions for gramps</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="writingexportfilters.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="authors.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="COMMONTASKS"
+>Common tasks</A
+></H1
+><P
+>    While this manual does not document the
+    <TT
+CLASS="APPLICATION"
+>gramps</TT
+> database interface, this section
+    shows a few common tasks.
+    </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="GETTINGNAMES"
+>Printing names of people</A
+></H2
+><P
+>      This example shows how to display the name of people in the
+      database. It assumes that the database is called
+      <TT
+CLASS="FUNCTION"
+>db</TT
+>. To get a list of people, it calls the
+      <TT
+CLASS="FUNCTION"
+>getPersonMap</TT
+> method, which returns a map of
+      <TT
+CLASS="APPLICATION"
+>gramps</TT
+> ID to
+      <TT
+CLASS="FUNCTION"
+>Person</TT
+> objects. Calling the
+      <TT
+CLASS="FUNCTION"
+>valus</TT
+> method of the returned map returns a
+      list of people. For each person, the primary name is extracted,
+      and then the <TT
+CLASS="FUNCTION"
+>Name</TT
+> object's
+      <TT
+CLASS="FUNCTION"
+>getName</TT
+> method is called to build a
+      presentable name from the individual name components.
+      </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="DISPLAYNAMES"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;for person in db.getPersonMap().values():
+    name = person.getPrimaryName()
+    print name.getName()
+
+	</PRE
+></TD
+></TR
+></TABLE
+><P
+><B
+>Figure 6. Displaying names</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="LISTINGEVENTS"
+>Displaying the events of person</A
+></H2
+><P
+>      This example shows how to display the public events associated
+      with a person. It assumes that the person is called
+      <TT
+CLASS="FUNCTION"
+>person</TT
+>.
+      </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="EVENTEXAMPLE"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;for event in person.getEventList():
+    if event.getPrivacy() == 0:
+        print "Event:",event.getName()
+	print "Date:",event.getDate()
+	print "Place:",event.getPlaceName()
+
+	</PRE
+></TD
+></TR
+></TABLE
+><P
+><B
+>Figure 7. Displaying Event Information</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PRINTFAMILY"
+>Print the members of each family</A
+></H2
+><P
+>      This example shows how to display the parents and children of
+      each family in the database. It assumes that the database is called
+      <TT
+CLASS="FUNCTION"
+>db</TT
+>.
+      </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="FAMILYEXAMPLE"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;for family in db.getFamilyMap().values:
+    print "-------------------"
+    print "Family ID:",family.getId()
+    father = family.getFather()
+    if father != None:
+        print "Father:",father.getPrimaryName().getName()
+    mother = family.getMother()
+    if mother != None:
+        print "Mother:",mother.getPrimaryName().getName()
+    for child in family.getChildList():
+        print "Child:",child.getPrimaryName().getName()
+
+	</PRE
+></TD
+></TR
+></TABLE
+><P
+><B
+>Figure 8. Displaying Family Information</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PERSONSFAMILY"
+>Display the marriages/relationships of a person</A
+></H2
+><P
+>      This example shows how to display the families and relationships
+      in which the person is considered a spouse or parent. It assumes
+      that the person is called <TT
+CLASS="FUNCTION"
+>person</TT
+>.
+      </P
+><P
+>      Relationships between people can be complex. Because someone is
+      male, does not necessarily mean that the person will be
+      considered the "Father" of a relationship. In relationships of
+      type "Partners", the "father" and "mother" of the relationship
+      should be of the same gender. So to determine the spouse of a
+      person, it is usually best to compare the person against what is
+      returned by <TT
+CLASS="FUNCTION"
+>getFather</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>getMother</TT
+> to find the one that is not
+      equal.  It should also be noted that the
+      <TT
+CLASS="FUNCTION"
+>getFather</TT
+> and
+      <TT
+CLASS="FUNCTION"
+>getMother</TT
+> methods will return None if noone
+      has been associated with that role in the family.
+      </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="RELEXAMPLE"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>&#13;for family in person.getFamilyList():
+    print "-------------------"
+    print "Family ID:",family.getId()
+    print "Relationship Type:",family.getRelationship()
+    father = family.getFather()
+    if father != None and father != person:
+        print "Spouse:",father.getPrimaryName().getName()
+    mother = family.getMother()
+    if mother != None and mother != person:
+        print "Spouse:",mother.getPrimaryName().getName()
+
+	</PRE
+></TD
+></TR
+></TABLE
+><P
+><B
+>Figure 9. Displaying Relationship Information</B
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="writingexportfilters.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="authors.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Writing Export Filters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Authors</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

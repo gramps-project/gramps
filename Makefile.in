@@ -4,6 +4,9 @@ bindir 		= @bindir@
 datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
 sharedir        = ${prefix}/share/gramps
+GNOMEHELP       = @GNOMEHELP@/share/gnome/help
+GM		= gramps-manual
+EG		= extending-gramps
 
 @SET_MAKE@
 
@@ -21,6 +24,12 @@ install:
 	-${INSTALL} -d ${bindir}
 	-${INSTALL} -d ${sharedir}/example/gramps
 	-${INSTALL} -d ${sharedir}/example/gedcom
+	-${INSTALL} -d ${GNOMEHELP}/${GM}/C
+	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
+	-${INSTALL} doc/${GM}/C/${GM}/*.html ${GNOMEHELP}/${GM}/C
+	-${INSTALL} doc/${GM}/C/${GM}/*.png ${GNOMEHELP}/${GM}/C
+	-${INSTALL} doc/${EG}/C/${EG}/*.html ${GNOMEHELP}/${EG}/C
+	-${INSTALL} doc/${EG}/C/${EG}/*.png ${GNOMEHELP}/${EG}/C
 	${INSTALL} gramps.sh ${bindir}/gramps
 	${INSTALL} doc/gramps.dtd ${sharedir}
 	-${INSTALL} example/gramps/*.jpg ${sharedir}/example/gramps

@@ -175,6 +175,30 @@
 
 	<widget>
 	  <class>GtkMenuItem</class>
+	  <name>edit1</name>
+	  <label>_Edit</label>
+	  <right_justify>False</right_justify>
+
+	  <widget>
+	    <class>GtkMenu</class>
+	    <name>edit1_menu</name>
+
+	    <widget>
+	      <class>GtkMenuItem</class>
+	      <name>find</name>
+	      <signal>
+		<name>activate</name>
+		<handler>on_find_activate</handler>
+		<last_modification_time>Wed, 05 Sep 2001 02:48:31 GMT</last_modification_time>
+	      </signal>
+	      <label>_Find</label>
+	      <right_justify>False</right_justify>
+	    </widget>
+	  </widget>
+	</widget>
+
+	<widget>
+	  <class>GtkMenuItem</class>
 	  <name>view1</name>
 	  <stock_item>GNOMEUIINFO_MENU_VIEW_TREE</stock_item>
 
@@ -359,7 +383,19 @@
 		<handler>on_contents_activate</handler>
 		<last_modification_time>Tue, 05 Dec 2000 01:21:41 GMT</last_modification_time>
 	      </signal>
-	      <label>_Manual</label>
+	      <label>_User's Manual</label>
+	      <right_justify>False</right_justify>
+	    </widget>
+
+	    <widget>
+	      <class>GtkMenuItem</class>
+	      <name>writing_extensions</name>
+	      <signal>
+		<name>activate</name>
+		<handler>on_writing_extensions_activate</handler>
+		<last_modification_time>Wed, 05 Sep 2001 00:38:07 GMT</last_modification_time>
+	      </signal>
+	      <label>_Writing Extensions</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 
@@ -490,7 +526,7 @@
 	    <object>notebook1</object>
 	    <last_modification_time>Tue, 07 Nov 2000 14:34:15 GMT</last_modification_time>
 	  </signal>
-	  <label>Pedigree</label>
+	  <label>Pedegree</label>
 	  <icon>pedegree.xpm</icon>
 	</widget>
 
@@ -5465,6 +5501,177 @@ Unknown
 	  <expand>False</expand>
 	  <fill>False</fill>
 	</child>
+      </widget>
+    </widget>
+  </widget>
+</widget>
+
+<widget>
+  <class>GtkDialog</class>
+  <name>find</name>
+  <title>Gramps - Find person</title>
+  <type>GTK_WINDOW_TOPLEVEL</type>
+  <position>GTK_WIN_POS_NONE</position>
+  <modal>False</modal>
+  <allow_shrink>True</allow_shrink>
+  <allow_grow>True</allow_grow>
+  <auto_shrink>False</auto_shrink>
+
+  <widget>
+    <class>GtkVBox</class>
+    <child_name>Dialog:vbox</child_name>
+    <name>dialog-vbox14</name>
+    <homogeneous>False</homogeneous>
+    <spacing>0</spacing>
+
+    <widget>
+      <class>GtkHBox</class>
+      <child_name>Dialog:action_area</child_name>
+      <name>dialog-action_area14</name>
+      <border_width>10</border_width>
+      <homogeneous>True</homogeneous>
+      <spacing>5</spacing>
+      <child>
+	<padding>0</padding>
+	<expand>False</expand>
+	<fill>True</fill>
+	<pack>GTK_PACK_END</pack>
+      </child>
+
+      <widget>
+	<class>GtkHButtonBox</class>
+	<name>hbuttonbox26</name>
+	<layout_style>GTK_BUTTONBOX_END</layout_style>
+	<spacing>30</spacing>
+	<child_min_width>85</child_min_width>
+	<child_min_height>27</child_min_height>
+	<child_ipad_x>7</child_ipad_x>
+	<child_ipad_y>0</child_ipad_y>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkButton</class>
+	  <name>prev</name>
+	  <can_default>True</can_default>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>clicked</name>
+	    <handler>on_prev_clicked</handler>
+	    <object>find</object>
+	    <last_modification_time>Wed, 05 Sep 2001 02:55:37 GMT</last_modification_time>
+	  </signal>
+	  <stock_button>GNOME_STOCK_BUTTON_PREV</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
+	</widget>
+
+	<widget>
+	  <class>GtkButton</class>
+	  <name>next</name>
+	  <can_default>True</can_default>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>clicked</name>
+	    <handler>on_next_clicked</handler>
+	    <object>find</object>
+	    <last_modification_time>Wed, 05 Sep 2001 02:55:23 GMT</last_modification_time>
+	  </signal>
+	  <stock_button>GNOME_STOCK_BUTTON_NEXT</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
+	</widget>
+
+	<widget>
+	  <class>GtkButton</class>
+	  <name>button120</name>
+	  <can_default>True</can_default>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>clicked</name>
+	    <handler>destroy_passed_object</handler>
+	    <object>find</object>
+	    <last_modification_time>Wed, 05 Sep 2001 02:55:07 GMT</last_modification_time>
+	  </signal>
+	  <stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
+	</widget>
+      </widget>
+    </widget>
+
+    <widget>
+      <class>GtkVBox</class>
+      <name>vbox41</name>
+      <homogeneous>False</homogeneous>
+      <spacing>0</spacing>
+      <child>
+	<padding>0</padding>
+	<expand>True</expand>
+	<fill>True</fill>
+      </child>
+
+      <widget>
+	<class>GtkLabel</class>
+	<name>label238</name>
+	<label>Find Person by Name</label>
+	<justify>GTK_JUSTIFY_CENTER</justify>
+	<wrap>False</wrap>
+	<xalign>0.5</xalign>
+	<yalign>0.5</yalign>
+	<xpad>0</xpad>
+	<ypad>0</ypad>
+	<child>
+	  <padding>10</padding>
+	  <expand>False</expand>
+	  <fill>False</fill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkHSeparator</class>
+	<name>hseparator22</name>
+	<child>
+	  <padding>0</padding>
+	  <expand>False</expand>
+	  <fill>False</fill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkHBox</class>
+	<name>hbox31</name>
+	<homogeneous>False</homogeneous>
+	<spacing>0</spacing>
+	<child>
+	  <padding>19</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>Placeholder</class>
+	</widget>
+
+	<widget>
+	  <class>GtkEntry</class>
+	  <name>entry1</name>
+	  <width>250</width>
+	  <can_focus>True</can_focus>
+	  <editable>True</editable>
+	  <text_visible>True</text_visible>
+	  <text_max_length>0</text_max_length>
+	  <text></text>
+	  <child>
+	    <padding>10</padding>
+	    <expand>True</expand>
+	    <fill>True</fill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>Placeholder</class>
+	</widget>
       </widget>
     </widget>
   </widget>

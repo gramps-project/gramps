@@ -15,6 +15,7 @@ changequote([, ])dnl
 AC_SUBST(PYTHON)
 AC_SUBST(PYTHON_VERSION)
 AC_SUBST(PACKAGE)
+AC_SUBST(GNOMEHELP)
 
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
@@ -24,6 +25,7 @@ AC_PROG_CC
 dnl Check for programs
 
 AC_CHECK_PROG(HAVE_GNOME_CONFIG, gnome-config, "YES", "NO")
+GNOMEHELP=`gnome-config --prefix`
 
 dnl Check if python bindings for gtk are installed
 

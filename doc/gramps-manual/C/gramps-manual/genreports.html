@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>Generating Reports</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.59"><LINK
+REL="HOME"
+TITLE="gramps User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Customization"
+HREF="prefs.html"><LINK
+REL="NEXT"
+TITLE="Running Tools"
+HREF="runtools.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>gramps User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="prefs.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="runtools.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="GENREPORTS"
+>Generating Reports</A
+></H1
+><P
+>    <TT
+CLASS="APPLICATION"
+>gramps</TT
+> can produce a wide variety of
+    reports. New report generators can be written by the user without
+    modifying the main program. For this reason, there may be more
+    reports available than are documented by this manual
+    </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="REPORT-FIG"
+></A
+><P
+><IMG
+SRC="reportsel.png"></P
+><P
+><B
+>Figure 23. Report Generation Dialog</B
+></P
+></DIV
+><P
+>    Unlike many genealogy programs, <TT
+CLASS="APPLICATION"
+>gramps</TT
+>
+    does not directly print reports. Instead,
+    <TT
+CLASS="APPLICATION"
+>gramps</TT
+> produces reports in formats that
+    are understood by other programs.  These formats include
+    OpenOffice, AbiWord, PDF, and HTML, among others. This allows the
+    generated reports to be modified after they are generated, stored
+    for use later, or emailed to another person.
+    </P
+><P
+>    After selecting the report you would like generated there are
+    option you must select.  In the Save As option specify your file
+    name (use /full path/filename to specify a different directory
+    than in your Default Report Directory preference in the
+    preferences).  The next step is to select the Report Format.
+    After choosing the Format you can select the style you would like
+    to use for your report (this does not apply to the HTML format).
+    You can Add/Edit/Delete a style for that particular report by
+    clicking the <B
+CLASS="GUIBUTTON"
+>Style Editor</B
+> button.
+    Selecting one of those options you can then change the font (font
+    face, size, color, and options) for each Paragraph Style along
+    with the Paragraph Options (Alignment, background color, margins,
+    and morders).  Once you are satisfied with the style you are ready
+    to proceed with the generation of your report.  The next step is
+    to choose the options (if any for that specific report) and then
+    Choose the Templete (for HTML format only) and click OK.  Your
+    report will now be in default report directory (unless otherwise
+    specified) for you to view the program you specified the report to
+    be generated for.
+    </P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="HTMLTEMPLATES"
+>Using HTML templates</A
+></H2
+><P
+>      Many programs exist to convert GEDCOM files into HTML files that
+      can be viewed in a web browser. Most of these programs generate
+      HTML files according to their own predefined style. Since most
+      people have a style that they prefer, they are left with the
+      option of modifying hundreds of files by hand.
+      </P
+><P
+>      To solve this problem, <TT
+CLASS="APPLICATION"
+>gramps</TT
+> allows
+      the user to specify a template to be used for generating HTML
+      files.  At the time the report is generated, if HTML is selected
+      as the target format, the user can select an HTML template to be
+      used.  Since the template is chosen at report generation time, a
+      different template may be chosen each time, allowing the user to
+      change the appearence of the generated files at any time.
+      Nearly any existing HTML file can be used as an HTML template
+      for <TT
+CLASS="APPLICATION"
+>gramps</TT
+>.
+      </P
+><P
+>      When a file has been established as the HTML template file,
+      <TT
+CLASS="APPLICATION"
+>gramps</TT
+> uses the template for each
+      file that it generates. <TT
+CLASS="APPLICATION"
+>gramps</TT
+> starts
+      each file by copying data from the template until it reaches an
+      HTML comment uses as a marker.  At that point,
+      <TT
+CLASS="APPLICATION"
+>gramps</TT
+> inserts its data into the
+      output file. <TT
+CLASS="APPLICATION"
+>gramps</TT
+> the continues
+      reading the until it reaches a second comment that tells it to
+      resume copying from the template.
+      </P
+><P
+>      <TT
+CLASS="APPLICATION"
+>gramps</TT
+> uses the string
+      <TT
+CLASS="FUNCTION"
+>&#60;!-- START --&#62;</TT
+> to indicate where it
+      should start inserting its information, and the string
+      <TT
+CLASS="FUNCTION"
+>&#60;!-- STOP --&#62;</TT
+> to indicate where it
+      should resume copying data from the template.  The effect is
+      that <TT
+CLASS="APPLICATION"
+>gramps</TT
+> will create a new
+      document, replacing everything between the <TT
+CLASS="FUNCTION"
+>&#60;!--
+      START --&#62;</TT
+> and <TT
+CLASS="FUNCTION"
+>&#60;!-- STOP
+      --&#62;</TT
+> comments with the report information.
+      </P
+><P
+>      The comment markers should be at the beginning of a line in the
+      HTML template file.  Adding the comments to an existing HTML
+      document will not affect the original HTML document in any way.
+      </P
+><P
+>      If no HTML template is specified, or if the specified template
+      cannot be read, <TT
+CLASS="APPLICATION"
+>gramps</TT
+> will use a
+      default, predefined template.
+      </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="TEMPLATEEXAMPLE"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;HTML&#62;
+&#60;HEAD&#62;
+&#60;TITLE&#62;
+This is my Title
+&#60;/TITLE&#62;
+&#60;/HEAD&#62;
+&#60;BODY BGCOLOR="#FFFFFF"&#62;
+&#60;P&#62;
+This is a simple template.  This text will appear in the html output.
+&#60;/P&#62;
+&#60;!-- START --&#62;
+&#60;P&#62;
+This is where gramps will place its report information. Any 
+information between the two comments, including this paragraph,
+will not appear in the gramps generated output.
+&#60;/P&#62;
+&#60;!-- STOP --&#62;
+&#60;P&#62;
+This text, since it appears after the stop comment, will also
+appear in every gramps generated file.
+&#60;/P&#62;
+&#60;/BODY&#62;
+&#60;/HTML&#62;
+        </PRE
+></TD
+></TR
+></TABLE
+><P
+><B
+>Figure 24. Sample HTML Template Example</B
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="prefs.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="runtools.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Customization</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Running Tools</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
