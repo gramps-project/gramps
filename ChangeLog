@@ -1,4 +1,9 @@
 2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
+
+	* src/EditPerson.py
+	Don't reset date value after a page switch
+
+2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ImageSelect.py
 	Fixed typo in on_drag_begin
 	* src/RelLib.py
