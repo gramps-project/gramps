@@ -1081,7 +1081,7 @@ class Person:
                 # This will happen when cousins marry.
                 if not family.Father.ancestor:
                     family.Father.setAncestor(value)
-            if (family.Mother):
+            if family.Mother:
                 if not family.Mother.ancestor:
                     family.Mother.setAncestor(value)
 
@@ -1095,7 +1095,7 @@ class Person:
         return self.lds_bapt
 
     def setLdsEndowment(self,ord):
-        self.lds_endow = None
+        self.lds_endow = ord
 
     def getLdsEndowment(self):
         return self.lds_endow
