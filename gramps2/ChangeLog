@@ -1,3 +1,10 @@
+2003-06-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Plugins.py: Register book items with options and style instead 
+	of the functions get_options and get_style.
+	* src/plugins/BookReport.py, src/plugins/FtmStyleDescendants.py,
+	src/plugins/FtmStyleAncestors.py: Change from functions to values,
+	accordingly. Also switch to a proper use of dialog.run(). 
+
 2003-06-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py, src/plugins/FtmStyleDescendants.py: 
 	Minor fixes.

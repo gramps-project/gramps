@@ -152,6 +152,10 @@ class BookReportSelector:
         self.bk_model.add(data)
         for book_item in Plugins._bkitems:
             if book_item[0] == data[0]:
+                #get_options = book_item[4]
+                #get_style = book_item[5]
+                #store_item = list(book_item) 
+                #[ book_item[0], book_item[1], book_item[2], book_item[3], get_options(), get_style() ]
                 self.item_storage[newkey] = list(book_item)
 
     def on_remove_clicked(self,obj):
@@ -193,14 +197,15 @@ class BookReportSelector:
         key = data[self.bk_ncols-1]
         book_item = self.item_storage[key]
         options_dialog =  book_item[2]
-        get_opt = book_item[4]
-        get_stl = book_item[5] 
-        opt_dlg = options_dialog(self.db,self.person,get_opt,get_stl)
+        options = book_item[4]
+        style = book_item[5] 
+        opt_dlg = options_dialog(self.db,self.person,options,style)
+        opt_dlg.window.destroy()
         if opt_dlg.person:
             self.bk_model.model.set_value(iter,2,
                 opt_dlg.person.getPrimaryName().getRegularName())
-        book_item[4] = opt_dlg.get_options
-        book_item[5] = opt_dlg.get_style
+        book_item[4] = opt_dlg.options
+        book_item[5] = opt_dlg.style
         self.item_storage[key] = book_item
 
     def bk_double_click(self,obj,event):
@@ -240,8 +245,7 @@ class BookReportDialog(Report.ReportDialog):
         Report.BareReportDialog.__init__(self,database,person)
         self.item_list = item_list
         book_item = item_list[0]
-        get_style = book_item[5]
-        self.selected_style = get_style()
+        self.selected_style = book_item[5]
         self.database = database 
         self.person = person
 
@@ -284,8 +288,7 @@ class BookReportDialog(Report.ReportDialog):
         first = 1
         for book_item in self.item_list:
             write_book_item = book_item[3]
-            get_options = book_item[4]
-            item_options = get_options()
+            item_options = book_item[4]
             if write_book_item:
                 if first:
                     first = 0

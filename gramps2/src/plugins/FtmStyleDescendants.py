@@ -1229,7 +1229,6 @@ class FtmDescendantReportDialog(Report.TextReportDialog):
 def report(database,person):
     FtmDescendantReportDialog(database,person)
 
-
 #------------------------------------------------------------------------
 #
 # Set up sane defaults for the book_item
@@ -1243,17 +1242,13 @@ fo.default_style = TextDoc.StyleSheet()
 
 _make_default_style(fo)
 _style = fo.default_style
+
 _max_gen = 10
 _pg_brk = 0
+_options = [ None, _max_gen, _pg_brk ]
 
 def options_dialog(database,person):
     FtmDescendantBareReportDialog(database,person) 
-
-def get_style():
-    return _style
-
-def get_options():
-    return [ None, _max_gen, _pg_brk ]
 
 #------------------------------------------------------------------------
 #
@@ -1262,18 +1257,18 @@ def get_options():
 #------------------------------------------------------------------------
 class FtmDescendantBareReportDialog(Report.BareReportDialog):
 
-    def __init__(self,database,person,get_opt,get_stl):
+    def __init__(self,database,person,opt,stl):
 
-        options = get_opt()
-        if options[0]:
-            self.person = options[0]
+        self.options = opt
+        if self.options[0]:
+            self.person = self.options[0]
         else:
             self.person = person
         Report.BareReportDialog.__init__(self,database,self.person)
         self.make_default_style = _make_default_style
-        self.max_gen = options[1] 
-        self.pg_brk = options[2]
-        self.selected_style = get_stl()
+        self.max_gen = self.options[1] 
+        self.pg_brk = self.options[2]
+        self.style = stl
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
@@ -1301,6 +1296,9 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
     def make_default_style(self):
         _make_default_style(self)
 
+    def on_cancel(self, obj):
+        pass
+
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
         and close the window."""
@@ -1310,21 +1308,14 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         self.parse_report_options_frame()
         
         self.person = self.new_person
-        
-        # Clean up the dialog object
-        self.window.destroy()
-    
-    def get_options(self):
-        """This function returns the options to be used for this book item."""
+        self.options = [ self.person, self.max_gen, self.pg_brk ]
+        self.style = self.selected_style 
 
-        return [ self.person, self.max_gen, self.pg_brk ]
-    
-    def get_style(self):
-        """This function returns the style to be used for this book item."""
-
-        return self.selected_style
-
-
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
 def write_book_item(database,person,doc,options,newpage=0):
     """Write the FTM Style Descendant Report options set.
     All user dialog has already been handled and the output file opened."""
@@ -1460,6 +1451,6 @@ register_book_item(
     _("Text"),
     FtmDescendantBareReportDialog,
     write_book_item,
-    get_options,
-    get_style
+    _options,
+    _style
     )
