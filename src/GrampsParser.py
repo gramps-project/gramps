@@ -31,18 +31,15 @@ import sys
 #
 #-------------------------------------------------------------------------
 if sys.version[0] != '1':
-    sax = 2
     try:
         from _xmlplus.sax import handler
+        from _xmlplus.sax import make_parser
     except:
         from xml.sax import handler
+        from xml.sax import make_parser
 else:
-    try:
-        from xml.sax import handler
-        import xml.sax.saxexts
-        sax = 1
-    except:
-        sax = 2
+    from xml.sax import handler
+    from xml.sax import make_parser
 
 #-------------------------------------------------------------------------
 #
@@ -858,14 +855,9 @@ class GrampsParser(handler.ContentHandler):
         self.func_index = self.func_index - 1    
         self.func,self.data = self.func_list[self.func_index]
 
-    if sax == 1:
-        def characters(self, data, offset, length):
-            if self.func:
-                self.data = self.data + data
-    else:
-        def characters(self, data):
-            if self.func:
-                self.data = self.data + data
+    def characters(self, data):
+        if self.func:
+            self.data = self.data + data
 
 
 
