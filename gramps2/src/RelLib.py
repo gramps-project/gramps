@@ -2923,7 +2923,7 @@ class GrampsDB:
 #        self.genderStats.count_person (person, self)
         return gid
 
-    def add_source(self,source):
+    def add_source(self,source,trans=None):
         """adds a Source instance to the database, assigning it a gramps'
         ID number"""
         
