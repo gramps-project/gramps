@@ -46,9 +46,9 @@ class DateDisplay:
         " (Persian)"," (Islamic)"
         )
     
-    _mod_str = (
-        "","before ","after ","about ","estimated ","calculated ",""
-        )
+    _mod_str = ("","before ","after ","about ","","","")
+
+    _qual_str = ("","estimated ","calculated ")
 
     # determine the code set returned by nl_langinfo
     _codeset = locale.nl_langinfo(locale.CODESET)
@@ -175,20 +175,24 @@ class DateDisplay:
         """
         mod = date.get_modifier()
         cal = date.get_calendar()
+        qual = date.get_quality()
         start = date.get_start_date()
+
+        qual_str = self._qual_str[qual]
+        
         if start == Date.EMPTY:
             return u""
         if mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "from %s to %s%s" % (d1,d2,self.calendar[cal])
+            return "%sfrom %s to %s%s" % (qual_str,d1,d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "between %s and %s%s" % (d1,d2,self.calendar[cal])
+            return "%sbetween %s and %s%s" % (qual_str,d1,d2,self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s" % (self._mod_str[mod],text,self.calendar[cal])
+            return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
 
     def _slash_year(self,val,slash):
         if slash:
