@@ -53,15 +53,18 @@ _fmonth2num = {
     "ther" :10, "fruc" :11, "extr" : 12,"nivô" : 3 }
 
 _hmonth = [
-    "",       "Tishri", "Heshvan", "Kislev", "Tevet",  "Shevat", "AdarI",
+    "Tishri", "Heshvan", "Kislev", "Tevet",  "Shevat", "AdarI",
     "AdarII", "Nisan",  "Iyyar",   "Sivan",  "Tammuz", "Av",     "Elul"
 ]
 
 _hmonth2num = {
-    "Tishri" : 0, "Heshvan" : 1, "Kislev" : 2, "Tevet" : 3,
-    "Shevat" : 4, "AdarI"   : 5, "AdarII" : 6, "Nisan" : 7,
-    "Iyyar"  : 8, "Sivan"   : 9, "Tammuz" :10, "Av"    : 11,
-    "Elul"   : 12
+    "tishri" : 0, "heshvan" : 1, "kislev" : 2, "tevet" : 3,
+    "shevat" : 4, "adari"   : 5, "adarii" : 6, "nisan" : 7,
+    "iyyar"  : 8, "sivan"   : 9, "tammuz" :10, "av"    : 11,
+    "elul"   : 12,"tsh"     : 0, "csh"    : 1, "ksl"   : 2,
+    "tvt"    : 3, "shv"     : 4, "adr"    : 5, "ads"   : 6,
+    "nsn"    : 7, "iyr"     : 8, "svn"    : 9, "tmz"   : 10,
+    "aav"    :11, "ell"     :12,
     }
 
 _mname = [ _("January"),   _("February"),  _("March"),    _("April"),
@@ -82,7 +85,7 @@ _m2num = { string.lower(_mname[0][0:3]) : 0,
            string.lower(_mname[11][0:3]) : 11 }
 
 
-_UNDEF = -999999
+UNDEF = -999999
 
 #-------------------------------------------------------------------------
 #
@@ -227,7 +230,7 @@ class Date:
         elif self.calendar == JULIAN:
             return self.get_quote_date(_mname,_("Julian"))
         elif self.calendar == HEBREW:
-            return self.get_quote_date(_hmonth,_("French"))
+            return self.get_quote_date(_hmonth,_("Hebrew"))
         else:
             return self.get_quote_date(_fmonth,_("French"))
 
@@ -269,10 +272,10 @@ class Date:
 
     def isEmpty(self):
         s = self.start
-        return s.year==_UNDEF and s.month==_UNDEF and s.day==_UNDEF
+        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF
 
     def isValid(self):
-        return self.range != -1
+        return self.range != -1 
 
     def isRange(self):
         return self.range == 1
@@ -363,9 +366,9 @@ class SingleDate:
             self.mode = source.mode
             self.calendar = source.calendar
         else:
-            self.month = _UNDEF
-            self.day = _UNDEF
-            self.year = _UNDEF
+            self.month = UNDEF
+            self.day = UNDEF
+            self.year = UNDEF
             self.mode = SingleDate.exact
             self.calendar = GREGORIAN
 
@@ -378,7 +381,7 @@ class SingleDate:
 
     def setMonth(self,val):
         if val > 12 or val < 0:
-            self.month = _UNDEF
+            self.month = UNDEF
         else:
             self.month = val - 1
 
@@ -387,21 +390,21 @@ class SingleDate:
             val = int(s)
             self.month = val - 1
         except ValueError:
-            self.month = _UNDEF
+            self.month = UNDEF
 
     def setDayVal(self,s):
         try:
             val = int(s)
             self.day = val
         except ValueError:
-            self.day = _UNDEF
+            self.day = UNDEF
 
     def setYearVal(self,s):
         try:
             val = int(s)
             self.year = val
         except ValueError:
-            self.year = _UNDEF
+            self.year = UNDEF
 
     def getMonth(self):
         return self.month + 1
@@ -428,24 +431,24 @@ class SingleDate:
         try:
             self.month = SingleDate.em2num[string.lower(text[0:3])]
         except KeyError:
-            self.month = _UNDEF
+            self.month = UNDEF
 
     def getMonthStr(self):
 	return _mname[self.month]
 
     def getIsoDate(self):
-        if self.year == _UNDEF:
+        if self.year == UNDEF:
             y = "????"
         else:
             y = "%04d" % self.year
-        if self.month == _UNDEF:
-            if self.day == _UNDEF:
+        if self.month == UNDEF:
+            if self.day == UNDEF:
                 m = ""
             else:
                 m = "-??"
         else:
             m = "-%02d" % (self.month+1)
-        if self.day == _UNDEF:
+        if self.day == UNDEF:
             d = ''
         else:
             d = "-%02d" % self.day
@@ -454,20 +457,20 @@ class SingleDate:
     def getSaveDate(self):
         retval = ""
         
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             pass
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 retval = SingleDate.emname[self.month]
             else:	
                 retval = "%s %d" % (SingleDate.emname[self.month],self.year)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = str(self.year)
         else:
             month = SingleDate.emname[self.month]
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%d %s ????" % (self.day,month)
             else:
                 retval = "%d %s %d" % (self.day,month,self.year)
@@ -483,20 +486,20 @@ class SingleDate:
 
     def getFmt1(self):
 
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 retval = _mname[self.month]
             else:	
                 retval = "%s %d" % (_mname[self.month],self.year)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = str(self.year)
         else:
             month = _mname[self.month]
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%s %d, ????" % (month,self.day)
             else:
                 retval = "%s %d, %d" % (month,self.day,self.year)
@@ -511,18 +514,18 @@ class SingleDate:
         return retval
 
     def getFmt2(self):
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
-        elif self.month != _UNDEF and self.month != _UNDEF:
+        elif self.month != UNDEF and self.month != UNDEF:
             month = _mname[self.month]
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%s %d, ????" % (string.upper(month[0:3]),self.day)
             else:
                 retval = "%s %d, %d" % (string.upper(month[0:3]),self.day,self.year)
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 month = _mname[self.month]
                 retval = string.upper(month[0:3])
             else:	
@@ -541,22 +544,22 @@ class SingleDate:
         return retval
 
     def getFmt3(self):
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 month = _mname[self.month]
                 retval = string.upper(month[0:3])
             else:
                 month = _mname[self.month]
                 retval = "%s %d" % (string.upper(month[0:3]),self.year)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = str(self.year)
         else:
             month = _mname[self.month]
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%d %s ????" % (self.day,string.upper(month[0:3]))
             else:
                 retval = "%d %s %d" % (self.day,string.upper(month[0:3]),self.year)
@@ -571,21 +574,21 @@ class SingleDate:
         return retval
 
     def getFmt10(self):
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 retval = _mname[self.month]
             else:
                 month = _mname[self.month]
                 retval = "%s %d" % (month,self.year)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = str(self.year)
         else:
             month = _mname[self.month]
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%d. %s ????" % (self.day,month)
             else:
                 retval = "%d. %s %d" % (self.day,month,self.year)
@@ -600,19 +603,19 @@ class SingleDate:
         return retval
 
     def get_mmddyyyy(self,sep):
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 retval = "%02d%s??%s??" % (self.month+1,sep,sep)
             else:
                 retval = "%02d%s??%s%04d" % (self.month+1,sep,sep,self.year)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = "??%s%02d%s%04d" % (sep,self.day,sep,self.year)
         else:
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%02d%s%02d%s????" % (self.month+1,sep,self.day,sep)
             else:
                 retval = "%02d%s%02d%s%04d" % (self.month+1,sep,self.day,sep,self.year)
@@ -629,19 +632,19 @@ class SingleDate:
     def get_yyyymmdd(self,sep):
         retval = ""
         
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             pass
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 retval = "????%s%02d%s??" % (sep,self.month+1,sep)
             else:
                 retval = "%04d%s%02d" % (self.year,sep,self.month+1)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = "%04d%s??%s%02d" % (self.year,sep,sep,self.day)
         else:
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "????%02d%s%02d%s" % (self.month+1,sep,self.day,sep)
             else:
                 retval = "%02d%s%02d%s%02d" % (self.year,sep,self.month+1,sep,self.day)
@@ -668,19 +671,19 @@ class SingleDate:
     def get_ddmmyyyy(self,sep):
         retval = ""
         
-        if self.month == _UNDEF and self.day == _UNDEF and self.year == _UNDEF :
+        if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             pass
-        elif self.day == _UNDEF:
-            if self.month == _UNDEF:
+        elif self.day == UNDEF:
+            if self.month == UNDEF:
                 retval = str(self.year)
-            elif self.year == _UNDEF:
+            elif self.year == UNDEF:
                 retval = "??%s%02d%s??" % (sep,self.month+1,sep)
             else:
                 retval = "??%s%02d%s%04d" % (sep,self.month+1,sep,self.year)
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             retval = "%02d%s??%s%04d" % (self.day,sep,sep,self.year)
         else:
-            if self.year == _UNDEF:
+            if self.year == UNDEF:
                 retval = "%02d%s%02d%s????" % (self.day,sep,self.month+1,sep)
             else:
                 retval = "%02d%s%02d%s%04d" % (self.day,sep,self.month+1,sep,self.year)
@@ -722,16 +725,16 @@ class SingleDate:
                 getFmt13]
 
     def display_calendar(self,month_map):
-        if self.year==_UNDEF:
-            if self.month == _UNDEF:
+        if self.year==UNDEF:
+            if self.month == UNDEF:
                 return ""
-            elif self.day == _UNDEF:
+            elif self.day == UNDEF:
                 return month_map[self.month]
             else:
                 return "%02 %s" % (self.day,month_map[self.month])
-        elif self.month == _UNDEF:
+        elif self.month == UNDEF:
             return str(self.year)
-        elif self.day == _UNDEF:
+        elif self.day == UNDEF:
             return "%s %d" % (month_map[self.month],self.year)
         else:
             return "%02d %s %d" % (self.day,month_map[self.month],self.year)
@@ -802,19 +805,40 @@ class SingleDate:
                 return
             else:
                 self.setYear(int(matches[3]))
-                self.setMonth(_UNDEF)
-                self.setDay(_UNDEF)
+                self.setMonth(UNDEF)
+                self.setDay(UNDEF)
                 return
         match = SingleDate.fmt3.match(text)
         if match:
             matches = match.groups()
             self.setYearVal(matches[3])
             self.setMonthVal(matches[2])
-            self.setDayVal(matches[1]) 
-        else:
-            self.year = _UNDEF
-            self.month = _UNDEF
-            self.day = _UNDEF
+            self.setDayVal(matches[1])
+            return
+
+        match = SingleDate.fmt4.match(text)
+        if match:
+            matches = match.groups()
+            if l == 0:
+                mon = string.lower(matches[1])
+            else:
+                mon = string.lower(matches[1])[0:l]
+            self.setYearVal(matches[2])
+            self.setMonth(month_map[mon]+1)
+            self.day = UNDEF
+            return
+
+        match = SingleDate.fmt5.match(text)
+        if match:
+            matches = match.groups()
+            self.setYearVal(matches[1])
+            self.month = UNDEF
+            self.day = UNDEF
+            return
+
+        self.year = UNDEF
+        self.month = UNDEF
+        self.day = UNDEF
 
     def set_gregorian(self,text):
         match = SingleDate.fmt2.match(text)
@@ -822,21 +846,21 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthStr(matches[2])
-            if self.month == _UNDEF:
+            if self.month == UNDEF:
                 raise Date.Error,text
             self.day = int(matches[1])
             if len(matches) == 4:
                 self.setYearVal(matches[3])
             else:
-                self.year = _UNDEF
+                self.year = UNDEF
             return 1
         
         match = SingleDate.fmt5.match(text)
         if match != None:
             matches = match.groups()
             self.getMode(matches[0])
-            self.month = _UNDEF
-            self.day = _UNDEF
+            self.month = UNDEF
+            self.day = UNDEF
             self.year = int(matches[1])
             return 1
 
@@ -875,13 +899,13 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthStr(matches[1])
-            if self.month == _UNDEF:
+            if self.month == UNDEF:
                 raise Date.Error,text
             val = matches[2]
             if val:
                 self.day = int(string.replace(val,',',''))
             else:
-                self.day = _UNDEF
+                self.day = UNDEF
             self.setYearVal(matches[3])
             return 1
 
@@ -890,9 +914,9 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthStr(matches[1])
-            if self.month == _UNDEF:
+            if self.month == UNDEF:
                 raise Date.Error,text
-            self.day = _UNDEF
+            self.day = UNDEF
             if len(matches) == 4:
                 self.setYearVal(matches[3])
             return 1
@@ -902,20 +926,20 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthVal(matches[1])
-            self.day = _UNDEF
-            self.year = _UNDEF
+            self.day = UNDEF
+            self.year = UNDEF
             return 1
 
         raise Date.Error,text
 
     def get_sdn(self):
-        if self.year == _UNDEF:
+        if self.year == UNDEF:
             return 0
-        if self.month == _UNDEF:
+        if self.month == UNDEF:
             month = 1
         else:
             month = self.month + 1
-        if self.day == _UNDEF:
+        if self.day == UNDEF:
             day = 1
         else:
             day = self.day
@@ -936,7 +960,7 @@ class SingleDate:
         elif val == JULIAN:
             self.convert_calendar(sdn_to_julian,val)
         elif val == HEBREW:
-            self.convert_calendar(sdn_to_hebrew,val)
+            self.convert_calendar(sdn_to_jewish,val)
         else:
             self.convert_calendar(sdn_to_french,val)
 
@@ -945,9 +969,9 @@ class SingleDate:
         (y,m,d) = func(sdn)
         self.calendar = mode
         if y == 0 and m == 0 and d == 0:
-            self.year = _UNDEF
-            self.month = _UNDEF
-            self.day = _UNDEF
+            self.year = UNDEF
+            self.month = UNDEF
+            self.day = UNDEF
         else:
             self.year = y
             self.month = m-1

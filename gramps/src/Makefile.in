@@ -4,19 +4,33 @@ bindir 		= @bindir@
 datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
 srcdir		= @top_srcdir@
+intl_libs       = @INTLLIBS@
+p15_inc         = @P15_INCLUDES@
+p20_inc         = @P20_INCLUDES@
+p21_inc         = @P21_INCLUDES@
+p22_inc         = @P22_INCLUDES@
 pycomp		= ${srcdir}/py-compile
-CFLAGS          = -fPIC -shared -O @PYTHON_INCLUDES@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
+CFLAGS          = -fPIC -shared -O @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS         = @LDFLAGS@ -L@libdir@ @LIBS@
 LANG            = sv de fr es
 
 @SET_MAKE@
 
-all:    intl.so
+all:    ${intl_libs}
 	chmod +x ${pycomp}
 	${pycomp} *.py
 
-intl.so: intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -o intl.so intl.c
+intl15.so: intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $(p15_inc) -DVER15 -o $@ intl.c
+
+intl20.so: intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $(p20_inc) -DVER20 -o $@ intl.c
+
+intl21.so: intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $(p21_inc) -DVER21 -o $@ intl.c
+
+intl22.so: intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $(p22_inc) -DVER22 -o $@ intl.c
 
 install:
 	${INSTALL} -d ${datadir}
