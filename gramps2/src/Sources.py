@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -517,9 +517,7 @@ class SourceEditor:
         self.set_button()
 
     def update_display(self,source):
-        self.db.add_source(source)
         self.draw(source)
-#        self.update(0)
 
     def add_src_clicked(self,obj):
         import EditSource

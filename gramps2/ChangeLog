@@ -3,6 +3,9 @@
 	(format_maker): Add_function; (NewSaveasDbPrompter.chooser): Support
 	for explicit format selection.
 
+	* src/Sources.py (SourceEditor.update_display): Do not add source
+	for the second time.
+
 2005-02-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (on_select_row): Add garbage collection call.
 
