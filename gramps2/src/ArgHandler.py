@@ -20,9 +20,7 @@
 
 # $Id$
 
-#
 # Written by Alex Roitman
-#
 
 """
 Module responsible for handling the command line arguments for GRAMPS.
@@ -34,7 +32,6 @@ Module responsible for handling the command line arguments for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
-import os.path
 import getopt
 from gettext import gettext as _
 
@@ -129,13 +126,13 @@ class ArgHandler:
                         print "Invalid format:  %s" % format
                         print "Ignoring input file:  %s" % fname
                         continue
-                elif ftype == "application/x-gedcom":
+                elif ftype == const.app_gedcom:
                     format = 'gedcom'
-                elif ftype == "application/x-gramps-package":
+                elif ftype == const.app_gramps_package:
                     format = 'gramps-pkg'
                 elif ftype == "x-directory/normal":
                     format = 'gramps-xml'
-                elif ftype == "application/x-gramps":
+                elif ftype == const.app_gramps:
                     format = 'grdb'
                 else:
                     print "Unrecognized format for input file %s" % fname
@@ -180,10 +177,32 @@ class ArgHandler:
                     continue
                 self.actions.append(action)
             
+    #-------------------------------------------------------------------------
+    #
+    # open data in native format
+    #
+    #-------------------------------------------------------------------------
     def auto_save_load(self,filename):
-        filename = os.path.normpath(os.path.abspath(filename))
         self.parent.active_person = None
-        return self.parent.read_file(filename)
+        filename = os.path.normpath(os.path.abspath(filename))
+        filetype = GrampsMime.get_type(filename)
+        if filetype == const.app_gramps:
+            import GrampsBSDDB
+            self.parent.db = GrampsBSDDB.GrampsBSDDB()
+            self.parent.read_file(filename)
+            return 1
+        elif filetype == const.app_gramps_xml:
+            import GrampsXMLDB
+            self.parent.db = GrampsXMLDB.GrampsXMLDB()
+            self.parent.read_file(filename)
+            return 1
+        elif filetype == const.app_gedcom:
+            import GrampsGEDDB
+            self.parent.db = GrampsGEDDB.GrampsGEDDB()
+            self.parent.read_file(filename)
+            return 1
+        else:
+            return 0
 
     #-------------------------------------------------------------------------
     #
@@ -202,40 +221,40 @@ class ArgHandler:
             # the rest of given arguments.
             filename = os.path.abspath(os.path.expanduser(self.open))
             filetype = GrampsMime.get_type(filename) 
-            if filetype == "application/x-gramps":
+            if filetype == const.app_gramps:
                 print "Type: GRAMPS database"
                 if self.auto_save_load(filename):
                     print "Opened successfully!"
                 else:
                     print "Cannot open %s. Exiting..."
-            elif filetype in ("application/x-gedcom","x-directory/normal",
-	    	    	    	    "application/x-gramps-package"):
+            elif filetype in (const.app_gedcom,"x-directory/normal",
+                                        const.app_gramps_package):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
                             _("New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
                             self.parent.topWindow)
                 prompter = DbPrompter.NewNativeDbPrompter(self.parent)
-		if not prompter.chooser():
+                if not prompter.chooser():
                     QuestionDialog.ErrorDialog( 
                         _("New GRAMPS database was not set up"),
                         _('GRAMPS cannot open non-native data without setting up new GRAMPS database.'))
                     print "Cannot continue without native database. Exiting..." 
-    	            os._exit(1)
-		elif filetype == "application/x-gedcom":
+                    os._exit(1)
+                elif filetype == const.app_gedcom:
                     print "Type: GEDCOM"
                     self.parent.read_gedcom(filename)
-            	elif filetype == "x-directory/normal":
+                elif filetype == "x-directory/normal":
                     print "Type: GRAMPS XML"
                     self.parent.read_xml(filename)
-    	        elif filetype == "application/x-gramps-package":
+                elif filetype == const.app_gramps_package:
                     print "Type: GRAMPS package"
                     self.parent.read_pkg(filename)
-    	    else:
+            else:
                 print "Unknown file type: %s" % filetype
                 QuestionDialog.ErrorDialog( 
                         _("Cannot open file: unknown type"),
                         _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
                 print "Exiting..." 
-    	        os._exit(1)
+                os._exit(1)
             return
            
         if self.imports:
@@ -294,7 +313,7 @@ class ArgHandler:
             if self.auto_save_load(GrampsCfg.get_lastfile()) == 0:
                 DbPrompter.DbPrompter(self.parent,0)
         else:
-	    DbPrompter.DbPrompter(self.parent,0)
+            DbPrompter.DbPrompter(self.parent,0)
 
 
     #-------------------------------------------------------------------------
