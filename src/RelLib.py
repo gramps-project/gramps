@@ -623,7 +623,7 @@ class Person(PrimaryObject,SourceNote):
                 if spouse.death_handle:
                     spouse_death = db.get_event_from_handle(spouse.death_handle)
                     if spouse_death.get_date() != "":
-                        d = SingleDate (spouse_birth.get_date_object().
+                        d = SingleDate (spouse_death.get_date_object().
                                     get_start_date())
                         d.set_year (d.get_year() - min_generation)
                         if not not_too_old (d):
