@@ -251,9 +251,13 @@ class PeopleModel(gtk.GenericTreeModel):
         self.top_visible = {}
 
     def set_visible(self,iter,val):
-        col = self.iter2path[iter]
-        self.top_visible[col[0]] = val
-        self.visible[iter] = val
+        try:
+            col = self.iter2path[iter]
+            self.top_visible[col[0]] = val
+            self.visible[iter] = val
+        except:
+            print iter,val
+            self.visible[iter] = val
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
