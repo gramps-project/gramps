@@ -519,7 +519,6 @@ def on_name_list_select_row(obj,row,b,c):
     epo.alt_given_field.set_text(name.getFirstName())
     epo.alt_last_field.set_text(name.getSurname())
     epo.alt_suffix_field.set_text(name.getSuffix())
-
     epo.name_details_field.set_text(get_detail_text(name))
 
 #-------------------------------------------------------------------------
@@ -766,7 +765,6 @@ def on_event_add_clicked(obj):
 def on_event_delete_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     row = obj.get_data(INDEX)
-
     if row < 0:
         return
     
@@ -1523,8 +1521,8 @@ def on_ok_clicked(obj):
 #-------------------------------------------------------------------------
 def on_browse_clicked(obj):
     import gnome.url
-    
-    path = obj.get_text()
+
+    path = obj.get()
     if path != "":
         gnome.url.show(path)
 
@@ -1539,7 +1537,7 @@ class EventEditor:
     def __init__(self,parent,event):
         self.parent = parent
         self.event = event
-        self.top = libglade.GladeXML(const.editPersonFile, "event_edit")
+        self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")
@@ -1642,7 +1640,7 @@ class AttributeEditor:
     def __init__(self,parent,attrib):
         self.parent = parent
         self.attrib = attrib
-        self.top = libglade.GladeXML(const.editPersonFile, "attr_edit")
+        self.top = libglade.GladeXML(const.dialogFile, "attr_edit")
         self.window = self.top.get_widget("attr_edit")
         self.type_field  = self.top.get_widget("attr_type")
         self.value_field = self.top.get_widget("attr_value")

@@ -766,6 +766,9 @@ class Family:
     def getAttributeList(self) :
         return self.attributeList
 
+    def setAttributeList(self,list) :
+        self.attributeList = list
+
     def getNote(self):
         return self.note.get()
 
@@ -817,23 +820,26 @@ class Family:
     def getChildList(self):
         return self.Children
 
-    def setMarriage(self,event):
-        self.Marriage = event
-
     def getMarriage(self):
-        return self.Marriage
-
-    def setDivorce(self,event):
-        self.Divorce = event
+        for e in self.EventList:
+            if e.getType == "Marriage":
+                return e
+        return None
 
     def getDivorce(self):
-        return self.Divorce
+        for e in self.EventList:
+            if e.getType == "Divorce":
+                return e
+        return None
 
     def addEvent(self,event) :
         self.EventList.append(event)
 
     def getEventList(self) :
         return self.EventList
+
+    def setEventList(self,list) :
+        self.EventList = list
 
     def addPhoto(self,photo):
         self.photoList.append(photo)

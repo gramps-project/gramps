@@ -434,10 +434,6 @@ class GrampsParser(handler.ContentHandler):
             self.person.setBirth(self.event)
         elif self.event_type == "Death":
             self.person.setDeath(self.event)
-        elif self.event_type == "Marriage":
-            self.family.setMarriage(self.event)
-        elif self.event_type == "Divorce":
-            self.family.setDivorce(self.event)
         elif self.person:
             self.person.EventList.append(self.event)
         else:
@@ -798,7 +794,6 @@ class GrampsParser(handler.ContentHandler):
         "bookmarks"  : (None, None),
         "child"      : (start_child,None),
         "childof"    : (start_childof,None),
-        "childlist"  : (None,None),
         "city"       : (None, stop_city),
         "country"    : (None, stop_country),
         "created"    : (start_created, None),

@@ -63,6 +63,7 @@ pluginsFile    = rootDir + os.sep + "plugins.glade"
 editnoteFile   = rootDir + os.sep + "editnote.glade"
 configFile     = rootDir + os.sep + "config.glade"
 stylesFile     = rootDir + os.sep + "styles.glade"
+dialogFile     = rootDir + os.sep + "dialog.glade"
 pluginsDir     = rootDir + os.sep + "plugins"
 filtersDir     = rootDir + os.sep + "filters"
 dataDir        = rootDir + os.sep + "data"
@@ -110,6 +111,7 @@ childRelations = {
     _("Adopted") : "Adopted",
     _("Stepchild") : "Stepchild",
     _("Unknown") : "Unknown",
+    _("Other") : "Other",
     }
 
 #-------------------------------------------------------------------------
@@ -370,7 +372,8 @@ _fr_e2l = {
     "Married"    : _("Married"),
     "Unmarried"  : _("Unmarried"),
     "Partners"   : _("Partners"),
-    "Unknown"    : _("Unknown")
+    "Unknown"    : _("Unknown"),
+    "Other"      : _("Other")
 }
 
 _fr_l2e = {}
