@@ -377,6 +377,14 @@ def save_fattr(st):
 #
 #-------------------------------------------------------------------------
 
+_frel2def = {
+    _("Married")  : _("A legal or common-law relationship between a husband and wife"),
+    _("Unmarried"): _("No legal or common-law relationship between man and woman"),
+    _("Partners") : _("An established relationship between members of the same sex"),
+    _("Unknown")  : _("Unknown relationship between a man and woman"),
+    _("Other")    : _("An unspecified relationship between a man and woman")
+}
+
 _fr_e2l = {
     "Married"   : _("Married"),
     "Unmarried" : _("Unmarried"),
@@ -388,6 +396,17 @@ _fr_e2l = {
 _fr_l2e = {}
 for a in _fa_e2l.keys():
     _fa_l2e[_fa_e2l[a]] = a
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def relationship_def(txt):
+    if _frel2def.has_key(txt):
+        return _frel2def[txt]
+    else:
+        return _("No definition available")
 
 #-------------------------------------------------------------------------
 #

@@ -74,7 +74,6 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
 
     def __init__(self,database,callback,base):
-        self.call = None
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -202,11 +201,11 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_event(self,attrs):
         self.event = Event()
-        self.event_type = u2l(string.capwords(attrs["type"]))
+        self.event_type = u2l(attrs["type"])
         if attrs.has_key("conf"):
-            self.event.confidence = string.atoi(attrs["conf"])
+            self.event.confidence = int(attrs["conf"])
         if attrs.has_key("priv"):
-            self.event.private = string.atoi(attrs["priv"])
+            self.event.private = int(attrs["priv"])
         
     #---------------------------------------------------------------------
     #
@@ -216,12 +215,12 @@ class GrampsParser(handler.ContentHandler):
     def start_attribute(self,attrs):
         self.attribute = Attribute()
         if attrs.has_key("conf"):
-            self.attribute.confidence = string.atoi(attrs["conf"])
+            self.attribute.confidence = int(attrs["conf"])
         if attrs.has_key("priv"):
-            self.attribute.privacy = string.atoi(attrs["priv"])
+            self.attribute.privacy = int(attrs["priv"])
         if attrs.has_key('type'):
             self.in_old_attr = 1
-            self.attribute.setType(u2l(string.capwords(attrs["type"])))
+            self.attribute.setType(u2l(attrs["type"]))
         else:
             self.in_old_attr = 0
         if self.person:
@@ -238,9 +237,9 @@ class GrampsParser(handler.ContentHandler):
         self.address = Address()
         self.person.addAddress(self.address)
         if attrs.has_key("conf"):
-            self.address.confidence = string.atoi(attrs["conf"])
+            self.address.confidence = int(attrs["conf"])
         if attrs.has_key("priv"):
-            self.address.private = string.atoi(attrs["priv"])
+            self.address.private = int(attrs["priv"])
 
     #---------------------------------------------------------------------
     #
@@ -257,7 +256,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_person(self,attrs):
-        if self.count % self.increment == 0:
+        if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.person = self.db.findPersonNoMap(u2l(attrs["id"]))
@@ -314,7 +313,7 @@ class GrampsParser(handler.ContentHandler):
             url.set_path(u2l(attrs["href"]))
             url.set_description(desc)
             if attrs.has_key("priv"):
-                url.setPrivacy(string.atoi(attrs['priv']))
+                url.setPrivacy(int(attrs['priv']))
             if self.person:
                 self.person.addUrl(url)
             elif self.placeobj:
@@ -328,7 +327,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_family(self,attrs):
-        if self.count % self.increment == 0:
+        if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.family = self.db.findFamilyNoMap(u2l(attrs["id"]))
@@ -379,9 +378,9 @@ class GrampsParser(handler.ContentHandler):
     def start_name(self,attrs):
         self.name = Name()
         if attrs.has_key("conf"):
-            self.name.confidence = string.atoi(attrs["conf"])
+            self.name.confidence = int(attrs["conf"])
         if attrs.has_key("priv"):
-            self.name.private = string.atoi(attrs["priv"])
+            self.name.private = int(attrs["priv"])
         
     #---------------------------------------------------------------------
     #
@@ -517,14 +516,15 @@ class GrampsParser(handler.ContentHandler):
     def stop_event(self,tag):
         self.event.name = self.event_type
 
-        if self.event_type == "Birth":
-            self.person.setBirth(self.event)
-        elif self.event_type == "Death":
-            self.person.setDeath(self.event)
-        elif self.person:
-            self.person.EventList.append(self.event)
-        else:
+        if self.family:
             self.family.EventList.append(self.event)
+        else:
+            if self.event_type == "Birth":
+                self.person.setBirth(self.event)
+            elif self.event_type == "Death":
+                self.person.setDeath(self.event)
+            else:
+                self.person.EventList.append(self.event)
         self.event = None
 
     #---------------------------------------------------------------------
@@ -884,6 +884,8 @@ class GrampsParser(handler.ContentHandler):
 
     func_map = {
         "address"    : (start_address, stop_address),
+        "addresses"  : (None,None),
+        "childlist"  : (None,None),
         "aka"        : (start_name, stop_aka),
         "attribute"  : (start_attribute, stop_attribute),
         "attr_type"  : (None,stop_attr_type),
@@ -986,8 +988,6 @@ class GrampsParser(handler.ContentHandler):
         if self.func:
             self.data = self.data + data
 
-
-
 #-------------------------------------------------------------------------
 #
 # Gramps database parsing class.  Derived from SAX XML parser
@@ -1010,7 +1010,7 @@ class GrampsImportParser(GrampsParser):
     #
     #---------------------------------------------------------------------
     def start_person(self,attrs):
-        if self.count % self.increment == 0:
+        if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.person = self.db.findPerson("x%s" % u2l(attrs["id"]),self.pmap)
@@ -1048,7 +1048,7 @@ class GrampsImportParser(GrampsParser):
     #
     #---------------------------------------------------------------------
     def start_family(self,attrs):
-        if self.count % self.increment == 0:
+        if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         self.family = self.db.findFamily(u2l(attrs["id"]),self.fmap)

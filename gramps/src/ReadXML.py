@@ -106,7 +106,7 @@ def importData(database, filename, callback):
 # of data.
 #
 #-------------------------------------------------------------------------
-def loadData(database, filename, callback):
+def loadData(database, filename, callback=None):
 
     basefile = os.path.dirname(filename)
     database.smap = {}
@@ -133,7 +133,8 @@ def loadData(database, filename, callback):
         else:
             xml_file = open(filename,"r")
     except IOError,msg:
-        GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        filemsg = _("%s could not be opened\n") % filename
+        GnomeErrorDialog(filemsg + str(msg))
         return 0
     except:
         GnomeErrorDialog(_("%s could not be opened\n") % filename)
@@ -149,7 +150,8 @@ def loadData(database, filename, callback):
         GnomeErrorDialog("%s\n%s" % (filemsg,errmsg))
         return 0
     except IOError,msg:
-        GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
+        errmsg = "%s\n%s" % (_("Error reading %s"),filename,str(msg))
+        GnomeErrorDialog(errmsg)
         import traceback
         traceback.print_exc()
         return 0
@@ -161,3 +163,16 @@ def loadData(database, filename, callback):
 
     xml_file.close()
     return 1
+
+
+if __name__ == "__main__":
+    import sys
+    import time
+    import profile
+    
+    database = RelDataBase()
+    t1 = time.time()
+    #profile.run('loadData(database, sys.argv[1])')
+    loadData(database,sys.argv[1])
+    t2 = time.time()
+    print t2-t1
