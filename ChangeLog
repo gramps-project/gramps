@@ -8,7 +8,9 @@
 	store complete flag for Family
 	* src/GrampsParser.py: Parse source information for Family and
 	Person, read complete flag for Famiy
-
+	* src/marriage.glade: Added source tab and complete flag
+	* src/edit_person.glade: Added source tab
+	
 2003-10-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/AbiWordDoc2.py: make sure that an object is
 	an image before attempting to include in in a report
