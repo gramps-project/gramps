@@ -148,14 +148,22 @@ class GraphVizDialog(Report.ReportDialog):
                               self.arrowstyle_optionmenu,
                               _("Choose the direction that the arrows point."))
         
-        msg = _("Include Birth and Death Dates")
+        msg = _("Include Birth, Marriage and Death Dates")
         self.includedates_cb = gtk.CheckButton(msg)
         self.includedates_cb.set_active(1)
         self.add_frame_option(_("GraphViz Options"), '',
                               self.includedates_cb,
-                              _("Include the years that the individual "
-                                "was born and/or died in the graph node "
-                                "labels."))
+                              _("Include the dates that the individual "
+                                "was born, got married and/or died "
+                                "in the graph labels."))
+
+        self.just_year_cb = gtk.CheckButton(_("Limit dates to years only"))
+        self.just_year_cb.set_active(0)
+        self.add_frame_option(_("GraphViz Options"), '',
+                              self.just_year_cb,
+                              _("Prints just dates' year, neither "
+                                "month or day nor date approximation "
+                                "or interval are shown."))
 
         self.includeurl_cb = gtk.CheckButton(_("Include URLs"))
         self.includeurl_cb.set_active(1)
@@ -190,7 +198,7 @@ class GraphVizDialog(Report.ReportDialog):
         self.add_frame_option(_("GraphViz Options"),
                               '',
                               self.show_families_cb,
-                              _("Families will show up as circles, linked "
+                              _("Families will show up as ellipses, linked "
                                 "to parents and children."))
 
         tb_margin_adj = gtk.Adjustment(value=0.5, lower=0.25,
@@ -268,6 +276,7 @@ class GraphVizDialog(Report.ReportDialog):
         self.hpages = self.hpages_sb.get_value_as_int()
         self.vpages = self.vpages_sb.get_value_as_int()
         self.show_families = self.show_families_cb.get_active()
+        self.just_year = self.just_year_cb.get_active()
 
     def make_report(self):
         """Create the object that will produce the GraphViz file."""
@@ -287,7 +296,7 @@ class GraphVizDialog(Report.ReportDialog):
                   self.tb_margin, self.lr_margin, self.hpages,
                   self.vpages, self.includedates, self.includeurl,
                   self.colorize, self.adoptionsdashed, self.arrowheadstyle,
-                  self.arrowtailstyle, self.show_families)
+                  self.arrowtailstyle, self.show_families, self.just_year)
 
         if self.print_report.get_active ():
             os.environ["DOT"] = self.target_path
@@ -310,7 +319,7 @@ def report(database,person):
 def write_dot(file, ind_list, orien, width, height, tb_margin,
               lr_margin, hpages, vpages, includedates, includeurl,
               colorize, adoptionsdashed, arrowheadstyle, arrowtailstyle,
-              show_families):
+              show_families, just_year):
     file.write("digraph g {\n")
     file.write("bgcolor=white;\n")
     file.write("rankdir=LR;\n")
@@ -326,7 +335,7 @@ def write_dot(file, ind_list, orien, width, height, tb_margin,
 
     if len(ind_list) > 1:
         dump_index(ind_list,file,includedates,includeurl,colorize,
-                   arrowheadstyle,arrowtailstyle,show_families)
+                   arrowheadstyle,arrowtailstyle,show_families,just_year)
         dump_person(ind_list,file,adoptionsdashed,arrowheadstyle,
                     arrowtailstyle,show_families)
 
@@ -394,7 +403,7 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
 #
 #------------------------------------------------------------------------
 def dump_index(person_list,file,includedates,includeurl,colorize,
-               arrowheadstyle,arrowtailstyle,show_families):
+               arrowheadstyle,arrowtailstyle,show_families,just_year):
     # The list of families for which we have output the node, so we
     # don't do it twice.
     families_done = []
@@ -404,11 +413,17 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
         id = string.replace(person.getId(),'-','_')
         if includedates:
             if person.getBirth().getDateObj().getYearValid():
-                birth = '%i' % person.getBirth().getDateObj().getYear()
+                if just_year:
+                    birth = '%i' % person.getBirth().getDateObj().getYear()
+                else:
+                    birth = person.getBirth().getDate()
             else:
                 birth = ''
             if person.getDeath().getDateObj().getYearValid():
-                death = '%i' % person.getDeath().getDateObj().getYear()
+                if just_year:
+                    death = '%i' % person.getDeath().getDateObj().getYear()
+                else:
+                    death = person.getDeath().getDate()
             else:
                 death = ''
             label = label + '\\n(%s - %s)' % (birth, death)
@@ -430,8 +445,19 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
             for fam in family_list:
                 fid = string.replace(fam.getId(),'-','_')
                 if fam not in families_done:
-                    file.write('f%s [shape=circle, label="", ' % fid)
-                    file.write('weight=8, height=.3];\n')
+                    families_done.append(fam)
+                    file.write('f%s [shape=ellipse, ' % fid)
+                    marriage = ""
+                    m = fam.getMarriage()
+                    if m != None:
+                        do = m.getDateObj()
+                        if do != None:
+                            if do.getYearValid():
+                                if just_year:
+                                    marriage = '%i' % date.getYear()
+                                else:
+                                    marriage = m.getDate()
+                    file.write('fontname="Arial", label="%s"];\n' % marriage)
                 # Link this person to all his/her families.
                 file.write('f%s -> p%s [' % (fid, id))
                 file.write('arrowhead=%s, arrowtail=%s, ' %
