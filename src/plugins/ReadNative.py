@@ -51,7 +51,8 @@ class ReadNative:
         self.top.show()
 
     def show_display(self):
-        self.window = gtk.Window(title=_("Import from GRAMPS"))
+        self.window = gtk.Window()
+        self.window.set_title(_("Import from GRAMPS"))
         vbox = gtk.VBox()
         self.window.add(vbox)
         label = gtk.Label(_("Import from GRAMPS"))

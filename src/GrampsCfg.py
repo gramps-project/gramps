@@ -94,12 +94,12 @@ _name_format_list = [
 panellist = [
     (_("Database"),
      [( _("General"), 1),
-      ( _("Dates and Calendars"), 6),
       ( _("Media Objects"), 9),
       ( _("GRAMPS internal IDs"), 10),
       ( _("Revision Control"),2)]),
     (_("Display"),
      [( _("General"), 5),
+      ( _("Dates and Calendars"), 6),
       ( _("Tool and Status Bars"), 4)]),
     (_("Usage"),
      [( _("Find"), 3),

@@ -54,14 +54,12 @@ import Julian
 import Hebrew
 import FrenchRepublic
 import GedcomInfo
+import ansel_utf8
 
 from intl import gettext as _
-from latin_utf8  import latin_to_utf8
 
-try:
-    from ansel import latin_to_ansel
-except:
-    from latin_ansel import latin_to_ansel
+def keep_utf8(s):
+    return s
 
 #-------------------------------------------------------------------------
 #
@@ -341,7 +339,7 @@ class GedcomWriter:
         self.person = person
         self.restrict = 1
         self.private = 1
-        self.cnvtxt = latin_to_ansel
+        self.cnvtxt = ansel_utf8.utf8_to_ansel
         self.plist = {}
         self.slist = {}
         self.flist = {}
@@ -425,9 +423,9 @@ class GedcomWriter:
         self.source_refs = self.target_ged.get_source_refs()
         
         if self.topDialog.get_widget("ansel").get_active():
-            self.cnvtxt = latin_to_ansel
+            self.cnvtxt = ansel_utf8.utf8_to_ansel
         else:
-            self.cnvtxt = latin_to_utf8
+            self.cnvtxt = keep_utf8
 
         name = self.topDialog.get_widget("filename").get_text()
 
@@ -490,7 +488,7 @@ class GedcomWriter:
         if self.dest:
             self.g.write("1 DEST %s\n" % self.dest)
         self.g.write("1 DATE %s %s %s\n" % (date[2],string.upper(date[1]),date[4]))
-        if self.cnvtxt == latin_to_ansel:
+        if self.cnvtxt == ansel_utf8.utf8_to_ansel:
             self.g.write("1 CHAR ANSEL\n");
         else:
             self.g.write("1 CHAR UTF-8\n");

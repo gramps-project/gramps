@@ -335,16 +335,16 @@ class Calendar:
             if month == UNDEF:
                 retval = str(year)
             elif year == UNDEF:
-                retval = "%02d%s??%s??" % (month+1,sep,sep)
+                retval = "%02d%s??%s??" % (month,sep,sep)
             else:
-                retval = "%02d%s??%s%04d" % (month+1,sep,sep,year)
+                retval = "%02d%s??%s%04d" % (month,sep,sep,year)
         elif month == UNDEF:
             retval = "??%s%02d%s%04d" % (sep,day,sep,year)
         else:
             if year == UNDEF:
-                retval = "%02d%s%02d%s????" % (month+1,sep,day,sep)
+                retval = "%02d%s%02d%s????" % (month,sep,day,sep)
             else:
-                retval = "%02d%s%02d%s%04d" % (month+1,sep,day,sep,year)
+                retval = "%02d%s%02d%s%04d" % (month,sep,day,sep,year)
 
         return self.fmt_mode(retval,mode)
 
@@ -357,16 +357,16 @@ class Calendar:
             if month == UNDEF:
                 retval = str(year)
             elif year == UNDEF:
-                retval = "????%s%02d%s??" % (sep,month+1,sep)
+                retval = "????%s%02d%s??" % (sep,month,sep)
             else:
-                retval = "%04d%s%02d" % (year,sep,month+1)
+                retval = "%04d%s%02d" % (year,sep,month)
         elif month == UNDEF:
             retval = "%04d%s??%s%02d" % (year,sep,sep,day)
         else:
             if year == UNDEF:
-                retval = "????%s%02d%s%02d" % (sep,month+1,sep,day)
+                retval = "????%s%02d%s%02d" % (sep,month,sep,day)
             else:
-                retval = "%02d%s%02d%s%02d" % (year,sep,month+1,sep,day)
+                retval = "%02d%s%02d%s%02d" % (year,sep,month,sep,day)
 
         return self.fmt_mode(retval,mode)
 
@@ -379,16 +379,16 @@ class Calendar:
             if month == UNDEF:
                 retval = str(year)
             elif year == UNDEF:
-                retval = "??%s%02d%s??" % (sep,month+1,sep)
+                retval = "??%s%02d%s??" % (sep,month,sep)
             else:
-                retval = "??%s%02d%s%04d" % (sep,month+1,sep,year)
+                retval = "??%s%02d%s%04d" % (sep,month,sep,year)
         elif month == UNDEF:
             retval = "%02d%s??%s%04d" % (day,sep,sep,year)
         else:
             if year == UNDEF:
-                retval = "%02d%s%02d%s????" % (day,sep,month+1,sep)
+                retval = "%02d%s%02d%s????" % (day,sep,month,sep)
             else:
-                retval = "%02d%s%02d%s%04d" % (day,sep,month+1,sep,year)
+                retval = "%02d%s%02d%s%04d" % (day,sep,month,sep,year)
 
         return self.fmt_mode(retval,mode)
 
@@ -519,6 +519,7 @@ _FMT_FUNC = [
     Calendar.format5,
     Calendar.format6,
     Calendar.format7,
+    Calendar.format8,
     Calendar.format9,
     Calendar.format_dd_dot_MON_year,
     Calendar.format11,

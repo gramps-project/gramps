@@ -25,6 +25,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+from xml.parsers.expat import ExpatError
 
 #-------------------------------------------------------------------------
 #
@@ -55,6 +56,7 @@ except:
 #-------------------------------------------------------------------------
 def importData(database, filename, callback):
 
+    filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
     database.smap = {}
     database.pmap = {}
@@ -92,7 +94,11 @@ def importData(database, filename, callback):
         import traceback
         traceback.print_exc()
         return 0
-    except ValueError,msg:
+    except ExpatError, msg:
+        ErrorDialog(_("Error reading %s") % filename + "\n" + \
+                    _("The file is probably either corrupt or not a valid GRAMPS database.") + "\n" + str(msg))
+        return 0
+    except ValueError, msg:
         if str(msg)[0:16] == "Incorrect length":
             WarningDialog(_("Your database has encountered an error in the library "
                             "that compresses the data.\nYour data should be okay, but "

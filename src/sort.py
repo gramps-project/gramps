@@ -38,8 +38,6 @@ import Date
 #
 #-------------------------------------------------------------------------
 
-su = string.upper
-
 _plist = [ 'de', 'van', 'von', 'la', 'di', 'le', 'du' ]
 
 _prefix = {}
@@ -51,10 +49,9 @@ def build_sort_name(n):
     use as a sort key in a GtkCList. The name is converted to upper case
     to provide for case-insenstive sorting"""
     if n.Surname:
-        return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
+        return "%-25s%-30s%s" % (n.Surname.upper(),n.FirstName.upper(),n.Suffix.upper())
     else:
         return "@"
-        
 
 def build_sort_date(n):
     """Builds a date from a Date.Date instance that is suitable for

@@ -1276,9 +1276,12 @@ class Gramps:
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
             val = self.db.getPersonDisplay(key)
-            pg = unicode(val[5])
+            pg = val[5]
             if pg:
                 pg = pg[0]
+            else:
+                pg = ''
+                
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
