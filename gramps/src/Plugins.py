@@ -178,7 +178,7 @@ def on_report_node_selected(obj):
     title = obj.get_data(TITLE)
     img = myobj.dialog.get_widget("image")
     
-    myobj.dialog.get_widget("description").set_text(DOC)
+    myobj.dialog.get_widget("description").set_text(DOCSTRING)
 
     i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm)
     img.set(i,m)

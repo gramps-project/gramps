@@ -1497,7 +1497,7 @@ def on_event_edit_ok_clicked(obj):
     ename = ee.name_field.get_text()
     edate = ee.date_field.get_text()
     eplace = string.strip(ee.place_field.get_text())
-    eplace_obj = get_place_from_list(ee.place_combo)
+    eplace_obj = utils.get_place_from_list(ee.place_combo)
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
