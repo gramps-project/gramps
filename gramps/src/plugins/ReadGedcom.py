@@ -31,7 +31,6 @@ import re
 import string
 import const
 import utils
-import shutil
 
 from gtk import *
 from gnome.ui import *
@@ -55,8 +54,6 @@ _cnv = nocnv
 
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "jpg", "tiff", "pcx" ]
-
-_ADDRX = [ "ADDR", "ADR1", "ADR2" ]
 
 ged2gramps = {}
 for val in const.personalConstantEvents.keys():
@@ -141,22 +138,6 @@ def importData(database, filename):
     utils.modified()
     if callback:
         callback(1)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-class AddrStruct:
-    def __init__(self):
-        self.label = ""
-        self.addr1 = ""
-        self.addr2 = ""
-        self.city = ""
-        self.state = ""
-        self.postal = ""
-        self.country = ""
-	self.phone = ""
 
 #-------------------------------------------------------------------------
 #
@@ -807,7 +788,7 @@ class GedcomParser:
 	    if int(matches[0]) < level:
                 self.backup()
                 return
-            elif matches[1] in _ADDRX:
+            elif matches[1] in [ "ADDR", "ADR1", "ADR2" ]:
                 val = address.getStreet()
                 data = self.parse_continue_data(level+1)
                 if first == 0:
@@ -845,7 +826,7 @@ class GedcomParser:
                     event.setName(name)
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
-            elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE","QUAY"]:
+            elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -918,7 +899,7 @@ class GedcomParser:
                         event.setName(matches[2])
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
-            elif matches[1] == ["TIME","AGE","AGNC","CAUS","ADDR","STAT","TEMP","HUSB","WIFE","OBJE","QUAY"]:
+            elif matches[1] == ["TIME","AGE","AGNC","CAUS","ADDR","STAT","TEMP","HUSB","WIFE","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -1195,15 +1176,9 @@ class GedcomParser:
                 return
 
     def ignore_change_data(self,level):
-
 	matches = self.get_next()
         if matches[1] == "CHAN":
-	    while 1:
-                matches = self.get_next()
-
-	        if int(matches[0]) < level+1:
-                    self.backup()
-                    return
+            self.ignore_sub_junk(level+1)
         else:
             self.backup()
 
@@ -1279,8 +1254,7 @@ def readData(database,active_person,cb):
     db = database
     callback = cb
     
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "gedcomimport.glade"
+    glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
         
     dic = {
         "destroy_passed_object" : utils.destroy_passed_object,
