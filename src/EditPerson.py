@@ -940,7 +940,7 @@ class EditPerson:
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
         import NameEdit
-        NameEdit.NameEdit(self,None,self.name_edit_callback,self.window)
+        NameEdit.NameEditor(self,None,self.name_edit_callback,self.window)
 
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
