@@ -1092,7 +1092,7 @@
 	The buttons <guibutton>Source...</guibutton> and 
 	<guibutton>Note...</guibutton> allow to add or modify the data about 
 	the sources of the name information and any notes relevant to it. 
-	Similarly, clicking <guibutton>Edit..</guibutton> buttons located by the
+	Similarly, clicking <guibutton>Edit...</guibutton> buttons located by the
 	birth and death <guilabel>Date</guilabel> fields allows to edit the
 	corresponding events of birth and death. 
 	The field <guilabel>ID</guilabel> displays internal 
@@ -3010,7 +3010,7 @@
 
 	<varlistentry><term><guilabel>Default database directory</guilabel></term>
 	<listitem><para> Choose the default directory in which &app; starts
-	looking when saving the database using <guibutton>Browse..</guibutton> 
+	looking when saving the database using <guibutton>Browse...</guibutton> 
 	or type its path into the text entry field. </para></listitem>
 	</varlistentry>
 
