@@ -349,15 +349,15 @@ def on_propertybox_apply(obj,page):
         status_bar = 2
 
     dbdir_temp = prefsTop.get_widget("dbdir").get_full_path(1)
-    if os.path.isdir(dbdir_temp):
+    if dbdir_temp != None and os.path.isdir(dbdir_temp):
         db_dir = os.path.normpath(dbdir_temp) + os.sep
 
     repdir_temp = prefsTop.get_widget("repdir").get_full_path(1)
-    if os.path.isdir(repdir_temp):
+    if repdir_temp != None and os.path.isdir(repdir_temp):
         report_dir = os.path.normpath(repdir_temp) + os.sep
 
     webdir_temp = prefsTop.get_widget("htmldir").get_full_path(1)
-    if os.path.isdir(webdir_temp):
+    if webdir_temp != None and os.path.isdir(webdir_temp):
         web_dir = os.path.normpath(webdir_temp) + os.sep
 
     paper_preference = paper_obj.get_data("d")
@@ -506,6 +506,13 @@ def display_preferences_box():
     auto.set_active(autoload)
     detail.set_active(show_detail)
     tabs.set_active(usetabs)
+
+    if status_bar == 0:
+        prefsTop.get_widget("stat1").set_active(1)
+    elif status_bar == 1:
+        prefsTop.get_widget("stat2").set_active(1)
+    else:
+        prefsTop.get_widget("stat3").set_active(1)
 
     display_attr_obj.set_active(display_attr)
     prefsTop.get_widget("attr_name").set_text(attr_name)
