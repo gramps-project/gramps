@@ -34,10 +34,15 @@
 #
 #------------------------------------------------------------------------
 import string
+from gettext import gettext as _
 
-import pygtk
- 
-import gnomeprint, gnomeprint.ui, gtk
+#------------------------------------------------------------------------
+#
+# GNOME/GTK Modules 
+#
+#------------------------------------------------------------------------
+import gnomeprint, gnomeprint.ui
+
 #------------------------------------------------------------------------
 #
 # gramps modules 
@@ -46,7 +51,6 @@ import gnomeprint, gnomeprint.ui, gtk
 import BaseDoc
 import Plugins
 import ImgManip
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -322,7 +326,9 @@ class GnomePrintParagraph:
     
     def get_lines(self):
         """
-        Return a list of assemlbed for the paragraph.
+        Return a list of assemlbed lines for the paragraph.
+        Each element is a tuple corresponding to the line's contents:
+        (start_piece,start_word,end_piece,end_word,avail_width)
         """
         return self.lines
 
