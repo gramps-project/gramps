@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Fri May 23 22:14:44 2003\n"
+"POT-Creation-Date: Mon May 26 20:24:32 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "The filename supplied could not be found."
 msgstr ""
 
-#: AddSpouse.py:86 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
+#: AddSpouse.py:86 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:141
 #: SelectChild.py:112 gramps_main.py:102 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
 #: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:340
@@ -31,14 +31,14 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:831
+#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:141 ImageSelect.py:831
 #: MediaView.py:75 PlaceView.py:60 SelectChild.py:112 SourceView.py:68
 #: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:102
 #: plugins/PatchNames.py:136 plugins/RelCalc.py:87
 msgid "ID"
 msgstr ""
 
-#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:139 SelectChild.py:112
+#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:142 SelectChild.py:112
 #: gramps_main.py:103
 msgid "Birth date"
 msgstr ""
@@ -221,14 +221,14 @@ msgstr ""
 msgid "Parent"
 msgstr ""
 
-#: ChooseParents.py:217 ChooseParents.py:502 FamilyView.py:380
+#: ChooseParents.py:217 ChooseParents.py:502 FamilyView.py:384
 #: plugins/FamilyGroup.py:195 plugins/IndivComplete.py:189
 #: plugins/IndivComplete.py:191 plugins/IndivComplete.py:405
 #: plugins/IndivSummary.py:258 plugins/WebPage.py:292 plugins/WebPage.py:295
 msgid "Father"
 msgstr ""
 
-#: ChooseParents.py:293 ChooseParents.py:501 FamilyView.py:381
+#: ChooseParents.py:293 ChooseParents.py:501 FamilyView.py:385
 #: plugins/FamilyGroup.py:208 plugins/IndivComplete.py:197
 #: plugins/IndivComplete.py:199 plugins/IndivComplete.py:410
 #: plugins/IndivSummary.py:272 plugins/WebPage.py:293 plugins/WebPage.py:296
@@ -466,39 +466,47 @@ msgstr ""
 msgid "Event Editor"
 msgstr ""
 
-#: FamilyView.py:139 gramps_main.py:102 plugins/IndivComplete.py:381
+#: FamilyView.py:49 PedView.py:43
+msgid "b."
+msgstr ""
+
+#: FamilyView.py:50 PedView.py:44
+msgid "d."
+msgstr ""
+
+#: FamilyView.py:142 gramps_main.py:102 plugins/IndivComplete.py:381
 #: plugins/IndivSummary.py:225 plugins/WebPage.py:284 plugins/WebPage.py:286
 #: plugins/WebPage.py:288
 msgid "Gender"
 msgstr ""
 
-#: FamilyView.py:140
+#: FamilyView.py:143
 msgid "Status"
 msgstr ""
 
-#: FamilyView.py:227
+#: FamilyView.py:230
 msgid "Remove %s as a spouse of %s?"
 msgstr ""
 
-#: FamilyView.py:228
+#: FamilyView.py:231
 msgid "Removing a spouse removes the relationship between the spouse and the active person. It does not remove the spouse from the database"
 msgstr ""
 
-#: FamilyView.py:231
+#: FamilyView.py:234
 msgid "_Remove Spouse"
 msgstr ""
 
-#: FamilyView.py:397
+#: FamilyView.py:401
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
 msgstr ""
 
-#: FamilyView.py:399
+#: FamilyView.py:403
 msgid "%s: unknown"
 msgstr ""
 
-#: FamilyView.py:435 Plugins.py:433 Plugins.py:434 Plugins.py:435
+#: FamilyView.py:439 Plugins.py:433 Plugins.py:434 Plugins.py:435
 #: Plugins.py:455 Plugins.py:456 Plugins.py:457 Witness.py:71 const.py:171
 #: const.py:446 const.py:454 gramps.glade:3675 gramps.glade:3868
 #: gramps.glade:4290 gramps.glade:4470 gramps.glade:5946 gramps.glade:6192
@@ -506,23 +514,23 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: FamilyView.py:477 FamilyView.py:492
+#: FamilyView.py:481 FamilyView.py:496
 msgid "Remove Parents of %s"
 msgstr ""
 
-#: FamilyView.py:478 FamilyView.py:493
+#: FamilyView.py:482 FamilyView.py:497
 msgid "Removing the parents of a person removes the person as a child of the parents. The parents are not removed from the database, and the relationship between the parents is not removed."
 msgstr ""
 
-#: FamilyView.py:482 FamilyView.py:497
+#: FamilyView.py:486 FamilyView.py:501
 msgid "_Remove Parents"
 msgstr ""
 
-#: FamilyView.py:591
+#: FamilyView.py:595
 msgid "Attempt to Reorder Children Failed"
 msgstr ""
 
-#: FamilyView.py:592
+#: FamilyView.py:596
 msgid "Children must be ordered by their birth dates."
 msgstr ""
 
@@ -1015,14 +1023,6 @@ msgstr ""
 
 #: PaperMenu.py:126 PaperMenu.py:138
 msgid "Custom Size"
-msgstr ""
-
-#: PedView.py:43
-msgid "b."
-msgstr ""
-
-#: PedView.py:44
-msgid "d."
 msgstr ""
 
 #: PedView.py:373
@@ -5727,15 +5727,19 @@ msgstr ""
 msgid "<b>Error Window</b>"
 msgstr ""
 
-#: plugins/eval.py:89
+#: plugins/eval.py:53
+msgid "Python Evaluation Window"
+msgstr ""
+
+#: plugins/eval.py:90
 msgid "Python evaluation window"
 msgstr ""
 
-#: plugins/eval.py:90 plugins/leak.py:79
+#: plugins/eval.py:91 plugins/leak.py:79
 msgid "Debug"
 msgstr ""
 
-#: plugins/eval.py:91
+#: plugins/eval.py:92
 msgid "Provides a window that can evaluate python code"
 msgstr ""
 
