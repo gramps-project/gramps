@@ -1,3 +1,7 @@
+2003-12-31  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/RelCalc.py (__init__): Skip the person when building the
+	list.
+
 2003-12-30  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/custom.xml: Update translation.
 	* doc/gramps-manual/fr/usage.xml: Update translation.
