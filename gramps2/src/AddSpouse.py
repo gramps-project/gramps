@@ -243,6 +243,21 @@ class AddSpouse:
         spouse = self.db.get_person_from_handle(idlist[0])
         spouse_id = spouse.get_handle()
 
+        # don't do anything if adding self
+        if spouse_id == self.person.get_handle():
+            ErrorDialog(_("Error adding a spouse"),
+                        _("A person cannot be linked as his/her spouse"))
+            return
+
+        # don't do anything if adding a parent
+        for (family_handle,frel,mrel) in self.person.get_parent_family_handle_list():
+            family = self.db.get_family_from_handle(family_handle)
+            if spouse_id in [family.get_mother_handle(),family.get_father_handle()]:
+                ErrorDialog(_("Error adding a spouse"),
+                            _("A person cannot be linked as his/her "
+                                "child's spouse"))
+                return
+
         # don't do anything if the marriage already exists
         for f in self.person.get_family_handle_list():
             fam = self.db.get_family_from_handle(f)
@@ -251,12 +266,11 @@ class AddSpouse:
                         (fam.get_mother_handle(),fam.get_father_handle()):
                     ErrorDialog(_("Error adding a spouse"),
                             _("The spouse is already present in this family"))
-                    Utils.destroy_passed_object(obj)
                     return
                 if spouse_id in fam.get_child_handle_list():
                     ErrorDialog(_("Error adding a spouse"),
-                            _("A person cannot be linked as his/her own parent"))
-                    Utils.destroy_passed_object(obj)
+                                _("A person cannot be linked as his/her "
+                                    "parent's spouse"))
                     return
 
         trans = self.db.transaction_begin()

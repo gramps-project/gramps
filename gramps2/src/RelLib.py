@@ -35,6 +35,7 @@ from gettext import gettext as _
 import os
 import os.path
 import time
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -61,8 +62,94 @@ CONF_VERY_LOW  = 0
 # Class definitions
 #
 #-------------------------------------------------------------------------
+class BaseObject:
+    """
+    The BaseObject is the base class for all data objects in GRAMPS,
+    whether primary or not. Its main goal is to provide common capabilites
+    to all objects, such as searching through all available information.
+    """
+    
+    def __init__(self):
+        """
+        Initialize a BaseObject.
+        """
+        pass
+    
+    def matches_string(self,pattern,case_sensitive=False):
+        """
+        Returns True if any text data in the object or any of it's child
+        objects matches a given pattern.
 
-class PrimaryObject:
+        @param pattern: The pattern to match.
+        @type pattern: str
+        @param case_sensitive: Whether the match is case-sensitive.
+        @type case_sensitive: bool
+        @return: Returns whether any text data in the object or any of it's child objects matches a given pattern.
+        @rtype: bool
+        """
+        # Run through its own items
+        patern_upper = pattern.upper()
+        for item in self.get_text_data_list():
+            if case_sensitive:
+                if item.find(pattern) != -1:
+                    return True
+            else:
+                if item.upper().find(patern_upper) != -1:
+                    return True
+
+        # Run through child objects
+        for obj in self.get_text_data_child_list():
+            if obj.matches_string(pattern,case_sensitive):
+                return True
+
+        return False
+
+    def matches_regexp(self,pattern,case_sensitive=False):
+        """
+        Returns True if any text data in the object or any of it's child
+        objects matches a given regular expression.
+
+        @param pattern: The pattern to match.
+        @type pattern: str
+        @return: Returns whether any text data in the object or any of it's child objects matches a given regexp.
+        @rtype: bool
+        """
+
+        # Run through its own items
+        if case_sensitive:
+            pattern_obj = re.compile(pattern)
+        else:
+            pattern_obj = re.compile(pattern,re.IGNORECASE)
+        for item in self.get_text_data_list():
+            if pattern_obj.match(item):
+                return True
+
+        # Run through child objects
+        for obj in self.get_text_data_child_list():
+            if obj.matches_regexp(pattern,case_sensitive):
+                return True
+
+        return False
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return []
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        return []
+
+class PrimaryObject(BaseObject):
     """
     The PrimaryObject is the base class for all primary objects in the
     database. Primary objects are the core objects in the database.
@@ -149,7 +236,7 @@ class PrimaryObject:
         """
         return self.gramps_id
 
-class SourceNote:
+class SourceNote(BaseObject):
     """
     Base class for storing source references and notes
     """
@@ -465,6 +552,29 @@ class Person(PrimaryObject,DataObj):
          self.lds_seal, self.complete, self.source_list, self.note,
          self.change,self.private) = (data + (False,))[0:23]
             
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.nickname]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = [self.lds_bapt,self.lds_endow,self.lds_seal,self.note]
+        add_list = [item for item in check_list if item]
+        return [self.primary_name] + self.media_list + \
+                    self.alternate_names + self.address_list + \
+                    self.attribute_list + self.urls + \
+                    self.source_list + add_list
+
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
@@ -1188,6 +1298,17 @@ class Family(PrimaryObject,SourceNote):
          self.media_list, self.attribute_list, self.lds_seal,
          self.complete, self.source_list, self.note, self.change) = data
 
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = [self.lds_seal,self.note]
+        add_list = [item for item in check_list if item]
+        return self.media_list + self.attribute_list + add_list
+
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
@@ -1195,7 +1316,7 @@ class Family(PrimaryObject,SourceNote):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        check_list = self.media_list + self.attribute_list
+        check_list = self.media_list + self.attribute_list + self.source_list
         if self.lds_seal:
             check_list.append(self.lds_seal)
         return check_list
@@ -1548,6 +1669,29 @@ class Event(PrimaryObject,DataObj):
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness, self.media_list, self.change) = data
 
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.description,self.name,self.cause]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.media_list + self.source_list
+        if self.witness:
+            check_list = check_list + self.witness
+        if self.note:
+            check_list.append(note)
+        return check_list
+
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
@@ -1887,6 +2031,28 @@ class Place(PrimaryObject,SourceNote):
          self.main_loc, self.alt_loc, self.urls, self.media_list,
          self.source_list, self.note, self.change) = data
             
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.long,self.lat,self.title]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+
+        check_list = [self.main_loc,self.note]
+        add_list = [item for item in check_list if item]
+        return self.media_list + self.source_list + self.alt_loc \
+                + self.urls + add_list
+
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
@@ -2149,6 +2315,28 @@ class MediaObject(PrimaryObject,SourceNote):
          self.attrlist, self.source_list, self.note, self.change,
          self.date, self.place) = data
     
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.path,self.mime,self.desc]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.attrlist + self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
@@ -2297,6 +2485,27 @@ class Source(PrimaryObject):
          self.pubinfo, self.note, self.media_list,
          self.abbrev, self.change, self.datamap) = data
         
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.title,self.author,self.pubinfo,self.abbrev]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.attrlist + self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
     def get_sourcref_child_list(self):
         """
         Returns the list of child secondary objects that may refer sources.
@@ -2469,6 +2678,27 @@ class LdsOrd(SourceNote):
             self.temple = ""
             self.status = 0
             self.place = None
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.temple]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
 
     def set_place_handle(self,place):
         """sets the Place database handle of the ordinance"""
@@ -2646,7 +2876,7 @@ class Researcher:
         if email:
             self.email = email.strip()
 
-class Location:
+class Location(BaseObject):
     """Provides information about a place, including city, county, state,
     and country. Multiple Location objects can represent the same place,
     since names of citys, countys, states, and even countries can change
@@ -2670,6 +2900,16 @@ class Location:
             self.country = ""
             self.postal = ""
             self.phone = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.city,self.parish,self.county,self.state,
+                self.country,self.postal,self.phone]
 
     def is_empty(self):
         return not self.city and not self.county and not self.state and \
@@ -2731,7 +2971,7 @@ class Location:
         """returns the country name of the Location object"""
         return self.country
 
-class Note:
+class Note(BaseObject):
     """
     Introduction
     ============
@@ -2746,6 +2986,15 @@ class Note:
         """
         self.text = text
         self.format = 0
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.text]
 
     def set(self,text):
         """
@@ -2812,6 +3061,18 @@ class MediaRef(SourceNote):
             self.ref = None
             self.note = None
             self.rect = None
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.attrlist + self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
 
     def get_sourcref_child_list(self):
         """
@@ -2884,6 +3145,27 @@ class Attribute(DataObj):
             self.type = ""
             self.value = ""
 
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.type,self.value]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
+
     def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
         self.type = val
@@ -2924,6 +3206,28 @@ class Address(DataObj):
             self.postal = ""
             self.date = Date.Date()
             self.phone = ""
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.street,self.city,self.state,self.country,
+                self.postal,self.phone]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
 
     def set_date(self,date):
         """
@@ -3056,6 +3360,28 @@ class Name(DataObj):
             self.sort_as = self.DEF
             self.display_as = self.DEF
             self.date = None
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.first_name,self.surname,self.suffix,self.title,
+                self.type,self.prefix,self.patronymic]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        check_list = self.source_list
+        if self.note:
+            check_list.append(self.note)
+        return check_list
 
     def set_group_as(self,name):
         """
@@ -3361,7 +3687,7 @@ class Name(DataObj):
         self.date = date
 
 
-class Url:
+class Url(BaseObject):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
@@ -3375,6 +3701,15 @@ class Url:
             self.path = ""
             self.desc = ""
             self.private = 0
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.path,self.desc]
 
     def set_privacy(self,val):
         """
@@ -3421,7 +3756,7 @@ class Url:
             return 0
         return 1
 
-class Witness:
+class Witness(BaseObject):
     """
     The Witness class is used to represent a person who may or may
     not be in the database. If the person is in the database, the
@@ -3435,6 +3770,15 @@ class Witness:
         self.set_value(val)
         self.set_comment(comment)
         self.private = False
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.val,self.comment]
 
     def set_privacy(self,val):
         """
@@ -3473,7 +3817,7 @@ class Witness:
     def get_comment(self):
         return self.comment
 
-class SourceRef:
+class SourceRef(BaseObject):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
@@ -3495,6 +3839,24 @@ class SourceRef:
             self.comments = Note()
             self.text = ""
             self.private = False
+
+    def get_text_data_list(self):
+        """
+        Returns the list of all textual attributes of the object.
+
+        @return: Returns the list of all textual attributes of the object.
+        @rtype: list
+        """
+        return [self.page,self.text]
+
+    def get_text_data_child_list(self):
+        """
+        Returns the list of child objects that may carry textual data.
+
+        @return: Returns the list of child objects that may carry textual data.
+        @rtype: list
+        """
+        return [self.comments]
 
     def set_privacy(self,val):
         """
@@ -3664,4 +4026,3 @@ class GenderStats:
             return Person.FEMALE
 
         return Person.UNKNOWN
-
