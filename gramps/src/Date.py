@@ -261,7 +261,10 @@ class Date:
 	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
     
     def getDate(self):
-        return self.get_fmt(SingleDate.getDate)
+        try:
+            return self.get_fmt(SingleDate.getDate)
+        except:
+            return "DATE CONVERSION ERROR"
 
     def getQuoteDate(self):
         if self.calendar == GREGORIAN:
@@ -274,30 +277,37 @@ class Date:
             return self.get_quote_date(_fmonth,_("French"))
 
     def getGregorianQuoteDate(self):
-        if self.range == 0:
-            return _func(self.start)
-        elif self.range == -1:
-            if self.text:
-                return '"%s"' % self.text
+        try:
+            if self.range == 0:
+                return _func(self.start)
+            elif self.range == -1:
+                if self.text:
+                    return '"%s"' % self.text
+                else:
+                    return ''
             else:
-                return ''
-        else:
-            d1 = _func(self.start)
-            d2 = _func(self.stop)
-            return "%s %s %s %s" % ( _("from"),d1,_("to"), d2)
+                d1 = _func(self.start)
+                d2 = _func(self.stop)
+                return "%s %s %s %s" % ( _("from"),d1,_("to"), d2)
+        except:
+            return 'DATE CONVERSION ERROR'
 
     def get_quote_date(self,month_map,cal_str):
-        if self.range == 0:
-            return "%s (%s)" % (self.start.display_calendar(month_map),cal_str)
-        elif self.range == -1:
-            if self.text:
-                return '"%s (%s)"' % (self.text,cal_str)
+        try:
+            if self.range == 0:
+                return "%s (%s)" % (self.start.display_calendar(month_map),cal_str)
+            elif self.range == -1:
+                if self.text:
+                    return '"%s (%s)"' % (self.text,cal_str)
+                else:
+                    return ''
             else:
-                return ''
-        else:
-            d1 = self.start.display_calendar(month_map)
-            d2 = self.stop.display_calendar(month_map)
-            return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,cal_str)
+                d1 = self.start.display_calendar(month_map)
+                d2 = self.stop.display_calendar(month_map)
+                return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,cal_str)
+        except:
+            print "Index Error: %s",self.text
+            return 'DATE CONVERSION ERROR'
 
     def isEmpty(self):
         s = self.start

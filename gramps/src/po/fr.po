@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 0.8.0pre\n"
+"Project-Id-Version: Gramps 0.8.0rc3\n"
 "POT-Creation-Date: Fri Jun 21 17:07:47 2002\n"
-"PO-Revision-Date: 2002-07-06 11:49GMT\n"
+"PO-Revision-Date: 2002-08-08 18:34GMT\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Française <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -715,7 +715,7 @@ msgstr "Aucun(e)"
 
 #: EditPerson.py:423 EditSource.py:140
 msgid "%(father)s and %(mother)s"
-msgstr "%(père)s et %(mère)s"
+msgstr "%(father)s et %(mother)s"
 
 #: EditPerson.py:742 EditPerson.py:744 EditPerson.py:754 EditPerson.py:756
 #: Marriage.py:355 Marriage.py:358 gramps_main.py:402 gramps_main.py:406
@@ -3857,7 +3857,7 @@ msgstr ""
 
 #: plugins/IndivComplete.py:118
 msgid "%(date)s in %(place)s."
-msgstr "%(date)s à %(lieu)s."
+msgstr "%(date)s à %(place)s."
 
 #: plugins/IndivComplete.py:177
 msgid "Alternate Parents"
@@ -3992,7 +3992,7 @@ msgstr "%(p1)s est le premier cousin de 2ieme génération de %(p2)s."
 
 #: plugins/RelCalc.py:69
 msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s est le premier cousin de % ième génération de %(p2)s."
+msgstr "%(p1)s est le premier cousin de %(removed)d ième génération de %(p2)s."
 
 #: plugins/RelCalc.py:73
 msgid "%(p1)s is the second cousin of %(p2)s."
@@ -4008,7 +4008,7 @@ msgstr "%(p1)s est le deuxième cousin de 2ième génération de %(p2)s."
 
 #: plugins/RelCalc.py:82
 msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s is le deuxième cousin de % de la n ième génération of %(p2)s."
+msgstr "%(p1)s is le deuxième cousin de %(removed)d ième génération of %(p2)s."
 
 #: plugins/RelCalc.py:86
 msgid "%(p1)s is the third cousin of %(p2)s."
@@ -4028,11 +4028,11 @@ msgstr "%(p1)s est 3ième cousin de %(removed)d  ième génération de %(p2)s."
 
 #: plugins/RelCalc.py:99
 msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
-msgstr "%(p1)s est le %(level)dieme cousin de %(p2)s."
+msgstr "%(p1)s est le %(level)dth cousin de %(p2)s."
 
 #: plugins/RelCalc.py:102
 msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
-msgstr "%(p1)s est le %(level)dième cousin de 1ière génération de %(p2)s."
+msgstr "%(p1)s est le %(level)dth cousin de 1ière génération de %(p2)s."
 
 #: plugins/RelCalc.py:105
 msgid "%(p1)s is the %(level)dth cousin twice removed of %(p2)s."
@@ -4040,7 +4040,7 @@ msgstr "%(p1)s est le %(level)dième cousin de 2ième génération de %(p2)s."
 
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s est le %(level)dieme cousin de %(removed)d ième génération de %(p2)s."
+msgstr "%(p1)s est le %(level)dth cousin de %(removed)d ième génération de %(p2)s."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
@@ -4064,7 +4064,7 @@ msgstr "%(p1)s est le troisième arrière grand père de %(p2)s."
 
 #: plugins/RelCalc.py:128
 msgid "%(p1)s is the %(level)dth great grandfather of %(p2)s."
-msgstr "%(p1)s est le %(level)dième arrière grand père de %(p2)s."
+msgstr "%(p1)s est le %(level)dth arrière grand père de %(p2)s."
 
 #: plugins/RelCalc.py:133
 msgid "%(p1)s is the son of %(p2)s."
@@ -4088,7 +4088,7 @@ msgstr "%(p1)s est le troisième arrière petit fils de %(p2)s."
 
 #: plugins/RelCalc.py:148
 msgid "%(p1)s is the %(level)dth great grandson of %(p2)s."
-msgstr "%(p1)s est le %(level)dième arrière petit fils de %(p2)s."
+msgstr "%(p1)s est le %(level)dth arrière petit fils de %(p2)s."
 
 #: plugins/RelCalc.py:153
 msgid "%(p1)s is the mother of %(p2)s."
@@ -4112,7 +4112,7 @@ msgstr "%(p1)s est la troisième arrière grand-mère de %(p2)s."
 
 #: plugins/RelCalc.py:168
 msgid "%(p1)s is the %(level)dth great grandmother of %(p2)s."
-msgstr "%(p1)s est la %(level)dième arrière grand mère de %(p2)s."
+msgstr "%(p1)s est la %(level)dth arrière grand mère de %(p2)s."
 
 #: plugins/RelCalc.py:173
 msgid "%(p1)s is the daughter of %(p2)s."
@@ -4136,87 +4136,87 @@ msgstr "%(p1)s est la troisième arrière petite fille de %(p2)s."
 
 #: plugins/RelCalc.py:188
 msgid "%(p1)s is the %(level)dth great granddaughter of %(p2)s."
-msgstr "%s est la %(level)dième arrière petite fille de %(p2)s."
+msgstr "%(p1)s est la %(level)dth arrière petite fille de %(p2)s."
 
 #: plugins/RelCalc.py:193
 msgid "%(p1)s is the sister of %(p2)s."
-msgstr "%s est la soeur de %(p2)s."
+msgstr "%(p1) est la soeur de %(p2)s."
 
 #: plugins/RelCalc.py:196
 msgid "%(p1)s is the aunt of %(p2)s."
-msgstr "%s est la tante de %(p2)s."
+msgstr "%(p1)s est la tante de %(p2)s."
 
 #: plugins/RelCalc.py:199
 msgid "%(p1)s is the grandaunt of %(p2)s."
-msgstr "%s est la grand tante de %(p2)s."
+msgstr "%(p1)s est la grand tante de %(p2)s."
 
 #: plugins/RelCalc.py:202
 msgid "%(p1)s is the great grandaunt of %(p2)s."
-msgstr "%s est la grand tante de %(p2)s."
+msgstr "%(p1)s est la grand tante de %(p2)s."
 
 #: plugins/RelCalc.py:205
 msgid "%(p1)s is the second great grandaunt of %(p2)s."
-msgstr "%s est la deuxièmee arrière grande tante de %(p2)s."
+msgstr "%(p1)s est la deuxièmee arrière grande tante de %(p2)s."
 
 #: plugins/RelCalc.py:208
 msgid "%(p1)s is the third great grandaunt of %(p2)s."
-msgstr "%s est troisième arrière grande tante de %(p2)s."
+msgstr "%(p1)s est troisième arrière grande tante de %(p2)s."
 
 #: plugins/RelCalc.py:211
 msgid "%(p1)s is the %(level)dth great grandaunt of %(p2)s."
-msgstr "%s est la %(level)dième arrière grande tante de %(p2)s."
+msgstr "%(p1)s est la %(level)dth arrière grande tante de %(p2)s."
 
 #: plugins/RelCalc.py:216
 msgid "%(p1)s is the brother of %(p2)s."
-msgstr "%s est le frère de %(p2)s. "
+msgstr "%(p1)s est le frère de %(p2)s. "
 
 #: plugins/RelCalc.py:219
 msgid "%(p1)s is the uncle of %(p2)s."
-msgstr "%s est l'oncle de %(p2)s."
+msgstr "%(p1)s est l'oncle de %(p2)s."
 
 #: plugins/RelCalc.py:222
 msgid "%(p1)s is the granduncle of %(p2)s."
-msgstr "%s est le grand oncle de %(p2)s."
+msgstr "%(p1)s est le grand oncle de %(p2)s."
 
 #: plugins/RelCalc.py:225
 msgid "%(p1)s is the great granduncle of %(p2)s."
-msgstr "%s est l'arrière grand oncle de %(p2)s."
+msgstr "%(p1)s est l'arrière grand oncle de %(p2)s."
 
 #: plugins/RelCalc.py:228
 msgid "%(p1)s is the second great granduncle of %(p2)s."
-msgstr "%s est le deuxième arrière grand oncle de %(p2)s."
+msgstr "%(p1)s est le deuxième arrière grand oncle de %(p2)s."
 
 #: plugins/RelCalc.py:231
 msgid "%(p1)s is the third great granduncle of %(p2)s."
-msgstr "%s est le troisième grand oncle de %(p2)s"
+msgstr "%(p1)s est le troisième grand oncle de %(p2)s"
 
 #: plugins/RelCalc.py:234
 msgid "%(p1)s is the %(level)dth great granduncle of %(p2)s."
-msgstr "%s est le %(level)dième arrière grand oncle de %(p2)s."
+msgstr "%(p1)s est le %(level)dth arrière grand oncle de %(p2)s."
 
 #: plugins/RelCalc.py:239
 msgid "%(p1)s is the nephew of %(p2)s."
-msgstr "%s est le neveu de %(p2)s."
+msgstr "%(p1)s est le neveu de %(p2)s."
 
 #: plugins/RelCalc.py:242
 msgid "%(p1)s is the grandnephew of %(p2)s."
-msgstr "%s est le petit neveu de %(p2)s."
+msgstr "%(p1)s est le petit neveu de %(p2)s."
 
 #: plugins/RelCalc.py:245
 msgid "%(p1)s is the great grandnephew of %(p2)s."
-msgstr "%s est l'arrière petit neveu de %(p2)s."
+msgstr "%(p1)s est l'arrière petit neveu de %(p2)s."
 
 #: plugins/RelCalc.py:248
 msgid "%(p1)s is the second great grandnephew of %(p2)s."
-msgstr "%s est le deuxième arrière petit neveu de %(p2)s."
+msgstr "%(p1)s est le deuxième arrière petit neveu de %(p2)s."
 
 #: plugins/RelCalc.py:251
 msgid "%(p1)s is the third great grandnephew of %(p2)s."
-msgstr "%s est le troisième arrière petit neveu de %(p2)s."
+msgstr "%(p1)s est le troisième arrière petit neveu de %(p2)s."
 
 #: plugins/RelCalc.py:254
 msgid "%(p1)s is the %(level)dth great grandnephew of %(p2)s."
-msgstr "%s est le %(level)dième arrière petit neveu de %(p2)s."
+msgstr "%(p1)s est le %(level)dth arrière petit neveu de %(p2)s."
 
 #: plugins/RelCalc.py:259
 msgid "%(p1)s is the niece of %(p2)s."
@@ -4240,7 +4240,7 @@ msgstr "%(p1)s est la troisième arrière petite nièce de %(p2)s."
 
 #: plugins/RelCalc.py:274
 msgid "%(p1)s is the %(level)dth great grandniece of %(p2)s."
-msgstr "%(p1)s est la %(level)dième arrière petite nièce de %(p2)s."
+msgstr "%(p1)s est la %(level)dth arrière petite nièce de %(p2)s."
 
 #: plugins/RelCalc.py:363
 msgid "Their common ancestor is %s."
