@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,7 +87,6 @@ _use_patronymic = [
     "ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian",
     ]
     
-
 #-------------------------------------------------------------------------
 #
 # EditPerson class
@@ -1746,9 +1745,9 @@ class EditPerson:
                 self.add_places.append(place)
                 return place.get_handle()
             else:
-                return None
+                return u""
         else:
-            return None
+            return u""
 
     def on_edit_name_clicked(self,obj):
         import NameEdit
