@@ -399,6 +399,9 @@ class StyleSheetList:
         self.file = os.path.expanduser("~/.gramps/" + file)
         self.parse()
 
+    def delete_style_sheet(self,name):
+        del self.map[name]
+
     def get_style_sheet(self,name):
         return self.map[name]
 

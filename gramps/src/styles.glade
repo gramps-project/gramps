@@ -245,6 +245,12 @@
 	    <name>button5</name>
 	    <can_default>True</can_default>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_delete_clicked</handler>
+	      <object>styles</object>
+	      <last_modification_time>Sat, 16 Jun 2001 03:11:52 GMT</last_modification_time>
+	    </signal>
 	    <label>Delete</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>

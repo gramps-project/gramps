@@ -38,6 +38,7 @@ class StyleListDisplay:
             "on_list_select_row" : on_list_select_row,
             "on_ok_clicked" : on_ok_clicked,
             "on_add_clicked" : on_add_clicked,
+            "on_delete_clicked" : on_delete_clicked,
             "on_edit_clicked" : on_edit_clicked
             })
         self.list = self.top.get_widget("list")
@@ -80,7 +81,6 @@ def on_ok_clicked(obj):
     top.sheetlist.save()
     utils.destroy_passed_object(obj)
     
-
 #------------------------------------------------------------------------
 #
 # 
@@ -101,6 +101,19 @@ def on_edit_clicked(obj):
     index = top.list.get_data("i")
     (name,style) = top.list.get_row_data(index)
     x = StyleEditor(name,style,top)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def on_delete_clicked(obj):
+    top = obj.get_data("o")
+
+    index = top.list.get_data("i")
+    (name,style) = top.list.get_row_data(index)
+    top.sheetlist.delete_style_sheet(name)
+    top.redraw()
 
 #------------------------------------------------------------------------
 #
