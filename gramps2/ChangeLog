@@ -1,6 +1,17 @@
 2003-10-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in, configure: Change version and release numbers.
 	* TODO: Remove completed items.
+	* src/plugins.glade: Switch from GtkDialog to GtkWindow (prevents it 
+	from always being on top under metacity). Remove extra button.
+	* src/Plugins.py (PluginDialog.__init__): Provide custom labels and
+	tooltips for reports (Generate) and tools (Run);
+	(ReportPlugins.__init__, ToolPlugins.__init__): call PluginDialog
+	with appropriate labels and tooltips.
+	* src/Report.py (BareReportDialog.__init__): Change button back to OK.
+	* src/plugins/rel_ru.py (getallancestors): Replace with existing
+	apply_filter from Relationship.py.
+	* src/gramps.glade: Correct tooltips in Family Views (make parents an 
+	active family).
 
 2003-10-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (edit_button_clicked): Modify edit person call 

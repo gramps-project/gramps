@@ -2,33 +2,32 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
+<requires lib="gnome"/>
 
-<widget class="GtkDialog" id="report">
+<widget class="GtkDialog" id="plugstat">
   <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
-  <property name="default_width">600</property>
-  <property name="default_height">400</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
   <property name="has_separator">False</property>
 
   <child internal-child="vbox">
-    <widget class="GtkVBox" id="vbox35">
+    <widget class="GtkVBox" id="vbox37">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">8</property>
 
       <child internal-child="action_area">
-	<widget class="GtkHButtonBox" id="hbuttonbox21">
+	<widget class="GtkHButtonBox" id="hbuttonbox22">
 	  <property name="visible">True</property>
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button106">
+	    <widget class="GtkButton" id="button107">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -37,34 +36,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="destroy_passed_object" object="report"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button105">
-	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Perform selected action</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-apply</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_report_apply_clicked" object="report"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button104">
-	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Perform selected action and close this dialog</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-ok</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_report_ok_clicked" object="report"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -77,13 +48,109 @@
       </child>
 
       <child>
-	<widget class="GtkHPaned" id="hpaned2">
+	<widget class="GtkScrolledWindow" id="scrolledwindow2">
+	  <property name="width_request">450</property>
+	  <property name="height_request">400</property>
+	  <property name="visible">True</property>
+	  <property name="can_focus">True</property>
+	  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+	  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+	  <property name="shadow_type">GTK_SHADOW_IN</property>
+	  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+	  <child>
+	    <widget class="GtkTextView" id="text">
+	      <property name="visible">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="editable">False</property>
+	      <property name="justification">GTK_JUSTIFY_LEFT</property>
+	      <property name="wrap_mode">GTK_WRAP_NONE</property>
+	      <property name="cursor_visible">False</property>
+	      <property name="pixels_above_lines">0</property>
+	      <property name="pixels_below_lines">0</property>
+	      <property name="pixels_inside_wrap">0</property>
+	      <property name="left_margin">0</property>
+	      <property name="right_margin">0</property>
+	      <property name="indent">0</property>
+	      <property name="text" translatable="yes"></property>
+	    </widget>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">0</property>
+	  <property name="expand">True</property>
+	  <property name="fill">True</property>
+	</packing>
+      </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkWindow" id="report">
+  <property name="visible">True</property>
+  <property name="title" translatable="yes"></property>
+  <property name="type">GTK_WINDOW_TOPLEVEL</property>
+  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="modal">False</property>
+  <property name="default_width">600</property>
+  <property name="default_height">400</property>
+  <property name="resizable">True</property>
+  <property name="destroy_with_parent">False</property>
+  <property name="icon">gramps.png</property>
+
+  <child>
+    <widget class="GtkVBox" id="vbox38">
+      <property name="visible">True</property>
+      <property name="homogeneous">False</property>
+      <property name="spacing">0</property>
+
+      <child>
+	<widget class="GtkHButtonBox" id="hbuttonbox23">
+	  <property name="visible">True</property>
+	  <property name="layout_style">GTK_BUTTONBOX_END</property>
+	  <property name="spacing">6</property>
+
+	  <child>
+	    <widget class="GtkButton" id="button108">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-close</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="report"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="apply">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Perform selected action</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes"></property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <signal name="clicked" handler="on_report_apply_clicked" object="report"/>
+	    </widget>
+	  </child>
+	</widget>
+	<packing>
+	  <property name="padding">6</property>
+	  <property name="expand">False</property>
+	  <property name="fill">True</property>
+	  <property name="pack_type">GTK_PACK_END</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkHPaned" id="hpaned3">
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="position">0</property>
 
 	  <child>
-	    <widget class="GtkScrolledWindow" id="scrolledwindow1">
+	    <widget class="GtkScrolledWindow" id="scrolledwindow3">
 	      <property name="visible">True</property>
 	      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 	      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
@@ -109,13 +176,13 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkVBox" id="vbox36">
+	    <widget class="GtkVBox" id="vbox39">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
 
 	      <child>
-		<widget class="GtkHBox" id="hbox2">
+		<widget class="GtkHBox" id="hbox3">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
 		  <property name="spacing">0</property>
@@ -165,7 +232,7 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkHSeparator" id="hseparator19">
+		<widget class="GtkHSeparator" id="hseparator20">
 		  <property name="visible">True</property>
 		</widget>
 		<packing>
@@ -252,7 +319,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkLabel" id="label64">
+		    <widget class="GtkLabel" id="label70">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Author:</property>
 		      <property name="use_underline">False</property>
@@ -276,7 +343,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkLabel" id="label65">
+		    <widget class="GtkLabel" id="label71">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Author's email:</property>
 		      <property name="use_underline">False</property>
@@ -358,88 +425,6 @@
 	      <property name="shrink">True</property>
 	      <property name="resize">True</property>
 	    </packing>
-	  </child>
-	</widget>
-	<packing>
-	  <property name="padding">0</property>
-	  <property name="expand">True</property>
-	  <property name="fill">True</property>
-	</packing>
-      </child>
-    </widget>
-  </child>
-</widget>
-
-<widget class="GtkDialog" id="plugstat">
-  <property name="visible">True</property>
-  <property name="title" translatable="yes"></property>
-  <property name="type">GTK_WINDOW_TOPLEVEL</property>
-  <property name="window_position">GTK_WIN_POS_NONE</property>
-  <property name="modal">False</property>
-  <property name="resizable">True</property>
-  <property name="destroy_with_parent">False</property>
-  <property name="icon">gramps.png</property>
-  <property name="has_separator">False</property>
-
-  <child internal-child="vbox">
-    <widget class="GtkVBox" id="vbox37">
-      <property name="visible">True</property>
-      <property name="homogeneous">False</property>
-      <property name="spacing">8</property>
-
-      <child internal-child="action_area">
-	<widget class="GtkHButtonBox" id="hbuttonbox22">
-	  <property name="visible">True</property>
-	  <property name="layout_style">GTK_BUTTONBOX_END</property>
-
-	  <child>
-	    <widget class="GtkButton" id="button107">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-close</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_close_clicked" last_modification_time="Thu, 12 Sep 2002 03:21:32 GMT"/>
-	    </widget>
-	  </child>
-	</widget>
-	<packing>
-	  <property name="padding">0</property>
-	  <property name="expand">False</property>
-	  <property name="fill">True</property>
-	  <property name="pack_type">GTK_PACK_END</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkScrolledWindow" id="scrolledwindow2">
-	  <property name="width_request">450</property>
-	  <property name="height_request">400</property>
-	  <property name="visible">True</property>
-	  <property name="can_focus">True</property>
-	  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-	  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-	  <property name="shadow_type">GTK_SHADOW_IN</property>
-	  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
-
-	  <child>
-	    <widget class="GtkTextView" id="text">
-	      <property name="visible">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="editable">False</property>
-	      <property name="justification">GTK_JUSTIFY_LEFT</property>
-	      <property name="wrap_mode">GTK_WRAP_NONE</property>
-	      <property name="cursor_visible">False</property>
-	      <property name="pixels_above_lines">0</property>
-	      <property name="pixels_below_lines">0</property>
-	      <property name="pixels_inside_wrap">0</property>
-	      <property name="left_margin">0</property>
-	      <property name="right_margin">0</property>
-	      <property name="indent">0</property>
-	      <property name="text" translatable="yes"></property>
-	    </widget>
 	  </child>
 	</widget>
 	<packing>
