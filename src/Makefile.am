@@ -85,6 +85,7 @@ pkgpython_PYTHON = \
 	StyleEditor.py\
 	SubstKeywords.py\
 	TarFile.py\
+	TransTable.py\
 	UrlEdit.py\
 	Utils.py\
 	VersionControl.py\

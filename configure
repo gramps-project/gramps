@@ -3367,7 +3367,7 @@ SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 
 
 
-                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/gramps-manual/fr/Makefile doc/gramps-manual/de/Makefile doc/gramps-manual/ru/Makefile example/Makefile example/gramps/Makefile gramps.spec gramps.sh"
+                                                                                                                                                                                                                  ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/gramps-manual/fr/Makefile doc/gramps-manual/de/Makefile doc/gramps-manual/ru/Makefile doc/gramps-manual/hu/Makefile example/Makefile example/gramps/Makefile gramps.spec gramps.sh"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -3959,6 +3959,7 @@ do
   "doc/gramps-manual/fr/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/fr/Makefile" ;;
   "doc/gramps-manual/de/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/de/Makefile" ;;
   "doc/gramps-manual/ru/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/ru/Makefile" ;;
+  "doc/gramps-manual/hu/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/gramps-manual/hu/Makefile" ;;
   "example/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/Makefile" ;;
   "example/gramps/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/gramps/Makefile" ;;
   "gramps.spec" ) CONFIG_FILES="$CONFIG_FILES gramps.spec" ;;
