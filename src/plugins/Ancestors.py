@@ -227,6 +227,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             for family_handle in pfamily_handles:
                 people.extend (self.family (family_handle, already_described))
 
+            paternal_known = (len (people) > 0)
             if thisgen > 2 and len (mfamily_handles):
                 for self.gp in [self.database.get_family_from_handle(mfamily_handles[0]).get_father_handle (),
                                 self.database.get_family_from_handle(mfamily_handles[0]).get_mother_handle ()]:
@@ -248,7 +249,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             if len (people):
                 if self.pgbrk:
                     self.doc.page_break()
-                self.doc.start_paragraph ("AR-Heading")
+
                 family_handles = pfamily_handles
                 family_handles.extend (mfamily_handles)
                 for self.gp in [self.database.get_family_from_handle(family_handles[0]).get_father_handle (),
@@ -256,19 +257,22 @@ class ComprehensiveAncestorsReport (Report.Report):
                     if self.gp:
                         break
 
-                relstring = self.relationship.get_grandparents_string (self.start,
-                                                                  self.database.get_person_from_handle(self.gp))[0]
-                if thisgen == 2:
-                    heading = _("%(name)s's %(parents)s") % \
-                              { 'name': self.first_name_or_nick (self.start),
-                                'parents': relstring }
-                else:
-                    heading = _("%(name)s's paternal %(grandparents)s") % \
-                              { 'name': self.first_name_or_nick (self.start),
-                                'grandparents': relstring }
+                if paternal_known:
+                    self.doc.start_paragraph ("AR-Heading")
+                    relstring = self.relationship.get_grandparents_string (self.start,
+                                                                           self.database.get_person_from_handle(self.gp))[0]
+                    if thisgen == 2:
+                        heading = _("%(name)s's %(parents)s") % \
+                                  { 'name': self.first_name_or_nick (self.start),
+                                    'parents': relstring }
+                    else:
+                        heading = _("%(name)s's paternal %(grandparents)s") % \
+                                  { 'name': self.first_name_or_nick (self.start),
+                                    'grandparents': relstring }
 
-                self.doc.write_text (heading)
-                self.doc.end_paragraph ()
+                    self.doc.write_text (heading)
+                    self.doc.end_paragraph ()
+
                 self.write_paragraphs (people)
 
                 next_pfamily_handles = []
