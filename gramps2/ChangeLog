@@ -6,6 +6,10 @@
 	(select_file): Add a placeholder function. 
 	(select_obj): Gracefully handle Cancel empty object (cancel).
 	Enable Remove button on non-empty selection. 
+	(SimpleBookTitle.write_report): Insert image only if it is passed. 
+	Set empty object_id to "" (was None).
+	* src/plugins/BookReport.py (BookReportSelector.open_book):
+	Don't displpay person name for special items (title). 
 
 2003-09-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GenericFilter.py: handle the possibility of missing
