@@ -41,7 +41,8 @@ pkgpython_PYTHON = \
 	WriteCD.py\
 	rel_ru.py\
         eval.py\
-	leak.py
+	leak.py\
+        SimpleBookTitle.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
@@ -62,7 +63,8 @@ GLADEFILES = \
 	verify.glade\
 	cdexport.glade\
 	eval.glade\
-	leak.glade
+	leak.glade\
+        book.glade
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 

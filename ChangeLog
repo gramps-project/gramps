@@ -11,6 +11,9 @@
 	* src/plugins/SimpleBookTitle.py: Fix styles in book.
 	* src/plugins/FamilyGroup.py: Fix styles in book.
 	* src/plugins/DetAncestralReport.py: Fix styles in book.
+	* src/Makefile.am: Ship SelectPerson.py and choose.glade.
+	* src/plugins/Makefile.am: Ship SimpleBookTitle.py and book.glade.
+	* NEWS: Some updates for upcoming release.
 
 2003-07-07  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WriteGedcom.py: Fix GEDCOM export.  Fixed date
