@@ -89,18 +89,18 @@ class AncestorChart:
             self.standalone = 0
         self.calc()
         
-    def filter(self,person_id,index):
+    def filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
         
-        if (not person_id) or (index >= 2**self.max_generations):
+        if (not person_handle) or (index >= 2**self.max_generations):
             return
-        self.map[index] = person_id
+        self.map[index] = person_handle
 
         self.text[index] = []
 
-        subst = SubstKeywords(self.database,person_id)
+        subst = SubstKeywords(self.database,person_handle)
         
         for line in self.display:
             self.text[index].append(subst.replace(line))
@@ -111,12 +111,12 @@ class AncestorChart:
 
         self.lines = max(self.lines,len(self.text[index]))    
 
-        person = self.database.try_to_find_person_from_id(person_id)
-        family_id = person.get_main_parents_family_id()
-        if family_id:
-            family = self.database.find_family_from_id(family_id)
-            self.filter(family.get_father_id(),index*2)
-            self.filter(family.get_mother_id(),(index*2)+1)
+        person = self.database.try_to_find_person_from_handle(person_handle)
+        family_handle = person.get_main_parents_family_handle()
+        if family_handle:
+            family = self.database.find_family_from_handle(family_handle)
+            self.filter(family.get_father_handle(),index*2)
+            self.filter(family.get_mother_handle(),(index*2)+1)
 
     def write_report(self):
 
@@ -146,7 +146,7 @@ class AncestorChart:
         that and the page dimensions, calculate the proper place to put
         the elements on a page.
         """
-        self.filter(self.start.get_id(),1)
+        self.filter(self.start.get_handle(),1)
 
         self.height = self.lines*pt2cm((125.0*self.font.get_size())/100.0)
         self.box_width = pt2cm(self.box_width+20)
@@ -305,10 +305,10 @@ def report(database,person):
 _style_file = "ancestor_chart.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _max_gen = 10
 _disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
-_options = ( _person_id, _max_gen, _disp_format )
+_options = ( _person_handle, _max_gen, _disp_format )
 
 #------------------------------------------------------------------------
 #
@@ -381,7 +381,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), self.max_gen, self.report_text )
+        self.options = ( self.person.get_handle(), self.max_gen, self.report_text )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------

@@ -316,37 +316,37 @@ class DisplayChart:
 
     def build_row_data(self):
         for individual_id in self.my_list:
-            individual = self.db.try_to_find_person_from_id(individual_id)
+            individual = self.db.try_to_find_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
-            birth_id = individual.get_birth_id()
+            birth_handle = individual.get_birth_handle()
             bdate = ""
             bplace = ""
-            if birth_id:
-                birth = self.db.find_event_from_id(birth_id)
+            if birth_handle:
+                birth = self.db.find_event_from_handle(birth_handle)
                 bdate = birth.get_date()
-                bplace_id = birth.get_place_id()
-                if bplace_id:
-                    bplace = self.db.try_to_find_place_from_id(bplace_id).get_title()
-            death_id = individual.get_death_id()
+                bplace_handle = birth.get_place_handle()
+                if bplace_handle:
+                    bplace = self.db.try_to_find_place_from_handle(bplace_handle).get_title()
+            death_handle = individual.get_death_handle()
             ddate = ""
             dplace = ""
-            if death_id:
-                death = self.db.find_event_from_id(death_id)
+            if death_handle:
+                death = self.db.find_event_from_handle(death_handle)
                 ddate = death.get_date()
-                dplace_id = death.get_place_id()
-                if dplace_id:
-                    dplace = self.db.try_to_find_place_from_id(dplace_id).get_title()
+                dplace_handle = death.get_place_handle()
+                if dplace_handle:
+                    dplace = self.db.try_to_find_place_from_handle(dplace_handle).get_title()
             map = {}
             elist = individual.get_event_list()[:]
-            for ievent_id in elist:
-                if not ievent_id:
+            for ievent_handle in elist:
+                if not ievent_handle:
                     continue
-                ievent = self.db.find_event_from_id(ievent_id)
+                ievent = self.db.find_event_from_handle(ievent_handle)
                 event_name = ievent.get_name()
                 if map.has_key(event_name):
-                    map[event_name].append(ievent_id)
+                    map[event_name].append(ievent_handle)
                 else:
-                    map[event_name] = [ievent_id]
+                    map[event_name] = [ievent_handle]
 
             first = 1
             done = 0
@@ -359,16 +359,16 @@ class DisplayChart:
                     tlist = ["","",""]
                 for ename in self.event_titles[3:]:
                     if map.has_key(ename) and len(map[ename]) > 0:
-                        event_id = map[ename][0]
+                        event_handle = map[ename][0]
                         del map[ename][0]
                         date = ""
                         place = ""
-                        if event_id:
-                            event = self.db.find_event_from_id(event_id)
+                        if event_handle:
+                            event = self.db.find_event_from_handle(event_handle)
                             date = event.get_date()
-                            place_id = event.get_place_id()
-                            if place_id:
-                                place = self.db.try_to_find_place_from_id(place_id).get_title()
+                            place_handle = event.get_place_handle()
+                            if place_handle:
+                                place = self.db.try_to_find_place_from_handle(place_handle).get_title()
                         tlist.append("%s\n%s" % (date, place))
                         added = 1
                     else:
@@ -387,12 +387,12 @@ class DisplayChart:
         name, birth, and death. This should be the column titles of the report"""
         map = {}
         for individual_id in self.my_list:
-            individual = self.db.try_to_find_person_from_id(individual_id)
+            individual = self.db.try_to_find_person_from_handle(individual_id)
             elist = individual.get_event_list()
-            for event_id in elist:
-                if not event_id:
+            for event_handle in elist:
+                if not event_handle:
                     continue
-                event = self.db.find_event_from_id(event_id)
+                event = self.db.find_event_from_handle(event_handle)
                 name = event.get_name()
                 if not name:
                     break

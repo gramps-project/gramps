@@ -202,7 +202,7 @@ class XmlWriter:
         person_len = self.db.get_number_of_people()
         family_len = len(familyList)
         source_len = len(self.db.get_source_keys())
-        place_len = len(self.db.get_place_id_keys())
+        place_len = len(self.db.get_place_handle_keys())
         objList = self.db.get_object_keys()
         
         total = person_len + family_len + place_len + source_len
@@ -236,7 +236,7 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s"' % person.get_id())
+                self.g.write(' default="%s"' % person.get_handle())
             self.g.write(">\n")
 
             keys = self.db.get_person_keys()
@@ -264,12 +264,12 @@ class XmlWriter:
                     self.dump_name("aka",name,3)
             
                 self.write_line("nick",person.get_nick_name(),3)
-                birth = self.db.find_event_from_id(person.get_birth_id())
-                death = self.db.find_event_from_id(person.get_death_id())
+                birth = self.db.find_event_from_handle(person.get_birth_handle())
+                death = self.db.find_event_from_handle(person.get_death_handle())
                 self.dump_my_event("Birth",birth,3)
                 self.dump_my_event("Death",death,3)
-                for event_id in person.get_event_list():
-                    event = self.db.find_event_from_id(event_id)
+                for event_handle in person.get_event_list():
+                    event = self.db.find_event_from_handle(event_handle)
                     self.dump_event(event,3)
                 
                 self.dump_ordinance("baptism",person.get_lds_baptism(),3)
@@ -297,7 +297,7 @@ class XmlWriter:
                 self.write_attribute_list(person.get_attribute_list())
                 self.write_url_list(person.get_url_list())
 
-                for alt in person.get_parent_family_id_list():
+                for alt in person.get_parent_family_handle_list():
                     if alt[1] != "Birth":
                         mrel=' mrel="%s"' % alt[1]
                     else:
@@ -309,7 +309,7 @@ class XmlWriter:
                     self.g.write("      <childof ref=\"%s\"%s%s/>\n" % \
                             (alt[0], mrel, frel))
 
-                for family in person.get_family_id_list():
+                for family in person.get_family_handle_list():
                     self.write_ref("parentin",family,3)
 
                 self.write_note("note",person.get_note_object(),3)
@@ -324,25 +324,25 @@ class XmlWriter:
 
             familyList.sort ()            
             for key in self.db.get_family_keys():
-                family = self.db.find_family_from_id(key)
+                family = self.db.find_family_from_handle(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
             
-                self.write_family_id(family,2)
-                fid = family.get_father_id()
-                mid = family.get_mother_id()
+                self.write_family_handle(family,2)
+                fid = family.get_father_handle()
+                mid = family.get_mother_handle()
                 self.write_ref("father",fid,3)
                 self.write_ref("mother",mid,3)
-                for event_id in family.get_event_list():
-                    event = self.db.find_event_from_id(event_id)
+                for event_handle in family.get_event_list():
+                    event = self.db.find_event_from_handle(event_handle)
                     self.dump_event(event,3)
                 self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
 
                 self.write_media_list(family.get_media_list())
 
-                if len(family.get_child_id_list()) > 0:
-                    for person in family.get_child_id_list():
+                if len(family.get_child_handle_list()) > 0:
+                    for person in family.get_child_handle_list():
                         self.write_ref("child",person,3)
                 self.write_attribute_list(family.get_attribute_list())
                 self.write_note("note",family.get_note_object(),3)
@@ -360,7 +360,7 @@ class XmlWriter:
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
-                self.g.write("    <source id=\"" + source.get_id() + "\">\n")
+                self.g.write("    <source id=\"" + source.get_handle() + "\">\n")
                 self.write_force_line("stitle",source.get_title(),3)
                 self.write_line("sauthor",source.get_author(),3)
                 self.write_line("spubinfo",source.get_publication_info(),3)
@@ -373,11 +373,11 @@ class XmlWriter:
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            keys = self.db.get_place_id_keys()
+            keys = self.db.get_place_handle_keys()
             keys.sort ()
             for key in keys:
                 try:
-                    place = self.db.get_place_id(key)
+                    place = self.db.get_place_handle(key)
                     if self.callback and count % delta == 0:
                         self.callback(float(count)/float(total))
                     self.write_place_obj(place)
@@ -391,14 +391,14 @@ class XmlWriter:
             self.g.write("  <objects>\n")
             objList.sort ()
             for key in self.db.get_object_keys():
-                object = self.db.try_to_find_object_from_id(key)
+                object = self.db.try_to_find_object_from_handle(key)
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
         if len(self.db.get_bookmarks()) > 0:
             self.g.write("  <bookmarks>\n")
-            for person_id in self.db.get_bookmarks():
-                self.g.write('    <bookmark ref="%s"/>\n' % person_id)
+            for person_handle in self.db.get_bookmarks():
+                self.g.write('    <bookmark ref="%s"/>\n' % person_handle)
             self.g.write("  </bookmarks>\n")
 
         self.g.write("</database>\n")
@@ -471,7 +471,7 @@ class XmlWriter:
         self.write_date(event.get_date_object(),index+1)
 
         self.write_witness(event.get_witness_list(),index+1)
-        self.write_ref("place",event.get_place_id(),index+1)
+        self.write_ref("place",event.get_place_handle(),index+1)
         self.write_line("cause",event.get_cause(),index+1)
         self.write_line("description",event.get_description(),index+1)
         if event.get_note():
@@ -494,11 +494,11 @@ class XmlWriter:
             self.write_date(dateobj,index+1)
         if ord.get_temple():
             self.g.write('%s<temple val="%s"/>\n' % (sp2,self.fix(ord.get_temple())))
-        self.write_ref("place",ord.get_place_id(),index+1)
+        self.write_ref("place",ord.get_place_handle(),index+1)
         if ord.get_status() != 0:
             self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
-        if ord.get_family_id():
-            self.g.write('%s<sealed_to ref="%s"/>\n' % (sp2,self.fix(ord.get_family_id().get_id())))
+        if ord.get_family_handle():
+            self.g.write('%s<sealed_to ref="%s"/>\n' % (sp2,self.fix(ord.get_family_handle().get_handle())))
         if ord.get_note() != "":
             self.write_note("note",ord.get_note_object(),index+1)
         for s in ord.get_source_references():
@@ -506,7 +506,7 @@ class XmlWriter:
         self.g.write('%s</lds_ord>\n' % sp)
     
     def dump_source_ref(self,source_ref,index=1):
-        source = self.db.try_to_find_source_from_id(source_ref.get_base_id())
+        source = self.db.try_to_find_source_from_handle(source_ref.get_base_handle())
         if source:
             p = source_ref.get_page()
             c = source_ref.get_comments()
@@ -515,12 +515,12 @@ class XmlWriter:
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
             if p == "" and c == "" and t == "" and d.is_empty() and q == 2:
-                self.g.write('<sourceref ref="%s"/>\n' % source.get_id())
+                self.g.write('<sourceref ref="%s"/>\n' % source.get_handle())
             else:
                 if q == 2:
-                    self.g.write('<sourceref ref="%s">\n' % source.get_id())
+                    self.g.write('<sourceref ref="%s">\n' % source.get_handle())
                 else:
-                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.get_id(),q))
+                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.get_handle(),q))
                 self.write_line("spage",p,index+1)
                 self.write_text("scomments",c,index+1)
                 self.write_text("stext",t,index+1)
@@ -533,18 +533,18 @@ class XmlWriter:
 
     def write_id(self,label,person,index=1):
         if person:
-            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_id()))
+            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_handle()))
             comp = person.get_complete()
             if comp:
                 self.g.write(' complete="1"')
             self.g.write('>\n')
 
-    def write_family_id(self,family,index=1):
+    def write_family_handle(self,family,index=1):
         if family:
             rel = family.get_relationship()
             comp = family.get_complete()
             sp = "  " * index
-            self.g.write('%s<family id="%s"' % (sp,family.get_id()))
+            self.g.write('%s<family id="%s"' % (sp,family.get_handle()))
             if comp:
                 self.g.write(' complete="1"')
             if rel != "":
@@ -697,7 +697,7 @@ class XmlWriter:
     def write_media_list(self,list,indent=3):
         sp = '  '*indent
         for photo in list:
-            mobj_id = photo.get_reference_id()
+            mobj_id = photo.get_reference_handle()
             self.g.write('%s<objref ref="%s"' % (sp,mobj_id))
             if photo.get_privacy():
                 self.g.write(' priv="1"')
@@ -726,7 +726,7 @@ class XmlWriter:
         title = self.fix(place.get_title())
         long = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
-        id = place.get_id()
+        id = place.get_handle()
         main_loc = place.get_main_location()
         llen = len(place.get_alternate_locations()) + len(place.get_url_list()) + \
                len(place.get_media_list()) + len(place.get_source_references())
@@ -760,7 +760,7 @@ class XmlWriter:
         self.g.write("    </placeobj>\n")
 
     def write_object(self,object):
-        id = object.get_id()
+        id = object.get_handle()
         type = object.get_mime_type()
         path = object.get_path()
         if self.strip_photos:
@@ -792,8 +792,8 @@ class XmlWriter:
 #
 #-------------------------------------------------------------------------
 def sortById(first,second):
-    fid = first.get_id()
-    sid = second.get_id()
+    fid = first.get_handle()
+    sid = second.get_handle()
 
     if fid < sid:
         return -1

@@ -84,8 +84,8 @@ class MergePeople:
                          _("Merge %s and %s") % (fname,mname),
                          _("Merge people"))
 
-        f1 = person1.get_main_parents_family_id()
-        f2 = person2.get_main_parents_family_id()
+        f1 = person1.get_main_parents_family_handle()
+        f2 = person2.get_main_parents_family_handle()
         
         name1 = GrampsCfg.get_nameof()(person1)
         death1 = person1.get_death().get_date()
@@ -105,21 +105,21 @@ class MergePeople:
             self.glade.get_widget("bfather1").set_active(1)
             
         if f1:
-            father1 = name_of(f1.get_father_id())
-            mother1 = name_of(f1.get_mother_id())
+            father1 = name_of(f1.get_father_handle())
+            mother1 = name_of(f1.get_mother_handle())
         else:
             father1 = ""
             mother1 = ""
 
         if f2:
-            father2 = name_of(f2.get_father_id())
-            mother2 = name_of(f2.get_mother_id())
+            father2 = name_of(f2.get_father_handle())
+            mother2 = name_of(f2.get_mother_handle())
         else:
             father2 = ""
             mother2 = ""
 
-        self.set_field(self.glade.get_widget("id1_text"),person1.get_id())
-        self.set_field(self.glade.get_widget("id2_text"),person2.get_id())
+        self.set_field(self.glade.get_widget("id1_text"),person1.get_handle())
+        self.set_field(self.glade.get_widget("id2_text"),person2.get_handle())
         self.set_field(self.glade.get_widget("name1_text"),name1)
         self.set_field(self.glade.get_widget("name2_text"),name2)
 
@@ -184,17 +184,17 @@ class MergePeople:
     def build_spouse_list(self,person,widget):
 
         widget.clear()
-        for fam in person.get_family_id_list():
+        for fam in person.get_family_handle_list():
             if person.get_gender() == RelLib.Person.male:
-                spouse = fam.get_mother_id()
+                spouse = fam.get_mother_handle()
             else:
-                spouse = fam.get_father_id()
+                spouse = fam.get_father_handle()
 
             if spouse == None:
                 name = "unknown"
             else:
                 sname = GrampsCfg.get_nameof()(spouse)
-                name = "%s [%s]" % (sname,spouse.get_id())
+                name = "%s [%s]" % (sname,spouse.get_handle())
             widget.add([name])
 
     def set_field(self,widget,value):
@@ -202,9 +202,9 @@ class MergePeople:
         widget.set_text(value)
 
     def place_name(self,event):
-        place = event.get_place_id()
+        place = event.get_place_handle()
         if place:
-            return "%s (%s)" % (place.get_title(),place.get_id())
+            return "%s (%s)" % (place.get_title(),place.get_handle())
         else:
             return ""
 
@@ -271,9 +271,9 @@ class MergePeople:
                 self.p1.add_url(xdata)
 
         self.id2 = self.glade.get_widget("id2")
-        old_id = self.p1.get_id()
+        old_id = self.p1.get_handle()
         if self.id2.get_active():
-            self.p1.set_id(self.p2.get_id())
+            self.p1.set_handle(self.p2.get_handle())
             
         if self.bname1.get_active():
             if self.altname.get_active():
@@ -310,26 +310,26 @@ class MergePeople:
                 self.p1.add_event(event)
 
         if self.glade.get_widget("bfather2").get_active():
-            orig_family = self.p1.get_main_parents_family_id()
+            orig_family = self.p1.get_main_parents_family_handle()
             if orig_family:
-                orig_family.remove_child_id(self.p1)
-                self.p1.remove_parent_family_id(orig_family)
+                orig_family.remove_child_handle(self.p1)
+                self.p1.remove_parent_family_handle(orig_family)
            
-            (source_family,mrel,frel) = self.p2.get_main_parents_family_idRel()
-            self.p1.set_main_parent_family_id(source_family)
+            (source_family,mrel,frel) = self.p2.get_main_parents_family_handleRel()
+            self.p1.set_main_parent_family_handle(source_family)
 
             if source_family:
-                if self.p2 in source_family.get_child_id_list():
-                    source_family.remove_child_id(self.p2)
-                    self.p2.remove_parent_family_id(source_family)
-                if self.p1 not in source_family.get_child_id_list():
-                    source_family.add_child_id(self.p1)
-                    self.p1.add_parent_family_id(source_family.get_id(),mrel,frel)
+                if self.p2 in source_family.get_child_handle_list():
+                    source_family.remove_child_handle(self.p2)
+                    self.p2.remove_parent_family_handle(source_family)
+                if self.p1 not in source_family.get_child_handle_list():
+                    source_family.add_child_handle(self.p1)
+                    self.p1.add_parent_family_handle(source_family.get_handle(),mrel,frel)
         else:
-            source_family = self.p2.get_main_parents_family_id()
+            source_family = self.p2.get_main_parents_family_handle()
             if source_family:
-                source_family.remove_child_id(self.p2)
-                self.p2.set_main_parent_family_id(None)
+                source_family.remove_child_handle(self.p2)
+                self.p2.set_main_parent_family_handle(None)
 
         self.merge_families()
 
@@ -346,8 +346,8 @@ class MergePeople:
             self.p1.set_note(old_note + self.p2.get_note())
 
         try:
-            self.db.remove_person_id(self.p2.get_id())
-            self.db.personMap[self.p1.get_id()] = self.p1
+            self.db.remove_person_handle(self.p2.get_handle())
+            self.db.personMap[self.p1.get_handle()] = self.p1
         except:
             print "%s is not in the person map!" % (GrampsCfg.get_nameof()(self.p2))
         self.update(self.p1,self.p2,old_id)
@@ -355,29 +355,29 @@ class MergePeople:
         
     def find_family(self,family):
         if self.p1.get_gender() == RelLib.Person.male:
-            mother = family.get_mother_id()
-            father = self.p1.get_id()
+            mother = family.get_mother_handle()
+            father = self.p1.get_handle()
         else:
-            father = family.get_father_id()
-            mother = self.p1.get_id()
+            father = family.get_father_handle()
+            mother = self.p1.get_handle()
 
-        for myfamily_id in self.db.get_family_keys():
-            myfamily = self.db.find_family_from_id(myfamily_id)
-            if myfamily.get_father_id() == father and myfamily.get_mother_id() == mother:
+        for myfamily_handle in self.db.get_family_keys():
+            myfamily = self.db.find_family_from_handle(myfamily_handle)
+            if myfamily.get_father_handle() == father and myfamily.get_mother_handle() == mother:
                 return myfamily
         return None
 
     def merge_families(self):
         
         family_num = 0
-        mylist = self.p2.get_family_id_list()[:]
+        mylist = self.p2.get_family_handle_list()[:]
         for src_family in mylist:
             
             family_num = family_num + 1
 
-            if not self.db.get_family_id_map().has_key(src_family.get_id()):
+            if not self.db.get_family_handle_map().has_key(src_family.get_handle()):
                 continue
-            if src_family in self.p1.get_family_id_list():
+            if src_family in self.p1.get_family_handle_list():
                 continue
 
             tgt_family = self.find_family(src_family)
@@ -389,22 +389,22 @@ class MergePeople:
             # family (with the pre-merge identity of the p1) from
             # both the parents
             #
-            if tgt_family in self.p1.get_family_id_list():
-                if tgt_family.get_father_id() != None and \
-                   src_family in tgt_father.get_family_id_list():
-                    tgt_family.get_father_id().remove_family_id(src_family)
-                if tgt_family.get_mother_id() != None and \
-                   src_family in tgt_family.get_mother_id().get_family_id_list():
-                    tgt_family.get_mother_id().remove_family_id(src_family)
+            if tgt_family in self.p1.get_family_handle_list():
+                if tgt_family.get_father_handle() != None and \
+                   src_family in tgt_father.get_family_handle_list():
+                    tgt_family.get_father_handle().remove_family_handle(src_family)
+                if tgt_family.get_mother_handle() != None and \
+                   src_family in tgt_family.get_mother_handle().get_family_handle_list():
+                    tgt_family.get_mother_handle().remove_family_handle(src_family)
 
                 # copy children from source to target
 
-                for child in src_family.get_child_id_list():
-                    if child not in tgt_family.get_child_id_list():
-                        parents = child.get_parent_family_id_list()
-                        tgt_family.add_child_id(child)
-                        if child.get_main_parents_family_id() == src_family:
-                            child.set_main_parent_family_id(tgt_family)
+                for child in src_family.get_child_handle_list():
+                    if child not in tgt_family.get_child_handle_list():
+                        parents = child.get_parent_family_handle_list()
+                        tgt_family.add_child_handle(child)
+                        if child.get_main_parents_family_handle() == src_family:
+                            child.set_main_parent_family_handle(tgt_family)
                         i = 0
                         for fam in parents[:]:
                             if fam[0] == src_family:
@@ -412,7 +412,7 @@ class MergePeople:
                             i = i + 1
                         
                 # delete the old source family
-                del self.db.get_family_id_map()[src_family.get_id()]
+                del self.db.get_family_handle_map()[src_family.get_handle()]
 
                 continue
             
@@ -428,12 +428,12 @@ class MergePeople:
                 # transfer child to new family, alter children to
                 # point to the correct family
                 
-                for child in src_family.get_child_id_list():
-                    if child not in tgt_family.get_child_id_list():
-                        parents = child.get_parent_family_id_list()
-                        tgt_family.add_child_id(child)
-                        if child.get_main_parents_family_id() == src_family:
-                            child.set_main_parent_family_id(tgt_family)
+                for child in src_family.get_child_handle_list():
+                    if child not in tgt_family.get_child_handle_list():
+                        parents = child.get_parent_family_handle_list()
+                        tgt_family.add_child_handle(child)
+                        if child.get_main_parents_family_handle() == src_family:
+                            child.set_main_parent_family_handle(tgt_family)
                         i = 0
                         for fam in parents[:]:
                             if fam[0] == src_family:
@@ -447,50 +447,50 @@ class MergePeople:
                 # change parents of the family to point to the new
                 # family
                 
-                if src_family.get_father_id():
-                    src_family.get_father_id().remove_family_id(src_family.get_id())
-                    src_family.get_father_id().add_family_id(tgt_family.get_id())
+                if src_family.get_father_handle():
+                    src_family.get_father_handle().remove_family_handle(src_family.get_handle())
+                    src_family.get_father_handle().add_family_handle(tgt_family.get_handle())
 
-                if src_family.get_mother_id():
-                    src_family.get_mother_id().remove_family_id(src_family.get_id())
-                    src_family.get_mother_id().add_family_id(tgt_family.get_id())
+                if src_family.get_mother_handle():
+                    src_family.get_mother_handle().remove_family_handle(src_family.get_handle())
+                    src_family.get_mother_handle().add_family_handle(tgt_family.get_handle())
 
-                del self.db.get_family_id_map()[src_family.get_id()]
+                del self.db.get_family_handle_map()[src_family.get_handle()]
             else:
-                if src_family not in self.p1.get_family_id_list():
-                    self.p1.add_family_id(src_family)
+                if src_family not in self.p1.get_family_handle_list():
+                    self.p1.add_family_handle(src_family)
                     if self.p1.get_gender() == RelLib.Person.male:
-                        src_family.set_father_id(self.p1)
+                        src_family.set_father_handle(self.p1)
                     else:
-                        src_family.set_mother_id(self.p1)
+                        src_family.set_mother_handle(self.p1)
                 self.remove_marriage(src_family,self.p2)
 
         # a little debugging here
         
-        for fam in self.db.get_family_id_map().values():
-            if self.p2 in fam.get_child_id_list():
-                fam.remove_child_id(self.p2)
-                fam.add_child_id(self.p1)
-            if self.p2 == fam.get_father_id():
-                fam.set_father_id(self.p1)
-            if self.p2 == fam.get_mother_id():
-                fam.set_mother_id(self.p1)
-            if fam.get_father_id() == None and fam.get_mother_id() == None:
+        for fam in self.db.get_family_handle_map().values():
+            if self.p2 in fam.get_child_handle_list():
+                fam.remove_child_handle(self.p2)
+                fam.add_child_handle(self.p1)
+            if self.p2 == fam.get_father_handle():
+                fam.set_father_handle(self.p1)
+            if self.p2 == fam.get_mother_handle():
+                fam.set_mother_handle(self.p1)
+            if fam.get_father_handle() == None and fam.get_mother_handle() == None:
                 self.delete_empty_family(fam)
                 
     def remove_marriage(self,family,person):
         if person:
-            person.remove_family_id(family)
-            if family.get_father_id() == None and family.get_mother_id() == None:
+            person.remove_family_handle(family)
+            if family.get_father_handle() == None and family.get_mother_handle() == None:
                 self.delete_empty_family(family)
 
-    def delete_empty_family(self,family_id):
-        for child in family.get_child_id_list():
-            if child.get_main_parents_family_id() == family_id:
-                child.set_main_parent_family_id(None)
+    def delete_empty_family(self,family_handle):
+        for child in family.get_child_handle_list():
+            if child.get_main_parents_family_handle() == family_handle:
+                child.set_main_parent_family_handle(None)
             else:
-                child.remove_parent_family_id(family_id)
-        self.db.delete_family(family_id)
+                child.remove_parent_family_handle(family_handle)
+        self.db.delete_family(family_handle)
 
 def compare_people(p1,p2):
 
@@ -516,12 +516,12 @@ def compare_people(p1,p2):
         return -1.0
     chance = chance + value
 
-    value = place_match(birth1.get_place_id(),birth2.get_place_id()) 
+    value = place_match(birth1.get_place_handle(),birth2.get_place_handle()) 
     if value == -1.0 :
         return -1.0
     chance = chance + value
 
-    value = place_match(death1.get_place_id(),death2.get_place_id()) 
+    value = place_match(death1.get_place_handle(),death2.get_place_handle()) 
     if value == -1.0 :
         return -1.0
     chance = chance + value
@@ -536,16 +536,16 @@ def compare_people(p1,p2):
     if p1 in ancestors:
         return -1.0
         
-    f1 = p1.get_main_parents_family_id()
-    f2 = p2.get_main_parents_family_id()
+    f1 = p1.get_main_parents_family_handle()
+    f2 = p2.get_main_parents_family_handle()
 
-    if f1 and f1.get_father_id():
-        dad1 = f1.get_father_id().get_primary_name()
+    if f1 and f1.get_father_handle():
+        dad1 = f1.get_father_handle().get_primary_name()
     else:
         dad1 = None
 
-    if f2 and f2.get_father_id():
-        dad2 = f2.get_father_id().get_primary_name()
+    if f2 and f2.get_father_handle():
+        dad2 = f2.get_father_handle().get_primary_name()
     else:
         dad2 = None
         
@@ -556,13 +556,13 @@ def compare_people(p1,p2):
 
     chance = chance + value
             
-    if f1 and f1.get_mother_id():
-        mom1 = f1.get_mother_id().get_primary_name()
+    if f1 and f1.get_mother_handle():
+        mom1 = f1.get_mother_handle().get_primary_name()
     else:
         mom1 = None
 
-    if f2 and f2.get_mother_id():
-        mom2 = f2.get_mother_id().get_primary_name()
+    if f2 and f2.get_mother_handle():
+        mom2 = f2.get_mother_handle().get_primary_name()
     else:
         mom2 = None
 
@@ -572,11 +572,11 @@ def compare_people(p1,p2):
             
     chance = chance + value
 
-    for f1 in p1.get_family_id_list():
-        for f2 in p2.get_family_id_list():
+    for f1 in p1.get_family_handle_list():
+        for f2 in p2.get_family_handle_list():
             if p1.get_gender() == RelLib.Person.female:
-                father1 = f1.get_father_id()
-                father2 = f2.get_father_id()
+                father1 = f1.get_father_handle()
+                father2 = f2.get_father_handle()
                 if father1 and father2:
                     if father1 == father2:
                         chance = chance + 1.0
@@ -587,8 +587,8 @@ def compare_people(p1,p2):
                         if value != -1.0:
                             chance = chance + value
             else:
-                mother1 = f1.get_mother_id()
-                mother2 = f2.get_mother_id()
+                mother1 = f1.get_mother_handle()
+                mother2 = f2.get_mother_handle()
                 if mother1 and mother2:
                     if mother1 == mother2:
                         chance = chance + 1.0
@@ -788,10 +788,10 @@ def ancestors_of(p1,list):
     if p1 == None:
         return
     list.append(p1)
-    f1 = p1.get_main_parents_family_id()
+    f1 = p1.get_main_parents_family_handle()
     if f1 != None:
-        ancestors_of(f1.get_father_id(),list)
-        ancestors_of(f1.get_mother_id(),list)
+        ancestors_of(f1.get_father_handle(),list)
+        ancestors_of(f1.get_mother_handle(),list)
 
 #---------------------------------------------------------------------
 #
@@ -801,7 +801,7 @@ def ancestors_of(p1,list):
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % (GrampsCfg.get_nameof()(p),p.get_id())
+    return "%s (%s)" % (GrampsCfg.get_nameof()(p),p.get_handle())
 
 #-------------------------------------------------------------------------
 #
@@ -838,7 +838,7 @@ class MergePlaces:
         """
         t2active = self.glade.get_widget("title2").get_active()
 
-        old_id = self.p1.get_id()
+        old_id = self.p1.get_handle()
         
         if t2active:
             self.p1.set_title(self.p2.get_title())
@@ -889,18 +889,18 @@ class MergePlaces:
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             for event in [p.get_birth(), p.get_death()] + p.get_event_list():
-                if event.get_place_id() == self.p2:
-                    event.set_place_id(self.p1)
+                if event.get_place_handle() == self.p2:
+                    event.set_place_handle(self.p1)
 
         # loop through families, changing event references to P2 to P1
-        for f in self.db.get_family_id_map().values():
+        for f in self.db.get_family_handle_map().values():
             for event in f.get_event_list():
-                if event.get_place_id() == self.p2:
-                    event.set_place_id(self.p1)
+                if event.get_place_handle() == self.p2:
+                    event.set_place_handle(self.p1)
                     
-        self.db.remove_place(self.p2.get_id())
-        self.db.build_place_display(self.p1.get_id(),old_id)
+        self.db.remove_place(self.p2.get_handle())
+        self.db.build_place_display(self.p1.get_handle(),old_id)
         
-        self.update(self.p1.get_id())
+        self.update(self.p1.get_handle())
         Utils.destroy_passed_object(obj)
 

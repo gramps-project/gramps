@@ -85,24 +85,24 @@ class FtmDescendantReport(Report.Report):
         cell = BaseDoc.TableCellStyle()
         self.doc.add_cell_style('FTD-Normal',cell)
 
-    def apply_filter(self,person_id,index,generation=1):
+    def apply_filter(self,person_handle,index,generation=1):
 
-        if (not person_id) or (generation > self.max_generations):
+        if (not person_handle) or (generation > self.max_generations):
             return
 
-        self.anc_map[index] = person_id
+        self.anc_map[index] = person_handle
         try:
             self.gen_map[generation].append(index)
         except:
             self.gen_map[generation] = []
             self.gen_map[generation].append(index)
 
-        person = self.database.try_to_find_person_from_id(person_id)
-        for family_id in person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            for child_id in family.get_child_id_list():
+        person = self.database.try_to_find_person_from_handle(person_handle)
+        for family_handle in person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            for child_handle in family.get_child_handle_list():
                 ix = max(self.anc_map.keys())
-                self.apply_filter(child_id,ix+1,generation+1)
+                self.apply_filter(child_handle,ix+1,generation+1)
 
 
     def write_report(self):
@@ -110,7 +110,7 @@ class FtmDescendantReport(Report.Report):
         if self.newpage:
             self.doc.page_break()
 
-        self.apply_filter(self.start.get_id(),1)
+        self.apply_filter(self.start.get_handle(),1)
         
         name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("FTD-Title")
@@ -132,8 +132,8 @@ class FtmDescendantReport(Report.Report):
             indexlist = self.gen_map[generation]
             indexlist.sort()
             for key in indexlist:
-                person_id = self.anc_map[key]
-                person = self.database.try_to_find_person_from_id(person_id)
+                person_handle = self.anc_map[key]
+                person = self.database.try_to_find_person_from_handle(person_handle)
 
                 pri_name = person.get_primary_name()
                 self.doc.start_paragraph("FTD-Entry","%d." % key)
@@ -144,25 +144,25 @@ class FtmDescendantReport(Report.Report):
 
                 # Check birth record
         
-                birth_id = person.get_birth_id()
+                birth_handle = person.get_birth_handle()
                 bplace = ""
                 bdate = ""
-                if birth_id:
-                    birth = self.database.find_event_from_id(birth_id)
+                if birth_handle:
+                    birth = self.database.find_event_from_handle(birth_handle)
                     bdate = birth.get_date()
-                    bplace_id = birth.get_place_id()
-                    if bplace_id:
-                        bplace = self.database.try_to_find_place_from_id(bplace_id).get_title()
+                    bplace_handle = birth.get_place_handle()
+                    if bplace_handle:
+                        bplace = self.database.try_to_find_place_from_handle(bplace_handle).get_title()
 
-                death_id = person.get_death_id()
+                death_handle = person.get_death_handle()
                 dplace = ""
                 ddate = ""
-                if death_id:
-                    death = self.database.find_event_from_id(death_id)
+                if death_handle:
+                    death = self.database.find_event_from_handle(death_handle)
                     ddate = death.get_date()
-                    dplace_id = death.get_place_id()
-                    if dplace_id:
-                        dplace = self.database.try_to_find_place_from_id(dplace_id).get_title()
+                    dplace_handle = death.get_place_handle()
+                    if dplace_handle:
+                        dplace = self.database.try_to_find_place_from_handle(dplace_handle).get_title()
 
                 birth_valid = bdate or bplace
                 death_valid = ddate or dplace
@@ -475,8 +475,8 @@ class FtmDescendantReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            base_id = srcref.get_base_id()
-            base = self.database.try_to_find_source_from_id(base_id)
+            base_handle = srcref.get_base_handle()
+            base = self.database.try_to_find_source_from_handle(base_handle)
             
             self.doc.start_paragraph('FTD-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
@@ -513,10 +513,10 @@ class FtmDescendantReport(Report.Report):
                 if not first:
                     msg.write(',')
                 first = 0
-                ref_base = ref.get_base_id()
+                ref_base = ref.get_base_handle()
                 the_key = 0
                 for key in self.sref_map.keys():
-                    if ref_base == self.sref_map[key].get_base_id():
+                    if ref_base == self.sref_map[key].get_base_handle():
                         the_key = key
                         break
                 if the_key:
@@ -560,14 +560,14 @@ class FtmDescendantReport(Report.Report):
             self.doc.end_paragraph()
             ncount += 1
             
-        for event_id in person.get_event_list():
-            if not event_id:
+        for event_handle in person.get_event_list():
+            if not event_handle:
                 continue
-            event = self.database.find_event_from_id(event_id)
+            event = self.database.find_event_from_handle(event_handle)
             date = event.get_date()
-            place_id = event.get_place_id()
-            if place_id:
-                place = self.database.try_to_find_place_from_id(place_id)
+            place_handle = event.get_place_handle()
+            if place_handle:
+                place = self.database.try_to_find_place_from_handle(place_handle)
             else:
                 place = None
 
@@ -607,23 +607,23 @@ class FtmDescendantReport(Report.Report):
         
         first = 1
 
-        for family_id in person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            father_id = family.get_father_id()
-            mother_id = family.get_mother_id()
-            if father_id and mother_id:
-                husband = self.database.try_to_find_person_from_id(father_id).get_primary_name().get_regular_name()
-                wife = self.database.try_to_find_person_from_id(mother_id).get_primary_name().get_regular_name()
+        for family_handle in person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            mother_handle = family.get_mother_handle()
+            if father_handle and mother_handle:
+                husband = self.database.try_to_find_person_from_handle(father_handle).get_primary_name().get_regular_name()
+                wife = self.database.try_to_find_person_from_handle(mother_handle).get_primary_name().get_regular_name()
             else:
                 continue
-            for event_id in family.get_event_list():
-                if not event_id:
+            for event_handle in family.get_event_list():
+                if not event_handle:
                     continue
-                event = self.database.find_event_from_id(event_id)
+                event = self.database.find_event_from_handle(event_handle)
                 date = event.get_date()
-                place_id = event.get_place_id()
-                if place_id:
-                    place = self.database.try_to_find_place_from_id(place_id)
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    place = self.database.try_to_find_place_from_handle(place_handle)
                 else:
                     place = None
 
@@ -662,25 +662,25 @@ class FtmDescendantReport(Report.Report):
 
         name = person.get_primary_name().get_regular_name()
         
-        for family_id in person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
+        for family_handle in person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
             first = 1
         
-            father_id = family.get_father_id()
-            mother_id = family.get_mother_id()
-            if father_id == person.get_id():
-                spouse_id = mother_id
+            father_handle = family.get_father_handle()
+            mother_handle = family.get_mother_handle()
+            if father_handle == person.get_handle():
+                spouse_id = mother_handle
             else:
-                spouse_id = father_id
-            spouse = self.database.try_to_find_person_from_id(spouse_id)
+                spouse_id = father_handle
+            spouse = self.database.try_to_find_person_from_handle(spouse_id)
 
             child_index = 0
-            for child_id in family.get_child_id_list():
-                child = self.database.try_to_find_person_from_id(child_id)
+            for child_handle in family.get_child_handle_list():
+                child = self.database.try_to_find_person_from_handle(child_handle)
                 child_index = child_index + 1
                 child_name = child.get_primary_name().get_regular_name()
                 for (ind,p_id) in self.anc_map.items():
-                    if p_id == child_id:
+                    if p_id == child_handle:
                         index = ind
 
                 if first:
@@ -692,7 +692,7 @@ class FtmDescendantReport(Report.Report):
                     else:
                         self.doc.write_text(_('Children of %(person_name)s are:') % { 'person_name' : name })
                     self.doc.end_paragraph()
-                    self.doc.start_table(family.get_id(),'FTD-ChildTable')
+                    self.doc.start_table(family.get_handle(),'FTD-ChildTable')
 
                 self.doc.start_row()
                 self.doc.start_cell('FTD-Normal')
@@ -710,25 +710,25 @@ class FtmDescendantReport(Report.Report):
                 self.doc.start_cell('FTD-Normal')
                 self.doc.start_paragraph('FTD-Details')
 
-                birth_id = child.get_birth_id()
+                birth_handle = child.get_birth_handle()
                 bplace = ""
                 bdate = ""
-                if birth_id:
-                    birth = self.database.find_event_from_id(birth_id)
+                if birth_handle:
+                    birth = self.database.find_event_from_handle(birth_handle)
                     bdate = birth.get_date()
-                    bplace_id = birth.get_place_id()
-                    if bplace_id:
-                        bplace = self.database.try_to_find_place_from_id(bplace_id).get_title()
+                    bplace_handle = birth.get_place_handle()
+                    if bplace_handle:
+                        bplace = self.database.try_to_find_place_from_handle(bplace_handle).get_title()
 
-                death_id = child.get_death_id()
+                death_handle = child.get_death_handle()
                 dplace = ""
                 ddate = ""
-                if death_id:
-                    death = self.database.find_event_from_id(death_id)
+                if death_handle:
+                    death = self.database.find_event_from_handle(death_handle)
                     ddate = death.get_date()
-                    dplace_id = death.get_place_id()
-                    if dplace_id:
-                        dplace = self.database.try_to_find_place_from_id(dplace_id).get_title()
+                    dplace_handle = death.get_place_handle()
+                    if dplace_handle:
+                        dplace = self.database.try_to_find_place_from_handle(dplace_handle).get_title()
 
                 if child.get_gender() == RelLib.Person.male:
                     if bdate:
@@ -996,22 +996,22 @@ class FtmDescendantReport(Report.Report):
 
     
     def print_spouse(self,person):
-        family_list = person.get_family_id_list()
+        family_list = person.get_family_handle_list()
         if not family_list:
             return
-        family_id = family_list[0]
-        family = self.database.find_family_from_id(family_id)
-        if family.get_father_id() == person.get_id():
-            spouse_id = family.get_mother_id()
+        family_handle = family_list[0]
+        family = self.database.find_family_from_handle(family_handle)
+        if family.get_father_handle() == person.get_handle():
+            spouse_id = family.get_mother_handle()
         else:
-            spouse_id = family.get_father_id()
+            spouse_id = family.get_father_handle()
         if not spouse_id:
             return
-        spouse = self.database.try_to_find_person_from_id(spouse_id)
+        spouse = self.database.try_to_find_person_from_handle(spouse_id)
         
-        for event_id in family.get_event_list():
-            if event_id:
-                event = self.database.find_event_from_id(event_id)
+        for event_handle in family.get_event_list():
+            if event_handle:
+                event = self.database.find_event_from_handle(event_handle)
                 if event.get_name() == "Marriage":
                     break
         else:
@@ -1020,9 +1020,9 @@ class FtmDescendantReport(Report.Report):
         if not event:
             return
         date = event.get_date()
-        place_id = event.get_place_id()
-        if place_id:
-            place = self.database.try_to_find_place_from_id(place_id).get_title()
+        place_handle = event.get_place_handle()
+        if place_handle:
+            place = self.database.try_to_find_place_from_handle(place_handle).get_title()
         else:
             place = ""
 
@@ -1072,25 +1072,25 @@ class FtmDescendantReport(Report.Report):
                         'endnotes' : self.endnotes(event)})
         self.doc.write_text(' ')
 
-        birth_id = spouse.get_birth_id()
+        birth_handle = spouse.get_birth_handle()
         bplace = ""
         bdate = ""
-        if birth_id:
-            birth = self.database.find_event_from_id(birth_id)
+        if birth_handle:
+            birth = self.database.find_event_from_handle(birth_handle)
             bdate = birth.get_date()
-            bplace_id = birth.get_place_id()
-            if bplace_id:
-                bplace = self.database.try_to_find_place_from_id(bplace_id).get_title()
+            bplace_handle = birth.get_place_handle()
+            if bplace_handle:
+                bplace = self.database.try_to_find_place_from_handle(bplace_handle).get_title()
 
-        death_id = spouse.get_death_id()
+        death_handle = spouse.get_death_handle()
         dplace = ""
         ddate = ""
-        if death_id:
-            death = self.database.find_event_from_id(death_id)
+        if death_handle:
+            death = self.database.find_event_from_handle(death_handle)
             ddate = death.get_date()
-            dplace_id = death.get_place_id()
-            if dplace_id:
-                dplace = self.database.try_to_find_place_from_id(dplace_id).get_title()
+            dplace_handle = death.get_place_handle()
+            if dplace_handle:
+                dplace = self.database.try_to_find_place_from_handle(dplace_handle).get_title()
 
         death_valid = ddate or dplace
         birth_valid = bdate or bplace
@@ -1379,17 +1379,17 @@ class FtmDescendantReport(Report.Report):
 
 
     def print_parents(self,person,dead):
-        family_id = person.get_main_parents_family_id()
-        if family_id:
-            family = self.database.find_family_from_id(family_id)
-            mother_id = family.get_mother_id()
-            if mother_id:
-                mother = self.database.try_to_find_person_from_id(mother_id)
+        family_handle = person.get_main_parents_family_handle()
+        if family_handle:
+            family = self.database.find_family_from_handle(family_handle)
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mother = self.database.try_to_find_person_from_handle(mother_handle)
             else:
                 mother = None
-            father_id = family.get_father_id()
-            if father_id:
-                father = self.database.try_to_find_person_from_id(father_id)
+            father_handle = family.get_father_handle()
+            if father_handle:
+                father = self.database.try_to_find_person_from_handle(father_handle)
             else:
                 father = None
             if person.get_gender() == RelLib.Person.male:
@@ -1567,10 +1567,10 @@ def report(database,person):
 _style_file = "ftm_descendant_report.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _max_gen = 10
 _pg_brk = 0
-_options = ( _person_id, _max_gen, _pg_brk )
+_options = ( _person_handle, _max_gen, _pg_brk )
 
 #------------------------------------------------------------------------
 #
@@ -1633,7 +1633,7 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------

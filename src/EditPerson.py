@@ -85,7 +85,7 @@ class EditPerson:
         self.parent = parent
         self.orig_id = self.person.get_gramps_id()
         if self.parent.child_windows.has_key(self.orig_id):
-            self.parent.child_windows[self.person.get_id()].present(None)
+            self.parent.child_windows[self.person.get_handle()].present(None)
             return
         self.db = db
         self.callback = callback
@@ -102,7 +102,7 @@ class EditPerson:
                                     person.get_gender () ==
                                     RelLib.Person.unknown)
 
-        for key in db.get_place_id_keys():
+        for key in db.get_place_handle_keys():
             p = db.get_place_display(key)
             self.pdmap[p[0]] = key
             
@@ -201,8 +201,8 @@ class EditPerson:
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
 
-        self.orig_birth = self.db.find_event_from_id(person.get_birth_id())
-        self.orig_death = self.db.find_event_from_id(person.get_death_id())
+        self.orig_birth = self.db.find_event_from_handle(person.get_birth_handle())
+        self.orig_death = self.db.find_event_from_handle(person.get_death_handle())
         self.death = RelLib.Event(self.orig_death)
         self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
@@ -498,8 +498,8 @@ class EditPerson:
             combo.entry.set_text("")
 
         build_dropdown(place,self.place_list)
-        if ord and ord.get_place_id():
-            ord_place = self.db.try_to_find_place_from_id(ord.get_place_id())
+        if ord and ord.get_place_handle():
+            ord_place = self.db.try_to_find_place_from_handle(ord.get_place_handle())
             place.set_text(ord_place.get_title())
         return stat
 
@@ -536,7 +536,7 @@ class EditPerson:
                                         self.ldsseal_date,
                                         self.ldssealplace)
         if self.lds_sealing:
-            self.ldsfam = self.lds_sealing.get_family_id()
+            self.ldsfam = self.lds_sealing.get_family_handle()
         else:
             self.ldsfam = None
 
@@ -549,18 +549,18 @@ class EditPerson:
         
         index = 0
         hist = 0
-        flist = [self.person.get_main_parents_family_id()]
-        for (fam,mrel,frel) in self.person.get_parent_family_id_list():
+        flist = [self.person.get_main_parents_family_handle()]
+        for (fam,mrel,frel) in self.person.get_parent_family_handle_list():
             if fam not in flist:
                 flist.append(fam)
         for fam_id in flist:
-            fam = self.db.find_family_from_id(fam_id)
+            fam = self.db.find_family_from_handle(fam_id)
             if fam == None:
                 continue
-            f_id = fam.get_father_id()
-            m_id = fam.get_mother_id()
-            f = self.db.try_to_find_person_from_id(f_id)
-            m = self.db.try_to_find_person_from_id(m_id)
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
+            f = self.db.try_to_find_person_from_handle(f_id)
+            m = self.db.try_to_find_person_from_handle(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     'father' : GrampsCfg.get_nameof()(f),
@@ -644,17 +644,17 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != 'pevent':
                 return
-            elif person == self.person.get_id():
+            elif person == self.person.get_handle():
                 self.move_element(self.elist,self.etree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
-                    base_id = src.get_base_id()
-                    newbase = self.db.try_to_find_source_from_id(base_id)
-                    src.set_base_id(newbase)
-                place = foo.get_place_id()
+                    base_handle = src.get_base_handle()
+                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    src.set_base_handle(newbase)
+                place = foo.get_place_handle()
                 if place:
-                    foo.set_place_id(place.get_id())
+                    foo.set_place_handle(place.get_handle())
                 self.elist.insert(row,foo)
 
             self.lists_changed = 1
@@ -672,7 +672,7 @@ class EditPerson:
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('pevent',self.person.get_id(),pickled));
+        data = str(('pevent',self.person.get_handle(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def ev_drag_begin(self, context, a):
@@ -693,7 +693,7 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != "url":
                 return
-            elif person == self.person.get_id():
+            elif person == self.person.get_handle():
                 self.move_element(self.ulist,self.wtree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
@@ -710,7 +710,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('url',self.person.get_id(),pickled));
+            data = str(('url',self.person.get_handle(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
 
     def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -722,14 +722,14 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != 'pattr':
                 return
-            elif person == self.person.get_id():
+            elif person == self.person.get_handle():
                 self.move_element(self.alist,self.atree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
-                    base_id = src.get_base_id()
-                    newbase = self.db.try_to_find_source_from_id(base_id)
-                    src.set_base_id(newbase)
+                    base_handle = src.get_base_handle()
+                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    src.set_base_handle(newbase)
                 self.alist.append(foo)
             self.lists_changed = 1
             self.redraw_attr_list()
@@ -743,7 +743,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('pattr',self.person.get_id(),pickled));
+            data = str(('pattr',self.person.get_handle(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
             
     def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -755,14 +755,14 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != 'paddr':
                 return
-            elif person == self.person.get_id():
+            elif person == self.person.get_handle():
                 self.move_element(self.plist,self.ptree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
-                    base_id = src.get_base_id()
-                    newbase = self.db.try_to_find_source_from_id(base_id)
-                    src.set_base_id(newbase)
+                    base_handle = src.get_base_handle()
+                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    src.set_base_handle(newbase)
                 self.plist.insert(row,foo)
                 
             self.lists_changed = 1
@@ -774,7 +774,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('paddr',self.person.get_id(),pickled));
+            data = str(('paddr',self.person.get_handle(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
 
     def ad_drag_begin(self, context, a):
@@ -881,8 +881,8 @@ class EditPerson:
 
         self.etree.clear()
         self.emap = {}
-        for event_id in self.elist:
-            event = self.db.find_event_from_id(event_id)
+        for event_handle in self.elist:
+            event = self.db.find_event_from_handle(event_handle)
             pname = place_title(self.db,event)
             iter = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
                                     event.get_quote_date(),pname],event)
@@ -970,7 +970,7 @@ class EditPerson:
 
         p = self.get_place(self.bplace)
         if p:
-            event.set_place_id(p)
+            event.set_place_handle(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,event,def_placename,1,
                               self.event_edit_callback)
@@ -988,7 +988,7 @@ class EditPerson:
 
         p = self.get_place(self.dplace)
         if p:
-            event.set_place_id(p)
+            event.set_place_handle(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,event,def_placename,1,
                               self.event_edit_callback)
@@ -1119,20 +1119,20 @@ class EditPerson:
         dplace = unicode(string.strip(self.dplace.get_text()))
 
         if self.pdmap.has_key(bplace):
-            self.birth.set_place_id(self.pdmap[bplace])
+            self.birth.set_place_handle(self.pdmap[bplace])
         else:
             p1 = None
             if bplace != "":
                 changed = 1
-            self.birth.set_place_id('')
+            self.birth.set_place_handle('')
 
         if self.pdmap.has_key(dplace):
-            self.death.set_place_id(self.pdmap[dplace])
+            self.death.set_place_handle(self.pdmap[dplace])
         else:
             p1 = None
             if dplace != "":
                 changed = 1
-            self.death.set_place_id('')
+            self.death.set_place_handle('')
 
         if not self.birth.are_equal(self.orig_birth):
             changed = 1
@@ -1168,7 +1168,7 @@ class EditPerson:
             self.lds_baptism.set_temple(const.lds_temple_codes[temple])
         else:
             self.lds_baptism.set_temple("")
-        self.lds_baptism.set_place_id(self.get_place(self.ldsbapplace,1))
+        self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
 
         self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
         temple = unicode(self.ldsend_temple.entry.get_text())
@@ -1176,7 +1176,7 @@ class EditPerson:
             self.lds_endowment.set_temple(const.lds_temple_codes[temple])
         else:
             self.lds_endowment.set_temple("")
-        self.lds_endowment.set_place_id(self.get_place(self.ldsendowplace,1))
+        self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
 
         self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
         temple = unicode(self.ldsseal_temple.entry.get_text())
@@ -1184,8 +1184,8 @@ class EditPerson:
             self.lds_sealing.set_temple(const.lds_temple_codes[temple])
         else:
             self.lds_sealing.set_temple("")
-        self.lds_sealing.set_family_id(self.ldsfam)
-        self.lds_sealing.set_place_id(self.get_place(self.ldssealplace,1))
+        self.lds_sealing.set_family_handle(self.ldsfam)
+        self.lds_sealing.set_place_handle(self.get_place(self.ldssealplace,1))
 
     def on_event_delete_clicked(self,obj):
         """Delete the selected event"""
@@ -1244,7 +1244,7 @@ class EditPerson:
         store,iter = obj.get_selected()
         if iter:
             row = store.get_path(iter)
-            event = self.db.find_event_from_id(self.elist[row[0]])
+            event = self.db.find_event_from_handle(self.elist[row[0]])
             self.event_date_field.set_text(event.get_date())
             self.event_place_field.set_text(place_title(self.db,event))
             self.event_name_field.set_text(const.display_pevent(event.get_name()))
@@ -1252,8 +1252,8 @@ class EditPerson:
             self.event_descr_field.set_text(short(event.get_description()))
             if len(event.get_source_references()) > 0:
                 psrc_ref = event.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.try_to_find_source_from_id(psrc_id)
+                psrc_id = psrc_ref.get_base_handle()
+                psrc = self.db.try_to_find_source_from_handle(psrc_id)
                 self.event_src_field.set_text(short(psrc.get_title()))
                 self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1285,8 +1285,8 @@ class EditPerson:
             self.addr_phone.set_text(addr.get_phone())
             if len(addr.get_source_references()) > 0:
                 psrc_ref = addr.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.try_to_find_source_from_id(psrc_id)
+                psrc_id = psrc_ref.get_base_handle()
+                psrc = self.db.try_to_find_source_from_handle(psrc_id)
                 self.addr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
                 self.addr_src_field.set_text(short(psrc.get_title()))
             else:
@@ -1319,8 +1319,8 @@ class EditPerson:
             self.name_type_field.set_text(const.NameTypesMap.find_value(name.get_type()))
             if len(name.get_source_references()) > 0:
                 psrc_ref = name.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.try_to_find_source_from_id(psrc_id)
+                psrc_id = psrc_ref.get_base_handle()
+                psrc = self.db.try_to_find_source_from_handle(psrc_id)
                 self.name_src_field.set_text(short(psrc.get_title()))
                 self.name_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1366,8 +1366,8 @@ class EditPerson:
             self.attr_value.set_text(short(attr.get_value()))
             if len(attr.get_source_references()) > 0:
                 psrc_ref = attr.get_source_references()[0]
-                psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.try_to_find_source_from_id(psrc_id)
+                psrc_id = psrc_ref.get_base_handle()
+                psrc = self.db.try_to_find_source_from_handle(psrc_id)
                 self.attr_src_field.set_text(short(psrc.get_title()))
                 self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1428,8 +1428,8 @@ class EditPerson:
             self.person.set_url_list(self.ulist)
             self.person.set_attribute_list(self.alist)
             self.person.set_address_list(self.plist)
-            self.person.set_birth_id(self.birth.get_id())
-            self.person.set_death_id(self.death.get_id())
+            self.person.set_birth_handle(self.birth.get_handle())
+            self.person.set_death_handle(self.death.get_handle())
 
     def on_apply_person_clicked(self,obj):
 
@@ -1447,7 +1447,7 @@ class EditPerson:
         name = self.pname
 
         self.birth.set_date(unicode(self.bdate.get_text()))
-        self.birth.set_place_id(self.get_place(self.bplace,1))
+        self.birth.set_place_handle(self.get_place(self.bplace,1))
 
         if idval != self.person.get_gramps_id():
             person = self.db.try_to_find_person_from_gramps_id(idval)
@@ -1494,34 +1494,34 @@ class EditPerson:
             self.person.set_nick_name(nick)
 
         self.pdmap.clear()
-        for key in self.db.get_place_id_keys():
+        for key in self.db.get_place_handle_keys():
             p = self.db.get_place_display(key)
             self.pdmap[p[0]] = key
 
         if self.orig_birth == None:
             self.db.add_event(self.birth,trans)
-            self.person.set_birth_id(self.birth.get_id())
+            self.person.set_birth_handle(self.birth.get_handle())
         elif not self.orig_birth.are_equal(self.birth):
             self.db.commit_event(self.birth,trans)
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
-        family = self.person.get_main_parents_family_id()
+        family = self.person.get_main_parents_family_handle()
         if (family):
             f = self.db.find_family_no_map(family,trans)
-            new_order = self.reorder_child_list(self.person,f.get_child_id_list())
-            f.set_child_id_list(new_order)
-        for (family, rel1, rel2) in self.person.get_parent_family_id_list():
+            new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
+            f.set_child_handle_list(new_order)
+        for (family, rel1, rel2) in self.person.get_parent_family_handle_list():
             f = self.db.find_family_no_map(family,trans)
-            new_order = self.reorder_child_list(self.person,f.get_child_id_list())
-            f.set_child_id_list(new_order)
+            new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
+            f.set_child_handle_list(new_order)
     
         self.death.set_date(unicode(self.ddate.get_text()))
-        self.death.set_place_id(self.get_place(self.dplace,1))
+        self.death.set_place_handle(self.get_place(self.dplace,1))
 
         if self.orig_death == None:
             self.db.add_event(self.death,trans)
-            self.person.set_death_id(self.death.get_id())
+            self.person.set_death_handle(self.death.get_handle())
         elif not self.orig_death.are_equal(self.death):
             self.db.commit_event(self.death,trans)
 
@@ -1531,37 +1531,37 @@ class EditPerson:
         error = 0
         if male and self.person.get_gender() != RelLib.Person.male:
             self.person.set_gender(RelLib.Person.male)
-            for temp_family in self.person.get_family_id_list():
-                if self.person == temp_family.get_mother_id():
-                    if temp_family.get_father_id() != None:
+            for temp_family in self.person.get_family_handle_list():
+                if self.person == temp_family.get_mother_handle():
+                    if temp_family.get_father_handle() != None:
                         error = 1
                     else:
-                        temp_family.set_mother_id(None)
-                        temp_family.set_father_id(self.person)
+                        temp_family.set_mother_handle(None)
+                        temp_family.set_father_handle(self.person)
         elif female and self.person.get_gender() != RelLib.Person.female:
             self.person.set_gender(RelLib.Person.female)
-            for temp_family in self.person.get_family_id_list():
-                if self.person == temp_family.get_father_id():
-                    if temp_family.get_mother_id() != None:
+            for temp_family in self.person.get_family_handle_list():
+                if self.person == temp_family.get_father_handle():
+                    if temp_family.get_mother_handle() != None:
                         error = 1
                     else:
-                        temp_family.set_father_id(None)
-                        temp_family.set_mother_id(self.person)
+                        temp_family.set_father_handle(None)
+                        temp_family.set_mother_handle(self.person)
         elif unknown and self.person.get_gender() != RelLib.Person.unknown:
             self.person.set_gender(RelLib.Person.unknown)
-            for temp_family in self.person.get_family_id_list():
-                if self.person == temp_family.get_father_id():
-                    if temp_family.get_mother_id() != None:
+            for temp_family in self.person.get_family_handle_list():
+                if self.person == temp_family.get_father_handle():
+                    if temp_family.get_mother_handle() != None:
                         error = 1
                     else:
-                        temp_family.set_father_id(None)
-                        temp_family.set_mother_id(self.person)
-                if self.person == temp_family.get_mother_id():
-                    if temp_family.get_father_id() != None:
+                        temp_family.set_father_handle(None)
+                        temp_family.set_mother_handle(self.person)
+                if self.person == temp_family.get_mother_handle():
+                    if temp_family.get_father_handle() != None:
                         error = 1
                     else:
-                        temp_family.set_mother_id(None)
-                        temp_family.set_father_id(self.person)
+                        temp_family.set_mother_handle(None)
+                        temp_family.set_father_handle(self.person)
 
         if error == 1:
             msg2 = _("Problem changing the gender")
@@ -1620,9 +1620,9 @@ class EditPerson:
                 trans = self.db.start_transaction()
                 self.db.add_place(place,trans)
                 self.db.add_transaction(trans,_('Add Place (%s)' % text))
-                self.pdmap[text] = place.get_id()
+                self.pdmap[text] = place.get_handle()
                 self.add_places.append(place)
-                return place.get_id()
+                return place.get_handle()
             else:
                 return ''
         else:
@@ -1680,8 +1680,8 @@ class EditPerson:
         media_list = self.person.get_media_list()
         if media_list:
             ph = media_list[0]
-            object_id = ph.get_reference_id()
-            object = self.db.try_to_find_object_from_id(object_id)
+            object_handle = ph.get_reference_handle()
+            object = self.db.try_to_find_object_from_handle(object_handle)
             if self.load_obj != object.get_path():
                 if object.get_mime_type()[0:5] == "image":
                     self.load_photo(object.get_path())
@@ -1756,10 +1756,10 @@ class EditPerson:
         inorder = 1
         prev_date = "00000000"
         for i in range(len(list)):
-            child_id = list[i]
-            child = self.db.try_to_find_person_from_id(child_id)
-            if child.get_birth_id():
-                event = self.db.find_event_from_id(child.get_birth_id())
+            child_handle = list[i]
+            child = self.db.try_to_find_person_from_handle(child_handle)
+            if child.get_birth_handle():
+                event = self.db.find_event_from_handle(child.get_birth_handle())
                 bday = event.get_date_object()
                 child_date = Sort.build_sort_date(bday)
             else:
@@ -1779,22 +1779,22 @@ class EditPerson:
             return(list)
 
         # Build the person's date string once
-        event_id = person.get_birth_id()
-        if event_id:
-            event = self.db.find_event_from_id(event_id)
+        event_handle = person.get_birth_handle()
+        if event_handle:
+            event = self.db.find_event_from_handle(event_handle)
             person_bday = Sort.build_sort_date(event.get_date_object())
         else:
             person_bday = "99999999"
 
         # First, see if the person needs to be moved forward in the list
 
-        index = list.index(person.get_id())
+        index = list.index(person.get_handle())
         target = index
         for i in range(index-1, -1, -1):
-            other = self.db.try_to_find_person_from_id(list[i])
-            event_id = other.get_birth_id()
-            if event_id:
-                event = self.db.find_event_from_id(event_id)
+            other = self.db.try_to_find_person_from_handle(list[i])
+            event_handle = other.get_birth_handle()
+            if event_handle:
+                event = self.db.find_event_from_handle(event_handle)
                 other_bday = Sort.build_sort_date(event.get_date_object())
                 if (other_bday == "99999999"):
                     continue;
@@ -1806,10 +1806,10 @@ class EditPerson:
         # Now try moving to a later position in the list
         if (target == index):
             for i in range(index, len(list)):
-                other = self.db.try_to_find_person_from_id(list[i])
-                event_id = other.get_birth_id()
-                if event_id:
-                    event = self.db.find_event_from_id(event_id)
+                other = self.db.try_to_find_person_from_handle(list[i])
+                event_handle = other.get_birth_handle()
+                if event_handle:
+                    event = self.db.find_event_from_handle(event_handle)
                     other_bday = Sort.build_sort_date(event.get_date_object())
                     if (other_bday == "99999999"):
                         continue;
@@ -1820,8 +1820,8 @@ class EditPerson:
 
         # Actually need to move?  Do it now.
         if (target != index):
-            list.remove(person.get_id())
-            list.insert(target,person.get_id())
+            list.remove(person.get_handle())
+            list.insert(target,person.get_handle())
         return list
 
 
@@ -1832,9 +1832,9 @@ def short(val,size=60):
         return val
 
 def place_title(db,event):
-    pid = event.get_place_id()
+    pid = event.get_place_handle()
     if pid:
-        return db.try_to_find_place_from_id(pid).get_title()
+        return db.try_to_find_place_from_handle(pid).get_title()
     else:
         return u''
 

@@ -166,14 +166,14 @@ class RelationshipCalculator:
     def apply_filter(self,person,index,plist,pmap):
         if person == None:
             return
-        plist.append(person.get_id())
-        pmap[person.get_id()] = index
+        plist.append(person.get_handle())
+        pmap[person.get_handle()] = index
 
-        family_id = person.get_main_parents_family_id()
-        family = self.db.find_family_from_id(family_id)
+        family_handle = person.get_main_parents_family_handle()
+        family = self.db.find_family_from_handle(family_handle)
         if family != None:
-            father = self.db.try_to_find_person_from_id(family.get_father_id())
-            mother = self.db.try_to_find_person_from_id(family.get_mother_id())
+            father = self.db.try_to_find_person_from_handle(family.get_father_handle())
+            mother = self.db.try_to_find_person_from_handle(family.get_mother_handle())
             self.apply_filter(father,index+1,plist,pmap)
             self.apply_filter(mother,index+1,plist,pmap)
 
@@ -238,10 +238,10 @@ class RelationshipCalculator:
             return _niece_level[level]
         
     def is_spouse(self,orig,other):
-        for f in orig.get_family_id_list():
-            family = self.db.find_family_from_id(f)
+        for f in orig.get_family_handle_list():
+            family = self.db.find_family_from_handle(f)
             if family:
-                if other == family.get_father_id() or other == family.get_mother_id():
+                if other == family.get_father_handle() or other == family.get_mother_handle():
                     return 1
             else:
                 return 0
@@ -276,19 +276,19 @@ class RelationshipCalculator:
         except RuntimeError,msg:
             return (firstRel,secondRel,_("Relationship loop detected"))
 
-        for person_id in firstList:
-            if person_id in secondList:
-                new_rank = firstMap[person_id]
+        for person_handle in firstList:
+            if person_handle in secondList:
+                new_rank = firstMap[person_handle]
                 if new_rank < rank:
                     rank = new_rank
-                    common = [ person_id ]
+                    common = [ person_handle ]
                 elif new_rank == rank:
-                    common.append(person_id)
+                    common.append(person_handle)
 
         if common:
-            person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
+            person_handle = common[0]
+            secondRel = firstMap[person_handle]
+            firstRel = secondMap[person_handle]
 
         return (firstRel,secondRel,common)
 
@@ -312,7 +312,7 @@ class RelationshipCalculator:
         if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])
         elif common:
-            person_id = common[0]
+            person_handle = common[0]
         else:
             return ("",[])
 
@@ -361,7 +361,7 @@ class RelationshipCalculator:
         if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])
         elif common:
-            person_id = common[0]
+            person_handle = common[0]
         else:
             return ("",[])
 

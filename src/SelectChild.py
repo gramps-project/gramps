@@ -87,8 +87,8 @@ class SelectChild:
         self.add_child = self.xml.get_widget("childlist")
 
         if (self.family):
-            father = self.db.try_to_find_person_from_id(self.family.get_father_id())
-            mother = self.db.try_to_find_person_from_id(self.family.get_mother_id())
+            father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
+            mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
 
             if father != None:
                 fname = father.get_primary_name().get_name()
@@ -172,8 +172,8 @@ class SelectChild:
     def redraw_child_list(self,filter):
         return
     
-        birth = self.db.find_event_from_id(self.person.get_birth_id())
-        death = self.db.find_event_from_id(self.person.get_death_id())
+        birth = self.db.find_event_from_handle(self.person.get_birth_handle())
+        death = self.db.find_event_from_handle(self.person.get_death_handle())
         if birth:
             bday = birth.get_date_object()
         else:
@@ -184,30 +184,30 @@ class SelectChild:
             dday = None
 
         slist = {}
-        for f in self.person.get_parent_family_id_list():
+        for f in self.person.get_parent_family_handle_list():
             if f:
                 family = self.db.find_family_no_map(f[0])
-                if family.get_father_id():
-                    slist[family.get_father_id()] = 1
-                elif family.get_mother_id():
-                    slist[family.get_mother_id()] = 1
-                for c in family.get_child_id_list():
+                if family.get_father_handle():
+                    slist[family.get_father_handle()] = 1
+                elif family.get_mother_handle():
+                    slist[family.get_mother_handle()] = 1
+                for c in family.get_child_handle_list():
                     slist[c] = 1
             
         person_list = []
         for key in self.db.sort_person_keys():
             person = self.db.get_person(key)
             if filter:
-                if slist.has_key(key) or person.get_main_parents_family_id():
+                if slist.has_key(key) or person.get_main_parents_family_handle():
                     continue
             
-                birth_event = self.db.find_event_from_id(person.get_birth_id())
+                birth_event = self.db.find_event_from_handle(person.get_birth_handle())
                 if birth_event:
                     pbday = birth_event.get_date_object()
                 else:
                     pbday = None
 
-                death_event = self.db.find_event_from_id(person.get_death_id())
+                death_event = self.db.find_event_from_handle(person.get_death_handle())
                 if death_event:
                     pdday = death_event.get_date_object()
                 else:
@@ -239,7 +239,7 @@ class SelectChild:
                         if pdday.getLowYear() > dday.getHighYear() + 150:
                             continue
         
-            person_list.append(person.get_id())
+            person_list.append(person.get_handle())
 
         iter = None
         for idval in person_list:
@@ -277,7 +277,7 @@ class SelectChild:
 
         id = idlist[0]
         select_child = self.db.get_person(id)
-        if self.person.get_id() == id:
+        if self.person.get_handle() == id:
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),
                         self.top)
@@ -285,33 +285,33 @@ class SelectChild:
         
         if self.family == None:
             self.family = self.db.new_family()
-            self.person.add_family_id(self.family.get_id())
+            self.person.add_family_handle(self.family.get_handle())
             if self.person.get_gender() == RelLib.Person.male:
-                self.family.set_father_id(self.person)
+                self.family.set_father_handle(self.person)
             else:	
-                self.family.set_mother_id(self.person)
+                self.family.set_mother_handle(self.person)
                 
-        if id in (self.family.get_father_id(),self.family.get_mother_id()):
+        if id in (self.family.get_father_handle(),self.family.get_mother_handle()):
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),
                         self.top)
             return
 
-        self.family.add_child_id(select_child.get_id())
+        self.family.add_child_handle(select_child.get_handle())
         
         mrel = const.child_relations.find_value(self.mrel.get_text())
-        mother = self.db.try_to_find_person_from_id(self.family.get_mother_id())
+        mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.child_relations.find_value(self.frel.get_text())
-        father = self.db.try_to_find_person_from_id(self.family.get_father_id())
+        father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 
-        select_child.add_parent_family_id(self.family.get_id(),mrel,frel)
+        select_child.add_parent_family_handle(self.family.get_handle(),mrel,frel)
 
         trans = self.db.start_transaction()
         self.db.commit_person(select_child,trans)
@@ -329,7 +329,7 @@ class SelectChild:
         if self.person.get_gender() == Person.male:
             return self.person.get_primary_name().get_surname()
         elif self.family:
-            f = self.family.get_father_id()
+            f = self.family.get_father_handle()
             if f:
                 pname = f.get_primary_name()
                 return (pname.get_surname_prefix(),pname.get_surname())
@@ -340,8 +340,8 @@ class SelectChild:
 
     def latin_american(self,val):
         if self.family:
-            father = self.family.get_father_id()
-            mother = self.family.get_mother_id()
+            father = self.family.get_father_handle()
+            mother = self.family.get_mother_handle()
             if not father or not mother:
                 return ("","")
             fsn = father.get_primary_name().get_surname()
@@ -360,7 +360,7 @@ class SelectChild:
         if self.person.get_gender() == Person.male:
             fname = self.person.get_primary_name().get_first_name()
         elif self.family:
-            f = self.family.get_father_id()
+            f = self.family.get_father_handle()
             if f:
                 fname = f.get_primary_name().get_first_name()
         if fname:
@@ -393,8 +393,8 @@ class EditRel:
         Utils.set_titles(self.top,self.xml.get_widget('title'),
                          _('Relationships of %s') % name)
 
-        father = self.db.try_to_find_person_from_id(self.family.get_father_id())
-        mother = self.db.try_to_find_person_from_id(self.family.get_mother_id())
+        father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
+        mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
 
         if father:
             fname = father.get_primary_name().get_name()
@@ -423,7 +423,7 @@ class EditRel:
             "destroy_passed_object"    : self.close
             })
 
-        f = self.child.has_family(self.family.get_id())
+        f = self.child.has_family(self.family.get_handle())
         if f:
             self.fentry.set_text(_(f[2]))
             self.mentry.set_text(_(f[1]))
@@ -437,18 +437,18 @@ class EditRel:
 
     def on_ok_clicked(self,obj):
         mrel = const.child_relations.find_value(self.mentry.get_text())
-        mother = self.db.try_to_find_person_from_id(self.family.get_mother_id())
+        mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.child_relations.find_value(self.fentry.get_text())
-        father = self.db.try_to_find_person_from_id(self.family.get_father_id())
+        father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 
-        self.child.change_parent_family_id(self.family.get_id(),mrel,frel)
+        self.child.change_parent_family_handle(self.family.get_handle(),mrel,frel)
         trans = self.db.start_transaction()
         self.db.commit_person(self.child,trans)
         n = self.child.get_primary_name().get_regular_name()

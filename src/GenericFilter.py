@@ -167,24 +167,24 @@ class RelationshipPathBetween(Rule):
         if not first:
             map[p_id] = 1
         
-        p = self.db.try_to_find_person_from_id(p_id)
-        for fam_id in p.get_family_id_list():
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for fam_id in p.get_family_handle_list():
             if fam_id:
-                fam = self.db.find_family_from_id(fam_id)
-                for child_id in fam.get_child_id_list():
-                    if child_id:
-                        self.desc_list(child_id,map,0)
+                fam = self.db.find_family_from_handle(fam_id)
+                for child_handle in fam.get_child_handle_list():
+                    if child_handle:
+                        self.desc_list(child_handle,map,0)
     
     def apply_filter(self,rank,person,plist,pmap):
         if person == None:
             return
         plist.append(person)
-        pmap[person.get_id()] = rank
+        pmap[person.get_handle()] = rank
         
-        family = person.get_main_parents_family_id()
+        family = person.get_main_parents_family_handle()
         if family != None:
-            self.apply_filter(rank+1,family.get_father_id(),plist,pmap)
-            self.apply_filter(rank+1,family.get_mother_id(),plist,pmap)
+            self.apply_filter(rank+1,family.get_father_handle(),plist,pmap)
+            self.apply_filter(rank+1,family.get_mother_handle(),plist,pmap)
 
     def apply(self,db,p_id):
         self.db = db
@@ -207,21 +207,21 @@ class RelationshipPathBetween(Rule):
         self.apply_filter(0,p1_id,firstList,firstMap)
         self.apply_filter(0,p2_id,secondList,secondMap)
         
-        for person_id in firstList:
-            if person_id in secondList:
-                new_rank = firstMap[person_id]
+        for person_handle in firstList:
+            if person_handle in secondList:
+                new_rank = firstMap[person_handle]
                 if new_rank < rank:
                     rank = new_rank
-                    common = [ person_id ]
+                    common = [ person_handle ]
                 elif new_rank == rank:
-                    common.append(person_id)
+                    common.append(person_handle)
 
         path1 = { p1_id : 1}
         path2 = { p2_id : 1}
 
-        for person_id in common:
+        for person_handle in common:
             new_map = {}
-            self.desc_list(person_id,new_map,1)
+            self.desc_list(person_handle,new_map,1)
             self.get_intersection(path1,firstMap,new_map)
             self.get_intersection(path2,secondMap,new_map)
 
@@ -279,7 +279,7 @@ class HasCompleteRecord(Rule):
         return _('Matches all people whose records are complete')
 
     def apply(self,db,p_id):
-        return db.try_to_find_person_from_id(p_id).get_complete() == 1
+        return db.try_to_find_person_from_handle(p_id).get_complete() == 1
 
 #-------------------------------------------------------------------------
 #
@@ -301,7 +301,7 @@ class IsFemale(Rule):
         return _('Matches all females')
 
     def apply(self,db,p_id):
-        return db.try_to_find_person_from_id(p_id).get_gender() == RelLib.Person.female
+        return db.try_to_find_person_from_handle(p_id).get_gender() == RelLib.Person.female
 
 #-------------------------------------------------------------------------
 #
@@ -349,12 +349,12 @@ class IsDescendantOf(Rule):
         if not first:
             self.map[p_id] = 1
         
-        p = self.db.try_to_find_person_from_id(p_id)
-        for fam_id in p.get_family_id_list():
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for fam_id in p.get_family_handle_list():
             if fam_id:
-                fam = self.db.find_family_from_id(fam_id)
-                for child_id in fam.get_child_id_list():
-                    self.init_list(child_id,0)
+                fam = self.db.find_family_from_handle(fam_id)
+                for child_handle in fam.get_child_handle_list():
+                    self.init_list(child_handle,0)
 
 #-------------------------------------------------------------------------
 #
@@ -393,9 +393,9 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
-            for person_id in db.get_person_keys():
-                if filter.apply (db, person_id):
-                    self.init_list (person_id, first)
+            for person_handle in db.get_person_keys():
+                if filter.apply (db, person_handle):
+                    self.init_list (person_handle, first)
         return self.map.has_key(p_id)
 
 #-------------------------------------------------------------------------
@@ -440,11 +440,11 @@ class IsLessThanNthGenerationDescendantOf(Rule):
             if gen >= int(self.list[1]):
                 return
 
-        p = self.db.try_to_find_person_from_id(p_id)
-        for fam_id in p.get_family_id_list():
-            fam = self.db.find_family_from_id(fam_id)
-            for child_id in fam.get_child_id_list():
-                self.init_list(child_id,gen+1)
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for fam_id in p.get_family_handle_list():
+            fam = self.db.find_family_from_handle(fam_id)
+            for child_handle in fam.get_child_handle_list():
+                self.init_list(child_handle,gen+1)
 
 #-------------------------------------------------------------------------
 #
@@ -486,11 +486,11 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         if gen >= int(self.list[1]):
             self.map[p_id] = 1
 
-        p = self.db.try_to_find_person_from_id(p_id)
-        for fam_id in p.get_family_id_list():
-            fam = self.db.find_family_from_id(fam_id)
-            for child_id in fam.get_child_id_list():
-                self.init_list(child_id,gen+1)
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for fam_id in p.get_family_handle_list():
+            fam = self.db.find_family_from_handle(fam_id)
+            for child_handle in fam.get_child_handle_list():
+                self.init_list(child_handle,gen+1)
 
 #-------------------------------------------------------------------------
 #
@@ -524,17 +524,17 @@ class IsChildOfFilterMatch(Rule):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
-            for person_id in db.get_person_keys():
-                if filter.apply (db, person_id):
-                    self.init_list (person_id)
+            for person_handle in db.get_person_keys():
+                if filter.apply (db, person_handle):
+                    self.init_list (person_handle)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
-        p = self.db.try_to_find_person_from_id(p_id)
-        for fam_id in p.get_family_id_list():
-            fam = self.db.find_family_from_id(fam_id)
-            for child_id in fam.get_child_id_list():
-                self.map[child_id] = 1
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for fam_id in p.get_family_handle_list():
+            fam = self.db.find_family_from_handle(fam_id)
+            for child_handle in fam.get_child_handle_list():
+                self.map[child_handle] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -568,20 +568,20 @@ class IsDescendantFamilyOf(Rule):
             self.map[p_id] = 1
             return 1
         
-        p = self.db.try_to_find_person_from_id(p_id)
-        for (f,r1,r2) in p.get_parent_family_id_list():
-            family = self.db.find_family_from_id(f)
-            for person_id in [family.get_mother_id(),family.get_father_id()]:
-                if person_id:
-                    if self.search(person_id,0):
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for (f,r1,r2) in p.get_parent_family_handle_list():
+            family = self.db.find_family_from_handle(f)
+            for person_handle in [family.get_mother_handle(),family.get_father_handle()]:
+                if person_handle:
+                    if self.search(person_handle,0):
                         return 1
         if val:
-            for family_id in p.get_family_id_list():
-                family = self.db.find_family_from_id(family_id)
-                if p_id == family.get_father_id():
-                    spouse_id = family.get_mother_id()
+            for family_handle in p.get_family_handle_list():
+                family = self.db.find_family_from_handle(family_handle)
+                if p_id == family.get_father_handle():
+                    spouse_id = family.get_mother_handle()
                 else:
-                    spouse_id = family.get_father_id()
+                    spouse_id = family.get_father_handle()
                 if spouse_id:
                     if self.search(spouse_id,0):
                         return 1
@@ -633,12 +633,12 @@ class IsAncestorOf(Rule):
         if not first:
             self.map[p_id] = 1
         
-        p = self.db.try_to_find_person_from_id(p_id)
-        fam_id = p.get_main_parents_family_id()
+        p = self.db.try_to_find_person_from_handle(p_id)
+        fam_id = p.get_main_parents_family_handle()
         if fam_id:
-            fam = self.db.find_family_from_id(fam_id)
-            f_id = fam.get_father_id()
-            m_id = fam.get_mother_id()
+            fam = self.db.find_family_from_handle(fam_id)
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
         
             if f_id:
                 self.init_ancestor_list(f_id,0)
@@ -682,9 +682,9 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list[0])
-            for person_id in db.get_person_keys():
-                if filter.apply (db, person_id):
-                    self.init_ancestor_list (person_id,first)
+            for person_handle in db.get_person_keys():
+                if filter.apply (db, person_handle):
+                    self.init_ancestor_list (person_handle,first)
         return self.map.has_key(p_id)
 
 #-------------------------------------------------------------------------
@@ -723,19 +723,19 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,p_id,gen):
-#        if self.map.has_key(p.get_id()) == 1:
+#        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
         if gen:
             self.map[p_id] = 1
             if gen >= int(self.list[1]):
                 return
         
-        p = self.db.try_to_find_person_from_id(p_id)
-        fam_id = p.get_main_parents_family_id()
+        p = self.db.try_to_find_person_from_handle(p_id)
+        fam_id = p.get_main_parents_family_handle()
         if fam_id:
-            fam = self.db.find_family_from_id(fam_id)
-            f_id = fam.get_father_id()
-            m_id = fam.get_mother_id()
+            fam = self.db.find_family_from_handle(fam_id)
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
         
             if f_id:
                 self.init_ancestor_list(f_id,gen+1)
@@ -778,17 +778,17 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         return self.map.has_key(p_id)
 
     def init_ancestor_list(self,p_id,gen):
-#        if self.map.has_key(p.get_id()) == 1:
+#        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
         if gen >= int(self.list[1]):
             self.map[p_id] = 1
         
-        p = self.db.try_to_find_person_from_id(p_id)
-        fam_id = p.get_main_parents_family_id()
+        p = self.db.try_to_find_person_from_handle(p_id)
+        fam_id = p.get_main_parents_family_handle()
         if fam_id:
-            fam = self.db.find_family_from_id(fam_id)
-            f_id = fam.get_father_id()
-            m_id = fam.get_mother_id()
+            fam = self.db.find_family_from_handle(fam_id)
+            f_id = fam.get_father_handle()
+            m_id = fam.get_mother_handle()
         
             if f_id:
                 self.init_ancestor_list(f_id,gen+1)
@@ -827,16 +827,16 @@ class IsParentOfFilterMatch(Rule):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
-            for person_id in db.get_person_keys():
-                if filter.apply (db, person_id):
-                    self.init_list (person_id)
+            for person_handle in db.get_person_keys():
+                if filter.apply (db, person_handle):
+                    self.init_list (person_handle)
         return self.map.has_key(p_id)
 
     def init_list(self,p_id):
-        p = self.db.try_to_find_person_from_id(p_id)
-        for fam_id in p.get_main_parents_family_id():
-            fam = self.db.find_family_from_id(fam_id)
-            for parent_id in [fam.get_father_id (), fam.get_mother_id ()]:
+        p = self.db.try_to_find_person_from_handle(p_id)
+        for fam_id in p.get_main_parents_family_handle():
+            fam = self.db.find_family_from_handle(fam_id)
+            for parent_id in [fam.get_father_handle (), fam.get_mother_handle ()]:
                 if parent_id:
                     self.map[parent_id] = 1
 
@@ -937,7 +937,7 @@ class IsMale(Rule):
         return _('Matches all males')
 
     def apply(self,db,p_id):
-        return db.try_to_find_person_from_id(p_id).get_gender() == RelLib.Person.male
+        return db.try_to_find_person_from_handle(p_id).get_gender() == RelLib.Person.male
 
 #-------------------------------------------------------------------------
 #
@@ -967,11 +967,11 @@ class HasEvent(Rule):
         return _('Event filters')
 
     def apply(self,db,p_id):
-        p = db.try_to_find_person_from_id(p_id)
-        for event_id in p.get_event_list():
-            if not event_id:
+        p = db.try_to_find_person_from_handle(p_id)
+        for event_handle in p.get_event_list():
+            if not event_handle:
                 continue
-            event = db.find_event_from_id(event_id)
+            event = db.find_event_from_handle(event_handle)
             val = 1
             if self.list[0] and event.get_name() != self.list[0]:
                 val = 0
@@ -982,9 +982,9 @@ class HasEvent(Rule):
                 if date_cmp(self.date,event.get_date_object()):
                     val = 0
             if self.list[2]:
-                pl_id = event.get_place_id()
+                pl_id = event.get_place_handle()
                 if pl_id:
-                    pl = db.try_to_find_place_from_id(pl_id)
+                    pl = db.try_to_find_place_from_handle(pl_id)
                     pn = pl.get_title()
                     if string.find(pn.upper(),self.list[2].upper()) == -1:
                         val = 0
@@ -1021,13 +1021,13 @@ class HasFamilyEvent(Rule):
         return _('Event filters')
 
     def apply(self,db,p_id):
-        p = db.try_to_find_person_from_id(p_id)
-        for f_id in p.get_family_id_list():
-            f = db.find_family_from_id(f_id)
-            for event_id in f.get_event_list():
-                if not event_id:
+        p = db.try_to_find_person_from_handle(p_id)
+        for f_id in p.get_family_handle_list():
+            f = db.find_family_from_handle(f_id)
+            for event_handle in f.get_event_list():
+                if not event_handle:
                     continue
-                event = db.find_event_from_id(event_id)
+                event = db.find_event_from_handle(event_handle)
                 val = 1
                 if self.list[0] and event.get_name() != self.list[0]:
                     val = 0
@@ -1037,9 +1037,9 @@ class HasFamilyEvent(Rule):
                 if self.date:
                     if date_cmp(self.date,event.get_date_object()):
                         val = 0
-                pl_id = event.get_place_id()
+                pl_id = event.get_place_handle()
                 if pl_id:
-                    pl = db.try_to_find_place_from_id(pl_id)
+                    pl = db.try_to_find_place_from_handle(pl_id)
                     pn = pl.get_title()
                     if self.list[2] and string.find(pn,self.list[2].upper()) == -1:
                         val = 0
@@ -1071,13 +1071,13 @@ class HasRelationship(Rule):
     def apply(self,db,p_id):
         rel_type = 0
         cnt = 0
-        p = db.try_to_find_person_from_id(p_id)
-        num_rel = len(p.get_family_id_list())
+        p = db.try_to_find_person_from_handle(p_id)
+        num_rel = len(p.get_family_handle_list())
 
         # count children and look for a relationship type match
-        for f_id in p.get_family_id_list():
-            f = db.find_family_from_id(f_id)
-            cnt = cnt + len(f.get_child_id_list())
+        for f_id in p.get_family_handle_list():
+            f = db.find_family_from_handle(f_id)
+            cnt = cnt + len(f.get_child_handle_list())
             if self.list[1] and f.get_relationship() == self.list[1]:
                 rel_type = 1
 
@@ -1133,20 +1133,20 @@ class HasBirth(Rule):
         return _('Event filters')
 
     def apply(self,db,p_id):
-        p = db.try_to_find_person_from_id(p_id)
-        event_id = p.get_birth_id()
-        if not event_id:
+        p = db.try_to_find_person_from_handle(p_id)
+        event_handle = p.get_birth_handle()
+        if not event_handle:
             return 0
-        event = db.find_event_from_id(event_id)
+        event = db.find_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if len(self.list) > 2 and string.find(ed,self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
                 return 0
-        pl_id = event.get_place_id()
+        pl_id = event.get_place_handle()
         if pl_id:
-            pl = db.try_to_find_place_from_id(pl_id)
+            pl = db.try_to_find_place_from_handle(pl_id)
             pn = pl.get_title()
             if len(self.list) > 1 and string.find(pn,self.list[1].upper()) == -1:
                 return 0
@@ -1180,20 +1180,20 @@ class HasDeath(Rule):
         return _('Event filters')
 
     def apply(self,db,p_id):
-        p = db.try_to_find_person_from_id(p_id)
-        event_id = p.get_death_id()
-        if not event_id:
+        p = db.try_to_find_person_from_handle(p_id)
+        event_handle = p.get_death_handle()
+        if not event_handle:
             return 0
-        event = db.find_event_from_id(event_id)
+        event = db.find_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if self.list[2] and string.find(ed,self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
                 return 0
-        pl_id = event.get_place_id()
+        pl_id = event.get_place_handle()
         if pl_id:
-            pl = db.try_to_find_place_from_id(pl_id)
+            pl = db.try_to_find_place_from_handle(pl_id)
             pn = pl.get_title()
             if self.list[1] and string.find(pn,self.list[1].upper()) == -1:
                 return 0
@@ -1213,7 +1213,7 @@ class HasAttribute(Rule):
         return 'Has the personal attribute'
 
     def apply(self,db,p_id):
-        p = db.try_to_find_person_from_id(p_id)
+        p = db.try_to_find_person_from_handle(p_id)
         for event in p.getAttributes():
             if self.list[0] and event.get_type() != self.list[0]:
                 return 0
@@ -1236,9 +1236,9 @@ class HasFamilyAttribute(Rule):
         return 'Has the family attribute'
 
     def apply(self,db,p_id):
-        p = db.try_to_find_person_from_id(p_id)
-        for f_id in p.get_family_id_list():
-            f = db.find_family_from_id(f_id)
+        p = db.try_to_find_person_from_handle(p_id)
+        for f_id in p.get_family_handle_list():
+            f = db.find_family_from_handle(f_id)
             for event in f.getAttributes():
                 val = 1
                 if self.list[0] and event.get_type() != self.list[0]:
@@ -1274,7 +1274,7 @@ class HasNameOf(Rule):
         self.l = self.list[1]
         self.s = self.list[2]
         self.t = self.list[3]
-        p = db.try_to_find_person_from_id(p_id)
+        p = db.try_to_find_person_from_handle(p_id)
         for name in [p.get_primary_name()] + p.get_alternate_names():
             val = 1
             if self.f and string.find(name.get_first_name().upper(),self.f.upper()) == -1:
@@ -1310,7 +1310,7 @@ class SearchName(Rule):
 
     def apply(self,db,p_id):
         self.f = self.list[0]
-        p = db.try_to_find_person_from_id(p_id)
+        p = db.try_to_find_person_from_handle(p_id)
         return self.f and string.find(p.get_primary_name().get_name().upper(),self.f.upper()) != -1
     
 #-------------------------------------------------------------------------
@@ -1357,10 +1357,10 @@ class IsSpouseOfFilterMatch(Rule):
 
     def apply(self,db,p_id):
         filter = MatchesFilter (self.list)
-        p = db.try_to_find_person_from_id(p_id)
-        for family_id in p.get_family_id_list ():
-            family = db.find_family_from_id(family_id)
-            for spouse_id in [family.get_father_id (), family.get_mother_id ()]:
+        p = db.try_to_find_person_from_handle(p_id)
+        for family_handle in p.get_family_handle_list ():
+            family = db.find_family_from_handle(family_handle)
+            for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
                 if not spouse_id:
                     continue
                 if spouse_id == p_id:

@@ -54,11 +54,11 @@ import gtk
 # Set up sane defaults for the book_item
 #
 #------------------------------------------------------------------------
-_person_id = ""
+_person_handle = ""
 _max_gen = 0
 _pg_brk = 0
 _filter_num = 0
-_options = ( _person_id, _max_gen, _pg_brk, _filter_num )
+_options = ( _person_handle, _max_gen, _pg_brk, _filter_num )
 
 #------------------------------------------------------------------------
 #
@@ -122,9 +122,9 @@ class IndivComplete(Report.Report):
             return
         name = _(event.get_name())
         date = event.get_date()
-        place_id = event.get_place_id()
-        if place_id:
-            place = self.database.try_to_find_place_from_id(place_id).get_title()
+        place_handle = event.get_place_handle()
+        if place_handle:
+            place = self.database.try_to_find_place_from_handle(place_handle).get_title()
         else:
             place = ""
         description = event.get_description()
@@ -145,9 +145,9 @@ class IndivComplete(Report.Report):
         self.normal_cell(name)
         if self.use_srcs:
             for s in event.get_source_references():
-                #src_id = s.get_base_id()
-                #src = self.database.find_source_from_id(src_id)
-                text = "%s [%s]" % (text,s.get_base_id())
+                #src_id = s.get_base_handle()
+                #src = self.database.find_source_from_handle(src_id)
+                text = "%s [%s]" % (text,s.get_base_handle())
                 self.slist.append(s)
         self.normal_cell(text)
         self.d.end_row()
@@ -189,7 +189,7 @@ class IndivComplete(Report.Report):
 
     def write_alt_parents(self):
 
-        if len(self.person.get_parent_family_id_list()) < 2:
+        if len(self.person.get_parent_family_handle_list()) < 2:
             return
         
         self.d.start_table("altparents","IDS-IndTable")
@@ -201,23 +201,23 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for (family_id,mrel,frel) in self.person.get_parent_family_id_list():
-            if family_id == self.person.get_main_parents_family_id():
+        for (family_handle,mrel,frel) in self.person.get_parent_family_handle_list():
+            if family_handle == self.person.get_main_parents_family_handle():
                 continue
             
-            family = self.database.find_family_from_id(family_id)
-            father_id = family.get_father_id()
-            if father_id:
-                father = self.database.try_to_find_person_from_id(father_id)
+            family = self.database.find_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            if father_handle:
+                father = self.database.try_to_find_person_from_handle(father_handle)
                 fname = father.get_primary_name().get_regular_name()
                 frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Father'),fname,frel)
             else:
                 self.write_p_entry(_('Father'),'','')
 
-            mother_id = family.get_mother_id()
-            if mother_id:
-                mother = self.database.try_to_find_person_from_id(mother_id)
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mother = self.database.try_to_find_person_from_handle(mother_handle)
                 fname = mother.get_primary_name().get_regular_name()
                 frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Mother'),fname,frel)
@@ -249,7 +249,7 @@ class IndivComplete(Report.Report):
             text = name.get_regular_name()
             if self.use_srcs:
                 for s in name.get_source_references():
-                    text = "%s [%s]" % (text,s.get_base_id().get_id())
+                    text = "%s [%s]" % (text,s.get_base_handle().get_handle())
                     self.slist.append(s)
             self.normal_cell(text)
             self.d.end_row()
@@ -259,7 +259,7 @@ class IndivComplete(Report.Report):
         
     def write_families(self):
 
-        if not len(self.person.get_family_id_list()):
+        if not len(self.person.get_family_handle_list()):
             return
         
         self.d.start_table("three","IDS-IndTable")
@@ -271,17 +271,17 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for family_id in self.person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            if self.person.get_id() == family.get_father_id():
-                spouse_id = family.get_mother_id()
+        for family_handle in self.person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            if self.person.get_handle() == family.get_father_handle():
+                spouse_id = family.get_mother_handle()
             else:
-                spouse_id = family.get_father_id()
+                spouse_id = family.get_father_handle()
             self.d.start_row()
             self.d.start_cell("IDS-NormalCell",2)
             self.d.start_paragraph("IDS-Spouse")
             if spouse_id:
-                spouse = self.database.try_to_find_person_from_id(spouse_id)
+                spouse = self.database.try_to_find_person_from_handle(spouse_id)
                 text = spouse.get_primary_name().get_regular_name()
             else:
                 text = _("unknown")
@@ -290,13 +290,13 @@ class IndivComplete(Report.Report):
             self.d.end_cell()
             self.d.end_row()
             
-            for event_id in family.get_event_list():
-                if event_id:
-                    event = self.database.find_event_from_id(event_id)
+            for event_handle in family.get_event_list():
+                if event_handle:
+                    event = self.database.find_event_from_handle(event_handle)
                     self.write_fact(event)
 
-            child_id_list = family.get_child_id_list()
-            if len(child_id_list):
+            child_handle_list = family.get_child_handle_list()
+            if len(child_handle_list):
                 self.d.start_row()
                 self.normal_cell(_("Children"))
 
@@ -304,12 +304,12 @@ class IndivComplete(Report.Report):
                 self.d.start_paragraph("IDS-Normal")
                 
                 first = 1
-                for child_id in child_id_list:
+                for child_handle in child_handle_list:
                     if first == 1:
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    child = self.database.try_to_find_person_from_id(child_id)
+                    child = self.database.try_to_find_person_from_handle(child_handle)
                     self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
@@ -334,9 +334,9 @@ class IndivComplete(Report.Report):
         
         for source in self.slist:
             self.d.start_row()
-            s_id = source.get_base_id()
+            s_id = source.get_base_handle()
             self.normal_cell(s_id)
-            src = self.database.try_to_find_source_from_id(s_id)
+            src = self.database.try_to_find_source_from_handle(s_id)
             self.normal_cell(src.get_title())
             self.d.end_row()
         self.d.end_table()
@@ -351,11 +351,11 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        event_id_list = [ self.person.get_birth_id(), self.person.get_death_id() ]
-        event_id_list = event_id_list + self.person.get_event_list()
-        for event_id in event_id_list:
-            if event_id:
-                event = self.database.find_event_from_id(event_id)
+        event_handle_list = [ self.person.get_birth_handle(), self.person.get_death_handle() ]
+        event_handle_list = event_handle_list + self.person.get_event_list()
+        for event_handle in event_handle_list:
+            if event_handle:
+                event = self.database.find_event_from_handle(event_handle)
                 self.write_fact(event)
         self.d.end_table()
         self.d.start_paragraph("IDS-Normal")
@@ -372,7 +372,7 @@ class IndivComplete(Report.Report):
         if self.newpage:
             self.d.page_break()
 
-        #plist = self.database.get_person_id_map().values()
+        #plist = self.database.get_person_handle_map().values()
         plist = self.database.get_person_keys()
         if self.filter:
             ind_list = self.filter.apply(self.database,plist)
@@ -380,8 +380,8 @@ class IndivComplete(Report.Report):
             ind_list = plist
             
         count = 0
-        for person_id in ind_list:
-            self.person = self.database.try_to_find_person_from_id(person_id)
+        for person_handle in ind_list:
+            self.person = self.database.try_to_find_person_from_handle(person_handle)
             self.write_person(count)
             count = count + 1
         self.end()
@@ -401,8 +401,8 @@ class IndivComplete(Report.Report):
         self.d.end_paragraph()
 
         if len(media_list) > 0:
-            object_id = media_list[0].get_reference_id()
-            object = self.database.try_to_find_object_from_id(object_id)
+            object_handle = media_list[0].get_reference_handle()
+            object = self.database.try_to_find_object_from_handle(object_handle)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IDS-Normal")
@@ -418,7 +418,7 @@ class IndivComplete(Report.Report):
         if self.use_srcs:
             for s in name.get_source_references():
                 self.slist.append(s)
-                text = "%s [%s]" % (text,s.get_base_id())
+                text = "%s [%s]" % (text,s.get_base_handle())
         self.normal_cell(text)
         self.d.end_row()
 
@@ -430,18 +430,18 @@ class IndivComplete(Report.Report):
             self.normal_cell(_("Female"))
         self.d.end_row()
 
-        family_id = self.person.get_main_parents_family_id()
-        if family_id:
-            family = self.database.find_family_from_id(family_id)
-            father_inst_id = family.get_father_id()
+        family_handle = self.person.get_main_parents_family_handle()
+        if family_handle:
+            family = self.database.find_family_from_handle(family_handle)
+            father_inst_id = family.get_father_handle()
             if father_inst_id:
-                father_inst = self.database.try_to_find_person_from_id(father_inst_id)
+                father_inst = self.database.try_to_find_person_from_handle(father_inst_id)
                 father = father_inst.get_primary_name().get_regular_name()
             else:
                 father = ""
-            mother_inst_id = family.get_mother_id()
+            mother_inst_id = family.get_mother_handle()
             if mother_inst_id:
-                mother_inst = self.database.try_to_find_person_from_id(mother_inst_id) 
+                mother_inst = self.database.try_to_find_person_from_handle(mother_inst_id) 
                 mother = mother_inst.get_primary_name().get_regular_name()
             else:
                 mother = ""
@@ -634,7 +634,7 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.filter_num = self.filter_combo.get_history()
-        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk, self.filter_num )
+        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk, self.filter_num )
         self.style_name = self.selected_style.get_name()
 
 
@@ -725,15 +725,15 @@ def _get_report_filters(person):
         
     filt_id = GenericFilter.GenericFilter()
     filt_id.set_name(name)
-    filt_id.add_rule(GenericFilter.HasIdOf([person.get_id()]))
+    filt_id.add_rule(GenericFilter.HasIdOf([person.get_handle()]))
 
     des = GenericFilter.GenericFilter()
     des.set_name(_("Descendants of %s") % name)
-    des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
+    des.add_rule(GenericFilter.IsDescendantOf([person.get_handle()]))
         
     ans = GenericFilter.GenericFilter()
     ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
+    ans.add_rule(GenericFilter.IsAncestorOf([person.get_handle()]))
 
     all = GenericFilter.GenericFilter()
     all.set_name(_("Entire Database"))

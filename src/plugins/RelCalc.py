@@ -98,7 +98,7 @@ class RelCalc:
             if p == self.person:
                 continue
             val = self.db.get_person_display(key)
-            self.clist.add([val[0],val[1],val[3],val[5],val[6]],p.get_id())
+            self.clist.add([val[0],val[1],val[3],val[5],val[6]],p.get_handle())
 
         self.clist.connect_model()
             
@@ -144,20 +144,20 @@ class RelCalc:
         length = len(common)
 
         if length == 1:
-            person = self.db.try_to_find_person_from_id(common[0])
+            person = self.db.try_to_find_person_from_handle(common[0])
             name = person.get_primary_name().get_regular_name()
             commontext = " " + _("Their common ancestor is %s.") % name
         elif length == 2:
-            p1 = self.db.try_to_find_person_from_id(common[0])
-            p2 = self.db.try_to_find_person_from_id(common[1])
+            p1 = self.db.try_to_find_person_from_handle(common[0])
+            p2 = self.db.try_to_find_person_from_handle(common[1])
             commontext = " " + _("Their common ancestors are %s and %s.") % \
                          (p1.get_primary_name().get_regular_name(),\
                           p2.get_primary_name().get_regular_name())
         elif length > 2:
             index = 0
             commontext = " " + _("Their common ancestors are : ")
-            for person_id in common:
-                person = self.db.try_to_find_person_from_id(person_id)
+            for person_handle in common:
+                person = self.db.try_to_find_person_from_handle(person_handle)
                 if index != 0:
                     commontext = commontext + ", "
                 commontext = commontext + person.get_primary_name().get_regular_name()

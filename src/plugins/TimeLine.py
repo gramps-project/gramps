@@ -184,16 +184,16 @@ class TimeLine:
         self.plist.sort(self.sort_func)
         
         for p_id in self.plist:
-            p = self.db.try_to_find_person_from_id(p_id)
-            b_id = p.get_birth_id()
+            p = self.db.try_to_find_person_from_handle(p_id)
+            b_id = p.get_birth_handle()
             if b_id:
-                b = self.db.find_event_from_id(b_id).get_date_object().get_year()
+                b = self.db.find_event_from_handle(b_id).get_date_object().get_year()
             else:
                 b = Date.UNDEF
 
-            d_id = p.get_death_id()
+            d_id = p.get_death_handle()
             if d_id:
-                d = self.db.find_event_from_id(d_id).get_date_object().get_year()
+                d = self.db.find_event_from_handle(d_id).get_date_object().get_year()
             else:
                 d = Date.UNDEF
 
@@ -282,16 +282,16 @@ class TimeLine:
         self.plist = self.filter.apply(self.db,self.db.get_person_keys())
 
         for p_id in self.plist:
-            p = self.db.try_to_find_person_from_id(p_id)
-            b_id = p.get_birth_id()
+            p = self.db.try_to_find_person_from_handle(p_id)
+            b_id = p.get_birth_handle()
             if b_id:
-                b = self.db.find_event_from_id(b_id).get_date_object().get_year()
+                b = self.db.find_event_from_handle(b_id).get_date_object().get_year()
             else:
                 b = Date.UNDEF
 
-            d_id = p.get_death_id()
+            d_id = p.get_death_handle()
             if d_id:
-                d = self.db.find_event_from_id(d_id).get_date_object().get_year()
+                d = self.db.find_event_from_handle(d_id).get_date_object().get_year()
             else:
                 d = Date.UNDEF
 
@@ -321,7 +321,7 @@ class TimeLine:
         
         size = 0
         for p_id in self.plist:
-            p = self.db.try_to_find_person_from_id(p_id)
+            p = self.db.try_to_find_person_from_handle(p_id)
             n = p.get_primary_name().get_name()
             size = max(FontScale.string_width(font,n),size)
         return pt2cm(size)
@@ -376,15 +376,15 @@ def _get_report_filters(person):
 
     des = GenericFilter.GenericFilter()
     des.set_name(_("Descendants of %s") % name)
-    des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
+    des.add_rule(GenericFilter.IsDescendantOf([person.get_handle()]))
 
     ans = GenericFilter.GenericFilter()
     ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
+    ans.add_rule(GenericFilter.IsAncestorOf([person.get_handle()]))
 
     com = GenericFilter.GenericFilter()
     com.set_name(_("People with common ancestor with %s") % name)
-    com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_id()]))
+    com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_handle()]))
 
     return [all,des,ans,com]
 
@@ -520,11 +520,11 @@ def get_description():
 _style_file = "timeline.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _filter_num = 0
 _sort_func_num = 0
 _title_str = ""
-_options = ( _person_id, _filter_num, _sort_func_num, _title_str )
+_options = ( _person_handle, _filter_num, _sort_func_num, _title_str )
 
 #------------------------------------------------------------------------
 #
@@ -622,7 +622,7 @@ class TimeLineBareDialog(Report.BareReportDialog):
         self.sort_func_num = self.sort_style.get_history()
         self.title_str = unicode(self.title_box.get_text())
 
-        self.options = ( self.person.get_id(), self.filter_num, 
+        self.options = ( self.person.get_handle(), self.filter_num, 
             self.sort_func_num, self.title_str )
         self.style_name = self.selected_style.get_name()
 

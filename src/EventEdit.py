@@ -63,11 +63,11 @@ class EventEditor:
         self.parent = parent
         self.db = self.parent.db
         if event:
-            if self.parent.child_windows.has_key(event.get_id()):
-                self.parent.child_windows[event.get_id()].present(None)
+            if self.parent.child_windows.has_key(event.get_handle()):
+                self.parent.child_windows[event.get_handle()].present(None)
                 return
             else:
-                self.win_key = event.get_id()
+                self.win_key = event.get_handle()
         else:
             self.win_key = self
         self.event = event
@@ -87,7 +87,7 @@ class EventEditor:
         self.elist = values.keys()
         self.elist.sort()
 
-        for key in self.parent.db.get_place_id_keys():
+        for key in self.parent.db.get_place_handle_keys():
             p = self.parent.db.get_place_display(key)
             self.pmap[p[0]] = key
 
@@ -170,11 +170,11 @@ class EventEditor:
             if (def_placename):
                 self.place_field.set_text(def_placename)
             else:
-                place_id = event.get_place_id()
-                if not place_id:
+                place_handle = event.get_place_handle()
+                if not place_handle:
                     place_name = u""
                 else:
-                    place_name = self.db.try_to_find_place_from_id(place_id).get_title()
+                    place_name = self.db.try_to_find_place_from_handle(place_handle).get_title()
                 self.place_field.set_text(place_name)
 
             self.date_field.set_text(self.date.get_date())
@@ -295,7 +295,7 @@ class EventEditor:
         text = strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.parent.db.find_event_from_id(self.pmap[text])
+                return self.parent.db.find_event_from_handle(self.pmap[text])
             else:
                 return None
         else:
@@ -328,7 +328,7 @@ class EventEditor:
             self.db.add_event(self.event,trans)
             self.event.set_source_reference_list(self.srcreflist)
             self.event.set_witness_list(self.witnesslist)
-            self.parent.elist.append(self.event.get_id())
+            self.parent.elist.append(self.event.get_handle())
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
@@ -339,12 +339,12 @@ class EventEditor:
 
     def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:
-            if self.event.get_place_id() != place.get_id():
-                self.event.set_place_id(place.get_id())
+            if self.event.get_place_handle() != place.get_handle():
+                self.event.set_place_handle(place.get_handle())
                 self.parent.lists_changed = 1
         else:
-            if self.event.get_place_id():
-                self.event.set_place_id("")
+            if self.event.get_place_handle():
+                self.event.set_place_handle("")
                 self.parent.lists_changed = 1
         
         if self.event.get_name() != self.trans(name):

@@ -196,10 +196,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return _niece_level[level]
 
     def is_spouse(self,orig,other):
-        for f in orig.get_family_id_list():
-            family = self.db.find_family_from_id(f)
+        for f in orig.get_family_handle_list():
+            family = self.db.find_family_from_handle(f)
             if family:
-                if other == family.get_father_id() or other == family.get_mother_id():
+                if other == family.get_father_handle() or other == family.get_mother_handle():
                     return 1
             else:
                 return 0
@@ -229,7 +229,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])
         elif common:
-            person_id = common[0]
+            person_handle = common[0]
         else:
             return ("",[])
 

@@ -52,9 +52,9 @@ class BaseModel(gtk.GenericTreeModel):
         
         val = 0
         keys = self.sort_keys()
-        for place_id in keys:
-            self.iter2path[place_id] = (val,)
-            self.path2iter[(val,)] = place_id
+        for place_handle in keys:
+            self.iter2path[place_handle] = (val,)
+            self.path2iter[(val,)] = place_handle
             val += 1
         
     def on_row_inserted(self,obj,path,iter):

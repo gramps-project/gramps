@@ -147,12 +147,12 @@ class Merge:
         if (not p1_id) or (p1_id in id_list):
             return
         id_list.append(p1_id)
-        p1 = self.db.try_to_find_person_from_id(p1_id)
-        f1_id = p1.get_main_parents_family_id()
+        p1 = self.db.try_to_find_person_from_handle(p1_id)
+        f1_id = p1.get_main_parents_family_handle()
         if f1_id:
-            f1 = self.db.find_family_from_id(f1_id)
-            self.ancestors_of(f1.get_father_id(),id_list)
-            self.ancestors_of(f1.get_mother_id(),id_list)
+            f1 = self.db.find_family_from_handle(f1_id)
+            self.ancestors_of(f1.get_father_handle(),id_list)
+            self.ancestors_of(f1.get_mother_handle(),id_list)
 
     def on_merge_ok_clicked(self,obj):
         active = self.menu.get_menu().get_active().get_data("v")
@@ -184,7 +184,7 @@ class Merge:
         males = {}
         females = {}
         for p1_id in self.person_list:
-            p1 = self.db.try_to_find_person_from_id(p1_id)
+            p1 = self.db.try_to_find_person_from_handle(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
             if p1.get_gender() == RelLib.Person.male:
                 if males.has_key(key):
@@ -201,7 +201,7 @@ class Merge:
 
         num = 0
         for p1key in self.person_list:
-            p1 = self.db.try_to_find_person_from_id(p1key)
+            p1 = self.db.try_to_find_person_from_handle(p1key)
             if num % 25 == 0:
                 self.progress_update((float(num)/float(length))*100)
             num = num + 1
@@ -217,7 +217,7 @@ class Merge:
                 index = index + 1
                 if p1key == p2key:
                     continue
-                p2 = self.db.try_to_find_person_from_id(p2key)
+                p2 = self.db.try_to_find_person_from_handle(p2key)
                 if self.map.has_key(p2key):
                     (v,c) = self.map[p2key]
                     if v == p1key:
@@ -297,8 +297,8 @@ class Merge:
         for (c,p1key,p2key) in list:
             c1 = "%5.2f" % c
             c2 = "%5.2f" % (100-c)
-            pn1 = self.db.try_to_find_person_from_id(p1key).get_primary_name().get_name()
-            pn2 = self.db.try_to_find_person_from_id(p2key).get_primary_name().get_name()
+            pn1 = self.db.try_to_find_person_from_handle(p1key).get_primary_name().get_name()
+            pn2 = self.db.try_to_find_person_from_handle(p2key).get_primary_name().get_name()
             self.list.add([c, pn1, pn2,c2],(p1key,p2key))
 
     def on_do_merge_clicked(self,obj):
@@ -307,8 +307,8 @@ class Merge:
             return
 
         (p1,p2) = self.list.get_object(iter)
-        pn1 = self.db.try_to_find_person_from_id(p1)
-        pn2 = self.db.try_to_find_person_from_id(p2)
+        pn1 = self.db.try_to_find_person_from_handle(p1)
+        pn2 = self.db.try_to_find_person_from_handle(p2)
         MergeData.MergePeople(self.parent,self.db,pn1,pn2,self.on_update)
 
     def on_update(self,p1_id,p2_id,old_id):
@@ -443,13 +443,13 @@ class Merge:
         if not p1_id:
             name1 = ""
         else:
-            p1 = self.db.try_to_find_place_from_id(p1_id)
+            p1 = self.db.try_to_find_place_from_handle(p1_id)
             name1 = p1.get_title()
 
         if not p2_id:
             name2 = ""
         else:
-            p2 = self.db.try_to_find_place_from_id(p2_id)
+            p2 = self.db.try_to_find_place_from_handle(p2_id)
             name2 = p2.get_title()
         
         if not (name1 and name2):
@@ -483,27 +483,27 @@ class Merge:
         if chance == -1  :
             return -1
 
-        birth1_id = p1.get_birth_id()
+        birth1_id = p1.get_birth_handle()
         if birth1_id:
-            birth1 = self.db.find_event_from_id(birth1_id)
+            birth1 = self.db.find_event_from_handle(birth1_id)
         else:
             birth1 = RelLib.Event()
 
-        death1_id = p1.get_death_id()
+        death1_id = p1.get_death_handle()
         if death1_id:
-            death1 = self.db.find_event_from_id(death1_id)
+            death1 = self.db.find_event_from_handle(death1_id)
         else:
             death1 = RelLib.Event()
 
-        birth2_id = p2.get_birth_id()
+        birth2_id = p2.get_birth_handle()
         if birth2_id:
-            birth2 = self.db.find_event_from_id(birth2_id)
+            birth2 = self.db.find_event_from_handle(birth2_id)
         else:
             birth2 = RelLib.Event()
 
-        death2_id = p2.get_death_id()
+        death2_id = p2.get_death_handle()
         if death2_id:
-            death2 = self.db.find_event_from_id(death2_id)
+            death2 = self.db.find_event_from_handle(death2_id)
         else:
             death2 = RelLib.Event()
 
@@ -517,40 +517,40 @@ class Merge:
             return -1
         chance = chance + value
 
-        value = self.place_match(birth1.get_place_id(),birth2.get_place_id()) 
+        value = self.place_match(birth1.get_place_handle(),birth2.get_place_handle()) 
         if value == -1 :
             return -1
         chance = chance + value
 
-        value = self.place_match(death1.get_place_id(),death2.get_place_id()) 
+        value = self.place_match(death1.get_place_handle(),death2.get_place_handle()) 
         if value == -1 :
             return -1
         chance = chance + value
 
         ancestors = []
-        self.ancestors_of(p1.get_id(),ancestors)
-        if p2.get_id() in ancestors:
+        self.ancestors_of(p1.get_handle(),ancestors)
+        if p2.get_handle() in ancestors:
             return -1
 
         ancestors = []
-        self.ancestors_of(p2.get_id(),ancestors)
-        if p1.get_id() in ancestors:
+        self.ancestors_of(p2.get_handle(),ancestors)
+        if p1.get_handle() in ancestors:
             return -1
         
-        f1_id = p1.get_main_parents_family_id()
-        f2_id = p2.get_main_parents_family_id()
+        f1_id = p1.get_main_parents_family_handle()
+        f2_id = p2.get_main_parents_family_handle()
 
         if f1_id and f2_id:
-            f1 = self.db.find_family_from_id(f1_id)
-            f2 = self.db.find_family_from_id(f2_id)
-            dad1_id = f1.get_father_id()
+            f1 = self.db.find_family_from_handle(f1_id)
+            f2 = self.db.find_family_from_handle(f2_id)
+            dad1_id = f1.get_father_handle()
             if dad1_id:
-            	dad1 = get_name_obj(self.db.try_to_find_person_from_id(dad1_id))
+            	dad1 = get_name_obj(self.db.try_to_find_person_from_handle(dad1_id))
             else:
                 dad1 = None
-            dad2_id = f2.get_father_id()
+            dad2_id = f2.get_father_handle()
             if dad2_id:
-            	dad2 = get_name_obj(self.db.try_to_find_person_from_id(dad2_id))
+            	dad2 = get_name_obj(self.db.try_to_find_person_from_handle(dad2_id))
             else:
                 dad2 = None
             
@@ -561,14 +561,14 @@ class Merge:
 
             chance = chance + value
             
-            mom1_id = f1.get_mother_id()
+            mom1_id = f1.get_mother_handle()
             if mom1_id:
-            	mom1 = get_name_obj(self.db.try_to_find_person_from_id(mom1_id))
+            	mom1 = get_name_obj(self.db.try_to_find_person_from_handle(mom1_id))
             else:
                 mom1 = None
-            mom2_id = f2.get_mother_id()
+            mom2_id = f2.get_mother_handle()
             if mom2_id:
-            	mom2 = get_name_obj(self.db.try_to_find_person_from_id(mom2_id))
+            	mom2 = get_name_obj(self.db.try_to_find_person_from_handle(mom2_id))
             else:
                 mom2 = None
 
@@ -578,33 +578,33 @@ class Merge:
             
             chance = chance + value
 
-        for f1_id in p1.get_family_id_list():
-            f1 = self.db.find_family_from_id(f1_id)
-            for f2_id in p2.get_family_id_list():
-                f2 = self.db.find_family_from_id(f2_id)
+        for f1_id in p1.get_family_handle_list():
+            f1 = self.db.find_family_from_handle(f1_id)
+            for f2_id in p2.get_family_handle_list():
+                f2 = self.db.find_family_from_handle(f2_id)
                 if p1.get_gender() == RelLib.Person.female:
-                    father1_id = f1.get_father_id()
-                    father2_id = f2.get_father_id()
+                    father1_id = f1.get_father_handle()
+                    father2_id = f2.get_father_handle()
                     if father1_id and father2_id:
                         if father1_id == father2_id:
                             chance = chance + 1
                         else:
-                            father1 = self.db.try_to_find_person_from_id(father1_id)
-                            father2 = self.db.try_to_find_person_from_id(father2_id)
+                            father1 = self.db.try_to_find_person_from_handle(father1_id)
+                            father2 = self.db.try_to_find_person_from_handle(father2_id)
                             fname1 = get_name_obj(father1)
                             fname2 = get_name_obj(father2)
                             value = self.name_match(fname1,fname2)
                             if value != -1:
                                 chance = chance + value
                 else:
-                    mother1_id = f1.get_mother_id()
-                    mother2_id = f2.get_mother_id()
+                    mother1_id = f1.get_mother_handle()
+                    mother2_id = f2.get_mother_handle()
                     if mother1_id and mother2_id:
                         if mother1_id == mother2_id:
                             chance = chance + 1
                         else:
-                            mother1 = self.db.try_to_find_person_from_id(mother1_id)
-                            mother2 = self.db.try_to_find_person_from_id(mother2_id)
+                            mother1 = self.db.try_to_find_person_from_handle(mother1_id)
+                            mother2 = self.db.try_to_find_person_from_handle(mother2_id)
                             mname1 = get_name_obj(mother1)
                             mname2 = get_name_obj(mother2)
                             value = self.name_match(mname1,mname2)
@@ -621,7 +621,7 @@ class Merge:
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( GrampsCfg.get_nameof()(p),p.get_id())
+    return "%s (%s)" % ( GrampsCfg.get_nameof()(p),p.get_handle())
 
 def get_name_obj(person):
     if person:
@@ -647,7 +647,7 @@ def runTool(database,active_person,callback,parent=None):
 #
 #-------------------------------------------------------------------------
 def by_id(p1,p2):
-    return cmp(p1.get_id(),p2.get_id())
+    return cmp(p1.get_handle(),p2.get_handle())
 
 #-------------------------------------------------------------------------
 #

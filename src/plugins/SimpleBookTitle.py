@@ -50,13 +50,13 @@ import gtk
 class SimpleBookTitle(Report.Report):
 
     def __init__(self,database,
-                    person,title_string,subtitle_string,object_id,image_size,
+                    person,title_string,subtitle_string,object_handle,image_size,
                     footer_string,doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
         self.title_string = title_string
-        self.object_id = object_id
+        self.object_handle = object_handle
         self.image_size = image_size
         self.subtitle_string = subtitle_string
         self.footer_string = footer_string
@@ -87,8 +87,8 @@ class SimpleBookTitle(Report.Report):
         self.doc.write_text(self.subtitle_string)
         self.doc.end_paragraph()
 
-        if self.object_id:
-            object = self.database.get_object(self.object_id)
+        if self.object_handle:
+            object = self.database.get_object(self.object_handle)
             name = object.get_path()
             if self.image_size:
                 image_size = self.image_size
@@ -178,18 +178,18 @@ def make_size_menu(main_menu,def_size_index=0):
 _style_file = "simple_book_title.xml"
 _style_name = "default" 
 
-_person_id = ""
+_person_handle = ""
 _title_string = ""
 _subtitle_string = ""
-_object_id = ""
+_object_handle = ""
 _size_index = 0
 _footer_string = ""
 
 _options = ( 
-    _person_id, 
+    _person_handle, 
     _title_string, 
     _subtitle_string, 
-    _object_id, 
+    _object_handle, 
     _size_index, 
     _footer_string
 )
@@ -225,9 +225,9 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             self.subtitle_string = _('Subtitle of the Book')
 
         if self.options[3]:
-            self.object_id = self.options[3]
+            self.object_handle = self.options[3]
         else:
-            self.object_id = ""
+            self.object_handle = ""
         
         if self.options[4]:
             self.size_index = int(self.options[4])
@@ -246,8 +246,8 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.subtitle_entry.set_text(self.subtitle_string)
         self.footer_entry.set_text(self.footer_string)
         self.size_menu.set_history(self.size_index)
-        if self.object_id:
-            object = self.db.get_object(self.object_id)
+        if self.object_handle:
+            object = self.db.get_object(self.object_handle)
             self.obj_title.set_text(object.get_description())
             the_type = Utils.get_mime_description(object.get_mime_type())
             path = object.get_path()
@@ -351,7 +351,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         pass
 
     def remove_obj(self, obj):
-        self.object_id = ""
+        self.object_handle = ""
         self.obj_title.set_text('')
         self.preview.set_from_pixbuf(None)
         self.remove_obj_button.set_sensitive(gtk.FALSE)
@@ -361,7 +361,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         s_o = SelectObject.SelectObject(self.db,_("Select an Object"))
         object = s_o.run()
         if object:
-            self.object_id = object.get_id()
+            self.object_handle = object.get_handle()
         else:
             return
         self.obj_title.set_text(object.get_description())
@@ -381,7 +381,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         a_o = AddMedia.AddMediaObject(self.db)
         object = a_o.run()
         if object:
-            self.object_id = object.get_id()
+            self.object_handle = object.get_handle()
         else:
             return
         self.obj_title.set_text(object.get_description())
@@ -408,9 +408,9 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
 
-        self.options = ( self.person.get_id(), 
+        self.options = ( self.person.get_handle(), 
                     self.title_string, self.subtitle_string, 
-                    self.object_id, self.size_index, self.footer_string )
+                    self.object_handle, self.size_index, self.footer_string )
         self.style_name = self.selected_style.get_name() 
    
 #------------------------------------------------------------------------
@@ -433,9 +433,9 @@ def write_book_item(database,person,doc,options,newpage=0):
         else:
             subtitle_string = _('Subtitle of the Book')
         if options[3]:
-            object_id = options[3]
+            object_handle = options[3]
         else:
-            object_id = ""
+            object_handle = ""
         if options[4]:
             size_index = int(options[4])
         else:
@@ -449,7 +449,7 @@ def write_book_item(database,person,doc,options,newpage=0):
             name = database.get_researcher().get_name()
             footer_string = _('Copyright %d %s') % (dateinfo[0], name)
         return SimpleBookTitle(database, person, 
-                title_string, subtitle_string, object_id, size, 
+                title_string, subtitle_string, object_handle, size, 
                 footer_string, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()

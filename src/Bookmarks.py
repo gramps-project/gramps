@@ -66,27 +66,27 @@ class Bookmarks :
         """Create the pulldown menu"""
         if len(self.bookmarks) > 0:
             self.myMenu = gtk.Menu()
-            for person_id in self.bookmarks:
-                self.add_to_menu(person_id)
+            for person_handle in self.bookmarks:
+                self.add_to_menu(person_handle)
             self.menu.set_submenu(self.myMenu)
             self.menu.set_sensitive(1)
         else:
             self.menu.remove_submenu()
             self.menu.set_sensitive(0)
 
-    def add(self,person_id):
+    def add(self,person_handle):
         """appends the person to the bottom of the bookmarks"""
-        if person_id not in self.bookmarks:
-            self.bookmarks.append(person_id)
+        if person_handle not in self.bookmarks:
+            self.bookmarks.append(person_handle)
             self.redraw()
 
-    def add_to_menu(self,person_id):
+    def add_to_menu(self,person_handle):
         """adds a person's name to the drop down menu"""
-        data = self.db.person_map.get(str(person_id))
+        data = self.db.person_map.get(str(person_handle))
         if data:
             name = data[3].get_name()
             item = gtk.MenuItem(name)
-            item.connect("activate", self.callback, person_id)
+            item.connect("activate", self.callback, person_handle)
             item.show()
             self.myMenu.append(item)
 
@@ -142,11 +142,11 @@ class Bookmarks :
         """
         self.draw_window()
         index = 0
-        for person_id in self.bookmarks:
-            data = self.db.person_map.get(str(person_id))
+        for person_handle in self.bookmarks:
+            data = self.db.person_map.get(str(person_handle))
             name = data[3].get_name()
             self.namelist.append([name])
-            self.namelist.set_row_data(index,person_id)
+            self.namelist.set_row_data(index,person_handle)
             index = index + 1
 
         self.response = self.top.run()
@@ -178,9 +178,9 @@ class Bookmarks :
         """Saves the current bookmarks from the list"""
         del self.bookmarks[0:]
         for index in range(0,self.namelist.rows):
-            person_id = self.namelist.get_row_data(index)
-            if person_id:
-                self.bookmarks.append(person_id)
+            person_handle = self.namelist.get_row_data(index)
+            if person_handle:
+                self.bookmarks.append(person_handle)
         self.redraw()
 
     def help_clicked(self):

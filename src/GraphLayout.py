@@ -22,10 +22,10 @@
 
 class GraphLayout:
 
-    def __init__(self,database,plist,person_id):
+    def __init__(self,database,plist,person_handle):
         self.database = database
         self.plist = plist
-        self.person_id = person_id
+        self.person_handle = person_handle
         self.v = []
         self.e = []
         self.maxx = 0
@@ -41,37 +41,37 @@ class DescendLine(GraphLayout):
 
     def layout(self):
         self.elist = [(0,0)]
-        self.space_for(self.person_id)
+        self.space_for(self.person_handle)
         return (self.v,self.e[1:])
     
-    def space_for(self,person_id,level=1.0,pos=1.0):
+    def space_for(self,person_handle,level=1.0,pos=1.0):
         last = self.elist[-1]
         self.elist.append((level,pos))
         self.e.append((last[0],last[1],level,pos))
-        self.v.append((person_id,level,pos))
+        self.v.append((person_handle,level,pos))
         if level > self.maxx:
             self.maxx = level
         if pos > self.maxy:
             self.maxy = pos
             
-        person = self.database.try_to_find_person_from_id(person_id)
-        for family_id in person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            for child_id in family.get_child_id_list():
-                self.space_for(child_id,level+1.0,pos)
-                pos = pos + max(self.depth(child_id),1)
+        person = self.database.try_to_find_person_from_handle(person_handle)
+        for family_handle in person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            for child_handle in family.get_child_handle_list():
+                self.space_for(child_handle,level+1.0,pos)
+                pos = pos + max(self.depth(child_handle),1)
                 if pos > self.maxy:
                     self.maxy = pos
         self.elist.pop()
         
-    def depth(self,person_id,val=0):
-        person = self.database.try_to_find_person_from_id(person_id)
-        for family_id in person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            clist = family.get_child_id_list()
+    def depth(self,person_handle,val=0):
+        person = self.database.try_to_find_person_from_handle(person_handle)
+        for family_handle in person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            clist = family.get_child_handle_list()
             val = val + len(clist)
-            for child_id in clist:
-                d = self.depth(child_id)
+            for child_handle in clist:
+                d = self.depth(child_handle)
                 if d > 0:
                    val = val + d - 1 #first child is always on the same
         return val                   #row as the parent, so subtract 1

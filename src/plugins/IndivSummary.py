@@ -56,10 +56,10 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 
-_person_id = ""
+_person_handle = ""
 _max_gen = 0
 _pg_brk = 0
-_options = ( _person_id, _max_gen, _pg_brk )
+_options = ( _person_handle, _max_gen, _pg_brk )
 
 
 #------------------------------------------------------------------------
@@ -116,9 +116,9 @@ class IndivSummary(Report.Report):
             return
         name = const.display_event(event.get_name())
         date = event.get_date()
-        place_id = event.get_place_id()
-        if place_id:
-            place_obj = self.database.try_to_find_place_from_id(place_id)
+        place_handle = event.get_place_handle()
+        if place_handle:
+            place_obj = self.database.try_to_find_place_from_handle(place_handle)
             place = place_obj.get_title()
         else:
             place = ""
@@ -167,18 +167,18 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for family_id in self.person.get_family_id_list():
-            family = self.database.find_family_from_id(family_id)
-            if self.person.get_id() == family.get_father_id():
-                spouse_id = family.get_mother_id()
+        for family_handle in self.person.get_family_handle_list():
+            family = self.database.find_family_from_handle(family_handle)
+            if self.person.get_handle() == family.get_father_handle():
+                spouse_id = family.get_mother_handle()
             else:
-                spouse_id = family.get_father_id()
+                spouse_id = family.get_father_handle()
                 
             self.d.start_row()
             self.d.start_cell("IVS-NormalCell",2)
             self.d.start_paragraph("IVS-Spouse")
             if spouse_id:
-                spouse = self.database.try_to_find_person_from_id(spouse_id)
+                spouse = self.database.try_to_find_person_from_handle(spouse_id)
                 self.d.write_text(spouse.get_primary_name().get_regular_name())
             else:
                 self.d.write_text(_("unknown"))
@@ -186,11 +186,11 @@ class IndivSummary(Report.Report):
             self.d.end_cell()
             self.d.end_row()
             
-            for event_id in family.get_event_list():
-                event = self.database.find_event_from_id(event_id)
+            for event_handle in family.get_event_list():
+                event = self.database.find_event_from_handle(event_handle)
                 self.write_fact(event)
 
-            child_list = family.get_child_id_list()
+            child_list = family.get_child_handle_list()
             if len(child_list):
                 self.d.start_row()
                 self.d.start_cell("IVS-NormalCell")
@@ -203,12 +203,12 @@ class IndivSummary(Report.Report):
                 self.d.start_paragraph("IVS-Normal")
                 
                 first = 1
-                for child_id in child_list:
+                for child_handle in child_list:
                     if first == 1:
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    child = self.database.try_to_find_person_from_id(child_id)
+                    child = self.database.try_to_find_person_from_handle(child_handle)
                     self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
@@ -231,8 +231,8 @@ class IndivSummary(Report.Report):
         self.d.end_paragraph()
 
         if len(media_list) > 0:
-            object_id = media_list[0].get_reference_id()
-            object = self.database.try_to_find_object_from_id(object_id)
+            object_handle = media_list[0].get_reference_handle()
+            object = self.database.try_to_find_object_from_handle(object_handle)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IVS-Normal")
@@ -272,18 +272,18 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        fam_id = self.person.get_main_parents_family_id()
+        fam_id = self.person.get_main_parents_family_handle()
         if fam_id:
-            family = self.database.find_family_from_id(fam_id)
-            father_id = family.get_father_id()
-            if father_id:
-                dad = self.database.try_to_find_person_from_id(father_id)
+            family = self.database.find_family_from_handle(fam_id)
+            father_handle = family.get_father_handle()
+            if father_handle:
+                dad = self.database.try_to_find_person_from_handle(father_handle)
                 father = dad.get_primary_name().get_regular_name()
             else:
                 father = ""
-            mother_id = family.get_mother_id()
-            if mother_id:
-                mom = self.database.try_to_find_person_from_id(mother_id)
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mom = self.database.try_to_find_person_from_handle(mother_handle)
                 mother = mom.get_primary_name().get_regular_name()
             else:
                 mother = ""
@@ -332,11 +332,11 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        event_list = [ self.person.get_birth_id(), self.person.get_death_id() ]
+        event_list = [ self.person.get_birth_handle(), self.person.get_death_handle() ]
         event_list = event_list + self.person.get_event_list()
-        for event_id in event_list:
-            if event_id:
-                event = self.database.find_event_from_id(event_id)
+        for event_handle in event_list:
+            if event_handle:
+                event = self.database.find_event_from_handle(event_handle)
                 self.write_fact(event)
         self.d.end_table()
 
@@ -475,7 +475,7 @@ class IndivSummaryBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 

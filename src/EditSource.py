@@ -54,11 +54,11 @@ class EditSource:
         self.db = db
         self.parent = parent
         if source:
-            if self.parent.child_windows.has_key(source.get_id()):
-                self.parent.child_windows[source.get_id()].present(None)
+            if self.parent.child_windows.has_key(source.get_handle()):
+                self.parent.child_windows[source.get_handle()].present(None)
                 return
             else:
-                self.win_key = source.get_id()
+                self.win_key = source.get_handle()
         else:
             self.win_key = self
         self.child_windows = {}
@@ -121,7 +121,7 @@ class EditSource:
             "on_sourceEditor_delete_event" : self.on_delete_event,
             })
 
-        if self.source.get_id() == "":
+        if self.source.get_handle() == "":
             self.top_window.get_widget("edit_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -190,47 +190,47 @@ class EditSource:
         f_event_list = []
         f_attr_list = []
         p_list = []
-        for key in self.db.get_place_id_keys():
-            p = self.db.get_place_id(key) 
+        for key in self.db.get_place_handle_keys():
+            p = self.db.get_place_handle(key) 
             name = p.get_title()
             for sref in p.get_source_references():
-                if sref.get_base_id() == self.source.get_id():
+                if sref.get_base_handle() == self.source.get_handle():
                     p_list.append(name)
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             name = GrampsCfg.get_nameof()(p)
-            for event_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
-                if event_id:
-                    event = self.db.find_event_from_id(event_id)
+            for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
+                if event_handle:
+                    event = self.db.find_event_from_handle(event_handle)
                     for sref in event.get_source_references():
-                        if sref.get_base_id() == self.source.get_id():
+                        if sref.get_base_handle() == self.source.get_handle():
                             p_event_list.append((name,event.get_name()))
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == self.source.get_id():
+                    if sref.get_base_handle() == self.source.get_handle():
                         p_attr_list.append((name,v.get_type()))
             for v in p.get_alternate_names() + [p.get_primary_name()]:
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == self.source.get_id():
+                    if sref.get_base_handle() == self.source.get_handle():
                         p_name_list.append((name,v.get_name()))
             for v in p.get_address_list():
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == self.source.get_id():
+                    if sref.get_base_handle() == self.source.get_handle():
                         p_addr_list.append((name,v.get_street()))
-        for object_id in self.db.get_object_keys():
-            object = self.db.try_to_find_object_from_id(object_id)
+        for object_handle in self.db.get_object_keys():
+            object = self.db.try_to_find_object_from_handle(object_handle)
             name = object.get_description()
             for sref in object.get_source_references():
-                if sref.get_base_id() == self.source.get_id():
+                if sref.get_base_handle() == self.source.get_handle():
                     m_list.append(name)
-        for family_id in self.db.get_family_keys():
-            family = self.db.find_family_from_id(family_id)
-            f_id = family.get_father_id()
-            m_id = family.get_mother_id()
+        for family_handle in self.db.get_family_keys():
+            family = self.db.find_family_from_handle(family_handle)
+            f_id = family.get_father_handle()
+            m_id = family.get_mother_handle()
             if f_id:
-                f = self.db.try_to_find_person_from_id(f_id)
+                f = self.db.try_to_find_person_from_handle(f_id)
             if m_id:
-                m = self.db.try_to_find_person_from_id(m_id)
+                m = self.db.try_to_find_person_from_handle(m_id)
             if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.get_nameof()(f),
@@ -240,15 +240,15 @@ class EditSource:
             else:
                 name = GrampsCfg.get_nameof()(m)
             for v_id in p.get_event_list():
-                v = self.db.find_event_from_id(v_id)
+                v = self.db.find_event_from_handle(v_id)
                 if not v:
                     continue
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == self.source.get_id():
+                    if sref.get_base_handle() == self.source.get_handle():
                         f_event_list.append((name,v.get_name()))
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
-                    if sref.get_base_id() == self.source.get_id():
+                    if sref.get_base_handle() == self.source.get_handle():
                         f_attr_list.append((name,v.get_type()))
 
         slist = self.top_window.get_widget('slist')
@@ -360,7 +360,7 @@ class DelSrcQuery:
         m = 0
         l = []
         for sref in object.get_source_references():
-            if sref.get_base_id() != self.source.get_id():
+            if sref.get_base_handle() != self.source.get_handle():
                 l.append(sref)
             else:
                 m = 1
@@ -374,8 +374,8 @@ class DelSrcQuery:
         for key in self.db.get_person_keys():
             commit = 0
             p = self.db.get_person(key)
-            for v_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
-                v = self.db.find_event_from_id(v_id)
+            for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
+                v = self.db.find_event_from_handle(v_id)
                 if v:
                     commit += self.delete_source(v)
 
@@ -392,9 +392,9 @@ class DelSrcQuery:
 
         for p_id in self.db.get_family_keys():
             commit = 0
-            p = self.db.find_family_from_id(p_id)
+            p = self.db.find_family_from_handle(p_id)
             for v_id in p.get_event_list():
-                v = self.db.find_event_from_id(v_id)
+                v = self.db.find_event_from_handle(v_id)
                 if v:
                     commit += self.delete_source(v)
 
@@ -404,15 +404,15 @@ class DelSrcQuery:
                 self.db.commit_family(p,trans)
 
         for p_id in self.db.get_object_keys():
-            p = self.db.try_to_find_object_from_id(p_id,trans)
+            p = self.db.try_to_find_object_from_handle(p_id,trans)
             if self.delete_source(p):
                 self.db.commit_media_object(p,trans)
 
-        for key in self.db.get_place_id_keys():
-            p = self.db.try_to_find_place_from_id(key)
-            if self.delete_source(self.db.try_to_find_place_from_id(key)):
+        for key in self.db.get_place_handle_keys():
+            p = self.db.try_to_find_place_from_handle(key)
+            if self.delete_source(self.db.try_to_find_place_from_handle(key)):
                 self.db.commit_place(p,trans)
 
-        self.db.remove_source_id(self.source.get_id(),trans)
+        self.db.remove_source_handle(self.source.get_handle(),trans)
         self.db.add_transaction(trans,_("Delete Source (%s)") % self.source.get_title())
         self.update()

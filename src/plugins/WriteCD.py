@@ -146,7 +146,7 @@ class PackageWriter:
             return
 
         for obj_id in self.db.get_object_keys():
-            obj = self.db.try_to_find_object_from_id(obj_id)
+            obj = self.db.try_to_find_object_from_handle(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
@@ -201,47 +201,47 @@ class PackageWriter:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             for p_id in self.db.get_family_keys():
-                p = self.db.find_family_from_id(p_id)
+                p = self.db.find_family_from_handle(p_id)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference_id() == self.object_id:
+                    if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_family(p,None)
                 
             for key in self.db.get_person_keys():
-                p = self.db.try_to_find_person_from_id(key)
+                p = self.db.try_to_find_person_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference_id() == self.object_id:
+                    if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_person(p,None)
             for key in self.db.get_source_keys():
-                p = self.db.try_to_find_source_from_id(key)
+                p = self.db.try_to_find_source_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference_id() == self.object_id:
+                    if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_source(p,None)
-            for key in self.db.get_place_id_keys():
-                p = self.db.try_to_find_place_from_id(key)
+            for key in self.db.get_place_handle_keys():
+                p = self.db.try_to_find_place_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference_id() == self.object_id:
+                    if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_place(p,None)
             for key in self.db.get_event_keys():
-                p = self.db.find_event_from_id(key)
+                p = self.db.find_event_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference_id() == self.object_id:
+                    if o.get_reference_handle() == self.object_handle:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_event(p,None)
-            self.db.remove_object(self.object_id,None) 
+            self.db.remove_object(self.object_handle,None) 
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -273,7 +273,7 @@ class PackageWriter:
         # during the process (i.e. when removing object)
 
         for obj_id in self.db.get_object_keys():
-            obj = self.db.try_to_find_object_from_id(obj_id)
+            obj = self.db.try_to_find_object_from_handle(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
@@ -282,7 +282,7 @@ class PackageWriter:
                     self.make_thumbnail(base,root,obj.get_path())
             else:
                 # File is lost => ask what to do
-                self.object_id = obj.get_id()
+                self.object_handle = obj.get_handle()
                 if missmedia_action == 0:
                     mmd = QuestionDialog.MissingMediaDialog(_("Media object could not be found"),
 	                _("%(file_name)s is referenced in the database, but no longer exists. " 

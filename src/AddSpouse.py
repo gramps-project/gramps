@@ -90,18 +90,18 @@ class AddSpouse:
         # the potential spouse list. If Partners is selected, use
         # the same gender as the current person.
 
-        birth_id = self.person.get_birth_id()
-        death_id = self.person.get_death_id()
+        birth_handle = self.person.get_birth_handle()
+        death_handle = self.person.get_death_handle()
         
-        self.bday = self.db.find_event_from_id(birth_id)
-        self.dday = self.db.find_event_from_id(death_id)
-        if birth_id:
-            self.bday = self.db.find_event_from_id(birth_id).get_date_object()
+        self.bday = self.db.find_event_from_handle(birth_handle)
+        self.dday = self.db.find_event_from_handle(death_handle)
+        if birth_handle:
+            self.bday = self.db.find_event_from_handle(birth_handle).get_date_object()
         else:
             self.bday = Date.Date()
             
-        if death_id:
-            self.dday = self.db.find_event_from_id(death_id).get_date_object()
+        if death_handle:
+            self.dday = self.db.find_event_from_handle(death_handle).get_date_object()
         else:
             self.dday = Date.Date()
 
@@ -215,13 +215,13 @@ class AddSpouse:
         """
         person = epo.person
         trans = self.db.start_transaction()
-        id = person.get_id()
+        id = person.get_handle()
         if id == "":
             id = self.db.add_person(person,trans)
         else:
             self.db.add_person_no_map(person,id,trans)
 
-        person = self.db.try_to_find_person_from_id(id)
+        person = self.db.try_to_find_person_from_handle(id)
         n = person.get_primary_name().get_name()
         self.db.add_transaction(trans,_('Add Person (%s)' % n))
         self.addperson(person)
@@ -231,7 +231,7 @@ class AddSpouse:
         self.slist.rebuild_data()
         self.spouse_list.set_model(self.slist)
         
-        path = self.slist.on_get_path(person.get_id())
+        path = self.slist.on_get_path(person.get_handle())
         top_path = self.slist.on_get_path(person.get_primary_name().get_surname())
         self.spouse_list.expand_row(top_path,0)
         self.selection.select_path(path)
@@ -249,12 +249,12 @@ class AddSpouse:
             return
         
         spouse = self.db.get_person(idlist[0])
-        spouse_id = spouse.get_id()
+        spouse_id = spouse.get_handle()
 
         # don't do anything if the marriage already exists
-        for f in self.person.get_family_id_list():
-            fam = self.db.find_family_from_id(f)
-            if spouse_id == fam.get_mother_id() or spouse_id == fam.get_father_id():
+        for f in self.person.get_family_handle_list():
+            fam = self.db.find_family_from_handle(f)
+            if spouse_id == fam.get_mother_handle() or spouse_id == fam.get_father_handle():
                 Utils.destroy_passed_object(obj)
                 return
 
@@ -262,18 +262,18 @@ class AddSpouse:
 
         if not self.active_family:
             self.active_family = self.db.new_family(trans)
-            self.person.add_family_id(self.active_family.get_id())
+            self.person.add_family_handle(self.active_family.get_handle())
             self.db.commit_person(self.person,trans)
 
-        spouse.add_family_id(self.active_family.get_id())
+        spouse.add_family_handle(self.active_family.get_handle())
         self.db.commit_person(spouse,trans)
 
         if self.person.get_gender() == RelLib.Person.male:
-            self.active_family.set_mother_id(spouse.get_id())
-            self.active_family.set_father_id(self.person.get_id())
+            self.active_family.set_mother_handle(spouse.get_handle())
+            self.active_family.set_father_handle(self.person.get_handle())
         else:	
-            self.active_family.set_father_id(spouse.get_id())
-            self.active_family.set_mother_id(self.person.get_id())
+            self.active_family.set_father_handle(spouse.get_handle())
+            self.active_family.set_mother_handle(self.person.get_handle())
 
         rtype = const.save_frel(unicode(self.relation_type.get_text()))
         self.active_family.set_relationship(rtype)
@@ -297,16 +297,16 @@ class AddSpouse:
         if person.get_gender() == self.sgender:
             return 0
 
-        pd_id = person.get_death_id()
-        pb_id = person.get_birth_id()
+        pd_id = person.get_death_handle()
+        pb_id = person.get_birth_handle()
                 
         if pd_id:
-            pdday = self.db.find_event_from_id(pd_id).get_date_object()
+            pdday = self.db.find_event_from_handle(pd_id).get_date_object()
         else:
             pdday = Date.Date()
 
         if pb_id:
-            pbday = self.db.find_event_from_id(pb_id).get_date_object()
+            pbday = self.db.find_event_from_handle(pb_id).get_date_object()
         else:
             pbday = Date.Date()
                     

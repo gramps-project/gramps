@@ -142,18 +142,18 @@ class FanChart:
         if self.standalone:
             self.doc.init()
 
-    def filter(self,person_id,index):
+    def filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
         
-        if (not person_id) or (index >= 32):
+        if (not person_handle) or (index >= 32):
             return
-        self.map[index-1] = person_id
+        self.map[index-1] = person_handle
 
         self.text[index-1] = []
 
-        subst = SubstKeywords(self.database,person_id)
+        subst = SubstKeywords(self.database,person_handle)
         
         for line in self.display:
             self.text[index-1].append(subst.replace(line))
@@ -164,16 +164,16 @@ class FanChart:
 
         self.lines = max(self.lines,len(self.text[index-1]))    
 
-        person = self.database.try_to_find_person_from_id(person_id)
-        family_id = person.get_main_parents_family_id()
-        if family_id:
-            family = self.database.find_family_from_id(family_id)
-            self.filter(family.get_father_id(),index*2)
-            self.filter(family.get_mother_id(),(index*2)+1)
+        person = self.database.try_to_find_person_from_handle(person_handle)
+        family_handle = person.get_main_parents_family_handle()
+        if family_handle:
+            family = self.database.find_family_from_handle(family_handle)
+            self.filter(family.get_father_handle(),index*2)
+            self.filter(family.get_mother_handle(),(index*2)+1)
 
     def write_report(self):
 
-        self.filter(self.start.get_id(),1)
+        self.filter(self.start.get_handle(),1)
 
         block_size = self.doc.get_usable_width()/14.0
 
@@ -200,21 +200,21 @@ class FanChart:
         if self.standalone:
             self.doc.close()
 
-    def get_info(self,person_id):
-        person = self.database.try_to_find_person_from_id(person_id)
+    def get_info(self,person_handle):
+        person = self.database.try_to_find_person_from_handle(person_handle)
         pn = person.get_primary_name()
 
-        birth_id = person.get_birth_id()
-        if birth_id:
-            b = self.database.find_event_from_id(birth_id).get_date_object().get_year()
+        birth_handle = person.get_birth_handle()
+        if birth_handle:
+            b = self.database.find_event_from_handle(birth_handle).get_date_object().get_year()
             if b == Calendar.UNDEF:
                 b = ""
         else:
             b = ""
 
-        death_id = person.get_death_id()
-        if death_id:
-            d = self.database.find_event_from_id(death_id).get_date_object().get_year()
+        death_handle = person.get_death_handle()
+        if death_handle:
+            d = self.database.find_event_from_handle(death_handle).get_date_object().get_year()
             if d == Calendar.UNDEF:
                 d = ""
         else:
@@ -377,8 +377,8 @@ def report(database,person):
 _style_file = "fan_chart.xml"
 _style_name = "default" 
 
-_person_id = ""
-_options = ( _person_id, )
+_person_handle = ""
+_options = ( _person_handle, )
 
 #------------------------------------------------------------------------
 #
@@ -437,7 +437,7 @@ class FanChartBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.get_id(), )
+        self.options = ( self.person.get_handle(), )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
