@@ -148,6 +148,7 @@ class EditPerson:
         self.attr_source = self.get_widget("attr_source")
         self.name_note = self.get_widget("name_note")
         self.name_source = self.get_widget("name_source")
+        self.gid = self.get_widget("gid")
 
         self.elist = person.getEventList()[:]
         self.nlist = person.getAlternateNames()[:]
@@ -203,7 +204,8 @@ class EditPerson:
             const.surnames.sort()
             self.get_widget("lastNameList").set_popdown_strings(const.surnames)
 
-        self.get_widget("gid").set_text(person.getId())
+        self.gid.set_text(person.getId())
+        self.gid.set_editable(Config.id_edit)
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.name_list.set_column_visibility(1,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
@@ -453,10 +455,13 @@ def did_data_change(obj):
     dplace = epo.dplace.get_text()
     gender = epo.is_male.get_active()
     text = epo.notes_field.get_chars(0,-1)
+    idval = epo.gid.get_text()
 
     changed = 0
     name = person.getPrimaryName()
-    
+
+    if person.getId() != idval:
+        changed = 1
     if suffix != name.getSuffix() or surname != name.getSurname():
         changed = 1
     if given != name.getFirstName() or nick != person.getNickName():
@@ -1108,8 +1113,19 @@ def save_person(obj):
     given = epo.given.get_text()
     nick = epo.nick.get_text()
     title = epo.title.get_text()
+    idval = epo.gid.get_text()
 
     name = epo.pname
+
+    if idval != person.getId():
+        m = epo.db.getPersonMap() 
+        if not m.has_key(idval):
+            person.setId(idval)
+        else:
+            n = Config.nameof(m[idval])
+            msg1 = _("GRAMPS ID value was not changed.")
+            msg2 = _("%s is already used by %s") % (idval,n)
+            GnomeWarningDialog("%s\n%s" % (msg1,msg2))
 
     if suffix != name.getSuffix():
         name.setSuffix(suffix)
