@@ -1804,4 +1804,7 @@ def set_panel(obj):
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
     Gramps(None)
-    gtk.mainloop()
+    if ver[0] == 2 and ver[1] >= 3:
+        gtk.main()
+    else:
+        gtk.mainloop()
