@@ -468,7 +468,7 @@ class MergePeople:
             if self.p2 == fam.getMother():
                 fam.setMother(self.p1)
             if fam.getFather() == None and fam.getMother() == None:
-                self.delete_empty_family(self)
+                self.delete_empty_family(fam)
                 
     def remove_marriage(self,family,person):
         if person:
