@@ -8,4 +8,8 @@
     <comment xml:lang="en">GEDCOM</comment>
     <glob pattern="*.ged"/>
   </mime-type>
+  <mime-type type="application/x-gramps-package">
+    <comment xml:lang="en">GRAMPS package</comment>
+    <glob pattern="*.gpkg"/>
+  </mime-type>
 </mime-info>

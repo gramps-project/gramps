@@ -12,7 +12,7 @@ dist_pkgdata_DATA = gedcom.xml \
 	       gramps.keys \
                gramps.mime
 
-EXTRA_DIST = $(pkgdata_DATA)
+EXTRA_DIST = $(dist_pkgdata_DATA)
 
 install-data-local:
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications

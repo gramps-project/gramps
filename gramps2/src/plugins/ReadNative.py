@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #
 # Modified by Alex Roitman to handle media object files.
@@ -81,7 +83,7 @@ class ReadNative:
         Utils.destroy_passed_object(self.top)
         self.show_display()
 
-	dbname = os.path.join(imp_dbpath,const.xmlFile)  
+        dbname = os.path.join(imp_dbpath,const.xmlFile)  
 
         try:
             importData(self.db,dbname,self.progress)
@@ -89,7 +91,7 @@ class ReadNative:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
         
-	self.window.destroy()
+        self.window.destroy()
         self.callback()
 
     def progress(self,val):

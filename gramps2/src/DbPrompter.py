@@ -22,12 +22,21 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import os
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GNOME modules
 #
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
 import gobject
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -37,10 +46,7 @@ import gobject
 import Utils
 import const
 import GrampsCfg
-import gnome
 import QuestionDialog
-from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -50,12 +56,13 @@ import os
 class DbPrompter:
     """Make sure a database is opened"""
     
-    def __init__(self,db,want_new,parent=None):
-        self.db = db
+    def __init__(self,parent,want_new,parent_window=None,file_hint=None):
+        self.parent = parent
+        self.file_hint = file_hint
         opendb = gtk.glade.XML(const.gladeFile, "opendb","gramps")
         top = opendb.get_widget('opendb')
-        if parent:
-            top.set_transient_for(parent)
+        if parent_window:
+            top.set_transient_for(parent_window)
         title = opendb.get_widget('title')
 
         Utils.set_titles(top,title,_('Open a database'))
@@ -89,7 +96,7 @@ class DbPrompter:
                                             gtk.RESPONSE_CANCEL,
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
-            self.db.clear_database()
+            self.parent.clear_database()
         else:
             choose = gtk.FileChooserDialog('Open GRAMPS database',
                                            None,
@@ -109,8 +116,11 @@ class DbPrompter:
         filter.add_pattern('*')
         choose.add_filter(filter)
         
-        if save and GrampsCfg.lastfile:
-            choose.set_filename(GrampsCfg.lastfile)
+        if save:
+            if self.file_hint:
+                choose.set_filename(self.file_hint)
+            elif GrampsCfg.lastfile:
+                choose.set_filename(GrampsCfg.lastfile)
 
         response = choose.run()
         if response == gtk.RESPONSE_OK:
@@ -118,9 +128,8 @@ class DbPrompter:
             if save and os.path.splitext(filename)[1] != ".grdb":
                 filename = filename + ".grdb"
             choose.destroy()
-            self.db.read_file(filename)
+            self.parent.read_file(filename)
             return 1
         else:
             choose.destroy()
             return 0
-

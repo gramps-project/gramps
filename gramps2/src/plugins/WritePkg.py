@@ -93,7 +93,7 @@ class PackageWriter:
 
         if response == gtk.RESPONSE_OK:
             name = choose.get_filename()
-            if os.path.splitext(filename)[1] != ".gpkg":
+            if os.path.splitext(name)[1] != ".gpkg":
                 name = name + ".gpkg"
             choose.destroy()
             self.export(name)

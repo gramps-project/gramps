@@ -82,7 +82,7 @@ import gobject
 
 signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 
-args = sys.argv[1:]
+args = sys.argv
 
 def run():
     try:
