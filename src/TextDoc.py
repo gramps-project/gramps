@@ -426,7 +426,7 @@ class StyleSheetList:
                 f.write('size="%d" ' % font.get_size())
                 f.write('italic="%d" ' % font.get_italic())
                 f.write('bold="%d" ' % font.get_bold())
-                f.write('underline="%d" ' % font.get_bold())
+                f.write('underline="%d" ' % font.get_underline())
                 f.write('color="#%02x%02x%02x"/>\n' % font.get_color())
                 f.write('<para ')
                 rm = float(p.get_right_margin())
