@@ -134,6 +134,11 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write('%f cm %f cm lineto\n' % self.translate(x2,y2))
         self.f.write('%d setlinewidth\n' % stype.get_line_width())
+        if stype.get_line_style() == DrawDoc.SOLID:
+            self.f.write('[] 0 setdash\n')
+        else:
+            self.f.write('[2 4] 0 setdash\n')
+            
         self.f.write('2 setlinecap\n')
         self.f.write('stroke\n')
         self.f.write('grestore\n')

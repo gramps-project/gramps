@@ -136,7 +136,7 @@ class FamilyView:
         self.child_selection = self.child_list.get_selection()
 
         Utils.build_columns(self.child_list,
-                            [ (_(''),30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
+                            [ ('',30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
                               (_('Gender'),100,-1), (_('Birth Date'),150,-1),
                               (_('Status'),150,-1), ('',0,-1) ])
 

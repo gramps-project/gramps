@@ -498,4 +498,9 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         else:
             self.f.write('/>\n')
 
+#-------------------------------------------------------------------------
+#
+# Register document generator
+#
+#-------------------------------------------------------------------------
 Plugins.register_draw_doc(_("OpenOffice/StarOffice 6"),OpenDrawDoc);

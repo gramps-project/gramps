@@ -25,6 +25,9 @@
 #------------------------------------------------------------------------
 import TextDoc
 
+SOLID = 0
+DASHED = 1
+
 #------------------------------------------------------------------------
 #
 # GraphicsStyle
@@ -39,6 +42,7 @@ class GraphicsStyle:
             self.shadow = obj.shadow
 	    self.color = obj.color
             self.lwidth = obj.lwidth
+            self.lstyle = obj.lstyle
         else:
             self.height = 0
             self.width = 0
@@ -46,12 +50,19 @@ class GraphicsStyle:
             self.shadow = 0
             self.lwidth = 0.5
             self.color = (255,255,255)
+            self.lstyle = SOLID
 
     def set_line_width(self,val):
         self.lwidth = val
 
     def get_line_width(self):
         return self.lwidth
+
+    def get_line_style(self):
+        return self.lstyle
+
+    def set_line_style(self,val):
+        self.lstyle = val
 
     def set_height(self,val):
         self.height = val
@@ -142,6 +153,9 @@ class DrawDoc:
     def end_page(self):
         pass
 
+    def draw_path(self,style,path):
+        pass
+    
     def draw_box(self,style,text,x,y):
 	pass
 

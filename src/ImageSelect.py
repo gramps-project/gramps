@@ -130,7 +130,7 @@ class ImageSelect:
                 self.image.set_from_pixbuf(image)
             else:
                 i = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
-            self.image.set_from_pixbuf(i)
+                self.image.set_from_pixbuf(i)
 
     def on_savephoto_clicked(self, obj):
         """Save the photo in the dataobj object.  (Required function)"""
@@ -161,7 +161,6 @@ class ImageSelect:
                 description = os.path.basename(filename)
             mobj.setDescription(description)
             mobj.setMimeType(type)
-            self.savephoto(mobj)
 
             if type[0:5] == "image":
                 if self.external.get_active() == 0:
@@ -178,6 +177,7 @@ class ImageSelect:
                                                         mobj.getId())
                     mobj.setLocal(1)
             mobj.setPath(name)
+            self.savephoto(mobj)
             
         self.parent.lists_changed = 1
         Utils.destroy_passed_object(obj)

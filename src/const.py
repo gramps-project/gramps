@@ -131,6 +131,7 @@ childRelations = {
     _("Adopted")   : "Adopted",
     _("Stepchild") : "Stepchild",
     _("Foster")    : "Foster",
+    _("Sponsored") : "Sponsored",
     _("None")      : "None",
     _("Unknown")   : "Unknown",
     _("Other")     : "Other",

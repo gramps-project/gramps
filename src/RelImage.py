@@ -61,8 +61,6 @@ def import_media_object(filename,path,base):
     type = Utils.get_mime_type(filename)
     if type[0:5] == "image":
         name = "%s/%s%s" % (path,base,ext)
-        #base = "%s%s" % (base,ext)
-
         thumb = "%s/.thumb" % (path)
 
         try:
@@ -113,8 +111,7 @@ def scale_image(path,size):
 
     scale = size / float(max(width,height))
     try:
-        image1.scale_simple(int(scale*width), int(scale*height), gtk.gdk.INTERP_BILINEAR)
-        return image1
+        return image1.scale_simple(int(scale*width), int(scale*height), gtk.gdk.INTERP_BILINEAR)
     except:
         WarningDialog(_("Could not load image file %s") % path)
         return gtk.gdk.pixbuf_new_from_file(const.icon)
@@ -129,7 +126,7 @@ def mk_thumb(source,dest,size):
 
     source = os.path.normpath(source)
     dest = os.path.normpath(dest)
-    
+
     try:
         if not os.path.exists(dir):
             os.mkdir(dir)
