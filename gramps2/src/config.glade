@@ -47,9 +47,9 @@ Preferences dialog under the Settings menu.</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard1">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Researcher information</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
-	  <property name="logo_background">#b7a440c2d478</property>
+	  <property name="title_foreground">#4a60082ad408</property>
+	  <property name="background">#5de8082ab9eb</property>
+	  <property name="logo_background">#a1f8081c0001</property>
 	  <property name="logo">gramps.png</property>
 
 	  <child internal-child="vbox">
@@ -487,9 +487,9 @@ files, you may leave it blank.</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard3">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Numerical date formats</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
-	  <property name="logo_background">#b7a440c2d478</property>
+	  <property name="title_foreground">#85d8082ad408</property>
+	  <property name="background">#9850082ab9eb</property>
+	  <property name="logo_background">#a1f8081c0001</property>
 	  <property name="logo">gramps.xpm</property>
 
 	  <child internal-child="vbox">
@@ -635,9 +635,9 @@ numerical dates</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard4">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Alternate calendar support</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
-	  <property name="logo_background">#b7a440c2d478</property>
+	  <property name="title_foreground">#94d0082cd408</property>
+	  <property name="background">#9fb0082cb9eb</property>
+	  <property name="logo_background">#a1f8081c0001</property>
 	  <property name="logo">gramps.xpm</property>
 
 	  <child internal-child="vbox">
@@ -732,9 +732,9 @@ more of these alternate calendars, enable alternate calendar support.</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard2">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">LDS extensions</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
-	  <property name="logo_background">#b7a440c2d478</property>
+	  <property name="title_foreground">#c8d8082cd408</property>
+	  <property name="background">#dad8082cb9eb</property>
+	  <property name="logo_background">#a1f8081c0001</property>
 	  <property name="logo">gramps.xpm</property>
 
 	  <child internal-child="vbox">
@@ -890,8 +890,8 @@ Preferences dialog under the Settings menu.</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard5">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Researcher Information</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
+	  <property name="title_foreground">#9358082dd408</property>
+	  <property name="background">#a900082db9eb</property>
 	  <property name="contents_background">#e1e0dbdac5c5</property>
 	  <property name="logo">gramps.png</property>
 
@@ -1330,8 +1330,8 @@ files, you may leave it blank.</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard6">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Numerical date formats</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
+	  <property name="title_foreground">#c118082dd408</property>
+	  <property name="background">#d3e0082db9eb</property>
 	  <property name="contents_background">#e1e0dbdac5c5</property>
 	  <property name="logo">gramps.png</property>
 
@@ -1470,8 +1470,8 @@ numerical dates</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard7">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">Alternate calendar support</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
+	  <property name="title_foreground">#ffd0082dd408</property>
+	  <property name="background">#97d0082eb9eb</property>
 	  <property name="contents_background">#e1e0dbdac5c5</property>
 	  <property name="logo">gramps.png</property>
 
@@ -1559,8 +1559,8 @@ more of these alternate calendars, enable alternate calendar support.</property>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard8">
 	  <property name="visible">True</property>
 	  <property name="title" translatable="yes">LDS extensions</property>
-	  <property name="title_foreground">#53e00817a71b</property>
-	  <property name="background">#53e00817d488</property>
+	  <property name="title_foreground">#36f8082fd408</property>
+	  <property name="background">#af28082eb9eb</property>
 	  <property name="contents_background">#e1e0dbdac5c5</property>
 	  <property name="logo">gramps.png</property>
 

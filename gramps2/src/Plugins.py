@@ -325,7 +325,7 @@ def load_plugins(direct):
 
     # if the path has not already been loaded, save it in the _loaddir
     # list for use on reloading
-    
+
     if direct not in _loaddir:
 	_loaddir.append(direct)
 
@@ -378,6 +378,7 @@ def reload_plugins(obj):
     for plugin in _failed:
         try: 
             __import__(plugin)
+            del _failmsg[plugin]
         except:
             _failmsg.append((plugin,sys.exc_info()))
 
@@ -394,7 +395,8 @@ def reload_plugins(obj):
             plugin = match.groups()[0]
             try: 
                 a = __import__(plugin)
-                _success.append(a)
+                if a not in _success:
+                    _success.append(a)
             except:
                 _failmsg.append((file,sys.exc_info()))
 
