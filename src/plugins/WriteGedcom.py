@@ -948,7 +948,7 @@ class GedcomWriter:
             for photo in photos:
                 if photo.ref.getMimeType() == "image/jpeg":
                     self.writeln('1 OBJE')
-                    self.writeln('2 FORM jpg')
+                    self.writeln('2 FORM jpeg')
                     path = photo.ref.getPath ()
                     dirname = os.path.join (self.dirname, self.images_path)
                     basename = os.path.basename (path)
