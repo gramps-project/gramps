@@ -3,6 +3,12 @@
 	* src/NameEdit.py: Proper use of ComboBoxEntry widgets (#1014238).
 	* src/EdirPerson.py (__init__): Use handle instead of ID (#1014224).
 
+	* src/plugins/DetAncestralReport.py (write_children): 
+	Check whether event exists (#1014414). 
+	* src/plugins/IndivComplete.py (write_alt_names): Correct the
+	use of handle (#1014411); (write_fact, write_sources, write_person): 
+	Use gramps id, not handle, for displaying source references.
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
 

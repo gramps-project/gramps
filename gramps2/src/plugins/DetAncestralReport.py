@@ -221,7 +221,7 @@ class DetAncestorReport(Report.Report):
                             else:
                                 self.doc.write_text(_("- %s Died: %s") % \
                                     (name, death.get_date()))               # 2
-                        elif death.get_place_handle():
+                        elif death and death.get_place_handle():
                             dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
                             self.doc.write_text(_("- %s Died: %s") % \
                                 (name, dplace)) # 1
@@ -270,7 +270,7 @@ class DetAncestorReport(Report.Report):
         if birth_handle:
             self.write_birth(person, rptOptions)
         if person.get_death_handle():
-        	self.write_death(person, firstName, rptOptions)
+            self.write_death(person, firstName, rptOptions)
         self.write_parents(person, firstName)
         self.write_marriage(person, rptOptions)
         self.doc.end_paragraph()
