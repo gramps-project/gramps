@@ -129,13 +129,13 @@ class IndivComplete(Report.Report):
         else:
             place = ""
         description = event.get_description()
-        if date == "":
-            if place == "":
+        if not date:
+            if not place:
                 return
             else:
                 text = '%s. %s' % (place,description)
         else:
-            if place == "":
+            if not place:
                 text = '%s. %s' % (date,description)
             else:
                 text = _('%(date)s in %(place)s.') % { 'date' : date,
@@ -202,20 +202,23 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for (family,mrel,frel) in self.person.get_parent_family_id_list():
-            if family == self.person.get_main_parents_family_id():
+        for (family_id,mrel,frel) in self.person.get_parent_family_id_list():
+            if family_id == self.person.get_main_parents_family_id():
                 continue
             
-            father = family.get_father_id()
-            if father:
+            family = self.database.find_family_from_id(family_id)
+	    father_id = family.get_father_id()
+            if father_id:
+	    	father = self.database.find_person_from_id(father_id)
                 fname = father.get_primary_name().get_regular_name()
                 frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Father'),fname,frel)
             else:
                 self.write_p_entry(_('Father'),'','')
 
-            mother = family.get_mother_id()
-            if mother:
+            mother_id = family.get_mother_id()
+            if mother_id:
+	    	mother = self.database.find_person_from_id(mother_id)
                 fname = mother.get_primary_name().get_regular_name()
                 frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Mother'),fname,frel)
@@ -257,7 +260,7 @@ class IndivComplete(Report.Report):
         
     def write_families(self):
 
-        if len(self.person.get_family_id_list()) == 0:
+        if not len(self.person.get_family_id_list()):
             return
         
         self.d.start_table("three","IDS-IndTable")
@@ -294,7 +297,7 @@ class IndivComplete(Report.Report):
                     self.write_fact(event)
 
             child_id_list = family.get_child_id_list()
-            if len(child_id_list) > 0:
+            if len(child_id_list):
                 self.d.start_row()
                 self.normal_cell(_("Children"))
 
