@@ -641,6 +641,7 @@ class Gramps:
     def tool_callback(self,val):
         if val:
             Utils.modified()
+            self.alpha_page = {}
             self.full_update()
         
     def full_update(self):
@@ -1540,6 +1541,7 @@ class Gramps:
         """Call the import plugin"""
         plugin_function(self.db,self.active_person,self.tool_callback)
         self.topWindow.set_title("%s - GRAMPS" % self.db.getSavePath())
+        self.full_update()
 
     def on_preferences_activate(self,obj):
         GrampsCfg.display_preferences_box(self.db)
