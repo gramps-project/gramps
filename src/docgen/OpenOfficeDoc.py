@@ -413,6 +413,8 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 
             if style.get_padding() != 0.0:
 	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
+            if style.get_header_level() > 0:
+                self.f.write('fo:keep-with-next="true" ')
 
             align = style.get_alignment()
 	    if align == TextDoc.PARA_ALIGN_LEFT:
