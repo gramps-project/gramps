@@ -46,6 +46,7 @@ import AutoComp
 import Sources
 import RelLib
 import NameDisplay
+import Date
 import DateEdit
 import DateHandler
 
@@ -84,7 +85,14 @@ class NameEditor:
         self.patronymic_field = self.top.get_widget("patronymic")
         self.combo = self.top.get_widget("alt_surname_list")
         self.date = self.top.get_widget('date')
-        self.date_obj = self.name.get_date_object()
+
+        if self.name:
+            self.srcreflist = self.name.get_source_references()
+            self.date_obj = self.name.get_date_object()
+        else:
+            self.srcreflist = []
+            self.date_obj = Date.Date()
+
         self.date.set_text(DateHandler.displayer.display(self.date_obj))
 
         self.date_check = DateEdit.DateEdit(
@@ -109,11 +117,6 @@ class NameEditor:
         types.sort()
         AutoComp.fill_combo(self.type_combo,types)
         self.type_field = self.type_combo.get_child()
-
-        if self.name:
-            self.srcreflist = self.name.get_source_references()
-        else:
-            self.srcreflist = []
 
         full_name = NameDisplay.displayer.display_name(name)
 
