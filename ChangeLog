@@ -1,3 +1,7 @@
+2004-05-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/RelGraph.py: Convert to db. Change coding style.
+	Use FreeSans as a TrueType font. 
+
 2004-05-04  Don Allingham  <donaldallingham@users.sourceforge.net>
 	* src/gramps_main.py: rebuild tree after importing
 	* src/plugins/ReadGedcom.py: destroy filechooser at proper time
