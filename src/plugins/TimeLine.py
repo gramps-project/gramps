@@ -170,7 +170,7 @@ class TimeLine:
         self.header = 2.0
         
         if self.newpage:
-            self.doc.page_break()
+            self.d.page_break()
         self.d.start_page()
         self.build_grid(low,high,start,stop)
 
@@ -448,7 +448,6 @@ class TimeLineDialog(Report.DrawReportDialog):
         try:
             MyReport = TimeLine(self.db, self.person, 
                     self.filter, title, sort_func, self.doc, self.target_path)
-	    #MyReport.setup()
             MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
