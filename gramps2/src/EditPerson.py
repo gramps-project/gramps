@@ -266,7 +266,7 @@ class EditPerson:
         self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,ACTION_COPY)
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
         self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
-        self.addr_list.connect('drag_begin', self.ev_drag_begin)
+        self.addr_list.connect('drag_begin', self.ad_drag_begin)
 
         self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
         self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
