@@ -886,6 +886,7 @@ class Gramps:
 
     def goto_active_person(self):
         if not self.active_person:
+            self.ptabs.set_current_page(0)
             return
         id = self.active_person.getId()
         if self.id2col.has_key(id):
@@ -1176,7 +1177,7 @@ class Gramps:
     def add_to_person_list(self,person,change):
         key = person.getId()
         val = self.db.getPersonDisplay(person.getId())
-        pg = val[5]
+        pg = unicode(val[5])
         pg = pg[0]
         if self.DataFilter.compare(person):
 
@@ -1346,7 +1347,7 @@ class Gramps:
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
             val = self.db.getPersonDisplay(key)
-            pg = val[5]
+            pg = unicode(val[5])
             if pg:
                 pg = pg[0]
             if datacomp(person):

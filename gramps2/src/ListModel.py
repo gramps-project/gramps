@@ -68,6 +68,9 @@ class ListModel:
             self.double_click = event_func
             self.tree.connect('event',self.button_press)
 
+    def set_reorderable(self,order):
+        self.tree.set_reorderable(order)
+        
     def new_model(self):
         self.model = gtk.ListStore(*self.mylist)
 

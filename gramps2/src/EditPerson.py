@@ -103,44 +103,6 @@ class EditPerson:
         self.attr_delete_btn = self.top.get_widget('attr_delete_btn')
         self.addr_delete_btn = self.top.get_widget('addr_delete_btn')
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object"     : self.on_cancel_edit,
-            "on_up_clicked"             : self.on_up_clicked,
-            "on_down_clicked"           : self.on_down_clicked,
-            "on_add_address_clicked"    : self.on_add_addr_clicked,
-            "on_add_aka_clicked"        : self.on_add_aka_clicked,
-            "on_add_attr_clicked"       : self.on_add_attr_clicked,
-            "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
-            "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
-            "on_aka_update_clicked"     : self.on_aka_update_clicked,
-            "on_apply_person_clicked"   : self.on_apply_person_clicked,
-            "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
-            "on_edit_death_clicked"     : self.on_edit_death_clicked,
-            "on_delete_address_clicked" : self.on_delete_addr_clicked,
-            "on_delete_attr_clicked"    : self.on_delete_attr_clicked,
-            "on_delete_event"           : self.on_delete_event,
-            "on_delete_url_clicked"     : self.on_delete_url_clicked,
-            "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_editperson_switch_page" : self.on_switch_page,
-            "on_event_add_clicked"      : self.on_event_add_clicked,
-            "on_event_delete_clicked"   : self.on_event_delete_clicked,
-            "on_event_update_clicked"   : self.on_event_update_clicked,
-            "on_name_note_clicked"      : self.on_name_note_clicked,
-            "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
-            "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
-            "on_ldsseal_note_clicked"   : self.on_ldsseal_note_clicked,
-            "on_ldsbap_src_clicked"     : self.on_ldsbap_source_clicked,
-            "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
-            "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
-            "on_name_source_clicked"    : self.on_primary_name_source_clicked,
-            "on_update_address_clicked" : self.on_update_addr_clicked,
-            "on_update_attr_clicked"    : self.on_update_attr_clicked,
-            "on_update_url_clicked"     : self.on_update_url_clicked,
-            "on_web_go_clicked"         : self.on_web_go_clicked,
-            })
-
         self.window = self.get_widget("editPerson")
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
@@ -278,8 +240,6 @@ class EditPerson:
             self.is_unknown.set_active(1)
 
         self.nick.set_text(person.getNickName())
-        self.update_birth_death()
-
         self.load_person_image()
         
         # set notes data
@@ -313,6 +273,52 @@ class EditPerson:
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
         self.addr_list.connect('drag_data_received',
                                self.ad_drag_data_received)
+
+        self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
+        self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
+
+        self.ddate_check = DateEdit(self.ddate,self.get_widget("death_stat"))
+        self.ddate_check.set_calendar(self.death.getDateObj().get_calendar())
+
+        self.top.signal_autoconnect({
+            "destroy_passed_object"     : self.on_cancel_edit,
+            "on_up_clicked"             : self.on_up_clicked,
+            "on_down_clicked"           : self.on_down_clicked,
+            "on_add_address_clicked"    : self.on_add_addr_clicked,
+            "on_add_aka_clicked"        : self.on_add_aka_clicked,
+            "on_add_attr_clicked"       : self.on_add_attr_clicked,
+            "on_add_url_clicked"        : self.on_add_url_clicked,
+            "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
+            "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
+            "on_aka_update_clicked"     : self.on_aka_update_clicked,
+            "on_apply_person_clicked"   : self.on_apply_person_clicked,
+            "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
+            "on_edit_death_clicked"     : self.on_edit_death_clicked,
+            "on_delete_address_clicked" : self.on_delete_addr_clicked,
+            "on_delete_attr_clicked"    : self.on_delete_attr_clicked,
+            "on_delete_event"           : self.on_delete_event,
+            "on_delete_url_clicked"     : self.on_delete_url_clicked,
+            "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
+            "on_edit_properties_clicked": self.gallery.popup_change_description,
+            "on_editperson_switch_page" : self.on_switch_page,
+            "on_event_add_clicked"      : self.on_event_add_clicked,
+            "on_event_delete_clicked"   : self.on_event_delete_clicked,
+            "on_event_update_clicked"   : self.on_event_update_clicked,
+            "on_name_note_clicked"      : self.on_name_note_clicked,
+            "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
+            "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
+            "on_ldsseal_note_clicked"   : self.on_ldsseal_note_clicked,
+            "on_ldsbap_src_clicked"     : self.on_ldsbap_source_clicked,
+            "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
+            "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
+            "on_name_source_clicked"    : self.on_primary_name_source_clicked,
+            "on_update_address_clicked" : self.on_update_addr_clicked,
+            "on_update_attr_clicked"    : self.on_update_attr_clicked,
+            "on_update_url_clicked"     : self.on_update_url_clicked,
+            "on_web_go_clicked"         : self.on_web_go_clicked,
+            })
+
+        self.update_birth_death()
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -459,6 +465,7 @@ class EditPerson:
         self.seal_stat = obj.get_data("val")
     
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        print context, info, time
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
@@ -478,8 +485,9 @@ class EditPerson:
             self.redraw_event_list()
 
     def ev_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
-        
+        store, iter = widget.get_selection().get_selected()
+        ev = store.get_value(iter,4)
+
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('pevent',self.person.getId(),pickled));
@@ -625,14 +633,12 @@ class EditPerson:
             self.update_birth = 0
             self.update_birth_info()
             self.dplace.set_text(prev_dtext)
-        self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
 
         # Update death with new values, make sure birth values don't change
         if self.update_death:
             self.update_death = 0
             self.update_death_info()
             self.bplace.set_text(prev_btext)
-        self.ddate_check = DateEdit(self.ddate,self.get_widget("death_stat"))
 
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
@@ -899,7 +905,9 @@ class EditPerson:
     def update_birth_death(self):
         self.bdate.set_text(self.birth.getDate())
         self.bplace.set_text(self.birth.getPlaceName())
+        self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
         self.ddate.set_text(self.death.getDate())
+        self.ddate_check.set_calendar(self.death.getDateObj().get_calendar())
         self.dplace.set_text(self.death.getPlaceName())
         self.dplace.set_text(self.death.getPlaceName())
 #        self.bdate.set_position(0)

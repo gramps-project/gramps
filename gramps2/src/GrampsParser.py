@@ -22,6 +22,7 @@ from RelLib import *
 from Date import SingleDate
 
 import string
+import Calendar
 import Utils
 import xml.parsers.expat
     
@@ -421,7 +422,10 @@ class GrampsParser:
             d = self.event.getDateObj()
 
         if attrs.has_key("calendar"):
-            d.set_calendar(int(attrs['calendar']))
+            d.set_calendar_val(int(attrs['calendar']))
+
+        if attrs.has_key("cformat"):
+            d.set_calendar(Calendar.find_calendar(attrs['calendar']))
 
         d.get_start_date().setIsoDate(attrs['start'])
         d.get_stop_date().setIsoDate(attrs['stop'])
@@ -438,7 +442,10 @@ class GrampsParser:
             d = self.event.getDateObj()
 
         if attrs.has_key("calendar"):
-            d.set_calendar(int(attrs['calendar']))
+            d.set_calendar_val(int(attrs['calendar']))
+
+        if attrs.has_key("cformat"):
+            d.set_calendar(Calendar.find_calendar(attrs['calendar']))
 
         d.get_start_date().setIsoDate(attrs['val'])
         

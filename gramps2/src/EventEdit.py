@@ -38,6 +38,7 @@ import const
 import Utils
 import GrampsCfg
 import AutoComp
+import Calendar
 
 from DateEdit import DateEdit
 from Date import compare_dates
@@ -132,14 +133,17 @@ class EventEditor:
             })
 
         menu = gtk.Menu()
-        names = [ _("Gregorian"), _("Julian"), _("Hebrew"), ("French") ]
-        for index in range(0,len(names)):
-            item = gtk.MenuItem(names[index])
-            item.set_data("d",index)
+        index = 0
+        for cobj in Calendar.calendar_names():
+            item = gtk.MenuItem(cobj.TNAME)
+            item.set_data("d",cobj)
             item.connect("activate",self.on_menu_changed)
             item.show()
             menu.append(item)
-        menu.set_active(self.date.get_calendar())
+            if self.date.get_calendar().NAME == cobj.NAME:
+                menu.set_active(index)
+                self.date_check.set_calendar(cobj())
+            index = index + 1
         self.calendar.set_menu(menu)
 
     def add_source(self,obj):
@@ -149,9 +153,11 @@ class EventEditor:
         pass
 
     def on_menu_changed(self,obj):
+        cobj = obj.get_data("d")
         self.date.set(self.date_field.get_text())
-        self.date.set_calendar(obj.get_data("d"))
+        self.date.set_calendar(cobj)
         self.date_field.set_text(self.date.getDate())
+        self.date_check.set_calendar(cobj())
         
     def get_place(self,field,makenew=0):
         text = strip(field.get_text())
