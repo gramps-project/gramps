@@ -289,6 +289,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.toolbar     = self.gtop.get_widget("toolbar1")
         self.toolbardock = self.gtop.get_widget("dockitem2")
         self.filter_text = self.gtop.get_widget('filter')
+        self.filter_label= self.gtop.get_widget('filter_label')
         self.qual_label  = self.gtop.get_widget("qual")
         self.child_type  = self.gtop.get_widget("childtype")
         self.spouse_tab  = self.gtop.get_widget("lab_or_list")
@@ -953,7 +954,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         all.add_rule(GenericFilter.FamilyWithIncompleteEvent([]))
         filter_list.append(all)
 
-        all = GenericFilter.GenericFilter()
+        all = GenericFilter.ParamFilter()
         all.set_name(_("People probably alive"))
         all.add_rule(GenericFilter.ProbablyAlive([]))
         filter_list.append(all)
@@ -1604,9 +1605,12 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         if qual:
             self.filter_text.show()
             self.filter_text.set_sensitive(1)
+            self.filter_label.show()
+            self.filter_label.set_text(mime_filter.get_rules()[0].labels[0])
         else:
             self.filter_text.hide()
             self.filter_text.set_sensitive(0)
+            self.filter_label.hide()
 
     def new_after_edit(self,epo,val):
         self.change_active_person(epo.person)

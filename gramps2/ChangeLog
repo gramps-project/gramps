@@ -1,3 +1,9 @@
+2005-04-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gramps.glade: People View: Add label for filter text input field.
+	* src/GenericFilter.py (ProbablyAlive): Add check for input parameter,
+	(HasSourceOf): get handle only once, removed unused code.
+	* src/gramps_main.py: Show label for filter input field.
+
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GenericFilter.py: added a current year parameter to probably alive rule.
 	* src/Utils.py: added a current year parameter to probably alive function.
