@@ -1,3 +1,15 @@
+2005-03-11  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (SourceNote): Add methods for detection and removal
+	source references in itself and child objects; (SourceNote,Person,
+	Family,Event,Place,Source,MediaRef): Add method for determining child
+	sourceref-capable objects.
+	* src/Utils.py (get_source_referents): Add function.
+	* src/EditSource.py (display_references): Use new sourceref detection;
+	(DelSrcQuery.__init__): Accept object lists; (DelSrcQuery.query_response):
+	Use new sourceref removal.
+	* src/SourceView.py (on_delete_clicked): Use new sourceref detection;
+	(delete_source,is_used): Remove functions.
+
 2005-03-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (PersonWithIncompleteEvent, 
 	FamilyWithIncompleteEvent, ProbablyAlive,PeoplePrivate):

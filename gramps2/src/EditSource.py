@@ -256,293 +256,55 @@ class EditSource:
         self.top.present()
 
     def display_references(self):
-        p_event_list = []
-        p_event_list_media = []
-        p_event_list_media_attr = []
-        p_attr_list = []
-        p_addr_list = []
-        p_name_list = []
-        p_media_list = []
-        p_media_attr_list = []
-        p_lds_list = []
-        m_list = []
-        m_attr_list = []
-        f_event_list = []
-        f_event_list_media = []
-        f_event_list_media_attr = []
-        f_attr_list = []
-        f_media_list = []
-        f_media_attr_list = []
-        f_lds_list = []
-        person_list = []
-        family_list = []
-        p_list = []
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key) 
-            name = p.get_title()
-            for sref in p.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    p_list.append(name)
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            name = self.name_display(p)
-            # Sources of person
-            for sref in p.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    person_list.append((name,''))
-            for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
-                    # Personal event sources
-                    for sref in event.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            p_event_list.append((name,event.get_name()))
-                    # personal event's media
-                    for v in event.get_media_list():
-                        # personal event's media's sources
-                        for sref in v.get_source_references():
-                            if sref.get_base_handle() == self.source.get_handle():
-                                o_handle = v.get_reference_handle()
-                                o = self.db.get_object_from_handle(o_handle)
-                                p_event_list_media.append((name,o.get_description()))
-                        for vv in v.get_attribute_list():
-                            # personal event's media's attribute's sources
-                            for sref in vv.get_source_references():
-                                if sref.get_base_handle() == self.source.get_handle():
-                                    p_event_list_media_attr.append((name,vv.get_type()))
-            # personal LDS events Sources
-            if p.get_lds_baptism():
-                for sref in p.get_lds_baptism().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_lds_list.append((name,_('LDS Baptism')))
-            if p.get_lds_endowment():
-                for sref in p.get_lds_endowment().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_lds_list.append((name,_('Endowment')))
-            if p.get_lds_sealing():
-                for sref in p.get_lds_sealing().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_lds_list.append((name,_('Sealed to parents')))
+        
+        (person_list,family_list,event_list,
+            place_list,source_list,media_list
+            ) = Utils.get_source_referents(self.source.get_handle(),self.db)
 
-            # Personal attribute's sources
-            for v in p.get_attribute_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_attr_list.append((name,v.get_type()))
-            # personal Names' sources
-            for v in p.get_alternate_names() + [p.get_primary_name()]:
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_name_list.append((name,v.get_name()))
-            # personal addresses' sources
-            for v in p.get_address_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        p_addr_list.append((name,v.get_street()))
-            # personal media sources
-            for v in p.get_media_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        o_handle = v.get_reference_handle()
-                        o = self.db.get_object_from_handle(o_handle)
-                        p_media_list.append((name,o.get_description()))
-                for vv in v.get_attribute_list():
-                    # personal media's attribute's sources
-                    for sref in vv.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            p_media_attr_list.append((name,vv.get_type()))
-        # personal media's sources
-        for object_handle in self.db.get_media_object_handles():
-            obj = self.db.get_object_from_handle(object_handle)
-            name = obj.get_description()
-            for sref in obj.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    m_list.append(name)
-            for v in obj.get_attribute_list():
-                # personal media attribute's sources
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        m_attr_list.append((name,v.get_type()))
-
-        for family_handle in self.db.get_family_handles():
-            family = self.db.get_family_from_handle(family_handle)
-            f_id = family.get_father_handle()
-            m_id = family.get_mother_handle()
-            if f_id:
-                f = self.db.get_person_from_handle(f_id)
-            if m_id:
-                m = self.db.get_person_from_handle(m_id)
-            if f_id and m_id:
-                name = _("%(father)s and %(mother)s") % {
-                    "father" : self.name_display(f),
-                    "mother" : self.name_display(m)}
-            elif f_id:
-                name = self.name_display(f)
-            else:
-                name = self.name_display(m)
-            for v_id in family.get_event_list():
-                v = self.db.get_event_from_handle(v_id)
-                if not v:
-                    continue
-                # Family events sources
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        f_event_list.append((name,v.get_name()))
-                # Family event's media
-                for vv in v.get_media_list():
-                    # Family event's media's sources
-                    for sref in vv.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            o_handle = vv.get_reference_handle()
-                            o = self.db.get_object_from_handle(o_handle)
-                            f_event_list_media.append((name,o.get_description()))
-                    for vvv in vv.get_attribute_list():
-                        # Family event's media's attribute's sources
-                        for sref in vvv.get_source_references():
-                            if sref.get_base_handle() == self.source.get_handle():
-                                f_event_list_media_attr.append((name,vvv.get_type()))
-            # Family LDS events' sources
-            if family.get_lds_sealing():
-                for sref in family.get_lds_sealing().get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        f_lds_list.append((name,_('Sealed to spouse')))
-            # Family sources
-            for sref in family.get_source_references():
-                if sref.get_base_handle() == self.source.get_handle():
-                    family_list.append((name,''))
-            # Family attributes
-            for v in family.get_attribute_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        f_attr_list.append((name,v.get_type()))
-            # Family media
-            for v in family.get_media_list():
-                # Family media sources
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == self.source.get_handle():
-                        o_handle = v.get_reference_handle()
-                        o = self.db.get_object_from_handle(o_handle)
-                        f_media_list.append((name,o.get_description()))
-                for vv in v.get_attribute_list():
-                    # Family media's attribute's sources
-                    for sref in vv.get_source_references():
-                        if sref.get_base_handle() == self.source.get_handle():
-                            f_media_attr_list.append((name,vv.get_type()))
+        any = person_list or family_list or event_list \
+                or place_list or source_list or media_list
 
         slist = self.top_window.get_widget('slist')
 
-        titles = [(_('Source Type'),0,150),(_('Object'),1,150),(_('Value'),2,150)]
+        titles = [(_('Object Type'),0,150),(_('ID'),1,50),(_('Name'),2,150)]
         
         self.model = ListModel.ListModel(slist,titles)
-        any = 0
 
-        if len(person_list) > 0:
-            any = 1
-            for p in person_list:
-                self.model.add([_("Persons"),p[0],''])
+        for handle in person_list:
+            person = self.db.get_person_from_handle(handle)
+            name = self.name_display(person)
+            gramps_id = person.get_gramps_id()
+            self.model.add([_("Person"),gramps_id,name])
 
-        if len(p_event_list) > 0:
-            any = 1
-            for p in p_event_list:
-                self.model.add([_("Individual Events"),p[0],
-                                const.display_pevent(p[1])])
+        for handle in family_list:
+            family = self.db.get_family_from_handle(handle)
+            name = Utils.family_name(family,self.db)
+            gramps_id = family.get_gramps_id()
+            self.model.add([_("Family"),gramps_id,name])
 
-        if len(p_event_list_media) > 0:
-            any = 1
-            for p in p_event_list_media:
-                self.model.add([_("Individual Events Galleries"),p[0],p[1]])
+        for handle in event_list:
+            event = self.db.get_event_from_handle(handle)
+            name = event.get_name()
+            gramps_id = event.get_gramps_id()
+            self.model.add([_("Event"),gramps_id,name])
 
-        if len(p_event_list_media_attr) > 0:
-            any = 1
-            for p in p_event_list_media_attr:
-                self.model.add([_("Individual Events Galleries' Attributes"),p[0],p[1]])
+        for handle in place_list:
+            place = self.db.get_place_from_handle(handle)
+            name = place.get_title()
+            gramps_id = place.get_gramps_id()
+            self.model.add([_("Place"),gramps_id,name])
 
-        if len(p_attr_list) > 0:
-            any = 1
-            for p in p_attr_list:
-                self.model.add([_("Individual Attributes"),p[0],
-                               const.display_pattr(p[1])])
-        if len(p_name_list) > 0:
-            any = 1
-            for p in p_name_list:
-                self.model.add([_("Individual Names"),p[0],p[1]])
+        for handle in source_list:
+            source = self.db.get_source_from_handle(handle)
+            name = source.get_title()
+            gramps_id = source.get_gramps_id()
+            self.model.add([_("Source"),gramps_id,name])
 
-        if len(p_media_list) > 0:
-            any = 1
-            for p in p_media_list:
-                self.model.add([_("Individual Galleries"),p[0],p[1]])
-
-        if len(p_media_attr_list) > 0:
-            any = 1
-            for p in p_media_attr_list:
-                self.model.add([_("Individual Galleries' Attributes"),p[0],p[1]])
-
-        if len(p_lds_list) > 0:
-            any = 1
-            for p in p_lds_list:
-                self.model.add([_("Individual LDS events"),p[0],p[1]])
-
-        if len(family_list) > 0:
-            any = 1
-            for p in family_list:
-                self.model.add([_("Families"),p[0],''])
-
-        if len(f_event_list) > 0:
-            any = 1
-            for p in f_event_list:
-                self.model.add([_("Family Events"),p[0],
-                                const.display_fevent(p[1])])
-
-        if len(f_lds_list) > 0:
-            any = 1
-            for p in f_lds_list:
-                self.model.add([_("Family LDS events"),p[0],p[1]])
-
-        if len(f_event_list_media) > 0:
-            any = 1
-            for p in f_event_list_media:
-                self.model.add([_("Family Events Galleries"),p[0],p[1]])
-
-        if len(f_event_list_media_attr) > 0:
-            any = 1
-            for p in f_event_list_media_attr:
-                self.model.add([_("Family Events Galleries' Attributes"),p[0],p[1]])
-
-        if len(f_attr_list) > 0:
-            any = 1
-            for p in f_event_list:
-                self.model.add([_("Family Attributes"),p[0],
-                                const.display_fattr(p[1])])
-
-        if len(f_media_list) > 0:
-            any = 1
-            for p in f_media_list:
-                self.model.add([_("Family Galleries"),p[0],p[1]])
-
-        if len(f_media_attr_list) > 0:
-            any = 1
-            for p in f_media_attr_list:
-                self.model.add([_("Family Galleries' Attributes"),p[0],p[1]])
-
-        if len(m_list) > 0:
-            any = 1
-            for p in m_list:
-                self.model.add([_("Media Objects"),p,''])
-
-        if len(m_attr_list) > 0:
-            any = 1
-            for p in m_attr_list:
-                self.model.add([_("Media Attributes"),p[0],p[1]])
-
-        if len(p_list) > 0:
-            any = 1
-            for p in p_list:
-                self.model.add([_("Places"),p,''])
-        
-        if len(p_addr_list) > 0:
-            any = 1
-            for p in p_addr_list:
-                self.model.add([_("Addresses"),p[0],p[1]])
+        for handle in media_list:
+            media = self.db.get_object_from_handle(handle)
+            name = media.get_description()
+            gramps_id = media.get_gramps_id()
+            self.model.add([_("Media"),gramps_id,name])
 
         if any:
             Utils.bold_label(self.refs_label)
@@ -618,70 +380,50 @@ class EditSource:
 
 
 class DelSrcQuery:
-    def __init__(self,source,db,update):
+    def __init__(self,source,db,the_lists,update):
         self.source = source
         self.db = db
+        self.the_lists = the_lists
         self.update = update
-
-    def delete_source(self,obj):
-        m = 0
-        l = []
-        for sref in obj.get_source_references():
-            if sref.get_base_handle() != self.source.get_handle():
-                l.append(sref)
-            else:
-                m = 1
-        if m:
-            obj.set_source_reference_list(l)
-        return m
 
     def query_response(self):
         trans = self.db.transaction_begin()
         
-        for key in self.db.get_person_handles(sort_handles=False):
-            commit = 0
-            p = self.db.get_person_from_handle(key)
-            for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
-                v = self.db.get_event_from_handle(v_id)
-                if v:
-                    commit += self.delete_source(v)
+        (person_list,family_list,event_list,
+            place_list,source_list,media_list) = self.the_lists
 
-            for v in p.get_attribute_list():
-                commit += self.delete_source(v)
+        src_handle_list = [self.source.get_handle()]
 
-            for v in p.get_alternate_names() + [p.get_primary_name()]:
-                commit += self.delete_source(v)
+        for handle in person_list:
+            person = self.db.get_person_from_handle(handle)
+            person.remove_source_references(src_handle_list)
+            self.db.commit_person(person,trans)
 
-            for v in p.get_address_list():
-                commit += self.delete_source(v)
-            if commit > 0:
-                self.db.commit_person(p,trans)
+        for handle in family_list:
+            family = self.db.get_family_from_handle(handle)
+            family.remove_source_references(src_handle_list)
+            self.db.commit_family(family,trans)
 
-        for p_id in self.db.get_family_handles():
-            commit = 0
-            p = self.db.get_family_from_handle(p_id)
-            for v_id in p.get_event_list():
-                v = self.db.get_event_from_handle(v_id)
-                if v:
-                    commit += self.delete_source(v)
-                    self.db.commit_event(v,trans)
+        for handle in event_list:
+            event = self.db.get_event_from_handle(handle)
+            event.remove_source_references(src_handle_list)
+            self.db.commit_event(event,trans)
 
-            for v in p.get_attribute_list():
-                commit += self.delete_source(v)
-                self.db.commit_event(v,trans)
-            if commit > 0:
-                self.db.commit_family(p,trans)
+        for handle in place_list:
+            place = self.db.get_place_from_handle(handle)
+            place.remove_source_references(src_handle_list)
+            self.db.commit_place(place,trans)
 
-        for p_id in self.db.get_media_object_handles():
-            p = self.db.get_object_from_handle(p_id)
-            if self.delete_source(p):
-                self.db.commit_media_object(p,trans)
+        for handle in source_list:
+            source = self.db.get_source_from_handle(handle)
+            source.remove_source_references(src_handle_list)
+            self.db.commit_source(source,trans)
 
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key)
-            if self.delete_source(self.db.get_place_from_handle(key)):
-                self.db.commit_place(p,trans)
-
+        for handle in media_list:
+            media = self.db.get_object_from_handle(handle)
+            media.remove_source_references(src_handle_list)
+            self.db.commit_media_object(media,trans)
+        
         self.db.remove_source(self.source.get_handle(),trans)
         self.db.transaction_commit(trans,_("Delete Source (%s)") % self.source.get_title())
         self.update(self.source.get_handle())
