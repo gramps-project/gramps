@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 0.9 CVS\n"
-"POT-Creation-Date: Tue Jan 20 00:58:19 2004\n"
-"PO-Revision-Date: 2004-01-22 09:54+0100\n"
+"POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
+"PO-Revision-Date: 2004-02-10 02:06+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,9 +37,9 @@ msgstr "De gegeven bestandsnaam kon niet worden gevonden."
 
 #: AddSpouse.py:90 ChooseParents.py:57 EditPerson.py:250 FamilyView.py:208
 #: PeopleStore.py:58 SelectChild.py:120 SelectPerson.py:74 gramps_main.py:103
-#: plugins/BookReport.py:612 plugins/FilterEditor.py:315
+#: plugins/BookReport.py:612 plugins/FilterEditor.py:316
 #: plugins/IndivComplete.py:394 plugins/IndivSummary.py:232
-#: plugins/PatchNames.py:145 plugins/RelCalc.py:86 plugins/TimeLine.py:378
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:378
 #: plugins/WebPage.py:322
 msgid "Name"
 msgstr "Naam"
@@ -48,7 +48,7 @@ msgstr "Naam"
 #: MediaView.py:77 PeopleStore.py:58 PlaceView.py:62 SelectChild.py:120
 #: SelectObject.py:86 SelectPerson.py:74 SourceView.py:70 Sources.py:79
 #: Sources.py:175 Witness.py:57 gramps_main.py:103 plugins/PatchNames.py:136
-#: plugins/RelCalc.py:86
+#: plugins/RelCalc.py:87
 msgid "ID"
 msgstr "ID"
 
@@ -65,12 +65,12 @@ msgstr "Echtgenoot/Partner van %s kiezen"
 msgid "Choose Spouse/Partner"
 msgstr "Echtgenoot/Partner kiezen"
 
-#: AddSpouse.py:116 const.py:493 const.py:501 plugins/FamilyGroup.py:304
-#: plugins/FamilyGroup.py:306
+#: AddSpouse.py:116 const.py:424 const.py:432 plugins/FamilyGroup.py:306
+#: plugins/FamilyGroup.py:308
 msgid "Married"
 msgstr "Getrouwd"
 
-#: AddSpouse.py:228 const.py:495 const.py:503
+#: AddSpouse.py:228 const.py:426 const.py:434
 msgid "Partners"
 msgstr "Partners"
 
@@ -237,10 +237,10 @@ msgid "Choose Parents"
 msgstr "Ouders kiezen"
 
 #: ChooseParents.py:129 ChooseParents.py:130 ChooseParents.py:520
-#: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:170
+#: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:171
 #: gramps.glade:4521 gramps.glade:4714 gramps.glade:5154 gramps.glade:5334
 #: gramps.glade:6957 gramps.glade:7203 gramps.glade:7811 gramps.glade:7982
-#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:153 plugins/GraphViz.py:398
+#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:155 plugins/GraphViz.py:398
 #: plugins/GraphViz.py:399
 msgid "Birth"
 msgstr "Geboorte"
@@ -273,14 +273,14 @@ msgstr "Ouders aanpassen"
 msgid "Parent"
 msgstr "Ouder"
 
-#: ChooseParents.py:540 FamilyView.py:840 plugins/FamilyGroup.py:212
+#: ChooseParents.py:540 FamilyView.py:882 plugins/FamilyGroup.py:214
 #: plugins/IndivComplete.py:213 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:434 plugins/IndivSummary.py:293
 #: plugins/WebPage.py:341 plugins/WebPage.py:344
 msgid "Mother"
 msgstr "Moeder"
 
-#: ChooseParents.py:541 FamilyView.py:839 plugins/FamilyGroup.py:199
+#: ChooseParents.py:541 FamilyView.py:881 plugins/FamilyGroup.py:201
 #: plugins/IndivComplete.py:205 plugins/IndivComplete.py:207
 #: plugins/IndivComplete.py:429 plugins/IndivSummary.py:279
 #: plugins/WebPage.py:340 plugins/WebPage.py:343
@@ -338,7 +338,7 @@ msgstr "Interne fout"
 msgid "Edit Person"
 msgstr "Persoon bewerken"
 
-#: EditPerson.py:230 EditPerson.py:256 EditPlace.py:109 const.py:393
+#: EditPerson.py:230 EditPerson.py:256 EditPlace.py:109 const.py:368
 #: plugins/pafexport.glade:217
 msgid "Description"
 msgstr "Beschrijving"
@@ -348,7 +348,7 @@ msgstr "Beschrijving"
 msgid "Event"
 msgstr "Gebeurtenis"
 
-#: EditPerson.py:231 EditPerson.py:244 Marriage.py:172 VersionControl.py:117
+#: EditPerson.py:231 EditPerson.py:244 Marriage.py:172 VersionControl.py:118
 #: filters/After.py:55 filters/Before.py:55
 msgid "Date"
 msgstr "Datum"
@@ -360,7 +360,7 @@ msgstr "Locatie"
 
 #: EditPerson.py:238 EditSource.py:191 ImageSelect.py:683 ImageSelect.py:855
 #: ImageSelect.py:951 Marriage.py:173 marriage.glade:888
-#: plugins/FilterEditor.py:315 plugins/PatchNames.py:142
+#: plugins/FilterEditor.py:316 plugins/PatchNames.py:142
 msgid "Value"
 msgstr "Waarde"
 
@@ -383,18 +383,18 @@ msgstr "Type"
 msgid "Path"
 msgstr "Pad"
 
-#: EditPerson.py:475 GrampsCfg.py:73 const.py:175 gramps.glade:4609
+#: EditPerson.py:475 GrampsCfg.py:73 const.py:176 gramps.glade:4609
 #: gramps.glade:4802 gramps.glade:5220 gramps.glade:5400 gramps.glade:7045
 #: gramps.glade:7291 gramps.glade:7877 gramps.glade:8048
 msgid "None"
 msgstr "Geen"
 
-#: EditPerson.py:492 EditSource.py:173
+#: EditPerson.py:492 EditPlace.py:457 EditSource.py:173
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s en %(mother)s"
 
-#: EditPerson.py:500 choose.glade:218 const.py:140 plugins/Check.py:294
-#: plugins/FamilyGroup.py:657 plugins/IndivComplete.py:275
+#: EditPerson.py:500 choose.glade:218 const.py:141 plugins/Check.py:294
+#: plugins/FamilyGroup.py:659 plugins/IndivComplete.py:275
 #: plugins/IndivSummary.py:172 plugins/WebPage.py:591 select_person.glade:218
 msgid "unknown"
 msgstr "onbekend"
@@ -549,14 +549,14 @@ msgstr ""
 
 # geboorte
 #: FamilyView.py:53 PedView.py:45 plugins/AncestorChart.py:52
-#: plugins/AncestorChart2.py:49 plugins/DesGraph.py:52
+#: plugins/AncestorChart2.py:51 plugins/DesGraph.py:52
 #: plugins/DescendReport.py:50
 msgid "b."
 msgstr "b."
 
 # dood
 #: FamilyView.py:54 PedView.py:46 plugins/AncestorChart.py:53
-#: plugins/AncestorChart2.py:50 plugins/DesGraph.py:53
+#: plugins/AncestorChart2.py:52 plugins/DesGraph.py:53
 #: plugins/DescendReport.py:51
 msgid "d."
 msgstr "d."
@@ -571,69 +571,79 @@ msgstr "Geslacht"
 msgid "Status"
 msgstr "Status"
 
-#: FamilyView.py:301 PeopleView.py:384
+# Nog geen definieve vertaling gevonden
+#: FamilyView.py:302 FamilyView.py:310 FamilyView.py:331 FamilyView.py:338
+#: FamilyView.py:359 FamilyView.py:368 FamilyView.py:389 FamilyView.py:398
+#: FamilyView.py:438 FamilyView.py:444 FamilyView.py:502 FamilyView.py:508
+#: FamilyView.py:970 FamilyView.py:976 FamilyView.py:1008 FamilyView.py:1014
+#: PedView.py:493 PedView.py:503 PeopleView.py:380 PeopleView.py:393
+#: gramps.glade:781 gramps_main.py:399
+msgid "Home"
+msgstr "Begin"
+
+#: FamilyView.py:303 PeopleView.py:381
 msgid "Add Bookmark"
 msgstr "Favoriet toevoegen"
 
 # Mensen
-#: FamilyView.py:304 FamilyView.py:325 FamilyView.py:348 FamilyView.py:371
-#: PedView.py:497 PeopleView.py:392
+#: FamilyView.py:306 FamilyView.py:334 FamilyView.py:364 FamilyView.py:394
+#: PedView.py:499 PeopleView.py:389
 msgid "People Menu"
 msgstr "Personen menu"
 
-#: FamilyView.py:345 FamilyView.py:368 FamilyView.py:940 FamilyView.py:971
+#: FamilyView.py:361 FamilyView.py:391 FamilyView.py:989 FamilyView.py:1027
 msgid "Add parents"
 msgstr "Ouders toevoegen"
 
-#: FamilyView.py:401
+#: FamilyView.py:429
 msgid "Child Menu"
 msgstr "Kinderen menu"
 
-#: FamilyView.py:420
+#: FamilyView.py:455
 msgid "Make the selected child an active person"
 msgstr "Van het geselecteerde kind een actief persoon maken"
 
-#: FamilyView.py:421 FamilyView.py:939 FamilyView.py:970
+#: FamilyView.py:456 FamilyView.py:988 FamilyView.py:1026
 msgid "Edit the child/parent relationships"
 msgstr "Ouder/kind relaties bewerken"
 
-#: FamilyView.py:422
+#: FamilyView.py:457
 msgid "Edit the selected child"
 msgstr "Het geselecteerde kind bewerken"
 
-#: FamilyView.py:423
+#: FamilyView.py:458
 msgid "Remove the selected child"
 msgstr "Het geselecteerde kind verwijderen"
 
-#: FamilyView.py:458
+#: FamilyView.py:493
 msgid "Spouse Menu"
 msgstr "Echtgenoot menu"
 
-#: FamilyView.py:477
+#: FamilyView.py:519
 msgid "Make the selected spouse an active person"
 msgstr "Van de geselecteerde echtgenoot een actief persoon maken"
 
-#: FamilyView.py:478
+#: FamilyView.py:520
 msgid "Edit relationship"
 msgstr "Relatie bewerken"
 
-#: FamilyView.py:479
+#: FamilyView.py:521
 msgid "Remove the selected spouse"
 msgstr "Geselecteerde echtgenoot verwijderen"
 
-#: FamilyView.py:480
+#: FamilyView.py:522
 msgid "Edit the selected spouse"
 msgstr "Geselecteerde echtgenoot bewerken"
 
-#: FamilyView.py:481
+#: FamilyView.py:523
 msgid "Set the selected spouse as the preferred spouse"
 msgstr "De geselecteerde echtgenoot als voorkeursechtgenoot instellen"
 
-#: FamilyView.py:682
+#: FamilyView.py:724
 msgid "Remove %s as a spouse of %s?"
 msgstr "%s als echtgenoot van %s verwijderen?"
 
-#: FamilyView.py:683
+#: FamilyView.py:725
 msgid ""
 "Removing a spouse removes the relationship between the spouse and the active "
 "person. It does not remove the spouse from the database"
@@ -642,11 +652,15 @@ msgstr ""
 "actieve persoon en de echtgenoot. De echtgenoot zelf wordt niet uit de "
 "database verwijderd. "
 
-#: FamilyView.py:686
+#: FamilyView.py:728
 msgid "_Remove Spouse"
 msgstr "Echtgenoot _verwijderen"
 
-#: FamilyView.py:856
+#: FamilyView.py:857
+msgid "<double click to add spouse>"
+msgstr "<dubbelklikken om echtgenoot toe te voegen>"
+
+#: FamilyView.py:898
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
@@ -654,40 +668,40 @@ msgstr ""
 "%s: %s\n"
 "\tRelatie: %s"
 
-#: FamilyView.py:858
+#: FamilyView.py:900
 msgid "%s: unknown"
 msgstr "%s: onbekend"
 
-#: FamilyView.py:892 Plugins.py:457 Plugins.py:458 Plugins.py:459
-#: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:176
-#: const.py:496 const.py:504 gramps.glade:4631 gramps.glade:4824
+#: FamilyView.py:934 Plugins.py:457 Plugins.py:458 Plugins.py:459
+#: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:177
+#: const.py:427 const.py:435 gramps.glade:4631 gramps.glade:4824
 #: gramps.glade:5242 gramps.glade:5422 gramps.glade:7067 gramps.glade:7313
 #: gramps.glade:7899 gramps.glade:8070 gramps_main.py:1648
 #: plugins/WebPage.py:336
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: FamilyView.py:919
+#: FamilyView.py:961
 msgid "Parents Menu"
 msgstr "Ouders menu"
 
-#: FamilyView.py:938 FamilyView.py:969
+#: FamilyView.py:987 FamilyView.py:1025
 msgid "Make the selected parents the active family"
 msgstr "Van de geselecteerde ouders de actieve familie maken"
 
-#: FamilyView.py:941 FamilyView.py:972
+#: FamilyView.py:990 FamilyView.py:1028
 msgid "Remove parents"
 msgstr "Ouders verwijderen"
 
-#: FamilyView.py:950
+#: FamilyView.py:999
 msgid "Spouse Parents Menu"
 msgstr "Schoonouders menu"
 
-#: FamilyView.py:1034 FamilyView.py:1049
+#: FamilyView.py:1090 FamilyView.py:1105
 msgid "Remove Parents of %s"
 msgstr "De ouders van %s verwijderen"
 
-#: FamilyView.py:1035 FamilyView.py:1050
+#: FamilyView.py:1091 FamilyView.py:1106
 msgid ""
 "Removing the parents of a person removes the person as a child of the "
 "parents. The parents are not removed from the database, and the relationship "
@@ -697,15 +711,15 @@ msgstr ""
 "als kind van de ouders. De ouders worden niet uit de database verwijderd en "
 "de relatie tussen de ouders blijft ook behouden."
 
-#: FamilyView.py:1039 FamilyView.py:1054
+#: FamilyView.py:1095 FamilyView.py:1110
 msgid "_Remove Parents"
 msgstr "Ouders _verwijderen"
 
-#: FamilyView.py:1156
+#: FamilyView.py:1212
 msgid "Attempt to Reorder Children Failed"
 msgstr "Poging tot ordenen van de kinderen is mislukt"
 
-#: FamilyView.py:1157
+#: FamilyView.py:1213
 msgid "Children must be ordered by their birth dates."
 msgstr "Kinderen moet gerangschikt worden via hun geboortedata."
 
@@ -719,7 +733,7 @@ msgstr "Alle personen"
 msgid "Qualifier"
 msgstr "Beperking"
 
-#: Filter.py:82 GenericFilter.py:103 VersionControl.py:304 rule.glade:1255
+#: Filter.py:82 GenericFilter.py:104 VersionControl.py:305 rule.glade:1255
 msgid "No description"
 msgstr "Geen beschrijving"
 
@@ -748,83 +762,86 @@ msgstr "Media-object zoeken"
 msgid "French Republican"
 msgstr "Franse republiek"
 
-#: GenericFilter.py:100
+#: GenericFilter.py:101
 msgid "Miscellaneous filters"
 msgstr "Overige filters"
 
-#: GenericFilter.py:132 GenericFilter.py:266 GenericFilter.py:285
-#: GenericFilter.py:308 GenericFilter.py:913 GenericFilter.py:1215
+#: GenericFilter.py:133 GenericFilter.py:253 GenericFilter.py:272
+#: GenericFilter.py:295 GenericFilter.py:900 GenericFilter.py:1202
 msgid "General filters"
 msgstr "Algemene filters"
 
-#: GenericFilter.py:135
+#: GenericFilter.py:136
 msgid "Matches everyone in the database"
 msgstr "Vindt alle personen in de database"
 
-#: GenericFilter.py:149 GenericFilter.py:257 GenericFilter.py:325
-#: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:544
-#: GenericFilter.py:589 GenericFilter.py:687 GenericFilter.py:739
-#: GenericFilter.py:830 choose.glade:536 gramps.glade:3370 imagesel.glade:552
+#: GenericFilter.py:150 GenericFilter.py:244 GenericFilter.py:312
+#: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:531
+#: GenericFilter.py:576 GenericFilter.py:674 GenericFilter.py:726
+#: GenericFilter.py:817 choose.glade:536 gramps.glade:3370 imagesel.glade:552
 #: imagesel.glade:1409 mergedata.glade:468 mergedata.glade:1060
-#: plugins/FilterEditor.py:460
+#: plugins/FilterEditor.py:461
 msgid "ID:"
 msgstr "ID:"
 
-#: GenericFilter.py:160
+#: GenericFilter.py:161
 msgid "Relationship filters"
 msgstr "Relatiefilters"
 
-#: GenericFilter.py:163
+#: GenericFilter.py:164
 msgid ""
 "Matches the ancestors of two people back to a common ancestor, producing the "
 "relationship path between two people."
-msgstr "Zoekt onder de voorouders van twee personen, naar de gemeenschappelijke voorouder, om op die manier de familierelatie tussen twee personen te vinden."
+msgstr ""
+"Zoekt onder de voorouders van twee personen, naar de gemeenschappelijke "
+"voorouder, om op die manier de familierelatie tussen twee personen te vinden."
 
 # opgegeven ipv gespecificeerde?
-#: GenericFilter.py:263
+#: GenericFilter.py:250
 msgid "Matches the person with a specified GRAMPS ID"
 msgstr "Vindt de persoon met de gespecificeerde GRAMPS-ID"
 
-#: GenericFilter.py:288
+#: GenericFilter.py:275
 msgid "Matches all people whose records are complete"
 msgstr "Vindt alle personen wiens archiven compleet zijn"
 
-#: GenericFilter.py:311
+#: GenericFilter.py:298
 msgid "Matches all females"
 msgstr "Vindt alle vrouwen"
 
-#: GenericFilter.py:325 GenericFilter.py:374 GenericFilter.py:589
-#: GenericFilter.py:645 plugins/FilterEditor.py:466
+#: GenericFilter.py:312 GenericFilter.py:361 GenericFilter.py:576
+#: GenericFilter.py:632 plugins/FilterEditor.py:468
 msgid "Inclusive:"
 msgstr "Inclusief:"
 
 # afstammeling
-#: GenericFilter.py:336 GenericFilter.py:383 GenericFilter.py:426
-#: GenericFilter.py:475 GenericFilter.py:550
+#: GenericFilter.py:323 GenericFilter.py:370 GenericFilter.py:413
+#: GenericFilter.py:462 GenericFilter.py:537
 msgid "Descendant filters"
 msgstr "Nazaten filters"
 
-#: GenericFilter.py:339
+#: GenericFilter.py:326
 msgid "Matches all descendants for the specified person"
 msgstr "Vindt alle afstammelingen van de gespecificeerde persoon"
 
 # naam filteren of filternaam
-#: GenericFilter.py:374 GenericFilter.py:503 GenericFilter.py:645
-#: GenericFilter.py:789 GenericFilter.py:876 GenericFilter.py:1245
-#: GenericFilter.py:1268 plugins/FilterEditor.py:462
+#: GenericFilter.py:361 GenericFilter.py:490 GenericFilter.py:632
+#: GenericFilter.py:776 GenericFilter.py:863 GenericFilter.py:1232
+#: GenericFilter.py:1255 plugins/FilterEditor.py:463
 msgid "Filter name:"
 msgstr "Filternaam:"
 
-#: GenericFilter.py:386
+#: GenericFilter.py:373
 msgid "Matches people that are descendants of someone matched by a filter"
-msgstr "Vindt personen die afstammeling zijn van iemand gevonden via een filter"
+msgstr ""
+"Vindt personen die afstammeling zijn van iemand gevonden via een filter"
 
-#: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:687
-#: GenericFilter.py:739 plugins/FilterEditor.py:458
+#: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:674
+#: GenericFilter.py:726 plugins/FilterEditor.py:459
 msgid "Number of generations:"
 msgstr "Aantal generaties:"
 
-#: GenericFilter.py:429
+#: GenericFilter.py:416
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
@@ -832,22 +849,24 @@ msgstr ""
 "Vindt personen die afstammeling zijn van een gespecificeerd persoon, niet "
 "meer dan N generaties verwijderd"
 
-#: GenericFilter.py:471
+#: GenericFilter.py:458
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr "Vindt personen die die afstammeling zijn van een gespecificeerd persoon, tenminste N generaties verwijderd"
+msgstr ""
+"Vindt personen die die afstammeling zijn van een gespecificeerd persoon, "
+"tenminste N generaties verwijderd"
 
-#: GenericFilter.py:514
+#: GenericFilter.py:501
 msgid "Matches the person that is a child of someone matched by a filter"
 msgstr "Vindt de persoon die een kind is van iemand gevonden via een filter"
 
-#: GenericFilter.py:517 GenericFilter.py:803 GenericFilter.py:1033
-#: GenericFilter.py:1277
+#: GenericFilter.py:504 GenericFilter.py:790 GenericFilter.py:1020
+#: GenericFilter.py:1264
 msgid "Family filters"
 msgstr "Familiefilters"
 
-#: GenericFilter.py:553
+#: GenericFilter.py:540
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
@@ -855,274 +874,283 @@ msgstr ""
 "Vindt personen die afstammeling zijn, of de echtgenoot van een afstammeling "
 "van een gespecificeerd persoon"
 
-#: GenericFilter.py:600
+#: GenericFilter.py:587
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Vindt personen die voorouder zijn van een gespecificeerd persoon"
 
-#: GenericFilter.py:603 GenericFilter.py:658 GenericFilter.py:702
-#: GenericFilter.py:754 GenericFilter.py:840 GenericFilter.py:886
+#: GenericFilter.py:590 GenericFilter.py:645 GenericFilter.py:689
+#: GenericFilter.py:741 GenericFilter.py:827 GenericFilter.py:873
 msgid "Ancestral filters"
 msgstr "Voorouderfilters"
 
-#: GenericFilter.py:654
+#: GenericFilter.py:641
 msgid "Matches people that are ancestors of someone matched by a filter"
 msgstr "Vindt personen die voorouder zijn van iemand gevonden via een filter"
 
-#: GenericFilter.py:698
+#: GenericFilter.py:685
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
-msgstr "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer dan N generaties verwijderd"
+msgstr ""
+"Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
+"dan N generaties verwijderd"
 
-#: GenericFilter.py:750
+#: GenericFilter.py:737
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
-msgstr "Vindt personen die die voorouder zijn van een gespecificeerd persoon, tenminste N generaties verwijderd"
+msgstr ""
+"Vindt personen die die voorouder zijn van een gespecificeerd persoon, "
+"tenminste N generaties verwijderd"
 
-#: GenericFilter.py:800
+#: GenericFilter.py:787
 msgid "Matches the person that is a parent of someone matched by a filter"
 msgstr "Vindt de persoon die een ouder is van iemand gevonden via een filter"
 
-#: GenericFilter.py:836
+#: GenericFilter.py:823
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Vindt personen die een gemeenschappelijke voorouder hebben met een gespecificeerd persoon"
+msgstr ""
+"Vindt personen die een gemeenschappelijke voorouder hebben met een "
+"gespecificeerd persoon"
 
-#: GenericFilter.py:882
+#: GenericFilter.py:869
 msgid ""
 "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Vindt personen die een gemeenschappelijke voorouder hebben met iemand gevonden via een filter"
+msgstr ""
+"Vindt personen die een gemeenschappelijke voorouder hebben met iemand "
+"gevonden via een filter"
 
-#: GenericFilter.py:916
+#: GenericFilter.py:903
 msgid "Matches all males"
 msgstr "Vindt alle mannen"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:1907 edit_person.glade:3979
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:1907 edit_person.glade:3979
 #: marriage.glade:444 places.glade:1710
 msgid "Description:"
 msgstr "Beschrijving:"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:1955 marriage.glade:1771
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:1955 marriage.glade:1771
 #: mergedata.glade:534 mergedata.glade:717 mergedata.glade:1108
-#: mergedata.glade:1156 plugins/FilterEditor.py:456
+#: mergedata.glade:1156 plugins/FilterEditor.py:457
 msgid "Place:"
 msgstr "Locatie:"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:2003 edit_person.glade:2869
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:2003 edit_person.glade:2869
 #: marriage.glade:348 marriage.glade:1723 mergedata.glade:558
 #: mergedata.glade:693 mergedata.glade:1084 mergedata.glade:1132
 msgid "Date:"
 msgstr "Datum:"
 
-#: GenericFilter.py:929 plugins/FilterEditor.py:58
+#: GenericFilter.py:916 plugins/FilterEditor.py:58
 msgid "Personal event:"
 msgstr "Persoonlijke gebeurtenis:"
 
-#: GenericFilter.py:943
+#: GenericFilter.py:930
 msgid "Matches the person with a personal event of a particular value"
-msgstr "Vindt de persoon met een persoonlijke gebeurtenis van een bepaalde waarde."
+msgstr ""
+"Vindt de persoon met een persoonlijke gebeurtenis van een bepaalde waarde."
 
-#: GenericFilter.py:946 GenericFilter.py:993 GenericFilter.py:1095
-#: GenericFilter.py:1135
+#: GenericFilter.py:933 GenericFilter.py:980 GenericFilter.py:1082
+#: GenericFilter.py:1122
 msgid "Event filters"
 msgstr "Gebeurtenisfilters"
 
-#: GenericFilter.py:976 plugins/FilterEditor.py:59
+#: GenericFilter.py:963 plugins/FilterEditor.py:59
 msgid "Family event:"
 msgstr "Familiegebeurtenis:"
 
-#: GenericFilter.py:990
+#: GenericFilter.py:977
 msgid "Matches the person with a family event of a particular value"
 msgstr "Vindt de persoon met een familiegebeurtenis van een bepaalde waarde"
 
-#: GenericFilter.py:1022
+#: GenericFilter.py:1009
 msgid "Number of relationships:"
 msgstr "Aantal relaties:"
 
-#: GenericFilter.py:1023 plugins/FilterEditor.py:62
+#: GenericFilter.py:1010 plugins/FilterEditor.py:62
 msgid "Relationship type:"
 msgstr "Relatietype:"
 
-#: GenericFilter.py:1024
+#: GenericFilter.py:1011
 msgid "Number of children:"
 msgstr "Aantal kinderen:"
 
-#: GenericFilter.py:1030
+#: GenericFilter.py:1017
 msgid "Matches the person who has a particular relationship"
 msgstr "Vindt de persoon die een bepalde relatie heeft"
 
 # opgegeven ipv gespecificeerde?
 # Bepaalde geboortedatum misschien?
-#: GenericFilter.py:1092
+#: GenericFilter.py:1079
 msgid "Matches the person with a birth of a particular value"
 msgstr "Vindt de persoon met een geboorte met een bepaalde waarde"
 
 # opgegeven ipv gespecificeerde?
 # Overlijdingsdatum misschien?
-#: GenericFilter.py:1132
+#: GenericFilter.py:1119
 msgid "Matches the person with a death of a particular value"
 msgstr "Vindt de persoon met een overlijden van een bepaalde waarde"
 
-#: GenericFilter.py:1158 GenericFilter.py:1180 edit_person.glade:2487
+#: GenericFilter.py:1145 GenericFilter.py:1167 edit_person.glade:2487
 #: imagesel.glade:957 imagesel.glade:1727
 msgid "Value:"
 msgstr "Waarde:"
 
-#: GenericFilter.py:1158 plugins/FilterEditor.py:60
+#: GenericFilter.py:1145 plugins/FilterEditor.py:60
 msgid "Personal attribute:"
 msgstr "Persoonlijk attribuut:"
 
-#: GenericFilter.py:1180 plugins/FilterEditor.py:61
+#: GenericFilter.py:1167 plugins/FilterEditor.py:61
 msgid "Family attribute:"
 msgstr "Familie-attribuut:"
 
-#: GenericFilter.py:1206 choose.glade:630 edit_person.glade:1415
+#: GenericFilter.py:1193 choose.glade:630 edit_person.glade:1415
 #: gramps.glade:3464 imagesel.glade:718
 msgid "Title:"
 msgstr "Titel:"
 
-#: GenericFilter.py:1206 edit_person.glade:1343
+#: GenericFilter.py:1193 edit_person.glade:1343
 msgid "Suffix:"
 msgstr "Achtervoegsel:"
 
-#: GenericFilter.py:1206 edit_person.glade:1367
+#: GenericFilter.py:1193 edit_person.glade:1367
 msgid "Family name:"
 msgstr "Familienaam"
 
-#: GenericFilter.py:1206 edit_person.glade:1391
+#: GenericFilter.py:1193 edit_person.glade:1391
 msgid "Given name:"
 msgstr "Gegeven naam"
 
 # opgegeven ipv gespecificeerde?
-#: GenericFilter.py:1212
+#: GenericFilter.py:1199
 msgid "Matches the person with a specified (partial) name"
 msgstr "Vindt de persoon met de gespecificeerde (deel van) naam"
 
-#: GenericFilter.py:1274
+#: GenericFilter.py:1261
 msgid "Matches the person married to someone matching a filter"
 msgstr "Vindt de persoon getrouwd met iemand uit resultaat van filter"
 
-#: GenericFilter.py:1421
+#: GenericFilter.py:1408
 msgid "Everyone"
 msgstr "Iedereen"
 
-#: GenericFilter.py:1422
+#: GenericFilter.py:1409
 msgid "Has the Id"
 msgstr "Heeft Id"
 
-#: GenericFilter.py:1423
+#: GenericFilter.py:1410
 msgid "Has a name"
 msgstr "Heeft een naam"
 
-#: GenericFilter.py:1424
+#: GenericFilter.py:1411
 msgid "Has the relationships"
 msgstr "Heeft de relaties"
 
-#: GenericFilter.py:1425
+#: GenericFilter.py:1412
 msgid "Has the death"
 msgstr "Heeft sterfdag"
 
-#: GenericFilter.py:1426
+#: GenericFilter.py:1413
 msgid "Has the birth"
 msgstr "Heeft geboortedag"
 
-#: GenericFilter.py:1427
+#: GenericFilter.py:1414
 msgid "Is a descendant of"
 msgstr "Is een afstammeling van"
 
-#: GenericFilter.py:1428
+#: GenericFilter.py:1415
 msgid "Is a descendant family member of"
 msgstr "Is een afstammend familielid van"
 
-#: GenericFilter.py:1429
+#: GenericFilter.py:1416
 msgid "Is a descendant of filter match"
 msgstr "Is een afstammeling van resultaat van filter"
 
-#: GenericFilter.py:1430
+#: GenericFilter.py:1417
 msgid "Is a descendant of person not more than N generations away"
 msgstr ""
 "Is een afstammeling van een persoon, niet meer dan N generaties verwijderd"
 
-#: GenericFilter.py:1432
+#: GenericFilter.py:1419
 msgid "Is a descendant of person at least N generations away"
 msgstr "Is een afstammeling van een persoon, tenminste N generaties verwijderd"
 
-#: GenericFilter.py:1434
+#: GenericFilter.py:1421
 msgid "Is a child of filter match"
 msgstr "Is een kind van resultaat van filter"
 
-#: GenericFilter.py:1435
+#: GenericFilter.py:1422
 msgid "Is an ancestor of"
 msgstr "Is een voorouder van"
 
-#: GenericFilter.py:1436
+#: GenericFilter.py:1423
 msgid "Is an ancestor of filter match"
 msgstr "Is een voorouder van resultaat van filter"
 
-#: GenericFilter.py:1437
+#: GenericFilter.py:1424
 msgid "Is an ancestor of person not more than N generations away"
 msgstr ""
 "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
-#: GenericFilter.py:1439
+#: GenericFilter.py:1426
 msgid "Is an ancestor of person at least N generations away"
 msgstr "Is een voorouder van een persoon, tenminste N generaties verwijderd"
 
-#: GenericFilter.py:1441
+#: GenericFilter.py:1428
 msgid "Is a parent of filter match"
 msgstr "Is een ouder van resultaat van filter"
 
-#: GenericFilter.py:1442
+#: GenericFilter.py:1429
 msgid "Has a common ancestor with"
 msgstr "Heeft een gemeenschappelijke voorouder met"
 
-#: GenericFilter.py:1443
+#: GenericFilter.py:1430
 msgid "Has a common ancestor with filter match"
 msgstr "Heeft een gemeenschappelijke voorouder met resultaat van filter"
 
-#: GenericFilter.py:1445
+#: GenericFilter.py:1432
 msgid "Is a female"
 msgstr "Is een vrouw"
 
-#: GenericFilter.py:1446
+#: GenericFilter.py:1433
 msgid "Is a male"
 msgstr "Is een man"
 
-#: GenericFilter.py:1447
+#: GenericFilter.py:1434
 msgid "Has complete record"
 msgstr "Heeft een volledig archief"
 
-#: GenericFilter.py:1448
+#: GenericFilter.py:1435
 msgid "Has the personal event"
 msgstr "Heeft de persoonlijke gebeurtenis"
 
-#: GenericFilter.py:1449
+#: GenericFilter.py:1436
 msgid "Has the family event"
 msgstr "Heeft de familiegebeurtenis"
 
-#: GenericFilter.py:1450
+#: GenericFilter.py:1437
 msgid "Has the personal attribute"
 msgstr "Heeft het persoonlijke attribuut"
 
-#: GenericFilter.py:1451
+#: GenericFilter.py:1438
 msgid "Has the family attribute"
 msgstr "Heeft het familie-attribuut"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
-#: GenericFilter.py:1452
+#: GenericFilter.py:1439
 msgid "Matches the filter named"
 msgstr "Komt overeen met filter genaamd"
 
-#: GenericFilter.py:1453
+#: GenericFilter.py:1440
 msgid "Is spouse of filter match"
 msgstr "Is echtgenoot van resultaat van filter"
 
 # Berekent de relatie tussen twee personen<
-#: GenericFilter.py:1454
+#: GenericFilter.py:1441
 msgid "Relationship path between two people"
 msgstr "Relatiepad tussen twee personen"
 
@@ -1268,7 +1296,7 @@ msgstr "Onderzoeker-informatie"
 msgid "Data Guessing"
 msgstr "Gegegevens hinten"
 
-#: GrampsCfg.py:666 GrampsCfg.py:681
+#: GrampsCfg.py:667 GrampsCfg.py:682
 msgid "No default format"
 msgstr "Geen standaard formaat"
 
@@ -1297,7 +1325,7 @@ msgid "Media Object"
 msgstr "Media-object"
 
 #: ImageSelect.py:614 docgen/HtmlDoc.py:480 docgen/KwordDoc.py:495
-#: docgen/PdfDoc.py:583 docgen/RTFDoc.py:427
+#: docgen/PdfDoc.py:590 docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Openen in %s"
 
@@ -1361,11 +1389,11 @@ msgid ""
 msgstr "De GRAMPS-ID die u voor deze relatie koos wordt reeds gebruikt."
 
 #: MediaView.py:77 SelectObject.py:86 SourceView.py:70 Sources.py:79
-#: Sources.py:175 plugins/AncestorChart2.py:448 plugins/BookReport.py:680
-#: plugins/BookReport.py:697 plugins/BookReport.py:770
-#: plugins/PatchNames.py:168 plugins/SimpleBookTitle.py:300
-#: plugins/SimpleBookTitle.py:564 plugins/TimeLine.py:437
-#: plugins/TimeLine.py:579
+#: Sources.py:175 plugins/AncestorChart2.py:450 plugins/AncestorChart2.py:581
+#: plugins/BookReport.py:680 plugins/BookReport.py:697
+#: plugins/BookReport.py:770 plugins/PatchNames.py:168
+#: plugins/SimpleBookTitle.py:300 plugins/SimpleBookTitle.py:564
+#: plugins/TimeLine.py:437 plugins/TimeLine.py:579
 msgid "Title"
 msgstr "Titel"
 
@@ -1379,7 +1407,11 @@ msgid ""
 "would like to enable this feature, install Python Imaging Library (PIL), "
 "available at http://www.pythonware.com/products/pil/ or ImageMagick, "
 "available at http://www.imagemagick.org/"
-msgstr "Er is geen geschikte tool om miniaturen te maken van de afbeeldingen. Als u van deze mogelijkheid wilt gebruikmaken, moet u de Python Imaging Library (PIL) installeren, welke beschikbaar is op http://www.pythonware.com/products/pil/ of ImageMagick, beschikbaar op http://www.imagemagick.org/"
+msgstr ""
+"Er is geen geschikte tool om miniaturen te maken van de afbeeldingen. Als u "
+"van deze mogelijkheid wilt gebruikmaken, moet u de Python Imaging Library "
+"(PIL) installeren, welke beschikbaar is op http://www.pythonware.com/"
+"products/pil/ of ImageMagick, beschikbaar op http://www.imagemagick.org/"
 
 #: MediaView.py:169 SelectObject.py:140
 msgid "The file no longer exists"
@@ -1466,11 +1498,11 @@ msgstr "Anker"
 msgid "Double clicking will make %s the active person"
 msgstr "Dubbelklikken om van %s de actieve persoon te maken"
 
-#: PedView.py:493
+#: PedView.py:495
 msgid "Set anchor"
 msgstr "Anker plaatsen"
 
-#: PedView.py:494
+#: PedView.py:496
 msgid "Remove anchor"
 msgstr "Anker verwijderen"
 
@@ -1478,17 +1510,12 @@ msgstr "Anker verwijderen"
 msgid "Death date"
 msgstr "Overlijdingsdatum"
 
-#: PeopleStore.py:247 PeopleView.py:255 PeopleView.py:274 gramps_main.py:946
+#: PeopleStore.py:250 PeopleView.py:252 PeopleView.py:271 gramps_main.py:946
 #: gramps_main.py:1546
 msgid "Updating display..."
 msgstr "Weergave bijwerken..."
 
-# Nog geen definieve vertaling gevonden
-#: PeopleView.py:383 PeopleView.py:396 gramps.glade:781 gramps_main.py:399
-msgid "Home"
-msgstr "Begin"
-
-#: PeopleView.py:388 PlaceView.py:177 SourceView.py:143 gramps.glade:844
+#: PeopleView.py:385 PlaceView.py:185 SourceView.py:149 gramps.glade:844
 #: plugins/BookReport.py:814
 msgid "Edit"
 msgstr "Bewerken"
@@ -1502,26 +1529,30 @@ msgstr "Parochie"
 msgid "Place Name"
 msgstr "Locatienaam"
 
-#: PlaceView.py:144
+#: PlaceView.py:152
 msgid "Cannot merge places."
 msgstr "Kan locaties niet samenvoegen."
 
-#: PlaceView.py:145
+#: PlaceView.py:153
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
 "place."
-msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste locatie aan te klikken."
+msgstr ""
+"Om een samenvoeging uit te voeren moeten precies twee locaties worden "
+"geselecteerd. Een tweede locatie kan worden geselecteerd door op het "
+"toetsenbord de control-toets in te drukken, en dan met de muis de gewenste "
+"locatie aan te klikken."
 
-#: PlaceView.py:181 SourceView.py:147
+#: PlaceView.py:189 SourceView.py:153
 msgid "Source Menu"
 msgstr "Bron menu"
 
-#: PlaceView.py:232 SourceView.py:172 gramps_main.py:1283
+#: PlaceView.py:240 SourceView.py:178 gramps_main.py:1283
 msgid "Delete %s?"
 msgstr "%s verwijderen?"
 
-#: PlaceView.py:233
+#: PlaceView.py:241
 msgid ""
 "This place is currently being used by at least one record in the database. "
 "Deleting it will remove it from the database and remove it from all records "
@@ -1531,7 +1562,7 @@ msgstr ""
 "gebruikt. Als u het verwijdert zal het uit de database worden gehaald en "
 "tevens uit alle archieven die ernaar verwijzen."
 
-#: PlaceView.py:237
+#: PlaceView.py:245
 msgid "_Delete Place"
 msgstr "Locatie _verwijderen"
 
@@ -1623,7 +1654,11 @@ msgid ""
 "may have been deleted or moved to a different location. You may choose to "
 "either remove the reference from the database, keep the reference to the "
 "missing file, or select a new file."
-msgstr "Er wordt naar %(file_name)s verwezen in de database, maar deze bestaat niet meer. Het bestand is mogelijk verwijderd of verplaatst naar een ander plek. U kunt nu kiezen de verwijzing uit de database te vewijderen, de verwijzing naar het ontbrekende bestand te behouden, of een nieuw bestand te kiezen."
+msgstr ""
+"Er wordt naar %(file_name)s verwezen in de database, maar deze bestaat niet "
+"meer. Het bestand is mogelijk verwijderd of verplaatst naar een ander plek. "
+"U kunt nu kiezen de verwijzing uit de database te vewijderen, de verwijzing "
+"naar het ontbrekende bestand te behouden, of een nieuw bestand te kiezen."
 
 #: ReadXML.py:283 ReadXML.py:287
 msgid "%s could not be opened."
@@ -1649,7 +1684,7 @@ msgstr "Het bestand is verplaatst of verwijderd"
 #: docgen/OpenSpreadSheet.py:229 docgen/OpenSpreadSheet.py:400
 #: docgen/OpenSpreadSheet.py:404 docgen/OpenSpreadSheet.py:432
 #: docgen/OpenSpreadSheet.py:436 docgen/PSDrawDoc.py:103
-#: docgen/PSDrawDoc.py:106 docgen/PdfDoc.py:175 docgen/RTFDoc.py:81
+#: docgen/PSDrawDoc.py:106 docgen/PdfDoc.py:182 docgen/RTFDoc.py:81
 #: docgen/RTFDoc.py:84 docgen/SvgDrawDoc.py:74 docgen/SvgDrawDoc.py:76
 #: gramps_main.py:1187 gramps_main.py:1192 gramps_main.py:1202
 #: plugins/WriteFtree.py:140 plugins/WriteGedcom.py:580
@@ -1689,7 +1724,7 @@ msgstr "Kon geen miniatuur aanmaken voor %s"
 msgid "The file has been moved or deleted."
 msgstr "Het bestand is verplaatst of verwijderd."
 
-#: Relationship.py:226 plugins/rel_de.py:345
+#: Relationship.py:258 plugins/rel_de.py:345
 msgid "Relationship loop detected"
 msgstr "Relatie kringloop ontdekt"
 
@@ -1851,7 +1886,7 @@ msgid "Report Options"
 msgstr "Rapportage-opties"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: Report.py:532 plugins/FilterEditor.py:254 plugins/pafexport.glade:127
+#: Report.py:532 plugins/FilterEditor.py:255 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Filter"
 
@@ -1863,11 +1898,16 @@ msgstr "Generaties"
 msgid "Page break between generations"
 msgstr "Nieuwe pagina bij volgende generatie"
 
+#: Report.py:736 Witness.py:160 plugins/AncestorChart2.py:623
+#: plugins/FamilyGroup.py:506 plugins/FilterEditor.py:173
+msgid "Select Person"
+msgstr "Persoon selecteren"
+
 #: Report.py:808
 msgid "Save Report As"
 msgstr "Rapport opslaan als"
 
-#: Report.py:883 Report.py:961 docgen/PSDrawDoc.py:378
+#: Report.py:883 Report.py:961 docgen/PSDrawDoc.py:405
 msgid "Print a copy"
 msgstr "Een kopie afdrukken"
 
@@ -1976,7 +2016,7 @@ msgstr "Relatie tot %(vader)s"
 msgid "Relationship to %(mother)s"
 msgstr "Relatie tot %(moeder)s"
 
-#: SelectChild.py:105 plugins/RelCalc.py:81
+#: SelectChild.py:105 plugins/RelCalc.py:82
 msgid "Relationship to %s"
 msgstr "Relatie tot %s"
 
@@ -1996,7 +2036,7 @@ msgstr "Relatie tot moeder:"
 msgid "Author"
 msgstr "Auteur"
 
-#: SourceView.py:173
+#: SourceView.py:179
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all records that reference it."
@@ -2004,7 +2044,7 @@ msgstr ""
 "Deze bron is momenteel in gebruik. Als u het verwijdert zal het uit de "
 "database  worden gehaald en uit alle archieven die ernaar verwijzen."
 
-#: SourceView.py:176
+#: SourceView.py:182
 msgid "_Delete Source"
 msgstr "Bron _verwijderen"
 
@@ -2051,7 +2091,10 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
-"GRAMPS is een 'Open Source' project. Het succes hang af van de gebruikers. Feedback van gebruikers is belangrijk. U kunt zich abonneren op de mailinglijsten, fouten rapporteren, verbeteringen voorstellen, en kijken hoe u kunt bijdragen.\n"
+"GRAMPS is een 'Open Source' project. Het succes hang af van de gebruikers. "
+"Feedback van gebruikers is belangrijk. U kunt zich abonneren op de "
+"mailinglijsten, fouten rapporteren, verbeteringen voorstellen, en kijken hoe "
+"u kunt bijdragen.\n"
 "\n"
 "Veel plezier met het gebruik van GRAMPS."
 
@@ -2215,27 +2258,27 @@ msgstr "standaard"
 msgid "Revision control comment"
 msgstr "Revisiebeheer opmerking"
 
-#: VersionControl.py:112
+#: VersionControl.py:113
 msgid "Select an older revision"
 msgstr "Een oudere revisie selecteren"
 
-#: VersionControl.py:117
+#: VersionControl.py:118
 msgid "Changed by"
 msgstr "Veranderd door"
 
-#: VersionControl.py:117
+#: VersionControl.py:118
 msgid "Revision"
 msgstr "Revisie"
 
-#: VersionControl.py:118 plugins/FilterEditor.py:254
+#: VersionControl.py:119 plugins/FilterEditor.py:255
 msgid "Comment"
 msgstr "Opmerking"
 
-#: VersionControl.py:293
+#: VersionControl.py:294
 msgid "Could not retrieve version"
 msgstr "Kon versie niet verkrijgen"
 
-#: VersionControl.py:296 preferences.glade:566
+#: VersionControl.py:297 preferences.glade:566
 msgid "RCS"
 msgstr "RCS"
 
@@ -2247,7 +2290,7 @@ msgstr "Ooggetuige"
 msgid "Witness Editor"
 msgstr "Ooggetuige-editor"
 
-#: WriteXML.py:86
+#: WriteXML.py:86 WriteXML.py:135 WriteXML.py:144 WriteXML.py:161
 msgid "Failure writing %s"
 msgstr "Schrijven %s mislukt"
 
@@ -2255,6 +2298,19 @@ msgstr "Schrijven %s mislukt"
 msgid "An attempt is being made to recover the original file"
 msgstr ""
 "Er wordt een poging ondernomen om het oorspronkelijke bestand te herstellen"
+
+#: WriteXML.py:136
+msgid ""
+"The database cannot be saved because you do not have permission to write to "
+"the directory. Please make sure you have write access to the directory and "
+"try again."
+msgstr "De database kan niet worden opgeslagen omdat u geen rechten heeft om in de map te schrijven. Zorg dat u schrijftoegang krijgt tot de map en probeer dan opniew."
+
+#: WriteXML.py:145
+msgid ""
+"The database cannot be saved because you do not have permission to write to "
+"the file. Please make sure you have write access to the file and try again."
+msgstr "De database kan niet worden opgeslagen omdat u geen rechten heeft om het bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand en probeer dan opniew."
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -2264,11 +2320,11 @@ msgstr "Islamitisch"
 msgid "Persian"
 msgstr "Persisch"
 
-#: choose.glade:128 const.py:139 select_person.glade:128
+#: choose.glade:128 const.py:140 select_person.glade:128
 msgid "female"
 msgstr "vrouwelijk"
 
-#: choose.glade:173 const.py:138 select_person.glade:173
+#: choose.glade:173 const.py:139 select_person.glade:173
 msgid "male"
 msgstr "mannelijk"
 
@@ -2296,7 +2352,7 @@ msgstr "Type:"
 msgid "<b>Information</b>"
 msgstr "<b>Informatie</b>"
 
-#: const.py:112
+#: const.py:113
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -2304,356 +2360,295 @@ msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "een genealogisch programma."
 
-#: const.py:127
+#: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Tino Meinen <a.t.meinen@chello.nl>"
 
-#: const.py:171 const.py:291 gramps.glade:4543 gramps.glade:4736
+#: const.py:172 const.py:284 gramps.glade:4543 gramps.glade:4736
 #: gramps.glade:5176 gramps.glade:5356 gramps.glade:6979 gramps.glade:7225
 #: gramps.glade:7833 gramps.glade:8004
 msgid "Adopted"
 msgstr "Geadopteerd"
 
-#: const.py:172 gramps.glade:4565 gramps.glade:4758 gramps.glade:5198
+#: const.py:173 gramps.glade:4565 gramps.glade:4758 gramps.glade:5198
 #: gramps.glade:5378 gramps.glade:7001 gramps.glade:7247 gramps.glade:7855
 #: gramps.glade:8026
 msgid "Stepchild"
 msgstr "Stiefkind"
 
-#: const.py:173
+#: const.py:174
 msgid "Sponsored"
 msgstr "Gesponsord"
 
-#: const.py:174 gramps.glade:4587 gramps.glade:4780 gramps.glade:7023
+#: const.py:175 gramps.glade:4587 gramps.glade:4780 gramps.glade:7023
 #: gramps.glade:7269
 msgid "Foster"
 msgstr "Pleegouder"
 
 # tablabel voor de beginletters van de namen (de overige dan)
-#: const.py:177 const.py:497 const.py:505 gramps.glade:1455
+#: const.py:178 const.py:428 const.py:436 gramps.glade:1455
 #: mergedata.glade:218
 msgid "Other"
 msgstr "Overige"
 
-#: const.py:186 srcsel.glade:459
+#: const.py:187 srcsel.glade:459
 msgid "Very High"
 msgstr "Zeer hoog"
 
-#: const.py:187 plugins/Merge.py:115 srcsel.glade:451
+#: const.py:188 plugins/Merge.py:115 srcsel.glade:451
 msgid "High"
 msgstr "Hoog"
 
-#: const.py:188 srcsel.glade:443
+#: const.py:189 srcsel.glade:443
 msgid "Normal"
 msgstr "Normaal"
 
-#: const.py:189 plugins/Merge.py:107 srcsel.glade:435
+#: const.py:190 plugins/Merge.py:107 srcsel.glade:435
 msgid "Low"
 msgstr "Laag"
 
-#: const.py:190 srcsel.glade:427
+#: const.py:191 srcsel.glade:427
 msgid "Very Low"
 msgstr "Zeer laag"
 
-#: const.py:210
+#: const.py:217
 msgid "Alternate Marriage"
 msgstr "Alternatief huwelijk"
 
-#: const.py:211
+#: const.py:218
 msgid "Annulment"
 msgstr "Tenietdoening"
 
 # klopt dit?
-#: const.py:212 const.py:306
+#: const.py:219 const.py:299
 msgid "Divorce Filing"
 msgstr "Aanvraag scheiding"
 
-#: const.py:213
+#: const.py:220
 msgid "Divorce"
 msgstr "Scheiding"
 
-#: const.py:214
+#: const.py:221
 msgid "Engagement"
 msgstr "Verloving"
 
 # Dict.: a prenuptial agreement or contract
-#: const.py:215
+#: const.py:222
 msgid "Marriage Contract"
 msgstr "Trouwakte"
 
 # Dict.: a licence authorizing a man and a woman to marry
-#: const.py:216
+#: const.py:223
 msgid "Marriage License"
 msgstr "Huwelijkslicentie"
 
 # Dict.: a settlement of property in view, and in consideration, of marriage
-#: const.py:217
+#: const.py:224
 msgid "Marriage Settlement"
 msgstr "Huwelijksvoorwaarden"
 
-#: const.py:218
+#: const.py:225
 msgid "Marriage"
 msgstr "Huwelijk"
 
-#: const.py:292
+#: const.py:285
 msgid "Alternate Birth"
 msgstr "Alternatieve geboorte"
 
-#: const.py:293
+#: const.py:286
 msgid "Alternate Death"
 msgstr "Alternatieve dood"
 
 # Doping
-#: const.py:294
+#: const.py:287
 msgid "Adult Christening"
 msgstr "Doop"
 
-#: const.py:295
+#: const.py:288
 msgid "Baptism"
 msgstr "Doopsel"
 
-#: const.py:296
+#: const.py:289
 msgid "Bar Mitzvah"
 msgstr "Bar Mitzvah"
 
-#: const.py:297
+#: const.py:290
 msgid "Bas Mitzvah"
 msgstr "Bas Mitzvah"
 
 # Huwelijkszegen?
-#: const.py:298
+#: const.py:291
 msgid "Blessing"
 msgstr "Zegening"
 
-#: const.py:299
+#: const.py:292
 msgid "Burial"
 msgstr "Begravenis"
 
-#: const.py:300
+#: const.py:293
 msgid "Cause Of Death"
 msgstr "Doodsoorzaak"
 
-#: const.py:301
+#: const.py:294
 msgid "Census"
 msgstr "Volkstelling"
 
 # Doping
-#: const.py:302
+#: const.py:295
 msgid "Christening"
 msgstr "Doop"
 
 # het heilig vormsel toedienen, Vormen
 # Bevestiging
-#: const.py:303
+#: const.py:296
 msgid "Confirmation"
 msgstr "Vorming"
 
-#: const.py:304
+#: const.py:297
 msgid "Cremation"
 msgstr "Crematie"
 
-#: const.py:305
+#: const.py:298
 msgid "Degree"
 msgstr "Graad"
 
-#: const.py:307
+#: const.py:300
 msgid "Education"
 msgstr "Opleiding"
 
-#: const.py:308
+#: const.py:301
 msgid "Elected"
 msgstr "Gekozen"
 
-#: const.py:309
+#: const.py:302
 msgid "Emigration"
 msgstr "Emigratie"
 
-#: const.py:310
+#: const.py:303
 msgid "First Communion"
 msgstr "Eerste communie"
 
-#: const.py:311
+#: const.py:304
 msgid "Immigration"
 msgstr "Immigratie"
 
-#: const.py:312
+#: const.py:305
 msgid "Graduation"
 msgstr "Afstuderen"
 
-#: const.py:313
+#: const.py:306
 msgid "Medical Information"
 msgstr "Medische informatie"
 
-#: const.py:314
+#: const.py:307
 msgid "Military Service"
 msgstr "Militaire dienst"
 
-#: const.py:315
+#: const.py:308
 msgid "Naturalization"
 msgstr "Naturalisatie"
 
-#: const.py:316
+#: const.py:309
 msgid "Nobility Title"
 msgstr "Adelstand"
 
-#: const.py:317
+#: const.py:310
 msgid "Number of Marriages"
 msgstr "Aantal huwelijken"
 
-#: const.py:318
+#: const.py:311
 msgid "Occupation"
 msgstr "Beroep"
 
 # Classificatie, ordening, (wijding is de religieuze betekenis)
-#: const.py:319
+#: const.py:312
 msgid "Ordination"
 msgstr "Wijding"
 
 # Dict:
 # Geverifieerd afschrift van een testament
-#: const.py:320
+# Mogelijk is Probaat een goede vertaling
+#: const.py:313
 msgid "Probate"
-msgstr ""
+msgstr "Probaat"
 
-#: const.py:321
+#: const.py:314
 msgid "Property"
 msgstr "Eigendom"
 
-#: const.py:322
+#: const.py:315
 msgid "Religion"
 msgstr "Religie"
 
-#: const.py:323
+#: const.py:316
 msgid "Residence"
 msgstr "Residentie"
 
-#: const.py:324
+#: const.py:317
 msgid "Retirement"
 msgstr "Pensioen"
 
-#: const.py:325
+#: const.py:318
 msgid "Will"
 msgstr "Testament"
 
-#: const.py:392
+#: const.py:367
 msgid "Caste"
 msgstr "Kaste"
 
-#: const.py:394
+#: const.py:369
 msgid "Identification Number"
 msgstr "Identificatienummer"
 
-#: const.py:395
+#: const.py:370
 msgid "National Origin"
 msgstr "Nationale oorsprong"
 
-#: const.py:396
+#: const.py:371
 msgid "Social Security Number"
 msgstr "Sofinummer"
 
-#: const.py:435
+#: const.py:389
 msgid "Number of Children"
 msgstr "Aantal kinderen"
 
-#: const.py:493
+#: const.py:424
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "Een wettelijke of gewoonterecht-relatie tussen man en vrouw"
 
-#: const.py:494
+#: const.py:425
 msgid "No legal or common-law relationship between man and woman"
 msgstr "Geen wettelijke of gewoonterecht-relatie tussen man en vrouw"
 
-#: const.py:494 const.py:502
+#: const.py:425 const.py:433
 msgid "Unmarried"
 msgstr "Ongetrouwd"
 
-#: const.py:495
+#: const.py:426
 msgid "An established relationship between members of the same sex"
 msgstr "Een gevestigde relatie tussen leden van hetzelfde geslacht"
 
-#: const.py:496
+#: const.py:427
 msgid "Unknown relationship between a man and woman"
 msgstr "Onbekende relatie tussen een man en een vrouw"
 
-#: const.py:497
+#: const.py:428
 msgid "An unspecified relationship between a man and woman"
 msgstr "Een ongespecificeerde relatie tussen een man en een vrouw"
 
-#: const.py:521
+#: const.py:448
 msgid "No definition available"
 msgstr "Geen definitie beschikbaar"
 
-#: const.py:947
-msgid "Child"
-msgstr "Kind"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "<No Status>"
-msgstr "<Geen status>"
-
-# zie ook uncleared.
-# is dit goed?
-#: const.py:947 const.py:953 const.py:959
-msgid "Cleared"
-msgstr "Gewist"
-
-# Compleet
-#: const.py:947 const.py:953 const.py:959
-msgid "Completed"
-msgstr "Voltooid"
-
-# Klein kind
-#: const.py:948
-msgid "Infant"
-msgstr "Kind"
-
-#: const.py:948 const.py:954
-msgid "Stillborn"
-msgstr "Doodgeboren"
-
-#: const.py:948 const.py:954 const.py:960
-msgid "Pre-1970"
-msgstr "Voor-1970"
-
-# Bepalend woord
-#: const.py:948 const.py:954 const.py:960
-msgid "Qualified"
-msgstr "Gekwalificeerd"
-
-#: const.py:949 const.py:955 const.py:961
-msgid "Submitted"
-msgstr "Onderworpen"
-
-# is dit goed?
-#: const.py:949 const.py:955 const.py:961
-msgid "Uncleared"
-msgstr "Niet gewist"
-
-#: const.py:953
-msgid "BIC"
-msgstr "BIC"
-
-#: const.py:954 const.py:960
-msgid "DNS"
-msgstr "DNS"
-
-#: const.py:959
-msgid "Canceled"
-msgstr "Geannuleerd"
-
-#: const.py:960
-msgid "DNS/CAN"
-msgstr "DNS/CAN"
-
-#: const.py:966 const.py:973
+#: const.py:463
 msgid "Also Known As"
 msgstr "Roepnaam"
 
-#: const.py:967 const.py:974
+#: const.py:464
 msgid "Birth Name"
 msgstr "Geboortenaam"
 
-#: const.py:968 const.py:975
+#: const.py:465
 msgid "Married Name"
 msgstr "Getrouwde naam"
 
@@ -2661,15 +2656,77 @@ msgstr "Getrouwde naam"
 # Bijnaam
 # Dit verschijnt in het lijstje voor:
 # Andere naam: (vertaling van nickname)
-#: const.py:969 const.py:976
+#: const.py:466
 msgid "Other Name"
 msgstr "Bijnaam"
 
-#: const.py:982
+#: const.py:861
+msgid "Child"
+msgstr "Kind"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "<No Status>"
+msgstr "<Geen status>"
+
+# zie ook uncleared.
+# is dit goed?
+#: const.py:861 const.py:867 const.py:873
+msgid "Cleared"
+msgstr "Gewist"
+
+# Compleet
+#: const.py:861 const.py:867 const.py:873
+msgid "Completed"
+msgstr "Voltooid"
+
+# Klein kind
+#: const.py:862
+msgid "Infant"
+msgstr "Kind"
+
+#: const.py:862 const.py:868
+msgid "Stillborn"
+msgstr "Doodgeboren"
+
+#: const.py:862 const.py:868 const.py:874
+msgid "Pre-1970"
+msgstr "Voor-1970"
+
+# Bepalend woord
+#: const.py:862 const.py:868 const.py:874
+msgid "Qualified"
+msgstr "Gekwalificeerd"
+
+#: const.py:863 const.py:869 const.py:875
+msgid "Submitted"
+msgstr "Onderworpen"
+
+# is dit goed?
+#: const.py:863 const.py:869 const.py:875
+msgid "Uncleared"
+msgstr "Niet gewist"
+
+#: const.py:867
+msgid "BIC"
+msgstr "BIC"
+
+#: const.py:868 const.py:874
+msgid "DNS"
+msgstr "DNS"
+
+#: const.py:873
+msgid "Canceled"
+msgstr "Geannuleerd"
+
+#: const.py:874
+msgid "DNS/CAN"
+msgstr "DNS/CAN"
+
+#: const.py:881
 msgid "Flowed"
 msgstr "Zwevend"
 
-#: const.py:983
+#: const.py:882
 msgid "Preformatted"
 msgstr "Vooropmaak"
 
@@ -2773,7 +2830,10 @@ msgstr "<b>Opmaak</b>"
 msgid ""
 "Multiple spaces, tabs, and single line breaks are replaced with single "
 "spaces. Two consecutive line breaks mark a new paragraph."
-msgstr "Meervoudige spaties, tabs, en regelafbrekingen worden vervangen door een enkele spatie. Twee opeenvolgende regelafbrekingen geven een nieuwe paragraaf aan."
+msgstr ""
+"Meervoudige spaties, tabs, en regelafbrekingen worden vervangen door een "
+"enkele spatie. Twee opeenvolgende regelafbrekingen geven een nieuwe "
+"paragraaf aan."
 
 #: dialog.glade:760 dialog.glade:1527 dialog.glade:2884 dialog.glade:4048
 #: edit_person.glade:3585 gramps.glade:5946 imagesel.glade:842
@@ -2787,7 +2847,9 @@ msgstr "_Zwevend"
 msgid ""
 "Formatting is preserved, except for the leading whitespace. Multiple spaces, "
 "tabs, and all line breaks are respected."
-msgstr "Opmaak wordt behouden, behalve spatiëring aan het begin. Meervoudige spaties, tabs en alle regelafbrekingen worden gerespecteerd."
+msgstr ""
+"Opmaak wordt behouden, behalve spatiëring aan het begin. Meervoudige "
+"spaties, tabs en alle regelafbrekingen worden gerespecteerd."
 
 #: dialog.glade:782 dialog.glade:1549 dialog.glade:2906 dialog.glade:4070
 #: edit_person.glade:3607 gramps.glade:5968 imagesel.glade:864
@@ -2965,7 +3027,7 @@ msgstr "OpenOffice.org Writer"
 msgid "OpenOffice.org Draw"
 msgstr "OpenOffice.org Draw"
 
-#: docgen/PSDrawDoc.py:377 plugins/GraphViz.py:157 plugins/RelGraph.py:189
+#: docgen/PSDrawDoc.py:404 plugins/GraphViz.py:157 plugins/RelGraph.py:189
 msgid "PostScript"
 msgstr "PostScript"
 
@@ -2973,7 +3035,7 @@ msgstr "PostScript"
 msgid "The ReportLab modules are not installed"
 msgstr "De ReportLab-modules zijn niet geïnstalleerd"
 
-#: docgen/PdfDoc.py:588 docgen/PdfDoc.py:597 docgen/PdfDoc.py:607
+#: docgen/PdfDoc.py:595 docgen/PdfDoc.py:604 docgen/PdfDoc.py:614
 msgid "PDF"
 msgstr "PDF"
 
@@ -3234,7 +3296,8 @@ msgstr "_Verwijderen..."
 #: edit_person.glade:3829 gramps.glade:6069 marriage.glade:1580
 #: places.glade:1547
 msgid "Add a new media object to the database and place it in this gallery"
-msgstr "Een nieuw media-object toevoegen aan de database en in deze galerie plaatsen"
+msgstr ""
+"Een nieuw media-object toevoegen aan de database en in deze galerie plaatsen"
 
 #: edit_person.glade:3832 gramps.glade:6072 marriage.glade:1583
 #: places.glade:1550
@@ -3246,7 +3309,9 @@ msgstr "_Toevoegen uit bestand..."
 msgid ""
 "Select an existing media object from the database and place it in this "
 "gallery"
-msgstr "Selecteer een bestaand media-object uit de database en plaats het in deze galerie"
+msgstr ""
+"Selecteer een bestaand media-object uit de database en plaats het in deze "
+"galerie"
 
 #: edit_person.glade:3850 gramps.glade:6090 marriage.glade:1601
 #: places.glade:1568
@@ -3385,7 +3450,10 @@ msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing medial files."
-msgstr "Als u deze knop aanvinkt zullen alle ontbrekende mediabestanden automatisch worden behandeld volgens de momenteel geselecteerde opties. Er zullen geen verdere dialoogvensters worden gepresenteerd voor ontbrekende mediabestanden."
+msgstr ""
+"Als u deze knop aanvinkt zullen alle ontbrekende mediabestanden automatisch "
+"worden behandeld volgens de momenteel geselecteerde opties. Er zullen geen "
+"verdere dialoogvensters worden gepresenteerd voor ontbrekende mediabestanden."
 
 #: errdialogs.glade:1088
 msgid "_Use this selection for all missing media files"
@@ -3476,7 +3544,7 @@ msgstr "Namen die voldoen aan een reguliere expressie..."
 #: plugins/AncestorReport.py:525 plugins/Ancestors.py:1130
 #: plugins/CustomBookText.py:378 plugins/DescendReport.py:415
 #: plugins/DetAncestralReport.py:1221 plugins/DetDescendantReport.py:1230
-#: plugins/FamilyGroup.py:770 plugins/FtmStyleAncestors.py:1263
+#: plugins/FamilyGroup.py:772 plugins/FtmStyleAncestors.py:1263
 #: plugins/FtmStyleDescendants.py:1672 plugins/IndivComplete.py:828
 #: plugins/IndivSummary.py:640 plugins/SimpleBookTitle.py:300
 #: plugins/SimpleBookTitle.py:301 plugins/SimpleBookTitle.py:302
@@ -3748,7 +3816,9 @@ msgstr "Voegt een nieuw persoon toe aan de database en aan een nieuwe relatie"
 #: gramps.glade:1607 gramps.glade:2758
 msgid ""
 "Selects an existing person from the database and adds to a new relationship"
-msgstr "Selecteert een bestaand persoon uit de database en voegt aan een nieuwe relatie toe"
+msgstr ""
+"Selecteert een bestaand persoon uit de database en voegt aan een nieuwe "
+"relatie toe"
 
 #: gramps.glade:1633 gramps.glade:2784
 msgid "Removes the currently selected spouse"
@@ -3810,7 +3880,9 @@ msgstr "Dubbelklikken om de actieve persoon te bewerken"
 msgid ""
 "Double-click to edit the relationship information, Shift-click to edit the "
 "person"
-msgstr "Dubbelklikken om de relatie-informatie te bewerken. Shift-klik om de persoon te bewerken"
+msgstr ""
+"Dubbelklikken om de relatie-informatie te bewerken. Shift-klik om de persoon "
+"te bewerken"
 
 #: gramps.glade:2138 gramps.glade:2468
 msgid "Make the selected child the active person"
@@ -3856,7 +3928,9 @@ msgstr "<b>Media</b>"
 msgid ""
 "Check to show all people in the list.  Uncheck to get the list filtered by "
 "birth and death dates."
-msgstr "Aanvinken om alle personen in de lijst te tonen.  Afvinken om de lijst te filteren op geboorte- en overlijdingsdata."
+msgstr ""
+"Aanvinken om alle personen in de lijst te tonen.  Afvinken om de lijst te "
+"filteren op geboorte- en overlijdingsdata."
 
 #: gramps.glade:3802 gramps.glade:4241 gramps.glade:5048
 msgid "_Show all"
@@ -4094,7 +4168,7 @@ msgstr ""
 "Er trad een fout op bij het aanmaken van het bestand. Het besturingssysteem "
 "rapporteerde: \"%s\""
 
-#: gramps_main.py:1193 gramps_main.py:1203
+#: gramps_main.py:1193
 msgid "An error was detected while trying to create the file"
 msgstr "Er trad een fout op bij het aanmaken van het bestand"
 
@@ -4182,7 +4256,9 @@ msgstr "Kon niet naar een persoon gaan"
 
 #: gramps_main.py:1795
 msgid "Either stale bookmark or broken history caused by IDs reorder."
-msgstr "Ofwel een verouderde favoriet of gebroken geschiedenis veroorzaakt door herschikken van IDs."
+msgstr ""
+"Ofwel een verouderde favoriet of gebroken geschiedenis veroorzaakt door "
+"herschikken van IDs."
 
 #: gramps_main.py:1803
 msgid "Set %s as the Home Person"
@@ -4192,7 +4268,9 @@ msgstr "%s als beginpersoon instellen"
 msgid ""
 "Once a Home Person is defined, pressing the Home button on the toolbar will "
 "make the home person the active person."
-msgstr "Wanneer een beginpersoon is gedefinieerd, zal bij het indrukken van de werkbalkknop: Begin, van de beginpersoon de actieve persoon worden gemaakt."
+msgstr ""
+"Wanneer een beginpersoon is gedefinieerd, zal bij het indrukken van de "
+"werkbalkknop: Begin, van de beginpersoon de actieve persoon worden gemaakt."
 
 #: gramps_main.py:1807
 msgid "_Set Home Person"
@@ -4402,10 +4480,10 @@ msgstr "Auteur:"
 msgid "Author's email:"
 msgstr "Email van auteur:"
 
-#: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:420
+#: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:422
 #: plugins/AncestorReport.py:411 plugins/Ancestors.py:791
 #: plugins/Ancestors.py:807 plugins/Ancestors.py:813 plugins/DesGraph.py:315
-#: plugins/FamilyGroup.py:621 plugins/FanChart.py:283
+#: plugins/FamilyGroup.py:623 plugins/FanChart.py:283
 #: plugins/FtmStyleAncestors.py:968 plugins/FtmStyleAncestors.py:973
 #: plugins/FtmStyleAncestors.py:978 plugins/FtmStyleAncestors.py:983
 #: plugins/FtmStyleDescendants.py:1377 plugins/FtmStyleDescendants.py:1382
@@ -4416,12 +4494,12 @@ msgstr "De gebruikte basisstijl voor de tekstweergave."
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:345
 #: plugins/AncestorChart.py:559 plugins/AncestorChart.py:570
-#: plugins/AncestorChart2.py:460 plugins/AncestorChart2.py:568
+#: plugins/AncestorChart2.py:462 plugins/AncestorChart2.py:589
 msgid "Ancestor Chart"
 msgstr "Voorouderkaart"
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:560
-#: plugins/AncestorChart2.py:460 plugins/AncestorChart2.py:783
+#: plugins/AncestorChart2.py:462 plugins/AncestorChart2.py:836
 #: plugins/DesGraph.py:329 plugins/DesGraph.py:586 plugins/FanChart.py:310
 #: plugins/FanChart.py:462 plugins/GraphViz.py:83 plugins/GraphViz.py:531
 #: plugins/RelGraph.py:111 plugins/RelGraph.py:912 plugins/TimeLine.py:396
@@ -4429,35 +4507,36 @@ msgstr "Voorouderkaart"
 msgid "Graphical Reports"
 msgstr "Grafische rapportages"
 
-#: plugins/AncestorChart.py:246 plugins/AncestorChart2.py:464
+#: plugins/AncestorChart.py:246 plugins/AncestorChart2.py:466
+#: plugins/AncestorChart2.py:593
 msgid "Ancestor Chart for %s"
 msgstr "Voorouderkaart voor %s"
 
-#: plugins/AncestorChart.py:251 plugins/AncestorChart2.py:469
+#: plugins/AncestorChart.py:251 plugins/AncestorChart2.py:471
 msgid "Save Ancestor Chart"
 msgstr "Voorouderkaart opslaan"
 
 #: plugins/AncestorChart.py:263 plugins/AncestorChart.py:361
-#: plugins/AncestorChart2.py:481 plugins/AncestorChart2.py:584
+#: plugins/AncestorChart2.py:483 plugins/AncestorChart2.py:609
 #: plugins/DesGraph.py:346 plugins/DesGraph.py:440
 msgid "Display Format"
 msgstr "Weergave-formaat"
 
 #: plugins/AncestorChart.py:264 plugins/AncestorChart.py:362
-#: plugins/AncestorChart2.py:482 plugins/AncestorChart2.py:585
+#: plugins/AncestorChart2.py:484 plugins/AncestorChart2.py:610
 #: plugins/DesGraph.py:347 plugins/DesGraph.py:441
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 "Biedt de mogelijk de data in de kaders van de rapportage aan te passen."
 
-#: plugins/AncestorChart.py:349 plugins/AncestorChart2.py:572
+#: plugins/AncestorChart.py:349 plugins/AncestorChart2.py:597
 msgid "Ancestor Chart for GRAMPS Book"
 msgstr "Vooroudergrafiek voor GRAMPS boek"
 
-#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:784
+#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:837
 #: plugins/AncestorReport.py:515 plugins/Ancestors.py:1120
 #: plugins/DescendReport.py:405 plugins/DetAncestralReport.py:1210
-#: plugins/DetDescendantReport.py:1219 plugins/FamilyGroup.py:762
+#: plugins/DetDescendantReport.py:1219 plugins/FamilyGroup.py:764
 #: plugins/FtmStyleAncestors.py:1253 plugins/FtmStyleDescendants.py:1662
 #: plugins/GraphViz.py:530 plugins/IndivComplete.py:820
 #: plugins/IndivSummary.py:629 plugins/RelGraph.py:911 plugins/Summary.py:162
@@ -4465,28 +4544,28 @@ msgstr "Vooroudergrafiek voor GRAMPS boek"
 msgid "Beta"
 msgstr "Beta"
 
-#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:785
+#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:838
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Levert een grafische voorouder-boomstam"
 
-#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:794
+#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:847
 #: plugins/DesGraph.py:597 plugins/FanChart.py:470 plugins/TimeLine.py:667
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: plugins/AncestorChart2.py:429
+#: plugins/AncestorChart2.py:431
 msgid "The basic style used for the title display."
 msgstr "De gebruikte basisstijl voor de titelweergave."
 
-#: plugins/AncestorChart2.py:449
-msgid "Compress chart"
-msgstr "Grafiek comprimeren"
+#: plugins/AncestorChart2.py:451 plugins/AncestorChart2.py:582
+msgid "Co_mpress chart"
+msgstr "Grafiek co_mprimeren"
 
-#: plugins/AncestorChart2.py:453
-msgid "Scale to fit on a single page"
-msgstr "Schalen tot een enkele pagina"
+#: plugins/AncestorChart2.py:455
+msgid "Sc_ale to fit on a single page"
+msgstr "S_chalen tot een enkele pagina"
 
-#: plugins/AncestorChart2.py:782 plugins/AncestorChart2.py:793
+#: plugins/AncestorChart2.py:835 plugins/AncestorChart2.py:846
 msgid "Ancestor Chart (Wall Chart)"
 msgstr "Voorouderkaart (muurkaart)"
 
@@ -4576,7 +4655,7 @@ msgstr "Ahnentafel-rapportage"
 #: plugins/Ancestors.py:846 plugins/Ancestors.py:1119
 #: plugins/DescendReport.py:132 plugins/DescendReport.py:404
 #: plugins/DetAncestralReport.py:1211 plugins/DetDescendantReport.py:1220
-#: plugins/FamilyGroup.py:361 plugins/FamilyGroup.py:761
+#: plugins/FamilyGroup.py:363 plugins/FamilyGroup.py:763
 #: plugins/FtmStyleAncestors.py:1006 plugins/FtmStyleAncestors.py:1252
 #: plugins/FtmStyleDescendants.py:1415 plugins/FtmStyleDescendants.py:1661
 #: plugins/IndivComplete.py:473 plugins/IndivComplete.py:821
@@ -4593,7 +4672,7 @@ msgid "Ahnentafel Report for GRAMPS Book"
 msgstr "Ahnentafel-rapportage voor GRAMPS-boek"
 
 #: plugins/AncestorReport.py:397 plugins/Ancestors.py:776
-#: plugins/DescendReport.py:293 plugins/FamilyGroup.py:612
+#: plugins/DescendReport.py:293 plugins/FamilyGroup.py:614
 #: plugins/FtmStyleAncestors.py:953 plugins/FtmStyleDescendants.py:1362
 #: plugins/IndivComplete.py:662 plugins/IndivSummary.py:590
 #: plugins/SimpleBookTitle.py:118 plugins/TimeLine.py:339
@@ -4853,9 +4932,11 @@ msgid ""
 msgstr ""
 "Dit boek werd aangemaakt met de verwijzingen naar database %s.\n"
 "\n"
-"Dit maakt verwijzingen naar de centrale persoon opgeslagen in het boek ongeldig.\n"
+"Dit maakt verwijzingen naar de centrale persoon opgeslagen in het boek "
+"ongeldig.\n"
 "\n"
-"Daarom wordt de centrale persoon voor elk item gezet op de actieve persoon van de momenteel geopende database."
+"Daarom wordt de centrale persoon voor elk item gezet op de actieve persoon "
+"van de momenteel geopende database."
 
 #: plugins/BookReport.py:681 plugins/BookReport.py:698
 msgid "Not Applicable"
@@ -4916,7 +4997,9 @@ msgstr "Database verwerken"
 
 #: plugins/ChangeTypes.py:107
 msgid "Allows all the events of a certain name to be renamed to a new name"
-msgstr "Maakt het mogelijk dat alle gebeurtenissen met een bepaalde naam worden hernoemd"
+msgstr ""
+"Maakt het mogelijk dat alle gebeurtenissen met een bepaalde naam worden "
+"hernoemd"
 
 #: plugins/Check.py:272
 msgid "No errors were found"
@@ -4973,7 +5056,8 @@ msgstr "Er was een verwijzing naar 1 media-object welke niet werd gevonden\n"
 
 #: plugins/Check.py:328
 msgid "%d media objects were referenced, but not found\n"
-msgstr "Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
+msgstr ""
+"Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
 
 #: plugins/Check.py:330
 msgid "Reference to 1 missing media object was kept\n"
@@ -5067,7 +5151,7 @@ msgstr "Afstammelinggrafiek voor GRAMPS boek"
 msgid "Generates a graph of descendants of the active person"
 msgstr "Genereert een grafiek met afstammelingen van de actieve persoon"
 
-#: plugins/DesGraph.py:588 plugins/FanChart.py:463 plugins/Partition.py:222
+#: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
 msgstr "Alpha"
 
@@ -5493,8 +5577,8 @@ msgid "Event Comparison"
 msgstr "Gebeurtenis-vergelijken"
 
 # Gebeurtenistype: overlijden
-#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:171
-#: plugins/FamilyGroup.py:274 plugins/FamilyGroup.py:276
+#: plugins/EventCmp.py:308 plugins/FamilyGroup.py:173
+#: plugins/FamilyGroup.py:276 plugins/FamilyGroup.py:278
 msgid "Death"
 msgstr "Overlijden"
 
@@ -5506,54 +5590,57 @@ msgstr "individuele gebeurtenissen vergelijken"
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
-msgstr "Assisteert in de analyse van data door het ontwikkelen van aangepaste filters die op de database kunnen worden toegepast om gelijke gebeurtenissen op te sporen"
+msgstr ""
+"Assisteert in de analyse van data door het ontwikkelen van aangepaste "
+"filters die op de database kunnen worden toegepast om gelijke gebeurtenissen "
+"op te sporen"
 
-#: plugins/FamilyGroup.py:133
+#: plugins/FamilyGroup.py:135
 msgid "Husband"
 msgstr "Man"
 
-#: plugins/FamilyGroup.py:135
+#: plugins/FamilyGroup.py:137
 msgid "Wife"
 msgstr "Vrouw"
 
-#: plugins/FamilyGroup.py:292 plugins/FamilyGroup.py:386
-#: plugins/FamilyGroup.py:500
+#: plugins/FamilyGroup.py:294 plugins/FamilyGroup.py:388
+#: plugins/FamilyGroup.py:502
 msgid "Spouse"
 msgstr "Echtgenoot"
 
-#: plugins/FamilyGroup.py:318 plugins/FamilyGroup.py:361
-#: plugins/FamilyGroup.py:480 plugins/FamilyGroup.py:760
-#: plugins/FamilyGroup.py:769
+#: plugins/FamilyGroup.py:320 plugins/FamilyGroup.py:363
+#: plugins/FamilyGroup.py:482 plugins/FamilyGroup.py:762
+#: plugins/FamilyGroup.py:771
 msgid "Family Group Report"
 msgstr "Familiegroep-rapport"
 
-#: plugins/FamilyGroup.py:335 plugins/IndivComplete.py:287
+#: plugins/FamilyGroup.py:337 plugins/IndivComplete.py:287
 #: plugins/IndivSummary.py:185 plugins/WebPage.py:607
 msgid "Children"
 msgstr "Kinderen"
 
-#: plugins/FamilyGroup.py:365
+#: plugins/FamilyGroup.py:367
 msgid "Family Group Report for %s"
 msgstr "Familiegroep-rapport voor %s"
 
-#: plugins/FamilyGroup.py:370
+#: plugins/FamilyGroup.py:372
 msgid "Save Family Group Report"
 msgstr "Familiegroep-rapport opslaan"
 
-#: plugins/FamilyGroup.py:484
+#: plugins/FamilyGroup.py:486
 msgid "Family Group Report for GRAMPS Book"
 msgstr "Familiegroep-rapport voor GRAMPS-boek"
 
 # related to?
-#: plugins/FamilyGroup.py:630
+#: plugins/FamilyGroup.py:632
 msgid "The style used for the text related to the children."
 msgstr "De gebruikte stijl voor de tekst verbonden met de kinderen."
 
-#: plugins/FamilyGroup.py:639
+#: plugins/FamilyGroup.py:641
 msgid "The style used for the parent's name"
 msgstr "De gebruikte stijl voor de naam van de ouders"
 
-#: plugins/FamilyGroup.py:763
+#: plugins/FamilyGroup.py:765
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -5598,71 +5685,73 @@ msgstr "Selecteren..."
 msgid "Select person from a list"
 msgstr "Persoon uit een lijst selecteren"
 
-#: plugins/FilterEditor.py:173
-msgid "Select Person"
-msgstr "Persoon selecteren"
-
 #: plugins/FilterEditor.py:189
 msgid "Not a valid person"
 msgstr "Geen geldig persoon"
 
-#: plugins/FilterEditor.py:243
+#: plugins/FilterEditor.py:244
 msgid "User defined filters"
 msgstr "Gebruiker-gedefinieerde filters"
 
-#: plugins/FilterEditor.py:311
+#: plugins/FilterEditor.py:312
 msgid "Define filter"
 msgstr "Filter definieren"
 
-#: plugins/FilterEditor.py:394
+#: plugins/FilterEditor.py:395
 msgid "Add Rule"
 msgstr "Regel toevoegen"
 
-#: plugins/FilterEditor.py:400
+#: plugins/FilterEditor.py:401
 msgid "Edit Rule"
 msgstr "Regel bewerken"
 
-#: plugins/FilterEditor.py:467
+#: plugins/FilterEditor.py:469
 msgid "Include original person"
 msgstr "Oorspronkelijke persoon bijvoegen"
 
-#: plugins/FilterEditor.py:480
+#: plugins/FilterEditor.py:482
 msgid "Rule Name"
 msgstr "Regelnaam"
 
-#: plugins/FilterEditor.py:543 rule.glade:1213
+#: plugins/FilterEditor.py:545 rule.glade:1213
 msgid "No rule selected"
 msgstr "Geen regel geselecteerd"
 
-#: plugins/FilterEditor.py:593
+#: plugins/FilterEditor.py:597
 msgid "Filter Test"
 msgstr "Filtertest"
 
-#: plugins/FilterEditor.py:632
+#: plugins/FilterEditor.py:636
 msgid "Custom Filter Editor"
 msgstr "Aangepaste filter-editor"
 
-#: plugins/FilterEditor.py:633 plugins/FilterEditor.py:646
-#: plugins/RelCalc.py:160 plugins/Verify.py:418 plugins/soundgen.py:97
+#: plugins/FilterEditor.py:637 plugins/FilterEditor.py:650
+#: plugins/RelCalc.py:161 plugins/Verify.py:418 plugins/soundgen.py:97
 msgid "Utilities"
 msgstr "Hulpmiddelen"
 
-#: plugins/FilterEditor.py:634
+#: plugins/FilterEditor.py:638
 msgid ""
 "The Custom Filter Editor builds custom filters that can be used to select "
 "people included in reports, exports, and other utilities."
-msgstr "De aangepaste filter editor bouwt aangepaste filters die kunnen worden gebruikt in rapporten, exporten, en andere hulpmiddelen, om personen te selecteren."
+msgstr ""
+"De aangepaste filter editor bouwt aangepaste filters die kunnen worden "
+"gebruikt in rapporten, exporten, en andere hulpmiddelen, om personen te "
+"selecteren."
 
-#: plugins/FilterEditor.py:645
+#: plugins/FilterEditor.py:649
 msgid "System Filter Editor"
 msgstr "Systeem-filter editor"
 
-#: plugins/FilterEditor.py:647
+#: plugins/FilterEditor.py:651
 msgid ""
 "The System Filter Editor builds custom filters that can be used by anyone on "
 "the system to select people included in reports, exports, and other "
 "utilities."
-msgstr "De systeemfilter editor bouwt aangepaste filters die door iedereen op het systeem kunnen worden gebruikt in rapporten, exporten, en andere hulpmiddelen, om personen te selecteren."
+msgstr ""
+"De systeemfilter editor bouwt aangepaste filters die door iedereen op het "
+"systeem kunnen worden gebruikt in rapporten, exporten, en andere "
+"hulpmiddelen, om personen te selecteren."
 
 #: plugins/FtmStyleAncestors.py:99 plugins/FtmStyleDescendants.py:126
 msgid "Generation No. %d"
@@ -5675,7 +5764,10 @@ msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%"
+"(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%"
+"(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:141 plugins/FtmStyleAncestors.py:630
 #: plugins/FtmStyleDescendants.py:172 plugins/FtmStyleDescendants.py:684
@@ -5683,21 +5775,27 @@ msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_plac
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%"
+"(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:152 plugins/FtmStyleDescendants.py:183
 #: plugins/FtmStyleDescendants.py:1037
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s %(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s %"
+"(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:162 plugins/FtmStyleDescendants.py:193
 #: plugins/FtmStyleDescendants.py:701 plugins/FtmStyleDescendants.py:1047
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%"
+"(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:171 plugins/FtmStyleAncestors.py:660
 #: plugins/FtmStyleDescendants.py:202 plugins/FtmStyleDescendants.py:709
@@ -5705,7 +5803,9 @@ msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_plac
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, "
+"en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:181 plugins/FtmStyleAncestors.py:670
 #: plugins/FtmStyleDescendants.py:212 plugins/FtmStyleDescendants.py:718
@@ -5713,7 +5813,9 @@ msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, "
+"en overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:190 plugins/FtmStyleAncestors.py:679
 #: plugins/FtmStyleDescendants.py:221 plugins/FtmStyleDescendants.py:727
@@ -5721,12 +5823,15 @@ msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, "
+"en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:198 plugins/FtmStyleDescendants.py:229
 #: plugins/FtmStyleDescendants.py:735 plugins/FtmStyleDescendants.py:1083
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:208 plugins/FtmStyleAncestors.py:696
 #: plugins/FtmStyleDescendants.py:239 plugins/FtmStyleDescendants.py:743
@@ -5734,7 +5839,9 @@ msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, "
+"en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:217 plugins/FtmStyleAncestors.py:705
 #: plugins/FtmStyleDescendants.py:248 plugins/FtmStyleDescendants.py:752
@@ -5742,7 +5849,9 @@ msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnote
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, "
+"en overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:226 plugins/FtmStyleAncestors.py:714
 #: plugins/FtmStyleDescendants.py:257 plugins/FtmStyleDescendants.py:761
@@ -5750,13 +5859,16 @@ msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnote
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, "
+"en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:234 plugins/FtmStyleDescendants.py:265
 #: plugins/FtmStyleDescendants.py:769 plugins/FtmStyleDescendants.py:1119
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:243 plugins/FtmStyleAncestors.py:730
 #: plugins/FtmStyleDescendants.py:274 plugins/FtmStyleDescendants.py:777
@@ -5764,19 +5876,23 @@ msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnote
 msgid ""
 "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s overleed op %(death_date)s in %(death_place)s%"
+"(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:250 plugins/FtmStyleAncestors.py:737
 #: plugins/FtmStyleDescendants.py:281 plugins/FtmStyleDescendants.py:783
 #: plugins/FtmStyleDescendants.py:1135
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:258 plugins/FtmStyleAncestors.py:744
 #: plugins/FtmStyleDescendants.py:289 plugins/FtmStyleDescendants.py:790
 #: plugins/FtmStyleDescendants.py:1143
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:269 plugins/FtmStyleAncestors.py:754
 #: plugins/FtmStyleDescendants.py:300 plugins/FtmStyleDescendants.py:803
@@ -5785,7 +5901,10 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s"
+"%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%"
+"(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:280 plugins/FtmStyleAncestors.py:765
 #: plugins/FtmStyleDescendants.py:311 plugins/FtmStyleDescendants.py:812
@@ -5793,7 +5912,9 @@ msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_pl
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s"
+"%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:291 plugins/FtmStyleAncestors.py:776
 #: plugins/FtmStyleDescendants.py:322 plugins/FtmStyleDescendants.py:821
@@ -5801,14 +5922,18 @@ msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_pl
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s"
+"%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:301 plugins/FtmStyleDescendants.py:332
 #: plugins/FtmStyleDescendants.py:1186
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
 "(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s %(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)"
+"s %(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:310 plugins/FtmStyleAncestors.py:795
 #: plugins/FtmStyleDescendants.py:341 plugins/FtmStyleDescendants.py:837
@@ -5816,7 +5941,9 @@ msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_pl
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)"
+"s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:320 plugins/FtmStyleAncestors.py:805
 #: plugins/FtmStyleDescendants.py:351 plugins/FtmStyleDescendants.py:846
@@ -5824,7 +5951,9 @@ msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnot
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)"
+"s, en overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:329 plugins/FtmStyleAncestors.py:814
 #: plugins/FtmStyleDescendants.py:360 plugins/FtmStyleDescendants.py:855
@@ -5832,12 +5961,15 @@ msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnot
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)"
+"s, en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:337 plugins/FtmStyleDescendants.py:368
 #: plugins/FtmStyleDescendants.py:863 plugins/FtmStyleDescendants.py:1222
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:347 plugins/FtmStyleAncestors.py:831
 #: plugins/FtmStyleDescendants.py:378 plugins/FtmStyleDescendants.py:871
@@ -5845,7 +5977,9 @@ msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnot
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
+"s, en overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:355 plugins/FtmStyleAncestors.py:839
 #: plugins/FtmStyleDescendants.py:386 plugins/FtmStyleDescendants.py:880
@@ -5853,7 +5987,9 @@ msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endno
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, en overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
+"s, en overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:364 plugins/FtmStyleAncestors.py:848
 #: plugins/FtmStyleDescendants.py:395 plugins/FtmStyleDescendants.py:889
@@ -5861,13 +5997,17 @@ msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endno
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
+"s, en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:372 plugins/FtmStyleDescendants.py:403
 #: plugins/FtmStyleDescendants.py:897 plugins/FtmStyleDescendants.py:1257
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
+"s."
 
 #: plugins/FtmStyleAncestors.py:381 plugins/FtmStyleAncestors.py:864
 #: plugins/FtmStyleDescendants.py:412 plugins/FtmStyleDescendants.py:905
@@ -5875,19 +6015,23 @@ msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endno
 msgid ""
 "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s overleed op %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s overleed op %(death_date)s in %(death_place)s%"
+"(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:388 plugins/FtmStyleAncestors.py:871
 #: plugins/FtmStyleDescendants.py:419 plugins/FtmStyleDescendants.py:911
 #: plugins/FtmStyleDescendants.py:1273
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:396 plugins/FtmStyleAncestors.py:878
 #: plugins/FtmStyleDescendants.py:427 plugins/FtmStyleDescendants.py:918
 #: plugins/FtmStyleDescendants.py:1281
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:423 plugins/FtmStyleDescendants.py:457
 msgid "Endnotes"
@@ -5962,37 +6106,49 @@ msgstr "Zij trouwde met %(spouse)s%(endnotes)s."
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%"
+"(birth_endnotes)s, en overleed in %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:651
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s. "
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%"
+"(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:687
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
-msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s. "
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:722
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:786
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s"
+"%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:822
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)"
+"s. "
 
 #: plugins/FtmStyleAncestors.py:856
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
+"s. "
 
 #: plugins/FtmStyleAncestors.py:896 plugins/FtmStyleDescendants.py:1300
 msgid "He was the son of %(father)s and %(mother)s."
@@ -6059,7 +6215,9 @@ msgstr "%(male_name)s%(endnotes)s."
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
-msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s in %(birth_place)s"
+"%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:924
 msgid "%(female_name)s%(endnotes)s."
@@ -6085,7 +6243,8 @@ msgstr "FTM stijl afstammeling-rapport voor GRAMPS boek"
 
 #: plugins/FtmStyleDescendants.py:1663
 msgid "Produces a textual descendant report similar to Family Tree Maker."
-msgstr "Levert een tekstueel afstammeling-rapport gelijk aan 'Familieboom maker'."
+msgstr ""
+"Levert een tekstueel afstammeling-rapport gelijk aan 'Familieboom maker'."
 
 #: plugins/GraphViz.py:62 plugins/GraphViz.py:92 plugins/RelGraph.py:69
 #: plugins/RelGraph.py:120
@@ -6168,7 +6327,9 @@ msgstr "Geboortedatums, trouwdata en sterfdatums bijvoegen"
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
-msgstr "De datums waarop de persoon werd geboren, trouwde en/of overleed, tonen in de grafieklabels."
+msgstr ""
+"De datums waarop de persoon werd geboren, trouwde en/of overleed, tonen in "
+"de grafieklabels."
 
 #: plugins/GraphViz.py:183 plugins/RelGraph.py:238
 msgid "Limit dates to years only"
@@ -6178,7 +6339,9 @@ msgstr "Datums beperken tot jaren alleen"
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
-msgstr "Geeft alleen het jaar van een datum. Noch de maand, dag, datumbenadering of interval wordt getoond."
+msgstr ""
+"Geeft alleen het jaar van een datum. Noch de maand, dag, datumbenadering of "
+"interval wordt getoond."
 
 #: plugins/GraphViz.py:193 plugins/RelGraph.py:255
 msgid "Include URLs"
@@ -6189,7 +6352,10 @@ msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Generate "
 "Web Site' report."
-msgstr "Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden kunnen worden gegenereerd die actieve links bevatten naar de bestanden die gegenereerd zijn met 'Website rapport genereren'"
+msgstr ""
+"Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden "
+"kunnen worden gegenereerd die actieve links bevatten naar de bestanden die "
+"gegenereerd zijn met 'Website rapport genereren'"
 
 #: plugins/GraphViz.py:203 plugins/RelGraph.py:265
 msgid "Colorize Graph"
@@ -6220,7 +6386,8 @@ msgstr "Familieknooppunten tonen"
 
 #: plugins/GraphViz.py:226 plugins/RelGraph.py:220
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Families zijn te zien als ellipsen met verbindingen naar ouders en kinderen."
+msgstr ""
+"Families zijn te zien als ellipsen met verbindingen naar ouders en kinderen."
 
 # Pagina-opties
 #: plugins/GraphViz.py:237 plugins/GraphViz.py:240 plugins/GraphViz.py:250
@@ -6412,25 +6579,6 @@ msgstr ""
 "De gehele database doorzoeken op personen die mogelijk representaties zijn "
 "van een en dezelfde persoon."
 
-#: plugins/Partition.py:221
-msgid "Partitions"
-msgstr "Partities"
-
-#: plugins/Partition.py:223
-msgid "Export"
-msgstr "Exporteren"
-
-#: plugins/Partition.py:224
-msgid ""
-"This program partitions individuals in a database into disjoint partitions.\n"
-"A partition is composed of people related by one or more multiple "
-"relations.\n"
-"There should be no known relationship between people in different partitions."
-msgstr ""
-"Dit programma verdeelt personen in een database in afzonderlijke partities.\n"
-"Een partitie is opgebouwd uit personen met een of meer relaties.\n"
-"Er zijn geen bekende relaties tussen personen in afzonderlijke partities."
-
 #: plugins/PatchNames.py:103
 msgid "No modifications made"
 msgstr "Niets aangepast"
@@ -6460,7 +6608,9 @@ msgstr "Informatie uit namen halen"
 msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
-msgstr "Doorzoekt de gehele database en tracht titles en bijnamen te extraheren die mogelijk in het gegeven naamveld van een persoon zijn ingebed."
+msgstr ""
+"Doorzoekt de gehele database en tracht titles en bijnamen te extraheren die "
+"mogelijk in het gegeven naamveld van een persoon zijn ingebed."
 
 #: plugins/ReadGedcom.py:74
 msgid "Import from GEDCOM"
@@ -6497,13 +6647,20 @@ msgid ""
 "try to find the images. These paths are based on Windows compatible file "
 "systems available on this system:\n"
 "\n"
-msgstr "Windows-stijl padnamen voor afbeeldingen zullen de volgende koppelpunten gebruiken om de afbeeldingen te vinden. Deze paden zijn gebaseerd op de Windows-compatibele bestandsystemen die beschikbaar zijn op dit systeem:\n\n"
+msgstr ""
+"Windows-stijl padnamen voor afbeeldingen zullen de volgende koppelpunten "
+"gebruiken om de afbeeldingen te vinden. Deze paden zijn gebaseerd op de "
+"Windows-compatibele bestandsystemen die beschikbaar zijn op dit systeem:\n"
+"\n"
 
 #: plugins/ReadGedcom.py:283
 msgid ""
 "Images that cannot be found in the specfied path in the GEDCOM file will be "
 "searched for in the same directory in which the GEDCOM file exists (%s).\n"
-msgstr "Afbeeldingen die niet worden gevonden in het opgegeven pad in het GEDCOM bestand zullen worden gezocht in dezelfde map waarin het GEDCOM bestand zich bevind (%s).\n"
+msgstr ""
+"Afbeeldingen die niet worden gevonden in het opgegeven pad in het GEDCOM "
+"bestand zullen worden gezocht in dezelfde map waarin het GEDCOM bestand zich "
+"bevind (%s).\n"
 
 # Let op, ipv waarschuwing
 #: plugins/ReadGedcom.py:355
@@ -6519,11 +6676,11 @@ msgstr "Let op: regel %d werd niet begrepen en is daarom genegeerd."
 msgid "Import Complete: %d seconds"
 msgstr "Import voltooid: %d seconden"
 
-#: plugins/ReadGedcom.py:952 plugins/ReadGedcom.py:990
+#: plugins/ReadGedcom.py:953 plugins/ReadGedcom.py:991
 msgid "Warning: could not import %s"
 msgstr "Let op: kon %s niet importeren"
 
-#: plugins/ReadGedcom.py:953 plugins/ReadGedcom.py:991
+#: plugins/ReadGedcom.py:954 plugins/ReadGedcom.py:992
 msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
@@ -6551,35 +6708,35 @@ msgstr "Tijdelijke map %s is niet beschrijfbaar"
 msgid "Error extracting into %s"
 msgstr "Fout bij uitpakken naar %s"
 
-#: plugins/RelCalc.py:82 plugins/RelCalc.py:159
+#: plugins/RelCalc.py:83 plugins/RelCalc.py:160
 msgid "Relationship calculator"
 msgstr "Relatie-calculator"
 
-#: plugins/RelCalc.py:87 plugins/TimeLine.py:377
+#: plugins/RelCalc.py:88 plugins/TimeLine.py:377
 msgid "Birth Date"
 msgstr "Geboortedatum"
 
-#: plugins/RelCalc.py:119
+#: plugins/RelCalc.py:120
 msgid "Their common ancestor is %s."
 msgstr "Hun gemeenschappelijke voorouder is %s."
 
-#: plugins/RelCalc.py:123
+#: plugins/RelCalc.py:124
 msgid "Their common ancestors are %s and %s."
 msgstr "Hun gemeenschappelijke voorouders zijn %s en %s."
 
-#: plugins/RelCalc.py:128
+#: plugins/RelCalc.py:129
 msgid "Their common ancestors are : "
 msgstr "Hun gemeenschappelijke voorouders zijn : "
 
-#: plugins/RelCalc.py:143
+#: plugins/RelCalc.py:144
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "Er is geen relatie tussen %(person)s en %(active_person)s."
 
-#: plugins/RelCalc.py:146
+#: plugins/RelCalc.py:147
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s is de %(relationship)s van %(active_person)s."
 
-#: plugins/RelCalc.py:161
+#: plugins/RelCalc.py:162
 msgid "Calculates the relationship between two people"
 msgstr "Berekent de relatie tussen twee personen"
 
@@ -6594,7 +6751,8 @@ msgstr "Familie als een stapel tonen"
 
 #: plugins/RelGraph.py:212
 msgid "The main individual is shown along with their spouses in a stack."
-msgstr "De hoofdpersoon wordt samen met de echtgenoot weergegeven in een stapel."
+msgstr ""
+"De hoofdpersoon wordt samen met de echtgenoot weergegeven in een stapel."
 
 #: plugins/RelGraph.py:222
 msgid "Include IDs"
@@ -6612,7 +6770,9 @@ msgstr "Locatie/oorzaak bij geen datum"
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field (or cause field when blank) will be used."
-msgstr "Indien geen geboorte, trouw, of overlijdingsdatum beschikbaar is, wordt het corresponderende lokatieveld (of oorzaakveld indien leeg) gebruikt."
+msgstr ""
+"Indien geen geboorte, trouw, of overlijdingsdatum beschikbaar is, wordt het "
+"corresponderende lokatieveld (of oorzaakveld indien leeg) gebruikt."
 
 #: plugins/ReorderIds.py:129
 msgid "Reorder gramps IDs"
@@ -6651,9 +6811,9 @@ msgstr "Ondertitel van het boek"
 msgid "Copyright %d %s"
 msgstr "Copyright %d %s"
 
-#: plugins/SimpleBookTitle.py:278
-msgid "Simple Book Title"
-msgstr "Eenvoudige titel van het boek"
+#: plugins/SimpleBookTitle.py:278 plugins/SimpleBookTitle.py:563
+msgid "Title Page"
+msgstr "Titelpagina"
 
 #: plugins/SimpleBookTitle.py:282
 msgid "Title Page for GRAMPS Book"
@@ -6683,10 +6843,6 @@ msgstr "Voorbeeld"
 #: plugins/SimpleBookTitle.py:336
 msgid "Image"
 msgstr "Afbeelding"
-
-#: plugins/SimpleBookTitle.py:563
-msgid "Title Page"
-msgstr "Titelpagina"
 
 # Individuen
 #: plugins/Summary.py:97
@@ -6799,91 +6955,127 @@ msgstr "Database verifiëren"
 #: plugins/Verify.py:128
 msgid ""
 "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Gedoopt voor geboorte: %(male_name)s werd geboren in %(byear)d, gedoopt in %(bapyear)d.\n"
+msgstr ""
+"Gedoopt voor geboorte: %(male_name)s werd geboren in %(byear)d, gedoopt in %"
+"(bapyear)d.\n"
 
 #: plugins/Verify.py:131
 msgid ""
 "Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
 "d.\n"
-msgstr "Gedoopt voor geboorte: %(female_name)s werd geboren in %(byear)d, gedoopt in %(bapyear)d.\n"
+msgstr ""
+"Gedoopt voor geboorte: %(female_name)s werd geboren in %(byear)d, gedoopt in "
+"%(bapyear)d.\n"
 
 #: plugins/Verify.py:135
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Laat gedoopt: %(male_name)s werd geboren in %(byear)d, gedoopt in %(bapyear)d.\n"
+msgstr ""
+"Laat gedoopt: %(male_name)s werd geboren in %(byear)d, gedoopt in %(bapyear)"
+"d.\n"
 
 #: plugins/Verify.py:138
 msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Laat gedoopt: %(female_name)s werd geboren in %(byear)d, gedoopt in %(bapyear)d.\n"
+msgstr ""
+"Laat gedoopt: %(female_name)s werd geboren in %(byear)d, gedoopt in %"
+"(bapyear)d.\n"
 
 #: plugins/Verify.py:143
 msgid ""
 "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Begraving voor overlijden: %(male_name)s overleed in %(dyear)d, werd begraven in %(buryear)d.\n"
+msgstr ""
+"Begraving voor overlijden: %(male_name)s overleed in %(dyear)d, werd "
+"begraven in %(buryear)d.\n"
 
 #: plugins/Verify.py:146
 msgid ""
 "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Begraving voor overlijden: %(female_name)s overleed in %(dyear)d, werd begraven in %(buryear)d.\n"
+msgstr ""
+"Begraving voor overlijden: %(female_name)s overleed in %(dyear)d, werd "
+"begraven in %(buryear)d.\n"
 
 #: plugins/Verify.py:150
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Laat begraven: %(male_name)s overleed in %(dyear)d, werd begraven in %(buryear)d.\n"
+msgstr ""
+"Laat begraven: %(male_name)s overleed in %(dyear)d, werd begraven in %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:153
 msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Laat begraven: %(female_name)s overleed in %(dyear)d, werd begraven in %(buryear)d.\n"
+msgstr ""
+"Laat begraven: %(female_name)s overleed in %(dyear)d, werd begraven in %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:157
 msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Overleden voor geboorte: %(male_name)s werd geboren in %(byear)d, overleed in %(dyear)d.\n"
+msgstr ""
+"Overleden voor geboorte: %(male_name)s werd geboren in %(byear)d, overleed "
+"in %(dyear)d.\n"
 
 #: plugins/Verify.py:160
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Overleden voor geboorte: %(female_name)s werd geboren in %(byear)d, overleed in %(dyear)d.\n"
+msgstr ""
+"Overleden voor geboorte: %(female_name)s werd geboren in %(byear)d, overleed "
+"in %(dyear)d.\n"
 
 #: plugins/Verify.py:164
 msgid ""
 "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr "Overleden voor doop: %(male_name)s werd gedoopt in %(bapyear)d, overleed in %(dyear)d.\n"
+msgstr ""
+"Overleden voor doop: %(male_name)s werd gedoopt in %(bapyear)d, overleed in %"
+"(dyear)d.\n"
 
 #: plugins/Verify.py:167
 msgid ""
 "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr "Overleden voor doop: %(female_name)s werd gedoopt in %(bapyear)d, overleed in %(dyear)d.\n"
+msgstr ""
+"Overleden voor doop: %(female_name)s werd gedoopt in %(bapyear)d, overleed "
+"in %(dyear)d.\n"
 
 #: plugins/Verify.py:171
 msgid ""
 "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Begraven voor geboorte: %(male_name)s werd geboren in %(byear)d, begraven in %(buryear)d.\n"
+msgstr ""
+"Begraven voor geboorte: %(male_name)s werd geboren in %(byear)d, begraven in "
+"%(buryear)d.\n"
 
 #: plugins/Verify.py:174
 msgid ""
 "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Begraven voor geboorte: %(female_name)s werd geboren in %(byear)d, begraven in %(buryear)d.\n"
+msgstr ""
+"Begraven voor geboorte: %(female_name)s werd geboren in %(byear)d, begraven "
+"in %(buryear)d.\n"
 
 #: plugins/Verify.py:178
 msgid ""
 "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
 "d.\n"
-msgstr "Begraven voor doop: %(male_name)s werd gedoopt in %(bapyear)d, begraven in %(buryear)d.\n"
+msgstr ""
+"Begraven voor doop: %(male_name)s werd gedoopt in %(bapyear)d, begraven in %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:181
 msgid ""
 "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
 "(buryear)d.\n"
-msgstr "Begraven voor doop: %(female_name)s werd gedoopt in %(bapyear)d, begraven in %(buryear)d.\n"
+msgstr ""
+"Begraven voor doop: %(female_name)s werd gedoopt in %(bapyear)d, begraven in "
+"%(buryear)d.\n"
 
 #: plugins/Verify.py:193
 msgid ""
 "Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
 "(ageatdeath)d.\n"
-msgstr "Hoge leeftijd: %(male_name)s werd geboren in %(byear)d, overleed in %(dyear)d, op de leeftijd van %(ageatdeath)d jaar.\n"
+msgstr ""
+"Hoge leeftijd: %(male_name)s werd geboren in %(byear)d, overleed in %(dyear)"
+"d, op de leeftijd van %(ageatdeath)d jaar.\n"
 
 #: plugins/Verify.py:196
 msgid ""
 "Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
 "(ageatdeath)d.\n"
-msgstr "Hoge leeftijd: %(female_name)s werd geboren in %(byear)d, overleed in %(dyear)d, op de leeftijd van %(ageatdeath)d jaar.\n"
+msgstr ""
+"Hoge leeftijd: %(female_name)s werd geboren in %(byear)d, overleed in %"
+"(dyear)d, op de leeftijd van %(ageatdeath)d jaar.\n"
 
 #: plugins/Verify.py:208
 msgid "Unknown gender for %s.\n"
@@ -6909,13 +7101,17 @@ msgstr "Vaak getrouwd: %(female_name)s trouwde %(nfam)d keer.\n"
 msgid ""
 "Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
 "d years.\n"
-msgstr "Oud en ongetrouwd: %(male_name)s ovleed ongetrouwd, op de leeftijd van %(ageatdeath)d jaar.\n"
+msgstr ""
+"Oud en ongetrouwd: %(male_name)s ovleed ongetrouwd, op de leeftijd van %"
+"(ageatdeath)d jaar.\n"
 
 #: plugins/Verify.py:235
 msgid ""
 "Old and unmarried: %(female_name)s died unmarried, at the age of %"
 "(ageatdeath)d years.\n"
-msgstr "Oud en ongetrouwd: %(female_name)s overleed ongetrouwd, op de leeftijd van %(ageatdeath)d jaar.\n"
+msgstr ""
+"Oud en ongetrouwd: %(female_name)s overleed ongetrouwd, op de leeftijd van %"
+"(ageatdeath)d jaar.\n"
 
 #: plugins/Verify.py:249
 msgid "Homosexual marriage: %s in family %s.\n"
@@ -6937,62 +7133,83 @@ msgstr "Man en vrouw met dezelfde achternaam: %s in familie %s, en %s.\n"
 msgid ""
 "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
 "(spouse)s.\n"
-msgstr "Getrouwd voor geboorte: %(male_name)s werd geboren in %(byear)d, trouwde in %(maryear)d met %(spouse)s.\n"
+msgstr ""
+"Getrouwd voor geboorte: %(male_name)s werd geboren in %(byear)d, trouwde in %"
+"(maryear)d met %(spouse)s.\n"
 
 #: plugins/Verify.py:285
 msgid ""
 "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
 "%(spouse)s.\n"
-msgstr "Getrouwd voor geboorte: %(female_name)s werd geboren in %(byear)d, trouwde in %(maryear)d met %(spouse)s.\n"
+msgstr ""
+"Getrouwd voor geboorte: %(female_name)s werd geboren in %(byear)d, trouwde "
+"in %(maryear)d met %(spouse)s.\n"
 
 # man trouwde toen hij %d jaar oud was met %s
 #: plugins/Verify.py:290
 msgid ""
 "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Vroeg huwelijk: %(male_name)s trouwde op de leeftijd van %(marage)d jaar met %(spouse)s.\n"
+msgstr ""
+"Vroeg huwelijk: %(male_name)s trouwde op de leeftijd van %(marage)d jaar met "
+"%(spouse)s.\n"
 
 #: plugins/Verify.py:293
 msgid ""
 "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Vroeg huwelijk: %(female_name)s trouwde op de leeftijd van %(marage)d jaar met %(spouse)s.\n"
+msgstr ""
+"Vroeg huwelijk: %(female_name)s trouwde op de leeftijd van %(marage)d jaar "
+"met %(spouse)s.\n"
 
 #: plugins/Verify.py:297
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Laat huwelijk: %(male_name)s trouwde op de leeftijd van %(marage)d jaar met %(spouse)s.\n"
+msgstr ""
+"Laat huwelijk: %(male_name)s trouwde op de leeftijd van %(marage)d jaar met %"
+"(spouse)s.\n"
 
 #: plugins/Verify.py:300
 msgid ""
 "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Laat huwelijk: %(female_name)s trouwde op de leeftijd van %(marage)d jaar met %(spouse)s.\n"
+msgstr ""
+"Laat huwelijk: %(female_name)s trouwde op de leeftijd van %(marage)d jaar "
+"met %(spouse)s.\n"
 
 #: plugins/Verify.py:304
 msgid ""
 "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
-msgstr "Getrouwd na overlijden: %(male_name)s overleed in %(dyear)d, trouwde in %(maryear)d met %(spouse)s.\n"
+msgstr ""
+"Getrouwd na overlijden: %(male_name)s overleed in %(dyear)d, trouwde in %"
+"(maryear)d met %(spouse)s.\n"
 
 #: plugins/Verify.py:307
 msgid ""
 "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
-msgstr "Getrouwd na overlijden: %(female_name)s overleed in %(dyear)d, trouwde in %(maryear)d met %(spouse)s.\n"
+msgstr ""
+"Getrouwd na overlijden: %(female_name)s overleed in %(dyear)d, trouwde in %"
+"(maryear)d met %(spouse)s.\n"
 
 #: plugins/Verify.py:311
 msgid ""
 "Marriage before birth from previous family: %(male_name)s married %(maryear)"
 "d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-msgstr "Getrouwd voor geboorte uit vorige familie: %(male_name)s trouwde in %(maryear)d met %(spouse)s, vorige geboorte in %(prev_cbyear)d.\n"
+msgstr ""
+"Getrouwd voor geboorte uit vorige familie: %(male_name)s trouwde in %"
+"(maryear)d met %(spouse)s, vorige geboorte in %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:314
 msgid ""
 "Marriage before birth from previous family: %(female_name)s married %"
 "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-msgstr "Getrouwd voor geboorte uit vorige familie: %(female_name)s trouwde in %(maryear)d met %(spouse)s, vorige geboorte in %(prev_cbyear)d.\n"
+msgstr ""
+"Getrouwd voor geboorte uit vorige familie: %(female_name)s trouwde in %"
+"(maryear)d met %(spouse)s, vorige geboorte in %(prev_cbyear)d.\n"
 
 # is dit goed?
 #: plugins/Verify.py:324
 msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
-msgstr "Lang weduwschap: %s was weduwnaar gedurende %d jaar voor, familie %s.\n"
+msgstr ""
+"Lang weduwschap: %s was weduwnaar gedurende %d jaar voor, familie %s.\n"
 
 #: plugins/Verify.py:326
 msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
@@ -7010,49 +7227,65 @@ msgstr "Lang weduwschap: %s was een weduwe gedurende %d jaar.\n"
 msgid ""
 "Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %"
 "(child)s.\n"
-msgstr "Oude vader: %(male_name)s kreeg op de leeftijd van %(bage)d jaar een kind %(child)s bij de familie %(fam)s \n"
+msgstr ""
+"Oude vader: %(male_name)s kreeg op de leeftijd van %(bage)d jaar een kind %"
+"(child)s bij de familie %(fam)s \n"
 
 #: plugins/Verify.py:352
 msgid ""
 "Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child "
 "%(child)s.\n"
-msgstr "Oude moeder: %(female_name)s kreeg op de leeftijd van %(bage)d jaar een kind %(child)s bij de familie %(fam)s.\n"
+msgstr ""
+"Oude moeder: %(female_name)s kreeg op de leeftijd van %(bage)d jaar een kind "
+"%(child)s bij de familie %(fam)s.\n"
 
 #: plugins/Verify.py:356
 msgid ""
 "Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %"
 "(child)s born %(cbyear)d.\n"
-msgstr "Ongeboren vader: %(male_name)s geboren in %(byear)d, kreeg een kind %(child)s geboren in %(cbyear)d bij familie %(fam)s.\n"
+msgstr ""
+"Ongeboren vader: %(male_name)s geboren in %(byear)d, kreeg een kind %(child)"
+"s geboren in %(cbyear)d bij familie %(fam)s.\n"
 
 #: plugins/Verify.py:359
 msgid ""
 "Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child "
 "%(child)s born %(cbyear)d.\n"
-msgstr "Ongeboren moeder: %(female_name)s geboren in %(byear)d, kreeg een kind %(child)s geboren in %(cbyear)d bij familie %(fam)s.\n"
+msgstr ""
+"Ongeboren moeder: %(female_name)s geboren in %(byear)d, kreeg een kind %"
+"(child)s geboren in %(cbyear)d bij familie %(fam)s.\n"
 
 #: plugins/Verify.py:364
 msgid ""
 "Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a "
 "child %(child)s.\n"
-msgstr "Jonge vader: %(male_name)s kreeg op de leeftijd van %(bage)d jaar een kind %(child)s bij de familie %(fam)s.\n"
+msgstr ""
+"Jonge vader: %(male_name)s kreeg op de leeftijd van %(bage)d jaar een kind %"
+"(child)s bij de familie %(fam)s.\n"
 
 #: plugins/Verify.py:367
 msgid ""
 "Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a "
 "child %(child)s.\n"
-msgstr "Jonge moeder: %(female_name)s kreeg op de leeftijd van %(bage)d jaar een kind %(child)s bij de familie %(fam)s.\n"
+msgstr ""
+"Jonge moeder: %(female_name)s kreeg op de leeftijd van %(bage)d jaar een "
+"kind %(child)s bij de familie %(fam)s.\n"
 
 #: plugins/Verify.py:372 plugins/Verify.py:379
 msgid ""
 "Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child "
 "%(child)s born %(cbyear)d.\n"
-msgstr "Dode vader: %(male_name)s overleed in %(dyear)d, maar kreeg in %(cbyear)d een kind %(child)s bij familie %(fam)s.\n"
+msgstr ""
+"Dode vader: %(male_name)s overleed in %(dyear)d, maar kreeg in %(cbyear)d "
+"een kind %(child)s bij familie %(fam)s.\n"
 
 #: plugins/Verify.py:375 plugins/Verify.py:382
 msgid ""
 "Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
 "child %(child)s born %(cbyear)d.\n"
-msgstr "Dode moeder: %(female_name)s overleed in %(dyear)d, maar kreeg in %(cbyear)d een kind %(child)s bij familie %(fam)s.\n"
+msgstr ""
+"Dode moeder: %(female_name)s overleed in %(dyear)d, maar kreeg in %(cbyear)d "
+"een kind %(child)s bij familie %(fam)s.\n"
 
 #: plugins/Verify.py:388
 msgid "ERRORS:\n"
@@ -7322,16 +7555,22 @@ msgid ""
 "After exporting, go to the <b>burn:///</b> directory in nautilus and select "
 "the Write to CD button."
 msgstr ""
-"Exporteren naar een CD zal niet onmiddellijk de CD branden. Het zal de nautilus-cd-burner voorbereiden zodat u de CD vanuit nautilus kunt branden.\n"
+"Exporteren naar een CD zal niet onmiddellijk de CD branden. Het zal de "
+"nautilus-cd-burner voorbereiden zodat u de CD vanuit nautilus kunt branden.\n"
 "\n"
-"Na exporteren, gaat u naar de map <b>burn:///</b> in nautilus en selecteert u de knop: Branden op CD."
+"Na exporteren, gaat u naar de map <b>burn:///</b> in nautilus en selecteert "
+"u de knop: Branden op CD."
 
 #: plugins/changetype.glade:92
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone without abandoning all changes since the "
 "last database save."
-msgstr "Deze tool zal alle gebeurtenissen van een type hernoemen naar een ander type. Eenmaal voltooid zal dit niet meer kunnen worden hersteld zonder alle aanpassingen te verliezen die zijn gemaakt sinds de laatste keer dat de database werd opgeslagen."
+msgstr ""
+"Deze tool zal alle gebeurtenissen van een type hernoemen naar een ander "
+"type. Eenmaal voltooid zal dit niet meer kunnen worden hersteld zonder alle "
+"aanpassingen te verliezen die zijn gemaakt sinds de laatste keer dat de "
+"database werd opgeslagen."
 
 #: plugins/changetype.glade:245
 msgid "_Original event type:"
@@ -7427,7 +7666,9 @@ msgstr "_Filter:"
 msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
-msgstr "De gebeurtenisvergelijking gebruikt de filters die gedefinieerd zijn in de aangepaste filter editor."
+msgstr ""
+"De gebeurtenisvergelijking gebruikt de filters die gedefinieerd zijn in de "
+"aangepaste filter editor."
 
 #: plugins/eventcmp.glade:532
 msgid "_Custom filter editor"
@@ -7609,8 +7850,10 @@ msgid ""
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Hieronder is een lijst met bijnamen en titels die GRAMPS uit de huidige database\n"
-"kan halen. Als u de aanpassingen accepteert, zal GRAMPS de geselecteerde velden\n"
+"Hieronder is een lijst met bijnamen en titels die GRAMPS uit de huidige "
+"database\n"
+"kan halen. Als u de aanpassingen accepteert, zal GRAMPS de geselecteerde "
+"velden\n"
 "aanpassen."
 
 #: plugins/patchnames.glade:106
@@ -8263,6 +8506,28 @@ msgstr "<b>Uitlijning</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Alinea-opties</b>"
+
+#~ msgid "Partitions"
+#~ msgstr "Partities"
+
+#~ msgid "Export"
+#~ msgstr "Exporteren"
+
+#~ msgid ""
+#~ "This program partitions individuals in a database into disjoint "
+#~ "partitions.\n"
+#~ "A partition is composed of people related by one or more multiple "
+#~ "relations.\n"
+#~ "There should be no known relationship between people in different "
+#~ "partitions."
+#~ msgstr ""
+#~ "Dit programma verdeelt personen in een database in afzonderlijke "
+#~ "partities.\n"
+#~ "Een partitie is opgebouwd uit personen met een of meer relaties.\n"
+#~ "Er zijn geen bekende relaties tussen personen in afzonderlijke partities."
+
+#~ msgid "Simple Book Title"
+#~ msgstr "Eenvoudige titel van het boek"
 
 #~ msgid "Exactly two people must be selected to perform a merge."
 #~ msgstr ""
