@@ -1,3 +1,7 @@
+2004-01-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/ru/mainwin.xml: Update translation.
+	* doc/gramps-manual/ru/usage.xml: Update translation.
+
 2004-01-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/MergeData: Remove reference to personTable
 	* src/RelLib.py: Remove the personTable, since it is no longer needed
