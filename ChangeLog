@@ -1,3 +1,7 @@
+2005-03-06 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditSource.py (display_references): List source's references
+	from personal and family gallery objects.
+
 2005-03-04 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GenericFilter.py (HasAttribute.apply): Make work when no value
 	is given; (HasFamilyAttribute.apply): Make work when no value is given.
