@@ -691,12 +691,8 @@ class BareReportDialog:
             swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
             self.extra_textbox = gtk.TextView()
             swin.add(self.extra_textbox)
-            
-            try:
-                self.extra_textbox.get_buffer().set_text(string,len(string))
-            except TypeError:
-                self.extra_textbox.get_buffer().set_text(string)
 
+            self.extra_textbox.get_buffer().set_text('\n'.join(string))
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
             table.attach(self.extra_textbox_label, 1, 2, row, row+1,
@@ -809,8 +805,9 @@ class BareReportDialog:
             b = self.extra_textbox.get_buffer()
             text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE))
             self.report_text = text_val.split('\n')
+            self.options.handler.set_display_format(self.report_text)
         else:
-            self.report_text = ""
+            self.report_text = []
         
     def parse_other_frames(self):
         """Do nothing.  This sole purpose of this function is to give
@@ -1560,6 +1557,7 @@ class CommandLineReport:
             'filter'    : ["=num","Filter number."],
             'gen'       : ["=num","Number of generations to follow."],
             'pagebbg'   : ["=0/1","Page break between generations."],
+            'dispf'     : ["=str","Display format for the outputbox."],
             }
 
         # Add report-specific options
@@ -1612,7 +1610,14 @@ class CommandLineReport:
             self.options_help['gen'].append("Whatever Number You Wish")
             self.options_help['pagebbg'].append([
                 "No page break","Page break"])
-            self.options_help['page_breaks'].append(True)
+            self.options_help['pagebbg'].append(True)
+
+        if self.options_dict.has_key('dispf'):
+            dispf = ''.join(self.options_dict['dispf']).replace('\\n','\n')
+            self.option_class.handler.set_display_format(dispf)
+
+            self.options_help['dispf'].append(
+                        "Any string -- may use keyword substitutions")
 
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.expanduser("~/whatever_name"))

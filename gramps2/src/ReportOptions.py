@@ -203,7 +203,7 @@ class OptionListCollection:
 
         if not filename or not os.path.isfile(filename):
             filename = const.report_options
-        self.file = os.path.expanduser(filename)
+        self.filename = os.path.expanduser(filename)
 
         self.last_paper_name = self.default_paper_name
         self.last_orientation = self.default_orientation
@@ -300,7 +300,7 @@ class OptionListCollection:
         """
         Saves the current OptionListCollection to the associated file.
         """
-        f = open(self.file,"w")
+        f = open(self.filename,"w")
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<reportoptions>\n')
 
@@ -357,7 +357,7 @@ class OptionListCollection:
         try:
             p = make_parser()
             p.setContentHandler(OptionParser(self))
-            p.parse('file://' + self.file)
+            p.parse('file://' + self.filename)
         except (IOError,OSError,SAXParseException):
             pass
 
@@ -565,14 +565,26 @@ class OptionHandler:
         self.style_name = style_name
 
     def get_filter_number(self):
-        try:
+        if self.default_options_dict.has_key('filter'):
             return self.options_dict.get('filter',
                     self.default_options_dict['filter'])
-        except KeyError:
+        else:
             return None
 
     def set_filter_number(self,val):
         self.options_dict['filter'] = val
+
+    def get_display_format(self):
+        if self.default_options_dict.has_key('dispf'):
+            return self.options_dict.get('dispf',
+                    self.default_options_dict['dispf'])
+        else:
+            return []
+
+    def set_display_format(self,val):
+        if type(val) != list:
+            val = val.split('\n')
+        self.options_dict['dispf'] = val
 
     def get_format_name(self):
         return self.format_name
@@ -674,6 +686,8 @@ class ReportOptions:
 
             'gen'       - Maximum number of generations to consider.
             'pagebbg'   - Whether or not make page breaks between generations.
+            
+            'dispf'     - Display format for the option box -- graphic reports.
         
 
         A self.enable_dict dictionary MUST be defined here, whose keys
@@ -815,3 +829,11 @@ class ReportOptions:
         This method MUST NOT be overridden by subclasses.
         """
         return self.handler.get_filter_number()
+
+    def get_display_format(self):
+        """
+        Return display format for the option box of graphical report.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
+        return self.handler.get_display_format()
