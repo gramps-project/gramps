@@ -221,7 +221,7 @@ class FamilyView:
             nap = GrampsCfg.nameof(self.person)
             nsp = GrampsCfg.nameof(self.selected_spouse)
             QuestionDialog(_('Remove %s as a spouse of %s?') % (nsp,nap),
-                           _('Removing a spouse removes the relationship betwen '
+                           _('Removing a spouse removes the relationship between '
                              'the spouse and the active person. It does not '
                              'remove the spouse from the database'),
                            _('Remove Spouse'),

@@ -192,7 +192,7 @@ class PlaceView:
                                _('This place is currently being used at least one '
                                  'record in the database. Deleting it will remove it '
                                  'from the database and remove it from all records '
-                                 'the reference it.'),
+                                 'that reference it.'),
                                _('Delete Place'),
                                ans.query_response)
             else:
