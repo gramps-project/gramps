@@ -199,8 +199,8 @@ class WitnessEditor:
             self.new_person = new_person
             self.idval = new_person.get_handle()
             new_name = new_person.get_primary_name().get_regular_name()
-        if new_name:
-            self.name.set_text(new_name)
+            if new_name:
+                self.name.set_text(new_name)
         
     def on_toggled(self,obj):
         if self.in_db.get_active():

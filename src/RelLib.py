@@ -2227,10 +2227,10 @@ class GenderStats:
                 return Person.female
 
         if male > (2 * female):
-            return Person.female
+            return Person.male
 
         if female > (2 * male):
-            return Person.male
+            return Person.female
 
         return Person.unknown
 
