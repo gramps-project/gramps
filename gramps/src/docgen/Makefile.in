@@ -1,0 +1,25 @@
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+bindir 		= @bindir@
+datadir		= @datadir@/@PACKAGE@
+INSTALL		= @INSTALL@
+docgen          = ${datadir}/docgen
+srcdir		= @top_srcdir@
+pycomp		= ${srcdir}/py-compile
+
+@SET_MAKE@
+
+all:
+	${pycomp} *.py
+
+
+install:
+	${INSTALL} -d ${docgen}
+	${INSTALL} *.py *.pyo *.glade ${docgen}
+
+uninstall:
+	rm ${docgen}/*.py ${docgen}/*.pyo ${docgen}/*.glade ${docgen}/*.xpm
+	-rmdir ${docgen}
+
+clean:
+	-rm -f core *.pyo *.pyc *.bak *~	
