@@ -821,21 +821,13 @@ class GrampsPreferences:
 
         next_panel=13
         for c in self.c.keys():
-            item = gtk.GtkTreeItem(c)
-            item.show()
-            item.expand()
-            item.connect('select',self.select,0)
-            self.tree.append(item)
-            subtree = gtk.GtkTree()
-            subtree.show()
-            item.set_subtree(subtree)
+            node = self.tree.insert_node(None,None,[c],is_leaf=0,expanded=1)
+            self.tree.node_set_row_data(node,0)
+            next = None
             for panel in self.c[c].keys():
-                newitem = gtk.GtkTreeItem(panel)
-                newitem.show()
-                newitem.expand()
-                newitem.connect('select',self.select,next_panel)
+                next = self.tree.insert_node(node,next,[panel],is_leaf=1,expanded=1)
+                self.tree.node_set_row_data(next,next_panel)
                 next_panel = next_panel + 1
-                subtree.append(newitem)
                 box = gtk.GtkVBox()
                 box.show()
                 col = 0
@@ -853,10 +845,13 @@ class GrampsPreferences:
                     for wobj in pairs:
                         w = wobj.get_widgets()
                         if len(w) == 2:
-                            table.attach(w[0],0,1,col,col+1,GTK.FILL,GTK.SHRINK,5,5)
-                            table.attach(w[1],1,2,col,col+1,GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
+                            table.attach(w[0],0,1,col,col+1,
+                                         GTK.FILL,GTK.SHRINK,5,5)
+                            table.attach(w[1],1,2,col,col+1,
+                                         GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
                         else:
-                            table.attach(w[0],0,2,col,col+1,GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
+                            table.attach(w[0],0,2,col,col+1,
+                                         GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
                         col = col + 1
             
     def select(self,obj,node,other):

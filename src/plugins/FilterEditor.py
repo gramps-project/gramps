@@ -52,30 +52,49 @@ class FilterEditor:
         self.editor = libglade.GladeXML(const.filterFile,'filter_list')
         self.editor_top = self.editor.get_widget('filter_list')
         self.filter_list = self.editor.get_widget('filters')
-        self.draw_filters()
+        self.edit = self.editor.get_widget('edit')
+        self.delete = self.editor.get_widget('delete')
+        self.test = self.editor.get_widget('test')
+
         self.editor.signal_autoconnect({
             'on_add_clicked' : self.add_new_filter,
             'on_edit_clicked' : self.edit_filter,
+            'on_filters_select_row' : self.filter_select_row,
+            'on_filters_unselect_row' : self.filter_unselect_row,
             'on_test_clicked' : self.test_clicked,
             'on_close_clicked' : self.close_filter_editor,
             'on_delete_clicked' : self.delete_filter,
             })
+        self.draw_filters()
 
+    def filter_select_row(self,obj,a,b,c):
+        self.edit.set_sensitive(1)
+        self.delete.set_sensitive(1)
+        self.test.set_sensitive(1)
+
+    def filter_unselect_row(self,obj,a,b,c):
+        enable = (len(obj.selection) > 0)
+        self.edit.set_sensitive(enable)
+        self.delete.set_sensitive(enable)
+        self.test.set_sensitive(enable)
+    
     def close_filter_editor(self,obj):
         self.filterdb.save()
         self.editor_top.destroy()
         
     def draw_filters(self):
         row = 0
+        self.filter_list.freeze()
         self.filter_list.clear()
         for f in self.filterdb.get_filters():
             self.filter_list.append([f.get_name(),f.get_comment()])
             self.filter_list.set_row_data(row,f)
             row = row + 1
+        self.filter_list.sort()
+        self.filter_list.thaw()
 
     def add_new_filter(self,obj):
         filter = GenericFilter.GenericFilter()
-        filter.set_name('NoName')
         self.filter_editor(filter)
 
     def edit_filter(self,obj):
@@ -107,19 +126,41 @@ class FilterEditor:
         self.top = self.glade.get_widget('define_filter')
         self.rule_list = self.glade.get_widget('rule_list')
         self.fname = self.glade.get_widget('filter_name')
+        self.logor = self.glade.get_widget('logical_or')
         self.comment = self.glade.get_widget('comment')
+        self.ok = self.glade.get_widget('ok')
+        self.edit_btn = self.glade.get_widget('edit')
+        self.del_btn = self.glade.get_widget('delete')
         self.glade.signal_autoconnect({
             'on_ok_clicked' : self.on_ok_clicked,
             'on_cancel_clicked' : self.on_cancel_clicked,
+            'on_rule_select_row' : self.select_row,
+            'on_rule_unselect_row' : self.unselect_row,
+            'on_filter_name_changed' : self.filter_name_changed,
             'on_delete_clicked' : self.on_delete_clicked,
             'on_add_clicked' : self.on_add_clicked,
             'on_edit_clicked' : self.on_edit_clicked,
             'on_cancel_clicked' : self.on_cancel_clicked,
             })
-        self.fname.set_text(self.filter.get_name())
+        self.logor.set_active(self.filter.get_logical_or())
+        if self.filter.get_name():
+            self.fname.set_text(self.filter.get_name())
         self.comment.set_text(self.filter.get_comment())
         self.draw_rules()
 
+    def filter_name_changed(self,obj):
+        name = self.fname.get_text()
+        self.ok.set_sensitive(len(name) != 0)
+    
+    def select_row(self,obj,a,b,c):
+        self.edit_btn.set_sensitive(1)
+        self.del_btn.set_sensitive(1)
+
+    def unselect_row(self,obj,a,b,c):
+        enable = (len(obj.selection) == 1)
+        self.edit_btn.set_sensitive(enable)
+        self.del_btn.set_sensitive(enable)
+    
     def draw_rules(self):
         self.rule_list.clear()
         row = 0
@@ -141,6 +182,7 @@ class FilterEditor:
             if n == f.get_name():
                 self.filterdb.get_filters().remove(f)
                 break
+        self.filter.set_logical_or(self.logor.get_active())
         self.filterdb.add(self.filter)
         self.draw_filters()
         self.top.destroy()
@@ -172,7 +214,9 @@ class FilterEditor:
         self.name2page = {}
         map = {}
         list = []
-        for name in GenericFilter.tasks.keys():
+        keylist = GenericFilter.tasks.keys()
+        keylist.sort()
+        for name in keylist:
             cname = GenericFilter.tasks[name]
             arglist = cname.labels
             vallist = []
@@ -191,12 +235,14 @@ class FilterEditor:
             list.append(c)
             map[name] = c
             for v in arglist:
-                l = gtk.GtkLabel(_(v))
+                v1 = _(v)
+                l = gtk.GtkLabel(v1)
                 l.set_alignment(1,0.5)
                 l.show()
-                if _name2list.has_key(_(v)):
+                if _name2list.has_key(v1):
                     t = gtk.GtkCombo()
-                    t.set_popdown_strings(_name2list[_(v)])
+                    _name2list[v1].sort()
+                    t.set_popdown_strings(_name2list[v1])
                     t.set_value_in_list(1,0)
                     t.entry.set_editable(0)
                     tlist.append(t.entry)

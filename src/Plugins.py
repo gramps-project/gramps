@@ -107,10 +107,11 @@ class PluginDialog:
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "on_report_ok_clicked"    : self.on_apply_clicked,
+            "on_tree_select_row"      : self.on_node_selected,
             "destroy_passed_object"   : Utils.destroy_passed_object
             })
 
-        tree = self.dialog.get_widget("tree")
+        self.tree = self.dialog.get_widget("tree")
         self.top = self.dialog.get_widget("report")
         self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
@@ -119,7 +120,7 @@ class PluginDialog:
         self.title = self.dialog.get_widget("title")
         
         self.run_tool = None
-        self.build_tree(tree,list)
+        self.build_tree(list)
         self.title.set_text(msg)
         self.top.set_title("%s - GRAMPS" % msg)
 
@@ -133,11 +134,16 @@ class PluginDialog:
             else:
                 self.run_tool(self.db,self.active)
 
-    def on_node_selected(self,obj):
+    def on_node_selected(self,obj,node,other):
         """Updates the informational display on the right hand side of
         the dialog box with the description of the selected report"""
 
-        (task,cat,title,doc,xpm,status) = obj.get_data(TASK)
+        data = self.tree.node_get_row_data(node)
+        task = data[1]
+        title = data[0]
+        doc = data[2]
+        xpm = data[3]
+        status = data[4]
 
         image = GdkImlib.create_image_from_xpm(xpm)
         self.description.set_text(doc)
@@ -149,12 +155,12 @@ class PluginDialog:
         self.dialog.get_widget("title").set_text(title)
         self.run_tool = task
 
-    def build_tree(self,tree,list):
+    def build_tree(self,list):
         """Populates a GtkTree with each menu item assocated with a entry
         in the lists. The list must consist of a tuples with the following
         format:
         
-        (task_to_call, category of report, report name, description, image, status)
+        (task_to_call, category, report name, description, image, status)
         
         Items in the same category are grouped under the same submen. The
         task_to_call is bound to the 'select' callback of the menu entry."""
@@ -162,30 +168,27 @@ class PluginDialog:
         # build the tree items and group together based on the category name
         item_hash = {}
         for report in list:
-            item = gtk.GtkTreeItem(report[2])
-            item.connect("select",self.on_node_selected)
-            item.set_data(TASK,report)
-            
+            t = (report[2],report[0],report[3],report[4],report[5])
             if item_hash.has_key(report[1]):
-                item_hash[report[1]].append(item)
+                item_hash[report[1]].append(t)
             else:
-                item_hash[report[1]] = [item]
+                item_hash[report[1]] = [t]
 
-        # add a submenu for each category, and populate it with the GtkTreeItems
-        # that are associated with it.
+        # add a submenu for each category, and populate it with the
+        # GtkTreeItems that are associated with it.
         key_list = item_hash.keys()
         key_list.sort()
+        prev = None
         for key in key_list:
-            top_item = gtk.GtkTreeItem(key)
-            top_item.show()
-            tree.append(top_item)
-            subtree = gtk.GtkTree()
-            subtree.show()
-            top_item.set_subtree(subtree)
-            subtree.show()
-            for item in item_hash[key]:
-                item.show()
-                subtree.append(item)
+            data = item_hash[key]
+            node = self.tree.insert_node(None,prev,[key],is_leaf=0,expanded=1)
+            self.tree.node_set_row_data(node,0)
+            next = None
+            data.sort()
+            data.reverse()
+            for item in data:
+                next = self.tree.insert_node(node,next,[item[0]],is_leaf=1,expanded=1)
+                self.tree.node_set_row_data(next,item)
 
 #-------------------------------------------------------------------------
 #
