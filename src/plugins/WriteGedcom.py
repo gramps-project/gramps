@@ -412,6 +412,7 @@ class GedcomWriter:
         self.obje = self.target_ged.get_obje()
         self.resi = self.target_ged.get_resi()
         self.prefix = self.target_ged.get_prefix()
+        self.source_refs = self.target_ged.get_source_refs()
         
         if self.topDialog.get_widget("ansel").get_active():
             self.cnvtxt = latin_to_ansel
@@ -533,7 +534,10 @@ class GedcomWriter:
         self.pbar.set_fraction(1.0)
 
         self.write_families()
-        self.write_sources()
+        if self.source_refs:
+            self.write_sources()
+        else:
+            self.sbar.set_value(100.0)
         
         self.g.write("0 TRLR\n")
         self.g.close()
@@ -945,17 +949,44 @@ class GedcomWriter:
     def write_source_ref(self,level,ref):
         if ref.getBase() == None:
             return
+
         self.g.write("%d SOUR @%s@\n" % (level,self.sid(ref.getBase().getId())))
         if ref.getPage():
             self.g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
 
-        ref_text = ref.getText()
-        if ref_text or not ref.getDate().isEmpty():
-            self.g.write('%d DATA\n' % (level+1))
-            if ref_text:
-                self.write_long_text("TEXT",level+2,ref_text)
-            pfx = "%d DATE" % (level+2)
-            self.print_date(pfx,ref.getDate())
+        if self.source_refs:
+            self.g.write("%d SOUR @%s@\n" %
+                         (level,self.sid(ref.getBase().getId())))
+            if ref.getPage() != "":
+                self.g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
+
+            ref_text = ref.getText()
+            if ref_text != "" or not ref.getDate().isEmpty():
+                self.g.write('%d DATA\n' % (level+1))
+                if ref_text != "":
+                    self.write_long_text("TEXT",level+2,ref_text)
+                pfx = "%d DATE" % (level+2)
+                self.print_date(pfx,ref.getDate())
+        else:
+            # We put title, page, and date on the SOUR line.
+            # Not using CONC because GeneWeb does not support this.
+            # TEXT and NOTE will be ignored by GeneWeb, but we can't
+            # output paragaphs in SOUR if we don't use CONC.
+            sbase = ref.getBase()
+            if sbase and sbase.getTitle():
+                txt = sbase.getTitle() + ".  "
+            else:
+                txt = ""
+            if ref.getPage():
+                txt = txt + ref.getPage() + ".  "
+            self.g.write("%d SOUR %s" % (level,self.cnvtxt(txt)))
+            if not ref.getDate().isEmpty():
+                self.print_date("", ref.getDate())
+            else:
+                self.g.write("\n")
+            if ref.getText():
+                self.write_long_text("TEXT",level+1,ref_text)
+
         if ref.getComments():
             self.write_long_text("NOTE",level+1,ref.getComments())
         
