@@ -196,18 +196,21 @@ class PeopleStore:
         self.model.clear()
 
     def remove(self,iter):
-        iter_parent = self.model.iter_parent (iter)
-        self.model.remove(iter)
-        if iter_parent and not self.model.iter_has_child (iter_parent):
-            name = unicode(self.model.get_value(iter_parent,0))
-            self.model.remove (iter_parent)
-            if self.tree_roots.has_key(name):
-                del self.tree_roots[name]
-            if self.tree_open.has_key(name):
-                del self.tree_open[name]
-            if self.tree_list.has_key(name):
-                del self.tree_list[name]
-        self.count = self.count - 1
+        try:
+            iter_parent = self.model.iter_parent (iter)
+            self.model.remove(iter)
+            if iter_parent and not self.model.iter_has_child (iter_parent):
+                name = unicode(self.model.get_value(iter_parent,0))
+                self.model.remove (iter_parent)
+                if self.tree_roots.has_key(name):
+                    del self.tree_roots[name]
+                if self.tree_open.has_key(name):
+                    del self.tree_open[name]
+                if self.tree_list.has_key(name):
+                    del self.tree_list[name]
+            self.count = self.count - 1
+        except:
+            pass
         
     def get_row(self,iter):
         row = self.model.get_path(iter)
