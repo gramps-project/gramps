@@ -20,10 +20,8 @@
 
 # $Id$
 
-#
 # Written by Alex Roitman, largely based on the FtmStyleAncestors.py
 # report by Don Allingham
-#
 
 #------------------------------------------------------------------------
 #
@@ -31,7 +29,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import string
 import cStringIO
 from gettext import gettext as _
 
@@ -744,7 +741,7 @@ class FtmDescendantReport(Report.Report):
                 
                 self.doc.start_cell('FTD-Normal')
                 self.doc.start_paragraph('FTD-Child-Num')
-                self.doc.write_text("%s." % string.lower(Utils.roman(child_index)))
+                self.doc.write_text("%s." % Utils.roman(child_index).lower())
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 
