@@ -1,6 +1,12 @@
 2004-12-13  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py (generation): Avoid empty sections.
 
+2004-12-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsBSDDB.py: add cursor routines
+	* src/GrampsDbBase.py: add cursor routines
+	* src/GrampsInMemDb.py: add cursor routines
+	* src/gramps.glade: fix spacing in dialog boxes
+	
 2004-12-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PedView.py (get_distance): Remove function; use similar
 	from Relationship module.
