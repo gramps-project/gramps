@@ -227,7 +227,7 @@ def on_apply_clicked(obj):
 			'male_name' : idstr, 'nfam' : nfam } )
 	    if person.getGender() == RelLib.Person.female:
 	    	warn.write( _("Married often: %(female_name)s married %(nfam)d times.\n") % { 
-			'male_name' : idstr, 'nfam' : nfam } )
+			'female_name' : idstr, 'nfam' : nfam } )
 	if ageatdeath>oldunm and nfam == 0:
 	    if person.getGender() == RelLib.Person.male:
 	    	warn.write( _("Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)d years.\n") % { 
