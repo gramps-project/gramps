@@ -1,3 +1,9 @@
+2005-01-28 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PedView.py: Fix remnants of gnome.canvas syntax.
+	* src/ReadGrdb.py: Add to CVS: native database importer.
+	* src/DbPrompter.py: Support for the native importer.
+	* src/Errors.py: Add HandleError exception for duplicate handles.
+
 2005-01-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: gnome.vfs vs. gnomevfs, tolerence 
 	* src/GrampsMime.py: gnome.vfs vs. gnomevfs tolerence 

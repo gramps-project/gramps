@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2004  Donald N. Allingham
+# Copyright (C) 2001-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -98,8 +98,8 @@ class DispBox:
             self.exp = "%s" % self.name
 
         
-        self.group = self.root.add(gnome.canvas.CanvasGroup,x=x,y=y)
-        self.shadow = self.group.add(gnome.canvas.CanvasRect,
+        self.group = self.root.add(CanvasGroup,x=x,y=y)
+        self.shadow = self.group.add(CanvasRect,
                                      x1=shadow,
                                      y1=shadow,
                                      x2=w+shadow,
@@ -108,7 +108,7 @@ class DispBox:
                                      fill_color_gdk=style.dark[gtk.STATE_NORMAL])
 
         # draw the real box
-        self.bkgnd = self.group.add(gnome.canvas.CanvasRect,
+        self.bkgnd = self.group.add(CanvasRect,
                                     x1=0,
                                     y1=0,
                                     x2=w,
@@ -117,7 +117,7 @@ class DispBox:
                                     fill_color_gdk=style.base[gtk.STATE_NORMAL])
 
         font = gtk.gdk.font_from_description(style.font_desc)
-        self.textbox = self.group.add(gnome.canvas.CanvasText,
+        self.textbox = self.group.add(CanvasText,
                                       x=xpad,
                                       y=h/2.0,
                                       text=self.name,
@@ -265,7 +265,7 @@ class PedigreeView:
         xpts = self.build_x_coords(cw/xdiv,_CANVASPAD+h)
         ypts = self.build_y_coords((ch-h)/32.0, h)
 
-        self.anchor_txt = self.root.add(gnome.canvas.CanvasText,
+        self.anchor_txt = self.root.add(CanvasText,
                                         x=0,
                                         y=y2-12, 
                                         font=font,
@@ -279,7 +279,7 @@ class PedigreeView:
             if len(family.get_child_handle_list()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
                                                       self.on_show_child_menu)
-                item = self.root.add(gnome.canvas.CanvasWidget, widget=button,
+                item = self.root.add(CanvasWidget, widget=button,
                                      x=_CANVASPAD, y=ypts[0]+(h/2.0), 
                                      height=h, width=h,
                                      size_pixels=1, anchor=gtk.ANCHOR_WEST)
@@ -305,7 +305,7 @@ class PedigreeView:
                 gen_no = len(firstRel)-len(secondRel)
 
         for i in range(int(xdiv)):
-            item = self.root.add(gnome.canvas.CanvasText, x=(cw*i/xdiv + cpad), y=h,
+            item = self.root.add(CanvasText, x=(cw*i/xdiv + cpad), y=h,
                                  text=str(gen_no),
                                  font=font,
                                  anchor=gtk.ANCHOR_WEST)
@@ -422,7 +422,7 @@ class PedigreeView:
         button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,self.change_to_parent)
         button.set_data(_PERSON,parent.get_handle())
 
-        item = self.root.add(gnome.canvas.CanvasWidget, widget=button, x=x, y=y+(h/2),
+        item = self.root.add(CanvasWidget, widget=button, x=x, y=y+(h/2),
                              height=h, width=h, size_pixels=1,
                              anchor=gtk.ANCHOR_EAST)
         self.canvas_items.append(arrow)
@@ -445,7 +445,7 @@ class PedigreeView:
  
         startx = x1+(w/2.0)
         pts = [startx,y1, startx,y2+(h/2.0), x2,y2+(h/2.0)]
-        item = self.root.add(gnome.canvas.CanvasLine, width_pixels=2,
+        item = self.root.add(CanvasLine, width_pixels=2,
                              points=pts, line_style=ls,
                              fill_color_gdk=style.fg[gtk.STATE_NORMAL])
         item.set_data(_PERSON,data.get_handle())
