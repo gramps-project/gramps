@@ -55,17 +55,17 @@ class PlaceView:
         self.place_list.set_column_visibility(10,0)
         self.place_list.set_column_visibility(11,0)
         self.place_list.set_column_visibility(12,0)
-        self.place_list.set_column_visibility(13,0)
         self.place_list.connect('button-press-event',self.on_button_press_event)
         self.place_list.connect('select-row',self.select_row)
         self.active = None
+        self.sort_map = [7,1,8,9,10,11,12]
 
         # Restore the previous sort column
         
         self.sort_col,self.sort_dir = Config.get_sort_cols("place",0,GTK.SORT_ASCENDING)
-        self.place_list.set_sort_column(self.sort_col+7)
-        self.place_list.set_sort_type(self.sort_dir)
         self.set_arrow(self.sort_col)
+        self.place_list.set_sort_column(self.sort_map[self.sort_col])
+        self.place_list.set_sort_type(self.sort_dir)
 
     def load_places(self):
         if len(self.place_list.selection) == 0:
@@ -92,7 +92,7 @@ class PlaceView:
             parish = mloc.get_parish()
             country = mloc.get_country()
             self.place_list.append([title,id,parish,city,county,state,country,
-                                    u(title), u(id), u(parish), u(city),
+                                    u(title), u(parish), u(city),
                                     u(county),u(state), u(country)])
             self.place_list.set_row_data(index,src)
             index = index + 1
@@ -159,7 +159,7 @@ class PlaceView:
         self.sort_col = column
         self.set_arrow(column)
         self.place_list.set_sort_type(self.sort_direct)
-        self.place_list.set_sort_column(self.sort_col + 7)
+        self.place_list.set_sort_column(self.sort_map[self.sort_col])
         Config.save_sort_cols("place",self.sort_col,self.sort_direct)
 
         self.place_list.sort()
