@@ -22,8 +22,6 @@ install:
 	(cd src/filters; ${MAKE} install)
 	(cd src/data; ${MAKE} install)
 	-${INSTALL} -d ${bindir}
-	-${INSTALL} -d ${sharedir}/example/gramps
-	-${INSTALL} -d ${sharedir}/example/gedcom
 	-${INSTALL} -d ${GNOMEHELP}/${GM}/C
 	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
 	-${INSTALL} doc/${GM}/C/${GM}/*.html ${GNOMEHELP}/${GM}/C
@@ -31,9 +29,6 @@ install:
 	-${INSTALL} doc/${EG}/C/${EG}/*.html ${GNOMEHELP}/${EG}/C
 	${INSTALL} gramps.sh ${bindir}/gramps
 	${INSTALL} doc/gramps.dtd ${sharedir}
-	-${INSTALL} example/gramps/*.jpg ${sharedir}/example/gramps
-	-${INSTALL} example/gramps/data.gramps ${sharedir}/example/gramps
-	-${INSTALL} example/gedcom/*.ged ${sharedir}/example/gedcom
 	chmod +x ${bindir}/gramps
 
 uninstall:
