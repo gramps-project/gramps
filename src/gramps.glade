@@ -6410,7 +6410,7 @@ Unknown
 	      <class>GtkLabel</class>
 	      <child_name>CList:title</child_name>
 	      <name>label307</name>
-	      <label>Cateogry</label>
+	      <label>Category</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>
