@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Wed Apr 16 12:06:31 2003\n"
-"PO-Revision-Date: 2003-04-16 21:34+0200\n"
+"POT-Creation-Date: Thu Apr 17 22:14:57 2003\n"
+"PO-Revision-Date: 2003-04-18 21:31+0200\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Der eingegebene Dateiname konnte nicht gefunden werden"
 #: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
 #: SelectChild.py:105 gramps_main.py:103 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
-#: plugins/PatchNames.py:145 plugins/RelCalc.py:326 plugins/TimeLine.py:336
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:326 plugins/TimeLine.py:340
 #: plugins/WebPage.py:274
 msgid "Name"
 msgstr "Name"
@@ -513,8 +513,8 @@ msgstr ""
 msgid "%s: unknown"
 msgstr "%s: unbekannt"
 
-#: FamilyView.py:423 Plugins.py:417 Plugins.py:418 Plugins.py:419
-#: Plugins.py:431 Plugins.py:432 Plugins.py:433 Witness.py:71 const.py:149
+#: FamilyView.py:423 Plugins.py:418 Plugins.py:419 Plugins.py:420
+#: Plugins.py:432 Plugins.py:433 Plugins.py:434 Witness.py:71 const.py:149
 #: const.py:424 const.py:432 gramps.glade:3657 gramps.glade:3850
 #: gramps.glade:4272 gramps.glade:4452 gramps.glade:5928 gramps.glade:6174
 #: gramps_main.py:1272 plugins/WebPage.py:288
@@ -957,7 +957,7 @@ msgstr ""
 "verwendet."
 
 #: MediaView.py:75 SourceView.py:68 Sources.py:77 Sources.py:160
-#: plugins/PatchNames.py:168 plugins/TimeLine.py:347
+#: plugins/PatchNames.py:168 plugins/TimeLine.py:351
 msgid "Title"
 msgstr "Titel"
 
@@ -1067,31 +1067,31 @@ msgstr ""
 msgid "_Delete Place"
 msgstr "Ort _löschen"
 
-#: Plugins.py:81
+#: Plugins.py:82
 msgid "No description was provided"
 msgstr "Keine Beschreibung angegeben"
 
-#: Plugins.py:242
+#: Plugins.py:243
 msgid "Report Selection"
 msgstr "Auswahl eines Berichts"
 
-#: Plugins.py:258
+#: Plugins.py:259
 msgid "Tool Selection"
 msgstr "Auswahl eines Werkzeugs"
 
-#: Plugins.py:274
+#: Plugins.py:275
 msgid "Plugin status"
 msgstr "Plugin status"
 
-#: Plugins.py:286
+#: Plugins.py:287
 msgid "All modules were successfully loaded."
 msgstr "Alle Module wurden erfolgreich geladen."
 
-#: Plugins.py:288
+#: Plugins.py:289
 msgid "The following modules could not be loaded:"
 msgstr "Die folgenden Module konnten nicht geladen werden:"
 
-#: Plugins.py:414 Plugins.py:428
+#: Plugins.py:415 Plugins.py:429
 msgid "Uncategorized"
 msgstr "Nicht kategorisiert"
 
@@ -1143,8 +1143,8 @@ msgstr "Die Datei wurde verschoben oder gelöscht"
 #: RelImage.py:71 RelImage.py:74 RelImage.py:139 RelImage.py:142
 #: gramps_main.py:813 gramps_main.py:818 gramps_main.py:827
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
-#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:495
-#: plugins/WriteGedcom.py:500
+#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:494
+#: plugins/WriteGedcom.py:499
 msgid "Could not create %s"
 msgstr "Datei %s konnte nicht erstellt werden"
 
@@ -1313,110 +1313,127 @@ msgstr "Fortschrittsanzeige"
 msgid "Working"
 msgstr "Arbeite"
 
-#: Report.py:259
+#: Report.py:260
 msgid "Save Report As"
 msgstr "Bericht speichern als"
 
-#: Report.py:484
+#: Report.py:492
 msgid "Document Options"
 msgstr "Dokumentoptionen"
 
-#: Report.py:494
+#: Report.py:502
 msgid "Save As"
 msgstr "Speichern als"
 
-#: Report.py:498
+#: Report.py:506
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#: Report.py:500
+#: Report.py:508
 msgid "Filename"
 msgstr "Dateiname"
 
-#: Report.py:520
+#: Report.py:525
 msgid "Output Format"
 msgstr "Ausgabeformat"
 
-#: Report.py:534
+#: Report.py:553
 msgid "Styles"
 msgstr "Stile"
 
-#: Report.py:538 StyleEditor.py:80
+#: Report.py:557 StyleEditor.py:80
 msgid "Style Editor"
 msgstr "Stileditor"
 
-#: Report.py:597 Report.py:599
+#: Report.py:616 Report.py:618
 msgid "Paper Options"
 msgstr "Papieroptionen"
 
-#: Report.py:608
+#: Report.py:627
 msgid "Size"
 msgstr "GröÂße"
 
-#: Report.py:613
+#: Report.py:632
 msgid "Height"
 msgstr "Höhe"
 
-#: Report.py:621 Report.py:637 styles.glade:903 styles.glade:927
+#: Report.py:640 Report.py:656 styles.glade:903 styles.glade:927
 #: styles.glade:951
 msgid "cm"
 msgstr "cm"
 
-#: Report.py:625
+#: Report.py:644
 msgid "Orientation"
 msgstr "Ausrichtung"
 
-#: Report.py:629
+#: Report.py:648
 msgid "Width"
 msgstr "Breite"
 
-#: Report.py:649
+#: Report.py:668
 msgid "Page Count"
 msgstr "Seitenzahl"
 
-#: Report.py:673 Report.py:678
+#: Report.py:692 Report.py:697
 msgid "HTML Options"
 msgstr "HTML Optionen"
 
-#: Report.py:680 plugins/eventcmp.glade:192
+#: Report.py:699 plugins/eventcmp.glade:192
 msgid "Template"
 msgstr "Vorlage"
 
-#: Report.py:699
+#: Report.py:718
 msgid "User Template"
 msgstr "Selbstdefinierte Vorlage"
 
-#: Report.py:702
+#: Report.py:721
 msgid "Choose File"
 msgstr "Datei auswählen"
 
-#: Report.py:741
+#: Report.py:760
 msgid "Report Options"
 msgstr "Berichtsoptionen"
 
-#: Report.py:759 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
+#: Report.py:778 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Filter"
 
-#: Report.py:776
+#: Report.py:795
 msgid "Generations"
 msgstr "Generationen"
 
-#: Report.py:783
+#: Report.py:802
 msgid "Page break between generations"
 msgstr "Seitenumbruch zwischen Generationen"
 
-#: Report.py:871
+#: Report.py:890
 msgid "Invalid file name"
 msgstr "Ungültiger Dateiname"
 
-#: Report.py:872
+#: Report.py:891
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
 msgstr ""
 "Der eingegebene Dateiname bezeichnet ein Verzeichnis.\n"
 "Es muss ein gültiger Dateiname eingegeben werden."
+
+#: Report.py:896
+msgid "File already exists"
+msgstr "Datei existiert bereits"
+
+#: Report.py:897
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
+msgstr "Sie können entscheiden, ob die Datei überschrieben wird oder Sie den gewählten Dateinamen ändern."
+
+#: Report.py:899
+msgid "_Overwrite"
+msgstr "_Überschreiben"
+
+#: Report.py:900
+msgid "_Change filename"
+msgstr "_Dateinamen ändern"
 
 #: SelectChild.py:71
 msgid "Add Children"
@@ -2237,12 +2254,12 @@ msgstr ""
 msgid "HTML"
 msgstr "HTML"
 
-#: docgen/KwordDoc.py:239 docgen/KwordDoc.py:243
+#: docgen/KwordDoc.py:241 docgen/KwordDoc.py:245
 #: plugins/DetAncestralReport.py:62 plugins/DetDescendantReport.py:62
 msgid "Could not open %s"
 msgstr "Datei %s konnte nicht geöffnet werden"
 
-#: docgen/KwordDoc.py:438
+#: docgen/KwordDoc.py:440
 msgid "KWord"
 msgstr "KWord"
 
@@ -2258,11 +2275,11 @@ msgstr "OpenOffice/StarOffice 6"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:36
+#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:50
 msgid "The ReportLab modules are not installed"
 msgstr "Die ReportLab Module sind nicht installiert"
 
-#: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:217
+#: docgen/PdfDoc.py:299 docgen/PdfDrawDoc.py:245
 msgid "PDF"
 msgstr "PDF"
 
@@ -3524,48 +3541,48 @@ msgstr "Autor:"
 msgid "Author's email:"
 msgstr "Email des Autors:"
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:425
+#: plugins/AncestorChart.py:218 plugins/AncestorChart.py:426
 msgid "Ancestor Chart"
 msgstr "Ahnentafel (graphisch)"
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:426
+#: plugins/AncestorChart.py:218 plugins/AncestorChart.py:427
 #: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/GraphViz.py:78
-#: plugins/GraphViz.py:448 plugins/TimeLine.py:316 plugins/TimeLine.py:457
+#: plugins/GraphViz.py:448 plugins/TimeLine.py:316 plugins/TimeLine.py:461
 msgid "Graphical Reports"
 msgstr "Graphische Berichte"
 
-#: plugins/AncestorChart.py:221
+#: plugins/AncestorChart.py:222
 msgid "Ancestor Chart for %s"
 msgstr "Graphische Ahnentafel für %s"
 
-#: plugins/AncestorChart.py:226
+#: plugins/AncestorChart.py:227
 msgid "Save Ancestor Chart"
 msgstr "Graphische Ahnentafel speichern"
 
-#: plugins/AncestorChart.py:238 plugins/DesGraph.py:325
+#: plugins/AncestorChart.py:239 plugins/DesGraph.py:325
 msgid "Display Format"
 msgstr "Anzeigeformat"
 
-#: plugins/AncestorChart.py:239 plugins/DesGraph.py:326
+#: plugins/AncestorChart.py:240 plugins/DesGraph.py:326
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr "Erlaubt die Anpassung der Daten in den Kästen des Berichts"
 
-#: plugins/AncestorChart.py:248 plugins/AncestorReport.py:262
+#: plugins/AncestorChart.py:249 plugins/AncestorReport.py:262
 #: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
 #: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
 msgid "The basic style used for the text display."
 msgstr "Der Basisstil, der für die Textanzeige verwendet wird."
 
-#: plugins/AncestorChart.py:427 plugins/AncestorReport.py:389
+#: plugins/AncestorChart.py:428 plugins/AncestorReport.py:389
 #: plugins/DescendReport.py:284 plugins/DetAncestralReport.py:972
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:566
 #: plugins/GraphViz.py:447 plugins/IndivComplete.py:667
-#: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:456
+#: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:460
 #: plugins/WebPage.py:1267
 msgid "Beta"
 msgstr "Beta"
 
-#: plugins/AncestorChart.py:428
+#: plugins/AncestorChart.py:429
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Erstellt eine graphische Ahnentafel in Baumstruktur."
 
@@ -3665,7 +3682,7 @@ msgstr "Bericht über Vorfahren speichern"
 
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
 #: plugins/FamilyGroup.py:408 plugins/IndivComplete.py:502
-#: plugins/IndivSummary.py:345 plugins/TimeLine.py:395 plugins/WebPage.py:960
+#: plugins/IndivSummary.py:345 plugins/TimeLine.py:399 plugins/WebPage.py:960
 msgid "The style used for the title of the page."
 msgstr "Der Stil, der für den Seitentitel verwendet wird."
 
@@ -3809,8 +3826,8 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Erstellt eine interaktive Baumstruktur für die aktuelle Person."
 
 #: plugins/DescendReport.py:87 plugins/GraphViz.py:103
-#: plugins/IndivComplete.py:475 plugins/TimeLine.py:359
-#: plugins/WriteGedcom.py:378
+#: plugins/IndivComplete.py:475 plugins/TimeLine.py:363
+#: plugins/WriteGedcom.py:377
 msgid "Descendants of %s"
 msgstr "Nachkommen von %s"
 
@@ -4116,7 +4133,7 @@ msgid "Event comparison filter selection"
 msgstr "Filterauswahl für Ereignisvergleich"
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:99 plugins/IndivComplete.py:483
-#: plugins/TimeLine.py:355 plugins/WebPage.py:921 plugins/WriteGedcom.py:374
+#: plugins/TimeLine.py:359 plugins/WebPage.py:921 plugins/WriteGedcom.py:373
 msgid "Entire Database"
 msgstr "Gesamte Datenbank"
 
@@ -4264,11 +4281,11 @@ msgid "Graphviz File"
 msgstr "Graphviz Datei"
 
 #: plugins/GraphViz.py:107 plugins/IndivComplete.py:479
-#: plugins/TimeLine.py:363 plugins/WebPage.py:933 plugins/WriteGedcom.py:382
+#: plugins/TimeLine.py:367 plugins/WebPage.py:933 plugins/WriteGedcom.py:381
 msgid "Ancestors of %s"
 msgstr "Vorfahren von %s"
 
-#: plugins/GraphViz.py:111 plugins/TimeLine.py:367 plugins/WriteGedcom.py:386
+#: plugins/GraphViz.py:111 plugins/TimeLine.py:371 plugins/WriteGedcom.py:385
 msgid "People with common ancestor with %s"
 msgstr "Personen mit gleichem Vorfahren wie %s"
 
@@ -4931,7 +4948,7 @@ msgstr "%(p1)s ist eine Großnichte %(level)d. Grades von %(p2)s."
 msgid "Relationship calculator"
 msgstr "Beziehungen bestimmen"
 
-#: plugins/RelCalc.py:327 plugins/TimeLine.py:336
+#: plugins/RelCalc.py:327 plugins/TimeLine.py:340
 msgid "Birth Date"
 msgstr "Geburtsdatum"
 
@@ -5039,27 +5056,27 @@ msgstr "Erstellt eine Übersicht über die aktuelle Datenbank"
 msgid "Timeline"
 msgstr "Zeitleiste"
 
-#: plugins/TimeLine.py:321
+#: plugins/TimeLine.py:325
 msgid "Timeline File"
 msgstr "Datei für Zeitleiste"
 
-#: plugins/TimeLine.py:343
+#: plugins/TimeLine.py:347
 msgid "Sort by"
 msgstr "Sortieren nach"
 
-#: plugins/TimeLine.py:379
+#: plugins/TimeLine.py:383
 msgid "The style used for the person's name."
 msgstr "Der Stil, der für den Namen der Person verwendet wird."
 
-#: plugins/TimeLine.py:387
+#: plugins/TimeLine.py:391
 msgid "The style used for the year labels."
 msgstr "Der Stil, der für die Beschriftung der Jahre verwendet wird."
 
-#: plugins/TimeLine.py:451
+#: plugins/TimeLine.py:455
 msgid "Generates a timeline graph."
 msgstr "Generiert eine Zeitleistengrafik"
 
-#: plugins/TimeLine.py:455
+#: plugins/TimeLine.py:459
 msgid "Timeline Graph"
 msgstr "Zeitleistengrafik"
 
@@ -5070,13 +5087,17 @@ msgstr "Datenbankprüfung"
 #: plugins/Verify.py:120
 msgid ""
 "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Vor der Geburt getauft: %(male_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
+msgstr ""
+"Vor der Geburt getauft: %(male_name)s, geboren %(byear)d, getauft %(bapyear)"
+"d.\n"
 
 #: plugins/Verify.py:123
 msgid ""
 "Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
 "d.\n"
-msgstr "Vor der Geburt getauft: %(female_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
+msgstr ""
+"Vor der Geburt getauft: %(female_name)s, geboren %(byear)d, getauft %"
+"(bapyear)d.\n"
 
 #: plugins/Verify.py:127
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
@@ -5084,77 +5105,104 @@ msgstr "Späte Taufe: %(male_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
 
 #: plugins/Verify.py:130
 msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Späte Taufe: %(female_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
+msgstr ""
+"Späte Taufe: %(female_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
 
 #: plugins/Verify.py:135
 msgid ""
 "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Vor dem Tod begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Vor dem Tod begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)"
+"d.\n"
 
 #: plugins/Verify.py:138
 msgid ""
 "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Vor dem Tod begraben: %(female_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Vor dem Tod begraben: %(female_name)s, gestorben %(dyear)d, begraben %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:142
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Spät begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Spät begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
 
 #: plugins/Verify.py:145
 msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Spät begraben: %(female_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Spät begraben: %(female_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
 
 #: plugins/Verify.py:149
 msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Vor der Geburt gestorben: %(male_name)s, geboren %(byear)d, gestorben %(dyear)d.\n"
+msgstr ""
+"Vor der Geburt gestorben: %(male_name)s, geboren %(byear)d, gestorben %"
+"(dyear)d.\n"
 
 #: plugins/Verify.py:152
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Vor der Geburt gestorben: %(female_name)s, geboren %(byear)d, gestorben %(dyear)d.\n"
+msgstr ""
+"Vor der Geburt gestorben: %(female_name)s, geboren %(byear)d, gestorben %"
+"(dyear)d.\n"
 
 #: plugins/Verify.py:156
 msgid ""
 "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr "Vor der Taufe gestorben: %(male_name)s, getauft %(bapyear)d, gestorben %(dyear)d.\n"
+msgstr ""
+"Vor der Taufe gestorben: %(male_name)s, getauft %(bapyear)d, gestorben %"
+"(dyear)d.\n"
 
 #: plugins/Verify.py:159
 msgid ""
 "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr "Vor der Taufe gestorben: %(female_name)s, getauft %(bapyear)d, gestorben %(dyear)d.\n"
+msgstr ""
+"Vor der Taufe gestorben: %(female_name)s, getauft %(bapyear)d, gestorben %"
+"(dyear)d.\n"
 
 #: plugins/Verify.py:163
 msgid ""
 "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Vor der Geburt begraben: %(male_name)s, geboren %(byear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Vor der Geburt begraben: %(male_name)s, geboren %(byear)d, begraben %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:166
 msgid ""
 "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Vor der Geburt begraben: %(female_name)s, geboren %(byear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Vor der Geburt begraben: %(female_name)s, geboren %(byear)d, begraben %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:170
 msgid ""
 "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
 "d.\n"
-msgstr "Vor der Taufe begraben: %(male_name)s, getauft %(bapyear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Vor der Taufe begraben: %(male_name)s, getauft %(bapyear)d, begraben %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:173
 msgid ""
 "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
 "(buryear)d.\n"
-msgstr "Vor der Taufe begraben: %(female_name)s, getauft %(bapyear)d, begraben %(buryear)d.\n"
+msgstr ""
+"Vor der Taufe begraben: %(female_name)s, getauft %(bapyear)d, begraben %"
+"(buryear)d.\n"
 
 #: plugins/Verify.py:185
 msgid ""
 "Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
 "(ageatdeath)d.\n"
-msgstr "Großes Alter: %(male_name)s, geboren %(byear)d, gestorben %(dyear)d im Alter von %(ageatdeath)d Jahren.\n"
+msgstr ""
+"Großes Alter: %(male_name)s, geboren %(byear)d, gestorben %(dyear)d im Alter "
+"von %(ageatdeath)d Jahren.\n"
 
 #: plugins/Verify.py:188
 msgid ""
 "Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
 "(ageatdeath)d.\n"
-msgstr "Großes Alter: %(female_name)s, geboren %(byear)d, gestorben %(dyear)d im Alter von %(ageatdeath)d Jahren.\n"
+msgstr ""
+"Großes Alter: %(female_name)s, geboren %(byear)d, gestorben %(dyear)d im "
+"Alter von %(ageatdeath)d Jahren.\n"
 
 #: plugins/Verify.py:205
 msgid "Unknown gender for %s.\n"
@@ -5180,13 +5228,17 @@ msgstr "Zahlreiche Ehen: %(female_name)s, %(nfam)d Mal verheiratet.\n"
 msgid ""
 "Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
 "d years.\n"
-msgstr "Alt und unverheiratet: %(male_name)s starb unverheiratet im Alter von %(ageatdeath)d Jahren.\n"
+msgstr ""
+"Alt und unverheiratet: %(male_name)s starb unverheiratet im Alter von %"
+"(ageatdeath)d Jahren.\n"
 
 #: plugins/Verify.py:236
 msgid ""
 "Old and unmarried: %(female_name)s died unmarried, at the age of %"
 "(ageatdeath)d years.\n"
-msgstr "Alt und unverheiratet: %(female_name)s starb unverheiratet im Alter von %(ageatdeath)d Jahren.\n"
+msgstr ""
+"Alt und unverheiratet: %(female_name)s starb unverheiratet im Alter von %"
+"(ageatdeath)d Jahren.\n"
 
 #: plugins/Verify.py:250
 msgid "Homosexual marriage: %s in family %s.\n"
@@ -5209,56 +5261,76 @@ msgstr ""
 msgid ""
 "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
 "(spouse)s.\n"
-msgstr "Vor der Geburt verheiratet: %(male_name)s, geboren %(byear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+msgstr ""
+"Vor der Geburt verheiratet: %(male_name)s, geboren %(byear)d, Heirat in %"
+"(maryear)d mit %(spouse)s.\n"
 
 #: plugins/Verify.py:284
 msgid ""
 "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
 "%(spouse)s.\n"
-msgstr "Vor der Geburt verheiratet: %(female_name)s, geboren %(byear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+msgstr ""
+"Vor der Geburt verheiratet: %(female_name)s, geboren %(byear)d, Heirat in %"
+"(maryear)d mit %(spouse)s.\n"
 
 #: plugins/Verify.py:289
 msgid ""
 "Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Jung verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+msgstr ""
+"Jung verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
+"s.\n"
 
 #: plugins/Verify.py:292
 msgid ""
 "Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Jung verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+msgstr ""
+"Jung verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
+"s.\n"
 
 #: plugins/Verify.py:296
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Alt verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+msgstr ""
+"Alt verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
+"s.\n"
 
 #: plugins/Verify.py:299
 msgid ""
 "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Alt verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+msgstr ""
+"Alt verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)"
+"s.\n"
 
 #: plugins/Verify.py:303
 msgid ""
 "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
-msgstr "Nach dem Tod geheiratet: %(male_name)s, gestorben %(dyear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+msgstr ""
+"Nach dem Tod geheiratet: %(male_name)s, gestorben %(dyear)d, Heirat in %"
+"(maryear)d mit %(spouse)s.\n"
 
 #: plugins/Verify.py:306
 msgid ""
 "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
-msgstr "Nach dem Tod geheiratet: %(female_name)s, gestorben %(dyear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+msgstr ""
+"Nach dem Tod geheiratet: %(female_name)s, gestorben %(dyear)d, Heirat in %"
+"(maryear)d mit %(spouse)s.\n"
 
 #: plugins/Verify.py:310
 msgid ""
 "Marriage before birth from previous family: %(male_name)s married %(maryear)"
 "d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-msgstr "Hochzeit vor der Geburt: %(male_name)s heiratete %(maryear)d %(spouse)s, wurde aber %(prev_cbyear)d geboren.\n"
+msgstr ""
+"Hochzeit vor der Geburt: %(male_name)s heiratete %(maryear)d %(spouse)s, "
+"wurde aber %(prev_cbyear)d geboren.\n"
 
 #: plugins/Verify.py:313
 msgid ""
 "Marriage before birth from previous family: %(female_name)s married %"
 "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
-msgstr "Hochzeit vor der Geburt: %(female_name)s heiratete %(maryear)d %(spouse)s, wurde aber %(prev_cbyear)d geboren.\n"
+msgstr ""
+"Hochzeit vor der Geburt: %(female_name)s heiratete %(maryear)d %(spouse)s, "
+"wurde aber %(prev_cbyear)d geboren.\n"
 
 #: plugins/Verify.py:323
 msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
@@ -5280,49 +5352,65 @@ msgstr "Lange Witwenschaft: %s war %d Jahre Witwe.\n"
 msgid ""
 "Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %"
 "(child)s.\n"
-msgstr "Alter Vater: %(male_name)s hatte im Alter von %(bage)d in der Familie %(fam)s ein Kind %(child)s.\n"
+msgstr ""
+"Alter Vater: %(male_name)s hatte im Alter von %(bage)d in der Familie %(fam)"
+"s ein Kind %(child)s.\n"
 
 #: plugins/Verify.py:351
 msgid ""
 "Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child "
 "%(child)s.\n"
-msgstr "Alte Mutter: %(female_name)s hatte im Alter von %(bage)d in der Familie %(fam)s ein Kind %(child)s.\n"
+msgstr ""
+"Alte Mutter: %(female_name)s hatte im Alter von %(bage)d in der Familie %"
+"(fam)s ein Kind %(child)s.\n"
 
 #: plugins/Verify.py:355
 msgid ""
 "Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %"
 "(child)s born %(cbyear)d.\n"
-msgstr "Ungeborener Vater: %(male_name)s, geboren %(byear)d, hatte ein Kind %(child)s, geboren %(cbyear)d in Familie %(fam)s.\n"
+msgstr ""
+"Ungeborener Vater: %(male_name)s, geboren %(byear)d, hatte ein Kind %(child)"
+"s, geboren %(cbyear)d in Familie %(fam)s.\n"
 
 #: plugins/Verify.py:358
 msgid ""
 "Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child "
 "%(child)s born %(cbyear)d.\n"
-msgstr "Ungeborene Mutter: %(female_name)s, geboren %(byear)d, hatte ein Kind %(child)s, geboren %(cbyear)d in Familie %(fam)s.\n"
+msgstr ""
+"Ungeborene Mutter: %(female_name)s, geboren %(byear)d, hatte ein Kind %"
+"(child)s, geboren %(cbyear)d in Familie %(fam)s.\n"
 
 #: plugins/Verify.py:363
 msgid ""
 "Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a "
 "child %(child)s.\n"
-msgstr "Junger Vater: %(male_name)s hatte im Alter von %(bage)d in Familie %(fam)s ein Kind %(child)s.\n"
+msgstr ""
+"Junger Vater: %(male_name)s hatte im Alter von %(bage)d in Familie %(fam)s "
+"ein Kind %(child)s.\n"
 
 #: plugins/Verify.py:366
 msgid ""
 "Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a "
 "child %(child)s.\n"
-msgstr "Junge Mutter: %(female_name)s hatte im Alter von %(bage)d in Familie %(fam)s ein Kind %(child)s.\n"
+msgstr ""
+"Junge Mutter: %(female_name)s hatte im Alter von %(bage)d in Familie %(fam)s "
+"ein Kind %(child)s.\n"
 
 #: plugins/Verify.py:371 plugins/Verify.py:378
 msgid ""
 "Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child "
 "%(child)s born %(cbyear)d.\n"
-msgstr "Toter Vater: %(male_name)s starb %(dyear)d, hatte aber in Familie %(fam)s ein Kind %(child)s, geboren %(cbyear)d.\n"
+msgstr ""
+"Toter Vater: %(male_name)s starb %(dyear)d, hatte aber in Familie %(fam)s "
+"ein Kind %(child)s, geboren %(cbyear)d.\n"
 
 #: plugins/Verify.py:374 plugins/Verify.py:381
 msgid ""
 "Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
 "child %(child)s born %(cbyear)d.\n"
-msgstr "Tote Mutter: %(female_name)s starb %(dyear)d, hatte aber in Familie %(fam)s ein Kind %(child)s, geboren %(cbyear)d.\n"
+msgstr ""
+"Tote Mutter: %(female_name)s starb %(dyear)d, hatte aber in Familie %(fam)s "
+"ein Kind %(child)s, geboren %(cbyear)d.\n"
 
 #: plugins/Verify.py:387
 msgid "ERRORS:\n"
@@ -5513,11 +5601,11 @@ msgstr "Der Stil, der für Notizen verwendet wird."
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Generiert Webseiten (HTML) für Personen oder Gruppen von Personen."
 
-#: plugins/WriteGedcom.py:368 plugins/WriteGedcom.py:477
+#: plugins/WriteGedcom.py:367 plugins/WriteGedcom.py:476
 msgid "GEDCOM export"
 msgstr "GEDCOM Export"
 
-#: plugins/WriteGedcom.py:1085
+#: plugins/WriteGedcom.py:1084
 msgid "Export to GEDCOM"
 msgstr "GEDCOM Export"
 
@@ -5747,7 +5835,8 @@ msgid ""
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Unten steht eine Liste mit Spitznamen und Titeln, die GRAMPS aus der aktuellen\n"
+"Unten steht eine Liste mit Spitznamen und Titeln, die GRAMPS aus der "
+"aktuellen\n"
 "Datenbank extrahieren kann. Wenn Sie akzeptieren, wird GRAMPS die gewählten\n"
 "Einträge ändern."
 
