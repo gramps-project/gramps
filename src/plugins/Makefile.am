@@ -46,7 +46,8 @@ pkgpython_PYTHON = \
 	SimpleBookTitle.py\
 	CustomBookText.py\
 	RelGraph.py\
-	rel_it.py
+	rel_it.py\
+	rel_hu.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
