@@ -159,7 +159,12 @@ class Merge:
         self.use_soundex = self.soundex_obj.get_active()
         self.close(obj)
         self.find_potentials(active)
-        self.show()
+        if len(self.map) == 0:
+            import QuestionDialog
+            QuestionDialog.ErrorDialog(_("No matches found"),
+                                       _("No potential duplicate people were found"))
+        else:
+            self.show()
     
     def progress_update(self,val):
         self.progress.set_fraction(val/100.0)

@@ -1074,13 +1074,13 @@ class GlobalMediaProperties:
                     self.refmodel.add([_("Family"),p.get_id(),Utils.family_name(p,self.db)])
                     any = 1
         for key in self.db.get_source_keys():
-            p = self.db.get_source(key)
+            p = self.db.try_to_find_source_from_id(key)
             for o in p.get_media_list():
                 if o.get_reference_id() == self.object.get_id():
                     self.refmodel.add([_("Source"),p.get_id(),p.get_title()])
                     any = 1
         for key in self.db.get_place_id_keys():
-            p = self.db.get_place_id(key)
+            p = self.db.try_to_find_place_from_id(key)
             for o in p.get_media_list():
                 if o.get_reference_id() == self.object.get_id():
                     self.refmodel.add([_("Place"),p.get_id(),p.get_title()])

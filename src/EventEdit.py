@@ -82,7 +82,6 @@ class EventEditor:
         for v in elist:
             values[v] = 1
         for v in self.db.get_eventnames():
-            print v
             values[v] = 1
             
         self.elist = values.keys()

@@ -147,7 +147,6 @@ goutput_preference = ""
 lastnamegen   = None
 report_dir    = "./"
 web_dir       = "./"
-db_dir        = "./"
 id_edit       = 0
 index_visible = 0
 mediaref      = 1
@@ -213,7 +212,6 @@ def loadConfig(call):
     global lastnamegen
     global report_dir
     global web_dir
-    global db_dir
     global status_bar
     global toolbar
     global save_toolbar
@@ -268,7 +266,6 @@ def loadConfig(call):
 
     report_dir = get_string("/apps/gramps/report-directory")
     web_dir = get_string("/apps/gramps/website-directory")
-    db_dir = get_string("/apps/gramps/db-directory")
 
     if report_dir == None:
         report_dir = "./"
@@ -280,11 +277,6 @@ def loadConfig(call):
     else:
         web_dir = os.path.normpath(web_dir) + os.sep
         
-    if db_dir == None:
-        db_dir = "./"
-    else:
-        db_dir = os.path.normpath(db_dir) + os.sep
-
     if paper_preference == None:
         paper_preference = "Letter"
 
@@ -719,7 +711,6 @@ class GrampsPreferences:
         self.top.get_widget("resphone").set_text(cphone)
         self.top.get_widget("resemail").set_text(cemail)
 
-        self.top.get_widget("dbdir").gtk_entry().set_text(db_dir)
         self.top.get_widget("repdir").gtk_entry().set_text(report_dir)
         self.top.get_widget("htmldir").gtk_entry().set_text(web_dir)
 
@@ -818,7 +809,6 @@ class GrampsPreferences:
         global goutput_preference
         global report_dir
         global web_dir
-        global db_dir
         global lastnamegen
         global autoload
     
@@ -874,10 +864,6 @@ class GrampsPreferences:
         if pprefix == "":
             pprefix = "P%04d"
 
-        dbdir_temp = self.top.get_widget("dbdir").get_full_path(1)
-        if dbdir_temp != None and os.path.isdir(dbdir_temp):
-            db_dir = os.path.normpath(dbdir_temp) + os.sep
-
         repdir_temp = self.top.get_widget("repdir").get_full_path(1)
         if repdir_temp != None and os.path.isdir(repdir_temp):
             report_dir = os.path.normpath(repdir_temp) + os.sep
@@ -909,7 +895,6 @@ class GrampsPreferences:
         
         set_string("/apps/gramps/report-directory",report_dir)
         set_string("/apps/gramps/website-directory",web_dir)
-        set_string("/apps/gramps/db-directory",db_dir)
         set_string("/apps/gramps/iprefix",iprefix)
         set_string("/apps/gramps/fprefix",fprefix)
         set_string("/apps/gramps/pprefix",pprefix)
