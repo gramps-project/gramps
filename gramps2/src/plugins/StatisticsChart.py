@@ -47,14 +47,14 @@ import gtk
 #
 #------------------------------------------------------------------------
 from Utils import pt2cm
-import const    # gender and report type names
+import const                # gender and report type names
 from RelLib import Person   # need Person internals for getting gender / gender name
 import Utils
 import Report
 import BaseDoc
 import GenericFilter
 import ReportOptions
-import Date
+from DateHandler import displayer as _dd
 
 #------------------------------------------------------------------------
 #
@@ -72,18 +72,13 @@ _lookup_items = {}
 # needs to be global for python sort
 def lookup_value_compare(a, b):
     "compare given keys according to corresponding _lookup_items values"
-    if _lookup_items[a] < _lookup_items[b]:
-        return -1
-    if _lookup_items[a] == _lookup_items[b]:
-        return 0
-    return 1
+    return cmp(_lookup_items[a],_lookup_items[b])
 
 #------------------------------------------------------------------------
 #
 # Data extraction methods from the database
 #
 #------------------------------------------------------------------------
-
 class Extract:
 
     def __init__(self):
@@ -171,7 +166,8 @@ class Extract:
             birth = db.get_event_from_handle(birth_handle).get_date_object()
             month = birth.get_month()
             if month:
-                return ["Month text here"]#month.getMonthStr()]
+                _dd._months[month]
+                return [_dd._months[month]]
         return [_("Person's missing birth month")]
 
     def death_month(self, db, person):
@@ -180,7 +176,7 @@ class Extract:
             death = db.get_event_from_handle(death_handle).get_date_object()
             month = death.get_month()
             if month:
-                return ["Month text here"]#[month.getMonthStr()]
+                return [_dd._months[month]]
         return [_("Person's missing death month")]
 
     def death_age(self, db, person):
@@ -323,7 +319,6 @@ class StatisticsChart(Report.Report):
             self.title = "%s: %04d-%04d" % (extract[0], year_from, year_to)
 
         self.setup()
-
         
     def index_items(self, sort, reverse):
         """creates & stores a sorted index for the items"""
@@ -436,7 +431,6 @@ class StatisticsChart(Report.Report):
 
         return
 
-
 #------------------------------------------------------------------------
 #
 # Statistics report options
@@ -466,7 +460,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             'year_from' : 1700,
             'no_years'  : 0,
             'extract'   : 0,
-            'gender'    : 0,
+            'gender'    : Person.unknown,
             'sort'      : _SORT_VALUE,
             'reverse'   : 0
         }
@@ -475,11 +469,14 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                                 _("smaller than %d") % self.options_dict['year_to']),
             'year_from' : ("=num", _("Birth year from which to include people"),
                                 _("earlier than 'year_to' value")),
-            'no_years'  : ("=num", _("Include people without birth years"), [_("No"), _("Yes")]),
-            'gender'    : ("=num", _('Genders included'), self._genders),
-            'extract'   : ("=num", _('Data to show'), [item[0] for item in _Extract.extractors]),
-            'sort'      : ("=num", _('Sorted by'), self._sorts),
-            'reverse'   : ("=num", _("Sort in reverse order"), [_("Yes"), _("No")])
+            'no_years'  : ("=num", _("Include people without birth years"), 
+                                [_("No"), _("Yes")], False),
+            'gender'    : ("=num", _('Genders included'), str(self._genders), False),
+            'extract'   : ("=num", _('Data to show'), 
+                                str([item[0] for item in _Extract.extractors]),False),
+            'sort'      : ("=num", _('Sorted by'), str(self._sorts), False),
+            'reverse'   : ("=num", _("Sort in reverse order"), 
+                                [_("Yes"), _("No")], False)
         }
 
     def enable_options(self):
@@ -542,37 +539,27 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         report specific options
         """
         # what data to extract from database
-        self.extract_menu = gtk.Menu()
-        idx = 0
+        self.extract_menu = gtk.combo_box_new_text()
         for item in _Extract.extractors:
-            menuitem = gtk.MenuItem(item[0])
-            menuitem.set_data('extract', idx)
-            self.extract_menu.append(menuitem)
-            idx += 1
-        self.extract_menu.show_all()
-
+            self.extract_menu.append_text(item[0])
+        self.extract_menu.set_active(self.options_dict['extract'])
         tip = _("Select which data is collected and which statistics is shown.")
-        extract_style = gtk.OptionMenu()
-        extract_style.set_menu(self.extract_menu)
-        dialog.add_option(self.options_help['extract'][1], extract_style, tip)
+        dialog.add_option(self.options_help['extract'][1], self.extract_menu, tip)
 
         # how to sort the data
-        self.sort_menu = gtk.Menu()
-        for item in self._sorts:
-            menuitem = gtk.MenuItem(item[1])
-            menuitem.set_data('sort', item[0])
-            self.sort_menu.append(menuitem)
-        self.sort_menu.show_all()
-
+        self.sort_menu = gtk.combo_box_new_text()
+        for item_idx in range(len(self._sorts)):
+            item = self._sorts[item_idx]
+            self.sort_menu.append_text(item[1])
+            if item[0] == self.options_dict['sort']:
+                self.sort_menu.set_active(item_idx)
         tip = _("Select how the statistical data is sorted.")
-        sort_style = gtk.OptionMenu()
-        sort_style.set_menu(self.sort_menu)
-        dialog.add_option(self.options_help['sort'][1], sort_style, tip)
+        dialog.add_option(self.options_help['sort'][1], self.sort_menu, tip)
 
         # sorting order
         tip = _("Check to reverse the sorting order.")
         self.reverse = gtk.CheckButton(self.options_help['reverse'][1])
-        self.reverse.set_active(0)
+        self.reverse.set_active(self.options_dict['reverse'])
         dialog.add_option(None, self.reverse, tip)
         self.reverse.show()
 
@@ -593,22 +580,19 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         # include people without birth year?
         tip = _("Check this if you want people who have no birth date or year to be accounted also in the statistics.")
         self.no_years = gtk.CheckButton(self.options_help['no_years'][1])
-        self.no_years.set_active(0)
+        self.no_years.set_active(self.options_dict['no_years'])
         dialog.add_option(None, self.no_years, tip)
         self.no_years.show()
 
         # gender selection
-        self.gender_menu = gtk.Menu()
-        for item in self._genders:
-            menuitem = gtk.MenuItem(item[1])
-            menuitem.set_data('gender', item[0])
-            self.gender_menu.append(menuitem)
-        self.gender_menu.show_all()
-
+        self.gender_menu = gtk.combo_box_new_text()
+        for item_idx in range(len(self._genders)):
+            item = self._genders[item_idx]
+            self.gender_menu.append_text(item[1])
+            if item[0] == self.options_dict['gender']:
+                self.gender_menu.set_active(item_idx)
         tip = _("Select which genders are included into statistics.")
-        genders = gtk.OptionMenu()
-        genders.set_menu(self.gender_menu)
-        dialog.add_option(self.options_help['gender'][1], genders, tip)
+        dialog.add_option(self.options_help['gender'][1], self.gender_menu, tip)
 
     def parse_user_options(self, dialog):
         """
@@ -617,11 +601,10 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         self.options_dict['year_to'] = int(self.to_box.get_text())
         self.options_dict['year_from'] = int(self.from_box.get_text())
         self.options_dict['no_years'] = int(self.no_years.get_active())
-        self.options_dict['gender'] = self.gender_menu.get_active().get_data('gender')
-        self.options_dict['extract'] = self.extract_menu.get_active().get_data('extract')
-        self.options_dict['sort'] = self.sort_menu.get_active().get_data('sort')
+        self.options_dict['gender'] = self.gender_menu.get_active()
+        self.options_dict['extract'] = self.extract_menu.get_active()
+        self.options_dict['sort'] = self.sort_menu.get_active()
         self.options_dict['reverse'] = int(self.reverse.get_active())
-
 
 #------------------------------------------------------------------------
 #
