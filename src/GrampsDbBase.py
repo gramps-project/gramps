@@ -117,6 +117,7 @@ class GrampsDbBase:
         be created.
         """
 
+        self.readonly = False
         self.rand = random.Random(time.time())
         self.smap_index = 0
         self.emap_index = 0
@@ -221,6 +222,8 @@ class GrampsDbBase:
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
+        if self.readonly:
+            return 
         if change_time:
             person.change = int(change_time)
         else:
@@ -237,6 +240,8 @@ class GrampsDbBase:
         Commits the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
+        if self.readonly:
+            return 
         if change_time:
             obj.change = int(change_time)
         else:
@@ -252,6 +257,8 @@ class GrampsDbBase:
         Commits the specified Source to the database, storing the changes
         as part of the transaction.
         """
+        if self.readonly:
+            return 
         if change_time:
             source.change = int(change_time)
         else:
@@ -267,6 +274,8 @@ class GrampsDbBase:
         Commits the specified Place to the database, storing the changes
         as part of the transaction.
         """
+        if self.readonly:
+            return 
         if change_time:
             place.change = int(change_time)
         else:
@@ -282,6 +291,8 @@ class GrampsDbBase:
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
+        if self.readonly:
+            return 
         if change_time:
             event.change = int(change_time)
         else:
@@ -297,6 +308,8 @@ class GrampsDbBase:
         Commits the specified Family to the database, storing the changes
         as part of the transaction.
         """
+        if self.readonly:
+            return 
         if change_time:
             family.change = int(change_time)
         else:
@@ -451,9 +464,10 @@ class GrampsDbBase:
             person.unserialize(data)
         else:
             person.set_handle(val)
-            if transaction != None:
-                transaction.add(PERSON_KEY, val, None)
-            self.person_map[str(val)] = person.serialize()
+            if not self.readonly:
+                if transaction != None:
+                    transaction.add(PERSON_KEY, val, None)
+                self.person_map[str(val)] = person.serialize()
             self.genderStats.count_person (person, self)
         return person
 
@@ -677,7 +691,7 @@ class GrampsDbBase:
         Allows the retreiving people display data into the database metadata.
         This allows faster display of the treeview.
         """
-        if self.metadata:
+        if self.metadata and not self.readonly:
             self.metadata['tp_path'] = maps[0]
             self.metadata['p_iter']  = maps[1]
             self.metadata['p_path']  = maps[2]
@@ -870,7 +884,7 @@ class GrampsDbBase:
         """
         Commits the transaction to the assocated UNDO database.
         """
-        if not len(transaction):
+        if not len(transaction) or self.readonly:
             return
         transaction.set_description(msg)
         self.undoindex += 1
@@ -887,7 +901,7 @@ class GrampsDbBase:
         Accesses the last committed transaction, and reverts the data to
         the state before the transaction was committed.
         """
-        if self.undoindex == -1:
+        if self.undoindex == -1 or self.readonly:
             return False
         transaction = self.translist[self.undoindex]
 
@@ -982,11 +996,12 @@ class GrampsDbBase:
 
     def set_default_person_handle(self,handle):
         """sets the default Person to the passed instance"""
-        self.metadata['default'] = handle
+        if not self.readonly:
+            self.metadata['default'] = handle
 
     def get_default_person(self):
         """returns the default Person of the database"""
-        if self.metadata and self.metadata.has_key('default'):
+        if self.metadata and self.metadata.has_key('default') and not self.readonly:
             person = Person()
             handle = self.metadata['default']
             data = self.person_map.get(str(handle),None)
@@ -1126,7 +1141,7 @@ class GrampsDbBase:
         Stores the Person display common information in the
         database's metadata.
         """
-        if self.metadata != None:
+        if self.metadata != None and not self.readonly: 
             self.metadata['columns'] = list
 
     def set_child_column_order(self,list):
@@ -1134,7 +1149,7 @@ class GrampsDbBase:
         Stores the Person display common information in the
         database's metadata.
         """
-        if self.metadata != None:
+        if self.metadata != None and not self.readonly:
             self.metadata['child_columns'] = list
 
     def set_place_column_order(self,list):
@@ -1142,7 +1157,7 @@ class GrampsDbBase:
         Stores the Place display common information in the
         database's metadata.
         """
-        if self.metadata != None:
+        if self.metadata != None and not self.readonly:
             self.metadata['place_columns'] = list
 
     def set_source_column_order(self,list):
@@ -1150,7 +1165,7 @@ class GrampsDbBase:
         Stores the Source display common information in the
         database's metadata.
         """
-        if self.metadata != None:
+        if self.metadata != None and not self.readonly:
             self.metadata['source_columns'] = list
 
     def set_media_column_order(self,list):
@@ -1158,7 +1173,7 @@ class GrampsDbBase:
         Stores the Media display common information in the
         database's metadata.
         """
-        if self.metadata != None:
+        if self.metadata != None and not self.readonly:
             self.metadata['media_columns'] = list
 
     def get_person_column_order(self):

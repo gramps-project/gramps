@@ -178,6 +178,7 @@ class FamilyView:
                                                               self.ap_parents_clicked)
                 self.top.get_widget('sp_parents_btn').connect('clicked',
                                                               self.sp_parents_clicked)
+
             self.parent.views.get_nth_page(1).show_all()
             if self.parent.views.get_current_page() == 2:
                 self.parent.views.set_current_page(1)
@@ -921,9 +922,31 @@ class FamilyView:
         self.ap_model.clear()
         self.child_model = DisplayModels.ChildModel([],self.parent.db)
         self.child_list.set_model(self.child_model)
+
+    def set_buttons(self):
+        mode = not self.parent.db.readonly
+        
+        self.top.get_widget('add_child_btn').set_sensitive(mode)
+        self.top.get_widget('add_child_btn2').set_sensitive(mode)
+        self.top.get_widget('add_parents').set_sensitive(mode)
+        self.top.get_widget('add_parents2').set_sensitive(mode)
+        self.top.get_widget('add_spparents').set_sensitive(mode)
+        self.top.get_widget('add_spparents2').set_sensitive(mode)
+        self.top.get_widget('del_child_btn').set_sensitive(mode)
+        self.top.get_widget('del_child_btn2').set_sensitive(mode)
+        self.top.get_widget('del_parents').set_sensitive(mode)
+        self.top.get_widget('del_parents2').set_sensitive(mode)
+        self.top.get_widget('del_spparents').set_sensitive(mode)
+        self.top.get_widget('del_spparents2').set_sensitive(mode)
+        self.top.get_widget('select_child2').set_sensitive(mode)
+        self.top.get_widget('select_child').set_sensitive(mode)
+        self.add_spouse_btn.set_sensitive(mode)
+        self.remove_spouse_btn.set_sensitive(mode)
+        self.select_spouse_btn.set_sensitive(mode)
         
     def load_family(self,family=None):
 
+        self.set_buttons()
         if self.parent.active_person:
             handle = self.parent.active_person.get_handle()
             self.person = self.parent.db.get_person_from_handle(handle)

@@ -44,9 +44,11 @@ class GrampsGEDDB(GrampsInMemDB):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
 
-    def load(self,name,callback):
+    def load(self,name,callback, mode="w"):
         self.filename = name
         ReadGedcom.importData(self,name,use_trans=False)
+
+        self.readonly = mode == "r"
 
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
@@ -54,7 +56,7 @@ class GrampsGEDDB(GrampsInMemDB):
         return 1
 
     def close(self):
-        if len(self.undodb) > 0:
+        if not self.readonly and len(self.undodb) > 0:
             writer = WriteGedcom.GedcomWriter(self,self.get_default_person())
             writer.export_data(self.filename)
 

@@ -3,6 +3,16 @@
 	  field, not 'hpages'
 
 2005-02-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsBSDDB.py: first pass of readonly support
+	* src/GrampsInMem.py: first pass of readonly support
+	* src/GrampsGEDDB.py: first pass of readonly support
+	* src/GrampsXMLDB.py: first pass of readonly support
+	* src/gramps.py: first pass of readonly support
+	* src/FamilyView.py: first pass of readonly support
+	* src/EditPerson.py: first pass of readonly support
+	* src/EditPlace.py: first pass of readonly support
+	* src/EditSource.py: first pass of readonly support
+	* src/gramps.glade: assign names to buttons
 	* src/DisplayModels.py: don't override on_row_deleted
 
 2005-02-16 Alex Roitman  <shura@alex.neuro.umn.edu>

@@ -181,6 +181,8 @@ class EditSource:
                                          focus_cell=None,
                                          start_editing=True)
 
+        self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
+
     def on_delete_data_clicked(self,widget):
         (model,node) = self.data_sel.get_selected()
         if node:

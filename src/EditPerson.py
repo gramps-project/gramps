@@ -279,8 +279,9 @@ class EditPerson:
             'Place'       : (_('Place'),-1,100)
             }
 
-        values = self.db.metadata.get('event_order')
-        if not values:
+        if not self.db.readonly:
+            values = self.db.metadata.get('event_order',event_default)
+        else:
             values = event_default
 
         etitles = []
@@ -469,6 +470,9 @@ class EditPerson:
         self.get_widget("notebook").set_current_page(0)
         self.given.grab_focus()
         self.add_itself_to_winsmenu()
+
+        self.get_widget('ok').set_sensitive(not self.db.readonly)
+
         self.window.show()
 
     def image_button_press(self,obj,event):
@@ -543,7 +547,8 @@ class EditPerson:
         event_list = []
         for col in self.event_list.get_columns():
             event_list.append(self.event_trans.find_key(col.get_title()))
-        self.db.metadata['event_order'] = event_list
+        if not self.db.readonly:
+            self.db.metadata['event_order'] = event_list
         
         self.gallery.close()
         self.close_child_windows()

@@ -222,6 +222,7 @@ class EditPlace:
         if parent_window:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
+        self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
         self.top.show()
 
     def on_delete_event(self,obj,b):

@@ -75,7 +75,10 @@ class GrampsBSDDB(GrampsDbBase):
     def dbopen(self,name,dbname):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
-        dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
+        if self.readonly:
+            dbmap.open(name, dbname, db.DB_HASH, db.DB_RDONLY)
+        else:
+            dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
         return dbmap
     
     def get_person_cursor(self):
@@ -93,9 +96,11 @@ class GrampsBSDDB(GrampsDbBase):
     def get_media_cursor(self):
         return GrampsBSDDBCursor(self.media_map)
 
-    def load(self,name,callback):
+    def load(self,name,callback,mode="w"):
         if self.person_map:
             self.close()
+
+        self.readonly = mode == "r"
 
         self.env = db.DBEnv()
         self.env.set_cachesize(0,0x2000000) # 2MB
@@ -114,46 +119,53 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata   = self.dbopen(name, "meta")
         self.person_map = self.dbopen(name, "person")
 
+        if self.readonly:
+            openflags = db.DB_RDONLY
+        else:
+            openflags = db.DB_CREATE
+
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
-        self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
+        self.surnames.open(name, "surnames", db.DB_HASH, flags=openflags)
 
         self.name_group = db.DB(self.env)
         self.name_group.set_flags(db.DB_DUP)
-        self.name_group.open(name, "name_group", db.DB_HASH, flags=db.DB_CREATE)
+        self.name_group.open(name, "name_group", db.DB_HASH, flags=openflags)
+
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
-        self.id_trans.open(name, "idtrans", db.DB_HASH, flags=db.DB_CREATE)
+        self.id_trans.open(name, "idtrans", db.DB_HASH, flags=openflags)
 
         self.fid_trans = db.DB(self.env)
         self.fid_trans.set_flags(db.DB_DUP)
-        self.fid_trans.open(name, "fidtrans", db.DB_HASH, flags=db.DB_CREATE)
+        self.fid_trans.open(name, "fidtrans", db.DB_HASH, flags=openflags)
 
         self.pid_trans = db.DB(self.env)
         self.pid_trans.set_flags(db.DB_DUP)
-        self.pid_trans.open(name, "pidtrans", db.DB_HASH, flags=db.DB_CREATE)
+        self.pid_trans.open(name, "pidtrans", db.DB_HASH, flags=openflags)
 
         self.sid_trans = db.DB(self.env)
         self.sid_trans.set_flags(db.DB_DUP)
-        self.sid_trans.open(name, "sidtrans", db.DB_HASH, flags=db.DB_CREATE)
+        self.sid_trans.open(name, "sidtrans", db.DB_HASH, flags=openflags)
 
         self.oid_trans = db.DB(self.env)
         self.oid_trans.set_flags(db.DB_DUP)
-        self.oid_trans.open(name, "oidtrans", db.DB_HASH, flags=db.DB_CREATE)
+        self.oid_trans.open(name, "oidtrans", db.DB_HASH, flags=openflags)
 
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
-        self.eventnames.open(name, "eventnames", db.DB_HASH, flags=db.DB_CREATE)
-        self.person_map.associate(self.surnames,  find_surname, db.DB_CREATE)
-        self.person_map.associate(self.id_trans,  find_idmap, db.DB_CREATE)
-        self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
-        self.place_map.associate(self.pid_trans,  find_idmap, db.DB_CREATE)
-        self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
-        self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
-        self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
+        self.eventnames.open(name, "eventnames", db.DB_HASH, flags=openflags)
 
-        self.undodb = db.DB()
-        self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
+        if not self.readonly:
+            self.person_map.associate(self.surnames,  find_surname, openflags)
+            self.person_map.associate(self.id_trans,  find_idmap, openflags)
+            self.family_map.associate(self.fid_trans, find_idmap, openflags)
+            self.place_map.associate(self.pid_trans,  find_idmap, openflags)
+            self.media_map.associate(self.oid_trans, find_idmap, openflags)
+            self.source_map.associate(self.sid_trans, find_idmap, openflags)
+            self.event_map.associate(self.eventnames, find_eventname, openflags)
+            self.undodb = db.DB()
+            self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
         
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
@@ -175,8 +187,9 @@ class GrampsBSDDB(GrampsDbBase):
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
-        self.metadata['bookmarks'] = self.bookmarks
-        self.metadata['gender_stats'] = self.genderStats.save_stats()
+        if not self.readonly:
+            self.metadata['bookmarks'] = self.bookmarks
+            self.metadata['gender_stats'] = self.genderStats.save_stats()
         self.metadata.close()
         self.surnames.close()
         self.eventnames.close()
@@ -186,12 +199,13 @@ class GrampsBSDDB(GrampsDbBase):
         self.sid_trans.close()
         self.pid_trans.close()
         self.env.close()
-        self.undodb.close()
 
-        try:
-            os.remove(self.undolog)
-        except:
-            pass
+        if not self.readonly:
+            self.undodb.close()
+            try:
+                os.remove(self.undolog)
+            except:
+                pass
         
         self.person_map = None
         self.family_map = None
@@ -204,11 +218,12 @@ class GrampsBSDDB(GrampsDbBase):
         self.metadata   = None
 
     def set_name_group_mapping(self,name,group):
-        name = str(name)
-        if not group and self.name_group.has_key(name):
-            self.name_group.delete(name)
-        else:
-            self.name_group[name] = group
+        if not self.readonly:
+            name = str(name)
+            if not group and self.name_group.has_key(name):
+                self.name_group.delete(name)
+            else:
+                self.name_group[name] = group
             
     def get_surname_list(self):
         names = self.surnames.keys()
@@ -229,41 +244,47 @@ class GrampsBSDDB(GrampsDbBase):
         return vals
 
     def remove_person(self,handle,transaction):
-        person = self.get_person_from_handle(handle)
-        self.genderStats.uncount_person (person)
-        if transaction != None:
-            transaction.add(PERSON_KEY,handle,person.serialize())
-        self.person_map.delete(str(handle))
+        if not self.readonly:
+            person = self.get_person_from_handle(handle)
+            self.genderStats.uncount_person (person)
+            if transaction != None:
+                transaction.add(PERSON_KEY,handle,person.serialize())
+            self.person_map.delete(str(handle))
 
     def remove_source(self,handle,transaction):
-        if transaction != None:
-            old_data = self.source_map.get(str(handle))
-            transaction.add(SOURCE_KEY,handle,old_data)
-        self.source_map.delete(str(handle))
+        if not self.readonly:
+            if transaction != None:
+                old_data = self.source_map.get(str(handle))
+                transaction.add(SOURCE_KEY,handle,old_data)
+            self.source_map.delete(str(handle))
 
     def remove_family(self,handle,transaction):
-        if transaction != None:
-            old_data = self.family_map.get(str(handle))
-            transaction.add(FAMILY_KEY,handle,old_data)
-        self.family_map.delete(str(handle))
+        if not self.readonly:
+            if transaction != None:
+                old_data = self.family_map.get(str(handle))
+                transaction.add(FAMILY_KEY,handle,old_data)
+            self.family_map.delete(str(handle))
 
     def remove_event(self,handle,transaction):
-        if transaction != None:
-            old_data = self.event_map.get(str(handle))
-            transaction.add(EVENT_KEY,handle,old_data)
-        self.event_map.delete(str(handle))
+        if not self.readonly:
+            if transaction != None:
+                old_data = self.event_map.get(str(handle))
+                transaction.add(EVENT_KEY,handle,old_data)
+            self.event_map.delete(str(handle))
 
     def remove_place(self,handle,transaction):
-        if transaction != None:
-            old_data = self.place_map.get(handle)
-            transaction.add(PLACE_KEY,handle,old_data)
-        self.place_map.delete(str(handle))
+        if not self.readonly:
+            if transaction != None:
+                old_data = self.place_map.get(handle)
+                transaction.add(PLACE_KEY,handle,old_data)
+            self.place_map.delete(str(handle))
 
     def remove_object(self,handle,transaction):
-        if transaction != None:
-            old_data = self.media_map.get(handle)
-            transaction.add(PLACE_KEY,handle,old_data)
-        self.media_map.delete(str(handle))
+        if not self.readonly:
+            if transaction != None:
+                old_data = self.media_map.get(handle)
+                transaction.add(PLACE_KEY,handle,old_data)
+            self.media_map.delete(str(handle))
 
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
