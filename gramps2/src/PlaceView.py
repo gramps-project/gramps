@@ -93,6 +93,16 @@ class PlaceView:
         self.list.set_model(self.model)
         self.list.get_column(0).clicked()
         self.selection = self.list.get_selection()
+        self.list.connect('button-press-event',self.button_press)
+
+    def button_press(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            store,iter = self.selection.get_selected()
+            id = store.get_value(iter,1)
+            source = self.db.getPlace(id)
+            EditPlace.EditPlace(self, place, self.update_display)
+            return 1
+        return 0
 
     def change_db(self,db):
         self.db = db

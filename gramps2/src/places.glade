@@ -2,6 +2,7 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
+<requires lib="gnome"/>
 <requires lib="canvas"/>
 
 <widget class="GtkDialog" id="placeEditor">
@@ -98,8 +99,6 @@
 	      <property name="show_border">True</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">2</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 	      <signal name="switch_page" handler="on_switch_page" object="placeEditor"/>
 
@@ -915,6 +914,7 @@
 			      <property name="label" translatable="yes">_Edit...</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <signal name="clicked" handler="on_update_loc_clicked" last_modification_time="Thu, 08 May 2003 17:20:46 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -1267,6 +1267,7 @@
 			      <property name="label" translatable="yes">_Edit...</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <signal name="clicked" handler="on_edit_photo_clicked" last_modification_time="Thu, 08 May 2003 17:23:49 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -1553,6 +1554,7 @@
 			      <property name="label" translatable="yes">_Edit...</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <signal name="clicked" handler="on_update_url_clicked" last_modification_time="Thu, 08 May 2003 17:24:09 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
