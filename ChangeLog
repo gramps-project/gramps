@@ -1,4 +1,15 @@
+2004-12-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GenericFilter.py: Add a combobox that handles filter
+	selection
+	* src/PaperMenu.py: Add combobox classes to handle paper size
+	and paper orientation selection.
+	* src/Plugins.py: Add combobox classes to handle draw doc format
+	and text doc format selection
+	* src/Report.py: Use new comboboxes
+	* src/plugins/TimeLine.py: Use new comboboxes
+
 2004-12-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Filter.py: remove - no longer used
         * src/Report.py: delay importing of GenericFilter
 	* src/ReadGedcom.py: create GedcomDateParser class to handle 
 	  English requirements for GEDCOM

@@ -54,26 +54,65 @@ except:
 #-------------------------------------------------------------------------
 paper_sizes = []
 
-#-------------------------------------------------------------------------
-#
-# make_paper_menu
-#
-#-------------------------------------------------------------------------
-def make_paper_menu(main_menu,default=""):
+class GrampsPaperComboBox(gtk.ComboBox):
 
-    index = 0
-    myMenu = gtk.Menu()
-    for paper in paper_sizes:
-        name = paper.get_name()
-        menuitem = gtk.MenuItem(name)
-        menuitem.set_data("i",paper)
-        menuitem.set_data("label",name)
-        menuitem.show()
-        myMenu.append(menuitem)
-        if default == name:
-            myMenu.set_active(index)
-        index = index + 1
-    main_menu.set_menu(myMenu)
+    def __init__(self):
+        gtk.ComboBox.__init__(self,model=None)
+
+    def set(self,mapping,default):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        self.mapping = {}
+
+        index = 0
+        start_index = 0
+        for key in mapping:
+            self.mapping[key.get_name()]  = key
+            self.store.append(row=[key.get_name()])
+            if key == default:
+                start_index = index
+            index += 1
+            
+        self.set_active(start_index)
+
+    def get_value(self):
+        active = self.get_active()
+        if active < 0:
+            return None
+        key = self.store[active][0]
+        return (self.mapping[key],key)
+
+class GrampsOrientationComboBox(gtk.ComboBox):
+
+    def __init__(self):
+        gtk.ComboBox.__init__(self,model=None)
+
+    def set(self,default=0):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        self.mapping = {}
+
+        self.store.append(row=[_('Portrait')])
+        self.store.append(row=[_('Landscape')])
+        if default == BaseDoc.PAPER_PORTRAIT:
+            self.set_active(0)
+        else:
+            self.set_active(1)
+
+    def get_value(self):
+        active = self.get_active()
+        if active < 0:
+            return None
+        if active == 0:
+            return BaseDoc.PAPER_PORTRAIT
+        else:
+            return BaseDoc.PAPER_LANDSCAPE
 
 #-------------------------------------------------------------------------
 #

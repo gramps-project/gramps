@@ -1598,11 +1598,6 @@ class GenericFilterList:
         return l.replace('"','&quot;')
 
     def save(self):
-#        try:
-#            f = open(self.file,'w')
-#        except:
-#            return
-
         f = open(self.file.encode('utf-8'),'w')
         
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
@@ -1719,6 +1714,60 @@ if not SystemFilters:
 
 if not CustomFilters:
     reload_custom_filters()
+
+
+class GrampsFilterComboBox(gtk.ComboBox):
+
+    def set(self,local_filters,default=""):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        self.map = {}
+        
+        active = 0
+        cnt = 0
+        for filt in local_filters:
+            self.store.append(row=[filt.get_name()])
+            self.map[filt.get_name()] = filt
+            if default != "" and default == filt.get_name():
+                active = cnt
+            cnt += 1
+        
+        for filt in SystemFilters.get_filters():
+            self.store.append(row=[_(filt.get_name())])
+            self.map[filt.get_name()] = filt
+            if default != "" and default == filt.get_name():
+                active = cnt
+            cnt += 1
+
+        for filt in CustomFilters.get_filters():
+            self.store.append(row=[_(filt.get_name())])
+            self.map[filt.get_name()] = filt
+            if default != "" and default == filt.get_name():
+                active = cnt
+            cnt += 1
+
+        if active:
+            self.set_active(active)
+        elif len(local_filters):
+            self.set_active(2)
+        elif len(SystemFilters.get_filters()):
+            self.set_active(4 + len(local_filters))
+        elif len(CustomFilters.get_filters()):
+            self.set_active(6 + len(local_filters) + len(SystemFilters.get_filters()))
+        else:
+            self.set_active(0)
+
+    def get_value(self):
+        active = self.get_active()
+        if active < 0:
+            return None
+        key = self.store[active][0]
+        return self.map[key]
+
 
 def build_filter_menu(local_filters = [], default=""):
     menu = gtk.Menu()
