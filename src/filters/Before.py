@@ -68,21 +68,7 @@ class EventBefore(Filter.Filter):
 # 
 #
 #------------------------------------------------------------------------
-def create(text):
-    return EventBefore(text)
+Filter.register_filter(EventBefore,
+                       description=_("People with an event before ..."),
+                       qualifier=1)
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def need_qualifier():
-    return 1
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_name():
-    return _("People with an event before ...")

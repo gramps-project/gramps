@@ -49,7 +49,8 @@ NAMEINST = "namelist"
 
 #-------------------------------------------------------------------------
 #
-#
+# Interface to gramps' bookmarks. Handles building the bookmarks menu
+# for the main window, and provides the bookmark editor.
 #
 #-------------------------------------------------------------------------
 class Bookmarks :
@@ -59,9 +60,13 @@ class Bookmarks :
     #
     # __init__ - Creates a the bookmark editor
     #
+    # arguments are:
+    #    bookmarks - list of People
+    #    menu - parent menu to attach users
+    #    callback - task to connect to the menu item as a callback
+    #
     #---------------------------------------------------------------------
-    def __init__(self,bookmarks,map,menu,callback):
-        self.map = map
+    def __init__(self,bookmarks,menu,callback):
         self.menu = menu
         self.bookmarks = bookmarks
         self.callback = callback
@@ -69,17 +74,14 @@ class Bookmarks :
 
     #---------------------------------------------------------------------
     #
-    #
+    # redraw - (re)create the pulldown menu
     #
     #---------------------------------------------------------------------
     def redraw(self):
         if len(self.bookmarks) > 0:
             self.myMenu = gtk.GtkMenu()
             for person in self.bookmarks:
-                item = gtk.GtkMenuItem(person.getPrimaryName().getName())
-                item.show()
-                item.connect("activate", self.callback , person)
-                self.myMenu.append(item)
+                self.add_to_menu(person)
             self.menu.set_submenu(self.myMenu)
             self.menu.set_sensitive(1)
         else:
@@ -88,33 +90,43 @@ class Bookmarks :
 
     #---------------------------------------------------------------------
     #
-    #
+    # add - adds the person to the bookmarks, appended to the botom
     #
     #---------------------------------------------------------------------
     def add(self,person):
         if person not in self.bookmarks:
             utils.modified()
             self.bookmarks.append(person)
-            item = gtk.GtkMenuItem(person.getPrimaryName().getName())
-            item.show()
-            item.connect("activate", self.callback, person)
-            self.redraw()
+            self.add_to_menu(person)
 
     #---------------------------------------------------------------------
     #
+    # add_to_menu - adds a person's name to the drop down menu
     #
+    #---------------------------------------------------------------------
+    def add_to_menu(person):
+        item = gtk.GtkMenuItem(person.getPrimaryName().getName())
+        item.connect("activate", self.callback, person)
+        item.show()
+        self.myMenu.append(item)
+        
+    #---------------------------------------------------------------------
+    #
+    # edit - display the bookmark editor.
+    #
+    # The current bookmarked people are inserted into the namelist,
+    # attaching the person object to the corresponding row. The currently
+    # selected row is attached to the name list. This is either 0 if the
+    # list is not empty, or -1 if it is.
     #
     #---------------------------------------------------------------------
     def edit(self):
-        
         top = libglade.GladeXML(const.bookFile,TOPINST)
         namelist = top.get_widget(NAMEINST)
-
-        namelist.clear()
         self.index = 0
-        for val in self.bookmarks:
-            namelist.append([val.getPrimaryName().getName()])
-            namelist.set_row_data(self.index,val)
+        for person in self.bookmarks:
+            namelist.append([person.getPrimaryName().getName()])
+            namelist.set_row_data(self.index,person)
             self.index = self.index + 1
 
         if self.index > 0:
@@ -137,11 +149,11 @@ class Bookmarks :
         topBox.set_data(OBJECT,self)
         topBox.set_data(NAMEINST,namelist)
         topBox.show()
-        self.redraw()
 
 #-------------------------------------------------------------------------
 #
-#
+# on_namelist_select_row - changes the selected row stored on the namelist
+# to the row that was just selected.
 #
 #-------------------------------------------------------------------------
 def on_namelist_select_row(obj,row,junk,junk2):
@@ -149,7 +161,10 @@ def on_namelist_select_row(obj,row,junk,junk2):
     
 #-------------------------------------------------------------------------
 #
-#
+# on_delete_clicked - gets the selected row and number of rows that have
+# been attached to the namelist. If the selected row is greater than 0,
+# then the row is deleted from the list. The number of rows is then
+# decremented. 
 #
 #-------------------------------------------------------------------------
 def on_delete_clicked(obj):
@@ -165,7 +180,7 @@ def on_delete_clicked(obj):
 
 #-------------------------------------------------------------------------
 #
-#
+# on_up_clicked - swap rows if the selected row is greater than 0
 #
 #-------------------------------------------------------------------------
 def on_up_clicked(obj):
@@ -176,7 +191,7 @@ def on_up_clicked(obj):
 
 #-------------------------------------------------------------------------
 #
-#
+# on_down_clicked - swap rows if the selected index is not the last index
 #
 #-------------------------------------------------------------------------
 def on_down_clicked(obj):
@@ -188,31 +203,27 @@ def on_down_clicked(obj):
 
 #-------------------------------------------------------------------------
 #
-#
+# on_ok_clicked - loop through the name list, extracting the attached
+# person from list, and building up the new bookmark list. The menu is
+# then redrawn.
 #
 #-------------------------------------------------------------------------
 def on_ok_clicked(obj):
-    bmobj = obj.get_data(OBJECT)
+    bkmarks = obj.get_data(OBJECT)
     namelist = obj.get_data(NAMEINST)
-    del bmobj.bookmarks[0:]
+    del bkmarks.bookmarks[0:]
     
-    bmobj.myMenu = gtk.GtkMenu()
-    for index in range(0,bmobj.index):
+    for index in range(0,bkmarks.index):
         person = namelist.get_row_data(index)
-        if person == None:
-            break
-        bmobj.bookmarks.append(person)
-        item = gtk.GtkMenuItem(person.getPrimaryName().getName())
-        item.show()
-        item.connect("activate", bmobj.callback , person)
-        bmobj.myMenu.append(item)
-        bmobj.menu.set_submenu(bmobj.myMenu)
-    bmobj.redraw()
+        if person:
+            bkmarks.bookmarks.append(person)
+
+    bkmarks.redraw()
     obj.destroy()
     
 #-------------------------------------------------------------------------
 #
-#
+# on_cancel_clicked - destroy the bookmark editor
 #
 #-------------------------------------------------------------------------
 def on_cancel_clicked(obj):

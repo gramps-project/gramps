@@ -32,11 +32,11 @@ class IncompleteNames(Filter.Filter):
         name = person.getPrimaryName()
         return name.getFirstName() == "" or name.getSurname() == ""
 
-def create(text):
-    return IncompleteNames(text)
-
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("People with incomplete names")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(IncompleteNames,
+                       description=_("People with incomplete names"),
+                       qualifier=0)

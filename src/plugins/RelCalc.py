@@ -259,8 +259,11 @@ def runTool(database,person,callback):
 #
 #
 #-------------------------------------------------------------------------
-def get_description():
-    return _("Calculates the relationship between two people")
-    
-def get_name():
-    return _("Utilities/Relationship calculator")
+from Plugins import register_tool
+
+register_tool(
+    runTool,
+    _("Relationship calculator"),
+    category=_("Utilities"),
+    description=_("Calculates the relationship between two people")
+    )

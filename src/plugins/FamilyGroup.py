@@ -164,10 +164,7 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell("TextContentsEnd")
         self.doc.start_paragraph('Normal')
-	if birth.getPlace() != None:
-            self.doc.write_text(birth.getPlace().get_title())
-	else:
-	    self.doc.write_text("")
+        self.doc.write_text(birth.getPlace().get_title())
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -185,10 +182,7 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell("TextContentsEnd")
         self.doc.start_paragraph('Normal')
-	if death.getPlace() != None:
-            self.doc.write_text(death.getPlace().get_title())
-	else:
-	    self.doc.write_text("")
+        self.doc.write_text(death.getPlace().get_title())
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -234,10 +228,7 @@ class FamilyGroup:
     def dump_child_event(self,text,name,event):
         if event:
             date = event.getDate()
-	    if event.getPlace() != None:
-                place = event.getPlace().get_title()
-            else:
-	        place = ""
+            place = event.getPlace().get_title()
         else:
             date = ""
             place = ""
@@ -526,8 +517,12 @@ def on_save_clicked(obj):
 # 
 #
 #------------------------------------------------------------------------
-def get_description():
-    return _("Creates a family group report, showing information on a set of parents and their children.")
+from Plugins import register_report
 
-def get_name():
-    return _("Generate files/Family Group Report")
+register_report(
+    report,
+    _("Family Group Report"),
+    category=_("Generate Files"),
+    description=_("Creates a family group report, showing information on a set of parents and their children.")
+    )
+

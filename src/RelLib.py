@@ -19,7 +19,6 @@
 #
 
 from Date import *
-from Researcher import *
 
 class Place:
     def __init__(self,source=None):
@@ -137,6 +136,56 @@ class Place:
 
     def getPhotoList(self):
         return self.photoList
+
+#-------------------------------------------------------------------------
+#
+# Researcher
+#
+#-------------------------------------------------------------------------
+class Researcher:
+    def __init__(self):
+        self.name = ""
+        self.addr = ""
+        self.city = ""
+        self.state = ""
+        self.country = ""
+        self.postal = ""
+        self.phone = ""
+        self.email = ""
+
+    def getName(self):
+        return self.name
+
+    def getAddress(self):
+        return self.addr
+
+    def getCity(self):
+        return self.city
+
+    def getState(self):
+        return self.state
+
+    def getCountry(self):
+        return self.country
+
+    def getPostalCode(self):
+        return self.postal
+
+    def getPhone(self):
+        return self.phone
+
+    def getEmail(self):
+        return self.email
+
+    def set(self,name,addr,city,state,country,postal,phone,email):
+        self.name = string.strip(name)
+        self.addr = string.strip(addr)
+        self.city = string.strip(city)
+        self.state = string.strip(state)
+        self.country = string.strip(country)
+        self.postal = string.strip(postal)
+        self.phone = string.strip(phone)
+        self.email = string.strip(email)
 
 #-------------------------------------------------------------------------
 #
@@ -895,6 +944,12 @@ class Event:
     def getPlace(self) :
         return self.place 
 
+    def getPlaceName(self) :
+        if self.place:
+            return self.place.get_title()
+        else:
+            return ""
+
     def setNote(self,note) :
         if self.note == None:
             self.note = Note()
@@ -954,6 +1009,13 @@ class Family:
         self.photoList = []
         self.note = Note()
         self.attributeList = []
+        self.position = None
+
+    def setPosition(self,pos):
+        self.position = pos
+
+    def getPosition(self):
+        return self.position
 
     def addAttribute(self,attribute) :
         self.attributeList.append(attribute)

@@ -49,11 +49,11 @@ class EventPlace(Filter.Filter):
                 break
         return val
 
-def create(text):
-    return EventPlace(text)
-
-def need_qualifier():
-    return 1
-
-def get_name():
-    return _("People with an event location of ...")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(EventPlace,
+                       description=_("People with an event location of ..."),
+                       qualifier=1)

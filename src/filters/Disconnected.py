@@ -31,11 +31,12 @@ class Disconnected(Filter.Filter):
     def match(self,person):
         return person.getMainFamily() == None and len(person.getFamilyList()) == 0
 
-def create(text):
-    return Disconnected(text)
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(Disconnected,
+                       description= _("Disconnected individuals"),
+                       qualifier=0)
 
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("Disconnected individuals")

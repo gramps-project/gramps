@@ -26,7 +26,13 @@ import const
 
 from TextDoc import *
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class StyleListDisplay:
+
     def __init__(self,stylesheetlist,callback,object):
         self.object = object
         self.callback = callback
@@ -46,17 +52,24 @@ class StyleListDisplay:
         self.dialog.set_data("o",self)
         self.redraw()
 
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def redraw(self):
         self.list.clear()
 
         self.list.set_data("i",0)
         box = ListColors.ColorList(self.list,1)
-        box.add_with_data(["default"],("default",self.sheetlist.get_style_sheet("default")))
+        sheet = self.sheetlist.get_style_sheet("default")
+        box.add_with_data(["default"],("default",sheet))
 
         for style in self.sheetlist.get_style_names():
             if style == "default":
                 continue
-            box.add_with_data([style],(style,self.sheetlist.get_style_sheet(style)))
+            sheet = self.sheetlist.get_style_sheet(style)
+            box.add_with_data([style],(style,sheet))
 
 #------------------------------------------------------------------------
 #
@@ -153,6 +166,11 @@ class StyleEditor:
             myMenu.append(menuitem)
         self.pnames.set_menu(myMenu)
 
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def draw(self,p):
         self.current_p = p
         font = p.get_font()
@@ -184,6 +202,11 @@ class StyleEditor:
         c = p.get_background_color()
         self.top.get_widget("bgcolor").set_i8(c[0],c[1],c[2],0)
 
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def save_paragraph(self,p):
         font = p.get_font()
         font.set_size(int(self.top.get_widget("size").get_value()))

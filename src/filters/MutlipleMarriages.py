@@ -32,11 +32,11 @@ class MultipleMarriages(Filter.Filter):
     def match(self,person):
         return len(person.getFamilyList()) > 1
 
-def create(text):
-    return MultipleMarriages(text)
-
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("People with multiple marriage records")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(MultipleMarriages,
+                       description=_("People with multiple marriage records"),
+                       qualifier=0)

@@ -113,24 +113,19 @@ def on_ok_clicked(obj):
     utils.destroy_passed_object(obj)
     cb(1)
         
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def get_description():
-    return _("Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field.")
+#------------------------------------------------------------------------
+from Plugins import register_tool
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_name():
-    return _("Database Processing/Extract information from names")
-
-
-
+register_tool(
+    runTool,
+    _("Extract information from names"),
+    category=_("Database Processing"),
+    description=_("Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field.")
+    )
 
 
 

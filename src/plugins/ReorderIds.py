@@ -73,8 +73,12 @@ def runTool(database,active_person,callback):
 #
 #
 #-------------------------------------------------------------------------
-def get_description():
-    return _("Reorders the gramps IDs according to gramps' default rules.")
+from Plugins import register_tool
 
-def get_name():
-    return _("Database Processing/Reorder gramps IDs")
+register_tool(
+    runTool,
+    _("Reorder gramps IDs"),
+    category=_("Database Processing"),
+    description=_("Reorders the gramps IDs according to gramps' default rules.")
+    )
+

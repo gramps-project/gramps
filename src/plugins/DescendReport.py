@@ -264,22 +264,6 @@ def on_save_clicked(obj):
 # 
 #
 #------------------------------------------------------------------------
-def get_description():
-    return _("Generates a list of descendants of the active person")
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_name():
-    return _("Generate files/Descendant Report")
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
 def get_xpm_image():
     return [
         "48 48 4 1",
@@ -335,3 +319,19 @@ def get_xpm_image():
         "                                                ",
         "                                                ",
         "                                                "]
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+from Plugins import register_report
+
+register_report(
+    report,
+    _("Descendant Report"),
+    category=_("Generate Files"),
+    description=_("Generates a list of descendants of the active person"),
+    xpm=get_xpm_image()
+    )
+

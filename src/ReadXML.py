@@ -20,17 +20,22 @@
 
 from RelLib import *
 from GrampsParser import *
-import intl
-_ = intl.gettext
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 
 import string
 import time
 import gzip
 import os
 from gnome.ui import *
-
 import sys
+
+import intl
+_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -165,8 +170,6 @@ def loadData(database, filename, callback=None):
 
 
 if __name__ == "__main__":
-    import sys
-    import time
     import profile
     
     database = RelDataBase()

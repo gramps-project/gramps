@@ -406,17 +406,6 @@ def on_save_clicked(obj):
 # 
 #
 #------------------------------------------------------------------------
-def get_description():
-    return _("Produces a textual ancestral report")
-
-def get_name():
-    return _("Generate files/Ahnentafel Report")
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
 def get_xpm_image():
     return [
         "48 48 4 1",
@@ -472,3 +461,19 @@ def get_xpm_image():
         "                                                ",
         "                                                ",
         "                                                "]
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+from Plugins import register_report
+
+register_report(
+    report,
+    _("Ahnentafel Report"),
+    category=_("Generate Files"),
+    description= _("Produces a textual ancestral report"),
+    xpm=get_xpm_image()
+    )
+

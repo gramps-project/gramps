@@ -79,19 +79,17 @@ def add_to_tree(tree,person):
                 item.set_subtree(subtree)
             add_to_tree(subtree,child)
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def get_name():
-    return _("Analysis and Exploration/Interactive descendant browser")
+#------------------------------------------------------------------------
+from Plugins import register_tool
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_description():
-    return _("Provides a browsable hierarchy based on the active person")
+register_tool(
+    runTool,
+    _("Interactive descendant browser"),
+    category=_("Analysis and Exploration"),
+    description=_("Provides a browsable hierarchy based on the active person")
+    )
 

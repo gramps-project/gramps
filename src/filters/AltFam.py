@@ -33,11 +33,8 @@ class HaveAltFamilies(Filter.Filter):
     def match(self,person):
         return len(person.getAltFamilyList()) > 0
 
-def create(text):
-    return HaveAltFamilies(text)
 
-def need_qualifier():
-    return 0
+Filter.register_filter(HaveAltFamilies,
+                       description=_("People who were adopted"),
+                       qualifier=0)
 
-def get_name():
-    return _("People who were adopted")

@@ -33,11 +33,12 @@ class Males(Filter.Filter):
     def match(self,person):
         return person.getGender() == Person.male
 
-def create(text):
-    return Males(text)
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(Males,
+                       description=_("Males"),
+                       qualifier=0)
 
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("Males")

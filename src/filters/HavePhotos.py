@@ -32,11 +32,12 @@ class HavePhotos(Filter.Filter):
     def match(self,person):
         return len(person.getPhotoList()) > 0
 
-def create(text):
-    return HavePhotos(text)
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(HavePhotos,
+                       description=_("People who have images"),
+                       qualifier=0)
 
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("People who have images")

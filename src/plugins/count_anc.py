@@ -84,9 +84,12 @@ def report(database,person):
 #
 #
 #-------------------------------------------------------------------------
-def get_description():
-    return _("Counts number of ancestors of selected person")
+from Plugins import register_report
 
+register_report(
+    report,
+    _("Number of ancestors"),
+    category=_("View"),
+    description=_("Counts number of ancestors of selected person")
+    )
 
-def get_name():
-    return _("View/Number of ancestors")

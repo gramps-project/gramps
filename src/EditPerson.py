@@ -33,8 +33,8 @@ import string
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
-import gnome.mime
 import libglade
+import GdkImlib
 
 #-------------------------------------------------------------------------
 #
@@ -53,11 +53,23 @@ _ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# Constants - quite frequently, data needs to be attached to a widget.
+# this is done to prevent the use of globals, and to allow data to be
+# passed with a widget (especially critical, since more that one window
+# can be opened at a time). Data is attached to an widget using a string
+# as the key. To avoid a lot of hard coded text strings floating around
+# everywhere, values are defined here as constants with more meaningful
+# names.
 #
 #-------------------------------------------------------------------------
 INDEX      = "i"
 EDITPERSON = "p"
+OBJECT     = "o"
+MENUVAL    = "a"
+PHOTO      = "p"
+TEXT       = "t"
+NOTEOBJ    = "n"
+TEXTOBJ    = "w"
 
 #-------------------------------------------------------------------------
 #
@@ -78,11 +90,7 @@ class EditPerson:
         self.callback = callback
         self.path = db.getSavePath()
         self.not_loaded = 1
-        self.events_changed = 0
-        self.urls_changed = 0
-        self.addr_changed = 0
-        self.names_changed = 0
-        self.attr_changed = 0
+        self.lists_changed = 0
         
         self.top_window = libglade.GladeXML(const.editPersonFile, "editPerson")
 
@@ -103,14 +111,14 @@ class EditPerson:
         self.web_list = self.get_widget("web_list")
         self.web_url = self.get_widget("web_url")
         self.web_description = self.get_widget("url_des")
-        self.address_label = self.get_widget("address_label")
-        self.address_list = self.get_widget("address_list")
-        self.address_start = self.get_widget("address_start")
-        self.address_street = self.get_widget("street")
-        self.address_city = self.get_widget("city")
-        self.address_state = self.get_widget("state")
-        self.address_country = self.get_widget("country")
-        self.address_postal = self.get_widget("postal")
+        self.addr_label = self.get_widget("address_label")
+        self.addr_list = self.get_widget("address_list")
+        self.addr_start = self.get_widget("address_start")
+        self.addr_street = self.get_widget("street")
+        self.addr_city = self.get_widget("city")
+        self.addr_state = self.get_widget("state")
+        self.addr_country = self.get_widget("country")
+        self.addr_postal = self.get_widget("postal")
         self.event_list = self.get_widget("eventList")
         self.edit_person = self.get_widget("editPerson")
         self.name_list = self.get_widget("nameList")
@@ -147,46 +155,44 @@ class EditPerson:
         self.death = Event(person.getDeath())
         self.birth = Event(person.getBirth())
         self.pname = Name(person.getPrimaryName())
-
-        self.selectedIcon = -1
+        self.selected_icon = -1
         
         self.top_window.signal_autoconnect({
-            "destroy_passed_object" : on_cancel_edit,
-            "on_add_address_clicked" : on_add_address_clicked,
-            "on_add_aka_clicked" : on_add_aka_clicked,
-            "on_add_attr_clicked" : on_add_attr_clicked,
-            "on_add_url_clicked" : on_add_url_clicked,
-            "on_addphoto_clicked" : on_add_photo_clicked,
-            "on_address_list_select_row" : on_address_list_select_row,
-            "on_aka_delete_clicked" : on_aka_delete_clicked,
-            "on_aka_update_clicked" : on_aka_update_clicked,
-            "on_apply_person_clicked" : on_apply_person_clicked,
-            "on_attr_list_select_row" : on_attr_list_select_row,
-            "on_birth_note_clicked" : on_birth_note_clicked,
-            "on_birth_source_clicked" : on_birth_source_clicked,
-            "on_browse_clicked": on_browse_clicked,
-            "on_death_note_clicked" : on_death_note_clicked,
-            "on_death_source_clicked" : on_death_source_clicked,
-            "on_delete_address_clicked" : on_delete_address_clicked,
-            "on_delete_attr_clicked" : on_delete_attr_clicked,
-            "on_delete_event" : on_delete_event,
-            "on_delete_url_clicked" : on_delete_url_clicked,
-            "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "destroy_passed_object"     : on_cancel_edit,
+            "on_add_address_clicked"    : on_add_addr_clicked,
+            "on_add_aka_clicked"        : on_add_aka_clicked,
+            "on_add_attr_clicked"       : on_add_attr_clicked,
+            "on_add_url_clicked"        : on_add_url_clicked,
+            "on_addphoto_clicked"       : on_add_photo_clicked,
+            "on_address_list_select_row": on_addr_list_select_row,
+            "on_aka_delete_clicked"     : on_aka_delete_clicked,
+            "on_aka_update_clicked"     : on_aka_update_clicked,
+            "on_apply_person_clicked"   : on_apply_person_clicked,
+            "on_attr_list_select_row"   : on_attr_list_select_row,
+            "on_birth_note_clicked"     : on_birth_note_clicked,
+            "on_birth_source_clicked"   : on_birth_source_clicked,
+            "on_death_note_clicked"     : on_death_note_clicked,
+            "on_death_source_clicked"   : on_death_source_clicked,
+            "on_delete_address_clicked" : on_delete_addr_clicked,
+            "on_delete_attr_clicked"    : on_delete_attr_clicked,
+            "on_delete_event"           : on_delete_event,
+            "on_delete_url_clicked"     : on_delete_url_clicked,
+            "on_deletephoto_clicked"    : on_delete_photo_clicked,
             "on_editperson_switch_page" : on_switch_page,
-            "on_event_add_clicked" : on_event_add_clicked,
-            "on_event_delete_clicked" : on_event_delete_clicked,
-            "on_event_select_row" : on_event_select_row,
-            "on_event_update_clicked" : on_event_update_clicked,
-            "on_makeprimary_clicked" : on_primary_photo_clicked,
-            "on_name_list_select_row" : on_name_list_select_row,
-            "on_name_note_clicked" : on_name_note_clicked,
-            "on_name_source_clicked" : on_primary_name_source_clicked,
-            "on_photolist_button_press_event" : on_photolist_button_press_event,
-            "on_photolist_select_icon" : on_photo_select_icon,
-            "on_update_address_clicked" : on_update_address_clicked,
-            "on_update_attr_clicked" : on_update_attr_clicked,
-            "on_update_url_clicked" : on_update_url_clicked,
-            "on_web_list_select_row" : on_web_list_select_row,
+            "on_event_add_clicked"      : on_event_add_clicked,
+            "on_event_delete_clicked"   : on_event_delete_clicked,
+            "on_event_select_row"       : on_event_select_row,
+            "on_event_update_clicked"   : on_event_update_clicked,
+            "on_makeprimary_clicked"    : on_primary_photo_clicked,
+            "on_name_list_select_row"   : on_name_list_select_row,
+            "on_name_note_clicked"      : on_name_note_clicked,
+            "on_name_source_clicked"    : on_primary_name_source_clicked,
+            "on_photolist_button_press_event" : on_photolist_button_press,
+            "on_photolist_select_icon"  : on_photo_select_icon,
+            "on_update_address_clicked" : on_update_addr_clicked,
+            "on_update_attr_clicked"    : on_update_attr_clicked,
+            "on_update_url_clicked"     : on_update_url_clicked,
+            "on_web_list_select_row"    : on_web_list_select_row,
             })
 
         if len(const.surnames) > 0:
@@ -197,12 +203,12 @@ class EditPerson:
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.name_list.set_column_visibility(1,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
-        self.address_list.set_column_visibility(2,Config.show_detail)
+        self.addr_list.set_column_visibility(2,Config.show_detail)
 
         plist = self.db.getPlaceMap().values()
         if len(plist) > 0:
-            attach_places(plist,self.dpcombo,self.death.getPlace())
-            attach_places(plist,self.bpcombo,self.birth.getPlace())
+            utils.attach_places(plist,self.dpcombo,self.death.getPlace())
+            utils.attach_places(plist,self.bpcombo,self.birth.getPlace())
 
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
@@ -233,18 +239,9 @@ class EditPerson:
         self.nick.set_text(person.getNickName())
         self.title.set_text(self.pname.getTitle())
         self.bdate.set_text(self.birth.getDate())
-        p = self.birth.getPlace()
-        if p:
-            self.bplace.set_text(p.get_title())
-        else:
-            self.bplace.set_text("")
+        self.bplace.set_text(self.birth.getPlaceName())
         self.ddate.set_text(self.death.getDate())
-
-        p = self.death.getPlace()
-        if p:
-            self.dplace.set_text(p.get_title())
-        else:
-            self.dplace.set_text("")
+        self.dplace.set_text(self.death.getPlaceName())
         
         # load photos into the photo window
         photo_list = person.getPhotoList()
@@ -266,13 +263,13 @@ class EditPerson:
         self.web_list.set_data(INDEX,-1)
         self.attr_list.set_data(EDITPERSON,self)
         self.attr_list.set_data(INDEX,-1)
-        self.address_list.set_data(EDITPERSON,self)
-        self.address_list.set_data(INDEX,-1)
+        self.addr_list.set_data(EDITPERSON,self)
+        self.addr_list.set_data(INDEX,-1)
 
         # draw lists
         self.redraw_event_list()
         self.redraw_attr_list()
-        self.redraw_address_list()
+        self.redraw_addr_list()
         self.redraw_name_list()
         self.redraw_url_list()
 
@@ -290,27 +287,7 @@ class EditPerson:
     #
     #---------------------------------------------------------------------
     def redraw_name_list(self):
-        self.name_list.freeze()
-        self.name_list.clear()
-
-	self.name_index = 0
-        for name in self.nlist:
-            attr = get_detail_flags(name)
-            self.name_list.append([name.getName(),attr])
-            self.name_list.set_row_data(self.name_index,name)
-            self.name_index = self.name_index + 1
-
-        current_row = self.name_list.get_data(INDEX)
-        
-        if self.name_index > 0:
-            if current_row <= 0:
-                current_row = 0
-            elif self.name_index <= current_row:
-                current_row = current_row - 1
-            self.name_list.select_row(current_row,0)
-            self.name_list.moveto(current_row,0)
-        self.name_list.set_data(INDEX,current_row)
-        self.name_list.thaw()
+        utils.redraw_list(self.nlist,self.name_list,disp_name)
 
     #---------------------------------------------------------------------
     #
@@ -318,31 +295,13 @@ class EditPerson:
     #
     #---------------------------------------------------------------------
     def redraw_url_list(self):
-        self.web_list.freeze()
-        self.web_list.clear()
-
-	self.web_index = 0
-        for url in self.ulist:
-            self.web_list.append([url.get_path(),url.get_description()])
-            self.web_list.set_row_data(self.web_index,url)
-            self.web_index = self.web_index + 1
-
-        current_row = self.web_list.get_data(INDEX)
-        
-        if self.web_index > 0:
-            if current_row <= 0:
-                current_row = 0
-            elif self.web_index <= current_row:
-                current_row = current_row - 1
-            self.web_list.select_row(current_row,0)
-            self.web_list.moveto(current_row,0)
+        length = utils.redraw_list(self.ulist,self.web_list,disp_url)
+        if length > 0:
             self.web_url.set_sensitive(1)
         else:
             self.web_url.set_sensitive(0)
             self.web_url.set_label("")
             self.web_description.set_text("")
-        self.web_list.set_data(INDEX,current_row)
-        self.web_list.thaw()
 
     #---------------------------------------------------------------------
     #
@@ -350,58 +309,15 @@ class EditPerson:
     #
     #---------------------------------------------------------------------
     def redraw_attr_list(self):
-        self.attr_list.freeze()
-        self.attr_list.clear()
-
-	self.attr_index = 0
-        for attr in self.alist:
-            detail = get_detail_flags(attr)
-            self.attr_list.append([const.display_pattr(attr.getType()),\
-                                   attr.getValue(),detail])
-            self.attr_list.set_row_data(self.attr_index,attr)
-            self.attr_index = self.attr_index + 1
-
-        current_row = self.attr_list.get_data(INDEX)
-        
-        if self.attr_index > 0:
-            if current_row <= 0:
-                current_row = 0
-            elif self.attr_index <= current_row:
-                current_row = current_row - 1
-            self.attr_list.select_row(current_row,0)
-            self.attr_list.moveto(current_row,0)
-        self.attr_list.set_data(INDEX,current_row)
-        self.attr_list.thaw()
+        utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
     #---------------------------------------------------------------------
     #
-    # redraw_address_list - redraws the address list for the person
+    # redraw_addr_list - redraws the address list for the person
     #
     #---------------------------------------------------------------------
-    def redraw_address_list(self):
-        self.address_list.freeze()
-        self.address_list.clear()
-
-	self.address_index = 0
-        for address in self.plist:
-            detail = get_detail_flags(address)
-            location = address.getCity() + " " + address.getState() + " " + \
-                       address.getCountry()
-            self.address_list.append([address.getDate(),location,detail])
-            self.address_list.set_row_data(self.address_index,address)
-            self.address_index = self.address_index + 1
-
-        current_row = self.address_list.get_data(INDEX)
-        
-        if self.address_index > 0:
-            if current_row <= 0:
-                current_row = 0
-            elif self.address_index <= current_row:
-                current_row = current_row - 1
-            self.address_list.select_row(current_row,0)
-            self.address_list.moveto(current_row,0)
-        self.address_list.set_data(INDEX,current_row)
-        self.address_list.thaw()
+    def redraw_addr_list(self):
+        utils.redraw_list(self.plist,self.addr_list,disp_addr)
 
     #---------------------------------------------------------------------
     #
@@ -409,34 +325,7 @@ class EditPerson:
     #
     #---------------------------------------------------------------------
     def redraw_event_list(self):
-
-        self.event_list.freeze()
-        self.event_list.clear()
-
-        self.event_index = 0
-        for event in self.elist:
-            attr = get_detail_flags(event)
-            if event.getPlace():
-                p = event.getPlace().get_title()
-            else:
-                p = ""
-            self.event_list.append([const.display_pevent(event.getName()),\
-                                    event.getQuoteDate(),p,attr])
-            self.event_list.set_row_data(self.event_index,event)
-            self.event_index = self.event_index + 1
-
-        current_row = self.event_list.get_data(INDEX)
-        
-        if self.event_index > 0:
-            if current_row <= 0:
-                current_row = 0
-            elif self.event_index <= current_row:
-                current_row = current_row - 1
-            self.event_list.select_row(current_row,0)
-            self.event_list.moveto(current_row,0)
-            
-        self.event_list.set_data(INDEX,current_row)
-        self.event_list.thaw()
+        utils.redraw_list(self.elist,self.event_list,disp_event)
 
     #-------------------------------------------------------------------------
     #
@@ -444,11 +333,9 @@ class EditPerson:
     #
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
-        src = photo.getPath()
-        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,os.path.basename(src))
-
+        src = os.path.basename(photo.getPath())
+        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
         RelImage.check_thumb(src,thumb,const.thumbScale)
-
         self.photo_list.append(thumb,photo.getDescription())
         
     #-------------------------------------------------------------------------
@@ -458,8 +345,6 @@ class EditPerson:
     #
     #-------------------------------------------------------------------------
     def load_images(self):
-        if len(self.person.getPhotoList()) == 0:
-            return
         self.photo_list.freeze()
         self.photo_list.clear()
         for photo in self.person.getPhotoList():
@@ -474,8 +359,6 @@ class EditPerson:
     #
     #-------------------------------------------------------------------------
     def load_photo(self,photo):
-        import GdkImlib
-
         i = GdkImlib.Image(photo)
         scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
         x = int(scale*(i.rgb_width))
@@ -485,44 +368,62 @@ class EditPerson:
 
     #-------------------------------------------------------------------------
     #
-    #
+    # update_lists - Updates the person's list with the new lists, and sets
+    # the modified flag the if the lists have changed
     #
     #-------------------------------------------------------------------------
-    def update_events(self):
-        self.person.setEventList(self.elist)
+    def update_lists(self):
+        if self.lists_changed:
+            self.person.setEventList(self.elist)
+            self.person.setAlternateNames(self.nlist)
+            self.person.setUrlList(self.ulist)
+            self.person.setAttributeList(epo.alist)
+            self.person.setAddressList(self.plist)
+            utils.modified()
 
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
-    def update_names(self):
-        self.person.setAlternateNames(self.nlist)
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def disp_name(name):
+    return [name.getName(),utils.get_detail_flags(name)]
 
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
-    def update_urls(self):
-        self.person.setUrlList(self.ulist)
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def disp_url(url):
+    return [url.get_path(),url.get_description()]
 
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
-    def update_attributes(self):
-        self.person.setAttributeList(self.alist)
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def disp_attr(attr):
+    detail = utils.get_detail_flags(attr)
+    return [const.display_pattr(attr.getType()),attr.getValue(),detail]
 
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
-    def update_addresses(self):
-        self.person.setAddressList(self.plist)
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def disp_addr(addr):
+    location = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
+    return [addr.getDate(),location,utils.get_detail_flags(addr)]
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def disp_event(event):
+    attr = utils.get_detail_flags(event)
+    return [const.display_pevent(event.getName()),
+            event.getQuoteDate(),event.getPlaceName(),attr]
 
 #-------------------------------------------------------------------------
 #
@@ -562,7 +463,7 @@ def did_data_change(obj):
 
     epo.birth.setDate(bdate)
 
-    bplace_obj = get_place_from_list(epo.bpcombo)
+    bplace_obj = utils.get_place_from_list(epo.bpcombo)
     if bplace_obj == None and bplace != "":
         changed = 1
     epo.birth.setPlace(bplace_obj)
@@ -571,7 +472,7 @@ def did_data_change(obj):
         changed = 1
 
     epo.death.setDate(ddate)
-    dplace_obj = get_place_from_list(epo.dpcombo)
+    dplace_obj = utils.get_place_from_list(epo.dpcombo)
     if dplace_obj == None and dplace != "":
         changed = 1
     epo.death.setPlace(dplace_obj)
@@ -583,10 +484,7 @@ def did_data_change(obj):
         changed = 1
     if not gender and person.getGender() == Person.male:
         changed = 1
-    if text != person.getNote() or epo.events_changed:
-        changed = 1
-    if epo.names_changed or epo.urls_changed or \
-       epo.attr_changed or epo.addr_changed:
+    if text != person.getNote() or epo.lists_changed:
         changed = 1
 
     return changed
@@ -597,9 +495,9 @@ def did_data_change(obj):
 #
 #-------------------------------------------------------------------------
 def on_cancel_edit(obj):
+    global quit
 
     if did_data_change(obj):
-        global quit
         q = _("Data was modified. Are you sure you want to abandon your changes?")
         quit = obj
         GnomeQuestionDialog(q,cancel_callback)
@@ -621,9 +519,9 @@ def cancel_callback(a):
 #
 #-------------------------------------------------------------------------
 def on_delete_event(obj,b):
+    global quit
 
     if did_data_change(obj):
-        global quit
         q = _("Data was modified. Are you sure you want to abandon your changes?")
         quit = obj
         GnomeQuestionDialog(q,cancel_callback)
@@ -649,7 +547,7 @@ def on_name_list_select_row(obj,row,b,c):
     epo.alt_given_field.set_text(name.getFirstName())
     epo.alt_last_field.set_text(name.getSurname())
     epo.alt_suffix_field.set_text(name.getSuffix())
-    epo.name_details_field.set_text(get_detail_text(name))
+    epo.name_details_field.set_text(utils.get_detail_text(name))
 
 #-------------------------------------------------------------------------
 #
@@ -684,7 +582,7 @@ def on_attr_list_select_row(obj,row,b,c):
 
     epo.attr_type.set_label(const.display_pattr(attr.getType()))
     epo.attr_value.set_text(attr.getValue())
-    epo.attr_details_field.set_text(get_detail_text(attr))
+    epo.attr_details_field.set_text(utils.get_detail_text(attr))
 
 #-------------------------------------------------------------------------
 #
@@ -693,21 +591,21 @@ def on_attr_list_select_row(obj,row,b,c):
 # the row.
 #
 #-------------------------------------------------------------------------
-def on_address_list_select_row(obj,row,b,c):
+def on_addr_list_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
 
     epo = obj.get_data(EDITPERSON)
     a = obj.get_row_data(row)
 
-    epo.address_label.set_label("%s %s %s" % \
-                                (a.getCity(),a.getState(),a.getCountry()))
-    epo.address_start.set_text(a.getDate())
-    epo.address_street.set_text(a.getStreet())
-    epo.address_city.set_text(a.getCity())
-    epo.address_state.set_text(a.getState())
-    epo.address_country.set_text(a.getCountry())
-    epo.address_postal.set_text(a.getPostal())
-    epo.addr_details_field.set_text(get_detail_text(a))
+    label = "%s %s %s" % (a.getCity(),a.getState(),a.getCountry())
+    epo.addr_label.set_label(label)
+    epo.addr_start.set_text(a.getDate())
+    epo.addr_street.set_text(a.getStreet())
+    epo.addr_city.set_text(a.getCity())
+    epo.addr_state.set_text(a.getState())
+    epo.addr_country.set_text(a.getCountry())
+    epo.addr_postal.set_text(a.getPostal())
+    epo.addr_details_field.set_text(utils.get_detail_text(a))
 
 #-------------------------------------------------------------------------
 #
@@ -716,10 +614,8 @@ def on_address_list_select_row(obj,row,b,c):
 #-------------------------------------------------------------------------
 def on_aka_update_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
-    NameEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if row >= 0:
+        NameEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -728,10 +624,8 @@ def on_aka_update_clicked(obj):
 #-------------------------------------------------------------------------
 def on_update_url_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
-    UrlEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if row >= 0:
+        UrlEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -740,21 +634,18 @@ def on_update_url_clicked(obj):
 #-------------------------------------------------------------------------
 def on_update_attr_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
-    AttributeEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if row >= 0:
+        AttributeEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def on_update_address_clicked(obj):
+def on_update_addr_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-    AddressEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if row >= 0:
+        AddressEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -762,18 +653,10 @@ def on_update_address_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_aka_delete_clicked(obj):
-    row = obj.get_data(INDEX)
     epo = obj.get_data(EDITPERSON)
-    if row < 0:
-        return
-
-    del epo.nlist[row]
-
-    if row > len(epo.nlist)-1:
-        obj.set_data(INDEX,row-1)
-
-    epo.redraw_name_list()
-    utils.modified()
+    if utils.delete_selected(obj,epo.nlist):
+        epo.lists_changed = 1
+        epo.redraw_name_list()
 
 #-------------------------------------------------------------------------
 #
@@ -781,18 +664,10 @@ def on_aka_delete_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_url_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
     epo = obj.get_data(EDITPERSON)
-    del epo.ulist[row]
-
-    if row > len(epo.ulist)-1:
-        obj.set_data(INDEX,row-1)
-
-    epo.redraw_url_list()
-    utils.modified()
+    if utils.delete_selected(obj,epo.ulist):
+        epo.lists_changed = 1
+        epo.redraw_url_list()
 
 #-------------------------------------------------------------------------
 #
@@ -800,43 +675,36 @@ def on_delete_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_attr_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
     epo = obj.get_data(EDITPERSON)
-    del epo.alist[row]
-
-    if row > len(epo.alist)-1:
-        obj.set_data(INDEX,row-1)
-
-    epo.redraw_attr_list()
-    epo.attr_changed = 1
-    utils.modified()
+    if utils.delete_selected(obj,epo.alist):
+        epo.lists_changed = 1
+        epo.redraw_attr_list()
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def on_delete_address_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
+def on_delete_addr_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    del epo.plist[row]
+    if utils.delete_selected(obj,epo.plist):
+        epo.lists_changed = 1
+        epo.redraw_addr_list()
 
-    if row > len(epo.plist)-1:
-        obj.set_data(INDEX,row-1)
-
-    epo.redraw_address_list()
-    epo.addr_changed = 1
-    utils.modified()
+#-------------------------------------------------------------------------
+#
+# on_event_delete_clicked
+#
+# Called from the edit_person window, to update the values on the selected
+# event.  The EditPerson object and the selected row are attached to the
+# passed object.
+#
+#-------------------------------------------------------------------------
+def on_event_delete_clicked(obj):
+    epo = obj.get_data(EDITPERSON)
+    if utils.delete_selected(obj,epo.elist):
+        epo.lists_changed = 1
+        epo.redraw_event_list()
 
 #-------------------------------------------------------------------------
 #
@@ -844,8 +712,7 @@ def on_delete_address_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_aka_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    NameEditor(epo,None)
+    NameEditor(obj.get_data(EDITPERSON),None)
 
 #-------------------------------------------------------------------------
 #
@@ -853,8 +720,7 @@ def on_add_aka_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_url_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    UrlEditor(epo,None)
+    UrlEditor(obj.get_data(EDITPERSON),None)
 
 #-------------------------------------------------------------------------
 #
@@ -869,7 +735,7 @@ def on_add_attr_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_add_address_clicked(obj):
+def on_add_addr_clicked(obj):
     AddressEditor(obj.get_data(EDITPERSON),None)
 
 #-------------------------------------------------------------------------
@@ -886,29 +752,6 @@ def on_event_add_clicked(obj):
 
 #-------------------------------------------------------------------------
 #
-# on_event_delete_clicked
-#
-# Called from the edit_person window, to update the values on the selected
-# event.  The EditPerson object and the selected row are attached to the
-# passed object.
-#
-#-------------------------------------------------------------------------
-def on_event_delete_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-    
-    del epo.elist[row]
-
-    if row > len(epo.elist)-1:
-        obj.set_data(INDEX,row-1)
-        
-    epo.redraw_event_list()
-    epo.events_changed = 1
-
-#-------------------------------------------------------------------------
-#
 # on_event_update_clicked
 #
 # Called from the edit_person window, to update the values on the selected
@@ -918,9 +761,8 @@ def on_event_delete_clicked(obj):
 #-------------------------------------------------------------------------
 def on_event_update_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-    EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if row >= 0:
+        EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -935,13 +777,10 @@ def on_event_select_row(obj,row,b,c):
 
     epo = obj.get_data(EDITPERSON)
     epo.event_date_field.set_text(event.getDate())
-    if event.getPlace():
-        epo.event_place_field.set_text(event.getPlace().get_title())
-    else:
-        epo.event_place_field.set_text("")
+    epo.event_place_field.set_text(event.getPlaceName())
     epo.event_name_field.set_label(const.display_pevent(event.getName()))
     epo.event_descr_field.set_text(event.getDescription())
-    epo.event_details_field.set_text(get_detail_text(event))
+    epo.event_details_field.set_text(utils.get_detail_text(event))
 
 #-------------------------------------------------------------------------
 #
@@ -960,7 +799,7 @@ def on_switch_page(obj,a,page):
 #
 #-------------------------------------------------------------------------
 def on_photo_select_icon(obj,iconNumber,event):
-    obj.get_data(EDITPERSON).selectedIcon = iconNumber
+    obj.get_data(EDITPERSON).selected_icon = iconNumber
 
 #-------------------------------------------------------------------------
 #
@@ -969,14 +808,11 @@ def on_photo_select_icon(obj,iconNumber,event):
 #-------------------------------------------------------------------------
 def on_delete_photo_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    icon = epo.selectedIcon
+    icon = epo.selected_icon
 
-    if icon == -1:
-        return
-    
-    photolist = epo.person.getPhotoList()
-    epo.photo_list.remove(icon)
-    del photolist[epo.selectedIcon]
+    if icon != -1:
+        epo.photo_list.remove(icon)
+        del epo.person.getPhotoList()[icon]
 
 #-------------------------------------------------------------------------
 #
@@ -985,15 +821,14 @@ def on_delete_photo_clicked(obj):
 #-------------------------------------------------------------------------
 def on_primary_photo_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    if epo.selectedIcon == None or \
-       epo.selectedIcon == 0:
+    if epo.selected_icon == None or epo.selected_icon == 0:
         return
 
     photolist = epo.person.getPhotoList()
-    selectedIcon = epo.selectedIcon
-    savePhoto = photolist[selectedIcon]
-    for i in range(0,selectedIcon):
-        photolist[selectedIcon-i] = photolist[selectedIcon-i-1]
+    selected_icon = epo.selected_icon
+    savePhoto = photolist[selected_icon]
+    for i in range(0,selected_icon):
+        photolist[selected_icon-i] = photolist[selected_icon-i-1]
     photolist[0] = savePhoto
 
     epo.load_photo(savePhoto.getPath())
@@ -1203,9 +1038,7 @@ def update_name(name,first,last,suffix,note,priv,conf):
 def on_add_photo_clicked(obj):
 
     edit_person = obj.get_data(EDITPERSON)
-    
     image_select = libglade.GladeXML(const.imageselFile,"imageSelect")
-
     edit_person.isel = image_select
 
     image_select.signal_autoconnect({
@@ -1286,7 +1119,7 @@ def save_person(obj):
     
     epo.birth.setDate(epo.bdate.get_text())
 
-    p1 = get_place_from_list(epo.bpcombo)
+    p1 = utils.get_place_from_list(epo.bpcombo)
     if p1 == None and bplace != "":
         p1 = Place()
         p1.set_title(bplace)
@@ -1297,7 +1130,7 @@ def save_person(obj):
     
     epo.death.setDate(epo.ddate.get_text())
 
-    p2 = get_place_from_list(epo.dpcombo)
+    p2 = utils.get_place_from_list(epo.dpcombo)
     if p2 == None and dplace != "":
         p2 = Place()
         p2.set_title(dplace)
@@ -1339,26 +1172,7 @@ def save_person(obj):
         person.setNote(text)
         utils.modified()
 
-    epo.update_events()
-    if epo.events_changed:
-        utils.modified()
-
-    epo.update_names()
-    if epo.names_changed:
-        utils.modified()
-
-    epo.update_urls()
-    if epo.urls_changed:
-        utils.modified()
-
-    epo.update_attributes()
-    if epo.attr_changed:
-        utils.modified()
-
-    epo.update_addresses()
-    if epo.addr_changed:
-        utils.modified()
-
+    epo.update_lists()
     epo.callback(epo)
 
 #-------------------------------------------------------------------------
@@ -1403,8 +1217,8 @@ def on_savephoto_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_save_note_clicked(obj):
-    textbox = obj.get_data("w")
-    data = obj.get_data("n")
+    textbox = obj.get_data(TEXTOBJ)
+    data = obj.get_data(NOTEOBJ)
 
     text = textbox.get_chars(0,-1)
     if text != data.getNote():
@@ -1418,46 +1232,39 @@ def on_save_note_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_birth_note_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
+def display_note(obj,data):
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    data = epo.birth
     textobj = editnote.get_widget("notetext")
     en_obj = editnote.get_widget("editnote")
-    en_obj.set_data("n",data)
-    en_obj.set_data("w",textobj)
+    en_obj.set_data(NOTEOBJ,data)
+    en_obj.set_data(TEXTOBJ,textobj)
 
     textobj.set_point(0)
     textobj.insert_defaults(data.getNote())
     textobj.set_word_wrap(1)
         
     editnote.signal_autoconnect({
-        "on_save_note_clicked" : on_save_note_clicked,
+        "on_save_note_clicked"  : on_save_note_clicked,
         "destroy_passed_object" : utils.destroy_passed_object
     })
+    
+#-------------------------------------------------------------------------
+#
+# Display the note editor for the birth event
+#
+#-------------------------------------------------------------------------
+def on_birth_note_clicked(obj):
+    epo = obj.get_data(EDITPERSON)
+    display_note(obj,epo.birth)
 
 #-------------------------------------------------------------------------
 #
-#
+# Display the note editor for the name event
 #
 #-------------------------------------------------------------------------
 def on_name_note_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    data = epo.pname
-    textobj = editnote.get_widget("notetext")
-    en_obj = editnote.get_widget("editnote")
-    en_obj.set_data("n",data)
-    en_obj.set_data("w",textobj)
-
-    textobj.set_point(0)
-    textobj.insert_defaults(data.getNote())
-    textobj.set_word_wrap(1)
-        
-    editnote.signal_autoconnect({
-        "on_save_note_clicked" : on_save_note_clicked,
-        "destroy_passed_object" : utils.destroy_passed_object
-    })
+    display_note(obj,epo.pname)
 
 #-------------------------------------------------------------------------
 #
@@ -1466,21 +1273,7 @@ def on_name_note_clicked(obj):
 #-------------------------------------------------------------------------
 def on_death_note_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    textobj = editnote.get_widget("notetext")
-    data = epo.death
-    en_obj = editnote.get_widget("editnote")
-    en_obj.set_data("n",data)
-    en_obj.set_data("w",textobj)
-
-    textobj.set_point(0)
-    textobj.insert_defaults(data.getNote())
-    textobj.set_word_wrap(1)
-        
-    editnote.signal_autoconnect({
-        "on_save_note_clicked" : on_save_note_clicked,
-        "destroy_passed_object" : utils.destroy_passed_object
-    })
+    display_note(obj,epo.death)
     
 #-------------------------------------------------------------------------
 #
@@ -1514,10 +1307,9 @@ def on_birth_source_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_photolist_button_press_event(obj,event):
-
+def on_photolist_button_press(obj,event):
     myobj = obj.get_data(EDITPERSON)
-    icon = myobj.selectedIcon
+    icon = myobj.selected_icon
     if icon == -1:
         return
     
@@ -1526,28 +1318,14 @@ def on_photolist_button_press_event(obj,event):
         menu = GtkMenu()
         item = GtkTearoffMenuItem()
         item.show()
-        view = GtkMenuItem(_("View Image"))
-        view.set_data("m",myobj)
-        view.connect("activate",on_view_photo)
-        view.show()
-        edit = GtkMenuItem(_("Edit Image"))
-        edit.set_data("m",myobj)
-        edit.connect("activate",on_edit_photo)
-        edit.show()
-        change = GtkMenuItem(_("Edit Description"))
-        change.set_data("m",myobj)
-        change.connect("activate",on_change_description)
-        change.show()
         menu.append(item)
-        menu.append(view)
-        menu.append(edit)
-        menu.append(change)
+        utils.add_menuitem(menu,_("View Image"),myobj,on_view_photo)
+        utils.add_menuitem(menu,_("Edit Image"),myobj,on_edit_photo)
+        utils.add_menuitem(menu,_("Edit Description"),myobj,
+                           on_change_description)
         if photo.getPrivate() == 0:
-            private = GtkMenuItem(_("Convert to private copy"))
-            private.set_data("m",myobj)
-            private.connect("activate",on_convert_to_private)
-            private.show()
-            menu.append(private)
+            utils.add_menuitem(menu,_("Convert to private copy"),
+                               myobj, on_convert_to_private)
         menu.popup(None,None,None,0,0)
 
 #-------------------------------------------------------------------------
@@ -1556,8 +1334,8 @@ def on_photolist_button_press_event(obj,event):
 #
 #-------------------------------------------------------------------------
 def on_convert_to_private(obj):
-    epo = obj.get_data("m")
-    photo = epo.person.getPhotoList()[epo.selectedIcon]
+    epo = obj.get_data(OBJECT)
+    photo = epo.person.getPhotoList()[epo.selected_icon]
 
     prefix = "i%s" % epo.person.getId()
     name = RelImage.import_photo(photo.getPath(),epo.path,prefix)
@@ -1571,20 +1349,9 @@ def on_convert_to_private(obj):
 #
 #-------------------------------------------------------------------------
 def on_view_photo(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.person.getPhotoList()[myobj.selectedIcon]
-    type = gnome.mime.type(photo.getPath())
-    
-    prog = string.split(gnome.mime.get_value(type,'view'))
-    args = []
-    for val in prog:
-        if val == "%f":
-            args.append(photo.getPath())
-        else:
-            args.append(val)
-    
-    if os.fork() == 0:
-        os.execvp(args[0],args)
+    myobj = obj.get_data(OBJECT)
+    photo = myobj.person.getPhotoList()[myobj.selected_icon]
+    utils.view_photo(photo)
 
 #-------------------------------------------------------------------------
 #
@@ -1592,8 +1359,8 @@ def on_view_photo(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_photo(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.person.getPhotoList()[myobj.selectedIcon]
+    myobj = obj.get_data(OBJECT)
+    photo = myobj.person.getPhotoList()[myobj.selected_icon]
     if os.fork() == 0:
         os.execvp(const.editor,[const.editor, photo.getPath()])
 
@@ -1603,8 +1370,8 @@ def on_edit_photo(obj):
 #
 #-------------------------------------------------------------------------
 def on_change_description(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.person.getPhotoList()[myobj.selectedIcon]
+    myobj = obj.get_data(OBJECT)
+    photo = myobj.person.getPhotoList()[myobj.selected_icon]
     window = libglade.GladeXML(const.imageselFile,"dialog1")
 
     text = window.get_widget("text")
@@ -1612,13 +1379,13 @@ def on_change_description(obj):
 
     image2 = RelImage.scale_image(photo.getPath(),200.0)
     window.get_widget("photo").load_imlib(image2)
-    window.get_widget("dialog1").set_data("p",photo)
-    window.get_widget("dialog1").set_data("t",text)
-    window.get_widget("dialog1").set_data("m",obj.get_data("m"))
+    window.get_widget("dialog1").set_data(PHOTO,photo)
+    window.get_widget("dialog1").set_data(TEXT,text)
+    window.get_widget("dialog1").set_data(OBJECT,obj.get_data(OBJECT))
     window.signal_autoconnect({
         "on_cancel_clicked" : utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked,
-        "on_apply_clicked" : on_apply_clicked
+        "on_ok_clicked"     : on_ok_clicked,
+        "on_apply_clicked"  : on_apply_clicked
         })
 
 #-------------------------------------------------------------------------
@@ -1627,12 +1394,11 @@ def on_change_description(obj):
 #
 #-------------------------------------------------------------------------
 def on_apply_clicked(obj):
-    photo = obj.get_data("p")
-    text = obj.get_data("t").get_text()
+    photo = obj.get_data(PHOTO)
+    text = obj.get_data(TEXT).get_text()
     if text != photo.getDescription():
         photo.setDescription(text)
-        edit_window = obj.get_data("m")
-        edit_window.load_images()
+        obj.get_data(OBJECT).load_images()
         utils.modified()
 
 #-------------------------------------------------------------------------
@@ -1643,18 +1409,6 @@ def on_apply_clicked(obj):
 def on_ok_clicked(obj):
     on_apply_clicked(obj)
     utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_browse_clicked(obj):
-    import gnome.url
-
-    path = obj.get()[2:]
-    if path != "":
-        gnome.url.show(path)
 
 #-------------------------------------------------------------------------
 #
@@ -1684,31 +1438,18 @@ class EventEditor:
         self.priv = self.top.get_widget("priv")
         
         name = parent.person.getPrimaryName().getName()
-        
-        self.top.get_widget("eventTitle").set_text(_("Event Editor for %s") % name) 
+        title = _("Event Editor for %s") % name 
+        self.top.get_widget("eventTitle").set_text(title)
         self.event_menu.set_popdown_strings(const.personalEvents)
 
-        myMenu = GtkMenu()
-        index = 0
-        for name in const.confidence:
-            item = GtkMenuItem(name)
-            item.set_data("a",index)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-
-        self.conf_menu.set_menu(myMenu)
+        utils.build_confidence_menu(self.conf_menu)
 
         values = self.parent.db.getPlaceMap().values()
         if event != None:
             self.name_field.set_text(event.getName())
 
-            attach_places(values,self.place_combo,event.getPlace())
-            if event.getPlace():
-                self.place_field.set_text(event.getPlace().get_title())
-            else:
-                self.place_field.set_text('')
-            
+            utils.attach_places(values,self.place_combo,event.getPlace())
+            self.place_field.set_text(event.getPlaceName())
             self.date_field.set_text(event.getDate())
             self.descr_field.set_text(event.getDescription())
             self.conf_menu.set_history(event.getConfidence())
@@ -1725,14 +1466,14 @@ class EventEditor:
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
         else:
-            attach_places(values,self.place_combo,None)
+            utuils.attach_places(values,self.place_combo,None)
             self.conf_menu.set_history(2)
 
-        self.window.set_data("o",self)
+        self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object"    : utils.destroy_passed_object,
             "on_event_edit_ok_clicked" : on_event_edit_ok_clicked,
-            "on_source_clicked" : on_edit_source_clicked
+            "on_source_clicked"        : on_edit_source_clicked
             })
 
 #-------------------------------------------------------------------------
@@ -1741,7 +1482,7 @@ class EventEditor:
 #
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
@@ -1750,7 +1491,7 @@ def on_edit_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_edit_ok_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     event = ee.event
 
     ename = ee.name_field.get_text()
@@ -1760,7 +1501,7 @@ def on_event_edit_ok_clicked(obj):
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
-    econf = ee.conf_menu.get_menu().get_active().get_data("a")
+    econf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if event == None:
         event = Event()
@@ -1814,7 +1555,7 @@ class AttributeEditor:
         index = 0
         for name in const.confidence:
             item = GtkMenuItem(name)
-            item.set_data("a",index)
+            item.set_data(MENUVAL,index)
             item.show()
             myMenu.append(item)
             index = index + 1
@@ -1839,7 +1580,7 @@ class AttributeEditor:
         else:
             self.conf_menu.set_history(2)
 
-        self.window.set_data("o",self)
+        self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_attr_edit_ok_clicked" : on_attrib_edit_ok_clicked,
@@ -1852,7 +1593,7 @@ class AttributeEditor:
 #
 #-------------------------------------------------------------------------
 def on_attrib_source_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
@@ -1861,14 +1602,14 @@ def on_attrib_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_attrib_edit_ok_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     attrib = ee.attrib
 
     type = ee.type_field.get_text()
     value = ee.value_field.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data("a")
+    conf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if attrib == None:
         attrib = Attribute()
@@ -1914,16 +1655,7 @@ class NameEditor:
         self.top.get_widget("altTitle").set_text(
             _("Alternate Name Editor for %s") % full_name)
 
-        myMenu = GtkMenu()
-        index = 0
-        for val in const.confidence:
-            item = GtkMenuItem(val)
-            item.set_data("a",index)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-
-        self.conf_menu.set_menu(myMenu)
+        utils.build_confidence_menu(self.conf_menu)
 
         if name != None:
             self.given_field.set_text(name.getFirstName())
@@ -1934,22 +1666,19 @@ class NameEditor:
                 self.source_field.set_text(srcref_base.getTitle())
             else:
                 self.source_field.set_text("")
-                 
             self.conf_menu.set_history(name.getConfidence())
-
             self.priv.set_active(name.getPrivacy())
-
             self.note_field.set_point(0)
             self.note_field.insert_defaults(name.getNote())
             self.note_field.set_word_wrap(1)
         else:
             self.conf_menu.set_history(2)
 
-        self.window.set_data("o",self)
+        self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object"   : utils.destroy_passed_object,
             "on_name_edit_ok_clicked" : on_name_edit_ok_clicked,
-            "on_source_clicked" : on_name_source_clicked
+            "on_source_clicked"       : on_name_source_clicked
             })
 
 #-------------------------------------------------------------------------
@@ -1958,7 +1687,7 @@ class NameEditor:
 #
 #-------------------------------------------------------------------------
 def on_name_source_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
@@ -1967,7 +1696,7 @@ def on_name_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_name_edit_ok_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     name = ee.name
 
     first = ee.given_field.get_text()
@@ -1975,22 +1704,21 @@ def on_name_edit_ok_clicked(obj):
     suffix = ee.suffix_field.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data("a")
+    conf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if name == None:
         name = Name()
         ee.parent.nlist.append(name)
         
     if update_name(name,first,last,suffix,note,priv,conf):
-        ee.parent.name_changed = 1
+        ee.parent.lists_changed = 1
 
     if not name.getSourceRef().are_equal(ee.srcref):
         name.setSourceRef(ee.srcref)
-        ee.parent.name_changed = 1
+        ee.parent.lists_changed = 1
 
     ee.parent.redraw_name_list()
     utils.destroy_passed_object(obj)
-
 
 #-------------------------------------------------------------------------
 #
@@ -2004,7 +1732,7 @@ class AddressEditor:
         self.addr = addr
         self.top = libglade.GladeXML(const.editPersonFile, "addr_edit")
         self.window = self.top.get_widget("addr_edit")
-        self.address_start  = self.top.get_widget("address_start")
+        self.addr_start  = self.top.get_widget("address_start")
         self.street = self.top.get_widget("street")
         self.city = self.top.get_widget("city")
         self.state = self.top.get_widget("state")
@@ -2023,16 +1751,7 @@ class AddressEditor:
         text = _("Address Editor for %s") % name
         self.top.get_widget("addrTitle").set_text(text)
 
-        myMenu = GtkMenu()
-        index = 0
-        for val in const.confidence:
-            item = GtkMenuItem(val)
-            item.set_data("a",index)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-
-        self.conf_menu.set_menu(myMenu)
+        utils.build_confidence_menu(self.conf_menu)
 
         if addr != None:
             self.street.set_text(addr.getStreet())
@@ -2047,20 +1766,18 @@ class AddressEditor:
                 self.source_field.set_text("")
                  
             self.conf_menu.set_history(addr.getConfidence())
-
             self.priv.set_active(addr.getPrivacy())
-
             self.note_field.set_point(0)
             self.note_field.insert_defaults(addr.getNote())
             self.note_field.set_word_wrap(1)
         else:
             self.conf_menu.set_history(2)
 
-        self.window.set_data("o",self)
+        self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object"   : utils.destroy_passed_object,
             "on_addr_edit_ok_clicked" : on_addr_edit_ok_clicked,
-            "on_source_clicked" : on_addr_source_clicked
+            "on_source_clicked"       : on_addr_source_clicked
             })
 
 #-------------------------------------------------------------------------
@@ -2069,7 +1786,7 @@ class AddressEditor:
 #
 #-------------------------------------------------------------------------
 def on_addr_source_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
@@ -2078,10 +1795,10 @@ def on_addr_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_addr_edit_ok_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     addr = ee.addr
 
-    date = ee.address_start.get_text()
+    date = ee.addr_start.get_text()
     street = ee.street.get_text()
     city = ee.city.get_text()
     state = ee.state.get_text()
@@ -2089,20 +1806,20 @@ def on_addr_edit_ok_clicked(obj):
     postal = ee.postal.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data("a")
+    conf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if addr == None:
         addr = Address()
         ee.parent.plist.append(addr)
         
     if update_address(addr,date,street,city,state,country,postal,note,priv,conf):
-        ee.parent.addr_changed = 1
+        ee.parent.lists_changed = 1
         
     if not addr.getSourceRef().are_equal(ee.srcref):
         addr.setSourceRef(ee.srcref)
-        ee.parent.addr_changed = 1
+        ee.parent.lists_changed = 1
 
-    ee.parent.redraw_address_list()
+    ee.parent.redraw_addr_list()
     utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
@@ -2122,17 +1839,17 @@ class UrlEditor:
         self.priv = self.top.get_widget("priv")
 
         name = parent.person.getPrimaryName().getName()
-        
-        self.top.get_widget("urlTitle").set_text(_("Internet Address Editor for %s") % name) 
+        title = _("Internet Address Editor for %s") % name
+        self.top.get_widget("urlTitle").set_text(title) 
 
         if url != None:
             self.des.set_text(url.get_description())
             self.addr.set_text(url.get_path())
             self.priv.set_active(url.getPrivacy())
 
-        self.window.set_data("o",self)
+        self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object"  : utils.destroy_passed_object,
             "on_url_edit_ok_clicked" : on_url_edit_ok_clicked
             })
 
@@ -2142,7 +1859,7 @@ class UrlEditor:
 #
 #-------------------------------------------------------------------------
 def on_url_edit_ok_clicked(obj):
-    ee = obj.get_data("o")
+    ee = obj.get_data(OBJECT)
     url = ee.url
 
     des = ee.des.get_text()
@@ -2154,93 +1871,8 @@ def on_url_edit_ok_clicked(obj):
         ee.parent.ulist.append(url)
         
     if update_url(url,des,addr,priv):
-        ee.parent.urls_changed = 1
+        ee.parent.lists_changed = 1
         
     ee.parent.redraw_url_list()
     utils.destroy_passed_object(obj)
 
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_detail_flags(obj):
-    detail = ""
-    if Config.show_detail:
-        if obj.getNote() != "":
-            detail = "N"
-        if obj.getSourceRef().getBase():
-            detail = detail + "S"
-        if obj.getPrivacy():
-            detail = detail + "P"
-    return detail
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_detail_text(obj):
-    if obj.getNote() != "":
-        details = "%s" % _("Note")
-    else:
-        details = ""
-    if obj.getSourceRef().getBase() != None:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if obj.getPrivacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    return details
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def attach_places(values,combo,place):
-    l = GtkLabel("")
-    l.show()
-    l.set_alignment(0,0.5)
-    c = GtkListItem()
-    c.add(l)
-    c.set_data("s",None)
-    c.show()
-    sel_child = c
-    list = [c]
-    mymap = {}
-    for src in values:
-        l = GtkLabel("%s [%s]" % (src.get_title(),src.getId()))
-        l.show()
-        l.set_alignment(0,0.5)
-        c = GtkListItem()
-        c.add(l)
-        c.set_data("s",src)
-        c.show()
-        list.append(c)
-        if src == place:
-            sel_child = c
-        mymap[src] = c
-
-    combo.list.append_items(list)
-    combo.list.select_child(sel_child)
-
-    for v in mymap.keys():
-        combo.set_item_string(mymap[v],v.get_title())
-        
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_place_from_list(obj):
-    select = obj.list.get_selection()
-    if len(select) == 0:
-        return None
-    else:
-        return select[0].get_data("s")

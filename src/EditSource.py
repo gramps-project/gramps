@@ -25,7 +25,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
 
 #-------------------------------------------------------------------------
 #
@@ -34,8 +33,6 @@ import string
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
-import gnome.mime
-
 import libglade
 
 #-------------------------------------------------------------------------
@@ -109,12 +106,9 @@ class EditSource:
     #
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
-        src = photo.getPath()
-        thumb = self.db.getSavePath() + os.sep + ".thumb" + os.sep + \
-                os.path.basename(src)
-
+        src = os.path.basename(photo.getPath())
+        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
         RelImage.check_thumb(src,thumb,const.thumbScale)
-
         self.photo_list.append(thumb,photo.getDescription())
         
     #-------------------------------------------------------------------------
@@ -125,8 +119,6 @@ class EditSource:
     #
     #-------------------------------------------------------------------------
     def load_images(self):
-        if len(self.source.getPhotoList()) == 0:
-            return
         self.photo_list.freeze()
         self.photo_list.clear()
         for photo in self.source.getPhotoList():
@@ -190,15 +182,12 @@ def on_photo_select_icon(obj,iconNumber,event):
 #
 #-------------------------------------------------------------------------
 def on_delete_photo_clicked(obj):
-    edit_source_obj = obj.get_data(SOURCE)
-    icon = edit_source_obj.selectedIcon
+    eso = obj.get_data(SOURCE)
+    icon = eso.selectedIcon
 
-    if icon == -1:
-        return
-    
-    photolist = edit_source_obj.source.getPhotoList()
-    edit_source_obj.photo_list.remove(icon)
-    del photolist[edit_source_obj.selectedIcon]
+    if icon != -1:
+        eso.photo_list.remove(icon)
+        del eso.source.getPhotoList()[icon]
 
 #-------------------------------------------------------------------------
 #
@@ -208,9 +197,7 @@ def on_delete_photo_clicked(obj):
 def on_add_photo_clicked(obj):
 
     edit_source = obj.get_data(SOURCE)
-    
     image_select = libglade.GladeXML(const.imageselFile,"imageSelect")
-
     edit_source.isel = image_select
 
     image_select.signal_autoconnect({
@@ -231,8 +218,8 @@ def on_add_photo_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_savephoto_clicked(obj):
-    edit_source_obj = obj.get_data(SOURCE)
-    image_select = edit_source_obj.isel
+    eso = obj.get_data(SOURCE)
+    image_select = eso.isel
     
     filename = image_select.get_widget("photosel").get_full_path(0)
     description = image_select.get_widget("photoDescription").get_text()
@@ -240,14 +227,14 @@ def on_savephoto_clicked(obj):
     if os.path.exists(filename) == 0:
         return
 
-    prefix = "s%s" % edit_source_obj.source.getId()
-    if edit_source_obj.external.get_active() == 1:
+    prefix = "s%s" % eso.source.getId()
+    if eso.external.get_active() == 1:
         if os.path.isfile(filename):
             name = filename
         else:
             return
     else:
-        name = RelImage.import_photo(filename,edit_source_obj.path,prefix)
+        name = RelImage.import_photo(filename,eso.path,prefix)
         if name == None:
             return
         
@@ -255,8 +242,8 @@ def on_savephoto_clicked(obj):
     photo.setPath(name)
     photo.setDescription(description)
     
-    edit_source_obj.source.addPhoto(photo)
-    edit_source_obj.add_thumbnail(photo)
+    eso.source.addPhoto(photo)
+    eso.add_thumbnail(photo)
 
     utils.modified()
     utils.destroy_passed_object(obj)
@@ -278,28 +265,14 @@ def on_photolist_button_press_event(obj,event):
         menu = GtkMenu()
         item = GtkTearoffMenuItem()
         item.show()
-        view = GtkMenuItem(_("View Image"))
-        view.set_data("m",myobj)
-        view.connect("activate",on_view_photo)
-        view.show()
-        edit = GtkMenuItem(_("Edit Image"))
-        edit.set_data("m",myobj)
-        edit.connect("activate",on_edit_photo)
-        edit.show()
-        change = GtkMenuItem(_("Edit Description"))
-        change.set_data("m",myobj)
-        change.connect("activate",on_change_description)
-        change.show()
         menu.append(item)
-        menu.append(view)
-        menu.append(edit)
-        menu.append(change)
+        utils.add_menuitem(menu,_("View Image"),myobj,on_view_photo)
+        utils.add_menuitem(menu,_("Edit Image"),myobj,on_edit_photo)
+        utils.add_menuitem(menu,_("Edit Description"),myobj,
+                           on_change_description)
         if photo.getPrivate() == 0:
-            private = GtkMenuItem(_("Convert to private copy"))
-            private.set_data("m",myobj)
-            private.connect("activate",on_convert_to_private)
-            private.show()
-            menu.append(private)
+            utils.add_menuitem(menu,_("Convert to private copy"),myobj,
+                         on_convert_to_private)
         menu.popup(None,None,None,0,0)
 
 #-------------------------------------------------------------------------
@@ -308,11 +281,11 @@ def on_photolist_button_press_event(obj,event):
 #
 #-------------------------------------------------------------------------
 def on_convert_to_private(obj):
-    edit_source_obj = obj.get_data("m")
-    photo = edit_source_obj.source.getPhotoList()[edit_source_obj.selectedIcon]
+    eso = obj.get_data("m")
+    photo = eso.source.getPhotoList()[eso.selectedIcon]
 
-    prefix = "i%s" % edit_source_obj.source.getId()
-    name = RelImage.import_photo(photo.getPath(),edit_source_obj.path,prefix)
+    prefix = "s%s" % eso.source.getId()
+    name = RelImage.import_photo(photo.getPath(),eso.path,prefix)
 
     photo.setPath(name)
     photo.setPrivate(1)
@@ -325,18 +298,8 @@ def on_convert_to_private(obj):
 def on_view_photo(obj):
     myobj = obj.get_data("m")
     photo = myobj.source.getPhotoList()[myobj.selectedIcon]
-    type = gnome.mime.type(photo.getPath())
-    
-    prog = string.split(gnome.mime.get_value(type,'view'))
-    args = []
-    for val in prog:
-        if val == "%f":
-            args.append(photo.getPath())
-        else:
-            args.append(val)
-    
-    if os.fork() == 0:
-        os.execvp(args[0],args)
+
+    utils.view_photo(photo)
 
 #-------------------------------------------------------------------------
 #

@@ -1550,28 +1550,6 @@ def readData(database,active_person,cb):
 #
 #
 #-------------------------------------------------------------------------
-def get_name():
-    return _("Import from GEDCOM")
+from Plugins import register_import
 
-if __name__ == "__main__":
-
-    import sys
-
-    db = RelDataBase()
-    if len(sys.argv) == 1:
-        g = GedcomParser(db,"test.ged")
-    else:
-        g = GedcomParser(db,sys.argv[1])
-    g.parse_gedcom_file()
-
-
-
-
-
-
-
-
-
-
-
-
+register_import(readData,"Import from GEDCOM")

@@ -199,7 +199,7 @@ class EventComparison:
         self.filter_list = []
         
         myMenu = GtkMenu()
-        for filter in Filter.filterList:
+        for filter in Filter.filterMap.keys():
             menuitem = GtkMenuItem(filter)
             myMenu.append(menuitem)
             menuitem.set_data(FILTER,Filter.filterMap[filter])
@@ -454,17 +454,6 @@ def runTool(database,person,callback):
 #
 #
 #-------------------------------------------------------------------------
-def get_description():
-    return _("Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events")
-
-def get_name():
-    return _("Analysis and Exploration/Compare individual events")
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_apply_clicked(obj):
     myobj = obj.get_data(OBJECT)
     myobj.display_results()
@@ -608,3 +597,18 @@ def fix(line):
     l = string.replace(l,'>','&gt;')
     l = string.replace(l,'<','&lt;')
     return string.replace(l,'"','&quot;')
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+from Plugins import register_tool
+
+register_tool(
+    runTool,
+    _("Compare individual events"),
+    category=_("Analysis and Exploration"),
+    description=_("Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events")
+    )
+
