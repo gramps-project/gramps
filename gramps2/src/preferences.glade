@@ -277,7 +277,7 @@
 				  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 				  <property name="snap_to_ticks">False</property>
 				  <property name="wrap">False</property>
-				  <property name="adjustment">1 0 100 1 10 10</property>
+				  <property name="adjustment">0 0 100 1 10 10</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -382,7 +382,6 @@
 				      <property name="has_frame">True</property>
 				      <property name="invisible_char" translatable="yes">*</property>
 				      <property name="activates_default">False</property>
-				      <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				    </widget>
 				  </child>
 				</widget>
@@ -405,7 +404,6 @@
 				  <property name="active">False</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -427,7 +425,6 @@
 				  <property name="active">True</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -521,7 +518,6 @@
 				  <property name="active">False</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -543,7 +539,6 @@
 				  <property name="active">False</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -850,7 +845,6 @@
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
 				  <property name="group">stat3</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -1061,7 +1055,6 @@
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
 				  <property name="group">pvbutton</property>
-				  <signal name="toggled" handler="on_object_toggled" last_modification_time="Tue, 12 Aug 2003 02:50:30 GMT"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -1683,7 +1676,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1705,7 +1697,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1727,7 +1718,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1749,7 +1739,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1771,7 +1760,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1793,7 +1781,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1815,7 +1802,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -1837,7 +1823,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -2123,7 +2108,6 @@
 				      <property name="has_frame">True</property>
 				      <property name="invisible_char" translatable="yes">*</property>
 				      <property name="activates_default">False</property>
-				      <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				    </widget>
 				  </child>
 				</widget>
@@ -2182,7 +2166,6 @@
 				      <property name="has_frame">True</property>
 				      <property name="invisible_char" translatable="yes">*</property>
 				      <property name="activates_default">False</property>
-				      <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				    </widget>
 				  </child>
 				</widget>
@@ -2272,7 +2255,6 @@
 			      <property name="active">True</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -2296,7 +2278,6 @@
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
 			      <property name="group">mediaref</property>
-			      <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -2319,7 +2300,6 @@
 			      <property name="active">True</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -2342,7 +2322,6 @@
 			      <property name="active">True</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
-			      <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -2579,7 +2558,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -2601,7 +2579,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -2623,7 +2600,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -2645,7 +2621,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -2667,7 +2642,6 @@
 				  <property name="has_frame">True</property>
 				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">2</property>
@@ -2737,7 +2711,6 @@
 				  <property name="active">False</property>
 				  <property name="inconsistent">False</property>
 				  <property name="draw_indicator">True</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>

@@ -807,9 +807,14 @@ class GrampsPreferences:
         gnome.help_display('gramps-manual','gramps-prefs')
 
     def on_close_clicked(self,obj):
+        self.save_data()
         Utils.destroy_passed_object(self.window)
     
     def on_propertybox_apply(self,obj):
+        self.save_data()
+        _callback(1)
+
+    def save_data(self):
         global nameof
         global display_name
         global display_surname
@@ -1007,7 +1012,6 @@ class GrampsPreferences:
         # update the config file
         
         sync()
-        _callback(1)
 
     def on_object_toggled(self,obj):
         """Called by the elements on the property box to set the changed flag,
