@@ -1,12 +1,11 @@
-# Gramps French translation
-# Copyright (C) 2001,2003, 2004 Free Software Foundation, Inc.
+## Copyright (C) 2001,2003, 2004 Free Software Foundation, Inc.
 # translation of fr.po to Français
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: Mon Jan 26 08:48:33 2004\n"
-"PO-Revision-Date: 2004-01-26 09:16+0100\n"
+"PO-Revision-Date: 2004-01-27 16:18+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -315,8 +314,8 @@ msgid ""
 msgstr ""
 "GRAMPS vient de provoquer une erreur.\n"
 "Veuillez poster le message d'erreur à \n"
-"http://Sourceforge.net/projects/gramps ou envoyer \n"
-"un email à gramps-bugs@lists.Sourceforge.net\n"
+"http://sourceforge.net/projects/gramps ou envoyer \n"
+"un email à gramps-bugs@lists.sourceforge.net\n"
 "\n"
 
 #: DisplayTrace.py:102
@@ -468,7 +467,7 @@ msgstr "Familles"
 
 #: EditSource.py:64
 msgid "Source Editor"
-msgstr "Affichage des Sources"
+msgstr "Affichage des sources"
 
 #: EditSource.py:191
 msgid "Object"
@@ -476,7 +475,7 @@ msgstr "Objet"
 
 #: EditSource.py:191
 msgid "Source Type"
-msgstr "Type de Source"
+msgstr "Type de source"
 
 #: EditSource.py:198
 msgid "Individual Events"
@@ -492,11 +491,11 @@ msgstr "Noms Individuels"
 
 #: EditSource.py:212
 msgid "Family Events"
-msgstr "Évènements Familiaux"
+msgstr "Évènements familiaux"
 
 #: EditSource.py:217
 msgid "Family Attributes"
-msgstr "Attributs Familiaux"
+msgstr "Attributs familiaux"
 
 #: EditSource.py:222 GrampsCfg.py:110 plugins/Summary.py:109
 msgid "Media Objects"
@@ -719,7 +718,7 @@ msgstr "Chercher un Lieu"
 
 #: Find.py:196
 msgid "Find Source"
-msgstr "Chercher une Source"
+msgstr "Chercher une source"
 
 #: Find.py:214
 msgid "Find Media Object"
@@ -907,7 +906,7 @@ msgstr "Filtres Évènements"
 
 #: GenericFilter.py:963 plugins/FilterEditor.py:59
 msgid "Family event:"
-msgstr "Évènement Familial:"
+msgstr "Évènement familial:"
 
 #: GenericFilter.py:977
 msgid "Matches the person with a family event of a particular value"
@@ -948,7 +947,7 @@ msgstr "Attribut Individuel:"
 
 #: GenericFilter.py:1167 plugins/FilterEditor.py:61
 msgid "Family attribute:"
-msgstr "Attribut Familial:"
+msgstr "Attribut familial:"
 
 #: GenericFilter.py:1193 choose.glade:630 edit_person.glade:1415
 #: gramps.glade:3464 imagesel.glade:718
@@ -1069,7 +1068,7 @@ msgstr "A l'évènement individuel"
 
 #: GenericFilter.py:1436
 msgid "Has the family event"
-msgstr "A l'évènement Familial"
+msgstr "A l'évènement familial"
 
 #: GenericFilter.py:1437
 msgid "Has the personal attribute"
@@ -1233,7 +1232,7 @@ msgstr "Patronymes"
 
 #: GrampsCfg.py:667 GrampsCfg.py:682
 msgid "No default format"
-msgstr "Format Non Initialisé"
+msgstr "Format non Initialisé"
 
 #: Gregorian.py:53 dialog.glade:280 dialog.glade:2401
 msgid "Gregorian"
@@ -1476,7 +1475,7 @@ msgstr ""
 
 #: PlaceView.py:181 SourceView.py:147
 msgid "Source Menu"
-msgstr "Menu Source"
+msgstr "Menu source"
 
 #: PlaceView.py:232 SourceView.py:172 gramps_main.py:1283
 msgid "Delete %s?"
@@ -1959,16 +1958,16 @@ msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all records that reference it."
 msgstr ""
-"Cette Source est actuellement utilisée, la détruire revient à la supprimer "
+"Cette source est actuellement utilisée, la détruire revient à la supprimer "
 "de la base et des enregistrements qui y font référence."
 
 #: SourceView.py:176
 msgid "_Delete Source"
-msgstr "_Supprimer une Source"
+msgstr "_Supprimer une source"
 
 #: Sources.py:62
 msgid "Source Reference Selection"
-msgstr "Sélectionner une Source de Référence"
+msgstr "Sélectionner une source de Référence"
 
 #: Sources.py:252
 msgid "Source Information"
@@ -2058,7 +2057,7 @@ msgstr "email:"
 
 #: StartupDialog.py:196
 msgid "Numerical date formats"
-msgstr "Formats Numériques de Date "
+msgstr "Formats numériques de Date "
 
 #: StartupDialog.py:205
 msgid ""
@@ -2934,7 +2933,7 @@ msgstr "_Afficher ..."
 
 #: edit_person.glade:404
 msgid "Select source for this name information"
-msgstr "Sélectionner une Source pour cette information"
+msgstr "Sélectionner une source pour cette information"
 
 #: edit_person.glade:406
 msgid "Source..."
@@ -4346,7 +4345,7 @@ msgstr "Enregistrer l'arbre généalogique"
 #: plugins/AncestorChart2.py:483 plugins/AncestorChart2.py:609
 #: plugins/DesGraph.py:346 plugins/DesGraph.py:440
 msgid "Display Format"
-msgstr "Afficher le format"
+msgstr "Format d'affichage"
 
 #: plugins/AncestorChart.py:264 plugins/AncestorChart.py:362
 #: plugins/AncestorChart2.py:484 plugins/AncestorChart2.py:610
@@ -4691,7 +4690,7 @@ msgstr "Enregistrer la liste des Ancêtres"
 
 #: plugins/Ancestors.py:865 plugins/Ancestors.py:969
 msgid "Cite sources"
-msgstr "Citer les Sources"
+msgstr "Citer les sources"
 
 #: plugins/Ancestors.py:962
 msgid "Comprehensive Ancestors Report for GRAMPS Book"
@@ -5412,7 +5411,7 @@ msgstr "Époux(se)"
 #: plugins/FamilyGroup.py:480 plugins/FamilyGroup.py:760
 #: plugins/FamilyGroup.py:769
 msgid "Family Group Report"
-msgstr "Édition d'un Groupe Familial"
+msgstr "Édition d'un Groupe familial"
 
 #: plugins/FamilyGroup.py:335 plugins/IndivComplete.py:287
 #: plugins/IndivSummary.py:185 plugins/WebPage.py:607
@@ -5421,15 +5420,15 @@ msgstr "Enfants"
 
 #: plugins/FamilyGroup.py:365
 msgid "Family Group Report for %s"
-msgstr "Édition du Groupe Familial de %s"
+msgstr "Édition du Groupe familial de %s"
 
 #: plugins/FamilyGroup.py:370
 msgid "Save Family Group Report"
-msgstr "Enregistrer l'édition du Groupe Familial"
+msgstr "Enregistrer l'édition du Groupe familial"
 
 #: plugins/FamilyGroup.py:484
 msgid "Family Group Report for GRAMPS Book"
-msgstr "Édition du Groupe Familial de %s"
+msgstr "Édition du Groupe familial pour le livre GRAMPS"
 
 #: plugins/FamilyGroup.py:630
 msgid "The style used for the text related to the children."
@@ -5889,7 +5888,7 @@ msgstr "il épousa %(spouse)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:596 plugins/FtmStyleDescendants.py:993
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr "She married %(spouse)s%(endnotes)s."
+msgstr "Elle épousa %(spouse)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:641 plugins/FtmStyleDescendants.py:693
 msgid ""
@@ -5978,7 +5977,7 @@ msgstr "Produit une liste des ascendants similaire à Family Tree Maker."
 
 #: plugins/FtmStyleDescendants.py:590
 msgid "More about %(husband)s and %(wife)s:"
-msgstr "More about %(husband)s and %(wife)s:"
+msgstr "Au sujet de %(husband)s et de %(wife)s:"
 
 #: plugins/FtmStyleDescendants.py:639
 msgid "Children of %(person_name)s and %(spouse_name)s are:"
@@ -6258,7 +6257,7 @@ msgstr "Féminin"
 
 #: plugins/IndivComplete.py:462
 msgid "Include Source Information"
-msgstr "Inclure une Source d'information"
+msgstr "Inclure une source d'information"
 
 #: plugins/IndivComplete.py:473 plugins/IndivComplete.py:477
 #: plugins/IndivComplete.py:819
@@ -6279,12 +6278,12 @@ msgstr "Fiche Individuelle pour le Livre GRAMPS"
 
 #: plugins/IndivComplete.py:672 plugins/IndivSummary.py:600
 msgid "The style used for category labels."
-msgstr "The style used for category labels."
+msgstr "Style pour l'étiquette"
 
 #: plugins/IndivComplete.py:681 plugins/IndivSummary.py:609
 #: plugins/WebPage.py:1082
 msgid "The style used for the spouse's name."
-msgstr "The style used for the spouse's name."
+msgstr "Style pour le nom de jeune fille"
 
 #: plugins/IndivComplete.py:822
 msgid "Produces a complete report on the selected people."
@@ -6403,11 +6402,11 @@ msgstr "Importer un format GEDCOM"
 
 #: plugins/ReadGedcom.py:83 plugins/ReadGedcom.py:84
 msgid "Windows 9x file system"
-msgstr "Windows 9x file system"
+msgstr "Système de fichiers Fat32"
 
 #: plugins/ReadGedcom.py:85
 msgid "Windows NT file system"
-msgstr "Windows NT file system"
+msgstr "Système de fichiers NTFS"
 
 #: plugins/ReadGedcom.py:86
 msgid "CD ROM"
@@ -6415,7 +6414,7 @@ msgstr "CD ROM"
 
 #: plugins/ReadGedcom.py:87
 msgid "Networked Windows file system"
-msgstr "Networked Windows file system"
+msgstr "Montage Réseau de type Samba"
 
 #: plugins/ReadGedcom.py:137
 msgid "GEDCOM import status"
@@ -6433,9 +6432,9 @@ msgid ""
 "systems available on this system:\n"
 "\n"
 msgstr ""
-"Windows style path names for images will use the following mount points to "
-"try to find the images. These paths are based on Windows compatible file "
-"systems available on this system:\n"
+"Pour les images, les chemins de fichiers de style Windows seront essayés "
+"avec les points de montage suivants, pris d'après les systèmes de fichiers "
+"Windows disponibles sur ce système : \n"
 "\n"
 
 #: plugins/ReadGedcom.py:283
@@ -6443,8 +6442,8 @@ msgid ""
 "Images that cannot be found in the specfied path in the GEDCOM file will be "
 "searched for in the same directory in which the GEDCOM file exists (%s).\n"
 msgstr ""
-"Images that cannot be found in the specfied path in the GEDCOM file will be "
-"searched for in the same directory in which the GEDCOM file exists (%s).\n"
+"Les images non trouvées d'après le chemin indiqué dans le fichier Gedcom "
+"seront recherchées dans le répertoire du fichier Gedcom (%s).\n"
 
 #: plugins/ReadGedcom.py:355
 msgid "Warning: line %d was blank, so it was ignored.\n"
@@ -6467,7 +6466,7 @@ msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
 msgstr ""
-"\tThe following paths were tried:\n"
+"\tLes chemins suivants ont été essayés :\n"
 "\t\t"
 
 #: plugins/ReadNative.py:34
@@ -6484,7 +6483,7 @@ msgstr "Impossible de créer le répertoire: %s"
 
 #: plugins/ReadPkg.py:95
 msgid "Temporary directory %s is not writable"
-msgstr "Temporary directory %s is not writable"
+msgstr "Le répertoire temporaire %s ne possède pas les droits d'écriture"
 
 #: plugins/ReadPkg.py:107
 msgid "Error extracting into %s"
@@ -6512,7 +6511,7 @@ msgstr "Leurs ancêtres communs sont: "
 
 #: plugins/RelCalc.py:144
 msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s and %(active_person)s are not related."
+msgstr "%(person)s et %(active_person)s ne sont pas en relation."
 
 #: plugins/RelCalc.py:147
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
@@ -6698,11 +6697,11 @@ msgstr "Fournit une image de la Base de donnée en cours"
 
 #: plugins/TimeLine.py:321
 msgid "The style used for the person's name."
-msgstr "The style used for the person's name."
+msgstr "Style pour le nom de la personne"
 
 #: plugins/TimeLine.py:330
 msgid "The style used for the year labels."
-msgstr "The style used for the year labels."
+msgstr "Style pour l'année"
 
 #: plugins/TimeLine.py:395 plugins/TimeLine.py:544 plugins/TimeLine.py:656
 #: plugins/TimeLine.py:666
@@ -6831,58 +6830,54 @@ msgstr "Sexe inconnu pour %s.\n"
 
 #: plugins/Verify.py:212
 msgid "Ambiguous gender for %s.\n"
-msgstr "Ambiguous gender for %s.\n"
+msgstr "Ambigüité sexuelle pour %s.\n"
 
 #: plugins/Verify.py:218
 msgid "Multiple parentage for %s.\n"
-msgstr "Multiple parentage for %s.\n"
+msgstr "Parents multiples pour %s.\n"
 
 #: plugins/Verify.py:225
 msgid "Married often: %(male_name)s married %(nfam)d times.\n"
-msgstr "Married often: %(male_name)s married %(nfam)d times.\n"
+msgstr "Marrié souvent: %(male_name)s marié %(nfam)d fois.\n"
 
 #: plugins/Verify.py:228
 msgid "Married often: %(female_name)s married %(nfam)d times.\n"
-msgstr "Married often: %(female_name)s married %(nfam)d times.\n"
+msgstr "Marriée souvent: %(female_name)s mariée %(nfam)d fois.\n"
 
 #: plugins/Verify.py:232
 msgid ""
 "Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
 "d years.\n"
-msgstr ""
-"Old and unmarried: %(male_name)s décédé unmarried, at the age of %"
-"(ageatdeath)d years.\n"
+msgstr "Vieux garçon: %(male_name)s décédé célibataire, à l'age de %(ageatdeath)d ans.\n"
 
 #: plugins/Verify.py:235
 msgid ""
 "Old and unmarried: %(female_name)s died unmarried, at the age of %"
 "(ageatdeath)d years.\n"
-msgstr ""
-"Old and unmarried: %(female_name)s décédée unmarried, at the age of %"
-"(ageatdeath)d years.\n"
+msgstr "Vieille fille : %(female_name)s décédée célibataire, à l'age de %(ageatdeath)d ans.\n"
 
 #: plugins/Verify.py:249
 msgid "Homosexual marriage: %s in family %s.\n"
-msgstr "Homosexual marriage: %s dans la famille %s.\n"
+msgstr "Mariage Homosexuel : %s dans la famille %s.\n"
 
 #: plugins/Verify.py:251
 msgid "Female husband: %s in family %s.\n"
-msgstr "Female husband: %s dans la famille %s.\n"
+msgstr "Mari féminin : %s dans la famille %s.\n"
 
 #: plugins/Verify.py:253
 msgid "Male wife: %s in family %s.\n"
-msgstr "Male wife: %s dans la famille %s.\n"
+msgstr "Femme masculine : %s dans la famille %s.\n"
 
 #: plugins/Verify.py:261
 msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
-msgstr "Husband and wife with the same surname: %s dans la famille %s, and %s.\n"
+msgstr "Mari et femme ayant le même nom : %s dans la famille %s, et %s.\n"
 
 #: plugins/Verify.py:282
 msgid ""
 "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
 "(spouse)s.\n"
 msgstr ""
-"Married before birth: %(male_name)s né %(byear)d, married %(maryear)d to %"
+"Marié avant la naissance : %(male_name)s né en %(byear)d, marié en %(maryear)d à %"
 "(spouse)s.\n"
 
 #: plugins/Verify.py:285
@@ -6890,7 +6885,7 @@ msgid ""
 "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
 "%(spouse)s.\n"
 msgstr ""
-"Married before birth: %(female_name)s née %(byear)d, married %(maryear)d to %"
+"Mariée avant la naissance : %(female_name)s née en %(byear)d, mariée en %(maryear)d à %"
 "(spouse)s.\n"
 
 #: plugins/Verify.py:290
@@ -6903,18 +6898,18 @@ msgstr "Jeune Mariage: %(female_name)s mariée à l'age de %(marage)d à %(spouse)s
 
 #: plugins/Verify.py:297
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Vieux mariage : %(male_name)s marié(e) à l'age de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:300
 msgid "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
-msgstr "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Vieux mariage : %(female_name)s marié(e) à l'age de %(marage)d à %(spouse)s.\n"
 
 #: plugins/Verify.py:304
 msgid ""
 "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
 msgstr ""
-"Married after death: %(male_name)s décédé %(dyear)d, married %(maryear)d to %"
+"Marié après décès : %(male_name)s décédé en %(dyear)d, marié en %(maryear)d à %"
 "(spouse)s.\n"
 
 #: plugins/Verify.py:307
@@ -6922,40 +6917,40 @@ msgid ""
 "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
 msgstr ""
-"Married after death: %(female_name)s décédée %(dyear)d, married %(maryear)d "
-"to %(spouse)s.\n"
+"Mariée après décès: %(female_name)s décédée en %(dyear)d, mariée en %(maryear)d "
+"à %(spouse)s.\n"
 
 #: plugins/Verify.py:311
 msgid ""
 "Marriage before birth from previous family: %(male_name)s married %(maryear)"
 "d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
 msgstr ""
-"Marriage before birth from previous family: %(male_name)s married %(maryear)"
-"d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+"Mariage avant une naissance dans la famille précédente : %(male_name)s marié(e) en %(maryear)"
+"d à %(spouse)s, avant naissance de %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:314
 msgid ""
 "Marriage before birth from previous family: %(female_name)s married %"
 "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
 msgstr ""
-"Marriage before birth from previous family: %(female_name)s married %"
-"(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+"Mariage avant naissance dans une famille précédente : %(female_name)s marié(e) en %"
+"(maryear)d à %(spouse)s, avant naissance de %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:324
 msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
-msgstr "Long widowhood: %s was a widower %d years before, family %s.\n"
+msgstr "Veuvage long: %s fût veuve(f) pendant %d ans , famille %s.\n"
 
 #: plugins/Verify.py:326
 msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
-msgstr "Long widowhood: %s was a widow %d years before, family %s.\n"
+msgstr "Veuvage long : %s fût veuve(f) pendant %d ans, famille %s.\n"
 
 #: plugins/Verify.py:332
 msgid "Long widowhood: %s was a widower %d years.\n"
-msgstr "Long widowhood: %s was a widower %d years.\n"
+msgstr "Veuvage long : %s fût veuve(f) pendant %d ans.\n"
 
 #: plugins/Verify.py:334
 msgid "Long widowhood: %s was a widow %d years.\n"
-msgstr "Long widowhood: %s was a widow %d years.\n"
+msgstr "Veuvage long : %s fût veuve(f) pendant %d ans.\n"
 
 #: plugins/Verify.py:349
 msgid ""
@@ -7096,7 +7091,7 @@ msgstr "Ne pas utiliser d'images pour les personnes vivantes"
 
 #: plugins/WebPage.py:907
 msgid "Do not include comments and text in source information"
-msgstr "Ne pas inclure de commentaire ni de texte dans les Sources"
+msgstr "Ne pas inclure de commentaire ni de texte dans les sources"
 
 #: plugins/WebPage.py:908
 msgid "Include the GRAMPS ID in the report"
@@ -7152,51 +7147,51 @@ msgstr "Familles descendantes de %s"
 
 #: plugins/WebPage.py:1031
 msgid "The style used for the header that identifies facts and events."
-msgstr "The style used for the header that identifies facts and events."
+msgstr "Style d'entête pour le titre des faits et des évènements"
 
 #: plugins/WebPage.py:1039
 msgid "The style used for the header for the notes section."
-msgstr "The style used for the header for the notes section."
+msgstr "Style pour les titres des notes"
 
 #: plugins/WebPage.py:1046
 msgid "The style used for the copyright notice."
-msgstr "The style used for the copyright notice."
+msgstr "Style pour les copyrights."
 
 #: plugins/WebPage.py:1053
 msgid "The style used for the header for the sources section."
-msgstr "The style used for the header for the sources section."
+msgstr "Style pour le titre des sources."
 
 #: plugins/WebPage.py:1060
 msgid "The style used on the index page that labels each section."
-msgstr "The style used on the index page that labels each section."
+msgstr "Style pour la page d'index de chaque section."
 
 #: plugins/WebPage.py:1067
 msgid "The style used for the header for the image section."
-msgstr "The style used for the header for the image section."
+msgstr "Style pour le titre des Images."
 
 #: plugins/WebPage.py:1074
 msgid "The style used for the header for the marriages and children section."
-msgstr "The style used for the header for the marriages and children section."
+msgstr "Style pour le titre des sections mariages et enfants."
 
 #: plugins/WebPage.py:1089
 msgid "The style used for the general data labels."
-msgstr "The style used for the general data labels."
+msgstr "Style pour les données générales"
 
 #: plugins/WebPage.py:1096
 msgid "The style used for the general data."
-msgstr "The style used for the general data."
+msgstr "Style pour les données générales."
 
 #: plugins/WebPage.py:1103
 msgid "The style used for the description of images."
-msgstr "The style used for the description of images."
+msgstr "Style pour la description des images."
 
 #: plugins/WebPage.py:1110
 msgid "The style used for the notes associated with images."
-msgstr "The style used for the notes associated with images."
+msgstr "Style pour les notes associées aux images."
 
 #: plugins/WebPage.py:1117
 msgid "The style used for the source information."
-msgstr "Style utilisé pour une Source d' information"
+msgstr "Style utilisé pour une source d' information"
 
 #: plugins/WebPage.py:1124
 msgid "The style used for the note information."
@@ -7503,7 +7498,7 @@ msgstr "Fichier:"
 
 #: plugins/gedcomimport.glade:81
 msgid "Created by:"
-msgstr "Créer par:"
+msgstr "Créé par :"
 
 #: plugins/gedcomimport.glade:105
 msgid "<b>Status</b>"
@@ -7523,7 +7518,7 @@ msgstr "Version:"
 
 #: plugins/leak.glade:94
 msgid "<b>Uncollected Objects</b>"
-msgstr "<b>Uncollected Objects</b>"
+msgstr "<b>Objets non relevés</b>"
 
 #: plugins/leak.py:78
 msgid "Show uncollected objects"
@@ -7634,7 +7629,7 @@ msgstr "Nombre maximal d'épouses pour une personne"
 
 #: plugins/verify.glade:306
 msgid "Maximum number of consecutive years of widowhood"
-msgstr "Nombre Maximal d'années consécutives  de veuvage"
+msgstr "Nombre Maximal d'années consécutives de veuvage"
 
 #: plugins/verify.glade:330
 msgid "Maximum number of years between children"
@@ -7646,7 +7641,7 @@ msgstr "Étendue Maximale d'années du premier au dernier enfant"
 
 #: plugins/verify.glade:578
 msgid "<b>Women</b>"
-msgstr "<b>Women</b>"
+msgstr "<b>Femmes</b>"
 
 #: plugins/verify.glade:602
 msgid "Minimum age to bear a child"
@@ -7662,7 +7657,7 @@ msgstr "Nombre Maximal d'enfants"
 
 #: plugins/verify.glade:740
 msgid "<b>Men</b>"
-msgstr "<b>Homme</b>"
+msgstr "<b>Hommes</b>"
 
 #: plugins/verify.glade:764
 msgid "Minimum age to father a child"
@@ -7750,15 +7745,15 @@ msgstr "<b>Barre d'outils</b>"
 
 #: preferences.glade:760
 msgid "Icons Only"
-msgstr "Icons Seuls"
+msgstr "Icônes seules"
 
 #: preferences.glade:768
 msgid "Text Only"
-msgstr "Textes Seuls"
+msgstr "Textes seuls"
 
 #: preferences.glade:776
 msgid "Text Below Icons"
-msgstr "Textes sous les Icons"
+msgstr "Textes sous les Icônes"
 
 #: preferences.glade:784
 msgid "Text Beside Icons"
@@ -7802,11 +7797,11 @@ msgstr "_Fiche Individuelle"
 
 #: preferences.glade:1051
 msgid "_Family view"
-msgstr "_Fiche Familiale"
+msgstr "_Fiche familiale"
 
 #: preferences.glade:1072
 msgid "<b>Family view style</b>"
-msgstr "<b>Style de fiche Familiale</b>"
+msgstr "<b>Style de fiche familiale</b>"
 
 #: preferences.glade:1097
 msgid "Left to right"
@@ -7818,7 +7813,7 @@ msgstr "de Haut en Bas"
 
 #: preferences.glade:1189
 msgid "_Date format:"
-msgstr "_Format de la date:"
+msgstr "_Format de date:"
 
 #: preferences.glade:1214
 msgid "_Name format:"
@@ -7826,19 +7821,19 @@ msgstr "_Format du nom:"
 
 #: preferences.glade:1261
 msgid "D_ate format:"
-msgstr "Format de la D_ate"
+msgstr "Format de D_ate"
 
 #: preferences.glade:1309
 msgid "_Show calendar format selection menu"
-msgstr "_Afficher le menu de séléction du calendrier"
+msgstr "_Afficher le menu de sélection du calendrier"
 
 #: preferences.glade:1330
 msgid "<b>Display formats</b>"
-msgstr "<b>Afficher les formats</b>"
+msgstr "<b>Formats d'affichage</b>"
 
 #: preferences.glade:1354
 msgid "<b>Entry formats</b>"
-msgstr "<b>Formats d'entrées</b>"
+msgstr "<b>Formats d'entrée</b>"
 
 #: preferences.glade:1378
 msgid "<b>Calendars</b>"
@@ -7870,11 +7865,11 @@ msgstr "<b>Information sur le chercheur</b>"
 
 #: preferences.glade:1911
 msgid "Preferred _text format:"
-msgstr "Format _Texte Préféré:"
+msgstr "Format _Texte préféré:"
 
 #: preferences.glade:1958
 msgid "Preferred _graphical format:"
-msgstr "Format _Graphique Préféré:"
+msgstr "Format _Graphique préféré:"
 
 #: preferences.glade:2005
 msgid "Preferred _paper size:"
@@ -7918,7 +7913,7 @@ msgstr "Créer une _référence de l'objet lors de sa suppression"
 
 #: preferences.glade:2274
 msgid "Make a local _copy when the object is dropped"
-msgstr "Faire une _copie local lorsque l'objet est détruit"
+msgstr "Faire une _copie locale lorsque l'objet est détruit"
 
 #: preferences.glade:2297
 msgid "Display _global properties editor when object is dropped"
@@ -7930,11 +7925,11 @@ msgstr "Afficher les propriétés _locales des objets détruits"
 
 #: preferences.glade:2339
 msgid "<b>Drag and drop from an external source</b>"
-msgstr "<b>Glisser-Déposer à partir d'une Source externe</b>"
+msgstr "<b>Glisser-Déposer à partir d'une source externe</b>"
 
 #: preferences.glade:2363
 msgid "<b>Drag and drop from an internal source</b>"
-msgstr "<b>Cliquer-Glisser à partir d'une Source interne</b>"
+msgstr "<b>Cliquer-Glisser à partir d'une source interne</b>"
 
 #: preferences.glade:2453
 msgid "_Family:"
@@ -8082,7 +8077,7 @@ msgstr "Information de publication:"
 
 #: srcsel.glade:342
 msgid "Selects an existing source from the Source View"
-msgstr "Selects an existing source from the Source View"
+msgstr "Selects an existing source from the source View"
 
 #: srcsel.glade:397
 msgid "Creates a new source"
@@ -8094,15 +8089,15 @@ msgstr "_Nouveau..."
 
 #: srcsel.glade:620
 msgid "<b>Source selection</b>"
-msgstr "<b>Sélectionner une Source</b>"
+msgstr "<b>Sélectionner une source</b>"
 
 #: srcsel.glade:644
 msgid "<b>Source details</b>"
-msgstr "<b>Détails de la Source</b>"
+msgstr "<b>Détails de la source</b>"
 
 #: srcsel.glade:840
 msgid "Double click will edit the selected source"
-msgstr "Double-cliquer pour afficher la Source"
+msgstr "Double-cliquer pour afficher la source"
 
 #: styles.glade:286
 msgid "Style _name:"
@@ -8130,7 +8125,7 @@ msgstr "_Souligné"
 
 #: styles.glade:602
 msgid "<b>Type face</b>"
-msgstr "<b>Type de visage</b>"
+msgstr "<b>Police</b>"
 
 #: styles.glade:626
 msgid "<b>Size</b>"
