@@ -136,7 +136,6 @@ class AddSpouse:
             "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
             "on_show_toggled"          : self.on_show_toggled,
             "on_new_spouse_clicked"    : self.new_spouse_clicked,
-            "on_rel_type_changed"      : self.relation_type_changed,
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
