@@ -153,13 +153,26 @@ class Date:
     def getYear(self):
         return self.start.year
 
+    def getYearValid(self):
+        return self.start.year != UNDEF
+
     def getMonth(self):
         if self.start.month == UNDEF:
             return UNDEF
         return self.start.month+1
 
+    def getMonthValid(self):
+        return self.start.month != UNDEF
+
     def getDay(self):
         return self.start.day
+
+    def getDayValid(self):
+        return self.start.day != UNDEF
+
+    def getValid(self):
+        """ Returns true if any part of the date is valid"""
+        return self.start.year != UNDEF or self.start.month != UNDEF or self.start.day != UNDEF
 
     def getStopYear(self):
         if self.stop == None:
@@ -407,17 +420,30 @@ class SingleDate:
             return UNDEF
         return self.month + 1
 
+    def getMonthValid(self):
+        return self.month != UNDEF
+
     def setDay(self,val):
         self.day = val
 
     def getDay(self):
 	return self.day
 
+    def getDayValid(self):
+	return self.day != UNDEF
+
     def setYear(self,val):
         self.year = val
 
     def getYear(self):
         return self.year
+
+    def getYearValid(self):
+        return self.year != UNDEF
+
+    def getValid(self):
+        """ Returns true if any part of the date is valid"""
+        return self.year != UNDEF or self.month != UNDEF or self.day != UNDEF
 
     def setMonthStr(self,text):
         try:

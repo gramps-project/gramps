@@ -173,7 +173,7 @@ class AncestorReport:
                     place = place[:-1]
                 if date.getDate() != "" or place != "":
                     if date.getDate() != "":
-                        if date.getDay() != -1 and date.getMonth() != -1:
+                        if date.getDayValid() and date.getMonthValid():
                             if place != "":
                                 t = _("%s was born on %s in %s. ") % \
                                     (name,date.getDate(),place)
@@ -207,7 +207,7 @@ class AncestorReport:
                         male = 0
 
                     if date.getDate() != "":
-                        if date.getDay() != -1 and date.getMonth() != -1:
+                        if date.getDayValid() and date.getMonthValid():
                             if male:
                                 if place != "":
                                     t = _("He died on %s in %s") % \
@@ -243,7 +243,7 @@ class AncestorReport:
                             place = place[:-1]
                         if date.getDate() != "" or place != "":
                             if date.getDate() != "":
-                                if date.getDay() != -1 and date.getMonth() != -1:
+                                if date.getDayValid() and date.getMonthValid():
                                     if place != "":
                                         t = _(", and was buried on %s in %s.") % \
                                             (date.getDate(),place)
