@@ -1,3 +1,10 @@
+2004-09-20 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateEdit.py (DateEdit.invoke_date_editor): 
+	Check the built date and display LED (closes # 1031065).
+	* src/Sources.py (draw): Properly display date for sourceref;
+	(on_sourceok_clicked): Properly parse date for sourceref 
+	(closes # 1031156).
+
 2004-09-19 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Date.py (is_equal): Add method -- needed to compare dates
 	for being identical, since __cmp__ only compares the sorting value

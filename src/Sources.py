@@ -38,6 +38,7 @@ import gnome
 import const
 import Utils
 import RelLib
+import DateHandler
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -339,6 +340,9 @@ class SourceEditor:
         else:
             self.active_source = None
 
+        self.dd = DateHandler.create_display()
+        self.dp = DateHandler.create_parser()
+
         self.draw(self.active_source)
         self.set_button()
         if self.parent:
@@ -409,7 +413,7 @@ class SourceEditor:
             spage.get_buffer().set_text(self.source_ref.get_page())
             date = self.source_ref.get_date()
             if date:
-                self.get_widget("sdate").set_text(date.get_date())
+                self.get_widget("sdate").set_text(self.dd.display(date))
 
             text = self.get_widget("stext")
             text.get_buffer().set_text(self.source_ref.get_text())
@@ -473,7 +477,7 @@ class SourceEditor:
                                     buf.get_end_iter(),gtk.FALSE))
 
         self.source_ref.set_page(page)
-        self.source_ref.get_date().set(date)
+        self.source_ref.get_date().copy(self.dp.parse(date))
         self.source_ref.set_text(text)
         self.source_ref.set_comments(comments)
         self.source_ref.set_confidence_level(conf)
