@@ -88,7 +88,6 @@ class AddSpouse:
         self.spouse_list.set_column_visibility(2,0)
         self.spouse_list.set_column_visibility(3,0)
         self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse',self.top)
-        self.name_list = self.db.getPersonKeys()
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
@@ -132,7 +131,6 @@ class AddSpouse:
         QuickAdd.QuickAdd(self.db,gen,self.update_list)
 
     def update_list(self,person):
-        self.name_list.append(person.getId())
         self.addperson(person)
         self.relation_type_changed(self.relation_type)
         row = self.spouse_list.find_row_from_data(person)
@@ -186,18 +184,23 @@ class AddSpouse:
         gender = self.person.getGender()
         if text == _("Partners"):
             if gender == RelLib.Person.male:
-                gender = RelLib.Person.female
+                sgender = const.female
             else:
-                gender = RelLib.Person.male
-	
+                sgender = const.male
+        else:
+            if gender == RelLib.Person.male:
+                sgender = const.male
+            else:
+                sgender = const.female
+            
         index = 0
         self.spouse_list.clear()
         self.spouse_list.freeze()
-        for key in self.name_list:
-            person = self.db.getPerson(key)
-            if person.getGender() == gender:
+        for key in self.db.getPersonKeys():
+            data = self.db.getPersonDisplay(key)
+            if data[2] == sgender:
                 continue
-            data = person.getDisplayInfo()
+
             self.spouse_list.append([data[0],data[3],data[5],data[6]])
             self.spouse_list.set_row_data(index,key)
             index = index + 1
@@ -238,8 +241,6 @@ class SetSpouse:
         self.relation_def = self.glade.get_widget("reldef")
         self.top = self.glade.get_widget("spouseDialog")
 
-        self.name_list = self.db.getPersonMap().values()
-        self.name_list.sort(sort.by_last_name)
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
@@ -274,8 +275,6 @@ class SetSpouse:
         QuickAdd.QuickAdd(self.db,gen,self.update_list)
 
     def update_list(self,person):
-        self.name_list.append(person)
-        self.name_list.sort(sort.by_last_name)
         self.addperson(person)
         self.relation_type_changed(self.relation_type)
 
@@ -322,18 +321,24 @@ class SetSpouse:
         gender = self.person.getGender()
         if text == _("Partners"):
             if gender == RelLib.Person.male:
-                gender = RelLib.Person.female
+                sgender = const.female
             else:
-                gender = RelLib.Person.male
-	
+                sgender = const.male
+	else:
+            if gender == RelLib.Person.male:
+                sgender = const.male
+            else:
+                sgender = const.female
+            
         index = 0
         self.spouse_list.clear()
         self.spouse_list.freeze()
-        for person in self.name_list:
-            if person.getGender() == gender:
+        for key in self.db.getPersonKeys():
+            data = self.db.getPersonDisplay(key)
+            if data[2] == sgender:
                 continue
-            name = person.getPrimaryName().getName()
-            self.spouse_list.append([name,Utils.birthday(person)])
-            self.spouse_list.set_row_data(index,person)
+
+            self.spouse_list.append([data[0],data[3],data[5],data[6]])
+            self.spouse_list.set_row_data(index,key)
             index = index + 1
         self.spouse_list.thaw()

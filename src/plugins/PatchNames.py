@@ -43,7 +43,11 @@ _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
 #
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
-    PatchNames(database,callback)
+    try:
+        PatchNames(database,callback)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 class PatchNames:
 

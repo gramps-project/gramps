@@ -20,15 +20,29 @@
 
 "View/Summary of the database"
 
-from RelLib import *
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
 import posixpath
-import re
-import string
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+from RelLib import *
 import Utils
 import intl
 _ = intl.gettext
 
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
 from libglade import *

@@ -501,7 +501,11 @@ def get_name_obj(person):
 #
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
-    Merge(database,callback)
+    try:
+        Merge(database,callback)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #

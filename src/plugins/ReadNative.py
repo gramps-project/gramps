@@ -20,7 +20,6 @@
 
 "Import from Gramps"
 
-import libglade
 from ReadXML import *
 import Utils
 import intl
@@ -69,7 +68,11 @@ class ReadNative:
 
         name = "%s/%s" % (name,const.xmlFile)
         Utils.destroy_passed_object(self.top)
-        importData(self.db,name,progress)
+        try:
+            importData(self.db,name,progress)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
         self.callback(1)
 
 #------------------------------------------------------------------------

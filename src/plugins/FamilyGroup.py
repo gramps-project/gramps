@@ -27,9 +27,6 @@ _ = intl.gettext
 
 from Report import *
 
-import gtk
-import libglade
-
 #------------------------------------------------------------------------
 #
 # 
@@ -365,9 +362,9 @@ class FamilyGroupDialog(TextReportDialog):
         will return a placebo label and disable the OK button."""
         mapping = {}
         family_list = self.person.getFamilyList()
-        if not family_list:
-            mapping[_("No known marriages")] = None
-            self.topDialog.get_widget("OK").set_sensitive(0)
+#        if not family_list:
+#            mapping[_("No known marriages")] = None
+#            self.topDialog.get_widget("OK").set_sensitive(0)
         for family in family_list:
             if self.person == family.getFather():
                 spouse = family.getMother()

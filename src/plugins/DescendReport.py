@@ -20,30 +20,40 @@
 
 "Generate files/Descendant Report"
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
 import sort
 import string
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+from Report import *
 import intl
 
 _ = intl.gettext
 
-from Report import *
-
+#------------------------------------------------------------------------
+#
+# GTK/GNOME modules
+#
+#------------------------------------------------------------------------
 import gtk
 import libglade
 
 #------------------------------------------------------------------------
 #
-# 
+# DescendantReport
 #
 #------------------------------------------------------------------------
 class DescendantReport:
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,db,person,name,max,doc):
         self.creator = db.getResearcher().getName()
         self.name = name
@@ -51,27 +61,12 @@ class DescendantReport:
         self.max_generations = max
         self.doc = doc
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setup(self):
         self.doc.open(self.name)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def end(self):
         self.doc.close()
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def dump_dates(self, person):
         birth = person.getBirth().getDateObj().get_start_date()
         death = person.getDeath().getDateObj().get_start_date()
@@ -85,11 +80,6 @@ class DescendantReport:
                 self.doc.write_text('d. ' + str(death.getYear()))
             self.doc.write_text(')')
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def report(self):
         self.doc.start_paragraph("Title")
         name = self.person.getPrimaryName().getRegularName()
@@ -98,11 +88,6 @@ class DescendantReport:
         self.doc.end_paragraph()
         self.dump(0,self.person)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def dump(self,level,person):
 
         if level != 0:
@@ -155,11 +140,6 @@ class DescendantReportDialog(TextReportDialog):
         """Where to save styles for this report."""
         return "descend_report.xml"
     
-    #------------------------------------------------------------------------
-    #
-    # Create output styles appropriate to this report.
-    #
-    #------------------------------------------------------------------------
     def make_default_style(self):
         """Make the default output style for the Descendant Report."""
         f = FontStyle()
@@ -178,20 +158,19 @@ class DescendantReportDialog(TextReportDialog):
             p.set_left_margin(max(10.0,float(i-1)))
             self.default_style.add_style("Level%d" % i,p)
 
-    #------------------------------------------------------------------------
-    #
-    # Create the contents of the report.
-    #
-    #------------------------------------------------------------------------
     def make_report(self):
         """Create the object that will produce the Descendant Report.
         All user dialog has already been handled and the output file
         opened."""
-        MyReport = DescendantReport(self.db, self.person, self.target_path,
-                                    self.max_gen, self.doc)
-        MyReport.setup()
-        MyReport.report()
-        MyReport.end()
+        try:
+            MyReport = DescendantReport(self.db, self.person, self.target_path,
+                                        self.max_gen, self.doc)
+            MyReport.setup()
+            MyReport.report()
+            MyReport.end()
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
         
 #------------------------------------------------------------------------
 #

@@ -35,16 +35,11 @@ import libglade
 
 #------------------------------------------------------------------------
 #
-# 
+# AncestorReport
 #
 #------------------------------------------------------------------------
 class AncestorReport(Report):
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,database,person,output,max,doc,pgbrk):
         self.map = {}
         self.database = database
@@ -58,11 +53,6 @@ class AncestorReport(Report):
         except IOError,msg:
             gnome.ui.GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def filter(self,person,index):
         if person == None or index >= (1 << 31):
             return
@@ -73,11 +63,6 @@ class AncestorReport(Report):
             self.filter(family.getFather(),index*2)
             self.filter(family.getMother(),(index*2)+1)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_report(self):
 
         self.filter(self.start,1)
@@ -215,7 +200,6 @@ class AncestorReport(Report):
                         self.doc.write_text(".")
                         
             self.doc.end_paragraph()
-
         self.doc.close()
  
 
@@ -250,11 +234,6 @@ class AncestorReportDialog(TextReportDialog):
         """Where to save styles for this report."""
         return "ancestor_report.xml"
     
-    #------------------------------------------------------------------------
-    #
-    # Create output styles appropriate to this report.
-    #
-    #------------------------------------------------------------------------
     def make_default_style(self):
         """Make the default output style for the Ahnentafel report."""
         font = FontStyle()
@@ -277,18 +256,17 @@ class AncestorReportDialog(TextReportDialog):
         para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
         self.default_style.add_style("Entry",para)
 
-    #------------------------------------------------------------------------
-    #
-    # Create the contents of the report.
-    #
-    #------------------------------------------------------------------------
     def make_report(self):
         """Create the object that will produce the Ahnentafel Report.
         All user dialog has already been handled and the output file
         opened."""
-        MyReport = AncestorReport(self.db, self.person, self.target_path,
-                                  self.max_gen, self.doc, self.pg_brk)
-        MyReport.write_report()
+        try:
+            MyReport = AncestorReport(self.db, self.person, self.target_path,
+                                      self.max_gen, self.doc, self.pg_brk)
+            MyReport.write_report()
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 
 #------------------------------------------------------------------------

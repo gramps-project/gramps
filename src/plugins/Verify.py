@@ -20,19 +20,33 @@
 
 "View/Verify"
 
-from RelLib import *
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
-import posixpath
-import re
-import sort
-import string
+
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
+from gtk import *
+from gnome.ui import *
+from libglade import *
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+from RelLib import *
+
 import Utils
 import intl
 _ = intl.gettext
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
 
 db = None
 glade_file = None

@@ -22,7 +22,6 @@
 
 import Filter
 import soundex
-import RelLib
 import intl
 _ = intl.gettext
 
