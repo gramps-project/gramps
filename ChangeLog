@@ -1,3 +1,6 @@
+2003-09-04  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: backout yesterday's change
+
 2003-09-03  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: select the lowest ID for the default person
 	if the default person is not set
