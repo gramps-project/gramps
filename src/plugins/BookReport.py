@@ -575,8 +575,8 @@ class BookReportSelector:
 
         self.avail_tree = self.xml.get_widget("avail_tree")
         self.book_tree = self.xml.get_widget("book_tree")
-        self.avail_tree.connect('button-press-event',self.av_double_click)
-        self.book_tree.connect('button-press-event',self.bk_double_click)
+        self.avail_tree.connect('button-press-event',self.av_button_press)
+        self.book_tree.connect('button-press-event',self.bk_button_press)
 
         title_label = self.xml.get_widget('title')
         Utils.set_titles(self.top,title_label,_('Book Report'))
@@ -753,19 +753,79 @@ class BookReportSelector:
         item.set_style_name(opt_dlg.style_name)
         self.book.set_item(row,item)
 
-    def bk_double_click(self,obj,event):
+    def bk_button_press(self,obj,event):
         """
         Double-click on the current book selection is the same as setup.
+        Right click evokes the context menu. 
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_bk_context_menu()
 
-    def av_double_click(self,obj,event):
+    def av_button_press(self,obj,event):
         """
         Double-click on the available selection is the same as add.
+        Right click evokes the context menu. 
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_av_context_menu()
+
+    def build_bk_context_menu(self):
+        """Builds the menu with item-centered and book-centered options."""
+        
+        store,iter = self.bk_model.get_selected()
+        if iter:
+            sensitivity = 1 
+        else:
+            sensitivity = 0 
+        entries = [
+            (gtk.STOCK_GO_UP, self.on_up_clicked, sensitivity),
+            (gtk.STOCK_GO_DOWN, self.on_down_clicked, sensitivity),
+            (_("Setup"), self.on_setup_clicked, sensitivity),
+            (gtk.STOCK_REMOVE, self.on_remove_clicked, sensitivity),
+            (None,None,0),
+            (gtk.STOCK_CLEAR, self.on_clear_clicked, 1),
+            (gtk.STOCK_SAVE, self.on_save_clicked, 1),
+            (gtk.STOCK_OPEN, self.on_open_clicked, 1),
+            (_("Edit"), self.on_edit_clicked,1 ),
+        ]
+
+        menu = gtk.Menu()
+        menu.set_title(_('Book Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
+
+    def build_av_context_menu(self):
+        """Builds the menu with the single Add option."""
+        
+        store,iter = self.av_model.get_selected()
+        if iter:
+            sensitivity = 1 
+        else:
+            sensitivity = 0 
+        entries = [
+            (gtk.STOCK_ADD, self.on_add_clicked, sensitivity),
+        ]
+
+        menu = gtk.Menu()
+        menu.set_title(_('Available Items Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
 
     def on_book_ok_clicked(self,obj): 
         """
@@ -842,6 +902,8 @@ class BookReportDialog(Report.ReportDialog):
             for this_style_name in style_sheet.get_names():
                 self.selected_style.add_style(
                     this_style_name,style_sheet.get_style(this_style_name))
+
+        print self.selected_style.get_names()
 
     def setup_style_frame(self): pass
     def setup_report_options_frame(self): pass

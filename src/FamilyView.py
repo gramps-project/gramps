@@ -197,9 +197,9 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
-            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.parent.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
         ]
         menu = gtk.Menu()
@@ -219,9 +219,9 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
-            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.parent.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
         ]
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
@@ -255,9 +255,9 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         nav_entries = [
-            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.parent.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -307,9 +307,9 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         nav_entries = [
-            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.parent.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -756,9 +756,9 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         nav_entries = [
-            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.parent.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
@@ -785,9 +785,9 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         nav_entries = [
-            ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.parent.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:

@@ -135,7 +135,6 @@ class AncestorChart:
             generation = generation + 3
         if self.standalone:
             self.doc.close()
-        #self.doc.close()
 
     def calc(self):
         """
@@ -248,7 +247,7 @@ class AncestorChartDialog(Report.DrawReportDialog):
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
-        return "ancestor_chart.xml"
+        return _style_file
     
     def get_report_generations(self):
         """Default to 10 generations, no page breaks."""

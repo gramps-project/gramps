@@ -1,3 +1,11 @@
+2003-08-28  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LaTeXDoc.py: Do not register as a book format (have to
+	support both text and graphics).
+	* src/plugins/AncestorChart.py:  Minor code cleanup. 
+	* src/plugins/BookReport.py: Add context menus to the dialog. 
+	* src/FamilyView.py: Properly refer to gtk stock items. 
+	* src/gramps_main.py: Likewise. 
+
 2003-08-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: don't add columns to family view items
 	if they have already be added.
