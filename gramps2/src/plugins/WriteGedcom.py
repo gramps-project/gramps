@@ -379,6 +379,9 @@ class GedcomWriterOptionBox:
                 "gnu_free" : self.gnu_free,
                 "standard_copyright" : self.standard_copyright,
                 "no_copyright" : self.no_copyright,
+                "ansel" : self.ansel,
+                "ansi" : self.ansi,
+                "unicode" : self.uncd,
                 "on_restrict_toggled": self.on_restrict_toggled,
                 })
 
@@ -434,6 +437,15 @@ class GedcomWriterOptionBox:
     def no_copyright(self,obj):
         self.copy = 2
 
+    def ansel(self,obj):
+        self.cnvtxt = ansel_utf8.utf8_to_ansel
+
+    def uncd(self,obj):
+        self.cnvtxt = keep_utf8
+
+    def ansi(self,obj):
+        self.cnvtxt = iso8859
+
     def on_restrict_toggled(self,restrict):
         active = restrict.get_active ()
         map (lambda x: x.set_sensitive (active),
@@ -470,13 +482,6 @@ class GedcomWriterOptionBox:
         self.resi = self.target_ged.get_resi()
         self.prefix = self.target_ged.get_prefix()
         self.source_refs = self.target_ged.get_source_refs()
-
-        if self.topDialog.get_widget("ansel").get_active():
-            self.cnvtxt = ansel_utf8.utf8_to_ansel
-        elif self.topDialog.get_widget("ansi").get_active():
-            self.cnvtxt = iso8859
-        else:
-            self.cnvtxt = keep_utf8
 
         self.nl = self.cnvtxt(self.target_ged.get_endl())
 
