@@ -124,7 +124,7 @@ class BaseModel(gtk.GenericTreeModel):
     def on_iter_n_children(self,node):
         if node == None:
             return len(self.datalist)
-        return False
+        return 0
 
     def on_iter_nth_child(self,node,n):
         if node == None:

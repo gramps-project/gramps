@@ -1458,16 +1458,11 @@ class Gramps:
 
     def update_after_edit(self,epo,change=1):
         if epo:
-            if change or self.db.get_number_of_people() <= 1:
-                self.people_view.redisplay_person_list(epo.person)
-            else:
-                iter = self.people_view.person_model.get_iter((0,))
-                id = epo.person.get_handle()
-                path = self.people_view.person_model.on_get_path(id)
-                self.people_view.person_model.row_changed(path,iter)
+            self.people_view.redisplay_person_list(epo.person)
             self.family_view.load_family()
         self.update_display(0)
-
+        self.goto_active_person()
+        
     def update_after_merge(self,person,old_id):
         if person:
             self.people_view.redisplay_person_list(person)

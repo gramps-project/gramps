@@ -192,7 +192,8 @@ class PeopleView:
             return
         p = self.parent.active_person
         path = self.person_model.on_get_path(p.get_handle())
-        top_path = self.person_model.on_get_path(p.get_primary_name().get_surname())
+        top_name = self.parent.db.get_name_group_mapping(p.get_primary_name().get_group_name())
+        top_path = self.person_model.on_get_path(top_name)
         self.person_tree.expand_row(top_path,0)
         self.person_selection.select_path(path)
         self.person_tree.scroll_to_cell(path,None,1,0.5,0)
@@ -201,6 +202,9 @@ class PeopleView:
         self.parent.load_person(self.parent.active_person)
 
     def apply_filter(self,current_model=None):
+        self.build_tree()
+        return
+    
         self.person_model.rebuild_data()
         self.parent.status_text(_('Updating display...'))
         keys = self.DataFilter.apply(self.parent.db,

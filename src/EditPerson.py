@@ -426,7 +426,7 @@ class EditPerson:
             "on_update_url_clicked"     : self.on_update_url_clicked,
             "on_web_go_clicked"         : self.on_web_go_clicked,
             "on_gender_activate"        : self.on_gender_activate,
-            "on_givenName_focus_out_event": self.on_givenName_focus_out_event,
+            "on_given_focus_out"        : self.on_given_focus_out_event,
             "on_help_person_clicked"    : self.on_help_clicked,
             })
 
@@ -608,7 +608,7 @@ class EditPerson:
     def on_gender_activate (self, button):
         self.should_guess_gender = False
 
-    def on_givenName_focus_out_event (self, entry, event):
+    def on_given_focus_out_event (self, entry, event):
         if not self.should_guess_gender:
             return
 
@@ -1624,7 +1624,6 @@ class EditPerson:
             if not self.person.get_gramps_id():
                 self.person.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.person, trans)
-        print "id",self.person.get_gramps_id()
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:
@@ -1652,6 +1651,14 @@ class EditPerson:
 
     def on_edit_name_clicked(self,obj):
         import NameEdit
+
+        ntype = unicode(self.ntype_field.child.get_text())
+        self.pname.set_type(const.NameTypesMap.find_value(ntype))
+        self.pname.set_suffix(unicode(self.suffix.get_text()))
+        self.pname.set_surname_prefix(unicode(self.prefix.get_text()))
+        self.pname.set_first_name(unicode(self.given.get_text()))
+        self.pname.set_title(unicode(self.title.get_text()))
+
         NameEdit.NameEditor(self,self.pname,self.update_name,self.window)
 
     def update_name(self,name):

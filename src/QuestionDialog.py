@@ -73,6 +73,31 @@ class QuestionDialog:
             task()
         self.top.destroy()
 
+class QuestionDialog2:
+    def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
+        self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog","gramps")
+        self.top = self.xml.get_widget('questiondialog')
+        self.top.set_title('')
+
+        label1 = self.xml.get_widget('label1')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
+        
+        label2 = self.xml.get_widget('label2')
+        label2.set_text(msg2)
+        label2.set_use_markup(gtk.TRUE)
+
+        self.xml.get_widget('okbutton').set_label(label_msg1)
+        self.xml.get_widget('no').set_label(label_msg2)
+        self.top.show()
+        if parent:
+            self.top.set_transient_for(parent)
+
+    def run(self):
+        response = self.top.run()
+        self.top.destroy()
+        return (response == gtk.RESPONSE_ACCEPT)
+
 class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
         self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog","gramps")

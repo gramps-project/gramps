@@ -36,6 +36,7 @@ class GrampsInMemDB(GrampsDbBase):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
         self.person_map = {}
+        self.name_group = {}
         self.family_map = {}
         self.place_map  = {}
         self.source_map = {}
@@ -56,6 +57,12 @@ class GrampsInMemDB(GrampsDbBase):
 
     def close(self):
         pass
+
+    def set_name_group_mapping(self,name,group):
+        if group == None and self.name_group.has_key(name):
+            del self.name_group[name]
+        else:
+            self.name_group[name] = group
 
     def get_surname_list(self):
         a = {}
