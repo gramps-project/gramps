@@ -28,7 +28,7 @@ EXTRA_DIST = grampslib.i
 
 all: ${INTLLIBS} grampslib.so
 
-DIST_SOURCES = intl.c
+DIST_SOURCES = intl.c grampslib_wrap.c
 dist_pkgdata_DATA = ${pkgdata_DATA} 
 
 # These can prbably be done in a better or more elegant/generic way 
