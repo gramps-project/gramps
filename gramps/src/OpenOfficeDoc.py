@@ -403,7 +403,7 @@ class OpenOfficeDoc(TextDoc):
     def page_break(self):
         self.new_page = 1
         
-    def start_paragraph(self,style_name):
+    def start_paragraph(self,style_name,leader=None):
 	style = self.style_list[style_name]
 	self.level = style.get_header_level()
         if self.new_page == 1:
@@ -417,6 +417,9 @@ class OpenOfficeDoc(TextDoc):
 	    self.f.write('<text:h text:style-name="')
             self.f.write(name)
 	    self.f.write('" text:level="' + str(self.level) + '">')
+        if leader != None:
+            self.f.write(latin_to_utf8(leader))
+            self.f.write('<text:tab-stop/>')
 
     def end_paragraph(self):
         if self.level == 0:
@@ -425,7 +428,6 @@ class OpenOfficeDoc(TextDoc):
             self.f.write('</text:h>\n')
 
     def write_text(self,text):
-        text = string.replace(text,'\t','<text:tab-stop/>')
         text = string.replace(text,'\n','<text:line-break/>')
 	self.f.write(latin_to_utf8(text))
 

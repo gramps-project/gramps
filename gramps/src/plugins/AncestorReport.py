@@ -152,11 +152,10 @@ class AncestorReport:
                 self.doc.end_paragraph()
                 generation = generation + 1
 
-            self.doc.start_paragraph("Entry")
+            self.doc.start_paragraph("Entry","%s." % str(key))
             person = self.map[key]
             name = person.getPrimaryName().getRegularName()
         
-            self.doc.write_text(str(key) + ".\t")
             self.doc.start_bold()
             self.doc.write_text(name)
             self.doc.end_bold()

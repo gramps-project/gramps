@@ -260,34 +260,58 @@ class KwordDoc(TextDoc):
     def end_page(self):
         pass
 
-    def start_paragraph(self,style_name):
+    def start_paragraph(self,style_name,leader=None):
+        self.format_list = []
+        self.bold_start = 0
         self.text = ""
         self.style_name = style_name
-        pass
+        self.p = self.style_list[self.style_name]
+        self.font = self.p.get_font()
+        if self.font.get_type_face() == FONT_SERIF:
+            self.font_face = "times"
+        else:
+            self.font_face = "helvetica"
+
+        if leader != None:
+            self.text = leader + chr(1)
+            txt = '<FORMAT id="1" pos="0" len="%d">\n' % len(leader)
+            txt = txt + '<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
+            txt = txt + '<FORMAT id="3" pos="%d">\n' % len(leader)
+            txt = txt + '<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
+            self.format_list.append(txt)
+
+        self.bold_stop = len(self.text)
 
     def end_paragraph(self):
+        if self.bold_start != 0 and self.bold_stop != len(self.text):
+            txt = '<FORMAT>\n<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
+            self.format_list.append(txt)
+
         self.f.write('<PARAGRAPH>\n')
         self.f.write('<TEXT>')
         self.f.write(latin_to_utf8(self.text))
         self.f.write('</TEXT>\n')
+        old_pos = 0
+        self.f.write('<FORMATS>\n')
+        for format in self.format_list:
+            self.f.write(format)
+        self.f.write('</FORMATS>\n')
         self.f.write('<LAYOUT>\n')
         self.f.write('<NAME value="%s"/>\n' % self.style_name)
 
-        p = self.style_list[self.style_name]
-
-        padding = p.get_padding()
+        padding = self.p.get_padding()
         self.f.write('<OFOOT pt="%d" mm="%s" inch="%s"/>\n' % sizes(padding))
         
-        if p.get_alignment() == PARA_ALIGN_CENTER:
+        if self.p.get_alignment() == PARA_ALIGN_CENTER:
             self.f.write('<FLOW value="2">\n')
-        elif p.get_alignment() == PARA_ALIGN_JUSTIFY:
+        elif self.p.get_alignment() == PARA_ALIGN_JUSTIFY:
             self.f.write('<FLOW value="3">\n')
-        elif p.get_alignment() == PARA_ALIGN_RIGHT:
+        elif self.p.get_alignment() == PARA_ALIGN_RIGHT:
             self.f.write('<FLOW value="1">\n')
 
-        first = p.get_first_indent()
-        right = p.get_right_margin()
-        left = p.get_left_margin()
+        first = self.p.get_first_indent()
+        right = self.p.get_right_margin()
+        left = self.p.get_left_margin()
         
         first = left+first
         if first != 0:
@@ -295,16 +319,12 @@ class KwordDoc(TextDoc):
         if left != 0:
             self.f.write('<ILEFT pt="%d" mm="%s" inch="%s"/>\n' % sizes(left))
 
-        font = self.style_list[self.style_name].get_font()
         self.f.write('<FORMAT>\n')
-        if font.get_type_face==FONT_SANS_SERIF:
-            self.f.write('<FONT name="helvetica"/>\n')
-        else:
-            self.f.write('<FONT name="times"/>\n')
-        self.f.write('<SIZE value="%d"/>\n' % font.get_size())
-        if font.get_bold():
+        self.f.write('<FONT name="%s"/>\n' % self.font_face)
+        self.f.write('<SIZE value="%d"/>\n' % self.font.get_size())
+        if self.font.get_bold():
             self.f.write('<WEIGHT value="75"/>\n')
-        if font.get_italic():
+        if self.font.get_italic():
             self.f.write('<ITALIC value="1"/>\n')
         self.f.write('</FORMAT>\n')
         if left != 0:
@@ -313,10 +333,19 @@ class KwordDoc(TextDoc):
         self.f.write('</PARAGRAPH>\n')
 
     def start_bold(self):
-        pass
+        self.bold_start = len(self.text)
+        if self.bold_stop != self.bold_start:
+            length = self.bold_stop - self.bold_start
+            txt = '<FORMAT id="1" pos="0" len="%d">\n' % length
+            txt = txt + '<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
+            self.format_list.append(txt)
 
     def end_bold(self):
-        pass
+        self.bold_stop = len(self.text)
+        length = self.bold_stop - self.bold_start
+        txt = '<FORMAT id="1" pos="%d" len="%d">\n' % (self.bold_start,length)
+        txt = txt + '<FONT name="%s"/>\n<WEIGHT value="75"/>\n</FORMAT>\n' % self.font_face
+        self.format_list.append(txt)
 
     def start_table(self,name,style_name):
         pass

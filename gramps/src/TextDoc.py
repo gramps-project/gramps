@@ -609,7 +609,7 @@ class TextDoc:
     def end_bold(self):
         pass
 
-    def start_paragraph(self,style_name):
+    def start_paragraph(self,style_name,leader=None):
         pass
 
     def end_paragraph(self):

@@ -123,7 +123,7 @@ class AbiWordDoc(TextDoc):
         self.f.write('" props="width:%sin; ' % width)
         self.f.write('height:%sin"/>'  % height)
 
-    def start_paragraph(self,style_name):
+    def start_paragraph(self,style_name,leader=None):
         style = self.style_list[style_name]
         self.current_style = style
         self.f.write('<p props="')
@@ -163,6 +163,9 @@ class AbiWordDoc(TextDoc):
         if self.new_page == 1:
             self.new_page = 0
             self.f.write('<pbr/>')
+        if leader != None:
+            self.f.write(leader)
+            self.f.write('\t')
                      
     def page_break(self,orientation=None):
         self.new_page = 1
