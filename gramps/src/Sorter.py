@@ -1,4 +1,3 @@
-#! /usr/bin/python -O
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -19,13 +18,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+Provides a sorting interface to GtkCList widgets.
+"""
+
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision:"
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import GTK
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -36,7 +41,27 @@ import GrampsCfg
 import ListColors
 
 class Sorter:
+
+    """Provides a sorting interface to a GtkCList. Instead of
+    providing a sorting function, the table should be built with ASCII
+    sorting information loaded into the table. If the sorting data
+    should not be visible, the column should be hidden.
+    
+    Each column should have a column header that contains a
+    GtkArrow. The Sorter class with alter the GtkArrow based off
+    whether the column is sorted in ascending or descending order."""
+    
     def __init__(self, clist, column_map, key):
+        """
+        Creates a sorter instance associated with the GtkCList.
+
+        clist      - GtkCList with which the Sorter is associated
+        column_map - A list of tuples that assocates a column with its
+                     sort column and the GtkArrow that should be altered
+                     with the column.
+        key        - text key used for storing the sort column and
+                     direction in the configuration database.
+        """
         self.clist = clist
         self.column_map = column_map
         self.key = key
@@ -45,15 +70,25 @@ class Sorter:
         self.clist.connect('click-column',self.click)
 
     def sort_col(self):
+        """Returns the current column that is being sorted (not the acutal sort
+        column, but the user visable column"""
         return self.col
 
     def sort_direction(self):
+        """Returns the current sort direction, either GTK.SORT_ASCENDING or
+        GTK.SORT_DESCENDING"""
         return self.sort
 
     def click(self,obj,column):
+        """Callback function that is associated with the GtkCList, changing the
+        sort column"""
         self.change_sort(column)
 
     def sort_list(self):
+        """
+        Sorts the GtkCList. If list colors have been enabled, set the foreground and
+        background colors of each row. 
+        """
         self.clist.freeze()
         self.clist.sort()
         self.clist.sort()
@@ -81,6 +116,15 @@ class Sorter:
         self.clist.thaw()
         
     def change_sort(self,column,change=1):
+        """
+        Changes the sort column of the GtkList if the requested column
+        is in the column map. If the column has changed, the sort direction
+        is set to ascending, if the column has not changed, the sort direction
+        is changed to the opposite sort direction
+
+        column - visible column that should be sorted
+        change - don't alter the direction
+        """
         try:
             (sort_col,arrow) = self.column_map[column]
         except:
@@ -107,7 +151,6 @@ class Sorter:
         self.clist.set_sort_type(self.sort)
 
         self.sort_list()
-
         self.col = column
 
         if len(self.clist.selection) > 1:
@@ -117,7 +160,14 @@ class Sorter:
         GrampsCfg.save_sort_cols(self.key,self.col,self.sort)
         
 class ChildSorter(Sorter):
-
+    """
+    Derived from the basic Sorter class to allow the GtkList to be
+    manually reorderable by the user.
+    """
+    
     def change_sort(self,column,change=1):
+        """
+        If the column is the 0, set the list as reorderable.
+        """
         Sorter.change_sort(self,column,change)
         self.clist.set_reorderable(self.col == 0)
