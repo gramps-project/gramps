@@ -315,6 +315,30 @@ class IsDefaultPerson(Rule):
 
 #-------------------------------------------------------------------------
 #
+# IsBookmarked
+#
+#-------------------------------------------------------------------------
+class IsBookmarked(Rule):
+    """Rule that checks for the bookmark list in the database"""
+
+    labels = []
+    
+    def name(self):
+        return 'Is bookmarked person'
+
+    def description(self):
+        return _("Matches the people on the bookmark list")
+
+    def category(self):
+        return _('General filters')
+
+    def apply(self,db,p_id):
+        if p_id in db.get_bookmarks():
+           return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
 # HasCompleteRecord
 #
 #-------------------------------------------------------------------------
@@ -1412,6 +1436,34 @@ class SearchName(Rule):
     
 #-------------------------------------------------------------------------
 #
+# IncompleteNames
+#
+#-------------------------------------------------------------------------
+class IncompleteNames(Rule):
+    """People with incomplete names"""
+
+    labels = []
+    
+    def name(self):
+        return 'People with incomplete names'
+    
+    def description(self):
+        return _("Matches people with firstname or lastname missing")
+
+    def category(self):
+        return _('General filters')
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        for name in [p.get_primary_name()] + p.get_alternate_names():
+            if name.get_first_name() == "":
+                return 1
+            if name.get_surname() == "":
+                return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
 # MatchesFilter
 #
 #-------------------------------------------------------------------------
@@ -1464,6 +1516,162 @@ class IsSpouseOfFilterMatch(Rule):
                     continue
                 if filt.apply (db, spouse_id):
                     return 1
+        return 0
+
+#-------------------------------------------------------------------------
+# "People who were adopted"
+#-------------------------------------------------------------------------
+
+
+class HaveAltFamilies(Rule):
+    """People who were adopted"""
+
+    labels = []
+
+    def name(self):
+        return 'People who were adopted'
+
+    def description(self):
+        return _("Matches person who were adopted")
+
+    def category(self):
+        return _('Family filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        for (fam,rel1,rel2) in p.get_parent_family_handle_list():
+            if rel1 == RelLib.Person.CHILD_REL_ADOPT or rel2 == RelLib.Person.CHILD_REL_ADOPT:
+                return 1
+        return 0
+
+
+#-------------------------------------------------------------------------
+# "People who have images"
+#-------------------------------------------------------------------------
+
+
+class HavePhotos(Rule):
+    """People who have images"""
+
+    labels = []
+
+    def name(self):
+        return 'People who have images'
+
+    def description(self):
+        return _("Matches person who have images in the gallery")
+
+    def category(self):
+        return _('General filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        return len( p.get_media_list()) > 0
+
+#-------------------------------------------------------------------------
+# "People with children"
+#-------------------------------------------------------------------------
+
+
+class HaveChildren(Rule):
+    """People with children"""
+
+    labels = []
+
+    def name(self):
+        return 'People with children'
+
+    def description(self):
+        return _("Matches persons who have children")
+
+    def category(self):
+        return _('Family filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        for (family_handle,rel1,rel2) in p.get_parent_family_handle_list():
+            family = db.get_family_from_handle(family_handle)
+            return len(family.get_child_handle_list()) > 0
+
+#-------------------------------------------------------------------------
+# "People with no marriage records"
+#-------------------------------------------------------------------------
+
+
+class NeverMarried(Rule):
+    """People with no marriage records"""
+
+    labels = []
+
+    def name(self):
+        return 'People with no marriage records'
+
+    def description(self):
+        return _("Matches persons who have have no spouse")
+
+    def category(self):
+        return _('Family filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        return len(p.get_family_handle_list()) == 0
+
+#-------------------------------------------------------------------------
+# "People with multiple marriage records"
+#-------------------------------------------------------------------------
+
+
+class MultipleMarriages(Rule):
+    """People with multiple marriage records"""
+
+    labels = []
+
+    def name(self):
+        return 'People with multiple marriage records'
+
+    def description(self):
+        return _("Matches persons who have more than one spouse")
+
+    def category(self):
+        return _('Family filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        return len(p.get_family_handle_list()) > 1
+
+#-------------------------------------------------------------------------
+# "People without a birth date"
+#-------------------------------------------------------------------------
+
+
+class NoBirthdate(Rule):
+    """People without a birth date"""
+
+    labels = []
+
+    def name(self):
+        return 'People without a birth date'
+
+    def description(self):
+        return _("Matches persons without a birthdate")
+
+    def category(self):
+        return _('General filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        birth_handle = p.get_birth_handle()
+        if not birth_handle:
+            return 1
+        birth = db.get_event_from_handle(birth_handle)
+        if not birth.get_date_object():
+            return 1
         return 0
 
 #-------------------------------------------------------------------------
@@ -1602,6 +1810,7 @@ class GenericFilter:
 tasks = {
     unicode(_("Everyone"))                             : Everyone,
     unicode(_("Is default person"))                    : IsDefaultPerson,
+    unicode(_("Is bookmarked person"))                 : IsBookmarked,
     unicode(_("Has the Id"))                           : HasIdOf,
     unicode(_("Has a name"))                           : HasNameOf,
     unicode(_("Has the relationships"))                : HasRelationship,
@@ -1636,7 +1845,16 @@ tasks = {
     unicode(_("Is spouse of filter match"))            : IsSpouseOfFilterMatch,
     unicode(_("Is a sibling of filter match"))         : IsSiblingOfFilterMatch,
     unicode(_("Relationship path between two people")) : RelationshipPathBetween,
-    }
+
+    unicode(_("People who were adopted"))              : HaveAltFamilies,
+    unicode(_("People who have images"))               : HavePhotos,
+    unicode(_("People with children"))                 : HaveChildren,
+    unicode(_("People with incomplete names"))         : IncompleteNames,
+    unicode(_("People with no marriage records"))      : NeverMarried,
+    unicode(_("People with multiple marriage records")): MultipleMarriages,
+    unicode(_("People without a birth date"))          : NoBirthdate,
+
+}
 
 #-------------------------------------------------------------------------
 #
