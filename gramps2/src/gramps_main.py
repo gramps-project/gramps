@@ -322,6 +322,10 @@ class Gramps:
 
         self.enable_filter(self.use_filter)
         self.enable_sidebar(self.use_sidebar)
+        self.find_place = None
+        self.find_person = None
+        self.find_source = None
+        self.find_media = None
         self.topWindow.show()
         
     def change_alpha_page(self,obj,junk,page):
@@ -439,13 +443,25 @@ class Gramps:
     def on_find_activate(self,obj):
         """Display the find box"""
         if self.views.get_current_page() == 4:
-            Find.FindPlace(self.find_goto_place,self.db)
+            if self.find_place:
+                self.find_place.show()
+            else:
+                self.find_place = Find.FindPlace(self.find_goto_place,self.db)
         elif self.views.get_current_page() == 3:
-            Find.FindSource(self.find_goto_source,self.db)
+            if self.find_source:
+                self.find_source.show()
+            else:
+                Find.FindSource(self.find_goto_source,self.db)
         elif self.views.get_current_page() == 5:
-            Find.FindMedia(self.find_goto_media,self.db)
+            if self.find_media:
+                self.find_media.show()
+            else:
+                Find.FindMedia(self.find_goto_media,self.db)
         else:
-            Find.FindPerson(self.find_goto_person,self.db)
+            if self.find_person:
+                self.find_person.show()
+            else:
+                self.find_person = Find.FindPerson(self.find_goto_person,self.db)
 
     def on_findname_activate(self,obj):
         """Display the find box"""
