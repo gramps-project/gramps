@@ -574,18 +574,18 @@ class ConfigFile(ConfigWidget):
         
 
 def add_text(category,panel,frame,config_tag,label,default):
-    ext_items.append(category,panel,frame,ConfigEntry(panel,config_tag,label,default))
+    ext_items.append((category,panel,frame,ConfigEntry(panel,config_tag,label,default)))
 
 def add_file_entry(category,panel,frame,config_tag,label,default):
-    ext_items.append(category,panel,frame,ConfigFile(panel,config_tag,label,default))
+    ext_items.append((category,panel,frame,ConfigFile(panel,config_tag,label,default)))
 
 def add_int(category,panel,frame,config_tag,label,default,range=(0,100)):
     cfgint = ConfigInt(panel,config_tag,label,default)
     cfgint.set_range(range[0],range[1])
-    ext_items.append(category,panel,frame,cfgint)
+    ext_items.append((category,panel,frame,cfgint))
 
 def add_checkbox(category,panel,frame,config_tag,label,default):
-    ext_items.append(category,panel,frame,ConfigCheckbox(panel,config_tag,label,default))
+    ext_items.append((category,panel,frame,ConfigCheckbox(panel,config_tag,label,default)))
 
 #-------------------------------------------------------------------------
 #

@@ -44,14 +44,6 @@ convert = "convert"
 
 #-------------------------------------------------------------------------
 #
-# Exceptions
-#
-#-------------------------------------------------------------------------
-
-OpenFailed = "Open Failed"
-
-#-------------------------------------------------------------------------
-#
 # Paths to files - assumes that files reside in the same directory as
 # this one, and that the plugins directory is in a directory below this.
 #
@@ -92,7 +84,7 @@ gtkrcFile      = "%s/gtkrc" % rootDir
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.7.1pre-snap20020122"
+version      = "0.7.1pre-snap20020124"
 copyright    = "© 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton"]
 comments     = _("Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")
@@ -842,58 +834,29 @@ lds_temple_to_abrev = {
 }
 
 lds_status = {
-    "BIC"         : 1,
-    "CANCELED"    : 1,
-    "CHILD"       : 1,
-    "CLEARED"     : 2,
-    "COMPLETED"   : 3,
-    "DNS"         : 4,
-    "INFANT"      : 4,
-    "PRE-1970"    : 5,
-    "QUALIFIED"   : 6,
-    "DNS/CAN"     : 7,
-    "STILLBORN"   : 7,
-    "SUBMITTED"   : 8,
+    "BIC"         : 1,    "CANCELED"    : 1,    "CHILD"       : 1,
+    "CLEARED"     : 2,    "COMPLETED"   : 3,    "DNS"         : 4,
+    "INFANT"      : 4,    "PRE-1970"    : 5,    "QUALIFIED"   : 6,
+    "DNS/CAN"     : 7,    "STILLBORN"   : 7,    "SUBMITTED"   : 8,
     "UNCLEARED"   : 9,
     }
 
 lds_baptism = [
-    "<No Status>",
-    "Child",
-    "Cleared",
-    "Completed",
-    "Infant",
-    "Pre-1970",
-    "Qualified",
-    "Stillborn",
-    "Submitted",
-    "Uncleared",
+    "<No Status>",  "Child",     "Cleared",    "Completed",
+    "Infant",       "Pre-1970",  "Qualified",  "Stillborn",
+    "Submitted",    "Uncleared",
     ]
 
 lds_csealing = [
-    "<No Status>",
-    "BIC",
-    "Cleared",
-    "Completed",
-    "DNS",
-    "Pre-1970",
-    "Qualified",
-    "Stillborn",
-    "Submitted",
-    "Uncleared",
+    "<No Status>",  "BIC",       "Cleared",    "Completed",
+    "DNS",          "Pre-1970",  "Qualified",  "Stillborn",
+    "Submitted",    "Uncleared",
     ]
 
 lds_ssealing = [
-    "<No Status>",
-    "Canceled",
-    "Cleared",
-    "Completed",
-    "DNS",
-    "Pre-1970",
-    "Qualified",
-    "DNS/CAN",
-    "Submitted",
-    "Uncleared",
+    "<No Status>",  "Canceled",  "Cleared",    "Completed",
+    "DNS",          "Pre-1970",  "Qualified",  "DNS/CAN",
+    "Submitted",    "Uncleared",
     ]
 
     
