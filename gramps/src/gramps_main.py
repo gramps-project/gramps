@@ -2358,8 +2358,8 @@ def apply_filter():
                       dday.getQuoteDate(), sort.build_sort_name(name),
                       sort.build_sort_birth(bday), sort.build_sort_death(dday)], pos)
 
-    sort_person_list()
     person_list.thaw()
+    sort_person_list()
 
 #-------------------------------------------------------------------------
 #
