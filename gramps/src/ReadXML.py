@@ -106,6 +106,7 @@ def importData(database, filename, callback):
         return 0
 
     xml_file.close()
+    return 1
 
 #-------------------------------------------------------------------------
 #

@@ -496,8 +496,8 @@ def compare_people(p1,p2):
     name2 = p2.getPrimaryName()
                 
     chance = name_match(name1,name2)
-    if chance == -1  :
-        return -1
+    if chance == -1.0  :
+        return -1.0
 
     birth1 = p1.getBirth()
     death1 = p1.getDeath()
@@ -505,34 +505,34 @@ def compare_people(p1,p2):
     death2 = p2.getDeath()
 
     value = date_match(birth1.getDateObj(),birth2.getDateObj()) 
-    if value == -1 :
-        return -1
+    if value == -1.0 :
+        return -1.0
     chance = chance + value
 
     value = date_match(death1.getDateObj(),death2.getDateObj()) 
-    if value == -1 :
-        return -1
+    if value == -1.0 :
+        return -1.0
     chance = chance + value
 
     value = place_match(birth1.getPlace(),birth2.getPlace()) 
-    if value == -1 :
-        return -1
+    if value == -1.0 :
+        return -1.0
     chance = chance + value
 
     value = place_match(death1.getPlace(),death2.getPlace()) 
-    if value == -1 :
-        return -1
+    if value == -1.0 :
+        return -1.0
     chance = chance + value
 
     ancestors = []
     ancestors_of(p1,ancestors)
     if p2 in ancestors:
-        return -1
+        return -1.0
 
     ancestors = []
     ancestors_of(p2,ancestors)
     if p1 in ancestors:
-        return -1
+        return -1.0
         
     f1 = p1.getMainFamily()
     f2 = p2.getMainFamily()
@@ -549,8 +549,8 @@ def compare_people(p1,p2):
         
     value = name_match(dad1,dad2)
             
-    if value == -1:
-        return -1
+    if value == -1.0:
+        return -1.0
 
     chance = chance + value
             
@@ -565,8 +565,8 @@ def compare_people(p1,p2):
         mom2 = None
 
     value = name_match(mom1,mom2)
-    if value == -1:
-        return -1
+    if value == -1.0:
+        return -1.0
             
     chance = chance + value
 
@@ -577,24 +577,24 @@ def compare_people(p1,p2):
                 father2 = f2.getFather()
                 if father1 and father2:
                     if father1 == father2:
-                        chance = chance + 1
+                        chance = chance + 1.0
                     else:
                         fname1 = GrampsCfg.nameof(father1)
                         fname2 = GrampsCfg.nameof(father2)
                         value = name_match(fname1,fname2)
-                        if value != -1:
+                        if value != -1.0:
                             chance = chance + value
             else:
                 mother1 = f1.getMother()
                 mother2 = f2.getMother()
                 if mother1 and mother2:
                     if mother1 == mother2:
-                        chance = chance + 1
+                        chance = chance + 1.0
                     else:
                         mname1 = GrampsCfg.nameof(mother1)
                         mname2 = GrampsCfg.nameof(mother2)
                         value = name_match(mname1,mname2)
-                        if value != -1:
+                        if value != -1.0:
                             chance = chance + value
 
     return chance
@@ -615,9 +615,9 @@ def name_compare(s1,s2):
 #-----------------------------------------------------------------
 def date_match(date1,date2):
     if date1.getDate() == "" or date2.getDate() == "":
-        return 0
+        return 0.0
     if date1.getDate() == date2.getDate():
-        return 1
+        return 1.0
     
     if date1.isRange() or date2.isRange():
         return range_compare(date1,date2)
@@ -631,9 +631,9 @@ def date_match(date1,date2):
         if not date1.getMonthValid() or not date2.getMonthValid():
             return 0.75
         else:
-            return -1
+            return -1.0
     else:
-        return -1
+        return -1.0
 
 #-----------------------------------------------------------------
 #
@@ -652,19 +652,19 @@ def range_compare(date1,date2):
            date2.get_stop_date() <= date1.get_stop_date():
             return 0.5
         else:
-            return -1
+            return -1.0
     elif date2.isRange():
         if date1.get_start_date() >= date2.get_start_date() and \
            date1.get_start_date() <= date2.get_stop_date():
             return 0.5
         else:
-            return -1
+            return -1.0
     else:
         if date2.get_start_date() >= date1.get_start_date() and \
            date2.get_start_date() <= date1.get_stop_date():
             return 0.5
         else:
-            return -1
+            return -1.0
 
 def name_match(name,name1):
 

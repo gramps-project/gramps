@@ -287,6 +287,7 @@ class MediaView:
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
                     return 1
+        return 0
     
     def on_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:

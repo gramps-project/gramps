@@ -1111,7 +1111,6 @@ class EditPerson:
             self.pmap[p.get_title()] = p
 
         self.birth.setDate(self.bdate.get_text())
-        bplace = string.strip(self.bplace.get_text())
         self.birth.setPlace(self.get_place(self.bplace,1))
 
         if not self.person.getBirth().are_equal(self.birth):
