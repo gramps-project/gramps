@@ -284,10 +284,13 @@ class MediaView:
             selection_data.set(selection_data.target, 8, id)	
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
+        import urlparse
         if data and data.format == 8:
             d = string.strip(string.replace(data.data,'\0',' '))
-            if d[0:5] == "file:":
-                name = d[5:]
+            protocol,site,file, j,k,l = urlparse.urlparse(d)
+            print protocol,site,file,j,k,l
+            if protocol == "file":
+                name = file
                 mime = utils.get_mime_type(name)
                 photo = Photo()
                 photo.setPath(name)
@@ -298,6 +301,46 @@ class MediaView:
                 utils.modified()
                 w.drag_finish(context, 1, 0, time)
                 self.load_media()
+                if Config.mediaref == 0:
+                    name = RelImage.import_media_object(name,
+                                                        self.db.getSavePath(),
+                                                        photo.getId())
+                    photo.setPath(name)
+                    photo.setLocal(1)
+                utils.modified()
+                if Config.globalprop:
+                    ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media)
+            elif protocol != "":
+                import urllib
+                u = urllib.URLopener()
+                try:
+                    tfile,headers = u.retrieve(d)
+                except IOError, msg:
+                    t = _("Could not import %s") % d
+                    
+                    gnome.ui.GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    return
+                mime = utils.get_mime_type(tfile)
+                photo = Photo()
+                photo.setMimeType(mime)
+                photo.setDescription(d)
+                photo.setLocal(1)
+                photo.setPath(tfile)
+                self.db.addObject(photo)
+                oref = ObjectRef()
+                oref.setReference(photo)
+                try:
+                    id = photo.getId()
+                    name = RelImage.import_media_object(tfile,self.path,id)
+                    if name != None and name != "":
+                        photo.setPath(name)
+                except:
+                    photo.setPath(tfile)
+                    w.drag_finish(context, 1, 0, time)
+                    return
+                utils.modified()
+                if Config.globalprop:
+                    ImageSelect.GlobalMediaProperties(self.db,photo,None)
             else:
                 w.drag_finish(context, 0, 0, time)
 

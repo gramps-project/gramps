@@ -163,11 +163,7 @@ def loadConfig(call):
     global usetabs
     global calendar
     global usevc
-    global iprefix
-    global fprefix
-    global pprefix
-    global oprefix
-    global sprefix
+    global iprefix, fprefix, pprefix, oprefix, sprefix
     global vc_comment
     global uncompress
     global id_visible
