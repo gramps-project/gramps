@@ -5,6 +5,13 @@
 	* src/gramps_main.py: Corrections.
 	* src/Bookmarks.py: Corrections.
 
+	* src/plugins/DetDescendantReport.py (write_person): Write
+	images before the paragraph start; (insert_images): Don't start
+	and end pargraphs.  
+	* src/plugins/DetAncestralReport.py: (write_person): Write
+	images before the paragraph start; (insert_images): Don't start
+	and end pargraphs. 
+
 2004-02-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPerson.py: Corrections.
 	* src/EditSource.py: Use parent class. Use windows menu.

@@ -205,11 +205,11 @@ class DetDescendantReport(Report.Report):
     def write_person(self, key, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        self.doc.start_paragraph("DDR-First-Entry","%s." % str(key))
-
         person = self.map[key]
         if rptOptions.addImages == reportOptions.Yes:
             self.insert_images(person)
+
+        self.doc.start_paragraph("DDR-First-Entry","%s." % str(key))
 
         name = person.get_primary_name().get_regular_name()
 
@@ -530,10 +530,10 @@ class DetDescendantReport(Report.Report):
                     mateFirstName = mate.get_primary_name().get_first_name()
 
             if mate:
-                self.doc.start_paragraph("DDR-Entry")
-
                 if rptOptions.addImages == reportOptions.Yes:
                     self.insert_images(mate)
+
+                self.doc.start_paragraph("DDR-Entry")
 
                 if rptOptions.firstName == reportOptions.No:
                     mateFirstName = heshe
@@ -556,16 +556,11 @@ class DetDescendantReport(Report.Report):
     def insert_images(self, person):
 
         photos = person.get_media_list()
-        paragraph_started = 0
         for photo in photos :
             object = photo.get_reference()
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
-                if not paragraph_started:
-                    self.doc.start_paragraph("DDR-Entry")
-                    paragraph_started = 1
                 self.doc.add_media_object(file,"row",4.0,4.0)
-            self.doc.end_paragraph()
 
     #--------------------------------------------------------------------
     #
