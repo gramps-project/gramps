@@ -114,6 +114,7 @@ class AncestorReport:
         para.set_header_level(1)
         para.set_top_border(0.2)
         para.set_bottom_border(0.2)
+        para.set_padding(1)
         self.doc.add_style("Title",para)
 
         font = FontStyle()
@@ -126,11 +127,13 @@ class AncestorReport:
         para.set_header_level(2)
         para.set_top_border(0.15)
         para.set_bottom_border(0.15)
+        para.set_padding(1)
         self.doc.add_style("Header",para)
 
         para = ParagraphStyle()
         para.set_first_indent(-0.75)
         para.set_left_margin(1.0)
+        para.set_padding(1)
         self.doc.add_style("ListEntry",para)
         try:
             self.doc.open(output)

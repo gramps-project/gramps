@@ -123,7 +123,7 @@ class PdfDoc(TextDoc):
     def end_paragraph(self):
         if self.in_table == 0 and self.image == 0:
 	    self.story.append(Paragraph(self.text,self.current_para))
-	    self.story.append(Spacer(1,0.25*cm))
+	    self.story.append(Spacer(1,0.5*cm))
         else:
             self.image = 0
 
@@ -154,7 +154,7 @@ class PdfDoc(TextDoc):
                                               colWidths=self.cur_table_cols,
                                               style=ts)
 	self.story.append(tbl)
-	self.story.append(Spacer(1,0.25*cm))
+	self.story.append(Spacer(1,0.5*cm))
         self.in_table = 0
 
     def start_row(self):
@@ -223,7 +223,7 @@ class PdfDoc(TextDoc):
             act_height = int(ny * scale)
             
             self.story.append(Image(name,act_width*0.5,act_height*0.5))
-	    self.story.append(Spacer(1,0.25*cm))
+	    self.story.append(Spacer(1,0.5*cm))
             self.image = 1
 
     def horizontal_line(self):

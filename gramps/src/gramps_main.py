@@ -1442,8 +1442,6 @@ def on_filter_name_changed(obj):
 #
 #-------------------------------------------------------------------------
 def on_spouselist_changed(obj):
-    global active_spouse
-    
     if active_person == None :
         return
 
@@ -1691,6 +1689,7 @@ def load_tree_values(person,index,max,pv_text,tip):
 def display_marriage(family):
     global active_child
     global active_family
+    global active_spouse
 
     active_family = family
     clist = Main.get_widget("child_list")
@@ -1702,6 +1701,11 @@ def display_marriage(family):
 
     i = 0
     if family != None:
+        if active_person.getGender() == Person.male:
+            active_spouse = family.getMother()
+        else:
+            active_spouse = family.getFather()
+            
         child_list = family.getChildList()
         child_list.sort(sort.by_birthdate)
         for child in child_list:
