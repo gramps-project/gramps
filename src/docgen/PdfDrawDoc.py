@@ -157,32 +157,4 @@ class PdfDrawDoc(DrawDoc):
         self.f.drawString(start_x,start_y,text)
         self.f.restoreState()
 
-if __name__ == "__main__":
-
-    
-
-    s = PaperStyle("Junk",27.94,21.59)
-    x = PdfDrawDoc(s,PAPER_PORTRAIT)
-    f = FontStyle()
-    f.set_type_face(FONT_SANS_SERIF)
-    f.set_size(14)
-    p = ParagraphStyle()
-    p.set_font(f)
-    x.add_paragraph_style("mytest",p)
-
-    g = GraphicsStyle()
-    g.set_width(4)
-    g.set_height(2)
-
-    g.set_color((0xff,0xcc,0xff))
-    g.set_paragraph_style("mytest")
-    g.set_shadow(1)
-    x.add_draw_style("mybox",g)
-
-    x.open("test")
-    x.start_page()
-    x.draw_box("mybox","Hello\nThis is Fun",4,4)
-    x.end_page()
-    x.close()
-
 Plugins.register_draw_doc(_("PDF"),PdfDrawDoc);

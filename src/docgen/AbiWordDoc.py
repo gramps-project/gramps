@@ -31,7 +31,6 @@ import base64
 
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
-import const
 import string
 import Plugins
 import ImgManip
@@ -94,8 +93,6 @@ class AbiWordDoc(TextDoc):
             self.f.write('<data>\n')
             for file_tuple in self.photo_list:
                 file = file_tuple[0]
-                width = file_tuple[1]
-                height = file_tuple[2]
                 base = "%s/%s_png" % (os.path.dirname(file),os.path.basename(file))
                 tag = string.replace(base,'.','_')
 
@@ -306,7 +303,6 @@ class AbiWordDoc(TextDoc):
                 self.f.write("%6.4fin/%s" % (edge/2.54,t))
             self.f.write('"')
         self.f.write('>')
-        last = len(self.cdatalist)
         for data in self.cdatalist:
             self.f.write(data)
         self.f.write('</p>\n')

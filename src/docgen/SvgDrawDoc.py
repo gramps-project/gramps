@@ -19,7 +19,6 @@
 #
 
 import os
-import tempfile
 import string
 import Plugins
 import intl

@@ -218,9 +218,6 @@ class ChooseParents:
         mother_rel = const.childRelations[self.mother_rel.get_text()]
         father_rel = const.childRelations[self.father_rel.get_text()]
 
-        msel = self.mother_list.selection
-        fsel = self.father_list.selection
-
         if self.father or self.mother:
             if self.mother and not self.father:
                 if self.mother.getGender() == RelLib.Person.male:
@@ -296,24 +293,4 @@ class ChooseParents:
         else:
             self.person.addAltFamily(family,mother_rel,father_rel)
         Utils.modified()
-
-    def add_parent_close(self,obj):
-
-        surname = self.xml.get_widget("surname").get_text()
-        given = self.xml.get_widget("given").get_text()
-        person = RelLib.Person()
-        self.db.addPerson(person)
-        name = person.getPrimaryName()
-        name.setSurname(surname)
-        name.setFirstName(given)
-        if self.xml.get_widget("male").get_active():
-            person.setGender(RelLib.Person.male)
-            self.father = person
-        else:
-            person.setGender(RelLib.Person.female)
-            self.mother = person
-        Utils.modified()
-        self.parent_relation_changed(self.prel)
-        Utils.destroy_passed_object(obj)
-        self.full_update()
 

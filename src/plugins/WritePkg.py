@@ -22,7 +22,6 @@
 
 from RelLib import *
 
-import const
 import WriteXML
 import time
 import os

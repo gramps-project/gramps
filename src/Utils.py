@@ -57,10 +57,11 @@ _ = gettext
 # modified flag
 #
 #-------------------------------------------------------------------------
-_modifiedFlag  = 0
-_autotime_val  = 1
-_autosave_fun  = None
-_autosave_tim  = None
+_modifiedFlag = 0
+_autotime_val = 1
+_autosave_fun = None
+_autosave_tim = None
+_autosave_val = None
 
 LISTOBJ = "s"
 OBJECT  = "o"

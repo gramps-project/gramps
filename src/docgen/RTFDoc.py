@@ -317,14 +317,11 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def add_photo(self,name,pos,x_cm,y_cm):
-	if no_pil:
-	    return
-
 	im = ImgManip.ImgManip(name)
         nx,ny = im.size()
         buf = im.jpg_data()
 
-        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+        ratio = float(x_cm)*float(ny)/(float(y_cm)*float(nx))
 
         if ratio < 1:
             act_width = x_cm

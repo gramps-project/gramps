@@ -73,6 +73,8 @@ class AutoCompBase:
         """
         entry.select_region(0, 0)
 
+    def timer_callback(self,entry):
+        pass
 
 class AutoCombo(AutoCompBase):
     """
