@@ -6,8 +6,6 @@ EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 
 bin_SCRIPTS = gramps
 
-grampsdocdir = $(datadir)/doc/gramps-$(VERSION)
-
 gramps: gramps.sh
 	cp gramps.sh gramps
 
