@@ -1,3 +1,7 @@
+2004-03-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/WriteFtree.py: Typo.
+	* src/plugins/WriteGedcom.py: Typo.
+
 2004-03-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/WebPage.py: Clean up mini tree. Add connecting lines.
 	Switch from list of 2^gen strings to a dict with only used entries.
