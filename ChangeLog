@@ -1,3 +1,9 @@
+2004-09-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateDisplay.py: use locale.nl_langinfo to get month
+	names without manual encoding
+	* src/DateParser.py: use locale.nl_langinfo to get month
+	names without manual encoding
+
 2004-09-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Calendar.py: removed
 	* src/Gregorian.py: removed
