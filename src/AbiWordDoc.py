@@ -39,7 +39,7 @@ class AbiWordDoc(TextDoc):
             self.filename = filename + ".abw"
         else:
             self.filename = filename
-            
+
         self.f = open(self.filename,"w")
         self.f.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
         self.f.write('<abiword version="0.7.14" fileformat="1.0">\n')
