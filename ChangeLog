@@ -33,6 +33,9 @@
 	* src/NameEdit.py: Support for keeping track of names after they are edited
 	* src/AddrEdit.py: Support for keeping track of names after they are edited
 	* src/UrlEdit.py: Support for keeping track of names after they are edited
+	* src/select_person.glade: select person interface
+	* src/Plugins.py: Catch the LANG environment variable not being set when
+	determining which relationship calculator to use
 	
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
