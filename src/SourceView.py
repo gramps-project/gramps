@@ -129,7 +129,7 @@ class SourceView:
                            _('This source is currently being used. Deleting it '
                              'will remove it from the database and from all '
                              'records that reference it.'),
-                           _('Delete Source'),
+                           _('_Delete Source'),
                            ans.query_response)
         else:
             self.db.removeSource(source.getId())

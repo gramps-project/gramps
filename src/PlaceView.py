@@ -200,7 +200,7 @@ class PlaceView:
                                  'record in the database. Deleting it will remove it '
                                  'from the database and remove it from all records '
                                  'that reference it.'),
-                               _('Delete Place'),
+                               _('_Delete Place'),
                                ans.query_response)
             else:
                 self.db.removePlace(place.getId())
