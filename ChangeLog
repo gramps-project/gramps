@@ -8,7 +8,7 @@
 	* src/plugins/IndivComplete.py (write_alt_names): Correct the
 	use of handle (#1014411); (write_fact, write_sources, write_person): 
 	Use gramps id, not handle, for displaying source references.
-	* src/plugins/Ancestors.py (event_info): Check whetehr place
+	* src/plugins/Ancestors.py (event_info): Check whether place
 	exists before getting its title (#1014412).
 
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
