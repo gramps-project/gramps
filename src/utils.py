@@ -75,6 +75,17 @@ def phonebook_name(person):
     else:
         return ""
 
+def family_name(family):
+    father = family.getFather()
+    mother = family.getMother()
+    if father and mother:
+        name = _("%s and %s") % (father.getPrimaryName().getName(),mother.getPrimaryName().getName())
+    elif father:
+        name = father.getPrimaryName().getName()
+    else:
+        name = mother.getPrimaryName().getName()
+    return name
+        
 #-------------------------------------------------------------------------
 #
 # Short hand function to return either the person's name, or an empty

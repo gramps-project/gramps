@@ -169,8 +169,9 @@ def on_exit_activate(obj):
 def save_query(value):
     """Catch the reponse to the save on exit question"""
     if value == 0:
-        on_save_activate(None)
-    mainquit(gtop)
+        on_save_activate_quit()
+    else:
+        mainquit(gtop)
 
 #-------------------------------------------------------------------------
 #
@@ -528,8 +529,6 @@ def on_delete_place_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-
-
 def on_delete_source_clicked(obj):
     import EditSource
     
@@ -540,10 +539,10 @@ def on_delete_source_clicked(obj):
 
     source = obj.get_row_data(index)
 
-    ans = EditSource.DelSrcQuery(source,database,update_display)
 
     if is_source_used(source):
         msg = _("This source is currently being used. Delete anyway?")
+        ans = EditSource.DelSrcQuery(source,database,update_display)
         GnomeQuestionDialog(msg,ans.query_response)
     else:
         map = database.getSourceMap()
@@ -1229,6 +1228,16 @@ def on_save_as_activate(obj):
     fileSelector.show()
 
 def on_save_activate(obj):
+    """Saves the file, first prompting for a comment if revision control needs it"""
+    if not database.getSavePath():
+        on_save_as_activate(obj)
+    else:
+        if Config.usevc and Config.vc_comment:
+            display_comment_box(database.getSavePath())
+        else:
+            save_file(database.getSavePath(),_("No Comment Provided"))
+
+def on_save_activate_quit():
     """Saves the file, first prompting for a comment if revision control needs it"""
     if not database.getSavePath():
         on_save_as_activate(obj)
@@ -2083,7 +2092,42 @@ def on_edit_media_clicked(obj):
     if len(media_list.selection) <= 0:
         return
     object = media_list.get_row_data(media_list.selection[0])
-    ImageSelect.GlobalMediaProperties(object,database.getSavePath())
+    ImageSelect.GlobalMediaProperties(database,object)
+
+def on_delete_media_clicked(obj):
+    if len(media_list.selection) <= 0:
+        return
+    else:
+        index = media_list.selection[0]
+    mobj = media_list.get_row_data(index)
+    if is_media_object_used(mobj):
+        import ImageSelect
+        ans = ImageSelect.DeleteMediaQuery(mobj,database,update_display)
+        msg = _("This media object is currently being used. Delete anyway?")
+        GnomeQuestionDialog(msg,ans.query_response)
+    else:
+        map = database.getObjectMap()
+        del map[mobj.getId()]
+        utils.modified()
+        update_display(0)
+
+def is_media_object_used(mobj):
+    for p in database.getFamilyMap().values():
+        for o in p.getPhotoList():
+            if o.getReference() == mobj:
+                return 1
+    for p in database.getPersonMap().values():
+        for o in p.getPhotoList():
+            if o.getReference() == mobj:
+                return 1
+    for p in database.getSourceMap().values():
+        for o in p.getPhotoList():
+            if o.getReference() == mobj:
+                return 1
+    for p in database.getPlaceMap().values():
+        for o in p.getPhotoList():
+            if o.getReference() == mobj:
+                return 1
     
 #-------------------------------------------------------------------------
 #
@@ -2574,6 +2618,7 @@ def main(arg):
         "on_delete_person_clicked"          : on_delete_person_clicked,
         "on_delete_place_clicked"           : on_delete_place_clicked,
         "on_delete_source_clicked"          : on_delete_source_clicked,
+        "on_delete_media_clicked"           : on_delete_media_clicked,
         "on_delete_sp_clicked"              : on_delete_sp_clicked,
         "on_edit_active_person"             : load_active_person,
         "on_edit_bookmarks_activate"        : on_edit_bookmarks_activate,

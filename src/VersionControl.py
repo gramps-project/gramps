@@ -37,7 +37,7 @@ except:
     _gzip_ok = 0
 
 _revision_re = re.compile("revision\s+([\d\.]+)")
-_date_re = re.compile("date:\s+([^;]+);")
+_date_re = re.compile("date:\s+([^;]+);\s+author:\s([^;]+);")
 _sep = '-' * 10
 _end = "=" * 10
 
@@ -77,10 +77,9 @@ class RevisionSelect:
 
         self.revlist = dialog.get_widget("revlist")
         l = self.vc.revision_list()
-        l.reverse()
         index = 0
         for f in l:
-            self.revlist.append([f[0],f[1],f[2]])
+            self.revlist.append([f[0],f[1],f[3],f[2]])
             self.revlist.set_row_data(index,f[0])
             index = index + 1
 
@@ -166,7 +165,7 @@ class RcsVersionControl(VersionControl):
             if slog:
                 if line[0:10] == _sep or line[0:10] == _end:
                     slog = 0
-                    rlist.append(v,d,string.join(l,'\n'))
+                    rlist.append((v,d,string.join(l,'\n'),o))
                 else:
                     l.append(line)
                 continue
@@ -177,6 +176,7 @@ class RcsVersionControl(VersionControl):
             g = _date_re.match(line)
             if g:
                 d = g.group(1)
+                o = g.group(2)
                 slog = 1
                 l = []
 
