@@ -33,6 +33,9 @@
  * and things like that.
  *
  * $Log$
+ * Revision 1.4  2004/01/27 03:28:21  dallingham
+ * * src/grampslib_wrap.c: backout mime type search
+ *
  * Revision 1.3  2004/01/22 02:03:21  dallingham
  * * src/grampslib_wrap.c: check the known mime types before calling the
  * gnome functions
@@ -574,45 +577,26 @@ extern const char *gnome_vfs_mime_get_description(const char *);
 extern const char *gnome_vfs_mime_get_value(const char *,const char *);
 
 const char* default_application_name(const char* type) {
-
-	GList *node;
-	char* value;
-	char* retval = NULL;
-
-	GList *s = gnome_vfs_get_registered_mime_types();
-
-	for (node = g_list_first(s); node != NULL; node = g_list_next(node)) {
-		if (!strcmp((char*)node->data,type)) {
-			GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
-			if (a) {
-				retval = a->name;
-				break;
-			}
-		}	
-	}
-	gnome_vfs_mime_registered_mime_type_list_free(s);
-	return retval;
+  char* retval = NULL;
+  
+  GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
+  if (a) {
+    return a->name;
+  } else {
+    return (char*) NULL;
+  }
 }
 
 const char* default_application_command(const char* type) {
 
-	GList *node;
-	char* value;
-	char* retval = NULL;
+  char* retval = NULL;
 
-	GList *s = gnome_vfs_get_registered_mime_types();
-
-	for (node = g_list_first(s); node != NULL; node = g_list_next(node)) {
-		if (!strcmp((char*)node->data,type)) {
-			GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
-			if (a) {
-				retval = a->command;
-				break;
-			}
-		}	
-	}
-	gnome_vfs_mime_registered_mime_type_list_free(s);
-	return retval;
+  GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
+  if (a) {
+    return a->command;
+  } else {
+    return NULL;
+  }
 }
 
 static PyObject *_wrap_gnome_vfs_mime_get_icon(PyObject *self, PyObject *args) {
