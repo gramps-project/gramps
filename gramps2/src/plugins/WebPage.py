@@ -69,6 +69,7 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _hline = " "    # Everything is underlined, so use blank
+_BORN = _('b.')
 
 #------------------------------------------------------------------------
 #
@@ -683,7 +684,8 @@ class WebReport(Report.Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, include_mini_tree,
                  style, image_dir, template_name,use_id,id_link,gendex,ext,
-                 include_alpha_links,separate_alpha,n_cols,ind_template_name,depth):
+                 include_alpha_links,separate_alpha,n_cols,ind_template_name,
+                 depth,birth_dates,year_only):
         self.db = db
         self.ext = ext
         self.use_id = use_id
@@ -707,6 +709,8 @@ class WebReport(Report.Report):
         self.n_cols = n_cols
         self.ind_template_name = ind_template_name
         self.depth = depth
+        self.birth_dates = birth_dates
+        self.year_only = year_only
 
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
@@ -864,10 +868,27 @@ class WebReport(Report.Report):
                 col_len = n_rows
 
                 for person_id in p_id_list:
-                    name = self.db.find_person_from_if(person_id).get_primary_name().get_name()
+                    name = self.db.find_person_from_id(person_id).get_primary_name().get_name()
+
+                    if self.birth_dates:
+                        birth_id = self.db.find_person_from_id(person_id).get_birth_id()
+                        if birth_id:
+                            birth_event = self.db.find_event_from_id(birth_id)
+                            if self.year_only:
+                                birth_dobj = birth_event.get_date_object()
+                                if birth_dobj.get_year_valid():
+                                    birth_date = birth_dobj.get_year()
+                                else:
+                                    birth_date = ""
+                            else:
+                                birth_date = birth_event.get_date()
+                        else:
+                            birth_date = ""
 
                     doc.start_link("%s.%s" % (person_id,self.ext))
                     doc.write_text(name)
+                    if self.birth_dates and birth_date:
+                        doc.write_text(' (%s %s)' % (_BORN,birth_date))
                     doc.end_link()
 
                     if col_len <= 0:
@@ -900,8 +921,25 @@ class WebReport(Report.Report):
                 for person_id in p_id_list:
                     name = self.db.find_person_from_id(person_id).get_primary_name().get_name()
 
+                    if self.birth_dates:
+                        birth_id = self.db.find_person_from_id(person_id).get_birth_id()
+                        if birth_id:
+                            birth_event = self.db.find_event_from_id(birth_id)
+                            if self.year_only:
+                                birth_dobj = birth_event.get_date_object()
+                                if birth_dobj.get_year_valid():
+                                    birth_date = birth_dobj.get_year()
+                                else:
+                                    birth_date = ""
+                            else:
+                                birth_date = birth_event.get_date()
+                        else:
+                            birth_date = ""
+
                     doc.start_link("%s.%s" % (person_id,self.ext))
                     doc.write_text(name)
+                    if self.birth_dates and birth_date:
+                        doc.write_text(' (%s %s)' % (_BORN,birth_date))
                     doc.end_link()
                     if col_len <= 0:
                         doc.write_raw('</td><td width="%d%%" valign="top">' % td_width)
@@ -1034,6 +1072,8 @@ class WebReportDialog(Report.ReportDialog):
         ext_msg = _("File extension")
         alpha_links_msg = _("Links to alphabetical sections in index page")
         sep_alpha_msg = _("Split alphabetical sections to separate pages")
+        birth_date_msg = _("Append birth dates to the names")
+        year_only_msg = _("Use only year of birth")
 
         tree_msg = _("Include short ancestor tree")
         self.mini_tree = gtk.CheckButton(tree_msg)
@@ -1085,6 +1125,12 @@ class WebReportDialog(Report.ReportDialog):
         self.ind_template.entry.set_editable(0)
         self.ind_user_template = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
         self.ind_user_template.set_sensitive(0)
+        self.add_birth_date = gtk.CheckButton(birth_date_msg)
+        self.use_year_only = gtk.CheckButton(year_only_msg)
+        self.use_year_only.set_active(1)
+        self.use_year_only.set_sensitive(0)
+
+        self.add_birth_date.connect('toggled',self.on_birth_date_toggled)
 
         self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.mini_tree)
@@ -1109,6 +1155,8 @@ class WebReportDialog(Report.ReportDialog):
         self.add_frame_option(title,None,self.use_alpha_links)
         self.add_frame_option(title,None,self.use_sep_alpha)
         self.add_frame_option(title,_('Number of columns'),self.use_n_cols)
+        self.add_frame_option(title,None,self.add_birth_date)
+        self.add_frame_option(title,None,self.use_year_only)
 
         title = _('Advanced')
         self.add_frame_option(title,'',self.include_id)
@@ -1376,6 +1424,8 @@ class WebReportDialog(Report.ReportDialog):
         else:
             self.separate_alpha = 0
         self.n_cols = self.use_n_cols.get_value()
+        self.birth_dates = self.add_birth_date.get_active()
+        self.year_only = self.use_year_only.get_active()
 
     #------------------------------------------------------------------------
     #
@@ -1421,6 +1471,15 @@ class WebReportDialog(Report.ReportDialog):
         else:
             self.ind_user_template.set_sensitive(0)
 
+    def on_birth_date_toggled(self,obj):
+        """Keep the 'User year only' check button in line with
+        the 'Add birth date' checkbox.  If no mini birth date is added
+        then it makes no sense to worry about its format."""
+        if obj.get_active():
+            self.use_year_only.set_sensitive(1)
+        else:
+            self.use_year_only.set_sensitive(0)
+
     #------------------------------------------------------------------------
     #
     # Functions related to creating the actual report document.
@@ -1439,7 +1498,8 @@ class WebReportDialog(Report.ReportDialog):
                                  self.use_id,self.id_link,self.use_gendex,
                                  self.html_ext,self.include_alpha_links,
                                  self.separate_alpha,self.n_cols,
-                                 self.ind_template_name,self.depth_value)
+                                 self.ind_template_name,self.depth_value,
+                                 self.birth_dates,self.year_only)
             MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
