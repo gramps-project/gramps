@@ -329,7 +329,7 @@ def dump_event_stats(g,event):
         g.write("2 DATE %s\n" % latin_to_ansel(event.getSaveDate()))
     if event.getPlace() != "":
         g.write("2 PLAC %s\n" % latin_to_ansel(event.getPlace()))
-    source = event.getSource()
+    source = event.getSourceRef()
     if source:
         base = source.getBase()
         if base:
