@@ -86,6 +86,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         self.RelClass = PluginMgr.relationship_class
         self.relationship = self.RelClass(database)
 
+    def define_table_styles(self):
         table = BaseDoc.TableStyle ()
         table.set_column_widths ([15, 85])
         table.set_width (100)
@@ -130,7 +131,6 @@ class ComprehensiveAncestorsReport (Report.Report):
         cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
         self.doc.add_cell_style ("AR-Entry", cell)
-
 
     def write_report(self):
         self.sources = []

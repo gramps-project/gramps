@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,19 +40,10 @@ from gettext import gettext as _
 import Report
 import BaseDoc
 import RelLib
-import Errors
 import Utils
 import ReportOptions
-from QuestionDialog import ErrorDialog
-import DateHandler
+from DateHandler import displayer as dd
 import const
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-dd = DateHandler.displayer
 
 #------------------------------------------------------------------------
 #
@@ -86,12 +77,10 @@ class FtmDescendantReport(Report.Report):
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
 
-        self.setup()
-
         self.sref_map = {}
         self.sref_index = 0
         
-    def setup(self):
+    def define_table_styles(self):
         tbl = BaseDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(3)

@@ -344,8 +344,6 @@ class AncestorChart(Report.Report):
 
         g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("AC2-line",g)
-        if self.standalone:
-            self.doc.init()
 
     def print_page(self,startx,stopx,starty,stopy,colx,coly):
 

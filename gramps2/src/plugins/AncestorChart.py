@@ -177,8 +177,6 @@ class AncestorChart(Report.Report):
 
         g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("AC-line",g)
-        if self.standalone:
-            self.doc.init()
 
     def get_numbers(self,start,index,vals):
         if index > 4:

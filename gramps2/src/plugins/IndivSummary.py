@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,10 +45,7 @@ import gtk
 import RelLib
 import const
 import BaseDoc
-import StyleEditor
 import Report
-import Errors
-from QuestionDialog import ErrorDialog
 import ReportOptions
 import const
 
@@ -73,10 +70,7 @@ class IndivSummary(Report.Report):
 
         Report.Report.__init__(self,database,person,options_class)
 
-        self.map = {}
-        self.setup()
-        
-    def setup(self):
+    def define_table_styles(self):
         tbl = BaseDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)

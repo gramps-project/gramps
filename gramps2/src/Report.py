@@ -216,12 +216,13 @@ class Report:
         if output:
             self.standalone = True
             self.doc.open(options_class.get_output())
-            self.doc.init()
         else:
             self.standalone = False
+        
+        self.define_table_styles()
+        self.define_graphics_styles()
 
     def begin_report(self):
-        self.doc.init()
         if self.options_class.get_newpage():
             self.doc.page_break()
         
@@ -232,6 +233,18 @@ class Report:
         if self.standalone:
             self.doc.close()
             
+    def define_table_styles(self):
+        """
+        This method MUST be used for adding table and cell styles.
+        """
+        pass
+
+    def define_graphics_styles(self):
+        """
+        This method MUST be used for adding drawing styles.
+        """
+        pass
+
     def get_progressbar_data(self):
         """The window title for this dialog, and the header line to
         put at the top of the contents of the dialog box."""
@@ -1759,6 +1772,7 @@ def report(database,person,report_class,options_class,translated_name,name,categ
     if response:
         try:
             MyReport = report_class(dialog.db,dialog.person,dialog.options)
+            MyReport.doc.init()
             MyReport.begin_report()
             MyReport.write_report()
             MyReport.end_report()
@@ -1806,6 +1820,7 @@ def cl_report(database,name,category,report_class,options_class,options_str_dict
         clr.option_class.handler.doc = clr.format(
                     clr.selected_style,clr.paper,clr.template_name,clr.orien)
         MyReport = report_class(database, clr.person, clr.option_class)
+        MyReport.doc.init()
         MyReport.begin_report()
         MyReport.write_report()
         MyReport.end_report()

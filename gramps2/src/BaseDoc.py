@@ -1,8 +1,23 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
 # Modified September 2002 by Gary Shao
 #
 #   Added line_break() method to BaseDoc class to allow breaking a line
@@ -33,20 +48,6 @@
 #   links are technically possible in PDF documents, but the reportlab
 #   modules the PDF generator is based on does not support them at this
 #   time)
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
 # $Id$
@@ -119,7 +120,6 @@ GRAPHICS_MODE = 1
 #
 SOLID = 0
 DASHED = 1
-
 
 #------------------------------------------------------------------------
 #
@@ -287,7 +287,7 @@ class FontStyle:
 
     def get_color(self):
         "Returns an RGB color tuple"
-	return self.color
+        return self.color
 
     def set_size(self,val):
         "sets font size in points"
@@ -385,7 +385,7 @@ class TableStyle:
         @param index: column being set (index starts at 0)
         @param width: percentage of the table width assigned to the column
         """
-	self.colwid[index] = width
+        self.colwid[index] = width
 
     def get_column_width(self,index):
         """
@@ -394,7 +394,7 @@ class TableStyle:
 
         @param index: column to return (index starts at 0)
         """
-	return self.colwid[index]
+        return self.colwid[index]
 
 #------------------------------------------------------------------------
 #
@@ -419,15 +419,15 @@ class TableCellStyle:
             self.tborder = obj.tborder
             self.bborder = obj.bborder
             self.padding = obj.padding
-	    self.longlist = obj.longlist
+            self.longlist = obj.longlist
         else:
             self.rborder = 0
             self.lborder = 0
             self.tborder = 0
             self.bborder = 0
             self.padding = 0
-	    self.longlist = 0
-	    
+            self.longlist = 0
+    
     def set_padding(self,val):
         "Returns the cell padding in centimeters"
         self.padding = val
@@ -514,11 +514,11 @@ class ParagraphStyle:
             self.lmargin = source.lmargin
             self.first_indent = source.first_indent
             self.align   = source.align
-	    self.level   = source.level
-	    self.top_border = source.top_border
-	    self.bottom_border = source.bottom_border
-	    self.right_border = source.right_border
-	    self.left_border = source.left_border
+            self.level   = source.level
+            self.top_border = source.top_border
+            self.bottom_border = source.bottom_border
+            self.right_border = source.right_border
+            self.left_border = source.left_border
             self.pad = source.pad
             self.bgcolor = source.bgcolor
             self.description = source.description
@@ -528,11 +528,11 @@ class ParagraphStyle:
             self.lmargin = 0
             self.first_indent = 0
             self.align   = PARA_ALIGN_LEFT
-	    self.level   = 0
-	    self.top_border = 0
-	    self.bottom_border = 0
-	    self.right_border = 0
-	    self.left_border = 0
+            self.level   = 0
+            self.top_border = 0
+            self.bottom_border = 0
+            self.right_border = 0
+            self.left_border = 0
             self.pad = 0
             self.bgcolor = (255,255,255)
             self.description = ""
@@ -646,7 +646,7 @@ class ParagraphStyle:
 
     def get_bottom_border(self):
         "Returns 1 if a bottom border is specified"
-	return self.bottom_border
+        return self.bottom_border
 
     def set_left_border(self,val):
         """
@@ -719,27 +719,27 @@ class ParagraphStyle:
         return "unknown"
 
     def set_left_margin(self,value):
-	"sets the left paragraph margin in centimeters"
+        "sets the left paragraph margin in centimeters"
         self.lmargin = value
 
     def set_right_margin(self,value):
-	"sets the right paragraph margin in centimeters"
+        "sets the right paragraph margin in centimeters"
         self.rmargin = value
 
     def set_first_indent(self,value):
-	"sets the first indent margin in centimeters"
+        "sets the first indent margin in centimeters"
         self.first_indent = value
 
     def get_left_margin(self):
-	"returns the left margin in centimeters"
+        "returns the left margin in centimeters"
         return self.lmargin
 
     def get_right_margin(self):
-	"returns the right margin in centimeters"
+        "returns the right margin in centimeters"
         return self.rmargin
 
     def get_first_indent(self):
-	"returns the first indent margin in centimeters"
+        "returns the first indent margin in centimeters"
         return self.first_indent
 
 #------------------------------------------------------------------------
@@ -996,7 +996,7 @@ class GraphicsStyle:
             self.para_name = obj.para_name
             self.shadow = obj.shadow
             self.shadow_space = obj.shadow_space
-	    self.color = obj.color
+            self.color = obj.color
             self.fill_color = obj.fill_color
             self.lwidth = obj.lwidth
             self.lstyle = obj.lstyle
@@ -1049,7 +1049,7 @@ class GraphicsStyle:
         return self.height
 
     def get_width(self):
-	return self.width
+        return self.width
 
     def get_paragraph_style(self):
         return self.para_name
@@ -1105,10 +1105,10 @@ class BaseDoc:
         self.title = ""
         self.owner = ''
                 
-	self.draw_styles = {}
+        self.draw_styles = {}
         self.font = FontStyle()
         self.style_list = styles.get_styles()
-	self.table_styles = {}
+        self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
         self.media_list = []
@@ -1235,7 +1235,7 @@ class BaseDoc:
 
     def line_break(self):
         "Forces a line break within a paragraph"
-	pass
+        pass
 
     def page_break(self):
         "Forces a page break, creating a new page"
@@ -1255,10 +1255,10 @@ class BaseDoc:
 
     def start_listing(self,style_name):
         """
-	Starts a new listing block, using the specified style name.
+        Starts a new listing block, using the specified style name.
 
         @param style_name: name of the ParagraphStyle to use for the block.
-	"""
+        """
         pass
 
     def end_listing(self):
@@ -1353,10 +1353,10 @@ class BaseDoc:
         pass
     
     def draw_box(self,style,text,x,y):
-	pass
+        pass
 
     def write_at(self,style,text,x,y):
-	pass
+        pass
 
     def draw_bar(self,style,x1,y1,x2,y2):
         pass
@@ -1371,7 +1371,7 @@ class BaseDoc:
         pass
     
     def draw_line(self,style,x1,y1,x2,y2):
-	pass
+        pass
 
     def draw_wedge(self, style, centerx, centery, radius, start_angle,
                    end_angle, short_radius=0):
