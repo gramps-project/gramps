@@ -1,3 +1,6 @@
+2003-07-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetDescendantReport.py: Enable book functionality.
+
 2003-07-07  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WriteGedcom.py: Fix GEDCOM export.  Fixed date
 	construction logic to handle datestrs.
