@@ -91,10 +91,10 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,person,photos,restrict,private,uc,link,list,dir_name,doc):
+    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,doc):
         self.person = person
         self.doc = doc
-        self.list = list
+	self.list = map
         self.private = private
         self.alive = probably_alive(person) and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
@@ -180,11 +180,12 @@ class IndividualPage:
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
         if person:
-            if person in self.list:
+            if self.list.has_key(person):
                 self.doc.start_link("%s.html" % person.getId())
-            self.doc.write_text(person.getPrimaryName().getRegularName())
-            if person in self.list:
+	        self.doc.write_text(person.getPrimaryName().getRegularName())
                 self.doc.end_link()
+            else:
+	        self.doc.write_text(person.getPrimaryName().getRegularName())
 
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -440,11 +441,12 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
-                if spouse in self.list:
+                if self.list.has_key(spouse):
                     self.doc.start_link("%s.html" % spouse.getId())
-                self.doc.write_text(spouse.getPrimaryName().getRegularName())
-                if spouse in self.list:
+                    self.doc.write_text(spouse.getPrimaryName().getRegularName())
                     self.doc.end_link()
+                else:
+                    self.doc.write_text(spouse.getPrimaryName().getRegularName())
             else:
                 self.doc.write_text(_("unknown"))
             self.doc.end_paragraph()
@@ -475,11 +477,12 @@ class IndividualPage:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    if child in self.list:
+                    if self.list.has_key(child):
                         self.doc.start_link("%s.html" % child.getId())
-                    self.doc.write_text(child.getPrimaryName().getRegularName())
-                    if child in self.list:
+                        self.doc.write_text(child.getPrimaryName().getRegularName())
                         self.doc.end_link()
+                    else:
+                        self.doc.write_text(child.getPrimaryName().getRegularName())
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
@@ -799,16 +802,33 @@ def on_ok_clicked(obj):
     else:
         photos = 2
 
+    total = float(len(ind_list))
+    index = 0.0
+
+    pxml = GladeXML(glade_file,"progress")
+    ptop = pxml.get_widget("progress")
+    pbar = pxml.get_widget("progressbar")
+    pbar.configure(0.0,0.0,total)
+    
+    doc = HtmlLinkDoc(styles,templ_name)
+    my_map = {}
+    for l in ind_list:
+        my_map[l] = 1
     for person in ind_list:
-        doc = HtmlLinkDoc(styles,templ_name)
+        tdoc = HtmlLinkDoc(styles,None,doc)
         idoc = IndividualPage(person,photos,restrict,private,srccomments,\
-                              include_link, ind_list,dir_name,doc)
+                              include_link,my_map,dir_name,tdoc)
         idoc.create_page()
         idoc.close()
+        index = index + 1.0
+        pbar.set_value(index)
+        while events_pending():
+            mainiteration()
         
     if len(ind_list) > 1:
         dump_index(ind_list,styles,templ_name,dir_name)
-        
+
+    utils.destroy_passed_object(ptop)
     utils.destroy_passed_object(obj)
     
 #------------------------------------------------------------------------
@@ -849,3 +869,85 @@ register_report(
     description=_("Generates web (HTML) pages for individuals, or a set of individuals.")
     )
 
+
+if __name__ == "__main__":
+    import profile
+    import sys
+    import ReadXML
+    
+    def task(styles,ind_list):
+        my_map = {}
+        for l in ind_list:
+            my_map[l] = 1
+
+        doc = HtmlLinkDoc(styles,None)
+        for person in ind_list:
+            tdoc = HtmlLinkDoc(styles,None,doc)
+            idoc = IndividualPage(person,1,1,1,1,1,my_map,"/home/dona/scratch",tdoc)
+            idoc.create_page()
+            idoc.close()
+                
+    styles = StyleSheet()
+    font = FontStyle()
+    font.set(bold=1, face=FONT_SANS_SERIF, size=16)
+    p = ParagraphStyle()
+    p.set(align=PARA_ALIGN_CENTER,font=font)
+    styles.add_style("Title",p)
+    
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("EventsTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("NotesTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("SourcesTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("FamilyTitle",p)
+    
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Spouse",p)
+
+    font = FontStyle()
+    font.set(size=12,italic=1)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Label",p)
+
+    font = FontStyle()
+    font.set_size(12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Data",p)
+
+    font = FontStyle()
+    font.set_size(10)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("SourceParagraph",p)
+
+    font = FontStyle()
+    font.set_size(12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("NotesParagraph",p)
+
+    db = RelDataBase()
+    ReadXML.loadData(db,sys.argv[1])
+    profile.run('task(styles,db.getPersonMap().values())')
