@@ -77,10 +77,9 @@ import ReadXML
 from GrampsXML import GrampsXML
 try:
     from GrampsZODB import GrampsZODB
-    USE_ZODB = 1
+    zodb_ok = 1
 except:
-    USE_ZODB = 0
-    
+    zodb_ok = 0
 
 #-------------------------------------------------------------------------
 #
@@ -1799,7 +1798,7 @@ class Gramps:
     
     def load_database(self,name):
         filename = "%s/%s" % (name,const.xmlFile)
-        if not os.path.isfile(filename):
+        if not os.path.isfile(filename) and zodb_ok:
             filename = "%s/%s" % (name,const.zodbFile)
             self.clear_database(1)
         else:
