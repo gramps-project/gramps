@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
 %{prefix}/share/gramps/*.pyo
 %{prefix}/share/gramps/*.pyc
+%{prefix}/share/gramps/*.so
 %{prefix}/share/gramps/*.py
 %{prefix}/share/gramps/*.glade
 %{prefix}/share/gramps/*.xpm
