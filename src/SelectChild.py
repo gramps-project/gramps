@@ -62,7 +62,6 @@ class SelectChild:
         self.xml = libglade.GladeXML(const.gladeFile,"selectChild")
     
         self.xml.signal_autoconnect({
-            "on_combo_insert_text"     : utils.combo_insert_text,
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
             "destroy_passed_object"    : utils.destroy_passed_object
@@ -222,7 +221,7 @@ class NewChild:
         self.xml = libglade.GladeXML(const.gladeFile,"addChild")
         self.xml.signal_autoconnect({
             "on_addchild_ok_clicked" : self.on_addchild_ok_clicked,
-            "on_combo_insert_text"   : self.combo_insert_text,
+            "on_edit_new_child"      : self.on_edit_new_child,
             "on_male_toggled"        : self.on_male_toggled,
             "on_female_toggled"      : self.on_female_toggled,
             "on_gender_toggled"      : self.on_gender_toggled,
@@ -386,4 +385,12 @@ class NewChild:
         self.update(self.family,person)
         utils.modified()
         utils.destroy_passed_object(obj)
+        self.new_child = person
+
+    def on_edit_new_child(self,obj):
+        import EditPerson
+        
+        self.on_addchild_ok_clicked(obj)
+        EditPerson.EditPerson(self.new_child,self.db)
+        
 
