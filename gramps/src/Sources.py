@@ -33,7 +33,7 @@ import libglade
 #-------------------------------------------------------------------------
 
 import const
-import utils
+import Utils
 from RelLib import *
 
 #-------------------------------------------------------------------------
@@ -56,7 +56,7 @@ class SourceSelector:
         self.update=update
         self.top = libglade.GladeXML(const.srcselFile,"sourcesel")
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked"    : self.on_add_src_clicked,
             "on_del_src_clicked"    : self.on_del_src_clicked,
             "on_edit_src_clicked"   : self.on_edit_src_clicked,
@@ -84,7 +84,7 @@ class SourceSelector:
         for s in self.list:
             self.orig.append(s)
         self.update(self.parent)
-        utils.destroy_passed_object(self.sourcesel)
+        Utils.destroy_passed_object(self.sourcesel)
     
     def on_edit_src_clicked(self,obj):
         sel = obj.selection
@@ -119,17 +119,17 @@ class SourceEditor:
         self.source_ref = srcref
         self.showSource = libglade.GladeXML(const.srcselFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
-            "on_combo_insert_text"  : utils.combo_insert_text,
+            "on_combo_insert_text"  : Utils.combo_insert_text,
             "on_sourceok_clicked"   : self.on_sourceok_clicked,
             "on_source_changed"     : self.on_source_changed,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
         self.sourceDisplay = self.get_widget("sourceDisplay")
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
         self.title_menu.set_data("o",self)
         self.conf_menu = self.get_widget("conf")
-        utils.build_confidence_menu(self.conf_menu)
+        Utils.build_confidence_menu(self.conf_menu)
         self.conf_menu.set_history(srcref.getConfidence())
 
         self.author_field = self.get_widget("sauthor")
@@ -218,8 +218,8 @@ class SourceEditor:
         if self.update:
             self.update(self.parent,self.source_ref)
         
-        utils.modified()
-        utils.destroy_passed_object(obj)
+        Utils.modified()
+        Utils.destroy_passed_object(obj)
 
     def on_source_changed(self,obj):
         self.active_source = obj.list.get_selection()[0].get_data("s")

@@ -26,9 +26,9 @@ import string
 import ImageSelect
 
 from RelLib import *
-import utils
+import Utils
 import os
-import Config
+import GrampsCfg
 import const
 import RelImage
 
@@ -72,13 +72,13 @@ class MediaView:
                                       GDK.ACTION_COPY|GDK.ACTION_MOVE)
 
         self.update = update
-        self.media_list.set_column_visibility(4,Config.show_detail)
+        self.media_list.set_column_visibility(4,GrampsCfg.show_detail)
         self.media_list.set_column_visibility(5,0)
         self.media_list.connect('button-press-event',self.on_button_press_event)
 
         # Restore the previous sort column
         
-        self.sort_col,self.sort_dir = Config.get_sort_cols("media",0,GTK.SORT_ASCENDING)
+        self.sort_col,self.sort_dir = GrampsCfg.get_sort_cols("media",0,GTK.SORT_ASCENDING)
         self.media_list.set_sort_type(self.sort_dir)
         self.media_list.set_sort_column(self.sort_map[self.sort_col])
         self.set_arrow(self.sort_col)
@@ -118,7 +118,7 @@ class MediaView:
         obj.set_sort_type(self.sort_dir)
         obj.set_sort_column(new_col)
         self.sort_col = column
-        Config.save_sort_cols("media",self.sort_col,self.sort_dir)
+        GrampsCfg.save_sort_cols("media",self.sort_col,self.sort_dir)
         obj.sort()
         if data:
             row = obj.find_row_from_data(data)
@@ -130,14 +130,14 @@ class MediaView:
         
         mobj = obj.get_row_data(row)
         type = mobj.getMimeType()
-        type_name = utils.get_mime_description(type)
+        type_name = Utils.get_mime_description(type)
         path = mobj.getPath()
-        thumb_path = utils.thumb_path(self.db.getSavePath(),mobj)
+        thumb_path = Utils.thumb_path(self.db.getSavePath(),mobj)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.load_file(thumb_path)
         else:
-            self.preview.load_file(utils.find_icon(type))
+            self.preview.load_file(Utils.find_icon(type))
             if not pexists:
                 fexists = 0
         
@@ -150,7 +150,7 @@ class MediaView:
             self.mpath.set_text(path)
         else:
             self.mpath.set_text("<local>")
-        self.mdetails.set_text(utils.get_detail_text(mobj,0))
+        self.mdetails.set_text(Utils.get_detail_text(mobj,0))
 
     def on_button_press_event(self,obj,event):
         if len(self.media_list.selection) <= 0:
@@ -164,19 +164,19 @@ class MediaView:
             item.show()
             menu.append(item)
             self.obj = object
-            utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
+            Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
             if object.getMimeType()[0:5] == "image":
-                utils.add_menuitem(menu,_("Edit with the GIMP"),\
+                Utils.add_menuitem(menu,_("Edit with the GIMP"),\
                                    None,self.popup_edit_photo)
-            utils.add_menuitem(menu,_("Edit Object Properties"),None,
+            Utils.add_menuitem(menu,_("Edit Object Properties"),None,
                                self.popup_change_description)
             if object.getLocal() == 0:
-                utils.add_menuitem(menu,_("Convert to local copy"),None,
+                Utils.add_menuitem(menu,_("Convert to local copy"),None,
                                    self.popup_convert_to_private)
             menu.popup(None,None,None,0,0)
 
     def popup_view_photo(self, obj):
-        utils.view_photo(self.obj)
+        Utils.view_photo(self.obj)
     
     def popup_edit_photo(self, obj):
         if os.fork() == 0:
@@ -202,8 +202,8 @@ class MediaView:
 
         self.media_list.freeze()
         self.media_list.clear()
-        self.media_list.set_column_visibility(1,Config.id_visible)
-        self.media_list.set_column_visibility(4,Config.show_detail)
+        self.media_list.set_column_visibility(1,GrampsCfg.id_visible)
+        self.media_list.set_column_visibility(4,GrampsCfg.show_detail)
         
         index = 0
         objects = self.db.getObjectMap().values()
@@ -211,12 +211,12 @@ class MediaView:
         for src in objects:
             title = src.getDescription()
             id = src.getId()
-            type = utils.get_mime_description(src.getMimeType())
+            type = Utils.get_mime_description(src.getMimeType())
             if src.getLocal():
                 path = "<local copy>"
             else:
                 path = src.getPath()
-            details = utils.get_detail_flags(src,0)
+            details = Utils.get_detail_flags(src,0)
             stitle = string.upper(title)
             self.media_list.append([title,id,type,path,details,stitle])
             self.media_list.set_row_data(index,src)
@@ -267,7 +267,7 @@ class MediaView:
         else:
             map = self.db.getObjectMap()
             del map[mobj.getId()]
-            utils.modified()
+            Utils.modified()
             self.update(0)
 
     def is_media_object_used(self,mobj):
@@ -302,25 +302,25 @@ class MediaView:
             protocol,site,file, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 name = file
-                mime = utils.get_mime_type(name)
+                mime = Utils.get_mime_type(name)
                 photo = Photo()
                 photo.setPath(name)
                 photo.setMimeType(mime)
                 description = os.path.basename(name)
                 photo.setDescription(description)
                 self.db.addObject(photo)
-                utils.modified()
+                Utils.modified()
                 w.drag_finish(context, 1, 0, time)
                 self.load_media()
-                if Config.mediaref == 0:
+                if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,
                                                         self.db.getSavePath(),
                                                         photo.getId())
                     if name:
                         photo.setPath(name)
                         photo.setLocal(1)
-                utils.modified()
-                if Config.globalprop:
+                Utils.modified()
+                if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media)
             elif protocol != "":
                 import urllib
@@ -332,7 +332,7 @@ class MediaView:
                     
                     gnome.ui.GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
-                mime = utils.get_mime_type(tfile)
+                mime = Utils.get_mime_type(tfile)
                 photo = Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
@@ -352,8 +352,8 @@ class MediaView:
                     photo.setPath(tfile)
                     w.drag_finish(context, 1, 0, time)
                     return
-                utils.modified()
-                if Config.globalprop:
+                Utils.modified()
+                if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,None)
             else:
                 w.drag_finish(context, 0, 0, time)

@@ -24,8 +24,7 @@ from RelLib import *
 from HtmlDoc import *
 
 import const
-import utils
-import Config
+import GrampsCfg
 import intl
 _ = intl.gettext
 
@@ -844,7 +843,7 @@ class WebReportDialog(ReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return Config.web_dir
+        return GrampsCfg.web_dir
     
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -854,7 +853,7 @@ class WebReportDialog(ReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        Config.web_dir = value
+        GrampsCfg.web_dir = value
     
     #------------------------------------------------------------------------
     #

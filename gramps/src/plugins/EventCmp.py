@@ -27,7 +27,7 @@
 #------------------------------------------------------------------------
 import os
 import sort
-import utils
+import Utils
 import string
 import ListColors
 import Filter
@@ -151,7 +151,7 @@ class EventComparison:
             "on_filter_save_clicked" : self.on_filter_save_clicked,
             "on_filter_load_clicked" : self.on_filter_load_clicked,
             "on_apply_clicked"       : self.on_apply_clicked,
-            "destroy_passed_object"  : utils.destroy_passed_object
+            "destroy_passed_object"  : Utils.destroy_passed_object
             })
     
         top =self.filterDialog.get_widget("filters")
@@ -224,8 +224,8 @@ class EventComparison:
         if len(names) > 0:
             self.filter_combo.set_popdown_strings(names)
         self.load_dialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "combo_insert_text"     : utils.combo_insert_text,
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "combo_insert_text"     : Utils.combo_insert_text,
             "on_load_filter"        : self.on_save_filter,
             })
 
@@ -237,8 +237,8 @@ class EventComparison:
         if len(names) > 0:
             self.filter_combo.set_popdown_strings(names)
         self.load_dialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "combo_insert_text"     : utils.combo_insert_text,
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "combo_insert_text"     : Utils.combo_insert_text,
             "on_load_filter"        : self.on_load_filter,
             })
 
@@ -256,12 +256,12 @@ class EventComparison:
             name = Filter.get_filter_description(name)
             self.filter_list_obj.append([name,f.get_text(),invert])
         self.filter_list_obj.thaw()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def on_save_filter(self,obj):
         name = self.load_dialog.get_widget("name").get_text()
         self.interface.save_filter(name,self.filter_list)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         
     def on_filter_name_changed(self,obj):
         self.qual = obj.get_data(QUALIFIER)
@@ -376,7 +376,7 @@ class DisplayChart:
         self.topDialog = libglade.GladeXML(self.glade_file,"view")
         self.topDialog.signal_autoconnect({
             "on_write_table"        : self.on_write_table,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         self.top = self.topDialog.get_widget("view")
@@ -478,7 +478,7 @@ class DisplayChart:
         self.form.signal_autoconnect({
             "on_save_clicked"       : self.on_save_clicked,
             "on_html_toggled"       : self.on_html_toggled,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
         self.save_form = self.form.get_widget("dialog1")
         self.save_form.show()
@@ -505,7 +505,7 @@ class DisplayChart:
             spreadsheet.write_table_data(bottom)
 
         spreadsheet.finalize()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
 #

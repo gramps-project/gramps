@@ -21,7 +21,7 @@
 import const
 import libglade
 import gnome.config
-import utils
+import Utils
 
 _StartupEntry = "/gramps/config/startup"
 
@@ -78,9 +78,9 @@ class StartupDialog:
         gnome.config.set_int("/gramps/config/UseLDS",lds)
         gnome.config.set_int(_StartupEntry,const.startup)
         gnome.config.sync()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def on_cancel_clicked(self,obj):
         gnome.config.set_int(_StartupEntry,const.startup)
         gnome.config.sync()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)

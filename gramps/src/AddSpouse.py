@@ -52,8 +52,8 @@ import libglade
 import RelLib
 import const
 import sort
-import utils
-import Config
+import Utils
+import GrampsCfg
 
 class AddSpouse:
     """
@@ -87,7 +87,7 @@ class AddSpouse:
         self.surname_combo = self.glade.get_widget("surname_combo")
 
         self.rel_combo.set_popdown_strings(const.familyRelations)
-        utils.attach_surnames(self.surname_combo)
+        Utils.attach_surnames(self.surname_combo)
 
         # Typing CR selects 'Add Existing' button
         self.top.editable_enters(self.given)
@@ -96,15 +96,15 @@ class AddSpouse:
         self.name_list = self.db.getPersonMap().values()
         self.name_list.sort(sort.by_last_name)
 
-        title = _("Choose Spouse/Partner of %s") % Config.nameof(person)
+        title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
             "on_new_spouse_clicked"    : self.new_spouse_clicked,
             "on_rel_type_changed"      : self.relation_type_changed,
-            "on_combo_insert_text"     : utils.combo_insert_text,
-            "destroy_passed_object"    : utils.destroy_passed_object
+            "on_combo_insert_text"     : Utils.combo_insert_text,
+            "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
         self.relation_type.set_text(_("Married"))
@@ -142,8 +142,8 @@ class AddSpouse:
             family.setFather(spouse)
             family.setMother(self.person)
             
-        utils.destroy_passed_object(obj)
-        utils.modified()
+        Utils.destroy_passed_object(obj)
+        Utils.modified()
         self.addperson(spouse)
         self.update(family)
 
@@ -160,10 +160,10 @@ class AddSpouse:
         # don't do anything if the marriage already exists
         for f in self.person.getFamilyList():
             if spouse == f.getMother() or spouse == f.getFather():
-                utils.destroy_passed_object(obj)
+                Utils.destroy_passed_object(obj)
                 return
 
-        utils.modified()
+        Utils.modified()
         family = self.db.newFamily()
         self.person.addFamily(family)
         spouse.addFamily(family)
@@ -176,7 +176,7 @@ class AddSpouse:
             family.setMother(self.person)
 
         family.setRelationship(const.save_frel(self.relation_type.get_text()))
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         self.update(family)
 
     def relation_type_changed(self,obj):
@@ -204,7 +204,7 @@ class AddSpouse:
             if person.getGender() == gender:
                 continue
             name = person.getPrimaryName().getName()
-            self.spouse_list.append([name,utils.birthday(person)])
+            self.spouse_list.append([name,Utils.birthday(person)])
             self.spouse_list.set_row_data(index,person)
             index = index + 1
         self.spouse_list.thaw()

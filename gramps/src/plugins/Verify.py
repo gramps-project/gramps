@@ -26,7 +26,7 @@ import posixpath
 import re
 import sort
 import string
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -60,7 +60,7 @@ def runTool(database,active_person,callback):
     verifySettings = GladeXML(glade_file,"verify_settings")
 
     verifySettings.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
         "on_verify_ok_clicked" : on_apply_clicked
         })
 
@@ -272,7 +272,7 @@ def on_apply_clicked(obj):
     verifyResult = GladeXML(glade_file,"verify_result")
     
     verifyResult.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
         })
     top = verifyResult.get_widget("verify_result")
     textwindow = verifyResult.get_widget("textwindow")

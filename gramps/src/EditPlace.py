@@ -35,8 +35,8 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
-import Config
+import Utils
+import GrampsCfg
 from RelLib import *
 import Sources
 import ImageSelect
@@ -111,7 +111,7 @@ class EditPlace:
         self.note.set_word_wrap(1)
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_source_clicked" : self.on_source_clicked,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
             "on_photolist_button_press_event" : self.gallery.on_button_press_event,
@@ -179,10 +179,10 @@ class EditPlace:
         self.place.setUrlList(self.ulist)
         self.place.set_alternate_locations(self.llist)
         if self.lists_changed:
-            utils.modified()
+            Utils.modified()
             
     def redraw_url_list(self):
-        length = utils.redraw_list(self.ulist,self.web_list,disp_url)
+        length = Utils.redraw_list(self.ulist,self.web_list,disp_url)
         if length > 0:
             self.web_go.set_sensitive(1)
         else:
@@ -191,7 +191,7 @@ class EditPlace:
             self.web_description.set_text("")
 
     def redraw_location_list(self):
-        utils.redraw_list(self.llist,self.loc_list,disp_loc)
+        Utils.redraw_list(self.llist,self.loc_list,disp_loc)
 
 
     def on_web_go_clicked(self,obj):
@@ -216,47 +216,47 @@ class EditPlace:
         mloc = self.place.get_main_location()
         if city != mloc.get_city():
             mloc.set_city(city)
-            utils.modified()
+            Utils.modified()
 
         if parish != mloc.get_parish():
             mloc.set_parish(parish)
-            utils.modified()
+            Utils.modified()
 
         if self.lists_changed:
             self.place.setSourceRefList(self.srcreflist)
-            utils.modified()
+            Utils.modified()
 
         if state != mloc.get_state():
             mloc.set_state(state)
-            utils.modified()
+            Utils.modified()
 
         if county != mloc.get_county():
             mloc.set_county(county)
-            utils.modified()
+            Utils.modified()
 
         if country != mloc.get_country():
             mloc.set_country(country)
-            utils.modified()
+            Utils.modified()
 
         if title != self.place.get_title():
             self.place.set_title(title)
-            utils.modified()
+            Utils.modified()
         
         if longitude != self.place.get_longitude():
             self.place.set_longitude(longitude)
-            utils.modified()
+            Utils.modified()
 
         if latitude != self.place.get_latitude():
             self.place.set_latitude(latitude)
-            utils.modified()
+            Utils.modified()
         
         if note != self.place.getNote():
             self.place.setNote(note)
-            utils.modified()
+            Utils.modified()
 
         self.update_lists()
 
-        utils.destroy_passed_object(self.top)
+        Utils.destroy_passed_object(self.top)
         if self.callback:
             self.callback(self.place)
 
@@ -285,12 +285,12 @@ class EditPlace:
             LocEdit.LocationEditor(self,obj.get_row_data(row))
 
     def on_delete_url_clicked(self,obj):
-        if utils.delete_selected(obj,self.ulist):
+        if Utils.delete_selected(obj,self.ulist):
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_loc_clicked(self,obj):
-        if utils.delete_selected(obj,self.llist):
+        if Utils.delete_selected(obj,self.llist):
             self.lists_changed = 1
             self.redraw_location_list()
 
@@ -351,7 +351,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = t % (Config.nameof(e[0]),e[0].getId(),e[1].getName())
+                msg = t % (GrampsCfg.nameof(e[0]),e[0].getId(),e[1].getName())
                 self.refinfo.insert_defaults(msg)
 
         if len(fevent) > 0:
@@ -363,11 +363,11 @@ class EditPlace:
                 father = e[0].getFather()
                 mother = e[0].getMother()
                 if father and mother:
-                    fname = "%s and %s" % (Config.nameof(father),Config.nameof(mother))
+                    fname = "%s and %s" % (GrampsCfg.nameof(father),GrampsCfg.nameof(mother))
                 elif father:
-                    fname = "%s" % Config.nameof(father)
+                    fname = "%s" % GrampsCfg.nameof(father)
                 else:
-                    fname = "%s" % Config.nameof(mother)
+                    fname = "%s" % GrampsCfg.nameof(mother)
 
                 msg = t % (fname,e[0].getId(),e[1].getName())
                 self.refinfo.insert_defaults(msg)
@@ -412,7 +412,7 @@ class DeletePlaceQuery:
         if ans == 1:
             return
         del self.db.getPlaceMap()[self.place.getId()]
-        utils.modified()
+        Utils.modified()
 
         for p in self.db.getPersonMap().values():
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():

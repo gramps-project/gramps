@@ -29,7 +29,7 @@ from libglade import *
 import RelLib
 import sort
 import intl
-import utils
+import Utils
 
 _ = intl.gettext
 
@@ -319,7 +319,7 @@ class RelCalc:
         self.people.thaw()
             
         self.glade.signal_autoconnect({
-            "on_close_clicked" : utils.destroy_passed_object,
+            "on_close_clicked" : Utils.destroy_passed_object,
             "on_apply_clicked" : self.on_apply_clicked
             })
 

@@ -21,7 +21,6 @@
 import os
 import string
 import re
-import utils
 import gnome.ui
 import Plugins
 import ImgManip

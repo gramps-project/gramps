@@ -27,7 +27,7 @@ import WriteXML
 import time
 import os
 import TarFile
-import utils
+import Utils
 import libglade
 
 from cStringIO import StringIO
@@ -46,7 +46,7 @@ def writeData(database,person):
     glade_file = base + os.sep + "pkgexport.glade"
         
     dic = {
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked
         }
 
@@ -65,7 +65,7 @@ def on_ok_clicked(obj):
     global topDialog
     
     name = topDialog.get_widget("filename").get_text()
-    utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(obj)
     exportData(db,name)
 
 def callback(a):

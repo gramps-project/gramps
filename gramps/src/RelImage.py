@@ -40,7 +40,7 @@ from gnome.ui import GnomeErrorDialog, GnomeWarningDialog
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 import ImgManip
 from intl import gettext
 _ = gettext
@@ -58,7 +58,7 @@ def import_media_object(filename,path,base):
         GnomeErrorDialog(_("Could not import %s\nThe file has been moved or deleted") % filename)
         return ""
     
-    type = utils.get_mime_type(filename)
+    type = Utils.get_mime_type(filename)
     if type[0:5] == "image":
         name = "%s/%s.jpg" % (path,base)
         base = "%s.jpg" % (base)

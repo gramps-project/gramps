@@ -22,9 +22,9 @@
 
 from RelLib import *
 import os
-import utils
+import Utils
 import intl
-import Config
+import GrampsCfg
 
 _ = intl.gettext
 
@@ -51,7 +51,7 @@ class DesBrowse:
 
         self.glade = libglade.GladeXML(glade_file,"top")
         self.glade.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             })
         top = self.glade.get_widget("top")
         tree= self.glade.get_widget("tree1")
@@ -60,7 +60,7 @@ class DesBrowse:
         top.show()
 
     def add_to_tree(self,tree,person):
-        item = gtk.GtkTreeItem(Config.nameof(person))
+        item = gtk.GtkTreeItem(GrampsCfg.nameof(person))
         item.show()
         item.connect('button-press-event',self.button_press_event)
         item.set_data('d',person)

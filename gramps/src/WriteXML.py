@@ -38,7 +38,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import const
-import Config
+import GrampsCfg
 from RelLib import *
 from Date import SingleDate
 from intl import gettext
@@ -65,7 +65,7 @@ def exportData(database, filename, callback):
     if os.path.isfile(filename):
         shutil.copy(filename, filename + ".bak")
 
-    compress = Config.uncompress ==0 and _gzip_ok == 1
+    compress = GrampsCfg.uncompress ==0 and _gzip_ok == 1
 
     try:
         g = XmlWriter(database,callback,0,compress)

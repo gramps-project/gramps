@@ -35,7 +35,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 import Date
 import RelLib
 
@@ -102,7 +102,7 @@ class AddressEditor:
             self.srcreflist = []
 
         self.top.signal_autoconnect({
-            "destroy_passed_object"   : utils.destroy_passed_object,
+            "destroy_passed_object"   : Utils.destroy_passed_object,
             "on_addr_edit_ok_clicked" : self.ok_clicked,
             "on_source_clicked"       : self.source_clicked
             })
@@ -133,7 +133,7 @@ class AddressEditor:
             
         self.update(date,street,city,state,country,postal,note,priv)
         self.parent.redraw_addr_list()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the

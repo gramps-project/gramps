@@ -44,8 +44,8 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
-import Config
+import Utils
+import GrampsCfg
 import Plugins
 from RelLib import *
 import RelImage
@@ -103,7 +103,7 @@ class ImageSelect:
         self.glade.signal_autoconnect({
             "on_savephoto_clicked" : self.on_savephoto_clicked,
             "on_name_changed" : self.on_name_changed,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         window.editable_enters(self.description)
@@ -127,12 +127,12 @@ class ImageSelect:
         self.temp_name = root
         
         if os.path.isfile(filename):
-            type = utils.get_mime_type(filename)
+            type = Utils.get_mime_type(filename)
             if type[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.load_imlib(image)
             else:
-                self.image.load_file(utils.find_icon(type))
+                self.image.load_file(Utils.find_icon(type))
 
     #-------------------------------------------------------------------------
     #
@@ -159,7 +159,7 @@ class ImageSelect:
             self.dataobj.addPhoto(oref)
             self.add_thumbnail(oref)
         else:
-            type = utils.get_mime_type(filename)
+            type = Utils.get_mime_type(filename)
             mobj = Photo()
             if description == "":
                 description = os.path.basename(filename)
@@ -179,8 +179,8 @@ class ImageSelect:
                     mobj.setLocal(1)
             mobj.setPath(name)
             
-        utils.modified()
-        utils.destroy_passed_object(obj)
+        Utils.modified()
+        Utils.destroy_passed_object(obj)
         self.load_images()
 
     #-------------------------------------------------------------------------
@@ -249,7 +249,7 @@ class Gallery(ImageSelect):
     #-------------------------------------------------------------------------
     def add_thumbnail(self, photo):
         object = photo.getReference()
-        name = utils.thumb_path(self.db.getSavePath(),object)
+        name = Utils.thumb_path(self.db.getSavePath(),object)
         try:
             thumb = GdkImlib.Image(name)
         except IOError,msg:
@@ -292,7 +292,7 @@ class Gallery(ImageSelect):
             protocol,site,file, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 name = file
-                mime = utils.get_mime_type(name)
+                mime = Utils.get_mime_type(name)
                 photo = Photo()
                 photo.setPath(name)
                 photo.setMimeType(mime)
@@ -300,12 +300,12 @@ class Gallery(ImageSelect):
                 (root,ext) = os.path.splitext(basename)
                 photo.setDescription(root)
                 self.savephoto(photo)
-                if Config.mediaref == 0:
+                if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,self.path,photo.getId())
                     photo.setPath(name)
                     photo.setLocal(1)
-                utils.modified()
-                if Config.globalprop:
+                Utils.modified()
+                if GrampsCfg.globalprop:
                     GlobalMediaProperties(self.db,photo,None)
             elif protocol != "":
                 import urllib
@@ -317,7 +317,7 @@ class Gallery(ImageSelect):
                     
                     gnome.ui.GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
-                mime = utils.get_mime_type(tfile)
+                mime = Utils.get_mime_type(tfile)
                 photo = Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
@@ -337,8 +337,8 @@ class Gallery(ImageSelect):
                     w.drag_finish(context, 1, 0, time)
                     return
                 self.add_thumbnail(oref)
-                utils.modified()
-                if Config.globalprop:
+                Utils.modified()
+                if GrampsCfg.globalprop:
                     GlobalMediaProperties(self.db,photo,None)
             else:
                 if self.db.getObjectMap().has_key(data.data):
@@ -359,7 +359,7 @@ class Gallery(ImageSelect):
                                     del nl[index]
                                     nl = nl[0:icon_index] + [item] + nl[icon_index:]
                                 self.dataobj.setPhotoList(nl)
-                                utils.modified()
+                                Utils.modified()
                                 self.load_images()
                                 return
                         index = index + 1
@@ -367,9 +367,9 @@ class Gallery(ImageSelect):
                     oref.setReference(self.db.findObjectNoMap(data.data))
                     self.dataobj.addPhoto(oref)
                     self.add_thumbnail(oref)
-                    if Config.globalprop:
+                    if GrampsCfg.globalprop:
                         LocalMediaProperties(oref,self.path)
-                    utils.modified()
+                    Utils.modified()
             w.drag_finish(context, 1, 0, time)
 	else:
             w.drag_finish(context, 0, 0, time)
@@ -426,15 +426,15 @@ class Gallery(ImageSelect):
             item = gtk.GtkTearoffMenuItem()
             item.show()
             menu.append(item)
-            utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
+            Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
             object = photo.getReference()
             if object.getMimeType()[0:5] == "image":
-                utils.add_menuitem(menu,_("Edit with the GIMP"),\
+                Utils.add_menuitem(menu,_("Edit with the GIMP"),\
                                    None,self.popup_edit_photo)
-            utils.add_menuitem(menu,_("Edit Object Properties"),None,
+            Utils.add_menuitem(menu,_("Edit Object Properties"),None,
                                self.popup_change_description)
             if object.getLocal() == 0:
-                utils.add_menuitem(menu,_("Convert to local copy"),None,
+                Utils.add_menuitem(menu,_("Convert to local copy"),None,
                                    self.popup_convert_to_private)
             menu.popup(None,None,None,0,0)
 
@@ -445,7 +445,7 @@ class Gallery(ImageSelect):
     #-------------------------------------------------------------------------
     def popup_view_photo(self, obj):
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
-        utils.view_photo(photo.getReference())
+        Utils.view_photo(photo.getReference())
     
     #-------------------------------------------------------------------------
     #
@@ -505,7 +505,7 @@ class LocalMediaProperties:
         
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
-        pixmap.load_file(utils.thumb_path(path,self.object))
+        pixmap.load_file(Utils.thumb_path(path,self.object))
 
         self.change_dialog.get_widget("private").set_active(photo.getPrivacy())
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
@@ -514,10 +514,10 @@ class LocalMediaProperties:
             self.change_dialog.get_widget("path").set_text("<local>")
         else:
             self.change_dialog.get_widget("path").set_text(fname)
-        self.change_dialog.get_widget("type").set_text(utils.get_mime_description(mtype))
+        self.change_dialog.get_widget("type").set_text(Utils.get_mime_description(mtype))
         self.change_dialog.get_widget("notes").insert_defaults(photo.getNote())
         self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked" : utils.destroy_passed_object,
+            "on_cancel_clicked" : Utils.destroy_passed_object,
             "on_up_clicked" : self.on_up_clicked,
             "on_down_clicked" : self.on_down_clicked,
             "on_ok_clicked" : self.on_ok_clicked,
@@ -544,7 +544,7 @@ class LocalMediaProperties:
             obj.select_row(row+1,0)
 
     def redraw_attr_list(self):
-        utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        Utils.redraw_list(self.alist,self.attr_list,disp_attr)
         
     def on_apply_clicked(self, obj):
         priv = self.change_dialog.get_widget("private").get_active()
@@ -553,21 +553,21 @@ class LocalMediaProperties:
         if text != note or priv != self.photo.getPrivacy():
             self.photo.setNote(text)
             self.photo.setPrivacy(priv)
-            utils.modified()
+            Utils.modified()
         if self.lists_changed:
             self.photo.setAttributeList(self.alist)
-            utils.modified()
+            Utils.modified()
 
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         
     def on_attr_list_select_row(self,obj,row,b,c):
         attr = obj.get_row_data(row)
 
         self.attr_type.set_label(attr.getType())
         self.attr_value.set_text(attr.getValue())
-        self.attr_details.set_text(utils.get_detail_text(attr))
+        self.attr_details.set_text(Utils.get_detail_text(attr))
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -578,7 +578,7 @@ class LocalMediaProperties:
                                      Plugins.get_image_attributes())
 
     def on_delete_attr_clicked(self,obj):
-        if utils.delete_selected(obj,self.alist):
+        if Utils.delete_selected(obj,self.alist):
             self.lists_changed = 1
             self.redraw_attr_list()
 
@@ -614,17 +614,17 @@ class GlobalMediaProperties:
         
         self.descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
-        pixmap.load_file(utils.thumb_path(self.path,self.object))
+        pixmap.load_file(Utils.thumb_path(self.path,self.object))
 
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
         self.makelocal = self.change_dialog.get_widget("makelocal")
 
         self.update_info()
         
-        self.change_dialog.get_widget("type").set_text(utils.get_mime_description(mtype))
+        self.change_dialog.get_widget("type").set_text(Utils.get_mime_description(mtype))
         self.notes.insert_defaults(object.getNote())
         self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked"      : utils.destroy_passed_object,
+            "on_cancel_clicked"      : Utils.destroy_passed_object,
             "on_up_clicked"          : self.on_up_clicked,
             "on_down_clicked"        : self.on_down_clicked,
             "on_ok_clicked"          : self.on_ok_clicked,
@@ -672,7 +672,7 @@ class GlobalMediaProperties:
             self.update()
 
     def redraw_attr_list(self):
-        utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        Utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
     def button_press(self,obj,event):
         if len(obj.selection) <= 0:
@@ -692,13 +692,13 @@ class GlobalMediaProperties:
         for p in self.db.getPersonMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
-                    ref.append([_("Person"),p.getId(),Config.nameof(p)])
+                    ref.append([_("Person"),p.getId(),GrampsCfg.nameof(p)])
                     ref.set_row_data(index,(EditPerson.EditPerson,p,self.db))
                     index = index + 1
         for p in self.db.getFamilyMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
-                    ref.append([_("Family"),p.getId(),utils.family_name(p)])
+                    ref.append([_("Family"),p.getId(),Utils.family_name(p)])
                     ref.set_row_data(index,(Marriage.Marriage,p,self.db))
                     index = index + 1
         for p in self.db.getSourceMap().values():
@@ -725,23 +725,23 @@ class GlobalMediaProperties:
         if text != note or desc != self.object.getDescription():
             self.object.setNote(text)
             self.object.setDescription(desc)
-            utils.modified()
+            Utils.modified()
         if self.lists_changed:
             self.object.setAttributeList(self.alist)
-            utils.modified()
+            Utils.modified()
         if self.update != None:
             self.update()
 
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         
     def on_attr_list_select_row(self,obj,row,b,c):
         attr = obj.get_row_data(row)
 
         self.attr_type.set_label(attr.getType())
         self.attr_value.set_text(attr.getValue())
-        self.attr_details.set_text(utils.get_detail_text(attr))
+        self.attr_details.set_text(Utils.get_detail_text(attr))
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -752,7 +752,7 @@ class GlobalMediaProperties:
                                      Plugins.get_image_attributes())
 
     def on_delete_attr_clicked(self,obj):
-        if utils.delete_selected(obj,self.alist):
+        if Utils.delete_selected(obj,self.alist):
             self.lists_changed = 1
             self.redraw_attr_list()
 
@@ -767,7 +767,7 @@ class GlobalMediaProperties:
 #
 #-------------------------------------------------------------------------
 def disp_attr(attr):
-    detail = utils.get_detail_flags(attr)
+    detail = Utils.get_detail_flags(attr)
     return [const.display_pattr(attr.getType()),attr.getValue(),detail]
 
 
@@ -782,7 +782,7 @@ class DeleteMediaQuery:
         if ans == 1:
             return
         del self.db.getObjectMap()[self.media.getId()]
-        utils.modified()
+        Utils.modified()
 
         for p in self.db.getPersonMap().values():
             nl = []

@@ -41,8 +41,8 @@ import libglade
 import RelLib
 import const
 import sort
-import utils
-import Config
+import Utils
+import GrampsCfg
 
 class ChooseParents:
     """
@@ -98,11 +98,11 @@ class ChooseParents:
             "on_addmother_clicked"     : self.add_mother_clicked,
             "on_addfather_clicked"     : self.add_father_clicked,
             "on_prel_changed"          : self.parent_relation_changed,
-            "on_combo_insert_text"     : utils.combo_insert_text,
-            "destroy_passed_object"    : utils.destroy_passed_object
+            "on_combo_insert_text"     : Utils.combo_insert_text,
+            "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        text = _("Choose the Parents of %s") % Config.nameof(self.person)
+        text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
         self.title.set_text(text)
         if self.family:
             self.prel.set_text(_(self.family.getRelationship()))
@@ -114,8 +114,8 @@ class ChooseParents:
 
         type = obj.get_text()
 
-        self.father_name.set_text(Config.nameof(self.father))
-        self.mother_name.set_text(Config.nameof(self.mother))
+        self.father_name.set_text(GrampsCfg.nameof(self.father))
+        self.mother_name.set_text(GrampsCfg.nameof(self.mother))
         
         self.father_list.freeze()
         self.mother_list.freeze()
@@ -137,7 +137,7 @@ class ChooseParents:
                 continue
             if person.getGender() == RelLib.Person.unknown:
                 continue
-            rdata = [utils.phonebook_name(person),utils.birthday(person)]
+            rdata = [Utils.phonebook_name(person),Utils.birthday(person)]
             if type == "Partners":
                 self.father_list.append(rdata)
                 self.father_list.set_row_data(father_index,person)
@@ -192,11 +192,11 @@ class ChooseParents:
 
     def mother_list_select_row(self,obj,a,b,c):
         self.mother = obj.get_row_data(a)
-        self.mother_name.set_text(Config.nameof(self.mother))
+        self.mother_name.set_text(GrampsCfg.nameof(self.mother))
 
     def father_list_select_row(self,obj,a,b,c):
         self.father = obj.get_row_data(a)
-        self.father_name.set_text(Config.nameof(self.father))
+        self.father_name.set_text(GrampsCfg.nameof(self.father))
 
     def save_parents_clicked(self,obj):
         mother_rel = const.childRelations[self.mother_rel.get_text()]
@@ -228,7 +228,7 @@ class ChooseParents:
         else:    
             self.family = None
 
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         if self.family:
             self.family.setRelationship(type)
             self.change_family_type(self.family,mother_rel,father_rel)
@@ -239,14 +239,14 @@ class ChooseParents:
         self.xml.get_widget(sex).set_active(1)
         self.xml.signal_autoconnect({
             "on_addfather_close": self.add_parent_close,
-            "on_combo_insert_text" : utils.combo_insert_text,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "on_combo_insert_text" : Utils.combo_insert_text,
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         window = self.xml.get_widget("addperson")
         window.editable_enters(self.xml.get_widget("given"))
         window.editable_enters(self.xml.get_widget("surname"))
-        utils.attach_surnames(self.xml.get_widget("surnameCombo"))
+        Utils.attach_surnames(self.xml.get_widget("surnameCombo"))
 
     def add_father_clicked(self,obj):
         self.add_parent_clicked(obj,"male")
@@ -300,7 +300,7 @@ class ChooseParents:
                     self.person.setMainFamily(family)
                 else:
                     self.person.addAltFamily(family,mother_rel,father_rel)
-        utils.modified()
+        Utils.modified()
 
     def add_parent_close(self,obj):
 
@@ -317,8 +317,8 @@ class ChooseParents:
         else:
             person.setGender(RelLib.Person.female)
             self.mother = person
-        utils.modified()
+        Utils.modified()
         self.parent_relation_changed(self.prel)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         self.full_update()
 

@@ -26,7 +26,7 @@ import os
 import re
 import sort
 import string
-import utils
+import Utils
 import intl
 import Plugins
 
@@ -35,7 +35,7 @@ _ = intl.gettext
 from TextDoc import *
 from StyleEditor import *
 
-import Config
+import GrampsCfg
 import PaperMenu
 
 from gtk import *
@@ -127,7 +127,7 @@ class Report:
 
     def progress_bar_done(self):
         """Done with the progress bar.  It can be destroyed now."""
-        utils.destroy_passed_object(self.ptop)
+        Utils.destroy_passed_object(self.ptop)
 
 
 #------------------------------------------------------------------------
@@ -285,7 +285,7 @@ class ReportDialog:
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return Config.report_dir
+        return GrampsCfg.report_dir
 
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -295,7 +295,7 @@ class ReportDialog:
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        Config.report_dir = value
+        GrampsCfg.report_dir = value
 
     #------------------------------------------------------------------------
     #
@@ -360,7 +360,7 @@ class ReportDialog:
         frame, because it must be recreated to reflect any changes
         whenever the user closes the style editor dialog."""
         style_sheet_map = self.style_sheet_list.get_style_sheet_map()
-        myMenu = utils.build_string_optmenu(style_sheet_map, "default")
+        myMenu = Utils.build_string_optmenu(style_sheet_map, "default")
         self.style_menu.set_menu(myMenu)
 
     #------------------------------------------------------------------------
@@ -566,7 +566,7 @@ class ReportDialog:
         # The optional pagecount stuff.
         if pagecount_map:
             self.pagecount_menu = GtkOptionMenu()
-            myMenu = utils.build_string_optmenu(pagecount_map, start_text)
+            myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
             table.attach(GtkLabel(_("Page Count")),2,1,3,2,FILL,FILL,pad,pad)
             table.attach(self.pagecount_menu,3,2,4,2,xpadding=pad,ypadding=pad)
@@ -654,7 +654,7 @@ class ReportDialog:
             self.extra_menu_label = GtkLabel(em_label)
             self.extra_menu_label.set_alignment(1.0,0.5)
             self.extra_menu = GtkOptionMenu()
-            myMenu = utils.build_string_optmenu(extra_map, preset)
+            myMenu = Utils.build_string_optmenu(extra_map, preset)
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)

@@ -35,8 +35,8 @@ import gtk
 #-------------------------------------------------------------------------
 import Sources
 import const
-import utils
-import Config
+import Utils
+import GrampsCfg
 import AutoComp
 
 from Date import compare_dates
@@ -82,7 +82,7 @@ class EventEditor:
         self.priv = self.top.get_widget("priv")
         self.calendar = self.top.get_widget("calendar")
 
-        if Config.calendar:
+        if GrampsCfg.calendar:
             self.calendar.show()
         else:
             self.calendar.hide()
@@ -126,7 +126,7 @@ class EventEditor:
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_event_edit_ok_clicked" : self.on_event_edit_ok_clicked,
             "on_source_clicked" : self.on_edit_source_clicked
             })
@@ -160,7 +160,7 @@ class EventEditor:
                 self.pmap[text] = place
                 self.parent.db.addPlace(place)
                 self.plist.append(place)
-                utils.modified()
+                Utils.modified()
                 return place
             else:
                 return None
@@ -188,7 +188,7 @@ class EventEditor:
         self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
         self.parent.redraw_event_list()
         self.callback(None,self.plist)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def update_event(self,name,date,place,desc,note,priv,cause):
         if self.event.getPlace() != place:

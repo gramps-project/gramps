@@ -50,7 +50,7 @@ from RelLib import *
 from Date import *
 
 import const
-import utils
+import Utils
 import ListColors
 
 from intl import gettext
@@ -86,8 +86,8 @@ _date_entry_list = [
     ]
 
 _name_format_list = [
-    (_("Firstname Surname"), utils.normal_name),
-    (_("Surname, Firstname"), utils.phonebook_name),
+    (_("Firstname Surname"), Utils.normal_name),
+    (_("Surname, Firstname"), Utils.phonebook_name),
     ]
 
 panellist = [
@@ -131,7 +131,7 @@ uncompress    = 0
 show_detail   = 0
 hide_altnames = 0
 lastfile      = None
-nameof        = utils.normal_name
+nameof        = Utils.normal_name
 display_attr  = 0
 attr_name     = ""
 status_bar    = 0
@@ -377,9 +377,9 @@ def loadConfig(call):
 
     if _name_format == None or _name_format == 0:
         _name_format = 0
-        nameof = utils.normal_name
+        nameof = Utils.normal_name
     else:
-        nameof = utils.phonebook_name
+        nameof = Utils.phonebook_name
         
     make_path(os.path.expanduser("~/.gramps"))
     make_path(os.path.expanduser("~/.gramps/filters"))
@@ -870,11 +870,11 @@ class GrampsPreferences:
         gnome.help.display('gramps-manual','prefs.html')
 
     def on_close_clicked(self,obj):
-        utils.destroy_passed_object(self.window)
+        Utils.destroy_passed_object(self.window)
     
     def on_ok_clicked(self,obj):
         self.on_propertybox_apply(obj)
-        utils.destroy_passed_object(self.window)
+        Utils.destroy_passed_object(self.window)
 
     def on_propertybox_apply(self,obj):
         global nameof
@@ -1006,9 +1006,9 @@ class GrampsPreferences:
         set_int("/gramps/config/autoSaveInterval",autosave_int)
         
         if autosave_int != 0:
-            utils.enable_autosave(None,autosave_int)
+            Utils.enable_autosave(None,autosave_int)
         else:
-            utils.disable_autosave()
+            Utils.disable_autosave()
         
         set_bool("/gramps/config/DisplayAltNames",hide_altnames)
         set_string("/gramps/config/ReportDirectory",report_dir)

@@ -32,8 +32,8 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
-import Config
+import Utils
+import GrampsCfg
 from RelLib import *
 import ImageSelect
 
@@ -74,7 +74,7 @@ class EditSource:
         self.note.set_word_wrap(1)
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
             "on_photolist_button_press_event" : self.gallery.on_button_press_event,
             "on_switch_page" : self.on_switch_page,
@@ -109,7 +109,7 @@ class EditSource:
                 if sref.getBase() == self.source:
                     p_list.append(name)
         for p in self.db.getPersonMap().values():
-            name = Config.nameof(p)
+            name = GrampsCfg.nameof(p)
             for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
                 for sref in v.getSourceRefList():
                     if sref.getBase() == self.source:
@@ -136,12 +136,12 @@ class EditSource:
             m = p.getMother()
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
-                    "father" : Config.nameof(f),
-                    "mother" : Config.nameof(m)}
+                    "father" : GrampsCfg.nameof(f),
+                    "mother" : GrampsCfg.nameof(m)}
             elif f:
-                name = Config.nameof(f)
+                name = GrampsCfg.nameof(f)
             else:
-                name = Config.nameof(m)
+                name = GrampsCfg.nameof(m)
             for v in p.getEventList():
                 for sref in v.getSourceRefList():
                     if sref.getBase() == self.source:
@@ -197,21 +197,21 @@ class EditSource:
     
         if author != self.source.getAuthor():
             self.source.setAuthor(author)
-            utils.modified()
+            Utils.modified()
         
         if title != self.source.getTitle():
             self.source.setTitle(title)
-            utils.modified()
+            Utils.modified()
         
         if pubinfo != self.source.getPubInfo():
             self.source.setPubInfo(pubinfo)
-            utils.modified()
+            Utils.modified()
         
         if note != self.source.getNote():
             self.source.setNote(note)
-            utils.modified()
+            Utils.modified()
 
-        utils.destroy_passed_object(self.top)
+        Utils.destroy_passed_object(self.top)
         if self.callback:
             self.callback(self.source)
 
@@ -245,7 +245,7 @@ class DelSrcQuery:
         if ans == 1:
             return
         del self.db.getSourceMap()[self.source.getId()]
-        utils.modified()
+        Utils.modified()
 
         for p in self.db.getPersonMap().values():
             for v in p.getEventList() + [p.getBirth(), p.getDeath()]:

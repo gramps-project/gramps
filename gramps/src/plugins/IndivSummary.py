@@ -24,8 +24,6 @@ import RelLib
 import const
 import os
 import string
-import utils
-import Config
 import intl
 
 _ = intl.gettext

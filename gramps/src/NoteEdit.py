@@ -31,7 +31,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 from RelLib import *
 
 #-------------------------------------------------------------------------
@@ -55,12 +55,12 @@ class NoteEditor:
         
         self.editnote.signal_autoconnect({
             "on_save_note_clicked"  : self.on_save_note_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
     def on_save_note_clicked(self,obj):
         text = self.textobj.get_chars(0,-1)
         if text != self.data.getNote():
             self.data.setNote(text)
-            utils.modified()
-        utils.destroy_passed_object(obj)
+            Utils.modified()
+        Utils.destroy_passed_object(obj)

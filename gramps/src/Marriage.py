@@ -37,8 +37,8 @@ import libglade
 #-------------------------------------------------------------------------
 
 import const
-import Config
-import utils
+import GrampsCfg
+import Utils
 import AutoComp
 from RelLib import *
 import ImageSelect
@@ -81,7 +81,7 @@ class Marriage:
             "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_attr_list_select_row" : self.on_attr_list_select_row,
-            "on_combo_insert_text"  : utils.combo_insert_text,
+            "on_combo_insert_text"  : Utils.combo_insert_text,
             "on_close_marriage_editor" : self.on_close_marriage_editor,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_delete_event" : self.on_delete_event,
@@ -99,8 +99,8 @@ class Marriage:
             })
 
         text_win = self.get_widget("marriageTitle")
-        title = _("%s and %s") % (Config.nameof(family.getFather()),
-                                  Config.nameof(family.getMother()))
+        title = _("%s and %s") % (GrampsCfg.nameof(family.getFather()),
+                                  GrampsCfg.nameof(family.getMother()))
         text_win.set_text(title)
         
         self.event_list = self.get_widget("marriageEventList")
@@ -124,8 +124,8 @@ class Marriage:
         self.lds_status = self.get_widget("lds_status")
         self.lds_place = self.get_widget("lds_place")
         
-        self.event_list.set_column_visibility(3,Config.show_detail)
-        self.attr_list.set_column_visibility(2,Config.show_detail)
+        self.event_list.set_column_visibility(3,GrampsCfg.show_detail)
+        self.attr_list.set_column_visibility(2,GrampsCfg.show_detail)
 
         self.elist = family.getEventList()[:]
         self.alist = family.getAttributeList()[:]
@@ -139,7 +139,7 @@ class Marriage:
         frel = const.display_frel(family.getRelationship())
         self.type_field.entry.set_text(frel)
         self.gid.set_text(family.getId())
-        self.gid.set_editable(Config.id_edit)
+        self.gid.set_editable(GrampsCfg.id_edit)
 
         self.lds_temple.set_popdown_strings(_temple_names)
 
@@ -291,10 +291,10 @@ class Marriage:
         self.family.setAttributeList(self.alist)
 
     def redraw_attr_list(self):
-        utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        Utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
     def redraw_event_list(self):
-        utils.redraw_list(self.elist,self.event_list,disp_event)
+        Utils.redraw_list(self.elist,self.event_list,disp_event)
 
     def get_widget(self,name):
         return self.top.get_widget(name)
@@ -323,7 +323,7 @@ class Marriage:
         else:
             temple = ""
 
-        place = utils.get_place_from_list(self.lds_place)
+        place = Utils.get_place_from_list(self.lds_place)
         
         ord = self.family.getLdsSeal()
         if not ord:
@@ -348,7 +348,7 @@ class Marriage:
             quit = obj
             GnomeQuestionDialog(q,cancel_callback)
         else:
-            utils.destroy_passed_object(obj)
+            Utils.destroy_passed_object(obj)
 
     def on_delete_event(self,obj,b):
         self.on_cancel_edit(obj)
@@ -363,7 +363,7 @@ class Marriage:
                     del m[family.getId()]
                     m[idval] = family
                 family.setId(idval)
-                utils.modified()
+                Utils.modified()
             else:
                 msg1 = _("GRAMPS ID value was not changed.")
                 GnomeWarningDialog("%s" % msg1)
@@ -383,12 +383,12 @@ class Marriage:
                     self.family.setFather(mother)
                     self.family.setMother(father)
                 self.family.setRelationship(val)
-            utils.modified()
+            Utils.modified()
 
         text = self.notes_field.get_chars(0,-1)
         if text != self.family.getNote():
             self.family.setNote(text)
-            utils.modified()
+            Utils.modified()
 
         date = self.lds_date.get_text()
         temple = self.lds_temple.entry.get_text()
@@ -396,7 +396,7 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
-        place = utils.get_place_from_list(self.lds_place)
+        place = Utils.get_place_from_list(self.lds_place)
 
         ord = self.family.getLdsSeal()
         if not ord:
@@ -407,32 +407,32 @@ class Marriage:
                 ord.setStatus(self.seal_stat)
                 ord.setPlace(place)
                 self.family.setLdsSeal(ord)
-                utils.modified()
+                Utils.modified()
         else:
             d = Date()
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
                 ord.setDateObj(d)
-                utils.modified()
+                Utils.modified()
             if ord.getTemple() != temple:
                 ord.setTemple(temple)
-                utils.modified()
+                Utils.modified()
             if ord.getStatus() != self.seal_stat:
                 ord.setStatus(self.seal_stat)
-                utils.modified()
+                Utils.modified()
             if ord.getPlace() != place:
                 ord.setPlace(place)
-                utils.modified()
+                Utils.modified()
 
-        utils.destroy_passed_object(self.get_widget("marriageEditor"))
+        Utils.destroy_passed_object(self.get_widget("marriageEditor"))
 
         self.update_lists()
         if self.lists_changed:
-            utils.modified()
+            Utils.modified()
 
     def on_add_clicked(self,obj):
         import EventEdit
-        name = utils.family_name(self.family)
+        name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.save_pevent,None,None,0,self.cb)
 
@@ -442,12 +442,12 @@ class Marriage:
             return
 
         event = obj.get_row_data(obj.selection[0])
-        name = utils.family_name(self.family)
+        name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.save_pevent,event,None,0,self.cb)
 
     def on_delete_clicked(self,obj):
-        if utils.delete_selected(obj,self.elist):
+        if Utils.delete_selected(obj,self.elist):
             self.lists_changed = 1
             self.redraw_event_list()
 
@@ -458,7 +458,7 @@ class Marriage:
         self.place_field.set_text(event.getPlaceName())
         self.cause_field.set_text(event.getCause())
         self.name_field.set_label(const.display_fevent(event.getName()))
-        self.event_details.set_text(utils.get_detail_text(event))
+        self.event_details.set_text(Utils.get_detail_text(event))
         self.descr_field.set_text(event.getDescription())
 
     def on_attr_list_select_row(self,obj,row,b,c):
@@ -466,7 +466,7 @@ class Marriage:
 
         self.attr_type.set_label(const.display_fattr(attr.getType()))
         self.attr_value.set_text(attr.getValue())
-        self.attr_details_field.set_text(utils.get_detail_text(attr))
+        self.attr_details_field.set_text(Utils.get_detail_text(attr))
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -485,7 +485,7 @@ class Marriage:
             AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes)
 
     def on_delete_attr_clicked(self,obj):
-        if utils.delete_selected(obj,self.alist):
+        if Utils.delete_selected(obj,self.alist):
             self.lists_changed = 1
             self.redraw_attr_list()
 
@@ -509,7 +509,7 @@ class Marriage:
 #
 #-------------------------------------------------------------------------
 def disp_attr(attr):
-    detail = utils.get_detail_flags(attr)
+    detail = Utils.get_detail_flags(attr)
     return [const.display_fattr(attr.getType()),attr.getValue(),detail]
 
 #-------------------------------------------------------------------------
@@ -519,7 +519,7 @@ def disp_attr(attr):
 #-------------------------------------------------------------------------
 def disp_event(event):
     return [const.display_fevent(event.getName()), event.getQuoteDate(),
-            event.getPlaceName(), utils.get_detail_flags(event)]
+            event.getPlaceName(), Utils.get_detail_flags(event)]
 
 #-------------------------------------------------------------------------
 #
@@ -528,7 +528,7 @@ def disp_event(event):
 #-------------------------------------------------------------------------
 def cancel_callback(a):
     if a==0:
-        utils.destroy_passed_object(quit)
+        Utils.destroy_passed_object(quit)
 
 def src_changed(parent):
     parent.lists_changed = 1

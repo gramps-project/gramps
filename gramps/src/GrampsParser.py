@@ -22,7 +22,7 @@ from RelLib import *
 from Date import SingleDate
 
 import string
-import utils
+import Utils
 import xml.parsers.expat
     
 #-------------------------------------------------------------------------
@@ -405,7 +405,7 @@ class GrampsParser:
                 a.setType(key)
                 a.setValue(u2l(attrs[key]))
                 self.photo.addAttribute(a)
-        self.photo.setMimeType(utils.get_mime_type(self.photo.getPath()))
+        self.photo.setMimeType(Utils.get_mime_type(self.photo.getPath()))
         self.db.addObject(self.photo)
         if self.family:
             self.family.addPhoto(self.pref)

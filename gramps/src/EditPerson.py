@@ -43,8 +43,8 @@ from GDK import ACTION_COPY, BUTTON1_MASK, _2BUTTON_PRESS
 #
 #-------------------------------------------------------------------------
 import const
-import utils
-import Config
+import Utils
+import GrampsCfg
 import Date
 from RelLib import *
 import ImageSelect
@@ -225,19 +225,19 @@ class EditPerson:
         self.comp = AutoComp.AutoCombo(self.sncombo,const.surnames)
             
         self.gid.set_text(person.getId())
-        self.gid.set_editable(Config.id_edit)
-        self.event_list.set_column_visibility(3,Config.show_detail)
-        self.name_list.set_column_visibility(1,Config.show_detail)
-        self.attr_list.set_column_visibility(2,Config.show_detail)
-        self.addr_list.set_column_visibility(2,Config.show_detail)
+        self.gid.set_editable(GrampsCfg.id_edit)
+        self.event_list.set_column_visibility(3,GrampsCfg.show_detail)
+        self.name_list.set_column_visibility(1,GrampsCfg.show_detail)
+        self.attr_list.set_column_visibility(2,GrampsCfg.show_detail)
+        self.addr_list.set_column_visibility(2,GrampsCfg.show_detail)
 
         self.event_list = self.get_widget("eventList")
 
-        if Config.display_attr:
-            self.get_widget("user_label").set_text(Config.attr_name)
+        if GrampsCfg.display_attr:
+            self.get_widget("user_label").set_text(GrampsCfg.attr_name)
             val = ""
             for attr in self.person.getAttributeList():
-                if attr.getType() == const.save_pattr(Config.attr_name):
+                if attr.getType() == const.save_pattr(GrampsCfg.attr_name):
                     val = attr.getValue()
                     break
             self.get_widget("user_data").set_text(val)
@@ -251,12 +251,12 @@ class EditPerson:
         self.lds_endowment = self.person.getLdsEndowment()
         self.lds_sealing = self.person.getLdsSeal()
         
-        if Config.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
+        if GrampsCfg.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
         
         # initial values
-        self.get_widget("activepersonTitle").set_text(Config.nameof(person))
+        self.get_widget("activepersonTitle").set_text(GrampsCfg.nameof(person))
         self.suffix.set_text(self.pname.getSuffix())
 
         self.surname_field.set_text(self.pname.getSurname())
@@ -381,12 +381,12 @@ class EditPerson:
             m = fam.getMother()
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
-                    'father' : Config.nameof(f),
-                    'mother' : Config.nameof(m) }
+                    'father' : GrampsCfg.nameof(f),
+                    'mother' : GrampsCfg.nameof(m) }
             elif f:
-                name = Config.nameof(f)
+                name = GrampsCfg.nameof(f)
             elif m:
-                name = Config.nameof(m)
+                name = GrampsCfg.nameof(m)
             else:
                 name = _("unknown")
             item = gtk.GtkMenuItem(name)
@@ -556,11 +556,11 @@ class EditPerson:
 
     def redraw_name_list(self):
         """redraws the name list"""
-        utils.redraw_list(self.nlist,self.name_list,disp_name)
+        Utils.redraw_list(self.nlist,self.name_list,disp_name)
 
     def redraw_url_list(self):
         """redraws the url list, disabling the go button if no url is selected"""
-        length = utils.redraw_list(self.ulist,self.web_list,disp_url)
+        length = Utils.redraw_list(self.ulist,self.web_list,disp_url)
         if length > 0:
             self.web_go.set_sensitive(1)
         else:
@@ -570,11 +570,11 @@ class EditPerson:
 
     def redraw_attr_list(self):
         """Redraws the attribute list"""
-        utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        Utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
     def redraw_addr_list(self):
         """redraws the address list for the person"""
-        utils.redraw_list(self.plist,self.addr_list,disp_addr)
+        Utils.redraw_list(self.plist,self.addr_list,disp_addr)
 
     def redraw_event_list(self):
         """redraw_event_list - Update both the birth and death place combo
@@ -584,11 +584,11 @@ class EditPerson:
         combo list resets its present value, this code will have to save
         and restore the value for the event *not* being edited."""
         
-        utils.redraw_list(self.elist,self.event_list,disp_event)
+        Utils.redraw_list(self.elist,self.event_list,disp_event)
 
         # Remember old combo list input
-        prev_btext = utils.strip_id(self.bplace.get_text())
-        prev_dtext = utils.strip_id(self.dplace.get_text())
+        prev_btext = Utils.strip_id(self.bplace.get_text())
+        prev_dtext = Utils.strip_id(self.dplace.get_text())
 
         # Update birth with new values, make sure death values don't change
         if (self.update_birth):
@@ -683,25 +683,25 @@ class EditPerson:
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
-        if utils.delete_selected(obj,self.nlist):
+        if Utils.delete_selected(obj,self.nlist):
             self.lists_changed = 1
             self.redraw_name_list()
 
     def on_delete_url_clicked(self,obj):
         """Deletes the selected URL from the URL list"""
-        if utils.delete_selected(obj,self.ulist):
+        if Utils.delete_selected(obj,self.ulist):
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_attr_clicked(self,obj):
         """Deletes the selected attribute from the attribute list"""
-        if utils.delete_selected(obj,self.alist):
+        if Utils.delete_selected(obj,self.alist):
             self.lists_changed = 1
             self.redraw_attr_list()
 
     def on_delete_addr_clicked(self,obj):
         """Deletes the selected address from the address list"""
-        if utils.delete_selected(obj,self.plist):
+        if Utils.delete_selected(obj,self.plist):
             self.lists_changed = 1
             self.redraw_addr_list()
 
@@ -720,7 +720,7 @@ class EditPerson:
             q = _("Are you sure you want to abandon your changes?")
             GnomeQuestionDialog(q,self.cancel_callback)
         else:
-            utils.destroy_passed_object(obj)
+            Utils.destroy_passed_object(obj)
 
     def on_delete_event(self,obj,b):
         """If the data has changed, give the user a chance to cancel
@@ -730,13 +730,13 @@ class EditPerson:
             GnomeQuestionDialog(q,self.cancel_callback)
             return 1
         else:
-            utils.destroy_passed_object(obj)
+            Utils.destroy_passed_object(obj)
             return 0
     
     def cancel_callback(self,a):
         """If the user answered yes to abandoning changes, close the window"""
         if a==0:
-            utils.destroy_passed_object(self.window)
+            Utils.destroy_passed_object(self.window)
 
     def did_data_change(self):
         """Check to see if any of the data has changed from the original record"""
@@ -884,7 +884,7 @@ class EditPerson:
 
     def on_event_delete_clicked(self,obj):
         """Delete the selected event"""
-        if utils.delete_selected(obj,self.elist):
+        if Utils.delete_selected(obj,self.elist):
             self.lists_changed = 1
             self.redraw_event_list()
 
@@ -953,7 +953,7 @@ class EditPerson:
         self.event_name_field.set_label(const.display_pevent(event.getName()))
         self.event_cause_field.set_text(event.getCause())
         self.event_descr_field.set_text(event.getDescription())
-        self.event_details_field.set_text(utils.get_detail_text(event))
+        self.event_details_field.set_text(Utils.get_detail_text(event))
 
     def on_addr_list_select_row(self,obj,row,b,c):
 
@@ -967,7 +967,7 @@ class EditPerson:
         self.addr_state.set_text(a.getState())
         self.addr_country.set_text(a.getCountry())
         self.addr_postal.set_text(a.getPostal())
-        self.addr_details_field.set_text(utils.get_detail_text(a))
+        self.addr_details_field.set_text(Utils.get_detail_text(a))
 
     def on_name_list_select_row(self,obj,row,b,c):
 
@@ -976,7 +976,7 @@ class EditPerson:
         self.alt_given_field.set_text(name.getFirstName())
         self.alt_last_field.set_text(name.getSurname())
         self.alt_suffix_field.set_text(name.getSuffix())
-        self.name_details_field.set_text(utils.get_detail_text(name))
+        self.name_details_field.set_text(Utils.get_detail_text(name))
 
     def on_web_list_select_row(self,obj,row,b,c):
 
@@ -996,7 +996,7 @@ class EditPerson:
         attr = obj.get_row_data(row)
         self.attr_type.set_label(const.display_pattr(attr.getType()))
         self.attr_value.set_text(attr.getValue())
-        self.attr_details_field.set_text(utils.get_detail_text(attr))
+        self.attr_details_field.set_text(Utils.get_detail_text(attr))
 
     def aka_double_click(self,obj,event):
         if event.button == 1 and event.type == _2BUTTON_PRESS:
@@ -1032,7 +1032,7 @@ class EditPerson:
             self.person.setUrlList(self.ulist)
             self.person.setAttributeList(self.alist)
             self.person.setAddressList(self.plist)
-            utils.modified()
+            Utils.modified()
 
     def on_apply_person_clicked(self,obj):
     
@@ -1052,9 +1052,9 @@ class EditPerson:
                     del m[self.person.getId()]
                     m[idval] = self.person
                 self.person.setId(idval)
-                utils.modified()
+                Utils.modified()
             else:
-                n = Config.nameof(m[idval])
+                n = GrampsCfg.nameof(m[idval])
                 msg1 = _("GRAMPS ID value was not changed.")
                 msg2 = _("%(grampsid)s is already used by %(person)s") % {
                     'grampsid' : idval,
@@ -1078,11 +1078,11 @@ class EditPerson:
 
         if not name.are_equal(self.person.getPrimaryName()):
             self.person.setPrimaryName(name)
-            utils.modified()
+            Utils.modified()
 
         if nick != self.person.getNickName():
             self.person.setNickName(nick)
-            utils.modified()
+            Utils.modified()
 
         self.pmap = {}
         for p in self.db.getPlaces():
@@ -1124,7 +1124,7 @@ class EditPerson:
                     else:
                         temp_family.setMother(None)
                         temp_family.setFather(self.person)
-            utils.modified()
+            Utils.modified()
         elif female and self.person.getGender() != Person.female:
             self.person.setGender(Person.female)
             for temp_family in self.person.getFamilyList():
@@ -1134,7 +1134,7 @@ class EditPerson:
                     else:
                         temp_family.setFather(None)
                         temp_family.setMother(self.person)
-            utils.modified()
+            Utils.modified()
         elif unknown and self.person.getGender() != Person.unknown:
             self.person.setGender(Person.unknown)
             for temp_family in self.person.getFamilyList():
@@ -1150,7 +1150,7 @@ class EditPerson:
                     else:
                         temp_family.setMother(None)
                         temp_family.setFather(self.person)
-            utils.modified()
+            Utils.modified()
 
         if error == 1:
             msg = _("Changing the gender caused problems with marriage information.")
@@ -1160,7 +1160,7 @@ class EditPerson:
         text = self.notes_field.get_chars(0,-1)
         if text != self.person.getNote():
             self.person.setNote(text)
-            utils.modified()
+            Utils.modified()
 
         if self.lds_not_loaded == 0:
             date = self.ldsbap_date.get_text()
@@ -1200,30 +1200,30 @@ class EditPerson:
                     ord.setFamily(self.ldsfam)
                     ord.setPlace(place)
                     self.person.setLdsSeal(ord)
-                    utils.modified()
+                    Utils.modified()
             else:
                 d = Date()
                 d.set(date)
                 if compare_dates(d,ord.getDateObj()) != 0:
                     ord.setDateObj(d)
-                    utils.modified()
+                    Utils.modified()
                 if ord.getPlace() != place:
                     ord.setPlace(place)
-                    utils.modified()
+                    Utils.modified()
                 if ord.getTemple() != temple:
                     ord.setTemple(temple)
-                    utils.modified()
+                    Utils.modified()
                 if ord.getStatus() != self.seal_stat:
                     ord.setStatus(self.seal_stat)
-                    utils.modified()
+                    Utils.modified()
                 if ord.getFamily() != self.ldsfam:
                     ord.setFamily(self.ldsfam)
-                    utils.modified()
+                    Utils.modified()
 
         self.update_lists()
         if self.callback:
             self.callback(self,self.add_places)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def get_place(self,field,makenew=0):
         text = string.strip(field.get_text())
@@ -1236,7 +1236,7 @@ class EditPerson:
                 self.pmap[text] = place
                 self.db.addPlace(place)
                 self.add_places.append(place)
-                utils.modified()
+                Utils.modified()
                 return place
             else:
                 return None
@@ -1330,22 +1330,22 @@ def update_ord(func,ord,date,temple,stat,place):
             ord.setTemple(temple)
             ord.setPlace(place)
             func(ord)
-            utils.modified()
+            Utils.modified()
     else:
         d = Date()
         d.set(date)
         if compare_dates(d,ord.getDateObj()) != 0:
             ord.setDateObj(d)
-            utils.modified()
+            Utils.modified()
         elif ord.getTemple() != temple:
             ord.setTemple(temple)
-            utils.modified()
+            Utils.modified()
         elif ord.getPlace() != place:
             ord.setPlace(place)
-            utils.modified()
+            Utils.modified()
         elif ord.getStatus() != stat:
             ord.setStatus(stat)
-            utils.modified()
+            Utils.modified()
 
 #-------------------------------------------------------------------------
 #
@@ -1353,7 +1353,7 @@ def update_ord(func,ord,date,temple,stat,place):
 #
 #-------------------------------------------------------------------------
 def disp_name(name):
-    return [name.getName(),utils.get_detail_flags(name)]
+    return [name.getName(),Utils.get_detail_flags(name)]
 
 #-------------------------------------------------------------------------
 #
@@ -1369,7 +1369,7 @@ def disp_url(url):
 #
 #-------------------------------------------------------------------------
 def disp_attr(attr):
-    detail = utils.get_detail_flags(attr)
+    detail = Utils.get_detail_flags(attr)
     return [const.display_pattr(attr.getType()),attr.getValue(),detail]
 
 #-------------------------------------------------------------------------
@@ -1379,7 +1379,7 @@ def disp_attr(attr):
 #-------------------------------------------------------------------------
 def disp_addr(addr):
     location = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
-    return [addr.getDate(),location,utils.get_detail_flags(addr)]
+    return [addr.getDate(),location,Utils.get_detail_flags(addr)]
 
 #-------------------------------------------------------------------------
 #
@@ -1387,7 +1387,7 @@ def disp_addr(addr):
 #
 #-------------------------------------------------------------------------
 def disp_event(event):
-    attr = utils.get_detail_flags(event)
+    attr = Utils.get_detail_flags(event)
     return [const.display_pevent(event.getName()),
             event.getQuoteDate(),event.getPlaceName(),attr]
 

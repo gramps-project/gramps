@@ -31,7 +31,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 from RelLib import *
 
 from intl import gettext
@@ -78,7 +78,7 @@ class LocationEditor:
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_loc_edit_ok_clicked" : self.on_location_edit_ok_clicked
             })
 
@@ -98,7 +98,7 @@ class LocationEditor:
         self.update_location(city,parish,county,state,country)
         
         self.parent.redraw_location_list()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def update_location(self,city,parish,county,state,country):
         if self.location.get_city() != city:

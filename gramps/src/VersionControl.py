@@ -28,7 +28,7 @@ import os
 import string
 import shutil
 import const
-import utils
+import Utils
 
 from re import compile
 
@@ -85,7 +85,7 @@ class RevisionComment:
 
     def on_savecomment_clicked(self,obj):
         comment = self.text.get_text()
-        utils.destroy_passed_object(self.win)
+        Utils.destroy_passed_object(self.win)
         self.save(self.filename,comment)
         
 
@@ -113,7 +113,7 @@ class RevisionSelect:
             index = index + 1
 
     def on_cancel_clicked(self,obj):
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         if self.callback:
             self.callback()
 
@@ -122,7 +122,7 @@ class RevisionSelect:
             rev = self.revlist.get_row_data(self.revlist.selection[0])
             f = self.vc.get_version(rev)
             self.load(f,self.filename,rev)
-            utils.destroy_passed_object(obj)
+            Utils.destroy_passed_object(obj)
 
 class VersionControl:
     """Base class for revision control systems"""

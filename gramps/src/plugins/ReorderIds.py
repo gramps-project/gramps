@@ -24,7 +24,7 @@ scheme specified in the database's prefix ids
 """
 
 import re
-import utils
+import Utils
 import intl
 
 _ = intl.gettext
@@ -39,7 +39,7 @@ def runTool(database,active_person,callback):
     make_new_ids(database.getObjectMap(),database.oprefix)
     make_new_ids(database.getSourceMap(),database.sprefix)
     make_new_ids(database.getPlaceMap(),database.pprefix)
-    utils.modified()
+    Utils.modified()
     callback(1)
 
 

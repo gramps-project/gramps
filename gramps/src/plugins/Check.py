@@ -21,7 +21,7 @@
 "Database Processing/Check and repair database"
 
 import RelLib
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -81,7 +81,7 @@ class CheckIntegrity:
                         break
                 else:
                     family.removeChild(child)
-                    utils.modified()
+                    Utils.modified()
                     self.broken_links.append((child,family))
 
     #-------------------------------------------------------------------------
@@ -104,7 +104,7 @@ class CheckIntegrity:
         family_list = self.db.getFamilyMap().values()[:]
         for family in family_list:
             if family.getFather() == None and family.getMother() == None:
-                utils.modified()
+                Utils.modified()
                 self.empty_family.append(family)
                 self.delete_empty_family(family)
 
@@ -200,7 +200,7 @@ class CheckIntegrity:
         glade_file = base + os.sep + "summary.glade"
         topDialog = libglade.GladeXML(glade_file,"summary")
         topDialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             })
         title = _("Check Integrity")
         top = topDialog.get_widget("summary")

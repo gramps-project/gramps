@@ -26,7 +26,7 @@ import gnome.ui
 import libglade
 
 import const
-import utils
+import Utils
 import intl
 
 _ = intl.gettext
@@ -52,8 +52,8 @@ class ChangeTypes:
         self.glade.get_widget("new").set_popdown_strings(const.personalEvents)
 
         self.glade.signal_autoconnect({
-            "on_close_clicked"     : utils.destroy_passed_object,
-            "on_combo_insert_text" : utils.combo_insert_text,
+            "on_close_clicked"     : Utils.destroy_passed_object,
+            "on_combo_insert_text" : Utils.combo_insert_text,
             "on_apply_clicked"     : self.on_apply_clicked
             })
     
@@ -70,7 +70,7 @@ class ChangeTypes:
                 if event.getName() == original:
                     event.setName(new)
                     modified = modified + 1
-                    utils.modified()
+                    Utils.modified()
 
         if modified == 1:
             msg = _("1 event record was modified")
@@ -78,7 +78,7 @@ class ChangeTypes:
             msg = _("%d event records were modified") % modified
             
         gnome.ui.GnomeOkDialog(msg)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------
 #

@@ -27,8 +27,6 @@ from DrawDoc import *
 from Report import *
 from TextDoc import *
 
-import Config
-
 import libglade
 import gtk
 import string

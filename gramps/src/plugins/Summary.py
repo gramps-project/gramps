@@ -25,7 +25,7 @@ import os
 import posixpath
 import re
 import string
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -45,7 +45,7 @@ def report(database,person):
 
     topDialog = GladeXML(glade_file,"summary")
     topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
     })
 
     personList = database.getPersonMap().values()

@@ -35,7 +35,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 from RelLib import *
 import Sources
 
@@ -97,9 +97,9 @@ class AttributeEditor:
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_attr_edit_ok_clicked" : self.on_ok_clicked,
-            "on_combo_insert_text"    : utils.combo_insert_text,
+            "on_combo_insert_text"    : Utils.combo_insert_text,
             "on_source_clicked" : self.on_source_clicked
             })
 
@@ -125,7 +125,7 @@ class AttributeEditor:
         self.update(type,value,note,priv)
         
         self.parent.redraw_attr_list()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the
