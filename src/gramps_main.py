@@ -259,8 +259,6 @@ class Gramps:
             "on_spouse_list_changed" : self.spouse_list_changed,
             "on_about_activate" : self.on_about_activate,
             "on_add_bookmark_activate" : self.on_add_bookmark_activate,
-            "on_add_child_clicked" : self.on_add_child_clicked,
-            "on_add_new_child_clicked" : self.on_add_new_child_clicked,
             "on_add_place_clicked" : self.place_view.on_add_place_clicked,
             "on_add_source_clicked" : self.source_view.on_add_clicked,
             "on_addperson_clicked" : self.load_new_person,
@@ -561,28 +559,6 @@ class Gramps:
     def add_new_cancel(self,obj):
         Utils.destroy_passed_object(self.addornew)
 
-    def on_add_child_clicked(self,obj):
-        """Select an existing child to add to the active family"""
-        import SelectChild
-        if self.active_person:
-            SelectChild.SelectChild(self.db,self.active_family,
-                                    self.active_person,
-                                    self.family_view.load_family)
-
-    def on_add_new_child_clicked(self,obj):
-        """Create a new child to add to the existing family"""
-        import SelectChild
-        if self.active_person:
-            try:
-                SelectChild.NewChild(self.db,self.active_family,
-                                     self.active_person,
-                                     self.update_after_newchild,
-                                     self.update_after_edit,
-                                     GrampsCfg.lastnamegen)
-            except:
-                DisplayTrace.DisplayTrace()
-
-                
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
         

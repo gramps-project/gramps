@@ -23,8 +23,14 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext
-_ = gettext
+from intl import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
+import string
 
 #-------------------------------------------------------------------------
 #
@@ -44,8 +50,8 @@ import const
 import sort
 import Utils
 import GrampsCfg
-import string
 import AutoComp
+import ListModel
 
 #-------------------------------------------------------------------------
 #
@@ -64,13 +70,13 @@ class SelectChild:
         self.xml.signal_autoconnect({
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
+            "on_add_person_clicked"    : self.on_add_person_clicked,
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
         self.select_child_list = {}
         self.top = self.xml.get_widget("selectChild")
-        self.add_child = self.xml.get_widget("addChild")
-#        self.add_child.set_column_visibility(1,GrampsCfg.id_visible)
+        self.add_child = self.xml.get_widget("childlist")
 
         if (self.family):
             father = self.family.getFather()
@@ -99,14 +105,17 @@ class SelectChild:
         self.mrel = self.xml.get_widget("mrel")
         self.frel = self.xml.get_widget("frel")
         self.mrel.set_text(_("Birth"))
+
         self.frel.set_text(_("Birth"))
-    
+
+        self.refmodel = ListModel.ListModel(self.add_child,[(_('Name'),150,3),(_('ID'),50,1),
+                                                            (_('Birth Date'),100,4),
+                                                            ('',0,0),('',0,0)])
         self.redraw_child_list(2)
         self.top.show()
 
     def redraw_child_list(self,filter):
-        self.add_child.freeze()
-        self.add_child.clear()
+        self.refmodel.clear()
         index = 0
 
         bday = self.person.getBirth().getDateObj()
@@ -160,39 +169,40 @@ class SelectChild:
         
             person_list.append(person)
 
-        person_list.sort(sort.by_last_name)
         for person in person_list:
-            self.add_child.append([Utils.phonebook_name(person),
-                                   Utils.birthday(person),
-                                   person.getId()])
-            self.add_child.set_row_data(index,person)
-            index = index + 1
-        self.add_child.thaw()
+            dinfo = self.db.getPersonDisplay(id)
+            rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
+            self.refmodel.add(rdata)
 
     def on_save_child_clicked(self,obj):
-        for row in self.add_child.selection:
-            select_child = self.add_child.get_row_data(row)
-            if self.family == None:
-                self.family = self.db.newFamily()
-                self.person.addFamily(self.family)
-                if self.person.getGender() == Person.male:
-                    self.family.setFather(self.person)
-                else:	
-                    self.family.setMother(self.person)
+        store,iter = self.refmodel.selection.get_selected()
 
-            self.family.addChild(select_child)
-		
-            mrel = const.childRelations[self.mrel.get_text()]
-            mother = self.family.getMother()
-            if mother and mother.getGender() != Person.female:
-                if mrel == "Birth":
-                    mrel = "Unknown"
+        if not iter:
+            return
+
+        id = self.refmodel.model.get_value(iter,1)
+        select_child = self.db.getPerson(id)
+        if self.family == None:
+            self.family = self.db.newFamily()
+            self.person.addFamily(self.family)
+            if self.person.getGender() == Person.male:
+                self.family.setFather(self.person)
+            else:	
+                self.family.setMother(self.person)
                 
-            frel = const.childRelations[self.frel.get_text()]
-            father = self.family.getFather()
-            if father and father.getGender() != Person.male:
-                if frel == "Birth":
-                    frel = "Unknown"
+        self.family.addChild(select_child)
+		
+        mrel = const.childRelations[self.mrel.get_text()]
+        mother = self.family.getMother()
+        if mother and mother.getGender() != Person.female:
+            if mrel == "Birth":
+                mrel = "Unknown"
+                
+        frel = const.childRelations[self.frel.get_text()]
+        father = self.family.getFather()
+        if father and father.getGender() != Person.male:
+            if frel == "Birth":
+                frel = "Unknown"
 
 #            if mrel == "Birth" and frel == "Birth":
 #                family = select_child.getMainFamily()
@@ -201,9 +211,9 @@ class SelectChild:
 #
 #                select_child.setMainFamily(self.family)
 #            else:
-            select_child.addAltFamily(self.family,mrel,frel)
+        select_child.addAltFamily(self.family,mrel,frel)
 
-            Utils.modified()
+        Utils.modified()
         
         Utils.destroy_passed_object(obj)
         self.redraw(self.family)
@@ -211,185 +221,18 @@ class SelectChild:
     def on_show_toggled(self,obj):
         self.redraw_child_list(obj.get_active())
 
-class NewChild:
-
-    def __init__(self,db,family,person,update,update_disp,autoname=3):
-        self.db = db
-        self.person = person
-        self.family = family
-        self.update = update
-        self.edit_update = update_disp
+    def on_add_person_clicked(self,obj):
+        """Called with the Add button is pressed. Calls the QuickAdd
+        class to create a new person."""
         
-        self.xml = gtk.glade.XML(const.gladeFile,"addChild")
-        self.xml.signal_autoconnect({
-            "on_addchild_ok_clicked" : self.on_addchild_ok_clicked,
-            "on_edit_new_child"      : self.on_edit_new_child,
-            "on_male_toggled"        : self.on_male_toggled,
-            "on_female_toggled"      : self.on_female_toggled,
-            "on_gender_toggled"      : self.on_gender_toggled,
-            "destroy_passed_object"  : Utils.destroy_passed_object
-            })
+        import QuickAdd
+        QuickAdd.QuickAdd(self.db,"male",self.add_new_parent)
 
-        if autoname == 0:
-            self.update_surname = self.north_american
-        elif autoname == 2:
-            self.update_surname = self.latin_american
-        elif autoname == 3:
-            self.update_surname = self.icelandic
-        else:
-            self.update_surname = self.no_name
-
-        self.mrel = self.xml.get_widget("mrel")
-        self.frel = self.xml.get_widget("frel")
-        self.top  = self.xml.get_widget("addChild")
-        self.surname = self.xml.get_widget("surname")
-        self.given = self.xml.get_widget("childGiven")
-        if GrampsCfg.autocomp:
-            self.comp = AutoComp.AutoEntry(self.surname,self.db.getSurnames())
-
-        self.surname.set_text(self.update_surname(2))
-
-        if self.family:
-            father = self.family.getFather()
-            mother = self.family.getMother()
-
-            if father != None:
-                fname = father.getPrimaryName().getName()
-                label = _("Relationship to %s") % fname
-                self.xml.get_widget("flabel").set_text(label)
-
-            if mother != None:
-                mname = mother.getPrimaryName().getName()
-                label = _("Relationship to %s") % mname
-                self.xml.get_widget("mlabel").set_text(label)
-        else:
-            fname = self.person.getPrimaryName().getName()
-            label = _("Relationship to %s") % fname
-            
-            if self.person.getGender() == Person.male:
-                self.xml.get_widget("flabel").set_text(label)
-                self.xml.get_widget("mcombo").set_sensitive(0)
-            else:
-                self.xml.get_widget("mlabel").set_text(label)
-                self.xml.get_widget("fcombo").set_sensitive(0)
-
-        self.mrel.set_text(_("Birth"))
-        self.frel.set_text(_("Birth"))
-
-        # Typing CR selects OK button
-        self.top.editable_enters(self.given)
-        self.top.editable_enters(self.surname)
-        self.top.editable_enters(self.mrel)
-        self.top.editable_enters(self.frel)
-        self.top.show()
-
-    def on_male_toggled(self,obj):
-        if obj.get_active():
-            txt = self.surname.get_text()
-            if txt == "" or txt == self.update_surname(1):
-                self.surname.set_text(self.update_surname(0))
-            
-    def on_female_toggled(self,obj):
-        if obj.get_active():
-            txt = self.surname.get_text()
-            if txt == "" or txt == self.update_surname(0):
-                self.surname.set_text(self.update_surname(1))
-
-    def on_gender_toggled(self,obj):
-        pass
-
-    def combo_insert_text(self,combo,new_text,new_text_len,i_dont_care):
-        Utils.combo_insert_text(combo,new_text,new_text_len,i_dont_care)
-
-    def north_american(self,val):
-        if self.person.getGender() == Person.male:
-            return self.person.getPrimaryName().getSurname()
-        elif self.family:
-            f = self.family.getFather()
-            if f:
-                return f.getPrimaryName().getSurname()
-        return ""
-
-    def no_name(self,val):
-        return ""
-
-    def latin_american(self,val):
-        if self.family:
-            father = self.family.getFather()
-            mother = self.family.getMother()
-            if not father or not mother:
-                return ""
-            fsn = father.getPrimaryName().getSurname()
-            msn = mother.getPrimaryName().getSurname()
-            if not father or not mother:
-                return ""
-            return "%s %s" % (string.split(fsn)[0],string.split(msn)[0])
-        else:
-            return ""
-
-    def icelandic(self,val):
-        fname = ""
-        if self.person.getGender() == Person.male:
-            fname = self.person.getPrimaryName().getFirstName()
-        elif self.family:
-            f = self.family.getFather()
-            if f:
-                fname = f.getPrimaryName().getFirstName()
-        if fname:
-            fname = string.split(fname)[0]
-        if val == 0:
-            return "%ssson" % fname
-        elif val == 1:
-            return "%sdóttir" % fname
-        else:
-            return ""
-
-    def on_addchild_ok_clicked(self,obj):
-    
-        surname = self.surname.get_text()
-        given = self.given.get_text()
-    
-        person = Person()
-        self.db.addPerson(person)
-
-        name = Name()
-        name.setSurname(surname)
-        name.setFirstName(given)
-        person.setPrimaryName(name)
-
-        if self.xml.get_widget("childMale").get_active():
-            person.setGender(Person.male)
-        elif self.xml.get_widget("childFemale").get_active():
-            person.setGender(Person.female)
-        else:
-            person.setGender(Person.unknown)
-        
-        if not self.family:
-            self.family = self.db.newFamily()
-            if self.person.getGender() == Person.male:
-                self.family.setFather(self.person)
-            else:
-                self.family.setMother(self.person)
-            self.person.addFamily(self.family)
-
-        mrel = const.childRelations[self.mrel.get_text()]
-        frel = const.childRelations[self.frel.get_text()]
-
-        person.addAltFamily(self.family,mrel,frel)
-            
-        self.family.addChild(person)
-        
-        # must do an apply filter here to make sure the main window gets updated
-    
-        self.update(self.family,person,[])
-        Utils.modified()
-        Utils.destroy_passed_object(obj)
-        self.new_child = person
-
-    def on_edit_new_child(self,obj):
-        import EditPerson
-        
-        self.on_addchild_ok_clicked(obj)
-        EditPerson.EditPerson(self.new_child,self.db,self.edit_update)
-        
+    def add_new_parent(self,person):
+        """Adds a new person to either the father list or the mother list,
+        depending on the gender of the person."""
+        id = person.getId()
+        dinfo = self.db.getPersonDisplay(id)
+        rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
+        self.refmodel.add(rdata)
 

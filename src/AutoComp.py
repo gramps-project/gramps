@@ -100,8 +100,7 @@ class AutoCompBase:
         this form of a select_region() call works in a signal handler and
         the other form doesn't is a mystery.
         """
-        #entry.select_region(0, 0)
-        pass
+        entry.select_region(0, 0)
 
     def timer_callback(self,entry):
         """

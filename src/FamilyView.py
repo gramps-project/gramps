@@ -40,6 +40,7 @@ import GrampsCfg
 from RelLib import Person
 
 import AddSpouse
+import SelectChild
 import DisplayTrace
 import Marriage
 import ChooseParents
@@ -88,6 +89,7 @@ class FamilyView:
         self.top.get_widget('del_spparents').connect('clicked',self.del_sp_parents)
         self.top.get_widget('fam_back').connect('clicked',self.child_back)
         self.top.get_widget('del_child_btn').connect('clicked',self.remove_child_clicked)
+        self.top.get_widget('add_child_btn').connect('clicked',self.add_child_clicked)
         
         column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.spouse_list.append_column(column)
@@ -151,6 +153,16 @@ class FamilyView:
             AddSpouse.AddSpouse(self.parent.db, self.person,
                                 self.load_family,
                                 self.parent.redisplay_person_list)
+        except:
+            DisplayTrace.DisplayTrace()
+
+    def add_child_clicked(self,obj):
+        if not self.person:
+            return
+        try:
+            SelectChild.SelectChild(self.parent.db, self.family,
+                                    self.person,
+                                    self.load_family)
         except:
             DisplayTrace.DisplayTrace()
 
