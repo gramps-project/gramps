@@ -306,6 +306,6 @@ register_tool(
     _("Extract information from names"),
     category=_("Database Processing"),
     description=_("Searches the entire database and attempts to "
-                  "extract titles, nicknames and surname prefixes ",
+                  "extract titles, nicknames and surname prefixes "
                   "that may be embedded in a person's given name field.")
     )
