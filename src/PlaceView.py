@@ -110,7 +110,13 @@ class PlaceView:
         on large databases, and should only be called when absolutely
         necessary"""
 
-        self.model.clear()
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING)
         self.id2col = {}
 
         for key in self.db.getPlaceKeys():
@@ -124,7 +130,8 @@ class PlaceView:
                            8,   val[8], 9, val[9], 10, val[10], 11,  val[11],
                            12, val[12]
                            )
-        self.list.connect('button-press-event',self.button_press)
+        self.list.set_model(self.model)
+        self.list.get_column(0).clicked()
         
     def merge(self):
 
