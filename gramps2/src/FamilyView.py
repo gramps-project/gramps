@@ -854,7 +854,7 @@ class FamilyView:
                                     mdate)
                 self.spouse_model.set(iter,0,v)
             else:
-                self.spouse_model.set(iter,0,"unknown\n")
+                self.spouse_model.set(iter,0,"%s\n" % _("<double click to add spouse>"))
 
         if family in splist:
             self.display_marriage(family)
