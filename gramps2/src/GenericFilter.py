@@ -38,7 +38,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import os
-from string import find,join,strip,replace
+from string import find,join
 
 import gtk
 
@@ -167,31 +167,31 @@ class IsDescendantOf(Rule):
 
     labels = [ _('ID:') ]
     
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
     def name(self):
         return 'Is a descendant of'
 
     def apply(self,db,p):
-        self.map = {}
         self.orig = p
-        return self.search(p)
 
-    def search(self,p):
+        if not self.init:
+            self.init = 1
+            root = db.getPerson(self.list[0])
+            self.init_list(root)
+        return self.map.has_key(p.getId())
+
+    def init_list(self,p):
         if self.map.has_key(p.getId()) == 1:
-            raise Errors.FilterError(_("Loop detected while applying filter"),
-                               _("A relationship loop was detected between %s [%s] "
-                                 "and %s [%s]. This is probably due to an error in the "
-                                 "database.") % (self.orig.getPrimaryName().getName(),
-                                                 self.orig.getId(),
-                                                 p.getPrimaryName().getName(),p.getId()))
+            loop_error(self.orig,p)
         self.map[p.getId()] = 1
-        if p.getId() == self.list[0]:
-            return 1
-        for (f,r1,r2) in p.getParentList():
-            for p1 in [f.getMother(),f.getFather()]:
-                if p1:
-                    if self.search(p1):
-                        return 1
-        return 0
+        
+        for fam in p.getFamilyList():
+            for child in fam.getChildList():
+                self.init_list(child)
 
 #-------------------------------------------------------------------------
 #
@@ -214,12 +214,7 @@ class IsDescendantFamilyOf(Rule):
 
     def search(self,p,val):
         if self.map.has_key(p.getId()):
-            Errors.FilterError(_("Loop detected while applying filter"),
-                               _("A relationship loop was detected between %s [%s] "
-                                 "and %s [%s]. This is probably due to an error in the "
-                                 "database.") % (self.orig.getPrimaryName().getName(),
-                                                 self.orig.getId(),
-                                                 p.getPrimaryName().getName(),p.getId()))
+            loop_error(self.orig,p)
         if p.getId() == self.list[0]:
             self.map[p.getId()] = 1
             return 1
@@ -252,6 +247,7 @@ class IsAncestorOf(Rule):
 
     def __init__(self,list):
         Rule.__init__(self,list)
+        self.init = 0
         self.map = {}
     
     def name(self):
@@ -259,27 +255,26 @@ class IsAncestorOf(Rule):
 
     def apply(self,db,p):
         self.orig = p
-        return self.search(p)
+        if not self.init:
+            self.init = 1
+            root = db.getPerson(self.list[0])
+            self.init_ancestor_list(root)
+        return self.map.has_key(p.getId())
 
-    def search(self,p):
+    def init_ancestor_list(self,p):
         if self.map.has_key(p.getId()) == 1:
-            raise Errors.FilterError(_("Loop detected while applying filter"),
-                                     _("A relationship loop was detected between %s [%s] "
-                                       "and %s [%s]. This is probably due to an error in the "
-                                       "database.") % (self.orig.getPrimaryName().getName(),
-                                                       self.orig.getId(),
-                                                       p.getPrimaryName().getName(),p.getId()))
+            loop_error(self.orig,p)
         self.map[p.getId()] = 1
-
-        if p.getId() == self.list[0]:
-            return 1
-
-        for f in p.getFamilyList():
-            for p1 in f.getChildList():
-                if p1:
-                    if self.search(p1):
-                        return 1
-        return 0
+        
+        fam = p.getMainParents()
+        if fam:
+            f = fam.getFather()
+            m = fam.getMother()
+        
+            if f:
+                self.init_ancestor_list(f)
+            if m:
+                self.init_ancestor_list(m)
 
 #-------------------------------------------------------------------------
 #
@@ -636,6 +631,21 @@ class MatchesFilter(Rule):
             if filter.get_name() == self.list[0]:
                 return filter.check(db,p)
         return 0
+
+#-------------------------------------------------------------------------
+#
+# loop_error
+#
+#-------------------------------------------------------------------------
+def loop_error(p1,p2):
+    p1name = p1.getPrimaryName().getName()
+    p2name = p2.getPrimaryName().getName()
+    p1id = p1.getId()
+    p2id = p2.getId()
+    raise Errors.FilterError(_("Loop detected while applying filter"),
+                             _("A relationship loop was detected between %s [%s] "
+                               "and %s [%s]. This is probably due to an error in the "
+                               "database.") % (p1name,p1id,p2name,p2id))
     
 #-------------------------------------------------------------------------
 #
@@ -817,11 +827,11 @@ class GenericFilterList:
             pass
 
     def fix(self,line):
-        l = strip(line)
-        l = replace(l,'&','&amp;')
-        l = replace(l,'>','&gt;')
-        l = replace(l,'<','&lt;')
-        return replace(l,'"','&quot;')
+        l = line.strip()
+        l = l.replace('&','&amp;')
+        l = l.replace('>','&gt;')
+        l = l.replace('<','&lt;')
+        return l.replace('"','&quot;')
 
     def save(self):
 #        try:

@@ -52,6 +52,7 @@ import GenericFilter
 import Date
 import sort
 import Report
+import Errors
 from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
@@ -1162,11 +1163,11 @@ class WebReportDialog(Report.ReportDialog):
                                  self.img_dir_text,self.template_name,
                                  self.use_id,self.id_link,self.use_gendex,
                                  self.html_ext)
+            MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
             
-        MyReport.write_report()
     
 #------------------------------------------------------------------------
 #
