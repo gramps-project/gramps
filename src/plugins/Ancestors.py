@@ -37,10 +37,10 @@ from intl import gettext as _
 
 #------------------------------------------------------------------------
 #
-# AncestorsReport
+# ComprehensiveAncestorsReport
 #
 #------------------------------------------------------------------------
-class AncestorsReport (Report.Report):
+class ComprehensiveAncestorsReport (Report.Report):
 
     def __init__(self,database,person,max,pgbrk,cite,doc,output,newpage=0):
         self.map = {}
@@ -205,7 +205,26 @@ class AncestorsReport (Report.Report):
                 if self.pgbrk:
                     self.doc.page_break()
                 self.doc.start_paragraph ("Heading")
-                self.doc.write_text ("Generation %d" % thisgen)
+                if thisgen > 4:
+                    n = thisgen - 3
+                    if n % 10 == 1 and n != 11:
+                        nth = 'st'
+                    elif n % 10 == 2 and n != 12:
+                        nth = 'nd'
+                    elif n % 10 == 3 and n != 13:
+                        nth = 'rd'
+                    else:
+                        nth = 'th'
+                    heading = '%d%s great grandparents' % (n, nth)
+                elif thisgen == 4:
+                    heading = 'Great grandparents'
+                elif thisgen == 3:
+                    heading = 'Grandparents'
+                elif thisgen == 2:
+                    heading = 'Parents'
+                else:
+                    heading = 'Generation %d' % thisgen
+                self.doc.write_text (heading)
                 self.doc.end_paragraph ()
                 self.write_paragraphs (people)
 
@@ -379,6 +398,20 @@ class AncestorsReport (Report.Report):
         info += self.cite_sources (event.getSourceRefList ())
         return info
 
+    def address_info (self, address):
+        info = 'Address: %s %s %s %s' % (address.getStreet (),
+                                         address.getCity (),
+                                         address.getState (),
+                                         address.getCountry ())
+
+        info = info.rstrip ()
+        date = address.getDate ()
+        if date:
+            info += ', ' + date
+
+        info += self.cite_sources (address.getSourceRefList ())
+        return info
+
     def long_born_died (self, person):
         ret = ''
         born_info = self.event_info (person.getBirth ())
@@ -493,6 +526,11 @@ class AncestorsReport (Report.Report):
         else:
             name += first
 
+        nick = person.getNickName ()
+        if nick:
+            nick.strip ('"')
+            name += ' ("%s")' % nick
+
         if last.replace ('?', '') == '':
             if first_replaced == '':
                 name += ' (unknown)'
@@ -594,7 +632,8 @@ class AncestorsReport (Report.Report):
             paras = []
 
         events = person.getEventList ()
-        if len (events) > 0:
+        addresses = person.getAddressList ()
+        if (len (events) + len (addresses)) > 0:
             paras.append ((self.doc.start_paragraph, ['SubEntry']))
             paras.append ((self.doc.write_text,
                            ["More about " +
@@ -607,10 +646,15 @@ class AncestorsReport (Report.Report):
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))
 
+        for address in addresses:
+            paras.append ((self.doc.start_paragraph, ['Details']))
+            paras.append ((self.doc.write_text, [self.address_info (address)]))
+            paras.append ((self.doc.end_paragraph, []))
+
         return paras
 
 def _make_default_style(default_style):
-    """Make the default output style for the Ancestors report."""
+    """Make the default output style for the Comprehensive Ancestors report."""
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
     para = TextDoc.ParagraphStyle()
@@ -668,7 +712,7 @@ def _make_default_style(default_style):
 # 
 #
 #------------------------------------------------------------------------
-class AncestorReportDialog(Report.TextReportDialog):
+class ComprehensiveAncestorsReportDialog(Report.TextReportDialog):
     def __init__(self,database,person):
         Report.TextReportDialog.__init__(self,database,person)
 
@@ -682,7 +726,8 @@ class AncestorReportDialog(Report.TextReportDialog):
 
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Ancestors Report"),_("Text Reports"))
+        return "%s - %s - GRAMPS" % (_("Comprehensive Ancestors Report"),
+                                     _("Text Reports"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
@@ -711,14 +756,15 @@ class AncestorReportDialog(Report.TextReportDialog):
         self.opt_cite = self.cb_cite.get_active ()
 
     def make_report(self):
-        """Create the object that will produce the Ancestors Report.
-        All user dialog has already been handled and the output file
-        opened."""
+
+        """Create the object that will produce the Comprehensive
+        Ancestors Report.  All user dialog has already been handled
+        and the output file opened."""
         try:
-            MyReport = AncestorsReport(self.db, self.person,
-                                       self.max_gen, self.pg_brk,
-                                       self.opt_cite, self.doc,
-                                       self.target_path)
+            MyReport = ComprehensiveAncestorsReport(self.db, self.person,
+                                                    self.max_gen, self.pg_brk,
+                                                    self.opt_cite, self.doc,
+                                                    self.target_path)
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
@@ -736,7 +782,7 @@ class AncestorReportDialog(Report.TextReportDialog):
 #
 #------------------------------------------------------------------------
 def report(database,person):
-    AncestorReportDialog(database,person)
+    ComprehensiveAncestorsReportDialog(database,person)
 
 #------------------------------------------------------------------------
 #
@@ -758,7 +804,7 @@ _options = ( _person_id, _max_gen, _pg_brk, _opt_cite )
 # Book Item Options dialog
 #
 #------------------------------------------------------------------------
-class AncestorsBareReportDialog(Report.BareReportDialog):
+class ComprehensiveAncestorsBareReportDialog(Report.BareReportDialog):
 
     def __init__(self,database,person,opt,stl):
 
@@ -793,11 +839,11 @@ class AncestorsBareReportDialog(Report.BareReportDialog):
 
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Ancestors Report"))
+        return "%s - GRAMPS Book" % (_("Comprehensive Ancestors Report"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
-        return _("Ancestors Report for GRAMPS Book") 
+        return _("Comprehensive Ancestors Report for GRAMPS Book") 
 
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
@@ -834,7 +880,7 @@ class AncestorsBareReportDialog(Report.BareReportDialog):
 #
 #------------------------------------------------------------------------
 def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Ancestors Report using options set.
+    """Write the Comprehensive Ancestors Report using options set.
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
@@ -842,7 +888,7 @@ def write_book_item(database,person,doc,options,newpage=0):
         max_gen = int(options[1])
         pg_brk = int(options[2])
         opt_cite = int(options[3])
-        return AncestorsReport(database, person,
+        return ComprehensiveAncestorsReport(database, person,
             max_gen, pg_brk, opt_cite, doc, None, newpage)
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
@@ -953,7 +999,7 @@ from Plugins import register_report, register_book_item
 
 register_report(
     report,
-    _("Ancestors Report"),
+    _("Comprehensive Ancestors Report"),
     category=_("Text Reports"),
     status=(_("Beta")),
     description= _("Produces a detailed ancestral report."),
@@ -964,9 +1010,9 @@ register_report(
 
 # (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
 register_book_item( 
-    _("Ancestors Report"), 
+    _("Comprehensive Ancestors Report"), 
     _("Text"),
-    AncestorsBareReportDialog,
+    ComprehensiveAncestorsBareReportDialog,
     write_book_item,
     _options,
     _style_name,
