@@ -2879,7 +2879,7 @@ msgid "No Parents"
 msgstr "Ingen Forældre"
 
 #: gramps_main.py:1729
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "Der er ikke valgt en proband"
 
 #: gramps_main.py:1735
@@ -2891,7 +2891,7 @@ msgid "Bookmark could not be set because no one was selected"
 msgstr "Bogmærke kunne ikke oprettes da der ikke var valgt et"
 
 #: gramps_main.py:1750
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Ønsker du at vælge %s som proband?"
 
 #: gramps_main.py:1752

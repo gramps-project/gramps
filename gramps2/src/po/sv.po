@@ -1750,7 +1750,7 @@ msgid "Loading %s..."
 msgstr "Läser in %s ..."
 
 #: gramps_main.py:1342
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "Ingen standard-/hemperson har valts"
 
 #: gramps_main.py:1348
@@ -1762,7 +1762,7 @@ msgid "Bookmark could not be set because no one was selected"
 msgstr "Inget bokmärke kunde läggas till eftersom ingen hade valts"
 
 #: gramps_main.py:1363
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Vill du att %s ska vara hemperson?"
 
 #: gramps_main.py:1365

@@ -2884,7 +2884,7 @@ msgid "No Parents"
 msgstr "Nessun genitore"
 
 #: gramps_main.py:1703
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "La persona predefinita non è stata impostata"
 
 #: gramps_main.py:1709
@@ -2898,7 +2898,7 @@ msgstr ""
 "segnalibro e' selezionato"
 
 #: gramps_main.py:1724
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Vuoi impostare %s come la persona di riferimento?"
 
 #: gramps_main.py:1726

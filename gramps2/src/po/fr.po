@@ -2756,7 +2756,7 @@ msgid "Loading %s..."
 msgstr "Charge %s ..."
 
 #: gramps_main.py:1347
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "'de Cujus' non défini"
 
 #: gramps_main.py:1353
@@ -2768,7 +2768,7 @@ msgid "Bookmark could not be set because no one was selected"
 msgstr "Signet impossible car aucune personne n'a été sélectionnée"
 
 #: gramps_main.py:1368
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Voulez vous faire de %s le 'de Cujus' ?"
 
 #: gramps_main.py:1370

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Sat Apr  5 16:23:51 2003\n"
+"POT-Creation-Date: Wed Apr  9 20:34:53 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,30 +15,30 @@ msgstr ""
 "Generated-By: pygettext.py 1.4\n"
 
 
-#: AddMedia.py:103 ImageSelect.py:147
+#: AddMedia.py:103 ImageSelect.py:148
 msgid "Cannot import %s"
 msgstr ""
 
-#: AddMedia.py:104 ImageSelect.py:148
+#: AddMedia.py:104 ImageSelect.py:149
 msgid "The filename supplied could not be found."
 msgstr ""
 
 #: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
-#: SelectChild.py:105 gramps_main.py:104 plugins/FilterEditor.py:130
+#: SelectChild.py:105 gramps_main.py:103 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
 #: plugins/RelCalc.py:326 plugins/TimeLine.py:336 plugins/WebPage.py:274
 msgid "Name"
 msgstr ""
 
-#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:824
+#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:825
 #: MediaView.py:75 PlaceView.py:60 SelectChild.py:105 SourceView.py:68
-#: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:104
+#: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:103
 #: plugins/RelCalc.py:326
 msgid "ID"
 msgstr ""
 
 #: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:139 SelectChild.py:105
-#: gramps_main.py:105
+#: gramps_main.py:104
 msgid "Birth date"
 msgstr ""
 
@@ -254,16 +254,16 @@ msgstr ""
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr ""
 
-#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1032 revision.glade:131
+#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1029 revision.glade:131
 msgid "Open a database"
 msgstr ""
 
-#: DbPrompter.py:97 gramps_main.py:1080
+#: DbPrompter.py:97 gramps_main.py:1077
 msgid "Save database"
 msgstr ""
 
-#: DbPrompter.py:106 gramps_main.py:790 gramps_main.py:1092
-#: gramps_main.py:1104
+#: DbPrompter.py:106 gramps_main.py:788 gramps_main.py:1089
+#: gramps_main.py:1101
 msgid "No Comment Provided"
 msgstr ""
 
@@ -298,18 +298,18 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: EditPerson.py:187 ImageSelect.py:845 Marriage.py:142
+#: EditPerson.py:187 ImageSelect.py:846 Marriage.py:142
 #: filters/EventPlace.py:69 marriage.glade:362
 msgid "Place"
 msgstr ""
 
-#: EditPerson.py:194 EditSource.py:159 ImageSelect.py:618 ImageSelect.py:741
-#: ImageSelect.py:824 Marriage.py:143 marriage.glade:853
+#: EditPerson.py:194 EditSource.py:159 ImageSelect.py:619 ImageSelect.py:742
+#: ImageSelect.py:825 Marriage.py:143 marriage.glade:853
 #: plugins/FilterEditor.py:130
 msgid "Value"
 msgstr ""
 
-#: EditPerson.py:194 ImageSelect.py:618 ImageSelect.py:741 Marriage.py:143
+#: EditPerson.py:194 ImageSelect.py:619 ImageSelect.py:742 Marriage.py:143
 msgid "Attribute"
 msgstr ""
 
@@ -317,7 +317,7 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: EditPerson.py:206 ImageSelect.py:824 MediaView.py:76
+#: EditPerson.py:206 ImageSelect.py:825 MediaView.py:76
 msgid "Type"
 msgstr ""
 
@@ -325,7 +325,7 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-#: EditPerson.py:399 GrampsCfg.py:62 const.py:148 gramps.glade:3635
+#: EditPerson.py:399 GrampsCfg.py:63 const.py:148 gramps.glade:3635
 #: gramps.glade:3828 gramps.glade:4250 gramps.glade:4430 gramps.glade:5906
 #: gramps.glade:6152
 msgid "None"
@@ -341,12 +341,16 @@ msgstr ""
 msgid "unknown"
 msgstr ""
 
-#: EditPerson.py:830 EditPerson.py:847
-msgid "Save Changes to %s?"
+#: EditPerson.py:830
+msgid "Save changes to %s?"
 msgstr ""
 
 #: EditPerson.py:831 EditPerson.py:848 Marriage.py:404
 msgid "If you close without saving, the changes you have made will be lost"
+msgstr ""
+
+#: EditPerson.py:847
+msgid "Save Changes to %s?"
 msgstr ""
 
 #: EditPerson.py:1174
@@ -444,7 +448,7 @@ msgstr ""
 msgid "Family Attributes"
 msgstr ""
 
-#: EditSource.py:183 GrampsCfg.py:97 plugins/Summary.py:121
+#: EditSource.py:183 GrampsCfg.py:98 plugins/Summary.py:121
 msgid "Media Objects"
 msgstr ""
 
@@ -460,7 +464,7 @@ msgstr ""
 msgid "Event Editor"
 msgstr ""
 
-#: FamilyView.py:139 gramps_main.py:104 plugins/IndivComplete.py:381
+#: FamilyView.py:139 gramps_main.py:103 plugins/IndivComplete.py:381
 #: plugins/IndivSummary.py:225 plugins/WebPage.py:284 plugins/WebPage.py:286
 #: plugins/WebPage.py:288
 msgid "Gender"
@@ -496,7 +500,7 @@ msgstr ""
 #: Plugins.py:431 Plugins.py:432 Plugins.py:433 Witness.py:71 const.py:149
 #: const.py:424 const.py:432 gramps.glade:3657 gramps.glade:3850
 #: gramps.glade:4272 gramps.glade:4452 gramps.glade:5928 gramps.glade:6174
-#: gramps_main.py:1275 plugins/WebPage.py:288
+#: gramps_main.py:1272 plugins/WebPage.py:288
 msgid "Unknown"
 msgstr ""
 
@@ -536,19 +540,19 @@ msgstr ""
 msgid "Failed to load the module: %s"
 msgstr ""
 
-#: Find.py:143
+#: Find.py:141
 msgid "Find Person"
 msgstr ""
 
-#: Find.py:164
+#: Find.py:162
 msgid "Find Place"
 msgstr ""
 
-#: Find.py:182
+#: Find.py:180
 msgid "Find Source"
 msgstr ""
 
-#: Find.py:200
+#: Find.py:198
 msgid "Find Media Object"
 msgstr ""
 
@@ -705,139 +709,139 @@ msgstr ""
 msgid "Matches the filter named"
 msgstr ""
 
-#: GrampsCfg.py:61
+#: GrampsCfg.py:62
 msgid "Father's surname"
 msgstr ""
 
-#: GrampsCfg.py:63
+#: GrampsCfg.py:64
 msgid "Combination of mother's and father's surname"
 msgstr ""
 
-#: GrampsCfg.py:64
+#: GrampsCfg.py:65
 msgid "Icelandic style"
 msgstr ""
 
-#: GrampsCfg.py:68
+#: GrampsCfg.py:69
 msgid "Month Day, Year"
 msgstr ""
 
-#: GrampsCfg.py:69
+#: GrampsCfg.py:70
 msgid "MON Day, Year"
 msgstr ""
 
-#: GrampsCfg.py:70
+#: GrampsCfg.py:71
 msgid "Day MON Year"
 msgstr ""
 
-#: GrampsCfg.py:71
+#: GrampsCfg.py:72
 msgid "MM/DD/YYYY"
 msgstr ""
 
-#: GrampsCfg.py:72
+#: GrampsCfg.py:73
 msgid "MM-DD-YYYY"
 msgstr ""
 
-#: GrampsCfg.py:73
+#: GrampsCfg.py:74
 msgid "DD/MM/YYYY"
 msgstr ""
 
-#: GrampsCfg.py:74
+#: GrampsCfg.py:75
 msgid "DD-MM-YYYY"
 msgstr ""
 
-#: GrampsCfg.py:75
+#: GrampsCfg.py:76
 msgid "MM.DD.YYYY"
 msgstr ""
 
-#: GrampsCfg.py:76
+#: GrampsCfg.py:77
 msgid "DD.MM.YYYY"
 msgstr ""
 
-#: GrampsCfg.py:77
+#: GrampsCfg.py:78
 msgid "DD. Month Year"
 msgstr ""
 
-#: GrampsCfg.py:78
+#: GrampsCfg.py:79
 msgid "YYYY/MM/DD"
 msgstr ""
 
-#: GrampsCfg.py:79
+#: GrampsCfg.py:80
 msgid "YYYY-MM-DD"
 msgstr ""
 
-#: GrampsCfg.py:80
+#: GrampsCfg.py:81
 msgid "YYYY.MM.DD"
 msgstr ""
 
-#: GrampsCfg.py:84
+#: GrampsCfg.py:85
 msgid "MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"
 msgstr ""
 
-#: GrampsCfg.py:85
+#: GrampsCfg.py:86
 msgid "DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"
 msgstr ""
 
-#: GrampsCfg.py:86
+#: GrampsCfg.py:87
 msgid "YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"
 msgstr ""
 
-#: GrampsCfg.py:90
+#: GrampsCfg.py:91
 msgid "Firstname Surname"
 msgstr ""
 
-#: GrampsCfg.py:91
+#: GrampsCfg.py:92
 msgid "Surname, Firstname"
 msgstr ""
 
-#: GrampsCfg.py:95
+#: GrampsCfg.py:96
 msgid "Database"
 msgstr ""
 
-#: GrampsCfg.py:96 GrampsCfg.py:101
+#: GrampsCfg.py:97 GrampsCfg.py:102
 msgid "General"
 msgstr ""
 
-#: GrampsCfg.py:98
+#: GrampsCfg.py:99
 msgid "GRAMPS internal IDs"
 msgstr ""
 
-#: GrampsCfg.py:99
+#: GrampsCfg.py:100
 msgid "Revision Control"
 msgstr ""
 
-#: GrampsCfg.py:100
+#: GrampsCfg.py:101
 msgid "Display"
 msgstr ""
 
-#: GrampsCfg.py:102
+#: GrampsCfg.py:103
 msgid "Dates and Calendars"
 msgstr ""
 
-#: GrampsCfg.py:103
+#: GrampsCfg.py:104
 msgid "Tool and Status Bars"
 msgstr ""
 
-#: GrampsCfg.py:104
+#: GrampsCfg.py:105
 msgid "Usage"
 msgstr ""
 
-#: GrampsCfg.py:105
+#: GrampsCfg.py:106
 msgid "Find"
 msgstr ""
 
-#: GrampsCfg.py:106
+#: GrampsCfg.py:107
 msgid "Report Preferences"
 msgstr ""
 
-#: GrampsCfg.py:107 config.glade:892
+#: GrampsCfg.py:108 config.glade:892
 msgid "Researcher Information"
 msgstr ""
 
-#: GrampsCfg.py:108
+#: GrampsCfg.py:109
 msgid "Data Guessing"
 msgstr ""
 
-#: GrampsCfg.py:632 GrampsCfg.py:647
+#: GrampsCfg.py:633 GrampsCfg.py:648
 msgid "No default format"
 msgstr ""
 
@@ -849,55 +853,55 @@ msgstr ""
 msgid "Hebrew"
 msgstr ""
 
-#: ImageSelect.py:106
+#: ImageSelect.py:107
 msgid "Select a media object"
 msgstr ""
 
-#: ImageSelect.py:350
+#: ImageSelect.py:351
 msgid "Thumbnail %s could not be found"
 msgstr ""
 
-#: ImageSelect.py:440 RelImage.py:56
+#: ImageSelect.py:441 RelImage.py:56
 msgid "Could not import %s"
 msgstr ""
 
-#: ImageSelect.py:543 MediaView.py:170
+#: ImageSelect.py:544 MediaView.py:170
 msgid "Media Object"
 msgstr ""
 
-#: ImageSelect.py:548
+#: ImageSelect.py:549
 msgid "Open in %s"
 msgstr ""
 
-#: ImageSelect.py:551 MediaView.py:174
+#: ImageSelect.py:552 MediaView.py:174
 msgid "Edit with the GIMP"
 msgstr ""
 
-#: ImageSelect.py:553 MediaView.py:176
+#: ImageSelect.py:554 MediaView.py:176
 msgid "Edit Object Properties"
 msgstr ""
 
-#: ImageSelect.py:556 MediaView.py:179
+#: ImageSelect.py:557 MediaView.py:179
 msgid "Convert to local copy"
 msgstr ""
 
-#: ImageSelect.py:607
+#: ImageSelect.py:608
 msgid "Change local media object properties"
 msgstr ""
 
-#: ImageSelect.py:727
+#: ImageSelect.py:728
 msgid "Change global media object properites"
 msgstr ""
 
-#: ImageSelect.py:831 plugins/EventCmp.py:306
+#: ImageSelect.py:832 plugins/EventCmp.py:306
 msgid "Person"
 msgstr ""
 
-#: ImageSelect.py:835 gramps.glade:828
+#: ImageSelect.py:836 gramps.glade:828
 msgid "Family"
 msgstr ""
 
-#: ImageSelect.py:840 Utils.py:194 Utils.py:196
+#: ImageSelect.py:841 Utils.py:194 Utils.py:196
 msgid "Source"
 msgstr ""
 
@@ -1007,7 +1011,7 @@ msgstr ""
 msgid "Place Name"
 msgstr ""
 
-#: PlaceView.py:137 gramps_main.py:490
+#: PlaceView.py:137 gramps_main.py:489
 msgid "Cannot merge people."
 msgstr ""
 
@@ -1092,7 +1096,7 @@ msgid "The file has been moved or deleted"
 msgstr ""
 
 #: RelImage.py:71 RelImage.py:74 RelImage.py:139 RelImage.py:142
-#: gramps_main.py:815 gramps_main.py:820 gramps_main.py:829
+#: gramps_main.py:813 gramps_main.py:818 gramps_main.py:827
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
 #: plugins/DesGraph.py:219 plugins/WriteGedcom.py:495
 #: plugins/WriteGedcom.py:500
@@ -1287,76 +1291,76 @@ msgstr ""
 msgid "Styles"
 msgstr ""
 
-#: Report.py:539 StyleEditor.py:80
+#: Report.py:538 StyleEditor.py:80
 msgid "Style Editor"
 msgstr ""
 
-#: Report.py:598 Report.py:600
+#: Report.py:597 Report.py:599
 msgid "Paper Options"
 msgstr ""
 
-#: Report.py:609
+#: Report.py:608
 msgid "Size"
 msgstr ""
 
-#: Report.py:614
+#: Report.py:613
 msgid "Height"
 msgstr ""
 
-#: Report.py:622 Report.py:638 styles.glade:903 styles.glade:927
+#: Report.py:621 Report.py:637 styles.glade:903 styles.glade:927
 #: styles.glade:951
 msgid "cm"
 msgstr ""
 
-#: Report.py:626
+#: Report.py:625
 msgid "Orientation"
 msgstr ""
 
-#: Report.py:630
+#: Report.py:629
 msgid "Width"
 msgstr ""
 
-#: Report.py:650
+#: Report.py:649
 msgid "Page Count"
 msgstr ""
 
-#: Report.py:674 Report.py:679
+#: Report.py:673 Report.py:678
 msgid "HTML Options"
 msgstr ""
 
-#: Report.py:681 plugins/eventcmp.glade:192
+#: Report.py:680 plugins/eventcmp.glade:192
 msgid "Template"
 msgstr ""
 
-#: Report.py:700
+#: Report.py:699
 msgid "User Template"
 msgstr ""
 
-#: Report.py:703
+#: Report.py:702
 msgid "Choose File"
 msgstr ""
 
-#: Report.py:742
+#: Report.py:741
 msgid "Report Options"
 msgstr ""
 
-#: Report.py:760 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
+#: Report.py:759 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr ""
 
-#: Report.py:777
+#: Report.py:776
 msgid "Generations"
 msgstr ""
 
-#: Report.py:784
+#: Report.py:783
 msgid "Page break between generations"
 msgstr ""
 
-#: Report.py:873
+#: Report.py:871
 msgid "Invalid file name"
 msgstr ""
 
-#: Report.py:874
+#: Report.py:872
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
@@ -1374,7 +1378,7 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: SourceView.py:134 gramps_main.py:896
+#: SourceView.py:134 gramps_main.py:893
 msgid "Delete %s?"
 msgstr ""
 
@@ -2625,7 +2629,7 @@ msgstr ""
 msgid "_Export"
 msgstr ""
 
-#: gramps.glade:169 gramps_main.py:1049
+#: gramps.glade:169 gramps_main.py:1046
 msgid "_Revert"
 msgstr ""
 
@@ -3042,183 +3046,187 @@ msgstr ""
 msgid "_Text:"
 msgstr ""
 
-#: gramps_main.py:105
+#: gramps_main.py:104
 msgid "Death date"
 msgstr ""
 
-#: gramps_main.py:125
+#: gramps_main.py:124
 msgid "GRAMPS is being run as the 'root' user."
 msgstr ""
 
-#: gramps_main.py:126
+#: gramps_main.py:125
 msgid "This account is not meant for normal appication use. Running user applications in the administrative account is rarely a wise idea, and can open up potential security risks."
 msgstr ""
 
-#: gramps_main.py:491
+#: gramps_main.py:490
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on a the desired person."
 msgstr ""
 
-#: gramps_main.py:513
+#: gramps_main.py:512
 msgid "Save Changes Made to the Database?"
 msgstr ""
 
-#: gramps_main.py:514
+#: gramps_main.py:513
 msgid "Unsaved changes exist in the current database. If you close without saving, the changes you have made will be lost."
 msgstr ""
 
-#: gramps_main.py:559
+#: gramps_main.py:558
 msgid "Create a New Database"
 msgstr ""
 
-#: gramps_main.py:560
+#: gramps_main.py:559
 msgid "Creating a new database will close the existing database, discarding any unsaved changes. You will then be prompted to create a new database"
 msgstr ""
 
-#: gramps_main.py:563
+#: gramps_main.py:562
 msgid "_Create New Database"
 msgstr ""
 
-#: gramps_main.py:643 gramps_main.py:670 gramps_main.py:1131
+#: gramps_main.py:642 gramps_main.py:669 gramps_main.py:1128
 msgid "Updating display - this may take a few seconds..."
 msgstr ""
 
-#: gramps_main.py:645 gramps_main.py:672 gramps_main.py:1133
-#: gramps_main.py:1394
+#: gramps_main.py:644 gramps_main.py:671 gramps_main.py:1130
+#: gramps_main.py:1391
 msgid "Updating display..."
 msgstr ""
 
-#: gramps_main.py:718
+#: gramps_main.py:717
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
 
-#: gramps_main.py:723
+#: gramps_main.py:722
 msgid "An autosave file was detected"
 msgstr ""
 
-#: gramps_main.py:724
+#: gramps_main.py:723
 msgid "GRAMPS has detected an autosave file for the selected database. This file is more recent than the last saved database. This typically happens when GRAMPS was unexpected shutdown before the data was saved. You may load this file to try to recover any missing data."
 msgstr ""
 
-#: gramps_main.py:730
+#: gramps_main.py:729
 msgid "_Load autosave file"
 msgstr ""
 
-#: gramps_main.py:732
+#: gramps_main.py:731
 msgid "Load _saved database"
 msgstr ""
 
-#: gramps_main.py:766 gramps_main.py:805
+#: gramps_main.py:765 gramps_main.py:803
 msgid "Database could not be opened"
 msgstr ""
 
-#: gramps_main.py:767 gramps_main.py:806
+#: gramps_main.py:766 gramps_main.py:804
 msgid "%s is not a directory."
 msgstr ""
 
-#: gramps_main.py:768 gramps_main.py:807
-msgid "The file you should attempt to open should be a directory that contains a data.gramps file or a gramps.zodb file."
+#: gramps_main.py:767
+msgid "You should select a directory that contains a data.gramps file or a gramps.zodb file."
 msgstr ""
 
-#: gramps_main.py:798
+#: gramps_main.py:796
 msgid "Saving %s ..."
 msgstr ""
 
-#: gramps_main.py:816
+#: gramps_main.py:805
+msgid "The file you should attempt to open should be a directory that contains a data.gramps file or a gramps.zodb file."
+msgstr ""
+
+#: gramps_main.py:814
 msgid "An error was detected while attempting to create the file. The operating system reported \"%s\""
 msgstr ""
 
-#: gramps_main.py:821 gramps_main.py:830
+#: gramps_main.py:819 gramps_main.py:828
 msgid "An error was detected while trying to create the file"
 msgstr ""
 
-#: gramps_main.py:863
+#: gramps_main.py:860
 msgid "autosaving..."
 msgstr ""
 
-#: gramps_main.py:866
+#: gramps_main.py:863
 msgid "autosave complete"
 msgstr ""
 
-#: gramps_main.py:868
+#: gramps_main.py:865
 msgid "autosave failed"
 msgstr ""
 
-#: gramps_main.py:897
+#: gramps_main.py:894
 msgid "Deleting the person will remove the person from from the database. The data can only be recovered by closing the database without saving changes. This change will become permanent after you save the database."
 msgstr ""
 
-#: gramps_main.py:902
+#: gramps_main.py:899
 msgid "_Delete Person"
 msgstr ""
 
-#: gramps_main.py:1045
+#: gramps_main.py:1042
 msgid "Revert to last saved database?"
 msgstr ""
 
-#: gramps_main.py:1046
+#: gramps_main.py:1043
 msgid "Reverting to the last saved database will cause all unsaved changes to be lost, and the last saved database will be loaded."
 msgstr ""
 
-#: gramps_main.py:1052
+#: gramps_main.py:1049
 msgid "Could Not Revert to the Previous Database."
 msgstr ""
 
-#: gramps_main.py:1053
+#: gramps_main.py:1050
 msgid "GRAMPS could not find a previous version of the database"
 msgstr ""
 
-#: gramps_main.py:1360 gramps_main.py:1369
+#: gramps_main.py:1357 gramps_main.py:1366
 msgid "Loading %s..."
 msgstr ""
 
-#: gramps_main.py:1471
+#: gramps_main.py:1468
 msgid "No home person has been set."
 msgstr ""
 
-#: gramps_main.py:1472
+#: gramps_main.py:1469
 msgid "The home person may be set from the Settings menu."
 msgstr ""
 
-#: gramps_main.py:1478
+#: gramps_main.py:1475
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1481
+#: gramps_main.py:1478
 msgid "Could Not Set a Bookmark."
 msgstr ""
 
-#: gramps_main.py:1482
+#: gramps_main.py:1479
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: gramps_main.py:1494
+#: gramps_main.py:1491
 msgid "Set %s as the Home Person"
 msgstr ""
 
-#: gramps_main.py:1495
+#: gramps_main.py:1492
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr ""
 
-#: gramps_main.py:1498
+#: gramps_main.py:1495
 msgid "_Set Home Person"
 msgstr ""
 
-#: gramps_main.py:1543 gramps_main.py:1547 gramps_main.py:1551
+#: gramps_main.py:1540 gramps_main.py:1544 gramps_main.py:1548
 msgid "Could not create database"
 msgstr ""
 
-#: gramps_main.py:1544 gramps_main.py:1548
+#: gramps_main.py:1541 gramps_main.py:1545
 msgid ""
 "The directory ~/.gramps/example could not be created.\n"
 msgstr ""
 
-#: gramps_main.py:1552
+#: gramps_main.py:1549
 msgid "The directory ~/.gramps/example could not be created."
 msgstr ""
 
-#: gramps_main.py:1560 gramps_main.py:1562
+#: gramps_main.py:1557 gramps_main.py:1559
 msgid "Example database not created"
 msgstr ""
 

@@ -347,7 +347,7 @@ msgid "unknown"
 msgstr "неизвестно"
 
 #: EditPerson.py:830 EditPerson.py:847
-msgid "Save Changes to %s?"
+msgid "Save changes to %s?"
 msgstr "Сохранить Изменения в %s?"
 
 #: EditPerson.py:831 EditPerson.py:848 Marriage.py:404
@@ -2955,7 +2955,7 @@ msgid "Save"
 msgstr "Сохранить"
 
 #: gramps.glade:656
-msgid "Make the home person the active person"
+msgid "Make the Home Person the active person"
 msgstr ""
 "Сделать лицо по умолчанию активным лицом"
 
@@ -3496,11 +3496,11 @@ msgid "Loading %s..."
 msgstr "Загружаю %s..."
 
 #: gramps_main.py:1471
-msgid "No home person has been set."
+msgid "No Home Person has been set."
 msgstr "Лицо по умолчанию не было выбрано."
 
 #: gramps_main.py:1472
-msgid "The home person may be set from the Settings menu."
+msgid "The Home Person may be set from the Settings menu."
 msgstr ""
 "Лицо По Умолчанию может быть установлено "
 "в меню Установок."
@@ -3527,7 +3527,7 @@ msgstr ""
 #: gramps_main.py:1495
 msgid ""
 "Once a Home Person is defined, pressing the Home button on the toolbar will "
-"make the home person the active person."
+"make the Home Person the active person."
 msgstr ""
 "После того, как Лицо По Умолчанию "
 "определено, нажатие кнопки Домой на "

@@ -2897,7 +2897,7 @@ msgid "No Parents"
 msgstr "Brak rodziców"
 
 #: gramps_main.py:1
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "Nie ustawiono domy¶lnej/pocz±tkowej osoby"
 
 #: gramps_main.py:1
@@ -2909,7 +2909,7 @@ msgid "Bookmark could not be set because no one was selected"
 msgstr ""
 
 #: gramps_main.py:1
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Na pewno ustawiæ osobê %s jako osobê domy¶ln±?"
 
 #: gramps_main.py:1
