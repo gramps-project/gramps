@@ -112,7 +112,6 @@ def mk_thumb(source,dest,size):
 
     if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
-        print cmd
         os.system(cmd)
     else:
         try:
