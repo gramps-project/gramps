@@ -283,6 +283,7 @@ class Gramps:
             "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
             "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
             "on_contents_activate" : self.on_contents_activate,
+            "on_faq_activate" : self.on_faq_activate,
             "on_default_person_activate" : self.on_default_person_activate,
             "on_delete_person_clicked" : self.delete_person_clicked,
             "on_delete_place_clicked" : self.place_view.on_delete_clicked,
@@ -837,6 +838,22 @@ class Gramps:
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
         gnome.help_display('gramps-manual','index')
+
+    def on_faq_activate(self,obj):
+        """Display FAQ"""
+        faqtop = gtk.glade.XML(const.gladeFile, "faq", "faq")
+        faqWindow = faqtop.get_widget("faq")
+	faqView = faqtop.get_widget("faq_view")
+        faqtop.signal_autoconnect({
+            "on_faq_close_clicked" : Utils.destroy_passed_object
+	})
+	# FIXME: filename is bogus, waiting for install policy decision
+	faq_file = open('/home/shura/gramps2/FAQ')
+	faq_text = faq_file.read()
+	faq_file.close()
+	faq_buffer = faqView.get_buffer()
+        faq_buffer.set_text(faq_text)
+	faqWindow.show()
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
