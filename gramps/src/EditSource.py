@@ -153,7 +153,7 @@ class EditSource:
             for v in p.getEventList():
                 for sref in v.getSourceRefList():
                     if sref.getBase() == self.source:
-                        f_event_list.append((n,v.getName()))
+                        f_event_list.append((name,v.getName()))
             for v in p.getAttributeList():
                 for sref in v.getSourceRefList():
                     if sref.getBase() == self.source:
@@ -188,7 +188,7 @@ class EditSource:
         if len(m_list) > 0:
             add(_("Media Objects"))
             add("\n-----------------------------\n")
-            for p in m_event_list:
+            for p in m_list:
                 add("%s\n" % m)
         if len(m_list) > 0:
             add(_("Places"))

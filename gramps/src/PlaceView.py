@@ -26,6 +26,7 @@ import string
 
 from RelLib import *
 import EditPlace
+import utils
 import intl
 
 _ = intl.gettext
@@ -38,24 +39,27 @@ class PlaceView:
         self.place_arrow   = glade.get_widget("place_arrow")
         self.place_id_arrow= glade.get_widget("place_id_arrow")
         self.city_arrow    = glade.get_widget("city_arrow")
+        self.parish_arrow  = glade.get_widget("parish_arrow")
         self.county_arrow  = glade.get_widget("county_arrow")
         self.state_arrow   = glade.get_widget("state_arrow")
         self.country_arrow = glade.get_widget("country_arrow")
         self.update_display= update
 
-        self.place_arrows = [ self.place_arrow, self.place_id_arrow, self.city_arrow,
-                              self.county_arrow, self.state_arrow, self.country_arrow ]
+        self.place_arrows = [ self.place_arrow, self.place_id_arrow, self.parish_arrow,
+                              self.city_arrow, self.county_arrow, self.state_arrow,
+                              self.country_arrow ]
 
         self.sort_column = 0
         self.sort_direct = GTK.SORT_ASCENDING
 
-        self.place_list.set_column_visibility(6,0)
         self.place_list.set_column_visibility(7,0)
         self.place_list.set_column_visibility(8,0)
         self.place_list.set_column_visibility(9,0)
         self.place_list.set_column_visibility(10,0)
         self.place_list.set_column_visibility(11,0)
-        self.place_list.set_sort_column(self.sort_column+6)
+        self.place_list.set_column_visibility(12,0)
+        self.place_list.set_column_visibility(13,0)
+        self.place_list.set_sort_column(self.sort_column+7)
         self.place_list.set_sort_type(self.sort_direct)
 
     def load_places(self):
@@ -78,10 +82,11 @@ class PlaceView:
             city = mloc.get_city()
             county = mloc.get_county()
             state = mloc.get_state()
+            parish = mloc.get_parish()
             country = mloc.get_country()
-            self.place_list.append([title,id,city,county,state,country,
-                                    u(title), u(id), u(city), u(county),
-                                    u(state), u(country)])
+            self.place_list.append([title,id,parish,city,county,state,country,
+                                    u(title), u(id), u(parish), u(city),
+                                    u(county),u(state), u(country)])
             self.place_list.set_row_data(index,src)
             index = index + 1
 
@@ -108,7 +113,7 @@ class PlaceView:
             if len(obj.selection) > 0:
                 index = obj.selection[0]
                 place = obj.get_row_data(index)
-                EditPlace.EditPlace(place,self.db,update_display_after_edit)
+                EditPlace.EditPlace(place,self.db,self.update_display_after_edit)
 
     def on_click_column(self,obj,column):
         obj.freeze()
@@ -132,7 +137,7 @@ class PlaceView:
             arrow.set(GTK.ARROW_DOWN,2)
         self.sort_column = column
         self.place_list.set_sort_type(self.sort_direct)
-        self.place_list.set_sort_column(self.sort_column + 6)
+        self.place_list.set_sort_column(self.sort_column + 7)
         arrow.show()
         self.place_list.sort()
         if sel:

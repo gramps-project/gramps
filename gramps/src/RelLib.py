@@ -287,11 +287,13 @@ class Location:
         """creates a Location object, copying from the source object if it exists"""
         if source:
             self.city = source.city
+            self.parish = source.parish
             self.county = source.county
             self.state = source.state
             self.country = source.country
         else:
             self.city = ""
+            self.parish = ""
             self.county = ""
             self.state = ""
             self.country = ""
@@ -306,6 +308,14 @@ class Location:
     def get_city(self):
         """returns the city name of the Location object"""
         return self.city
+
+    def set_parish(self,data):
+        """sets the religious parish name"""
+        self.parish = data
+
+    def get_parish(self):
+        """gets the religious parish name"""
+        return self.parish
 
     def set_county(self,data):
         """sets the county name of the Location object"""

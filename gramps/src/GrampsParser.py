@@ -180,6 +180,8 @@ class GrampsParser(handler.ContentHandler):
         loc = Location()
         if attrs.has_key('city'):
             loc.set_city(u2l(attrs['city']))
+        if attrs.has_key('parish'):
+            loc.set_parish(u2l(attrs['parish']))
         if attrs.has_key('state'):
             loc.set_state(u2l(attrs['state']))
         if attrs.has_key('county'):
@@ -1204,11 +1206,14 @@ def build_place_title(loc):
     state = loc.get_state()
     country = loc.get_country()
     county = loc.get_county()
-
+    parish = loc.get_parish()
+    
     value = ""
 
+    if parish:
+        value = parish
     if city:
-        value = city
+        value = append_value(value,city)
     if county:
         value = append_value(value,county)
     if state:

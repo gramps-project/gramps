@@ -156,7 +156,7 @@
 	<widget>
 	  <class>GtkTable</class>
 	  <name>table19</name>
-	  <rows>8</rows>
+	  <rows>9</rows>
 	  <columns>3</columns>
 	  <homogeneous>False</homogeneous>
 	  <row_spacing>0</row_spacing>
@@ -227,8 +227,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>3</top_attach>
-	      <bottom_attach>4</bottom_attach>
+	      <top_attach>4</top_attach>
+	      <bottom_attach>5</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
@@ -253,8 +253,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
@@ -279,8 +279,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>4</top_attach>
-	      <bottom_attach>5</bottom_attach>
+	      <top_attach>5</top_attach>
+	      <bottom_attach>6</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
@@ -305,8 +305,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>5</top_attach>
-	      <bottom_attach>6</bottom_attach>
+	      <top_attach>6</top_attach>
+	      <bottom_attach>7</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
@@ -331,8 +331,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>6</top_attach>
-	      <bottom_attach>7</bottom_attach>
+	      <top_attach>7</top_attach>
+	      <bottom_attach>8</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
@@ -357,8 +357,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>7</top_attach>
-	      <bottom_attach>8</bottom_attach>
+	      <top_attach>8</top_attach>
+	      <bottom_attach>9</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
@@ -381,8 +381,8 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>2</right_attach>
-	      <top_attach>7</top_attach>
-	      <bottom_attach>8</bottom_attach>
+	      <top_attach>8</top_attach>
+	      <bottom_attach>9</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>True</xexpand>
@@ -454,30 +454,6 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>3</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
-	      <xpad>5</xpad>
-	      <ypad>5</ypad>
-	      <xexpand>True</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkEntry</class>
-	    <name>state</name>
-	    <can_focus>True</can_focus>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text></text>
-	    <child>
-	      <left_attach>1</left_attach>
-	      <right_attach>3</right_attach>
 	      <top_attach>3</top_attach>
 	      <bottom_attach>4</bottom_attach>
 	      <xpad>5</xpad>
@@ -493,7 +469,7 @@
 
 	  <widget>
 	    <class>GtkEntry</class>
-	    <name>country</name>
+	    <name>state</name>
 	    <can_focus>True</can_focus>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
@@ -517,7 +493,7 @@
 
 	  <widget>
 	    <class>GtkEntry</class>
-	    <name>longitude</name>
+	    <name>country</name>
 	    <can_focus>True</can_focus>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
@@ -541,7 +517,7 @@
 
 	  <widget>
 	    <class>GtkEntry</class>
-	    <name>latitude</name>
+	    <name>longitude</name>
 	    <can_focus>True</can_focus>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
@@ -552,6 +528,30 @@
 	      <right_attach>3</right_attach>
 	      <top_attach>6</top_attach>
 	      <bottom_attach>7</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <name>latitude</name>
+	    <can_focus>True</can_focus>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text></text>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>3</right_attach>
+	      <top_attach>7</top_attach>
+	      <bottom_attach>8</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>True</xexpand>
@@ -578,11 +578,61 @@
 	    <child>
 	      <left_attach>2</left_attach>
 	      <right_attach>3</right_attach>
-	      <top_attach>7</top_attach>
-	      <bottom_attach>8</bottom_attach>
+	      <top_attach>8</top_attach>
+	      <bottom_attach>9</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkLabel</class>
+	    <name>label279</name>
+	    <label>Religious Parish</label>
+	    <justify>GTK_JUSTIFY_CENTER</justify>
+	    <wrap>False</wrap>
+	    <xalign>1</xalign>
+	    <yalign>0.5</yalign>
+	    <xpad>5</xpad>
+	    <ypad>0</ypad>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>2</top_attach>
+	      <bottom_attach>3</bottom_attach>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <name>parish</name>
+	    <can_focus>True</can_focus>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text></text>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>3</right_attach>
+	      <top_attach>2</top_attach>
+	      <bottom_attach>3</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>True</xexpand>
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
 	      <yshrink>False</yshrink>
@@ -627,7 +677,7 @@
 	    <widget>
 	      <class>GtkTable</class>
 	      <name>table21</name>
-	      <rows>4</rows>
+	      <rows>5</rows>
 	      <columns>3</columns>
 	      <homogeneous>False</homogeneous>
 	      <row_spacing>0</row_spacing>
@@ -646,8 +696,8 @@
 		<child>
 		  <left_attach>0</left_attach>
 		  <right_attach>1</right_attach>
-		  <top_attach>1</top_attach>
-		  <bottom_attach>2</bottom_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -698,8 +748,8 @@
 		<child>
 		  <left_attach>2</left_attach>
 		  <right_attach>3</right_attach>
-		  <top_attach>1</top_attach>
-		  <bottom_attach>2</bottom_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
 		  <xpad>3</xpad>
 		  <ypad>3</ypad>
 		  <xexpand>False</xexpand>
@@ -724,8 +774,8 @@
 		<child>
 		  <left_attach>0</left_attach>
 		  <right_attach>1</right_attach>
-		  <top_attach>2</top_attach>
-		  <bottom_attach>3</bottom_attach>
+		  <top_attach>3</top_attach>
+		  <bottom_attach>4</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -750,8 +800,8 @@
 		<child>
 		  <left_attach>0</left_attach>
 		  <right_attach>1</right_attach>
-		  <top_attach>3</top_attach>
-		  <bottom_attach>4</bottom_attach>
+		  <top_attach>4</top_attach>
+		  <bottom_attach>5</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -776,8 +826,8 @@
 		<child>
 		  <left_attach>2</left_attach>
 		  <right_attach>3</right_attach>
-		  <top_attach>2</top_attach>
-		  <bottom_attach>3</bottom_attach>
+		  <top_attach>3</top_attach>
+		  <bottom_attach>4</bottom_attach>
 		  <xpad>3</xpad>
 		  <ypad>3</ypad>
 		  <xexpand>False</xexpand>
@@ -802,8 +852,8 @@
 		<child>
 		  <left_attach>2</left_attach>
 		  <right_attach>3</right_attach>
-		  <top_attach>3</top_attach>
-		  <bottom_attach>4</bottom_attach>
+		  <top_attach>4</top_attach>
+		  <bottom_attach>5</bottom_attach>
 		  <xpad>3</xpad>
 		  <ypad>3</ypad>
 		  <xexpand>False</xexpand>
@@ -854,8 +904,8 @@
 		<child>
 		  <left_attach>1</left_attach>
 		  <right_attach>2</right_attach>
-		  <top_attach>1</top_attach>
-		  <bottom_attach>2</bottom_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -880,8 +930,8 @@
 		<child>
 		  <left_attach>1</left_attach>
 		  <right_attach>2</right_attach>
-		  <top_attach>2</top_attach>
-		  <bottom_attach>3</bottom_attach>
+		  <top_attach>3</top_attach>
+		  <bottom_attach>4</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -906,8 +956,8 @@
 		<child>
 		  <left_attach>1</left_attach>
 		  <right_attach>2</right_attach>
-		  <top_attach>3</top_attach>
-		  <bottom_attach>4</bottom_attach>
+		  <top_attach>4</top_attach>
+		  <bottom_attach>5</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -937,6 +987,84 @@
 		  <xpad>3</xpad>
 		  <ypad>3</ypad>
 		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label280</name>
+		<label>Religious Parish</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>5</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label281</name>
+		<label>:</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>loc_parish</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_LEFT</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>2</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>False</xexpand>
 		  <yexpand>False</yexpand>
 		  <xshrink>False</xshrink>
 		  <yshrink>False</yshrink>
