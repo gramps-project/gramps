@@ -63,6 +63,10 @@ except:
 def import_media_object(filename,path,base):
     import shutil
 
+    if not os.path.exists(filename):
+        GnomeErrorDialog(_("Could not import %s\nThe file has been moved or deleted") % filename)
+        return ""
+    
     type = utils.get_mime_type(filename)
     if type[0:5] == "image":
         name = "%s/%s.jpg" % (path,base)
@@ -83,9 +87,16 @@ def import_media_object(filename,path,base):
         try:
             path = "%s/%s" % (thumb,base)
             mk_thumb(filename,path,const.thumbScale)
-            shutil.copy(filename,name)
         except:
+            GnomeErrorDialog(_("Error creating the thumbnail : %s") + "\n" + msg)
             return ""
+
+        try:
+            shutil.copy(filename,name)
+        except IOError,msg:
+            GnomeErrorDialog(_("Error copying %s") + "\n" + msg)
+            return ""
+
     else:
         bname = os.path.basename(filename)
         l = string.split(bname,'.')
@@ -106,13 +117,18 @@ def scale_image(path,size):
         image1 = GdkImlib.Image(path)
     except:
         GnomeWarningDialog(_("Could not load image file %s") % path)
-        return
+        return GdkImlib.Image(const.icon)
     
     width  = image1.rgb_width
     height = image1.rgb_height
 
     scale = size / float(max(width,height))
-    image2 = image1.clone_scaled_image(int(scale*width), int(scale*height))
+    try:
+        image2 = image1.clone_scaled_image(int(scale*width), int(scale*height))
+    except:
+        GnomeWarningDialog(_("Could not load image file %s") % path)
+        return GdkImlib.Image(const.icon)
+
     return image2
 
 #-------------------------------------------------------------------------
@@ -121,7 +137,6 @@ def scale_image(path,size):
 #
 #-------------------------------------------------------------------------
 def mk_thumb(source,dest,size):
-
     dir = os.path.dirname(dest)
     try:
         if not os.path.exists(dir):
@@ -134,11 +149,18 @@ def mk_thumb(source,dest,size):
         return
 
     if os.path.exists(dest):
-        os.remove(dest)
-        
+        try:
+            os.remove(dest)
+        except IOError,msg:
+            errmsg = _("Could not replace %s") % dir
+            GnomeErrorDialog(errmsg + "\n" + msg)
+            return
+
+    if not os.path.exists(source):
+        GnomeErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % filename)
+
     if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
-        print cmd
         os.system(cmd)
     else:
         try:
@@ -148,10 +170,9 @@ def mk_thumb(source,dest,size):
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
             im.save(dest,"JPEG")
-            print "saving",dest
         except:
-            print "save failed"
-            pass
+            GnomeErrorDialog(_("Could not create a thumbnail for %s") % source)
+            return
 
 #-------------------------------------------------------------------------
 #
@@ -160,11 +181,11 @@ def mk_thumb(source,dest,size):
 #-------------------------------------------------------------------------
 def check_thumb(source,dest,size):
     if not os.path.isfile(source):
-        return
+        return 0
     if not os.path.isfile(dest):
         mk_thumb(source,dest,size)
     elif os.path.getmtime(source) > os.path.getmtime(dest):
         mk_thumb(source,dest,size)
-    
+    return 1
 
 

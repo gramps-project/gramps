@@ -327,7 +327,7 @@ class IndivSummaryDialog(TextReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return _("Gramps - Individual Summary")
+        return "%s - %s - GRAMPS" %(_("Individual Summary"),_("Text Reports"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""

@@ -140,7 +140,7 @@ class DescendantReportDialog(TextReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return _("Gramps - Descendant Report")
+        return "%s - %s - GRAMPS" % (_("Descendant Report"),_("Text Reports"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""

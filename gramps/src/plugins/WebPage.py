@@ -41,7 +41,6 @@ from gnome.ui import *
 from libglade import *
 from Report import *
 
-
 #------------------------------------------------------------------------
 #
 # 
@@ -813,7 +812,7 @@ class WebReportDialog(ReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return _("Gramps - Generate HTML reports")
+        return "%s - %s - GRAMPS" % (_("Generate Web Site"),_("Web Page"))
 
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
