@@ -27,92 +27,44 @@ import signal
 # Check for the python imaging library
 #
 #-------------------------------------------------------------------------
-try:
-    import PIL.Image
-    import StringIO
-    PIL.Image.init()
-    no_pil = 0
-except:
-    import popen2
-    import gtk
-    no_pil = 1
+
+import popen2
+import gtk
 
 class ImgManip:
     def __init__(self,source):
         self.src = source
 
-    if no_pil:
-
-        def size(self):
-            img = gtk.gdk.pixbuf_new_from_file(self.src)
-            return (img.get_width(),img.get_height())
-
-        def fmt_thumbnail(self,dest,width,height,cnv):
-            w = int(width)
-            h = int(height)
-            cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,w,h,self.src,cnv,dest)
-            os.system(cmd)
-
-        def fmt_convert(self,dest,cnv):
-            cmd = "%s '%s' '%s:%s'" % (const.convert,self.src,cnv,dest)
-            os.system(cmd)
-
-        def fmt_data(self,cnv):
-            cmd = "%s '%s' '%s:-'" % (const.convert,self.src,cnv)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-
-        def fmt_scale_data(self,x,y,cnv):
-            cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,self.src,cnv)
-            signal.signal (signal.SIGCHLD, signal.SIG_DFL)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-
-    else:
-
-        def size(self):
-            return PIL.Image.open(self.src).size
-
-        def fmt_thumbnail(self,dest,width,height,pil):
-            im = PIL.Image.open(self.src)
-            im.thumbnail((width,height))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,pil.upper())
+    def size(self):
+        img = gtk.gdk.pixbuf_new_from_file(self.src)
+        return (img.get_width(),img.get_height())
+    
+    def fmt_thumbnail(self,dest,width,height,cnv):
+        w = int(width)
+        h = int(height)
+        cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,w,h,self.src,cnv,dest)
+        os.system(cmd)
         
-        def fmt_convert(self,dest,pil):
-            im = PIL.Image.open(self.src)
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,pil.upper())
+    def fmt_convert(self,dest,cnv):
+        cmd = "%s '%s' '%s:%s'" % (const.convert,self.src,cnv,dest)
+        os.system(cmd)
+        
+    def fmt_data(self,cnv):
+        cmd = "%s '%s' '%s:-'" % (const.convert,self.src,cnv)
+        r,w = popen2.popen2(cmd)
+        buf = r.read()
+        r.close()
+        w.close()
+        return buf
 
-        def fmt_data(self,pil):
-            g = StringIO.StringIO()
-            im = PIL.Image.open(self.src)
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(g,pil.upper())
-            g.seek(0)
-            buf = g.read()
-            g.close()
-            return buf
-
-        def fmt_scale_data(self,x,y,pil):
-            im = PIL.Image.open(self.src)
-            im.thumbnail((x,y))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            return im.tostring(pil,"RGB")
+    def fmt_scale_data(self,x,y,cnv):
+        cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,self.src,cnv)
+        signal.signal (signal.SIGCHLD, signal.SIG_DFL)
+        r,w = popen2.popen2(cmd)
+        buf = r.read()
+        r.close()
+        w.close()
+        return buf
 
     def jpg_thumbnail(self,dest,width,height):
         self.fmt_thumbnail(dest,width,height,"jpeg")
@@ -149,18 +101,6 @@ class ImgManip:
 
     def eps_scale_data(self,x,y):
         return self.fmt_scale_data(x,y,"eps")
-
-
-if __name__ == "__main__":
-
-    import sys
-    
-    img = ImgManip(sys.argv[1])
-    img.jpg_thumbnail("foo.jpg",50,50)
-    img.png_thumbnail("foo.png",50,50)
-    img.eps_thumbnail("foo.eps",50,50)
-
-
 
 
 

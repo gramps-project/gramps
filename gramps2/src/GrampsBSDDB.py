@@ -130,7 +130,7 @@ class GrampsBSDDB(GrampsDbBase):
         for name in names:
             a[unicode(name)] = 1
         vals = a.keys()
-        vals.sort()
+        vals.sort(accent.sort_by_accent)
         return vals
 
     def get_person_event_type_list(self):
