@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f gramps.lang
 %defattr(-, root, root)
 
-%doc README COPYING TODO INSTALL COPYING-DOCS
+%doc AUTHORS COPYING COPYING-DOCS ChangeLog INSTALL NEWS README TODO 
 %doc %{_mandir}/man1/*
 
 %{prefix}/bin/gramps
@@ -90,6 +90,7 @@ if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
  
 %changelog
 * Tue Dec  2 2003 Tim Waugh <twaugh@redhat.com>
+- More docs.
 - Change Copyright: to License:.
 
 * Fri Sep 19 2003 Tim Waugh <twaugh@redhat.com>
