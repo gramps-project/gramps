@@ -241,6 +241,7 @@ class EditSource:
         m_list = []
         f_event_list = []
         f_attr_list = []
+        person_list = []
         p_list = []
         for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key) 
@@ -251,6 +252,9 @@ class EditSource:
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             name = self.name_display(p)
+            for sref in p.get_source_references():
+                if sref.get_base_handle() == self.source.get_handle():
+                    person_list.append((name,''))
             for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 if event_handle:
                     event = self.db.get_event_from_handle(event_handle)
@@ -309,6 +313,12 @@ class EditSource:
         
         self.model = ListModel.ListModel(slist,titles)
         any = 0
+
+        if len(person_list) > 0:
+            any = 1
+            for p in person_list:
+                self.model.add([_("Persons"),p[0],''])
+
         if len(p_event_list) > 0:
             any = 1
             for p in p_event_list:
@@ -342,6 +352,11 @@ class EditSource:
             for p in p_list:
                 self.model.add([_("Places"),p,''])
         
+        if len(p_addr_list) > 0:
+            any = 1
+            for p in p_addr_list:
+                self.model.add([_("Addresses"),p[0],p[1]])
+
         if any:
             Utils.bold_label(self.refs_label)
         else:
