@@ -6,6 +6,7 @@
 	* src/docgen/RTFDoc.py (write_note): Implement function.
 	* src/docgen/AbiWordDoc.py (write_note): Implement function.
 	* src/docgen/AbiWord2Doc.py (write_note): Implement function.
+	* src/docgen/OpenOfficeDoc.py (write_note): Implement function.
 
 2003-12-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteFtree.py (FtreeWriter.export): make sure that the 

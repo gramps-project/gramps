@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules 
@@ -664,6 +666,30 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         else:
             self.f.write('</text:h>\n')
         self.new_cell = 1
+
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            text = text.replace('&','&amp;')       # Must be first
+            text = text.replace('<','&lt;')
+            text = text.replace('>','&gt;')
+            # Replace multiple spaces: have to go from the largest number down
+            for n in range(text.count(' '),1,-1):
+                text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
+            text = text.replace('\n','<text:line-break/>')
+            text = text.replace('\t','<text:tab-stop/>')
+            text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
+            text = text.replace('&lt;/super&gt;','</text:span>')
+
+            self.start_paragraph(style_name)
+            self.f.write(text)
+            self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = string.join(string.split(line))
+                self.write_text(line)
+                self.end_paragraph()
 
     def write_text(self,text):
         text = text.replace('&','&amp;')       # Must be first
