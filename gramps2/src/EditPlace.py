@@ -136,7 +136,7 @@ class EditPlace:
         self.note_buffer.set_text(place.getNote())
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object"     : Utils.destroy_passed_object,
+            "destroy_passed_object"     : self.close,
             "on_switch_page"            : self.on_switch_page,
             "on_addphoto_clicked"       : self.glry.on_add_photo_clicked,
             "on_deletephoto_clicked"    : self.glry.on_delete_photo_clicked,
@@ -173,6 +173,10 @@ class EditPlace:
 
         self.redraw_url_list()
         self.redraw_location_list()
+
+    def close(self):
+        self.glry.close()
+        self.top.close()
         
     def build_columns(self,tree,list):
         cnum = 0
@@ -261,7 +265,7 @@ class EditPlace:
 
         self.update_lists()
 
-        Utils.destroy_passed_object(self.top)
+        self.close(None)
         if self.callback:
             self.callback(self.place)
 

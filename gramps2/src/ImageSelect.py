@@ -26,7 +26,7 @@
 import os
 import string
 import urlparse
-
+import gc
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -80,7 +80,6 @@ class ImageSelect:
         self.dataobj     = None
         self.parent      = parent
         self.canvas_list = {}
-        self.item_map = {}
         self.p_map = {}
 
     def add_thumbnail(self, photo):
@@ -218,15 +217,14 @@ class Gallery(ImageSelect):
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
 
-        icon_list.connect('destroy',self.unmap)
         # Remember arguments
         self.path      = path;
         self.dataobj   = dataobj;
         self.iconlist = icon_list;
-        self.root = self.iconlist.root()        
+        self.root = self.iconlist.root()
 
         # Local object variables
-        self.x = 0
+        x = 0
         self.y = 0
         self.remember_x = -1
         self.remember_y = -1
@@ -235,10 +233,14 @@ class Gallery(ImageSelect):
         self.sel = None
         self.photo = None
 
-    def unmap(self,obj):
-        for i in self.item_map.keys():
-            print i
-            i.destroy()
+    def close(self):
+#        self.iconlist.hide()
+#        print self.canvas_list
+#        print self.p_map
+#        self.canvas_list = None
+#        self.p_map = None
+#        gc.collect()
+#        self.iconlist.destroy()
         
     def on_canvas1_event(self,obj,event):
         """Handle resize events over the canvas, redrawing if the size changes"""
@@ -352,14 +354,8 @@ class Gallery(ImageSelect):
                            justification=gtk.JUSTIFY_CENTER,
                            y=_IMAGEY-10, text=description)
 
-            self.item_map[box] = oid
-            self.item_map[text] = oid
-            self.item_map[grp] = oid
-            self.item_map[item] = oid
-
             for i in [ item, text, box, grp ] :
-                self.item_map[i] = oid
-                self.p_map[i] = (item,text,box,photo)
+                self.p_map[i] = (item,text,box,photo,oid)
                 i.show()
             
         self.canvas_list[oid] = (grp,item,text,self.cx,self.cy)
@@ -375,6 +371,7 @@ class Gallery(ImageSelect):
         Imlibs.  Then add each photo in the place's list of photos to the 
         photolist window."""
 
+        print "load images"
         self.pos = 0
         self.cx = _PAD
         self.cy = _PAD
@@ -491,8 +488,8 @@ class Gallery(ImageSelect):
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:
             return
-        id = self.item_map[self.drag_item]
-        selection_data.set(selection_data.target, 8, id)
+        id = self.p_map[self.drag_item]
+        selection_data.set(selection_data.target, 8, id[4])
         self.drag_item = None
         
     def on_add_photo_clicked(self, obj):

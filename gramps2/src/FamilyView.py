@@ -83,6 +83,7 @@ class FamilyView:
         self.spouse_list.set_model(self.spouse_model)
         self.spouse_selection = self.spouse_list.get_selection()
         self.spouse_selection.connect('changed',self.spouse_changed)
+        self.spouse_list.connect('button-press-event',self.edit_relationship)
 
         self.top.get_widget('add_parents').connect('clicked',self.add_parents_clicked)
         self.top.get_widget('del_parents').connect('clicked',self.del_parents_clicked)
@@ -111,7 +112,6 @@ class FamilyView:
         self.swap_btn.connect('clicked',self.spouse_swap)
         self.remove_spouse_btn.connect('clicked',self.remove_spouse)
         self.add_spouse_btn.connect('clicked',self.add_spouse)
-        self.spouse_list.connect('button-press-event',self.edit_releationship)
 
         self.child_list.set_model(self.child_model)
         self.child_list.set_search_column(0)
@@ -137,12 +137,18 @@ class FamilyView:
             row = model.get_path(iter)
             self.display_marriage(self.person.getFamilyList()[row[0]])
             
-    def edit_releationship(self,obj,event):
+    def edit_relationship(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
            if self.person:
                try:
-                   Marriage.Marriage(self.family,self.parent.db,
-                                     self.parent.new_after_edit)
+                   if self.selected_spouse:
+                       Marriage.Marriage(self.family,self.parent.db,
+                                         self.parent.new_after_edit)
+                   else:
+                       AddSpouse.AddSpouse(self.parent.db,self.person,
+                                           self.load_family,
+                                           self.parent.redisplay_person_list,
+                                           self.family)
                except:
                    DisplayTrace.DisplayTrace()
         
@@ -182,9 +188,9 @@ class FamilyView:
         
         if len(self.family.getChildList()) == 0:
             if self.family.getFather() == None:
-                self.parent.delete_family_from(self.family.getMother())
+                self.delete_family_from(self.family.getMother())
             elif self.family.getMother() == None:
-                self.parent.delete_family_from(self.family.getFather())
+                self.delete_family_from(self.family.getFather())
 
         Utils.modified()
         self.load_family()
@@ -340,6 +346,15 @@ class FamilyView:
             return _("%s: %s\n\tRelationship: %s") % (l,n,mode)
         else:
             return _("%s: unknown") % (l)
+
+    def delete_family_from(self,person):
+        person.removeFamily(self.family)
+        self.db.deleteFamily(self.family)
+        flist = self.person.getFamilyList()
+        if len(flist) > 0:
+            self.family = flist[0][0]
+        else:
+            self.family = None
 
     def display_marriage(self,family):
 

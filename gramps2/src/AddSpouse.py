@@ -62,7 +62,7 @@ class AddSpouse:
     family with the passed person as one spouse, and another person to
     be selected.
     """
-    def __init__(self,db,person,update,addperson):
+    def __init__(self,db,person,update,addperson,family=None):
         """
         Displays the AddSpouse dialog box.
 
@@ -75,6 +75,7 @@ class AddSpouse:
         self.update = update
         self.person = person
         self.addperson = addperson
+        self.active_family = family
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog")
 
@@ -166,20 +167,21 @@ class AddSpouse:
                 return
 
         Utils.modified()
-        family = self.db.newFamily()
-        self.person.addFamily(family)
-        spouse.addFamily(family)
+        if not self.active_family:
+            self.active_family = self.db.newFamily()
+            self.person.addFamily(self.active_family)
+        spouse.addFamily(self.active_family)
 
         if self.person.getGender() == RelLib.Person.male:
-            family.setMother(spouse)
-            family.setFather(self.person)
+            self.active_family.setMother(spouse)
+            self.active_family.setFather(self.person)
         else:	
-            family.setFather(spouse)
-            family.setMother(self.person)
+            self.active_family.setFather(spouse)
+            self.active_family.setMother(self.person)
 
-        family.setRelationship(const.save_frel(self.relation_type.get_text()))
+        self.active_family.setRelationship(const.save_frel(self.relation_type.get_text()))
         Utils.destroy_passed_object(obj)
-        self.update(family)
+        self.update(self.active_family)
 
     def relation_type_changed(self,obj):
         self.update_data()

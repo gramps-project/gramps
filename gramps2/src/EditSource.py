@@ -73,7 +73,7 @@ class EditSource:
         self.notes_buffer.set_text(source.getNote())
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object" : self.close,
             "on_switch_page" : self.on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
@@ -87,6 +87,10 @@ class EditSource:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
+    def close(self,obj):
+        self.gallery.close()
+        self.top.destroy()
+        
     def display_references(self):
         p_event_list = []
         p_attr_list = []
@@ -197,7 +201,8 @@ class EditSource:
             self.source.setNote(note)
             Utils.modified()
 
-        Utils.destroy_passed_object(self.top)
+        self.close(None)
+
         if self.callback:
             self.callback(self.source)
 

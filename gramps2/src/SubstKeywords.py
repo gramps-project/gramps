@@ -74,34 +74,25 @@ class SubstKeywords:
         self.D = person.getDeath().getPlaceName()
         self.i = str(person.getId())
 
-        if len(person.getFamilyList()) > 0:
+        self.s = ""
+        self.S = ""
+        self.m = ""
+        self.M = ""
+        
+        if person.getFamilyList():
             f = person.getFamilyList()[0]
             if f.getFather() == person:
                 if f.getMother():
                     self.s = f.getMother().getPrimaryName().getRegularName()
                     self.S = f.getMother().getPrimaryName().getName()
-                else:
-                    self.s = ""
-                    self.S = ""
             else:
                 if f.getFather():
                     self.s = f.getFather().getPrimaryName().getRegularName()
                     self.S = f.getFather().getPrimaryName().getName()
-                else:
-                    self.s = ""
-                    self.S = ""
-                
-            self.m = ''
-            self.M = ''
             for e in f.getEventList():
                 if e.getName == 'Marriage':
                     self.m = e.getDate()
-                    self.M = e.getPlace()
-        else:
-            self.s = ""
-            self.S = ""
-            self.m = ""
-            self.M = ""
+                    self.M = e.getPlaceName()
 
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""

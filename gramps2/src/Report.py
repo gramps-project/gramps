@@ -889,7 +889,9 @@ class ReportDialog:
             self.report_menu = None
 
         if self.extra_textbox:
-            self.report_text = string.split(self.extra_textbox.get_chars(0,-1),'\n')
+            b = self.extra_textbox.get_buffer()
+            text_val = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
+            self.report_text = string.split(text_val,'\n')
         else:
             self.report_text = ""
         

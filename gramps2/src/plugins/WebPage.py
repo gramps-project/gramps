@@ -784,8 +784,8 @@ class WebReport(Report):
             idoc.create_page()
             idoc.close()
             self.progress_bar_step()
-            while events_pending():
-                mainiteration()
+            while gtk.events_pending():
+                gtk.mainiteration()
             
         if len(ind_list) > 1:
             self.dump_index(ind_list,self.selected_style,

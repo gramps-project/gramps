@@ -186,7 +186,6 @@ class MergePeople:
             else:
                 sname = GrampsCfg.nameof(spouse)
                 name = "%s [%s]" % (sname,spouse.getId())
-            print name, widget
             widget.add([name])
 
     def set_field(self,widget,value):
