@@ -146,8 +146,8 @@ class PlaceView:
         self.selection.selected_foreach(self.blist,mlist)
         
         if len(mlist) != 2:
-            msg = _("Cannot merge people.")
-            msg2 = _("Exactly two people must be selected to perform a merge.")
+            msg = _("Cannot merge places.")
+            msg2 = _("Exactly two places must be selected to perform a merge.")
             ErrorDialog(msg,msg2)
         else:
             import MergeData

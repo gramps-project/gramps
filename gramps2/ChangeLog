@@ -1,3 +1,11 @@
+2003-08-25  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PedView.py (PedigreeView.__init__): Add parent argument to the
+	constructor. Connect to the handling function on button press over the
+	canvas to enable context menu; 
+	(on_canvas_press, build_nav_menu): Add functions to enable context menu.
+	* src/gramps_main.py (init_interface): Call PedView with self as parent.
+	* src/PlaceView.py (merge): Change error message from people to places.
+
 2003-08-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FanChart.py: remove print statement
 	* src/docgen/RTFDoc.py: change from TextDoc to BaseDoc
