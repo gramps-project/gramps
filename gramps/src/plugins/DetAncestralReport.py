@@ -304,6 +304,7 @@ class DetAncestorReport(Report):
         if len(famList) > 0:
             for fam in famList:
                 #print "Marriage:fam", fam.__dict__
+                spouse = ''
                 if person.getGender() == RelLib.Person.male:
                     if fam.getMother() != None:
                         spouse= fam.getMother().getPrimaryName().getRegularName()

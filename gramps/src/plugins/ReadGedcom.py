@@ -97,7 +97,7 @@ lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 snameRegexp= re.compile(r"/([^/]*)/")
-calRegexp = re.compile(r"\s*@#D([^@]+)@\s*(.*)$")
+calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
 fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 
 #-------------------------------------------------------------------------
@@ -131,11 +131,13 @@ def importData(database, filename):
         gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return
 
-    g.parse_gedcom_file()
+    close = g.parse_gedcom_file()
     g.resolve_refns()
 
     statusTop.get_widget("close").set_sensitive(1)
-
+    if close:
+        statusWindow.destroy()
+    
     Utils.modified()
     if callback:
         callback(1)
@@ -313,8 +315,7 @@ class GedcomParser:
         self.break_note_links()
         t = time.time() - t
         self.error_text_obj.insert_defaults(_('Import Complete: %d seconds') % t)
-        if self.close_done.get_active():
-            self.window.destroy()
+        return self.close_done.get_active()
 
     def break_note_links(self):
         for o in self.share_note:
@@ -609,7 +610,7 @@ class GedcomParser:
                 name = Name()
                 m = snameRegexp.match(matches[2])
                 if m:
-                    n = m.groups()
+                    n = m.groups()[0]
                     names = ('','',n,'','')
                 else:
                     try:
@@ -1418,7 +1419,6 @@ class GedcomParser:
         """Parses the person's name information"""
         while 1:
 	    matches = self.get_next()
-
 	    if int(matches[0]) < level:
                 self.backup()
                 return
@@ -1690,7 +1690,7 @@ class GedcomParser:
         
         match = calRegexp.match(text)
         if match:
-            (cal,data) = match.groups()
+            (abt,cal,data) = match.groups()
             if cal == "FRENCH R":
                 dateobj.set_calendar(Date.FRENCH)
             elif cal == "JULIAN":
@@ -1698,6 +1698,8 @@ class GedcomParser:
             elif cal == "HEBREW":
                 dateobj.set_calendar(Date.HEBREW)
             dateobj.set(data)
+            if abt:
+                dateobj.get_start_date().setMode(abt)
         else:
             dateobj.set(text)
 

@@ -741,19 +741,27 @@ class SingleDate:
                 _format13]
 
     def display_calendar(self,month_map):
+        d = ''
         if self.year==UNDEF:
             if self.month == UNDEF:
-                return ""
+                d = ""
             elif self.day == UNDEF:
-                return month_map[self.month]
+                d = month_map[self.month]
             else:
-                return "%02d %s" % (self.day,month_map[self.month])
+                d = "%02d %s" % (self.day,month_map[self.month])
         elif self.month == UNDEF:
-            return str(self.year)
+            d = str(self.year)
         elif self.day == UNDEF:
-            return "%s %d" % (month_map[self.month],self.year)
+            d = "%s %d" % (month_map[self.month],self.year)
         else:
-            return "%02d %s %d" % (self.day,month_map[self.month],self.year)
+            d = "%02d %s %d" % (self.day,month_map[self.month],self.year)
+        if self.mode == SingleDate.about:
+	    d = _("about") + ' ' + d
+        elif self.mode == SingleDate.before:
+            d = _("before") + ' ' + d
+        elif self.mode == SingleDate.after:
+            d = _("after") + ' ' + d
+        return d
 
     def getDate(self):
         if self.calendar == GREGORIAN:
