@@ -44,6 +44,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import Errors
 import RelLib
 import Julian
 import FrenchRepublic
@@ -62,8 +63,6 @@ UNICODE = 2
 
 db = None
 callback = None
-
-UNEXPECTED_EOF = "Unexpected End of File"
 
 def nocnv(s):
     return unicode(s)
@@ -132,8 +131,24 @@ def importData(database, filename, cb=None):
         ErrorDialog(_("%s could not be opened\n") % filename)
         return
 
-    close = g.parse_gedcom_file()
-    g.resolve_refns()
+    try:
+        close = g.parse_gedcom_file()
+        g.resolve_refns()
+    except IOError,msg:
+        Utils.destroy_passed_object(statusWindow)
+        errmsg = _("%s could not be opened\n") % filename
+        ErrorDialog(errmsg + str(msg))
+        return
+    except Errors.GedcomError, val:
+        msg = str(val)
+        Utils.destroy_passed_object(statusWindow)
+        gnome.ui.GnomeErrorDialog(msg)
+        return
+    except:
+        import DisplayTrace
+        Utils.destroy_passed_object(statusWindow)
+        DisplayTrace.DisplayTrace()
+        return
     
     statusTop.get_widget("close").set_sensitive(1)
     if close:
@@ -186,6 +201,7 @@ class GedcomParser:
         self.is_ftw = 0
 
         self.f = open(file,"r")
+        self.filename = file
         self.index = 0
         self.backoff = 0
         self.cnv = nocnv
@@ -261,7 +277,7 @@ class GedcomParser:
             next_line = string.strip(self.f.readline())
             self.text = string.translate(next_line,self.trans,self.delc)
             if self.text == '':
-                raise UNEXPECTED_EOF
+                raise Errors.GedcomError(_("GEDCOM file ended unexpectedly"))
             try:
                 self.text = self.cnv(self.text)
             except:
@@ -313,8 +329,8 @@ class GedcomParser:
             self.parse_submitter()
             self.parse_record()
             self.parse_trailer()
-        except UNEXPECTED_EOF:
-            msg = 'Error: Incomplete file\n'
+        except Errors.GedcomError, err:
+            msg = str(err)
             self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
             
         self.update(self.families_obj,str(self.fam_count))
@@ -1378,7 +1394,7 @@ class GedcomParser:
         line = string.replace(self.f.readline(),'\r','')
 	match = headRE.search(line)
         if not match:
-	    raise GedcomParser.BadFile, line
+	    raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
         self.index = self.index + 1
 
     def parse_header_source(self):

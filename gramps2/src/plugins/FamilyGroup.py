@@ -20,16 +20,26 @@
 
 "Generate files/Family Group Report"
 
-import RelLib
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 import os
-from intl import gettext as _
-
-from Report import *
-from TextDoc import *
 
 #------------------------------------------------------------------------
 #
-# 
+# GRAMPS 
+#
+#------------------------------------------------------------------------
+import RelLib
+import Report
+import TextDoc
+from intl import gettext as _
+
+#------------------------------------------------------------------------
+#
+# FamilyGroup
 #
 #------------------------------------------------------------------------
 class FamilyGroup:
@@ -40,8 +50,7 @@ class FamilyGroup:
         self.output = output
         self.doc = doc
 
-
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.2)
         cell.set_top_border(1)
         cell.set_bottom_border(1)
@@ -49,41 +58,41 @@ class FamilyGroup:
         cell.set_left_border(1)
         self.doc.add_cell_style('ParentHead',cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_left_border(1)
         self.doc.add_cell_style('TextContents',cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(0)
         cell.set_left_border(1)
         cell.set_padding(0.1)
         self.doc.add_cell_style('TextChild1',cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_left_border(1)
         cell.set_padding(0.1)
         self.doc.add_cell_style('TextChild2',cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_right_border(1)
         cell.set_left_border(1)
         self.doc.add_cell_style('TextContentsEnd',cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.2)
         cell.set_bottom_border(1)
         cell.set_right_border(1)
         cell.set_left_border(1)
         self.doc.add_cell_style('ChildName',cell)
 
-        table = TableStyle()
+        table = TextDoc.TableStyle()
         table.set_width(100)
         table.set_columns(3)
         table.set_column_width(0,20)
@@ -91,7 +100,7 @@ class FamilyGroup:
         table.set_column_width(2,40)
         self.doc.add_table_style('ParentTable',table)
 
-        table = TableStyle()
+        table = TextDoc.TableStyle()
         table.set_width(100)
         table.set_columns(4)
         table.set_column_width(0,7)
@@ -321,18 +330,13 @@ class FamilyGroup:
 
 #------------------------------------------------------------------------
 #
-# 
+# FamilyGroupDialog
 #
 #------------------------------------------------------------------------
-class FamilyGroupDialog(TextReportDialog):
+class FamilyGroupDialog(Report.TextReportDialog):
     def __init__(self,database,person):
-        TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person)
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
         return "%s - %s - GRAMPS" % (_("Family Group Report"),_("Text Reports"))
@@ -387,41 +391,41 @@ class FamilyGroupDialog(TextReportDialog):
     #------------------------------------------------------------------------
     def make_default_style(self):
         """Make default output style for the Family Group Report."""
-        para = ParagraphStyle()
-        font = FontStyle()
+        para = TextDoc.ParagraphStyle()
+        font = TextDoc.FontStyle()
         font.set_size(4)
         para.set_font(font)
         self.default_style.add_style('blank',para)
             
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
+        font = TextDoc.FontStyle()
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(16)
         font.set_bold(1)
-        para = ParagraphStyle()
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         self.default_style.add_style('Title',para)
     
-        font = FontStyle()
-        font.set_type_face(FONT_SERIF)
+        font = TextDoc.FontStyle()
+        font.set_type_face(TextDoc.FONT_SERIF)
         font.set_size(10)
         font.set_bold(0)
-        para = ParagraphStyle()
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         self.default_style.add_style('Normal',para)
     
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
+        font = TextDoc.FontStyle()
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(10)
         font.set_bold(1)
-        para = ParagraphStyle()
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         self.default_style.add_style('ChildText',para)
     
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
+        font = TextDoc.FontStyle()
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(12)
         font.set_bold(1)
-        para = ParagraphStyle()
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         self.default_style.add_style('ParentName',para)
 

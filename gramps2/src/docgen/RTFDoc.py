@@ -23,7 +23,7 @@
 # Load the base TextDoc class
 #
 #------------------------------------------------------------------------
-from TextDoc import *
+import TextDoc
 import Plugins
 import ImgManip
 
@@ -47,7 +47,7 @@ def twips(cm):
 # use style sheets. Instead it writes raw formatting.
 #
 #------------------------------------------------------------------------
-class RTFDoc(TextDoc):
+class RTFDoc(TextDoc.TextDoc):
 
     #--------------------------------------------------------------------
     #
@@ -132,7 +132,7 @@ class RTFDoc(TextDoc):
         size = f.get_size()*2
         bgindex = self.color_map[p.get_background_color()]
         fgindex = self.color_map[f.get_color()]
-        if f.get_type_face() == FONT_SERIF:
+        if f.get_type_face() == TextDoc.FONT_SERIF:
             self.font_type = '\\f0\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
         else:
             self.font_type = '\\f1\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
@@ -147,14 +147,14 @@ class RTFDoc(TextDoc):
 
 	if not self.in_table:
             self.f.write('\\pard')
-        if p.get_alignment() == PARA_ALIGN_RIGHT:
+        if p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
             self.f.write('\\qr')
-        elif p.get_alignment() == PARA_ALIGN_CENTER:
+        elif p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
             self.f.write('\\qc')
         self.f.write('\\ri%d' % twips(p.get_right_margin()))
         self.f.write('\\li%d' % twips(p.get_left_margin()))
         self.f.write('\\fi%d' % twips(p.get_first_indent()))
-        if p.get_alignment() == PARA_ALIGN_JUSTIFY:
+        if p.get_alignment() == TextDoc.PARA_ALIGN_JUSTIFY:
             self.f.write('\\qj')
         if p.get_padding():
             self.f.write('\\sa%d' % twips(p.get_padding()/2.0))
@@ -362,154 +362,5 @@ class RTFDoc(TextDoc):
                 self.text = self.text + '\\%s' % i
             else:
                 self.text = self.text + i
-
-
-if __name__ == "__main__":
-
-    paper = PaperStyle("Letter",27.94,21.59)
-
-    styles = StyleSheet()
-    foo = FontStyle()
-    foo.set_type_face(FONT_SANS_SERIF)
-    foo.set_color((255,0,0))
-    foo.set_size(24)
-    foo.set_underline(1)
-    foo.set_bold(1)
-    foo.set_italic(1)
-
-    para = ParagraphStyle()
-    para.set_alignment(PARA_ALIGN_RIGHT)
-    para.set_font(foo)
-    styles.add_style("Title",para)
-
-    foo = FontStyle()
-    foo.set_type_face(FONT_SERIF)
-    foo.set_size(12)
-
-    para = ParagraphStyle()
-    para.set_font(foo)
-    styles.add_style("Normal",para)
-
-    foo = FontStyle()
-    foo.set_type_face(FONT_SERIF)
-    foo.set_size(12)
-
-    para = ParagraphStyle()
-    para.set_font(foo)
-    para.set_top_border(1)
-    para.set_left_border(1)
-    para.set_right_border(1)
-    para.set_bottom_border(1)
-    styles.add_style("Box",para)
-
-    doc = RTFDoc(styles,paper,PAPER_PORTRAIT)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.2)
-    cell.set_top_border(1)
-    cell.set_bottom_border(1)
-    cell.set_right_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('ParentHead',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('TextContents',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(0)
-    cell.set_left_border(1)
-    cell.set_padding(0.1)
-    doc.add_cell_style('TextChild1',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(1)
-    cell.set_left_border(1)
-    cell.set_padding(0.1)
-    doc.add_cell_style('TextChild2',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(1)
-    cell.set_right_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('TextContentsEnd',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.2)
-    cell.set_bottom_border(1)
-    cell.set_right_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('ChildName',cell)
-
-    table = TableStyle()
-    table.set_width(100)
-    table.set_columns(3)
-    table.set_column_width(0,20)
-    table.set_column_width(1,40)
-    table.set_column_width(2,40)
-    doc.add_table_style('ParentTable',table)
-
-    table = TableStyle()
-    table.set_width(100)
-    table.set_columns(4)
-    table.set_column_width(0,5)
-    table.set_column_width(1,15)
-    table.set_column_width(2,40)
-    table.set_column_width(3,40)
-    doc.add_table_style('ChildTable',table)
-
-    doc.open("test")
-
-    doc.start_paragraph("Title")
-    doc.write_text("My Title")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Normal")
-    doc.write_text("Hello there. This is fun")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Box")
-    doc.write_text("This is my box")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Normal")
-    doc.add_photo("foo.png",200,200)
-    doc.end_paragraph()
-
-    doc.start_table(id,'ParentTable')
-    doc.start_row()
-    doc.start_cell('ParentHead',3)
-    doc.start_paragraph('Normal')
-    doc.write_text('Banana : Smith ')
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.end_row()
-
-    doc.start_row()
-    doc.start_cell("TextContents")
-    doc.start_paragraph('Normal')
-    doc.write_text("some event")
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.start_cell("TextContents")
-    doc.start_paragraph('Normal')
-    doc.write_text("someday")
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.start_cell("TextContentsEnd")
-    doc.start_paragraph('Normal')
-    doc.write_text("somewhere")
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.end_row()
-
-    doc.end_table()
-
-    doc.close()
 
 Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1)

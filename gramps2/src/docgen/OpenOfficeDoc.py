@@ -34,7 +34,8 @@ import time
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from TextDoc import *
+import Errors
+import TextDoc
 import const
 import Plugins
 import ImgManip
@@ -51,10 +52,10 @@ from intl import gettext as _
 # OpenOfficeDoc
 #
 #-------------------------------------------------------------------------
-class OpenOfficeDoc(TextDoc):
+class OpenOfficeDoc(TextDoc.TextDoc):
 
     def __init__(self,styles,type,template,orientation):
-        TextDoc.__init__(self,styles,type,template,orientation)
+        TextDoc.TextDoc.__init__(self,styles,type,template,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -71,10 +72,11 @@ class OpenOfficeDoc(TextDoc):
         else:
             self.filename = filename
             
-        tempfile.tempdir = "/tmp"
-
-        self.content_xml = tempfile.mktemp()
-        self.f = open(self.content_xml,"wb")
+        try:
+            self.content_xml = tempfile.TemporaryFile()
+            self.f = open(self.content_xml,"wb")
+        except:
+            raise Errors.ReportError("Could not create %s" % self.filename)
 
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
@@ -328,7 +330,7 @@ class OpenOfficeDoc(TextDoc):
         os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-        self.styles_xml = tempfile.mktemp()
+        self.styles_xml = tempfile.TemporaryFile()
 	self.f = open(self.styles_xml,"wb")
         
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -388,18 +390,18 @@ class OpenOfficeDoc(TextDoc):
 	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
 
             align = style.get_alignment()
-	    if align == PARA_ALIGN_LEFT:
+	    if align == TextDoc.PARA_ALIGN_LEFT:
 	       self.f.write('fo:text-align="left" ')
-            elif align == PARA_ALIGN_RIGHT:
+            elif align == TextDoc.PARA_ALIGN_RIGHT:
                self.f.write('fo:text-align="right" ')
-            elif align == PARA_ALIGN_CENTER:
+            elif align == TextDoc.PARA_ALIGN_CENTER:
                self.f.write('fo:text-align="center" ')
                self.f.write('style:justify-single-word="false" ')
             else:
                self.f.write('fo:text-align="justify" ')
                self.f.write('style:justify-single-word="false" ')
             font = style.get_font()
-            if font.get_type_face() == FONT_SANS_SERIF:
+            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
                 self.f.write('style:font-name="Arial" ')
             else:
                 self.f.write('style:font-name="Times New Roman" ')
@@ -442,7 +444,7 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('<style:properties fo:page-width="%.3fcm" ' % self.width)
         self.f.write('fo:page-height="%.3fcm" ' % self.height)
         self.f.write('style:num-format="1" ')
-        if self.orientation == PAPER_PORTRAIT:
+        if self.orientation == TextDoc.PAPER_PORTRAIT:
             self.f.write('style:print-orientation="portrait" ')
         else:
             self.f.write('style:print-orientation="landscape" ')
@@ -500,7 +502,7 @@ class OpenOfficeDoc(TextDoc):
 	self.f.write(text)
 
     def _write_manifest(self):
-        self.manifest_xml = tempfile.mktemp()
+        self.manifest_xml = tempfile.TemporaryFile()
 	self.f = open(self.manifest_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
@@ -528,7 +530,7 @@ class OpenOfficeDoc(TextDoc):
 
     def _write_meta_file(self):
         name = self.name
-        self.meta_xml = tempfile.mktemp()
+        self.meta_xml = tempfile.TemporaryFile()
 	self.f = open(self.meta_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')

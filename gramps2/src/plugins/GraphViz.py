@@ -20,17 +20,37 @@
 
 "Generate files/Relationship graph"
 
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 import os
 import string
 
-from intl import gettext as _
-import Utils
-
+#------------------------------------------------------------------------
+#
+# GNOME/gtk
+#
+#------------------------------------------------------------------------
 import gtk
 
-from Report import *
-from TextDoc import *
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import Utils
+import Report
+import TextDoc
+import GenericFilter
+from intl import gettext as _
 
+#------------------------------------------------------------------------
+#
+# constants
+#
+#------------------------------------------------------------------------
 _scaled = 0
 _single = 1
 _multiple = 2
@@ -43,18 +63,14 @@ _pagecount_map = {
     
 #------------------------------------------------------------------------
 #
-# 
+# GraphVizDialog
 #
 #------------------------------------------------------------------------
-class GraphVizDialog(ReportDialog):
-    def __init__(self,database,person):
-        ReportDialog.__init__(self,database,person)
+class GraphVizDialog(Report.ReportDialog):
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
+    def __init__(self,database,person):
+        Report.ReportDialog.__init__(self,database,person)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - %s - GRAMPS" % (_("Relationship Graph"),
@@ -211,11 +227,6 @@ class GraphVizDialog(ReportDialog):
                                 "controls the number pages in the array "
                                 "vertically."))
 
-    #------------------------------------------------------------------------
-    #
-    # Functions related to selecting/changing the current file format
-    #
-    #------------------------------------------------------------------------
     def make_doc_menu(self):
         """Build a one item menu of document types that are
         appropriate for this report."""
@@ -228,20 +239,10 @@ class GraphVizDialog(ReportDialog):
         make_report routine."""
         pass
     
-    #------------------------------------------------------------------------
-    #
-    # Functions related to setting up the dialog window
-    #
-    #------------------------------------------------------------------------
     def setup_style_frame(self):
         """The style frame is not used in this dialog."""
         pass
 
-    #------------------------------------------------------------------------
-    #
-    # Functions related to retrieving data from the dialog window
-    #
-    #------------------------------------------------------------------------
     def parse_style_frame(self):
         """The style frame is not used in this dialog."""
         pass
@@ -259,11 +260,6 @@ class GraphVizDialog(ReportDialog):
         self.vpages = self.vpages_sb.get_value_as_int()
         self.show_families = self.show_families_cb.get_active()
 
-    #------------------------------------------------------------------------
-    #
-    # Functions related to creating the actual report document.
-    #
-    #------------------------------------------------------------------------
     def make_report(self):
         """Create the object that will produce the GraphViz file."""
         width = self.paper.get_width_inches()
@@ -306,7 +302,7 @@ def write_dot(file, ind_list, orien, width, height, tb_margin,
                                             (height*vpages)-(tb_margin*2)-((vpages-1)*1.0)))
     file.write("page=\"%3.1f,%3.1f\";\n" % (width,height))
 
-    if orien == PAPER_LANDSCAPE:
+    if orien == TextDoc.PAPER_LANDSCAPE:
         file.write("rotate=90;\n")
 
     if len(ind_list) > 1:

@@ -18,19 +18,18 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import os
 import string
 import Plugins
 from intl import gettext as _
 
-from TextDoc import *
-from DrawDoc import *
+import TextDoc
+import DrawDoc
 
 
-class SvgDrawDoc(DrawDoc):
+class SvgDrawDoc(DrawDoc.DrawDoc):
 
     def __init__(self,styles,type,orientation):
-        DrawDoc.__init__(self,styles,type,orientation)
+        DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -68,12 +67,12 @@ class SvgDrawDoc(DrawDoc):
         self.f.write('"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
         self.f.write('<svg width="%5.2fcm" height="%5.2fcm" ' % (self.width,self.height))
         self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
-        if self.orientation != PAPER_PORTRAIT:
+        if self.orientation != TextDoc.PAPER_PORTRAIT:
             self.f.write('<g transform="rotate(-90); ')
             self.f.write(' translate(-%5.2fcm,0)">\n' % self.height)
             
     def end_page(self):
-        if self.orientation != PAPER_PORTRAIT:
+        if self.orientation != TextDoc.PAPER_PORTRAIT:
             self.f.write('</g>\n')
         self.f.write('</svg>\n')
         self.f.close()
@@ -122,7 +121,7 @@ class SvgDrawDoc(DrawDoc):
                 if font.get_italic():
                     self.f.write('font-style="italic";')
                 self.f.write('font-size:%d;' % font_size)
-                if font.get_type_face() == FONT_SANS_SERIF:
+                if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
                     self.f.write('font-family=sans-serif;')
                 else:
                     self.f.write('font-family=serif;')

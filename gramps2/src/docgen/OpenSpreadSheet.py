@@ -22,7 +22,7 @@ import os
 import tempfile
 import string
 
-from TextDoc import *
+import TextDoc
 from SpreadSheetDoc import *
 
 from latin_utf8 import latin_to_utf8
@@ -49,8 +49,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
         else:
             self.filename = filename
             
-        tempfile.tempdir = "/tmp"
-        self.tempdir = tempfile.mktemp()
+        self.tempdir = tempfile.TemporaryFile()
         os.mkdir(self.tempdir,0700)
         os.mkdir(self.tempdir + os.sep + "Pictures")
         os.mkdir(self.tempdir + os.sep + "META-INF")
@@ -122,7 +121,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	    self.f.write('fo:padding-left="%.3fcm" ' % style.get_padding())
   	    self.f.write('style:text-outline="false" ')
 	    self.f.write('style:text-crossing-out="none" ')
-            if font.get_type_face() == FONT_SERIF:
+            if font.get_type_face() == TextDoc.FONT_SERIF:
 	        self.f.write('style:font-name="Times New Roman" ')
             else:
 	        self.f.write('style:font-name="Arial" ')
@@ -425,33 +424,3 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.write('</office:document-meta>\n')
 	self.f.close()
 
-if __name__ == "__main__":
-
-    doc = OpenSpreadSheet(PaperStyle("junk",21.59,27),PAPER_PORTRAIT)
-
-    t = TableStyle()
-    t.set_columns(3)
-    t.set_column_width(0,4)
-    t.set_column_width(1,2)
-    t.set_column_width(2,1)
-    doc.add_table_style("mytblstyle",t)
-
-    f = FontStyle()
-    f.set_type_face(FONT_SANS_SERIF)
-    f.set_size(16)
-    f.set_bold(1)
-    p = ParagraphStyle()
-    p.set_font(f)
-    p.set_background_color((0xcc,0xff,0xff))
-    p.set_padding(0.5)
-    doc.add_style("p1",p)
-
-    doc.open("/home/dona/test")
-    doc.start_page("Page 1","mytblstyle")
-    doc.start_row()
-    doc.start_cell("p1")
-    doc.write_text("Hello")
-    doc.end_cell()
-    doc.end_row()
-    doc.end_page()
-    doc.close()

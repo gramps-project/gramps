@@ -20,23 +20,38 @@
 
 "Text Reports/Ahnentafel Report"
 
-import RelLib
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 import os
 import string
-from intl import gettext as _
 
-from Report import *
-from TextDoc import *
-
+#------------------------------------------------------------------------
+#
+# GNOME/GTK
+#
+#------------------------------------------------------------------------
 import gtk
 import gnome.ui
+
+#------------------------------------------------------------------------
+#
+# gramps modules
+#
+#------------------------------------------------------------------------
+import Report
+import TextDoc
+import RelLib
+from intl import gettext as _
 
 #------------------------------------------------------------------------
 #
 # AncestorReport
 #
 #------------------------------------------------------------------------
-class AncestorReport(Report):
+class AncestorReport(Report.Report):
 
     def __init__(self,database,person,output,max,doc,pgbrk):
         self.map = {}
@@ -206,9 +221,9 @@ class AncestorReport(Report):
 # 
 #
 #------------------------------------------------------------------------
-class AncestorReportDialog(TextReportDialog):
+class AncestorReportDialog(Report.TextReportDialog):
     def __init__(self,database,person):
-        TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #
@@ -234,23 +249,23 @@ class AncestorReportDialog(TextReportDialog):
     
     def make_default_style(self):
         """Make the default output style for the Ahnentafel report."""
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=16,bold=1)
-        para = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
         para.set(pad=0.5)
         self.default_style.add_style("Title",para)
     
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=14,italic=1)
-        para = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
+        para = TextDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set(pad=0.5)
         self.default_style.add_style("Generation",para)
     
-        para = ParagraphStyle()
+        para = TextDoc.ParagraphStyle()
         para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
         self.default_style.add_style("Entry",para)
 

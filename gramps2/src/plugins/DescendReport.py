@@ -34,8 +34,8 @@ import string
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from Report import *
-from TextDoc import *
+import Report
+import TextDoc
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -109,18 +109,13 @@ class DescendantReport:
 
 #------------------------------------------------------------------------
 #
-# 
+# DescendantReportDialog
 #
 #------------------------------------------------------------------------
-class DescendantReportDialog(TextReportDialog):
+class DescendantReportDialog(Report.TextReportDialog):
     def __init__(self,database,person):
-        TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person)
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
         return "%s - %s - GRAMPS" % (_("Descendant Report"),_("Text Reports"))
@@ -140,18 +135,18 @@ class DescendantReportDialog(TextReportDialog):
     
     def make_default_style(self):
         """Make the default output style for the Descendant Report."""
-        f = FontStyle()
+        f = TextDoc.FontStyle()
         f.set_size(14)
-        f.set_type_face(FONT_SANS_SERIF)
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
         f.set_bold(1)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_header_level(1)
         p.set_font(f)
         self.default_style.add_style("Title",p)
 
-        f = FontStyle()
+        f = TextDoc.FontStyle()
         for i in range(1,32):
-            p = ParagraphStyle()
+            p = TextDoc.ParagraphStyle()
             p.set_font(f)
             p.set_left_margin(max(10.0,float(i-1)))
             self.default_style.add_style("Level%d" % i,p)

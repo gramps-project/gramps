@@ -18,12 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from TextDoc import *
+import TextDoc
 from latin_utf8 import latin_to_utf8
 
 import time
 import StringIO
-import os
 import gzip
 from TarFile import TarFile
 import Plugins
@@ -39,7 +38,7 @@ def points(val):
 #
 #
 #------------------------------------------------------------------------
-class KwordDoc(TextDoc):
+class KwordDoc(TextDoc.TextDoc):
 
     def open(self,filename):
         self.photo_list = []
@@ -98,7 +97,7 @@ class KwordDoc(TextDoc):
 
         self.f.write('width="%d" ' % points(self.width))
         self.f.write('height="%d" ' % points(self.height))
-        if self.orientation == PAPER_PORTRAIT:
+        if self.orientation == TextDoc.PAPER_PORTRAIT:
             self.f.write('orientation="0" ')
         else:
             self.f.write('orientation="1" ')
@@ -173,11 +172,11 @@ class KwordDoc(TextDoc):
 
             pad = points(p.get_padding())/2
             self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
-            if p.get_alignment() == PARA_ALIGN_CENTER:
+            if p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
                 self.f.write('<FLOW value="center"/>\n')
-            elif p.get_alignment() == PARA_ALIGN_JUSTIFY:
+            elif p.get_alignment() == TextDoc.PARA_ALIGN_JUSTIFY:
                 self.f.write('<FLOW value="justify"/>\n')
-            elif p.get_alignment() == PARA_ALIGN_RIGHT:
+            elif p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
                 self.f.write('<FLOW value="right"/>\n')
             else:
                 self.f.write('<FLOW value="left"/>\n')
@@ -190,7 +189,7 @@ class KwordDoc(TextDoc):
 
             font = p.get_font()
             self.f.write('<FORMAT>\n')
-            if font.get_type_face==FONT_SANS_SERIF:
+            if font.get_type_face==TextDoc.FONT_SANS_SERIF:
                 self.f.write('<FONT name="helvetica"/>\n')
             else:
                 self.f.write('<FONT name="times"/>\n')
@@ -259,7 +258,7 @@ class KwordDoc(TextDoc):
         self.style_name = style_name
         self.p = self.style_list[self.style_name]
         self.font = self.p.get_font()
-        if self.font.get_type_face() == FONT_SERIF:
+        if self.font.get_type_face() == TextDoc.FONT_SERIF:
             self.font_face = "Arial"
         else:
             self.font_face = "Times New Roman"
@@ -295,11 +294,11 @@ class KwordDoc(TextDoc):
         pad = points(self.p.get_padding())/2
         self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
 
-        if self.p.get_alignment() == PARA_ALIGN_CENTER:
+        if self.p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
             self.f.write('<FLOW value="center"/>\n')
-        elif self.p.get_alignment() == PARA_ALIGN_JUSTIFY:
+        elif self.p.get_alignment() == TextDoc.PARA_ALIGN_JUSTIFY:
             self.f.write('<FLOW value="justify"/>\n')
-        elif self.p.get_alignment() == PARA_ALIGN_RIGHT:
+        elif self.p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
             self.f.write('<FLOW value="right"/>\n')
         else:
             self.f.write('<FLOW value="left"/>\n')
@@ -427,51 +426,4 @@ class KwordDoc(TextDoc):
     def write_text(self,text):
 	self.text = self.text + text
 
-
-if __name__ == "__main__":
-
-    paper = PaperStyle("Letter",27.94,21.59)
-
-    styles = StyleSheet()
-    foo = FontStyle()
-    foo.set_type_face(FONT_SANS_SERIF)
-    foo.set_color((255,0,0))
-    foo.set_size(24)
-    foo.set_underline(1)
-    foo.set_bold(1)
-    foo.set_italic(1)
-
-    para = ParagraphStyle()
-    para.set_alignment(PARA_ALIGN_RIGHT)
-    para.set_font(foo)
-    styles.add_style("Title",para)
-
-    foo = FontStyle()
-    foo.set_type_face(FONT_SERIF)
-    foo.set_size(12)
-
-    para = ParagraphStyle()
-    para.set_font(foo)
-    styles.add_style("Normal",para)
-
-    doc = KwordDoc(styles,paper,PAPER_PORTRAIT)
-    doc.open("/home/dona/test")
-
-    doc.start_paragraph("Title")
-    doc.write_text("My Title")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Normal")
-    doc.write_text("Hello there. This is fun")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Normal")
-    doc.write_text("This is fun. ")
-    doc.add_photo("/home/dona/dad.jpg",2.0,2.0)
-    doc.write_text("So is this. ")
-    doc.end_paragraph()
-
-    doc.close()
-
-#Change to support tables (args were: 0,1,1)
 Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1)

@@ -33,9 +33,9 @@ import string
 #------------------------------------------------------------------------
 import RelLib
 import const
-from TextDoc import *
-from StyleEditor import *
-from Report import *
+import TextDoc
+import StyleEditor
+import Report
 import GenericFilter
 from intl import gettext as _
 
@@ -65,29 +65,29 @@ class IndivComplete:
         self.output = output
         
     def setup(self):
-        tbl = TableStyle()
+        tbl = TextDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
         self.d.add_table_style("IndTable",tbl)
 
-        tbl = TableStyle()
+        tbl = TextDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,50)
         tbl.set_column_width(1,50)
         self.d.add_table_style("ParentsTable",tbl)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
         self.d.add_cell_style("TableHead",cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         self.d.add_cell_style("NormalCell",cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
 	cell.set_longlist(1)
         self.d.add_cell_style("ListCell",cell)
 
@@ -425,9 +425,9 @@ class IndivComplete:
 # 
 #
 #------------------------------------------------------------------------
-class IndivSummaryDialog(TextReportDialog):
+class IndivSummaryDialog(Report.TextReportDialog):
     def __init__(self,database,person):
-        TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person)
 
     def add_user_options(self):
         self.use_srcs = gtk.CheckButton(_('Include Source Information'))
@@ -490,35 +490,35 @@ class IndivSummaryDialog(TextReportDialog):
     #------------------------------------------------------------------------
     def make_default_style(self):
         """Make the default output style for the Individual Summary Report."""
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(16)
-        p = ParagraphStyle()
-        p.set_alignment(PARA_ALIGN_CENTER)
+        p = TextDoc.ParagraphStyle()
+        p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
         p.set_font(font)
         self.default_style.add_style("Title",p)
         
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(12)
         font.set_italic(1)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("TableTitle",p)
         
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Spouse",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_size(12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Normal",p)
     

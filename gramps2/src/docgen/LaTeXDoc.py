@@ -25,10 +25,17 @@
 
 #------------------------------------------------------------------------
 #
+# python modules 
+#
+#------------------------------------------------------------------------
+import string
+
+#------------------------------------------------------------------------
+#
 # gramps modules 
 #
 #------------------------------------------------------------------------
-from TextDoc import *
+import TextDoc
 import Plugins
 import ImgManip
 from intl import gettext as _
@@ -38,7 +45,7 @@ from intl import gettext as _
 # Paragraph Handling
 #
 #------------------------------------------------------------------------
-class TexFont(TextDoc):
+class TexFont:
     def __init__(self, style=None):
 	if style:
 	    self.font_beg = style.font_beg
@@ -56,7 +63,7 @@ class TexFont(TextDoc):
 # LaTeXDon
 #
 #------------------------------------------------------------------------
-class LaTeXDoc(TextDoc):
+class LaTeXDoc(TextDoc.TextDoc):
     """LaTeX document interface class. Derived from TextDoc"""
     
     def open(self,filename):
@@ -74,7 +81,7 @@ class LaTeXDoc(TextDoc):
         
         options = "12pt"
 
-        if self.orientation == PAPER_LANDSCAPE:
+        if self.orientation == TextDoc.PAPER_LANDSCAPE:
             options = options + ",landscape"
 
         # Paper selections are somewhat limited on a stock installation. 
@@ -148,7 +155,7 @@ class LaTeXDoc(TextDoc):
 		thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
 
 	    # Establish font face and shape
-	    if font.get_type_face() == FONT_SANS_SERIF:
+	    if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
 		thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
 		thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
 	    if font.get_bold():

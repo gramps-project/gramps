@@ -44,7 +44,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+import RelLib
 import GenericFilter
 import const
 import Utils
@@ -53,10 +53,10 @@ import Calendar
 import Julian
 import Hebrew
 import FrenchRepublic
+import GedcomInfo
 
 from intl import gettext as _
 from latin_utf8  import latin_to_utf8
-from GedcomInfo import *
 
 try:
     from ansel import latin_to_ansel
@@ -70,7 +70,7 @@ except:
 #-------------------------------------------------------------------------
 
 _hmonth = [
-
+    "", "ELUL", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR",
     "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL" ]
 
 _fmonth = [
@@ -345,7 +345,7 @@ class GedcomWriter:
         self.plist = {}
         self.slist = {}
         self.flist = {}
-        self.adopt = ADOPT_EVENT
+        self.adopt = GedcomInfo.ADOPT_EVENT
         self.fidval = 0
         self.fidmap = {}
         self.pidval = 0
@@ -383,7 +383,7 @@ class GedcomWriter:
         self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
         filter_obj.set_menu(self.filter_menu)
 
-        gedmap = GedcomInfoDB()
+        gedmap = GedcomInfo.GedcomInfoDB()
 
         target_obj = self.topDialog.get_widget("target")
         myMenu = gtk.Menu()
@@ -596,7 +596,7 @@ class GedcomWriter:
                 if not self.plist.has_key(person.getId()):
                     continue
                 self.g.write("1 CHIL @%s@\n" % self.pid(person.getId()))
-                if self.adopt == ADOPT_FTW:
+                if self.adopt == GedcomInfo.ADOPT_FTW:
                     if person.getMainParents() == family:
                         self.g.write('2 _FREL Natural\n')
                         self.g.write('2 _MREL Natural\n')
@@ -606,7 +606,7 @@ class GedcomWriter:
                                 self.g.write('2 _FREL %s\n' % f[2])
                                 self.g.write('2 _MREL %s\n' % f[1])
                                 break
-                if self.adopt == ADOPT_LEGACY:
+                if self.adopt == GedcomInfo.ADOPT_LEGACY:
                     for f in person.getAltParentList():
                         if f[0] == family:
                             self.g.write('2 _STAT %s\n' % f[2])
@@ -649,13 +649,13 @@ class GedcomWriter:
         self.prefn(person)
         self.write_person_name(person.getPrimaryName(),person.getNickName())
 
-        if self.altname == ALT_NAME_STD:
+        if self.altname == GedcomInfo.ALT_NAME_STD:
             for name in person.getAlternateNames():
                 self.write_person_name(name,"")
     
-        if person.getGender() == Person.male:
+        if person.getGender() == RelLib.Person.male:
             self.g.write("1 SEX M\n")
-        elif person.getGender() == Person.female:	
+        elif person.getGender() == RelLib.Person.female:	
             self.g.write("1 SEX F\n")
 
         if not self.restrict or not person.probablyAlive():
@@ -692,7 +692,7 @@ class GedcomWriter:
                 if val == "":
                     val = self.target_ged.gramps2tag(name)
                     
-                if self.adopt == ADOPT_EVENT and val == "ADOP":
+                if self.adopt == GedcomInfo.ADOPT_EVENT and val == "ADOP":
                     ad = 1
                     self.g.write('1 ADOP\n')
                     fam = None
@@ -719,7 +719,7 @@ class GedcomWriter:
 
                 self.dump_event_stats(event)
 
-            if self.adopt == ADOPT_EVENT and ad == 0 and len(person.getParentList()) != 0:
+            if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.getParentList()) != 0:
                 self.g.write('1 ADOP\n')
                 fam = None
                 for f in person.getParentList():
@@ -787,7 +787,7 @@ class GedcomWriter:
         for family in person.getParentList():
             if self.flist.has_key(family[0].getId()):
                 self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
-                if self.adopt == ADOPT_PEDI:
+                if self.adopt == GedcomInfo.ADOPT_PEDI:
                     if string.lower(family[1]) == "adopted":
                         self.g.write("2 PEDI Adopted\n")
         
@@ -808,7 +808,7 @@ class GedcomWriter:
             self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
 			
     def write_long_text(self,tag,level,note):
-        if self.conc == CONC_OK:
+        if self.conc == GedcomInfo.CONC_OK:
             self.write_conc_ok(tag,level,note)
         else:
             self.write_conc_broken(tag,level,note)

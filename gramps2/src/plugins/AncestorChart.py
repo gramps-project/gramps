@@ -20,17 +20,33 @@
 
 "Graphical Reports/Ancestor Chart"
 
-import GrampsCfg
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 import os
 import string
 
-from FontScale import string_width
-from DrawDoc import *
-from Report import *
-from SubstKeywords import SubstKeywords
-
+#------------------------------------------------------------------------
+#
+# gtk
+#
+#------------------------------------------------------------------------
 import gtk
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import GrampsCfg
+import DrawDoc
+import TextDoc
+import Report
+import Errors
+import FontScale
+from SubstKeywords import SubstKeywords
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -79,7 +95,7 @@ class AncestorChart:
 
         self.font = self.doc.style_list["Normal"].get_font()
 	for line in self.text[index]:
-	    self.box_width = max(self.box_width,string_width(self.font,line))
+	    self.box_width = max(self.box_width,FontScale.string_width(self.font,line))
 
 	self.lines = max(self.lines,len(self.text[index]))    
 
@@ -88,17 +104,12 @@ class AncestorChart:
             self.filter(family.getFather(),index*2)
             self.filter(family.getMother(),(index*2)+1)
 
-    #--------------------------------------------------------------------
-    #
-    # filter - Generate the actual report
-    #
-    #--------------------------------------------------------------------
     def write_report(self):
 	self.calc()
 	try:
             self.doc.open(self.output)
         except:
-            print _("Document write failure")
+            raise Errors.ReportError(_("Could not create %s") % self.output)
 
         generation = 1
         done = 0
@@ -120,14 +131,12 @@ class AncestorChart:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
 
-    #--------------------------------------------------------------------
-    #
-    # calc - calculate the maximum width that a box needs to be. From
-    # that and the page dimensions, calculate the proper place to put
-    # the elements on a page.
-    #
-    #--------------------------------------------------------------------
     def calc(self):
+        """
+        calc - calculate the maximum width that a box needs to be. From
+        that and the page dimensions, calculate the proper place to put
+        the elements on a page.
+        """
         self.filter(self.start,1)
 
 	self.height = self.lines*pt2cm((125.0*self.font.get_size())/100.0)
@@ -148,21 +157,16 @@ class AncestorChart:
                    ystart + 9*(uh/16.0), ystart + 11*(uh/16.0),
                    ystart + 13*(uh/16.0), ystart + 15*(uh/16.0)]
 
-        g = GraphicsStyle()
+        g = DrawDoc.GraphicsStyle()
         g.set_height(self.height)
         g.set_width(self.box_width)
         g.set_paragraph_style("Normal")
         g.set_shadow(1)
         self.doc.add_draw_style("box",g)
 
-        g = GraphicsStyle()
+        g = DrawDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
     def get_numbers(self,start,index,vals):
         if index > 4:
             return
@@ -171,21 +175,11 @@ class AncestorChart:
         self.get_numbers(start*2,index+1,vals)
         self.get_numbers((start*2)+1,index+1,vals)
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
     def print_page(self,start,generation, page):
         self.doc.start_page()
         self.draw_graph(1,start,0)
         self.doc.end_page()
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
     def draw_graph(self,index,start,level):
         if self.map.has_key(start) and index <= 15:
 	    text = self.text[start]
@@ -210,18 +204,13 @@ class AncestorChart:
         
 #------------------------------------------------------------------------
 #
-# 
+# AncestorChartDialog
 #
 #------------------------------------------------------------------------
-class AncestorChartDialog(DrawReportDialog):
+class AncestorChartDialog(Report.DrawReportDialog):
     def __init__(self,database,person):
-        DrawReportDialog.__init__(self,database,person)
+        Report.DrawReportDialog.__init__(self,database,person)
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
         return "%s - %s - GRAMPS" % (_("Ancestor Chart"),_("Graphical Reports"))
@@ -248,25 +237,15 @@ class AncestorChartDialog(DrawReportDialog):
         return (_("Display Format"), "$n\nb. $b\nd. $d",
                 _("Allows you to customize the data in the boxes in the report"))
 
-    #------------------------------------------------------------------------
-    #
-    # Create output styles appropriate to this report.
-    #
-    #------------------------------------------------------------------------
     def make_default_style(self):
         """Make the default output style for the Ancestor Chart report."""
-        f = FontStyle()
+        f = TextDoc.FontStyle()
         f.set_size(9)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        p = TextDoc.ParagraphStyle()
         p.set_font(f)
         self.default_style.add_style("Normal",p)
 
-    #------------------------------------------------------------------------
-    #
-    # Create the contents of the report.
-    #
-    #------------------------------------------------------------------------
     def make_report(self):
         """Create the object that will produce the Ancestor Chart.
         All user dialog has already been handled and the output file
@@ -282,7 +261,7 @@ class AncestorChartDialog(DrawReportDialog):
 
 #------------------------------------------------------------------------
 #
-# 
+# entry point
 #
 #------------------------------------------------------------------------
 def report(database,person):
