@@ -309,7 +309,6 @@ class GedcomWriter:
             })
         
         filter_obj = self.topDialog.get_widget("filter")
-        myMenu = gtk.GtkMenu()
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -323,15 +322,8 @@ class GedcomWriter:
         ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
         ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
 
-        flist = GenericFilter.GenericFilterList(const.custom_filters)
-        flist.load()
-        for f in [all,des,ans] + flist.get_filters():
-            menuitem = gtk.GtkMenuItem(_(f.get_name()))
-            myMenu.append(menuitem)
-            menuitem.set_data("filter",f)
-            menuitem.show()
-        filter_obj.set_menu(myMenu)
-        self.filter_menu = myMenu
+        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans])
+        filter_obj.set_menu(self.filter_menu)
 
         gedmap = GedcomInfoDB()
         

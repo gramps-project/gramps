@@ -54,6 +54,7 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
+system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
 icon           = "%s/gramps.xpm" % rootDir
 logo           = "%s/logo.png" % rootDir

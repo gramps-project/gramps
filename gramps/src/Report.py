@@ -644,7 +644,7 @@ class ReportDialog:
         (but not all) dialog boxes."""
 
         (use_gen, use_break) = self.get_report_generations()
-        local_filter = self.get_report_filters()
+        local_filters = self.get_report_filters()
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
         (et_label, string, et_tip) = self.get_report_extra_textbox_info()
 
@@ -654,7 +654,7 @@ class ReportDialog:
             max_rows = max_rows + 1
             if use_break:
                 max_rows = max_rows + 1
-        if len(local_filter):
+        if len(local_filters):
             max_rows = max_rows + 1
         if extra_map:
             max_rows = max_rows + 1
@@ -673,8 +673,7 @@ class ReportDialog:
         frame.add(table)
 
         pad = ReportDialog.border_pad
-        if len(local_filter):
-            myMenu = GtkMenu()
+        if len(local_filters):
             self.filter_combo = GtkOptionMenu()
             l = GtkLabel(_("Filter"))
             l.set_alignment(1.0,0.5)
@@ -682,15 +681,10 @@ class ReportDialog:
             table.attach(self.filter_combo,1,2,row,row+1,
                          xpadding=pad,ypadding=pad)
 
-            flist = GenericFilter.GenericFilterList(const.custom_filters)
-            flist.load()
-            for f in local_filter + flist.get_filters():
-                menuitem = gtk.GtkMenuItem(_(f.get_name()))
-                myMenu.append(menuitem)
-                menuitem.set_data("filter",f)
-                menuitem.show()
-            self.filter_combo.set_menu(myMenu)
-            self.filter_menu = myMenu
+            menu = GenericFilter.build_filter_menu(local_filters)
+
+            self.filter_combo.set_menu(menu)
+            self.filter_menu = menu
             row = row + 1
             
         # Set up the generations spin and page break checkbox
