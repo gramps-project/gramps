@@ -2336,12 +2336,58 @@ def change_parents(family):
         active_mother = None
 
 
+def load_canvas():
+    from GDK import *
+    
+    canvas = gtop.get_widget("canvas1")
+    cx1,cy1,cx2,cy2 = canvas.get_allocation()
+    canvas.set_scroll_region(cx1,cy1,cx2,cy2)
+    root = canvas.root()
+
+    for c in canvas.children():
+        canvas.remove(c)
+        
+    add_box(root,10,int(cy2/2.0)-15,active_person)
+    f = active_person.getMainFamily()
+    if f:
+        if f.getFather():
+            y = int(cy2/4.0)
+            pts = [125,int(cy2/2.0)-15,125,y,int(cx2/3.0),y]
+            root.add("line",points=pts,fill_color="black")
+            add_box(root,int(cx2/3.0),y-15,f.getFather())
+        if f.getMother():
+            pts = [125,int(cy2/2.0)+15,125,3*y,int(cx2/3.0),3*y]
+            root.add("line",points=pts,fill_color="black")
+            add_box(root,int(cx2/3.0),(3*y)-15,f.getMother())
+
+def add_box(root,x,y,person):
+    name = person.getPrimaryName().getName()
+    group = root.add("group",x=x,y=y)
+    fn = "-*-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+    group.add("rect",x1=3,y1=3,x2=203,y2=33,fill_color="black")
+    group.add("rect",x1=0,y1=0,x2=200,y2=30,fill_color="white")
+    group.add("text",x=10,y=15,fill_color="black",font=fn,
+              text=name,anchor=ANCHOR_WEST)
+    group.connect('event',box_event)
+    group.set_data('p',person)
+
+def box_event(obj,event):
+    if event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            load_person(obj.get_data('p'))
+    elif event.type == GDK.ENTER_NOTIFY:
+        obj.children()[2].set(fill_color="red")
+    elif event.type == GDK.LEAVE_NOTIFY:
+        obj.children()[2].set(fill_color="black")
+        
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 def load_tree():
+
+    load_canvas()
     text = {}
     tip = {}
     for i in range(1,16):
