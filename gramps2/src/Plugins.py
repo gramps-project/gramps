@@ -500,13 +500,13 @@ def register_draw_doc(name,classref,paper,style, ext):
 def register_relcalc(func, languages):
     """Register a relationshp calculator"""
     import sys
-    global _relcal_task
+    global _relcalc_task
     
-    if sys.environ.get('LANG') in languages:
+    if os.environ["LANG"] in languages:
         _relcalc_task = func
 
 def relationship_function():
-    global _relcal_task
+    global _relcalc_task
     return _relcalc_task
 
 #-------------------------------------------------------------------------
