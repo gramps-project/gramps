@@ -57,6 +57,12 @@ from gettext import gettext as _
 # Spacing in points (distance between the bottoms of two adjacent lines)
 _LINE_SPACING = 20  
 
+# Elevation of superscripts: a fraction of it's size
+_SUPER_ELEVATION_FRACTION = 0.3
+
+# Number of points to subtract to get the superscrip size
+_SUPER_SIZE_REDUCTION = 2
+
 # Font constants -- specific for gnome-print
 _FONT_SANS_SERIF    = "Arial"
 _FONT_SERIF         = "Times New Roman"
@@ -113,7 +119,6 @@ def find_font_from_fontstyle(fontstyle):
         modifier = _FONT_REGULAR
 
     size = fontstyle.get_size()
-    
     return gnomeprint.font_find_closest("%s %s" % (face, modifier),size)
 
 #------------------------------------------------------------------------
@@ -131,50 +136,6 @@ def get_text_width(text,fontstyle):
     """
     font = find_font_from_fontstyle(fontstyle)
     return font.get_width_utf8(text)
-
-def get_text_height(text, width, fontstyle):
-    """
-    This function returns the height of text using given fontstyle 
-    when formatted to specified width.
-    
-    text            - a text whose height to find
-    width           - formatting width
-    fontstyle       - a BaseDoc.FontStyle() instance
-    """
-
-    nlines = 0
-
-    if text and width > get_text_width(text,fontstyle):
-        nlines += 1
-    elif width <= get_text_width(text,fontstyle):
-        #divide up text and print
-        textlist = string.split(text)
-        the_text = ""
-        for element in textlist:
-            if get_text_width(the_text + element + " ",fontstyle) < width:
-                the_text = the_text + element + " "
-            else:
-                #__text contains as many words as this __width allows
-                nlines = nlines + 1
-                the_text = element + " "
-
-    return nlines * _LINE_SPACING
-
-def get_min_width(text,fontstyle):
-    """
-    This function returns the minimal width of text using given fontstyle. 
-    This is actually determined by the width of the longest word.
-    
-    text            - a text whose width to find
-    fontstyle       - a BaseDoc.FontStyle() instance
-    """
-    max_word_size = 0
-    for word in text.split():
-        length = get_text_width(word,fontstyle)
-        if length > max_word_size:
-           max_word_size = length
-
-    return max_word_size
 
 #------------------------------------------------------------------------
 #
@@ -248,27 +209,6 @@ class GnomePrintParagraph:
         """
         return self.style.get_alignment()
 
-    def get_width(self):
-        """
-        Determine the width of the paragraph if not formatted.
-        """
-        width = 0
-        
-        for (directive,text) in self.piece_list:
-            fontstyle = BaseDoc.FontStyle(self.fontstyle)
-            if directive == _BOLD:
-                fontstyle.set_bold(1)
-            elif directive == _SUPER:
-                size = fontstyle.get_size()
-                fontstyle.set_size(size-2)
-            elif directive == _MONO:
-                fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
-            
-            font = find_font_from_fontstyle(fontstyle)
-            width += font.get_width_utf8(text)
-        
-        return width
-
     def get_min_width(self):
         """
         Determine the minimal width of the paragraph (longest word)
@@ -281,7 +221,7 @@ class GnomePrintParagraph:
                 fontstyle.set_bold(1)
             elif directive == _SUPER:
                 size = fontstyle.get_size()
-                fontstyle.set_size(size-2)
+                fontstyle.set_size(size-_SUPER_SIZE_REDUCTION)
             elif directive == _MONO:
                 fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
 
@@ -316,10 +256,14 @@ class GnomePrintParagraph:
         if self.lines:
             return
 
+        width = width   - cm2u(self.style.get_right_margin()) \
+                        - cm2u(self.style.get_left_margin())
+
         nlines = 1
         avail_width = width
 
         start_piece = end_piece = start_word = end_word = 0
+        first = 1
         
         for piece_num in range(len(self.piece_list)):
             end_piece = piece_num
@@ -331,10 +275,14 @@ class GnomePrintParagraph:
                 fontstyle.set_bold(1)
             elif directive == _SUPER:
                 size = fontstyle.get_size()
-                fontstyle.set_size(size-2)
+                fontstyle.set_size(size-_SUPER_SIZE_REDUCTION)
             elif directive == _MONO:
                 fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
             
+            if first:
+                first = 0
+                avail_width = avail_width - cm2u(self.style.get_first_indent())
+
             if text and avail_width > get_text_width(text,fontstyle):
                 avail_width -= get_text_width(text,fontstyle)
                 end_word = len(text.split())
@@ -370,8 +318,13 @@ class GnomePrintParagraph:
                     end_word = len(textlist)
 
         self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
-        self.height = nlines * _LINE_SPACING
+        self.height = nlines * self.fontstyle.get_size()
     
+    def get_lines(self):
+        """
+        Return a list of assemlbed for the paragraph.
+        """
+        return self.lines
 
 #------------------------------------------------------------------------
 #
@@ -691,8 +644,12 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.end_paragraph()
 
     #function to help us advance a line 
-    def __advance_line(self, y):
-        new_y = y - _LINE_SPACING
+    def __advance_line(self,y,paragraph=None):
+        if paragraph:
+            spacing = paragraph.fontstyle.get_size()
+        else:
+            spacing = _LINE_SPACING
+        new_y = y - spacing
         if y < self.bottom_margin:
             x = self.__x
             self.end_page()
@@ -713,11 +670,18 @@ class LPRDoc(BaseDoc.BaseDoc):
         if not paragraph.get_piece_list():
             return (x,y)
 
-        left_margin = x
-        no_space = 0
         paragraph.format(width)
 
-        if y - _LINE_SPACING < self.bottom_margin:
+        x = x + cm2u(paragraph.style.get_left_margin())
+        
+        width = width   - cm2u(paragraph.style.get_right_margin()) \
+                        - cm2u(paragraph.style.get_left_margin())
+
+        left_margin = x
+        no_space = 0
+        first = 1
+
+        if y - paragraph.fontstyle.get_size() < self.bottom_margin:
             self.end_page()
             self.start_page()
             x = left_margin
@@ -725,7 +689,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         # Loop over lines which were assembled by paragraph.format()
         for (start_piece,start_word,end_piece,end_word,avail_width) \
-                                                    in paragraph.lines:
+                                                    in paragraph.get_lines():
 
             if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
                 x = x + 0.5 * avail_width
@@ -737,6 +701,10 @@ class LPRDoc(BaseDoc.BaseDoc):
                 print "Paragraph justification not supported."
                 print "Falling back to left-justified mode."
 
+            if first:
+                first = 0
+                x = x + cm2u(paragraph.style.get_first_indent())
+
             # Loop over pieces that constitute the line
             for piece_num in range(start_piece,end_piece+1):
                 (directive,text) = paragraph.get_piece_list()[piece_num]
@@ -745,8 +713,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                     fontstyle.set_bold(1)
                 elif directive == _SUPER:
                     size = fontstyle.get_size()
-                    fontstyle.set_size(size-2)
-                    y = y + 0.25 * _LINE_SPACING
+                    fontstyle.set_size(size-_SUPER_SIZE_REDUCTION)
+                    y = y + _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
                 elif directive == _MONO:
                     fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
 
@@ -775,7 +743,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.__pc.show(the_text)
                 x = x + get_text_width(the_text,fontstyle)
                 if directive == _SUPER:
-                    y = y - 0.25 * _LINE_SPACING
+                    y = y - _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
 
             # If this was the linebreak, no space on the next line's start
             if end_word:
@@ -783,9 +751,10 @@ class LPRDoc(BaseDoc.BaseDoc):
             else:
                 no_space = 1
 
-            y = self.__advance_line(y)
+            y = self.__advance_line(y,paragraph)
             x = left_margin
 
+        x = x - cm2u(paragraph.style.get_left_margin())
         return (x,y)
 
     def __output_table(self):
