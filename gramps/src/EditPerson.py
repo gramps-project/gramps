@@ -181,6 +181,9 @@ class EditPerson:
         self.title = self.get_widget("title")
         self.bdate  = self.get_widget("birthDate")
         self.bplace = self.get_widget("birthPlace")
+        self.bpcombo = self.get_widget("bpcombo")
+        self.dpcombo = self.get_widget("bpcombo")
+        self.sncombo = self.get_widget("sncombo")
         self.ddate  = self.get_widget("deathDate")
         self.dplace = self.get_widget("deathPlace")
         self.is_male = self.get_widget("genderMale")
@@ -216,10 +219,10 @@ class EditPerson:
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
-        self.autoplace = AutoComp.AutoComp(self.bplace,self.pmap.keys())
-        AutoComp.AutoComp(self.dplace,self.pmap.keys(),self.autoplace)
-        if Config.autocomp:
-            self.comp = AutoComp.AutoComp(self.surname_field,const.surnames)
+        self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
+
+        AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),self.autoplace)
+        self.comp = AutoComp.AutoCombo(self.sncombo,const.surnames)
             
         self.gid.set_text(person.getId())
         self.gid.set_editable(Config.id_edit)
@@ -318,7 +321,7 @@ class EditPerson:
             stat = 0
             combo.entry.set_text("")
 
-        AutoComp.AutoComp(place,None,self.autoplace)
+        AutoComp.AutoEntry(place,None,self.autoplace)
         if ord and ord.getPlace():
             place.set_text(ord.getPlace().get_title())
         return stat

@@ -28,19 +28,16 @@ import gtk
 
 cnv = string.lower
 
-class AutoComp:
-    """
-    Allows allow completion of the GtkEntry widget with the entries
-    in the passed string list.
-    """
+class AutoCompBase:
+
     def __init__(self,widget,plist,source=None):
-        self.entry = widget
         if source:
             self.nlist = source.nlist
         else:
             self.nlist = map((lambda n: (cnv(n),n)),plist)
             self.nlist.sort()
-        self.entry.connect("insert-text",self.insert_text)
+        self.nl = "xzsdkdjecsc"
+        self.l = 0
 
     def insert_text(self,entry,new_text,new_text_len,i_dont_care):
         """
@@ -76,6 +73,94 @@ class AutoComp:
         """
         entry.select_region(0, 0)
 
+
+class AutoCombo(AutoCompBase):
+    """
+    Allows allow completion of the GtkEntry widget with the entries
+    in the passed string list.
+    """
+    def __init__(self,widget,plist,source=None):
+        AutoCompBase.__init__(self,widget,plist,source)
+        self.entry = widget
+        widget.entry.connect("insert-text",self.insert_text)
+        widget.children()[1].connect("button-press-event",self.build_list)
+        widget.children()[1].connect("button-release-event",self.setval)
+        self.vals = [""]
+        self.inb = 0
+
+    def setval(self,widget,event):
+        self.inb = 0
+        text = self.entry.entry.get_text()
+        if self.nl == string.lower(text):
+            self.entry.entry.set_position(self.l)
+            self.entry.entry.select_region(self.l, -1)
+            
+    def build_list(self,widget,event):
+        self.inb = 1
+        if self.vals[0] == "":
+            self.entry.set_popdown_strings([self.entry.entry.get_text()])
+        else:
+            self.entry.set_popdown_strings(self.vals)
+
+    def timer_callback(self,entry):
+        """
+        The workhors
+e routine of file completion.  This routine grabs the
+        current text of the entry box, and grubs through the list item
+        looking for any case insensitive matches.  This routine relies on
+        public knowledge of the GtkEntry data structure, not on any private
+        data.
+        """
+        # Clear any timer
+        timer = entry.get_data("timer");
+        if (timer):
+            gtk.timeout_remove(timer)
+
+        if self.inb == 1:
+            return
+        
+        # Get the user's text
+        typed = entry.get_text()
+        if (not typed):
+            return
+        typed_lc = string.lower(typed)
+
+        if typed_lc == self.nl:
+            return
+        
+        self.l = len(typed_lc)
+
+        self.vals = []
+        
+        # Walk the GtkList in the entry box
+        for nl,n in self.nlist:
+            # If typed text is a substring of the label text, then fill in
+            # the entry field with the full text (and correcting
+            # capitalization), and then select all the characters that
+            # don't match.  With the user's next keystroke these will be
+            # replaced if they are incorrect.
+            if nl[0:self.l] == typed_lc:
+                self.vals.append(n)
+
+        if len(self.vals) > 0:
+            n = self.vals[0]
+            self.nl = string.lower(n)
+            entry.set_text(n)
+            entry.set_position(self.l)
+            entry.select_region(self.l, -1)
+        else:
+            self.vals = [""]
+
+class AutoEntry(AutoCompBase):
+    """
+    Allows allow completion of the GtkEntry widget with the entries
+    in the passed string list.
+    """
+    def __init__(self,widget,plist,source=None):
+        AutoCompBase.__init__(self,widget,plist,source)
+        self.entry = widget
+        self.entry.connect("insert-text",self.insert_text)
+
     def timer_callback(self,entry):
         """
         The workhorse routine of file completion.  This routine grabs the
@@ -84,7 +169,6 @@ class AutoComp:
         public knowledge of the GtkEntry data structure, not on any private
         data.
         """
-        
         # Clear any timer
         timer = entry.get_data("timer");
         if (timer):
@@ -96,23 +180,22 @@ class AutoComp:
             return
         typed_lc = string.lower(typed)
 
+        if typed_lc == self.nl:
+            return
+        
+        self.l = len(typed_lc)
+
         # Walk the GtkList in the entry box
         for nl,n in self.nlist:
-            if (not nl):
-                continue
-
-            # If equal, no need to add any text
-            if (typed_lc == nl):
-                return
-
             # If typed text is a substring of the label text, then fill in
             # the entry field with the full text (and correcting
             # capitalization), and then select all the characters that
-            # don't match.  With the user's enxt keystroke these will be
+            # don't match.  With the user's next keystroke these will be
             # replaced if they are incorrect.
-            if (string.find(nl,typed_lc) == 0):
+            if nl[0:self.l] == typed_lc:
+                self.nl = nl
                 entry.set_text(n)
-                entry.set_position(len(typed))
-                entry.select_region(len(typed), -1)
+                entry.set_position(self.l)
+                entry.select_region(self.l, -1)
                 return
 
