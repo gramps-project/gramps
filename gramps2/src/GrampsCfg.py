@@ -37,11 +37,16 @@ import Calendar
 #
 #-------------------------------------------------------------------------
 import gobject
-import gconf
 import gtk
 import gtk.glade
 import gnome
 import gnome.ui
+
+try:
+    import gconf
+except ImportError:
+    import gnome.gconf
+    gconf = gnome.gconf
 
 #-------------------------------------------------------------------------
 #
