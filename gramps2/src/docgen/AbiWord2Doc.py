@@ -172,9 +172,13 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.f.close()
 
     def add_photo(self,name,pos,x_cm,y_cm):
+
+        try:
+            image = ImgManip.ImgManip(name)
+            (x,y) = image.size()
+        except:
+            return
         
-        image = ImgManip.ImgManip(name)
-        (x,y) = image.size()
         aspect_ratio = float(x)/float(y)
 
         if aspect_ratio > x_cm/y_cm:

@@ -564,15 +564,17 @@ class DetAncestorReport(Report.Report):
     #--------------------------------------------------------------------
     def insert_images(self, person, tag):
 
-		photos= person.getPhotoList()
-		for photo in photos :
-			attribs= photo.getAttributeList()
-			for attrib in attribs :
-				if attrib.getType() == tag:
-					vlist= string.split(attrib.getValue())
-					if vlist[0] == 'left' or vlist[0] == 'right':
-						self.doc.add_photo(photo.ref.getPath(), vlist[0], \
-                                    float(vlist[1]), float(vlist[2]))
+        photos= person.getPhotoList()
+        for photo in photos :
+            if photo.getMimeType()[0:5] != "image":
+                continue
+            attribs= photo.getAttributeList()
+            for attrib in attribs :
+                if attrib.getType() == tag:
+                    vlist= string.split(attrib.getValue())
+                    if vlist[0] == 'left' or vlist[0] == 'right':
+                        self.doc.add_photo(photo.ref.getPath(), vlist[0], \
+                                           float(vlist[1]), float(vlist[2]))
 
     #--------------------------------------------------------------------
     #
@@ -584,6 +586,8 @@ class DetAncestorReport(Report.Report):
         photos= person.getPhotoList()
         numPhotos= 0                      # Number of photos
         for photo in photos :
+            if photo.getMimeType()[0:5] != "image":
+                continue
             attribs= photo.getAttributeList()
             for attrib in attribs :
                 if attrib.getType() == tag:

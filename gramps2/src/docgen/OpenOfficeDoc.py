@@ -358,9 +358,15 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             os.system ('/usr/bin/oowriter "$FILE" &')
 
     def add_photo(self,name,pos,x_cm,y_cm):
-        image = ImgManip.ImgManip(name)
-        (x,y) = image.size()
-        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+        # try to open the image. If the open fails, it probably wasn't
+        # a valid image (could be a PDF, or a non-image)
+        try:
+            image = ImgManip.ImgManip(name)
+            (x,y) = image.size()
+            ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+        except:
+            return
         
         if ratio < 1:
             act_width = x_cm

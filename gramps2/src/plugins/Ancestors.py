@@ -329,9 +329,10 @@ class ComprehensiveAncestorsReport (Report.Report):
                             (partner != from_family_father and
                              partner != from_family_mother)):
                             for photo in partner.getPhotoList ()[:1]:
-                                spouse.append ((self.doc.add_photo,
-                                                [photo.ref.getPath (),
-                                                 'right', 2, 2]))
+                                if photo.getMimeType()[0:5] == "image":
+                                    spouse.append ((self.doc.add_photo,
+                                                    [photo.ref.getPath (),
+                                                     'right', 2, 2]))
 
                 if suppress_children and len (already_described):
                     style = "AR-Child"
@@ -359,8 +360,9 @@ class ComprehensiveAncestorsReport (Report.Report):
                 else:
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for photo in photos[:1]:
-                        ret.append ((self.doc.add_photo,
-                                     [photo.ref.getPath (), 'left', 2, 2]))
+                        if photo.getMimeType()[0:5] == "image":
+                            ret.append ((self.doc.add_photo,
+                                         [photo.ref.getPath (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
 
                 ret.append ((self.doc.start_cell, ["AR-Entry"]))
