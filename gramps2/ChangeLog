@@ -1,3 +1,10 @@
+2003-07-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/DetAncestralReport.py: add import of string
+	* src/plugins/DetDescendantReport.py: add import of string
+	* src/Date.py: compare date modes when comparing dates
+	* src/EditPerson.py: save date strings which comparing for changes
+	* src/FamilyView.py: Scope Person.male properly
+
 2003-07-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: Enable book functionality.
 	Fix styles in book. Switch to tuple of options. 

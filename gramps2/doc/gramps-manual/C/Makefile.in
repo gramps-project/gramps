@@ -185,7 +185,8 @@ xml_files = $(entities) $(docname).xml
 omf_dir = $(top_srcdir)/omf-install
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp
+
+CLEANFILES = omf_timestamp *.out
 
 omf_dest_dir = $(datadir)/omf/@PACKAGE@
 scrollkeeper_localstate_dir = $(localstatedir)/scrollkeeper
@@ -318,14 +319,14 @@ omf: omf_timestamp
 
 omf_timestamp: $(omffile)
 	-for file in $(omffile); do \
-	  scrollkeeper-preinstall $(docdir)/$(docname).xml $(srcdir)/$$file $(srcdir)/$$file.out; \
+	  scrollkeeper-preinstall $(docdir)/$(docname).xml $(srcdir)/$$file $$file.out; \
 	done
 	touch omf_timestamp
 
 install-data-hook-omf:
 	$(mkinstalldirs) $(DESTDIR)$(omf_dest_dir)
 	for file in $(omffile); do \
-		$(INSTALL_DATA) $(srcdir)/$$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
+		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
 	done
 	-scrollkeeper-update -p $(scrollkeeper_localstate_dir) -o $(DESTDIR)$(omf_dest_dir)
 
@@ -374,7 +375,7 @@ uninstall-local-doc:
 	-if test "$(figdir)"; then \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    rm -f $(docdir)/$(figdir)/$$basefile; \
+	    rm -f $(DESTDIR)/$(docdir)/$(figdir)/$$basefile; \
 	  done; \
 	  rmdir $(DESTDIR)$(docdir)/$(figdir); \
 	fi
