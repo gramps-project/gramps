@@ -23,13 +23,15 @@
 
 __author__ = 'Don Allingham'
 
-import libglade
 import GrampsCfg
 import const
 import Utils
 import string
 import gtk
+from gnome.ui import *
 import AutoComp
+from intl import gettext
+_ = gettext
 
 class Find:
     """Opens find person dialog for gramps"""
@@ -43,16 +45,24 @@ class Find:
         
         self.clist = clist
         self.task = task
-        self.xml = libglade.GladeXML(const.findFile,"find")
-        self.xml.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_next_clicked"       : self.on_next_clicked,
-            "on_prev_clicked"       : self.on_prev_clicked,
-            })
-
-        self.top = self.xml.get_widget("find")
-        self.entry = self.xml.get_widget("entry")
-
+        title = "%s - GRAMPS" % _("Find Person")
+        self.top = GnomeDialog(title,STOCK_BUTTON_PREV,
+                               STOCK_BUTTON_NEXT,STOCK_BUTTON_CLOSE)
+        self.top.set_policy(0,1,0)
+        self.top.vbox.set_spacing(5)
+        self.top.vbox.pack_start(gtk.GtkLabel(_("Find Person")),0,0,5)
+        self.top.vbox.pack_start(gtk.GtkHSeparator(),0,0,0)
+        self.entry = gtk.GtkEntry()
+        self.top.vbox.pack_start(self.entry,0,0,25)
+        self.top.button_connect(0,self.on_prev_clicked)
+        self.top.button_connect(1,self.on_next_clicked)
+        self.top.button_connect(2,self.on_close_clicked)
+        self.top.set_usize(350,175)
+        self.top.set_default(1)
+        self.top.show_all()
+        self.top.editable_enters(self.entry)
+        self.entry.grab_focus()
+        
         self.nlist = []
         for n in plist:
             self.nlist.append(n.getPrimaryName().getName())
@@ -60,82 +70,53 @@ class Find:
         if GrampsCfg.autocomp:
             self.comp = AutoComp.AutoEntry(self.entry,self.nlist)
 
-        self.next = self.xml.get_widget("next")
-        self.top.editable_enters(self.entry)
-
-    def find_next(self):
-        """Advances to the next person that matches the dialog text"""
-        text = self.entry.get_text()
-
+    def advance(self,func):
         try:
-            row = self.clist.selection[0]
+            self.row = self.clist.selection[0]
         except IndexError:
             gtk.gdk_beep()
             return
 
-        if row == None or text == "":
-            gtk.gdk_beep()
-            return
-
-        orow = row
-        
-        row = row + 1
-        last = self.clist.rows
-        person = None
-        while row != orow:
-            person,alt = self.clist.get_row_data(row)
-            if alt == 0:
-                name = person.getPrimaryName().getName()
-                if string.find(string.upper(name),string.upper(text)) >= 0:
-                    self.task(person)
-                    return
-            row = row + 1
-            if row == last:
-                row = 0
-                
-        gtk.gdk_beep()
-
-    def find_prev(self):
-        """Advances to the previous person that matches the dialog text"""
         text = self.entry.get_text()
-
-        try:
-            row = self.clist.selection[0]
-        except IndexError:
+        if self.row == None or text == "":
             gtk.gdk_beep()
             return
-
-        if row == None or text == "":
-            gtk.gdk_beep()
-            return
-
-        orow = row
-        row = row - 1
-        last = self.clist.rows
+        orow = self.row
+        func()
         person = None
-        while row != orow:
-            value = self.clist.get_row_data(row)
+        while self.row != orow:
+            value = self.clist.get_row_data(self.row)
             if value == None:
-                row = row - 1
+                func()
                 continue
-            person = value[0]
-            alt = value[1]
+            person,alt = value
             if alt == 0:
                 name = person.getPrimaryName().getName()
                 if string.find(string.upper(name),string.upper(text)) >= 0:
                     self.task(person)
                     return
-            row = row - 1
-            if row < 0:
-                row = last
+            func()
         gtk.gdk_beep()
 
+    def forward(self):
+        self.row = self.row + 1
+        if self.row == self.clist.rows:
+            self.row = 0
+
+    def backward(self):
+        self.row = self.row - 1
+        if self.row < 0:
+            self.row =  self.clist.rows
+
+    def on_close_clicked(self,obj):
+        self.top.destroy()
 
     def on_next_clicked(self,obj):
-        """Callback for dialog box that causes the next person to be found"""
-        self.find_next()
+        """Advances to the next person that matches the dialog text"""
+        self.advance(self.forward)
 
     def on_prev_clicked(self,obj):
-        """Callback for dialog box that causes the previous person to be found"""
-        self.find_prev()
+        """Advances to the previous person that matches the dialog text"""
+        self.advance(self.backward)
+
 
