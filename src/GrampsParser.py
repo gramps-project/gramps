@@ -747,7 +747,7 @@ class GrampsParser:
     def endElement(self,tag):
 
         if self.func:
-            self.func(self,string.join(self.tlist))
+            self.func(self,string.join(self.tlist,''))
         self.func_index = self.func_index - 1    
         self.func,self.tlist = self.func_list[self.func_index]
 
