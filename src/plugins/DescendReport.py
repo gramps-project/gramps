@@ -31,6 +31,7 @@ import utils
 import const
 from TextDoc import *
 from OpenOfficeDoc import *
+from AbiWordDoc import *
 from HtmlDoc import *
 
 from gtk import *
