@@ -28,24 +28,10 @@ import utils
 # Try to abstract SAX1 from SAX2
 #
 #-------------------------------------------------------------------------
-if sys.version[0] != '1':
-    sax = 2
-    try:
-        from _xmlplus.sax import make_parser
-        from _xmlplus.sax import handler
-    except:
-        from xml.sax import make_parser
-        from xml.sax import handler
-else:
-    try:
-        import xml.sax.saxexts
-        from xml.sax.saxutils import ErrorRaiser
-        from xml.sax import handler
-        sax = 1
-    except:
-        from xml.sax.saxutils import ErrorRaiser
-        from xml.sax import handler
-        sax = 2
+try:
+    from xml.sax import make_parser,handler
+except:
+    from _xmlplus.sax import make_parser,handler
 
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
@@ -473,15 +459,9 @@ class StyleSheetList:
         except:
             return
 
-        if sax == 1:
-            parser = make_parser()
-            parser.setDocumentHandler(SheetParser(self))
-            parser.setErrorHandler(ErrorRaiser())
-            parser.parseFile(f)
-        else:
-            parser = make_parser()
-            parser.setContentHandler(SheetParser(self))
-            parser.parse(f)
+        parser = make_parser()
+        parser.setContentHandler(SheetParser(self))
+        parser.parse(f)
         
         f.close()
 
@@ -566,12 +546,8 @@ class SheetParser(handler.ContentHandler):
         elif tag == "sheet":
             self.sheetlist.set_style_sheet(self.sname,self.s)
             
-    if sax == 1:
-        def characters(self, data, offset, length):
-            pass
-    else:
-        def characters(self, data):
-            pass
+    def characters(self, data):
+        pass
 
 #------------------------------------------------------------------------
 #
