@@ -103,8 +103,8 @@ def importData(database, filename):
     noteactRegexp= re.compile(r"\s*1\s+NOTE\s+(.+)*")
     refnRegexp   = re.compile(r"\s*1\s+REFN")
     noteRegexp   = re.compile(r"\s*0\s+@(.+)@\s+NOTE\s*(.*)?$")
-    concRegexp   = re.compile(r"\s*1\s+CONC\s(.*)?$")
-    contRegexp   = re.compile(r"\s*1\s+CONT\s(.*)?$")
+    concRegexp   = re.compile(r"\s*\d\s+CONC\s(.*)?$")
+    contRegexp   = re.compile(r"\s*\d\s+CONT\s(.*)?$")
     deathRegexp  = re.compile(r"\s*1\s+DEAT\s*(.*)?$")
     divorceRegexp= re.compile(r"\s*1\s+DIV\s*(.*)?$")
     marriedRegexp= re.compile(r"\s*1\s+MAR\s*(.*)?$")
@@ -405,7 +405,6 @@ def importData(database, filename):
             regex_match = noterefRegexp.match(line)
             if regex_match :
                 matches = regex_match.groups()
-                print "found note",matches[0]
                 person2note[person] = matches[0]
                 continue
 

@@ -57,65 +57,6 @@ def fix_spaces(text_list):
 #-------------------------------------------------------------------------
 class GrampsParser(handler.ContentHandler):
 
-    researchTag = "researcher"
-    resnameTag  = "resname"
-    resaddrTag  = "resaddr"
-    rescityTag  = "rescity"
-    resstateTag = "resstate"
-    resconTag   = "rescountry"
-    resposTag   = "respostal"
-    resphoneTag = "resphone"
-    resemailTag = "resemail"
-    attrTag     = "attribute"
-    addressTag  = "address"
-    startTag    = "date_start"
-    stopTag     = "date_stop"
-    cityTag     = "city"
-    stateTag    = "state"
-    streetTag   = "street"
-    countryTag  = "country"
-    postalTag   = "postal"
-    noteTag     = "note"
-    uidTag      = "uid"
-    urlTag      = "url"
-    pTag        = "p"
-    personTag   = "person"
-    peopleTag   = "people"
-    sourcesTag  = "sources"
-    sourcerefTag= "sourceref"
-    photoTag    = "img"
-    nameTag     = "name"
-    akaTag      = "aka"
-    firstTag    = "first"
-    lastTag     = "last"
-    nickTag     = "nick"
-    genderTag   = "gender"
-    titleTag    = "title"
-    suffixTag   = "suffix"
-    placeTag    = "place"
-    descriptionTag = "description"
-    dateTag     = "date"
-    familyTag   = "family"
-    fatherTag   = "father"
-    childTag    = "child"
-    createdTag  = "created"
-    childofTag  = "childof"
-    parentinTag = "parentin"
-    motherTag   = "mother"
-    familiesTag = "families"
-    eventTag    = "event"
-    sourceTag   = "source"
-    sdateTag    = "sdate"
-    spageTag    = "spage"
-    stitleTag   = "stitle"
-    sauthorTag  = "sauthor"
-    spubinfoTag = "spubinfo"
-    scallnoTag  = "scallno"
-    stextTag    = "stext"
-    bmarksTag   = "bookmarks"
-    bmarkTag    = "bookmark"
-    scommentsTag= "scomments"
-    
     #---------------------------------------------------------------------
     #
     #
@@ -132,7 +73,7 @@ class GrampsParser(handler.ContentHandler):
         self.in_stext = 0
         self.in_scomments = 0
         self.in_people = 0
-        self.database = database
+        self.db = database
         self.base = base
         self.in_family = 0
         self.in_sources = 0
@@ -141,6 +82,15 @@ class GrampsParser(handler.ContentHandler):
         self.source = None
         self.sourceRef = None
         self.is_import = is_import
+
+        self.resname = ""
+        self.resaddr = "" 
+        self.rescity = ""
+        self.resstate = ""
+        self.rescon = "" 
+        self.respos = ""
+        self.resphone = ""
+        self.resemail = ""
 
         self.pmap = {}
         self.fmap = {}
@@ -154,8 +104,11 @@ class GrampsParser(handler.ContentHandler):
         self.name = None
         self.tempDefault = None
         self.owner = Researcher()
-        self.active = ""
-        self.data = {}
+        self.data = ""
+	self.func_list = [None]*50
+	self.func_index = 0
+	self.func = None
+
         handler.ContentHandler.__init__(self)
 
     #---------------------------------------------------------------------
@@ -172,12 +125,12 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def endDocument(self):
-        self.database.setResearcher(self.owner)
+        self.db.setResearcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
-            if self.database.personMap.has_key(id):
-                person = self.database.personMap[id]
-                self.database.setDefaultPerson(person)
+            if self.db.personMap.has_key(id):
+                person = self.db.personMap[id]
+                self.db.setDefaultPerson(person)
     
     #---------------------------------------------------------------------
     #
@@ -214,10 +167,10 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_bmark(self,attrs):
         if self.is_import:
-            person = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
+            person = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
-            person = self.database.findPersonNoMap(attrs["ref"])
-        self.database.bookmarks.append(person)
+            person = self.db.findPersonNoMap(attrs["ref"])
+        self.db.bookmarks.append(person)
 
     #---------------------------------------------------------------------
     #
@@ -229,9 +182,9 @@ class GrampsParser(handler.ContentHandler):
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         if self.is_import:
-            self.person = self.database.findPerson("x%s" % attrs["id"],self.pmap)
+            self.person = self.db.findPerson("x%s" % attrs["id"],self.pmap)
         else:
-            self.person = self.database.findPersonNoMap(attrs["id"])
+            self.person = self.db.findPersonNoMap(attrs["id"])
 
     #---------------------------------------------------------------------
     #
@@ -252,9 +205,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_father(self,attrs):
         if self.is_import:
-            father = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
+            father = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
-            father = self.database.findPersonNoMap(attrs["ref"])
+            father = self.db.findPersonNoMap(attrs["ref"])
         self.family.setFather(father)
 
     #---------------------------------------------------------------------
@@ -264,9 +217,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_mother(self,attrs):
         if self.is_import:
-            mother = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
+            mother = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
-            mother = self.database.findPersonNoMap(attrs["ref"])
+            mother = self.db.findPersonNoMap(attrs["ref"])
         self.family.setMother(mother)
     
     #---------------------------------------------------------------------
@@ -276,9 +229,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_child(self,attrs):
         if self.is_import:
-            child = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
+            child = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
-            child = self.database.findPersonNoMap(attrs["ref"])
+            child = self.db.findPersonNoMap(attrs["ref"])
         self.family.addChild(child)
 
     #---------------------------------------------------------------------
@@ -311,9 +264,9 @@ class GrampsParser(handler.ContentHandler):
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         if self.is_import:
-            self.family = self.database.findFamily(attrs["id"],self.fmap)
+            self.family = self.db.findFamily(attrs["id"],self.fmap)
         else:
-            self.family = self.database.findFamilyNoMap(attrs["id"])
+            self.family = self.db.findFamilyNoMap(attrs["id"])
 
     #---------------------------------------------------------------------
     #
@@ -322,9 +275,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_childof(self,attrs):
         if self.is_import:
-            family = self.database.findFamily(attrs["ref"],self.fmap)
+            family = self.db.findFamily(attrs["ref"],self.fmap)
         else:
-            family = self.database.findFamilyNoMap(attrs["ref"])
+            family = self.db.findFamilyNoMap(attrs["ref"])
         if attrs.has_key("type"):
             type = attrs["type"]
             self.person.addAltFamily(family,type)
@@ -338,9 +291,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_parentin(self,attrs):
         if self.is_import:
-            family = self.database.findFamily(attrs["ref"],self.fmap)
+            family = self.db.findFamily(attrs["ref"],self.fmap)
         else:
-            family = self.database.findFamilyNoMap(attrs["ref"])
+            family = self.db.findFamilyNoMap(attrs["ref"])
         self.person.addFamily(family)
 
     #---------------------------------------------------------------------
@@ -387,9 +340,9 @@ class GrampsParser(handler.ContentHandler):
     def start_sourceref(self,attrs):
         self.source = Source()
         if self.is_import:
-            self.sourceRef = self.database.findSource(attrs["ref"],self.smap)
+            self.sourceRef = self.db.findSource(attrs["ref"],self.smap)
         else:
-            self.sourceRef = self.database.findSourceNoMap(attrs["ref"])
+            self.sourceRef = self.db.findSourceNoMap(attrs["ref"])
         self.source.setBase(self.sourceRef)
         self.event.setSource(self.source)
 
@@ -400,9 +353,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_source(self,attrs):
         if self.is_import:
-            self.sourceRef = self.database.findSource(attrs["id"],self.smap)
+            self.sourceRef = self.db.findSource(attrs["id"],self.smap)
         else:
-            self.sourceRef = self.database.findSourceNoMap(attrs["id"])
+            self.sourceRef = self.db.findSourceNoMap(attrs["id"])
 
     #---------------------------------------------------------------------
     #
@@ -415,7 +368,7 @@ class GrampsParser(handler.ContentHandler):
             photo.setDescription(attrs["descrip"])
         src = attrs["src"]
         if src[0] != os.sep:
-            photo.setPath(self.base + os.sep + attrs["src"])
+            photo.setPath("%s%s%s" % (self.base,os.sep,src))
             photo.setPrivate(1)
         else:
             photo.setPath(src)
@@ -493,7 +446,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_date(self,tag):
-        if tag != "":
+        if tag:
             self.event.getDateObj().quick_set(tag)
 
     #---------------------------------------------------------------------
@@ -662,26 +615,73 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
-    def get_val(self,tag):
-        if self.data.has_key(tag):
-            return self.data[tag]
-        else:
-            return ""
-        
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_research(self,tag):
-        self.owner.set(self.get_val(GrampsParser.resnameTag), \
-                       self.get_val(GrampsParser.resaddrTag), \
-                       self.get_val(GrampsParser.rescityTag), \
-                       self.get_val(GrampsParser.resstateTag), \
-                       self.get_val(GrampsParser.resconTag), \
-                       self.get_val(GrampsParser.resposTag),\
-                       self.get_val(GrampsParser.resphoneTag),\
-                       self.get_val(GrampsParser.resemailTag))
+        self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate,
+                       self.rescon, self.respos, self.resphone, self.resemail)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_resname(self,tag):
+        self.resname = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_resaddr(self,tag):
+        self.resaddr = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_rescity(self,tag):
+        self.rescity = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_resstate(self,tag):
+        self.resstate = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_rescountry(self,tag):
+        self.rescon = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_respostal(self,tag):
+        self.respos = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_resphone(self,tag):
+        self.resphone = tag
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_resemail(self,tag):
+        self.resemail = tag
 
     #---------------------------------------------------------------------
     #
@@ -704,62 +704,69 @@ class GrampsParser(handler.ContentHandler):
     def stop_aka(self,tag):
         self.person.addAlternateName(self.name)
 
-    stop  = { eventTag : stop_event,
-              attrTag : stop_attribute,
-              nameTag : stop_name,
-              placeTag : stop_place,
-              dateTag : stop_date,
-              firstTag : stop_first,
-              lastTag : stop_last,
-              titleTag : stop_title,
-              nickTag : stop_nick,
-              suffixTag : stop_suffix,
-              noteTag : stop_note,
-              uidTag : stop_uid,
-              stopTag : stop_date_stop,
-              startTag : stop_date_start,
-              streetTag : stop_street,
-              cityTag : stop_city,
-              stateTag : stop_state,
-              countryTag : stop_country,
-              postalTag : stop_postal,
-              researchTag : stop_research,
-              descriptionTag : stop_description,
-              genderTag : stop_gender,
-              stitleTag : stop_stitle,
-              sauthorTag : stop_sauthor,
-              sdateTag: stop_sdate,
-              spageTag : stop_spage,
-              spubinfoTag : stop_spubinfo,
-              scallnoTag : stop_scallno,
-              stextTag : stop_stext,
-              pTag : stop_ptag,
-              akaTag : stop_aka,
-              scommentsTag : stop_scomments
-              }
-    
-    start = { eventTag : start_event ,
-              attrTag : start_attribute,
-              bmarkTag : start_bmark,
-              urlTag : start_url,
-              personTag : start_person,
-              addressTag : start_address,
-              peopleTag : start_people,
-              fatherTag : start_father,
-              noteTag : start_note,
-              motherTag : start_mother,
-              childTag : start_child,
-              familyTag : start_family,
-              childofTag : start_childof,
-              parentinTag : start_parentin,\
-              nameTag : start_name,
-              familiesTag : start_families,
-              sourcesTag : start_sources,
-              sourcerefTag : start_sourceref,
-              sourceTag : start_source,
-              photoTag : start_photo,
-              akaTag : start_name,
-              createdTag : start_created }
+    func_map = {
+        "address"    : (start_address, None),
+        "aka"        : (start_name, stop_aka),
+        "attribute"  : (start_attribute, stop_attribute),
+        "bookmark"   : (start_bmark, None),
+        "bookmarks"  : (None, None),
+        "child"      : (start_child,None),
+        "childof"    : (start_childof,None),
+        "childlist"  : (None,None),
+        "city"       : (None, stop_city),
+        "country"    : (None, stop_country),
+        "created"    : (start_created, None),
+        "database"   : (None, None),
+        "date"       : (None, stop_date),
+        "description": (None, stop_description),
+        "event"      : (start_event, stop_event),
+        "families"   : (start_families, None),
+        "family"     : (start_family, None),
+        "father"     : (start_father, None),
+        "first"      : (None, stop_first),
+        "gender"     : (None, stop_gender),
+        "header"     : (None, None),
+        "last"       : (None, stop_last),
+        "mother"     : (start_mother,None),
+        "name"       : (start_name, stop_name),
+        "nick"       : (None, stop_nick),
+        "note"       : (start_note, stop_note),
+        "p"          : (None, stop_ptag),
+        "parentin"   : (start_parentin,None),
+        "people"     : (start_people, None),
+        "person"     : (start_person, None),
+        "img"        : (start_photo, None),
+        "place"      : (None, stop_place),
+        "postal"     : (None, stop_postal),
+        "researcher" : (None, stop_research),
+    	"resname"    : (None, stop_resname ),
+    	"resaddr"    : (None, stop_resaddr ),
+	"rescity"    : (None, stop_rescity ),
+    	"resstate"   : (None, stop_resstate ),
+    	"rescountry" : (None, stop_rescountry),
+    	"respostal"  : (None, stop_respostal),
+    	"resphone"   : (None, stop_resphone),
+    	"resemail"   : (None, stop_resemail),
+        "sauthor"    : (None, stop_sauthor),
+        "scallno"    : (None, stop_scallno),
+        "scomments"  : (None, stop_scomments),
+        "sdate"      : (None,stop_sdate),
+        "source"     : (start_source, None),
+        "sourceref"  : (start_sourceref, None),
+        "sources"    : (start_sources, None),
+        "spage"      : (None, stop_spage),
+        "spubinfo"   : (None, stop_spubinfo),
+        "date_start" : (None, stop_date_start),
+        "state"      : (None, stop_state),
+        "stext"      : (None, stop_stext),
+        "stitle"     : (None, stop_stitle),
+        "date_stop"  : (None, stop_date_stop),
+        "street"     : (None, stop_street),
+        "suffix"     : (None, stop_suffix),
+        "title"      : (None, stop_title),
+        "uid"        : (None, stop_uid),
+        "url"        : (None, start_url)
+        }
 
     #---------------------------------------------------------------------
     #
@@ -768,34 +775,47 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def startElement(self,tag,attrs):
 
-        self.active = tag
-        self.data[tag] = ""
-        if GrampsParser.start.has_key(tag):
-            GrampsParser.start[tag](self,attrs)
+        self.func_list[self.func_index] = (self.func,self.data)
+        self.func_index = self.func_index + 1
+        self.data = ""
+
+        try:
+	    f,self.func = GrampsParser.func_map[tag]
+            if f:
+                f(self,attrs)
+        except:
+            GrampsParser.func_map[tag] = (None,None)
+            print tag
+            self.func = None
 
     #---------------------------------------------------------------------
     #
     #
     #
     #---------------------------------------------------------------------
-    def endElement(self,tag):
-
-        if GrampsParser.stop.has_key(tag):
-            if sax == 1:
-                data = utf8_to_latin(self.data[tag])
-            else:
-                data = self.data[tag]
-            GrampsParser.stop[tag](self,data)
-
     if sax == 1:
-        def characters(self, data, offset, length):
-            self.data[self.active] = self.data[self.active] + data
-    else:
-        def characters(self, data):
-            self.data[self.active] = self.data[self.active] + data
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
+        def endElement(self,tag):
+
+	    if self.func:
+                self.func(self,utf8_to_latin(self.data))
+            self.func_index = self.func_index - 1    
+            self.func,self.data = self.func_list[self.func_index]
+
+        def characters(self, data, offset, length):
+            if self.func:
+                self.data = self.data + data
+    else:
+
+        def endElement(self,tag):
+
+	    if self.func:
+                self.func(self,self.data)
+            self.func_index = self.func_index - 1    
+            self.func,self.data = self.func_list[self.func_index]
+
+        def characters(self, data):
+            if self.func:
+                self.data = self.data + data
+
+

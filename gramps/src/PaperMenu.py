@@ -25,8 +25,8 @@ import intl
 _ = intl.gettext
 
 paper_sizes = [
-    TextDoc.PaperStyle("US Letter",27.94,21.59),
-    TextDoc.PaperStyle("US Legal",35.56,21.59),
+    TextDoc.PaperStyle("Letter",27.94,21.59),
+    TextDoc.PaperStyle("Legal",35.56,21.59),
     TextDoc.PaperStyle("A3",42.0,29.7),
     TextDoc.PaperStyle("A4",29.7,21.0),
     TextDoc.PaperStyle("A5",21.0,14.8),

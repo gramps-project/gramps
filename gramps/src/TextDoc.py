@@ -337,6 +337,7 @@ class TextDoc:
         else:
             self.width = type.get_height()
             self.height = type.get_width()
+        self.paper = type
         self.tmargin = 2.54
         self.bmargin = 2.54
         self.lmargin = 2.54
