@@ -166,7 +166,7 @@ class FamilyGroup:
     def setup(self):
         self.doc.open(self.output)
         self.doc.start_paragraph('Title')
-        self.doc.write_text(_("Family Group Record"))
+        self.doc.write_text(_("Family Group Report"))
         self.doc.end_paragraph()
     
     def end(self):
@@ -406,7 +406,7 @@ def report(database,person):
     if no_pdf == 1:
         topDialog.get_widget("pdf").set_sensitive(0)
     
-    label.set_text(_("Family Group chart for %s") % name)
+    label.set_text(_("Family Group Report for %s") % name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_save_clicked" : on_save_clicked,

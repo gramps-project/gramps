@@ -206,12 +206,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label120</name>
-	  <label>File : </label>
+	  <label>File</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
@@ -232,12 +232,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label118</name>
-	  <label>Description : </label>
+	  <label>Description</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <left_attach>0</left_attach>

@@ -204,12 +204,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label8</name>
-	      <label>Birth Date : </label>
+	      <label>Birth Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -230,12 +230,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label12</name>
-	      <label>Death Date : </label>
+	      <label>Death Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -256,12 +256,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label22</name>
-	      <label>Mother : </label>
+	      <label>Mother</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -282,12 +282,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label4</name>
-	      <label>Name : </label>
+	      <label>Name</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -308,12 +308,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label26</name>
-	      <label>Birth Place : </label>
+	      <label>Birth Place</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -334,12 +334,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label30</name>
-	      <label>Death place : </label>
+	      <label>Death place</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -648,12 +648,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label16</name>
-	      <label>Father : </label>
+	      <label>Father</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -759,12 +759,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label33</name>
-	      <label>Spouses : </label>
+	      <label>Spouses</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -856,12 +856,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label13</name>
-	      <label>Death Date : </label>
+	      <label>Death Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -882,12 +882,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label25</name>
-	      <label>Mother : </label>
+	      <label>Mother</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -908,12 +908,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label5</name>
-	      <label>Name : </label>
+	      <label>Name</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -934,12 +934,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label27</name>
-	      <label>Birth Place : </label>
+	      <label>Birth Place</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -960,12 +960,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label9</name>
-	      <label>Birth Date : </label>
+	      <label>Birth Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1034,12 +1034,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label32</name>
-	      <label>Death place : </label>
+	      <label>Death place</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1276,12 +1276,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label34</name>
-	      <label>Spouses : </label>
+	      <label>Spouses</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1302,12 +1302,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label19</name>
-	      <label>Father : </label>
+	      <label>Father</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>2</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1766,7 +1766,7 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label46</name>
-	  <label>Match Threshold : </label>
+	  <label>Match Threshold</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>

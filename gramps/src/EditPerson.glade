@@ -124,7 +124,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label25</name>
-		<label>Date :</label>
+		<label>Date</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -150,7 +150,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label123</name>
-		<label>Place :</label>
+		<label>Place</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -257,7 +257,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label28</name>
-		<label>Date :</label>
+		<label>Date</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -283,7 +283,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label30</name>
-		<label>Place :</label>
+		<label>Place</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -450,7 +450,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label21</name>
-		<label>Given Name :</label>
+		<label>Given Name</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -475,34 +475,8 @@
 
 	      <widget>
 		<class>GtkLabel</class>
-		<name>label22</name>
-		<label>Surname :</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>1</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<child>
-		  <left_attach>0</left_attach>
-		  <right_attach>1</right_attach>
-		  <top_attach>1</top_attach>
-		  <bottom_attach>2</bottom_attach>
-		  <xpad>5</xpad>
-		  <ypad>5</ypad>
-		  <xexpand>False</xexpand>
-		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
-		  <yshrink>False</yshrink>
-		  <xfill>True</xfill>
-		  <yfill>False</yfill>
-		</child>
-	      </widget>
-
-	      <widget>
-		<class>GtkLabel</class>
 		<name>label23</name>
-		<label>Suffix :</label>
+		<label>Suffix</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -528,7 +502,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label47</name>
-		<label>Title :</label>
+		<label>Title</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -554,7 +528,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label116</name>
-		<label>Nick Name :</label>
+		<label>Nick Name</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -708,6 +682,32 @@
 		  <yfill>False</yfill>
 		</child>
 	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label22</name>
+		<label>Surname</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>5</xpad>
+		  <ypad>5</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
 	    </widget>
 	  </widget>
 
@@ -823,12 +823,12 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label152</name>
-		<label>gramps ID : </label>
+		<label>gramps ID</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
 		<yalign>0.5</yalign>
-		<xpad>0</xpad>
+		<xpad>5</xpad>
 		<ypad>0</ypad>
 		<child>
 		  <left_attach>0</left_attach>
@@ -854,7 +854,7 @@
 		<wrap>False</wrap>
 		<xalign>1</xalign>
 		<yalign>0.5</yalign>
-		<xpad>0</xpad>
+		<xpad>5</xpad>
 		<ypad>0</ypad>
 		<child>
 		  <left_attach>0</left_attach>
@@ -912,12 +912,12 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label121</name>
-	    <label>Surname :</label>
+	    <label>Surname</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -938,12 +938,12 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label120</name>
-	    <label>Given Name :</label>
+	    <label>Given Name</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -1036,12 +1036,12 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label129</name>
-	    <label>Suffix :</label>
+	    <label>Suffix</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -1212,7 +1212,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label103</name>
-	      <label>Event Type :</label>
+	      <label>Event Type</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1238,7 +1238,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label104</name>
-	      <label>Date :</label>
+	      <label>Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1264,7 +1264,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label105</name>
-	      <label>Description :</label>
+	      <label>Description</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1290,7 +1290,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label106</name>
-	      <label>Place :</label>
+	      <label>Place</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1684,7 +1684,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label132</name>
-	      <label>Attribute :</label>
+	      <label>Attribute</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1710,7 +1710,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label133</name>
-	      <label>Value :</label>
+	      <label>Value</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -2026,7 +2026,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label140</name>
-	      <label>Date : </label>
+	      <label>Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -2052,7 +2052,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label141</name>
-	      <label>Address : </label>
+	      <label>Address</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -2078,7 +2078,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label142</name>
-	      <label>Country :</label>
+	      <label>Country</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -2104,7 +2104,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label143</name>
-	      <label>City/County : </label>
+	      <label>City/County</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -2221,7 +2221,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label148</name>
-		<label>State/Province : </label>
+		<label>State/Province</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
@@ -2289,7 +2289,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label149</name>
-		<label>Zip/Postal Code : </label>
+		<label>ZIP/Postal Code</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
@@ -2683,7 +2683,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label127</name>
-	    <label>Web Address : </label>
+	    <label>Web Address</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -2757,7 +2757,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label128</name>
-	    <label>Description : </label>
+	    <label>Description</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>

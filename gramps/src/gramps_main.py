@@ -198,7 +198,8 @@ def on_about_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_contents_activate(obj):
-    gnome.help.display("gramps",const.helpMenu)
+    
+    GnomeOkDialog(_("Sorry.  Online help for gramps is currently under development.\nUnfortunately, it is not yet ready."))
     
 #-------------------------------------------------------------------------
 #

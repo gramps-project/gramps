@@ -135,12 +135,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label12</name>
-	  <label>Save As : </label>
+	  <label>Save As</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>0.5</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <padding>0</padding>
@@ -251,12 +251,12 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label13</name>
-	    <label>Generations : </label>
+	    <label>Generations</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -277,12 +277,12 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label14</name>
-	    <label>Paper : </label>
+	    <label>Paper</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -303,12 +303,12 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label15</name>
-	    <label>Orientation : </label>
+	    <label>Orientation</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>

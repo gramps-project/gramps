@@ -46,12 +46,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label3</name>
-	<label>Output File : </label>
+	<label>Output File</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -169,12 +169,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label6</name>
-	<label>Filter : </label>
+	<label>Filter</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -294,12 +294,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label8</name>
-	      <label>Pages : </label>
+	      <label>Pages</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<padding>0</padding>
@@ -368,12 +368,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label7</name>
-	      <label>Paper Orientation : </label>
+	      <label>Paper Orientation</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<padding>0</padding>
@@ -464,6 +464,7 @@
 	  <last_modification_time>Sun, 12 Nov 2000 00:45:16 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
 
       <widget>
@@ -478,6 +479,7 @@
 	  <last_modification_time>Sun, 12 Nov 2000 00:45:38 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
     </widget>
   </widget>

@@ -1163,7 +1163,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label148</name>
-	<label>Zip/Postal Code</label>
+	<label>ZIP/Postal Code</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1340,6 +1340,7 @@ A4
       <widget>
 	<class>GtkOptionMenu</class>
 	<name>output_format</name>
+	<sensitive>False</sensitive>
 	<can_focus>True</can_focus>
 	<items>OpenOffice
 HTML
@@ -1502,12 +1503,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label133</name>
-	      <label>Name :</label>
+	      <label>Name</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1528,12 +1529,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label134</name>
-	      <label>Address :</label>
+	      <label>Address</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1554,12 +1555,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label135</name>
-	      <label>City :</label>
+	      <label>City</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1580,12 +1581,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label136</name>
-	      <label>State/Province :</label>
+	      <label>State/Province</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1606,12 +1607,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label137</name>
-	      <label>Country :</label>
+	      <label>Country</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1632,12 +1633,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label138</name>
-	      <label>email :</label>
+	      <label>email</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1658,12 +1659,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label139</name>
-	      <label>ZIP/Postal Code :</label>
+	      <label>ZIP/Postal Code</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>
@@ -1684,12 +1685,12 @@ anytime in the program's preference settings</label>
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label140</name>
-	      <label>Phone :</label>
+	      <label>Phone</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<left_attach>0</left_attach>

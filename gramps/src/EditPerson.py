@@ -177,7 +177,7 @@ class EditPerson:
 
         self.get_widget("gid").set_text(str(person.getId()))
         if Config.display_attr:
-            self.get_widget("user_label").set_text("%s : " % Config.attr_name)
+            self.get_widget("user_label").set_text(Config.attr_name)
             val = ""
             for attr in self.person.getAttributeList():
                 if attr.getType() == Config.attr_name:
