@@ -8,7 +8,12 @@ PACKAGE=gramps
 AC_PATH_PROG(PYTHON, python)
 AC_PATH_PROG(ZIP, zip)
 
+changequote(<<, >>)dnl
+PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
+changequote([, ])dnl
+
 AC_SUBST(PYTHON)
+AC_SUBST(PYTHON_VERSION)
 AC_SUBST(PACKAGE)
 
 AC_PROG_INSTALL
@@ -100,6 +105,22 @@ AC_MSG_RESULT(ok)
 dnl Checks for libraries.
 
 dnl Checks for header files.
+
+AC_MSG_CHECKING(for headers required to compile python extensions)
+py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
+py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
+PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
+if test "$py_prefix" != "$py_exec_prefix"; then
+  PYTHON_INCLUDES="$PYTHON_INCLUDES -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
+fi
+AC_SUBST(PYTHON_INCLUDES)
+dnl check if the headers exist:
+if test -f "${py_exec_prefix}/include/python${PYTHON_VERSION}/Python.h"
+then
+  AC_MSG_RESULT(ok)
+else
+  AC_MSG_ERROR([not found])
+fi
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 
