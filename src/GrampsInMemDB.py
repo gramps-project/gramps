@@ -79,7 +79,8 @@ class GrampsInMemDB(GrampsDbBase):
         return vals
 
     def remove_person(self,handle,transaction):
-        self.genderStats.uncount_person (self.person_map[handle])
+        person = self.get_person_from_handle(handle)
+        self.genderStats.uncount_person (person)
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
