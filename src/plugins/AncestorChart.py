@@ -46,6 +46,7 @@ import TextDoc
 import Report
 import Errors
 import FontScale
+from QuestionDialog import ErrorDialog
 from SubstKeywords import SubstKeywords
 from intl import gettext as _
 
@@ -255,6 +256,8 @@ class AncestorChartDialog(Report.DrawReportDialog):
             MyReport = AncestorChart(self.db, self.person, self.target_path,
                                      self.max_gen, self.doc, self.report_text)
             MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

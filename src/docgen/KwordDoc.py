@@ -233,7 +233,16 @@ class KwordDoc(TextDoc.TextDoc):
         self.f.write('</PIXMAPS>\n')
         self.f.write('</DOC>\n')
 
-        tar = TarFile(self.filename)
+        try:
+            tar = TarFile(self.filename)
+        except IOError, msg:
+            text = _("Could not open %s") % self.filename
+            Errors.ReportError(text + "\n" + str(msg))
+            return
+        except:
+            Errors.ReportError(_("Could not open %s") % self.filename)
+            return
+            
         tar.add_file("documentinfo.xml",self.mtime,self.m)
         tar.add_file("maindoc.xml",self.mtime,self.f)
         for file in self.photo_list:

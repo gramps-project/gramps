@@ -36,6 +36,9 @@ import string
 #------------------------------------------------------------------------
 import Report
 import TextDoc
+import Errors
+
+from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -161,6 +164,8 @@ class DescendantReportDialog(Report.TextReportDialog):
             MyReport.setup()
             MyReport.report()
             MyReport.end()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

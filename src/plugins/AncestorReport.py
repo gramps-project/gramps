@@ -30,20 +30,14 @@ import string
 
 #------------------------------------------------------------------------
 #
-# GNOME/GTK
-#
-#------------------------------------------------------------------------
-import gtk
-import gnome.ui
-
-#------------------------------------------------------------------------
-#
 # gramps modules
 #
 #------------------------------------------------------------------------
 import Report
 import TextDoc
 import RelLib
+import Errors
+from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -60,11 +54,7 @@ class AncestorReport(Report.Report):
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
-
-        try:
-            self.doc.open(output)
-        except IOError,msg:
-            gnome.ui.GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
+        self.doc.open(output)
         
     def filter(self,person,index):
         if person == None or index >= (1 << 30):
@@ -277,10 +267,11 @@ class AncestorReportDialog(Report.TextReportDialog):
             MyReport = AncestorReport(self.db, self.person, self.target_path,
                                       self.max_gen, self.doc, self.pg_brk)
             MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
-
 
 #------------------------------------------------------------------------
 #

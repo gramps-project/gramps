@@ -45,6 +45,8 @@ import const
 import TextDoc
 import StyleEditor
 import Report
+import Errors
+from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -373,9 +375,15 @@ class IndivSummaryDialog(Report.TextReportDialog):
         """Create the object that will produce the Ancestor Chart.
         All user dialog has already been handled and the output file
         opened."""
-        MyReport = IndivSummary(self.db, self.person, self.target_path, self.doc)
-        MyReport.setup()
-        MyReport.write_report()
+        try:
+            MyReport = IndivSummary(self.db, self.person, self.target_path, self.doc)
+            MyReport.setup()
+            MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #

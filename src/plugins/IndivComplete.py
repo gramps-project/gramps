@@ -37,6 +37,8 @@ import TextDoc
 import StyleEditor
 import Report
 import GenericFilter
+import Errors
+from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -532,10 +534,17 @@ class IndivSummaryDialog(Report.TextReportDialog):
         opened."""
 
         act = self.use_srcs.get_active()
-        MyReport = IndivComplete(self.db, self.person, self.target_path,
-                                 self.doc, self.filter, act)
-        MyReport.setup()
-        MyReport.write_report()
+        try:
+            MyReport = IndivComplete(self.db, self.person, self.target_path,
+                                     self.doc, self.filter, act)
+            MyReport.setup()
+            MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+        
 
     def get_report_generations(self):
         """Return the default number of generations to start the

@@ -790,11 +790,9 @@ class StyleSheetList:
         Loads the StyleSheets from the associated file, if it exists.
         """
         try:
-            parser = make_parser()
-            parser.setContentHandler(SheetParser(self))
-            if self.file[0:7] != "file://":
-                self.file = "file://" + self.file
-            parser.parse(self.file)
+            p = make_parser()
+            p.setContentHandler(SheetParser(self))
+            p.parse('file://' + self.file)
         except (IOError,OSError,SAXParseException):
             pass
         

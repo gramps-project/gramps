@@ -26,11 +26,13 @@ import os
 import sort
 from intl import gettext as _
 
+import Errors
 from Report import *
 from TextDoc import *
 
 import gtk
 import gnome.ui
+from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
 #
@@ -761,10 +763,15 @@ class DetDescendantReportDialog(TextReportDialog):
         """Create the object that will produce the Detailed Ancestral
         Report.  All user dialog has already been handled and the
         output file opened."""
-        MyReport = DetDescendantReport(self.db, self.person, self.target_path,
-                                     self.max_gen, self.pg_brk, self.doc)
-        MyReport.write_report()
-
+        try:
+            MyReport = DetDescendantReport(self.db, self.person, self.target_path,
+                                           self.max_gen, self.pg_brk, self.doc)
+            MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
     def add_user_options(self):
         

@@ -35,7 +35,9 @@ import os
 import RelLib
 import Report
 import TextDoc
+import Errors
 from intl import gettext as _
+from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
 #
@@ -438,9 +440,15 @@ class FamilyGroupDialog(Report.TextReportDialog):
         """Create the object that will produce the Ancestor Chart.
         All user dialog has already been handled and the output file
         opened."""
-        MyReport = FamilyGroup(self.db, self.report_menu, self.target_path, self.doc)
-        MyReport.setup()
-        MyReport.write_report()
+        try:
+            MyReport = FamilyGroup(self.db, self.report_menu, self.target_path, self.doc)
+            MyReport.setup()
+            MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #

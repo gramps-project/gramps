@@ -97,7 +97,14 @@ class StyleListDisplay:
         """Called with the OK button is clicked; Calls the callback task, then
         saves the stylesheet, and destroys the window."""
         self.callback()
-        self.sheetlist.save()
+        try:
+            self.sheetlist.save()
+        except IOError,msg:
+            from QuestionDialog import ErrorDialog
+            ErrorDialog(_("Error saving stylesheet") + "\n" + str(msg))
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
         Utils.destroy_passed_object(obj)
 
     def on_button_press(self,obj,event):
