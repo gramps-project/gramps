@@ -426,6 +426,9 @@ class KwordDoc(TextDoc):
         pass
 
     def write_text(self,text):
+        text = string.replace(text,'&','&amp;');       # Must be first
+        text = string.replace(text,'<','&lt;');
+        text = string.replace(text,'>','&gt;');
 	self.text = self.text + text
 
 
