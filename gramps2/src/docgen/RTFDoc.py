@@ -372,6 +372,6 @@ class RTFDoc(TextDoc.TextDoc):
                 self.text = self.text + i
 
         self.text = self.text.replace('<super>','{{\*\updnprop5801}\up10 ')
-        self.text = self.text.replace('</super>','}}')
+        self.text = self.text.replace('</super>','}')
 
 Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1,".rtf")
