@@ -97,6 +97,7 @@
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
+  <signal name="delete_event" handler="on_delete_event" last_modification_time="Sat, 28 Feb 2004 03:40:16 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox38">
