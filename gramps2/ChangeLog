@@ -1,3 +1,8 @@
+2004-01-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/BaseDoc.py: Scaleable shadow
+	* src/plugins/AncestorChart2.py: Scale to page implemented
+	* src/docgen/PdfDoc.py: Scalable shadow
+
 2004-01-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py (delete_family_from): Remove extra "[0]".
 
