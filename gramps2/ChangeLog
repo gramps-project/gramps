@@ -1,10 +1,11 @@
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/DetAncestralReport.py (write_death): Proper checks for valid day
-	and month of death.
+	* src/DetAncestralReport.py (write_death): Proper checks for 
+        valid day and month of death.
 	* src/DetDescendantReport.py (write_death): Likewise.
 
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/FamilyView.py (load_family): Select the first spouse in the list.
+	* src/FamilyView.py (load_family): Select the first spouse 
+        in the list.
 
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleDescendants.py (print_children):
@@ -17,7 +18,8 @@
 	detailed ancestral report.
 
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/plugins/BookReport.py (ReportOptionsDialog.on_change_clicked):
+	* src/plugins/BookReport.py 
+        (ReportOptionsDialog.on_change_clicked):
 	Deal with Cancel button pressed.
 
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
