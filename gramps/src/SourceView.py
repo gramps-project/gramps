@@ -66,11 +66,26 @@ class SourceView:
         self.id_arrow.hide()
         self.author_arrow.hide()
         self.sort_map = [3,1,4,-1]
-        self.sort_dir = GTK.SORT_ASCENDING
-        self.sort_col = 3
         self.sort_arrow = [self.title_arrow, self.id_arrow, self.author_arrow]
         self.source_list.connect('click-column',self.click_column)
 
+        
+        self.sort_col,self.sort_dir = Config.get_sort_cols("source",3,GTK.SORT_ASCENDING)
+        self.source_list.set_sort_type(self.sort_dir)
+        self.source_list.set_sort_column(self.sort_map[self.sort_col])
+        self.set_arrow(self.sort_col)
+
+    def set_arrow(self,column):
+        for a in self.sort_arrow:
+            a.hide()
+
+        a = self.sort_arrow[column]
+        a.show()
+        if self.sort_dir == GTK.SORT_ASCENDING:
+            a.set(GTK.ARROW_DOWN,2)
+        else:
+            a.set(GTK.ARROW_UP,2)
+        
     def click_column(self,obj,column):
 
         new_col = self.sort_map[column]
@@ -90,19 +105,12 @@ class SourceView:
         else:
             self.sort_dir = GTK.SORT_ASCENDING
 
-        for a in self.sort_arrow:
-            a.hide()
-
-        a = self.sort_arrow[column]
-        a.show()
-        if self.sort_dir == GTK.SORT_ASCENDING:
-            a.set(GTK.ARROW_DOWN,2)
-        else:
-            a.set(GTK.ARROW_UP,2)
+        self.set_arrow(column)
             
         obj.set_sort_type(self.sort_dir)
         obj.set_sort_column(new_col)
         self.sort_col = new_col
+        Config.save_sort_cols("source",self.sort_col,self.sort_dir)
         obj.sort()
         if data:
             row = obj.find_row_from_data(data)

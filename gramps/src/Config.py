@@ -793,7 +793,21 @@ def get_config_color(name,defval):
         return defval
     else:
         return (r,g,b)
-    
+
+def get_sort_cols(name,col,dir):
+    c = get_int("/gramps/sort/%s_col" % name)
+    if c == None:
+        c = col
+    d = get_int("/gramps/sort/%s_dir" % name)
+    if d == None:
+        d = dir
+    return (c,d)
+
+def save_sort_cols(name,col,dir):
+    set_int("/gramps/sort/%s_col" % name, col)
+    set_int("/gramps/sort/%s_dir" % name, dir)
+    sync()
+
 #-------------------------------------------------------------------------
 #
 #

@@ -63,6 +63,7 @@ class AddMediaObject:
         self.description = self.glade.get_widget("photoDescription")
         self.image       = self.glade.get_widget("image")
         self.update      = update
+        self.temp_name   = ""
         
         self.glade.signal_autoconnect({
             "on_savephoto_clicked"  : self.on_savephoto_clicked,
@@ -104,6 +105,15 @@ class AddMediaObject:
         
     def on_name_changed(self,obj):
         filename = self.glade.get_widget("fname").get_text()
+
+        basename = os.path.basename(filename)
+        (root,ext) = os.path.splitext(basename)
+        old_title  = self.description.get_text()
+
+        if old_title == "" or old_title == self.temp_name:
+            self.description.set_text(root)
+        self.temp_name = root
+
         if os.path.isfile(filename):
             type = utils.get_mime_type(filename)
             if type[0:5] == "image":

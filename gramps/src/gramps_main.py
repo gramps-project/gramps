@@ -111,7 +111,7 @@ deathArrow    = None
 dateArrow     = None
 
 merge_button  = None
-sort_column   = 5
+sort_column   = 0
 sort_direct   = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
 c_birth_order = 0
@@ -156,7 +156,6 @@ def find_goto_to(person):
 #-------------------------------------------------------------------------
 def on_merge_activate(obj):
     """Calls up the merge dialog for the selection"""
-
     page = notebook.get_current_page()
     if page == 0:
         if len(person_list.selection) != 2:
@@ -729,39 +728,42 @@ def on_person_list_select_row(obj,row,b,c):
 # orientation, and then call apply_filter to redraw the list
 #
 #-------------------------------------------------------------------------
+
 def on_person_list_click_column(obj,column):
-    if column == 0:
-        change_sort(5,nameArrow)
-    elif column == 1:
-        change_sort(1,idArrow)
-    elif column == 2:
-        change_sort(2,genderArrow)
-    elif column == 3:
-        change_sort(6,dateArrow)
-    elif column == 4:
-        change_sort(7,deathArrow)
-    else:
-        return
-
-    sort_person_list()
-    if id2col.has_key(active_person):
-        row = person_list.find_row_from_data(id2col[active_person])
-        person_list.moveto(row)
+    change_sort(column)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def change_sort(column,arrow):
-    global sort_direct
-    global sort_column
+col_map = [ 5, 1, 2, 6, 7 ]
 
-    for a in [ nameArrow, genderArrow, deathArrow, dateArrow, idArrow ]:
+def set_sort_arrow(column,direct):
+    col_arr = [ nameArrow, idArrow, genderArrow, dateArrow, deathArrow]
+
+    arrow = col_arr[column]
+    for a in col_arr:
         if arrow != a:
             a.hide()
     arrow.show()
+    if direct == SORT_ASCENDING:
+        arrow.set(GTK.ARROW_DOWN,2)
+    else:
+        arrow.set(GTK.ARROW_UP,2)
     
+def change_sort(column):
+    global sort_direct
+    global sort_column
+
+    col_arr = [ nameArrow, idArrow, genderArrow, dateArrow, deathArrow]
+
+    arrow = col_arr[column]
+    for a in col_arr:
+        if arrow != a:
+            a.hide()
+    arrow.show()
+
     if sort_column == column:
         if sort_direct == SORT_DESCENDING:
             sort_direct = SORT_ASCENDING
@@ -773,8 +775,15 @@ def change_sort(column,arrow):
         sort_direct = SORT_ASCENDING
         arrow.set(GTK.ARROW_DOWN,2)
     sort_column = column
+
+    person_list.set_sort_column(col_map[column])
     person_list.set_sort_type(sort_direct)
-    person_list.set_sort_column(sort_column)
+
+    sort_person_list()
+    if id2col.has_key(active_person):
+        row = person_list.find_row_from_data(id2col[active_person])
+        person_list.moveto(row)
+    Config.save_sort_cols("person",sort_column,sort_direct)
     
 #-------------------------------------------------------------------------
 #
@@ -1855,6 +1864,7 @@ def main(arg):
     global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow, idArrow, genderArrow
     global cNameArrow, cDateArrow
+    global sort_column, sort_direct
     
     rc_parse(const.gtkrcFile)
     database = RelDataBase()
@@ -1863,6 +1873,8 @@ def main(arg):
     Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
     Filter.load_filters(const.filtersDir)
     Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
+
+    (sort_column,sort_direct) = Config.get_sort_cols("person",sort_column,sort_direct)
 
     gtop = libglade.GladeXML(const.gladeFile, "gramps")
 
@@ -1896,9 +1908,6 @@ def main(arg):
     person_list.set_column_visibility(5,0)
     person_list.set_column_visibility(6,0)
     person_list.set_column_visibility(7,0)
-    person_list.set_sort_column(sort_column)
-    person_list.set_sort_type(sort_direct)
-
     fw = gtop.get_widget('filter')
     filter_list.set_menu(Filter.build_filter_menu(on_filter_name_changed,fw))
     
@@ -1908,6 +1917,9 @@ def main(arg):
     topWindow.set_icon(GtkPixmap(topWindow,const.icon))
     
     person_list.column_titles_active()
+    set_sort_arrow(sort_column,sort_direct)
+
+    Config.loadConfig(full_update)
 
     gtop.signal_autoconnect({
         "delete_event"                      : delete_event,
@@ -1986,7 +1998,6 @@ def main(arg):
         "on_writing_extensions_activate"    : on_writing_extensions_activate,
         })	
 
-    Config.loadConfig(full_update)
     person_list.set_column_visibility(1,Config.id_visible)
 
     notebook.set_show_tabs(Config.usetabs)
