@@ -89,7 +89,7 @@ class PatchNames:
 
         for key in self.db.get_person_keys():
         
-            person = self.db.find_person_from_id(key)
+            person = self.db.try_to_find_person_from_id(key)
             first = person.get_primary_name().get_first_name()
             match = _title_re.match(first)
             if match:
@@ -157,7 +157,7 @@ class PatchNames:
         self.title_hash = {}
         
         for (id,name,nick) in self.nick_list:
-            p = self.db.find_person_from_id(id)
+            p = self.db.try_to_find_person_from_id(id)
             iter = self.model.append()
             self.model.set_value(iter,0,1)
             self.model.set_value(iter,1,id)
@@ -167,7 +167,7 @@ class PatchNames:
             self.nick_hash[id] = iter
             
         for (id,title,nick) in self.title_list:
-            p = self.db.find_person_from_id(id)
+            p = self.db.try_to_find_person_from_id(id)
             iter = self.model.append()
             self.model.set_value(iter,0,1)
             self.model.set_value(iter,1,id)
@@ -215,7 +215,7 @@ class PatchNames:
             iter = self.title_hash[grp[0]]
             val = self.model.get_value(iter,0)
             if val:
-                p = self.db.find_person_from_id(grp[0])
+                p = self.db.try_to_find_person_from_id(grp[0])
                 name = p.get_primary_name()
                 name.set_first_name(grp[2].strip())
                 name.set_title(grp[1].strip())

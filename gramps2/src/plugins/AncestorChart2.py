@@ -226,7 +226,7 @@ class AncestorChart:
 
         self.lines = max(self.lines,len(self.text[index]))    
 
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         family_id = person.get_main_parents_family_id()
         if family_id:
             family = self.database.find_family_from_id(family_id)

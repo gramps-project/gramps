@@ -110,7 +110,7 @@ class IndivComplete(Report.Report):
         self.d.add_cell_style("IDS-NormalCell",cell)
 
         cell = BaseDoc.TableCellStyle()
-	cell.set_longlist(1)
+        cell.set_longlist(1)
         self.d.add_cell_style("IDS-ListCell",cell)
 
     def end(self):
@@ -124,7 +124,7 @@ class IndivComplete(Report.Report):
         date = event.get_date()
         place_id = event.get_place_id()
         if place_id:
-            place = self.database.find_place_from_id(place_id).get_title()
+            place = self.database.try_to_find_place_from_id(place_id).get_title()
         else:
             place = ""
         description = event.get_description()
@@ -206,9 +206,9 @@ class IndivComplete(Report.Report):
                 continue
             
             family = self.database.find_family_from_id(family_id)
-	    father_id = family.get_father_id()
+            father_id = family.get_father_id()
             if father_id:
-	    	father = self.database.find_person_from_id(father_id)
+                father = self.database.try_to_find_person_from_id(father_id)
                 fname = father.get_primary_name().get_regular_name()
                 frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Father'),fname,frel)
@@ -217,7 +217,7 @@ class IndivComplete(Report.Report):
 
             mother_id = family.get_mother_id()
             if mother_id:
-	    	mother = self.database.find_person_from_id(mother_id)
+                mother = self.database.try_to_find_person_from_id(mother_id)
                 fname = mother.get_primary_name().get_regular_name()
                 frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Mother'),fname,frel)
@@ -281,7 +281,7 @@ class IndivComplete(Report.Report):
             self.d.start_cell("IDS-NormalCell",2)
             self.d.start_paragraph("IDS-Spouse")
             if spouse_id:
-                spouse = self.database.find_person_from_id(spouse_id)
+                spouse = self.database.try_to_find_person_from_id(spouse_id)
                 text = spouse.get_primary_name().get_regular_name()
             else:
                 text = _("unknown")
@@ -309,7 +309,7 @@ class IndivComplete(Report.Report):
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    child = self.database.find_person_from_id(child_id)
+                    child = self.database.try_to_find_person_from_id(child_id)
                     self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
@@ -336,7 +336,7 @@ class IndivComplete(Report.Report):
             self.d.start_row()
             s_id = source.get_base_id()
             self.normal_cell(s_id)
-            src = self.database.find_source_from_id(s_id)
+            src = self.database.try_to_find_source_from_id(s_id)
             self.normal_cell(src.get_title())
             self.d.end_row()
         self.d.end_table()
@@ -356,7 +356,7 @@ class IndivComplete(Report.Report):
         for event_id in event_id_list:
             if event_id:
                 event = self.database.find_event_from_id(event_id)
-            	self.write_fact(event)
+                self.write_fact(event)
         self.d.end_table()
         self.d.start_paragraph("IDS-Normal")
         self.d.end_paragraph()
@@ -381,7 +381,7 @@ class IndivComplete(Report.Report):
             
         count = 0
         for person_id in ind_list:
-            self.person = self.database.find_person_from_id(person_id)
+            self.person = self.database.try_to_find_person_from_id(person_id)
             self.write_person(count)
             count = count + 1
         self.end()
@@ -402,7 +402,7 @@ class IndivComplete(Report.Report):
 
         if len(media_list) > 0:
             object_id = media_list[0].get_reference_id()
-            object = self.database.find_object_from_id(object_id)
+            object = self.database.try_to_find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IDS-Normal")
@@ -435,13 +435,13 @@ class IndivComplete(Report.Report):
             family = self.database.find_family_from_id(family_id)
             father_inst_id = family.get_father_id()
             if father_inst_id:
-                father_inst = self.database.find_person_from_id(father_inst_id)
+                father_inst = self.database.try_to_find_person_from_id(father_inst_id)
                 father = father_inst.get_primary_name().get_regular_name()
             else:
                 father = ""
             mother_inst_id = family.get_mother_id()
             if mother_inst_id:
-                mother_inst = self.database.find_person_from_id(mother_inst_id) 
+                mother_inst = self.database.try_to_find_person_from_id(mother_inst_id) 
                 mother = mother_inst.get_primary_name().get_regular_name()
             else:
                 mother = ""

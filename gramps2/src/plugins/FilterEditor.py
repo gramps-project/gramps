@@ -534,7 +534,7 @@ class EditRule:
         self.add_places = []
 
         for p_id in self.db.get_place_ids():
-            p = self.db.find_place_from_id(p_id)
+            p = self.db.try_to_find_place_from_id(p_id)
             self.pmap[p.get_title()] = p_id
 
         self.active_rule = val
@@ -764,7 +764,7 @@ class ShowResults:
 
         n = []
         for p_id in id_list:
-            p = db.find_person_from_id(p_id)
+            p = db.try_to_find_person_from_id(p_id)
             n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_id()))
 
         n.sort ()

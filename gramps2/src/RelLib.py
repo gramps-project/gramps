@@ -2958,14 +2958,14 @@ class GrampsDB:
     def has_family_id(self,val):            
         return self.family_map.get(str(val))
 
-    def try_to_find_person_from_id(self,val,trans):
+    def try_to_find_person_from_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
 
-        person = Person()
         data = self.person_map.get(str(val))
 
         if data:
+            person = Person()
             person.unserialize(data)
             return person
         else:
@@ -3084,6 +3084,18 @@ class GrampsDB:
             map[gid] = self.add_event(event,trans)
         return event
 
+    def try_to_find_source_from_id(self,val):
+        """finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, None is returned."""
+
+        data = self.source_map.get(str(val))
+        if data:
+            source = Source()
+            source.unserialize(data)
+            return source
+        else:
+            return None
+
     def find_source_from_id(self,val,trans):
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
@@ -3172,9 +3184,21 @@ class GrampsDB:
         self.added_files.append(object)
         return index
 
+    def try_to_find_object_from_id(self,gid):
+        """finds an Object in the database from the passed gramps' ID.
+        If no such Object exists, None is returned."""
+
+        data = self.media_map.get(str(gid))
+        if data:
+            mobject = MediaObject()
+            mobject.unserialize(data)
+            return mobject
+        else:
+            return None
+
     def find_object_from_id(self,gid,trans):
         """finds an Object in the database from the passed gramps' ID.
-        If no such Source exists, a new Source is added to the database."""
+        If no such Object exists, a new Object is added to the database."""
 
         object = MediaObject()
         if self.media_map.get(str(gid)):
@@ -3271,6 +3295,19 @@ class GrampsDB:
         else:
             place.unserialize(data)
         return place
+
+    def try_to_find_place_from_id(self,gid):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, None is returned."""
+
+        data = self.place_map.get(str(gid))
+        
+        if data:
+            place = Place()
+            place.unserialize(data)
+            return place
+        else:
+            return None
 
     def sortbyplace(self,f,s):
         fp = self.place_map[f][1].upper()

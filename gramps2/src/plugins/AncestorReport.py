@@ -69,7 +69,7 @@ class AncestorReport(Report.Report):
             return
         self.map[index] = person_id
 
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         family_id = person.get_main_parents_family_id()
         if family_id:
             family = self.database.find_family_from_id(family_id)
@@ -105,7 +105,7 @@ class AncestorReport(Report.Report):
 
             self.doc.start_paragraph("AHN-Entry","%s." % str(key))
             person_id = self.map[key]
-            person = self.database.find_person_from_id(person_id)
+            person = self.database.try_to_find_person_from_id(person_id)
             name = person.get_primary_name().get_regular_name()
         
             self.doc.start_bold()
@@ -124,7 +124,7 @@ class AncestorReport(Report.Report):
                 date = birth.get_date_object().get_start_date()
                 place_id = birth.get_place_id()
                 if place_id:
-                    place = self.database.find_place_from_id(place_id).get_title()
+                    place = self.database.try_to_find_place_from_id(place_id).get_title()
                 else:
                     place = u''
                 if place[-1:] == '.':
@@ -159,7 +159,7 @@ class AncestorReport(Report.Report):
                 date = death.get_date_object().get_start_date()
                 place_id = death.get_place_id()
                 if place_id:
-                    place = self.database.find_place_from_id(place_id).get_title()
+                    place = self.database.try_to_find_place_from_id(place_id).get_title()
                 else:
                     place = u''
                 if place[-1:] == '.':
@@ -204,7 +204,7 @@ class AncestorReport(Report.Report):
                         date = buried.get_date_object().get_start_date()
                         place_id = buried.get_place_id()
                         if place_id:
-                            place = self.database.find_place_from_id(place_id).get_title()
+                            place = self.database.try_to_find_place_from_id(place_id).get_title()
                         else:
                             place = u''
                         if place[-1:] == '.':

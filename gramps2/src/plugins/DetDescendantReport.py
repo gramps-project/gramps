@@ -85,7 +85,7 @@ class DetDescendantReport(Report.Report):
         else: 
             self.genKeys[cur_gen-1].append(index)
 
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         for family_id in person.get_family_id_list():
             family = self.database.find_family_from_id(family_id)
             for child_id in family.get_child_id_list():
@@ -122,12 +122,12 @@ class DetDescendantReport(Report.Report):
             self.doc.start_paragraph("DDR-ChildTitle")
             mother_id = family.get_mother_id()
             if mother_id:
-                mother = self.database.find_person_from_id(mother_id).get_primary_name().get_regular_name()
+                mother = self.database.try_to_find_person_from_id(mother_id).get_primary_name().get_regular_name()
             else:
                 mother = _("unknown")
             father_id = family.get_father_id()
             if father_id:
-                father = self.database.find_person_from_id(father_id).get_primary_name().get_regular_name()
+                father = self.database.try_to_find_person_from_id(father_id).get_primary_name().get_regular_name()
             else:
                 father = _("unknown")
             self.doc.start_bold()
@@ -139,7 +139,7 @@ class DetDescendantReport(Report.Report):
             self.doc.end_paragraph()
 
             for child_id in family.get_child_id_list():
-                child = self.database.find_person_from_id(child_id)
+                child = self.database.try_to_find_person_from_id(child_id)
                 self.doc.start_paragraph("DDR-ChildList")
                 name = child.get_primary_name().get_regular_name()
                 birth_id = child.get_birth_id()
@@ -160,10 +160,10 @@ class DetDescendantReport(Report.Report):
 
                 if birth and birth.get_date():
                     if birth.get_place_id():
-                        bplace = self.database.find_place_from_id(birth.get_place_id()).get_title()
+                        bplace = self.database.try_to_find_place_from_id(birth.get_place_id()).get_title()
                         if death and death.get_date():
                             if death.get_place_id():
-                                dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                                dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                                 self.doc.write_text(_("- %s Born: %s %s Died: %s %s") % \
                                     (name, birth.get_date(), bplace,
                                      death.get_date(), dplace))  # f
@@ -172,7 +172,7 @@ class DetDescendantReport(Report.Report):
                                     (name, birth.get_date(), bplace,
                                      death.get_date()))                    # e
                         elif death and death.get_place_id():
-                            dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                            dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                             self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
                                 (name, birth.get_date(), bplace,
                                  dplace))                   # d
@@ -181,7 +181,7 @@ class DetDescendantReport(Report.Report):
                     else:
                         if death and death.get_date():
                             if death.get_place_id():
-                                dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                                dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                                 self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
                                     (name, birth.get_date(), death.get_date(), \
                                      dplace))                    # b
@@ -189,7 +189,7 @@ class DetDescendantReport(Report.Report):
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.get_date(), death.get_date())) # a
                         elif death and death.get_place_id():
-                            dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                            dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                             self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                 (name, birth.get_date(), dplace)) # 9
                         else:
@@ -197,10 +197,10 @@ class DetDescendantReport(Report.Report):
                                 (name, birth.get_date()))               # 8
                 else:
                     if birth and birth.get_place_id():
-                        bplace = self.database.find_place_from_id(birth.get_place_id()).get_title()
+                        bplace = self.database.try_to_find_place_from_id(birth.get_place_id()).get_title()
                         if death and death.get_date():
                             if death.get_place_id():
-                                dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                                dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                                 self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
                                     (name, bplace,                  \
                                      death.get_date(), dplace))  # 7
@@ -208,7 +208,7 @@ class DetDescendantReport(Report.Report):
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, bplace, death.get_date())) # 6
                         elif death and death.get_place_id():
-                            dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                            dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                             self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                 (name, bplace, dplace)) # 5
                         else:
@@ -217,14 +217,14 @@ class DetDescendantReport(Report.Report):
                     else:
                         if death and death.get_date():
                             if death.get_place_id():
-                                dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                                dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                                 self.doc.write_text(_("- %s Died: %s %s") % \
                                     (name, death.get_date(), dplace)) # 3
                             else:
                                 self.doc.write_text(_("- %s Died: %s") % \
                                     (name, death.get_date()))               # 2
                         elif death and death.get_place_id():
-                            dplace = self.database.find_place_from_id(death.get_place_id()).get_title()
+                            dplace = self.database.try_to_find_place_from_id(death.get_place_id()).get_title()
                             self.doc.write_text(_("- %s Died: %s") % \
                                 (name, dplace)) # 1
                         else:
@@ -236,7 +236,7 @@ class DetDescendantReport(Report.Report):
         """Output birth, death, parentage, marriage and notes information """
 
         person_id = self.map[key]
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         if rptOptions.addImages == reportOptions.Yes:
             self.insert_images(person)
 
@@ -306,7 +306,7 @@ class DetDescendantReport(Report.Report):
             birth = self.database.find_event_from_id(birth_id)
             date = birth.get_date_object().get_start_date()
             if birth.get_place_id():
-                place = self.database.find_place_from_id(birth.get_place_id()).get_title()
+                place = self.database.try_to_find_place_from_id(birth.get_place_id()).get_title()
                 if place[-1:] == '.':
                     place = place[:-1]
             elif rptOptions.blankDate == reportOptions.Yes:
@@ -363,7 +363,7 @@ class DetDescendantReport(Report.Report):
             date = death.get_date_object().get_start_date()
             place_id = death.get_place_id()
             if place_id:
-                place = self.database.find_place_from_id(place_id).get_title()
+                place = self.database.try_to_find_place_from_id(place_id).get_title()
                 if place[-1:] == '.':
                     place = place[:-1]
             elif rptOptions.blankPlace == reportOptions.Yes:
@@ -450,12 +450,12 @@ class DetDescendantReport(Report.Report):
             ext_family = self.database.find_family_from_id(ext_family_id)
             father_id = ext_family.get_father_id()
             if father_id:
-                father = self.database.find_person_from_id(father_id).get_primary_name().get_regular_name()
+                father = self.database.try_to_find_person_from_id(father_id).get_primary_name().get_regular_name()
             else:
                 father = ""
             mother_id = ext_family.get_father_id()
             if mother_id:
-                mother = self.database.find_person_from_id(mother_id).get_primary_name().get_regular_name()
+                mother = self.database.try_to_find_person_from_id(mother_id).get_primary_name().get_regular_name()
             else:
                 mother = ""
 
@@ -501,7 +501,7 @@ class DetDescendantReport(Report.Report):
                 if person.get_gender() == RelLib.Person.male:
                     mother_id = fam.get_mother_id()
                     if mother_id:
-                        spouse = self.database.find_person_from_id(mother_id).get_primary_name().get_regular_name()
+                        spouse = self.database.try_to_find_person_from_id(mother_id).get_primary_name().get_regular_name()
                     if fam_num == 1:
                         heshe = _("He")
                     elif fam_num < len(famList):
@@ -518,7 +518,7 @@ class DetDescendantReport(Report.Report):
 
                     father_id = fam.get_father_id()
                     if father_id:
-                        spouse = self.database.find_person_from_id(father_id).get_primary_name().get_regular_name()
+                        spouse = self.database.try_to_find_person_from_id(father_id).get_primary_name().get_regular_name()
 
                 for event_id in fam.get_event_list():
                     if event_id:
@@ -533,7 +533,7 @@ class DetDescendantReport(Report.Report):
                 place = ""
                 if marriage:
                     if marriage.get_place_id():
-                        place = self.database.find_place_from_id(marriage.get_place_id()).get_title()
+                        place = self.database.try_to_find_place_from_id(marriage.get_place_id()).get_title()
                     elif rptOptions.blankPlace == reportOptions.Yes:
                         place= "____________"
 
@@ -582,14 +582,14 @@ class DetDescendantReport(Report.Report):
                 heshe = _("She")
                 mother_id = fam.get_mother_id()
                 if mother_id:
-                    mate = self.database.find_person_from_id(mother_id)
+                    mate = self.database.try_to_find_person_from_id(mother_id)
                     mateName = mate.get_primary_name().get_regular_name()
                     mateFirstName = mate.get_primary_name().get_first_name()
             else:
                 heshe = _("He")
                 father_id = fam.get_father_id()
                 if father_id:
-                    mate = self.database.find_person_from_id(father_id)
+                    mate = self.database.try_to_find_person_from_id(father_id)
                     mateName = mate.get_primary_name().get_regular_name()
                     mateFirstName = mate.get_primary_name().get_first_name()
 
@@ -622,7 +622,7 @@ class DetDescendantReport(Report.Report):
         photos = person.get_media_list()
         for photo in photos :
             object_id = photo.get_reference_id()
-            object = self.database.find_object_from_id(object_id)
+            object = self.database.try_to_find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.doc.add_media_object(file,"row",4.0,4.0)
@@ -651,11 +651,11 @@ class DetDescendantReport(Report.Report):
                 if self.start.get_gender() == RelLib.Person.male:
                     mother_id = fam.get_mother_id()
                     if mother_id:
-                        spouseName = self.database.find_person_from_id(mother_id).get_primary_name().get_first_name()
+                        spouseName = self.database.try_to_find_person_from_id(mother_id).get_primary_name().get_first_name()
                 else:
                     father_id = fam.get_father_id()
                     if father_id:
-                        spouseName = self.database.find_person_from_id(father_id).get_primary_name().get_first_name()
+                        spouseName = self.database.try_to_find_person_from_id(father_id).get_primary_name().get_first_name()
 
         self.doc.start_paragraph("DDR-Title")
         if spouseName:
@@ -684,7 +684,7 @@ class DetDescendantReport(Report.Report):
 
             for key in self.genKeys[generation]:
                 person_id = self.map[key]
-                person = self.database.find_person_from_id(person_id)
+                person = self.database.try_to_find_person_from_id(person_id)
                 self.genIDs[person_id]= key
                 dupPerson= self.write_person(key, rptOpt)
                 if dupPerson == 0:		# Is this a duplicate ind record

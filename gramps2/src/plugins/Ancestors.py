@@ -138,7 +138,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
             i = 1
             for source_id in self.sources:
-                source = self.database.find_source_from_id(source_id)
+                source = self.database.try_to_find_source_from_id(source_id)
                 self.doc.start_paragraph ("AR-Entry")
                 self.doc.write_text ("[%d] %s" % (i, source.get_title ()))
                 author = source.get_author ()
@@ -186,8 +186,8 @@ class ComprehensiveAncestorsReport (Report.Report):
             return ret
         father_id = family.get_father_id ()
         mother_id = family.get_mother_id ()
-        father = self.database.find_person_from_id(father_id)
-        mother = self.database.find_person_from_id(mother_id)
+        father = self.database.try_to_find_person_from_id(father_id)
+        mother = self.database.try_to_find_person_from_id(mother_id)
         if father:
             ret.extend (self.person (father_id,
                                      short_form = father_id in already_described,
@@ -209,7 +209,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             ret.append ((self.doc.end_paragraph, []))
 
             for child_id in children_ids:
-                child = self.database.find_person_from_id(child_id)
+                child = self.database.try_to_find_person_from_id(child_id)
                 ret.extend (self.person (child_id, suppress_children = 1,
                                          short_form=child_id in already_described,
                                          already_described = already_described,
@@ -232,7 +232,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         break
 
                 relstring = self.relationship.get_grandparents_string (self.start,
-                               self.database.find_person_from_id(self.gp))[0]
+                               self.database.try_to_find_person_from_id(self.gp))[0]
                 heading = _("%(name)s's maternal %(grandparents)s") % \
                           { 'name': self.first_name_or_nick (self.start),
                             'grandparents': relstring }
@@ -255,7 +255,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         break
 
                 relstring = self.relationship.get_grandparents_string (self.start,
-                                                                  self.database.find_person_from_id(self.gp))[0]
+                                                                  self.database.try_to_find_person_from_id(self.gp))[0]
                 if thisgen == 2:
                     heading = _("%(name)s's %(parents)s") % \
                               { 'name': self.first_name_or_nick (self.start),
@@ -274,7 +274,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 for family_id in family_ids:
                     family = self.database.find_family_from_id(family_id)
                     father_id = family.get_father_id ()
-                    father = self.database.find_person_from_id(father_id)
+                    father = self.database.try_to_find_person_from_id(father_id)
                     if father:
                         already_described.append (father_id)
                         father_family_id = father.get_main_parents_family_id ()
@@ -283,7 +283,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                             next_pfamily_ids.append (father_family_id)
 
                     mother_id = family.get_mother_id ()
-                    mother = self.database.find_person_from_id(mother_id)
+                    mother = self.database.try_to_find_person_from_id(mother_id)
                     if mother:
                         already_described.append (mother_id)
                         mother_family_id = mother.get_main_parents_family_id ()
@@ -302,7 +302,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 needs_name = 0,
                 from_family = None):
         ret = []
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         name = self.person_name (person_id)
         if name:
             photos = person.get_media_list ()
@@ -311,7 +311,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             bits += self.short_occupation (person)
             bits += self.long_born_died (person)
             if not suppress_children:
-                bits += self.parents_of (person)
+                bits += self.parents_of (person_id)
             else:
                 bits += '.'
             bits += self.married_whom (person, from_family, suppress_children)
@@ -335,7 +335,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     family = self.database.find_family_from_id(family_id)
                     for partner_id in [family.get_father_id (),
                                     family.get_mother_id ()]:
-                        partner = self.database.find_person_from_id(partner_id)
+                        partner = self.database.try_to_find_person_from_id(partner_id)
                         if partner_id == person_id or not partner:
                             continue
 
@@ -344,7 +344,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                              partner != from_family_mother)):
                             for media_ref in partner.get_media_list ()[:1]:
                                 object_id = media_ref.get_reference_id()
-                                mobject = self.database.find_object_from_id(object_id)
+                                mobject = self.database.try_to_find_object_from_id(object_id)
                                 if mobject.get_mime_type()[0:5] == "image":
                                     spouse.append ((self.doc.add_media_object,
                                                     [mobject.get_path (),
@@ -377,7 +377,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for media_ref in photos[:1]:
                         object_id = media_ref.get_reference_id()
-                        mobject = self.database.find_object_from_id(object_id)
+                        mobject = self.database.try_to_find_object_from_id(object_id)
                         if mobject.get_mime_type()[0:5] == "image":
                             ret.append ((self.doc.add_media_object,
                                          [mobject.get_path (), 'left', 2, 2]))
@@ -452,7 +452,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     info += _(' in %(month_or_year)s') % \
                             {'month_or_year': dateobj.get_date ()}
 
-        placename = self.database.find_place_from_id(event.get_place_id()).get_title()
+        placename = self.database.try_to_find_place_from_id(event.get_place_id()).get_title()
         if placename:
             info += _(' in %(place)s') % {'place': placename}
         note = event.get_note ()
@@ -530,32 +530,33 @@ class ComprehensiveAncestorsReport (Report.Report):
         return ret
 
     def parents_of (self, person_id):
-        person = self.database.find_person_from_id(person_id)
+        ret = '.  '
+        person = self.database.try_to_find_person_from_id(person_id)
         gender = person.get_gender ()
 
-        family = person.get_main_parents_family_id ()
-        ret = '.  '
-        if family:
+        family_id = person.get_main_parents_family_id ()
+        if family_id:
+            family = self.database.find_family_from_id(family_id)
             fathername = mothername = None
             father_id = family.get_father_id ()
-            father = self.database.find_person_from_id(father_id)
-            if father:
+            if father_id:
+                #father = self.database.try_to_find_person_from_id(father_id)
                 fathername = self.person_name (father_id)
             mother_id = family.get_mother_id ()
-            mother = self.database.find_person_from_id(mother_id)
-            if mother:
+            if mother_id:
+                #mother = self.database.try_to_find_person_from_id(mother_id)
                 mothername = self.person_name (mother_id)
 
-            if not mother and not father:
+            if not mother_id and not father_id:
                 pass
-            elif not father:
+            elif not father_id:
                 if gender == RelLib.Person.female:
                     ret += _("She is the daughter of %(mother)s.") % \
                            {'mother': mothername}
                 else:
                     ret += _("He is the son of %(mother)s.") % \
                            {'mother': mothername}
-            elif not mother:
+            elif not mother_id:
                 if gender == RelLib.Person.female:
                     ret += _("She is the daughter of %(father)s.") % \
                            {'father': fathername}
@@ -631,7 +632,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         return citation
 
     def person_name (self, person_id):
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         primary = person.get_primary_name ()
 
         name = primary.get_title ()
@@ -682,9 +683,9 @@ class ComprehensiveAncestorsReport (Report.Report):
         for family_id in person.get_family_id_list ():
             family = self.database.find_family_from_id(family_id)
             mother_id = family.get_mother_id ()
-            mother = self.database.find_person_from_id(mother_id)
+            mother = self.database.try_to_find_person_from_id(mother_id)
             for spouse_id in [family.get_father_id (), mother_id]:
-                spouse = self.database.find_person_from_id(spouse_id)
+                spouse = self.database.try_to_find_person_from_id(spouse_id)
                 if spouse_id == person.get_id() or not spouse_id:
                     continue
 
@@ -701,7 +702,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                     count = 1
                     for child_id in childlist:
-                        child = self.database.find_person_from_id(child_id)
+                        child = self.database.try_to_find_person_from_id(child_id)
                         children += self.first_name_or_nick (child)
                         children += self.cite_sources (child.get_primary_name ().
                                                        get_source_references ())

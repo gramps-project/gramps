@@ -118,7 +118,7 @@ class DesBrowse:
 
     def add_to_tree(self,parent_id,sib_id,person_id):
         item_id = self.model.insert_after(parent_id,sib_id)
-        person = self.db.find_person_from_id(person_id)
+        person = self.db.try_to_find_person_from_id(person_id)
         self.model.set(item_id,0,GrampsCfg.nameof(person))
         self.model.set(item_id,1,person_id)
         prev_id = None
@@ -135,7 +135,7 @@ class DesBrowse:
             store,iter = self.tree.get_selection().get_selected()
             if iter:
                 person_id = store.get_value(iter,1)
-                person = self.db.find_person_from_id(person_id)
+                person = self.db.try_to_find_person_from_id(person_id)
                 EditPerson.EditPerson(self.parent,person,self.db,self.callback)
 
 #------------------------------------------------------------------------

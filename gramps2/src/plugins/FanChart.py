@@ -165,7 +165,7 @@ class FanChart:
 
         self.lines = max(self.lines,len(self.text[index-1]))    
 
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         family_id = person.get_main_parents_family_id()
         if family_id:
             family = self.database.find_family_from_id(family_id)
@@ -202,7 +202,7 @@ class FanChart:
             self.doc.close()
 
     def get_info(self,person_id):
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         pn = person.get_primary_name()
 
         birth_id = person.get_birth_id()

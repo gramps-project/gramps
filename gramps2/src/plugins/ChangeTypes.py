@@ -42,9 +42,9 @@ def runTool(database,person,callback,parent=None):
     try:
         trans = database.start_transaction()
         ChangeTypes(database,person,parent,trans)
-        database.add_transaction(trans)
+        database.add_transaction(trans,_('Change types'))
     except:
-        database.add_transaction(trans)
+        database.add_transaction(trans,_('Change types'))
         database.undo()
 
         import DisplayTrace
@@ -85,7 +85,7 @@ class ChangeTypes:
         new = unicode(self.glade.get_widget("new_text").get_text())
 
         for person_id in self.db.get_person_keys():
-            person = self.db.find_person_from_id(person_id)
+            person = self.db.try_to_find_person_from_id(person_id)
             for event_id in person.get_event_list():
                 if not event_id:
                     continue

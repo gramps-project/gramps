@@ -118,7 +118,7 @@ class IndivSummary(Report.Report):
         date = event.get_date()
         place_id = event.get_place_id()
         if place_id:
-            place_obj = self.database.find_place_from_id(place_id)
+            place_obj = self.database.try_to_find_place_from_id(place_id)
             place = place_obj.get_title()
         else:
             place = ""
@@ -178,7 +178,7 @@ class IndivSummary(Report.Report):
             self.d.start_cell("IVS-NormalCell",2)
             self.d.start_paragraph("IVS-Spouse")
             if spouse_id:
-                spouse = self.database.find_person_from_id(spouse_id)
+                spouse = self.database.try_to_find_person_from_id(spouse_id)
                 self.d.write_text(spouse.get_primary_name().get_regular_name())
             else:
                 self.d.write_text(_("unknown"))
@@ -208,7 +208,7 @@ class IndivSummary(Report.Report):
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    child = self.database.find_person_from_id(child_id)
+                    child = self.database.try_to_find_person_from_id(child_id)
                     self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
@@ -232,7 +232,7 @@ class IndivSummary(Report.Report):
 
         if len(media_list) > 0:
             object_id = media_list[0].get_reference_id()
-            object = self.database.find_object_from_id(object_id)
+            object = self.database.try_to_find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IVS-Normal")
@@ -277,13 +277,13 @@ class IndivSummary(Report.Report):
             family = self.database.find_family_from_id(fam_id)
             father_id = family.get_father_id()
             if father_id:
-                dad = self.database.find_person_from_id(father_id)
+                dad = self.database.try_to_find_person_from_id(father_id)
                 father = dad.get_primary_name().get_regular_name()
             else:
                 father = ""
             mother_id = family.get_mother_id()
             if mother_id:
-                mom = self.database.find_person_from_id(mother_id)
+                mom = self.database.try_to_find_person_from_id(mother_id)
                 mother = mom.get_primary_name().get_regular_name()
             else:
                 mother = ""
