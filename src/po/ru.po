@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps 0.98.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2003-11-29 20:52-0600\n"
+"PO-Revision-Date: 2003-12-05 13:17-0600\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -663,7 +663,7 @@ msgstr "_Удалить Родителей"
 
 #: FamilyView.py:1154
 msgid "Attempt to Reorder Children Failed"
-msgstr "Попытка переупорядочить детей не удалась"
+msgstr "Попытка Переупорядочить Детей Не Удалась"
 
 #: FamilyView.py:1155
 msgid "Children must be ordered by their birth dates."
@@ -3323,7 +3323,7 @@ msgstr "_Отчеты"
 
 #: gramps.glade:540
 msgid "_Tools"
-msgstr "_Инструменты"
+msgstr "И_нструменты"
 
 #: gramps.glade:548
 msgid "_Help"
@@ -3501,7 +3501,7 @@ msgstr "Удаляет выделенных родителей от выделе
 
 #: gramps.glade:1887 gramps.glade:2317
 msgid "<b>_Children</b>"
-msgstr "<b>_Дети</b>"
+msgstr "<b>Д_ети</b>"
 
 #: gramps.glade:1912 gramps.glade:2820
 msgid "<b>_Active person</b>"
@@ -3517,7 +3517,7 @@ msgstr "<b>Отно_шение</b>"
 
 #: gramps.glade:1987 gramps.glade:2582
 msgid "<b>Spo_use's parents</b>"
-msgstr "<b>Родители су_пруга</b>"
+msgstr "<b>Роди_тели супруга</b>"
 
 #: gramps.glade:2081 gramps.glade:2441
 msgid "Double-click to edit the active person"
@@ -4459,7 +4459,7 @@ msgstr "Стиль для подробностей о лице."
 
 #: plugins/Ancestors.py:805
 msgid "Introduction to the children."
-msgstr "Заголовок к оазделу детей."
+msgstr "Заголовок к разделу детей."
 
 #: plugins/Ancestors.py:832 plugins/Ancestors.py:945 plugins/Ancestors.py:1105
 #: plugins/Ancestors.py:1116
@@ -5041,7 +5041,7 @@ msgstr "Использовать полные даты вместо только
 #: plugins/DetAncestralReport.py:801 plugins/DetAncestralReport.py:1021
 #: plugins/DetDescendantReport.py:810 plugins/DetDescendantReport.py:1031
 msgid "List children"
-msgstr "Перечислить Детей"
+msgstr "Перечислить детей"
 
 #: plugins/DetAncestralReport.py:805 plugins/DetAncestralReport.py:1025
 #: plugins/DetDescendantReport.py:814 plugins/DetDescendantReport.py:1035
