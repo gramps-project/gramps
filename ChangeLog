@@ -1,3 +1,28 @@
+2004-05-11  Don Allingham  <donaldallingham@users.sourceforge.net>
+	* src/GrampsCfg.py: remove unused options
+	* src/gramps.glade: remove unused panels in preferences
+	* src/Plugins.py: removed xpm images
+	* src/EventEdit.py: get full event list
+	* src/plugins/AncestorChart.py: remove xpm image
+	* src/plugins/AncestorChart2.py: remove xpm image
+	* src/plugins/AncestorReport.py: remove xpm image
+	* src/plugins/Ancestors.py: remove xpm image
+	* src/plugins/BookReport.py: remove xpm image
+	* src/plugins/CustomBookText.py: remove xpm image
+	* src/plugins/DesGraph.py: remove xpm image
+	* src/plugins/DescendReport.py: remove xpm image
+	* src/plugins/DetAncestralReport.py: remove xpm image
+	* src/plugins/DetDescendantReport.py: remove xpm image
+	* src/plugins/FamilyGroup.py: remove xpm image
+	* src/plugins/FtmStyleAncestors.py: remove xpm image
+	* src/plugins/FtmStyleDescendants.py: remove xpm image
+	* src/plugins/IndivComplete.py: remove xpm image
+	* src/plugins/IndivSummary.py: remove xpm image
+	* src/plugins/Makefile.in: remove xpm image
+	* src/plugins/SimpleBookTitle.py: remove xpm image
+	* src/plugins/WebPage.py: remove xpm image
+	* src/RelLib.py: secondary index for event names
+
 2004-05-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/EventCmp.py: Remove extra code.
 	* src/plugins/eventcmp.glade: Remove extra widgets. 

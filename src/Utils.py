@@ -57,45 +57,10 @@ from gettext import gettext as _
 # modified flag
 #
 #-------------------------------------------------------------------------
-_modifiedFlag = 0
 _history_brokenFlag = 0
-_autotime_val = 1
-_autosave_fun = None
-_autosave_tim = None
-_autosave_val = None
 
 LISTOBJ = "s"
 OBJECT  = "o"
-
-#-------------------------------------------------------------------------
-#
-# Sets the modified flag, which is used to determine if the database
-# needs to be saved.  Anytime a routine modifies data, it should call
-# this routine.
-#
-#-------------------------------------------------------------------------
-def modified():
-    global _modifiedFlag, _autosave_tim
-    if _autosave_fun and not _autosave_tim:
-        _autosave_tim = gtk.timeout_add(60000*_autotime_val,_autosave_fun)
-    _modifiedFlag = 1
-
-def enable_autosave(fun,value):
-    global _autosave_fun
-    global _autosave_val
-    if fun != None:
-        _autosave_fun = fun
-    _autosave_val = value
-
-def disable_autosave():
-    global _autosave_fun
-    _autosave_fun = None
-
-def clear_timer():
-    global _autosave_tim
-    if _autosave_tim:
-        gtk.timeout_remove(_autosave_tim)
-        _autosave_tim = None
 
 def history_broken():
     global _history_brokenFlag
@@ -119,21 +84,9 @@ def force_unicode(n):
 # Clears the modified flag.  Should be called after data is saved.
 #
 #-------------------------------------------------------------------------
-def clearModified():
-    global _modifiedFlag
-    _modifiedFlag = 0
-
 def clearHistory_broken():
     global _history_brokenFlag
     _history_brokenFlag = 0
-
-#-------------------------------------------------------------------------
-#
-# Returns the modified flag
-#
-#-------------------------------------------------------------------------
-def wasModified():
-    return _modifiedFlag
 
 def wasHistory_broken():
     return _history_brokenFlag
@@ -210,14 +163,6 @@ def destroy_passed_object(obj):
     obj.destroy()
     while gtk.events_pending():
         gtk.main_iteration()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_detail_flags(obj,priv=1):
-    return ""
 
 #-------------------------------------------------------------------------
 #
@@ -331,61 +276,6 @@ def strip_id(text):
         text = string.rstrip(text)
     return text
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def attach_places(values,combo,place):
-    l = gtk.Label("")
-    l.show()
-    l.set_alignment(0,0.5)
-    c = gtk.ListItem()
-    c.add(l)
-    c.set_data(LISTOBJ,None)
-    c.show()
-    sel_child = c
-    list = [c]
-    mymap = {}
-    placenamemap = {}
-    for src in values:
-        placenamemap["%s [%s]" % (src.get_title(),src.get_id())] = src
-    placenames = placenamemap.keys()
-    placenames.sort()
-    for key in placenames:
-        src = placenamemap[key]
-        l = gtk.Label(key)
-        l.show()
-        l.set_alignment(0,0.5)
-        c = gtk.ListItem()
-        c.add(l)
-        c.set_data(LISTOBJ,src)
-        c.show()
-        list.append(c)
-        if src == place:
-            sel_child = c
-        mymap[src] = c
-
-    combo.disable_activate()
-    combo.list.clear_items(0,-1)
-    combo.list.append_items(list)
-    combo.list.select_child(sel_child)
-
-    for v in mymap.keys():
-        combo.set_item_string(mymap[v],v.get_title())
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_place_from_list(obj):
-    select = obj.list.get_selection()
-    if len(select) == 0:
-        return None
-    else:
-        return select[0].get_data(LISTOBJ)
-
 def nautilus_icon(icon,type):
     import GrampsCfg
     
@@ -446,16 +336,9 @@ def get_mime_description(type):
 
 #-------------------------------------------------------------------------
 #
-# Short hand function to return either the person's birthday, or an empty
-# string if the person is None
+#
 #
 #-------------------------------------------------------------------------
-def birthday(person):
-    if person:
-        return person.get_birth().get_quote_date()
-    else:
-        return ""
-
 def thumb_path(dir,mobj):
     type = mobj.get_mime_type()
 
@@ -646,92 +529,3 @@ def unbold_label(label):
     label.set_text(text)
     label.set_use_markup(0)
 
-#------------------------------------------------------------------------
-#
-# XPM Image for reports and tools 
-#
-#------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 33 1",
-        " 	c None",
-        ".	c #1A1A1A",
-        "+	c #847B6E",
-        "@	c #B7AC9C",
-        "#	c #D1D1D0",
-        "$	c #EEE2D0",
-        "%	c #6A655C",
-        "&	c #868686",
-        "*	c #F1EADF",
-        "=	c #5C5854",
-        "-	c #B89C73",
-        ";	c #E2C8A1",
-        ">	c #55524C",
-        ",	c #F5EEE6",
-        "'	c #4F4E4C",
-        ")	c #A19C95",
-        "!	c #B3966E",
-        "~	c #CDC8BF",
-        "{	c #F6F2ED",
-        "]	c #A6A5A4",
-        "^	c #413F3F",
-        "/	c #D8D1C5",
-        "(	c #968977",
-        "_	c #BAB9B6",
-        ":	c #FAFAF9",
-        "<	c #BEA27B",
-        "[	c #E9DAC2",
-        "}	c #9D9385",
-        "|	c #E4E3E3",
-        "1	c #7A7062",
-        "2	c #E6D3B4",
-        "3	c #BAA488",
-        "4	c #322E2B",
-        "                                                ",
-        "                                                ",
-        "             (+(+++++111%1%%%%===%1             ",
-        "             +______________@_@)&==1            ",
-        "             +_::::::::::::::*|#_&&}>           ",
-        "             &_:::::::::::::::{|#]1~}^          ",
-        "             +_::::::::::::::::{|#=|~&4         ",
-        "             +_::::]]]]]]]]:::::|{':|~&4        ",
-        "             +_::::::::::::::::::{'::|~&4       ",
-        "             +_:::::::::::::::::::'*::|~&^      ",
-        "             +_:::::::::::::::::::'|*::|~}>     ",
-        "             1_::::]]]]]]]]]]]]:::'~|{::|_}%    ",
-        "             1_:::::::::::::::::::'..4^'=1+%1   ",
-        "             +_::::]]]]]]]]]]]]:::|__])&+%=^%   ",
-        "             1_::::::::::::::::::::|#__)&&+'^   ",
-        "             1_::::]]]]]]]]]::::::::|#~_])&%^   ",
-        "             1_::::::::::::::::::::{||#~_])14   ",
-        "             1_::::]]]]]]]]]]]]]]]]]]&}#~_]+4   ",
-        "             1_::::::::::::::::::{{{{||#~~@&4   ",
-        "             %_::::]]]]]]]]]]]]]]]])))}(~~~&4   ",
-        "             %_:::::::::::::::::{{{{{*|#/~_(4   ",
-        "             %_::::]]]]]]]]]]]]]]])))))}2;/}4   ",
-        "             %_:::::::::::::::{{{{{***||[#~}4   ",
-        "             %_::::]]]]]]]]]])]))))))))}2/;)4   ",
-        "             %_::::::::::::::{{{{{**|$$[/2~!4   ",
-        "             %_::::]]]]]]]]){{{{******$$[2/}4   ",
-        "             %_::::::::::::{{{{****$$$$$[2/!4   ",
-        "             =_::::]]]]]]])]))))))))})}}[2/!4   ",
-        "             %_:::::::::{{{{{{**|$$$$$$[[2;)4   ",
-        "             =_::::]]]])]]))))))))))}}}}[22!4   ",
-        "             %_::::::::{{{{{|**|$$[$[[[[[22}4   ",
-        "             =_::::]]])])))))))))}}}}}}}222-4   ",
-        "             =_:::::{{{{{|{*|$$$$$[[[[22222!4   ",
-        "             =_::::)]])))))))))}}}}}}(}(2;2-4   ",
-        "             =_:::{{{{{{***|$$$$$[[[[22222;-4   ",
-        "             =_:::{])))))))))}}}}}}}(}((2;;<4   ",
-        "             >_:{{{{{{**|$$$$$[[[[22222;2;;-4   ",
-        "             >_{{{{)))))))}}}}}}}(!(((((;;;-4   ",
-        "             >_{{{{|**|*$$$$$[[[[22222;;;;;!4   ",
-        "             '_{{{{****$$$$$2[[222222;2;;;;-4   ",
-        "             '@{{****$$$$$[[[2[222;;2;;;;;;!4   ",
-        "             >]{******$$$[$[2[[2222;;;;;;;;!4   ",
-        "             '_****$$$$[$[[[[2222;2;;;;;;;;!4   ",
-        "             '@__@@@@@@@33<3<<<<<<-<-!!!!!!!4   ",
-        "             44444444444444444444444444444444   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]

@@ -46,7 +46,6 @@ import Errors
 import FontScale
 from QuestionDialog import ErrorDialog
 from SubstKeywords import SubstKeywords
-from Utils import get_xpm_image
 from gettext import gettext as _
 
 _BORN = _('b.')
@@ -709,7 +708,6 @@ register_report(
     category=_("Graphical Reports"),
     status=(_("Beta")),
     description=_("Produces a graphical ancestral tree graph"),
-    xpm=get_xpm_image(),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
     )

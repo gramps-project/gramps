@@ -757,8 +757,7 @@ class Gramps:
             if self.find_person:
                 self.find_person.show()
             else:
-                self.find_person = Find.FindPerson(self.find_goto_person,self.db,
-                                                   self.people_view.id2col)
+                self.find_person = Find.FindPerson(self.find_goto_person,self.db,None)
 
     def on_findname_activate(self,obj):
         """Display the find box"""
@@ -1574,39 +1573,6 @@ class Gramps:
             self.db.set_researcher(owner)
 
         self.setup_bookmarks()
-
-        try:
-            mylist = self.db.get_person_event_types()
-            for type in mylist:
-                ntype = const.display_pevent(type)
-                if ntype not in const.personalEvents:
-                    const.personalEvents.append(ntype)
-                    
-            mylist = self.db.get_family_event_types()
-            for type in mylist:
-                ntype = const.display_fevent(type)
-                if ntype not in const.marriageEvents:
-                    const.marriageEvents.append(ntype)
-
-            mylist = self.db.get_person_attribute_types()
-            for type in mylist:
-                ntype = const.display_pattr(type)
-                if ntype not in const.personalAttributes:
-                    const.personalAttributes.append(ntype)
-
-            mylist = self.db.get_family_attribute_types()
-            for type in mylist:
-                ntype = const.display_fattr(type)
-                if ntype not in const.familyAttributes:
-                    const.familyAttributes.append(ntype)
-
-            mylist = self.db.get_family_relation_types()
-            for type in mylist:
-                ntype = const.display_frel(type)
-                if ntype not in const.familyRelations:
-                    const.familyRelations.append(ntype)
-        except:
-            pass
 
         GrampsCfg.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")

@@ -27,7 +27,6 @@ import os
 import Errors
 
 from QuestionDialog import ErrorDialog
-from Utils import get_xpm_image
 from gettext import gettext as _
 
 import Report
@@ -1230,7 +1229,6 @@ register_report(
     status=(_("Beta")),
     category=_("Text Reports"),
     description= _("Produces a detailed descendant report"),
-    xpm= get_xpm_image(),
     author_name="Bruce DeGrasse",
     author_email="bdegrasse1@attbi.com"
     )

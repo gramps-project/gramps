@@ -40,7 +40,6 @@ import Report
 import BaseDoc
 import Errors
 import Utils
-from Utils import get_xpm_image
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -725,7 +724,6 @@ register_report(
     category=_("Text Reports"),
     status=(_("Beta")),
     description=_("Creates a family group report, showing information on a set of parents and their children."),
-    xpm=get_xpm_image()
     )
 
 # (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)

@@ -45,7 +45,6 @@ import RelLib
 import Errors
 import Utils
 from QuestionDialog import ErrorDialog
-from Utils import get_xpm_image
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -1675,7 +1674,6 @@ register_report(
     category=_("Text Reports"),
     status=(_("Beta")),
     description= _("Produces a textual descendant report similar to Family Tree Maker."),
-    xpm=get_xpm_image(),
     author_name="Alex Roitman",
     author_email="shura@alex.neuro.umn.edu"
     )

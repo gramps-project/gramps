@@ -996,7 +996,6 @@ Plugins.register_report(
     category=_("Books"),
     status=(_("Unstable")),
     description=_("Creates a book containing several reports."),
-    xpm=Utils.get_xpm_image(),
     author_name="Alex Roitman",
     author_email="shura@alex.neuro.umn.edu"
     )

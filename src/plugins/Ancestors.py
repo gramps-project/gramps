@@ -34,7 +34,6 @@ import BaseDoc
 import RelLib
 import Errors
 import Plugins
-from Utils import get_xpm_image
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -1099,7 +1098,6 @@ register_report(
     category=_("Text Reports"),
     status=(_("Beta")),
     description= _("Produces a detailed ancestral report."),
-    xpm=get_xpm_image(),
     author_name="Tim Waugh",
     author_email="twaugh@redhat.com"
     )

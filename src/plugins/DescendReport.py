@@ -39,7 +39,6 @@ import BaseDoc
 import Errors
 import Date
 import Sort
-from Utils import get_xpm_image
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -334,7 +333,6 @@ register_report(
     category=_("Text Reports"),
     status=(_("Beta")),
     description=_("Generates a list of descendants of the active person"),
-    xpm=get_xpm_image(),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
     )
