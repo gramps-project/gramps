@@ -521,7 +521,7 @@ class GrampsTextFormatComboBox(gtk.ComboBox):
             self.store.append(row=[name])
             #if callback:
             #    menuitem.connect("activate",callback)
-            if name == active:
+            if item[7] == active:
                 active_index = index
             elif not active and name == out_pref:
                 active_index = index
@@ -546,6 +546,9 @@ class GrampsTextFormatComboBox(gtk.ComboBox):
     def get_printable(self):
         return PluginMgr.textdoc_list[self.get_active()][6]
 
+    def get_clname(self):
+        return PluginMgr.textdoc_list[self.get_active()][7]
+
 class GrampsDrawFormatComboBox(gtk.ComboBox):
 
     def set(self,tables,callback,obj=None,active=None):
@@ -566,7 +569,7 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
             self.store.append(row=[name])
             #if callback:
             #    menuitem.connect("activate",callback)
-            if name == active:
+            if item[6] == active:
                 active_index = index
             elif not active and name == out_pref:
                 active_index = index
@@ -591,6 +594,9 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
     def get_printable(self):
         return PluginMgr.drawdoc_list[self.get_active()][5]
 
+    def get_clname(self):
+        return PluginMgr.drawdoc_list[self.get_active()][6]
+
 class GrampsBookFormatComboBox(gtk.ComboBox):
 
     def set(self,tables,callback,obj=None,active=None):
@@ -611,7 +617,7 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
             self.data.append(item)
             name = item[0]
             self.store.append(row=[name])
-            if name == active:
+            if item[7] == active:
                 active_index = index
             elif not active and name == out_pref:
                 active_index = index
@@ -632,6 +638,9 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
 
     def get_printable(self):
         return self.data[self.get_active()][6]
+
+    def get_clname(self):
+        return self.data[self.get_active()][7]
 
 #-------------------------------------------------------------------------
 #
@@ -697,6 +706,7 @@ def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
     if GrampsKeys.get_pop_plugin_status() and len(PluginMgr.failmsg_list):
         PluginStatus()
     else:
+        global status_up
         status_up.close(None)
         status_up = None
 

@@ -191,7 +191,7 @@ class OptionListCollection:
     default_paper_name = GrampsKeys.get_paper_preference()
     default_template_name = ""
     default_orientation = BaseDoc.PAPER_PORTRAIT
-    default_format_name = _('Print...')
+    default_format_name = 'print'
     
     def __init__(self,filename=None):
         """
