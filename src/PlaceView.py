@@ -43,21 +43,6 @@ import Utils
 from QuestionDialog import QuestionDialog, ErrorDialog
 from intl import gettext as _
 
-_column_headers = [
-    (_('Place Name'),7,200),
-    (_('ID'),1,50),
-    (_('Church Parish'),8,75),
-    (_('City'),9,75),
-    (_('County'),10,75),
-    (_('State'),11,75),
-    (_('Country'),12,75),
-    ('',7,0),
-    ('',8,0),
-    ('',9,0),
-    ('',10,0),
-    ('',11,0),
-    ('',12,0)]
-
 #-------------------------------------------------------------------------
 #
 # PlaceView class
@@ -71,13 +56,19 @@ class PlaceView:
         self.list   = glade.get_widget("place_list")
         self.update = update
 
+        self.column_headers = [
+            (_('Place Name'),7,200), (_('ID'),1,50), (_('Church Parish'),8,75),
+            (_('City'),9,75), (_('County'),10,75), (_('State'),11,75),
+            (_('Country'),12,75), ('',7,0), ('',8,0), ('',9,0), ('',10,0),
+            ('',11,0), ('',12,0)]
+
         self.active = None
 
         self.id2col = {}
         self.selection = self.list.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         colno = 0
-        for title in _column_headers:
+        for title in self.column_headers:
             renderer = gtk.CellRendererText ()
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
             colno = colno + 1

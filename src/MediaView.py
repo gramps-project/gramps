@@ -56,9 +56,6 @@ from QuestionDialog import QuestionDialog, ErrorDialog
 #-------------------------------------------------------------------------
 from intl import gettext as _
 
-_column_headers = [(_('Title'),4,350), (_('ID'),1,50), (_('Type'),2,70),
-                   ('Path',3,150), ('',4,0) ]
-
 #-------------------------------------------------------------------------
 #
 # MediaView
@@ -75,11 +72,14 @@ class MediaView:
         self.mdetails = glade.get_widget("mdetails")
         self.preview = glade.get_widget("preview")
 
+        self.column_headers = [(_('Title'),4,350), (_('ID'),1,50),
+                               (_('Type'),2,70), ('Path',3,150), ('',4,0) ]
+
         self.id2col = {}
         self.selection = self.list.get_selection()
 
         colno = 0
-        for title in _column_headers:
+        for title in self.column_headers:
             renderer = gtk.CellRendererText ()
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
             colno = colno + 1

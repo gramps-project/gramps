@@ -90,10 +90,6 @@ _HOMEPAGE  = "http://gramps.sourceforge.net"
 _MAILLIST  = "http://sourceforge.net/mail/?group_id=25770"
 _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
 
-pl_titles  = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
-               (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
-               ('',6,0), ('',7,0) ]
-
 _sel_mode = gtk.SELECTION_MULTIPLE
 
 #-------------------------------------------------------------------------
@@ -104,6 +100,10 @@ _sel_mode = gtk.SELECTION_MULTIPLE
 class Gramps:
 
     def __init__(self,arg):
+
+        self.pl_titles  = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
+                            (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
+                            ('',6,0), ('',7,0) ]
 
         self.program = gnome.program_init("gramps",const.version)
         
@@ -189,8 +189,9 @@ class Gramps:
         self.pl_other    = self.gtop.get_widget("pl_other")
 
         self.ptabs.set_show_tabs(0)
+
         self.pl_page = [
-            ListModel.ListModel(self.pl_other, pl_titles, self.row_changed,
+            ListModel.ListModel(self.pl_other, self.pl_titles, self.row_changed,
                                 self.alpha_event, _sel_mode),
             ]
 
@@ -1445,7 +1446,7 @@ class Gramps:
         tree.show()
         display.add(tree)
         display.show()
-        model = ListModel.ListModel(tree,pl_titles,self.row_changed,
+        model = ListModel.ListModel(tree,self.pl_titles,self.row_changed,
                                     self.alpha_event,_sel_mode)
         self.alpha_page[pg] = model
         for index in range(0,len(self.tab_list)):
