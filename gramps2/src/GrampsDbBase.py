@@ -261,7 +261,7 @@ class GrampsDbBase:
 
     def get_person_from_handle(self,val):
         """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
+        If no such Person exists, None is returned."""
 
         data = self.person_map.get(str(val))
         if data:
@@ -302,8 +302,8 @@ class GrampsDbBase:
         return None
 
     def get_event_from_handle(self,handle):
-        """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned."""
+        """finds a Event in the database from the passed gramps' ID.
+        If no such Event exists, None is returned."""
 
         data = self.event_map.get(str(handle))
         if data:
@@ -313,8 +313,8 @@ class GrampsDbBase:
         return None
 
     def get_family_from_handle(self,handle):
-        """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned."""
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, None is returned."""
 
         data = self.family_map.get(str(handle))
         if data:
@@ -358,16 +358,20 @@ class GrampsDbBase:
 
     def find_event_from_handle(self,val):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
-        If no such Family exists, a new Family is added to the database.
+        Finds a Event in the database from the passed GRAMPS ID.
+        If no such Event exists, a new Event is added to the database.
         """
+        event = Event()
         data = self.event_map.get(str(val))
         if data:
-            event = Event()
             event.unserialize(data)
-            return event
         else:
-            return None
+            event.set_handle(val)
+            if transaction:
+                transaction.add(EVENT_KEY,val,None)
+            self.event_map[str(val)] = event.serialize()
+            self.emap_index = self.emap_index + 1
+        return event
 
     def find_object_from_handle(self,handle,transaction):
         """
