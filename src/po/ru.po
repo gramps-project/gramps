@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.0\n"
-"POT-Creation-Date: Tue Feb 11 21:17:51 2003\n"
-"PO-Revision-Date: 2003-02-12 11:21-0600\n"
+"POT-Creation-Date: Thu Feb 13 18:46:40 2003\n"
+"PO-Revision-Date: 2003-02-17 18:34-0600\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: English <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,7 @@ msgstr "(и|до|-)"
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr "с %(start_date)s по %(stop_date)s"
 
-#: DbPrompter.py:99 gramps_main.py:730 gramps_main.py:983 gramps_main.py:995
+#: DbPrompter.py:99 gramps_main.py:735 gramps_main.py:988 gramps_main.py:1000
 msgid "No Comment Provided"
 msgstr "Комментарий Отсутствует"
 
@@ -332,7 +332,7 @@ msgid "unknown"
 msgstr "неизвестно"
 
 #: EditPerson.py:802 EditPerson.py:813 Marriage.py:399 gramps_main.py:497
-#: gramps_main.py:943
+#: gramps_main.py:948
 msgid "Abandon Changes"
 msgstr "Оставить Изменения"
 
@@ -463,7 +463,7 @@ msgstr "%s: неизвестно"
 #: FamilyView.py:412 Plugins.py:404 Plugins.py:405 Plugins.py:406
 #: Plugins.py:418 Plugins.py:419 Plugins.py:420 const.py:137 const.py:412
 #: const.py:420 gramps.glade:3534 gramps.glade:3729 gramps.glade:4283
-#: gramps.glade:4489 gramps.glade:6211 gramps.glade:6477 gramps_main.py:1156
+#: gramps.glade:4489 gramps.glade:6211 gramps.glade:6477 gramps_main.py:1161
 #: plugins/WebPage.py:288
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -993,7 +993,7 @@ msgstr ""
 "Файл был перемещен или уничтожен"
 
 #: RelImage.py:70 RelImage.py:73 RelImage.py:134 RelImage.py:137
-#: gramps_main.py:751 gramps_main.py:755 gramps_main.py:763
+#: gramps_main.py:756 gramps_main.py:760 gramps_main.py:768
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
 #: plugins/DesGraph.py:219 plugins/WriteGedcom.py:486
 #: plugins/WriteGedcom.py:491
@@ -1470,9 +1470,7 @@ msgid ""
 "a personal genealogy program."
 msgstr ""
 "GRAMPS (Генеалогическая Система Программирования Исследований и Управления "
-"Анализом) является персональной генеалогической программой.\n"
-"\t\t\t\t\t\t\t\t\t\t\t\t\n"
-"Перевод: Александр Ройтман <shura@alex.neuro.umn.edu>"
+"Анализом) является персональной генеалогической программой."
 
 #: const.py:120 edit_person.glade:639 gramps.glade:5400
 msgid "male"
@@ -2429,7 +2427,7 @@ msgid "<b>Active Person's Parents</b>"
 msgstr "<b>Родители Активного Лица</b>"
 
 #: gramps.glade:1792
-msgid "<b>Spouse's  Parents</b>"
+msgid "<b>Spouse's Parents</b>"
 msgstr "<b>Родители Супруга</b>"
 
 #: gramps.glade:1847
@@ -2437,8 +2435,8 @@ msgid "<b>Children</b>"
 msgstr "<b>Дети</b>"
 
 #: gramps.glade:1889
-msgid "Make the selected child the active family"
-msgstr "Сделать выделенного ребенка активной семьей"
+msgid "Make the selected child the active person"
+msgstr "Сделать выделенного ребенка активным лицом"
 
 #: gramps.glade:1915
 msgid "Adds a new child to the selected family"
@@ -2641,7 +2639,7 @@ msgid "New Relationship"
 msgstr "Новое Отношение"
 
 #: gramps.glade:5793
-msgid "Add a Spouse or Create a New Relationhip"
+msgid "Add a Spouse or Create a New Relationship"
 msgstr "Добавить Супруга или Создать Новое Отношение"
 
 #: gramps.glade:5834
@@ -2696,15 +2694,15 @@ msgstr ""
 "В используемой базе данных существуют несохраненные изменения\n"
 "Вы хотите сохранить изменения?"
 
-#: gramps_main.py:547
+#: gramps_main.py:552
 msgid "Do you want to close the current database and create a new one?"
 msgstr "Вы хотите закрыть текущую базу данных и создать новую?"
 
-#: gramps_main.py:548
+#: gramps_main.py:553
 msgid "New Database"
 msgstr "Новая База Данных"
 
-#: gramps_main.py:676
+#: gramps_main.py:681
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
@@ -2712,74 +2710,74 @@ msgstr ""
 "Существует авто-сохраненный файл для %s.\n"
 "Использовать его вместо последней сохраненной версии?"
 
-#: gramps_main.py:681
+#: gramps_main.py:686
 msgid "Autosave File"
 msgstr "Автоматически Сохранить Файл"
 
-#: gramps_main.py:709 gramps_main.py:745
+#: gramps_main.py:714 gramps_main.py:750
 msgid "%s is not a directory"
 msgstr "%s не является каталогом"
 
-#: gramps_main.py:712
+#: gramps_main.py:717
 msgid "Loading %s ..."
 msgstr "Загружаю  %s ..."
 
-#: gramps_main.py:738
+#: gramps_main.py:743
 msgid "Saving %s ..."
 msgstr "Сохраняю %s ..."
 
-#: gramps_main.py:797
+#: gramps_main.py:802
 msgid "autosaving..."
 msgstr "автоматически сохраняю..."
 
-#: gramps_main.py:800
+#: gramps_main.py:805
 msgid "autosave complete"
 msgstr "автоматическое сохранение завершено"
 
-#: gramps_main.py:802
+#: gramps_main.py:807
 msgid "autosave failed"
 msgstr "автоматическое сохранение не удалось"
 
-#: gramps_main.py:829
+#: gramps_main.py:834
 msgid "Do you really wish to delete %s?"
 msgstr "Вы действительно хотите уничтожить %s?"
 
-#: gramps_main.py:831
+#: gramps_main.py:836
 msgid "Delete Person"
 msgstr "Уничтожить Лицо"
 
-#: gramps_main.py:940
+#: gramps_main.py:945
 msgid ""
 "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 "Вы хотите потерять ваши изменения и откатить к последней сохраненной базе "
 "данных?"
 
-#: gramps_main.py:945
+#: gramps_main.py:950
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr "Не могу откатить к предыдущей базе данных так как ее не существует"
 
-#: gramps_main.py:1247
+#: gramps_main.py:1252
 msgid "Loading %s..."
 msgstr "Загружаю %s..."
 
-#: gramps_main.py:1342
+#: gramps_main.py:1347
 msgid "No default/home person has been set"
 msgstr "Лицо по умолчанию не было выбрано"
 
-#: gramps_main.py:1348
+#: gramps_main.py:1353
 msgid "%s has been bookmarked"
 msgstr "%s помечено закладкой"
 
-#: gramps_main.py:1351
+#: gramps_main.py:1356
 msgid "Bookmark could not be set because no one was selected"
 msgstr "Невозможно поставить закладку поскольку никто не выбран"
 
-#: gramps_main.py:1363
+#: gramps_main.py:1368
 msgid "Do you wish to set %s as the home person?"
 msgstr "Вы хотите выбрать %s в качестве лица по умолчанию?"
 
-#: gramps_main.py:1365
+#: gramps_main.py:1370
 msgid "Set Home Person"
 msgstr "Установить Лицо По Умолчанию"
 
@@ -4318,7 +4316,7 @@ msgid "Timeline"
 msgstr "Временная Линия"
 
 #: plugins/TimeLine.py:315
-msgid "TimeLine File"
+msgid "Timeline File"
 msgstr "Файл Временной Линии"
 
 #: plugins/TimeLine.py:337
@@ -4330,7 +4328,7 @@ msgid "Generates a timeline graph."
 msgstr "Генерирует график временной линии"
 
 #: plugins/TimeLine.py:446
-msgid "TimeLine Graph"
+msgid "Timeline Graph"
 msgstr "График Временной Линии"
 
 #: plugins/Verify.py:290
