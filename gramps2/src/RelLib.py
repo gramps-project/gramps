@@ -2899,7 +2899,7 @@ class GrampsDB:
 
     def sortbyplace(self,f,s):
         fp = self.place_map[f][0].upper()
-        sp = self.place_map[f][0].upper()
+        sp = self.place_map[s][0].upper()
         return cmp(fp,sp)
 
     def sort_place_keys(self):
@@ -2929,19 +2929,9 @@ class GrampsDB:
         return self.media_map.keys()
 
     def sortbysource(self,f,s):
-        if self.source_map.get(str(f)):
-            f1 = Source()
-            f1.unserialize(self.source_map.get(str(f)))
-        else:
-            return 0
-        if self.source_map.get(str(s)):
-            s1 = Source()
-            s1.unserialize(self.source_map.get(str(s)))
-        else:
-            return 0
-        f2 = f1.get_title().upper()
-        s2 = s1.get_title().upper()
-        return cmp(f2,s2)
+        f1 = self.source_map[f][1].upper()
+        s1 = self.source_map[s][1].upper()
+        return cmp(f1,s1)
 
     def set_source_keys(self):
         keys = self.source_map.keys()
