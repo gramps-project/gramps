@@ -81,7 +81,6 @@ revisionFile   = "%s/revision.glade" % rootDir
 srcselFile     = "%s/srcsel.glade" % rootDir
 findFile       = "%s/find.glade" % rootDir
 mergeFile      = "%s/mergedata.glade" % rootDir
-traceFile      = "%s/trace.glade" % rootDir
 filterFile     = "%s/rule.glade" % rootDir
 
 pluginsDir     = "%s/plugins" % rootDir
@@ -100,8 +99,8 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "GRAMPS"
-version      = "0.9.0-rc2"
-copyright    = "© 2001-2002 Donald N. Allingham"
+version      = "0.9.0-rc3"
+copyright    = "© 2001-2003 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton","Donald A. Peterson"]
 comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "Management Programming System) is a personal "
