@@ -356,10 +356,14 @@ class GedcomWriter:
         self.topDialog = gtk.glade.XML(glade_file,"gedcomExport")
         self.topDialog.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
+            "gnu_free" : self.gnu_free,
+            "standard_copyright" : self.standard_copyright,
+            "no_copyright" : self.no_copyright,
             "on_ok_clicked" : self.on_ok_clicked
             })
         
         filter_obj = self.topDialog.get_widget("filter")
+        self.copy = 0
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -401,6 +405,15 @@ class GedcomWriter:
         filetgt.set_filename(pathname)
         
         self.topDialog.get_widget("gedcomExport").show()
+        
+    def gnu_free(self,obj):
+        self.copy = 1
+        
+    def standard_copyright(self,obj):
+        self.copy = 0
+        
+    def no_copyright(self,obj):
+        self.copy = 2
         
     def on_ok_clicked(self,obj):
     
@@ -489,14 +502,16 @@ class GedcomWriter:
             self.g.write("1 DEST %s\n" % self.dest)
         self.g.write("1 DATE %s %s %s\n" % (date[2],string.upper(date[1]),date[4]))
         if self.cnvtxt == ansel_utf8.utf8_to_ansel:
-            self.g.write("1 CHAR ANSEL\n");
+            self.g.write("1 CHAR ANSEL\n")
         else:
-            self.g.write("1 CHAR UTF-8\n");
+            self.g.write("1 CHAR UTF-8\n")
         self.g.write("1 SUBM @SUBM@\n")
         self.g.write("1 FILE %s\n" % filename)
+        self.write_copy()
         self.g.write("1 GEDC\n")
         self.g.write("2 VERS 5.5\n")
         self.g.write('2 FORM LINEAGE-LINKED\n')
+        self.gnu_fdl()
         self.g.write("0 @SUBM@ SUBM\n")
         owner = self.db.getResearcher()
         if owner.getName():
@@ -550,6 +565,38 @@ class GedcomWriter:
         self.g.write("0 TRLR\n")
         self.g.close()
 
+    def write_copy(self):
+        import time
+
+        t = time.localtime(time.time())
+        y = t[0]
+        
+        if self.copy == 0:
+            o = self.db.getResearcher().getName()
+            self.g.write('1 COPR Copyright (c) %d %s.\n' % (y,o))
+        elif self.copy == 1:
+            o = self.db.getResearcher().getName()
+            self.g.write('1 COPR Copyright (c) %d %s. See additional copyright NOTE below.\n' % (y,o))
+
+    def gnu_fdl(self):
+        import time
+
+        if self.copy != 1:
+            return
+        
+        t = time.localtime(time.time())
+        y = t[0]
+        o = self.db.getResearcher().getName()
+        
+        self.g.write('1 NOTE       Copyright (c) %d %s.\n' % (y,o))
+        try:
+            f = open(const.fdl,"r")
+            for line in f.readlines():
+                self.g.write('2 CONT %s' % line)
+            f.close()
+        except:
+            pass
+        
     def write_families(self):
         nump = float(len(self.flist))
         index = 0.0
