@@ -1,13 +1,13 @@
-# Russian translation for Gramps; 
+# Russian translation for GRAMPS; 
 # Русский перевод GRAMPS. 
 # Copyright (C) 2002 Free Software Foundation, Inc. 
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002. 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 0.7.3-snap20020406\n"
+"Project-Id-Version: gramps 0.7.3-snap20020406\n"
 "POT-Creation-Date: Wed Apr 10 10:02:15 2002\n"
-"PO-Revision-Date: 2002-04-10 18:07-0500\n"
+"PO-Revision-Date: 2002-04-11 16:13-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1197,11 +1197,11 @@ msgstr "Горизонтально"
 
 #: PedView.py:346
 msgid "Doubleclick to edit, Shift-Doubleclick to make the active person"
-msgstr "Двойной клик - правка, Shift-двойной клик - сделать активным лицом"
+msgstr "Двойной щелчок - правка, Shift-двойной щелчок - сделать активным лицом"
 
 #: PedView.py:362
 msgid "Double clicking will make %s the active person"
-msgstr "Двойной клик сделает %s активным лицом"
+msgstr "Двойной щелчок сделает %s активным лицом"
 
 #: PlaceView.py:142
 msgid "Exactly two places must be selected to perform a merge"
@@ -2444,7 +2444,7 @@ msgid ""
 "Click column headers to sort. When sorted by birth date, drag and drop to "
 "reorder children."
 msgstr ""
-"Кликните на заголовки колонок для сортировки. При сортировке \n"
+"Щелкните на заголовки колонок для сортировки. При сортировке \n"
 "по дате рождения, упорядочьте детей посредством перетаскивания мышью."
 
 #: gramps.glade:2630
