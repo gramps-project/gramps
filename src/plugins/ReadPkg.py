@@ -30,7 +30,6 @@ from intl import gettext as _
 import gtk
 import const
 import os
-import shutil
 import time
 from QuestionDialog import ErrorDialog, WarningDialog
 import TarFile
@@ -118,15 +117,8 @@ class ReadPkg:
 
         # Clean up tempdir after ourselves
         files = os.listdir(tmpdir_path) 
-
-        dbdir_path = self.db.getSavePath() 
         for filename in files:
-            oldfile = os.path.join(tmpdir_path,filename)
-            newfile = os.path.join(dbdir_path,filename)
-	    if filename not in [const.xmlFile,const.xmlFile+'.bak']:
-                shutil.copy2( oldfile, newfile )
-
-            os.remove( oldfile )
+            os.remove(os.path.join(tmpdir_path,filename))
 
         os.rmdir(tmpdir_path)
 

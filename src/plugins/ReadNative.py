@@ -30,7 +30,6 @@ from intl import gettext as _
 import gtk
 import const
 import os
-import shutil
 
 #-------------------------------------------------------------------------
 #
@@ -80,35 +79,7 @@ class ReadNative:
         Utils.destroy_passed_object(self.top)
         self.show_display()
 
-        # Create tempdir, if it does not exist, then check for writability
-        tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
-        if not os.path.isdir(tmpdir_path):
-            try:
-                os.mkdir(tmpdir_path,0700)
-            except:
-                ErrorDialog( _("Could not create temporary directory %s") % 
-                                tmpdir_path )
-                return
-        elif not os.access(tmpdir_path,os.W_OK):
-            ErrorDialog( _("Temporary directory %s is not writable") % tmpdir_path )
-            return
-        else:    # tempdir exists and writable -- clean it up if not empty
-	    files = os.listdir(tmpdir_path) ;
-            for filename in files:
-                os.remove( os.path.join(tmpdir_path,filename) )
-
-        # Copy all files from imp_dbpath to tmpdir_path
-        files = os.listdir(imp_dbpath)
-        for filename in files:
-            oldfile = os.path.join(imp_dbpath,filename)
-            newfile = os.path.join(tmpdir_path,filename)
-            try:
-                shutil.copy2( oldfile, newfile )
-            except:	
-            # These are .* files, and dirs under database dir -- ignore them
-                pass
-
-	dbname = os.path.join(tmpdir_path,const.xmlFile)  
+	dbname = os.path.join(imp_dbpath,const.xmlFile)  
 
         try:
             importData(self.db,dbname,self.progress)
@@ -116,25 +87,11 @@ class ReadNative:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
         
-        # Clean up tempdir after ourselves
-        files = os.listdir(tmpdir_path) 
-
-        dbdir_path = self.db.getSavePath() 
-        for filename in files:
-            oldfile = os.path.join(tmpdir_path,filename)
-            newfile = os.path.join(dbdir_path,filename)
-	    if filename not in [const.xmlFile,const.xmlFile+'.bak']:
-                shutil.copy2( oldfile, newfile )
-
-            os.remove( oldfile )
-
-        os.rmdir(tmpdir_path)
-	
 	self.window.destroy()
         self.callback(1)
 
     def progress(self,val):
-        self.progress_bar.set_value(val*100.0)
+        self.progress_bar.set_fraction(val)
         while gtk.events_pending():
             gtk.mainiteration()
         
