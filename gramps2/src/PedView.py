@@ -58,9 +58,17 @@ class DispBox:
         self.root = root
 
         self.name = GrampsCfg.nameof(person)
-        self.exp = "%s\n%s %s\n%s %s" % (self.name,
-            _BORN,person.getBirth().getDate(),
-            _DIED, person.getDeath().getDate())
+        bd = person.getBirth().getDate()
+        dd = person.getDeath().getDate()
+        if bd and dd:
+            self.exp = "%s\n%s %s\n%s %s" % (self.name,_BORN,bd,_DIED,dd )
+        elif bd:
+            self.exp = "%s\n%s %s" % (self.name,_BORN,bd )
+        elif dd:
+            self.exp = "%s\n%s %s" % (self.name,_DIED,dd )
+        else:
+            self.exp = "%s" % self.name
+
         
         self.group = self.root.add(gnome.canvas.CanvasGroup,x=x,y=y)
         self.shadow = self.group.add(gnome.canvas.CanvasRect,
