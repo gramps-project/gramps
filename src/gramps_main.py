@@ -577,7 +577,7 @@ class Gramps:
         if self.active_person:
             SelectChild.NewChild(self.database,self.active_family,
                                  self.active_person,self.update_after_newchild,
-                                  self.update_after_edit,
+                                 self.update_after_edit,
                                  GrampsCfg.lastnamegen)
 
     def on_choose_parents_clicked(self,obj):

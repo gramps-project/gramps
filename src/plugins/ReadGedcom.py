@@ -440,10 +440,7 @@ class GedcomParser:
                     noteobj = Note()
                     self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
-                if text == "":
-                    noteobj.append(self.parse_note_continue(1))
-                else:
-                    noteobj.append(text + self.parse_note_continue(1))
+                noteobj.append(text + self.parse_continue_data(1))
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
                 self.ignore_sub_junk(1)
@@ -1007,6 +1004,8 @@ class GedcomParser:
                 address.setStreet(val)
             elif matches[1] == "CITY":
                 address.setCity(matches[2])
+            elif matches[1] == "PHON":
+                address.setNote(matches[2])
             elif matches[1] == "STAE":
                 address.setState(matches[2])
             elif matches[1] == "POST":

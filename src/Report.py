@@ -784,6 +784,12 @@ class ReportDialog:
         self.target_path = self.target_fileentry.get_full_path(0)
         if not self.target_path:
             return None
+
+        if not self.get_target_is_directory() and os.path.isdir(self.target_path):
+            GnomeErrorDialog(_("The filename that you gave is a directory.\n"
+                               "You need to provide a valid filename."))
+            return None
+        
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
         return 1
 

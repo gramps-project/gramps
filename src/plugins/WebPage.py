@@ -72,9 +72,11 @@ class HtmlLinkDoc(HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,imgdir,doc):
+    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,imgdir,doc,id,idlink):
         self.person = person
         self.doc = doc
+        self.use_id = id
+        self.id_link = idlink
 	self.list = map
         self.private = private
         self.alive = person.probablyAlive() and restrict
@@ -235,6 +237,14 @@ class IndividualPage:
         
         self.doc.start_table("one","IndTable")
         self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRefList())
+        if self.use_id:
+            if self.id_link:
+                val = '<a href="%s">%s</a>' % (self.id_link,self.person.getId())
+                val = string.replace(val,'#',self.person.getId())
+            else:
+                val = self.person.getId()
+            self.write_normal_row("%s:" % _("ID Number"),val,None)
+            
         if self.person.getGender() == Person.male:
             self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
         else:
@@ -551,8 +561,10 @@ class IndividualPage:
 class WebReport(Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, style, image_dir,
-                 template_name):
+                 template_name,use_id,id_link):
         self.db = db
+        self.use_id = use_id
+        self.id_link = id_link
         self.person = person
         self.target_path = target_path
         self.max_gen = max_gen
@@ -680,7 +692,7 @@ class WebReport(Report):
             idoc = IndividualPage(person, self.photos, self.restrict,
                                   self.private, self.srccomments,
                                   self.include_link, my_map, dir_name,
-                                  self.image_dir, tdoc)
+                                  self.image_dir, tdoc, self.use_id,self.id_link)
             idoc.create_page()
             idoc.close()
             self.progress_bar_step()
@@ -726,6 +738,7 @@ class WebReportDialog(ReportDialog):
         no_img_msg = _("Do not use images")
         no_limg_msg = _("Do not use images for living people")
         no_com_msg = _("Do not include comments and text in source information")
+        include_id_msg = _("Include the GRAMPS ID in the report")
         imgdir_msg = _("Image subdirectory")
 
         self.use_link = GtkCheckButton(lnk_msg)
@@ -736,11 +749,17 @@ class WebReportDialog(ReportDialog):
         self.no_images = GtkCheckButton(no_img_msg)
         self.no_living_images = GtkCheckButton(no_limg_msg)
         self.no_comments = GtkCheckButton(no_com_msg)
+        self.include_id = GtkCheckButton(include_id_msg)
         self.imgdir = GtkEntry()
         self.imgdir.set_text("images")
+        self.linkpath = GtkEntry()
+        self.linkpath.set_sensitive(0)
+        self.include_id.connect('toggled',self.show_link)
 
         self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.use_link)
+        self.add_option('',self.include_id)
+        self.add_option(_('GRAMPS ID link URL'),self.linkpath)
         
         title = _("Privacy Options")
         self.add_frame_option(title,None,self.no_private)
@@ -750,7 +769,10 @@ class WebReportDialog(ReportDialog):
         self.add_frame_option(title,None,self.no_comments)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
-        
+
+    def show_link(self,obj):
+        self.linkpath.set_sensitive(obj.get_active())
+
     #------------------------------------------------------------------------
     #
     # Customization hooks
@@ -962,7 +984,9 @@ class WebReportDialog(ReportDialog):
         self.restrict = self.restrict_living.get_active()
         self.private = self.no_private.get_active()
         self.img_dir_text = self.imgdir.get_text()
-        
+
+        self.use_id = self.include_id.get_active()
+        self.id_link = string.strip(self.linkpath.get_text())
         self.srccomments = self.no_comments.get_active()
         if self.no_images.get_active() == 1:
             self.photos = 0
@@ -997,7 +1021,8 @@ class WebReportDialog(ReportDialog):
                              self.max_gen, self.photos, self.filter,
                              self.restrict, self.private, self.srccomments,
                              self.include_link, self.selected_style,
-                             self.img_dir_text,self.template_name)
+                             self.img_dir_text,self.template_name,
+                             self.use_id,self.id_link)
         MyReport.write_report()
     
 #------------------------------------------------------------------------
