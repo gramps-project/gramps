@@ -1,5 +1,11 @@
 Version 0.4.0
-
+* Redesigned Family page. More complex family relationships can be
+  handled.
+* ISO date format supported
+* Places are stored in a pulldown menu
+* gramps ID can be displayed in many lists
+* Multiple selection in Add Children box
+* Internal gramps ID now a string instead of an integer
 
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.

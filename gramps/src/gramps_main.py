@@ -89,7 +89,7 @@ active_spouse = None
 select_father = None
 select_spouse = None
 select_mother = None
-select_child  = None
+select_child_list = {}
 bookmarks     = None
 
 id2col        = {}
@@ -237,21 +237,21 @@ def on_delete_sp_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_child_clicked(obj):
-    global select_child
     global addChildList
     global childWindow
+    global select_child_list
     
-    select_child = None
-	
     childWindow = libglade.GladeXML(const.gladeFile,"selectChild")
     
     childWindow.signal_autoconnect({
         "on_save_child_clicked" : on_save_child_clicked,
         "on_addChild_select_row" : on_addChild_select_row,
+        "on_addChild_unselect_row" : on_addChild_unselect_row,
         "on_show_toggled" : on_show_toggled,
         "destroy_passed_object" : utils.destroy_passed_object
         })
 
+    select_child_list = {}
     selectChild = childWindow.get_widget("selectChild")
     addChildList = childWindow.get_widget("addChild")
     addChildList.set_column_visibility(1,Config.id_visible)
@@ -368,33 +368,33 @@ def on_addchild_ok_clicked(obj):
 #-------------------------------------------------------------------------
 def on_save_child_clicked(obj):
     global active_family
-	
-    if select_child == None:
-        return
 
-    if active_family == None:
-        active_family = database.newFamily()
-        active_person.addFamily(active_family)
-        if active_person.getGender() == Person.male:
-            active_family.setFather(active_person)
-        else:	
-            active_family.setMother(active_person)
+    for select_child in select_child_list.keys():
 
-    active_family.addChild(select_child)
+        if active_family == None:
+            active_family = database.newFamily()
+            active_person.addFamily(active_family)
+            if active_person.getGender() == Person.male:
+                active_family.setFather(active_person)
+            else:	
+                active_family.setMother(active_person)
+
+        active_family.addChild(select_child)
 		
-    mrel = const.childRelations[childWindow.get_widget("mrel").get_text()]
-    frel = const.childRelations[childWindow.get_widget("frel").get_text()]
+        mrel = const.childRelations[childWindow.get_widget("mrel").get_text()]
+        frel = const.childRelations[childWindow.get_widget("frel").get_text()]
 
-    if mrel == "Birth" and frel == "Birth":
-        family = select_child.getMainFamily()
-        if family != None and family != active_family:
-            family.removeChild(select_child)
+        if mrel == "Birth" and frel == "Birth":
+            family = select_child.getMainFamily()
+            if family != None and family != active_family:
+                family.removeChild(select_child)
 
-        select_child.setMainFamily(active_family)
-    else:
-        select_child.addAltFamily(active_family,mrel,frel)
+            select_child.setMainFamily(active_family)
+        else:
+            select_child.addAltFamily(active_family,mrel,frel)
 
-    utils.modified()
+        utils.modified()
+        
     utils.destroy_passed_object(obj)
     load_family()
 
@@ -1163,7 +1163,7 @@ def on_person_list_click_column(obj,column):
         else:
             sortFunc = sort.reverse_name_sort
             nameArrow.set(GTK.ARROW_UP,2)
-    elif column == 2:
+    elif column == 3:
         nameArrow.hide()
         deathArrow.hide()
         dateArrow.show()
@@ -1171,9 +1171,9 @@ def on_person_list_click_column(obj,column):
             sortFunc = sort.fast_birth_sort
             dateArrow.set(GTK.ARROW_DOWN,2)
         else:
-            sortFunc = reverse_birth_sort
+            sortFunc = sort.reverse_birth_sort
             dateArrow.set(GTK.ARROW_UP,2)
-    elif column == 3:
+    elif column == 4:
         nameArrow.hide()
         deathArrow.show()
         dateArrow.hide()
@@ -1183,6 +1183,8 @@ def on_person_list_click_column(obj,column):
         else:
             sortFunc = sort.reverse_death_sort
             deathArrow.set(GTK.ARROW_UP,2)
+    else:
+        return
     apply_filter()
 
 #-------------------------------------------------------------------------
@@ -1202,9 +1204,15 @@ def on_fatherList_select_row(obj,a,b,c):
 #
 #-------------------------------------------------------------------------
 def on_addChild_select_row(obj,a,b,c):
-    global select_child
-	
-    select_child = obj.get_row_data(a)
+    select_child_list[obj.get_row_data(a)] = 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_addChild_unselect_row(obj,a,b,c):
+    del select_child_list[obj.get_row_data(a)]
 
 #-------------------------------------------------------------------------
 #

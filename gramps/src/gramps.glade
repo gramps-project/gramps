@@ -1854,7 +1854,7 @@
 	      <handler>on_add_child_clicked</handler>
 	      <last_modification_time>Tue, 21 Nov 2000 14:03:13 GMT</last_modification_time>
 	    </signal>
-	    <label>Add Existing Child</label>
+	    <label>Add Existing Children</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -3412,7 +3412,7 @@ Unknown
       <widget>
 	<class>GtkLabel</class>
 	<name>addChildTitle</name>
-	<label>Add Child</label>
+	<label>Add Children</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
@@ -3460,9 +3460,14 @@ Unknown
 	    <handler>on_addChild_select_row</handler>
 	    <last_modification_time>Tue, 21 Nov 2000 21:52:56 GMT</last_modification_time>
 	  </signal>
+	  <signal>
+	    <name>unselect_row</name>
+	    <handler>on_addChild_unselect_row</handler>
+	    <last_modification_time>Sat, 14 Jul 2001 02:02:37 GMT</last_modification_time>
+	  </signal>
 	  <columns>3</columns>
 	  <column_widths>200,80,40</column_widths>
-	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	  <selection_mode>GTK_SELECTION_MULTIPLE</selection_mode>
 	  <show_titles>True</show_titles>
 	  <shadow_type>GTK_SHADOW_IN</shadow_type>
 
