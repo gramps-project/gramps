@@ -1357,7 +1357,7 @@
 	the details of the currently selected name in the list (if any). 
 	The buttons <guibutton>Add...</guibutton>, 
 	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
-	you to correspondingly add, modify, and remove a place record 
+	you to correspondingly add, modify, and remove a name record 
 	from the database. Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Delete</guibutton> buttons become available only when 
 	a name is selected from the list. </para>
