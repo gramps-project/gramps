@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.3\n"
 "POT-Creation-Date: Wed Jul  9 00:10:20 2003\n"
-"PO-Revision-Date: 2003-07-09 00:11-0500\n"
+"PO-Revision-Date: 2003-07-10 20:03-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -379,8 +379,8 @@ msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
 msgstr ""
-"Вы попытались изменить GRAMPS ID на значение %"
-"(grampsid)s. Это значение уже используется "
+"Вы попытались изменить GRAMPS ID на значение "
+"%(grampsid)s. Это значение уже используется "
 "лицом %(person)s."
 
 #: EditPerson.py:1410
@@ -392,8 +392,8 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"Изменение пола вызвало проблемы с "
-"брачной информацией.\n"
+"Изменение пола вызвало проблемы с брачной "
+"информацией.\n"
 "Пожалуйста, проверьте браки данного лица."
 
 #: EditPlace.py:83
@@ -938,14 +938,14 @@ msgstr "Преобразовать в локальную копию"
 #: ImageSelect.py:626
 msgid "Change local media object properties"
 msgstr ""
-"Изменить локальные свойства медиа-"
-"объекта"
+"Изменить локальные свойства "
+"медиа-объекта"
 
 #: ImageSelect.py:754
 msgid "Change global media object properties"
 msgstr ""
-"Изменить глобальные свойства медиа-"
-"объекта"
+"Изменить глобальные свойства "
+"медиа-объекта"
 
 #: ImageSelect.py:858 plugins/EventCmp.py:306
 msgid "Person"
@@ -1000,17 +1000,17 @@ msgstr "Пиктограммы недоступны"
 
 #: MediaView.py:124
 msgid ""
-"There is no suitable tool to generate thumbnails for the images. If you "
-"would like to enable this feature, install Python Imaging Library (PIL), "
-"available at http://www.pythonware.com/products/pil/ or ImageMagick, "
-"available at http://www.imagemagick.org/"
+"There is no suitable tool to generate thumbnails for the images. If you would "
+"like to enable this feature, install Python Imaging Library (PIL), available "
+"at http://www.pythonware.com/products/pil/ or ImageMagick, available at "
+"http://www.imagemagick.org/"
 msgstr ""
 "Нет инструментов для создания пиктограмм "
 "для изображений. Если вы хотите "
 "пользоваться этой функцией, установите "
-"Python Imaging Library (PIL), доступную на http://www.pythonware."
-"com/products/pil/, или ImageMagick, доступную на http://www."
-"imagemagick.org/"
+"Python Imaging Library (PIL), доступную на "
+"http://www.pythonware.com/products/pil/, или ImageMagick, "
+"доступную на http://www.imagemagick.org/"
 
 #: MediaView.py:163
 msgid "The file no longer exists"
@@ -1028,13 +1028,13 @@ msgstr "Уничтожить Медиа-Объект?"
 
 #: MediaView.py:257
 msgid ""
-"This media object is currently being used. If you delete this object, it "
-"will be removed from the database and from all records that reference it."
+"This media object is currently being used. If you delete this object, it will "
+"be removed from the database and from all records that reference it."
 msgstr ""
 "Этот медиа-объект в настоящий момент "
-"используется. Если вы сотрете этот "
-"объект, он будет удален из базы данных и "
-"из всех записей ссылающихся на него."
+"используется. Если вы сотрете этот объект, "
+"он будет удален из базы данных и из всех "
+"записей ссылающихся на него."
 
 #: MediaView.py:261
 msgid "_Delete Media Object?"
@@ -1118,11 +1118,11 @@ msgid ""
 "Deleting it will remove it from the database and remove it from all records "
 "that reference it."
 msgstr ""
-"Это место в настоящий момент "
-"используется по крайней мере в одной "
-"записи базы данных. Стирание удалит его "
-"из базы данных и изо всех записей, которые "
-"на него ссылаются."
+"Это место в настоящий момент используется "
+"по крайней мере в одной записи базы "
+"данных. Стирание удалит его из базы данных "
+"и изо всех записей, которые на него "
+"ссылаются."
 
 #: PlaceView.py:209
 msgid "_Delete Place"
@@ -1197,8 +1197,8 @@ msgstr ""
 "этого файла не существует. Возможно, файл "
 "был уничтожен или перемещен в другое "
 "место. Вы можете удалить ссылку из базы "
-"данных, оставить ссылку на пропавший "
-"файл, или выбрать новый файл. "
+"данных, оставить ссылку на пропавший файл, "
+"или выбрать новый файл. "
 
 #: ReadXML.py:272 ReadXML.py:276
 msgid "%s could not be opened."
@@ -1244,8 +1244,8 @@ msgstr "Не могу показать %s"
 
 #: RelImage.py:116 RelImage.py:128
 msgid ""
-"GRAMPS is not able to display the image file. This may be caused by a "
-"corrupt file."
+"GRAMPS is not able to display the image file. This may be caused by a corrupt "
+"file."
 msgstr ""
 "GRAMPS не может показать файл изображения. "
 "Это может быть вызвано испорченным "
@@ -1535,11 +1535,11 @@ msgstr "Добавить Ребенка в Семью"
 
 #: SelectChild.py:88
 msgid "Relationship to %(father)s"
-msgstr "Отношение %s"
+msgstr "Отношение к %(father)s"
 
 #: SelectChild.py:95
 msgid "Relationship to %(mother)s"
-msgstr "Отношение к %s"
+msgstr "Отношение к %(mother)s"
 
 #: SelectChild.py:101 plugins/RelCalc.py:82
 msgid "Relationship to %s"
@@ -1603,8 +1603,8 @@ msgstr "Первые Шаги"
 msgid ""
 "Welcome to GRAMPS, the Genealogical Research and Analysis Management "
 "Programming System.\n"
-"Several options and information need to be gathered before GRAMPS is ready "
-"to be used. Any of this information can be changed in the future in the "
+"Several options and information need to be gathered before GRAMPS is ready to "
+"be used. Any of this information can be changed in the future in the "
 "Preferences dialog under the Settings menu."
 msgstr ""
 "Добро пожаловать в GRAMPS,\n"
@@ -1632,9 +1632,9 @@ msgid ""
 msgstr ""
 "GRAMPS является проектом Открытого Кода (Open "
 "Source project). Успех проекта завист от его "
-"пользователей. Вклад пользователей "
-"важен. Пожалуйста, подписывайтесь на "
-"списки рассылки, присилайте сообщения об "
+"пользователей. Вклад пользователей важен. "
+"Пожалуйста, подписывайтесь на списки "
+"рассылки, присилайте сообщения об "
 "ошибках, предлагайте улучшения и думайте, "
 "как вы можете внести свой вклад.\n"
 "\n"
@@ -1648,8 +1648,8 @@ msgid ""
 msgstr ""
 "Для создания правильных GEDCOM файлов "
 "необходимо ввести следующую информацию. "
-"Если вы не планируете создание GEDCOM "
-"файлов, то можете оствить эту часть "
+"Если вы не планируете создание GEDCOM файлов, "
+"то можете оствить эту часть "
 "незаполненной."
 
 #: StartupDialog.py:156 edit_person.glade:1236 edit_person.glade:2016
@@ -2464,8 +2464,8 @@ msgstr "Правка..."
 #: edit_person.glade:391
 msgid "Select source for this name information"
 msgstr ""
-"Выбрать источник для данной информации "
-"об имени"
+"Выбрать источник для данной информации об "
+"имени"
 
 #: edit_person.glade:393
 msgid "Source..."
@@ -2496,8 +2496,8 @@ msgid ""
 "\"de\" or \"van\""
 msgstr ""
 "Необязательная приставка к фамилии, "
-"которая не используется при "
-"упорядочении, например \"де\" или \"ван\""
+"которая не используется при упорядочении, "
+"например \"де\" или \"ван\""
 
 #: edit_person.glade:517
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
@@ -2508,8 +2508,8 @@ msgstr ""
 #: edit_person.glade:539
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr ""
-"Звание, используемое при обращении к "
-"лицу, например \"Г-н.\" или \"Преп.\""
+"Звание, используемое при обращении к лицу, "
+"например \"Г-н.\" или \"Преп.\""
 
 #: edit_person.glade:561
 msgid "A name that the person was more commonly known by"
@@ -2681,8 +2681,8 @@ msgstr "Уничтожить выделенный адрес"
 #: edit_person.glade:3433
 msgid "Enter miscellaneous relevant data and documentation"
 msgstr ""
-"Редактировать различные связянные "
-"данные и документацию"
+"Редактировать различные связянные данные "
+"и документацию"
 
 #: edit_person.glade:3458 imagesel.glade:777 imagesel.glade:1900
 #: marriage.glade:1264
@@ -2969,7 +2969,7 @@ msgstr "_Слияние"
 
 #: gramps.glade:299
 msgid "_View"
-msgstr "Про_смотр"
+msgstr "_Вид"
 
 #: gramps.glade:308
 msgid "_Sidebar"
@@ -3166,8 +3166,8 @@ msgstr ""
 msgid ""
 "Selects an existing person from the database and adds to a new relationship"
 msgstr ""
-"Выберает существующее лицо из базы "
-"данных и добавляет к новому отношению"
+"Выбирает существующее лицо из базы данных "
+"и добавляет к новому отношению"
 
 #: gramps.glade:1506
 msgid "Removes the currently selected spouse"
@@ -3259,17 +3259,17 @@ msgstr ""
 #: gramps.glade:2032
 msgid "Adds a new child to the database and to the current family"
 msgstr ""
-"Добавляет нового ребенка в базу данных и "
-"в выделенную семью"
+"Добавляет нового ребенка в базу данных и в "
+"выделенную семью"
 
 #: gramps.glade:2058
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
 msgstr ""
-"Выбирает существующее лицо из базы "
-"данных и добавляет в качестве ребенка в "
-"текушую семью"
+"Выбирает существующее лицо из базы данных "
+"и добавляет в качестве ребенка в текушую "
+"семью"
 
 #: gramps.glade:2084
 msgid "Deletes the selected child from the selected family"
@@ -3455,9 +3455,9 @@ msgid ""
 "the changes you have made will be lost."
 msgstr ""
 "В используемой базе данных существуют "
-"несохраненные изменения. Если вы "
-"закроете без сохранения, ваши изменения "
-"будут потеряны."
+"несохраненные изменения. Если вы закроете "
+"без сохранения, ваши изменения будут "
+"потеряны."
 
 #: gramps_main.py:732
 msgid "Create a New Database"
@@ -3538,8 +3538,8 @@ msgstr "%s не является каталогом."
 
 #: gramps_main.py:941
 msgid ""
-"You should select a directory that contains a data.gramps file or a gramps."
-"zodb file."
+"You should select a directory that contains a data.gramps file or a "
+"gramps.zodb file."
 msgstr ""
 "Вы должны выбрать каталог, содержащий "
 "файл data.gramps или файл gramps.zodb."
@@ -3554,8 +3554,8 @@ msgid ""
 "data.gramps file or a gramps.zodb file."
 msgstr ""
 "Файл, который вы должны пытаться открыть, "
-"должен быть каталогом, содержащим файл data."
-"gramps или файл gramps.zodb."
+"должен быть каталогом, содержащим файл "
+"data.gramps или файл gramps.zodb."
 
 #: gramps_main.py:1226
 msgid ""
@@ -3686,8 +3686,7 @@ msgstr "Не смогла создать базу данных"
 
 #: gramps_main.py:2007 gramps_main.py:2011
 msgid "The directory ~/.gramps/example could not be created.\n"
-msgstr ""
-"Каталог ~/.gramps/example не смог быть создан.\n"
+msgstr "Каталог ~/.gramps/example не смог быть создан.\n"
 
 #: gramps_main.py:2015
 msgid "The directory ~/.gramps/example could not be created."
@@ -4139,8 +4138,8 @@ msgid ""
 "\n"
 "This makes references to the central person saved in the book invalid.\n"
 "\n"
-"Therefore, the central person for each item is being set to the active "
-"person of the currently opened database."
+"Therefore, the central person for each item is being set to the active person "
+"of the currently opened database."
 msgstr ""
 "Эта книга была создана с сылками на базу "
 "данных %s.\n"
@@ -4971,8 +4970,8 @@ msgstr "Он женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
 #: plugins/FtmStyleAncestors.py:345 plugins/FtmStyleDescendants.py:739
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Она вышла замуж за %(spouse)s %(date)s в %(place)s%(endnotes)"
-"s."
+"Она вышла замуж за %(spouse)s %(date)s в "
+"%(place)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:352 plugins/FtmStyleDescendants.py:746
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
@@ -4998,65 +4997,68 @@ msgstr "Он вышла замуж за %(spouse)s%(endnotes)s."
 #: plugins/FtmStyleAncestors.py:402 plugins/FtmStyleDescendants.py:454
 #: plugins/FtmStyleDescendants.py:794
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
-"(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s в %(birth_place)s%"
-"(birth_endnotes)s, и умер %(death_date)s в %(death_place)s%"
-"(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:413 plugins/FtmStyleDescendants.py:463
 #: plugins/FtmStyleDescendants.py:805
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s в %(birth_place)s%"
-"(birth_endnotes)s, и умер %(death_date)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер "
+"%(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:424 plugins/FtmStyleDescendants.py:472
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s в %(birth_place)s%"
-"(birth_endnotes)s, и умер в %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:434
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s. "
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s. "
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s в %(birth_place)s%"
-"(birth_endnotes)s. "
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:443 plugins/FtmStyleDescendants.py:488
 #: plugins/FtmStyleDescendants.py:835
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-"died %(death_date)s in %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died "
+"%(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, "
-"и умер %(death_date)s в %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, и "
+"умер %(death_date)s в %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:453 plugins/FtmStyleDescendants.py:497
 #: plugins/FtmStyleDescendants.py:845
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-"died %(death_date)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died "
+"%(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, "
-"и умер %(death_date)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, и "
+"умер %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:462 plugins/FtmStyleDescendants.py:506
 #: plugins/FtmStyleDescendants.py:854
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
-"died in %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died "
+"in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, "
-"и умер в %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, и "
+"умер в %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:470
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
@@ -5069,8 +5071,9 @@ msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился в %(birth_place)s%(birth_endnotes)"
-"s, и умер %(death_date)s в %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s, и умер %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:488 plugins/FtmStyleDescendants.py:531
 #: plugins/FtmStyleDescendants.py:881
@@ -5078,8 +5081,9 @@ msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился в %(birth_place)s%(birth_endnotes)"
-"s, и умер %(death_date)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s, и умер "
+"%(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:497 plugins/FtmStyleDescendants.py:540
 #: plugins/FtmStyleDescendants.py:890
@@ -5087,24 +5091,25 @@ msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился в %(birth_place)s%(birth_endnotes)"
-"s, и умер в %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s, и умер в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:505
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
-"%(male_name)s%(endnotes)s родился в %(birth_place)s%(birth_endnotes)"
-"s. "
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:513 plugins/FtmStyleDescendants.py:556
 #: plugins/FtmStyleDescendants.py:907
 msgid ""
-"%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
-"(death_endnotes)s."
+"%(male_name)s%(endnotes)s died %(death_date)s in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s умер %(death_date)s в %(death_place)s%"
-"(death_endnotes)s."
+"%(male_name)s%(endnotes)s умер %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:520 plugins/FtmStyleDescendants.py:562
 #: plugins/FtmStyleDescendants.py:914
@@ -5120,39 +5125,42 @@ msgstr ""
 #: plugins/FtmStyleAncestors.py:537 plugins/FtmStyleDescendants.py:582
 #: plugins/FtmStyleDescendants.py:933
 msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
-"(death_endnotes)s."
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s в %(birth_place)"
-"s%(birth_endnotes)s, и умерла %(death_date)s в %(death_place)s%"
-"(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:548 plugins/FtmStyleDescendants.py:591
 #: plugins/FtmStyleDescendants.py:944
 msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s в %(birth_place)"
-"s%(birth_endnotes)s, и умерла %(death_date)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умерла "
+"%(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:559 plugins/FtmStyleDescendants.py:600
 #: plugins/FtmStyleDescendants.py:955
 msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s в %(birth_place)"
-"s%(birth_endnotes)s, и умерла в %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умерла в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:569
 msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s. "
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s. "
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s в %(birth_place)"
-"s%(birth_endnotes)s. "
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:577 plugins/FtmStyleDescendants.py:616
 #: plugins/FtmStyleDescendants.py:974
@@ -5160,8 +5168,9 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s%(birth_endnotes)"
-"s, и умерла %(death_date)s в %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s, и умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:587 plugins/FtmStyleDescendants.py:625
 #: plugins/FtmStyleDescendants.py:984
@@ -5169,8 +5178,9 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s%(birth_endnotes)"
-"s, и умерла %(death_date)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s, и умерла "
+"%(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:596 plugins/FtmStyleDescendants.py:634
 #: plugins/FtmStyleDescendants.py:993
@@ -5178,14 +5188,16 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s%(birth_endnotes)"
-"s, и умерла в %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s, и умерла в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:604
-msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s%(birth_endnotes)"
-"s. "
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:613 plugins/FtmStyleDescendants.py:650
 #: plugins/FtmStyleDescendants.py:1011
@@ -5193,9 +5205,9 @@ msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась в %(birth_place)s%"
-"(birth_endnotes)s, и умерла %(death_date)s в %(death_place)s%"
-"(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s, и умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:621 plugins/FtmStyleDescendants.py:659
 #: plugins/FtmStyleDescendants.py:1019
@@ -5203,8 +5215,9 @@ msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась в %(birth_place)s%"
-"(birth_endnotes)s, и умерла %(death_date)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s, и умерла "
+"%(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:630 plugins/FtmStyleDescendants.py:668
 #: plugins/FtmStyleDescendants.py:1028
@@ -5212,24 +5225,25 @@ msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась в %(birth_place)s%"
-"(birth_endnotes)s, и умерла в %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s, и умерла в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:638
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
-"%(female_name)s%(endnotes)s родилась в %(birth_place)s%"
-"(birth_endnotes)s. "
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s. "
 
 #: plugins/FtmStyleAncestors.py:646 plugins/FtmStyleDescendants.py:684
 #: plugins/FtmStyleDescendants.py:1045
 msgid ""
-"%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
-"(death_endnotes)s."
+"%(female_name)s%(endnotes)s died %(death_date)s in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s умерла %(death_date)s в %(death_place)s%"
-"(death_endnotes)s."
+"%(female_name)s%(endnotes)s умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:653 plugins/FtmStyleDescendants.py:1052
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
@@ -5240,8 +5254,8 @@ msgstr ""
 #: plugins/FtmStyleDescendants.py:1060
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s умерла в %(death_place)s%(death_endnotes)"
-"s."
+"%(female_name)s%(endnotes)s умерла в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:678 plugins/FtmStyleDescendants.py:1079
 msgid "He was the son of %(father)s and %(mother)s."
@@ -5353,11 +5367,11 @@ msgstr "Дети %(person_name)s:"
 
 #: plugins/FtmStyleDescendants.py:480 plugins/FtmStyleDescendants.py:826
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s в %(birth_place)s%"
-"(birth_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:514 plugins/FtmStyleDescendants.py:862
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
@@ -5368,8 +5382,8 @@ msgstr ""
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился в %(birth_place)s%(birth_endnotes)"
-"s."
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:575
 msgid "%(male_name)s%(endnotes)s."
@@ -5377,24 +5391,24 @@ msgstr "%(male_name)s%(endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:608
 msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
-"(birth_endnotes)s."
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s в %(birth_place)"
-"s%(birth_endnotes)s."
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:642 plugins/FtmStyleDescendants.py:1001
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s%(birth_endnotes)"
-"s."
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:676 plugins/FtmStyleDescendants.py:1036
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась в %(birth_place)s%"
-"(birth_endnotes)s."
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:690
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
@@ -5407,19 +5421,20 @@ msgstr "%(female_name)s%(endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:816
 msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
-"(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s "
+"%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s родился %(birth_date)s в %(birth_place)s%"
-"(birth_endnotes)s, и умер в %(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер в "
+"%(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:965
 msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
-"(birth_endnotes)s."
+"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s "
+"%(birth_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s родилась %(birth_date)s в %(birth_place)"
-"s%(birth_endnotes)s."
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:1191 plugins/FtmStyleDescendants.py:1283
 #: plugins/FtmStyleDescendants.py:1436 plugins/FtmStyleDescendants.py:1447
@@ -5533,8 +5548,8 @@ msgstr "Раскрасить Граф"
 
 #: plugins/GraphViz.py:175
 msgid ""
-"Males will be outlined in blue, females will be outlined in pink.  If the "
-"sex of an individual is unknown it will be outlined in black."
+"Males will be outlined in blue, females will be outlined in pink.  If the sex "
+"of an individual is unknown it will be outlined in black."
 msgstr ""
 "Мужчины будут выделенны синим цветом, "
 "женщины будут выделены розовым цветом. "
@@ -5604,8 +5619,8 @@ msgstr ""
 #: plugins/GraphViz.py:438
 msgid ""
 "Generates relationship graphs, currently only in GraphViz format. GraphViz "
-"(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and "
-"many other formats. For more information or to get a copy of GraphViz, goto "
+"(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and many "
+"other formats. For more information or to get a copy of GraphViz, goto "
 "http://www.graphviz.org"
 msgstr ""
 "Генерирует графы отношений, в настоящий "
@@ -5613,8 +5628,8 @@ msgstr ""
 "может преобразовать граф в форматы postscript, "
 "jpeg, png, vrml, svg и многие другие форматы. Для "
 "дополнительной информации, или для "
-"получения копии GraphViz, посетите http://www.graphviz."
-"org"
+"получения копии GraphViz, посетите "
+"http://www.graphviz.org"
 
 #: plugins/IndivComplete.py:133
 msgid "%(date)s in %(place)s."
@@ -5834,9 +5849,9 @@ msgid ""
 "searched for in the same directory in which the GEDCOM file exists (%s).\n"
 msgstr ""
 "Поиск изображений, не найденных на пути, "
-"указанном в GEDCOM файле, будет осуществлен "
-"в том же каталоге, где находится GEDCOM файл (%"
-"s).\n"
+"указанном в GEDCOM файле, будет осуществлен в "
+"том же каталоге, где находится GEDCOM файл "
+"(%s).\n"
 
 #: plugins/ReadGedcom.py:337
 msgid "GEDCOM file ended unexpectedly"
@@ -6032,7 +6047,7 @@ msgstr "Итоги базы данных"
 
 #: plugins/Summary.py:163 plugins/count_anc.py:95
 msgid "View"
-msgstr "Просмотр"
+msgstr "Вид"
 
 #: plugins/Summary.py:164
 msgid "Provides a summary of the current database"
@@ -6075,16 +6090,15 @@ msgstr "Проверить Базу Данных"
 msgid ""
 "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
-"Крещение до рождения: %(male_name)s родился %(byear)"
-"d, крестился %(bapyear)d.\n"
+"Крещение до рождения: %(male_name)s родился "
+"%(byear)d, крестился %(bapyear)d.\n"
 
 #: plugins/Verify.py:123
 msgid ""
-"Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
-"d.\n"
+"Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
-"Крещение до рождения: %(female_name)s родилась %"
-"(byear)d, крестилась %(bapyear)d.\n"
+"Крещение до рождения: %(female_name)s родилась "
+"%(byear)d, крестилась %(bapyear)d.\n"
 
 #: plugins/Verify.py:127
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
@@ -6109,8 +6123,8 @@ msgstr ""
 msgid ""
 "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
-"Похоронена до смерти: %(female_name)s умерла %(dyear)"
-"d, похоронена %(buryear)d.\n"
+"Похоронена до смерти: %(female_name)s умерла "
+"%(dyear)d, похоронена %(buryear)d.\n"
 
 #: plugins/Verify.py:142
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
@@ -6133,29 +6147,29 @@ msgstr ""
 #: plugins/Verify.py:152
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
 msgstr ""
-"Умерла до рождения: %(female_name)s родилась %(byear)"
-"d, умерла %(dyear)d.\n"
+"Умерла до рождения: %(female_name)s родилась "
+"%(byear)d, умерла %(dyear)d.\n"
 
 #: plugins/Verify.py:156
 msgid ""
 "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
-"Умер до крещения: %(male_name)s крестился %(bapyear)"
-"d, умер %(dyear)d.\n"
+"Умер до крещения: %(male_name)s крестился %(bapyear)d, "
+"умер %(dyear)d.\n"
 
 #: plugins/Verify.py:159
 msgid ""
 "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
 msgstr ""
-"Умерла до крещния: %(female_name)s крестилась %"
-"(bapyear)d, умерла %(dyear)d.\n"
+"Умерла до крещния: %(female_name)s крестилась "
+"%(bapyear)d, умерла %(dyear)d.\n"
 
 #: plugins/Verify.py:163
 msgid ""
 "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
 msgstr ""
-"Похоронен до рождения: %(male_name)s родился %"
-"(byear)d, похоронен %(buryear)d.\n"
+"Похоронен до рождения: %(male_name)s родился "
+"%(byear)d, похоронен %(buryear)d.\n"
 
 #: plugins/Verify.py:166
 msgid ""
@@ -6166,32 +6180,32 @@ msgstr ""
 
 #: plugins/Verify.py:170
 msgid ""
-"Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
-"d.\n"
+"Buried before baptism: %(male_name)s baptized %(bapyear)d, buried "
+"%(buryear)d.\n"
 msgstr ""
-"Похоронен до крещения: %s(male_name) крестился %"
-"(bapyear)d, похоронен %(buryear)d.\n"
+"Похоронен до крещения: %s(male_name) крестился "
+"%(bapyear)d, похоронен %(buryear)d.\n"
 
 #: plugins/Verify.py:173
 msgid ""
-"Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
-"(buryear)d.\n"
+"Buried before baptism: %(female_name)s baptized %(bapyear)d, buried "
+"%(buryear)d.\n"
 msgstr ""
 "Похоронена до крещения: %(female_name)s "
 "крестилась %(bapyear)d, похоронена %(buryear)d.\n"
 
 #: plugins/Verify.py:185
 msgid ""
-"Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
-"(ageatdeath)d.\n"
+"Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of "
+"%(ageatdeath)d.\n"
 msgstr ""
 "Большой возраст: %(male_name)s родился %(byear)d, "
 "умер %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
 
 #: plugins/Verify.py:188
 msgid ""
-"Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
-"(ageatdeath)d.\n"
+"Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of "
+"%(ageatdeath)d.\n"
 msgstr ""
 "Большой возраст: %(female_name)s родилась %(byear)d, "
 "умерла %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
@@ -6217,21 +6231,21 @@ msgstr ""
 #: plugins/Verify.py:229
 msgid "Married often: %(female_name)s married %(nfam)d times.\n"
 msgstr ""
-"Замужем много раз: %(female_name)s была замужем %"
-"(nfam)d раз.\n"
+"Замужем много раз: %(female_name)s была замужем "
+"%(nfam)d раз.\n"
 
 #: plugins/Verify.py:233
 msgid ""
-"Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
-"d years.\n"
+"Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)d "
+"years.\n"
 msgstr ""
 "Пожилой и неженат: %(male_name)s умер неженатым, "
 "в возрасте %(ageatdeath)d лет.\n"
 
 #: plugins/Verify.py:236
 msgid ""
-"Old and unmarried: %(female_name)s died unmarried, at the age of %"
-"(ageatdeath)d years.\n"
+"Old and unmarried: %(female_name)s died unmarried, at the age of "
+"%(ageatdeath)d years.\n"
 msgstr ""
 "Пожилая и не замужем: %(female_name)s умерла "
 "незамужней, в возрасте %(ageatdeath)d лет.\n"
@@ -6251,13 +6265,13 @@ msgstr "Жена мужского пола: %s в семье %s.\n"
 #: plugins/Verify.py:262
 msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
 msgstr ""
-"Муж и жена с одинаковой фамилией: %s в "
-"семье %s, и %s.\n"
+"Муж и жена с одинаковой фамилией: %s в семье "
+"%s, и %s.\n"
 
 #: plugins/Verify.py:281
 msgid ""
-"Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
-"(spouse)s.\n"
+"Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to "
+"%(spouse)s.\n"
 msgstr ""
 "Женат до рождения: %(male_name)s рожден %(byear)d, "
 "женился %(maryear)d на %(spouse)s.\n"
@@ -6267,8 +6281,8 @@ msgid ""
 "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
 "%(spouse)s.\n"
 msgstr ""
-"Замужем до рождения: %(female_name)s рождена %(byear)"
-"d, вышла замуж %(maryear)d за %(spouse)s.\n"
+"Замужем до рождения: %(female_name)s рождена "
+"%(byear)d, вышла замуж %(maryear)d за %(spouse)s.\n"
 
 #: plugins/Verify.py:289
 msgid ""
@@ -6287,48 +6301,48 @@ msgstr ""
 #: plugins/Verify.py:296
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
-"Поздняя женитьба: %(male_name)s женился на %(spouse)"
-"s в возрасте %(marage)d лет.\n"
+"Поздняя женитьба: %(male_name)s женился на %(spouse)s "
+"в возрасте %(marage)d лет.\n"
 
 #: plugins/Verify.py:299
 msgid ""
 "Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
-"Поздняя женитьба: %(female_name)s вышла замуж за %"
-"(spouse)s в возрасте %(marage)d лет.\n"
+"Поздняя женитьба: %(female_name)s вышла замуж за "
+"%(spouse)s в возрасте %(marage)d лет.\n"
 
 #: plugins/Verify.py:303
 msgid ""
-"Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
-"(spouse)s.\n"
+"Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to "
+"%(spouse)s.\n"
 msgstr ""
 "Женился после смерти: %(male_name)s умер %(dyear)d, "
 "женился на %(spouse)s в %(maryear)d.\n"
 
 #: plugins/Verify.py:306
 msgid ""
-"Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
-"(spouse)s.\n"
+"Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to "
+"%(spouse)s.\n"
 msgstr ""
-"Вышла замуж после смерти: %(female_name)s умерла %"
-"(dyear)d, вышла замуж за %(spouse)s в %(maryear)d.\n"
+"Вышла замуж после смерти: %(female_name)s умерла "
+"%(dyear)d, вышла замуж за %(spouse)s в %(maryear)d.\n"
 
 #: plugins/Verify.py:310
 msgid ""
-"Marriage before birth from previous family: %(male_name)s married %(maryear)"
-"d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+"Marriage before birth from previous family: %(male_name)s married %(maryear)d "
+"to %(spouse)s, previous birth %(prev_cbyear)d.\n"
 msgstr ""
-"Брак до рождения в предыдущей семье: %"
-"(male_name)s женился на %(spouse)s в %(maryear)d, "
+"Брак до рождения в предыдущей семье: "
+"%(male_name)s женился на %(spouse)s в %(maryear)d, "
 "предыдущее рождение %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:313
 msgid ""
-"Marriage before birth from previous family: %(female_name)s married %"
-"(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+"Marriage before birth from previous family: %(female_name)s married "
+"%(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
 msgstr ""
-"Брак до рождения в предыдущей семье: %"
-"(female_name)s вышла замуж за %(spouse)s в %(maryear)d, "
+"Брак до рождения в предыдущей семье: "
+"%(female_name)s вышла замуж за %(spouse)s в %(maryear)d, "
 "предыдущее рождение %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:323
@@ -6353,45 +6367,45 @@ msgstr "Долгое вдовство: %s была вдовой %d лет.\n"
 
 #: plugins/Verify.py:348
 msgid ""
-"Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %"
-"(child)s.\n"
+"Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child "
+"%(child)s.\n"
 msgstr ""
-"Позднее отцовство: %(male_name)s в возрасте %(bage)"
-"d в семье %(fam)s стал отцом ребенка %(child)s.\n"
+"Позднее отцовство: %(male_name)s в возрасте %(bage)d "
+"в семье %(fam)s стал отцом ребенка %(child)s.\n"
 
 #: plugins/Verify.py:351
 msgid ""
 "Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child "
 "%(child)s.\n"
 msgstr ""
-"Позднее материнство: %(female_name)s в возрасте %"
-"(bage)d в семье %(fam)s родила ребенка %(child)s.\n"
+"Позднее материнство: %(female_name)s в возрасте "
+"%(bage)d в семье %(fam)s родила ребенка %(child)s.\n"
 
 #: plugins/Verify.py:355
 msgid ""
-"Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %"
-"(child)s born %(cbyear)d.\n"
+"Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child "
+"%(child)s born %(cbyear)d.\n"
 msgstr ""
 "Нерожденный отец: %(male_name)s рожден %(byear)d, в "
-"семье %(fam)s имел ребенка %(child)s, рожденного %"
-"(cbyear)d.\n"
+"семье %(fam)s имел ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
 
 #: plugins/Verify.py:358
 msgid ""
 "Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child "
 "%(child)s born %(cbyear)d.\n"
 msgstr ""
-"Нерожденная мать: %(female_name)s рождена %(byear)d, "
-"в семье %(fam)s имела ребенка %(child)s, "
-"рожденного %(cbyear)d.\n"
+"Нерожденная мать: %(female_name)s рождена %(byear)d, в "
+"семье %(fam)s имела ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
 
 #: plugins/Verify.py:363
 msgid ""
 "Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a "
 "child %(child)s.\n"
 msgstr ""
-"Молодой отец: %(male_name)s в возрасте %(bage)d лет "
-"в семье %(fam)s стал отцом ребенка %(child)s.\n"
+"Молодой отец: %(male_name)s в возрасте %(bage)d лет в "
+"семье %(fam)s стал отцом ребенка %(child)s.\n"
 
 #: plugins/Verify.py:366
 msgid ""
@@ -6407,8 +6421,8 @@ msgid ""
 "%(child)s born %(cbyear)d.\n"
 msgstr ""
 "Мертвый отец: %(male_name)s умер в %(dyear)d, но в "
-"семье %(fam)s имел ребенка %(child)s, рожденного %"
-"(cbyear)d.\n"
+"семье %(fam)s имел ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
 
 #: plugins/Verify.py:374 plugins/Verify.py:381
 msgid ""
@@ -6563,8 +6577,8 @@ msgstr ""
 #: plugins/WebPage.py:986
 msgid "The style used for the header for the notes section."
 msgstr ""
-"Стиль, используемый для заголовка "
-"раздела записок."
+"Стиль, используемый для заголовка раздела "
+"записок."
 
 #: plugins/WebPage.py:993
 msgid "The style used for the copyright notice."
@@ -6575,8 +6589,8 @@ msgstr ""
 #: plugins/WebPage.py:1000
 msgid "The style used for the header for the sources section."
 msgstr ""
-"Стиль, используемый для заголовка "
-"раздела источников."
+"Стиль, используемый для заголовка раздела "
+"источников."
 
 #: plugins/WebPage.py:1007
 msgid "The style used on the index page that labels each section."
@@ -6587,14 +6601,14 @@ msgstr ""
 #: plugins/WebPage.py:1014
 msgid "The style used for the header for the image section."
 msgstr ""
-"Стиль, используемый для заголовка "
-"раздела изображений."
+"Стиль, используемый для заголовка раздела "
+"изображений."
 
 #: plugins/WebPage.py:1021
 msgid "The style used for the header for the marriages and children section."
 msgstr ""
-"Стиль, используемый для заголовка "
-"раздела браков и детей."
+"Стиль, используемый для заголовка раздела "
+"браков и детей."
 
 #: plugins/WebPage.py:1036
 msgid "The style used for the general data labels."
@@ -6615,8 +6629,8 @@ msgstr ""
 #: plugins/WebPage.py:1057
 msgid "The style used for the notes associated with images."
 msgstr ""
-"Стиль, используемый для записок "
-"связанных с изображениями;"
+"Стиль, используемый для записок связанных "
+"с изображениями;"
 
 #: plugins/WebPage.py:1064
 msgid "The style used for the source information."
@@ -6748,8 +6762,8 @@ msgstr ""
 "одного типа в другой тип. После "
 "завершения, откатка этого действия "
 "невозможна, за исключением потери всех "
-"изменений, сделанных с момента "
-"последнего сохранения базы данных."
+"изменений, сделанных с момента последнего "
+"сохранения базы данных."
 
 #: plugins/changetype.glade:245
 msgid "_Original event type:"
@@ -7008,10 +7022,9 @@ msgstr "Ограничить данные о живущих лицах"
 
 #: plugins/patchnames.glade:50
 msgid ""
-"Below is a list of the nicknames and titles that GRAMPS can extract from "
-"the \n"
-"current database. If you accept the changes, GRAMPS will modify the entries\n"
-"that have been selected."
+"Below is a list of the nicknames and titles that GRAMPS can extract from the "
+"\ncurrent database. If you accept the changes, GRAMPS will modify the "
+"entries\nthat have been selected."
 msgstr ""
 "Ниже приведен список кратких имен и "
 "титулов которые GRAMPS может\n"
@@ -7062,8 +7075,8 @@ msgstr "Наибольший возраст"
 #: plugins/verify.glade:209
 msgid "Maximum husband-wife age difference"
 msgstr ""
-"Наибольшая разница в возрасте между "
-"мужем и женой"
+"Наибольшая разница в возрасте между мужем "
+"и женой"
 
 #: plugins/verify.glade:233
 msgid "Minimum age to marry"
@@ -7091,8 +7104,8 @@ msgstr "Наибольшая разница в возрасте детей"
 #: plugins/verify.glade:353
 msgid "Maximum span of years for all children"
 msgstr ""
-"Наибольшее разница в возрасте между "
-"всеми детьми"
+"Наибольшее разница в возрасте между всеми "
+"детьми"
 
 #: plugins/verify.glade:577
 msgid "<b>Women</b>"
@@ -7156,8 +7169,8 @@ msgstr "<b>База данных</b>"
 #: preferences.glade:364
 msgid "Select default database directory - GRAMPS"
 msgstr ""
-"Выбрать каталог базы данных по умолчанию "
-"- GRAMPS"
+"Выбрать каталог базы данных по умолчанию - "
+"GRAMPS"
 
 #: preferences.glade:371
 msgid "The default directory for storing databases"
@@ -7613,7 +7626,7 @@ msgstr "_Римский (Таймс, с засечками)"
 #: styles.glade:745
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
-"_Швейцарский (Ариал,Гельветика, без "
+"_Швейцарский (Ариал, Гельветика, без "
 "засечек)"
 
 #: styles.glade:772
