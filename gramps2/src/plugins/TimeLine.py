@@ -19,7 +19,7 @@
 #
 
 """
-TimeLine report
+Timeline report
 """
 
 #------------------------------------------------------------------------
@@ -63,8 +63,8 @@ class TimeLine:
 
     def __init__(self,database,person,output,document,filter,title,sort_func):
         """
-        Creates the TimeLine object that produces the report. This class
-        is used by the TimeLineDialog class. The arguments are:
+        Creates the Timeline object that produces the report. This class
+        is used by the TimelineDialog class. The arguments are:
 
         database - the GRAMPS database
         person   - currently selected person
@@ -312,7 +312,7 @@ class TimeLineDialog(Report.DrawReportDialog):
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
         clicked in the 'Save As' frame."""
-        return _("TimeLine File")
+        return _("Timeline File")
 
     def get_report_generations(self):
         """No generation options."""
@@ -443,7 +443,7 @@ def get_description():
 
 register_report(
     task=report,
-    name=_("TimeLine Graph"),
+    name=_("Timeline Graph"),
     status=(_("Beta")),
     category=_("Graphical Reports"),
     author_name="Donald N. Allingham",

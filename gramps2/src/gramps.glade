@@ -1886,7 +1886,7 @@
 				      <child>
 					<widget class="GtkButton" id="fam_back">
 					  <property name="visible">True</property>
-					  <property name="tooltip" translatable="yes">Make the selected child the active family</property>
+					  <property name="tooltip" translatable="yes">Make the selected child the active person</property>
 					  <property name="can_focus">True</property>
 					  <property name="relief">GTK_RELIEF_NORMAL</property>
 
