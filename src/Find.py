@@ -113,7 +113,7 @@ class FindBase:
     def backward(self):
         self.index = self.index - 1
         if self.index < 0:
-            self.index = len(self.list)
+            self.index = len(self.list)-1
 
     def on_close_clicked(self,obj):
         """Destroys the window in response to a close window button press"""
