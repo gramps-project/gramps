@@ -816,7 +816,18 @@ def save_file(filename):
         
     old_file = filename
     filename = filename + os.sep + const.indexFile
-    WriteXML.exportData(database,filename,load_progress)
+    try:
+        WriteXML.exportData(database,filename,load_progress)
+    except IOError, msg:
+        GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
+        return
+    except OSError, msg:
+        GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
+        return
+    except:
+        GnomeErrorDialog(_("Could not create %s") % filename)
+        return
+
     database.setSavePath(old_file)
     utils.clearModified()
     Config.save_last_file(old_file)
