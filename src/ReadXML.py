@@ -190,10 +190,16 @@ def loadData(database, filename, callback=None):
 
 if __name__ == "__main__":
     import profile
+    import cPickle
     
     database = RelDataBase()
     t1 = time.time()
-    profile.run('loadData(database, sys.argv[1])')
-    #loadData(database,sys.argv[1])
+    #profile.run('loadData(database, sys.argv[1])')
+    loadData(database,sys.argv[1])
     t2 = time.time()
     print t2-t1
+    f = gzip.open("autosave","w")
+    p = cPickle.dump(database,f)
+    f.close()
+    t3 = time.time()
+    print t3-t2

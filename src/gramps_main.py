@@ -3005,7 +3005,7 @@ def menu_report(obj,task):
 #-------------------------------------------------------------------------
 def menu_tools(obj,task):
     if active_person:
-        task(database,active_person,update_display)
+        task(database,active_person,tool_callback)
     
 #-------------------------------------------------------------------------
 #

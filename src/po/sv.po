@@ -2387,7 +2387,7 @@ msgid "Pe_digree"
 msgstr "_Anor"
 
 #: glade.c:1087
-msgid "Pedigree"
+msgid "Pedegree"
 msgstr "Anor"
 
 #: glade.c:1090 glade.c:1789
