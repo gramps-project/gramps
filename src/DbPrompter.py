@@ -365,7 +365,10 @@ class NewNativeDbPrompter:
                 if os.path.splitext(filename)[1] != ".grdb":
                     filename = filename + ".grdb"
                 choose.destroy()
-                self.parent.db.close()
+                try:
+                    self.parent.db.close()
+                except:
+                    pass
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
