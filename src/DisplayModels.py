@@ -88,8 +88,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]
-        del self.datalist[index]
-        del self.indexlist[handle]
+        self.rebuild_data()
         self.row_deleted(index)
 
     def update_row_by_handle(self,handle):
