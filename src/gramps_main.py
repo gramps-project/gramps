@@ -1381,6 +1381,7 @@ class Gramps:
         mymap = {}
         mynmap = {}
         list = []
+        sel = 0
         for f in self.active_person.getFamilyList():
             if self.active_person == f.getFather():
                 if f.getMother() == None:
