@@ -62,6 +62,9 @@ from QuestionDialog import ErrorDialog
 def keep_utf8(s):
     return s
 
+def iso8859(s):
+    return s.encode('iso-8859-1')
+
 #-------------------------------------------------------------------------
 #
 # Calendar month names
@@ -447,6 +450,8 @@ class GedcomWriter:
         
         if self.topDialog.get_widget("ansel").get_active():
             self.cnvtxt = ansel_utf8.utf8_to_ansel
+        elif self.topDialog.get_widget("ansi").get_active():
+            self.cnvtxt = iso8859
         else:
             self.cnvtxt = keep_utf8
 
@@ -557,6 +562,8 @@ class GedcomWriter:
         self.g.write("1 DATE %s %s %s\n" % (date[2],string.upper(date[1]),date[4]))
         if self.cnvtxt == ansel_utf8.utf8_to_ansel:
             self.g.write("1 CHAR ANSEL\n")
+        elif self.cnvtxt == iso8859:
+            self.g.write("1 CHAR ANSI\n")
         else:
             self.g.write("1 CHAR UTF-8\n")
         self.g.write("1 SUBM @SUBM@\n")
