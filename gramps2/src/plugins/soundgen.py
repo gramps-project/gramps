@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -75,14 +75,22 @@ class SoundGen:
         if active_person:
             n = active_person.getPrimaryName().getSurname()
             self.name.set_text(n)
-            self.value.set_text(soundex.soundex(n))
+            try:
+                se_text = soundex.soundex(n)
+            except UnicodeEncodeError:
+                se_text = soundex.soundex('')
+            self.value.set_text(se_text)
         else:
             self.name.set_text("")
             
         self.glade.get_widget("soundEx").show()    
 
     def on_apply_clicked(self,obj):
-        self.value.set_text(soundex.soundex(unicode(obj.get_text())))
+        try:
+            se_text = soundex.soundex(unicode(obj.get_text()))
+        except UnicodeEncodeError:
+            se_text = soundex.soundex('')
+        self.value.set_text(se_text)
 
 #-------------------------------------------------------------------------
 #
