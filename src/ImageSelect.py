@@ -219,6 +219,7 @@ class Gallery(ImageSelect):
                               self.on_photolist_drag_data_received)
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
+            icon_list.connect("drag_begin", self.on_drag_begin)
 
         _iconlist_refs.append(icon_list)
         
@@ -251,6 +252,13 @@ class Gallery(ImageSelect):
         Handle resize events over the canvas, redrawing if the size changes
         """
 
+    def on_drag_begin(self,obj,context):
+        if const.dnd_iamges:
+            mtype = self.sel_obj.getReference().getMimeType()
+            name = Utils.thumb_path(self.db.getSavePath(),self.sel_obj.getReference())
+            pix = gtk.gdk.pixbuf_new_from_file(name)
+            context.set_icon_pixbuf(pix,0,0)
+
     def item_event(self, widget, event=None):
 
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
@@ -258,10 +266,13 @@ class Gallery(ImageSelect):
                                            event.x,event.y):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
+                icon_index = self.get_index(widget,event.x,event.y)-1
+                self.sel_obj = self.dataobj.getPhotoList()[icon_index]
                 if self.drag_item:
                     widget.drag_begin(_drag_targets,
                                       gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
                                       self.button, event)
+                    
             return gtk.TRUE
 
         style = self.iconlist.get_style()
@@ -458,7 +469,6 @@ class Gallery(ImageSelect):
                     photo.setPath(name)
                 except:
                     photo.setPath(tfile)
-                    # w.drag_finish(context, 1, 0, time)
                     return
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
@@ -472,10 +482,8 @@ class Gallery(ImageSelect):
                     for p in self.dataobj.getPhotoList():
                         if data.data == p.getReference().getId():
                             if index == icon_index or icon_index == -1:
-                                # w.drag_finish(context, 0, 0, time)
                                 return
                             else:
-                                # w.drag_finish(context, 1, 0, time)
                                 nl = self.dataobj.getPhotoList()
                                 item = nl[index]
                                 if icon_index == 0:
@@ -810,12 +818,10 @@ class GlobalMediaProperties:
             d = [attr.getType(),attr.getValue()]
             self.atree.add(d,attr)
 
-    def button_press(self,obj,event):
+    def button_press(self,obj):
         store,iter = self.refmodel.selection.get_selected()
         if not iter:
             return
-        if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
-            pass
             
     def display_refs(self):
         if self.refs == 1:

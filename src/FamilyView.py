@@ -600,8 +600,23 @@ class FamilyView:
         data = str(('child',id));
         sel_data.set(sel_data.target, bits_per, data)
 
-    def drag_begin(self, context, a):
-        return
+    def drag_begin(self, obj, context):
+        return 
+#         model, iter = self.child_selection.get_selected()
+#         path = model.get_path(iter)
+#         pixmap = self.child_list.create_row_drag_icon(path)
+#         print "map",pixmap
+        
+#         myimage = gtk.Image()
+#         print "set",pixmap
+#         myimage.set_from_pixmap(pixmap,None)
+
+#         print "image"
+#         pixbuf = myimage.get_pixbuf()
+#         print "buf", pixbuf
+
+#         context.set_icon_pixbuf(pixbuf,0,0)
+#         return
 
 #-------------------------------------------------------------------------
 # 

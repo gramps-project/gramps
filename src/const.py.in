@@ -96,6 +96,7 @@ template_dir   = "%s/templates" % dataDir
 fdl            = "%s/fdl.txt" % dataDir
 
 startup        = 1
+dnd_images     = 1
 
 #-------------------------------------------------------------------------
 #
