@@ -101,6 +101,7 @@ statusbar     = None
 gtop          = None
 person_list   = None
 source_list   = None
+place_list    = None
 database      = None
 family_window = None
 queryTop      = None
@@ -805,8 +806,10 @@ def update_display(changed):
         load_family()
     elif page == 3:
         load_sources()
-    else:
+    elif page == 4:
         load_tree()
+    else:
+        load_places()
 
 #-------------------------------------------------------------------------
 #
@@ -1697,6 +1700,10 @@ def on_sources_activate(obj):
     notebk = gtop.get_widget(NOTEBOOK)
     notebk.set_page(3)
 
+def on_places_activate(obj):
+    notebk = gtop.get_widget(NOTEBOOK)
+    notebk.set_page(4)
+
 #-------------------------------------------------------------------------
 #
 # Load the appropriate page after a notebook switch
@@ -1713,7 +1720,46 @@ def on_notebook1_switch_page(obj,junk,page):
         load_tree()
     elif page == 3:
         load_sources()
-        
+    elif page == 4:
+        load_places()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def load_places():
+    place_list.freeze()
+    place_list.clear()
+
+    color_clist = ListColors.ColorList(place_list,1)
+
+    current_row = place_list.get_data("i")
+    if current_row == None:
+        current_row = -1
+
+    index = 0
+    for src in database.getPlaceMap().values():
+        title = src.get_title()
+        id = src.getId()
+        mloc = src.get_main_location()
+        city = mloc.get_city()
+        county = mloc.get_county()
+        state = mloc.get_state()
+        country = mloc.get_country()
+        place_list.append([title,id,city,county,state,country])
+        place_list.set_row_data(index,src)
+        index = index + 1
+
+    if index > 0:
+        if current_row == -1:
+            current_row = 0
+        place_list.select_row(current_row,0)
+        place_list.moveto(current_row)
+
+    place_list.set_data("i",current_row)
+    place_list.thaw()
+
 #-------------------------------------------------------------------------
 #
 #
@@ -2632,7 +2678,7 @@ def menu_tools(obj,task):
 def main(arg):
     global database, gtop
     global statusbar
-    global person_list, source_list, pv
+    global person_list, source_list, place_list,pv
     global topWindow
     
     import ReadXML
@@ -2658,6 +2704,7 @@ def main(arg):
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
     source_list = gtop.get_widget("source_list")
+    place_list  = gtop.get_widget("place_list")
     filter_list = gtop.get_widget("filter_list")
 
     person_list.set_column_visibility(5,0)
@@ -2692,6 +2739,7 @@ def main(arg):
         "on_person_list1_activate": on_person_list1_activate,
         "on_family1_activate" : on_family1_activate,
         "on_sources_activate" : on_sources_activate,
+        "on_places_activate" : on_places_activate,
         "on_pedegree1_activate" : on_pedegree1_activate,
         "on_notebook1_switch_page": on_notebook1_switch_page,
         "on_ok_button1_clicked": on_ok_button1_clicked,
