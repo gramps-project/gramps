@@ -525,7 +525,7 @@ def exportData(database, filename, pbar, fbar, sbar):
     if cnvtxt == latin_to_ansel:
         g.write("1 CHAR ANSEL\n");
     else:
-        g.write("1 CHAR UNICODE\n");
+        g.write("1 CHAR UTF-8\n");
     g.write("1 SUBM @SUBM@\n")
     g.write("1 FILE %s\n" % filename)
     g.write("1 GEDC\n")

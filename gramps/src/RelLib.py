@@ -336,12 +336,13 @@ class Note:
         """return the note contents"""
         return self.text
 
-class Photo:
+class Photo(SourceNote):
     """Containter for information about an image file, including location,
     description and privacy"""
     
     def __init__(self,source=None):
         """Create a new Photo object, copying from the source if provided"""
+        SourceNote.__init__(self,source)
         self.attrlist = []
         if source:
             self.path = source.path
