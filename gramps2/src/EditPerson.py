@@ -1777,7 +1777,7 @@ class EditPerson:
         """Reorder the child list to put the specified person in his/her
         correct birth order.  Only check *valid* birthdates.  Move the person
         as short a distance as possible."""
-        
+
         if (self.birth_dates_in_order(list)):
             return(list)
 
@@ -1790,7 +1790,8 @@ class EditPerson:
             person_bday = "99999999"
 
         # First, see if the person needs to be moved forward in the list
-        index = list.index(person)
+
+        index = list.index(person.get_id())
         target = index
         for i in range(index-1, -1, -1):
             other = self.db.try_to_find_person_from_id(list[i])

@@ -299,6 +299,7 @@ class ChooseParents:
     def redrawf(self):
         """Redraws the potential father list"""
         self.father_nsort = PeopleModel.PeopleModel(self.db)
+        self.father_nsort.rebuild_data()
         self.father_model = gtk.TreeModelSort(self.father_nsort)
         self.father_list.set_model(self.father_model)
         
@@ -310,6 +311,7 @@ class ChooseParents:
     def redrawm(self):
         """Redraws the potential mother list"""
         self.mother_nsort = PeopleModel.PeopleModel(self.db)
+        self.mother_nsort.rebuild_data()
         self.mother_model = gtk.TreeModelSort(self.mother_nsort)
         self.mother_list.set_model(self.mother_model)
         

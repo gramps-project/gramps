@@ -918,6 +918,10 @@ class Gramps:
             self.import_tool_callback()
 
     def import_tool_callback(self):
+        self.full_update()
+            
+    def full_update(self):
+        """Brute force display update, updating all the pages"""
         self.people_view.person_model.rebuild_data()
         if Utils.wasHistory_broken():
             self.clear_history()
@@ -932,14 +936,6 @@ class Gramps:
         self.place_view.change_db(self.db)
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
-            
-    def full_update(self):
-        """Brute force display update, updating all the pages"""
-        self.place_view.change_db(self.db)
-        self.people_view.change_db(self.db)
-        self.source_view.change_db(self.db)
-        self.media_view.change_db(self.db)
-        self.toolbar.set_style(GrampsCfg.toolbar)
 
     def update_display(self,changed):
         """Incremental display update, update only the displayed page"""
