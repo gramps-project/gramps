@@ -427,7 +427,7 @@ class SingleDate:
         try:
             self.month = SingleDate.m2num[string.lower(text[0:3])]
         except KeyError:
-            self.month = -1
+            self.setMonthStrEng(text)
 
     #--------------------------------------------------------------------
     #

@@ -3322,21 +3322,6 @@
 
 	<widget>
 	  <class>GtkButton</class>
-	  <name>button112</name>
-	  <can_default>True</can_default>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>clicked</name>
-	    <handler>on_event_edit_apply_clicked</handler>
-	    <object>event_edit</object>
-	    <last_modification_time>Thu, 26 Jul 2001 20:29:24 GMT</last_modification_time>
-	  </signal>
-	  <stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
-	  <relief>GTK_RELIEF_NORMAL</relief>
-	</widget>
-
-	<widget>
-	  <class>GtkButton</class>
 	  <name>button113</name>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>

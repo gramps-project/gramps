@@ -82,7 +82,10 @@ class SourceEditor:
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
-        self.source_ref = active_entry.getSourceRef()
+        if active_entry:
+            self.source_ref = active_entry.getSourceRef()
+        else:
+            self.source_ref = None
         self.active_source = None
         self.draw()
         self.sourceDisplay.set_data(SOURCEDISP,self)
