@@ -348,6 +348,7 @@ class EventEditor:
         if self.event.get_privacy() != priv:
             self.event.set_privacy(priv)
             self.parent.lists_changed = 1
+        self.db.commit_event(self.event)
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()

@@ -292,7 +292,7 @@ class IndividualPage:
         filebase = "%s.%s" % (self.person.get_id(),self.ext)
         self.doc.open("%s/%s" % (self.dir,filebase))
 
-        photo_list = self.person.get_photo_list()
+        media_list = self.person.get_media_list()
         name_obj = self.person.get_primary_name()
         name = name_obj.get_regular_name()
 
@@ -311,13 +311,13 @@ class IndividualPage:
         # make sure that the media object is an image. If so, insert it
         # into the document.
         
-        if self.photos and len(photo_list) > 0:
-            object = photo_list[0].get_reference()
+        if self.photos and len(media_list) > 0:
+            object = media_list[0].get_reference()
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 if os.path.isfile(file):
                     self.doc.start_paragraph("Data")
-                    self.doc.add_photo(file,"row",4.0,4.0)
+                    self.doc.add_media_object(file,"row",4.0,4.0)
                     self.doc.end_paragraph()
 
         # Start the first table, which consists of basic information, including
@@ -394,7 +394,7 @@ class IndividualPage:
         
         my_list = []
         index = 0
-        for object in self.person.get_photo_list():
+        for object in self.person.get_media_list():
             if object.get_reference().get_mime_type()[0:5] == "image":
                 if object.get_privacy() == 0 and index != 0:
                     my_list.append(object)
@@ -439,7 +439,7 @@ class IndividualPage:
                     self.doc.start_link("%s/%s" % (self.image_dir,base))
                 else:
                     self.doc.start_link("%s" % base)
-                self.doc.add_photo(src,"row",1.5,1.5)
+                self.doc.add_media_object(src,"row",1.5,1.5)
                 self.doc.end_link()
                 
                 self.doc.end_paragraph()

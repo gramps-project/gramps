@@ -1,5 +1,5 @@
-%define ver      0.99
-%define rel      1
+%define ver      1.1.0
+%define rel      0.CVS20040219
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 

@@ -1095,7 +1095,7 @@ class BaseDoc:
 	self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
-        self.photo_list = []
+        self.media_list = []
         self.print_req = 0
         self.mode = TEXT_MODE
 
@@ -1122,7 +1122,7 @@ class BaseDoc:
         """
         self.owner = owner
         
-    def add_photo(self,name,align,w_cm,h_cm):
+    def add_media_object(self,name,align,w_cm,h_cm):
         """
         Adds a photo of the specified width (in centimeters)
 

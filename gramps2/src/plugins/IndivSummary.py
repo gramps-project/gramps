@@ -209,7 +209,7 @@ class IndivSummary(Report.Report):
         if self.newpage:
             self.d.page_break()
 
-        photo_list = self.person.get_photo_list()
+        media_list = self.person.get_media_list()
 
         name = self.person.get_primary_name().get_regular_name()
         self.d.start_paragraph("IVS-Title")
@@ -219,12 +219,12 @@ class IndivSummary(Report.Report):
         self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
 
-        if len(photo_list) > 0:
-            object = photo_list[0].get_reference()
+        if len(media_list) > 0:
+            object = media_list[0].get_reference()
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IVS-Normal")
-                self.d.add_photo(file,"row",4.0,4.0)
+                self.d.add_media_object(file,"row",4.0,4.0)
                 self.d.end_paragraph()
 
         self.d.start_table("one","IVS-IndTable")

@@ -305,7 +305,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
         self.col = self.col + self.span
 
-    def add_photo(self,name,pos,x_cm,y_cm):
+    def add_media_object(self,name,pos,x_cm,y_cm):
         try:
             img = ImgManip.ImgManip(name)
         except:

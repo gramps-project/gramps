@@ -106,7 +106,7 @@ class Marriage:
             "on_attr_down_clicked" : self.on_attr_down_clicked,
             "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
+            "on_addphoto_clicked" : self.gallery.on_add_media_object_clicked,
             "on_selectphoto_clicked" : self.gallery.on_select_photo_clicked,
             "on_close_marriage_editor" : self.on_close_marriage_editor,
             "on_delete_event" : self.on_delete_event,
@@ -600,6 +600,7 @@ class Marriage:
         if self.lists_changed:
             Utils.modified()
         self.update_fv(self.family)
+        self.db.commit_family(self.family)
 
     def event_edit_callback(self,event):
         """Birth and death events may not be in the map"""

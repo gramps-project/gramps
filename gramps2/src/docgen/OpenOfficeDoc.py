@@ -369,7 +369,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app)
 
-    def add_photo(self,name,pos,x_cm,y_cm):
+    def add_media_object(self,name,pos,x_cm,y_cm):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
@@ -387,9 +387,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        photo_list_item = (name,act_width,act_height)
-        if not photo_list_item in self.photo_list:
-            self.photo_list.append(photo_list_item)
+        media_list_item = (name,act_width,act_height)
+        if not media_list_item in self.media_list:
+            self.media_list.append(media_list_item)
 
         base = os.path.basename(name)
         tag = string.replace(base,'.','_')
@@ -463,7 +463,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         file.write(self.meta_xml,str("meta.xml"))
         file.write(self.styles_xml,str("styles.xml"))
         
-        for image in self.photo_list:
+        for image in self.media_list:
             base = os.path.basename(image[0])
             file.write(image[0], str("Pictures/%s" % base))
         file.close()
@@ -727,7 +727,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	self.f.write('<manifest:file-entry ')
         self.f.write('manifest:media-type="application/vnd.sun.xml.writer" ')
 	self.f.write('manifest:full-path="/"/>')
-        for image in self.photo_list:
+        for image in self.media_list:
             i = image[0]
             base = os.path.basename(i)
             self.f.write('<manifest:file-entry manifest:media-type="" ')

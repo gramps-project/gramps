@@ -809,16 +809,16 @@ class FamilyView:
             self.clear()
             return
 
-        bd = self.parent.db.find_event_from_id(self.person.get_birth_id()).get_date()
-        dd = self.parent.db.find_event_from_id(self.person.get_death_id()).get_date()
+        bd = self.parent.db.find_event_from_id(self.person.get_birth_id())
+        dd = self.parent.db.find_event_from_id(self.person.get_death_id())
 
         if bd and dd:
             n = "%s\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
-	    	_BORN,bd,_DIED,dd)
+	    	_BORN,bd.get_date(),_DIED,dd.get_date())
         elif bd:
-            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_BORN,bd)
+            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_BORN,bd.get_date())
         elif dd:
-            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_DIED,dd)
+            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_DIED,dd.get_date())
         else:
             n = GrampsCfg.nameof(self.person)
 
@@ -896,7 +896,7 @@ class FamilyView:
         list = person.get_parent_family_id_list()
 
         for (f,mrel,frel) in list:
-            fam = self.parent.db.get_family_id(f)
+            fam = self.parent.db.find_family_from_id(f)
             father_id = fam.get_father_id()
             mother_id = fam.get_mother_id()
             f = self.parent.db.find_person_from_id(father_id)

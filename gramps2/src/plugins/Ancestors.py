@@ -305,7 +305,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         person = self.database.find_person_from_id(person_id)
         name = self.person_name (person_id)
         if name:
-            photos = person.get_photo_list ()
+            photos = person.get_media_list ()
 
             bits = ''
             bits += self.short_occupation (person)
@@ -342,9 +342,9 @@ class ComprehensiveAncestorsReport (Report.Report):
                         if (suppress_children or
                             (partner != from_family_father and
                              partner != from_family_mother)):
-                            for photo in partner.get_photo_list ()[:1]:
+                            for photo in partner.get_media_list ()[:1]:
                                 if photo.ref.get_mime_type()[0:5] == "image":
-                                    spouse.append ((self.doc.add_photo,
+                                    spouse.append ((self.doc.add_media_object,
                                                     [photo.ref.get_path (),
                                                      'right', 2, 2]))
 
@@ -375,7 +375,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for photo in photos[:1]:
                         if photo.ref.get_mime_type()[0:5] == "image":
-                            ret.append ((self.doc.add_photo,
+                            ret.append ((self.doc.add_media_object,
                                          [photo.ref.get_path (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
 

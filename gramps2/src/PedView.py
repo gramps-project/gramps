@@ -37,7 +37,6 @@ import pango
 #-------------------------------------------------------------------------
 import GrampsCfg
 from gettext import gettext as _
-#from Relationship import apply_filter
 
 _PAD       = 3
 _CANVASPAD = 3
@@ -47,7 +46,7 @@ _DIED = _('d.')
 
 class DispBox:
 
-    def __init__(self,root,style,x,y,w,h,person,change):
+    def __init__(self,root,style,x,y,w,h,person,db,change):
         shadow = _PAD
         xpad = _PAD
         
@@ -60,8 +59,18 @@ class DispBox:
         self.root = root
 
         self.name = GrampsCfg.nameof(person)
-        bd = person.get_birth().get_date()
-        dd = person.get_death().get_date()
+        birth_id = self.person.get_birth_id()
+        death_id = self.person.get_death_id()
+        if birth_id:
+            bd = db.find_event_from_id(birth_id).get_date()
+        else:
+            bd = ""
+
+        if death_id:
+            dd = db.find_event_from_id(death_id).get_date()
+        else:
+            dd = ""
+            
         if bd and dd:
             self.exp = "%s\n%s %s\n%s %s" % (self.name,_BORN,bd,_DIED,dd )
         elif bd:
@@ -195,9 +204,19 @@ class PedigreeView:
         
         for t in list:
             if t:
-                for n in [GrampsCfg.nameof(t[0]),
-                          u'%s %s' % (_BORN,t[0].get_birth().get_date()),
-                          u'%s %s' % (_DIED,t[0].get_death().get_date())]:
+                birth_id = t[0].get_birth_id()
+                death_id = t[0].get_death_id()
+                if birth_id:
+                    birth = self.parent.db.find_event_from_id(birth_id).get_date()
+                else:
+                    birth = u""
+                if death_id:
+                    death = self.parent.db.find_event_from_id(death_id).get_date()
+                else:
+                    death = u""
+                    
+                for n in [GrampsCfg.nameof(t[0]), u'%s %s' % (_BORN,birth),
+                          u'%s %s' % (_DIED,death)]:
                     try:
                         a.set_text(n,len(n))
                     except TypeError:
@@ -285,7 +304,7 @@ class PedigreeView:
                         self.draw_canvas_line(xpts[i],ypts[i], xpts[mindex],
                                               ypts[mindex], h, w, p[0], style, p[1])
                 p = list[i]
-                box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],
+                box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],self.parent.db,
                               self.change_active_person)
                 self.boxes.append(box)
         self.change_active_person(person)

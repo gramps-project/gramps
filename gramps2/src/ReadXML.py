@@ -146,32 +146,32 @@ def importData(database, filename, callback,cl=0):
         # File is lost => remove all references and the object itself
         mobj = ObjectMap[NewMediaID]
         for p in database.get_family_id_map().values():
-            nl = p.get_photo_list()
+            nl = p.get_media_list()
             for o in nl:
                 if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.set_photo_list(nl)
+            p.set_media_list(nl)
         for key in database.get_person_keys():
             p = database.get_person(key)
-            nl = p.get_photo_list()
+            nl = p.get_media_list()
             for o in nl:
                 if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.set_photo_list(nl)
+            p.set_media_list(nl)
         for key in database.get_source_keys():
             p = database.get_source(key)
-            nl = p.get_photo_list()
+            nl = p.get_media_list()
             for o in nl:
                 if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.set_photo_list(nl)
+            p.set_media_list(nl)
         for key in database.get_place_id_keys():
             p = database.get_place_id(key)
-            nl = p.get_photo_list()
+            nl = p.get_media_list()
             for o in nl:
                 if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.set_photo_list(nl)
+            p.set_media_list(nl)
         database.remove_object(NewMediaID) 
 
 
@@ -294,11 +294,11 @@ def loadData(database, filename, callback=None):
         import traceback
         traceback.print_exc()
         return 0
-    except:
-        ErrorDialog(_("Error reading %s") % filename)
-        import traceback
-        traceback.print_exc()
-        return 0
+#     except:
+#         ErrorDialog(_("Error reading %s") % filename)
+#         import traceback
+#         traceback.print_exc()
+#         return 0
 
     xml_file.close()
     del parser

@@ -176,13 +176,13 @@ class ImageSelect:
                 break
 
         if (already_imported):
-            oref = RelLib.ObjectRef()
+            oref = RelLib.MediaRef()
             oref.set_reference(already_imported)
-            self.dataobj.add_photo(oref)
+            self.dataobj.add_media_object(oref)
             self.add_thumbnail(oref)
         else:
             type = Utils.get_mime_type(filename)
-            mobj = RelLib.Photo()
+            mobj = RelLib.MediaObject()
             if description == "":
                 description = os.path.basename(filename)
             mobj.set_description(description)
@@ -247,7 +247,7 @@ class Gallery(ImageSelect):
         self.dataobj   = dataobj;
         self.iconlist = icon_list;
         self.root = self.iconlist.root()
-        self.old_photo_list = self.dataobj.get_photo_list()[:]
+        self.old_media_list = self.dataobj.get_media_list()[:]
         
         # Local object variables
         self.y = 0
@@ -269,8 +269,8 @@ class Gallery(ImageSelect):
         # restore old photo list, in case we removed some and then 
         # hit cancel button or closed the window
         if not ok:
-            if self.old_photo_list is not None:
-                self.dataobj.set_photo_list(self.old_photo_list)
+            if self.old_media_list is not None:
+                self.dataobj.set_media_list(self.old_media_list)
         
     def on_canvas1_event(self,obj,event):
         """
@@ -295,7 +295,7 @@ class Gallery(ImageSelect):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
                 icon_index = self.get_index(widget,event.x,event.y)-1
-                self.sel_obj = self.dataobj.get_photo_list()[icon_index]
+                self.sel_obj = self.dataobj.get_media_list()[icon_index]
                 if self.drag_item:
                     widget.drag_begin(_drag_targets,
                                       gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
@@ -365,9 +365,9 @@ class Gallery(ImageSelect):
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
         self.db.add_object(photo)
-        oref = RelLib.ObjectRef()
+        oref = RelLib.MediaRef()
         oref.set_reference(photo)
-        self.dataobj.add_photo(oref)
+        self.dataobj.add_media_object(oref)
 
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
@@ -448,7 +448,7 @@ class Gallery(ImageSelect):
 
         self.max = (self.x)/(_IMAGEX+_PAD)
 
-        for photo in self.dataobj.get_photo_list():
+        for photo in self.dataobj.get_media_list():
             self.add_thumbnail(photo)
 
         if self.cy > self.y:
@@ -456,7 +456,7 @@ class Gallery(ImageSelect):
         else:
             self.iconlist.set_scroll_region(0,0,self.x,self.y)
         
-        if self.dataobj.get_photo_list():
+        if self.dataobj.get_media_list():
             Utils.bold_label(self.parent.gallery_label)
         else:
             Utils.unbold_label(self.parent.gallery_label)
@@ -465,7 +465,7 @@ class Gallery(ImageSelect):
         x_offset = x/(_IMAGEX+_PAD)
         y_offset = y/(_IMAGEY+_PAD)
         index = (y_offset*(1+self.max))+x_offset
-        return min(index,len(self.dataobj.get_photo_list()))
+        return min(index,len(self.dataobj.get_media_list()))
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
 	if data and data.format == 8:
@@ -475,7 +475,7 @@ class Gallery(ImageSelect):
             if protocol == "file":
                 name = file
                 mime = Utils.get_mime_type(name)
-                photo = RelLib.Photo()
+                photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
                 basename = os.path.basename(name)
@@ -500,15 +500,15 @@ class Gallery(ImageSelect):
                     ErrorDialog(t,str(msg))
                     return
                 mime = Utils.get_mime_type(tfile)
-                photo = RelLib.Photo()
+                photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
                 photo.set_description(d)
                 photo.setLocal(1)
                 photo.set_path(tfile)
                 self.db.add_object(photo)
-                oref = RelLib.ObjectRef()
+                oref = RelLib.MediaRef()
                 oref.set_reference(photo)
-                self.dataobj.add_photo(oref)
+                self.dataobj.add_media_object(oref)
                 try:
                     id = photo.get_id()
                     name = RelImage.import_media_object(tfile,self.path,id)
@@ -526,12 +526,12 @@ class Gallery(ImageSelect):
                 if self.db.get_object_map().has_key(data.data):
                     icon_index = self.get_index(w,x,y)
                     index = 0
-                    for p in self.dataobj.get_photo_list():
+                    for p in self.dataobj.get_media_list():
                         if data.data == p.get_reference().get_id():
                             if index == icon_index or icon_index == -1:
                                 return
                             else:
-                                nl = self.dataobj.get_photo_list()
+                                nl = self.dataobj.get_media_list()
                                 item = nl[index]
                                 if icon_index == 0:
                                     del nl[index]
@@ -539,15 +539,15 @@ class Gallery(ImageSelect):
                                 else:
                                     del nl[index]
                                     nl = nl[0:icon_index] + [item] + nl[icon_index:]
-                                self.dataobj.set_photo_list(nl)
+                                self.dataobj.set_media_list(nl)
                                 Utils.modified()
                                 self.parent.lists_changed = 1
                                 self.load_images()
                                 return
                         index = index + 1
-                    oref = RelLib.ObjectRef()
+                    oref = RelLib.MediaRef()
                     oref.set_reference(self.db.find_object_from_id(data.data))
-                    self.dataobj.add_photo(oref)
+                    self.dataobj.add_media_object(oref)
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
                     if GrampsCfg.globalprop:
@@ -561,7 +561,7 @@ class Gallery(ImageSelect):
         selection_data.set(selection_data.target, 8, id[4])
         self.drag_item = None
         
-    def on_add_photo_clicked(self, obj):
+    def on_add_media_object_clicked(self, obj):
         """User wants to add a new photo.  Create a dialog to find out
         which photo they want."""
         self.create_add_dialog()
@@ -574,9 +574,9 @@ class Gallery(ImageSelect):
         object = s_o.run()
         if not object:
             return
-        oref = RelLib.ObjectRef()
+        oref = RelLib.MediaRef()
         oref.set_reference(object)
-        self.dataobj.add_photo(oref)
+        self.dataobj.add_media_object(oref)
         self.add_thumbnail(oref)
 
         self.parent.lists_changed = 1
@@ -593,9 +593,9 @@ class Gallery(ImageSelect):
             val[1].hide()
             val[2].hide()
 
-            l = self.dataobj.get_photo_list()
+            l = self.dataobj.get_media_list()
             l.remove(photo)
-            self.dataobj.set_photo_list(l)
+            self.dataobj.set_media_list(l)
             self.parent.lists_changed = 1
             self.load_images()
 
@@ -817,6 +817,7 @@ class LocalMediaProperties:
             self.photo.set_attribute_list(self.alist)
             self.parent.lists_changed = 1
             Utils.modified()
+        self.db.commit_media_object(self.object)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1002,24 +1003,24 @@ class GlobalMediaProperties:
         any = 0
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == self.object:
                     self.refmodel.add([_("Person"),p.get_id(),GrampsCfg.nameof(p)])
                     any = 1
         for p in self.db.get_family_id_map().values():
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == self.object:
                     self.refmodel.add([_("Family"),p.get_id(),Utils.family_name(p)])
                     any = 1
         for key in self.db.get_source_keys():
             p = self.db.get_source(key)
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == self.object:
                     self.refmodel.add([_("Source"),p.get_id(),p.get_title()])
                     any = 1
         for key in self.db.get_place_id_keys():
             p = self.db.get_place_id(key)
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == self.object:
                     self.refmodel.add([_("Place"),p.get_id(),p.get_title()])
                     any = 1
@@ -1056,6 +1057,7 @@ class GlobalMediaProperties:
             Utils.modified()
         if self.update != None:
             self.update()
+        self.db.commit_media_object(self.object)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1116,48 +1118,48 @@ class DeleteMediaQuery:
             p = self.db.get_person(key)
             nl = []
             change = 0
-            for photo in p.get_photo_list():
+            for photo in p.get_media_list():
                 if photo.get_reference() != self.media:
                     nl.append(photo)
                 else:
                     change = 1
             if change:
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
 
         for p in self.db.get_family_id_map().values():
             nl = []
             change = 0
-            for photo in p.get_photo_list():
+            for photo in p.get_media_list():
                 if photo.get_reference() != self.media:
                     nl.append(photo)
                 else:
                     change = 1
             if change:
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
 
         for key in self.db.get_source_keys():
             p = self.db.get_source(key)
             nl = []
             change = 0
-            for photo in p.get_photo_list():
+            for photo in p.get_media_list():
                 if photo.get_reference() != self.media:
                     nl.append(photo)
                 else:
                     change = 1
             if change:
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
 
         for key in self.db.get_place_id_keys():
             p = self.db.get_place_id(key)
             nl = []
             change = 0
-            for photo in p.get_photo_list():
+            for photo in p.get_media_list():
                 if photo.get_reference() != self.media:
                     nl.append(photo)
                 else:
                     change = 1
             if change:
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
 
         if self.update:
             self.update(0)

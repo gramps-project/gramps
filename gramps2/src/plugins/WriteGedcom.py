@@ -945,7 +945,7 @@ class GedcomWriter:
                     self.write_source_ref(2,srcref)
 
             if self.images:
-                photos = person.get_photo_list ()
+                photos = person.get_media_list ()
             else:
                 photos = []
 

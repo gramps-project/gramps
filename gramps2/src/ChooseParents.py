@@ -485,6 +485,12 @@ class ChooseParents:
                     break
         else:
             self.person.add_parent_family_id(family.get_id(),mother_rel,father_rel)
+        self.db.commit_person(self.person)
+        self.db.commit_family(family)
+        if self.father:
+            self.db.commit_person(self.father)
+        if self.mother:
+            self.db.commit_person(self.mother)
         Utils.modified()
 
 

@@ -268,7 +268,7 @@ class XmlWriter:
                 self.dump_ordinance("endowment",person.get_lds_endowment(),3)
                 self.dump_ordinance("sealed_to_parents",person.get_lds_sealing(),3)
 
-                self.write_photo_list(person.get_photo_list())
+                self.write_media_list(person.get_media_list())
 
                 if len(person.get_address_list()) > 0:
                     for address in person.get_address_list():
@@ -329,7 +329,7 @@ class XmlWriter:
                     self.dump_event(event,3)
                 self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
 
-                self.write_photo_list(family.get_photo_list())
+                self.write_media_list(family.get_media_list())
 
                 if len(family.get_child_id_list()) > 0:
                     for person in family.get_child_id_list():
@@ -357,7 +357,7 @@ class XmlWriter:
                 self.write_line("sabbrev",source.get_abbreviation(),3)
                 if source.get_note() != "":
                     self.write_note("note",source.get_note_object(),3)
-                self.write_photo_list(source.get_photo_list())
+                self.write_media_list(source.get_media_list())
                 self.g.write("    </source>\n")
             self.g.write("  </sources>\n")
 
@@ -683,7 +683,7 @@ class XmlWriter:
                 self.write_note("note",attr.get_note_object(),4)
                 self.g.write('%s</attribute>\n' % sp)
 
-    def write_photo_list(self,list,indent=3):
+    def write_media_list(self,list,indent=3):
         sp = '  '*indent
         for photo in list:
             mobj = photo.get_reference()
@@ -714,7 +714,7 @@ class XmlWriter:
         id = place.get_id()
         main_loc = place.get_main_location()
         llen = len(place.get_alternate_locations()) + len(place.get_url_list()) + \
-               len(place.get_photo_list()) + len(place.get_source_references())
+               len(place.get_media_list()) + len(place.get_source_references())
                                                       
         ml_empty = main_loc.is_empty()
         note = place.get_note()
@@ -736,7 +736,7 @@ class XmlWriter:
         self.dump_location(main_loc)
         for loc in place.get_alternate_locations():
             self.dump_location(loc)
-        self.write_photo_list(place.get_photo_list())
+        self.write_media_list(place.get_media_list())
         self.write_url_list(place.get_url_list())
         if note != "":
             self.write_note("note",place.get_note_object(),3)

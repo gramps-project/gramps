@@ -87,8 +87,7 @@ class PeopleView:
         to get the IDs of the selected objects. Set the active person to the first person
         in the list. If no one is selected, set the active person to None"""
         selected_id_list = self.person_tree.get_selected_objects()
-        if selected_id_list:
-            assert(selected_id_list[0])
+        if selected_id_list and selected_id_list[0]:
             try:
                 self.parent.change_active_person(self.parent.db.get_person(selected_id_list[0]))
             except:
@@ -217,7 +216,7 @@ class PeopleView:
                 ddate = self.parent.db.find_event_from_id(val[4]).get_date()
             else:
                 ddate = ""
-                
+
             iter = model.add([val[0],val[1],val[2],bdate,ddate,val[5],
                               val[6],val[7],val[8]],1)
 
@@ -243,10 +242,10 @@ class PeopleView:
             return
         
         id = self.parent.active_person.get_id()
-        val = self.parent.db.get_person_display(id)
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
         else:
+            val = self.parent.db.get_person_display(id)
             pg = val[5]
             if pg and pg != '@':
                 pg = pg[0]
@@ -278,7 +277,7 @@ class PeopleView:
             model.selection.select_iter(iter)
         except:
             print iter
-            
+
         itpath = model.model.get_path(iter)
         col = model.tree.get_column(0)
         model.tree.scroll_to_cell(itpath,col,1,0.5,0)
@@ -314,12 +313,20 @@ class PeopleView:
 
                 if current_model == model:
                     if val[3]:
-                        bdate = self.parent.db.find_event_from_id(val[3]).get_date()
+                        bdate_obj = self.parent.db.find_event_from_id(val[3])
+                        if bdate_obj:
+                            bdate = bdate_obj.get_date()
+                        else:
+                            bdate = ""
                     else:
                         bdate = ""
                 
                     if val[4]:
-                        ddate = self.parent.db.find_event_from_id(val[4]).get_date()
+                        ddate_obj = self.parent.db.find_event_from_id(val[4])
+                        if ddate_obj:
+                            ddate = ddate_obj.get_date()
+                        else:
+                            ddate = ""
                     else:
                         ddate = ""
                     iter = model.add([val[0],val[1],val[2],bdate,ddate,val[5],

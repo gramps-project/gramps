@@ -75,7 +75,7 @@ def build_report(database,person):
             notfound.append(photo.get_path())
         
     for person in personList:
-        length = len(person.get_photo_list())
+        length = len(person.get_media_list())
         if length > 0:
             with_photos = with_photos + 1
             total_photos = total_photos + length

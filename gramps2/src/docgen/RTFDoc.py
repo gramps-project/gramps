@@ -341,7 +341,7 @@ class RTFDoc(BaseDoc.BaseDoc):
     # dumped as a string of HEX numbers.
     #
     #--------------------------------------------------------------------
-    def add_photo(self,name,pos,x_cm,y_cm):
+    def add_media_object(self,name,pos,x_cm,y_cm):
         try:
             im = ImgManip.ImgManip(name)
         except:

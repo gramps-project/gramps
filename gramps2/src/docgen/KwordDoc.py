@@ -49,7 +49,7 @@ def points(val):
 class KwordDoc(BaseDoc.BaseDoc):
 
     def open(self,filename):
-        self.photo_list = []
+        self.media_list = []
 
         if filename[-4:] != ".kwd":
             self.filename = filename + ".kwd"
@@ -149,7 +149,7 @@ class KwordDoc(BaseDoc.BaseDoc):
             self.f.write('</FRAMESET>\n')
             self.frameset_flg= 0
 
-        for p in self.photo_list:
+        for p in self.media_list:
             self.f.write('<FRAMESET frameType="2" frameInfo="0" ')
             self.f.write('name="%s" visible="1">\n' % p[1])
             self.f.write('<FRAME runaround="1" copy="0" newFrameBehaviour="1" ')
@@ -228,7 +228,7 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         self.f.write('</STYLES>\n')
         self.f.write('<PIXMAPS>\n')
-        for file in self.photo_list:
+        for file in self.media_list:
             self.f.write('<KEY name="%s" filename="%s" ' % (file[1],file[1]))
             a = time.localtime(self.mtime)
             self.f.write('msec="%d" ' % a[6])
@@ -253,7 +253,7 @@ class KwordDoc(BaseDoc.BaseDoc):
             
         tar.add_file("documentinfo.xml",self.mtime,self.m)
         tar.add_file("maindoc.xml",self.mtime,self.f)
-        for file in self.photo_list:
+        for file in self.media_list:
             f = open(file[0],"r")
             tar.add_file(file[1],self.mtime,f)
             f.close()
@@ -413,7 +413,7 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.frameset_flg= 0
         self.cell_left= self.cell_right
 
-    def add_photo(self,name,pos,x_cm,y_cm):
+    def add_media_object(self,name,pos,x_cm,y_cm):
 
         try:
             im = ImgManip.ImgManip(name)
@@ -430,9 +430,9 @@ class KwordDoc(BaseDoc.BaseDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        index = len(self.photo_list)+1
+        index = len(self.media_list)+1
         tag = 'pictures/picture%d.jpeg' % index
-        self.photo_list.append((name,tag,act_width,act_height))
+        self.media_list.append((name,tag,act_width,act_height))
         txt = '<FORMAT id="6" pos="%d" len="1">\n' % len(self.text)
         txt = txt + '<ANCHOR type="frameset" instance="%s"/>\n' % tag
         txt = txt + '</FORMAT>\n'

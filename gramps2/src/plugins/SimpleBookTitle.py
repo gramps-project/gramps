@@ -96,7 +96,7 @@ class SimpleBookTitle(Report.Report):
                 image_size = min(
                         0.8 * self.doc.get_usable_width(), 
                         0.7 * self.doc.get_usable_height() )
-            self.doc.add_photo(name,'center',image_size,image_size)
+            self.doc.add_media_object(name,'center',image_size,image_size)
 
         self.doc.start_paragraph('SBT-Footer')
         self.doc.write_text(self.footer_string)

@@ -68,8 +68,8 @@ class WitnessTab:
         for s in self.list:
             if s.get_type() == RelLib.Event.ID:
                 id = s.get_value()
-                if self.db.get_person_id_map().has_key(id):
-                    n = self.db.get_person(id).get_primary_name().get_name()
+                if self.db.has_person_id(id):
+                    n = self.db.find_person_from_id(id).get_primary_name().get_name()
                 else:
                     n = _('Unknown')
                 self.model.add([n,s.get_value()],s)
