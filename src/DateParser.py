@@ -26,7 +26,6 @@ date parsing class.
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
-import string
 import re
 import time
 import locale
@@ -100,9 +99,7 @@ class DateParser:
     _mod_str  = '(' + '|'.join(
         [ key.replace('.','\.') for key in modifier_to_int.keys() ]
         ) + ')'
-    _qual_str = '(' + string.join(quality_to_int.keys(),'|') + ')'
-    _mod_str  = '(' + string.join(modifier_to_int.keys(),'|') + ')'
-    _mon_str  = '(' + string.join(month_to_int.keys(),'|') + ')'
+    _mon_str  = '(' + '|'.join(month_to_int.keys()) + ')'
     
     _qual     = re.compile("%s\s+(.*)" % _qual_str,re.IGNORECASE)
     _span     = re.compile("from\s+(.*)\s+to\s+(.*)",re.IGNORECASE)
@@ -189,7 +186,7 @@ class DateParser:
 
     def set_date(self,date,text):
         """
-        Parses the text, returning a Date object.
+        Parses the text and sets the date according to the parsing.
         """
         date.set_text_value(text)
         qual = Date.QUAL_NONE
@@ -222,7 +219,7 @@ class DateParser:
             start = self._parse_subdate(grps[1])
             mod = self.modifier_to_int.get(grps[0].lower(),Date.MOD_NONE)
             date.set(qual,mod,Date.CAL_GREGORIAN,start)
-            return date
+            return
 
         subdate = self._parse_subdate(text)
         if subdate == Date.EMPTY:
@@ -237,5 +234,3 @@ class DateParser:
         new_date = Date.Date()
         self.set_date(new_date,text)
         return new_date
-
-
