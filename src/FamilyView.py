@@ -791,7 +791,6 @@ class FamilyView:
         i = 0
         fiter = None
         child_list = list(family.getChildList())
-#        child_list.sort(sort.by_birthdate)
 
         self.child_map = {}
 

@@ -93,10 +93,10 @@ _date_entry_list = [
     ]
 
 _name_format_list = [
-    (_("Firstname Surname"), Utils.normal_name),
-    (_("Surname, Firstname"), Utils.phonebook_name),
-    (_("Firstname SURNAME"), Utils.upper_name),
-    (_("SURNAME, Firstname"), Utils.phonebook_upper_name),
+    (_("Firstname Surname"),  Utils.normal_name, Utils.phonebook_name, lambda x: x.getSurname()),
+    (_("Surname, Firstname"), Utils.phonebook_name, Utils.phonebook_name, lambda x: x.getSurname()),
+    (_("Firstname SURNAME"),  Utils.upper_name, Utils.phonebook_upper_name, lambda x : x.getUpperSurname()),
+    (_("SURNAME, Firstname"), Utils.phonebook_upper_name, Utils.phonebook_upper_name, lambda x: x.getUpperSurname()),
     ]
 
 panellist = [
@@ -226,7 +226,6 @@ def loadConfig(call):
     global mediaref
     global globalprop
     global localprop
-#    global capitalize
     global defaultview
     global familyview
     
@@ -242,7 +241,6 @@ def loadConfig(call):
     vc_comment = get_bool("/apps/gramps/use-comment")
     uncompress = get_bool("/apps/gramps/dont-compress-xml")
     id_edit = get_bool("/apps/gramps/id-edit")
-#    capitalize = get_bool("/apps/gramps/capitalize")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
     gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style")
@@ -316,13 +314,8 @@ def loadConfig(call):
     Calendar.Calendar.ENTRYCODE = dateEntry
 
     nameof = _name_format_list[_name_format][1]
-
-    if _name_format > 1:
-        display_name = Utils.phonebook_upper_name
-        display_surname = lambda x : x.getUpperSurname()
-    else:
-        display_name = Utils.phonebook_name
-        display_surname = lambda x : x.getSurname()
+    display_name = _name_format_list[_name_format][2]
+    display_surname = _name_format_list[_name_format][3]
 
     make_path(os.path.expanduser("~/.gramps"))
     make_path(os.path.expanduser("~/.gramps/filters"))
@@ -809,6 +802,8 @@ class GrampsPreferences:
     
     def on_propertybox_apply(self,obj):
         global nameof
+        global display_name
+        global display_surname
         global uselds
         global autocomp
         global autosave_int
@@ -825,7 +820,6 @@ class GrampsPreferences:
         global vc_comment
         global uncompress
         global id_edit
-#        global capitalize
         global index_visible
         global status_bar
         global toolbar
@@ -853,7 +847,6 @@ class GrampsPreferences:
         vc_comment = self.top.get_widget("vc_comment").get_active()
         uncompress = self.top.get_widget("uncompress").get_active()
         id_edit = self.top.get_widget("gid_edit").get_active()
-#        capitalize = self.top.get_widget('capitalize').get_active()
         
         index_visible = self.top.get_widget("show_child_id").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
@@ -926,7 +919,6 @@ class GrampsPreferences:
         set_bool("/apps/gramps/use-comment",vc_comment)
         set_bool("/apps/gramps/dont-compress-xml",uncompress)
         set_bool("/apps/gramps/id-edit",id_edit)
-#        set_bool("/apps/gramps/capitalize",capitalize)
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
         set_int("/apps/gramps/toolbar",save_toolbar)
@@ -970,10 +962,11 @@ class GrampsPreferences:
         format_menu = self.top.get_widget("name_format").get_menu()
         active_name = format_menu.get_active().get_data(INDEX)
         
-        name_tuple = _name_format_list[active_name]
-        nameof = name_tuple[1]
+        nameof = _name_format_list[active_name][1]
+        display_name = _name_format_list[active_name][2]
+        display_surname = _name_format_list[active_name][3]
         set_int("/apps/gramps/nameFormat",active_name)
-        
+
         format_menu = self.top.get_widget("lastnamegen").get_menu()
         lastnamegen = format_menu.get_active().get_data(DATA)
         set_int("/apps/gramps/surname-guessing",lastnamegen)

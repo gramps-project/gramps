@@ -255,9 +255,12 @@ class PeopleView:
             model.expand_row(val[-1])
             (m,iter) = self.id2col[id]
             self.parent.modify_statusbar()
-            
-        model.selection.unselect_all()
-        model.selection.select_iter(iter)
+
+        try:
+            model.selection.unselect_all()
+            model.selection.select_iter(iter)
+        except:
+            print iter
             
         itpath = model.model.get_path(iter)
         col = model.tree.get_column(0)

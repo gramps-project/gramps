@@ -2126,6 +2126,10 @@ class GrampsDB:
         person = self.personMap[nkey]
         self.personTable[nkey] = person.getDisplayInfo()
         self.addSurname(person.getPrimaryName().getSurname())
+
+    def rebuildPersonTable(self):
+        for key in self.personTable.keys():
+            self.personTable[key] = self.personMap[key].getDisplayInfo()
         
     def buildPlaceDisplay(self,nkey,okey=None):
         if nkey != okey and okey != None:

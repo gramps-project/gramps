@@ -160,9 +160,12 @@ class Gramps:
         self.db.setResearcher(GrampsCfg.get_researcher())
 
     def pref_callback(self,val):
+        self.db.rebuildPersonTable()
         self.modify_statusbar()
         self.family_view.init_interface()
-        self.update_display(val)
+        self.people_view.clear_person_tabs()
+        self.update_display(1)
+        self.goto_active_person()
         self.toolbar.set_style(GrampsCfg.toolbar)
 
     def init_interface(self):
