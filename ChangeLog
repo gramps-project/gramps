@@ -1,3 +1,9 @@
+2003-10-21  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleStore.py: Make sure that the key is in unicode
+	format. For some reason, python does not always seem to do the
+	conversion for us.
+	* TestPlan.txt: start of a test plan
+
 2003-10-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py: Correct behavior for right-click popup menu.
 	* src/PedView.py: Correct colors so that they work with dark and
