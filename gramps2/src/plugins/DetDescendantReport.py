@@ -398,12 +398,12 @@ class DetDescendantReport(Report.Report):
         """ Ouptut parents sentence
         Statement format:
 
-        FIRSTNAME was the son of FATHER and MOTHER.
-        FIRSTNAME was the son of FATHER.
-        FIRSTNAME was the son of MOTHER.
-        FIRSTNAME was the daughter of FATHER and MOTHER.
-        FIRSTNAME was the daughter of FATHER.
-        FIRSTNAME was the daughter of MOTHER.
+        FIRSTNAME is the son of FATHER and MOTHER.
+        FIRSTNAME is the son of FATHER.
+        FIRSTNAME is the son of MOTHER.
+        FIRSTNAME is the daughter of FATHER and MOTHER.
+        FIRSTNAME is the daughter of FATHER.
+        FIRSTNAME is the daughter of MOTHER.
         """
         ext_family= person.get_main_parents_family_id()
         if ext_family != None:
@@ -418,24 +418,24 @@ class DetDescendantReport(Report.Report):
                 if person.get_gender() == RelLib.Person.male:
                     if father != "":
                         if mother != "":
-                            self.doc.write_text(_(" %s was the son of %s and %s.") % \
+                            self.doc.write_text(_(" %s is the son of %s and %s.") % \
                                 (firstName, father, mother))
                         else:
-                            self.doc.write_text(_(" %s was the son of %s.") % \
+                            self.doc.write_text(_(" %s is the son of %s.") % \
                                 (firstName, father))
                     else:
-                        self.doc.write_text(_(" %s was the son of %s.") % \
+                        self.doc.write_text(_(" %s is the son of %s.") % \
                                 (firstName, mother))
                 else:
                     if father != "":
                         if mother != "":
-                            self.doc.write_text(_(" %s was the daughter of %s and %s.") % \
+                            self.doc.write_text(_(" %s is the daughter of %s and %s.") % \
                                 (firstName, father, mother))
                         else:
-                            self.doc.write_text(_(" %s was the daughter of %s.") % \
+                            self.doc.write_text(_(" %s is the daughter of %s.") % \
                                 (firstName, father))
                     else:
-                        self.doc.write_text(_(" %s was the daughter of %s.") % \
+                        self.doc.write_text(_(" %s is the daughter of %s.") % \
                                 (firstName, mother))
 
 
@@ -591,7 +591,7 @@ class DetDescendantReport(Report.Report):
 
         self.doc.start_paragraph("DDR-Title")
         if spouseName != "":
-            name = spouseName + " and " + name
+            name = spouseName + _(" and ") + name
 
         title = _("Detailed Descendant Report for %s") % name
         self.doc.write_text(title)

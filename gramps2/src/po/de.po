@@ -2495,7 +2495,7 @@ msgstr "Beruf"
 
 #: const.py:312
 msgid "Ordination"
-msgstr "Priesterweihe"
+msgstr "Ordination"
 
 #: const.py:313
 msgid "Probate"
@@ -4603,7 +4603,7 @@ msgstr "%(name)ss %(grandparents)s väterlicherseits"
 
 #: plugins/Ancestors.py:356
 msgid "(no photo)"
-msgstr "(keine Foto)"
+msgstr "(kein Foto)"
 
 #: plugins/Ancestors.py:372
 msgid " (mentioned above)."
