@@ -722,7 +722,8 @@ def update_source_after_edit(source):
 #
 #-------------------------------------------------------------------------
 def on_tools_clicked(obj):
-    Plugins.ToolPlugins(database,active_person,update_display)
+    if active_person:
+        Plugins.ToolPlugins(database,active_person,update_display)
 
 #-------------------------------------------------------------------------
 #
@@ -730,7 +731,8 @@ def on_tools_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_reports_clicked(obj):
-    Plugins.ReportPlugins(database,active_person)
+    if active_person:
+        Plugins.ReportPlugins(database,active_person)
 
 #-------------------------------------------------------------------------
 #
@@ -1992,12 +1994,8 @@ def displayError(msg):
 #
 #
 #-------------------------------------------------------------------------
-
-import time
-
 def apply_filter():
 
-    t1 = time.time()
     people = database.getPersonMap().values()
 
     names = []
@@ -2040,8 +2038,6 @@ def apply_filter():
 
     person_list.thaw()
 
-    t2 = time.time()
-    print "apply",t2-t1
     if i > 0:
         goto_active_person()
 

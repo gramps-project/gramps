@@ -178,7 +178,7 @@ class AncestorReport:
 	width = 0
         self.filter(self.start,1)
 
-	self.height = self.lines*pt2cm(1.2*self.font.get_size())
+	self.height = self.lines*pt2cm(1.25*self.font.get_size())
 	self.box_width = pt2cm(self.box_width+20)
 
         start = self.doc.get_right_margin()
