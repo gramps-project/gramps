@@ -155,16 +155,16 @@ def add_persons_sources(db,person,slist,private):
             continue
         for source_ref in event.get_source_references():
             sbase = source_ref.get_base_handle()
-            if sbase != None and not slist.has_key(sbase.get_handle()):
-                slist[sbase.get_handle()] = 1
+            if sbase != None and not slist.has_key(sbase):
+                slist[sbase] = 1
 
     for event in person.get_attribute_list():
         if private and event.get_privacy():
             continue
         for source_ref in event.get_source_references():
             sbase = source_ref.get_base_handle()
-            if sbase != None and not slist.has_key(sbase.get_handle()):
-                slist[sbase.get_handle()] = 1
+            if sbase != None and not slist.has_key(sbase):
+                slist[sbase] = 1
 
     for name in person.get_alternate_names() + [person.get_primary_name()]:
         if private and name.get_privacy():
