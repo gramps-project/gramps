@@ -497,5 +497,5 @@ try:
         print_label=None
     Plugins.register_text_doc(mtype, KwordDoc, 1, 0, 1, ".kwd", print_label)
 except:
-    Plugins.register_text_doc('KWord', KwordDoc, 1, 0, 1, ".kwd", print_label)
+    Plugins.register_text_doc(_('KWord'), KwordDoc, 1, 0, 1, ".kwd", print_label)
 

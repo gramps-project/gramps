@@ -11,6 +11,11 @@
 	* src/plugins/Ancestors.py (event_info): Check whether place
 	exists before getting its title (#1014412).
 
+	* src/docgen/AbiWord2Doc.py, src/docgen/AsciiDoc.py,
+	src/docgen/HtmlDoc.py, src/docgen/KwordDoc.py, 
+	src/docgen/OpenOfficeDoc.py, src/docgen/PdfDoc.py, 
+	src/docgen/RTFDoc.py: Translate type descriptions; correct print_label.
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
 
