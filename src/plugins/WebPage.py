@@ -254,6 +254,8 @@ class IndividualPage:
     #--------------------------------------------------------------------
     def write_fam_fact(self,event):
 
+        if event == None:
+            return
         name = event.getName()
         date = event.getDate()
         place = event.getPlace()
