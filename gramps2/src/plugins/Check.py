@@ -148,7 +148,7 @@ class CheckIntegrity:
                      _('The database has passed internal checks'))
             return
 
-        text = cStringIO.StringIO;
+        text = cStringIO.StringIO()
         if blink > 0:
             if blink == 1:
                 text.write(_("1 broken child/family link was fixed\n"))
@@ -211,7 +211,8 @@ class CheckIntegrity:
         textwindow = topDialog.get_widget("textwindow")
 
         Utils.set_titles(top,topDialog.get_widget("title"),title)
-        textwindow.get_buffer().set_text(text.get_value())
+	textwindow.get_buffer().set_text(text.getvalue())
+	text.close()
         top.show()
 
 #------------------------------------------------------------------------
