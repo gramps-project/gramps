@@ -2029,7 +2029,7 @@ def main(arg):
         msg = _("You are running GRAMPS as the 'root' user.\nThis account is not meant for normal application use.")
         gnome.ui.GnomeWarningDialog(msg)
 
-    database = RelDataBase()
+    database = GrampsDB()
 
     Plugins.load_plugins(const.docgenDir)
     Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))

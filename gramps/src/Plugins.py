@@ -508,6 +508,19 @@ def get_text_doc_list():
 
 #-------------------------------------------------------------------------
 #
+# get_draw_doc_list
+#
+#-------------------------------------------------------------------------
+def get_draw_doc_list():
+
+    l = []
+    _drawdoc.sort()
+    for item in _drawdoc:
+        l.append(item[0])
+    return l
+
+#-------------------------------------------------------------------------
+#
 # get_draw_doc_menu
 #
 #-------------------------------------------------------------------------
@@ -523,7 +536,7 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == Config.output_preference:
+        if name == Config.goutput_preference:
             myMenu.set_active(index)
         if callback:
             callback(menuitem)

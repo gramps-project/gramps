@@ -205,7 +205,7 @@ if __name__ == "__main__":
     import sys
     import time
     
-    database = RelDataBase()
+    database = GrampsDB()
     t1 = time.time()
     if len(sys.argv) > 2:
         profile.run('loadData(database, sys.argv[1])')
