@@ -20,6 +20,11 @@
 
 # $Id$
 
+"""
+Provides the GRAMPS DB interface for supporting in-memory editing
+of GEDCOM files.
+"""
+
 from RelLib import *
 from GrampsInMemDB import *
 

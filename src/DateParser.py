@@ -21,8 +21,9 @@
 # $Id$
 
 """
-U.S. English date parsing class. Serves as the base class for any localized
-date parsing class.
+Date parsing class. Serves as the base class for any localized
+date parsing class. The default, base class provides parsing for
+English.
 """
 
 __author__ = "Donald N. Allingham"

@@ -32,6 +32,7 @@ from this class.
 #-------------------------------------------------------------------------
 from RelLib import *
 import cPickle
+
 import time
 import locale
 import re
@@ -54,6 +55,50 @@ SOURCE_KEY     = 2
 EVENT_KEY      = 3
 MEDIA_KEY      = 4
 PLACE_KEY      = 5
+
+class GrampsCursor:
+    """
+    Provides a basic iterator that allows the user to cycle through
+    the elements in a particular map. A cursor should never be
+    directly instantiated. Instead, in should be created by the
+    database class.
+
+    A cursor should only be used for a single pass through the
+    database. If multiple passes are needed, multiple cursors
+    should be used.
+    """
+
+    def first(self):
+        """
+        Returns the first (index, data) pair in the database. This
+        should be called before the first call to next(). Note that
+        the data return is in the format of the serialized format
+        stored in the database, not in the more usable class object.
+        The data should be converted to a class using the class's
+        unserialize method.
+
+        If no data is available, None is returned.
+        """
+        return None
+
+    def next(self):
+        """
+        Returns the next (index, data) pair in the database. Like
+        the first() method, the data return is in the format of the
+        serialized format stored in the database, not in the more
+        usable class object. The data should be converted to a class
+        using the class's unserialize method.
+
+        None is returned when no more data is available.
+        """
+        return None
+
+    def close(self):
+        """
+        Closes the cursor. This should be called when the user is
+        finished using the cursor, freeing up the cursor's resources.
+        """
+        pass
 
 class GrampsDbBase:
     """

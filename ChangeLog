@@ -1,3 +1,11 @@
+2004-12-05  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateParser.py: documenation enhancements
+	* src/GrampsBSDDB.py: Add cursor class
+	* src/GrampsDbBase.py: Add base cursor class
+	* src/GrampsGEDDB.py: documenation enhancements
+	* src/GrampsInMemDB.py: Add cursor class
+	* src/GrampsXMLDB.py: documenation enhancements
+
 2004-12-04  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ChooseParents.py: use new cursor for interation
 	* src/DbPrompter.py: reformat
