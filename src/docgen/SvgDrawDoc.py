@@ -97,10 +97,26 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         y1 = y1 + self.tmargin
         y2 = y2 + self.tmargin
 
-        self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1*28.35,y1*28.35))
-        self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2*28.35,y2*28.35))
-        self.f.write(' style="stroke:#000000;stroke-width=1"/>\n')
+        s = self.draw_styles[style]
 
+        self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1,y1))
+        self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2,y2))
+        color = s.get_color()
+        self.f.write(' style="stroke:#%02x%02x%02x; stroke-width:%.2fpt;"/>\n' %
+                     (color[0],color[1],color[2],s.get_line_width()))
+
+    def draw_path(self,style,path):
+        stype = self.draw_styles[style]
+
+        point = path[0]
+        self.f.write('<polygon fill="#%02x%02x%02x"' % stype.get_fill_color())
+        self.f.write(' style="stroke:#%02x%02x%02x; ' % stype.get_color())
+        self.f.write(' stroke-width=%.2fpt;"' % stype.get_line_width())
+        self.f.write(' points="%.2f,%.2f' % units((point[0]+self.lmargin,point[1]+self.tmargin)))
+        for point in path[1:]:
+            self.f.write(' %.2f,%.2f' % units((point[0]+self.lmargin,point[1]+self.tmargin)))
+        self.f.write('"/>\n')
+            
     def draw_bar(self,style,x1,y1,x2,y2):
         x1 = x1 + self.lmargin
         x2 = x2 + self.lmargin
@@ -113,8 +129,8 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         self.f.write('y="%4.2fcm" ' % y1)
         self.f.write('width="%4.2fcm" ' % (x2-x1))
         self.f.write('height="%4.2fcm" ' % (y2-y1))
-        self.f.write('style="fill:#ffffff;stroke:#000000;')
-        self.f.write('stroke-width:%.2f"/>\n' % s.get_line_width())
+        self.f.write('style="fill:#ffffff; stroke:#000000; ')
+        self.f.write('stroke-width:%.2f;"/>\n' % s.get_line_width())
     
     def draw_box(self,style,text,x,y):
         x = x + self.lmargin
@@ -131,13 +147,13 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         self.f.write('y="%4.2fcm" ' % (y+0.15))
         self.f.write('width="%4.2fcm" ' % bw)
         self.f.write('height="%4.2fcm" ' % bh)
-        self.f.write('style="fill:#808080;stroke:#808080;stroke-width:1"/>\n')
+        self.f.write('style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n')
         self.f.write('<rect ')
         self.f.write('x="%4.2fcm" ' % x)
         self.f.write('y="%4.2fcm" ' % y)
         self.f.write('width="%4.2fcm" ' % bw)
         self.f.write('height="%4.2fcm" ' % bh)
-        self.f.write('style="fill:#%02x%02x%02x;stroke:#000000;stroke-width:1"/>\n' % box_style.get_color())
+        self.f.write('style="fill:#%02x%02x%02x; stroke:#000000; stroke-width:1;"/>\n' % box_style.get_color())
         if text != "":
             font = p.get_font()
             font_size = font.get_size()
@@ -154,14 +170,14 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
                 self.f.write('y="%4.2fcm" ' % ypos)
                 self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
                 if font.get_bold():
-                    self.f.write('font-weight="bold";')
+                    self.f.write(' font-weight:"bold";')
                 if font.get_italic():
-                    self.f.write('font-style="italic";')
-                self.f.write('font-size:%d;' % font_size)
+                    self.f.write(' font-style:"italic";')
+                self.f.write(' font-size:%d;' % font_size)
                 if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
-                    self.f.write('font-family=sans-serif;')
+                    self.f.write(' font-family:sans-serif;')
                 else:
-                    self.f.write('font-family=serif;')
+                    self.f.write(' font-family:serif;')
                 self.f.write('">')
                 self.f.write(lines[i])
                 self.f.write('</text>\n')
@@ -182,18 +198,21 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         self.f.write('y="%4.2fcm" ' % (y+fs))
         self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
         if font.get_bold():
-            self.f.write('font-weight="bold";')
+            self.f.write('font-weight:"bold";')
         if font.get_italic():
-            self.f.write('font-style="italic";')
-        self.f.write('font-size:%d;' % font_size)
+            self.f.write('font-style:"italic";')
+        self.f.write('font-size:%d; ' % font_size)
         if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
-            self.f.write('font-family=sans-serif;')
+            self.f.write('font-family:sans-serif;')
         else:
-            self.f.write('font-family=serif;')
+            self.f.write('font-family:serif;')
         self.f.write('">')
         self.f.write(text)
         self.f.write('</text>\n')
-        
+
+def units(val):
+    return (val[0]*35.433, val[1]*35.433)
+
 #-------------------------------------------------------------------------
 #
 # Register document generator

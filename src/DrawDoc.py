@@ -41,6 +41,7 @@ class GraphicsStyle:
             self.para_name = obj.para_name
             self.shadow = obj.shadow
 	    self.color = obj.color
+            self.fill_color = obj.fill_color
             self.lwidth = obj.lwidth
             self.lstyle = obj.lstyle
         else:
@@ -49,7 +50,8 @@ class GraphicsStyle:
             self.para_name = ""
             self.shadow = 0
             self.lwidth = 0.5
-            self.color = (255,255,255)
+            self.color = (0,0,0)
+            self.fill_color = (255,255,255)
             self.lstyle = SOLID
 
     def set_line_width(self,val):
@@ -79,6 +81,9 @@ class GraphicsStyle:
     def set_color(self,val):
         self.color = val
 
+    def set_fill_color(self,val):
+        self.fill_color = val
+
     def get_height(self):
         return self.height
 
@@ -93,6 +98,9 @@ class GraphicsStyle:
 
     def get_color(self):
         return self.color
+
+    def get_fill_color(self):
+        return self.fill_color
 
 #------------------------------------------------------------------------
 #
