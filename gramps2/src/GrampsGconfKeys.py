@@ -70,6 +70,12 @@ def get_filter():
 def save_filter(val):
     set_bool("/apps/gramps/interface/filter",val)
 
+def get_dont_ask():
+    return get_bool("/apps/gramps/interface/dont-ask")
+
+def save_dont_ask(val):
+    set_bool("/apps/gramps/interface/dont-ask",val)
+
 def get_index_visible():
     return get_bool("/apps/gramps/interface/index-visible")
 

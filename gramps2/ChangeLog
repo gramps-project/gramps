@@ -1,3 +1,13 @@
+2004-11-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: handle the new "dont-ask" key
+	* src/GrampsGconfKeys.py: handle the new "dont-ask" key
+	* src/ImageSelect.py: remove debugging statements
+	* src/Marriage.py: handle the new "dont-ask" key
+	* src/QuestionDialog.py: handle the new "dont-ask" key
+	* src/gramps.glade: added "dont ask" button to SaveDialog
+	to turn off the nagging
+	* src/data/gramps.schemas: added the "dont-ask" key
+
 2004-11-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: fix goto_active_person
 	* src/DateParser.py: Handle month=12 in gregorian_valid

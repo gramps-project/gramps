@@ -1070,7 +1070,8 @@ class EditPerson:
     def on_cancel_edit(self,obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if self.did_data_change():
+        
+        if self.did_data_change() and not GrampsGconfKeys.get_dont_ask():
             n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
@@ -1086,7 +1087,7 @@ class EditPerson:
     def on_delete_event(self,obj,b):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if self.did_data_change():
+        if self.did_data_change() and not GrampsGconfKeys.get_dont_ask():
             n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '

@@ -353,11 +353,9 @@ class Gallery(ImageSelect):
 
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
-        print "In save photo"
         self.db.add_object(photo,None)
         oref = RelLib.MediaRef()
         oref.set_reference_handle(photo.get_handle())
-        print photo.get_handle(), photo.get_path()
         self.db.set_thumbnail_image(photo.get_handle(),photo.get_path())
         self.dataobj.add_media_reference(oref)
 
