@@ -1,10 +1,11 @@
 2003-07-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/gramps-manual.xml: Straighten up versioning.
 	* doc/gramps-manual/C/gramps-manual-C.omf: Update version and date.
+	* doc/gramps.1.in, doc/gramps.1: Update the date.
 
 2003-07-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SelectChild.py: Fix typos upsetting translation. 
-	* src/plugins/book.glade: Mark dummy strins as non-translatable.
+	* src/plugins/book.glade: Mark dummy strings as non-translatable.
 	* src/po/template.po: Update the above corrections in template.
 	* src/po/ru.po: First draft of Russian translation for 0.9.3.
 
