@@ -1,3 +1,8 @@
+2005-03-16  Alex Roitman  <shura@gramps-project.org>
+	* src/GenericFilter.py (HasTextMatchingSubstringOf): Minor.
+	* src/plugins/FilterEditor.py (EditRule:__init__): Typo.
+	* ChangeLog.old: Add to CVS the pre-2005 ChangeLog; Split off current.
+
 2005-03-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (HasTextMatchingSubstringOf): add checkboxes for case and
 	regexp matching; (HasTextMatchingRegexpOf) Added wrapper to use regexp matching

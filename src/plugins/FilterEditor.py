@@ -638,7 +638,7 @@ class EditRule:
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 elif v == _('Case sensitive:'):
-                    t = MyBoolean(_('Use exact case of letters:'))
+                    t = MyBoolean(_('Use exact case of letters'))
                 elif v == _('Regular-Expression matching:'):
                     t = MyBoolean(_('Use regular expression'))
                 else:
