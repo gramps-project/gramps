@@ -422,7 +422,7 @@
         <title>To Specify Children</title> 
 	<para>To specify children of an active person, switch to the 
 	Family View (<xref linkend="family-fig"/>) and then click either the 
-        second of the third button from the top on the right of the children list 
+        second or the third button from the top on the right of the children list 
         box. The second button adds a child to the database and to the family, while
         the third button adds a child already present in the database to the family.
 	</para>
@@ -1210,10 +1210,7 @@
 	<guibutton>OK</guibutton> button at any time will apply all the changes made 
 	in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -1323,10 +1320,7 @@
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -1486,10 +1480,7 @@
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -1589,7 +1580,7 @@
 	<!-- ==== End of Figure ==== -->
 
 	<para> The top of the window shows the dialog title including the name
-	of the person whose event is being edited. The central part of the 
+	of the persons whose event is being edited. The central part of the 
 	window displays four notebook tabs containing different categories of 
 	available information. You can bring any tab to the top for viewing or 
 	editing by clicking on the appropriate tab heading. The bottom part has 
@@ -1597,10 +1588,7 @@
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -1699,10 +1687,7 @@
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 
 	<para> The source can be selected from available sources listed in the
 	<guilabel>Title</guilabel> drop-down menu. If the source you are
@@ -1710,7 +1695,7 @@
 	the database. To do this, click the <guibutton>New...</guibutton> button 
 	and enter source information into the invoked <guilabel>Source 
 	Editor</guilabel> dialog. You can also set the details specific for 
-	this particular reference: confidence, volume/file/page. date, text, 
+	this particular reference: confidence, volume/file/page, date, text, 
 	and comments. Choose the confidence 
 	level from the <guilabel>Confidence</guilabel> drop-down menu. 
 	The rest of the details can be typed in the appropriate text entry
@@ -1744,10 +1729,7 @@
 	<guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -1836,10 +1818,7 @@
 	<guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -1872,7 +1851,7 @@
 	stored in the database. The buttons <guibutton>Add...</guibutton>, 
 	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
-	to this attribute . Note that the <guibutton>Edit...</guibutton> and 
+	to this attribute. Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Delete</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
 		</listitem></varlistentry>
@@ -1926,10 +1905,7 @@
 	<guibutton>OK</guibutton> button at any time will apply all the 
 	changes made in all tabs and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window without 
-	applying any changes. If any of the data in any tab were modified, 
-	the alert window will appear with the choices of closing the dialog 
-	without saving changes, canceling the initial cancel request, or saving 
-	the changes. </para> 
+	applying any changes. </para> 
 	
 	<para>
     The tab labels reflect the presence of corresponding information: if the 
@@ -2013,10 +1989,7 @@
 	Clicking the <guibutton>OK</guibutton> button at any time will apply all the 
 	changes made and close the dialog window. Clicking the 
 	<guibutton>Cancel</guibutton> button at any time will close the window 
-	without applying any changes. If any of the data were 
-	modified, the alert window will appear with the choices of closing 
-	the dialog without saving changes, canceling the initial cancel 
-	request, or saving the changes. </para> 
+	without applying any changes. </para> 
 	
 	<para>The witness name can be entered in two ways, depending upon 
 	whether the witness is a person already stored in the database or 

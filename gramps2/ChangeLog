@@ -1,7 +1,7 @@
 2004-01-25  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* doc/gramps-manual/C/gramps-manual.xml: Typos.
+	* doc/gramps-manual/C/usage.xml: Typos.
 	* doc/gramps-manual/de/cmdline.xml: Typo and wrong encoding.
-	* doc/gramps-manual/ru/gramps-manual.xml: Update.
+	* doc/gramps-manual/ru/usage.xml: Update.
 
 2004-01-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure, configure.in: Typo.
