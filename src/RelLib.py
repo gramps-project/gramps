@@ -1828,7 +1828,6 @@ class Source:
         self.title = ""
         self.author = ""
         self.pubinfo = ""
-        self.callno = ""
         self.note = Note()
         self.photoList = []
         self.id = ""
@@ -1901,16 +1900,6 @@ class Source:
     def getPubInfo(self):
         """returns the publication information of the Source"""
         return self.pubinfo
-
-    def setCallNumber(self,val):
-        """sets the call number (or some identification indicator)
-        of the Source"""
-        self.callno = val
-
-    def getCallNumber(self):
-        """returns the call number (or some identification indicator)
-        of the Source"""
-        return self.callno
 
     def setAbbrev(self,abbrev):
         """sets the title abbreviation of the Source"""

@@ -67,7 +67,6 @@ class EditSource:
         self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self, self.top)
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
-        self.callno = self.top_window.get_widget("callno")
         self.abbrev = self.top_window.get_widget("abbrev")
         self.note = self.top_window.get_widget("source_note")
         self.notes_buffer = self.note.get_buffer()
@@ -81,7 +80,6 @@ class EditSource:
         self.title.set_text(source.getTitle())
         self.author.set_text(source.getAuthor())
         self.pubinfo.set_text(source.getPubInfo())
-        self.callno.set_text(source.getCallNumber())
         self.abbrev.set_text(source.getAbbrev())
 
         if source.getNote():
@@ -229,7 +227,6 @@ class EditSource:
         title = self.title.get_text()
         author = self.author.get_text()
         pubinfo = self.pubinfo.get_text()
-        callno = self.callno.get_text()
         abbrev = self.abbrev.get_text()
         note = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
@@ -244,10 +241,6 @@ class EditSource:
         
         if pubinfo != self.source.getPubInfo():
             self.source.setPubInfo(pubinfo)
-            Utils.modified()
-        
-        if callno != self.source.getCallNumber():
-            self.source.setCallNumber(callno)
             Utils.modified()
         
         if abbrev != self.source.getAbbrev():

@@ -78,7 +78,7 @@
 		<firstname>Alex</firstname> 
 		<surname>Roitman</surname> 
 		<affiliation> 
-	  		<orgname>GRAMPS Project</orgname> 
+	  		<orgname>Проект GRAMPS</orgname> 
 	  		<address> <email>shura@alex.neuro.umn.edu</email> </address> 
 		</affiliation> 
       </author> 
@@ -86,7 +86,7 @@
 		<firstname>Donald N.</firstname> 
 		<surname>Allingham</surname> 
 		<affiliation> 
-	  		<orgname>GRAMPS Project</orgname> 
+	  		<orgname>Проект GRAMPS</orgname> 
 	  		<address> <email>dallingham@users.sourceforge.net</email> </address> 
 		</affiliation> 
       </author> 
@@ -210,40 +210,38 @@
 <!-- ============= Introduction ============================== -->
   <sect1 id="gramps-intro"> 
     <title>Введение</title> 
-    <para> &app; is a genealogical 
-    application. &app; is an acronym for the 
-    Genealogical Research and Analysis Management Programming System. To put 
-    it shortly, it allows you to store, edit, and research genealogical data 
-    using your computer. Its functionality is somewhat common to other 
-    genealogical programs. However, &app; offers some unique features. </para> 
+    <para> &app; является генеалогическим приложением. &app; это аббревиатура
+    для Системы Программирования для Управления Генеалогического Исследования 
+    и Анализа. Говоря коротко, &app; позволяет Вам хранить, редактировать и
+    исследовать генеалогичесике данные, используя Ваш компьютер. Функциональность
+    &app; в чем-то похожа на другие генеалогические программы. Тем не менее, &app; 
+    предлагает некоторые уникальные возможности.</para> 
 
     <sect2 id="why-gramps">
-      <title>Why &app;?</title>
-      <para> &app; was conceived under the concept
-      that most genealogy programs were designed to provide the researcher the 
-      capability to input information related to a particular family tree.  
-      Most of these programs have allowed for the arranging and storing of
-      information consistent with the GEDCOM standards. They usually provide
-      means for displaying descendant or ancestral relationships by means of
-      graphical displays, charts, or reports.  These may be augmented with 
-      pictures or other media to enhance the data.  Most provide for inputting 
-      data on unconnected individuals/families that may or may not have a 
-      relationship to the primary surname being researched.  Various other 
-      enhancements may also be provided in the genealogical program that 
-      allows for different degrees of importing and exporting data from other 
-      programs and printing the data contained in the various reports. </para>
+      <title>Почему &app;?</title>
+      <para> &app; была задумана с пониманием того, что большинство генеалогических
+      программ спроектированы, чтобы предоставить исследователю возможности ввода 
+      информации, относящейся к определённому семейному дереву. Большинство этих
+      программ позволяют упорядочивать и хранить информацию в соответствии с 
+      стандартами GEDCOM. Обычно они предоставляют средства для графического 
+      представления, схем, или отчетов. Последние могут быть дополнены изображениями 
+      или другой медиа-информацией для насыщения данных. Большинство программ
+      позволяют ввод данных для несвязанных лиц/семей, которые могут иметь или не иметь
+      отношения к центральной исследуемой семье. В генеалогических программах также
+      могут быть предоставлены прочие расширения, позволяющие различные степени
+      импорта и экспорта данных из других программ и печати данных, содержащихся в
+      различных отчетах.</para>
       
-      <para> &app;, on the other hand, attempts to
-      provide all of the common capabilities of these programs, but, more
-      importantly, to provide an additional capability of integration not common
-      to these programs.  This is the ability to input any bits and pieces of
-      information directly into &app; and
-      rearrange/manipulate any/all data events in the entire data base (in any
-      order or sequence) to assist the user in doing research, analysis and
-      correlation with the potential of filling relationship gaps.  In short, it 
-      is a tool that provides a way to input all your research into one place and 
-      do your analysis and correlation using the speed, power, and accuracy of 
-      your computer instead of pencils and unmanageable reams of paper. </para>
+      <para> &app;, со соей стороны, пытается предоставить не только все 
+      распространённые возможности этих программ, но и, что более важно, 
+      дополнительную вожможность интеграции, не присущую этим программам. Это
+      возможность ввести любые обрывки информации непосредственно в &app; и 
+      переупорядочить/манипулировать любыми/всеми данными во всей базе данных (в любом
+      порядке или последовательности), чтобы помочь пользователю в его исследовании,
+      анализе и корреляции с потенциальным заполнением белых пятен. Вкратце, это 
+      инструмент, дающий способ ввести все свои исследования в одно место и заниматься 
+      анализом и корреляцией, используя скорость, мощность, и точность Вашего 
+      компьютера, вместо карандашей и неуправляемых гор бумаги.</para>
     </sect2>
   </sect1> <!-- ================ End Intro ================================ -->
   
@@ -272,30 +270,30 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>About &app;</title> 
-    <para> &app; was written by Donald N. Allingham
+    <title>О программе &app;</title> 
+    <para> &app; написал Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
-      To find more information about &app;, please visit the 
-      <ulink url="http://gramps.sourceforge.net" type="http">GRAMPS Project 
-      Web page</ulink>. </para>
+      Для более подробной информации о &app;, пожалуйста посетите 
+      <ulink url="http://gramps.sourceforge.net" type="http">Веб-Страницу Проекта 
+      GRAMPS</ulink>. </para>
     <para>
-      To report a bug or make a suggestion regarding this application or
-      this manual, use the help menu in &app;, or follow the directions 
-      in this <ulink url="ghelp:gnome-feedback"  type="help">document</ulink>.
+    Чтобы сообщить об ошибке или сделать предложение, касающееся этого приложения
+    или этого руководства, используйте меню справки в &app;, или следуйте указаниям
+    этого <ulink url="ghelp:gnome-feedback"  type="help">документа</ulink>.
     </para>
 
-    <para> This program is distributed under the terms of the GNU
-      General Public license as published by the Free Software
-      Foundation; either version 2 of the License, or (at your option)
-      any later version. A copy of this license can be found at this
-      <ulink url="ghelp:gpl" type="help">link</ulink>, or in the file
-      COPYING included with the source code of this program. </para>
+    <para> Эта программа распространяется в соответствии с условиями GNU
+      General Public license опубликованной Free Software Foundation; 
+      версии 2 или (по Вашему выбору) любой следующей версии. Копию этой лицензии
+      можно найти по этому
+      <ulink url="ghelp:gpl" type="help">адресу</ulink>, или в файле COPYING, 
+      включенном в исходный код этой программы.</para>
 
   </sect1> <!-- ============= End About ============================= -->
 
 <!-- ============= Appendices ================================== -->
   <sect1 id="appendices">
-    <title>Appendices</title>
+    <title>Приложения</title>
   
       &faq;		    <!-- FAQ -->
       &keybind;		<!-- Keybindings reference -->
