@@ -19,6 +19,10 @@
 	* src/DdTargets.py: added targets for FAMILY_EVENT, FAMILY_ATTRIBUTE,
 	CHILD and SPOUSE
 	
+2005-03-24  Don Allingham  <don@gramps-project.org>
+	* src/EventEdit.py: Display error message if event type not specified.
+	* src/gramps_main.py: fix merge callback
+
 2005-03-24  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (Witness.__init__): Typo.
 	* src/plugins/Check.py (cleanup_missing_photos): Use new mediaref
