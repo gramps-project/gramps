@@ -89,7 +89,7 @@ def scale_image(path,size):
     try:
         image1 = GdkImlib.Image(path)
     except:
-        GnomeWarningDialog(_("Could load load image file %s") % path)
+        GnomeWarningDialog(_("Could not load image file %s") % path)
         return
     
     width  = image1.rgb_width
