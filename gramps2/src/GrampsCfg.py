@@ -248,9 +248,9 @@ def loadConfig(call):
     id_edit = get_bool("/apps/gramps/id-edit")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
+    gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style","BOTH")
 
     try:
-        gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style","BOTH")
         gnome_toolbar = eval("gtk.TOOLBAR_%s" % gnome_toolbar_str.upper())
     except:
         gnome_toolbar = 2
@@ -869,8 +869,8 @@ class GrampsPreferences:
             status_bar = 2
 
         save_toolbar = self.top.get_widget("tooloptmenu").get_history()
+        gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style",'BOTH')
         try:
-            gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style",'BOTH')
             gnome_toolbar = eval("gtk.TOOLBAR_%s" % gnome_toolbar_str.upper())
         except:
             gnome_toolbar = 2
