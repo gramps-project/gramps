@@ -4,6 +4,7 @@
 # If not using GNU make, then list all .py files individually
 pkgpython_PYTHON = \
 	AncestorChart.py\
+	AncestorChart2.py\
 	AncestorReport.py\
 	Ancestors.py\
 	BookReport.py\
