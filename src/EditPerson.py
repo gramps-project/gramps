@@ -197,7 +197,7 @@ class EditPerson:
         self.name_note = self.get_widget("name_note")
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
-        
+
         self.elist = person.getEventList()[:]
         self.nlist = person.getAlternateNames()[:]
         self.alist = person.getAttributeList()[:]
@@ -227,7 +227,7 @@ class EditPerson:
             
         self.gid.set_text(person.getId())
         self.gid.set_editable(GrampsCfg.id_edit)
-        self.event_list.set_column_visibility(3,GrampsCfg.show_detail)
+        self.event_list.set_column_visibility(4,GrampsCfg.show_detail)
         self.name_list.set_column_visibility(2,GrampsCfg.show_detail)
         self.attr_list.set_column_visibility(2,GrampsCfg.show_detail)
         self.addr_list.set_column_visibility(2,GrampsCfg.show_detail)
@@ -1387,7 +1387,7 @@ def disp_addr(addr):
 #-------------------------------------------------------------------------
 def disp_event(event):
     attr = Utils.get_detail_flags(event)
-    return [const.display_pevent(event.getName()),
+    return [const.display_pevent(event.getName()),event.getDescription(),
             event.getQuoteDate(),event.getPlaceName(),attr]
 
 def src_changed(parent):

@@ -2449,8 +2449,8 @@
 		<handler>on_event_button_press</handler>
 		<last_modification_time>Sun, 04 Nov 2001 15:29:48 GMT</last_modification_time>
 	      </signal>
-	      <columns>4</columns>
-	      <column_widths>125,150,200,50</column_widths>
+	      <columns>5</columns>
+	      <column_widths>115,110,150,100,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -2460,6 +2460,19 @@
 		<child_name>CList:title</child_name>
 		<name>label107</name>
 		<label>Event</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label108</name>
+		<label>Description</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
