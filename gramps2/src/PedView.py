@@ -181,7 +181,10 @@ class PedigreeView:
                 for n in [GrampsCfg.nameof(t[0]),
                           "b. %s" % t[0].getBirth().getDate(),
                           "d. %s" % t[0].getDeath().getDate()]:
-                    a.set_text(n,len(n))
+                    try:
+                        a.set_text(n,len(n))
+                    except TypeError:
+                        a.set_text(n)
                     (w1,h1) = a.get_pixel_size()
                     h = max(h,h1)
                     w = max(w,w1)
