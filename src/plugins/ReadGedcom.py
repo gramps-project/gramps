@@ -38,7 +38,6 @@ import time
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import gnome.ui
 
 #-------------------------------------------------------------------------
 #
@@ -46,9 +45,12 @@ import gnome.ui
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+import Julian
+import FrenchRepublic
+import Hebrew
+
 import Date
 from ansel_utf8 import ansel_to_utf8
-    
 import latin_utf8 
 import Utils
 from GedcomInfo import *
@@ -1569,11 +1571,11 @@ class GedcomParser:
                     pass
                 
                 if cal1 == "FRENCH R":
-                    dateobj.set_calendar(Date.FRENCH)
+                    dateobj.set_calendar(FrenchRepublic.FrenchRepublic)
                 elif cal1 == "JULIAN":
-                    dateobj.set_calendar(Date.JULIAN)
+                    dateobj.set_calendar(Julian.Julian)
                 elif cal1 == "HEBREW":
-                    dateobj.set_calendar(Date.HEBREW)
+                    dateobj.set_calendar(Hebrew.Hebrew)
                 dateobj.get_start_date().set(data1)
                 dateobj.get_stop_date().set(data2)
                 dateobj.set_range(1)
@@ -1583,11 +1585,11 @@ class GedcomParser:
             if match:
                 (abt,cal,data) = match.groups()
                 if cal == "FRENCH R":
-                    dateobj.set_calendar(Date.FRENCH)
+                    dateobj.set_calendar(FrenchRepublic.FrenchRepublic)
                 elif cal == "JULIAN":
-                    dateobj.set_calendar(Date.JULIAN)
+                    dateobj.set_calendar(Julian.Julian)
                 elif cal == "HEBREW":
-                    dateobj.set_calendar(Date.HEBREW)
+                    dateobj.set_calendar(Hebrew.Hebrew)
                 dateobj.set(data)
                 if abt:
                     dateobj.get_start_date().setMode(abt)
@@ -1615,7 +1617,6 @@ class GedcomParser:
 
     def resolve_refns(self):
         prefix = self.db.iprefix
-        renamed = []
         index = 0
         new_pmax = self.db.pmapIndex
         pmap = self.db.getPersonMap()

@@ -20,12 +20,20 @@
 
 #-------------------------------------------------------------------------
 #
+# standard python modules
+#
+#-------------------------------------------------------------------------
+import pickle
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gobject
 import gtk
 import gtk.glade
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #-------------------------------------------------------------------------
 #
@@ -34,17 +42,19 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import sort
-from intl import gettext as _
 import Utils
 import GrampsCfg
-from RelLib import Person
-from QuestionDialog import QuestionDialog
-
 import AddSpouse
 import SelectChild
 import DisplayTrace
 import Marriage
 import ChooseParents
+import RelLib
+
+from intl import gettext as _
+from QuestionDialog import QuestionDialog,WarningDialog
+
+pycode_tgts = [('child', 0, 0)]
 
 #-------------------------------------------------------------------------
 #
@@ -98,11 +108,18 @@ class FamilyView:
         self.selected_spouse = None
 
         self.child_list = self.top.get_widget('chlist')
-        self.child_list.set_reorderable(gtk.TRUE)
+
+        self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.child_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.child_list.connect('drag_data_get', self.drag_data_get)
+        self.child_list.connect('drag_begin', self.drag_begin)
+        self.child_list.connect('drag_data_received',self.drag_data_received)
+        
         self.child_model = gtk.ListStore(gobject.TYPE_INT,   gobject.TYPE_STRING,
                                          gobject.TYPE_STRING,gobject.TYPE_STRING,
                                          gobject.TYPE_STRING,gobject.TYPE_STRING, 
                                          gobject.TYPE_STRING)
+
         self.child_selection = self.child_list.get_selection()
 
         self.child_list.connect('button-press-event',self.on_child_list_button_press)
@@ -351,7 +368,7 @@ class FamilyView:
 
     def delete_family_from(self,person):
         person.removeFamily(self.family)
-        self.db.deleteFamily(self.family)
+        self.parent.db.deleteFamily(self.family)
         flist = self.person.getFamilyList()
         if len(flist) > 0:
             self.family = flist[0][0]
@@ -385,9 +402,9 @@ class FamilyView:
         attr = ""
         for child in child_list:
             status = _("Unknown")
-            if child.getGender() == Person.male:
+            if child.getGender() == RelLib.Person.male:
                 gender = const.male
-            elif child.getGender() == Person.female:
+            elif child.getGender() == RelLib.Person.female:
                 gender = const.female
             else:
                 gender = const.unknown
@@ -507,5 +524,94 @@ class FamilyView:
         Utils.modified()
         self.load_family()
 
+    def child_list_reordered(self,path,iter):
+        print path,iter
+
+    def on_child_list_row_move(self,clist,fm,to):
+        """Validate whether or not this child can be moved within the clist.
+        This routine is called in the middle of the clist's callbacks, so
+        the state can be confusing.  If the code is being debugged, the
+        display at this point shows that the list has been reordered when in
+        actuality it hasn't.  All accesses to the clist data structure
+        reference the state just prior to the move.
         
+        This routine must keep/compute its own list indices as the functions
+        list.remove(), list.insert(), list.reverse() etc. do not affect the
+        values returned from the list.index() routine."""
+
+        family = clist.get_data("f")
+
+        # Create a list based upon the current order of the clist
+        clist_order = []
+        for i in range(clist.rows):
+            clist_order = clist_order + [clist.get_row_data(i)]
+        child = clist_order[fm]
+
+        # This function deals with ascending order lists.  Convert if
+        # necessary.
+        if (self.child_sort.sort_direction() == GTK.SORT_DESCENDING):
+            clist_order.reverse()
+            max_index = len(clist_order) - 1
+            fm = max_index - fm
+            to = max_index - to
         
+        # Create a new list to match the requested order
+        desired_order = clist_order[:fm] + clist_order[fm+1:]
+        desired_order = desired_order[:to] + [child] + desired_order[to:]
+
+        # Check birth date order in the new list
+        if (EditPerson.birth_dates_in_order(desired_order) == 0):
+            clist.emit_stop_by_name("row_move")
+            msg = _("Invalid move. Children must be ordered by birth date.")
+            WarningDialog(msg)
+            return
+           
+        # OK, this birth order works too.  Update the family data structures.
+        family.setChildList(desired_order)
+
+        # Build a mapping of child item to list position.  This would not
+        # be necessary if indices worked properly
+        i = 0
+        new_order = {}
+        for tmp in desired_order:
+            new_order[tmp] = i
+            i = i + 1
+
+        # Convert the original list back to whatever ordering is being
+        # used by the clist itself.
+        if self.child_sort.sort_direction() == GTK.SORT_DESCENDING:
+            clist_order.reverse()
+
+        # Update the clist indices so any change of sorting works
+        i = 0
+        for tmp in clist_order:
+            clist.set_text(i,0,"%2d"%(new_order[tmp]+1))
+            i = i + 1
+
+        # Need to save the changed order
+        Utils.modified()
+
+        
+    def drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        row = self.child_list.get_row_at(x,y)
+        
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if mytype != 'child':
+                return
+            elif person == self.person.getId():
+                print row
+                # self.move_element(self.elist,self.etree.get_selected_row(),row)
+
+    def drag_data_get(self,widget, context, sel_data, info, time):
+        ev = self.child_list.get_selected_objects()
+
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev[0]);
+        data = str(('child',self.person.getId(),pickled));
+        sel_data.set(sel_data.target, bits_per, data)
+
+    def drag_begin(self, context, a):
+        return

@@ -167,12 +167,12 @@ class PluginDialog:
         xpm = data[3]
         status = data[4]
 
-        st = string.join(xpm,'\n')
-        # image = gtk.gdk.pixbuf_new_from_inline(len(st),st,0)
+        #st = string.join(xpm,'\n')
+        #image = gtk.gdk.pixbuf_new_from_inline(len(st),st,0)
         self.description.set_text(doc)
         self.status.set_text(": %s" % status)
         self.label.show()
-        # self.img.set_from_pixbuf(image)
+        #self.img.set_from_pixbuf(image)
         self.title.set_text(title)
 
         self.dialog.get_widget("title").set_text(title)

@@ -28,17 +28,10 @@ import os
 
 #-------------------------------------------------------------------------
 #
-# Gnome/GTK
-#
-#-------------------------------------------------------------------------
-import gnome.ui
-
-#-------------------------------------------------------------------------
-#
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+import RelLib
 from GrampsParser import GrampsParser, GrampsImportParser
 from QuestionDialog import ErrorDialog, WarningDialog
 from intl import gettext as _

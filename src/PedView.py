@@ -347,100 +347,6 @@ class PedigreeView:
                 y*3.0,  y*5.0,  y*7.0,  y*9.0,  y*11.0, y*13.0, y*15.0, y*17.0, 
                 y*19.0, y*21.0, y*23.0, y*25.0, y*27.0, y*29.0, y*31.0 ]
         return map(lambda coord, top_pad=top_pad: coord + top_pad, res)
-    
-    def add_box(self, x, y, bwidth, bheight, person, style):
-        """Draw a box of the specified size at the specified location.
-           The box consists of a shadow box for effect, the real box
-           that contains the information, and the basic text 
-           information. For convience, the all the subelements are
-           grouped into a GNOME canvas group."""
-
-        shadow = _PAD
-        xpad = _PAD
-        
-        name = person.getPrimaryName().getName()
-        group = self.root.add(gnome.canvas.CanvasGroup,x=x,y=y)
-        self.canvas_items.append(group)
-
-        # draw the shadow box
-        item = group.add(gnome.canvas.CanvasRect, x1=shadow, y1=shadow,
-                         x2=bwidth+shadow, y2=bheight+shadow,
-                         outline_color_gdk=style.dark[gtk.STATE_NORMAL],
-                         fill_color_gdk=style.dark[gtk.STATE_NORMAL])
-        self.canvas_items.append(item)
-
-        # draw the real box
-        item = group.add(gnome.canvas.CanvasRect, x1=0, y1=0, x2=bwidth, y2=bheight,
-                         outline_color_gdk=style.bg[gtk.STATE_NORMAL],
-                         fill_color_gdk=style.white)
-        self.canvas_items.append(item)
-
-        # Write the text
-
-        font = gtk.gdk.font_from_description(style.font_desc)
-        
-        item = group.add(gnome.canvas.CanvasText, x=xpad, y=bheight/2.0, text=name,
-                         fill_color_gdk=style.text[gtk.STATE_NORMAL],
-                         font=font, anchor=gtk.ANCHOR_WEST)
-        self.canvas_items.append(item)
-        group.connect('event',self.box_event)
-        group.set_data('p',person)
-
-    def box_event(self,obj,event):
-        """Handle events over a drawn box. Doubleclick would edit,
-           shift doubleclick would change the active person, entering
-           the box expands it to display more information, leaving a
-           box returns it to the original size and information"""
-
-        if event.type == gtk.gdk._2BUTTON_PRESS:
-#            if event.button == 1:
-#                person = obj.get_data(_PERSON)
-#                if (event.state & gtk.gdk.SHIFT_MASK) or (event.state & gtk.gdk.CONTROL_MASK):
-#                    self.change_active_person(person)
-#                    del self.presel_descendants[:]
-#                    self.load_canvas(person)
-#                else:
-#                    self.load_person(person)
-                return 1
-        elif event.type == gtk.gdk.ENTER_NOTIFY:
-            self.expand_box(obj)
-            return 0
-        elif event.type == gtk.gdk.LEAVE_NOTIFY:
-            self.shrink_box(obj)
-            return 0
-        return 0
-    
-    def shrink_box(self,obj):
-        """Shrink an exanded box back down to normal size"""
-        box = self.group_map[obj][1]
-        x,y,w,h = box.get_bounds()
-        box.set(x1=x,y1=y,x2=w,y2=h/3)
-        box2 = self.group_map[obj][2]
-        x,y,w,h1 = box2.get_bounds()
-        person = obj.get_data('p')
-        n = person.getPrimaryName().getName()
-        box2.set(text=n)
-        self.update()
-        self.canvas.update_now()
-        
-    def expand_box(self,obj):
-        """Expand a box to include additional information"""
-        obj.raise_to_top()
-        x,y,w,h = box.get_bounds()
-        box.set(x1=x,y1=y,x2=w,y2=h*3)
-        box2 = self.group_map[obj][0]
-        x,y,w,h1 = box2.get_bounds()
-        box2.set(x1=x,y1=y,x2=w,y2=(3*h)+_PAD)
-        person = obj.get_data('p')
-        color = self.canvas.get_style().text[gtk.STATE_NORMAL]
-        n = "%s\nb. %s.\nd. %s" % (person.getPrimaryName().getName(),
-                                   person.getBirth().getDate(),
-                                   person.getDeath().getDate())
-        box2 = self.group_map[obj][2]
-        box2.set(text=n)
-        box2.show()
-        msg = _("Doubleclick to edit, Shift-Doubleclick to make the active person")
-        self.sb.set_status(msg)
 
     def line_event(self,obj,event):
         """Catch X events over a line and respond to the ones we care about"""
@@ -461,18 +367,6 @@ class PedigreeView:
             obj.set(fill_color_gdk=style.black, width_pixels=2)
             self.update()
 
-    def on_canvas1_event(self,obj,event):
-        """Handle resize events over the canvas, redrawing if the size changes"""
-
-        if event.type == gtk.gdk.EXPOSE:
-            x1,y1,x2,y2 = self.canvas.get_allocation()
-            if self.x1 != x1 or self.x2 != x2 or \
-               self.y1 != y1 or self.y2 != y2:
-                self.x1 = x1; self.x2 = x2
-                self.y1 = y1; self.y2 = y2
-                self.load_canvas(self.active_person)
-        return 0
-
     def find_tree(self,person,index,depth,list,val=0):
         """Recursively build a list of ancestors"""
 
@@ -492,3 +386,14 @@ class PedigreeView:
             if mother != None:
                 self.find_tree(mother,(2*index)+2,depth+1,list,mrel)
 
+    def on_canvas1_event(self,obj,event):
+        """Handle resize events over the canvas, redrawing if the size changes"""
+        
+        if event.type == gtk.gdk.EXPOSE:
+            x1,y1,x2,y2 = self.canvas.get_allocation()
+            if self.x1 != x1 or self.x2 != x2 or \
+                   self.y1 != y1 or self.y2 != y2:
+                self.x1 = x1; self.x2 = x2
+                self.y1 = y1; self.y2 = y2
+                self.load_canvas(self.active_person)
+        return 0

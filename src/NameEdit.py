@@ -34,7 +34,7 @@ import const
 import Utils
 import AutoComp
 import Sources
-from RelLib import *
+import RelLib
 
 from intl import gettext as _
 
@@ -114,7 +114,7 @@ class NameEditor:
             type = "Also Known As"
         
         if self.name == None:
-            self.name = Name()
+            self.name = RelLib.Name()
             self.parent.nlist.append(self.name)
         
         self.name.setSourceRefList(self.srcreflist)

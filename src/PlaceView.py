@@ -36,13 +36,11 @@ import gtk.gdk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-from QuestionDialog import QuestionDialog, ErrorDialog
-
+import RelLib
 import EditPlace
 import Utils
-import GrampsCfg
 
+from QuestionDialog import QuestionDialog, ErrorDialog
 from intl import gettext as _
 
 _column_headers = [
@@ -147,6 +145,7 @@ class PlaceView:
             if mlist:
                 EditPlace.EditPlace(self,mlist[0],self.update_display)
             return 1
+        return 0
 
     def new_place_after_edit(self,place):
         self.db.addPlace(place)
@@ -158,7 +157,7 @@ class PlaceView:
         self.update(0)
 
     def on_add_place_clicked(self,obj):
-        EditPlace.EditPlace(self,Place(),self.new_place_after_edit)
+        EditPlace.EditPlace(self,RelLib.Place(),self.new_place_after_edit)
 
     def on_delete_clicked(self,obj):
         mlist = []

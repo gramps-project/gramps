@@ -32,7 +32,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-from RelLib import *
+import RelLib
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +68,7 @@ class UrlEditor:
         priv = self.priv.get_active()
         
         if self.url == None:
-            self.url = Url()
+            self.url = RelLib.Url()
             self.parent.ulist.append(self.url)
         
         self.update_url(des,addr,priv)

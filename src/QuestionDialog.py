@@ -19,7 +19,6 @@
 #
 
 import gtk
-import gnome.ui
 from intl import gettext as _
 
 class QuestionDialog:

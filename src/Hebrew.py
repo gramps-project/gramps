@@ -101,7 +101,7 @@ class Hebrew(Calendar.Calendar):
         try:
             return Hebrew.M2NUM[unicode(text.lower())]
         except KeyError:
-            return UNDEF
+            return Calendar.UNDEF
 
     def Tishri1(self,metonicYear, moladDay, moladHalakim):
 

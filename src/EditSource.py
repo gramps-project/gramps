@@ -34,7 +34,6 @@ import gtk.glade
 import const
 import Utils
 import GrampsCfg
-from RelLib import *
 import ImageSelect
 
 from intl import gettext as _

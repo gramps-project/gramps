@@ -48,7 +48,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import RelLib
 import const
-import sort
 import Utils
 import GrampsCfg
 

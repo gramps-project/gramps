@@ -85,22 +85,26 @@ class GraphVizDialog(ReportDialog):
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
         des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
-        
+
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
         ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
 
-        return [all,des,ans]
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+
+        return [all,des,ans,com]
 
     def add_user_options(self):
         self.arrowstyle_optionmenu = gtk.OptionMenu()
         menu = gtk.Menu()
-        
+
         menuitem = gtk.MenuItem(_("Descendants <- Ancestors"))
         menuitem.set_data('t', ('none', 'normal'))
         menuitem.show()
         menu.append(menuitem)
-        
+
         menuitem = gtk.MenuItem(_("Descendants -> Ancestors"))
         menuitem.set_data('t', ('normal', 'none'))
         menuitem.show()
@@ -162,13 +166,21 @@ class GraphVizDialog(ReportDialog):
                               _("Non-birth relationships will show up "
                                 "as dashed lines in the graph."))
 
+        self.show_families_cb = gtk.CheckButton(_("Show family nodes"))
+        self.show_families_cb.set_active(0)
+        self.add_frame_option(_("GraphViz Options"),
+                              '',
+                              self.show_families_cb,
+                              _("Families will show up as circles, linked "
+                                "to parents and children."))
+
         tb_margin_adj = gtk.Adjustment(value=0.5, lower=0.25,
                                       upper=100.0, step_incr=0.25)
         lr_margin_adj = gtk.Adjustment(value=0.5, lower=0.25,
                                       upper=100.0, step_incr=0.25)
 
-        self.tb_margin_sb = gtk.SpinButton(adj=tb_margin_adj, digits=2)
-        self.lr_margin_sb = gtk.SpinButton(adj=lr_margin_adj, digits=2)
+        self.tb_margin_sb = gtk.SpinButton(adjustment=tb_margin_adj, digits=2)
+        self.lr_margin_sb = gtk.SpinButton(adjustment=lr_margin_adj, digits=2)
 
         self.add_frame_option(_("GraphViz Options"),
                               _("Top & Bottom Margins"),
@@ -180,8 +192,8 @@ class GraphVizDialog(ReportDialog):
         hpages_adj = gtk.Adjustment(value=1, lower=1, upper=25, step_incr=1)
         vpages_adj = gtk.Adjustment(value=1, lower=1, upper=25, step_incr=1)
 
-        self.hpages_sb = gtk.SpinButton(adj=hpages_adj, digits=0)
-        self.vpages_sb = gtk.SpinButton(adj=vpages_adj, digits=0)
+        self.hpages_sb = gtk.SpinButton(adjustment=hpages_adj, digits=0)
+        self.vpages_sb = gtk.SpinButton(adjustment=vpages_adj, digits=0)
 
         self.add_frame_option(_("GraphViz Options"),
                               _("Number of Horizontal Pages"),
@@ -239,13 +251,14 @@ class GraphVizDialog(ReportDialog):
         self.arrowheadstyle, self.arrowtailstyle = menu.get_active().get_data('t')
         self.includedates = self.includedates_cb.get_active()
         self.includeurl = self.includeurl_cb.get_active()
-        self.tb_margin = self.tb_margin_sb.get_value_as_float()
-        self.lr_margin = self.lr_margin_sb.get_value_as_float()
+        self.tb_margin = self.tb_margin_sb.get_value()
+        self.lr_margin = self.lr_margin_sb.get_value()
         self.colorize = self.colorize_cb.get_active()
         self.adoptionsdashed = self.adoptionsdashed_cb.get_active()
         self.hpages = self.hpages_sb.get_value_as_int()
         self.vpages = self.vpages_sb.get_value_as_int()
-        
+        self.show_families = self.show_families_cb.get_active()
+
     #------------------------------------------------------------------------
     #
     # Functions related to creating the actual report document.
@@ -258,88 +271,119 @@ class GraphVizDialog(ReportDialog):
 
         file = open(self.target_path,"w")
 
-        ind_list = self.filter.apply(self.db.getPersonMap().values())
+        ind_list = self.filter.apply(self.db, self.db.getPersonMap().values())
 
         write_dot(file, ind_list, self.orien, width, height,
                   self.tb_margin, self.lr_margin, self.hpages,
                   self.vpages, self.includedates, self.includeurl,
-                  self.colorize, self.adoptionsdashed, self.arrowheadstyle, self.arrowtailstyle)
-        
+                  self.colorize, self.adoptionsdashed, self.arrowheadstyle,
+                  self.arrowtailstyle, self.show_families)
+
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def report(database,person):
     GraphVizDialog(database,person)
-    
+
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def write_dot(file, ind_list, orien, width, height, tb_margin,
               lr_margin, hpages, vpages, includedates, includeurl,
-              colorize, adoptionsdashed, arrowheadstyle, arrowtailstyle):
+              colorize, adoptionsdashed, arrowheadstyle, arrowtailstyle,
+              show_families):
     file.write("digraph g {\n")
     file.write("bgcolor=white;\n")
     file.write("rankdir=LR;\n")
     file.write("center=1;\n")
     file.write("margin=0.5;\n")
     file.write("ratio=fill;\n")
-    file.write("size=\"%3.1fin,%3.1fin\";\n" % ((width*hpages)-(lr_margin*2)-((hpages-1)*1.0),
+    file.write("size=\"%3.1f,%3.1f\";\n" % ((width*hpages)-(lr_margin*2)-((hpages-1)*1.0),
                                             (height*vpages)-(tb_margin*2)-((vpages-1)*1.0)))
-    file.write("page=\"%3.1fin,%3.1fin\";\n" % (width,height))
+    file.write("page=\"%3.1f,%3.1f\";\n" % (width,height))
 
     if orien == PAPER_LANDSCAPE:
         file.write("rotate=90;\n")
 
     if len(ind_list) > 1:
-        dump_index(ind_list,file,includedates,includeurl,colorize)
-        dump_person(ind_list,file,adoptionsdashed,arrowheadstyle,arrowtailstyle)
+        dump_index(ind_list,file,includedates,includeurl,colorize,
+                   arrowheadstyle,arrowtailstyle,show_families)
+        dump_person(ind_list,file,adoptionsdashed,arrowheadstyle,
+                    arrowtailstyle,show_families)
 
     file.write("}\n")
     file.close()
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
-def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,arrowtailstyle):
+def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
+                arrowtailstyle,show_families):
+    # Hash people in a dictionary for faster inclusion checking.
+    person_dict = {}
+    for p in person_list:
+        person_dict[p] = 1
+
     for person in person_list:
         pid = string.replace(person.getId(),'-','_')
-        family, mrel, frel = person.getMainParentsRel()
-        if family == None:
-            continue
-        father = family.getFather()
-        if father and father in person_list:
-            fid = string.replace(father.getId(),'-','_')
-            file.write('p%s -> p%s ['  % (pid, fid))
-            file.write('arrowhead=%s, arrowtail=%s, ' % (arrowheadstyle, arrowtailstyle))
-            if adoptionsdashed and frel != _("Birth"):
-                file.write('style=dashed')
+        for family, mrel, frel in person.getParentList():
+            father   = family.getFather()
+            mother   = family.getMother()
+            fadopted = frel != _("Birth")
+            madopted = mrel != _("Birth")
+            if show_families and (person_dict.has_key(father) or
+                                  person_dict.has_key(mother)):
+                # Link to the family node.
+                famid = string.replace(family.getId(),'-','_')
+                file.write('p%s -> f%s ['  % (pid, famid))
+                file.write('arrowhead=%s, arrowtail=%s, ' %
+                           (arrowheadstyle, arrowtailstyle))
+                if adoptionsdashed and (fadopted or madopted):
+                    file.write('style=dashed')
+                else:
+                    file.write('style=solid')
+                file.write('];\n')
             else:
-                file.write('style=solid')
-            file.write('];\n')
-        mother = family.getMother()
-        if mother and mother in person_list:
-            mid = string.replace(mother.getId(),'-','_')
-            file.write('p%s -> p%s ['  % (pid, mid))
-            file.write('arrowhead=%s, arrowtail=%s, ' % (arrowheadstyle, arrowtailstyle))
-            if adoptionsdashed and mrel != _("Birth"):
-                file.write('style=dashed')
-            else:
-                file.write('style=solid')
-            file.write('];\n')
+                # Link to the parents' nodes directly.
+                if father and person_dict.has_key(father):
+                    fid = string.replace(father.getId(),'-','_')
+                    file.write('p%s -> p%s ['  % (pid, fid))
+                    file.write('arrowhead=%s, arrowtail=%s, ' %
+                               (arrowheadstyle, arrowtailstyle))
+                    if adoptionsdashed and fadopted:
+                        file.write('style=dashed')
+                    else:
+                        file.write('style=solid')
+                    file.write('];\n')
+                if mother and person_dict.has_key(mother):
+                    mid = string.replace(mother.getId(),'-','_')
+                    file.write('p%s -> p%s ['  % (pid, mid))
+                    file.write('arrowhead=%s, arrowtail=%s, ' %
+                               (arrowheadstyle, arrowtailstyle))
+                    if adoptionsdashed and madopted:
+                        file.write('style=dashed')
+                    else:
+                        file.write('style=solid')
+                    file.write('];\n')
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
-def dump_index(person_list,file,includedates,includeurl,colorize):
+def dump_index(person_list,file,includedates,includeurl,colorize,
+               arrowheadstyle,arrowtailstyle,show_families):
+    # The list of families for which we have output the node, so we
+    # don't do it twice.
+    families_done = []
     for person in person_list:
+        # Output the person's node.
         label = person.getPrimaryName().getName()
         id = string.replace(person.getId(),'-','_')
         if includedates:
@@ -364,10 +408,25 @@ def dump_index(person_list,file,includedates,includeurl,colorize):
             else:
                 file.write('color=black, ')
         file.write('fontname="Arial", label="%s"];\n' % label)
+        # Output families's nodes.
+        if show_families:
+            family_list = person.getFamilyList()
+            for fam in family_list:
+                fid = string.replace(fam.getId(),'-','_')
+                if fam not in families_done:
+                    file.write('f%s [shape=circle, label="", ' % fid)
+                    file.write('weight=8, height=.3];\n')
+                # Link this person to all his/her families.
+                file.write('f%s -> p%s [' % (fid, id))
+                file.write('arrowhead=%s, arrowtail=%s, ' %
+                           (arrowheadstyle, arrowtailstyle))
+                file.write('style=solid];\n')
+
+
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def get_description():

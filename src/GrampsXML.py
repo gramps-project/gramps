@@ -18,12 +18,12 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from RelLib import GrampsDB
+import RelLib
 import WriteXML
 import ReadXML
 import const
 
-class GrampsXML(GrampsDB):
+class GrampsXML(RelLib.GrampsDB):
 
     def get_base(self):
         return const.xmlFile
@@ -32,7 +32,7 @@ class GrampsXML(GrampsDB):
         return 'GrampsXML'
 
     def new(self):
-        GrampsDB.new(self)
+        RelLib.GrampsDB.new(self)
         
     def save(self,name,callback):
         WriteXML.exportData(self,name,callback)

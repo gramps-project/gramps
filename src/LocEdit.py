@@ -32,7 +32,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-from RelLib import *
+import RelLib
 
 from intl import gettext as _
 
@@ -84,7 +84,7 @@ class LocationEditor:
         parish = self.parish.get_text()
         
         if self.location == None:
-            self.location = Location()
+            self.location = RelLib.Location()
             self.parent.llist.append(self.location)
         
         self.update_location(city,parish,county,state,country)

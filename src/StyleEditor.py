@@ -30,7 +30,6 @@ __version__ = "$Revision$"
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk.glade
 import gtk
 
 #------------------------------------------------------------------------
@@ -70,7 +69,7 @@ class StyleListDisplay:
             "on_edit_clicked" : self.on_edit_clicked
             })
         
-        self.list = ListModel.ListModel(self.top.get_widget("list"),[('Style',10,10)])
+        self.list = ListModel.ListModel(self.top.get_widget("list"),[('Style',-1,10)])
         self.redraw()
 
     def redraw(self):
@@ -151,14 +150,15 @@ class StyleEditor:
         
         self.top.signal_autoconnect({
             "on_save_style_clicked" : self.on_save_style_clicked,
-            "fg_color_set":self.fg_color_set,
-            "bg_color_set":self.bg_color_set,
             "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         self.window = self.top.get_widget("editor")
         self.pnames = self.top.get_widget("name")
 
+        self.top.get_widget('color').connect('color-set',self.fg_color_set)
+        self.top.get_widget('bgcolor').connect('color-set',self.bg_color_set)
+        
         self.top.get_widget("style_name").set_text(name)
         myMenu = gtk.Menu()
         first = 0
@@ -202,16 +202,16 @@ class StyleEditor:
         self.top.get_widget("lborder").set_active(p.get_left_border())
         self.top.get_widget("rborder").set_active(p.get_right_border())
         self.top.get_widget("bborder").set_active(p.get_bottom_border())
-        c = font.get_color()
-        self.top.get_widget("color").set_i8(c[0],c[1],c[2],0)
-        c = p.get_background_color()
-        self.top.get_widget("bgcolor").set_i8(c[0],c[1],c[2],0)
+        self.fg_color = font.get_color()
+        self.top.get_widget("color").set_i8(self.fg_color[0],self.fg_color[1],self.fg_color[2],0)
+        self.bg_color = p.get_background_color()
+        self.top.get_widget("bgcolor").set_i8(self.bg_color[0],self.bg_color[1],self.bg_color[2],0)
 
-    def bg_color_set(self,obj,r,g,b,a):
-        print r,g,b,a
+    def bg_color_set(self,x,r,g,b,a):
+        self.bg_color = (r >> 8, g >> 8, b >> 8)
 
-    def fg_color_set(self,obj,r,g,b,a):
-        print r,g,b,ax
+    def fg_color_set(self,x,r,g,b,a):
+        self.fg_color = (r >> 8, g >> 8, b >> 8)
         
     def save_paragraph(self,p):
         """Saves the current paragraph displayed on the dialog"""
@@ -244,10 +244,8 @@ class StyleEditor:
         p.set_right_border(self.top.get_widget("rborder").get_active())
         p.set_bottom_border(self.top.get_widget("bborder").get_active())
 
-        c = fg.get_i8()
-        font.set_color((c[0],c[1],c[2]))
-        c = bg.get_i8()
-        p.set_background_color((c[0],c[1],c[2]))
+        font.set_color(self.fg_color)
+        p.set_background_color(self.bg_color)
 
     def on_save_style_clicked(self,obj):
         """

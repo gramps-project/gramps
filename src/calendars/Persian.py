@@ -30,6 +30,13 @@ __version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
+# python modules
+#
+#-------------------------------------------------------------------------
+import math
+
+#-------------------------------------------------------------------------
+#
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
@@ -67,7 +74,7 @@ class Persian(Calendar.Calendar):
         try:
             return Persian.M2NUM[unicode(text.lower())]
         except KeyError:
-            return UNDEF
+            return Calendar.UNDEF
 
     def month(self,val):
         try:

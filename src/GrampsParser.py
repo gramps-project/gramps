@@ -18,8 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from RelLib import *
-from Date import SingleDate
+import RelLib
+import Date
 
 import string
 import Calendar
@@ -93,7 +93,7 @@ class GrampsParser:
         self.event = None
         self.name = None
         self.tempDefault = None
-        self.owner = Researcher()
+        self.owner = RelLib.Researcher()
 	self.func_list = [None]*50
 	self.func_index = 0
 	self.func = None
@@ -114,7 +114,7 @@ class GrampsParser:
 
     def start_lds_ord(self,attrs):
         type = attrs['type']
-        self.ord = LdsOrd()
+        self.ord = RelLib.LdsOrd()
         if self.person:
             if type == "baptism":
                 self.person.setLdsBaptism(self.ord)
@@ -158,7 +158,7 @@ class GrampsParser:
         """Bypass the function calls for this one, since it appears to
         take up quite a bit of time"""
         
-        loc = Location()
+        loc = RelLib.Location()
         if attrs.has_key('city'):
             loc.city = attrs['city']
         if attrs.has_key('parish'):
@@ -182,7 +182,7 @@ class GrampsParser:
             self.placeobj.set_longitude(attrs['long'])
 
     def start_event(self,attrs):
-        self.event = Event()
+        self.event = RelLib.Event()
         self.event_type = attrs["type"]
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
@@ -192,7 +192,7 @@ class GrampsParser:
             self.event.private = int(attrs["priv"])
         
     def start_attribute(self,attrs):
-        self.attribute = Attribute()
+        self.attribute = RelLib.Attribute()
         if attrs.has_key("conf"):
             self.attribute.conf = int(attrs["conf"])
         else:
@@ -215,7 +215,7 @@ class GrampsParser:
             self.family.addAttribute(self.attribute)
 
     def start_address(self,attrs):
-        self.address = Address()
+        self.address = RelLib.Address()
         self.person.addAddress(self.address)
         if attrs.has_key("conf"):
             self.address.conf = int(attrs["conf"])
@@ -257,7 +257,7 @@ class GrampsParser:
             desc = ""
 
         try:
-            url = Url()
+            url = RelLib.Url()
             url.set_path(attrs["href"])
             url.set_description(desc)
             if attrs.has_key("priv"):
@@ -295,7 +295,7 @@ class GrampsParser:
         self.person.FamilyList.append(self.db.findFamilyNoMap(attrs["ref"]))
 
     def start_name(self,attrs):
-        self.name = Name()
+        self.name = RelLib.Name()
         if attrs.has_key("type"):
             self.name.setType(attrs["type"])
         if attrs.has_key("conf"):
@@ -313,7 +313,7 @@ class GrampsParser:
         self.in_note = 1
 
     def start_sourceref(self,attrs):
-        self.source_ref = SourceRef()
+        self.source_ref = RelLib.SourceRef()
         source = self.db.findSourceNoMap(attrs["ref"])
         if attrs.has_key("conf"):
             self.source_ref.confidence = int(attrs["conf"])
@@ -345,7 +345,7 @@ class GrampsParser:
         self.source = self.db.findSourceNoMap(attrs["id"])
 
     def start_objref(self,attrs):
-        self.objref = ObjectRef()
+        self.objref = RelLib.ObjectRef()
         self.objref.setReference(self.db.findObjectNoMap(attrs['ref']))
         if attrs.has_key('priv'):
             self.objref.setPrivacy(int(attrs['priv']))
@@ -378,8 +378,8 @@ class GrampsParser:
         self.objref = None
         
     def start_photo(self,attrs):
-        self.photo = Photo()
-        self.pref = ObjectRef()
+        self.photo = RelLib.Photo()
+        self.pref = RelLib.ObjectRef()
         self.pref.setReference(self.photo)
         
         for key in attrs.keys():
@@ -396,7 +396,7 @@ class GrampsParser:
                     self.photo.setPath(src)
                     self.photo.setLocal(0)
             else:
-                a = Attribute()
+                a = RelLib.Attribute()
                 a.setType(key)
                 a.setValue(attrs[key])
                 self.photo.addAttribute(a)
@@ -531,7 +531,7 @@ class GrampsParser:
             if self.place_map.has_key(tag):
                 self.placeobj = self.place_map[tag]
             else:
-                self.placeobj = Place()
+                self.placeobj = RelLib.Place()
                 self.placeobj.set_title(tag)
                 self.db.addPlace(self.placeobj)
                 self.place_map[tag] = self.placeobj
@@ -571,11 +571,11 @@ class GrampsParser:
     def stop_gender(self,tag):
         t = tag
         if t == "M":
-            self.person.gender = Person.male
+            self.person.gender = RelLib.Person.male
         elif t == "F":
-            self.person.gender = Person.female
+            self.person.gender = RelLib.Person.female
         else:
-            self.person.gender = Person.unknown
+            self.person.gender = RelLib.Person.unknown
 
     def stop_stitle(self,tag):
         self.source.setTitle(tag)
@@ -591,7 +591,7 @@ class GrampsParser:
         self.source.setAuthor(tag)
 
     def stop_sdate(self,tag):
-        date = Date()
+        date = Date.Date()
         date.set(tag)
         self.source_ref.setDate(date)
         
@@ -874,7 +874,7 @@ class GrampsImportParser(GrampsParser):
             self.family.setRelationship(attrs["type"])
 
     def start_sourceref(self,attrs):
-        self.source_ref = SourceRef()
+        self.source_ref = RelLib.SourceRef()
         self.source = self.db.findSource(attrs["ref"],self.smap)
         self.source_ref.setBase(self.source)
         if self.address:

@@ -85,7 +85,7 @@ class FrenchRepublic(Calendar.Calendar):
         try:
             return FrenchRepublic.M2NUM[val]
         except KeyError:
-            return UNDEF
+            return Calendar.UNDEF
 
     def get_sdn(self,y,m,d):
         """Converts a French Republican Calendar date to an SDN number"""

@@ -41,8 +41,7 @@ import const
 import Utils
 import Sources
 import AutoComp
-
-from RelLib import Attribute
+import RelLib
 
 from intl import gettext as _
 
@@ -125,7 +124,7 @@ class AttributeEditor:
         priv = self.priv.get_active()
 
         if self.attrib == None:
-            self.attrib = Attribute()
+            self.attrib = RelLib.Attribute()
             self.parent.alist.append(self.attrib)
 
         self.attrib.setSourceRefList(self.srcreflist)

@@ -34,7 +34,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-from RelLib import *
+import RelLib
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -50,7 +50,7 @@ class SourceSelector:
         self.orig = srclist
         self.list = []
         for s in self.orig:
-            self.list.append(SourceRef(s))
+            self.list.append(RelLib.SourceRef(s))
         self.update=update
         self.top = gtk.glade.XML(const.srcselFile,"sourcesel")
         self.top.signal_autoconnect({
@@ -106,7 +106,7 @@ class SourceSelector:
         inst.redraw()
 
     def add_src_clicked(self,obj):
-        src = SourceRef()
+        src = RelLib.SourceRef()
         SourceEditor(src,self.db,self.add_ref,self)
 
     def del_src_clicked(self,obj):
@@ -177,7 +177,7 @@ class SourceTab:
             SourceEditor(src,self.db,self.update_clist,self)
 
     def add_src_clicked(self,obj):
-        src = SourceRef()
+        src = RelLib.SourceRef()
         SourceEditor(src,self.db,self.add_ref,self)
 
     def add_ref(self,inst,ref):

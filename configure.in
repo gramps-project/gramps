@@ -282,7 +282,7 @@ src/data/templates/Makefile
 src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
-doc/gramps-manual/C/Makefile
+doc/gramps-manual/C/Makefile	
 doc/extending-gramps/Makefile
 doc/extending-gramps/C/Makefile
 omf-install/Makefile
