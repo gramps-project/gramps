@@ -161,7 +161,7 @@ class ChooseParents:
         dday = self.person.getDeath().getDateObj()
 
         person_list = []
-        for key in self.db.getPersonKeys():
+        for key in self.db.sortPersonKeys():
             if pkey == key:
                 continue
 
@@ -235,7 +235,7 @@ class ChooseParents:
         dday = self.person.getDeath().getDateObj()
 
         person_list = []
-        for key in self.db.getPersonKeys():
+        for key in self.db.sortPersonKeys():
             if pkey == key:
                 continue
 
