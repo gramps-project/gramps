@@ -1,3 +1,6 @@
+2004-02-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/ru/custom.xml: Update.
+
 2004-02-02  Egyeki Gergely  <egeri@elte.hu>
 	* src/plugins/rel_hu.py: New relations added.
 	* src/po/hu.po: Minor corrections.
