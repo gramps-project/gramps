@@ -105,3 +105,11 @@ class Sort:
         a = self.database.get_event_from_handle(a_id)
         b = self.database.get_event_from_handle(b_id)
         return cmp(a.get_date_object(),b.get_date_object())
+
+    def by_place_title(self,a_id,b_id):
+        """Sort routine for comparing two events by their dates. """
+        if not (a_id and b_id):
+            return 0
+        a = self.database.get_place_from_handle(a_id)
+        b = self.database.get_place_from_handle(b_id)
+        return cmp(a.title,b.title)

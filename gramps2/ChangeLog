@@ -1,3 +1,7 @@
+2005-02-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/NavWebPage.py: More enhancements
+	* src/Sort.py: sort places by title
+
 2005-02-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/NavWebpage.py: Build template pages for unused
 	pages, add Surname List and Individual List pages.
