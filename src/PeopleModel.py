@@ -91,7 +91,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.connect('row-inserted',self.on_row_inserted)
 
     def on_row_inserted(self,model,path,iter):
-        print "row inserted",model,path,iter
+        pass
 
     def on_row_deleted(self,model,path):
         surname = self.top_path2iter[path[0]]

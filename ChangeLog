@@ -1,3 +1,7 @@
+2004-05-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleModel.py: temporary fix for add person update
+	* src/PeopleView.py: temporary fix for add person update
+
 2004-05-23  Don Allingham  <dallingham@users.sourceforge.net>
 	* various: transactions are now required for commits
 
