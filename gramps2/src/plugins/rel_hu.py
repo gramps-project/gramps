@@ -21,7 +21,6 @@
 
 #
 # Written by Egyeki Gergely <egeri@elte.hu>, 2004
-# TODO: sógor, sógornő
 #
 #-------------------------------------------------------------------------
 #
@@ -169,18 +168,15 @@ def get_age_sister (level):
 #
 #---------------------------------------------
 
-
 def is_fathermother_in_law(orig,other):
-#    sp = []
     for f in other.getFamilyList():
 	if other == f.getFather(): sp = f.getMother()
 	elif other == f.getMother() : sp = f.getFather()
         for g in orig.getFamilyList():
-            if sp in g.getChildList(): return 1
+           if sp in g.getChildList(): return 1
     return 0
 
-def get_fathermother_in_law_child(orig,other):
-#    sp = []
+def get_fathermother_in_law_common(orig,other):
     for f in other.getFamilyList():
 	if other == f.getFather(): sp = f.getMother()
 	elif other == f.getMother() : sp = f.getFather()
@@ -188,7 +184,32 @@ def get_fathermother_in_law_child(orig,other):
             if sp in g.getChildList(): return [sp]
     return []
 
+#------------------------------------------------------------------------
+#
+# hu: sógor, sógornő
+# en: brother-in-law, sister-in-law
+#
+#------------------------------------------------------------------------
 
+def is_brothersister_in_law(orig,other):
+    for f in orig.getFamilyList():
+	if orig == f.getFather(): sp = f.getMother()
+	elif orig == f.getMother() : sp = f.getFather()
+	p = other.getMainParents()
+	if (p != None): 
+            c= p.getChildList()
+	    if (other in c)and(sp in c): return 1
+    return 0
+
+def get_brothersister_in_law_common(orig,other):
+    for f in orig.getFamilyList():
+	if orig == f.getFather(): sp = f.getMother()
+	elif orig == f.getMother() : sp = f.getFather()
+	p = other.getMainParents()
+	if (p != None): 
+            c= p.getChildList()
+	    if (other in c)and(sp in c): return [sp]
+    return []
 
 #-------------------------------------------------------------------------
 #
@@ -219,21 +240,29 @@ def get_relationship(orig_person,other_person):
         return ("házastársa",[])
 
 
-    if is_fathermother_in_law(orig_person,other_person):
-	if orig_person.getGender() == RelLib.Person.male:
-	   return ("apósa",get_fathermother_in_law_child(orig_person,other_person))
-	elif orig_person.getGender() == RelLib.Person.female:
- 	   return ("anyósa",get_fathermother_in_law_child(orig_person,other_person))
-	elif orig_person.getGender() == 2 :
- 	   return ("apósa vagy anyósa",get_fathermother_in_law_child(orig_person,other_person))
-
     if is_fathermother_in_law(other_person,orig_person):
 	if other_person.getGender() == RelLib.Person.male:
-	   return ("veje",get_fathermother_in_law_child(other_person,orig_person))
+	   return ("apósa",get_fathermother_in_law_common(other_person,orig_person))
 	elif other_person.getGender() == RelLib.Person.female:
-	   return ("menye",get_fathermother_in_law_child(other_person,orig_person))
+	   return ("anyósa",get_fathermother_in_law_common(other_person,orig_person))
 	elif other_person.getGender() == 2 :
-	   return ("veje vagy menye",get_fathermother_in_law_child(other_person,orig_person))
+	   return ("apósa vagy anyósa",get_fathermother_in_law_common(other_person,orig_person))
+
+    if is_fathermother_in_law(orig_person,other_person):
+	if orig_person.getGender() == RelLib.Person.male:
+	   return ("veje",get_fathermother_in_law_common(orig_person,other_person))
+	elif orig_person.getGender() == RelLib.Person.female:
+ 	   return ("menye",get_fathermother_in_law_common(orig_person,other_person))
+	elif orig_person.getGender() == 2 :
+ 	   return ("veje vagy menye",get_fathermother_in_law_common(orig_person,other_person))
+
+    if is_brothersister_in_law(orig_person,other_person):
+       if other_person.getGender() == RelLib.Person.male:
+	 return ("sógora",get_brothersister_in_law_common(orig_person,other_person))
+       elif other_person.getGender() == RelLib.Person.female:
+	 return ("sógornője",get_brothersister_in_law_common(orig_person,other_person))
+       elif other_person.getGender() == 2 :
+	 return ("sógora vagy sógornője",get_brothersister_in_law_common(orig_person,other_person))
 
 
     apply_filter(orig_person,0,firstList,firstMap)
