@@ -315,7 +315,7 @@ class EventEditor:
                 self.parent.lists_changed = 1
         else:
             if self.event.get_place_id():
-                self.event.set_place_id(None)
+                self.event.set_place_id("")
                 self.parent.lists_changed = 1
         
         if self.event.get_name() != self.trans(name):

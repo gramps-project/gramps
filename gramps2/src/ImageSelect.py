@@ -1013,7 +1013,7 @@ class GlobalMediaProperties:
         for p in self.db.get_family_id_map().values():
             for o in p.get_media_list():
                 if o.get_reference() == self.object:
-                    self.refmodel.add([_("Family"),p.get_id(),Utils.family_name(p)])
+                    self.refmodel.add([_("Family"),p.get_id(),Utils.family_name(p,self.db)])
                     any = 1
         for key in self.db.get_source_keys():
             p = self.db.get_source(key)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -168,10 +168,12 @@ def upper_name(person):
     else:
         return u''
 
-def family_name(family):
+def family_name(family,db):
     """Builds a name for the family from the parents names"""
-    father = family.get_father_id()
-    mother = family.get_mother_id()
+    father_id = family.get_father_id()
+    mother_id = family.get_mother_id()
+    father = db.find_person_from_id(father_id)
+    mother = db.find_person_from_id(mother_id)
     if father and mother:
         fname = father.get_primary_name().get_name()
         mname = mother.get_primary_name().get_name()
@@ -182,10 +184,12 @@ def family_name(family):
         name = mother.get_primary_name().get_name()
     return name
 
-def family_upper_name(family):
+def family_upper_name(family,db):
     """Builds a name for the family from the parents names"""
-    father = family.get_father_id()
-    mother = family.get_mother_id()
+    father_id = family.get_father_id()
+    mother_id = family.get_mother_id()
+    father = db.find_person_from_id(father_id)
+    mother = db.find_person_from_id(mother_id)
     if father and mother:
         fname = father.get_primary_name().get_upper_name()
         mname = mother.get_primary_name().get_upper_name()
