@@ -114,7 +114,12 @@ class PatchNames:
                 "destroy_passed_object" : Utils.destroy_passed_object,
                 "on_ok_clicked" : self.on_ok_clicked
                 })
-            self.top.get_widget("textwindow").show_string(msg)
+
+            Utils.set_titles(self.top.get_widget('summary'),
+                             self.top.get_widget('title'),
+                             _('Name and title extraction tool'))
+
+            self.top.get_widget("textwindow").get_buffer().set_text(msg)
         else:
             OkDialog(_("No titles or nicknames were found"))
             self.cb(0)

@@ -952,7 +952,7 @@ class Gramps:
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
             self.ptabs.set_current_page(self.model2page[model])
-            if self.model_used[model] == 0:
+            if not self.model_used.has_key(model) or self.model_used[model] == 0:
                 self.model_used[model] = 1
                 self.apply_filter(model)
                 
@@ -1357,7 +1357,7 @@ class Gramps:
             else:
                 model = self.default_list
 
-#        self.apply_filter()
+        self.apply_filter()
         for key in keys:
             self.alpha_page[key].connect_model()
 
