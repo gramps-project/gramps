@@ -65,6 +65,7 @@ for val in const.familyConstantEvents.keys():
         ged2fam[key] = val
 
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
+headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
 
 #-------------------------------------------------------------------------
@@ -1118,8 +1119,11 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_header_head(self):
-	matches = self.get_next()
-
+        line = string.replace(self.lines[self.index],'\r','')
+	match = headRE.match(line)
+        if not match:
+	    raise GedcomParser.SyntaxError, self.lines[self.index]
+        self.index = self.index + 1
         if matches[1] != "HEAD":
 	    self.barf(0)
 
