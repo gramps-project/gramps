@@ -1,3 +1,13 @@
+Version 0.5.1
+* Bug fixes
+* Allow gramps' ids to be edited
+* Added Jesper Zedlitz's PAF for Palm export
+* Progress report on GEDCOM import
+* Add a new person from the parent selection dialog
+* Improved configure script for FreeBSD
+* Documenation improvements
+* Slight performance improvements reading large databases
+
 Version 0.5.0
 * New pedegree form which can display 3, 4, or 5 generations
   depending on the screen size. Supports better navigation.
