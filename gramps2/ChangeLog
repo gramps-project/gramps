@@ -1,3 +1,6 @@
+2004-10-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleModel.py: sort top level nodes using locale.strcoll
+
 2004-10-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsDbBase.py: remove forced upper comparisons
 	* src/EditPerson.py: support for locale selected patronymic
