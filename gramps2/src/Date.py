@@ -76,6 +76,7 @@ class Date:
     tstr = _("(and|to|-)")
     
     fmt = compile("\s*%s\s+(.+)\s+%s\s+(.+)\s*$" % (fstr,tstr),IGNORECASE)
+    fmt1 = compile("\s*([^-]+)\s*-\s*([^-]+)\s*$",IGNORECASE)
 
     def __init__(self,source=None):
         if source:
@@ -193,8 +194,8 @@ class Date:
         return compare_dates(self,other) == 0
 
     def set(self,text):
-        match = Date.fmt.match(text)
         try:
+            match = Date.fmt.match(text)
             if match:
                 matches = match.groups()
                 self.start.set(matches[1])
@@ -203,9 +204,21 @@ class Date:
                 self.stop.calendar = self.calendar
                 self.stop.set(matches[3])
                 self.range = 1
-            else:
-                self.start.set(text)
-                self.range = 0
+                return
+            
+            match = Date.fmt1.match(text)
+            if match:
+                matches = match.groups()
+                self.start.set(matches[0])
+                if self.stop == None:
+                    self.stop = SingleDate()
+                self.stop.calendar = self.calendar
+                self.stop.set(matches[1])
+                self.range = 1
+                return
+
+            self.start.set(text)
+            self.range = 0
         except Errors.DateError:
             if text != "":
                 self.range = -1
