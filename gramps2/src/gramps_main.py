@@ -72,6 +72,7 @@ import Find
 import VersionControl
 import ReadXML
 import AddSpouse
+import ListModel
 
 from GrampsXML import GrampsXML
 try:
@@ -79,6 +80,10 @@ try:
     zodb_ok = 1
 except:
     zodb_ok = 0
+
+pl_titles = [ (_('Name'),5,250), (_('ID'),1,50),
+              (_('Gender'),2,70), (_('Birth Date'),6,150),
+              (_('Death Date'),7,150), ('',5,0), ('',6,0), ('',7,0) ]
 
 #-------------------------------------------------------------------------
 #
@@ -161,7 +166,72 @@ class Gramps:
         self.filter_btn  = self.gtop.get_widget("filter1")
         self.statusbar   = self.gtop.get_widget("statusbar")
         self.topWindow   = self.gtop.get_widget("gramps")
-        self.person_list = self.gtop.get_widget("person_list")
+
+        self.ptabs       = self.gtop.get_widget("ptabs")
+        self.pl_ab       = self.gtop.get_widget("pl_ab")
+        self.pl_cd       = self.gtop.get_widget("pl_cd")
+        self.pl_ef       = self.gtop.get_widget("pl_ef")
+        self.pl_gh       = self.gtop.get_widget("pl_gh")
+        self.pl_ij       = self.gtop.get_widget("pl_ij")
+        self.pl_kl       = self.gtop.get_widget("pl_kl")
+        self.pl_mn       = self.gtop.get_widget("pl_mn")
+        self.pl_op       = self.gtop.get_widget("pl_op")
+        self.pl_qr       = self.gtop.get_widget("pl_qr")
+        self.pl_st       = self.gtop.get_widget("pl_st")
+        self.pl_uv       = self.gtop.get_widget("pl_uv")
+        self.pl_wx       = self.gtop.get_widget("pl_wx")
+        self.pl_yz       = self.gtop.get_widget("pl_yz")
+        self.pl_other    = self.gtop.get_widget("pl_other")
+
+        self.pl_page = [
+            ListModel.ListModel(self.pl_ab, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_cd, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_ef, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_gh, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_ij, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_kl, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_mn, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_op, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_qr, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_st, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_uv, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_wx, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_yz, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_other, pl_titles, self.row_changed, self.alpha_event),
+            ]
+
+        self.person_list = self.pl_page[0].tree
+        self.person_selection = self.pl_page[0].selection
+        self.person_model = self.pl_page[0].model
+        
+        self.default_list = self.pl_page[-1]
+
+        self.alpha_page = {
+            'a' : self.pl_page[0],  'b' : self.pl_page[0],
+            'c' : self.pl_page[1],  'd' : self.pl_page[1],
+            'e' : self.pl_page[2],  'f' : self.pl_page[2],
+            'g' : self.pl_page[3],  'h' : self.pl_page[3],
+            'i' : self.pl_page[4],  'j' : self.pl_page[4],
+            'k' : self.pl_page[5],  'l' : self.pl_page[5],
+            'm' : self.pl_page[6],  'n' : self.pl_page[6],
+            'o' : self.pl_page[7],  'p' : self.pl_page[7],
+            'q' : self.pl_page[8],  'r' : self.pl_page[8],
+            's' : self.pl_page[9],  't' : self.pl_page[9],
+            'u' : self.pl_page[10], 'v' : self.pl_page[10],
+            'w' : self.pl_page[11], 'x' : self.pl_page[11],
+            'y' : self.pl_page[12], 'z' : self.pl_page[12],
+            }
+
+        self.model2page = {
+            self.pl_page[0] : 0,     self.pl_page[1] : 1,
+            self.pl_page[2] : 2,     self.pl_page[3] : 3,
+            self.pl_page[4] : 4,     self.pl_page[5] : 5,
+            self.pl_page[6] : 6,     self.pl_page[7] : 7,
+            self.pl_page[8] : 8,     self.pl_page[9] : 9,
+            self.pl_page[10] : 10,   self.pl_page[11] : 11,
+            self.pl_page[12] : 12,   self.pl_page[13] : 13,
+            }
+        
         self.filter_list = self.gtop.get_widget("filter_list")
         self.notebook    = self.gtop.get_widget("notebook1")
         self.merge_button= self.gtop.get_widget("merge")
@@ -186,47 +256,12 @@ class Gramps:
         self.use_filter = GrampsCfg.get_filter()
         self.filter_btn.set_active(self.use_filter)
 
-        self.person_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                          gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                          gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                          gobject.TYPE_STRING, gobject.TYPE_STRING
-                                          )
-
         self.child_model = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING,
                                          gobject.TYPE_STRING, gobject.TYPE_STRING,
                                          gobject.TYPE_STRING, gobject.TYPE_STRING, 
                                          gobject.TYPE_STRING,
                                         )
 
-        self.person_list.set_model(self.person_model)
-        self.person_selection = self.person_list.get_selection()
-        self.person_selection.connect('changed',self.list_row_changed)
-
-        colno = 0
-        for title in [ (_('Name'),5,250),
-                       (_('ID'),1,50),
-                       (_('Gender'),2,70),
-                       (_('Birth Date'),6,150),
-                       (_('Death Date'),7,150),
-                       ('',5,0),
-                       ('',6,0),
-                       ('',7,0) ]:
-            renderer = gtk.CellRendererText ()
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_clickable(gtk.TRUE)
-                column.set_visible(gtk.FALSE)
-            else:
-                column.set_resizable(gtk.TRUE)
-            column.set_sort_column_id(title[1])
-            column.set_min_width(title[2])
-            self.person_list.append_column (column)
-
-        self.person_list.set_search_column(0)
-        self.person_list.get_column(0).clicked()
-        
         self.build_plugin_menus()
         self.init_filters()
 
@@ -252,6 +287,7 @@ class Gramps:
             "on_editbtn_clicked" : self.edit_button_clicked,
             "on_addbtn_clicked" : self.add_button_clicked,
             "on_removebtn_clicked" : self.remove_button_clicked,
+            "on_alpha_switch_page" : self.change_alpha_page,
             "delete_event" : self.delete_event,
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_family_up_clicked" : self.family_up_clicked,
@@ -288,7 +324,7 @@ class Gramps:
             "on_open_activate" : self.on_open_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
-            "on_person_list_button_press" : self.on_person_list_button_press,
+            "on_person_list_button_press" : self.alpha_event,
             "on_main_key_release_event" : self.on_main_key_release_event,
             "on_add_media_clicked" : self.media_view.create_add_dialog,
             "on_media_activate" : self.on_media_activate,
@@ -320,6 +356,11 @@ class Gramps:
         self.enable_sidebar(self.use_sidebar)
         self.enable_filter(self.use_filter)
 
+    def change_alpha_page(self,obj,junk,page):
+        self.person_list = self.pl_page[page].tree
+        self.person_selection = self.pl_page[page].selection
+        self.person_model = self.pl_page[page].model
+        
     def edit_button_clicked(self,obj):
         cpage = self.notebook.get_current_page()
         if cpage == 0:
@@ -352,7 +393,7 @@ class Gramps:
         self.removebtn.set_sensitive(val)
         self.editbtn.set_sensitive(val)
             
-    def list_row_changed(self,obj):
+    def row_changed(self,obj):
         store,iter = obj.get_selected()
         if iter:
             id = store.get_value(iter,1)
@@ -605,7 +646,8 @@ class Gramps:
         Utils.clearModified()
         Utils.clear_timer()
         self.change_active_person(None)
-        self.person_model.clear()
+        for model in self.pl_page:
+            model.clear()
         self.family_view.load_family()
         self.source_view.load_sources()
         self.place_view.load_places()
@@ -619,7 +661,8 @@ class Gramps:
     def full_update(self):
         """Brute force display update, updating all the pages"""
         self.id2col = {}
-        self.person_model.clear()
+        for model in self.pl_page:
+            model.clear()
         self.apply_filter()
         self.family_view.load_family()
         self.source_view.load_sources()
@@ -878,7 +921,8 @@ class Gramps:
             del_id = pid
 
         if self.id2col.has_key(del_id):
-            self.person_model.remove(self.id2col[del_id])
+            (model,iter,page) = self.id2col[del_id]
+            model.model.remove(iter)
             del self.id2col[del_id]
             
             if person == self.active_person:
@@ -890,7 +934,7 @@ class Gramps:
         self.redisplay_person_list(p1)
         self.update_display(0)
     
-    def on_person_list_button_press(self,obj,event):
+    def alpha_event(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.load_person(self.active_person)
 
@@ -899,11 +943,12 @@ class Gramps:
             return
         id = self.active_person.getId()
         if self.id2col.has_key(id):
-            iter = self.id2col[id]
-            self.person_selection.select_iter(iter);
-            itpath = self.person_model.get_path(iter)
-            col = self.person_list.get_column(0)
-            self.person_list.scroll_to_cell(itpath,col,1,0.5,0.0)
+            (model,iter,page) = self.id2col[id]
+            self.ptabs.set_current_page(page)
+            model.selection.select_iter(iter);
+            itpath = model.model.get_path(iter)
+            col = model.tree.get_column(0)
+            model.tree.scroll_to_cell(itpath,col,1,0.5,0.0)
     
     def change_active_person(self,person):
         self.active_person = person
@@ -1195,15 +1240,25 @@ class Gramps:
         self.update_display(0)
 
     def redisplay_person_list(self,person):
+        key = person.getId()
+        val = self.db.getPersonDisplay(person.getId())
+        pg = val[0]
+        pg = pg[0].lower()
         if self.DataFilter.compare(person):
-            iter = self.person_model.append()
-            self.id2col[person.getId()] = iter
-            val = person.getDisplayInfo()
-            self.person_model.set(iter, 0, val[0], 1, val[1], 2, val[2],
-                                  3, val[3], 4, val[4], 5, val[5],
-                                  6, val[6], 7, val[7])
-        self.person_model.sort_column_changed()
-
+            if pg and self.alpha_page.has_key(pg):
+                model = self.alpha_page[pg]
+            else:
+                model = self.default_list
+            iter = model.model.append()
+            page = self.model2page[model]
+            self.id2col[key] = (model,iter,page)
+            
+            model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
+                            3, val[3], 4, val[4], 5, val[5],
+                            6, val[6], 7, val[7])
+            self.change_active_person(person)
+            self.goto_active_person()
+            
     def load_person(self,person):
         if person:
             try:
@@ -1351,19 +1406,29 @@ class Gramps:
 
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
+            val = self.db.getPersonDisplay(key)
+            pg = val[0]
+            if pg:
+                pg = pg[0].lower()
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
+                if pg and self.alpha_page.has_key(pg):
+                    model = self.alpha_page[pg]
+                else:
+                    model = self.default_list
 
-                val = self.db.getPersonDisplay(key)
-                iter = self.person_model.append()
-                self.id2col[key] = iter
-                self.person_model.set(iter, 0, val[0], 1, val[1], 2, val[2],
-                                      3, val[3], 4, val[4], 5, val[5],
-                                      6, val[6], 7, val[7])
+                iter = model.model.append()
+                page = self.model2page[model]
+                self.id2col[key] = (model,iter,page)
+
+                model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
+                                3, val[3], 4, val[4], 5, val[5],
+                                6, val[6], 7, val[7])
             else:
                 if self.id2col.has_key(key):
-                    self.person_model.remove(self.id2col[key])
+                    (model,iter) = self.id2col[key]
+                    model.remove(iter)
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()

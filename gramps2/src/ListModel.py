@@ -22,7 +22,7 @@ from gobject import TYPE_STRING
 import gtk
 
 class ListModel:
-    def __init__(self,tree,dlist):
+    def __init__(self,tree,dlist,select_func=None,event_func=None):
         self.tree = tree
         l = len(dlist)
         self.model = gtk.ListStore(*[TYPE_STRING]*l)
@@ -31,13 +31,10 @@ class ListModel:
         self.tree.set_model(self.model)
         
         cnum = 0
-        
         for name in dlist:
             renderer = gtk.CellRendererText()
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
-            column.set_min_width(name[1])
-            if name[2]:
-                column.set_sort_column_id(name[2])
+            column.set_min_width(name[2])
             if name[0] == '':
                 column.set_clickable(gtk.TRUE)
                 column.set_visible(gtk.FALSE)
@@ -47,6 +44,16 @@ class ListModel:
             tree.append_column(column)
             if cnum == 1:
                 column.clicked()
+
+        cnum = 0
+        for name in dlist:
+            column = tree.get_column(cnum)
+            column.set_sort_column_id(name[1])
+
+        if select_func:
+            self.selection.connect('changed',select_func)
+        if event_func:
+            self.tree.connect('event',event_func)
 
     def clear(self):
         self.model.clear()

@@ -1,5 +1,5 @@
 %define ver      0.9.0
-%define rel      pre3
+%define rel      pre4
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
@@ -13,10 +13,12 @@ BuildRoot: /var/tmp/%{name}-%{version}-root
 
 URL: http://gramps.sourceforge.net
 
-Requires: python >= 1.5.2
-Requires: pygnome >= 1.0.53
-Requires: _gladegnomemodule.so
-Requires: pyexpat.so
+Requires: python >= 2.2
+Requires: gnome-python2 >= 1.99
+Requires: gnome-python2-gconf >= 1.99
+Requires: gnome-python2-canvas >= 1.99
+Requires: pygtk2 >= 1.99
+Requires: pygtk2-libglade >= 1.99
 
 BuildRequires: scrollkeeper >= 0.1.4
 BuildRequires: automake >= 1.6
