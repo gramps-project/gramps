@@ -967,7 +967,6 @@ class Gramps:
                        
     def new_database_response(self):
         import DbPrompter
-        self.clear_database(2)
         DbPrompter.DbPrompter(self,1)
 
     def clear_person_tabs(self):
@@ -1173,12 +1172,15 @@ class Gramps:
         elif base == "autosave.gramps":
             filename = os.path.dirname(filename)
         elif not os.path.isdir(filename):
+            import DbPrompter
+            DbPrompter.DbPrompter(self,0)
             self.displayError(_("Database could not be opened"),
                               _("%s is not a directory.") % filename + ' ' + \
                               _("You should select a directory that contains a "
                                 "data.gramps file or a gramps.zodb file."))
             return
 
+        self.clear_database(2)
         if self.load_database(filename) == 1:
             if filename[-1] == '/':
                 filename = filename[:-1]
@@ -1448,6 +1450,8 @@ class Gramps:
 
         if os.path.exists(filename):
             if not os.path.isdir(filename):
+                import DbPrompter
+                DbPrompter.DbPrompter(self,0)
                 self.displayError(_("Database could not be opened"),
                                   _("%s is not a directory.") % filename + ' ' + \
                                   _("You should select a directory that contains a "

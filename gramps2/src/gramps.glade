@@ -778,8 +778,9 @@
 		<widget class="button" id="button97">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Make the Home Person the active person</property>
-		  <property name="label">gtk-home</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">_Home</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-home</property>
 		  <signal name="clicked" handler="on_home_clicked"/>
 		</widget>
 	      </child>
