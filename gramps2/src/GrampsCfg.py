@@ -583,11 +583,13 @@ class GrampsPreferences:
         self.top.get_widget("fprefix").set_text(fprefix)
         self.top.get_widget("sprefix").set_text(sprefix)
         self.top.get_widget("pprefix").set_text(pprefix)
-        
+
         if status_bar == 0:
             self.top.get_widget("stat1").set_active(1)
-        else:
+        elif status_bar == 1:
             self.top.get_widget("stat2").set_active(1)
+        else:
+            self.top.get_widget("stat3").set_active(1)
 
         if toolbar == 0:
             self.top.get_widget("tool1").set_active(1)

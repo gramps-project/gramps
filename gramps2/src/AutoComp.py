@@ -134,14 +134,14 @@ class AutoCombo(AutoCompBase):
         AutoCompBase.__init__(self,widget,plist,source)
         self.entry = widget
         widget.entry.connect("insert-text",self.insert_text)
-        button1 = widget.get_children()[1]
-        button1.connect("button-press-event",self.build_list)
-        button1.connect("button-release-event",self.setval)
+#        button1 = widget.get_children()[1]
+#        button1.connect("pressed",self.build_list)
+#        button1.connect("released",self.setval)
         self.vals = [""]
         self.inb = 0
         widget.set_popdown_strings(plist)
         
-    def setval(self,widget,event):
+    def setval(self,widget):
         """Callback task called on the button release"""
         
         self.inb = 0
@@ -150,15 +150,18 @@ class AutoCombo(AutoCompBase):
             gtk.Editable.set_position(self.entry.entry,self.l)
             gtk.Editable.select_region(self.entry.entry,self.l,-1)
             
-    def build_list(self,widget,event):
+    def build_list(self,widget):
         """Internal task that builds the popdown strings. This task is called when the
         combo button that activates the dropdown menu is pressed
         """
         self.inb = 1
+        
+        print text
         if self.vals[0] == "":
             self.entry.set_popdown_strings([self.entry.entry.get_text()])
         else:
             self.entry.set_popdown_strings(self.vals)
+        return 1
 
     def timer_callback(self,entry):
         """

@@ -258,11 +258,11 @@ class Merge:
         pn2 = self.db.getPerson(p2)
         MergeData.MergePeople(self.db,pn1,pn2,self.on_update)
 
-    def on_update(self,p1,p2):
-        self.dellist[p2] = p1
+    def on_update(self,p1,p2,old_id):
+        self.dellist[p2.getId()] = p1.getId()
         for key in self.dellist.keys():
-            if self.dellist[key] == p2:
-                self.dellist[key] = p1
+            if self.dellist[key] == p2.getId():
+                self.dellist[key] = p1.getId()
         self.redraw()
         
     def update_and_destroy(self,obj):

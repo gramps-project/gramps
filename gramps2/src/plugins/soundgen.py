@@ -49,7 +49,6 @@ class SoundGen:
         self.glade = gtk.glade.XML(glade_file,"soundEx")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_apply_clicked"      : self.on_apply_clicked,
         })
 
         Utils.set_titles(self.glade.get_widget('soundEx'),
@@ -58,6 +57,9 @@ class SoundGen:
 
         self.value = self.glade.get_widget("value")
         self.name = self.glade.get_widget("name")
+
+        self.name.connect('changed',self.on_apply_clicked)
+
         names = []
         for person in self.db.getPersonMap().values():
             lastname = person.getPrimaryName().getSurname()
