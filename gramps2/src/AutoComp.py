@@ -56,12 +56,11 @@ def fill_entry(entry,data_list):
     
 def fill_option_text(combobox,data):
     typelist = []
-    store = gtk.ListStore(*[gobject.TYPE_STRING])
+    store = gtk.ListStore(gobject.TYPE_STRING)
     cell = gtk.CellRendererText()
     combobox.pack_start(cell,gtk.TRUE)
     combobox.add_attribute(cell,'text',0)
     for item in data:
-        print item
         store.append(row=[item])
     combobox.set_model(store)
     combobox.set_active(0)
