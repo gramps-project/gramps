@@ -1,3 +1,11 @@
+2004-12-02  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: hide window while closing updating info
+	* src/FamilyView.py: Fix deleting of spouses and children
+	* src/GrampsDbBase.py: add remove_family, clear default person
+	if the person is deleted
+	* src/PeopleView.py: text clean up
+	* src/gramps_main.py: disable buttons while deleting a person
+
 2004-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py (on_center_person_change_clicked): Typo.
 

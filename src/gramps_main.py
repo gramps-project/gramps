@@ -1253,7 +1253,18 @@ class Gramps:
                            _('_Delete Person'),
                            self.delete_person_response)
 
+    def disable_interface(self):
+        self.remove_button.set_sensitive(False)
+        self.edit_button.set_sensitive(False)
+        self.add_button.set_sensitive(False)
+    
+    def enable_interface(self):
+        self.remove_button.set_sensitive(True)
+        self.edit_button.set_sensitive(True)
+        self.add_button.set_sensitive(True)
+
     def delete_person_response(self):
+        self.disable_interface()
         trans = self.db.transaction_begin()
         
         n = self.active_person.get_primary_name().get_regular_name()
@@ -1307,6 +1318,7 @@ class Gramps:
             self.goto_active_person()
         self.db.transaction_commit(trans,_("Delete Person (%s)") % n)
         self.redraw_histmenu()
+        self.enable_interface()
 
     def merge_update(self,p1,p2,old_id):
         self.people_view.remove_from_person_list(p1,old_id)
@@ -1325,8 +1337,8 @@ class Gramps:
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
-        elif self.active_person == None or \
-               person.get_handle() != self.active_person.get_handle():
+        elif (self.active_person == None or
+              person.get_handle() != self.active_person.get_handle()):
             self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.modify_statusbar()
             self.set_buttons(1)

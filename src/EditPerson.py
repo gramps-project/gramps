@@ -1535,6 +1535,7 @@ class EditPerson:
 
     def on_apply_person_clicked(self,obj):
 
+        self.window.hide()
         trans = self.db.transaction_begin()
 
         surname = unicode(self.surname.get_text())
