@@ -1,3 +1,8 @@
+2003-11-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/NameEdit.py (on_help_clicked): Add function.
+	* src/UrlEdit.py (on_help_clicked): Add function.
+	* src/gramps.glade: Add hot keys to the family view list labels.
+
 2003-11-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add Help buttons to dialogs.
 	* src/AddSpouse.py (on_spouse_help_clicked): Add function.

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,12 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -66,12 +69,21 @@ class UrlEditor:
             self.addr.set_text(url.get_path())
             self.priv.set_active(url.getPrivacy())
 
+        self.top.signal_autoconnect({
+            "on_help_url_clicked" : self.on_help_clicked,
+            })
+
         if parent_window:
             self.window.set_transient_for(parent_window)
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
             self.on_url_edit_ok_clicked()
         self.window.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-complete')
+        self.val = self.window.run()
 
     def on_url_edit_ok_clicked(self):
         des = self.des.get_text()
