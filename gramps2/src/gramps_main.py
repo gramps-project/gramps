@@ -478,18 +478,19 @@ class Gramps:
             num = 0
             haveit = []
             for pid in pids:
-                if num < 10:
-                    if pid not in haveit:
-                        haveit.append(pid)
-                        person = self.db.getPerson(pid)
-                        item = gtk.MenuItem("_%d. %s [%s]" % 
-                            (num,person.getPrimaryName().getName(),pid))
-                        item.connect("activate",self.bookmark_callback,person)
-                        item.show()
-                        self.histmenu.append(item)
-                        self.hist_gomenuitem.set_submenu(self.histmenu)
-                        self.hist_gomenuitem.set_sensitive(1)
-                        num = num + 1
+                if num >= 10:
+                    break
+                if pid not in haveit:
+                    haveit.append(pid)
+                    person = self.db.getPerson(pid)
+                    item = gtk.MenuItem("_%d. %s [%s]" % 
+                        (num,person.getPrimaryName().getName(),pid))
+                    item.connect("activate",self.bookmark_callback,person)
+                    item.show()
+                    self.histmenu.append(item)
+                    self.hist_gomenuitem.set_submenu(self.histmenu)
+                    self.hist_gomenuitem.set_sensitive(1)
+                    num = num + 1
         else:
             self.hist_gomenuitem.set_sensitive(0)
 
@@ -502,9 +503,16 @@ class Gramps:
             pids.reverse()
             num = 1
             for pid in pids:
+                if num <= 10:
+                    f,r = divmod(num,10)
+                    hotkey = "_%d" % r
+                elif num <= 20:
+                    hotkey = "_%s" % chr(ord('a')+num-11)
+                elif num >= 21:
+                    break
                 person = self.db.getPerson(pid)
-                item = gtk.MenuItem("%s [%s]" % 
-                    (person.getPrimaryName().getName(),pid))
+                item = gtk.MenuItem("%s. %s [%s]" % 
+                    (hotkey,person.getPrimaryName().getName(),pid))
                 item.connect("activate",self.back_clicked,num)
                 item.show()
                 backhistmenu.append(item)
@@ -523,9 +531,16 @@ class Gramps:
             pids = self.history[self.hindex+1:]
             num = 1
             for pid in pids:
+                if num <= 10:
+                    f,r = divmod(num,10)
+                    hotkey = "_%d" % r
+                elif num <= 20:
+                    hotkey = "_%s" % chr(ord('a')+num-11)
+                elif num >= 21:
+                    break
                 person = self.db.getPerson(pid)
-                item = gtk.MenuItem("%s [%s]" % 
-                    (person.getPrimaryName().getName(),pid))
+                item = gtk.MenuItem("%s. %s [%s]" % 
+                    (hotkey,person.getPrimaryName().getName(),pid))
                 item.connect("activate",self.fwd_clicked,num)
                 item.show()
                 fwdhistmenu.append(item)
