@@ -1,3 +1,10 @@
+2003-06-04  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Split ReportDialog into BareReportDialog and
+	its subclass of ReportDialog. BareReportDialog has nothing to do with 
+	the paper, format, filename, etc. 
+	* src/plugins/BookReport.py: Make ReportOptionsDialog a sublcass of
+	Report.BareReportDialog. 
+
 2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/summary.glade, src/plugins/desbrowse.glade: 
 	Removed unnecessary buttonbox in the action area of a dialog -- this
