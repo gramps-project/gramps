@@ -1,5 +1,6 @@
 Version 0.9.4 -- the "This used to bug me..." release
 * More compliance with GNOME HIG.
+* User can choose either the People or Family view as default
 * Fixed style problems for book items. 
 * New Book item: Custom Text.
 * New export plugin: Web Family Tree.
