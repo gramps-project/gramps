@@ -113,7 +113,6 @@ class EventEditor:
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
 
     def on_event_edit_ok_clicked(self,obj):
-        event = self.event
 
         ename = self.name_field.get_text()
         edate = self.date_field.get_text()
@@ -124,10 +123,10 @@ class EventEditor:
         edesc = self.descr_field.get_text()
         epriv = self.priv.get_active()
 
-        if event == None:
-            event = Event()
-            event.setSourceRefList(self.srcreflist)
-            self.parent.elist.append(event)
+        if self.event == None:
+            self.event = Event()
+            self.event.setSourceRefList(self.srcreflist)
+            self.parent.elist.append(self.event)
         
         if eplace_obj == None and eplace != "":
             eplace_obj = Place()

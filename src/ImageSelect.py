@@ -134,6 +134,7 @@ class ImageSelect:
         else:
             if self.external.get_active() == 1:
                 name = filename
+                RelImage.mk_thumb(filename,self.path,mobj.getId())
             else:
                 name = RelImage.import_media_object(filename,self.path,mobj.getId())
 
@@ -200,6 +201,8 @@ class Gallery(ImageSelect):
         oref = ObjectRef()
         oref.setReference(photo)
         self.dataobj.addPhoto(oref)
+        dest = "%s/.thumb/%s.jpg" % (self.db.getSavePath(),photo.getId())
+        RelImage.mk_thumb(photo.getPath(),dest,const.thumbScale)
         self.add_thumbnail(oref)
 
     #-------------------------------------------------------------------------
@@ -237,7 +240,6 @@ class Gallery(ImageSelect):
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
         import urlparse
-        
 	if data and data.format == 8:
             icon_index = w.get_icon_at(x,y)
             d = string.strip(string.replace(data.data,'\0',' '))
@@ -262,7 +264,6 @@ class Gallery(ImageSelect):
                     GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = utils.get_mime_type(tfile)
-                print mime
                 photo = Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
