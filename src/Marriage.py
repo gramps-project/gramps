@@ -224,7 +224,6 @@ class Marriage:
         self.type_field.set_active(frel)
         self.gid.set_text(family.get_gramps_id())
 
-        AutoComp.fill_combo(self.lds_temple,_temple_names)
 
         place_list = self.pmap.keys()
         place_list.sort()
@@ -235,19 +234,15 @@ class Marriage:
             if lds_ord.get_place_handle():
                 self.lds_place.child.set_text(lds_ord.get_place_handle().get_title())
             self.lds_date.set_text(lds_ord.get_date())
-            if lds_ord.get_temple() != "":
-                name = const.lds_temple_to_abrev[lds_ord.get_temple()]
-            else:
-                name = ""
-            self.lds_temple.child.set_text(name)
             self.seal_stat = lds_ord.get_status()
         else:
-            self.lds_temple.child.set_text("")
             self.lds_place.child.set_text("")
             self.seal_stat = 0
 
         if self.family.get_complete_flag():
             self.complete.set_active(1)
+
+        self.lds_field(lds_ord,self.lds_temple)
 
         self.build_seal_menu()
 
@@ -304,8 +299,25 @@ class Marriage:
         self.top.get_widget('media_del').set_sensitive(mode)
         self.top.get_widget('media_add').set_sensitive(mode)
         self.top.get_widget('media_sel').set_sensitive(mode)
-
         self.window.show()
+
+    def lds_field(self,lds_ord,combo):
+
+        cell = gtk.CellRendererText()
+        combo.pack_start(cell,True)
+        combo.add_attribute(cell,'text',0)
+        store = gtk.ListStore(str)
+        for value in _temple_names:
+            node = store.append()
+            store.set(node,0,unicode(value))
+        combo.set_model(store)
+
+        if lds_ord:
+            temple_code = const.lds_temple_to_abrev.get(lds_ord.get_temple(),"")
+            index = _temple_names.index(temple_code)
+        else:
+            index = 0
+        combo.set_active(index)
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -551,10 +563,9 @@ class Marriage:
             changed = 1
 
         date = unicode(self.lds_date.get_text())
-        temple = unicode(self.lds_temple.child.get_text())
-        if const.lds_temple_codes.has_key(temple):
-            temple = const.lds_temple_codes[temple]
-        else:
+        try:
+            temple = _temple_names[self.lds_temple.get_active()]
+        except:
             temple = ""
 
         place = self.get_place(0)
@@ -628,10 +639,9 @@ class Marriage:
             self.family.set_complete_flag(self.complete.get_active())
 
         date = unicode(self.lds_date.get_text())
-        temple = unicode(self.lds_temple.child.get_text())
-        if const.lds_temple_codes.has_key(temple):
-            temple = const.lds_temple_codes[temple]
-        else:
+        try:
+            temple = _temple_names[self.lds_temple.get_active()]
+        except:
             temple = ""
         place = self.get_place(1,trans)
 
@@ -640,7 +650,8 @@ class Marriage:
             if date or temple or place or self.seal_stat:
                 lds_ord = RelLib.LdsOrd()
                 lds_ord.set_date(date)
-                lds_ord.set_temple(temple)
+                temple_code = const.lds_temple_codes.get(temple,"")
+                lds_ord.set_temple(temple_code)
                 lds_ord.set_status(self.seal_stat)
                 lds_ord.set_place_handle(place)
                 self.family.set_lds_sealing(lds_ord)
@@ -648,11 +659,12 @@ class Marriage:
             d = self.dp.parse(date)
             if d.is_equal(lds_ord.get_date_object()):
                 lds_ord.set_date_object(d)
-            if lds_ord.get_temple() != temple:
-                lds_ord.set_temple(temple)
+            temple_code = const.lds_temple_codes.get(temple,"")
+            if lds_ord.get_temple() != temple_code:
+                lds_ord.set_temple(temple_code)
             if lds_ord.get_status() != self.seal_stat:
                 lds_ord.set_status(self.seal_stat)
-            if lds_ord.get_place_handle() != place.get_handle():
+            if place and lds_ord.get_place_handle() != place.get_handle():
                 lds_ord.set_place_handle(place.get_handle())
 
         if self.lists_changed:
@@ -807,10 +819,10 @@ class Marriage:
             Utils.unbold_label(self.notes_label)
 
         date = unicode(self.lds_date.get_text())
-        temple = unicode(self.lds_temple.child.get_text())
-        if const.lds_temple_codes.has_key(temple):
-            temple = const.lds_temple_codes[temple]
-        else:
+
+        try:
+            temple = _temple_names[self.lds_temple.get_active()]
+        except:
             temple = ""
         
         if date or temple:
