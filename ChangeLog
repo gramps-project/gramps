@@ -1,3 +1,7 @@
+2003-10-13  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in, configure: Change version and release numbers.
+	* TODO: Remove completed items.
+
 2003-10-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (edit_button_clicked): Modify edit person call 
 	to always handle currently active person in family view;

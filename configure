@@ -268,8 +268,8 @@ SHELL=${CONFIG_SHELL-/bin/sh}
 # Identity of this package.
 PACKAGE_NAME='gramps'
 PACKAGE_TARNAME='gramps'
-PACKAGE_VERSION='0.9.5'
-PACKAGE_STRING='gramps 0.9.5'
+PACKAGE_VERSION='0.98.0'
+PACKAGE_STRING='gramps 0.98.0'
 PACKAGE_BUGREPORT='gramps-bugs@lists.sourceforge.net'
 
 ac_unique_file="src/gramps.py"
@@ -1616,7 +1616,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=1.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
+RELEASE=0.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
