@@ -27,9 +27,9 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "0.98">
-  <!ENTITY manrevision "2.4">
-  <!ENTITY date "December 2003">
+  <!ENTITY appversion "1.0.0">
+  <!ENTITY manrevision "2.5">
+  <!ENTITY date "January 2004">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -53,7 +53,7 @@
     <title>&app; Manuel V&manrevision;</title>       
 
     <copyright> <year>2003</year> <holder>Alex Roitman</holder> </copyright> 
-    <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
+    <copyright> <year>2003-2004</year> <holder>Donald N. Allingham</holder> </copyright>
 
 
   <copyright>
@@ -122,6 +122,15 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.4</revnumber> 
+		<date>December 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
 		    	<email>shura@alex.neuro.umn.edu</email></para>
@@ -258,8 +267,21 @@
      problems you know of. 
   
   <sect1 id="mayapp-bugs">
-  <title>Known Bugs and Limitations</title>
-  <para> </para>
+  <title>Erreurs connues, limitations</title>
+  <para>Pour le moment, &app; charge toutes ses données en mémoire ce qui 
+  charge lourdement le système quand la base de données est très grande
+  (au dessus de 15000 individus sur une configuration moyenne). 
+  Ceci sera traité dans la version 1.2 par l'utilisation d'une base de données
+  intégrée. L'utilisation mémoire comme les performances seront grandement améliorées. </para>
+  
+  <para>L'envoi direct sur une imprimante n'est pas supporté. 
+  Il est prévu de corriger celà après la version stable 1.0 par le recours
+  à l'architecture gnome-print.</para>
+  
+  <para>Les impressions PS et PDF génèrent des caractères erronés à la
+  place des caractères Unicode. gnome-print devrait aussi régler ce problème. 
+  En attendant, la solution est de produire des états au format
+  OpenOffice.org puis de les convertir en PDF avec OpenOffice.</para>
  </sect1>
 -->
 <!-- ============= About ================================== -->

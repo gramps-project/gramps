@@ -380,7 +380,43 @@
 	Celle du bas met comme nouvelle personne active la mère de la personne
 	active. 
 	Comme précédemment, tout l'affichage change alors en conséquence. </para>
-      </sect3>
+
+	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-anchor-fig"> 
+	<title>Pedigree View with the Anchor</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/pedigree-anchor.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Pedigree View with the anchor set.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+    
+    <para>Un principe avancé de numérotation des générations existe dans
+    la vue arborescente. Il est rendu disponible en jetant l'ancre
+    sur la personne active. Si l'ancre est jetée, les générations sont étiquetées
+    comme suit : la personne active et toutes celles de sa génération sont
+    étiquetées <guilabel>0</guilabel>. 
+    Les ancêtres sont numérotés avec des nombres positifs
+    (<guilabel>1</guilabel>, <guilabel>2</guilabel>, <guilabel>3</guilabel>, 
+    etc.) et les descendants sont numérotés avec des nombres négatifs
+    (<guilabel>-1</guilabel>, <guilabel>-2</guilabel>, <guilabel>-3</guilabel>, 
+    etc.). Dans tous les cas, l'étiquette représente le nombre de générations
+    entre la génération étiquetée et la personne active lors du jet de l'ancre. 
+    Dans ce mode, vous pouvez vous déplacer dans l'arbre des générations et
+    les compter depuis la personne active.</para>
+    
+    <para>Pour placer l'ancre, choisissez <guilabel>Jeter l'ancre</guilabel> dans 
+    le menu contextuel (clic droit) quand la personne voulue est la personne
+    active à la racine de la vue arborescente. Les étiquettes changeront alors
+    et le nom de la personne-ancre sera affiché en bas à gauche de la vue arborescente. 
+    La personne-ancre le restera jusqu'à ce que l'ancre soit retirée
+    (choix <guilabel>Lever l'ancre</guilabel> dans le menu contextuel) ou 
+    ou encore que la personne active ne soit plus en relation avec la personne-ancre. 
+    Ce dernier cas arrive par l'utilisation des outils de déplacement avancé
+    de &app;. Voir <xref linkend="gramps-nav"/> pour plus de détails.
+    </para>
+
+       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="sources-view">

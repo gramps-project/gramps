@@ -1,3 +1,9 @@
+2004-01-24  Michel Guitel  <michel.guitel@free.fr>
+	* doc/gramps-manual/fr/filtref.xml: Update.
+	* doc/gramps-manual/fr/gramps-manual.xml: Update.
+	* doc/gramps-manual/fr/mainwin.xml: Update.
+	* doc/gramps-manual/fr/usage.xml: Update.
+
 2004-01-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Relationship.py: Check if we run out of defined levels.
 
