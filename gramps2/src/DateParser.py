@@ -44,7 +44,6 @@ import locale
 #-------------------------------------------------------------------------
 import Date
 
-
 #-------------------------------------------------------------------------
 #
 # Parser class
@@ -298,12 +297,12 @@ class DateParser:
             else:
                 m = mmap[groups[0].lower()]
 
-            d = self._get_int(groups[1])
-
             if groups[2] == None:
-                y = 0
+                y = self._get_int(groups[1])
+                d = 0
                 s = None
             else:
+                d = self._get_int(groups[1])
                 y = int(groups[3])
                 s = groups[4] != None
             return (d,m,y,s)
