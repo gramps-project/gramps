@@ -1,3 +1,9 @@
+2003-09-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/po/Makefile.am: added support for building zh_CN.mo
+
+2003-09-19  Xing Wang  <wangx@udel.edu>
+	* src/po/zh_CN.po: Partial Simplified Chinese translation
+
 2003-09-19  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Own %{_datadir}/gramps directory.
 	* src/Makefile.am: Fix build when builddir != srcdir.
