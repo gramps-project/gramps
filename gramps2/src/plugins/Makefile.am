@@ -33,7 +33,6 @@ pkgdata_PYTHON = \
 	NavWebPage.py\
 	PatchNames.py\
 	ReadPkg.py\
-	ReadNative.py\
 	RelCalc.py\
 	ReorderIds.py\
 	SoundGen.py\

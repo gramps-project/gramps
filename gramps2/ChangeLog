@@ -37,6 +37,8 @@
 	* src/plugins/FilterEditor.py: Multiple fixes.
 	* src/GenericFilter.py: Multiple fixes.
 
+	* src/plugins/Makefile.am: Stop shipping ReadNative.py.
+
 2005-02-27 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DbPrompter.py (format_maker): Add mnemonic activation target
 	to the format selector label; Use new import format; don't treat
