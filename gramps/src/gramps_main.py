@@ -2381,11 +2381,9 @@ def apply_filter():
     altnames = []
     for person in people:
         names.append((person.getPrimaryName(),person,0))
-        for name in person.getAlternateNames():
-            altnames.append((name,person,1))
-
-    if Config.hide_altnames == 0:
-        names = names + altnames
+        if Config.hide_altnames == 0:
+            for name in person.getAlternateNames():
+                names.append((name,person,1))
 
     person_list.freeze()
 
@@ -2393,56 +2391,55 @@ def apply_filter():
     gname = utils.phonebook_from_name
 
     person_list.set_column_visibility(1,Config.id_visible)
-
     new_alt2col = {}
     
-    for name_tuple in names:
-        name,person,alt = name_tuple
-        
+    for person in database.getPersonMap().values():
         if datacomp(person):
-            pos = (person,alt)
-            if alt:
-                if id2col.has_key(person):
-                    continue
-                if new_alt2col.has_key(person):
-                    new_alt2col[person].append(pos)
-                else:
-                    new_alt2col[person] = [pos]
-            else:
-                if id2col.has_key(person):
-                    continue
-                id2col[person] = pos
-                    
+            
+            if id2col.has_key(person):
+                continue
+            pos = (person,0)
+            id2col[person] = pos
+            new_alt2col[person] = []
+
             if person.getGender():
                 gender = const.male
             else:
                 gender = const.female
+
             bday = person.getBirth().getDateObj()
             dday = person.getDeath().getDateObj()
-            person_list.insert(0,[gname(name,0),person.getId(),
-                                  gender,bday.getQuoteDate(),
-                                  dday.getQuoteDate(),
-                                  sort.build_sort_name(name),
-                                  sort.build_sort_birth(bday),
-                                  sort.build_sort_death(dday)])
-            person_list.set_row_data(0,pos)
-        else:
-            if alt:
-                if alt2col.has_key(person):
-                    ids = alt2col[person]
-                    del alt2col[person]
-                    for id in ids:
-                        row = person_list.find_row_from_data(id)
-                        if row != -1:
-                            person_list.remove(row)
-            else:
-                if id2col.has_key(person):
-                    id = id2col[person]
-                    del id2col[person]
-                    row = person_list.find_row_from_data(id)
-                    if row != -1:
-                        person_list.remove(row)
+            sort_bday = sort.build_sort_birth(bday)
+            sort_dday = sort.build_sort_death(dday)
+            qbday = bday.getQuoteDate()
+            qdday = dday.getQuoteDate()
+            pid = person.getId()
 
+            name = person.getPrimaryName()
+            person_list.insert(0,[gname(name,0),pid, gender,qbday,qdday,
+                                  sort.build_sort_name(name),sort_bday,sort_dday])
+            person_list.set_row_data(0,pos)
+
+            for name in person.getAlternateNames():
+                pos = (person,1)
+                new_alt2col[person].append(pos)
+
+                person_list.insert(0,[gname(name,1),pid,gender,qbday,qdday,
+                                      sort.build_sort_name(name),sort_bday,sort_dday])
+                person_list.set_row_data(0,pos)
+                    
+        else:
+            if id2col.has_key(person):
+                id = id2col[person]
+                del id2col[person]
+                row = person_list.find_row_from_data(id)
+                person_list.remove(row)
+
+                for id in alt2col[person]:
+                    row = person_list.find_row_from_data(id)
+                    person_list.remove(row)
+
+    alt2col = new_alt2col
     person_list.thaw()
     sort_person_list()
 
