@@ -195,6 +195,71 @@ class IsDescendantOf(Rule):
 
 #-------------------------------------------------------------------------
 #
+# IsDescendantOfFilterMatch
+#
+#-------------------------------------------------------------------------
+class IsDescendantOfFilterMatch(IsDescendantOf):
+    """Rule that checks for a person that is a descendant
+    of someone matched by a filter"""
+
+    labels = [ _('Filter name:') ]
+
+    def __init__(self,list):
+        IsDescendantOf.__init__(self,list)
+
+    def name(self):
+        return 'Is a descendant of filter match'
+
+    def apply(self,db,p):
+        self.orig = p
+
+        if not self.init:
+            self.init = 1
+            filter = MatchesFilter(self.list)
+            for person in db.getPersonMap ().values ():
+                if filter.apply (db, person):
+                    self.init_list (person)
+        return self.map.has_key(p.getId())
+
+#-------------------------------------------------------------------------
+#
+# IsChildOfFilterMatch
+#
+#-------------------------------------------------------------------------
+class IsChildOfFilterMatch(Rule):
+    """Rule that checks for a person that is a child
+    of someone matched by a filter"""
+
+    labels = [ _('Filter name:') ]
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
+    def name(self):
+        return 'Is a child of filter match'
+
+    def apply(self,db,p):
+        self.orig = p
+
+        if not self.init:
+            self.init = 1
+            filter = MatchesFilter(self.list)
+            for person in db.getPersonMap ().values ():
+                if filter.apply (db, person):
+                    self.init_list (person)
+        return self.map.has_key(p.getId())
+
+    def init_list(self,p):
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
+        for fam in p.getFamilyList():
+            for child in fam.getChildList():
+                self.map[child.getId()] = 1
+
+#-------------------------------------------------------------------------
+#
 # IsDescendantFamilyOf
 #
 #-------------------------------------------------------------------------
@@ -278,6 +343,72 @@ class IsAncestorOf(Rule):
 
 #-------------------------------------------------------------------------
 #
+# IsAncestorOfFilterMatch
+#
+#-------------------------------------------------------------------------
+class IsAncestorOfFilterMatch(Rule):
+    """Rule that checks for a person that is an ancestor of
+    someone matched by a filter"""
+
+    labels = [ _('Filter name:') ]
+
+    def __init__(self,list):
+        IsAncestorOf.__init__(self,list)
+    
+    def name(self):
+        return 'Is an ancestor of filter match'
+
+    def apply(self,db,p):
+        self.orig = p
+        if not self.init:
+            self.init = 1
+            filter = MatchesFilter(self.list)
+            for person in db.getPersonMap ().values ():
+                if filter.apply (db, person):
+                    self.init_ancestor_list (person)
+        return self.map.has_key(p.getId())
+
+#-------------------------------------------------------------------------
+#
+# IsParentOfFilterMatch
+#
+#-------------------------------------------------------------------------
+class IsParentOfFilterMatch(Rule):
+    """Rule that checks for a person that is a parent
+    of someone matched by a filter"""
+
+    labels = [ _('Filter name:') ]
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
+    def name(self):
+        return 'Is a parent of filter match'
+
+    def apply(self,db,p):
+        self.orig = p
+
+        if not self.init:
+            self.init = 1
+            filter = MatchesFilter(self.list)
+            for person in db.getPersonMap ().values ():
+                if filter.apply (db, person):
+                    self.init_list (person)
+        return self.map.has_key(p.getId())
+
+    def init_list(self,p):
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
+        fam in p.getMainParents()
+        if fam:
+            for parent in [fam.getFather (), fam.getMother ()]:
+                if parent:
+                    self.map[parent.getId()] = 1
+
+#-------------------------------------------------------------------------
+#
 # HasCommonAncestorWith
 #
 #-------------------------------------------------------------------------
@@ -313,6 +444,31 @@ class HasCommonAncestorWith(Rule):
         return for_each_ancestor([p],
                                  lambda self,p: self.ancestor_cache.has_key(p),
                                  self);
+
+#-------------------------------------------------------------------------
+#
+# HasCommonAncestorWithFilterMatch
+#
+#-------------------------------------------------------------------------
+class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
+    """Rule that checks for a person that has a common ancestor with
+    someone matching a filter"""
+
+    labels = [ _('Filter name:') ]
+
+    def name(self):
+        return 'Has a common ancestor with filter match'
+
+    def __init__(self,list):
+        HasCommonAncestorWith.__init__(self,list)
+
+    def init_ancestor_cache(self,db):
+        filter = MatchesFilter(self.list)
+        def init(self,pid): self.ancestor_cache[pid] = 1
+        for p in db.getPersonMap ().values ():
+            if (not self.ancestor_cache.has_key (p.getId ())
+                and filter.apply (db, p)):
+                for_each_ancestor([p],init,self)
 
 #-------------------------------------------------------------------------
 #
@@ -634,6 +790,32 @@ class MatchesFilter(Rule):
 
 #-------------------------------------------------------------------------
 #
+# IsSpouseOfFilterMatch
+#
+#-------------------------------------------------------------------------
+class IsSpouseOfFilterMatch(Rule):
+    """Rule that checks for a person married to someone matching
+    a filter"""
+
+    labels = [_('Filter name:')]
+
+    def name(self):
+        return 'Is spouse of filter match'
+
+    def apply(self,db,p):
+        filter = MatchesFilter (self.list)
+        for family in p.getFamilyList ():
+            for spouse in [family.getFather (), family.getMother ()]:
+                if not spouse:
+                    continue
+                if spouse == p:
+                    continue
+                if filter.apply (db, spouse):
+                    return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
 # loop_error
 #
 #-------------------------------------------------------------------------
@@ -790,8 +972,14 @@ tasks = {
     _("Has the birth")                   : HasBirth,
     _("Is a descendant of")              : IsDescendantOf,
     _("Is a descendant family member of"): IsDescendantFamilyOf,
+    _("Is a descendant of filter match") : IsDescendantOfFilterMatch,
+    _("Is a child of filter match")      : IsChildOfFilterMatch,
     _("Is an ancestor of")               : IsAncestorOf,
+    _("Is an ancestor of filter match")  : IsAncestorOfFilterMatch,
+    _("Is a parent of filter match")     : IsParentOfFilterMatch,
     _("Has a common ancestor with")      : HasCommonAncestorWith,
+    _("Has a common ancestor with filter match")
+                                         : HasCommonAncestorWithFilterMatch,
     _("Is a female")                     : IsFemale,
     _("Is a male")                       : IsMale,
     _("Has the personal event")          : HasEvent,
@@ -799,6 +987,7 @@ tasks = {
     _("Has the personal attribute")      : HasAttribute,
     _("Has the family attribute")        : HasFamilyAttribute,
     _("Matches the filter named")        : MatchesFilter,
+    _("Is spouse of filter match")       : IsSpouseOfFilterMatch,
     }
 
 #-------------------------------------------------------------------------
