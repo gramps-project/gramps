@@ -84,7 +84,6 @@ class PeopleView:
     def row_changed(self,obj):
         mlist = self.person_tree.get_selected_objects()
         if mlist and mlist[0]:
-            self.parent.change_active_person(self.parent.db.getPerson(mlist[0]))
             try:
                 self.parent.change_active_person(self.parent.db.getPerson(mlist[0]))
             except:
@@ -160,6 +159,22 @@ class PeopleView:
             if person == self.parent.active_person:
                 self.parent.active_person = None
     
+    def remove_from_history(self,person,old_id=None):
+        pid = person.getId()
+        if old_id:
+            del_id = old_id
+        else:
+            del_id = pid
+
+        hc = self.parent.history.count(del_id)
+        for c in range(hc):
+            self.parent.history.remove(del_id)
+            self.parent.hindex = self.parent.hindex - 1
+        
+        mhc = self.parent.mhistory.count(del_id)
+        for c in range(mhc):
+            self.parent.mhistory.remove(del_id)
+
     def apply_filter_clicked(self):
         invert_filter = self.parent.filter_inv.get_active()
         qualifer = self.parent.filter_text.get_text()
