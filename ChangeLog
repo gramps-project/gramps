@@ -1,3 +1,6 @@
+2003-11-13  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsCfg.py: Fixed name format selection problem
+
 2003-11-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ImageSelect.py (GlobalMediaProperties.__init__): Find labels from
 	XML; (redraw_attr_list): Change attribute label; (display_refs): Change
