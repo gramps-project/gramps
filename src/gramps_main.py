@@ -150,9 +150,9 @@ class Gramps:
         ArgHandler.ArgHandler(self,args)
 
         # Don't show main window until ArgHandler is done.
-	# This prevents a window from annoyingly popping up when
-	# the command line args are sufficient to operate without it.
-	self.topWindow.show()
+        # This prevents a window from annoyingly popping up when
+        # the command line args are sufficient to operate without it.
+        self.topWindow.show()
 
         if GrampsCfg.usetips:
             TipOfDay.TipOfDay()
@@ -335,7 +335,7 @@ class Gramps:
             "on_gramps_report_bug_activate" : self.report_bug_activate,
             "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
             "on_open_example" : self.open_example,
-            })	
+            })
 
 
         self.enable_filter(self.use_filter)
@@ -451,9 +451,9 @@ class Gramps:
         #FIXME: revert to stock item when German gtk translation is fixed
         #item = gtk.ImageMenuItem(gtk.STOCK_HOME)
         item = gtk.ImageMenuItem(_("Home"))
-	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	im.show()
-	item.set_image(im)
+        im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+        im.show()
+        item.set_image(im)
         item.connect("activate",self.on_home_clicked)
         item.add_accelerator("activate", self.accel_group, 
                     gtk.gdk.keyval_from_name("Home"), 
@@ -955,7 +955,7 @@ class Gramps:
         self.people_view.build_tree()
         if Utils.wasHistory_broken():
             self.clear_history()
-	    Utils.clearHistory_broken()
+            Utils.clearHistory_broken()
         self.people_view.apply_filter()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
@@ -1222,7 +1222,7 @@ class Gramps:
                         # File is lost => ask what to do
                         if missmedia_action == 0:
                             mmd = MissingMediaDialog(_("Media object could not be found"),
-	                            _("%(file_name)s is referenced in the database, but no longer exists. " 
+                                    _("%(file_name)s is referenced in the database, but no longer exists. " 
                                         "The file may have been deleted or moved to a different location. " 
                                         "You may choose to either remove the reference from the database, " 
                                         "keep the reference to the missing file, or select a new file." 
@@ -1456,7 +1456,7 @@ class Gramps:
         except:
             DisplayTrace.DisplayTrace()
             return ""
-	
+
     def fs_close_window(self,obj):
         self.filesel.destroy()
 
@@ -1624,7 +1624,7 @@ class Gramps:
             return _("Unknown")
         else:
             return GrampsCfg.nameof(person)
-		
+
     def load_progress(self,value):
         self.statusbar.set_progress_percentage(value)
         while gtk.events_pending():
