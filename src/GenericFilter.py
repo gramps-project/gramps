@@ -185,8 +185,8 @@ class IsDescendantOf(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p):
-        if self.map.has_key(p.getId()) == 1:
-            loop_error(self.orig,p)
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
         self.map[p.getId()] = 1
         
         for fam in p.getFamilyList():
@@ -213,8 +213,8 @@ class IsDescendantFamilyOf(Rule):
         return self.search(p,1)
 
     def search(self,p,val):
-        if self.map.has_key(p.getId()):
-            loop_error(self.orig,p)
+#        if self.map.has_key(p.getId()):
+#            loop_error(self.orig,p)
         if p.getId() == self.list[0]:
             self.map[p.getId()] = 1
             return 1
@@ -262,8 +262,8 @@ class IsAncestorOf(Rule):
         return self.map.has_key(p.getId())
 
     def init_ancestor_list(self,p):
-        if self.map.has_key(p.getId()) == 1:
-            loop_error(self.orig,p)
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
         self.map[p.getId()] = 1
         
         fam = p.getMainParents()
@@ -637,15 +637,20 @@ class MatchesFilter(Rule):
 # loop_error
 #
 #-------------------------------------------------------------------------
-def loop_error(p1,p2):
-    p1name = p1.getPrimaryName().getName()
-    p2name = p2.getPrimaryName().getName()
-    p1id = p1.getId()
-    p2id = p2.getId()
-    raise Errors.FilterError(_("Loop detected while applying filter"),
-                             _("A relationship loop was detected between %s [%s] "
-                               "and %s [%s]. This is probably due to an error in the "
-                               "database.") % (p1name,p1id,p2name,p2id))
+# def loop_error(p1,p2):
+#     p1name = p1.getPrimaryName().getName()
+#     p2name = p2.getPrimaryName().getName()
+#     p1id = p1.getId()
+#     p2id = p2.getId()
+#     raise Errors.FilterError(_("Loop detected while applying filter"),
+#                              _("A relationship loop was detected between %(person1_name)s "
+#                                "[%(person1_id)s] and %(person2_name)s [%(person2_id)s]. "
+#                                "This is probably due to an error in the "
+#                                "database.") % {
+#         "person1_name" : p1name,
+#         "person1_id" : p1id,
+#         "person2_name" : p2name,
+#         "person2_id" : p2id})
     
 #-------------------------------------------------------------------------
 #

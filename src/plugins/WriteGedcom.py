@@ -53,6 +53,7 @@ import Julian
 import Hebrew
 import FrenchRepublic
 import GedcomInfo
+import Errors
 import ansel_utf8
 
 from intl import gettext as _
@@ -455,9 +456,14 @@ class GedcomWriter:
             for p in self.db.getPersonKeys():
                 self.plist[p] = 1
         else:
-            for p in cfilter.apply(self.db, self.db.getPersonMap().values()):
-                self.plist[p.getId()] = 1
-
+            try:
+                for p in cfilter.apply(self.db, self.db.getPersonMap().values()):
+                    self.plist[p.getId()] = 1
+            except Errors.FilterError, msg:
+                (m1,m2) = msg.messages()
+                ErrorDialog(m1,m2)
+                return
+            
         self.flist = {}
         self.slist = {}
         for key in self.plist.keys():
