@@ -44,7 +44,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+import RelLib
 import Julian
 import FrenchRepublic
 import Hebrew
@@ -127,10 +127,10 @@ def importData(database, filename, cb=None):
         Utils.destroy_passed_object(statusWindow)
         ErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return
-#    except:
-#        Utils.destroy_passed_object(statusWindow)
-#        ErrorDialog(_("%s could not be opened\n") % filename)
-#        return
+    except:
+        Utils.destroy_passed_object(statusWindow)
+        ErrorDialog(_("%s could not be opened\n") % filename)
+        return
 
     close = g.parse_gedcom_file()
     g.resolve_refns()
@@ -166,8 +166,8 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, db, file, window):
-        self.db = db
+    def __init__(self, dbase, file, window):
+        self.db = dbase
         self.person = None
         self.pmap = {}
         self.fmap = {}
@@ -435,7 +435,7 @@ class GedcomParser:
                 if self.nmap.has_key(matches[1]):
                     noteobj = self.nmap[matches[1]]
                 else:
-                    noteobj = Note()
+                    noteobj = RelLib.Note()
                     self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
                 noteobj.append(text + self.parse_continue_data(1))
@@ -453,10 +453,10 @@ class GedcomParser:
         if self.pmap.has_key(id):
             person = self.db.findPersonNoMap(self.pmap[id])
         elif self.db.getPersonMap().has_key(id):
-            person = Person()
+            person = RelLib.Person()
             self.pmap[id] = self.db.addPerson(person)
         else:
-            person = Person()
+            person = RelLib.Person()
             person.setId(id)
             self.db.addPersonAs(person)
             self.pmap[id] = id
@@ -536,11 +536,11 @@ class GedcomParser:
                 self.family.setMother(person)
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "SLGS":
-                ord = LdsOrd()
+                ord = RelLib.LdsOrd()
                 self.family.setLdsSeal(ord)
                 self.parse_ord(ord,2)
 	    elif matches[1] == "ADDR":
-                self.addr = Address()
+                self.addr = RelLib.Address()
                 self.addr.setStreet(matches[2] + self.parse_continue_data(1))
                 self.parse_address(self.addr,2)
 	    elif matches[1] == "CHIL":
@@ -560,7 +560,7 @@ class GedcomParser:
                             child.setMainParents(None)
                     child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI":
-                a = Attribute()
+                a = RelLib.Attribute()
                 a.setType("Number of Children")
                 a.setValue(matches[2])
                 self.family.addAttribute(a)
@@ -578,7 +578,7 @@ class GedcomParser:
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,self.family,1,note)
             else:
-                event = Event()
+                event = RelLib.Event()
                 try:
                     event.setName(ged2fam[matches[1]])
                 except:
@@ -595,7 +595,7 @@ class GedcomParser:
                 self.share_note.append(obj)
                 obj.setNoteObj(self.nmap[matches[2]])
             else:
-                noteobj = Note()
+                noteobj = RelLib.Note()
                 self.nmap[matches[2]] = noteobj
                 self.share_note.append(obj)
                 obj.setNoteObj(noteobj)
@@ -619,7 +619,7 @@ class GedcomParser:
                 self.backup()
                 return
 	    elif matches[1] == "NAME":
-                name = Name()
+                name = RelLib.Name()
                 m = snameRegexp.match(matches[2])
                 if m:
                     n = m.groups()[0]
@@ -645,7 +645,7 @@ class GedcomParser:
             elif matches[1] == "_UID":
                 self.person.setPafUid(matches[2])
             elif matches[1] in ["ALIA","_ALIA"]:
-                aka = Name()
+                aka = RelLib.Name()
                 try:
                     names = nameRegexp.match(matches[2]).groups()
                 except:
@@ -667,13 +667,13 @@ class GedcomParser:
                 note = self.parse_note(matches,self.person,1,note)
 	    elif matches[1] == "SEX":
                 if matches[2] == '':
-                    self.person.setGender(Person.unknown)
+                    self.person.setGender(RelLib.Person.unknown)
                 elif matches[2][0] == "M":
-                    self.person.setGender(Person.male)
+                    self.person.setGender(RelLib.Person.male)
                 else:
-                    self.person.setGender(Person.female)
+                    self.person.setGender(RelLib.Person.female)
 	    elif matches[1] in [ "BAPL", "ENDL", "SLGC" ]:
-                ord = LdsOrd()
+                ord = RelLib.LdsOrd()
                 if matches[1] == "BAPL":
                     self.person.setLdsBaptism(ord)
                 elif matches[1] == "ENDL":
@@ -706,16 +706,16 @@ class GedcomParser:
                             self.person.setMainParents(None)
                         self.person.addAltFamily(family,type,type)
 	    elif matches[1] == "RESI":
-                addr = Address()
+                addr = RelLib.Address()
                 self.person.addAddress(addr)
                 self.parse_residence(addr,2)
 	    elif matches[1] == "ADDR":
-                addr = Address()
+                addr = RelLib.Address()
                 addr.setStreet(matches[2] + self.parse_continue_data(1))
                 self.parse_address(addr,2)
                 self.person.addAddress(addr)
 	    elif matches[1] == "BIRT":
-                event = Event()
+                event = RelLib.Event()
                 if self.person.getBirth().getDate() != "" or \
                    self.person.getBirth().getPlace() != None:
                     event.setName("Alternate Birth")
@@ -725,12 +725,12 @@ class GedcomParser:
                     self.person.setBirth(event)
                 self.parse_person_event(event,2)
 	    elif matches[1] == "ADOP":
-                event = Event()
+                event = RelLib.Event()
                 event.setName("Adopted")
                 self.person.addEvent(event)
                 self.parse_adopt_event(event,2)
 	    elif matches[1] == "DEAT":
-                event = Event()
+                event = RelLib.Event()
                 if self.person.getDeath().getDate() != "" or \
                    self.person.getDeath().getPlace() != None:
                     event.setName("Alternate Death")
@@ -740,11 +740,11 @@ class GedcomParser:
                     self.person.setDeath(event)
                 self.parse_person_event(event,2)
 	    elif matches[1] == "EVEN":
-                event = Event()
+                event = RelLib.Event()
 	        self.parse_person_event(event,2)
                 n = string.strip(event.getName()) 
                 if n in self.attrs:
-                    attr = Attribute()
+                    attr = RelLib.Attribute()
                     attr.setType(self.gedattr[n])
                     attr.setValue(event.getDescription())
                     self.person.addAttribute(attr)
@@ -764,12 +764,12 @@ class GedcomParser:
 	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:
                 pass
             else:
-                event = Event()
+                event = RelLib.Event()
                 n = string.strip(matches[1])
                 if ged2gramps.has_key(n):
                     event.setName(ged2gramps[n])
                 elif self.gedattr.has_key(n):
-                    attr = Attribute()
+                    attr = RelLib.Attribute()
                     attr.setType(self.gedattr[n])
                     attr.setValue(event.getDescription())
                     self.person.addAttribute(attr)
@@ -850,7 +850,7 @@ class GedcomParser:
 	        self.barf(level+1)
 
         if form == "url":
-            url = Url()
+            url = RelLib.Url()
             url.set_path(file)
             url.set_description(title)
             self.person.addUrl(url)
@@ -859,12 +859,12 @@ class GedcomParser:
             if path == "":
                 self.warn(_("Could not import %s") % file + "\n")
             else:
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
                 photo.setMimeType(Utils.get_mime_type(path))
                 self.db.addObject(photo)
-                oref = ObjectRef()
+                oref = RelLib.ObjectRef()
                 oref.setReference(photo)
                 self.person.addPhoto(oref)
 
@@ -894,12 +894,12 @@ class GedcomParser:
             if path == "":
                 self.warn(_("Could not import %s") % file + "\n")
             else:
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
                 photo.setMimeType(Utils.get_mime_type(path))
                 self.db.addObject(photo)
-                oref = ObjectRef()
+                oref = RelLib.ObjectRef()
                 oref.setReference(photo)
                 source.addPhoto(oref)
 
@@ -929,12 +929,12 @@ class GedcomParser:
             if path == "":
                 self.warn(_("Could not import %s") % file)
             else:
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
                 photo.setMimeType(Utils.get_mime_type(path))
                 self.db.addObject(photo)
-                oref = ObjectRef()
+                oref = RelLib.ObjectRef()
                 oref.setReference(photo)
                 self.family.addPhoto(photo)
 
@@ -954,7 +954,7 @@ class GedcomParser:
             elif matches[1] in ["AGE","AGNC","CAUS","STAT","TEMP","OBJE","TYPE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
+                source_ref = RelLib.SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
                 address.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
@@ -1017,7 +1017,7 @@ class GedcomParser:
                 if self.placemap.has_key(val):
                     place = self.placemap[val]
                 else:
-                    place = Place()
+                    place = RelLib.Place()
                     place.set_title(matches[2])
                     self.db.addPlace(place)
                     self.placemap[val] = place
@@ -1071,7 +1071,7 @@ class GedcomParser:
                     if self.placemap.has_key(val):
                         place = self.placemap[val]
                     else:
-                        place = Place()
+                        place = RelLib.Place()
                         place.set_title(matches[2])
                         self.db.addPlace(place)
                         self.placemap[val] = place
@@ -1126,7 +1126,7 @@ class GedcomParser:
                 if self.placemap.has_key(val):
                     place = self.placemap[val]
                 else:
-                    place = Place()
+                    place = RelLib.Place()
                     place.set_title(matches[2])
                     self.db.addPlace(place)
                     self.placemap[val] = place
@@ -1250,7 +1250,7 @@ class GedcomParser:
                 if self.placemap.has_key(val):
                     place = self.placemap[val]
                 else:
-                    place = Place()
+                    place = RelLib.Place()
                     place.set_title(matches[2])
                     self.db.addPlace(place)
                     self.placemap[val] = place
@@ -1323,7 +1323,7 @@ class GedcomParser:
                 self.backup()
                 return
 	    elif matches[1] in ["ALIA","_ALIA"]:
-                aka = Name()
+                aka = RelLib.Name()
                 try:
                     names = nameRegexp.match(matches[2]).groups()
                 except:
@@ -1358,13 +1358,13 @@ class GedcomParser:
                 if l == 1:
                     self.person.setNickName(matches[2])
                 else:
-                    name = Name()
+                    name = RelLib.Name()
                     name.setSurname(lname[-1])
                     self.db.addSurname(lname[-1])
                     name.setFirstName(string.join(lname[0:l-1]))
                     self.person.addAlternateName(name)
             elif matches[1] == "SOUR":
-                source_ref = SourceRef()
+                source_ref = RelLib.SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
                 name.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
@@ -1600,7 +1600,7 @@ class GedcomParser:
         return dateobj
 
     def handle_source(self,matches,level):
-        source_ref = SourceRef()
+        source_ref = RelLib.SourceRef()
         if matches[2] and matches[2][0] != "@":
             self.localref = self.localref + 1
             ref = "gsr%d" % self.localref

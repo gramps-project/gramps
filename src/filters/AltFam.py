@@ -21,7 +21,6 @@
 "People who were adopted"
 
 import Filter
-from RelLib import Person
 from intl import gettext as _
 
 class HaveAltFamilies(Filter.Filter):
