@@ -97,6 +97,8 @@ attr_name     = ""
 status_bar    = 0
 paper_preference = None
 output_preference = None
+report_dir    = "."
+db_dir        = "."
 
 #-------------------------------------------------------------------------
 #
@@ -148,6 +150,8 @@ def loadConfig(call):
     global _callback
     global paper_preference
     global output_preference
+    global report_dir
+    global db_dir
     global status_bar
 
     _callback = call
@@ -165,6 +169,14 @@ def loadConfig(call):
     paper_preference = gnome.config.get_string("/gramps/config/paperPreference")
     output_preference = gnome.config.get_string("/gramps/config/outputPreference")
     _name_format = gnome.config.get_int("/gramps/config/nameFormat")
+
+    report_dir = gnome.config.get_string("/gramps/config/ReportDirectory")
+    db_dir = gnome.config.get_string("/gramps/config/DbDirectory")
+
+    if report_dir == None:
+        report_dir = "."
+    if db_dir == None:
+        db_dir = "."
 
     name = gnome.config.get_string("/gramps/researcher/name")
     addr = gnome.config.get_string("/gramps/researcher/addr")
@@ -298,6 +310,8 @@ def on_propertybox_apply(obj,page):
     global paper_preference
     global output_preference
     global show_detail
+    global report_dir
+    global db_dir
 
     if page != -1:
         return
@@ -317,7 +331,15 @@ def on_propertybox_apply(obj,page):
         status_bar = 1
     else:
         status_bar = 2
-        
+
+    dbdir_temp = prefsTop.get_widget("dbdir").get_full_path(1)
+    if os.path.isdir(dbdir_temp):
+        dbdir = dbdir_temp
+
+    repdir_temp = prefsTop.get_widget("repdir").get_full_path(1)
+    if os.path.isdir(repdir_temp):
+        repdir = repdir_temp
+    
     paper_preference = paper_obj.get_data("d")
     output_preference = output_obj.get_data("d")
     
@@ -330,6 +352,8 @@ def on_propertybox_apply(obj,page):
     gnome.config.set_string("/gramps/config/outputPreference",output_preference)
     gnome.config.set_bool("/gramps/config/autoLoad",autoload)
     gnome.config.set_bool("/gramps/config/DisplayAltNames",hide_altnames)
+    gnome.config.set_string("/gramps/config/ReportDirectory",repdir)
+    gnome.config.set_string("/gramps/config/DbDirectory",dbdir)
 
     # search for the active date format selection
     
@@ -569,6 +593,9 @@ def display_preferences_box():
     prefsTop.get_widget(ODDBGCOLOR).set_sensitive(ListColors.get_enable())
     prefsTop.get_widget(EVENBGCOLOR).set_sensitive(ListColors.get_enable())
     prefsTop.get_widget(EVENFGCOLOR).set_sensitive(ListColors.get_enable())
+
+    prefsTop.get_widget("dbdir").gtk_entry().set_text(db_dir)
+    prefsTop.get_widget("repdir").gtk_entry().set_text(report_dir)
         
     pbox.set_modified(0)
     pbox.show()
