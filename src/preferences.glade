@@ -839,7 +839,7 @@
 		      <object>propertybox</object>
 		      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
 		    </signal>
-		    <label>Active person's name and gramps ID</label>
+		    <label>Active person's name and GRAMPS ID</label>
 		    <active>False</active>
 		    <draw_indicator>True</draw_indicator>
 		    <group>status</group>
@@ -1099,7 +1099,7 @@
 		      <object>propertybox</object>
 		      <last_modification_time>Thu, 12 Jul 2001 13:42:44 GMT</last_modification_time>
 		    </signal>
-		    <label>Display gramps ID in lists</label>
+		    <label>Display GRAMPS ID in lists</label>
 		    <active>False</active>
 		    <draw_indicator>True</draw_indicator>
 		    <child>

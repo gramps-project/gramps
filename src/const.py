@@ -88,7 +88,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.7.2pre-snap20020216"
+version      = "0.7.2pre-snap20020226"
 copyright    = "© 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton"]
 comments     = _("GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")
@@ -305,7 +305,6 @@ personalConstantAttributes = {
     "Caste"                 : "CAST",
     "Description"           : "DSCR",
     "Identification Number" : "IDNO",
-    "Reference Number"      : "REFN",
     "National Origin"       : "NATI",
     "Social Security Number": "SSN"
     }
@@ -313,7 +312,6 @@ personalConstantAttributes = {
 _pa_e2l = {
     "Caste"                 : _("Caste"),
     "Description"           : _("Description"),
-    "Reference Number"      : _("Reference Number"),
     "Identification Number" : _("Identification Number"),
     "National Origin"       : _("National Origin"),
     "Social Security Number": _("Social Security Number")
