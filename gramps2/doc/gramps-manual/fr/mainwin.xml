@@ -17,55 +17,55 @@
 
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
-    <title>Fen?tre principale</title> 
-    <para>La fen?tre suivante est affich?e quand vous ouvrez une base de donn?es
+    <title>Fenêtre principale</title> 
+    <para>La fenêtre suivante est affichée quand vous ouvrez une base de données
     (nouvelle ou existante).</para>
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
-	<title>&app; Fen?tre principale</title> 
+	<title>&app; Fenêtre principale</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Montre la fen?tre principale de &app; . Comprend le titre, les barres de menu, 
-	      d'outils, sidebar, la zone d'affichage, d'?tat, de progression
-	      et de d?filement. La barre de menu comprend les menus Fichier, Edition, Affichage, Signets, 
-	      Editions, Outils, Param?tres et Aide. </phrase>
+	<phrase>Montre la fenêtre principale de &app; . Comprend le titre, les barres de menu, 
+	      d'outils, sidebar, la zone d'affichage, d'état, de progression
+	      et de défilement. La barre de menu comprend les menus Fichier, Edition, Affichage, Signets, 
+	      Editions, Outils, Paramètres et Aide. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-    <para>La fen?tre de &app; contient les ?l?ments suivants : </para>
+    <para>La fenêtre de &app; contient les éléments suivants : </para>
       <variablelist>
       <varlistentry><term>Barre de menu</term>
-	<listitem><para>La barre de menu est plac?e tout en haut de la fen?tre
-        (juste ? droite du titre de la fen?tre) et donne acc?s ? toutes les fonctions de
-	&app; ? travers ses menus.</para></listitem>
+	<listitem><para>La barre de menu est placée tout en haut de la fenêtre
+        (juste à droite du titre de la fenêtre) et donne accès à toutes les fonctions de
+	&app; à travers ses menus.</para></listitem>
       </varlistentry>
       <varlistentry><term>La barre d'outils</term>
-	<listitem><para> La barre d'outils est plac?e juste sous la barre de menu. 
-        Elle donne acc?s aux fonctions les plus utilis?es de 
-        &app;. Sa pr?sentation peut ?tre chang?e 
-        dans le menu <guilabel>Pr?f?rences</guilabel></para></listitem>
+	<listitem><para> La barre d'outils est placée juste sous la barre de menu. 
+        Elle donne accès aux fonctions les plus utilisées de 
+        &app;. Sa présentation peut être changée 
+        dans le menu <guilabel>Préférences</guilabel></para></listitem>
       </varlistentry>
       <varlistentry><term>Barre de progression</term>
-	<listitem><para>La barre de progression se trouve en bas, ? gauche de la fen?tre
-	principale de &app; . Elle montre l'avancement des op?rations longues
-	comme le chargement ou l'?criture de grosses bases de donn?es,
-	l'importation ou l'exportation de donn?es de et vers d'autres formats
-	ou la g?n?ration de sites web, etc. </para></listitem>
+	<listitem><para>La barre de progression se trouve en bas, à gauche de la fenêtre
+	principale de &app; . Elle montre l'avancement des opérations longues
+	comme le chargement ou l'écriture de grosses bases de données,
+	l'importation ou l'exportation de données de et vers d'autres formats
+	ou la génération de sites web, etc. </para></listitem>
       </varlistentry>
-      <varlistentry><term>La barre d'?tat</term>
-	<listitem><para>La barre d'?tat est plac?e ? droite de la barre de progression,
-        tout en bas de la fen?tre de &app; . 
+      <varlistentry><term>La barre d'état</term>
+	<listitem><para>La barre d'état est placée à droite de la barre de progression,
+        tout en bas de la fenêtre de &app; . 
 	Elle informe sur le travail en cours avec &app; 
-	et explique les ?l?ments de menu. 
-	Son comportement peut ?tre chang? dans le dialogue
-	<guilabel>Pr?f?rences</guilabel> . </para></listitem>
+	et explique les éléments de menu. 
+	Son comportement peut être changé dans le dialogue
+	<guilabel>Préférences</guilabel> . </para></listitem>
       </varlistentry>
       <varlistentry><term>Zone d'affichage</term>
-	<listitem><para>Le plus grand espace dans la fen?tre de 
+	<listitem><para>Le plus grand espace dans la fenêtre de 
 	&app; est la zone d'affichage.
-	Elle montre une vue des donn?es g?n?alogiques, selon le type
+	Elle montre une vue des données généalogiques, selon le type
 	d'affichage en cours. Les six types d'affichage suivants sont disponibles
 	dans &app;: 
 	<itemizedlist>	
@@ -84,39 +84,39 @@
     <!-- ================ Main Window Subsection  -->
     <sect2 id="gramps-views">
       <title>Vues</title>
-      <para>Les vues sont les diff?rentes fa?ons d'afficher les donn?es g?n?alogiques. 
-      Comme l'information est vaste et h?t?rog?ne, il faut mieux en r?aliser
-      l'affichage en cat?gories homog?nes plus restreintes. 
-      Chaque vue repr?sente une de ces cat?gories. 
-      Le changement de vue est d?crit ci-dessous, avant leur description
-      d?taill?e. </para> 
+      <para>Les vues sont les différentes façons d'afficher les données généalogiques. 
+      Comme l'information est vaste et hétérogène, il faut mieux en réaliser
+      l'affichage en catégories homogènes plus restreintes. 
+      Chaque vue représente une de ces catégories. 
+      Le changement de vue est décrit ci-dessous, avant leur description
+      détaillée. </para> 
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="view-modes">
         <title>Le changement entre les vues et modes d'affichage</title>
-	<para>Selon l'?tat de l'item de menu <menuchoice> 
+	<para>Selon l'état de l'item de menu <menuchoice> 
 	<guimenu>Visualiser</guimenu><guimenuitem>Barre verticale</guimenuitem> 
-	</menuchoice> , le mode d'affichage peut ?tre chang? soit dans
-	la barre verticale, soit dans les onglets en haut de la fen?tre. 
+	</menuchoice> , le mode d'affichage peut être changé soit dans
+	la barre verticale, soit dans les onglets en haut de la fenêtre. 
 	</para>
 
 	<variablelist>
 	<varlistentry><term>Pour changer de Vue dans la barre verticale, 
-        cliquez dans l'ic?ne de la vue que vous d?sirez. </term>
+        cliquez dans l'icône de la vue que vous désirez.</term>
 	  <listitem>
 	  <!-- ==== Figure: Sidebar Mode ==== -->
 	  <figure id="side-nofilt-fig"> 
-	  <title>Mode avec barre lat?rale</title> 
+	  <title>Mode avec barre latérale</title> 
 	  <screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	  <textobject> 
-	  <phrase>Mode avec barre lat?rale. </phrase>
+	  <phrase>Mode avec barre latérale. </phrase>
 	  </textobject></mediaobject></screenshot></figure>
 	  <!-- ==== End of Figure ==== -->
 	  </listitem></varlistentry>
 
 	<varlistentry><term>Pour changer de vue en mode "Onglet",
-		cliquez sur l'onglet d?sir?.</term>
+		cliquez sur l'onglet désiré.</term>
 	  <listitem>
 	  <!-- ==== Figure: Tabbed Notebook Mode ==== -->
 	  <figure id="noside-nofilt-fig"> 
@@ -130,9 +130,9 @@
 	  </listitem></varlistentry>
 	</variablelist>
 
-	<para>Pour changer entre les modes avec barre lat?rale et Onglets
+	<para>Pour changer entre les modes avec barre latérale et Onglets
 	choisissez <menuchoice> <guimenu>Affichage</guimenu> 
-	<guimenuitem>Barre lat?rale</guimenuitem> 
+	<guimenuitem>Barre latérale</guimenuitem> 
 	</menuchoice> dans le menu principal de &app; .</para>
     
       </sect3>
@@ -140,91 +140,91 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="people-view">
         <title>Vue des individus</title>
-	<para>Quand &app; ouvre une base de donn?es, 
+	<para>Quand &app; ouvre une base de données, 
 	la Vue est celle des individus (<xref linkend="side-nofilt-fig"/> 
 	et <xref linkend="noside-nofilt-fig"/>). La Vue Individus liste
-        les personnes dont les donn?es sont enregistr?es dans la base de donn?es. </para>
+        les personnes dont les données sont enregistrées dans la base de données. </para>
 
-        <para> Les personnes sont pr?sent?es en arbre, selon leur nom de famille. 
-	Chaque nom est un noeud de l'arbre. Cliquer sur la croix ? gauche du noeud
-	le d?ploie ou le replie selon son ?tat. Quand un arbre est d?ploy?, 
-	le contenu du noeud est affich?. Quand il est repli?, le contenu
-	n'est pas visible. Les donn?es sont cependant conserv?es, elles sont
-	seulement masqu?es. 
+        <para> Les personnes sont présentées en arbre, selon leur nom de famille. 
+	Chaque nom est un noeud de l'arbre. Cliquer sur la croix à gauche du noeud
+	le déploie ou le replie selon son état. Quand un arbre est déployé, 
+	le contenu du noeud est affiché. Quand il est replié, le contenu
+	n'est pas visible. Les données sont cependant conservées, elles sont
+	seulement masquées. 
         </para>
 
 	<para>La Vue des Individus montre les <guilabel>Noms</guilabel>, 
         <guilabel>Identifiants</guilabel> &app;,
         <guilabel>Genre</guilabel>, et 
-	leurs dates de <guilabel>Naissance</guilabel> et <guilabel>D?c?s</guilabel>. 
-	La liste peut ?tre tri?e par rapport ? n'importe quel champ.</para> 
+	leurs dates de <guilabel>Naissance</guilabel> et <guilabel>Décès</guilabel>. 
+	La liste peut être triée par rapport à n'importe quel champ.</para> 
 
 	<para>Exemple : pour trier la liste par date de naissance, cliquez sur
-	l'en-t?te de colonne <guilabel>Date de naissance</guilabel>. Pour trier par ordre
-	inverse	(d?croissant), cliquez une autre fois sur l'en-t?te de colonne. </para> 
+	l'en-tête de colonne <guilabel>Date de naissance</guilabel>. Pour trier par ordre
+	inverse	(décroissant), cliquez une autre fois sur l'en-tête de colonne. </para> 
 
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="filters">
           <title>Filtres</title>
-	  <para>Les bases de donn?es g?n?alogiques peuvent d?crire beaucoup d'individus.
-	  Comme les longues ?num?rations sont difficiles ? traiter mentalement, 
-	  &app; fournit une fa?on pratique pour r?duire
-	  l'ensemble des donn?es visibles avec un filtre. Pour ?conomiser l'espace sur l'?cran, 
-	  les contr?les de filtre peuvent ?tre cach?s, selon l'?tat de l'item de menu 
+	  <para>Les bases de données généalogiques peuvent décrire beaucoup d'individus.
+	  Comme les longues énumérations sont difficiles à traiter mentalement, 
+	  &app; fournit une façon pratique pour réduire
+	  l'ensemble des données visibles avec un filtre. Pour économiser l'espace sur l'écran, 
+	  les contrôles de filtre peuvent être cachés, selon l'état de l'item de menu 
 	  <menuchoice> <guimenu>Visualiser</guimenu> 
 	  <guimenuitem>Filtre</guimenuitem> </menuchoice> .</para> 
 	  
 	<!-- ==== Figure: Enabled Filter ==== -->
 	<figure id="side-filt-fig"> 
-	<title>Contr?le du filtre affich?</title> 
+	<title>Contrôle du filtre affiché</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/side-filt.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Montre le contr?le du filtre. </phrase>
+	<phrase>Montre le contrôle du filtre. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	  <para>Quand &app; ouvre une base de donn?es, le filtre
-	  est le filtre simple appel? <guilabel>Tout le monde</guilabel>, 
-	  c'est ? dire qu'il n'y a aucun filtrage. Pour choisir un filtre,
+	  <para>Quand &app; ouvre une base de données, le filtre
+	  est le filtre simple appelé <guilabel>Tout le monde</guilabel>, 
+	  c'est à dire qu'il n'y a aucun filtrage. Pour choisir un filtre,
 	  utilisez le pop-up <guilabel>Filtre</guilabel> au-dessus de la 
 	  liste des individus. Quand vous avez choisi le filtre, cliquez sur le bouton
-	  <guibutton>Appliquer</guibutton> en haut ? droite de la fen?tre.
-	  Le filtre sera alors appliqu?. Pour inverser la r?gle de filtrage
-          cochez le choix <guilabel>Inverse</guilabel> ? gauche du bouton
+	  <guibutton>Appliquer</guibutton> en haut à droite de la fenêtre.
+	  Le filtre sera alors appliqué. Pour inverser la règle de filtrage
+          cochez le choix <guilabel>Inverse</guilabel> à gauche du bouton
 	  <guibutton>Appliquer</guibutton>. </para>
 	  
 	  <para>Exemple : Pour voir les personnes sans enfants, choisissez le filtre
 	  <guilabel>Individus ayant des enfants</guilabel>, cochez la case
 	  <guilabel>Inverse</guilabel>, puis cliquez sur le bouton
-	  <guibutton>Appliquer</guibutton>. Pour annuler le filtrage, s?lectionnez
+	  <guibutton>Appliquer</guibutton>. Pour annuler le filtrage, sélectionnez
 	  le filtre <guilabel>Tout le monde</guilabel>  
 	  puis cliquez sur le bouton <guibutton>Appliquer</guibutton>. </para>
 
-	  <para>Note : m?me si le contr?le de filtre n'est pas affich?, 
+	  <para>Note : même si le contrôle de filtre n'est pas affiché, 
 	  (<menuchoice> <guimenu>Visualiser</guimenu> 
-	  <guimenuitem>Filtre</guimenuitem> </menuchoice> n'est pas coch?),
-	  le filtrage est activ?. En d'autres termes, 
-	  que le contr?le du filtre soit affich? ou pas n'a pas de rapport avec 
-	  l'effet du filtre. Cela peut pr?ter ? confusion quand vous activez le filtre 
-	  puis que vous cachez son contr?le. En cas de probl?me, affichez
-	  le contr?le du filtre par 
+	  <guimenuitem>Filtre</guimenuitem> </menuchoice> n'est pas coché),
+	  le filtrage est activé. En d'autres termes, 
+	  que le contrôle du filtre soit affiché ou pas n'a pas de rapport avec 
+	  l'effet du filtre. Cela peut prêter à confusion quand vous activez le filtre 
+	  puis que vous cachez son contrôle. En cas de problème, affichez
+	  le contrôle du filtre par 
 	  <menuchoice> <guimenu>Visualiser</guimenu> 
-	  <guimenuitem>Filtre</guimenuitem> </menuchoice> puis v?rifiez quel filtre
+	  <guimenuitem>Filtre</guimenuitem> </menuchoice> puis vérifiez quel filtre
 	  est actif. </para> 
         </sect4>
 
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="alpha-tabs">
           <title>Onglets Alphabetiques</title>
-	  <para>&app; propose une autre fa?on de g?rer de longues listes de personnes : 
-	  les onglets alphab?tiques. Lors du chargement d'une base de donn?es, 
-	  &app; examine les noms de famille et s?pare la liste compl?te des personnes
+	  <para>&app; propose une autre façon de gérer de longues listes de personnes : 
+	  les onglets alphabétiques. Lors du chargement d'une base de données, 
+	  &app; examine les noms de famille et sépare la liste complète des personnes
 	  en sous-ensembles, selon l'initiale du nom de famille. 
-	  Les onglets alphab?tiques sont affich?s en bas de la fen?tre de &app;.
-	  Le dernier onglet, <guilabel>Autre</guilabel>, d?signe les caract?res non identifi?s :
-	  tous les ?l?ments non rattach?s aux autres onglets. 
-	  En particulier, les individus sans nom de famille y sont rattach?s.</para> 
+	  Les onglets alphabétiques sont affichés en bas de la fenêtre de &app;.
+	  Le dernier onglet, <guilabel>Autre</guilabel>, désigne les caractères non identifiés :
+	  tous les éléments non rattachés aux autres onglets. 
+	  En particulier, les individus sans nom de famille y sont rattachés.</para> 
         </sect4>
 
       </sect3>
@@ -233,10 +233,10 @@
       <sect3 id="family-view">
         <title>Vue des Familles</title>
 	<para>L'affichage par famille montre les informations autour
-	de la personne s?lectionn?e (ou Active). En particulier, cette vue montre
-	les relations (c'est ? dire les mariages ou concubinages, etc.) de la personne active, 
+	de la personne sélectionnée (ou Active). En particulier, cette vue montre
+	les relations (c'est à dire les mariages ou concubinages, etc.) de la personne active, 
 	ses parents (ou beaux-parents, or tuteurs, etc), ainsi que 
-	ses enfants (que ce soit des enfants directs, de conjoint ou bien adopt?s, etc.).
+	ses enfants (que ce soit des enfants directs, de conjoint ou bien adoptés, etc.).
 	</para>
 	
 	<!-- ==== Figure: Family View ==== -->
@@ -249,70 +249,70 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>Les donn?es de la personne active sont dans le haut, ? gauche
-	de la fen?tre. Juste en dessous, une autre bo?te montre ses ?poux,
-	?pouses (ou toutes autres personnes en relation familiale). 
-	La double fl?che dans le bouton ? droite de la personne active
-	fait ?changer la personne active et son ?poux ou ?pouse s?lectionn?(e).
+	<para>Les données de la personne active sont dans le haut, à gauche
+	de la fenêtre. Juste en dessous, une autre boîte montre ses époux,
+	épouses (ou toutes autres personnes en relation familiale). 
+	La double flèche dans le bouton à droite de la personne active
+	fait échanger la personne active et son époux ou épouse sélectionné(e).
 	Vous pouvez modifier la relation entre la personne active et son
-	?poux ou ?pouse s?lectionn?e en double-cliquant sur la personne
-	active. Vous pouvez modifier les donn?es de l'?poux ou ?pouse s?lectionn?e
+	époux ou épouse sélectionnée en double-cliquant sur la personne
+	active. Vous pouvez modifier les données de l'époux ou épouse sélectionnée
 	en shift-cliquant sur lui ou elle. </para>
 
         <para>Pour ajouter une nouvelle relation depuis la personne active,
-	utilisez un des boutons du haut, ? droite de la bo?te de l'?poux
-	ou de l'?pouse. Celui du haut ajoute une nouvelle personne dans
-	la base de donn?es et la relation avec la personne active. Celui du milieu
-	cr?e une relation entre la personne active et une personne d?j? d?clar?e 
-	dans la base de donn?es. Le bouton du bas (<guibutton>-</guibutton>) ? droite
-	de la bo?te de l'?poux ou de l'?pouse retire la relation avec cette personne. 
+	utilisez un des boutons du haut, à droite de la boîte de l'époux
+	ou de l'épouse. Celui du haut ajoute une nouvelle personne dans
+	la base de données et la relation avec la personne active. Celui du milieu
+	crée une relation entre la personne active et une personne déjà déclarée 
+	dans la base de données. Le bouton du bas (<guibutton>-</guibutton>) à droite
+	de la boîte de l'époux ou de l'épouse retire la relation avec cette personne. 
 	La plupart de ces fonctions sont aussi disponibles en cliquant avec le bouton 
-	droit de la souris dans la bo?te de l'?poux ou de l'?pouse, puis
-	en s?lectionnant l'action voulue dans le menu contextuel ainsi
-	activ?. </para>
+	droit de la souris dans la boîte de l'époux ou de l'épouse, puis
+	en sélectionnant l'action voulue dans le menu contextuel ainsi
+	activé. </para>
 	
-	<para>Les parents de la personne active ainsi que de la personne s?lectionn?e en relation
-	sont affich?s dans la partie droite de la fen?tre. Ceux de la personne active 
-	sont en haut, ceux de la personne en relation en bas. Leurs bo?tes
-	ont chacune un ensemble de trois boutons ? droite. 
+	<para>Les parents de la personne active ainsi que de la personne sélectionnée en relation
+	sont affichés dans la partie droite de la fenêtre. Ceux de la personne active 
+	sont en haut, ceux de la personne en relation en bas. Leurs boîtes
+	ont chacune un ensemble de trois boutons à droite. 
 	Les boutons <guibutton>+</guibutton> et <guibutton>-</guibutton>
 	vous permettent d'ajouter ou de retirer des parents de la personne correspondante
-	(active ou ?poux). La fl?che vers la droite change de famille courante,
-	en mettant la famille correspondante comme famille courante. Cel?
-	met comme personne active le p?re s?lectionn?, et comme ?pouse la m?re. 
+	(active ou époux). La flèche vers la droite change de famille courante,
+	en mettant la famille correspondante comme famille courante. Celà
+	met comme personne active le père sélectionné, et comme épouse la mère. 
 	La plupart de ces fonctions sont aussi disponibles en cliquant avec le bouton 
-	droit de la souris dans la bo?te des parents de l'?poux ou de l'?pouse, puis
-	en s?lectionnant l'action voulue dans le menu contextuel ainsi
-	activ?. </para>
+	droit de la souris dans la boîte des parents de l'époux ou de l'épouse, puis
+	en sélectionnant l'action voulue dans le menu contextuel ainsi
+	activé. </para>
 	
-	<para>La bo?te du bas liste les enfants de la personne active et de
-	la relation courante (s?lectionn?e). La liste des enfants peut ?tre
-	tri?e par date de naissance comme d'habitude, en cliquant dans l'en-t?te de colonne
+	<para>La boîte du bas liste les enfants de la personne active et de
+	la relation courante (sélectionnée). La liste des enfants peut être
+	triée par date de naissance comme d'habitude, en cliquant dans l'en-tête de colonne
 	<guilabel>Date de naissance</guilabel>.
 	En plus des colonnes <guilabel>Nom</guilabel>,
 	<guilabel>Identification</guilabel>, <guilabel>Genre</guilabel> et
 	<guilabel>Date de naissance</guilabel>, la liste comprend une colonne
-	<guilabel>Statut</guilabel>. Les deux mots de statut d?crivent la relation
-	entre l'enfant et son p?re ou sa m?re (comme Naissance, Adoption...). 
-	Quatre boutons sont disponibles ? droite de la liste des enfants. 
-	Celui du haut (fl?che vers la gauche) met l'enfant s?lectionn? comme
+	<guilabel>Statut</guilabel>. Les deux mots de statut décrivent la relation
+	entre l'enfant et son père ou sa mère (comme Naissance, Adoption...). 
+	Quatre boutons sont disponibles à droite de la liste des enfants. 
+	Celui du haut (flèche vers la gauche) met l'enfant sélectionné comme
 	personne active. Les deux suivants ajoutent une personne dans la famille : 
-	celui du haut cr?e une personne tandis que celui du bas met une personne
-	d?j? d?clar?e dans la base de donn?es comme enfant dans cette famille. 
+	celui du haut crée une personne tandis que celui du bas met une personne
+	déjà déclarée dans la base de données comme enfant dans cette famille. 
         Enfin, le bouton tout en bas <guibutton>-</guibutton> 
-        retire l'enfant s?lectionn? de la famille. Notez que ceci ne supprime
-	pas la personne de la base de donn?es. 
+        retire l'enfant sélectionné de la famille. Notez que ceci ne supprime
+	pas la personne de la base de données. 
 	La plupart de ces fonctions sont aussi disponibles en cliquant avec le bouton 
-	droit de la souris dans la bo?te des enfants, puis
-	en s?lectionnant l'action voulue dans le menu contextuel ainsi
-	activ?. </para>
+	droit de la souris dans la boîte des enfants, puis
+	en sélectionnant l'action voulue dans le menu contextuel ainsi
+	activé. </para>
 
-	<para>La disposition de la Vue Famille peut ?tre chang? entre la disposition
-	de gauche ? droite d?crite ci-dessus et la disposition de haut en bas
-	d?crite ci-dessous. Ceci se fait dans la section
+	<para>La disposition de la Vue Famille peut être changé entre la disposition
+	de gauche à droite décrite ci-dessus et la disposition de haut en bas
+	décrite ci-dessous. Ceci se fait dans la section
         <guilabel>Affichage</guilabel> du dialogue
-        <guilabel>Pr?f?rences</guilabel>. La disposition de haut en bas
-	propose les m?mes fonctions que la disposition de gauche ? droite. </para>
+        <guilabel>Préférences</guilabel>. La disposition de haut en bas
+	propose les mêmes fonctions que la disposition de gauche à droite. </para>
 
 	<!-- ==== Figure: Family View ==== -->
 	<figure id="family-alt-fig"> 
@@ -340,19 +340,19 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>La vue en Arborescence vous aide ? voir la place de la personne active
-	dans l'arbre de ses anc?tres. Elle montre quatre g?n?rations, de la personne
-	active vers ses parents, ses grands-parents et ses arri?re grands-parents. 
-	Chaque personne est repr?sent?e par un rectangle portant
-	son nom. Deux lignes relient la personne ? son p?re (ligne sup?rieure) et sa 
-	m?re (ligne inf?rieure). Les lignes continues figurent les liens
-	de filiation tandis que les lignes pointill?es repr?sentent les autres liens
-	(adoption, beau-p?re ou belle-m?re, toteurs). 
+	<para>La vue en Arborescence vous aide à voir la place de la personne active
+	dans l'arbre de ses ancêtres. Elle montre quatre générations, de la personne
+	active vers ses parents, ses grands-parents et ses arrière grands-parents. 
+	Chaque personne est représentée par un rectangle portant
+	son nom. Deux lignes relient la personne à son père (ligne supérieure) et sa 
+	mère (ligne inférieure). Les lignes continues figurent les liens
+	de filiation tandis que les lignes pointillées représentent les autres liens
+	(adoption, beau-père ou belle-mère, toteurs). 
 	Quand le pointeur de la souris passe sur une personne, son rectangle
-	s'agrandit pour afficher ses dates de naissance et de d?c?s. 
+	s'agrandit pour afficher ses dates de naissance et de décès. 
 	Quand le pointeur de la souris passe sur une ligne de famille, celle-ci
 	clignote. Double-cliquer sur la ligne met alors le parent correspondant comme
-	personne active. Tout l'affichage change alors en cons?quence. </para>
+	personne active. Tout l'affichage change alors en conséquence. </para>
 	
         <!-- ==== Figure: Pedigree View ==== -->
         <figure id="pedigree-child-cut-fig">
@@ -364,22 +364,22 @@
         </textobject></mediaobject></screenshot></figure>
         <!-- ==== End of Figure ==== -->
 
-	<para>Une fl?che vers la gauche est affich?e dans la partie gauche de la fen?tre. 
+	<para>Une flèche vers la gauche est affichée dans la partie gauche de la fenêtre. 
 	En cliquant dessus, un menu comprenant les enfants de la personne active
-	apparait. S?lectionner un des enfants le met alors comme personne active. 
-	Le nom de chaque enfant est affich? diff?remment selon que la personne est
+	apparait. Sélectionner un des enfants le met alors comme personne active. 
+	Le nom de chaque enfant est affiché différemment selon que la personne est
 	une feuille de l'arbre (sans enfants connus) ou bien a des enfants connus.
-	Le nim d'une personne dont on connait des enfants appara?t en caract?res
-	gras et italiques au lieu d'?tre affich? en caract?res normaux. 
-	Si la personne active n'a qu'un enfant, aucun menu ne sera affich? puisqu'il
+	Le nim d'une personne dont on connait des enfants apparaît en caractères
+	gras et italiques au lieu d'être affiché en caractères normaux. 
+	Si la personne active n'a qu'un enfant, aucun menu ne sera affiché puisqu'il
 	n'y a pas de choix possible. Dans ce cas, l'unique enfant devient la personne
-	active d?s que l'on a cliqu? sur le bouton. </para>
+	active dès que l'on a cliqué sur le bouton. </para>
 
-	<para>Deux fl?ches vers la droite sont affich?es dans la partie droite de la fen?tre. 
-	Celle du haut prend comme personne active le p?re de la personne active.
-	Celle du bas met comme nouvelle personne active la m?re de la personne
+	<para>Deux flèches vers la droite sont affichées dans la partie droite de la fenêtre. 
+	Celle du haut prend comme personne active le père de la personne active.
+	Celle du bas met comme nouvelle personne active la mère de la personne
 	active. 
-	Comme pr?c?demment, tout l'affichage change alors en cons?quence. </para>
+	Comme précédemment, tout l'affichage change alors en conséquence. </para>
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
@@ -396,16 +396,16 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>La Vue Sources pr?sente les sources d'information conserv?es dans la
-	base de donn?es. Ceci peut couvrir des documents vari?s comme les actes de naissance, d?c?s,
+	<para>La Vue Sources présente les sources d'information conservées dans la
+	base de données. Ceci peut couvrir des documents variés comme les actes de naissance, décès,
 	mariage, livres, journaux, journaux personnels. En fait tout document peut
-	?tre pris comme une source d'information. Les sources peuvent ?tre utilis?e comme r?f?rence 
-	pour n'importe quel ?v?nement conserv? dans la base de donn?es. 
-	La Vue Sources pr?sente pour chaque source le
+	être pris comme une source d'information. Les sources peuvent être utilisée comme référence 
+	pour n'importe quel évènement conservé dans la base de données. 
+	La Vue Sources présente pour chaque source le
 	<guilabel>Titre</guilabel>, l'<guilabel>Identifiant</guilabel>, et 
-	l'<guilabel>Auteur</guilabel>. Le tri peut ?tre fait par rapport
-	? n'importe quelle colonne. Il se fait comme d'habitude : un clic dans
-	l'en-t?te de la colonne pour trier en ordre ascendant, un autre clic
+	l'<guilabel>Auteur</guilabel>. Le tri peut être fait par rapport
+	à n'importe quelle colonne. Il se fait comme d'habitude : un clic dans
+	l'en-tête de la colonne pour trier en ordre ascendant, un autre clic
 	pour trier dans l'ordre descendant. </para> 
       </sect3>
 
@@ -423,16 +423,16 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>La Vue des Lieux pr?sente la liste des endroits g?ographiques
-	o? se sont pass?s les ?v?nements enregistr?s dans la base de donn?es. 
-	Cela peut ?tre les lieux de naissance, mariage, d?c?s des individus,
-	aussi bien que leur lieu d'habitation, de travail ou d'?tudes comme
-	n'importe quelle r?f?rence g?ographique. La Vue des Lieux affiche
+	<para>La Vue des Lieux présente la liste des endroits géographiques
+	où se sont passés les évènements enregistrés dans la base de données. 
+	Cela peut être les lieux de naissance, mariage, décès des individus,
+	aussi bien que leur lieu d'habitation, de travail ou d'études comme
+	n'importe quelle référence géographique. La Vue des Lieux affiche
 	pour chaque lieu son <guilabel>Nom</guilabel>,
 	<guilabel>Identifiant</guilabel>, <guilabel>Paroisse</guilabel>,
-	<guilabel>Ville</guilabel>, <guilabel>D?partement</guilabel>,
-	<guilabel>R?gion</guilabel>, et <guilabel>Pays</guilabel>. Toutes ces colonnes
-	peuvent servir de crit?re de tri comme d'habitude. </para> 
+	<guilabel>Ville</guilabel>, <guilabel>Département</guilabel>,
+	<guilabel>Région</guilabel>, et <guilabel>Pays</guilabel>. Toutes ces colonnes
+	peuvent servir de critère de tri comme d'habitude. </para> 
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
@@ -449,19 +449,19 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>La Vue des Medias pr?sente la liste des objets multimedia
-	utilis?s dans la base de donn?es. Les objets multimedia sont
-	des fichiers li?s aux donn?es de la base g?n?alogique. Techniquement,
+	<para>La Vue des Medias présente la liste des objets multimedia
+	utilisés dans la base de données. Les objets multimedia sont
+	des fichiers liés aux données de la base généalogique. Techniquement,
 	on peut mettre n'importe quel fichier en objet multimedia. 
 	Habituellement, on y met des images, des enregistrements audio ou video. 
-	La liste pr?sente pour chaque objet multimedia son 
+	La liste présente pour chaque objet multimedia son 
 	<guilabel>Titre</guilabel>,
 	<guilabel>Identifiant</guilabel>, <guilabel>Type</guilabel> et
-	<guilabel>Chemin d'acc?s</guilabel>.
-	Toutes ces colonnes peuvent servir de crit?re de tri comme d'habitude. 
-	La partie sup?rieure de la fen?tre montre une pr?visualisation
+	<guilabel>Chemin d'accès</guilabel>.
+	Toutes ces colonnes peuvent servir de critère de tri comme d'habitude. 
+	La partie supérieure de la fenêtre montre une prévisualisation
 	quand c'est possible ainsi que les informations sur l'objet multimedia
-	s?lectionn?. </para> 
+	sélectionné. </para> 
       </sect3>
 
     </sect2>

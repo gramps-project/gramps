@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
          User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -201,7 +201,7 @@
 <!-- Translators may also add here feedback address for translations -->
       <title>Signalements</title> 
       <para>Pour signaler une erreur ou faire une suggestion sur &app; 
-      ou sur ce manuel, allez ? la <ulink url="ghelp:gnome-feedback"
+      ou sur ce manuel, allez à la <ulink url="ghelp:gnome-feedback"
 	  type="help">Page GNOME</ulink>. 
       </para>
     </legalnotice> 
@@ -214,34 +214,34 @@
 <!-- ============= Introduction ============================== -->
   <sect1 id="gramps-intro"> 
     <title>Introduction</title> 
-    <para> &app; est une application de g?n?alogie.
+    <para> &app; est une application de généalogie.
     &app; est l'acronyme pour 
     Genealogical Research and Analysis Management Programming System 
-    (Systeme de Programmation pour Recherche, Analyse et Gestion de donn?es g?n?alogiques). 
-    En bref, il vous permet de conserver, modifier et chercher des donn?es de g?n?alogie
-    ? l'aide d'un ordinateur. Il est semblable ? d'autres programmes de g?n?alogie
-    mais il offre en plus des possibilit?s qui lui sont uniques. </para> 
+    (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques). 
+    En bref, il vous permet de conserver, modifier et chercher des données de généalogie
+    à l'aide d'un ordinateur. Il est semblable à d'autres programmes de généalogie
+    mais il offre en plus des possibilités qui lui sont uniques. </para> 
 
     <sect2 id="why-gramps">
-      <title>Pourquoi &app; ? </title>
-      <para> &app; a ?t? pens? avec l'id?e que la plupart des logiciels
-      de g?n?alogie permettent de saisir des donn?es. Ils suivent en g?n?ral
-      le mod?le de donn?es standard Gedcom. Habituellement, on peut afficher
-      des arbres ascendants ou descendants sur l'?cran ou bien les imprimer. 
-      On peut ajouter des images aux donn?es. On peut souvent saisir des
+      <title>Pourquoi &app;? </title>
+      <para> &app; a été pensé avec l'idée que la plupart des logiciels
+      de généalogie permettent de saisir des données. Ils suivent en général
+      le modèle de données standard Gedcom. Habituellement, on peut afficher
+      des arbres ascendants ou descendants sur l'écran ou bien les imprimer. 
+      On peut ajouter des images aux données. On peut souvent saisir des
       informations sur des personnes ou des familles non obligatoirement
-      li?es avec l'objet de la recherche. D'autres extensions portent sur
-      l'importation ou l'exportation de donn?es ainsi que sur les impressions
-      d'?tats. </para>
+      liées avec l'objet de la recherche. D'autres extensions portent sur
+      l'importation ou l'exportation de données ainsi que sur les impressions
+      d'états. </para>
       
-      <para> &app; cherche ? fournir toutes les fonctions
-      communes de ces logiciels et aussi la capacit? d'int?grer des informations
-      ?parses directement, puis de traiter/r?organiser 
-      n'importe quel ?v?nement et/ou donn?e dans toute la base de donn?es,
+      <para> &app; cherche à fournir toutes les fonctions
+      communes de ces logiciels et aussi la capacité d'intégrer des informations
+      éparses directement, puis de traiter/réorganiser 
+      n'importe quel évènement et/ou donnée dans toute la base de données,
       pour aider l'utilisateur dans ses recherches, analyses, recoupements
-      et ?ventuellement mises en relation de donn?es. En bref, cet outil
-      traite toutes les donn?es en un lieu unique avec l'aide de l'ordinateur,
-      en rempla?ant le crayon et les montagnes de papier. </para>
+      et éventuellement mises en relation de données. En bref, cet outil
+      traite toutes les données en un lieu unique avec l'aide de l'ordinateur,
+      en remplaçant le crayon et les montagnes de papier. </para>
     </sect2>
   </sect1> <!-- ================ End Intro ================================ -->
   
@@ -271,14 +271,14 @@
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
     <title>About &app;</title> 
-    <para> &app; est ?crit par Donald N. Allingham
+    <para> &app; est écrit par Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
-      Si vous cherchez plus d'information sur &app;, allez ? l'URL de la 
+      Si vous cherchez plus d'information sur &app;, allez à l'URL de la 
       <ulink url="http://gramps.sourceforge.net" type="http">Page Web du 
       Projet GRAMPS</ulink>. </para>
     <para>
-      Si vous d?sirez signaler une erreur du programme, ou faire une suggestion
-      ? propos du programme ou du manuel, utilisez le menu d'aide
+      Si vous désirez signaler une erreur du programme, ou faire une suggestion
+      à propos du programme ou du manuel, utilisez le menu d'aide
       de &app; ou suivez le lien
       <ulink url="ghelp:gnome-feedback" type="help">suggestions</ulink>.
     </para>

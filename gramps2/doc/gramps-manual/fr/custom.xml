@@ -19,12 +19,12 @@
 <!-- ================ Customization ================================ -->
 
   <sect1 id="gramps-prefs"> 
-    <title>Settings</title> 
-    <para>To configure &app;, choose 
-      <menuchoice><guimenu>Edit</guimenu>
-      <guimenuitem>Preferences...</guimenuitem></menuchoice>. 
-      The <guilabel>Preferences</guilabel> dialog contains the following 
-      categories: </para>
+    <title>Personnalisation</title> 
+    <para>Choisissez 
+      <menuchoice><guimenu>Edition</guimenu>
+      <guimenuitem>Préférences...</guimenuitem></menuchoice> pour configurer &app;. 
+      Le dialogue <guilabel>Préférences</guilabel> propose les 
+      catégories suivantes : </para>
       
       <itemizedlist>
       <listitem><para><xref linkend="gramps-prefs-usage"/></para></listitem>
@@ -34,22 +34,21 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
-      <title>Usage</title> 
-	<para> This category contains preferences relevant to the 
-	general usage of &app;. It has the following subcategories:</para>
+      <title>Utilisation</title> 
+	<para> Cette catégorie regroupe les préférences à propos de l'utilisation
+	générale de &app;. Les sous-catégories suivantes sont disponibles : </para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-find"> 
-        <title>Find</title> 
+        <title>Recherche</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Enable autocompletion</guilabel></term>
-	<listitem><para>If this box is checked, &app; will attempt to complete
-	the text as you type it into text entry fields such as family name,
-	place of birth, etc. Completion is attempted based on the match 
-	between the beginning of the text being typed and the corresponding 
-	data already stored in the database. 
+	<varlistentry><term><guilabel>Active la terminaison automatique</guilabel></term>
+	<listitem><para>Si cette option est validée, &app; essaiera de terminer seul
+	le texte entré dans les zones de saisie comme le nom de famille, 
+	les lieux... La terminaison est tentée en s'appuyant sur la correspondance
+	entre le début de texte saisi et les données du même type déjà dans la base de données.
 	</para></listitem>
 	</varlistentry>
 
@@ -59,38 +58,40 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-report"> 
-        <title>Report Preferences</title> 
+        <title>Préférences d'impression</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Preferred text format</guilabel></term>
-	<listitem><para> Select the preferred format for text reports 
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Format de texte</guilabel></term>
+	<listitem><para> Sélectionne le format pour les impressions textuelles
+	parmi les formats disponibles.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred graphical format</guilabel></term>
-	<listitem><para> Select the preferred format for graphical reports 
-	from the available formats listed in this menu.
+	<varlistentry><term><guilabel>Format graphique</guilabel></term>
+	<listitem><para> Sélectionne le format pour les impressions graphiques
+	parmi les formats disponibles.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred paper size</guilabel></term>
-	<listitem><para> Select the preferred paper size used for reports 
-	from the available sizes listed in this menu.
+	<varlistentry><term><guilabel>Taille de page</guilabel></term>
+	<listitem><para> Sélectionne la taille de feuille utilisée pour les impressions
+	parmi les formats disponibles.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default report directory</guilabel></term>
-	<listitem><para> Choose the default directory for the reports using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
+	<varlistentry><term><guilabel>Répertoire par défaut des impressions</guilabel></term>
+	<listitem><para> Choisissez le répertoire par défaut pour les fichiers d'impression
+	en utilisant le bouton 
+	<guibutton>Parcourir...</guibutton> ou entrez-le dans la zone de saisie de 
+	texte. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default web site directory</guilabel></term>
-	<listitem><para> Choose the default directory for the web site using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
+	<varlistentry><term><guilabel>Répertoire par défaut pour la création de site web</guilabel></term>
+	<listitem><para> Choisissez le répertoire par défaut pour la création de site web
+	en utilisant le bouton 
+	<guibutton>Parcourir...</guibutton> ou entrez-le dans la zone de saisie de 
+	texte. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -99,17 +100,17 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-res"> 
-        <title>Researcher Information</title> 
+        <title>Informations sur le chercheur</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Researcher information</guilabel></term>
-	<listitem><para> Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however 
-	none of your exported GEDCOM files will be valid. 
+	<varlistentry><term><guilabel>Informations sur le chercheur</guilabel></term>
+	<listitem><para> Entrez vos informations personnelles dans les champs
+	de saisie. Bien que &app; vous interroge,
+	cette information ne sert quà créer des fichiers GEDCOM valides.
+	Le format GEDCOM a besoin de données sur l'auteur du fichier.
+	Vous pouvez laissez les données vides mais les fichiers GEDCOM
+	exportés ne seront pas valides. 
 	</para></listitem>
 	</varlistentry>
 
@@ -119,26 +120,27 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-guess"> 
-        <title>Data Guessing</title> 
+        <title>Hypothèse</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Family name guessing</guilabel></term>
-	<listitem><para> This option affects the initial family name of a 
-	child when he/she is added to the database. NOTE: this option only
-	affects the initial family name guessed by &app; when the 
-	<guilabel>Edit Person</guilabel> dialog is launched. You can modify
-	that name the way you see fit. Set this option to the value that you 
-	will most frequently use, as it will save you a lot of typing.</para>
+	<varlistentry><term><guilabel>Hypothèse de nom de famille</guilabel></term>
+	<listitem><para> Cette option affecte le nom de famille initial 
+	d'un enfant lors de sa création dans la base de données. NOTE : cela
+	ne change que le nom de famille initial proposé par &app; quand la fenêtre 
+	<guilabel>Affiche Personne</guilabel> est ouverte. Vous pouvez modifier
+	ce nom comme vous voulez ensuite. Positionnez cette option selon ce que vous
+	faites le plus souvent, et elle vous économisera beaucoup
+	de frappe. </para>
 	
-	<para>If <guilabel>None</guilabel> is selected, no guessing will be 
-	attempted. Selecting <guilabel>Father's surname</guilabel> will use
-	the family name of the father. Selecting <guilabel>Combination of 
-	mother's and father's surname</guilabel> will use the father's name 
-	followed by the mother's name. Finally, <guilabel>Icelandic 
-	style</guilabel> will use the father's given name followed by the 
-	&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
-	Edwinsson).
+	<para>Si <guilabel>Aucun</guilabel> est sélectionné, aucune hypothèse
+	ne sera faite. Choisir <guilabel>Nom du père</guilabel> prendra
+	le nom du père et le proposera comme nom de l'enfant. 
+	Choisir <guilabel>Combinaison du nom du père et de la mère</guilabel> 
+	proposera le nom du père suivi du nom de la mère. 
+	Enfin, choisir <guilabel>Style Islandais</guilabel> prendra le nom
+	du père suivi du suffixe &quot;sson&quot; (c'est à dire que le fils d'Erik 
+	aura comme nom de famille Eriksson).
 	</para></listitem>
 	</varlistentry>
 
@@ -150,40 +152,43 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-display"> 
-      <title>Display</title> 
-	<para> This category contains preferences relevant to  
-	displaying database records and controls in &app;. 
-	It has the following subcategories:</para>
+      <title>Affichage</title> 
+	<para> Cette catégorie regroupe les préférences pour
+	afficher le contenu de la base de données et les contrôles. 
+	Les sous-catégories suivantes existent : </para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-gen"> 
-        <title>General</title> 
+        <title>Général</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Default view</guilabel></term>
-	<listitem><para> This determines which view will appear when you 
-        start &app;. Choose between Person and Family views. 
+	<varlistentry><term><guilabel>Vue par défault</guilabel></term>
+	<listitem><para> Ceci définit quelle vue sera affichée au lancement
+	de &app;. Vous avez le choix entre la vue des Individus et
+	la vue par Famille. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Family view style</guilabel></term>
-	<listitem><para> This selects between the two available styles of the Family 
-        view layout. The <guilabel>Left to right</guilabel> style is similar to the 
-        Family Tree Maker (tm), while the <guilabel>Top to bottom</guilabel> is
-        similar to the Reunion. 
+	<varlistentry><term><guilabel>Style de Vue par Famille</guilabel></term>
+	<listitem><para> Ceci sélectionne une des deux dispositions possibles
+	pour la vue par Famille. Le style
+        <guilabel>de Gauche à Droite</guilabel> ressemble à 
+        Family Tree Maker (tm), alors que le style <guilabel>de Haut en Bas</guilabel> 
+        ressemble à Réunion.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Always display the LDS ordinance tabs</guilabel></term>
-	<listitem><para> Check this box to have LDS ordinance tabs displayed. 
-	If you do not know what LDS is then you probably should not check it. 
+	<varlistentry><term><guilabel>Toujours afficher l'onglet LDS</guilabel></term>
+	<listitem><para> Validez ce choix si vous souhaiter toujours afficher
+	l'onglet des données LDS (Later Days Saints, Mormons en français). 
+	Si vous ne savez pas ce que c'est, ne le validez pas. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Show index numbers in child list</guilabel></term>
+	<varlistentry><term><guilabel>Montrer l'index dans les listes d'enfants</guilabel></term>
 	<listitem><para> 
-	This option is not currently implemented.
+	Cette option n'est actuellement pas programmée.
 	</para></listitem>
 	</varlistentry>
 
@@ -192,33 +197,33 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-date"> 
-        <title>Dates and Calendar</title> 
+        <title>Dates et Calendriers</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Display: Date format</guilabel></term>
-	<listitem><para> Select the display format for the dates
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Affichage : Format de Date</guilabel></term>
+	<listitem><para> Sélectionne le format d'affichage des dates
+	parmi les choix du menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Name format</guilabel></term>
-	<listitem><para> Select the display format for the names  
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Format des Noms</guilabel></term>
+	<listitem><para> Sélectionne le format d'affichage des noms
+	parmi les choix du menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Entry: Date format</guilabel></term>
-	<listitem><para> Select the entry format for the dates
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Saisie : Format de Date</guilabel></term>
+	<listitem><para> Sélectionne le format de saisie des dates
+	parmi les choix du menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
-	<listitem><para> Check this box to enable the calendar format selection 
-	menu when you are entering dates in the <guilabel>Event 
-	Editor</guilabel> dialog.  This will allow you to select different 
-	calendars when editing the dates. 
+	<varlistentry><term><guilabel>Sélection des formats de calendriers proposés</guilabel></term>
+	<listitem><para> Cochez ce choix si vous voulez avoir plusieurs calendriers disponibles
+	lors des saisies de dates dans le dialogue
+	<guilabel>Modification d'évènement</guilabel>.  Ceci vous permettra alors de choisir
+	parmi plusieurs calendriers pour modifier les dates.
 	</para></listitem>
 	</varlistentry>
 
@@ -227,19 +232,23 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-bars"> 
-        <title>Toolbar and Statusbar</title> 
+        <title>Barres d'outils et de status</title> 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Toolbar</guilabel></term>
-	<listitem><para> Select the desired appearance of the toolbar icons
-	from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use
-	the overall settings selected for your GNOME desktop. 
+	<varlistentry><term><guilabel>Barre d'outils</guilabel></term>
+	<listitem><para> Sélectionne l'affichage des icônes de la barre d'outils.
+	Les <guilabel>paramètres GNOME</guilabel> seront utilisés
+	par &app;. Il est possible d'afficher seulement les icônes, seulement le texte
+	ou encore d'afficher les deux. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Statusbar</guilabel></term>
-	<listitem><para> Select the desired contents displayed in the 
-	statusbar using the radio buttons. 
+	<varlistentry><term><guilabel>Barre de Status</guilabel></term>
+	<listitem><para> Sélectionne ce qui est affiché dans la barre de status. 
+	Il est possible d'afficher le nom de l'individu seul, accompagné de l'identifiant Gramps
+	ou aussi le lien entre la personne sélectionnée et le probant (individu origine
+	de la recherche généalogique ascendante). Cette dernière option n'est correctement
+	rédigée qu'en langue Anglaise pour le moment. 
 	</para></listitem>
 	</varlistentry>
 
@@ -250,41 +259,41 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-db"> 
-      <title>Database</title> 
-	<para> This category contains preferences relevant to the 
-	database itself. It has the following subcategories: </para>
+      <title>Base de données</title> 
+	<para> Cette catégorie regroupe les préférences liées à la
+	base de données elle-même. Vous y trouvez les sous-catégories suivantes : </para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-gen"> 
-        <title>General</title> 
+        <title>Général</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Automatically load last database</guilabel></term>
-	<listitem><para> Check this box to automatically load the last open
-	database on startup. </para></listitem>
+	<varlistentry><term><guilabel>Chargement automatique de la dernière base</guilabel></term>
+	<listitem><para> Cochez ce choix pour charger automatiquement la dernière
+	base ouverte, lors du lancement de &app;. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Do not compress XML data file</guilabel></term>
-	<listitem><para> Check this box to disable compression of the XML
-	data file. Compression significantly reduces the file size. While it 
-	creates an overhead in performance (some processor cycles must be spent
-	to decompress the file before use), this overhead is extremely small. 
-	Now that the compression-related bugs have long been fixed, there is 
-	virtually no reason to disable data file compression. 
+	<varlistentry><term><guilabel>Ne pas compresser les fichiers XML</guilabel></term>
+	<listitem><para> Cochez ce choix pour désactiver la compression des
+	fichiers XML. La compression réduit considérablement la taille du fichier. 
+	Cela coûte un tout petit peu plus en terme de puissance CPU. Les erreurs
+	de compression ont été corrigées depuis bien longtemps et il n'y a
+	plus aucune raison de désactiver la compression. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
-	<listitem><para> Set the interval (in minutes) after which &app; will
-	automatically save your database. Setting the interval to zero (0) 
-	disables autosaving. </para></listitem>
+	<varlistentry><term><guilabel> Intervalle de sauvegarde automatique</guilabel></term>
+	<listitem><para> Ceci fixe le délai (en minutes) entre deux sauvegardes
+	automatiques de la base de données. La valeur zéro (0) désactive
+	la sauvegarde automatique. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default database directory</guilabel></term>
-	<listitem><para> Choose the default directory in which &app; starts
-	looking when saving the database using the <guibutton>Browse...</guibutton> 
-	or type its path into the text entry field. </para></listitem>
+	<varlistentry><term><guilabel>Répertoire par defaut de la base de données</guilabel></term>
+	<listitem><para> Ceci précise le répertoire utilisé par défaut avant une sauvegarde.
+	Ceci sert quand on valide le bouton <guibutton>Parcourir...</guibutton> après
+	la commande de sauvegarde, ou quand on saisit un chemin d'accès directement
+	dans la zone de saisie de texte. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -292,56 +301,56 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-media"> 
-        <title>Media Objects</title> 
+        <title>Medias</title> 
 
-	<para>Before describing preferences for media objects, let us
-	review the background on local and non-local objects. A local object 
-	is the object whose file is stored inside the same directory in which 
-	the &app; database file resides. A non-local object is stored 
-	elsewhere, so that the database has only the reference to the file's 
-	location and some records of the object's properties. </para>
+	<para>Avant de décrire les préférences pour les objets Médias, 
+	il faut revoir les notions d'objet local et non local. 
+	Un objet local a ses données conservées dans le répertoire de
+	la base de données. 
+	Au contraire, un objet non local est conservé ailleurs et la base
+	de données ne conserve qu'une référence du chemin d'accès
+	au fichier ainsi que quelques informations sur l'objet. </para>
 	
-	<para>You may choose to store your media objects either locally 
-	or externally. Making your objects local will increase the amount 
-	of disk space consumed by the &app; database directory. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy. In contrast, leaving your objects non-local 
-	will decrease the disk space requirements. However, losing the 
-	original file will render your media object unusable.
+	<para>Vous pouvez décider de conserver vos objets médias localement
+	ou pas. Les objets locaux augmentent l'espace-disque consommé par la base
+	de données. si le fichier externe est détruit ou déplacé, &app;
+	en aura toujours une copie.
+	Au contraire, les objets non locaux réduisent l'espace-disque consommé,
+	mais il ne faut pas perdre les fichiers sous peine de
+	perdre aussi le contenu des objets non locaux.
 	</para>
 	
-	<para>Note that exporting your database to any format will compile
-	all medial objects, no matter whether they are local or not. 
-	Specifically, export to gramps package will include all the media 
-	object files in the package and change the references accordingly. 
-	Export to CD will copy all media object files to the directory under 
-	the <guilabel>burn:///</guilabel> location in Nautilus and change the 
-	references accordingly. Finally, export to GEDCOM will place all 
-	media object files next to the GEDCOM file with the appropriate 
-	changes in the path names. 
+	<para>Remarque : l'exportation de la base de données en n'importe
+	quel format intègre tous les objets, qu'ils soient locaux
+	ou pas. En particulier, exporter en un paquetage gramps 
+	inclut tous les objets médias dans le fichier produit, et change
+	les références en conséquence. Exporter vers un CD-Rom copie tous les objets 
+	médias dans le répertoire de <guilabel>gravure:///</guilabel> dans Nautilus
+	et ajuste leur référence. Enfin, l'export en Gedcom met les fichiers de médias
+	à côté du fichier de données Gedcom en mettant à jour les chemins
+	d'accès conservés dans le fichier Gedcom. 
 	</para>
 	
 	<variablelist>
 
-	<varlistentry><term><guilabel>Drag and drop from an external 
-	source</guilabel></term>
-	<listitem><para> Choose between a reference and a local copy made when
-	the object is dropped into the gallery. The reference saves disk 
-	space as it does not copy the object. The local copy makes your 
-	database portable as it does not depend on an external file. Consult
-	your needs to make best choice.</para> 
+	<varlistentry><term><guilabel>Glisser-Déposer à partir d'une Source externe
+	</guilabel></term>
+	<listitem><para> Ceci choisit entre une référence et une copie locale
+	quand un fichier est déposé dans la galerie. Une référence
+	économise l'espace-disque en ne copiant pas l'objet. La copie locale
+	rend votre base de données déplaçable puisqu'elle ne dépend pas de
+	fichiers externes. Réfléchissez à votre besoin pour faire le meilleur choix.</para> 
 	
-	<para>Check the <guilabel>Display global properties editor when 
-	object is dropped</guilabel> box to invoke the global properties 
-	editor after you drop an external object into the gallery. 
+	<para>Cochez le choix <guilabel>Ouvrir l'éditeur de propriétés quand 
+	un objet est déposé</guilabel> pour lancer l'éditeur de propriétés
+	après qu'un objet a été déposé dans la Galerie. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop from an internal 
-	source</guilabel></term>
-	<listitem><para> Check the <guilabel>Display local properties editor 
-	when object is dropped</guilabel> box to invoke the local properties 
-	editor after you drop an internal object into the gallery. 
+	<varlistentry><term><guilabel>Glisser-Déposer depuis une source interne</guilabel></term>
+	<listitem><para>Cochez le choix <guilabel>Ouvrir l'éditeur de propriétés quand 
+	un objet est déposé</guilabel> pour lancer l'éditeur de propriétés
+	après qu'un objet interne (à la base de données) a été déposé dans la Galerie. 
 	</para></listitem>
 	</varlistentry>
 
@@ -350,20 +359,20 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
-        <title>&app; internal IDs</title> 
+        <title>Identifiants internes &app;</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel> GRAMPS ID prefixes</guilabel></term>
-	<listitem><para> Enter ID prefixes for various kinds of database 
-	entries into the corresponding text entry fields. 
+	<varlistentry><term><guilabel> Préfixes d'identifiants &app;</guilabel></term>
+	<listitem><para> Saisissez les préfixes utilisés par &app; pour générer
+	les identifiants pour différents éléments de données. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Allow internal GRAMPS ID numbers to be
-	edited</guilabel></term>
-	<listitem><para> Check this box to enable editing of the internal &app;
-	ID numbers. Unless you know what you are doing, leave it unchecked.
+	<varlistentry><term><guilabel>Autorise la modification des identifiants internes de 
+	Gramps</guilabel></term>
+	<listitem><para> Cochez ce choix pour autoriser la modification des identifiants internes 
+	utilisés par &app;. N'autorisez cela que si vous savez vraiment ce que vous faites. 
 	</para></listitem>
 	</varlistentry>
 
@@ -372,20 +381,21 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-rcs"> 
-        <title>Revision Control</title> 
+        <title>Contrôle de Révision</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Use revision control</guilabel></term>
-	<listitem><para> Check this box to enable &app; to use the revision control
-	system for your database. If you choose this option, select the
-	particular revision control system from the menu. 
+	<varlistentry><term><guilabel>Utiliser le contrôle de révision</guilabel></term>
+	<listitem><para> Cochez ce choix si vous autorisez &app; à utiliser
+	la gestion des versions pour votre base de données. 
+	Si vous le faites, choisissez le système de gestion de version
+	par le menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Prompt for comment on save</guilabel></term>
-	<listitem><para> Check this box to instruct &app; to prompt you to enter
-	the comment when you save the database. 
+	<varlistentry><term><guilabel>Prompt pour un commentaire de sauvegarde</guilabel></term>
+	<listitem><para> Cochez ce choix pour que &app; demande un commentaire lors de la sauvegarde
+	de la base de données. 
 	</para></listitem>
 	</varlistentry>
 

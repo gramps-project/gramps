@@ -13,60 +13,60 @@
 <!-- $Id$ -->
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
-      <title>Documentation de reference sur les r?gles de filtrage</title>
-      <para>Cette annexe d?crit les fonctions de filtrage actuellement d?finies
-      dans &app;. Ces r?gles sont disponibles quand vous cr?ez des filtres
-      personnalis?s. Elles sont ici pr?sent?es par cat?gories. 
+      <title>Documentation de reference sur les règles de filtrage</title>
+      <para>Cette annexe décrit les fonctions de filtrage actuellement définies
+      dans &app;. Ces règles sont disponibles quand vous créez des filtres
+      personnalisés. Elles sont ici présentées par catégories. 
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-general">
-        <title>Filtres g?n?raux</title>
-        <para>Cette cat?gorie comprend les fonctions les plus g?n?rales : </para>
+        <title>Filtres généraux</title>
+        <para>Cette catégorie comprend les fonctions les plus générales : </para>
         
           <variablelist>
 
           <varlistentry><term>Tout le monde</term>
-          <listitem><para> Cette fonction accepte toutes les personnes de la base de donn?es. 
-          Elle n'est pas tr?s utile seule sauf pour tester. Par contre, elle
+          <listitem><para> Cette fonction accepte toutes les personnes de la base de données. 
+          Elle n'est pas très utile seule sauf pour tester. Par contre, elle
 	  sert en combinaison avec d'autres fonctions. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Noms qui contiennent une cha?ne</term>
-          <listitem><para> Cette fonction s?lectionne toutes les personnes
-	  dont l'identit? contient la cha?ne donn?e. Par exemple, 
-	  Jacques Dupont, Jean Dupond et seront s?lectionn?s par cette
-	  fonction, utilis?e avec la valeur "pon". 
+          <varlistentry><term>Noms qui contiennent une chaîne</term>
+          <listitem><para> Cette fonction sélectionne toutes les personnes
+	  dont l'identité contient la chaîne donnée. Par exemple, 
+	  Jacques Dupont, Jean Dupond et seront sélectionnés par cette
+	  fonction, utilisée avec la valeur "pon". 
           </para>
 
-          <para> Des cha?nes s?par?es peuvent ?tre utilis?es pour
-	  le pr?nom, le nom de famille, le suffixe et le titre.
-	  La fonction s?lectionne un individu quand toutes les cha?nes
+          <para> Des chaînes séparées peuvent être utilisées pour
+	  le prénom, le nom de famille, le suffixe et le titre.
+	  La fonction sélectionne un individu quand toutes les chaînes
 	  non vides font partie du nom d'une personne. Si vous voulez
 	  utiliser une seule valeur, laissez les autres vides.
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>A l'identifiant</term>
-          <listitem><para> Cette fonction s?lectionne la personne ayant
-	  exactement l'identifiant &app; donn?. 
+          <listitem><para> Cette fonction sélectionne la personne ayant
+	  exactement l'identifiant &app; donné. 
           </para>
 
           <para> Vous pouvez entrer l'identifiant dans un champ texte,
-	  ou bien s?lectionner une personne dans la liste en cliquant le bouton
-          <guibutton>Select...</guibutton>. Dans ce cas, l'identifiant appara?tra
-	  dans le champ de saisie de texte apr?s la s?lection. 
+	  ou bien sélectionner une personne dans la liste en cliquant le bouton
+          <guibutton>Select...</guibutton>. Dans ce cas, l'identifiant apparaîtra
+	  dans le champ de saisie de texte après la sélection. 
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Est une femme</term>
-          <listitem><para> Cette fonction s?lectionne les femmes.
+          <listitem><para> Cette fonction sélectionne les femmes.
           </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Est un homme</term>
-          <listitem><para> Ce filtre s?lectionne les hommes.
+          <listitem><para> Ce filtre sélectionne les hommes.
           </para></listitem>
           </varlistentry>
 
@@ -76,16 +76,16 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-event">
-        <title>Fonctions sur ?v?nements</title>
-        <para>Cette cat?gorie regroupe les fonctions qui utilisent les ?v?nements des personnes : </para>
+        <title>Fonctions sur évènements</title>
+        <para>Cette catégorie regroupe les fonctions qui utilisent les évènements des personnes : </para>
           <variablelist>
 
           <varlistentry><term>A la naissance</term>
-          <listitem><para>Cette fonction s?lectionne les personnes dont
-          la naissance correspond aux valeurs donn?es pour Date, Lieu, et Description. 
-	  La correspondance est faite m?me quand l'?v?nement n'est que partiellement
-	  identique. Les correspondances sont insensibles ? la casse des caract?res.
-	  Par exemple, toute personne n?e en France sera s?lectionn?e par 
+          <listitem><para>Cette fonction sélectionne les personnes dont
+          la naissance correspond aux valeurs données pour Date, Lieu, et Description. 
+	  La correspondance est faite même quand l'évènement n'est que partiellement
+	  identique. Les correspondances sont insensibles à la casse des caractères.
+	  Par exemple, toute personne née en France sera sélectionnée par 
 	  la valeur "fr" pour le lieu. 
           </para>
 
