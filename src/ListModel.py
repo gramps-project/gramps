@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -177,6 +177,21 @@ class ListModel:
             self.selection.select_iter(iter)
         return iter
 
+    def insert(self,position,data,info=None,select=0):
+        self.count = self.count + 1
+        iter = self.model.insert(position)
+        col = 0
+        for object in data:
+            self.model.set_value(iter,col,object)
+            col = col + 1
+        self.model.set_value(iter,col,info)
+        if select:
+            self.selection.select_iter(iter)
+        return iter
+    
+    def get_data(self,iter,cols):
+        return [ self.model.get_value(iter,c) for c in cols ]
+    
     def add_and_select(self,data,info=None):
         self.count = self.count + 1
         iter = self.model.append()
