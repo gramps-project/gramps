@@ -34,6 +34,7 @@ except:
     gzip_ok = 0
 
 fileroot = ""
+strip_photo = 0
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +56,7 @@ def sortById(first,second):
 #
 #-------------------------------------------------------------------------
 def fix(line):
-    l = string.strip(line)
+    l = string.stripline)
     l = string.replace(l,'&','&amp;')
     l = string.replace(l,'>','&gt;')
     l = string.replace(l,'<','&lt;')
@@ -336,10 +337,13 @@ def write_object(g,object):
     id = object.getId()
     type = object.getMimeType()
     path = object.getPath()
-    l = len(fileroot)
-    if len(path) >= l:
-        if fileroot == path[0:l]:
-            path = path[l+1:]
+    if strip_photo:
+        path = os.path.basename(path)
+    else:
+        l = len(fileroot)
+        if len(path) >= l:
+            if fileroot == path[0:l]:
+                path = path[l+1:]
     g.write('    <object id="%s" src="%s" mime="%s"' % (id,path,type))
     g.write(' description="%s"' % fix(object.getDescription()))
     alist = object.getAttributeList()
