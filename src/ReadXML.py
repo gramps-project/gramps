@@ -119,7 +119,7 @@ def importData(database, filename, callback,cl=0):
             import traceback
             traceback.print_exc()
             return 0
-    except ExpatError, msg:
+    except xml.parsers.expat.ExpatError, msg:
         if cl:
             print "Error reading %s" % filename
             print "The file is probably either corrupt or not a valid GRAMPS database."

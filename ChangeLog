@@ -1,6 +1,7 @@
 2004-05-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/RelGraph.py (_write_graph_record): Bug fixes.
 	* src/docgen/RTFDoc.py: Typo. 
+	* src/ReadXML.py: Typo.
 
 2004-05-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py (probably_alive): Typos.
