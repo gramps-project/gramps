@@ -50,7 +50,7 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>&app; Manual V&manrevision;</title>       
+    <title>GRAMPS Manual V&manrevision;</title>       
 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
     <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
@@ -227,7 +227,7 @@
     genealogical programs. However, &app; offers some unique features. </para> 
 
     <sect2 id="why-gramps">
-      <title>Why &app;?</title>
+      <title>Why GRAMPS?</title>
       <para> &app; was conceived under the concept
       that most genealogy programs were designed to provide the researcher the 
       capability to input information related to a particular family tree.  
@@ -292,7 +292,7 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>About &app;</title> 
+    <title>About GRAMPS</title> 
     <para> &app; was written by Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
       To find more information about &app;, please visit the 

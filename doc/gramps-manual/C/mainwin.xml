@@ -24,11 +24,11 @@
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
-	<title>&app; Main Window</title> 
+	<title>GRAMPS Main Window</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows &app; main window. Contains titlebar, menubar, 
+	<phrase>Shows GRAMPS main window. Contains titlebar, menubar, 
 	      toolbar, sidebar, display area, statusbar, progressbar, and
 	      scrollbars. Menubar contains File, Edit, View, Go, Bookmarks, 
 	      Reports, Tools, Settings, and Help menus.  </phrase>

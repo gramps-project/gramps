@@ -23,7 +23,7 @@
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
-    <title>To Start &app;</title>
+    <title>To Start GRAMPS</title>
     <para>You can start &app; in the following ways:</para> 
     <variablelist>
     <varlistentry>
@@ -54,7 +54,7 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>Running &app; for the first time</title>
+      <title>Running GRAMPS for the first time</title>
     <para> 
     The first time you run the program, GRAMPS will display its 
     Getting Started dialogs. Follow the directions guiding you through
@@ -66,7 +66,7 @@
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Getting Started Window: Researcher Information</title> 
+	<title>GRAMPS Getting Started Window: Researcher Information</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
