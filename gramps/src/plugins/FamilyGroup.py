@@ -29,6 +29,7 @@ import string
 import FindDoc
 import utils
 import intl
+import Config
 _ = intl.gettext
 
 from TextDoc import *
@@ -357,6 +358,7 @@ def report(database,person):
     base = os.path.dirname(__file__)
     glade_file = base + os.sep + "familygroup.glade"
     topDialog = GladeXML(glade_file,"dialog1")
+    topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
 
     name = person.getPrimaryName().getRegularName()
     family_list = person.getFamilyList()
