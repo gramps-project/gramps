@@ -528,7 +528,8 @@ class EditPerson:
         hist = 0
         flist = [self.person.get_main_parents_family_id()]
         for (fam,mrel,frel) in self.person.get_parent_family_id_list():
-            flist.append(fam)
+            if fam not in flist:
+                flist.append(fam)
         for fam_id in flist:
             fam = self.db.find_family_from_id(fam_id)
             if fam == None:
