@@ -454,6 +454,9 @@ class GedcomParser:
             elif matches[1] == "_MREL":
                 if string.lower(matches[2]) != "natural":
                     mrel = matches[2]
+            elif matches[1] == "ADOP":
+                mrel = "Adopted"
+                frel = "Adopted"
             else:
                 self.barf(level+1)
     
@@ -488,6 +491,8 @@ class GedcomParser:
                    (frel == "Birth" or frel == "") :
                     child.setMainFamily(self.family)
                 else:
+                    if child.getMainFamily() == self.family:
+                        child.setMainFamily(None)
                     child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
@@ -613,6 +618,8 @@ class GedcomParser:
                 addr.setStreet(matches[2] + self.parse_continue_data(2))
                 self.parse_address(addr,2)
                 self.person.addAddress(addr)
+	    elif matches[1] == "TITL":
+                self.person.getPrimaryName().setTitle(matches[2])
 	    elif matches[1] == "BIRT":
                 event = Event()
                 if self.person.getBirth().getDate() != "" or \
@@ -922,8 +929,16 @@ class GedcomParser:
                     self.person.addAltFamily(family,type,type)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "PLAC":
-	        place = Place()
-		place.set_title(matches[2])
+                val = matches[2]
+                place = None
+                for p in self.db.getPlaceMap().values():
+                    if val == p.get_title():
+                        place = p
+                        break
+                else:
+                    place = Place()
+                    place.set_title(matches[2])
+                    self.db.addPlace(place)
                 event.setPlace(place)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
@@ -985,8 +1000,16 @@ class GedcomParser:
                     self.parse_source_reference(source_ref,level+1)
                 event.setSourceRef(source_ref)
             elif matches[1] == "PLAC":
-	        place = Place()
-		place.set_title(matches[2])
+                val = matches[2]
+                place = None
+                for p in self.db.getPlaceMap().values():
+                    if val == p.get_title():
+                        place = p
+                        break
+                else:
+                    place = Place()
+                    place.set_title(matches[2])
+                    self.db.addPlace(place)
                 event.setPlace(place)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
