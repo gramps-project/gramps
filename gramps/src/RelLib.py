@@ -1957,6 +1957,10 @@ class GrampsDB(Persistent):
         """returns the default Person of the database"""
         return self.default
 
+    def getPerson(self,id):
+        """returns a map of gramps's IDs to Person instances"""
+        return self.personMap[id]
+
     def getPersonMap(self):
         """returns a map of gramps's IDs to Person instances"""
         return extmap(self.personMap)
