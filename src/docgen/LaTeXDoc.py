@@ -189,8 +189,9 @@ class LaTeXDoc(TextDoc):
 	self.indent = ltxstyle.leftIndent
 	self.FLindent = ltxstyle.firstLineIndent
 	
+
 	if self.indent != None and not self.in_table:
-	    myspace = _('%scm' % str(self.indent))
+	    myspace = '%scm' % str(self.indent)
 	    self.f.write('\\grampsindent{%s}\n' % myspace)
 	    self.fix_indent = 1
 	    
@@ -209,15 +210,15 @@ class LaTeXDoc(TextDoc):
     
     def end_paragraph(self):
         """End the current paragraph"""
-	newline = _('\ \\newline\n')
+	newline = '\ \\newline\n'
 
 	if self.in_list:
 	    self.in_list = 0
 	    self.f.write('\n\\end{enumerate}\n')
-	    newline = _('')
+	    newline = ''
 
 	elif self.in_table:
-	    newline = _('')
+	    newline = ('')
 
 	self.f.write('%s%s' % (self.fend,newline))
 	if self.fix_indent == 1:
@@ -241,7 +242,7 @@ class LaTeXDoc(TextDoc):
 	self.tblstyle = self.table_styles[style_name]
 	self.numcols = self.tblstyle.get_columns()
 
-	tblfmt = _('*{%d}{l}' % self.numcols)
+	tblfmt = '*{%d}{l}' % self.numcols
 	self.f.write('\n\n\\begin{longtable}[l]{%s}\n' % tblfmt)
 
     def end_table(self):
@@ -313,7 +314,7 @@ class LaTeXDoc(TextDoc):
 	pic.eps_convert(picf)
 	
 	# x and y will be maximum width OR height in units of cm
-	mysize = _('width=%dcm,height=%dcm,keepaspectratio' % (x,y))
+	mysize = 'width=%dcm,height=%dcm,keepaspectratio' % (x,y)
 	if pos == "right":
 	    self.f.write('\\fil\\includegraphics[%s]{%s}\n' % (mysize,picf))
 	elif pos == "left":
