@@ -12,7 +12,7 @@ p22_inc         = @P22_INCLUDES@
 pycomp		= ${srcdir}/py-compile
 CFLAGS          = -fPIC -shared -O @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS         = @LDFLAGS@ -L@libdir@ @LIBS@
-LANG            = sv de fr es
+LANG            = sv de fr es it
 
 @SET_MAKE@
 
