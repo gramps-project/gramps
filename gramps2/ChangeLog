@@ -5,6 +5,18 @@
 	* doc/gramps-manual/C/custom.xml: Update.
 	* doc/gramps-manual/C/gramps-manual-C.omf: Update.
 	* doc/gramps.1.in: Update.
+	* src/revision.glade: Add Help button.
+	* src/gramps_main.py (on_help_dbopen_clicked): Add function.
+	* src/plugins/gedcomexport.glade: Add Help button.
+	* src/plugins/WriteGedcom.py (on_help_clicked): Add function.
+	* src/plugins/pkgexport.glade: Add Help button.
+	* src/plugins/WritePkg.py (on_help_clicked): Add function.
+	* src/plugins/writeftree.glade: Add Help button.
+	* src/plugins/WriteGedcom.py (on_help_clicked): Add function.
+	* src/plugins/cdexport.glade: Add Help button.
+	* src/plugins/WriteCD.py (on_help_clicked): Add function.
+	* src/Bookmarks.py (draw_window): Add Help button; 
+	(help_clicked): Add function.
 
 2003-12-01  Tim Waugh  <twaugh@redhat.com>
 	* doc/xmldocs.make: Fix builds for $top_srcdir == $top_builddir (oops).

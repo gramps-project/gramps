@@ -302,6 +302,7 @@ class Gramps:
             "on_new_clicked" : self.on_new_clicked,
             "on_notebook1_switch_page" : self.on_views_switch_page,
             "on_ok_button1_clicked" : self.on_ok_button1_clicked,
+            "on_help_dbopen_clicked" : self.on_help_dbopen_clicked,
             "on_open_activate" : self.on_open_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
@@ -985,6 +986,11 @@ class Gramps:
         else:
             self.auto_save_load(filename)
 
+    def on_help_dbopen_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','open-db')
+        self.dbopen_button = self.dbopen_fs.run()
+
     def auto_save_load(self,filename):
 
         filename = os.path.normpath(os.path.abspath(filename))
@@ -1407,26 +1413,28 @@ class Gramps:
         if not Utils.wasModified():
             wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
 
-            fileSelector = wFs.get_widget("dbopen")
+            self.dbopen_fs = wFs.get_widget("dbopen")
 
-            Utils.set_titles(fileSelector, wFs.get_widget('title'),
+            Utils.set_titles(self.dbopen_fs, wFs.get_widget('title'),
                              _('Open a database'))
         
             dbname = wFs.get_widget("dbname")
             getoldrev = wFs.get_widget("getoldrev")
-            fileSelector.set_data("dbname",dbname)
+            self.dbopen_fs.set_data("dbname",dbname)
             dbname.set_default_path(GrampsCfg.db_dir)
             dbname.set_filename(GrampsCfg.db_dir)
             dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
             
-            fileSelector.set_data("getoldrev",getoldrev)
+            self.dbopen_fs.set_data("getoldrev",getoldrev)
             getoldrev.set_sensitive(GrampsCfg.usevc)
-            fileSelector.set_transient_for(self.topWindow)
-            fileSelector.show()
-            button = fileSelector.run()
-            if button == gtk.RESPONSE_OK:
-                self.on_ok_button1_clicked(fileSelector)
-            fileSelector.destroy()
+            self.dbopen_fs.set_transient_for(self.topWindow)
+            self.dbopen_fs.show()
+            self.dbopen_button = self.dbopen_fs.run()
+            if self.dbopen_button == gtk.RESPONSE_OK:
+                self.on_ok_button1_clicked(self.dbopen_fs)
+            elif self.dbopen_button == gtk.RESPONSE_HELP:
+                self.on_help_dbopen_clicked(obj)
+            self.dbopen_fs.destroy()
 
     def on_revert_activate(self,obj):
         

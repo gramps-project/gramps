@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Export to GEDCOM"
 
 #-------------------------------------------------------------------------
@@ -37,6 +39,7 @@ import re
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -371,7 +374,8 @@ class GedcomWriter:
                 "standard_copyright" : self.standard_copyright,
                 "no_copyright" : self.no_copyright,
                 "on_restrict_toggled": self.on_restrict_toggled,
-                "on_ok_clicked" : self.on_ok_clicked
+                "on_ok_clicked" : self.on_ok_clicked,
+                "on_help_clicked" : self.on_help_clicked
                 })
 
             Utils.set_titles(self.topDialog.get_widget('gedcomExport'),
@@ -524,6 +528,10 @@ class GedcomWriter:
 
         self.export_data(name)
         closebtn.set_sensitive(1)
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','export-data')
 
     def cl_setup(self):
         self.restrict = 0

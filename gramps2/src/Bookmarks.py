@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Handle bookmarks for the gramps interface"
 
 __author__ = "Donald N. Allingham"
@@ -28,7 +30,8 @@ __version__ = "$Revision$"
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk 
+import gtk
+import gnome 
 
 #-------------------------------------------------------------------------
 #
@@ -117,8 +120,9 @@ class Bookmarks :
         up.connect('clicked', self.up_clicked)
         down.connect('clicked',self.down_clicked)
         delete.connect('clicked',self.delete_clicked)
-        self.top.add_button(gtk.STOCK_CANCEL,1)
-        self.top.add_button(gtk.STOCK_OK,0)
+        self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
+        self.top.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
+        self.top.add_button(gtk.STOCK_HELP,gtk.RESPONSE_HELP)
         bbox.add(up)
         bbox.add(down)
         bbox.add(delete)
@@ -141,10 +145,12 @@ class Bookmarks :
             self.namelist.set_row_data(index,person)
             index = index + 1
 
-        if self.top.run() == 0 :
+        self.response = self.top.run()
+        if self.response == gtk.RESPONSE_OK:
             self.ok_clicked()
-        else:
-            self.cancel_clicked()
+        elif self.response == gtk.RESPONSE_HELP:
+            self.help_clicked()
+        self.top.destroy()
 
     def delete_clicked(self,obj):
         """Removes the current selection from the list"""
@@ -172,8 +178,9 @@ class Bookmarks :
             if person:
                 self.bookmarks.append(person)
         self.redraw()
-        self.top.destroy()
-    
-    def cancel_clicked(self):
-        """Closes the current window"""
-        self.top.destroy()
+
+    def help_clicked(self):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-nav')
+        self.response = self.top.run()
+
