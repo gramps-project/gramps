@@ -172,13 +172,13 @@ class GrampsParser(handler.ContentHandler):
     def start_location(self,attrs):
         loc = Location()
         if attrs.has_key('city'):
-            loc.set_city(attrs['city'])
+            loc.set_city(ul2(attrs['city']))
         if attrs.has_key('state'):
-            loc.set_state(attrs['state'])
+            loc.set_state(u2l(attrs['state']))
         if attrs.has_key('county'):
-            loc.set_state(attrs['county'])
+            loc.set_state(u2l(attrs['county']))
         if attrs.has_key('country'):
-            loc.set_state(attrs['country'])
+            loc.set_state(u2l(attrs['country']))
         if attrs.has_key('type'):
             self.placeobj.add_alternate_locations(loc)
         else:
@@ -191,9 +191,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_coord(tag,attrs):
         if attrs.has_key('lat'):
-            self.placeobj.set_latitude(attrs['lat'])
+            self.placeobj.set_latitude(u2l(attrs['lat']))
         if attrs.has_key('long'):
-            self.placeobj.set_longitude(attrs['long'])
+            self.placeobj.set_longitude(u2l(attrs['long']))
 
     #---------------------------------------------------------------------
     #
@@ -543,13 +543,13 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_place(self,tag):
         if self.placeobj == None:
-            if self.place_map.has_key(tag):
-                self.placeobj = self.place_map[tag]
+            if self.place_map.has_key(u2l(tag)):
+                self.placeobj = self.place_map[u2l(tag)]
             else:
                 self.placeobj = Place()
-                self.placeobj.set_title(tag)
+                self.placeobj.set_title(u2l(tag))
                 self.db.addPlace(self.placeobj)
-                self.place_map[tag] = self.placeobj
+                self.place_map[u2l(tag)] = self.placeobj
         self.event.place = self.placeobj
 
     #---------------------------------------------------------------------
