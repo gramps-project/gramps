@@ -656,9 +656,9 @@ class WebReport(Report):
             f.write("%s.%s|" % (p.getId(),self.ext))
             f.write("%s|" % surName)
             if suffix == "":
-                f.write("%s /%s/" % (firstName,surName))
+                f.write("%s /%s/|" % (firstName,surName))
             else:
-                f.write("%s /%s/, %s" % (firstName,surName, suffix))
+                f.write("%s /%s/, %s|" % (firstName,surName, suffix))
             for e in [p.getBirth(),p.getDeath()]:
                 if e:
                     f.write("%s|" % self.make_date(e.getDateObj()))
