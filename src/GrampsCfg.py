@@ -346,7 +346,7 @@ class GrampsPreferences:
             mr.set_active(1)
         else:
             mc.set_active(1)
-        mr.connect('toggled',lambda obj: save_media_reference(obj.get_active()))
+        mr.connect('toggled',lambda obj: GrampsGconfKeys.save_media_reference(obj.get_active()))
 
         dg = self.top.get_widget("globalprop")
         dg.set_active(GrampsGconfKeys.get_media_global())

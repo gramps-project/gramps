@@ -1,3 +1,6 @@
+2004-10-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/GrampsCfg.py (build): Typo.
+
 2004-10-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: pychecker fixes
 	* src/DbPrompter.py: pychecker fixes
