@@ -1039,10 +1039,10 @@ class EditPerson:
             self.event_place_field.set_text(event.getPlaceName())
             self.event_name_field.set_text(const.display_pevent(event.getName()))
             self.event_cause_field.set_text(event.getCause())
-            self.event_descr_field.set_text(event.getDescription())
+            self.event_descr_field.set_text(short(event.getDescription()))
             if len(event.getSourceRefList()) > 0:
                 psrc = event.getSourceRefList()[0]
-                self.event_src_field.set_text(psrc.getBase().getTitle())
+                self.event_src_field.set_text(short(psrc.getBase().getTitle()))
                 self.event_conf_field.set_text(const.confidence[psrc.getConfidence()])
             else:
                 self.event_src_field.set_text('')
@@ -1073,7 +1073,7 @@ class EditPerson:
             if len(addr.getSourceRefList()) > 0:
                 psrc = addr.getSourceRefList()[0]
                 self.addr_conf_field.set_text(const.confidence[psrc.getConfidence()])
-                self.addr_src_field.set_text(psrc.getBase().getTitle())
+                self.addr_src_field.set_text(short(psrc.getBase().getTitle()))
             else:
                 self.addr_src_field.set_text('')
                 self.addr_conf_field.set_text('')
@@ -1103,7 +1103,7 @@ class EditPerson:
             self.name_type_field.set_text(name.getType())
             if len(name.getSourceRefList()) > 0:
                 psrc = name.getSourceRefList()[0]
-                self.name_src_field.set_text(psrc.getBase().getTitle())
+                self.name_src_field.set_text(short(psrc.getBase().getTitle()))
                 self.name_conf_field.set_text(const.confidence[psrc.getConfidence()])
             else:
                 self.name_src_field.set_text('')
@@ -1145,10 +1145,10 @@ class EditPerson:
         if iter:
             attr = self.atree.get_object(iter)
             self.attr_type.set_text(const.display_pattr(attr.getType()))
-            self.attr_value.set_text(attr.getValue())
+            self.attr_value.set_text(short(attr.getValue()))
             if len(attr.getSourceRefList()) > 0:
                 psrc = attr.getSourceRefList()[0]
-                self.attr_src_field.set_text(psrc.getBase().getTitle())
+                self.attr_src_field.set_text(short(psrc.getBase().getTitle()))
                 self.attr_conf_field.set_text(const.confidence[psrc.getConfidence()])
             else:
                 self.attr_src_field.set_text('')
@@ -1390,6 +1390,8 @@ class EditPerson:
 
     def get_place(self,field,makenew=0):
         text = string.strip(field.get_text())
+        if type(text) != type(u' '):
+            text = unicode(text)
         if text:
             if self.pmap.has_key(text):
                 return self.db.getPlaceMap()[self.pmap[text]]
@@ -1580,3 +1582,9 @@ def reorder_child_list(person, list):
         list.insert(target,person)
     return list
 
+
+def short(val,size=60):
+    if len(val) > size:
+        return "%s..." % val[0:size]
+    else:
+        return val
