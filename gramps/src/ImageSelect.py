@@ -46,6 +46,7 @@ import libglade
 import const
 import utils
 import Config
+import Plugins
 from RelLib import *
 import RelImage
 
@@ -210,7 +211,7 @@ class Gallery(ImageSelect):
         icon_list.drag_dest_set(GTK.DEST_DEFAULT_ALL, t, GDK.ACTION_COPY | GDK.ACTION_MOVE)
         icon_list.connect("drag_data_received", self.on_photolist_drag_data_received)
 
-        icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,\
+        icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,
                                    GDK.ACTION_COPY | GDK.ACTION_MOVE)
         icon_list.connect("drag_data_get", self.on_photolist_drag_data_get)
         
@@ -573,7 +574,8 @@ class LocalMediaProperties:
         if len(obj.selection) > 0:
             row = obj.selection[0]
             attr = obj.get_row_data(row)
-            AttrEdit.AttributeEditor(self,attr,"Media Object",[])
+            AttrEdit.AttributeEditor(self,attr,"Media Object",
+                                     Plugins.get_image_attributes())
 
     def on_delete_attr_clicked(self,obj):
         if utils.delete_selected(obj,self.alist):
@@ -582,7 +584,8 @@ class LocalMediaProperties:
 
     def on_add_attr_clicked(self,obj):
         import AttrEdit
-        AttrEdit.AttributeEditor(self,None,"Media Object",[])
+        AttrEdit.AttributeEditor(self,None,"Media Object",
+                                 Plugins.get_image_attributes())
 
 #-------------------------------------------------------------------------
 #
@@ -745,7 +748,8 @@ class GlobalMediaProperties:
         if len(obj.selection) > 0:
             row = obj.selection[0]
             attr = obj.get_row_data(row)
-            AttrEdit.AttributeEditor(self,attr,"Media Object",[])
+            AttrEdit.AttributeEditor(self,attr,"Media Object",
+                                     Plugins.get_image_attributes())
 
     def on_delete_attr_clicked(self,obj):
         if utils.delete_selected(obj,self.alist):
@@ -754,7 +758,8 @@ class GlobalMediaProperties:
 
     def on_add_attr_clicked(self,obj):
         import AttrEdit
-        AttrEdit.AttributeEditor(self,None,"Media Object",[])
+        AttrEdit.AttributeEditor(self,None,"Media Object",
+                                 Plugins.get_image_attributes())
 
 #-------------------------------------------------------------------------
 #
