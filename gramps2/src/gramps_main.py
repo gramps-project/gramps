@@ -1027,28 +1027,6 @@ class Gramps:
         if self.active_person:
             Plugins.ReportPlugins(self,self.db,self.active_person)
 
-    def read_gedcom(self,filename):
-        import ReadGedcom
-        
-        filename = os.path.normpath(os.path.abspath(filename))
-        try:
-            ReadGedcom.importData(self.db,filename,None)
-            self.import_tool_callback()
-        except:
-            DisplayTrace.DisplayTrace()
-
-    def read_xml(self,filename):
-        import ReadXML
-        
-        filename = os.path.normpath(
-            os.path.abspath(os.path.join(filename,const.xmlFile)))
-
-        try:
-            ReadXML.importData(self.db,filename,None)
-            self.import_tool_callback()
-        except:
-            DisplayTrace.DisplayTrace()
-
     def read_pkg(self,filename):
         # Create tempdir, if it does not exist, then check for writability
         tmpdir_path = os.path.expanduser("~/.gramps/tmp" )

@@ -2,6 +2,10 @@
 	* src/ReadGrdb.py: Check for overlapping handles prior to
 	modifying data.
 
+	* src/ArgHandler (handle_args): Natively open XML and GEDCOM
+	when given a single filename argument.
+	* src/gramps_main.py (read_gedcom,read_xml): Remove ununsed functions.
+
 2005-02-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/NavWebPage.py: More enhancements
 	* src/Sort.py: sort places by title
