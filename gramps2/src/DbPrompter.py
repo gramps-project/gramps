@@ -67,7 +67,7 @@ class DbPrompter:
             "on_open_cancel_clicked" : gtk.main_quit,
             "on_opendb_delete_event": gtk.main_quit,
             })
-        
+
         self.new = opendb.get_widget("new")
         if self.want_new:
             self.new.set_active(1)
