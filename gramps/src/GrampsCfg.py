@@ -569,7 +569,8 @@ class GrampsPreferences:
             "on_help_clicked" : self.on_propertybox_help,
             "on_color_toggled" : self.on_color_toggled,
             "on_color_set" : self.on_color_set,
-            "on_object_toggled" : self.on_object_toggled
+            "on_object_toggled" : self.on_object_toggled,
+            "on_tree_select_row" : self.select
             })
 
         self.window = self.top.get_widget("preferences")
@@ -585,20 +586,14 @@ class GrampsPreferences:
         self.apply.set_sensitive(0)
 
     def build_tree(self):
-        self.tree.show()
+        prev = None
         for (name,list) in panellist:
-            item = gtk.GtkTreeItem(name)
-            item.show()
-            item.connect("select",self.select,0)
-            self.tree.append(item)
-            subtree = gtk.GtkTree()
-            subtree.show()
-            item.set_subtree(subtree)
+            node = self.tree.insert_node(None,prev,[name],is_leaf=0,expanded=1)
+            self.tree.node_set_row_data(node,0)
+            next = None
             for (subname,tab) in list:
-                newitem = gtk.GtkTreeItem(subname)
-                newitem.show()
-                newitem.connect("select",self.select,tab)
-                subtree.append(newitem)
+                next = self.tree.insert_node(node,next,[subname],is_leaf=1,expanded=1)
+                self.tree.node_set_row_data(next,tab)
         
     def build(self):
         auto = self.top.get_widget("autoload")
@@ -862,7 +857,8 @@ class GrampsPreferences:
                             table.attach(w[0],0,2,col,col+1,GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
                         col = col + 1
             
-    def select(self,obj,data):
+    def select(self,obj,node,other):
+        data = self.tree.node_get_row_data(node)
         self.panel.set_page(data)
 
     def on_propertybox_help(self,obj):
