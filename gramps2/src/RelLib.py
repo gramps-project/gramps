@@ -2366,6 +2366,9 @@ except ImportError: # try python2.2
 def find_surname(key,data):
     return str(data[2].get_surname())
 
+def find_eventname(key,data):
+    return str(data[1])
+
 #-------------------------------------------------------------------------
 #
 # GrampsDB
@@ -2397,6 +2400,7 @@ class GrampsDB:
         self.media_map  = None
         self.event_map  = None
         self.surnames   = None
+        self.eventnames = None
         self.metadata   = None
 
     def load(self,name,callback):
@@ -2420,7 +2424,13 @@ class GrampsDB:
         self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
 
+        self.eventnames = db.DB(self.env)
+        self.eventnames.set_flags(db.DB_DUP)
+        self.eventnames.open(name, "eventnames", db.DB_HASH, flags=db.DB_CREATE)
+
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+        self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
+
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
             self.bookmarks = []
@@ -2454,6 +2464,7 @@ class GrampsDB:
         self.metadata['bookmarks'] = self.bookmarks
         self.metadata.close()
         self.surnames.close()
+        self.eventnames.close()
         self.env.close()
 
         self.person_map = None
@@ -2697,7 +2708,16 @@ class GrampsDB:
         names = self.surnames.keys()
         a = {}
         for name in names:
-            a[name] = 1
+            a[unicode(name)] = 1
+        vals = a.keys()
+        vals.sort()
+        return vals
+
+    def get_eventnames(self):
+        names = self.eventnames.keys()
+        a = {}
+        for name in names:
+            a[unicode(name)] = 1
         vals = a.keys()
         vals.sort()
         return vals

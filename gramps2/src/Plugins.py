@@ -151,7 +151,6 @@ class PluginDialog:
         self.tree.append_column(col)
         self.tree.set_model(self.store)
         
-        self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
         if label:
             self.description.set_text(label)
@@ -228,18 +227,16 @@ class PluginDialog:
         title = data[0]
         task = data[1]
         doc = data[2]
-        xpm = data[3]
-        status = data[4]
-        author = data[5]
-        email = data[6]
+        status = data[3]
+        author = data[4]
+        email = data[5]
 
         self.description.set_text(doc)
         self.status.set_text(status)
-        self.title.set_text(title)
+        self.title.set_text('<span weight="bold" size="larger">%s</span>' % title)
+        self.title.set_use_markup(1)
         self.author_name.set_text(author)
         self.author_email.set_text(email)
-
-        self.title.set_text(title)
         self.run_tool = task
 
     def build_tree(self,list):
@@ -257,7 +254,7 @@ class PluginDialog:
         # build the tree items and group together based on the category name
         item_hash = {}
         for report in list:
-            t = (report[2],report[0],report[3],report[4],report[5],report[6],report[7])
+            t = (report[2],report[0],report[3],report[4],report[5],report[6])
             if item_hash.has_key(report[1]):
                 item_hash[report[1]].append(t)
             else:
@@ -481,9 +478,6 @@ def register_report(task, name,
                     ):
     """Register a report with the plugin system"""
     
-    if xpm == None:
-        xpm = no_image()
-
     del_index = -1
     for i in range(0,len(_reports)):
         val = _reports[i]
@@ -491,19 +485,16 @@ def register_report(task, name,
             del_index = i
     if del_index != -1:
         del _reports[del_index]
-    _reports.append((task, category, name, description, xpm, status, author_name, author_email))
+    _reports.append((task, category, name, description, status, author_name, author_email))
 
 def register_tool(task, name,
                   category=_("Uncategorized"),
                   description=_unavailable,
-                  xpm=None,
                   status=_("Unknown"),
                   author_name=_("Unknown"),
                   author_email=_("Unknown")
                   ):
     """Register a tool with the plugin system"""
-    if xpm == None:
-        xpm = no_image()
     del_index = -1
     for i in range(0,len(_tools)):
         val = _tools[i]
@@ -511,7 +502,7 @@ def register_tool(task, name,
             del_index = i
     if del_index != -1:
         del _tools[del_index]
-    _tools.append((task, category, name, description, xpm, status, author_name, author_name))
+    _tools.append((task, category, name, description, status, author_name, author_name))
 
 #-------------------------------------------------------------------------
 #
@@ -800,66 +791,3 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
             callback(menuitem)
         index = index + 1
     main_menu.set_menu(myMenu)
-
-#-------------------------------------------------------------------------
-#
-# no_image
-#
-#-------------------------------------------------------------------------
-def no_image():
-    """Returns XPM data for basic 48x48 icon"""
-    return [
-        "48 48 5 1",
-        " 	c None",
-        ".	c #999999",
-        "+	c #FFFFCC",
-        "@	c #000000",
-        "#	c #CCCCCC",
-        "                                                ",
-        "                                                ",
-        "                                                ",
-        "                                                ",
-        "                                                ",
-        "                                                ",
-        "                                  ..........    ",
-        "                                  .++++++++.    ",
-        "                                  .++++++++.    ",
-        "                               @@@.++++++++.    ",
-        "                               @##.++++++++.    ",
-        "                               @# .++++++++.    ",
-        "                  ..........   @# ..........    ",
-        "                  .++++++++.   @#               ",
-        "                  .++++++++.   @#               ",
-        "               @@@.++++++++.@@@@#               ",
-        "               @##.++++++++.###@# ..........    ",
-        "               @# .++++++++.   @# .++++++++.    ",
-        "               @# ..........   @# .++++++++.    ",
-        "               @#              @@@.++++++++.    ",
-        "               @#               ##.++++++++.    ",
-        "               @#                 .++++++++.    ",
-        "  ..........   @#                 ..........    ",
-        "  .++++++++.   @#                               ",
-        "  .++++++++.   @#                               ",
-        "  .++++++++.@@@@#                               ",
-        "  .++++++++.###@#                               ",
-        "  .++++++++.   @#                 ..........    ",
-        "  ..........   @#                 .++++++++.    ",
-        "               @#                 .++++++++.    ",
-        "               @#              @@@.++++++++.    ",
-        "               @#              @##.++++++++.    ",
-        "               @# ..........   @# .++++++++.    ",
-        "               @# .++++++++.   @# ..........    ",
-        "               @# .++++++++.   @#               ",
-        "               @@@.++++++++.@@@@#               ",
-        "                ##.++++++++.###@#               ",
-        "                  .++++++++.   @# ..........    ",
-        "                  ..........   @# .++++++++.    ",
-        "                               @# .++++++++.    ",
-        "                               @@@.++++++++.    ",
-        "                                ##.++++++++.    ",
-        "                                  .++++++++.    ",
-        "                                  ..........    ",
-        "                                                ",
-        "                                                ",
-        "                                                ",
-        "                                                "]

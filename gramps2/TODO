@@ -16,4 +16,5 @@
 * Now that the completeness flag exists, create filters that are using it
   (both individual and family). 
 * Add autofill feature for City, Church parish, County, State and Country? 
+* Move LDS temple info out of const.py and into an XML file
 * And a whole lot more....

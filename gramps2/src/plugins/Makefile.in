@@ -141,7 +141,7 @@ pkgpython_PYTHON = \
 	BookReport.py\
 	ChangeTypes.py\
 	Check.py\
-	count_anc.py\
+	CountAncestors.py\
 	Desbrowser.py\
 	DescendReport.py\
 	DesGraph.py\
@@ -163,7 +163,7 @@ pkgpython_PYTHON = \
 	ReadNative.py\
 	RelCalc.py\
 	ReorderIds.py\
-	soundgen.py\
+	SoundGen.py\
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
@@ -173,8 +173,8 @@ pkgpython_PYTHON = \
 	WritePkg.py\
 	WriteCD.py\
 	rel_ru.py\
-	eval.py\
-	leak.py\
+	Eval.py\
+	Leak.py\
 	SimpleBookTitle.py\
 	CustomBookText.py\
 	RelGraph.py\

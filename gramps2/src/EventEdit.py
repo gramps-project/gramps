@@ -57,7 +57,7 @@ from QuestionDialog import WarningDialog
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb,
+    def __init__(self,parent,name,elist,trans,event,def_placename,read_only,cb,
                  def_event=None):
         self.parent = parent
         self.db = self.parent.db
@@ -75,7 +75,16 @@ class EventEditor:
         self.callback = cb
         self.plist = []
         self.pmap = {}
-        self.elist = list
+
+        values = {}
+        for v in elist:
+            values[v] = 1
+        for v in self.db.get_eventnames():
+            print v
+            values[v] = 1
+            
+        self.elist = values.keys()
+        self.elist.sort()
 
         for key in self.parent.db.get_place_id_keys():
             p = self.parent.db.get_place_display(key)
@@ -91,7 +100,7 @@ class EventEditor:
             # add the name to the list if it is not already there. This tends to occur
             # in translated languages with the 'Death' event, which is a partial match
             # to other events
-            if not transname in list:
+            if not transname in elist:
                 list.append(transname)
         else:
             self.srcreflist = []
@@ -151,7 +160,7 @@ class EventEditor:
                                            self.top.get_widget('edit_witness'),
                                            self.top.get_widget('del_witness'))
 
-        AutoComp.AutoCombo(self.event_menu,list)
+        AutoComp.AutoCombo(self.event_menu,self.elist)
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
 
         if event != None:

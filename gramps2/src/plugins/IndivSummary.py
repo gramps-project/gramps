@@ -48,7 +48,6 @@ import StyleEditor
 import Report
 import Errors
 from QuestionDialog import ErrorDialog
-from Utils import get_xpm_image
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -560,7 +559,6 @@ register_report(
     status=(_("Beta")),
     category=_("Text Reports"),
     description=_("Produces a detailed report on the selected person."),
-    xpm=get_xpm_image(),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
     

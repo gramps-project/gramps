@@ -107,18 +107,16 @@ _name_format_list = [
 panellist = [
     (_("Database"),
      [( _("General"), 1),
-      ( _("Media Objects"), 9),
-      ( _("GRAMPS internal IDs"), 10),
-      ( _("Revision Control"),2)]),
+      ( _("Media Objects"), 7),
+      ( _("GRAMPS internal IDs"), 8)]),
     (_("Display"),
-     [( _("General"), 5),
-      ( _("Dates and Calendars"), 6),
-      ( _("Toolbar and Statusbar"), 4)]),
+     [( _("General"), 3),
+      ( _("Dates and Calendars"), 4),
+      ( _("Toolbar and Statusbar"), 2)]),
     (_("Usage"),
-     [( _("Find"), 3),
-      ( _("Report Preferences"), 8),
-      ( _("Researcher Information"), 7),
-      ( _("Data Guessing"), 11)]),
+     [( _("Report Preferences"), 6),
+      ( _("Researcher Information"), 5),
+      ( _("Data Guessing"), 9)]),
     ]
 
 
@@ -134,12 +132,7 @@ sprefix       = "S%04d"
 pprefix       = "P%04d"
 fprefix       = "F%04d"
 autoload      = 0
-autosave_int  = 0
 uselds        = 0
-autocomp      = 1
-usevc         = 0
-vc_comment    = 0
-uncompress    = 0
 lastfile      = None
 nameof        = Utils.normal_name
 display_name  = Utils.normal_name
@@ -198,18 +191,13 @@ def make_path(path):
 #-------------------------------------------------------------------------
 def loadConfig(call):
     global autoload
-    global autosave_int
     global uselds
-    global autocomp
     global calendar
-    global usevc
     global iprefix
     global fprefix
     global pprefix
     global oprefix
     global sprefix
-    global vc_comment
-    global uncompress
     global id_edit
     global index_visible
     global lastfile
@@ -237,14 +225,10 @@ def loadConfig(call):
     _callback = call
     lastfile = get_string("/apps/gramps/recent-file")
     uselds = get_bool("/apps/gramps/use-lds")
-    ac = get_bool("/apps/gramps/disable-auto-complete",0)
     mediaref = get_bool("/apps/gramps/make-reference",1)
     globalprop = get_bool("/apps/gramps/media-global",1)
     localprop = get_bool("/apps/gramps/media-local",1)
     calendar = get_bool("/apps/gramps/show-calendar")
-    usevc = get_bool("/apps/gramps/version-control")
-    vc_comment = get_bool("/apps/gramps/use-comment")
-    uncompress = get_bool("/apps/gramps/dont-compress-xml")
     id_edit = get_bool("/apps/gramps/id-edit")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
@@ -265,7 +249,6 @@ def loadConfig(call):
     familyview = get_int("/apps/gramps/familyview")
     
     autoload = get_bool("/apps/gramps/autoload",0)
-    autosave_int = get_int("/apps/gramps/auto-save-interval")
     dateFormat = get_int("/apps/gramps/date-format")
     dateEntry = get_int("/apps/gramps/date-entry")
     paper_preference = get_string("/apps/gramps/paper-preference")
@@ -319,8 +302,6 @@ def loadConfig(call):
     if oprefix == None:
         oprefix = "O"
 
-    autocomp = not ac
-        
     Calendar.set_format_code(dateFormat)
     Calendar.Calendar.ENTRYCODE = dateEntry
 
@@ -577,25 +558,18 @@ class GrampsPreferences:
         
     def build(self):
         auto = self.top.get_widget("autoload")
-        asave_int = self.top.get_widget("autosave_interval")
         idedit = self.top.get_widget("gid_edit")
 #        cap = self.top.get_widget('capitalize')
         index_vis = self.top.get_widget("show_child_id")
         lds = self.top.get_widget("uselds")
-        ac = self.top.get_widget("autocomp")
         mr = self.top.get_widget("mediaref")
         mc = self.top.get_widget("mediacopy")
         dg = self.top.get_widget("globalprop")
         dl = self.top.get_widget("localprop")
         cal = self.top.get_widget("calendar")
-        vc = self.top.get_widget("use_vc")
-        vcom = self.top.get_widget("vc_comment")
-        compress = self.top.get_widget("uncompress")
 
         auto.set_active(autoload)
-        asave_int.set_value(int(autosave_int))
         lds.set_active(uselds)
-        ac.set_active(autocomp)
         if mediaref:
             mr.set_active(1)
         else:
@@ -603,9 +577,6 @@ class GrampsPreferences:
         dg.set_active(globalprop)
         dl.set_active(localprop)
         cal.set_active(calendar)
-        vc.set_active(usevc)
-        vcom.set_active(vc_comment)
-        compress.set_active(uncompress)
         idedit.set_active(id_edit)
 #        cap.set_active(capitalize)
         index_vis.set_active(index_visible)
@@ -820,20 +791,15 @@ class GrampsPreferences:
         global display_name
         global display_surname
         global uselds
-        global autocomp
-        global autosave_int
         global mediaref
         global globalprop
         global localprop
         global calendar
-        global usevc
         global iprefix
         global fprefix
         global pprefix
         global sprefix
         global oprefix
-        global vc_comment
-        global uncompress
         global id_edit
         global index_visible
         global status_bar
@@ -851,16 +817,11 @@ class GrampsPreferences:
         global autoload
     
         autoload = self.top.get_widget("autoload").get_active()
-        autosave_int = self.top.get_widget("autosave_interval").get_value_as_int()
         uselds = self.top.get_widget("uselds").get_active()
-        autocomp = self.top.get_widget("autocomp").get_active()
         mediaref = self.top.get_widget("mediaref").get_active()
         localprop = self.top.get_widget("localprop").get_active()
         globalprop = self.top.get_widget("globalprop").get_active()
         calendar = self.top.get_widget("calendar").get_active()
-        usevc = self.top.get_widget("use_vc").get_active()
-        vc_comment = self.top.get_widget("vc_comment").get_active()
-        uncompress = self.top.get_widget("uncompress").get_active()
         id_edit = self.top.get_widget("gid_edit").get_active()
         
         index_visible = self.top.get_widget("show_child_id").get_active()
@@ -923,14 +884,10 @@ class GrampsPreferences:
         goutput_preference = goutput_obj.get_data(DATA)
     
         set_bool("/apps/gramps/use-lds",uselds)
-        set_bool("/apps/gramps/disable-auto-complete",not autocomp)
         set_bool("/apps/gramps/make-reference",mediaref)
         set_bool("/apps/gramps/media-global",globalprop)
         set_bool("/apps/gramps/media-local",localprop)
         set_bool("/apps/gramps/show-calendar",calendar)
-        set_bool("/apps/gramps/version-control",usevc)
-        set_bool("/apps/gramps/use-comment",vc_comment)
-        set_bool("/apps/gramps/dont-compress-xml",uncompress)
         set_bool("/apps/gramps/id-edit",id_edit)
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
@@ -941,12 +898,6 @@ class GrampsPreferences:
         set_string("/apps/gramps/output-preference",output_preference)
         set_string("/apps/gramps/goutput-preference",goutput_preference)
         set_bool("/apps/gramps/autoload",autoload)
-        set_int("/apps/gramps/auto-save-interval",autosave_int)
-        
-        if autosave_int != 0:
-            Utils.enable_autosave(None,autosave_int)
-        else:
-            Utils.disable_autosave()
         
         set_string("/apps/gramps/report-directory",report_dir)
         set_string("/apps/gramps/website-directory",web_dir)

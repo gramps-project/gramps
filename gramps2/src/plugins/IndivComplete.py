@@ -39,7 +39,6 @@ import StyleEditor
 import Report
 import GenericFilter
 import Errors
-from Utils import get_xpm_image
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -755,7 +754,6 @@ register_report(
     status=(_("Beta")),
     category=_("Text Reports"),
     description=_("Produces a complete report on the selected people."),
-    xpm=get_xpm_image()
     )
 
 register_book_item( 
