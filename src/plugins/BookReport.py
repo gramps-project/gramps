@@ -271,12 +271,17 @@ class BookReportDialog(Report.ReportDialog):
         title = _("Book Report")
         self.doc.write_text(title)
         self.doc.end_paragraph()
+        first = 1
         for book_item in self.item_list:
             write_book_item = book_item[3]
             get_options = book_item[4]
             item_options = get_options()
             if write_book_item:
-                write_book_item(self.database,self.person,self.doc,item_options)
+                if first:
+                    first = 0
+                newpage = not first
+                write_book_item(self.database,self.person,
+                    self.doc,item_options,newpage)
 
         self.doc.close()
 

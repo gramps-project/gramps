@@ -682,7 +682,7 @@ class BareReportDialog:
         sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
         new_person = sel_person.run()
         if new_person:
-            self.person = new_person
+            self.new_person = new_person
             new_name = new_person.getPrimaryName().getRegularName()
 	    if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )

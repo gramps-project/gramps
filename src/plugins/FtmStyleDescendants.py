@@ -52,7 +52,7 @@ from intl import gettext as _
 #------------------------------------------------------------------------
 class FtmDescendantReport(Report.Report):
 
-    def __init__(self,database,person,max,pgbrk,doc,output):
+    def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
         self.anc_map = {}
         self.gen_map = {}
         self.database = database
@@ -65,6 +65,8 @@ class FtmDescendantReport(Report.Report):
             self.doc.open(output)
         else:
             self.standalone = 0
+            if newpage:
+                self.doc.page_break()
         self.sref_map = {}
         self.sref_index = 1
         
@@ -1270,6 +1272,7 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         self.max_gen = options[1] 
         self.pg_brk = options[2]
         self.selected_style = get_stl()
+        self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
         self.pagebreak_checkbox.set_active(self.pg_brk)
@@ -1299,6 +1302,8 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         self.parse_style_frame()
         self.parse_report_options_frame()
         
+        self.person = self.new_person
+        
         # Clean up the dialog object
         self.window.destroy()
     
@@ -1309,7 +1314,7 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         return self.selected_style
 
 
-def write_book_item(database,person,doc,options):
+def write_book_item(database,person,doc,options,newpage=0):
     """Write the FTM Style Descendant Report options set.
     All user dialog has already been handled and the output file opened."""
     try:
@@ -1318,7 +1323,7 @@ def write_book_item(database,person,doc,options):
         max_gen = options[1]
         pg_brk = options[2]
         MyReport = FtmDescendantReport(database, person, 
-            max_gen, pg_brk, doc, None )
+            max_gen, pg_brk, doc, None, newpage )
         MyReport.write_report()
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
