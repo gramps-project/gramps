@@ -1,3 +1,11 @@
+2003-12-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/revision.glade: removed unused call (on_help_dbopen_clicked)
+	* src/gramps_main.py: don't add places twice after an edit of a person
+	* src/AddSpouse.py: don't add places twice after an edit of a person
+	* src/ChooseParents.py: don't add places twice after an edit of a person
+	* src/EditPerson.py: don't add places twice after an edit of a person
+	* src/FamilyView.py: don't add places twice after an edit of a person
+
 2003-12-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Sources.py: Unicode conversion from gtk.TextView.
 	* src/NoteEdit.py: Unicode conversion from gtk.TextView.
