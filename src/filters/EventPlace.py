@@ -44,7 +44,7 @@ class EventPlace(Filter.Filter):
         list.append(person.getBirth())
         list.append(person.getDeath())
         for event in list:
-            if self.regexp.search(event.getPlace()):
+            if self.regexp.search(event.getPlace().get_title()):
                 val = 1
                 break
         return val

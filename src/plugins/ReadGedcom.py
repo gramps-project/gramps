@@ -616,7 +616,7 @@ class GedcomParser:
 	    elif matches[1] == "BIRT":
                 event = Event()
                 if self.person.getBirth().getDate() != "" or \
-                   self.person.getBirth().getPlace() != "":
+                   self.person.getBirth().getPlace().get_title() != "":
                     event.setName("Alternate Birth")
                     self.person.addEvent(event)
                 else:
@@ -631,7 +631,7 @@ class GedcomParser:
 	    elif matches[1] == "DEAT":
                 event = Event()
                 if self.person.getDeath().getDate() != "" or \
-                   self.person.getDeath().getPlace() != "":
+                   self.person.getDeath().getPlace().get_title() != "":
                     event.setName("Alternate Death")
                     self.person.addEvent(event)
                 else:

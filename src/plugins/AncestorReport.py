@@ -170,7 +170,7 @@ class AncestorReport:
             birth = person.getBirth()
             if birth:
                 date = birth.getDateObj().get_start_date()
-                place = birth.getPlace()
+                place = birth.getPlace().get_title()
                 if place[-1:] == '.':
                     place = place[:-1]
                 if date.getDate() != "" or place != "":
@@ -199,7 +199,7 @@ class AncestorReport:
         
             if death:
                 date = death.getDateObj().get_start_date()
-                place = death.getPlace()
+                place = death.getPlace().get_title()
                 if place[-1:] == '.':
                     place = place[:-1]
                 if date.getDate() != "" or place != "":
@@ -240,7 +240,7 @@ class AncestorReport:
 
                     if buried:
                         date = buried.getDateObj().get_start_date()
-                        place = buried.getPlace()
+                        place = buried.getPlace().get_title()
                         if place[-1:] == '.':
                             place = place[:-1]
                         if date.getDate() != "" or place != "":
