@@ -51,6 +51,7 @@ class NameEditor:
         self.top = libglade.GladeXML(const.editPersonFile, "name_edit")
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
+        self.title_field  = self.top.get_widget("alt_title")
         self.surname_field = self.top.get_widget("alt_last")
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.type_field = self.top.get_widget("name_type")
@@ -78,11 +79,13 @@ class NameEditor:
         self.window.editable_enters(self.given_field)
         self.window.editable_enters(self.surname_field)
         self.window.editable_enters(self.suffix_field)
+        self.window.editable_enters(self.title_field)
         self.window.editable_enters(self.type_field.entry)
         
         if name != None:
             self.given_field.set_text(name.getFirstName())
             self.surname_field.set_text(name.getSurname())
+            self.title_field.set_text(name.getTitle())
             self.suffix_field.set_text(name.getSuffix())
             self.type_field.entry.set_text(_(name.getType()))
             self.priv.set_active(name.getPrivacy())
@@ -104,6 +107,7 @@ class NameEditor:
     def on_name_edit_ok_clicked(self,obj):
         first = self.given_field.get_text()
         last = self.surname_field.get_text()
+        title = self.title_field.get_text()
         suffix = self.suffix_field.get_text()
         note = self.note_field.get_chars(0,-1)
         priv = self.priv.get_active()
@@ -120,13 +124,13 @@ class NameEditor:
             self.name.setSourceRefList(self.srcreflist)
             self.parent.nlist.append(self.name)
         
-        self.update_name(first,last,suffix,type,note,priv)
+        self.update_name(first,last,suffix,title,type,note,priv)
         self.parent.lists_changed = 1
 
         self.parent.redraw_name_list()
         Utils.destroy_passed_object(obj)
 
-    def update_name(self,first,last,suffix,type,note,priv):
+    def update_name(self,first,last,suffix,title,type,note,priv):
         
         if self.name.getFirstName() != first:
             self.name.setFirstName(first)
@@ -141,6 +145,10 @@ class NameEditor:
 
         if self.name.getSuffix() != suffix:
             self.name.setSuffix(suffix)
+            self.parent.lists_changed = 1
+
+        if self.name.getTitle() != title:
+            self.name.setTitle(title)
             self.parent.lists_changed = 1
 
         if self.name.getType() != type:
