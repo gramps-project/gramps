@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -39,8 +46,6 @@ import AutoComp
 import Sources
 import RelLib
 import NameDisplay
-
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +107,7 @@ class NameEditor:
 
         alt_title = self.top.get_widget("title")
 
-        if full_name == ", ":
+        if full_name == "":
             tmsg = _("Name Editor")
         else:
             tmsg = _("Name Editor for %s") % full_name
@@ -161,7 +166,7 @@ class NameEditor:
 
     def update_group_as(self,obj):
         if not self.group_over.get_active():
-            if self.name.get_group_as() != self.name.get_surname():
+            if self.name and self.name.get_group_as() != self.name.get_surname():
                 val = self.name.get_group_as()
             else:
                 val = self.db.get_name_group_mapping(self.surname_field.get_text())

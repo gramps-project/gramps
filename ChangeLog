@@ -6,6 +6,10 @@
 	* src/Sources.py (SourceEditor.update_display): Do not add source
 	for the second time.
 	* src/EditPerson.py (EditPerson.__init__): Correct widget names.
+	* src/gramps_main.py (undo_callback): Enable underscore in a label.
+	* src/NameDisplay (display_name): Return empty string for None.
+	* src/NameEdit.py (__init__): Compare displayed name with empty string,
+	(update_group_as): Only query grouping for existing name.
 
 2005-02-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (on_select_row): Add garbage collection call.
