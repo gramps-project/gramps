@@ -45,6 +45,7 @@ import const
 import utils
 from RelLib import *
 import RelImage
+import ImageSelect
 
 _ = intl.gettext
 
@@ -132,6 +133,35 @@ class EditSource:
             self.add_thumbnail(photo)
         self.photo_list.thaw()
 
+
+#-------------------------------------------------------------------------
+#
+# SourceImageSelect class
+#
+#-------------------------------------------------------------------------
+class SourceImageSelect(ImageSelect.ImageSelect):
+    #---------------------------------------------------------------------
+    #
+    # __init__ - Sub-class an ImageSelect window.  The only differences
+    # between the various subclasses are the initializer arguments, and
+    # the type of object for which an image is being selected.
+    #
+    #---------------------------------------------------------------------
+    def __init__(self, eso):
+        ImageSelect.ImageSelect.__init__(self, eso.path, "s%s" % eso.source.getId())
+        self.eso = eso;
+        
+    #---------------------------------------------------------------------
+    #
+    # savephoto - Override the savephoto method to store the selected
+    # photo in a source object
+    #
+    #---------------------------------------------------------------------
+    def savephoto(self, photo):
+        self.eso.source.addPhoto(photo)
+        self.eso.add_thumbnail(photo)
+
+
 #-----------------------------------------------------------------------------
 #
 #
@@ -202,60 +232,7 @@ def on_delete_photo_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_photo_clicked(obj):
-
-    edit_source = obj.get_data(SOURCE)
-    image_select = libglade.GladeXML(const.imageselFile,"imageSelect")
-    edit_source.isel = image_select
-
-    image_select.signal_autoconnect({
-        "on_savephoto_clicked" : on_savephoto_clicked,
-        "on_name_changed" : on_name_changed,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
-    edit_source.fname = image_select.get_widget("fname")
-    edit_source.add_image = image_select.get_widget("image")
-    edit_source.external = image_select.get_widget("private")
-    window = image_select.get_widget("imageSelect")
-    window.editable_enters(image_select.get_widget("photoDescription"))
-    window.set_data(SOURCE,edit_source)
-    window.show()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_savephoto_clicked(obj):
-    eso = obj.get_data(SOURCE)
-    image_select = eso.isel
-    
-    filename = image_select.get_widget("photosel").get_full_path(0)
-    description = image_select.get_widget("photoDescription").get_text()
-
-    if os.path.exists(filename) == 0:
-        return
-
-    prefix = "s%s" % eso.source.getId()
-    if eso.external.get_active() == 1:
-        if os.path.isfile(filename):
-            name = filename
-        else:
-            return
-    else:
-        name = RelImage.import_photo(filename,eso.path,prefix)
-        if name == None:
-            return
-        
-    photo = Photo()
-    photo.setPath(name)
-    photo.setDescription(description)
-    
-    eso.source.addPhoto(photo)
-    eso.add_thumbnail(photo)
-
-    utils.modified()
-    utils.destroy_passed_object(obj)
+    SourceImageSelect(obj.get_data(SOURCE))
 
 #-------------------------------------------------------------------------
 #
@@ -368,15 +345,3 @@ def on_apply_clicked(obj):
         edit_window = obj.get_data("m")
         edit_window.load_images()
         utils.modified()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_name_changed(obj):
-    edit_person = obj.get_data(SOURCE)
-    file = edit_person.fname.get_text()
-    if os.path.isfile(file):
-        image = RelImage.scale_image(file,const.thumbScale)
-        edit_person.add_image.load_imlib(image)
