@@ -18,7 +18,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>styles</name>
-  <title>Gramps- Document Styles</title>
+  <title>Gramps - Document Styles</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

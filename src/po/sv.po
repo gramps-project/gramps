@@ -1222,7 +1222,7 @@ msgid "Gramps file"
 msgstr "Gramps-fil"
 
 #: glade.c:571
-msgid "Gramps- Document Styles"
+msgid "Gramps - Document Styles"
 msgstr "Gramps - Stilmallar"
 
 #: glade.c:1407

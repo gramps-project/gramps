@@ -4,9 +4,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 0.2.0\n"
+"Project-Id-Version: Gramps 0.3.0\n"
 "POT-Creation-Date: 2001-06-14 17:10-0600\n"
-"PO-Revision-Date: 2001-06-14 23:30+0200\n"
+"PO-Revision-Date: 2001-06-23 18:00+0200\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,9 @@ msgid ""
 "b. $b\n"
 "d. $d"
 msgstr ""
+"$n\n"
+"b. $b\n"
+"d. $d"
 
 #: glade.c:16
 msgid "%P %%"
@@ -103,13 +106,10 @@ msgid "(Recommended only for English)"
 msgstr "(Nur für englische Namen empfohlen)"
 
 #: glade.c:1196
-#, fuzzy
 msgid "(and|to|-)"
-msgstr "(und|bis)"
+msgstr "(und|bis|-)"
 
-# FIXME check source code
 #: glade.c:1195
-#, fuzzy
 msgid "(from|between|bet|bet.)"
 msgstr "(von|zwischen)"
 
@@ -182,10 +182,9 @@ msgstr "Name und Attribut der aktuellen Person"
 msgid "Active person's name and gramps ID"
 msgstr "Name und Gramps ID der aktuellen Person"
 
-# FIXME check source
 #: glade.c:37
 msgid "Active person's name only"
-msgstr "Nur Name der aktuellen Person"
+msgstr "Name der aktuellen Person"
 
 #: glade.c:42
 msgid "Add"
@@ -255,7 +254,7 @@ msgstr ""
 
 #: glade.c:81
 msgid "Alignment"
-msgstr ""
+msgstr "Ausrichtung"
 
 #: glade.c:1264 glade.c:1265 glade.c:1266
 msgid "All people"
@@ -268,7 +267,7 @@ msgstr ""
 
 #: glade.c:84
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr ""
+msgstr "Erlaubt die Anpassung der Daten in den Kästen der Übersicht"
 
 #: glade.c:87
 msgid "Alternate Names"
@@ -278,7 +277,7 @@ msgstr "Alternative Namen"
 msgid "Analysis and Exploration/Compare individual events"
 msgstr "Analyse und Untersuchung/Vergleiche einzelne Ereignisse"
 
-# FIXME "Nachkommensübersicht"
+# FIXME Nachkommensübersicht
 #: glade.c:1380
 msgid "Analysis and Exploration/Interactive descendant browser"
 msgstr "Analyse und Untersuchung/Interaktive Nachkommensübersicht"
@@ -352,9 +351,8 @@ msgid "BEFORE"
 msgstr "VOR"
 
 #: glade.c:115
-#, fuzzy
 msgid "Background"
-msgstr "Hintergrundfarbe"
+msgstr "Hintergrund"
 
 #: glade.c:118
 msgid "Background Color"
@@ -386,16 +384,15 @@ msgstr "Geburtsdatum"
 
 #: glade.c:141
 msgid "Bold"
-msgstr ""
+msgstr "Fett"
 
 #: glade.c:144
 msgid "Border Color"
 msgstr "Rahmenfarbe"
 
 #: glade.c:147
-#, fuzzy
 msgid "Borders"
-msgstr "Rahmenfarbe"
+msgstr "Rahmen"
 
 # FIXME Kastenfarbe/Füllfarbe
 #: glade.c:150
@@ -451,7 +448,6 @@ msgstr "Eltern auswählen"
 msgid "Choose Spouse"
 msgstr "Ehepartner auswählen"
 
-# FIXME check source
 #: glade.c:177
 msgid "Choose source information"
 msgstr "Quellinformation auswählen"
@@ -476,11 +472,9 @@ msgstr "Schließen"
 msgid "Close Window"
 msgstr "Fenster schließen"
 
-# FIXME Kastenfarbe/Füllfarbe
 #: glade.c:197
-#, fuzzy
 msgid "Color"
-msgstr "Schattierung"
+msgstr "Farbe"
 
 #: glade.c:200
 msgid "Comments"
@@ -504,30 +498,25 @@ msgstr "Eigene Kopie erstellen"
 msgid "Could not create %s"
 msgstr "Datei %s konnte nicht erstellt werden"
 
-# FIXME check source
 #: glade.c:1410 glade.c:1411
 #, c-format
 msgid "Could not create the directory : %s"
 msgstr "Verzeichnis %s konnte nicht erstellt werden"
 
-# FIXME check source
 #: glade.c:1458
 #, c-format
 msgid "Could not import %s: currently an unknown file type"
 msgstr "Datei %s konnte nicht importiert werden: unbekanntes Dateiformat"
 
-# FIXME check source: "valid image" = "gültiges Bild/Bildformat" 
 #: glade.c:1457
 #, c-format
 msgid ""
 "Could not import %s: either the file could not be found, or it was not a "
 "valid image"
-msgstr ""
-"Datei %s konnte nicht importiert werden: entweder konnte die Datei nicht "
-"gefunden werden oder es handelte sich nicht um ein gültiges Bild"
+msgstr "Datei %s konnte nicht importiert werden: entweder konnte die Datei nicht gefunden werden oder es handelte sich nicht um ein bekanntes Grafikformat"
 
 #: glade.c:1313
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load image file %s"
 msgstr "Bild %s konnte nicht geladen werden"
 
@@ -558,14 +547,11 @@ msgstr "Land"
 msgid "Created by"
 msgstr "Erstellt von"
 
-# FIXME check source: ein Elternpaar/mehrere Elternpaare
 #: glade.c:1397
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
-msgstr ""
-"Erstellt einen Familienbericht, der Informationen über ein Elternpaar und "
-"dessen Kinder enthält"
+msgstr "Erstellt einen Familienbericht, der Informationen über ein Elternpaar und dessen Kinder enthält."
 
 #: glade.c:215
 msgid "Creates a new event from the above data"
@@ -643,12 +629,12 @@ msgstr "Quelle löschen"
 msgid "Delete the selected event"
 msgstr "Gewähltes Ereignis löschen"
 
-# FIXME "Nachkommensübersicht"
+# FIXME Nachkommensübersicht
 #: glade.c:259
 msgid "Descendant Browser"
 msgstr "Nachkommensübersicht"
 
-# FIXME "Nachkommensbericht"
+# FIXME Nachkommensbericht
 #: glade.c:262
 msgid "Descendant Report"
 msgstr "Nachkommensbericht"
@@ -667,32 +653,29 @@ msgid "Description"
 msgstr "Beschreibung"
 
 #: glade.c:271
-#, fuzzy
 msgid "Details"
-msgstr "Email"
+msgstr "Details"
 
 #: glade.c:274
 msgid "Determining Possible Merges"
 msgstr "Bestimme mögliche Zusammenfassungen"
 
-# FIXME check source
+# FIXME meaning?
 #: glade.c:1474
 msgid "Disconnected individuals"
 msgstr "Einzelstehende Personen"
 
 #: glade.c:277
-#, fuzzy
 msgid "Display Format"
-msgstr "Anzeigeformate"
+msgstr "Anzeigeformat"
 
 #: glade.c:280
 msgid "Display Formats"
 msgstr "Anzeigeformate"
 
-# FIXME check source: Familienbeziehungen?
 #: glade.c:283
 msgid "Display active person's family relationships"
-msgstr "Verwandschaftsbeziehungen der aktuellen Person anzeigen"
+msgstr "Familie der aktuellen Person anzeigen"
 
 #: glade.c:286
 msgid "Display attribute on Edit Person form"
@@ -703,9 +686,8 @@ msgid "Display list of people"
 msgstr "Personenliste anzeigen"
 
 #: glade.c:292
-#, fuzzy
 msgid "Display the list of sources"
-msgstr "Personenliste anzeigen"
+msgstr "Liste der Quellen anzeigen"
 
 # FIXME check source: Abbrechen?
 #: glade.c:295
@@ -755,12 +737,11 @@ msgstr "Wollen Sie %s als Hauptperson setzen?"
 
 #: glade.c:310
 msgid "Document Styles"
-msgstr ""
+msgstr "Dokumentenstile"
 
 #: glade.c:313
-#, fuzzy
 msgid "Edit"
-msgstr "Notiz editieren"
+msgstr "Editieren"
 
 #: glade.c:316
 msgid "Edit Bookmarks"
@@ -803,7 +784,6 @@ msgid "Eighth"
 msgstr "Achte"
 
 #: glade.c:1334
-#, fuzzy
 msgid "Eightteenth"
 msgstr "Achtzehnte"
 
@@ -815,7 +795,6 @@ msgstr "Elfte"
 msgid "Enable Custom Colors"
 msgstr "Eigene Farben verwenden"
 
-# FIXME check source
 #: glade.c:340
 msgid "Encoding"
 msgstr "Codierung"
@@ -903,12 +882,10 @@ msgstr "Familienbericht für %s"
 msgid "Family Tree"
 msgstr "Stammbaum"
 
-# FIXME check source
 #: glade.c:1429
 msgid "Family Tree - Index"
 msgstr "Stammbaum - Index"
 
-# FIXME check source
 #: glade.c:1430
 msgid "Family Tree Index"
 msgstr "Stammbaum Index"
@@ -961,15 +938,13 @@ msgstr "Erste Person"
 msgid "Firstname Surname"
 msgstr "Vorname Nachname"
 
-# FIXME check source
 #: glade.c:400
 msgid "Font"
 msgstr "Schriftart"
 
 #: glade.c:403
-#, fuzzy
 msgid "Font Options"
-msgstr "Optionen"
+msgstr "Schriftoptionen"
 
 #: glade.c:1401
 msgid ""
@@ -1035,7 +1010,6 @@ msgstr "Allgemeines"
 msgid "Generate HTML reports"
 msgstr "HTML Berichte generieren"
 
-# FIXME check source
 #: glade.c:446
 msgid "Generate Relationship Graphs"
 msgstr "Beziehungsgraph generieren"
@@ -1048,7 +1022,6 @@ msgstr "Graphische Ahnentafel generieren"
 msgid "Generate files/Ahnentafel Report"
 msgstr "Dateien generieren/Ahnentafel (textuell)"
 
-# FIXME
 #: glade.c:1316
 msgid "Generate files/Ancestor Chart"
 msgstr "Dateien generieren/Ahnentafel (graphisch)"
@@ -1114,7 +1087,7 @@ msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program that can be extended by using the Python "
 "programming language."
-msgstr ""
+msgstr "Gramps (Genealogical Research and Analysis Management Programming System) ist ein Programm zur Ahnenforschung, das mit Hilfe der Sprache Python erweitert werden kann."
 
 #: glade.c:471
 msgid "Gramps - Add Child"
@@ -1151,7 +1124,6 @@ msgstr "Gramps - Nachkommensübersicht"
 
 # FIXME Nachkommensübersicht
 #: glade.c:495
-#, fuzzy
 msgid "Gramps - Descendant Report"
 msgstr "Gramps - Nachkommensübersicht"
 
@@ -1172,7 +1144,6 @@ msgid "Gramps - Event Comparison"
 msgstr "Gramps - Ereignisvergleich"
 
 #: glade.c:510
-#, fuzzy
 msgid "Gramps - Family Group Report"
 msgstr "Familienbericht"
 
@@ -1189,7 +1160,6 @@ msgid "Gramps - Gramps import"
 msgstr "Gramps - Gramps Import"
 
 #: glade.c:522
-#, fuzzy
 msgid "Gramps - Individual Summary"
 msgstr "Überblick zur Person"
 
@@ -1238,9 +1208,8 @@ msgid "Gramps - Source Information"
 msgstr "Gramps - Quelleninformation"
 
 #: glade.c:559
-#, fuzzy
 msgid "Gramps - Style Editor"
-msgstr "Gramps - Quelleneditor"
+msgstr "Gramps - Stileditor"
 
 #: glade.c:562
 msgid "Gramps Import"
@@ -1255,9 +1224,8 @@ msgid "Gramps file"
 msgstr "Gramps Datei"
 
 #: glade.c:571
-#, fuzzy
 msgid "Gramps- Document Styles"
-msgstr "Gramps - Datei auswählen"
+msgstr "Gramps - Dokumentenstile"
 
 #: glade.c:1407
 msgid "Grandparent's ancestors and descendants"
@@ -1268,7 +1236,6 @@ msgid "GraphViz (dot)"
 msgstr "GraphViz (dot)"
 
 #: glade.c:1400
-#, fuzzy
 msgid ""
 "GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, "
 "svg, and many other formats."
@@ -1312,13 +1279,11 @@ msgstr "Er starb am %s in %s"
 msgid "Help is not implemented yet"
 msgstr "Die Hilfe ist noch nicht implementiert"
 
-# FIXME
 #: glade.c:589
 msgid "Home"
 msgstr "Hauptperson"
 
 #: glade.c:592
-#, fuzzy
 msgid "Identification"
 msgstr "Identifikation"
 
@@ -1356,7 +1321,7 @@ msgstr "Invertieren"
 
 #: glade.c:604
 msgid "Italic"
-msgstr ""
+msgstr "Kursiv"
 
 #: glade.c:1201
 msgid "January"
@@ -1371,9 +1336,8 @@ msgid "June"
 msgstr "Juni"
 
 #: glade.c:1272
-#, fuzzy
 msgid "KWord"
-msgstr "AbiWord"
+msgstr "KWord"
 
 #: glade.c:607
 msgid "Keep other name as an alternate name"
@@ -1381,7 +1345,7 @@ msgstr "Anderen Namen als alternativen Namen behalten"
 
 #: glade.c:1271
 msgid "LaTeX"
-msgstr ""
+msgstr "LaTeX"
 
 #: glade.c:610 glade.c:1303
 msgid "Landscape"
@@ -1389,7 +1353,7 @@ msgstr "Querformat"
 
 #: glade.c:613
 msgid "Left Margin"
-msgstr ""
+msgstr "Linker Rand"
 
 #: glade.c:616
 msgid "Letter"
@@ -1397,7 +1361,7 @@ msgstr "Letter"
 
 #: glade.c:619
 msgid "List display options"
-msgstr ""
+msgstr "Optionen der Personenliste"
 
 #: glade.c:622
 msgid "Load"
@@ -1441,9 +1405,8 @@ msgid "Male"
 msgstr "Männlich"
 
 #: glade.c:1480
-#, fuzzy
 msgid "Males"
-msgstr "Männlich"
+msgstr "Männer"
 
 #: glade.c:1203
 msgid "March"
@@ -1461,7 +1424,6 @@ msgstr "Hochzeitsdatum"
 msgid "Marriage place"
 msgstr "Hochzeitsort"
 
-# FIXME check source
 #: glade.c:649
 msgid "Marriage/Family Editor"
 msgstr "Ehe-/Familien-Editor"
@@ -1475,18 +1437,16 @@ msgid "Married"
 msgstr "Verheiratet"
 
 #: glade.c:652
-#, fuzzy
 msgid "Match Rating :"
-msgstr "Übereinstimmungsbewertung : "
+msgstr "Übereinstimmungsbewertung :"
 
 #: glade.c:655
 msgid "Match Threshold"
 msgstr "Ähnlichkeit"
 
 #: glade.c:658
-#, fuzzy
 msgid "Maximum Generations"
-msgstr "Maximale Generationenzahl "
+msgstr "Maximale Generationenzahl"
 
 #: glade.c:1205
 msgid "May"
@@ -1657,6 +1617,7 @@ msgstr "Ausgabedatei"
 msgid "PDF"
 msgstr "PDF"
 
+# FIXME Füllzeichen???
 #: glade.c:760
 msgid "Padding"
 msgstr ""
@@ -1681,15 +1642,13 @@ msgstr "Ausrichtung"
 msgid "Paper Size Selection"
 msgstr "Papiergröße"
 
-# FIXME Vertraulichkeitseinstellungen
 #: glade.c:782
-#, fuzzy
 msgid "Paragraph Options"
-msgstr "Datenschutzeinstellungen"
+msgstr "Absatzoptionen"
 
 #: glade.c:785
 msgid "Paragraph Style"
-msgstr ""
+msgstr "Absatzstil"
 
 #: glade.c:1419
 msgid "Parents"
@@ -1717,9 +1676,8 @@ msgid "People who have photos"
 msgstr "Personen mit Fotos"
 
 #: glade.c:1472
-#, fuzzy
 msgid "People who were adopted"
-msgstr "Personen mit Fotos"
+msgstr "Adoptierte Personen"
 
 #: glade.c:1471
 msgid "People with an event after ..."
@@ -1825,7 +1783,6 @@ msgstr "Vorschau"
 msgid "Print"
 msgstr "Drucken"
 
-# FIXME Vertraulichkeitseinstellungen
 #: glade.c:849
 msgid "Privacy Options"
 msgstr "Datenschutzeinstellungen"
@@ -1842,10 +1799,9 @@ msgstr "Erstellt eine graphische Ahnentafel in Baumstruktur."
 msgid "Produces a textual ancestral report"
 msgstr "Erstellt eine textuelle Ahnentafel."
 
-# FIXME check source: Hierarchie
 #: glade.c:1381
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr "Erstellt eine interaktive Hierarchie für die aktuelle Person."
+msgstr "Erstellt eine interaktive Baumstruktur für die aktuelle Person."
 
 #: glade.c:1463
 msgid "Provides a summary of the current database"
@@ -1859,17 +1815,15 @@ msgstr "Publikationsinformation"
 msgid "Publication Information"
 msgstr "Publikationsinformation"
 
-# FIXME better word
 #: glade.c:858
 msgid "Qualifier"
 msgstr "Muster"
 
 #: glade.c:1273
 msgid "RTF"
-msgstr ""
+msgstr "RTF"
 
 #: glade.c:861
-#, fuzzy
 msgid "Relationship Type"
 msgstr "Beziehungstyp"
 
@@ -1911,7 +1865,7 @@ msgstr "Rückkehr zur letzten gespeicherten Datenbank"
 
 #: glade.c:891
 msgid "Right Margin"
-msgstr ""
+msgstr "Rechter Rand"
 
 #: glade.c:894
 msgid "Run a tool"
@@ -1925,7 +1879,6 @@ msgstr "Speichern"
 msgid "Save Ancestor Chart"
 msgstr "Graphische Ahnentafel speichern"
 
-# FIXME
 #: glade.c:903
 msgid "Save Ancestor Report"
 msgstr "Bericht über Vorfahren speichern"
@@ -1972,7 +1925,6 @@ msgstr ""
 "enthaltenen Titeln und Spitznamen."
 
 #: glade.c:1448
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
@@ -2052,9 +2004,10 @@ msgstr "Sie starb am %s"
 msgid "She died on %s in %s"
 msgstr "Sie starb am %s in %s"
 
+# FIXME What is a detail flag?
 #: glade.c:956
 msgid "Show Detail Flags in display lists"
-msgstr ""
+msgstr "Zeige Detailmarker in den Anzeigelisten"
 
 #: glade.c:959
 msgid "Show active person's anscestors"
@@ -2066,7 +2019,7 @@ msgstr "Zeige nur Personen die nicht Kind einer Familie sind"
 
 #: glade.c:965
 msgid "Show persons that do not match the filtering rule"
-msgstr ""
+msgstr "Zeige Personen, die nicht dem Filterkriterium entsprechen"
 
 #: glade.c:968
 msgid "Single"
@@ -2085,9 +2038,8 @@ msgid "Sixth"
 msgstr "Sechste"
 
 #: glade.c:974
-#, fuzzy
 msgid "Size"
-msgstr "Eine Seite"
+msgstr "Größe"
 
 #: glade.c:1278
 msgid ""
@@ -2161,29 +2113,25 @@ msgid "Status Bar"
 msgstr "Statusleiste"
 
 #: glade.c:1014
-#, fuzzy
 msgid "Style Editor"
-msgstr "Quelleneditor"
+msgstr "Stileditor"
 
 #: glade.c:1017
-#, fuzzy
 msgid "Style Name"
-msgstr "Vorname"
+msgstr "Stilname"
 
 #: glade.c:1022
 msgid "Styles"
-msgstr ""
+msgstr "Stile"
 
-# FIXME check source
 #: glade.c:1025
 msgid "Suffix"
 msgstr "Suffix"
 
-# FIXME check source
 #: glade.c:1436
 #, c-format
 msgid "Summary of %s"
-msgstr "Übersicht von %s"
+msgstr "Übersicht für %s"
 
 #: glade.c:1028
 msgid "Surname"
@@ -2283,7 +2231,7 @@ msgstr "Dreiundzwanzigste"
 
 #: glade.c:1057
 msgid "Type Face"
-msgstr ""
+msgstr "Schriftart"
 
 #: glade.c:1304
 msgid "Uncategorized"
@@ -2291,7 +2239,7 @@ msgstr "Nicht kategorisiert"
 
 #: glade.c:1060
 msgid "Underline"
-msgstr ""
+msgstr "Unterstrichen"
 
 #: glade.c:1274 glade.c:1276
 msgid "Unsaved changes exist in the current database\n"
@@ -2309,10 +2257,9 @@ msgstr "Aktualisiert das gewählte Ereignis mit den obigen Daten"
 msgid "Use SoundEx codes for name matches"
 msgstr "Verwende SoundEx um ähnliche Namen zu finden"
 
-# FIXME check source
 #: glade.c:1074
 msgid "Use tabbed pages"
-msgstr "Verwende Seiten mit Karteireitern"
+msgstr "Karteireiter verwenden"
 
 #: glade.c:1462
 msgid "Utilities/Relationship calculator"
@@ -2334,7 +2281,6 @@ msgstr "Foto anzeigen"
 msgid "View/Summary of the database"
 msgstr "Anzeige/Datenbankübersicht"
 
-# FIXME check source
 #: glade.c:1084
 msgid "Volume/Film/Page"
 msgstr "Band/Film/Seite"
@@ -2383,12 +2329,10 @@ msgstr "Vergrößern"
 msgid "Zoom Out"
 msgstr "Verkleinern"
 
-# FIXME
 #: glade.c:1112
 msgid "_Bookmarks"
 msgstr "_Lesezeichen"
 
-# FIXME
 #: glade.c:1115
 msgid "_Default Person"
 msgstr "_Hauptperson"
@@ -2405,7 +2349,6 @@ msgstr "_Import"
 msgid "_New File"
 msgstr "_Neue Datei"
 
-# FIXME
 #: glade.c:1127
 msgid "_Pedegree"
 msgstr "_Stammbaum"
@@ -2415,46 +2358,34 @@ msgid "_Revert"
 msgstr "_Rückgängig"
 
 #: glade.c:1133
-#, fuzzy
 msgid "_Sources"
-msgstr "Quellen"
+msgstr "_Quellen"
 
-# FIXME check source: über
 #: glade.c:1214 glade.c:1228 glade.c:1241
 msgid "about"
 msgstr "etwa"
 
-# FIXME check source
 #: glade.c:1213 glade.c:1226
 msgid "abt"
 msgstr "etwa"
 
-# FIXME check source
 #: glade.c:1215
-#, fuzzy
 msgid "abt."
 msgstr "etwa"
 
-# FIXME check source
 #: glade.c:1227
-#, fuzzy
 msgid "abt\\."
 msgstr "etwa"
 
-# FIXME check source
 #: glade.c:1225 glade.c:1235
 msgid "aft"
 msgstr "nach"
 
-# FIXME check source
 #: glade.c:1224
-#, fuzzy
 msgid "aft."
 msgstr "nach"
 
-# FIXME check source
 #: glade.c:1236
-#, fuzzy
 msgid "aft\\."
 msgstr "nach"
 
@@ -2471,12 +2402,10 @@ msgid "bef"
 msgstr "vor"
 
 #: glade.c:1222
-#, fuzzy
 msgid "bef."
 msgstr "vor"
 
 #: glade.c:1237
-#, fuzzy
 msgid "bef\\."
 msgstr "vor"
 
@@ -2486,12 +2415,11 @@ msgstr "vor"
 
 #: glade.c:1136
 msgid "bottom"
-msgstr ""
+msgstr "unten"
 
 #: glade.c:1139
-#, fuzzy
 msgid "center"
-msgstr "Geschlecht"
+msgstr "zentriert"
 
 #: glade.c:1218 glade.c:1231
 msgid "circa"
@@ -2499,30 +2427,26 @@ msgstr "circa"
 
 #: glade.c:1142
 msgid "cm"
-msgstr ""
+msgstr "cm"
 
+# FIXME where in the source?
 #: glade.c:1147
 msgid "default"
-msgstr ""
+msgstr "Standardwert"
 
 #: glade.c:1150
 msgid "email"
 msgstr "Email"
 
-# FIXME check source
 #: glade.c:1216 glade.c:1229
 msgid "est"
 msgstr "etwa"
 
-# FIXME check source
 #: glade.c:1217
-#, fuzzy
 msgid "est."
 msgstr "etwa"
 
-# FIXME check source
 #: glade.c:1230
-#, fuzzy
 msgid "est\\."
 msgstr "etwa"
 
@@ -2538,14 +2462,14 @@ msgstr "von"
 msgid "gramps ID"
 msgstr "Gramps ID"
 
+# FIXME ausgerichtet?
 #: glade.c:1159
 msgid "justify"
-msgstr ""
+msgstr "Blocksatz"
 
 #: glade.c:1162
-#, fuzzy
 msgid "left"
-msgstr "Löschen"
+msgstr "links"
 
 #: glade.c:1165 glade.c:1192
 msgid "male"
@@ -2557,77 +2481,29 @@ msgstr "Name"
 
 #: glade.c:1171
 msgid "pt"
-msgstr ""
+msgstr "pt"
 
 #: glade.c:1174
-#, fuzzy
 msgid "right"
-msgstr "Achte"
+msgstr "rechts"
 
 #: glade.c:1177
 msgid "roman (Times)"
-msgstr ""
+msgstr "roman (Times)"
 
 #: glade.c:1180
 msgid "swiss (Arial, Helvetica)"
-msgstr ""
+msgstr "swiss (Arial, Helvetica)"
 
 #: glade.c:1183 glade.c:1198 glade.c:1200
 msgid "to"
 msgstr "bis"
 
 #: glade.c:1186
-#, fuzzy
 msgid "top"
-msgstr "bis"
+msgstr "oben"
 
 #: glade.c:1434
 msgid "unknown"
-msgstr ""
+msgstr "unbekannt"
 
-#~ msgid "%s is not a valid GEDCOM file"
-#~ msgstr "%s ist keine gültige GEDCOM Datei"
-
-#~ msgid "Could not load %s"
-#~ msgstr "Datei %s konnte nicht geladen werden"
-
-#~ msgid "Gramps (Genealogical Research and Analysis Management "
-#~ msgstr "Gramps (Genealogical Research and Analysis Management "
-
-#~ msgid "Import from GEDCOM (0.1.X)"
-#~ msgstr "GEDCOM Import (0.1.X)"
-
-#~ msgid "OpenOffice "
-#~ msgstr "OpenOffice "
-
-#~ msgid "Programming System) is a personal genealogy program that "
-#~ msgstr ""
-#~ "Programming System) ist ein persönliches genealogisches Programm, das "
-
-#~ msgid "Relationship Type : "
-#~ msgstr "Beziehungstyp : "
-
-#~ msgid "View/View an ancestor graph"
-#~ msgstr "Anzeige/Graphische Ahnentafel anzeigen"
-
-#~ msgid "can be extended by using the Python programming language."
-#~ msgstr "mit Hilfe der Sprache Python erweitert werden kann."
-
-# FIXME
-#~ msgid "ind"
-#~ msgstr "ind"
-
-#~ msgid "label199"
-#~ msgstr "label199"
-
-#~ msgid "label2"
-#~ msgstr "label2"
-
-#~ msgid "label200"
-#~ msgstr "label200"
-
-#~ msgid "label48"
-#~ msgstr "label48"
-
-#~ msgid "label51"
-#~ msgstr "label51"
