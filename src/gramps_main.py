@@ -269,7 +269,6 @@ class Gramps:
             "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
             "on_contents_activate" : self.on_contents_activate,
             "on_default_person_activate" : self.on_default_person_activate,
-            "on_delete_parents_clicked" : self.on_delete_parents_clicked,
             "on_delete_person_clicked" : self.delete_person_clicked,
             "on_delete_place_clicked" : self.place_view.on_delete_clicked,
             "on_delete_source_clicked" : self.source_view.on_delete_clicked,
@@ -292,7 +291,6 @@ class Gramps:
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
             "on_person_list_button_press" : self.on_person_list_button_press,
-            "on_person_list_select_row" : self.on_person_list_select_row,
             "on_main_key_release_event" : self.on_main_key_release_event,
             "on_add_media_clicked" : self.media_view.create_add_dialog,
             "on_media_activate" : self.on_media_activate,
@@ -922,23 +920,6 @@ class Gramps:
         self.redisplay_person_list(p1)
         self.update_display(0)
     
-    def on_delete_parents_clicked(self,obj):
-        if not self.active_parents:
-            return
-
-        self.active_parents.removeChild(self.active_person)
-        self.active_person.removeAltFamily(self.active_parents)
-        self.family_view.load_family()
-    
-    def on_person_list_select_row(self,obj,row,b,c):
-        if row == obj.selection[0]:
-            person = self.db.getPerson(obj.get_row_data(row))
-            self.change_active_person(person)
-
-    def on_child_list_button_press(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
-            self.load_person(self.active_child)
-
     def on_person_list_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.load_person(self.active_person)
