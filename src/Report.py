@@ -1728,7 +1728,7 @@ def report(database,person,report_class,options_class,translated_name,name,categ
     elif category == const.CATEGORY_DRAW:
         dialog_class = DrawReportDialog
     elif category in (const.CATEGORY_BOOK,const.CATEGORY_VIEW,
-                        const.CATEGORY_CODE):
+                        const.CATEGORY_CODE,const.CATEGORY_WEB):
         report_class(database,person)
         return
     else:
