@@ -18,19 +18,31 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 import sys
 import os
 import locale
 import signal
+import gettext
 
+#-------------------------------------------------------------------------
+#
+# pygtk
+#
+#-------------------------------------------------------------------------
 try:
     import pygtk
     pygtk.require('2.0')
 except ImportError:
     pass
 
+import gtk.gdk
+import gtk
 import gtk.glade
-import gettext
 
 #-------------------------------------------------------------------------
 #
@@ -52,16 +64,7 @@ except:
     pass
 
 gettext.textdomain("gramps")
-
 gettext.install("gramps",loc,unicode=1)
-
-#-------------------------------------------------------------------------
-#
-# Cope with versioned pygtk installation.
-#
-#-------------------------------------------------------------------------
-
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +72,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gramps_main 
-
 
 signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 

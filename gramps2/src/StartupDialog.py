@@ -22,7 +22,12 @@ import const
 import gtk.glade
 import gnome
 import gnome.ui
-import gconf
+
+try:
+    import gconf
+except ImportError:
+    import gnome.gconf
+    gconf = gnome.gconf
 
 from gettext import gettext as _
 
