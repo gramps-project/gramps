@@ -345,7 +345,6 @@ class DateParser:
         match = regex2.match(text.lower())
         if match:
             groups = match.groups()
-            print groups #[ g.encode('utf8') for g in groups ]
             if groups[1] == None:
                 m = 0
             else:
@@ -419,44 +418,70 @@ class DateParser:
         
         return Date.EMPTY
 
-    def set_date(self,date,text):
+    def match_calendar(self,text,cal):
         """
-        Parses the text and sets the date according to the parsing.
-        """
-        date.set_text_value(text)
-        qual = Date.QUAL_NONE
-        cal  = Date.CAL_GREGORIAN
+        Try parsing calendar.
         
+        Return calendar index and the remainder of text.
+        """
         match = self._cal.match(text)
         if match:
             grps = match.groups()
             cal = self.calendar_to_int[grps[1].lower()]
             text = grps[0]
+        return (text,cal)
 
-        text_parser = self.parser[cal]
-
+    def match_quality(self,text,qual):
+        """
+        Try matching quality.
+        
+        Return quality index and the remainder of text.
+        """
         match = self._qual.match(text)
         if match:
             grps = match.groups()
             qual = self.quality_to_int[grps[0].lower()]
             text = grps[1]
+        return (text,qual)
 
+    def match_span(self,text,cal,qual,date):
+        """
+        Try matching span date.
+        
+        On success, set the date and return 1. On failure return 0.
+        """
         match = self._span.match(text)
         if match:
             grps = match.groups()
+            text_parser = self.parser[cal]
             start = self._parse_subdate(grps[1],text_parser)
             stop = self._parse_subdate(grps[3],text_parser)
             date.set(qual,Date.MOD_SPAN,cal,start + stop)
-            return
-    
+            return 1
+        return 0
+
+    def match_range(self,text,cal,qual,date):
+        """
+        Try matching range date.
+        
+        On success, set the date and return 1. On failure return 0.
+        """
         match = self._range.match(text)
         if match:
             grps = match.groups()
+            text_parser = self.parser[cal]
             start = self._parse_subdate(grps[1],text_parser)
             stop = self._parse_subdate(grps[3],text_parser)
             date.set(qual,Date.MOD_RANGE,cal,start + stop)
-            return
+            return 1
+        return 0
 
+    def match_range2(self,text,cal,qual,date):
+        """
+        Try matching numerical range date.
+        
+        On success, set the date and return 1. On failure return 0.
+        """
         match = self._range2.match(text)
         if match:
             grps = match.groups()
@@ -473,14 +498,28 @@ class DateParser:
                 s = grps[4] != None
             date.set(qual,Date.MOD_RANGE,Date.CAL_GREGORIAN,
                      (d0,m,y,s,d1,m,y,s))
-            return
-    
+            return 1
+        return 0
+
+    def match_bce(self,text):
+        """
+        Try matching BCE qualifier.
+        
+        Return BCE (True/False) and the remainder of text.
+        """
         match = self._bce_re.match(text)
         bc = False
         if match:
             text = match.groups()[0]
             bc = True
-            
+        return (text,bc)
+
+    def match_modifier(self,text,cal,qual,bc,date):
+        """
+        Try matching date with modifier.
+        
+        On success, set the date and return 1. On failure return 0.
+        """
         match = self._modifier.match(text)
         if match:
             grps = match.groups()
@@ -490,8 +529,30 @@ class DateParser:
                 date.set(qual,mod,cal,self.invert_year(start))
             else:
                 date.set(qual,mod,cal,start)
+            return 1
+        return 0
+
+    def set_date(self,date,text):
+        """
+        Parses the text and sets the date according to the parsing.
+        """
+        date.set_text_value(text)
+        qual = Date.QUAL_NONE
+        cal  = Date.CAL_GREGORIAN
+        
+        (text,cal) = self.match_calendar(text,cal)
+        (text,qual) = self.match_quality(text,qual)
+        if self.match_span(text,cal,qual,date):
+            return
+        if self.match_range(text,cal,qual,date):
+            return
+        if self.match_range2(text,cal,qual,date):
             return
 
+        (text,bc) = self.match_bce(text)
+        if self.match_modifier(text,cal,qual,bc,date):
+            return
+    
         subdate = self._parse_subdate(text)
         if subdate == Date.EMPTY:
             subdate = self._parse_hebrew(text)
