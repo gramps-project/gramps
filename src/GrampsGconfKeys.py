@@ -200,6 +200,12 @@ def get_usetips():
 def save_usetips(val):
     set_bool("/apps/gramps/behavior/use-tips",val)
 
+def get_pop_plugin_status():
+    return get_bool("/apps/gramps/behavior/pop-plugin-status")
+
+def save_pop_plugin_status(val):
+    set_bool("/apps/gramps/behavior/pop-plugin-status",val)
+
 # preferences keys
 def get_person_id_prefix():
     return get_string("/apps/gramps/preferences/iprefix")

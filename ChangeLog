@@ -1,3 +1,18 @@
+2004-11-19 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Plugins.py: Remove redundant list of failed plugins.
+	Properly reload plugins. Work around what seems to be a Python bug.
+	Allow setting the preference for showing up the plugin status
+	upon load/reload if problems are detected. Support Help button.
+	Automatically close old status window when new one is opened.
+	* src/plugins.glade: Add Help button and the check button.
+	* src/data/gramps.schemas: Add pop-plugin-status key.
+	* src/GrampsGconfKeys.py: Add get/save methods for new key.
+	* src/*.gladep: Remove from CVS.
+	* src/plugins/IndivComplete.py: Typo.
+	* src/plugins/Partition.py: Comment out wrong class instantiation.
+	This plugin is dysfunctional, and we should either remove it or
+	fix it.
+
 2004-11-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ColumnOrder.py: pychecker fixes
 	* src/DateParser.py: pychecker fixes

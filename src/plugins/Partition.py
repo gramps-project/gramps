@@ -1,4 +1,8 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
 # Copyright (C) 2003 Jesper Zedlitz
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,6 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Export/Partition"
 
@@ -50,7 +56,7 @@ import WriteXML
 
 personSeen = []
 familySeen = []
-database_for_unlinked_persons = RelLib.GrampsDB()
+#database_for_unlinked_persons = RelLib.GrampsDB()
 prefix = "/tmp/test"
 
 #-------------------------------------------------------------------------
@@ -63,8 +69,8 @@ def work_on_person( db, person ):
    
    if (len(person.get_family_handle_list()) + len(person.get_parent_family_handle_list())) > 0:
      database = db
-   else:
-     database = database_for_unlinked_persons
+   #else:
+   #  database = database_for_unlinked_persons
    
    if( database.get_person_handle_map().has_key( person.get_handle() ) ):
       return
