@@ -43,9 +43,9 @@ class DescendLine(GraphLayout):
     
     def space_for(self,person,level=1.0,pos=1.0):
         last = self.elist[-1]
-        self.elist.append(level,pos)
-        self.e.append(last[0],last[1],level,pos)
-        self.v.append(person,level,pos)
+        self.elist.append((level,pos))
+        self.e.append((last[0],last[1],level,pos))
+        self.v.append((person,level,pos))
         if level > self.maxx:
             self.maxx = level
         if pos > self.maxy:

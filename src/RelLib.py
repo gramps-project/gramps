@@ -223,7 +223,7 @@ class Place(SourceNote):
             self.long = ""
             self.lat = ""
             self.title = ""
-            self.main_loc = Location()
+            self.main_loc = None
             self.alt_loc = []
             self.id = ""
             self.urls = []
@@ -275,6 +275,8 @@ class Place(SourceNote):
 
     def get_main_location(self):
         """Returns the Location object representing the primary information"""
+        if not self.main_loc:
+            self.main_loc = Location()
         return self.main_loc
 
     def set_main_location(self,loc):
@@ -1868,16 +1870,16 @@ class RelDataBase:
         self.pmapIndex = self.pmapIndex+1
         return id
 
-    def findPersonNoMap(self,idVal):
+    def findPersonNoMap(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
         
-        val = str(idVal)
-        if self.personMap.has_key(val):
-            person = self.personMap[val]
-        else:
+        person = self.personMap.get(val)
+        if not person:
             person = Person()
-            self.addPersonNoMap(person,val)
+            person.id = val
+            self.personMap[val] = person
+            self.pmapIndex = self.pmapIndex+1
         return person
 
     def addSource(self,source):
@@ -1902,7 +1904,6 @@ class RelDataBase:
         idVal - external ID number
         map - map build by findSource of external to gramp's IDs"""
         
-        idVal = str(idVal)
         if map.has_key(idVal):
             source = self.sourceMap[map[idVal]]
         else:
@@ -1912,17 +1913,15 @@ class RelDataBase:
 
     def addSourceNoMap(self,source,index):
         """adds a Source to the database if the gramps' ID is known"""
-        index = str(index)
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
         return index
 
-    def findSourceNoMap(self,idVal):
+    def findSourceNoMap(self,val):
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
 
-        val = str(idVal)
         if self.sourceMap.has_key(val):
             source = self.sourceMap[val]
         else:
@@ -2019,16 +2018,16 @@ class RelDataBase:
         self.lmapIndex = self.lmapIndex + 1
         return index
 
-    def findPlaceNoMap(self,idVal):
+    def findPlaceNoMap(self,val):
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, a new Place is added to the database."""
 
-        val = str(idVal)
-        if self.placeMap.has_key(val):
-            place = self.placeMap[val]
-        else:
+        place = self.placeMap.get(val)
+        if not place:
             place = Place()
-            self.addPlaceNoMap(place,val)
+            place.id = val
+            self.placeMap[val] = place
+            self.lmapIndex = self.lmapIndex + 1
         return place
 
     def newFamily(self):
@@ -2063,7 +2062,6 @@ class RelDataBase:
         idVal - external ID number
         map - map build by findFamily of external to gramp's IDs"""
 
-        idVal = str(idVal)
         if map.has_key(idVal):
             family = self.familyMap[map[idVal]]
         else:
@@ -2071,14 +2069,16 @@ class RelDataBase:
             map[idVal] = family.getId()
         return family
 
-    def findFamilyNoMap(self,idVal):
+    def findFamilyNoMap(self,val):
         """finds a Family in the database from the passed gramps' ID.
         If no such Family exists, a new Family is added to the database."""
-        val = str(idVal)
-        if self.familyMap.has_key(val):
-            family = self.familyMap[val]
-        else:
-            family = self.newFamilyNoMap(val)
+
+        family = self.familyMap.get(val)
+        if not family:
+            family = Family()
+            family.id = val
+            self.familyMap[val] = family
+            self.fmapIndex = self.fmapIndex + 1
         return family
 
     def deleteFamily(self,family):
