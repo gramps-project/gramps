@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.1\n"
-"POT-Creation-Date: Wed Apr 16 12:06:31 2003\n"
-"PO-Revision-Date: 2003-04-17 12:36-0500\n"
+"POT-Creation-Date: Thu Apr 17 22:14:57 2003\n"
+"PO-Revision-Date: 2003-04-19 13:55-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Данное имя файла не найдено."
 #: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
 #: SelectChild.py:105 gramps_main.py:103 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
-#: plugins/PatchNames.py:145 plugins/RelCalc.py:326 plugins/TimeLine.py:336
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:326 plugins/TimeLine.py:340
 #: plugins/WebPage.py:274
 msgid "Name"
 msgstr "Имя"
@@ -522,8 +522,8 @@ msgstr ""
 msgid "%s: unknown"
 msgstr "%s: неизвестно"
 
-#: FamilyView.py:423 Plugins.py:417 Plugins.py:418 Plugins.py:419
-#: Plugins.py:431 Plugins.py:432 Plugins.py:433 Witness.py:71 const.py:149
+#: FamilyView.py:423 Plugins.py:418 Plugins.py:419 Plugins.py:420
+#: Plugins.py:432 Plugins.py:433 Plugins.py:434 Witness.py:71 const.py:149
 #: const.py:424 const.py:432 gramps.glade:3657 gramps.glade:3850
 #: gramps.glade:4272 gramps.glade:4452 gramps.glade:5928 gramps.glade:6174
 #: gramps_main.py:1272 plugins/WebPage.py:288
@@ -974,7 +974,7 @@ msgstr ""
 "отношения, уже используется"
 
 #: MediaView.py:75 SourceView.py:68 Sources.py:77 Sources.py:160
-#: plugins/PatchNames.py:168 plugins/TimeLine.py:347
+#: plugins/PatchNames.py:168 plugins/TimeLine.py:351
 msgid "Title"
 msgstr "Титул"
 
@@ -1094,32 +1094,32 @@ msgstr ""
 msgid "_Delete Place"
 msgstr "У_ничтожить Место"
 
-#: Plugins.py:81
+#: Plugins.py:82
 msgid "No description was provided"
 msgstr "Не было предоставлено описания"
 
-#: Plugins.py:242
+#: Plugins.py:243
 msgid "Report Selection"
 msgstr "Выбор Отчетов"
 
-#: Plugins.py:258
+#: Plugins.py:259
 msgid "Tool Selection"
 msgstr "Выбор Инструментов"
 
-#: Plugins.py:274
+#: Plugins.py:275
 msgid "Plugin status"
 msgstr "Стасус Добавлений"
 
-#: Plugins.py:286
+#: Plugins.py:287
 msgid "All modules were successfully loaded."
 msgstr "Все модули были успешно загружены."
 
-#: Plugins.py:288
+#: Plugins.py:289
 msgid "The following modules could not be loaded:"
 msgstr ""
 "Следующие модули не могли быть загружены:"
 
-#: Plugins.py:414 Plugins.py:428
+#: Plugins.py:415 Plugins.py:429
 msgid "Uncategorized"
 msgstr "Не отнесено к категории"
 
@@ -1177,8 +1177,8 @@ msgstr "Файл был перемещен или уничтожен"
 #: RelImage.py:71 RelImage.py:74 RelImage.py:139 RelImage.py:142
 #: gramps_main.py:813 gramps_main.py:818 gramps_main.py:827
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
-#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:495
-#: plugins/WriteGedcom.py:500
+#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:494
+#: plugins/WriteGedcom.py:499
 msgid "Could not create %s"
 msgstr "Не смогла создать %s"
 
@@ -1347,104 +1347,104 @@ msgstr "Отчет о Прогрессе"
 msgid "Working"
 msgstr "Работаю"
 
-#: Report.py:259
+#: Report.py:260
 msgid "Save Report As"
 msgstr "Сохранить Отчет Как"
 
-#: Report.py:484
+#: Report.py:492
 msgid "Document Options"
 msgstr "Параметры Документа"
 
-#: Report.py:494
+#: Report.py:502
 msgid "Save As"
 msgstr "Сохранить Как"
 
-#: Report.py:498
+#: Report.py:506
 msgid "Directory"
 msgstr "Каталог"
 
-#: Report.py:500
+#: Report.py:508
 msgid "Filename"
 msgstr "Имя Файла"
 
-#: Report.py:520
+#: Report.py:525
 msgid "Output Format"
 msgstr "Выходной Формат"
 
-#: Report.py:534
+#: Report.py:553
 msgid "Styles"
 msgstr "Стили"
 
-#: Report.py:538 StyleEditor.py:80
+#: Report.py:557 StyleEditor.py:80
 msgid "Style Editor"
 msgstr "Редактор Стилей"
 
-#: Report.py:597 Report.py:599
+#: Report.py:616 Report.py:618
 msgid "Paper Options"
 msgstr "Параметры Бумаги"
 
-#: Report.py:608
+#: Report.py:627
 msgid "Size"
 msgstr "Размер"
 
-#: Report.py:613
+#: Report.py:632
 msgid "Height"
 msgstr "Высота"
 
-#: Report.py:621 Report.py:637 styles.glade:903 styles.glade:927
+#: Report.py:640 Report.py:656 styles.glade:903 styles.glade:927
 #: styles.glade:951
 msgid "cm"
 msgstr "см"
 
-#: Report.py:625
+#: Report.py:644
 msgid "Orientation"
 msgstr "Ориентация"
 
-#: Report.py:629
+#: Report.py:648
 msgid "Width"
 msgstr "Ширина"
 
-#: Report.py:649
+#: Report.py:668
 msgid "Page Count"
 msgstr "Нумерация Страниц"
 
-#: Report.py:673 Report.py:678
+#: Report.py:692 Report.py:697
 msgid "HTML Options"
 msgstr "Параметры HTML"
 
-#: Report.py:680 plugins/eventcmp.glade:192
+#: Report.py:699 plugins/eventcmp.glade:192
 msgid "Template"
 msgstr "Образец"
 
-#: Report.py:699
+#: Report.py:718
 msgid "User Template"
 msgstr "Образец пользователя"
 
-#: Report.py:702
+#: Report.py:721
 msgid "Choose File"
 msgstr "Выбрать Файл"
 
-#: Report.py:741
+#: Report.py:760
 msgid "Report Options"
 msgstr "Параметры Отчета"
 
-#: Report.py:759 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
+#: Report.py:778 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Фильтр"
 
-#: Report.py:776
+#: Report.py:795
 msgid "Generations"
 msgstr "Поколения"
 
-#: Report.py:783
+#: Report.py:802
 msgid "Page break between generations"
 msgstr "Новая страница между поколениями"
 
-#: Report.py:871
+#: Report.py:890
 msgid "Invalid file name"
 msgstr "Неправильное имя файла"
 
-#: Report.py:872
+#: Report.py:891
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
@@ -1453,6 +1453,25 @@ msgstr ""
 "директорией.\n"
 "Вы должны предоставить правильное имя "
 "файла."
+
+#: Report.py:896
+msgid "File already exists"
+msgstr "Файл уже существует"
+
+#: Report.py:897
+msgid ""
+"You can choose to either overwrite the file, or change the selected filename."
+msgstr ""
+"Вы можете выбрать: либо записать поверх "
+"файла, либо изменить выбранное имя файла."
+
+#: Report.py:899
+msgid "_Overwrite"
+msgstr "_Переписать"
+
+#: Report.py:900
+msgid "_Change filename"
+msgstr "_Изменить имя файла"
 
 #: SelectChild.py:71
 msgid "Add Children"
@@ -2313,12 +2332,12 @@ msgstr ""
 msgid "HTML"
 msgstr "HTML"
 
-#: docgen/KwordDoc.py:239 docgen/KwordDoc.py:243
+#: docgen/KwordDoc.py:241 docgen/KwordDoc.py:245
 #: plugins/DetAncestralReport.py:62 plugins/DetDescendantReport.py:62
 msgid "Could not open %s"
 msgstr "Не смогла открыть %s"
 
-#: docgen/KwordDoc.py:438
+#: docgen/KwordDoc.py:440
 msgid "KWord"
 msgstr "KWord"
 
@@ -2334,11 +2353,11 @@ msgstr "OpenOffice/StarOffice 6"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:36
+#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:50
 msgid "The ReportLab modules are not installed"
 msgstr "Модули ReportLab не установлены"
 
-#: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:217
+#: docgen/PdfDoc.py:299 docgen/PdfDrawDoc.py:245
 msgid "PDF"
 msgstr "PDF"
 
@@ -3707,35 +3726,35 @@ msgstr "Автор:"
 msgid "Author's email:"
 msgstr "Эл.почта автора:"
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:425
+#: plugins/AncestorChart.py:218 plugins/AncestorChart.py:426
 msgid "Ancestor Chart"
 msgstr "Карта Предков"
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:426
+#: plugins/AncestorChart.py:218 plugins/AncestorChart.py:427
 #: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/GraphViz.py:78
-#: plugins/GraphViz.py:448 plugins/TimeLine.py:316 plugins/TimeLine.py:457
+#: plugins/GraphViz.py:448 plugins/TimeLine.py:316 plugins/TimeLine.py:461
 msgid "Graphical Reports"
 msgstr "Графические Отчеты"
 
-#: plugins/AncestorChart.py:221
+#: plugins/AncestorChart.py:222
 msgid "Ancestor Chart for %s"
 msgstr "Карта Предков для %s"
 
-#: plugins/AncestorChart.py:226
+#: plugins/AncestorChart.py:227
 msgid "Save Ancestor Chart"
 msgstr "Сохранить Карту Предков"
 
-#: plugins/AncestorChart.py:238 plugins/DesGraph.py:325
+#: plugins/AncestorChart.py:239 plugins/DesGraph.py:325
 msgid "Display Format"
 msgstr "Формат дисплея"
 
-#: plugins/AncestorChart.py:239 plugins/DesGraph.py:326
+#: plugins/AncestorChart.py:240 plugins/DesGraph.py:326
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 "Позволяет вам настроить данные в рамках в "
 "отчете"
 
-#: plugins/AncestorChart.py:248 plugins/AncestorReport.py:262
+#: plugins/AncestorChart.py:249 plugins/AncestorReport.py:262
 #: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
 #: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
 msgid "The basic style used for the text display."
@@ -3743,16 +3762,16 @@ msgstr ""
 "Основной стиль, используемый дла показа "
 "текста."
 
-#: plugins/AncestorChart.py:427 plugins/AncestorReport.py:389
+#: plugins/AncestorChart.py:428 plugins/AncestorReport.py:389
 #: plugins/DescendReport.py:284 plugins/DetAncestralReport.py:972
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:566
 #: plugins/GraphViz.py:447 plugins/IndivComplete.py:667
-#: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:456
+#: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:460
 #: plugins/WebPage.py:1267
 msgid "Beta"
 msgstr "Бета"
 
-#: plugins/AncestorChart.py:428
+#: plugins/AncestorChart.py:429
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Производит граф дерева предков"
 
@@ -3852,7 +3871,7 @@ msgstr "Сохранить Отчеты о Предках"
 
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
 #: plugins/FamilyGroup.py:408 plugins/IndivComplete.py:502
-#: plugins/IndivSummary.py:345 plugins/TimeLine.py:395 plugins/WebPage.py:960
+#: plugins/IndivSummary.py:345 plugins/TimeLine.py:399 plugins/WebPage.py:960
 msgid "The style used for the title of the page."
 msgstr ""
 "Стиль, используемый для титульного листа."
@@ -4025,8 +4044,8 @@ msgstr ""
 "основанную на активном лице"
 
 #: plugins/DescendReport.py:87 plugins/GraphViz.py:103
-#: plugins/IndivComplete.py:475 plugins/TimeLine.py:359
-#: plugins/WriteGedcom.py:378
+#: plugins/IndivComplete.py:475 plugins/TimeLine.py:363
+#: plugins/WriteGedcom.py:377
 msgid "Descendants of %s"
 msgstr "Потомки %s"
 
@@ -4339,7 +4358,7 @@ msgid "Event comparison filter selection"
 msgstr "Выбор фильтра сравнения событий"
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:99 plugins/IndivComplete.py:483
-#: plugins/TimeLine.py:355 plugins/WebPage.py:921 plugins/WriteGedcom.py:374
+#: plugins/TimeLine.py:359 plugins/WebPage.py:921 plugins/WriteGedcom.py:373
 msgid "Entire Database"
 msgstr "Вся база данных"
 
@@ -4496,11 +4515,11 @@ msgid "Graphviz File"
 msgstr "Graphviz Файл"
 
 #: plugins/GraphViz.py:107 plugins/IndivComplete.py:479
-#: plugins/TimeLine.py:363 plugins/WebPage.py:933 plugins/WriteGedcom.py:382
+#: plugins/TimeLine.py:367 plugins/WebPage.py:933 plugins/WriteGedcom.py:381
 msgid "Ancestors of %s"
 msgstr "Предки %s"
 
-#: plugins/GraphViz.py:111 plugins/TimeLine.py:367 plugins/WriteGedcom.py:386
+#: plugins/GraphViz.py:111 plugins/TimeLine.py:371 plugins/WriteGedcom.py:385
 msgid "People with common ancestor with %s"
 msgstr "Лица, имеющие общего предка с %s"
 
@@ -5240,7 +5259,7 @@ msgstr ""
 msgid "Relationship calculator"
 msgstr "Счетчик Отношений"
 
-#: plugins/RelCalc.py:327 plugins/TimeLine.py:336
+#: plugins/RelCalc.py:327 plugins/TimeLine.py:340
 msgid "Birth Date"
 msgstr "Дата рождения"
 
@@ -5353,27 +5372,27 @@ msgstr ""
 msgid "Timeline"
 msgstr "Временная Линия"
 
-#: plugins/TimeLine.py:321
+#: plugins/TimeLine.py:325
 msgid "Timeline File"
 msgstr "Файл Временной Линии"
 
-#: plugins/TimeLine.py:343
+#: plugins/TimeLine.py:347
 msgid "Sort by"
 msgstr "Сортировать по"
 
-#: plugins/TimeLine.py:379
+#: plugins/TimeLine.py:383
 msgid "The style used for the person's name."
 msgstr "Стиль, используемый для имени лица."
 
-#: plugins/TimeLine.py:387
+#: plugins/TimeLine.py:391
 msgid "The style used for the year labels."
 msgstr "Стиль, используемый для меток года."
 
-#: plugins/TimeLine.py:451
+#: plugins/TimeLine.py:455
 msgid "Generates a timeline graph."
 msgstr "Генерирует график временной линии"
 
-#: plugins/TimeLine.py:455
+#: plugins/TimeLine.py:459
 msgid "Timeline Graph"
 msgstr "График Временной Линии"
 
@@ -5945,11 +5964,11 @@ msgstr ""
 "Создает web (HTML) страницы дла отдельных лиц "
 "или для групп лиц."
 
-#: plugins/WriteGedcom.py:368 plugins/WriteGedcom.py:477
+#: plugins/WriteGedcom.py:367 plugins/WriteGedcom.py:476
 msgid "GEDCOM export"
 msgstr "GEDCOM экспорт"
 
-#: plugins/WriteGedcom.py:1085
+#: plugins/WriteGedcom.py:1084
 msgid "Export to GEDCOM"
 msgstr "Экспорт в GEDCOM"
 
