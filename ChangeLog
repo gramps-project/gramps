@@ -5,7 +5,7 @@
 	GlobalMediaProperties.__init__): Handle source tab. 
 	* src/EventEdit.py: Handle gallery tab.
 	* src/WriteXML.py (dump_my_event): Write object references; 
-        (write_photo_list): Write source references.
+	(write_photo_list): Write source references.
 	* src/gramps.glade: Add gallery tab to Event Editor; add source 
 	tab to media property editor.
 	* src/RelLib.py (Event): Add media_list and related methods;
