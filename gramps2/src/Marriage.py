@@ -183,6 +183,10 @@ class Marriage:
 
         self.lds_temple.set_popdown_strings(_temple_names)
 
+        place_list = self.pmap.keys()
+        place_list.sort()
+        self.autoplace = AutoComp.AutoCombo(self.lds_place, place_list)
+
         ord = self.family.getLdsSeal()
         if ord:
             if ord.getPlace():
@@ -196,16 +200,18 @@ class Marriage:
             self.seal_stat = ord.getStatus()
         else:
             self.lds_temple.entry.set_text("")
+            self.lds_place.entry.set_text("")
             self.seal_stat = 0
 
         if self.family.getComplete():
             self.complete.set_active(1)
 
-        place_list = self.pmap.keys()
-        place_list.sort()
-        self.autoplace = AutoComp.AutoCombo(self.lds_place, place_list)
-
         self.build_seal_menu()
+
+        if ord:
+            Utils.bold_label(self.lds_label)
+        else:
+            Utils.unbold_label(self.lds_label)
         
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,gtk.gdk.ACTION_COPY)
         self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,pycode_tgts, gtk.gdk.ACTION_COPY)
