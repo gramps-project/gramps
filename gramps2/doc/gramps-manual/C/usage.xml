@@ -101,6 +101,13 @@
 	      </para>
            </warning>                
 
+      <para>To open a recently opened database, choose <menuchoice>
+      <guimenu>File</guimenu><guimenuitem>Open
+      Recent</guimenuitem></menuchoice> and select the filename from the list.
+      You can also use <menuchoice><guimenu>Actions</guimenu>
+      <guimenuitem>Recent Documents</guimenuitem></menuchoice>
+      from the GNOME <guilabel>Actions</guilabel> menu. 
+      </para>
 
     </sect1>
 
@@ -124,6 +131,19 @@
       without saving any changes in other applications. 
       </para>
       </tip>
+      
+      <para>If you would like to save your database under a different name,
+      you can do so by choosing <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Save as...</guimenuitem></menuchoice> and specifying
+      the name (and, optionally, format) of your new database.
+      </para>
+      
+      <note id="save-as-note"><title>&quot;Save as&quot; continues editing</title>
+      <para>If you use the <guilabel>Save as...</guilabel> function, the editing in the
+      main window is performed on the newly made copy. If this is not what you want
+      to do, please consider using <guilabel>Export...</guilabel> instead.
+      </para></note>
+      
     </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
@@ -341,25 +361,34 @@
 	<!-- ==== End of Export ==== -->
 	</sect2>
 
-    <sect2 id="export-grdb"> 
-    <title>&app; database (grdb) export</title>
-    <para>Exporting to the native format will simply make a copy
+    <sect2 id="export-gramps-formats"> 
+    <title>Export into &app; formats</title>
+
+      <variablelist>
+            <varlistentry><term>&app; database (grdb) export</term>
+    <listitem><para>Exporting to the native format will simply make a copy
     of your data under another name. It also may be useful if you have
     directly opened XML or GEDCOM file and would like to save it
-    as the grdb file.</para>
-    </sect2>
+    as the grdb file.</para></listitem></varlistentry>
 
-    <sect2 id="export-xml"> 
-    <title>&app; XML database export</title>
-      <para>Exporting into &app; XML format will
+            <varlistentry><term>&app; XML database export</term>
+      <listitem><para>Exporting into &app; XML format will
       produce a database compatible with the previous versions of &app;.
       As XML is a text-based human-readable format, you may also use it
       to take a look at your data.
-      </para>
-    </sect2>
+      </para></listitem></varlistentry>
 
-    <sect2 id="export-cd"> 
-    <title>Export to CD</title>
+            <varlistentry><term>&app; package export</term>
+    <listitem><para>Exporting to &app; package will create a gzip-compressed tar 
+      archive (also known as tarball) which contains gramps database, all 
+      local media objects, and copies of all external media objects. This is a
+      useful format for moving your database to another machine or for sharing 
+      it with somebody, while retaining all the features provided 
+      by &app;.
+      </para></listitem></varlistentry>
+
+    <varlistentry><term>Export to CD</term>
+    <listitem>
           <para>Exporting to CD will prepare you database directory with all its
       contents to be recorded to the CD. This is done through the 
       <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
@@ -370,38 +399,9 @@
       database directory will show up. To record it onto the CD, click the CD 
       icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu> 
       <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
-      </para> 
-      </sect2>
+      </para></listitem></varlistentry>
 
-    <sect2 id="export-package"> 
-    <title>&app; package export</title>
-
-      <para>Exporting to &app; package will create a gzip-compressed tar 
-      archive (also known as tarball) which contains gramps database, all 
-      local media objects, and copies of all external media objects. This is a
-      useful format for moving your database to another machine or for sharing 
-      it with somebody, while retaining all the features provided 
-      by &app;.
-      </para>
-      </sect2>
-
-    <sect2 id="export-wft"> 
-    <title>Web Family Tree export</title>
-      <para>Exporting to Web Family Tree will create the text file suitable 
-      as an input for the WFT program. Specific options include filter selecton
-      and the ability to restrict data on living people, that is to limit living 
-      people's data to family ties.
-      </para>
-      </sect2>
-
-    <sect2 id="export-gw"> 
-    <title>GeneWeb export</title>
-      <para>Exporting to GeneWeb will save a copy of your data into
-      a popular web genealogy format. To find out more about GeneWeb
-      and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
-       type="http">this site.</ulink>
-      </para>
-      </sect2>
+      </variablelist>
 
       <para>If a media file is not found during export, the following dialog
       will prompt you for the possible actions:</para>
@@ -453,6 +453,31 @@
      </para></listitem>
 
      </itemizedlist>	
+
+
+      </sect2>
+
+    <sect2 id="export-other-formats"> 
+    <title>Export into other formats</title>
+
+      <variablelist>
+            <varlistentry><term>Web Family Tree</term>
+    <listitem>
+      <para>Exporting to Web Family Tree will create the text file suitable 
+      as an input for the WFT program. Specific options include filter selecton
+      and the ability to restrict data on living people, that is to limit living 
+      people's data to family ties.
+      </para></listitem></varlistentry>
+
+            <varlistentry><term>GeneWeb</term>
+    <listitem>
+      <para>Exporting to GeneWeb will save a copy of your data into
+      a popular web genealogy format. To find out more about GeneWeb
+      and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
+       type="http">this site.</ulink>
+      </para></listitem></varlistentry>
+      </variablelist>
+      </sect2>
 
     </sect1>
 
