@@ -4,6 +4,11 @@
 2004-11-16 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateParser.py: Typo.
 
+	* src/DateParser.py: Switch from utf8 strings to unicode.
+	* src/DateDisplay.py: Switch from utf8 strings to unicode.
+	* src/dates/Date_ru.py: Switch from utf8 strings to unicode.
+	* src/dates/Date_fr.py: Switch from utf8 strings to unicode.
+
 2004-11-15 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateDisplay.py: Remove localized displayers.
 	* src/DateParser.py: Remove localized parsers.

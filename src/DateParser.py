@@ -137,10 +137,10 @@ class DateParser:
         }
 
     french_to_int = {
-        'vend\xc3\xa9miaire'   : 1,    'brumaire'   : 2,
-        'frimaire'             : 3,    'niv\xc3\xb4se  ': 4,
-        'pluvi\xc3\xb4se'      : 5,    'vent\xc3\xb4se' : 6,
-        'germinal'             : 7,    'flor\xc3\xa9al' : 8,
+        u'vend\xc3\xa9miaire'   : 1,    'brumaire'   : 2,
+        'frimaire'             : 3,    u'niv\xc3\xb4se  ': 4,
+        u'pluvi\xc3\xb4se'      : 5,    u'vent\xc3\xb4se' : 6,
+        'germinal'             : 7,    u'flor\xc3\xa9al' : 8,
         'prairial'             : 9,    'messidor'   : 10,
         'thermidor'            : 11,   'fructidor'  : 12,
         'extra'                : 13
@@ -239,7 +239,12 @@ class DateParser:
         self._mod_str  = '(' + '|'.join(
             [ key.replace('.','\.') for key in self.modifier_to_int.keys() ]
             ) + ')'
-        self._mon_str  = '(' + '|'.join(self.month_to_int.keys()) + ')'
+        # Need to reverse-sort the keys, so that April matches before Apr does.
+        # Otherwise, 'april 2000' would be matched as 'apr' + garbage ('il 2000')
+        _month_keys = self.month_to_int.keys()
+        _month_keys.sort()
+        _month_keys.reverse()
+        self._mon_str  = '(' + '|'.join(_month_keys) + ')'
         self._jmon_str = '(' + '|'.join(self.hebrew_to_int.keys()) + ')'
         self._fmon_str = '(' + '|'.join(self.french_to_int.keys()) + ')'
         self._pmon_str = '(' + '|'.join(self.persian_to_int.keys()) + ')'
@@ -316,7 +321,7 @@ class DateParser:
                                     self.month_to_int,gregorian_valid)
                              
     def _parse_calendar(self,text,regex1,regex2,mmap,check=None):
-        match = regex1.match(text)
+        match = regex1.match(text.lower())
         if match:
             groups = match.groups()
             if groups[0] == None:
@@ -337,9 +342,10 @@ class DateParser:
                 value = Date.EMPTY
             return value
 
-        match = regex2.match(text)
+        match = regex2.match(text.lower())
         if match:
             groups = match.groups()
+            print groups #[ g.encode('utf8') for g in groups ]
             if groups[1] == None:
                 m = 0
             else:
@@ -420,8 +426,6 @@ class DateParser:
         date.set_text_value(text)
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
-        
-        text = text.encode('utf8')
         
         match = self._cal.match(text)
         if match:

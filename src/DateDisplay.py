@@ -98,9 +98,9 @@ class DateDisplay:
         )
     
     _french = (
-        '',           'Vend\xc3\xa9miaire', 'Brumaire',
-        'Frimaire',   'Niv\xc3\xb4se',      'Pluvi\xc3\xb4se',
-        'Vent\xc3\xb4se', 'Germinal',       'Flor\xc3\xa9al',
+        '',           u'Vend\xc3\xa9miaire', 'Brumaire',
+        'Frimaire',   u'Niv\xc3\xb4se',      u'Pluvi\xc3\xb4se',
+        u'Vent\xc3\xb4se', 'Germinal',       u'Flor\xc3\xa9al',
         'Prairial',   'Messidor',       'Thermidor',
         'Fructidor',  'Extra'
         )
