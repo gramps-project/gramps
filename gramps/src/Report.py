@@ -379,6 +379,7 @@ class ReportDialog:
         """Set up the format frame of the dialog.  This function
         relies on the make_doc_menu() function to do all the hard
         work."""
+        self.topDialog.get_widget("format_frame").show()
         self.format_menu = self.topDialog.get_widget("format")
         self.make_doc_menu()
 
@@ -389,6 +390,7 @@ class ReportDialog:
         the builds a menu of all the available styles for the user to
         choose from."""
         self.style_frame = self.topDialog.get_widget("style_frame")
+        self.style_frame.show()
         self.style_menu = self.topDialog.get_widget("style_menu")
 
         # Build the default style set for this report.
@@ -428,9 +430,8 @@ class ReportDialog:
         if pagecount_map:
             myMenu = utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-        else:
-            self.pagecount_menu.hide()
-            self.pagecount_label.hide()
+            self.pagecount_menu.show()
+            self.pagecount_label.show()
 
     def setup_html_frame(self):
         """Set up the html frame of the dialog.  This sole purpose of
@@ -445,29 +446,29 @@ class ReportDialog:
         this box.  *All* of these items are optional, although the
         generations fields and the filter combo box are used in most
         (but not all) dialog boxes."""
+        self.topDialog.get_widget("options_frame").show()
 
         # Set up the generations spin and page break checkbox
         (use_gen, use_break) = self.get_report_generations()
         self.generations_spinbox = self.topDialog.get_widget("generations")
         self.pagebreak_checkbox = self.topDialog.get_widget("pagebreak")
         if use_gen:
+            self.topDialog.get_widget("gen_label").show()
             self.generations_spinbox.set_value(use_gen)
+            self.generations_spinbox.show()
         else:
-            self.topDialog.get_widget("gen_label").hide()
-            self.generations_spinbox.hide()
             use_break = 0
-        if not use_break:
-            self.pagebreak_checkbox.hide()
+        if use_break:
+            self.pagebreak_checkbox.show()
 
         # Now the filter combo
         self.filter_combo = self.topDialog.get_widget("filter_combo")
         filter_strings = self.get_report_filter_strings()
         if filter_strings:
+            self.topDialog.get_widget("filter_label").show()
             filter_strings.sort()
             self.filter_combo.set_popdown_strings(filter_strings)
-        else:
-            self.topDialog.get_widget("filter_label").hide()
-            self.filter_combo.hide()
+            self.filter_combo.show()
 
         # Now the "extra" option menu
         self.extra_menu_label = self.topDialog.get_widget("extra_menu_label")
@@ -475,12 +476,11 @@ class ReportDialog:
         (label, extra_map, preset) = self.get_report_extra_menu_map()
         if extra_map:
             self.extra_menu_label.set_text(label)
+            self.extra_menu_label.show()
             myMenu = utils.build_string_optmenu(extra_map, preset)
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
-        else:
-            self.extra_menu_label.hide()
-            self.extra_menu.hide()
+            self.extra_menu.show()
 
         # Now the "extra" text box
         self.extra_textbox_label = self.topDialog.get_widget("extra_textbox_label")
@@ -488,10 +488,9 @@ class ReportDialog:
         (label, string) = self.get_report_extra_textbox_string()
         if string:
             self.extra_textbox_label.set_text(label)
+            self.extra_textbox_label.show()
             self.extra_textbox.insert_defaults(string)
-        else:
-            self.extra_textbox_label.hide()
-            self.topDialog.get_widget("extra_scrolledwindow").hide()
+            self.topDialog.get_widget("extra_scrolledwindow").show()
         
     def setup_other_frames(self):
         """Do nothing.  This sole purpose of this function is to give

@@ -169,7 +169,7 @@ class GraphVizDialog(ReportDialog):
     #------------------------------------------------------------------------
     def setup_style_frame(self):
         """The style frame is not used in this dialog."""
-        self.topDialog.get_widget("style_frame").hide()
+        pass
 
     #------------------------------------------------------------------------
     #

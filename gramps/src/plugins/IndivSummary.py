@@ -393,7 +393,7 @@ class IndivSummaryDialog(TextReportDialog):
     #------------------------------------------------------------------------
     def setup_report_options(self):
         """The 'Report Options' frame is not used in this dialog."""
-        self.topDialog.get_widget("options_frame").hide()
+        pass
 
     #------------------------------------------------------------------------
     #
