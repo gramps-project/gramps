@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # Modified September 2002 by Gary Shao
 #
@@ -777,13 +777,14 @@ class StyleSheetList:
                 f.write('underline="%d" ' % font.get_underline())
                 f.write('color="#%02x%02x%02x"/>\n' % font.get_color())
                 f.write('<para ')
-                rm = Utils.gfloat(p.get_right_margin())
-                lm = Utils.gfloat(p.get_left_margin())
-                fi = Utils.gfloat(p.get_first_indent())
-                f.write('rmargin="%.3f" ' % rm)
-                f.write('lmargin="%.3f" ' % lm)
-                f.write('first="%.3f" ' % fi)
-                f.write('pad="%.3f" ' % p.get_padding())
+                rm = float(p.get_right_margin())
+                lm = float(p.get_left_margin())
+                fi = float(p.get_first_indent())
+                pa = float(p.get_padding())
+                f.write('rmargin="%s" ' % Utils.gformat(rm))
+                f.write('lmargin="%s" ' % Utils.gformat(lm))
+                f.write('first="%s" ' % Utils.gformat(fi))
+                f.write('pad="%s" ' % Utils.gformat(pa))
                 f.write('bgcolor="#%02x%02x%02x" ' % p.get_background_color())
                 f.write('level="%d" ' % p.get_header_level())
                 f.write('align="%d" ' % p.get_alignment())

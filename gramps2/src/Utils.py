@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -523,6 +524,12 @@ def set_titles(window,title,t,msg=None):
         window.set_title('%s - GRAMPS' % t)
 
 def gfloat(val):
+    """Converts to floating number, taking care of possible locale differences.
+    
+    Useful for reading float values from text entry fields 
+    while under non-English locale.
+    """
+
     try:
         return float(val)
     except:
@@ -531,6 +538,17 @@ def gfloat(val):
         except:
             return float(val.replace(',','.'))
     return 0.0
+
+def gformat(val):
+    """Performs ("%.3f" % val) formatting with the resulting string always 
+    using dot ('.') as a decimal point.
+    
+    Useful for writing float values into XML when under non-English locale.
+    """
+
+    decimal_point = locale.localeconv()['decimal_point']
+    return_val = "%.3f" % val
+    return return_val.replace(decimal_point,'.')
                   
 #-------------------------------------------------------------------------
 #

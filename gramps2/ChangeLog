@@ -5,6 +5,10 @@
 	consequently, the target filename) -- was confused with family group.
 	* src/StyleEditor.py (save_paragraph): Call gfloat instead of float.
 	* src/TextDoc.py (SheetParser.startElement): Likewise.
+	* src/Utils.py: Provide a locale-aware string formatting conversion
+	into C-locale string (for saving floats in XML)
+	* src/StyleEditor.py (draw): Call locale.str instead of str.
+	* src/TextDoc.py (StyleSheetList.save): Call gformat instead of '%f'.
 
 2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/preferences.glade: Don't immediately show preferences dialog
