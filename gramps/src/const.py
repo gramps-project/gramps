@@ -49,7 +49,7 @@ OpenFailed = "Open Failed"
 #-------------------------------------------------------------------------
 
 if os.environ.has_key('GRAMPSDIR'):
-    rootDir == os.environ['GRAMPSDIR']
+    rootDir = os.environ['GRAMPSDIR']
 else:
     rootDir = "."
 
