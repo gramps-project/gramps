@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
 """
 Provides a BaseDoc based interface to the AbiWord document format.
 """
@@ -237,10 +240,9 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
     def write_note(self,text,format,style_name):
         if format == 1:
-            for line in text.split('\n'):
-                self.start_paragraph(style_name)
-                self.write_text(line)
-                self.end_paragraph()
+            self.start_paragraph(style_name)
+            self.write_text(text)
+            self.end_paragraph()
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
