@@ -226,9 +226,9 @@ class RelCalc:
                 text = secondName + get_prefix(firstRel-1,"niece") + firstName + "."
         else:
             if secondRel > firstRel:
-                text = secondName + cousin(secondRel-1,secondRel-firstRel) + firstName + "."
+                text = secondName + cousin(firstRel-1,secondRel-firstRel) + firstName + "."
             else:
-                text = secondName + cousin(firstRel-1,firstRel-secondRel) + firstName + "."
+                text = secondName + cousin(secondRel-1,firstRel-secondRel) + firstName + "."
 
         text1 = self.glade.get_widget("text1")
         text1.set_point(0)

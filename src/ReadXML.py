@@ -133,7 +133,6 @@ def loadData(database, filename, callback=None):
             f.close()
         except IOError,msg:
             use_gzip = 0
-            f.close()
     else:
         use_gzip = 0
 
