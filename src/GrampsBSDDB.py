@@ -367,6 +367,7 @@ class GrampsBSDDB(GrampsDbBase):
         
         version = self.metadata['version']
         if version < 2:
+            print "Upgrading to DB version 2"
             cursor = self.get_person_cursor()
             data = cursor.first()
             while data:
@@ -391,6 +392,7 @@ class GrampsBSDDB(GrampsDbBase):
                 data = cursor.next()
             cursor.close()
         if version < 3:
+            print "Upgrading to DB version 3"
             cursor = self.get_person_cursor()
             data = cursor.first()
             while data:
