@@ -1032,7 +1032,7 @@ class Url(Persistent):
         return 1
 
 
-class Person(Persistent):
+class Person(SourceNote):
     """Represents an individual person in the gramps database"""
     
     unknown = 2
@@ -1041,7 +1041,7 @@ class Person(Persistent):
 
     def __init__(self,id=""):
         """creates a new Person instance"""
-        
+        SourceNote.__init__(self)
         self.id = id
         self.PrimaryName = None
         self.EventList = []
@@ -1056,7 +1056,6 @@ class Person(Persistent):
         self.addressList = []
         self.attributeList = []
         self.urls = []
-        self.note = None
         self.paf_uid = ""
         self.position = None
         self.ancestor = None
@@ -1362,33 +1361,6 @@ class Person(Persistent):
             return (None,None,None)
         else:
             return self.AltFamilyList[0]
-
-    def setNote(self,text):
-        """sets the note attached to the Person to the passed text"""
-        if self.note == None:
-            self.note = Note()
-        self.note.set(text)
-
-    def getNote(self) :
-        """returns the text of the note attached to the Person"""
-        if self.note == None:
-            return ""
-        else:
-            return self.note.get() 
-
-    def setNoteObj(self,note):
-        """sets the Note instance attached to the Person"""
-        self.note = note
-
-    def getNoteObj(self):
-        """returns the Note instance attached to the Person"""
-        if self.note == None:
-            self.note = Note()
-        return self.note
-
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.note = Note(self.note.get())
 
     def setPosition(self,pos):
         """sets a graphical location pointer for graphic display (x,y)"""
@@ -1706,11 +1678,12 @@ class Witness(Persistent):
     def get_comment(self):
         return self.comment
 
-class Family(Persistent):
+class Family(SourceNote):
     """Represents a family unit in the gramps database"""
 
     def __init__(self):
         """creates a new Family instance"""
+        SourceNote.__init__(self)
         self.Father = None
         self.Mother = None
         self.Children = []
@@ -1720,10 +1693,16 @@ class Family(Persistent):
         self.EventList = []
         self.id = ""
         self.photoList = []
-        self.note = Note()
         self.attributeList = []
         self.position = None
         self.lds_seal = None
+        self.complete = 0
+
+    def setComplete(self,val):
+        self.complete = val
+
+    def getComplete(self):
+        return self.complete
 
     def setLdsSeal(self,ord):
         self.lds_seal = ord
@@ -1757,26 +1736,6 @@ class Family(Persistent):
     def setAttributeList(self,list) :
         """sets the attribute list to the specified list"""
         self.attributeList = list
-
-    def getNote(self):
-        """returns the text of the note attached to the Family"""
-        return self.note.get()
-
-    def setNote(self,text):
-        """sets the note attached to the Family to the passed text"""
-        self.note.set(text)
-
-    def getNoteObj(self):
-        """returns the Note instance attached to the Family"""
-        return self.note
-
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.note = Note(self.note.get())
-
-    def setNoteObj(self,obj):
-        """sets the Note instance attached to the Family"""
-        self.note = obj
 
     def setId(self,id) :
         """sets the gramps ID for the Family"""
