@@ -1,3 +1,21 @@
+Version 0.9.4 -- the "This used to bug me..." release
+* More compliance with GNOME HIG.
+* Fixed style problems for book items. 
+* New Book item: Custom Text.
+* New export plugin: Web Family Tree.
+* GEDCOM import and export fixes.
+* WebPage enchancement: mini-ancestor tree (Daryle C. Lewis).
+* Intelligent guessing of whether the person is alive.
+* Various Merge and Import fixes.
+* More privacy options for GEDCOM export.
+* New types of filters: 
+    (1) iterating over other filters, 
+    (2) specifying number of generations away for ancestors and descendants.
+* Preliminary support for printing copies of reports. 
+* Performance improvements for list views. 
+* Context menus in Family View upon right-click.
+* Fair share of bug fixes.
+
 Version 0.9.3
 * New reports: Ancestors (text), Fan Chart (graphics), and 
   Book (collection of any number of any reports in a single document).

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002  Donald N. Allingham
+# Copyright (C) 2002-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -181,17 +181,18 @@ class IsDescendantOf(Rule):
         if not self.init:
             self.init = 1
             root = db.getPerson(self.list[0])
-            self.init_list(root)
+            self.init_list(root,1)
         return self.map.has_key(p.getId())
 
-    def init_list(self,p):
+    def init_list(self,p,first):
 #        if self.map.has_key(p.getId()) == 1:
 #            loop_error(self.orig,p)
-        self.map[p.getId()] = 1
+        if not first:
+            self.map[p.getId()] = 1
         
         for fam in p.getFamilyList():
             for child in fam.getChildList():
-                self.init_list(child)
+                self.init_list(child,0)
 
 #-------------------------------------------------------------------------
 #
@@ -218,8 +219,86 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
             filter = MatchesFilter(self.list)
             for person in db.getPersonMap ().values ():
                 if filter.apply (db, person):
-                    self.init_list (person)
+                    self.init_list (person, 1)
         return self.map.has_key(p.getId())
+
+#-------------------------------------------------------------------------
+#
+# IsLessThanNthGenerationDescendantOf
+#
+#-------------------------------------------------------------------------
+class IsLessThanNthGenerationDescendantOf(Rule):
+    """Rule that checks for a person that is a descendant of a specified person
+    not more than N generations away"""
+
+    labels = [ _('ID:'), _('Number of generations:') ]
+    
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
+    def name(self):
+        return 'Is a descendant of person not more than N generations away'
+
+    def apply(self,db,p):
+        self.orig = p
+
+        if not self.init:
+            self.init = 1
+            root = db.getPerson(self.list[0])
+            self.init_list(root,0)
+        return self.map.has_key(p.getId())
+
+    def init_list(self,p,gen):
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
+        if gen:
+            self.map[p.getId()] = 1
+            if gen >= int(self.list[1]):
+                return
+
+        for fam in p.getFamilyList():
+            for child in fam.getChildList():
+                self.init_list(child,gen+1)
+
+#-------------------------------------------------------------------------
+#
+# IsMoreThanNthGenerationDescendantOf
+#
+#-------------------------------------------------------------------------
+class IsMoreThanNthGenerationDescendantOf(Rule):
+    """Rule that checks for a person that is a descendant of a specified person
+    at least N generations away"""
+
+    labels = [ _('ID:'), _('Number of generations:') ]
+    
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+
+    def name(self):
+        return 'Is a descendant of person at least N generations away'
+
+    def apply(self,db,p):
+        self.orig = p
+
+        if not self.init:
+            self.init = 1
+            root = db.getPerson(self.list[0])
+            self.init_list(root,0)
+        return self.map.has_key(p.getId())
+
+    def init_list(self,p,gen):
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
+        if gen >= int(self.list[1]):
+            self.map[p.getId()] = 1
+
+        for fam in p.getFamilyList():
+            for child in fam.getChildList():
+                self.init_list(child,gen+1)
 
 #-------------------------------------------------------------------------
 #
@@ -323,13 +402,14 @@ class IsAncestorOf(Rule):
         if not self.init:
             self.init = 1
             root = db.getPerson(self.list[0])
-            self.init_ancestor_list(root)
+            self.init_ancestor_list(root,1)
         return self.map.has_key(p.getId())
 
-    def init_ancestor_list(self,p):
+    def init_ancestor_list(self,p,first):
 #        if self.map.has_key(p.getId()) == 1:
 #            loop_error(self.orig,p)
-        self.map[p.getId()] = 1
+        if not first:
+            self.map[p.getId()] = 1
         
         fam = p.getMainParents()
         if fam:
@@ -337,16 +417,16 @@ class IsAncestorOf(Rule):
             m = fam.getMother()
         
             if f:
-                self.init_ancestor_list(f)
+                self.init_ancestor_list(f,0)
             if m:
-                self.init_ancestor_list(m)
+                self.init_ancestor_list(m,0)
 
 #-------------------------------------------------------------------------
 #
 # IsAncestorOfFilterMatch
 #
 #-------------------------------------------------------------------------
-class IsAncestorOfFilterMatch(Rule):
+class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
@@ -365,8 +445,96 @@ class IsAncestorOfFilterMatch(Rule):
             filter = MatchesFilter(self.list)
             for person in db.getPersonMap ().values ():
                 if filter.apply (db, person):
-                    self.init_ancestor_list (person)
+                    self.init_ancestor_list (person,1)
         return self.map.has_key(p.getId())
+
+#-------------------------------------------------------------------------
+#
+# IsLessThanNthGenerationAncestorOf
+#
+#-------------------------------------------------------------------------
+class IsLessThanNthGenerationAncestorOf(Rule):
+    """Rule that checks for a person that is an ancestor of a specified person
+    not more than N generations away"""
+
+    labels = [ _('ID:'), _('Number of generations:') ]
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+    
+    def name(self):
+        return 'Is an ancestor of person not more than N generations away'
+
+    def apply(self,db,p):
+        self.orig = p
+        if not self.init:
+            self.init = 1
+            root = db.getPerson(self.list[0])
+            self.init_ancestor_list(root,0)
+        return self.map.has_key(p.getId())
+
+    def init_ancestor_list(self,p,gen):
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
+        if gen:
+            self.map[p.getId()] = 1
+            if gen >= int(self.list[1]):
+                return
+        
+        fam = p.getMainParents()
+        if fam:
+            f = fam.getFather()
+            m = fam.getMother()
+        
+            if f:
+                self.init_ancestor_list(f,gen+1)
+            if m:
+                self.init_ancestor_list(m,gen+1)
+
+#-------------------------------------------------------------------------
+#
+# IsMoreThanNthGenerationAncestorOf
+#
+#-------------------------------------------------------------------------
+class IsMoreThanNthGenerationAncestorOf(Rule):
+    """Rule that checks for a person that is an ancestor of a specified person
+    at least N generations away"""
+
+    labels = [ _('ID:'), _('Number of generations:') ]
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.init = 0
+        self.map = {}
+    
+    def name(self):
+        return 'Is an ancestor of person at least N generations away'
+
+    def apply(self,db,p):
+        self.orig = p
+        if not self.init:
+            self.init = 1
+            root = db.getPerson(self.list[0])
+            self.init_ancestor_list(root,0)
+        return self.map.has_key(p.getId())
+
+    def init_ancestor_list(self,p,gen):
+#        if self.map.has_key(p.getId()) == 1:
+#            loop_error(self.orig,p)
+        if gen >= int(self.list[1]):
+            self.map[p.getId()] = 1
+        
+        fam = p.getMainParents()
+        if fam:
+            f = fam.getFather()
+            m = fam.getMother()
+        
+            if f:
+                self.init_ancestor_list(f,gen+1)
+            if m:
+                self.init_ancestor_list(m,gen+1)
 
 #-------------------------------------------------------------------------
 #
@@ -973,9 +1141,17 @@ tasks = {
     _("Is a descendant of")              : IsDescendantOf,
     _("Is a descendant family member of"): IsDescendantFamilyOf,
     _("Is a descendant of filter match") : IsDescendantOfFilterMatch,
+    _("Is a descendant of person not more than N generations away")
+                                         : IsLessThanNthGenerationDescendantOf,
+    _("Is a descendant of person at least N generations away")
+                                         : IsMoreThanNthGenerationDescendantOf,
     _("Is a child of filter match")      : IsChildOfFilterMatch,
     _("Is an ancestor of")               : IsAncestorOf,
     _("Is an ancestor of filter match")  : IsAncestorOfFilterMatch,
+    _("Is an ancestor of person not more than N generations away")
+                                         : IsLessThanNthGenerationAncestorOf,
+    _("Is an ancestor of person at least N generations away")
+                                         : IsMoreThanNthGenerationAncestorOf,
     _("Is a parent of filter match")     : IsParentOfFilterMatch,
     _("Has a common ancestor with")      : HasCommonAncestorWith,
     _("Has a common ancestor with filter match")
