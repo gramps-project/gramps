@@ -1,4 +1,12 @@
 2004-01-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/const.py.in: eliminate zipcmd
+	* src/docgen/OpenSpreadSheet.py: eliminate the need for ZIP, use python
+	zipfile module instead
+	* src/plugins/EventCmp.py (DisplayChart.on_save_clicked): fix rows, double lines
+	no longer used
+	* configure.in: add check for vfs bindings, eliminate the check for
+	swig and zip
+	* gramps.spec.in (Requires): Added gnome-python2-gnomevfs dependency
 	* src/docgen/PdfDoc.py: add the ability to open the document in the
 	default viewer
 	* src/docgen/AbiWord2Doc.py: add the ability to open the document in AbiWord
