@@ -1,7 +1,8 @@
 2003-10-04  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/PeopleView.py: broken out of gramps_main.py
+	* src/PeopleView.py: broken out of gramps_main.py, fixed 
+	add/delete
 	* src/PeopleStore.py: TreeStore wrapper for PeopleView
-	* src/gramps_main.py: people view removed
+	* src/gramps_main.py: people view removed, fixed add/delete
 	* src/RelLib.py: add surname to display info for each person,
 	allows grouping by name
 	* src/Report.py: Change button from Apply to 
