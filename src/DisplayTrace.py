@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2004  Donald N. Allingham
+# Copyright (C) 2002-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import cStringIO
 import traceback
 import sys
 import os
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +45,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-from gettext import gettext as _
 
 _release_files = [
     "/etc/mandrake-release",
@@ -111,6 +111,3 @@ class DisplayTrace:
 
     def close(self,obj):
         self.top.destroy()
-
-
-        
