@@ -80,6 +80,12 @@ class EditPlace:
         self.latitude = self.top_window.get_widget("latitude")
         self.note = self.top_window.get_widget("place_note")
 
+        self.web_list = self.top_window.get_widget("web_list")
+        self.web_url = self.top_window.get_widget("url_addr")
+        self.web_description = self.top_window.get_widget("url_des")
+        self.ulist = place.getUrlList()[:]
+        self.urls_changed = 0
+
         self.title.set_text(place.get_title())
         mloc = place.get_main_location()
         self.city.set_text(mloc.get_city())
@@ -101,7 +107,12 @@ class EditPlace:
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_switch_page" : on_switch_page,
             "on_addphoto_clicked" : on_add_photo_clicked,
+            "on_browse_clicked": on_browse_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_add_url_clicked" : on_add_url_clicked,
+            "on_delete_url_clicked" : on_delete_url_clicked,
+            "on_update_url_clicked" : on_update_url_clicked,
+            "on_web_list_select_row" : on_web_list_select_row,
             "on_apply_clicked" : on_place_apply_clicked
             })
 
@@ -111,6 +122,45 @@ class EditPlace:
         if self.place.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
+
+        self.web_list.set_data(PLACE,self)
+        self.web_list.set_data(INDEX,-1)
+        self.redraw_url_list()
+
+    #-------------------------------------------------------------------------
+    #
+    #
+    #
+    #-------------------------------------------------------------------------
+    def update_urls(self):
+        self.place.setUrlList(self.ulist)
+
+    #---------------------------------------------------------------------
+    #
+    # redraw_url_list - redraws the altername name list for the person
+    #
+    #---------------------------------------------------------------------
+    def redraw_url_list(self):
+        self.web_list.freeze()
+        self.web_list.clear()
+
+	self.web_index = 0
+        for url in self.ulist:
+            self.web_list.append([url.get_path(),url.get_description()])
+            self.web_list.set_row_data(self.web_index,url)
+            self.web_index = self.web_index + 1
+
+        current_row = self.web_list.get_data(INDEX)
+        
+        if self.web_index > 0:
+            if current_row <= 0:
+                current_row = 0
+            elif self.web_index <= current_row:
+                current_row = current_row - 1
+            self.web_list.select_row(current_row,0)
+            self.web_list.moveto(current_row,0)
+        self.web_list.set_data(INDEX,current_row)
+        self.web_list.thaw()
 
     #-------------------------------------------------------------------------
     #
@@ -190,6 +240,10 @@ def on_place_apply_clicked(obj):
         
     if note != edit.place.getNote():
         edit.place.setNote(note)
+        utils.modified()
+
+    edit.update_urls()
+    if edit.urls_changed:
         utils.modified()
 
     utils.destroy_passed_object(edit.top)
@@ -437,3 +491,193 @@ def on_name_changed(obj):
     if os.path.isfile(file):
         image = RelImage.scale_image(file,const.thumbScale)
         edit_person.add_image.load_imlib(image)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_update_url_clicked(obj):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return
+
+    UrlEditor(obj.get_data(PLACE),obj.get_row_data(row))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_delete_url_clicked(obj):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return
+
+    epo = obj.get_data(PLACE)
+    del epo.ulist[row]
+
+    if row > len(epo.ulist)-1:
+        obj.set_data(INDEX,row-1)
+
+    epo.redraw_url_list()
+    utils.modified()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_add_url_clicked(obj):
+    epo = obj.get_data(PLACE)
+    UrlEditor(obj.get_data(PLACE),None)
+
+#-------------------------------------------------------------------------
+#
+# UrlEditor class
+#
+#-------------------------------------------------------------------------
+class UrlEditor:
+
+    def __init__(self,parent,url):
+        self.parent = parent
+        self.url = url
+        self.top = libglade.GladeXML(const.editPersonFile, "url_edit")
+        self.window = self.top.get_widget("url_edit")
+        self.des  = self.top.get_widget("url_des")
+        self.addr = self.top.get_widget("url_addr")
+        self.priv = self.top.get_widget("priv")
+
+        if parent.place:
+            name = _("Internet Address Editor for %s") % parent.place.get_title()
+        else:
+            name = _("Internet Address Editor")
+            
+        self.top.get_widget("urlTitle").set_text(name) 
+
+        if url != None:
+            self.des.set_text(url.get_description())
+            self.addr.set_text(url.get_path())
+            self.priv.set_active(url.getPrivacy())
+
+        self.window.set_data("o",self)
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_url_edit_ok_clicked" : on_url_edit_ok_clicked
+            })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_url_edit_ok_clicked(obj):
+    ee = obj.get_data("o")
+    url = ee.url
+
+    des = ee.des.get_text()
+    addr = ee.addr.get_text()
+    priv = ee.priv.get_active()
+
+    if url == None:
+        url = Url()
+        ee.parent.ulist.append(url)
+        
+    if update_url(url,des,addr,priv):
+        ee.parent.urls_changed = 1
+        
+    ee.parent.redraw_url_list()
+    utils.destroy_passed_object(obj)
+
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_flags(obj):
+    detail = ""
+    if Config.show_detail:
+        if obj.getNote() != "":
+            detail = "N"
+        if obj.getSourceRef().getBase():
+            detail = detail + "S"
+        if obj.getPrivacy():
+            detail = detail + "P"
+    return detail
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_text(obj):
+    if obj.getNote() != "":
+        details = "%s" % _("Note")
+    else:
+        details = ""
+    if obj.getSourceRef().getBase() != None:
+        if details == "":
+            details = _("Source")
+        else:
+            details = "%s, %s" % (details,_("Source"))
+    if obj.getPrivacy() == 1:
+        if details == "":
+            details = _("Private")
+        else:
+            details = "%s, %s" % (details,_("Private"))
+    return details
+
+#-------------------------------------------------------------------------
+#
+# on_name_list_select_row - sets the row object attached to the passed
+# object, and then updates the display with the data corresponding to
+# the row.
+#
+#-------------------------------------------------------------------------
+def on_web_list_select_row(obj,row,b,c):
+    obj.set_data(INDEX,row)
+
+    epo = obj.get_data(PLACE)
+    url = obj.get_row_data(row)
+
+    epo.web_url.set_text(": %s " % url.get_path())
+    epo.web_description.set_text(": %s" % url.get_description())
+
+#-------------------------------------------------------------------------
+#
+# update_attrib
+# 
+# Updates the specified event with the specified date.  Compares against
+# the previous value, so the that modified flag is not set if nothing has
+# actually changed.
+#
+#-------------------------------------------------------------------------
+def update_url(url,des,addr,priv):
+    changed = 0
+        
+    if url.get_path() != addr:
+        url.set_path(addr)
+        changed = 1
+        
+    if url.get_description() != des:
+        url.set_description(des)
+        changed = 1
+
+    if url.getPrivacy() != priv:
+        url.setPrivacy(priv)
+        changed = 1
+
+    return changed
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_browse_clicked(obj):
+    import gnome.url
+
+    path = obj.get()[2:]
+    if path != "":
+        gnome.url.show(path)

@@ -476,14 +476,16 @@ def exportData(database, filename, callback):
                 proplist = photo.getPropertyList()
                 if proplist:
                     for key in proplist.keys():
-                        g.write(' %s="%s"' % (key,proplist[key]))
+                        g.write(' %s="%s"' % (key,fix(proplist[key])))
                 g.write("/>\n")
             if len(place.getUrlList()) > 0:
                 for url in place.getUrlList():
-                    g.write('      <url priv="%d" href="%s"' % \
-                            (url.getPrivacy(),url.get_path()))
+                    g.write('      <url href="%s"' % fix(url.get_path()))
+                    if url.getPrivacy() == 1:
+                        g.write(' priv="1"')
                     if url.get_description() != "":
-                        g.write(' description="' + url.get_description() + '"')
+                        g.write(' description="%s"' % fix(url.get_description()))
+                    g.write('/>\n')
             if place.getNote() != "":
                 writeNote(g,"note",place.getNote(),3)
             dump_source_ref(g,event.getSourceRef(),3)

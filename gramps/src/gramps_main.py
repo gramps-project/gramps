@@ -1413,7 +1413,7 @@ def on_editperson_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_rel_type_changed(obj):
-	
+
     nameList = database.getPersonMap().values()
     nameList.sort(sort.by_last_name)
     spouse_list = obj.get_data("d")

@@ -1023,7 +1023,7 @@
 	      <handler>on_edit_active_person</handler>
 	      <last_modification_time>Fri, 01 Dec 2000 04:16:55 GMT</last_modification_time>
 	    </signal>
-	    <label>Edit Person</label>
+	    <label>Edit/View Person</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -1400,7 +1400,7 @@
 		      <handler>on_edit_sp_clicked</handler>
 		      <last_modification_time>Thu, 12 Jul 2001 23:05:41 GMT</last_modification_time>
 		    </signal>
-		    <label>Edit</label>
+		    <label>Edit/View</label>
 		    <relief>GTK_RELIEF_NORMAL</relief>
 		  </widget>
 
@@ -1687,7 +1687,7 @@
 		    <handler>on_choose_parents_clicked</handler>
 		    <last_modification_time>Thu, 12 Jul 2001 23:24:52 GMT</last_modification_time>
 		  </signal>
-		  <label>Add/Edit</label>
+		  <label>Add/Edit/View</label>
 		  <relief>GTK_RELIEF_NORMAL</relief>
 		</widget>
 
@@ -2785,7 +2785,7 @@
 	      <object>source_list</object>
 	      <last_modification_time>Tue, 29 May 2001 21:15:39 GMT</last_modification_time>
 	    </signal>
-	    <label>Edit Source</label>
+	    <label>Edit/View Source</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -2974,7 +2974,7 @@
 	      <object>place_list</object>
 	      <last_modification_time>Sat, 18 Aug 2001 15:39:59 GMT</last_modification_time>
 	    </signal>
-	    <label>Edit Place</label>
+	    <label>Edit/View Place</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -3078,7 +3078,6 @@
 <widget>
   <class>GtkWindow</class>
   <name>spouseDialog</name>
-  <height>250</height>
   <title>Gramps - Choose Spouse</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_CENTER</position>
@@ -3199,8 +3198,8 @@
       <widget>
 	<class>GtkCList</class>
 	<name>spouseList</name>
-	<width>350</width>
-	<height>400</height>
+	<width>400</width>
+	<height>450</height>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>select_row</name>

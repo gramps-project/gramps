@@ -138,7 +138,7 @@ def by_last_name(first, second) :
     name2 = second.getPrimaryName()
 
     fsn = string.upper(name1.getSurname())
-    ssn = string.upper(name1.getSurname())
+    ssn = string.upper(name2.getSurname())
 
     if first == second :
         ffn = string.upper(name1.getFirstName())
