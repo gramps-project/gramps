@@ -60,7 +60,7 @@ class FtmDescendantReport(Report.Report):
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
-        #self.setup()
+        self.setup()
         self.newpage = newpage
         if output:
             self.standalone = 1
