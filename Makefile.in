@@ -115,6 +115,8 @@ SUBDIRS = src doc example
 EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 
 bin_SCRIPTS = gramps
+
+CLEANFILES = gramps
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -401,6 +403,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-rm -f Makefile $(CONFIG_CLEAN_FILES)

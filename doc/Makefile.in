@@ -116,6 +116,8 @@ man_IN_FILES = gramps.1.in
 man_MANS = $(man_IN_FILES:.1.in=.1)
 
 EXTRA_DIST = $(man_MANS) $(man_IN_FILES) xmldocs.make omf.make
+
+CLEANFILES = $(man_MANS)
 subdir = doc
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
@@ -341,6 +343,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-rm -f Makefile $(CONFIG_CLEAN_FILES)
