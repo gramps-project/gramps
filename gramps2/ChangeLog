@@ -1,3 +1,7 @@
+2003-08-30  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py: Enable context menu for an empty people view. 
+	* src/FamilyView.py: Cleanups for the case of empty database. 
+
 2003-08-29  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DesGraph.py: Change from TextDoc and DrawDoc to BaseDoc.
 	* src/plugins/FanChart.py: Likewise. Enable Book item functionality. 

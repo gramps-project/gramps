@@ -329,6 +329,7 @@ class Gramps:
         self.person_tree = self.pl_page[0]
         self.person_list = self.pl_page[0].tree
         self.person_model = self.pl_page[0].model
+        self.person_list.connect('button-press-event',self.on_plist_button_press)        
         
         self.default_list = self.pl_page[-1]
 
@@ -628,6 +629,7 @@ class Gramps:
         
         back_sensitivity = self.hindex > 0 
         fwd_sensitivity = self.hindex + 1 < len(self.history)
+        sel_sensitivity = 1
         entries = [
             (gtk.STOCK_GO_BACK,self.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.fwd_clicked,fwd_sensitivity),
@@ -635,8 +637,8 @@ class Gramps:
             (_("Add Bookmark"),self.on_add_bookmark_activate,1),
             (None,None,0),
             (gtk.STOCK_ADD, self.add_button_clicked,1),
-            (gtk.STOCK_REMOVE, self.remove_button_clicked,1),
-            (_("Edit"), self.edit_button_clicked,1),
+            (gtk.STOCK_REMOVE, self.remove_button_clicked,sel_sensitivity),
+            (_("Edit"), self.edit_button_clicked,sel_sensitivity),
         ]
 
         menu = gtk.Menu()

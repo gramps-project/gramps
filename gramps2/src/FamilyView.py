@@ -188,7 +188,7 @@ class FamilyView:
     def edit_active_person(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.person)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3 and self.person:
             self.build_ap_menu()
 
     def build_ap_menu(self):
@@ -865,6 +865,8 @@ class FamilyView:
         self.parent_editor(self.selected_spouse,self.sp_selection)
 
     def edit_ap_parents(self,obj,event):
+        if self.person == None:
+            return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.person,self.ap_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
@@ -884,7 +886,7 @@ class FamilyView:
     def edit_sp_parents(self,obj,event):
         if self.selected_spouse == None:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-                self.build_sp_parents_nosel_menu()
+                self.build_nav_menu()
             return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
