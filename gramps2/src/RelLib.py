@@ -2984,17 +2984,20 @@ class GrampsDB:
         else:
             return None
 
-    def try_to_find_person_from_gramps_id(self,val):
+    def find_person_from_gramps_id(self,val,trans):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
 
+        person = Person()
         data = self.idtrans.get(str(val))
         if data:
-            person = Person()
             person.unserialize(cPickle.loads(data))
-            return person
         else:
-            return None
+            intid = Utils.create_id()
+            person.set_id(intid)
+            person.set_gramps_id(val)
+            self.add_person_as(person,trans)
+        return person
 
     def find_person_from_id(self,val,trans):
         """finds a Person in the database from the passed gramps' ID.

@@ -228,9 +228,9 @@ class GedcomParser:
 
         self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(file)))
     
-        self.trans = string.maketrans('','')
-        self.delc = self.trans[0:31]
-        self.trans2 = self.trans[0:128] + ('?' * 128)
+        self.transtable = string.maketrans('','')
+        self.delc = self.transtable[0:31]
+        self.transtable2 = self.transtable[0:128] + ('?' * 128)
         
         self.window = window
         if window:
@@ -334,14 +334,14 @@ class GedcomParser:
         if self.backoff == 0:
             next_line = self.f.readline()
             try:
-                self.text = string.translate(next_line.strip(),self.trans,self.delc)
+                self.text = string.translate(next_line.strip(),self.transtable,self.delc)
             except:
                 self.text = next_line.strip()
 
             try:
                 self.text = self.cnv(self.text)
             except:
-                self.text = string.translate(self.text,self.trans2)
+                self.text = string.translate(self.text,self.transtable2)
             
             self.index += 1
             l = string.split(self.text, None, 2)
@@ -552,7 +552,7 @@ class GedcomParser:
             return self.idswap[id]
 
     def find_or_create_person(self,id):        
-        person = self.db.try_to_find_person_from_gramps_id(self.map_gid(id))
+        person = self.db.find_person_from_gramps_id(self.map_gid(id),self.trans)
         return person
 
     def parse_cause(self,event,level):
