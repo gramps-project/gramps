@@ -232,7 +232,7 @@ def on_writing_extensions_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_remove_child_clicked(obj):
-    if not active_family or not active_child:
+    if not active_family or not active_child or not active_person:
         return
 
     active_family.removeChild(active_child)
@@ -265,16 +265,20 @@ def delete_family_from(person):
 def on_add_sp_clicked(obj):
     """Add a new spouse to the current person"""
     import AddSpouse
-    AddSpouse.AddSpouse(database,active_person,load_family,redisplay_person_list)
+    if active_person:
+        AddSpouse.AddSpouse(database,active_person,load_family,redisplay_person_list)
 
 def on_edit_sp_clicked(obj):
     """Edit the marriage information for the current family"""
-    Marriage.Marriage(active_family,database)
+    if active_person:
+        Marriage.Marriage(active_family,database)
 
 def on_delete_sp_clicked(obj):
     """Delete the currently selected spouse from the family"""
     
-    if active_person == active_family.getFather():
+    if active_person == None:
+        return
+    elif active_person == active_family.getFather():
         person = active_family.getMother()
         active_family.setMother(None)
     else:
@@ -340,12 +344,14 @@ def on_fv_prev_clicked(obj):
 def on_add_child_clicked(obj):
     """Select an existing child to add to the active family"""
     import SelectChild
-    SelectChild.SelectChild(database,active_family,active_person,load_family)
+    if active_person:
+        SelectChild.SelectChild(database,active_family,active_person,load_family)
 
 def on_add_new_child_clicked(obj):
     """Create a new child to add to the existing family"""
     import SelectChild
-    SelectChild.NewChild(database,active_family,active_person,update_after_newchild)
+    if active_person:
+        SelectChild.NewChild(database,active_family,active_person,update_after_newchild)
 
 
 #-------------------------------------------------------------------------
@@ -355,7 +361,8 @@ def on_add_new_child_clicked(obj):
 #-------------------------------------------------------------------------
 def on_choose_parents_clicked(obj):
     import ChooseParents
-    ChooseParents.ChooseParents(database,active_person,active_parents,load_family)
+    if active_person:
+        ChooseParents.ChooseParents(database,active_person,active_parents,load_family)
     
 #-------------------------------------------------------------------------
 #
@@ -371,7 +378,7 @@ def new_database_response(val):
     """Clear out the database if permission was granted"""
     global active_person, active_father
     global active_family, active_mother
-    global active_child
+    global active_child, active_spouse
     global id2col,alt2col,person_list
 
     if val == 1:
@@ -390,6 +397,7 @@ def new_database_response(val):
     active_family = None
     active_mother = None
     active_child  = None
+    active_spouse = None
     id2col        = {}
     alt2col       = {}
 
@@ -1291,32 +1299,26 @@ def display_comment_box(filename):
 def on_person_list1_activate(obj):
     """Switches to the person list view"""
     notebook.set_page(0)
-    merge_button.show()
 
 def on_family1_activate(obj):
     """Switches to the family view"""
     notebook.set_page(1)
-    merge_button.hide()
 
 def on_pedegree1_activate(obj):
     """Switches to the pedigree view"""
     notebook.set_page(2)
-    merge_button.hide()
 
 def on_sources_activate(obj):
     """Switches to the sources view"""
     notebook.set_page(3)
-    merge_button.hide()
 
 def on_places_activate(obj):
     """Switches to the places view"""
     notebook.set_page(4)
-    merge_button.show()
 
 def on_media_activate(obj):
     """Switches to the media view"""
     notebook.set_page(5)
-    merge_button.hide()
 
 #-------------------------------------------------------------------------
 #
@@ -1324,19 +1326,23 @@ def on_media_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_notebook1_switch_page(obj,junk,page):
-    if not active_person:
-        return
     if page == 0:
         goto_active_person()
+        merge_button.show()
     elif page == 1:
+        merge_button.hide()
         load_family()
     elif page == 2:
+        merge_button.hide()
         load_canvas()
     elif page == 3:
+        merge_button.hide()
         load_sources()
     elif page == 4:
+        merge_button.show()
         load_places()
     elif page == 5:
+        merge_button.hide()
         load_media()
 
 #-------------------------------------------------------------------------
@@ -1435,6 +1441,13 @@ def load_media():
     if index > 0:
         media_list.select_row(current_row,0)
         media_list.moveto(current_row)
+    else:
+        mid.set_text("")
+        mtype.set_text("")
+        mdesc.set_text("")
+        mpath.set_text("")
+        mdetails.set_text("")
+        preview.load_imlib(const.empty_image)
 
     media_list.thaw()
 
@@ -2236,6 +2249,10 @@ canvas_items = []
 def load_canvas():
     global canvas_items 
     
+    root = canvas.root()
+
+    for i in canvas_items:
+        i.destroy()
     if active_person == None:
         return
 
@@ -2244,10 +2261,6 @@ def load_canvas():
 
     cx1,cy1,cx2,cy2 = canvas.get_allocation()
     canvas.set_scroll_region(cx1,cy1,cx2,cy2)
-    root = canvas.root()
-
-    for i in canvas_items:
-        i.destroy()
         
     style = canvas['style']
     font = style.font

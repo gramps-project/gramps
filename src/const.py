@@ -20,6 +20,7 @@
 
 import os
 import intl
+import GdkImlib
 
 _ = intl.gettext
 
@@ -504,3 +505,12 @@ familyAttributes = initialize_family_attribute_list()
 familyRelations = initialize_family_relation_list()
 places = []
 surnames = []
+
+xpm_data = [
+    '/* XPM */',
+    'static char * foo_xpm[] = {',
+    '"1 1 1 1"',
+    '" 	c None"',
+    '" "};']
+
+empty_image = GdkImlib.create_image_from_xpm(xpm_data)
