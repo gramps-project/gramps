@@ -1164,18 +1164,18 @@
 
 	      <widget>
 		<class>GnomeIconList</class>
-		<name>photo_list</name>
+		<name>photolist</name>
 		<can_focus>True</can_focus>
 		<signal>
 		  <name>select_icon</name>
 		  <handler>on_photolist_select_icon</handler>
-		  <object>sourceEditor</object>
+		  <object>placeEditor</object>
 		  <last_modification_time>Thu, 31 May 2001 14:39:53 GMT</last_modification_time>
 		</signal>
 		<signal>
 		  <name>button_press_event</name>
 		  <handler>on_photolist_button_press_event</handler>
-		  <object>sourceEditor</object>
+		  <object>placeEditor</object>
 		  <last_modification_time>Thu, 31 May 2001 14:40:04 GMT</last_modification_time>
 		</signal>
 		<selection_mode>GTK_SELECTION_SINGLE</selection_mode>

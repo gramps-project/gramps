@@ -18,20 +18,28 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""interface for opening a find person dialog for gramps
+"""
+
+__author__ = 'Don Allingham'
+
 import libglade
 import const
 import utils
 import string
 
-OBJECT = "o"
+_OBJECT = "o"
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 class Find:
+    """Opens find person dialog for gramps"""
+    
     def __init__(self,clist,task):
+        """Opens a dialog box instance that allows users to
+        search for a person.
+
+        clist - GtkCList containing the people information
+        task - function to call to change the active person"""
+        
         self.clist = clist
         self.task = task
         self.xml = libglade.GladeXML(const.gladeFile,"find")
@@ -41,10 +49,11 @@ class Find:
             "on_prev_clicked" : on_prev_clicked,
             })
         self.top = self.xml.get_widget("find")
-        self.top.set_data(OBJECT,self)
+        self.top.set_data(_OBJECT,self)
         self.entry = self.xml.get_widget("entry1")
 
     def find_next(self):
+        """Advances to the next person that matches the dialog text"""
         text = self.entry.get_text()
         row = self.clist.selection[0]
         if row == None or text == "":
@@ -62,6 +71,7 @@ class Find:
             row = row + 1
 
     def find_prev(self):
+        """Advances to the previous person that matches the dialog text"""
         text = self.entry.get_text()
         row = self.clist.selection[0]
         if row == None or text == "":
@@ -77,20 +87,12 @@ class Find:
                     return
             row = row - 1
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_next_clicked(obj):
-    f = obj.get_data(OBJECT)
-    f.find_next()
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
+
+def on_next_clicked(obj):
+    """Callback for dialog box that causes the next person to be found"""
+    obj.get_data(_OBJECT).find_next()
+
 def on_prev_clicked(obj):
-    f = obj.get_data(OBJECT)
-    f.find_prev()
+    """Callback for dialog box that causes the previous person to be found"""
+    obj.get_data(_OBJECT).find_prev()

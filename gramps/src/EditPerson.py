@@ -51,6 +51,8 @@ import Sources
 
 _ = intl.gettext
 
+_DEFHTTP = "http://gramps.sourceforge.net"
+
 #-------------------------------------------------------------------------
 #
 # Constants - quite frequently, data needs to be attached to a widget.
@@ -301,6 +303,7 @@ class EditPerson:
         else:
             self.web_url.set_sensitive(0)
             self.web_url.set_label("")
+            self.web_url.set_url(_DEFHTTP)
             self.web_description.set_text("")
 
     #---------------------------------------------------------------------
@@ -565,10 +568,19 @@ def on_web_list_select_row(obj,row,b,c):
     epo = obj.get_data(EDITPERSON)
     url = obj.get_row_data(row)
 
-    epo.web_url.set_label(url.get_path())
-    epo.web_url.set_url(url.get_path())
-    epo.web_url.set_sensitive(0)
-    epo.web_description.set_text(url.get_description())
+    if url == None:
+        epo.web_url.set_label("")
+        epo.web_url.set_url(_DEFHTTP)
+        epo.web_url.set_sensitive(0)
+        epo.web_description.set_text("")
+    else:
+        path = url.get_path()
+        if path == "":
+            path = _DEFHTTP
+        epo.web_url.set_label(path)
+        epo.web_url.set_url(path)
+        epo.web_url.set_sensitive(1)
+        epo.web_description.set_text(url.get_description())
 
 #-------------------------------------------------------------------------
 #
