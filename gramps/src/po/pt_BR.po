@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Fri Mar 15 07:51:16 2002\n"
-"PO-Revision-Date: 2002-01-30 19:03 EST5EDT\n"
+"POT-Creation-Date: Wed May  1 16:53:26 2002\n"
+"PO-Revision-Date: 2002-05-06 18:03 EST5EDT\n"
 "Last-Translator: Marcos Bedinelli\n"
 "Language-Team: Brazilian-Portuguese\n"
 "MIME-Version: 1.0\n"
@@ -16,28 +16,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 # glade.c:2071
-#: AddMedia.py:101
+#: AddMedia.py:105
 msgid "%s is not a valid file name or does not exist."
 msgstr "%s não é um nome de arquivo válido, ou não existe."
 
 # glade.c:2073
-#: AddSpouse.py:99
+#: AddSpouse.py:88 AddSpouse.py:234
 msgid "Choose Spouse/Partner of %s"
 msgstr "Escolhe o Cônjuge/Parceiro(a) de %s"
 
 # glade.c:2074 glade.c:2188 glade.c:2193 glade.c:2596 glade.c:2597
-#: AddSpouse.py:110 const.py:391 const.py:399 plugins/FamilyGroup.py:288
-#: plugins/FamilyGroup.py:290 plugins/test.py:288 plugins/test.py:290
+#: AddSpouse.py:101 AddSpouse.py:245 const.py:398 const.py:406
+#: plugins/FamilyGroup.py:288 plugins/FamilyGroup.py:290
 msgid "Married"
 msgstr "Casados"
 
 # glade.c:2075 glade.c:2190 glade.c:2195
-#: AddSpouse.py:194 const.py:393 const.py:401
+#: AddSpouse.py:179 AddSpouse.py:313 const.py:400 const.py:408
 msgid "Partners"
 msgstr "Parceiros(as)"
 
 # glade.c:2072
-#: AddrEdit.py:77
+#: AddrEdit.py:78
 msgid "Address Editor for %s"
 msgstr "Editor de Endereço para %s"
 
@@ -47,933 +47,859 @@ msgid "Attribute Editor for %s"
 msgstr "Editor de Atributos para %s"
 
 # glade.c:653
-#: Bookmarks.py:92 Bookmarks.py:96
+#: Bookmarks.py:90 Bookmarks.py:94
 msgid "Edit Bookmarks"
 msgstr "Edita Marcadores (Bookmarks)"
 
-#: Bookmarks.py:108
+#: Bookmarks.py:106
 msgid "Up"
 msgstr "Acima"
 
-#: Bookmarks.py:109
+#: Bookmarks.py:107
 msgid "Down"
 msgstr "Abaixo"
 
 # glade.c:512
-#: Bookmarks.py:110 EditPerson.glade:1958 EditPerson.glade:2647
-#: EditPerson.glade:3075 EditPerson.glade:3893 EditPerson.glade:4488
-#: gramps.glade:1724 gramps.glade:2011 imagesel.glade:1285 imagesel.glade:2286
+#: Bookmarks.py:108 EditPerson.glade:2084 EditPerson.glade:2780
+#: EditPerson.glade:3215 EditPerson.glade:4040 EditPerson.glade:4642
+#: gramps.glade:1757 gramps.glade:2253 imagesel.glade:1285 imagesel.glade:2286
 #: marriage.glade:938 marriage.glade:1349 places.glade:1216 places.glade:1721
-#: srcsel.glade:858 styles.glade:247
+#: rule.glade:456 rule.glade:854 srcsel.glade:858 styles.glade:247
 msgid "Delete"
 msgstr "Apaga"
 
 # glade.c:298 glade.c:2077 glade.c:2078 glade.c:2079 glade.c:2080
 # glade.c:2127 glade.c:2304 glade.c:2310 glade.c:2444 glade.c:2445
 # glade.c:2449 glade.c:2450 glade.c:2584 glade.c:2591
-#: ChooseParents.py:82 ChooseParents.py:83 ChooseParents.py:91
-#: ChooseParents.py:92 EditPerson.glade:158 SelectChild.py:101
-#: SelectChild.py:102 SelectChild.py:274 SelectChild.py:275 const.py:114
-#: gramps.glade:4991 gramps.glade:5011 gramps.glade:5186 gramps.glade:5283
-#: gramps.glade:5570 gramps.glade:5591 gramps.glade:5635 gramps.glade:5665
-#: gramps.glade:6570 gramps.glade:6600 gramps.glade:6617 gramps.glade:6647
-#: gramps_main.py:1370 gramps_main.py:1532 plugins/EventCmp.py:474
-#: plugins/FamilyGroup.py:138 plugins/test.py:138
+#: ChooseParents.py:97 ChooseParents.py:98 EditPerson.glade:161
+#: SelectChild.py:101 SelectChild.py:102 SelectChild.py:274 SelectChild.py:275
+#: const.py:121 gramps.glade:5081 gramps.glade:5101 gramps.glade:5240
+#: gramps.glade:5369 gramps.glade:5656 gramps.glade:5677 gramps.glade:5721
+#: gramps.glade:5751 gramps.glade:6698 gramps.glade:6728 gramps.glade:6745
+#: gramps.glade:6775 plugins/EventCmp.py:288 plugins/FamilyGroup.py:138
+#: plugins/GraphViz.py:320 plugins/GraphViz.py:330
 msgid "Birth"
 msgstr "Nascimento"
 
 # glade.c:2081
-#: ChooseParents.py:105
+#: ChooseParents.py:117
 msgid "Choose the Parents of %s"
 msgstr "Escolhe os Pais de %s"
 
 # glade.c:2082 glade.c:2083 glade.c:2305 glade.c:2306
-#: ChooseParents.py:158 ChooseParents.py:159 gramps_main.py:1455
-#: gramps_main.py:1456
+#: ChooseParents.py:177 ChooseParents.py:178 gramps_main.py:1588
+#: gramps_main.py:1589
 msgid "Parent"
 msgstr "Genitor"
 
 # glade.c:1226 glade.c:2084 glade.c:2308 glade.c:2594 glade.c:2635
 # glade.c:2777 glade.c:2779
-#: ChooseParents.py:161 gramps.glade:1866 gramps.glade:5040
-#: gramps_main.py:1459 mergedata.glade:518 mergedata.glade:1180
-#: plugins/FamilyGroup.py:197 plugins/IndivSummary.py:283
-#: plugins/WebPage.py:245 plugins/WebPage.py:248 plugins/test.py:197
+#: ChooseParents.py:180 gramps.glade:1899 gramps.glade:5112
+#: gramps_main.py:1592 mergedata.glade:518 mergedata.glade:1180
+#: plugins/FamilyGroup.py:197 plugins/IndivComplete.py:198
+#: plugins/IndivComplete.py:200 plugins/IndivComplete.py:411
+#: plugins/IndivSummary.py:283 plugins/WebPage.py:246 plugins/WebPage.py:249
 msgid "Mother"
 msgstr "Mãe"
 
 # glade.c:788 glade.c:2085 glade.c:2307 glade.c:2593 glade.c:2634
 # glade.c:2776 glade.c:2778
-#: ChooseParents.py:162 gramps.glade:1775 gramps.glade:4842
-#: gramps_main.py:1458 mergedata.glade:766 mergedata.glade:1478
-#: plugins/FamilyGroup.py:184 plugins/IndivSummary.py:269
-#: plugins/WebPage.py:244 plugins/WebPage.py:247 plugins/test.py:184
+#: ChooseParents.py:181 gramps.glade:1808 gramps.glade:4952
+#: gramps_main.py:1591 mergedata.glade:766 mergedata.glade:1478
+#: plugins/FamilyGroup.py:184 plugins/IndivComplete.py:190
+#: plugins/IndivComplete.py:192 plugins/IndivComplete.py:406
+#: plugins/IndivSummary.py:269 plugins/WebPage.py:245 plugins/WebPage.py:248
 msgid "Father"
 msgstr "Pai"
 
 # glade.c:2199
-#: Date.py:75
+#: Date.py:85
 msgid "April"
 msgstr "Abril"
 
 # glade.c:2199
-#: Date.py:75
+#: Date.py:85
 msgid "February"
 msgstr "Fevereiro"
 
 # glade.c:2199
-#: Date.py:75
+#: Date.py:85
 msgid "January"
 msgstr "Janeiro"
 
 # glade.c:2199
-#: Date.py:75
+#: Date.py:85
 msgid "March"
 msgstr "Março"
 
 # glade.c:2200
-#: Date.py:76
+#: Date.py:86
 msgid "August"
 msgstr "Agosto"
 
 # glade.c:2200
-#: Date.py:76
+#: Date.py:86
 msgid "July"
 msgstr "Julho"
 
 # glade.c:2200
-#: Date.py:76
+#: Date.py:86
 msgid "June"
 msgstr "Junho"
 
 # glade.c:2200
-#: Date.py:76
+#: Date.py:86
 msgid "May"
 msgstr "Maio"
 
 # glade.c:2201
-#: Date.py:77
+#: Date.py:87
 msgid "December"
 msgstr "Dezembro"
 
 # glade.c:2201
-#: Date.py:77
+#: Date.py:87
 msgid "November"
 msgstr "Novembro"
 
 # glade.c:2201
-#: Date.py:77
+#: Date.py:87
 msgid "October"
 msgstr "Outubro"
 
 # glade.c:2201
-#: Date.py:77
+#: Date.py:87
 msgid "September"
 msgstr "Setembro"
 
 # glade.c:2202
-#: Date.py:108
-msgid "(from|between|bet|bet."
-msgstr "(de|entre|ent|ent."
+#: Date.py:116
+msgid "(from|between|bet|bet.)"
+msgstr "(de|entre|ent|ent.)"
 
 # glade.c:2203
-#: Date.py:109
-msgid "(and|to|-"
-msgstr "(e|para|-"
+#: Date.py:117
+msgid "(and|to|-)"
+msgstr "(e|para|-)"
 
 # glade.c:2204 glade.c:2208 glade.c:2209
-#: Date.py:242 Date.py:268 Date.py:281
+#: Date.py:254 Date.py:280 Date.py:293
 msgid "from"
 msgstr "de"
 
 # glade.c:2062 glade.c:2204 glade.c:2208 glade.c:2209
-#: Date.py:242 Date.py:268 Date.py:281 plugins/changetype.glade:152
+#: Date.py:254 Date.py:280 Date.py:293 plugins/changetype.glade:152
 msgid "to"
 msgstr "para"
 
 # glade.c:1050 glade.c:2205 glade.c:2272
-#: Date.py:251 EditPerson.glade:6437 EventEdit.py:135 dialog.glade:501
+#: Date.py:263 EventEdit.py:137 dialog.glade:512 dialog.glade:1889
 msgid "Julian"
 msgstr "Juliano"
 
 # glade.c:993 glade.c:2206 glade.c:2272
-#: Date.py:253 EditPerson.glade:6437 EventEdit.py:135 dialog.glade:501
+#: Date.py:265 EventEdit.py:137 dialog.glade:512 dialog.glade:1889
 msgid "Hebrew"
 msgstr "Hebreu"
 
 # glade.c:828 glade.c:2207 glade.c:2272
-#: Date.py:255 EditPerson.glade:6437 dialog.glade:501
+#: Date.py:267 dialog.glade:512 dialog.glade:1889
 msgid "French"
 msgstr "Francês"
 
 # glade.c:2210 glade.c:2218 glade.c:2226
-#: Date.py:336 Date.py:353 Date.py:514
+#: Date.py:348 Date.py:365 Date.py:526
 msgid "about"
 msgstr "sobre"
 
 # glade.c:2210 glade.c:2229
-#: Date.py:336 Date.py:543
+#: Date.py:348 Date.py:555
 msgid "abt"
 msgstr "sbr"
 
 # glade.c:2211
-#: Date.py:337
+#: Date.py:349
 msgid "abt."
 msgstr "sbr."
 
 # glade.c:2211
-#: Date.py:337
+#: Date.py:349
 msgid "est"
 msgstr "est"
 
 # glade.c:2212
-#: Date.py:338
+#: Date.py:350
 msgid "est."
 msgstr "est."
 
 # glade.c:2212 glade.c:2220
-#: Date.py:338 Date.py:355
+#: Date.py:350 Date.py:367
 msgid "circa"
 msgstr "aproximadamente"
 
 # glade.c:2213 glade.c:2221
-#: Date.py:339 Date.py:356
+#: Date.py:351 Date.py:368
 msgid "around"
 msgstr "cerca de"
 
 # glade.c:2213 glade.c:2222 glade.c:2227 glade.c:2230
-#: Date.py:339 Date.py:357 Date.py:516 Date.py:545
+#: Date.py:351 Date.py:369 Date.py:528 Date.py:557
 msgid "before"
 msgstr "antes de"
 
 # glade.c:2214
-#: Date.py:340
+#: Date.py:352
 msgid "bef"
 msgstr "ant"
 
 # glade.c:2214
-#: Date.py:340
+#: Date.py:352
 msgid "bef."
 msgstr "ant."
 
 # glade.c:2215
-#: Date.py:341
+#: Date.py:353
 msgid "aft."
 msgstr "dep."
 
 # glade.c:2215 glade.c:2223 glade.c:2228 glade.c:2231
-#: Date.py:341 Date.py:358 Date.py:518 Date.py:547
+#: Date.py:353 Date.py:370 Date.py:530 Date.py:559
 msgid "after"
 msgstr "depois de"
 
 # glade.c:2216
-#: Date.py:342
+#: Date.py:354
 msgid "aft"
 msgstr "dep"
 
 # glade.c:2217
-#: Date.py:352
+#: Date.py:364
 msgid "abt\\.?"
 msgstr "sbr\\.?"
 
 # glade.c:2219
-#: Date.py:354
+#: Date.py:366
 msgid "est\\.?"
 msgstr "est\\.?"
 
 # glade.c:2224
-#: Date.py:359
+#: Date.py:371
 msgid "aft\\.?"
 msgstr "dep\\.?"
 
 # glade.c:2225
-#: Date.py:360
+#: Date.py:372
 msgid "bef\\.?"
 msgstr "ant\\.?"
 
 # glade.c:2232 glade.c:2235 glade.c:2238 glade.c:2241 glade.c:2244
-#: Date.py:573 Date.py:601 Date.py:628 Date.py:657 Date.py:696
+#: Date.py:585 Date.py:613 Date.py:640 Date.py:669 Date.py:708
 msgid "ABOUT"
 msgstr "CERCA DE"
 
 # glade.c:2233 glade.c:2236 glade.c:2239 glade.c:2242 glade.c:2245
-#: Date.py:575 Date.py:603 Date.py:630 Date.py:660 Date.py:698
+#: Date.py:587 Date.py:615 Date.py:642 Date.py:672 Date.py:710
 msgid "BEFORE"
 msgstr "ANTES DE"
 
 # glade.c:2234 glade.c:2237 glade.c:2240 glade.c:2243 glade.c:2246
-#: Date.py:577 Date.py:605 Date.py:632 Date.py:662 Date.py:700
+#: Date.py:589 Date.py:617 Date.py:644 Date.py:674 Date.py:712
 msgid "AFTER"
 msgstr "APÓS"
 
 # glade.c:2284 glade.c:2302 glade.c:2303 glade.c:2315
-#: DbPrompter.py:78 gramps_main.py:673 gramps_main.py:1182 gramps_main.py:1193
+#: DbPrompter.py:87 gramps_main.py:758 gramps_main.py:1271 gramps_main.py:1283
 msgid "No Comment Provided"
 msgstr "Nenhum Comentário Provido"
 
 # glade.c:668
-#: EditPerson.glade:24 gramps.glade:6843
+#: EditPerson.glade:27
 msgid "Edit Person - GRAMPS"
 msgstr "Edita Pessoa - GRAMPS"
 
 # glade.c:126
-#: EditPerson.glade:66
+#: EditPerson.glade:69
 msgid "Accept changes and close dialog"
 msgstr "Aceita as modificações e fecha a janela"
 
 # glade.c:1252
-#: EditPerson.glade:97
+#: EditPerson.glade:100
 msgid "New Person"
 msgstr "Nova Pessoa"
 
 # glade.c:1683
-#: EditPerson.glade:114
+#: EditPerson.glade:117
 msgid "Select information source"
 msgstr "Seleciona a fonte de informação"
 
-# glade.c:106
-#: EditPerson.glade:188 EditPerson.glade:214 EditPerson.glade:439
-#: EditPerson.glade:465 EditPerson.glade:1237 EditPerson.glade:1263
-#: EditPerson.glade:1577 EditPerson.glade:1603 EditPerson.glade:1629
-#: EditPerson.glade:1655 EditPerson.glade:1681 EditPerson.glade:2238
-#: EditPerson.glade:2264 EditPerson.glade:2290 EditPerson.glade:2316
-#: EditPerson.glade:2368 EditPerson.glade:2824 EditPerson.glade:2850
-#: EditPerson.glade:3423 EditPerson.glade:3449 EditPerson.glade:3475
-#: EditPerson.glade:3501 EditPerson.glade:3527 EditPerson.glade:3553
-#: EditPerson.glade:3579 EditPerson.glade:4250 EditPerson.glade:4276
-#: gramps.glade:3482 gramps.glade:3508 gramps.glade:3534 gramps.glade:3586
-#: gramps.glade:3820 imagesel.glade:534 imagesel.glade:639 imagesel.glade:691
-#: imagesel.glade:818 imagesel.glade:1037 imagesel.glade:1063
-#: imagesel.glade:1533 imagesel.glade:1611 imagesel.glade:1689
-#: imagesel.glade:1782 imagesel.glade:2037 imagesel.glade:2063
-#: marriage.glade:557 marriage.glade:583 marriage.glade:609 marriage.glade:635
-#: marriage.glade:687 marriage.glade:1103 marriage.glade:1129 places.glade:871
-#: places.glade:897 places.glade:923 places.glade:949 places.glade:1027
-#: places.glade:1557 places.glade:1583
-msgid ":"
-msgstr ":"
-
 # glade.c:484
-#: EditPerson.glade:240 EditPerson.glade:517 EditPerson.glade:2030
-#: EditPerson.glade:2551 EditPerson.glade:3215 EditPerson.glade:3797
-#: EditPerson.glade:4540 EditPerson.glade:4812 EditPerson.glade:5084
-#: EditPerson.glade:6003 dialog.glade:168 filters/After.py:57
+#: EditPerson.glade:243 EditPerson.glade:539 EditPerson.glade:2156
+#: EditPerson.glade:2682 EditPerson.glade:3355 EditPerson.glade:3942
+#: EditPerson.glade:4694 EditPerson.glade:4966 EditPerson.glade:5238
+#: GenericFilter.py:237 GenericFilter.py:275 GenericFilter.py:364
+#: GenericFilter.py:396 dialog.glade:168 dialog.glade:1445 filters/After.py:57
 #: filters/Before.py:57 marriage.glade:349 marriage.glade:843
 #: marriage.glade:1764 revision.glade:351 srcsel.glade:507
 msgid "Date"
 msgstr "Data"
 
 # glade.c:1434 glade.c:2326
-#: EditPerson.glade:266 EditPerson.glade:491 EditPerson.glade:2056
-#: EditPerson.glade:2564 EditPerson.glade:4592 EditPerson.glade:4864
-#: EditPerson.glade:5162 ImageSelect.py:713 dialog.glade:220
-#: filters/EventPlace.py:72 marriage.glade:375 marriage.glade:856
-#: marriage.glade:1790 preferences.glade:2783
+#: EditPerson.glade:269 EditPerson.glade:513 EditPerson.glade:2182
+#: EditPerson.glade:2695 EditPerson.glade:4746 EditPerson.glade:5018
+#: EditPerson.glade:5316 GenericFilter.py:237 GenericFilter.py:275
+#: GenericFilter.py:364 GenericFilter.py:396 ImageSelect.py:656
+#: dialog.glade:220 filters/EventPlace.py:72 marriage.glade:375
+#: marriage.glade:856 marriage.glade:1790 preferences.glade:2783
 msgid "Place"
 msgstr "Lugar"
 
 # glade.c:1041
-#: EditPerson.glade:354
+#: EditPerson.glade:320
 msgid "Invoke birth event editor"
 msgstr "Invoca o editor de eventos de nascimento"
 
 # glade.c:650
-#: EditPerson.glade:362 EditPerson.glade:589 EditPerson.glade:1942
-#: EditPerson.glade:2631 EditPerson.glade:3059 EditPerson.glade:3877
-#: EditPerson.glade:4472 imagesel.glade:1269 imagesel.glade:2270
-#: marriage.glade:922 marriage.glade:1333 srcsel.glade:843 styles.glade:232
+#: EditPerson.glade:328 EditPerson.glade:574 EditPerson.glade:2067
+#: EditPerson.glade:2763 EditPerson.glade:3198 EditPerson.glade:4023
+#: EditPerson.glade:4625 imagesel.glade:1269 imagesel.glade:2270
+#: marriage.glade:922 marriage.glade:1333 rule.glade:441 rule.glade:838
+#: srcsel.glade:843 styles.glade:232
 msgid "Edit"
 msgstr "Edita"
 
 # glade.c:490 glade.c:2584 glade.c:2592
-#: EditPerson.glade:385 plugins/EventCmp.py:474 plugins/FamilyGroup.py:156
-#: plugins/test.py:156
+#: EditPerson.glade:407 plugins/EventCmp.py:288 plugins/FamilyGroup.py:156
 msgid "Death"
 msgstr "Falecimento"
 
 # glade.c:1044
-#: EditPerson.glade:581
+#: EditPerson.glade:566
 msgid "Invoke death event editor"
 msgstr "Invoca o editor de eventos de falecimento"
 
 # glade.c:891 glade.c:2631 glade.c:2774 glade.c:2775
-#: EditPerson.glade:612 gramps.glade:1103 gramps.glade:2293 gramps.glade:6787
-#: gramps.glade:6993 plugins/IndivSummary.py:236 plugins/WebPage.py:238
-#: plugins/WebPage.py:240
+#: EditPerson.glade:653 gramps.glade:1103 gramps.glade:2535 gramps.glade:6915
+#: gramps.glade:7121 plugins/IndivComplete.py:382 plugins/IndivSummary.py:236
+#: plugins/WebPage.py:239 plugins/WebPage.py:241
 msgid "Gender"
 msgstr "Sexo"
 
 # glade.c:2044 glade.c:2124
-#: EditPerson.glade:640 const.py:103 gramps.glade:6680 gramps.glade:7066
+#: EditPerson.glade:681 const.py:110 gramps.glade:6808 gramps.glade:7194
 msgid "male"
 msgstr "masculino"
 
 # glade.c:2032 glade.c:2125
-#: EditPerson.glade:655 const.py:104 gramps.glade:6700 gramps.glade:7081
+#: EditPerson.glade:696 const.py:111 gramps.glade:6828 gramps.glade:7209
 msgid "female"
 msgstr "feminino"
 
 # glade.c:2068 glade.c:2126 glade.c:2249 glade.c:2603 glade.c:2627
 # glade.c:2785
-#: EditPerson.glade:670 EditPerson.py:393 const.py:105 gramps.glade:6720
-#: plugins/FamilyGroup.py:379 plugins/IndivSummary.py:161
-#: plugins/WebPage.py:505 plugins/test.py:379
+#: EditPerson.glade:711 EditPerson.py:426 const.py:112 gramps.glade:6848
+#: plugins/FamilyGroup.py:379 plugins/IndivComplete.py:260
+#: plugins/IndivSummary.py:161 plugins/WebPage.py:505
 msgid "unknown"
 msgstr "desconhecido"
 
 # glade.c:1478
-#: EditPerson.glade:686
+#: EditPerson.glade:727
 msgid "Preferred Name"
 msgstr "Nome Preferido"
 
 # glade.c:917
-#: EditPerson.glade:716 EditPerson.glade:1395 EditPerson.glade:5526
-#: gramps.glade:4513 gramps.glade:6735 gramps.glade:7096
+#: EditPerson.glade:757 EditPerson.glade:1436 GenericFilter.py:474
+#: dialog.glade:2299 gramps.glade:6863 gramps.glade:7224
 msgid "Given Name"
 msgstr "Nome"
 
 # glade.c:1795
-#: EditPerson.glade:742 EditPerson.glade:1421 EditPerson.glade:5693
+#: EditPerson.glade:783 EditPerson.glade:1462 GenericFilter.py:474
+#: dialog.glade:2466
 msgid "Suffix"
 msgstr "Sufixo"
 
 # glade.c:1841
-#: EditPerson.glade:768 gramps.glade:2585 gramps.glade:3794 gramps.glade:3933
-#: gramps.glade:5984 imagesel.glade:235 imagesel.glade:792 imagesel.glade:1765
+#: EditPerson.glade:809 EditPerson.glade:1748 GenericFilter.py:474
+#: dialog.glade:2647 gramps.glade:2830 gramps.glade:4039 gramps.glade:4178
+#: gramps.glade:6070 imagesel.glade:235 imagesel.glade:792 imagesel.glade:1765
 #: imagesel.glade:2383 places.glade:168 srcsel.glade:208 srcsel.glade:791
 msgid "Title"
 msgstr "Título"
 
 # glade.c:1255
-#: EditPerson.glade:794
+#: EditPerson.glade:835
 msgid "Nick Name"
 msgstr "Apelido"
 
 # glade.c:1799
-#: EditPerson.glade:820 EditPerson.glade:1369 EditPerson.glade:5552
-#: filters/MatchSndEx.py:46 gramps.glade:4539 gramps.glade:6761
-#: gramps.glade:6967
+#: EditPerson.glade:861 EditPerson.glade:1410 GenericFilter.py:474
+#: dialog.glade:2325 filters/MatchSndEx.py:46 gramps.glade:6889
+#: gramps.glade:7095
 msgid "Surname"
 msgstr "Sobrenome"
 
 # glade.c:1686
-#: EditPerson.glade:955
+#: EditPerson.glade:996
 msgid "Select source for this name information"
 msgstr "Seleciona a fonte de referência para informações deste nome"
 
 # glade.c:1723 glade.c:2325 glade.c:2454 glade.c:2455
-#: EditPerson.glade:963 ImageSelect.py:707 Utils.py:194 Utils.py:196
+#: EditPerson.glade:1004 ImageSelect.py:650 Utils.py:194 Utils.py:196
 #: places.glade:350 preferences.glade:2809
 msgid "Source"
 msgstr "Fonte de Referência"
 
 # glade.c:727
-#: EditPerson.glade:1008
+#: EditPerson.glade:1049
 msgid "Enter/modify notes regarding this name"
 msgstr "Entra/modifica notas relativas a este nome"
 
 # glade.c:1281 glade.c:2453
-#: EditPerson.glade:1016 EditPerson.glade:4719 EditPerson.glade:5014
-#: EditPerson.glade:5312 EditPerson.glade:5611 EditPerson.glade:6112
-#: Utils.py:189 dialog.glade:322 dialog.glade:842 gramps.glade:6167
-#: marriage.glade:1717 places.glade:1256
+#: EditPerson.glade:1057 EditPerson.glade:4873 EditPerson.glade:5168
+#: EditPerson.glade:5466 Utils.py:189 dialog.glade:322 dialog.glade:853
+#: dialog.glade:1554 dialog.glade:2384 gramps.glade:6253 marriage.glade:1717
+#: places.glade:1256
 msgid "Note"
 msgstr "Nota"
 
 # glade.c:1859
-#: EditPerson.glade:1037 EditPerson.glade:1707 EditPerson.glade:1875
-#: EditPerson.glade:5810 gramps.glade:3716 gramps.glade:4045
-#: imagesel.glade:2357
+#: EditPerson.glade:1078 EditPerson.glade:1800 EditPerson.glade:1999
+#: dialog.glade:2583 gramps.glade:3961 gramps.glade:4290 imagesel.glade:2357
 msgid "Type"
 msgstr "Tipo"
 
 # glade.c:1017
-#: EditPerson.glade:1102
+#: EditPerson.glade:1143
 msgid "Image"
 msgstr "Imagem"
 
 # glade.c:1014
-#: EditPerson.glade:1129
+#: EditPerson.glade:1170
 msgid "Identification"
 msgstr "Identificação"
 
-# glade.c:2035
-#: EditPerson.glade:1185 marriage.glade:230
-msgid "gramps ID"
-msgstr "ID gramps"
+# glade.c:850 glade.c:2283 glade.c:2292
+#: EditPerson.glade:1226 marriage.glade:230
+msgid "GRAMPS ID"
+msgstr "GRAMPS ID"
 
 # glade.c:895 glade.c:2109 glade.c:2115
-#: EditPerson.glade:1318 GrampsCfg.py:95 GrampsCfg.py:101 gramps.glade:6137
+#: EditPerson.glade:1359 GrampsCfg.py:95 GrampsCfg.py:101 gramps.glade:6223
 #: imagesel.glade:1882 places.glade:649 plugins/verify.glade:165
 msgid "General"
 msgstr "Geral"
 
 # glade.c:1261
-#: EditPerson.glade:1348
+#: EditPerson.glade:1389
 msgid "No Alternate Names"
 msgstr "Nenhum Nome Alternativo"
 
 # glade.c:564
-#: EditPerson.glade:1525 EditPerson.glade:1888 EditPerson.glade:2186
-#: EditPerson.glade:2577 EditPerson.glade:2772 EditPerson.glade:3005
-#: EditPerson.glade:3371 EditPerson.glade:3823 gramps.glade:2401
-#: gramps.glade:3560 gramps.glade:4139 imagesel.glade:985 imagesel.glade:1215
+#: EditPerson.glade:1566 EditPerson.glade:2012 EditPerson.glade:2312
+#: EditPerson.glade:2708 EditPerson.glade:2905 EditPerson.glade:3143
+#: EditPerson.glade:3511 EditPerson.glade:3968 gramps.glade:2643
+#: gramps.glade:3805 gramps.glade:4384 imagesel.glade:985 imagesel.glade:1215
 #: imagesel.glade:1985 imagesel.glade:2216 marriage.glade:505
 #: marriage.glade:869 marriage.glade:1051 marriage.glade:1279
 msgid "Details"
 msgstr "Detalhes"
 
 # glade.c:1234 glade.c:2630 glade.c:2773
-#: EditPerson.glade:1862 config.glade:130 gramps.glade:965 gramps.glade:2179
-#: gramps.glade:4463 gramps.glade:4925 gramps.glade:5120 gramps.glade:5440
-#: mergedata.glade:544 mergedata.glade:1699 plugins/IndivSummary.py:222
-#: plugins/WebPage.py:236 plugins/relcalc.glade:157 plugins/soundex.glade:143
-#: preferences.glade:1763
+#: EditPerson.glade:1986 config.glade:130 gramps.glade:965 gramps.glade:2421
+#: gramps.glade:4701 gramps.glade:5001 gramps.glade:5160 gramps.glade:5526
+#: mergedata.glade:544 mergedata.glade:1699 plugins/IndivComplete.py:371
+#: plugins/IndivSummary.py:222 plugins/WebPage.py:237
+#: plugins/relcalc.glade:157 plugins/soundex.glade:143 preferences.glade:1763
+#: rule.glade:140 rule.glade:772
 msgid "Name"
 msgstr "Nome"
 
 # glade.c:443
-#: EditPerson.glade:1917
+#: EditPerson.glade:2041
 msgid "Create an alternate name for this person"
 msgstr "Cria um nome alternativo para esta pessoa"
 
 # glade.c:145
-#: EditPerson.glade:1926 EditPerson.glade:2615 EditPerson.glade:3043
-#: EditPerson.glade:3861 EditPerson.glade:4456 gramps.glade:1696
-#: gramps.glade:4882 gramps.glade:5078 imagesel.glade:1253 imagesel.glade:2254
-#: marriage.glade:906 marriage.glade:1317 places.glade:1186 places.glade:1691
-#: srcsel.glade:828 styles.glade:217
+#: EditPerson.glade:2050 EditPerson.glade:2746 EditPerson.glade:3181
+#: EditPerson.glade:4006 EditPerson.glade:4608 gramps.glade:1729
+#: imagesel.glade:1253 imagesel.glade:2254 marriage.glade:906
+#: marriage.glade:1317 places.glade:1186 places.glade:1691 rule.glade:426
+#: rule.glade:822 srcsel.glade:828 styles.glade:217
 msgid "Add"
 msgstr "Adicionar"
 
 # glade.c:1222
-#: EditPerson.glade:1933
+#: EditPerson.glade:2058
 msgid "Modify the selected name"
 msgstr "Modifica o nome selecionado"
 
 # glade.c:534
-#: EditPerson.glade:1949
+#: EditPerson.glade:2075
 msgid "Delete selected name"
 msgstr "Apaga nome selecionado"
 
 # glade.c:1246
-#: EditPerson.glade:1968
+#: EditPerson.glade:2094
 msgid "Names"
 msgstr "Nomes"
 
 # glade.c:1268
-#: EditPerson.glade:2009 marriage.glade:328
+#: EditPerson.glade:2135 marriage.glade:328
 msgid "No Events"
 msgstr "Nenhum Evento"
 
 # glade.c:555 glade.c:2183
-#: EditPerson.glade:2082 EditPerson.glade:2538 EditPerson.glade:4114
-#: EditPerson.glade:4418 EditPerson.glade:6605 const.py:313 dialog.glade:194
-#: marriage.glade:401 places.glade:1422 places.glade:1654
-#: plugins/pafexport.glade:241
+#: EditPerson.glade:2208 EditPerson.glade:2669 EditPerson.glade:4261
+#: EditPerson.glade:4570 GenericFilter.py:237 GenericFilter.py:275
+#: GenericFilter.py:364 GenericFilter.py:396 const.py:320 dialog.glade:194
+#: dialog.glade:2057 gramps.glade:6426 marriage.glade:401 places.glade:1422
+#: places.glade:1654 plugins/pafexport.glade:241
 msgid "Description"
 msgstr "Descrição"
 
 # glade.c:340
-#: EditPerson.glade:2342 dialog.glade:404 marriage.glade:661
+#: EditPerson.glade:2468 dialog.glade:404 marriage.glade:661
 msgid "Cause"
 msgstr "Causa"
 
 # glade.c:739
-#: EditPerson.glade:2525 filters/EventType.py:42 marriage.glade:830
+#: EditPerson.glade:2656 filters/EventType.py:42 marriage.glade:830
 msgid "Event"
 msgstr "Evento"
 
 # glade.c:440
-#: EditPerson.glade:2606
+#: EditPerson.glade:2737
 msgid "Create a new event from the above data"
 msgstr "Cria um novo evento a partir dos dados anteriores"
 
 # glade.c:1881
-#: EditPerson.glade:2622
+#: EditPerson.glade:2754
 msgid "Update the selected event with the above data"
 msgstr "Atualiza o evento selecionado com os dados acima"
 
 # glade.c:547
-#: EditPerson.glade:2638
+#: EditPerson.glade:2771
 msgid "Delete the selected event"
 msgstr "Apaga o evento selecionado"
 
 # glade.c:757
-#: EditPerson.glade:2658 marriage.glade:948
+#: EditPerson.glade:2791 marriage.glade:948
 msgid "Events"
 msgstr "Eventos"
 
 # glade.c:1265
-#: EditPerson.glade:2699 imagesel.glade:912 imagesel.glade:1912
+#: EditPerson.glade:2832 imagesel.glade:912 imagesel.glade:1912
 #: marriage.glade:978
 msgid "No Attributes"
 msgstr "Sem Atributos"
 
 # glade.c:1904
-#: EditPerson.glade:2720 EditPerson.glade:2992 dialog.glade:716
-#: imagesel.glade:933 imagesel.glade:1202 imagesel.glade:1933
-#: imagesel.glade:2203 marriage.glade:999 marriage.glade:1266
+#: EditPerson.glade:2853 EditPerson.glade:3130 GenericFilter.py:428
+#: GenericFilter.py:449 dialog.glade:727 imagesel.glade:933
+#: imagesel.glade:1202 imagesel.glade:1933 imagesel.glade:2203
+#: marriage.glade:999 marriage.glade:1266
 msgid "Value"
 msgstr "Valor"
 
 # glade.c:248
-#: EditPerson.glade:2979 dialog.glade:690 imagesel.glade:1189
+#: EditPerson.glade:3117 dialog.glade:701 imagesel.glade:1189
 #: imagesel.glade:2190 marriage.glade:1253
 msgid "Attribute"
 msgstr "Atributo"
 
 # glade.c:437
-#: EditPerson.glade:3034
+#: EditPerson.glade:3172
 msgid "Create a new attribute from the above data"
 msgstr "Cria um novo atributo a partir dos dados anteriores"
 
 # glade.c:1878
-#: EditPerson.glade:3050
+#: EditPerson.glade:3189
 msgid "Update the selected attribute with the above data"
 msgstr "Atualiza o atributo selecionado com os dados acima"
 
 # glade.c:544
-#: EditPerson.glade:3066 imagesel.glade:1276 imagesel.glade:2277
+#: EditPerson.glade:3206 imagesel.glade:1276 imagesel.glade:2277
 #: marriage.glade:1340
 msgid "Delete the selected attribute"
 msgstr "Apaga o atributo selecionado"
 
 # glade.c:258
-#: EditPerson.glade:3086 imagesel.glade:1295 imagesel.glade:2296
+#: EditPerson.glade:3226 imagesel.glade:1295 imagesel.glade:2296
 #: marriage.glade:1359
 msgid "Attributes"
 msgstr "Atributos"
 
 # glade.c:1258
-#: EditPerson.glade:3116
+#: EditPerson.glade:3256
 msgid "No Addresses"
 msgstr "Sem Endereços"
 
 # glade.c:421
-#: EditPerson.glade:3137 EditPerson.glade:6270 config.glade:234
-#: dialog.glade:1105 gramps.glade:3231 places.glade:272 places.glade:793
-#: places.glade:1149 preferences.glade:1867
+#: EditPerson.glade:3277 config.glade:234 dialog.glade:1116 dialog.glade:1712
+#: gramps.glade:3476 places.glade:272 places.glade:793 places.glade:1149
+#: preferences.glade:1867
 msgid "Country"
 msgstr "País"
 
 # glade.c:386
-#: EditPerson.glade:3163 EditPerson.glade:6194
+#: EditPerson.glade:3303 dialog.glade:1636
 msgid "City/County"
 msgstr "Cidade/Condado"
 
 # glade.c:201
-#: EditPerson.glade:3189 EditPerson.glade:6029 config.glade:156
+#: EditPerson.glade:3329 config.glade:156 dialog.glade:1471
 #: preferences.glade:1789
 msgid "Address"
 msgstr "Endereço"
 
 # glade.c:1766
-#: EditPerson.glade:3241 EditPerson.glade:6244 config.glade:208
+#: EditPerson.glade:3381 config.glade:208 dialog.glade:1686
 #: preferences.glade:1841
 msgid "State/Province"
 msgstr "Estado/Província"
 
 # glade.c:1946
-#: EditPerson.glade:3267 EditPerson.glade:6296 config.glade:286
+#: EditPerson.glade:3407 config.glade:286 dialog.glade:1738
 #: preferences.glade:1893
 msgid "ZIP/Postal Code"
 msgstr "CEP/Código Postal"
 
 # glade.c:1087
-#: EditPerson.glade:3810
+#: EditPerson.glade:3955
 msgid "Location"
 msgstr "Lugar"
 
 # glade.c:431
-#: EditPerson.glade:3852
+#: EditPerson.glade:3997
 msgid "Create a new address from the above data"
 msgstr "Cria um novo endereço a partir dos dados anteriores"
 
 # glade.c:1875
-#: EditPerson.glade:3868
+#: EditPerson.glade:4014
 msgid "Update the selected address with the above data"
 msgstr "Atualiza o endereço selecionado com os dados acima"
 
 # glade.c:540
-#: EditPerson.glade:3884
+#: EditPerson.glade:4031
 msgid "Delete the selected address"
 msgstr "Apaga o endereço selecionado"
 
 # glade.c:210
-#: EditPerson.glade:3904
+#: EditPerson.glade:4051
 msgid "Addresses"
 msgstr "Endereços"
 
 # glade.c:724
-#: EditPerson.glade:3924
+#: EditPerson.glade:4071
 msgid "Enter miscellaneous relevant data and documentation"
 msgstr "Entra dados e informações relevantes e variados"
 
 # glade.c:1285 glade.c:2783
-#: EditPerson.glade:3935 imagesel.glade:882 imagesel.glade:2326
-#: marriage.glade:1390 plugins/WebPage.py:421
+#: EditPerson.glade:4082 imagesel.glade:882 imagesel.glade:2326
+#: marriage.glade:1390 plugins/IndivComplete.py:150 plugins/WebPage.py:421
 msgid "Notes"
 msgstr "Notas"
 
 # glade.c:1452
-#: EditPerson.glade:4012 gramps.glade:6243 marriage.glade:1468
+#: EditPerson.glade:4159 gramps.glade:6329 marriage.glade:1468
 msgid "Place new media object in this gallery"
 msgstr "Coloca um novo objeto multimídia nesta galeria"
 
 # glade.c:164
-#: EditPerson.glade:4021 gramps.glade:4188 gramps.glade:6252
+#: EditPerson.glade:4168 gramps.glade:4433 gramps.glade:6338
 #: marriage.glade:1477 places.glade:1340
 msgid "Add Media Object"
 msgstr "Adiciona Objeto Multimídia"
 
 # glade.c:1548
-#: EditPerson.glade:4028 gramps.glade:6259 marriage.glade:1484
+#: EditPerson.glade:4175 gramps.glade:6345 marriage.glade:1484
 msgid "Remove selected object from this gallery only"
 msgstr "Remove o objeto selecionado apenas desta galeria"
 
 # glade.c:519
-#: EditPerson.glade:4037 gramps.glade:4217 gramps.glade:6268
+#: EditPerson.glade:4184 gramps.glade:4462 gramps.glade:6354
 #: marriage.glade:1493 places.glade:1355
 msgid "Delete Media Object"
 msgstr "Apaga Objeto Multimídia"
 
 # glade.c:1210
-#: EditPerson.glade:4044 gramps.glade:6275 marriage.glade:1500
+#: EditPerson.glade:4191 gramps.glade:6361 marriage.glade:1500
 msgid "Modify selected object"
 msgstr "Modifica o objeto selecionado"
 
 # glade.c:672
-#: EditPerson.glade:4053 gramps.glade:6284 marriage.glade:1509
+#: EditPerson.glade:4200 gramps.glade:6370 marriage.glade:1509
 #: places.glade:1370
 msgid "Edit Properties"
 msgstr "Edita Propriedades"
 
 # glade.c:887 glade.c:2781
-#: EditPerson.glade:4063 gramps.glade:6296 marriage.glade:1519
-#: places.glade:1382 plugins/WebPage.py:307
+#: EditPerson.glade:4210 gramps.glade:6382 marriage.glade:1519
+#: places.glade:1382 plugins/WebPage.py:308
 msgid "Gallery"
 msgstr "Galeria"
 
 # glade.c:1035
-#: EditPerson.glade:4093 places.glade:1401
+#: EditPerson.glade:4240 places.glade:1401
 msgid "Internet Addresses"
 msgstr "Endereços Internet"
 
 # glade.c:1923
-#: EditPerson.glade:4140 EditPerson.glade:4405 EditPerson.glade:6579
+#: EditPerson.glade:4287 EditPerson.glade:4557 dialog.glade:2031
 #: places.glade:1448 places.glade:1641
 msgid "Web Address"
 msgstr "Endereço na Web"
 
 # glade.c:926
-#: EditPerson.glade:4229
+#: EditPerson.glade:4376
 msgid "Go to this web page"
 msgstr "Vai para esta página web"
 
 # glade.c:920
-#: EditPerson.glade:4237 places.glade:1544
+#: EditPerson.glade:4384 places.glade:1544
 msgid "Go"
 msgstr "Vai"
 
 # glade.c:185
-#: EditPerson.glade:4447
+#: EditPerson.glade:4599
 msgid "Add an internet reference about this person"
 msgstr "Adiciona uma referência da internet sobre essa pessoa"
 
 # glade.c:1213
-#: EditPerson.glade:4463
+#: EditPerson.glade:4616
 msgid "Modify selected reference"
 msgstr "Modifica a referência selecionada"
 
 # glade.c:537
-#: EditPerson.glade:4479
+#: EditPerson.glade:4633
 msgid "Delete selected reference"
 msgstr "Apaga referência selecionada"
 
 # glade.c:1026
-#: EditPerson.glade:4498 places.glade:1731
+#: EditPerson.glade:4652 places.glade:1731
 msgid "Internet"
 msgstr "Internet"
 
 # glade.c:1065
-#: EditPerson.glade:4518
+#: EditPerson.glade:4672
 msgid "LDS Baptism"
 msgstr "Batismo SUD"
 
 # glade.c:1813
-#: EditPerson.glade:4566 EditPerson.glade:4838 EditPerson.glade:5110
+#: EditPerson.glade:4720 EditPerson.glade:4992 EditPerson.glade:5264
 #: marriage.glade:1738
 msgid "Temple"
 msgstr "Templo"
 
 # glade.c:1746 glade.c:2771
-#: EditPerson.glade:4691 EditPerson.glade:4986 EditPerson.glade:5284
-#: gramps.glade:655 gramps.glade:2825 marriage.glade:1690
-#: plugins/WebPage.py:169 plugins/gedcomexport.glade:437
-#: plugins/pkgexport.glade:266
+#: EditPerson.glade:4845 EditPerson.glade:5140 EditPerson.glade:5438
+#: gramps.glade:655 gramps.glade:3070 marriage.glade:1690
+#: plugins/IndivComplete.py:300 plugins/WebPage.py:170
+#: plugins/gedcomexport.glade:437 plugins/pkgexport.glade:266
 msgid "Sources"
 msgstr "Fontes"
 
 # glade.c:721
 # rever
-#: EditPerson.glade:4790
+#: EditPerson.glade:4944
 msgid "Endowment"
 msgstr "Dote"
 
 # glade.c:1638
-#: EditPerson.glade:5062
+#: EditPerson.glade:5216
 msgid "Sealed to Parents"
 msgstr "Selado aos Pais"
 
 # glade.c:1391
-#: EditPerson.glade:5136 gramps.glade:1736
+#: EditPerson.glade:5290 gramps.glade:1769
 msgid "Parents"
 msgstr "Genitores"
 
 # glade.c:1062
-#: EditPerson.glade:5385 marriage.glade:1820
+#: EditPerson.glade:5539 marriage.glade:1820
 msgid "LDS"
 msgstr "SUD"
 
-# glade.c:232
-#: EditPerson.glade:5400
-msgid "Alternate Name Editor - GRAMPS"
-msgstr "Editor de Nome Alternativo - GRAMPS"
-
-# glade.c:123
-#: EditPerson.glade:5442 EditPerson.glade:5920 EditPerson.glade:6496
-#: gramps.glade:5876 marriage.glade:66
-msgid "Accept and close"
-msgstr "Aceita e fecha"
-
-# glade.c:1518
-#: EditPerson.glade:5458 gramps.glade:5892 marriage.glade:82
-msgid "Reject changes and close"
-msgstr "Rejeita as modificações e fecha"
-
-# glade.c:229
-#: EditPerson.glade:5485
-msgid "Alternate Name Editor"
-msgstr "Editor de Nome Alternativo"
-
-# glade.c:1494
-#: EditPerson.glade:5658 EditPerson.glade:6159 EditPerson.glade:6676
-#: dialog.glade:369 dialog.glade:889
-msgid "Private Record"
-msgstr "Registro Privado"
-
-# glade.c:688
-#: EditPerson.glade:5672
-msgid "Edit source information for this name"
-msgstr "Edita as informações da fonte de referência para este nome"
-
-# glade.c:676
-#: EditPerson.glade:5680 EditPerson.glade:6181 dialog.glade:391
-#: dialog.glade:911
-msgid "Edit Source"
-msgstr "Edita Fonte de Referência"
-
-# glade.c:207
-#: EditPerson.glade:5878
-msgid "Address Editor - GRAMPS"
-msgstr "Editor de Endereço - GRAMPS"
-
-# glade.c:204
-#: EditPerson.glade:5962
-msgid "Address Editor"
-msgstr "Editor de Endereço"
-
-# glade.c:685
-#: EditPerson.glade:6173
-msgid "Edit source information for this address"
-msgstr "Edita as informações da fonte de referência para este endereço"
-
-# glade.c:1692
-#: EditPerson.glade:6431 dialog.glade:490
-msgid "Selects the calendar format for display"
-msgstr "Seleciona o formato de apresentação do calendário"
-
-# glade.c:983 glade.c:2272
-#: EditPerson.glade:6437 EventEdit.py:135 dialog.glade:501
-msgid "Gregorian"
-msgstr "Gregoriano"
-
-# glade.c:1032
-#: EditPerson.glade:6454
-msgid "Internet Address Editor - GRAMPS"
-msgstr "Editor de Endereço Internet - GRAMPS"
-
-# glade.c:1029 glade.c:2257 glade.c:2259
-#: EditPerson.glade:6538 EditPlace.py:278 EditPlace.py:302
-msgid "Internet Address Editor"
-msgstr "Editor de Endereço Internet"
-
 # glade.c:1272 glade.c:2087 glade.c:2131 glade.c:2247
-#: EditPerson.py:368 GrampsCfg.py:61 const.py:118 gramps.glade:4991
-#: gramps.glade:5186 gramps.glade:5570 gramps.glade:5635 gramps.glade:6570
-#: gramps.glade:6617
+#: EditPerson.py:401 GrampsCfg.py:61 const.py:125 gramps.glade:5081
+#: gramps.glade:5240 gramps.glade:5656 gramps.glade:5721 gramps.glade:6698
+#: gramps.glade:6745
 msgid "None"
 msgstr "Nenhum(a)"
 
 # glade.c:2264
-#: EditPerson.py:385 EditSource.py:138
+#: EditPerson.py:418 EditSource.py:138
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s e %(mother)s"
 
+#: EditPerson.py:739 EditPerson.py:741 EditPerson.py:751 EditPerson.py:753
+#: Marriage.py:351 Marriage.py:354 gramps_main.py:411 gramps_main.py:415
+#: gramps_main.py:1223
+msgid "Abandon Changes"
+msgstr "Abandona Mudanças"
+
 # glade.c:2250 glade.c:2251
-#: EditPerson.py:722 EditPerson.py:731
+#: EditPerson.py:740 EditPerson.py:752
 msgid "Are you sure you want to abandon your changes?"
 msgstr "Tem certeza que quer descartar suas modificações?"
 
+#: EditPerson.py:743 EditPerson.py:755 Marriage.py:355
+msgid "Continue Editing"
+msgstr "Continua Editando"
+
 # glade.c:1123
-#: EditPerson.py:1011
+#: EditPerson.py:1063
 msgid "Make the selected name the preferred name"
 msgstr "Torna o nome selecionado no nome preferido"
 
 # glade.c:2252 glade.c:2331
-#: EditPerson.py:1071 Marriage.py:368
+#: EditPerson.py:1124 Marriage.py:374
 msgid "GRAMPS ID value was not changed."
 msgstr "O conteúdo do GRAMPS ID não foi modificado."
 
 # glade.c:2253
-#: EditPerson.py:1072
+#: EditPerson.py:1125
 msgid "%(grampsid)s is already used by %(person)s"
 msgstr "%(grampsid)s já está sendo usado por %(person)s"
 
 # glade.c:2254
-#: EditPerson.py:1177
-msgid "Changing the gender caused problems with marriage information."
-msgstr "Trocar o sexo causou problemas com as informações de matrimônio."
-
-# glade.c:2255
-#: EditPerson.py:1178
-msgid "Please check the person's marriages."
-msgstr "Por favor verifique os matrimônios da pessoa."
+#: EditPerson.py:1229
+msgid ""
+"Changing the gender caused problems with marriage information.\n"
+"Please check the person's marriages."
+msgstr""
+"Trocar o sexo causou problemas com as informações de matrimônio.\n"
+"Por favor verifique os matrimônios da pessoa."
 
 # glade.c:2256 glade.c:2258
-#: EditPlace.py:276 EditPlace.py:300
+#: EditPlace.py:267 EditPlace.py:291
 msgid "Internet Address Editor for %s"
 msgstr "Editor de Endereço Internet para %s"
 
+# glade.c:1029 glade.c:2257 glade.c:2259
+#: EditPlace.py:269 EditPlace.py:293 dialog.glade:1990
+msgid "Internet Address Editor"
+msgstr "Editor de Endereço Internet"
+
 # glade.c:1405 glade.c:2260
-#: EditPlace.py:349 gramps.glade:608 plugins/gedcomexport.glade:489
+#: EditPlace.py:340 gramps.glade:608 plugins/gedcomexport.glade:489
 #: plugins/pkgexport.glade:318
 msgid "People"
 msgstr "Pessoas"
 
 # glade.c:2261 glade.c:2263
-#: EditPlace.py:351 EditPlace.py:360
+#: EditPlace.py:342 EditPlace.py:351
 msgid "%s [%s]: event %s\n"
 msgstr "%s [%s]: evento %s\n"
 
 # glade.c:781 glade.c:2262
-#: EditPlace.py:358 plugins/gedcomexport.glade:463 plugins/pkgexport.glade:292
+#: EditPlace.py:349 plugins/gedcomexport.glade:463 plugins/pkgexport.glade:292
 msgid "Families"
 msgstr "Famílias"
 
 # glade.c:2265
-#: EditSource.py:156
+#: EditSource.py:157
 msgid "Individual Events"
 msgstr "Eventos do Indivíduo"
 
@@ -983,29 +909,34 @@ msgid "Individual Attributes"
 msgstr "Atributos do Indivíduo"
 
 # glade.c:2267
-#: EditSource.py:166
+#: EditSource.py:165
 msgid "Individual Names"
 msgstr "Nomes do Indivíduo"
 
 # glade.c:2268
-#: EditSource.py:171
+#: EditSource.py:168
 msgid "Family Events"
 msgstr "Eventos da Família"
 
 # glade.c:2269
-#: EditSource.py:176
+#: EditSource.py:172
 msgid "Family Attributes"
 msgstr "Atributos da Família"
 
 # glade.c:2111 glade.c:2270 glade.c:2756
-#: EditSource.py:181 GrampsCfg.py:97 plugins/Summary.py:104
+#: EditSource.py:176 GrampsCfg.py:97 plugins/Summary.py:104
 msgid "Media Objects"
 msgstr "Objeto Multimídia"
 
 # glade.c:1455 glade.c:2271
-#: EditSource.py:186 gramps.glade:672 gramps.glade:3412
+#: EditSource.py:179 gramps.glade:672 gramps.glade:3657
 msgid "Places"
 msgstr "Lugares"
+
+# glade.c:983 glade.c:2272
+#: EventEdit.py:137 dialog.glade:512 dialog.glade:1889
+msgid "Gregorian"
+msgstr "Gregoriano"
 
 # glade.c:2273
 #: Filter.py:73
@@ -1013,8 +944,7 @@ msgid "All people"
 msgstr "Todas as pessoas"
 
 # glade.c:1506
-#: Filter.py:73 Filter.py:80 gramps.glade:816 plugins/eventcmp.glade:764
-#: plugins/eventcmp.glade:858
+#: Filter.py:73 Filter.py:80 gramps.glade:816
 msgid "Qualifier"
 msgstr "Qualificador"
 
@@ -1029,9 +959,163 @@ msgid "Failed to load the module: %s"
 msgstr "Falhou ao carregar o módulo: %s"
 
 # glade.c:806
-#: Find.py:46 Find.py:51
+#: Find.py:131
 msgid "Find Person"
 msgstr "Procura uma Pessoa"
+
+# glade.c:176
+#: Find.py:179
+msgid "Find Place"
+msgstr "Procura Lugar"
+
+# glade.c:179
+#: Find.py:224
+msgid "Find Source"
+msgstr "Procura Fonte de Referência"
+
+# glade.c:164
+#: Find.py:269
+msgid "Find Media Object"
+msgstr "Procura Objeto Multimídia"
+
+# glade.c:1011
+#: GenericFilter.py:135 GenericFilter.py:168 GenericFilter.py:194
+#: gramps.glade:1033 gramps.glade:2478 gramps.glade:2886 gramps.glade:3191
+#: gramps.glade:3987 gramps.glade:4234 gramps.glade:5552 imagesel.glade:613
+#: imagesel.glade:1507 imagesel.glade:2370 mergedata.glade:1013
+#: mergedata.glade:1725 plugins/relcalc.glade:170 srcsel.glade:778
+msgid "ID"
+msgstr "ID"
+
+# glade.c:1415
+#: GenericFilter.py:237 plugins/FilterEditor.py:40
+msgid "Personal Event"
+msgstr "Evento Pessoal"
+
+# glade.c:2268
+#: GenericFilter.py:275 plugins/FilterEditor.py:41
+msgid "Family Event"
+msgstr "Evento Familiar"
+
+# glade.c:1521
+#: GenericFilter.py:314
+msgid "Number of Relationships"
+msgstr "Número de Relações"
+
+# glade.c:1524
+#: GenericFilter.py:315 gramps.glade:4762 marriage.glade:161
+#: plugins/FilterEditor.py:44
+msgid "Relationship Type"
+msgstr "Tipo de Relação"
+
+# glade.c:2187
+#: GenericFilter.py:316 const.py:362
+msgid "Number of Children"
+msgstr "Número de Filhos"
+
+# glade.c:1265
+#: GenericFilter.py:428 plugins/FilterEditor.py:42
+msgid "Personal Attribute"
+msgstr "Atributo Pessoal"
+
+# glade.c:2269
+#: GenericFilter.py:449 plugins/FilterEditor.py:43
+msgid "Family Attribute"
+msgstr "Atributo Familiar"
+
+# glade.c:1355
+#: GenericFilter.py:502
+msgid "Filter Name"
+msgstr "Nome do Filtro"
+
+# glade.c:739
+#: GenericFilter.py:640
+msgid "Everyone"
+msgstr "Todas as Pessoas"
+
+#: GenericFilter.py:641
+msgid "Has the Id"
+msgstr "Possui a Id"
+
+#: GenericFilter.py:642
+msgid "Has a name"
+msgstr "Possui um nome"
+
+# glade.c:1388
+#: GenericFilter.py:643
+msgid "Has the relationships"
+msgstr "Possui as relações"
+
+#: GenericFilter.py:644
+msgid "Has the death"
+msgstr "Possui o falecimento"
+
+#: GenericFilter.py:645
+msgid "Has the birth"
+msgstr "Possui o nascimento"
+
+# glade.c:2529 glade.c:2816 glade.c:2824
+#: GenericFilter.py:646
+msgid "Is the descendant of"
+msgstr "É o descendente de"
+
+# glade.c:2815 glade.c:2823
+#: GenericFilter.py:647
+msgid "Is an ancestor of"
+msgstr "É um ancestral de"
+
+# glade.c:2032 glade.c:2125
+#: GenericFilter.py:648
+msgid "Is a female"
+msgstr "É uma mulher"
+
+# glade.c:2044 glade.c:2124
+#: GenericFilter.py:649
+msgid "Is a male"
+msgstr "É um homem"
+
+# glade.c:2501
+#: GenericFilter.py:650
+msgid "Has the personal event"
+msgstr "Possui o evento pessoal"
+
+# glade.c:2268
+#: GenericFilter.py:651
+msgid "Has the family event"
+msgstr "Possui o evento familiar"
+
+# glade.c:132
+#: GenericFilter.py:652
+msgid "Has the personal attribute"
+msgstr "Possui o atributo pessoal"
+
+# glade.c:2269
+#: GenericFilter.py:653
+msgid "Has the family attribute"
+msgstr "Possui o atributo familiar"
+
+#: GenericFilter.py:654
+msgid "Matches the filter named"
+msgstr "Coincide com o nome do filtro"
+
+#: GenericFilter.py:758
+msgid "class"
+msgstr "classe"
+
+# glade.c:1084
+#: GenericFilter.py:800
+msgid "Local Filters"
+msgstr "Filtros Locais"
+
+# glade.c:1626
+#: GenericFilter.py:815
+msgid "System Filters"
+msgstr "Filtros do Sistema"
+
+# glade.c:458
+#: GenericFilter.py:830
+msgid "Custom Filters"
+msgstr "Filtros Personalizados"
 
 # glade.c:2086
 #: GrampsCfg.py:60
@@ -1198,54 +1282,54 @@ msgstr "Informações do Pesquisador"
 msgid "Data Guessing"
 msgstr "Adivinha os dados"
 
-#: GrampsCfg.py:696 GrampsCfg.py:711
+#: GrampsCfg.py:697 GrampsCfg.py:712
 msgid "No default format"
 msgstr "Sem formato pré-definido"
 
 # glade.c:2316
-#: ImageSelect.py:147
+#: ImageSelect.py:133
 msgid "That is not a valid file name."
 msgstr "Este não é um nome de arquivo válido."
 
 # glade.c:2317
-#: ImageSelect.py:256
+#: ImageSelect.py:229
 msgid "Could not import %s - %s"
 msgstr "Não pude importar %s - %s"
 
 # glade.c:2318 glade.c:2340 glade.c:2660 glade.c:2661 glade.c:2662
-#: ImageSelect.py:316 MediaView.py:331 plugins/ReadGedcom.py:803
-#: plugins/ReadGedcom.py:838 plugins/ReadGedcom.py:873
+#: ImageSelect.py:282 MediaView.py:341 plugins/ReadGedcom.py:859
+#: plugins/ReadGedcom.py:894 plugins/ReadGedcom.py:929
 msgid "Could not import %s"
 msgstr "Não pude importar %s"
 
 # glade.c:2319 glade.c:2335
-#: ImageSelect.py:429 MediaView.py:167
+#: ImageSelect.py:382 MediaView.py:173
 msgid "View in the default viewer"
 msgstr "Vê no visualizador padrão"
 
 # glade.c:2320 glade.c:2336
-#: ImageSelect.py:432 MediaView.py:169
+#: ImageSelect.py:386 MediaView.py:175
 msgid "Edit with the GIMP"
 msgstr "Edita com o GIMP"
 
 # glade.c:2321 glade.c:2337
-#: ImageSelect.py:434 MediaView.py:171
+#: ImageSelect.py:388 MediaView.py:177
 msgid "Edit Object Properties"
 msgstr "Edita as Propriedades de Objeto"
 
 # glade.c:2322 glade.c:2338
-#: ImageSelect.py:437 MediaView.py:174
+#: ImageSelect.py:391 MediaView.py:180
 msgid "Convert to local copy"
 msgstr "Converte para cópia local"
 
 # glade.c:1409 glade.c:2323 glade.c:2584
-#: ImageSelect.py:695 gramps.glade:1357 gramps.glade:1423
-#: plugins/EventCmp.py:474 preferences.glade:2731
+#: ImageSelect.py:638 gramps.glade:1357 gramps.glade:1423
+#: plugins/EventCmp.py:288 preferences.glade:2731
 msgid "Person"
 msgstr "Pessoa"
 
 # glade.c:784 glade.c:2324
-#: ImageSelect.py:701 gramps.glade:626 gramps.glade:2476
+#: ImageSelect.py:644 gramps.glade:626 gramps.glade:2721
 #: preferences.glade:2757
 msgid "Family"
 msgstr "Família"
@@ -1256,35 +1340,47 @@ msgid "Location Editor for %s"
 msgstr "Editor de Lugares para %s"
 
 # glade.c:1090 glade.c:2328
-#: LocEdit.py:68 dialog.glade:1012
+#: LocEdit.py:68 dialog.glade:1023
 msgid "Location Editor"
 msgstr "Editor de Lugares"
 
 # glade.c:2248 glade.c:2329 glade.c:2332 glade.c:2333 glade.c:2452
 # glade.c:2507
-#: Marriage.py:102 Marriage.py:480 Marriage.py:498 Utils.py:135
-#: plugins/Check.py:178
+#: Marriage.py:103 Marriage.py:486 Marriage.py:504 Utils.py:135
+#: plugins/Check.py:175
 msgid "%s and %s"
 msgstr "%s e %s"
 
 # glade.c:2330
-#: Marriage.py:347
+#: Marriage.py:352
 msgid "Data was modified. Are you sure you want to abandon your changes?"
-msgstr "Dados foram modificados. Você tem certeza que deseja abandonar suas "
+msgstr ""
+"Dados foram modificados. Você tem certeza que deseja abandonar suas "
 "modificações?"
 
 # glade.c:2334
-#: MediaView.py:148
+#: MediaView.py:154
 msgid "The file no longer exists"
 msgstr "O arquivo já não mais existe"
 
+# glade.c:519
+#: MediaView.py:271 MediaView.py:274
+msgid "Delete Object"
+msgstr "Apaga Objeto"
+
 # glade.c:2339
-#: MediaView.py:265
+#: MediaView.py:272
 msgid "This media object is currently being used. Delete anyway?"
-msgstr "Este objeto multimídia está sendo usado no momento. Apagá-lo assim mesmo?"
+msgstr ""
+"Este objeto multimídia está sendo usado no momento. Apagá-lo assim mesmo?"
+
+# glade.c:1177
+#: MediaView.py:275
+msgid "Keep Object"
+msgstr "Mantém Objeto"
 
 # glade.c:2343
-#: NameEdit.py:75
+#: NameEdit.py:76
 msgid "Alternate Name Editor for %s"
 msgstr "Editor de Nome Alternativo para %s"
 
@@ -1306,7 +1402,8 @@ msgstr "Paisagem"
 # glade.c:2347
 #: PedView.py:346
 msgid "Doubleclick to edit, Shift-Doubleclick to make the active person"
-msgstr "Duplo-clique para editar, Shift-Duplo-Clique para tornar a pessoa ativa"
+msgstr ""
+"Duplo-clique para editar, Shift-Duplo-Clique para tornar a pessoa ativa"
 
 # glade.c:2348
 #: PedView.py:362
@@ -1314,73 +1411,83 @@ msgid "Double clicking will make %s the active person"
 msgstr "Um duplo-clique tornará %s a pessoa ativa"
 
 # glade.c:2349
-#: PlaceView.py:142
+#: PlaceView.py:144
 msgid "Exactly two places must be selected to perform a merge"
 msgstr "Exatos dois lugares devem ser selecionados a fim de se fazer uma fusão"
 
 # glade.c:2350
-#: PlaceView.py:231
+#: PlaceView.py:238
 msgid "Currently, you can only delete one place at a time"
 msgstr "Por enquanto você pode apagar apenas um lugar por vez"
 
+# glade.c:525
+#: PlaceView.py:257 PlaceView.py:259 gramps.glade:3647
+msgid "Delete Place"
+msgstr "Apaga Lugar"
+
 # glade.c:2351
-#: PlaceView.py:250
+#: PlaceView.py:258
 msgid "This place is currently being used. Delete anyway?"
 msgstr "Este lugar está sendo usado no momento. Apagá-lo assim mesmo?"
 
+# glade.c:525
+#: PlaceView.py:260
+msgid "Keep Place"
+msgstr "Mantém Lugar"
+
 # glade.c:2352
-#: PlaceView.py:261
+#: PlaceView.py:270
 msgid "You requested too many places to edit at the same time"
 msgstr "Você solicitou que muitos lugares fossem editados ao mesmo tempo"
 
 # glade.c:2358 glade.c:2361
-#: Plugins.py:75
+#: Plugins.py:76
 msgid "No description was provided"
 msgstr "Nenhuma descrição foi provida"
 
 # glade.c:1557
-#: Plugins.py:202 plugins.glade:167
+#: Plugins.py:206 plugins.glade:193
 msgid "Report Selection"
 msgstr "Seleciona Relatório"
 
 # glade.c:1847
-#: Plugins.py:218
+#: Plugins.py:222
 msgid "Tool Selection"
 msgstr "Seleção de Ferramenta"
 
-#: Plugins.py:237
+#: Plugins.py:241
 msgid "The following modules could not be loaded:"
 msgstr "Os seguintes módulos não puderam ser carregados:"
 
 # glade.c:2357 glade.c:2360
-#: Plugins.py:359 Plugins.py:370
+#: Plugins.py:362 Plugins.py:373
 msgid "Uncategorized"
 msgstr "Não Categorizado"
 
 # glade.c:1872 glade.c:2132 glade.c:2191 glade.c:2196 glade.c:2309
 # glade.c:2359 glade.c:2362
-#: Plugins.py:362 Plugins.py:373 const.py:119 const.py:394 const.py:402
-#: gramps.glade:4991 gramps.glade:5186 gramps.glade:5570 gramps.glade:5635
-#: gramps.glade:6570 gramps.glade:6617 gramps_main.py:1524
+#: Plugins.py:365 Plugins.py:376 const.py:126 const.py:401 const.py:409
+#: gramps.glade:5081 gramps.glade:5240 gramps.glade:5656 gramps.glade:5721
+#: gramps.glade:6698 gramps.glade:6745 gramps_main.py:1478 gramps_main.py:1684
 msgid "Unknown"
 msgstr "Desconhecido"
 
 # glade.c:2363 glade.c:2364 glade.c:2367 glade.c:2368 glade.c:2656
 # glade.c:2657
-#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:144 ReadXML.py:148
-#: plugins/ReadGedcom.py:98 plugins/ReadGedcom.py:102
+#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:145 ReadXML.py:149
+#: plugins/ReadGedcom.py:125 plugins/ReadGedcom.py:129
 msgid "%s could not be opened\n"
 msgstr "%s não pôde ser aberto\n"
 
 # glade.c:2365 glade.c:2366 glade.c:2369 glade.c:2370 glade.c:2372
 # glade.c:2373
-#: ReadXML.py:98 ReadXML.py:103 ReadXML.py:154 ReadXML.py:160 ReadXML.py:188
-#: ReadXML.py:194
+#: ReadXML.py:98 ReadXML.py:103 ReadXML.py:155 ReadXML.py:161 ReadXML.py:189
+#: ReadXML.py:195
 msgid "Error reading %s"
 msgstr "Erro lendo %s"
 
 # glade.c:2371
-#: ReadXML.py:183
+#: ReadXML.py:184
 msgid "%s (revision %s)"
 msgstr "%s (revisão %s)"
 
@@ -1396,35 +1503,35 @@ msgstr ""
 # glade.c:2287 glade.c:2288 glade.c:2289 glade.c:2290 glade.c:2291
 # glade.c:2375 glade.c:2376 glade.c:2381 glade.c:2382 glade.c:2819
 # glade.c:2820
-#: RelImage.py:72 RelImage.py:75 RelImage.py:140 RelImage.py:143
-#: gramps_main.py:694 gramps_main.py:698 gramps_main.py:706 gramps_main.py:710
-#: plugins/WriteGedcom.py:513 plugins/WriteGedcom.py:518
-#: plugins/WriteGedcomXML.py:515 plugins/WriteGedcomXML.py:520
+#: RelImage.py:74 RelImage.py:77 RelImage.py:142 RelImage.py:145
+#: gramps_main.py:779 gramps_main.py:783 gramps_main.py:791
+#: plugins/WriteGedcom.py:408 plugins/WriteGedcom.py:413
+#: plugins/WriteGedcomXML.py:514 plugins/WriteGedcomXML.py:519
 msgid "Could not create %s"
 msgstr "Não pude criar %s"
 
 # glade.c:2377
-#: RelImage.py:82
+#: RelImage.py:84
 msgid "Error creating the thumbnail : %s"
 msgstr "Erro criando a foto miniatura : %s"
 
 # glade.c:2378
-#: RelImage.py:88 docgen/OpenOfficeDoc.py:509
+#: RelImage.py:90 docgen/OpenOfficeDoc.py:508
 msgid "Error copying %s"
 msgstr "Erro copiando %s"
 
 # glade.c:2379 glade.c:2380
-#: RelImage.py:110 RelImage.py:120
+#: RelImage.py:112 RelImage.py:122
 msgid "Could not load image file %s"
 msgstr "Não pude carregar o arquivo-imagem %s"
 
 # glade.c:2383
-#: RelImage.py:150
+#: RelImage.py:152
 msgid "Could not replace %s"
 msgstr "Não pude substituir %s"
 
 # glade.c:2384
-#: RelImage.py:155
+#: RelImage.py:157
 msgid ""
 "Could not create a thumbnail for %s\n"
 "The file has been moved or deleted"
@@ -1433,269 +1540,283 @@ msgstr ""
 "O arquivo foi movido ou apagado"
 
 # glade.c:2385
-#: RelImage.py:163
+#: RelImage.py:165
 msgid "Could not create a thumbnail for %s"
 msgstr "Não pude criar uma foto miniatura para %s"
 
-# glade.c:2386
+# glade.c:1809
+#: Report.py:55
+msgid "Default Template"
+msgstr "Modelo Padrão"
+
+# glade.c:1899
 #: Report.py:56
+msgid "User Defined Template"
+msgstr "Modelo Definido pelo Usuário"
+
+# glade.c:2386
+#: Report.py:73
 msgid "First"
 msgstr "Primeiro"
 
 # glade.c:2387
-#: Report.py:57
+#: Report.py:74
 msgid "Second"
 msgstr "Segundo"
 
 # glade.c:2388
-#: Report.py:58
+#: Report.py:75
 msgid "Third"
 msgstr "Terceiro"
 
 # glade.c:2389
-#: Report.py:59
+#: Report.py:76
 msgid "Fourth"
 msgstr "Quarto"
 
 # glade.c:2390
-#: Report.py:60
+#: Report.py:77
 msgid "Fifth"
 msgstr "Quinto"
 
 # glade.c:2391
-#: Report.py:61
+#: Report.py:78
 msgid "Sixth"
 msgstr "Sexto"
 
 # glade.c:2392
-#: Report.py:62
+#: Report.py:79
 msgid "Seventh"
 msgstr "Sétimo"
 
 # glade.c:2393
-#: Report.py:63
+#: Report.py:80
 msgid "Eighth"
 msgstr "Oitavo"
 
 # glade.c:2394
-#: Report.py:64
+#: Report.py:81
 msgid "Ninth"
 msgstr "Nono"
 
 # glade.c:2395
-#: Report.py:65
+#: Report.py:82
 msgid "Tenth"
 msgstr "Décimo"
 
 # glade.c:2396
-#: Report.py:66
+#: Report.py:83
 msgid "Eleventh"
 msgstr "Décimo primeiro"
 
 # glade.c:2397
-#: Report.py:67
+#: Report.py:84
 msgid "Twelfth"
 msgstr "Décimo segundo"
 
 # glade.c:2398
-#: Report.py:68
+#: Report.py:85
 msgid "Thirteenth"
 msgstr "Décimo terceiro"
 
 # glade.c:2399
-#: Report.py:69
+#: Report.py:86
 msgid "Fourteenth"
 msgstr "Décimo quarto"
 
 # glade.c:2400
-#: Report.py:70
+#: Report.py:87
 msgid "Fifteenth"
 msgstr "Décimo quinto"
 
 # glade.c:2401
-#: Report.py:71
+#: Report.py:88
 msgid "Sixteenth"
 msgstr "Décimo sexto"
 
 # glade.c:2402
-#: Report.py:72
+#: Report.py:89
 msgid "Seventeenth"
 msgstr "Décimo sétimo"
 
 # glade.c:2403
-#: Report.py:73
+#: Report.py:90
 msgid "Eighteenth"
 msgstr "Décimo oitavo"
 
 # glade.c:2404
-#: Report.py:74
+#: Report.py:91
 msgid "Nineteenth"
 msgstr "Décimo nono"
 
 # glade.c:2405
-#: Report.py:75
+#: Report.py:92
 msgid "Twentieth"
 msgstr "Vigésimo"
 
 # glade.c:2406
-#: Report.py:76
+#: Report.py:93
 msgid "Twenty-first"
 msgstr "Vigésimo primeiro"
 
 # glade.c:2407
-#: Report.py:77
+#: Report.py:94
 msgid "Twenty-second"
 msgstr "Vigésimo segundo"
 
 # glade.c:2408
-#: Report.py:78
+#: Report.py:95
 msgid "Twenty-third"
 msgstr "Vigésimo terceiro"
 
 # glade.c:2409
-#: Report.py:79
+#: Report.py:96
 msgid "Twenty-fourth"
 msgstr "Vigésimo quarto"
 
 # glade.c:2410
-#: Report.py:80
+#: Report.py:97
 msgid "Twenty-fifth"
 msgstr "Vigésimo quinto"
 
 # glade.c:2411
-#: Report.py:81
+#: Report.py:98
 msgid "Twenty-sixth"
 msgstr "Vigésimo sexto"
 
 # glade.c:2412
-#: Report.py:82
+#: Report.py:99
 msgid "Twenty-seventh"
 msgstr "Vigésimo sétimo"
 
 # glade.c:2413
-#: Report.py:83
+#: Report.py:100
 msgid "Twenty-eighth"
 msgstr "Vigésimo oitavo"
 
 # glade.c:2414
-#: Report.py:84
+#: Report.py:101
 msgid "Twenty-ninth"
 msgstr "Vigésimo nono"
 
 # glade.c:207
-#: Report.py:90
+#: Report.py:107
 msgid "Progress Report - GRAMPS"
 msgstr "Relatório de Progresso - GRAMPS"
 
 # glade.c:2415
-#: Report.py:90
+#: Report.py:107
 msgid "Working"
 msgstr "Trabalhando"
 
 # glade.c:16 glade.c:2416
-#: Report.py:108
+#: Report.py:125
 msgid "%v of %u (%P%%)"
 msgstr "%v de %u (%P%%)"
 
 # glade.c:1446
-#: Report.py:205
+#: Report.py:222
 msgid "Base Report - GRAMPS"
 msgstr "Relatório Base - GRAMPS"
 
 # glade.c:1560
-#: Report.py:219
+#: Report.py:236
 msgid "Save Report As - GRAMPS"
 msgstr "Salva Relatório Como - GRAMPS"
 
 # glade.c:1614 glade.c:2421 glade.c:2422
-#: Report.py:441 Report.py:446
+#: Report.py:460 Report.py:465
 msgid "Save As"
 msgstr "Salva Como"
 
 # glade.c:2423
-#: Report.py:453
+#: Report.py:472
 msgid "Directory"
 msgstr "Diretório"
 
 # glade.c:794 glade.c:2424
-#: Report.py:455
+#: Report.py:474
 msgid "Filename"
 msgstr "Nome do Arquivo"
 
 # glade.c:2425
-#: Report.py:488
+#: Report.py:507
 msgid "Output Format"
 msgstr "Formato de Saída"
 
 # glade.c:1789 glade.c:2426
-#: Report.py:501
+#: Report.py:520
 msgid "Styles"
 msgstr "Estilos"
 
 # glade.c:1780 glade.c:2427
-#: Report.py:506 styles.glade:343
+#: Report.py:525 styles.glade:343
 msgid "Style Editor"
 msgstr "Editor de Estilo"
 
 # glade.c:1379 glade.c:2428 glade.c:2429
-#: Report.py:532 Report.py:534
+#: Report.py:551 Report.py:553
 msgid "Paper Options"
 msgstr "Opções de Papel"
 
 # glade.c:990 glade.c:2430 glade.c:2431
-#: Report.py:535 Report.py:537
+#: Report.py:554 Report.py:556
 msgid "HTML Options"
 msgstr "Opções HTML"
 
 # glade.c:1714 glade.c:2432
-#: Report.py:554 styles.glade:537
+#: Report.py:573 styles.glade:537
 msgid "Size"
 msgstr "Tamanho"
 
 # glade.c:1349 glade.c:2433
-#: Report.py:559
+#: Report.py:578
 msgid "Orientation"
 msgstr "Orientação"
 
 # glade.c:2434
-#: Report.py:571
+#: Report.py:590
 msgid "Page Count"
 msgstr "Número da Páginas"
 
 # glade.c:1809
-#: Report.py:581 plugins/eventcmp.glade:225
+#: Report.py:610 plugins/eventcmp.glade:225
 msgid "Template"
 msgstr "Modelo"
 
-# glade.c:2435
-#: Report.py:582
-msgid "Choose File"
-msgstr "Escolhe o Arquivo"
+# glade.c:1809
+#: Report.py:631
+msgid "User Template"
+msgstr "Modelo do Usuário"
 
 # glade.c:2435
-#: Report.py:582
+#: Report.py:633
 msgid "HTML Template"
 msgstr "Modelo HTML"
 
+# glade.c:2435
+#: Report.py:634
+msgid "Choose File"
+msgstr "Escolhe o Arquivo"
+
 # glade.c:1551 glade.c:2436
-#: Report.py:617
+#: Report.py:670
 msgid "Report Options"
 msgstr "Opções de Relatório"
 
 # glade.c:800 glade.c:2437
-#: Report.py:626 gramps.glade:772 plugins/eventcmp.glade:689
-#: plugins/eventcmp.glade:845 plugins/gedcomexport.glade:155
-#: plugins/pafexport.glade:155
+#: Report.py:679 gramps.glade:772 plugins/eventcmp.glade:542
+#: plugins/gedcomexport.glade:155 plugins/pafexport.glade:155
 msgid "Filter"
 msgstr "Filtro"
 
 # glade.c:907 glade.c:2438
-#: Report.py:641
+#: Report.py:698
 msgid "Generations"
 msgstr "Gerações"
 
 # glade.c:1373 glade.c:2439
-#: Report.py:648
+#: Report.py:706
 msgid "Page break between generations"
 msgstr "Quebra de página entre gerações"
 
@@ -1706,10 +1827,21 @@ msgstr "Quebra de página entre gerações"
 msgid "Relationship to %s"
 msgstr "Relação com %s"
 
+# glade.c:528
+#: SourceView.py:180 SourceView.py:182 gramps.glade:3060
+msgid "Delete Source"
+msgstr "Apaga Fonte de Referência"
+
 # glade.c:2451
-#: SourceView.py:171
+#: SourceView.py:181
 msgid "This source is currently being used. Delete anyway?"
-msgstr "Esta fonte de referência está sendo usada no momento. Apagá-la assim mesmo?"
+msgstr ""
+"Esta fonte de referência está sendo usada no momento. Apagá-la assim mesmo?"
+
+# glade.c:528
+#: SourceView.py:183
+msgid "Keep Source"
+msgstr "Mantém Fonte de Referência"
 
 # glade.c:1490 glade.c:2456 glade.c:2457
 #: Utils.py:199 Utils.py:201 imagesel.glade:770
@@ -1771,7 +1903,7 @@ msgstr ""
 "GEDCOM, você pode deixá-la em branco."
 
 # glade.c:383
-#: config.glade:182 dialog.glade:1053 gramps.glade:3060 places.glade:194
+#: config.glade:182 dialog.glade:1064 gramps.glade:3305 places.glade:194
 #: places.glade:715 places.glade:1110 preferences.glade:1815
 msgid "City"
 msgstr "Cidade"
@@ -1896,7 +2028,7 @@ msgstr ""
 "Divirta-se e desfrute do GRAMPS."
 
 # glade.c:2123
-#: const.py:93
+#: const.py:98
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -1906,338 +2038,333 @@ msgstr ""
 "programa pessoal de genealogia."
 
 # glade.c:217 glade.c:2128 glade.c:2147
-#: const.py:115 const.py:233 gramps.glade:4991 gramps.glade:5186
-#: gramps.glade:5570 gramps.glade:5635 gramps.glade:6570 gramps.glade:6617
+#: const.py:122 const.py:240 gramps.glade:5081 gramps.glade:5240
+#: gramps.glade:5656 gramps.glade:5721 gramps.glade:6698 gramps.glade:6745
 msgid "Adopted"
 msgstr "Adotado(a)"
 
 # glade.c:1776 glade.c:2129
-#: const.py:116 gramps.glade:4991 gramps.glade:5186 gramps.glade:5570
-#: gramps.glade:5635 gramps.glade:6570 gramps.glade:6617
+#: const.py:123 gramps.glade:5081 gramps.glade:5240 gramps.glade:5656
+#: gramps.glade:5721 gramps.glade:6698 gramps.glade:6745
 msgid "Stepchild"
 msgstr "Enteado"
 
 # glade.c:825 glade.c:2130
-#: const.py:117 gramps.glade:4991 gramps.glade:5186
+#: const.py:124 gramps.glade:5081 gramps.glade:5240
 msgid "Foster"
 msgstr "Sob tutela"
 
 # glade.c:1352 glade.c:2133 glade.c:2192 glade.c:2197
-#: const.py:120 const.py:395 const.py:403 mergedata.glade:268
+#: const.py:127 const.py:402 const.py:410 mergedata.glade:268
 msgid "Other"
 msgstr "Outro"
 
 # glade.c:1916 glade.c:2134
-#: const.py:129 srcsel.glade:617
+#: const.py:136 srcsel.glade:617
 msgid "Very Low"
 msgstr "Muito Baixo"
 
 # glade.c:1096 glade.c:2135 glade.c:2644
-#: const.py:130 plugins/Merge.py:88 srcsel.glade:617
+#: const.py:137 plugins/Merge.py:88 srcsel.glade:617
 msgid "Low"
 msgstr "Baixo"
 
 # glade.c:1275 glade.c:2136
-#: const.py:131 srcsel.glade:617
+#: const.py:138 srcsel.glade:617
 msgid "Normal"
 msgstr "Normal"
 
 # glade.c:999 glade.c:2137 glade.c:2646
-#: const.py:132 plugins/Merge.py:96 srcsel.glade:617
+#: const.py:139 plugins/Merge.py:96 srcsel.glade:617
 msgid "High"
 msgstr "Alto"
 
 # glade.c:1913 glade.c:2138
-#: const.py:133 srcsel.glade:617
+#: const.py:140 srcsel.glade:617
 msgid "Very High"
 msgstr "Muito Alto"
 
 # glade.c:2139
-#: const.py:153
+#: const.py:160
 msgid "Annulment"
 msgstr "Anulamento"
 
 # glade.c:2140 glade.c:2162
-#: const.py:154 const.py:248
+#: const.py:161 const.py:255
 msgid "Divorce Filing"
 msgstr "Pedido de Divórcio"
 
 # glade.c:2141
-#: const.py:155
+#: const.py:162
 msgid "Divorce"
 msgstr "Divórcio"
 
 # glade.c:2142
-#: const.py:156
+#: const.py:163
 msgid "Engagement"
 msgstr "Noivado"
 
 # glade.c:2143
-#: const.py:157
+#: const.py:164
 msgid "Marriage Contract"
 msgstr "Contrato Matrimonial"
 
 # glade.c:2144
-#: const.py:158
+#: const.py:165
 msgid "Marriage License"
 msgstr "Licença Matrimonial"
 
 # glade.c:2145
-#: const.py:159
+#: const.py:166
 msgid "Marriage Settlement"
 msgstr "Ajuste Matrimonial"
 
 # glade.c:2146
-#: const.py:160
+#: const.py:167
 msgid "Marriage"
 msgstr "Matrimônio"
 
 # glade.c:2148
-#: const.py:234
+#: const.py:241
 msgid "Alternate Birth"
 msgstr "Data de Nascimento Alternativa"
 
 # glade.c:2149
-#: const.py:235
+#: const.py:242
 msgid "Alternate Death"
 msgstr "Data de Falecimento Alternativa"
 
 # glade.c:2150
-#: const.py:236
+#: const.py:243
 msgid "Adult Christening"
 msgstr "Batismo Adulto"
 
 # glade.c:2151
-#: const.py:237
+#: const.py:244
 msgid "Baptism"
 msgstr "Batismo"
 
 # glade.c:2152
-#: const.py:238
+#: const.py:245
 msgid "Bar Mitzvah"
 msgstr "Bar Mitzvah"
 
 # glade.c:2153
-#: const.py:239
+#: const.py:246
 msgid "Bas Mitzvah"
 msgstr "Bas Mitzvah"
 
 # glade.c:2154
-#: const.py:240
+#: const.py:247
 msgid "Blessing"
 msgstr "Benção"
 
 # glade.c:2155
-#: const.py:241
+#: const.py:248
 msgid "Burial"
 msgstr "Enterro"
 
 # glade.c:2156
-#: const.py:242
+#: const.py:249
 msgid "Cause Of Death"
 msgstr "Causa da Morte"
 
 # glade.c:2157
-#: const.py:243
+#: const.py:250
 msgid "Census"
 msgstr "Censo"
 
 # glade.c:2158
-#: const.py:244
+#: const.py:251
 msgid "Christening"
 msgstr "Batismo"
 
 # glade.c:2159
-#: const.py:245
+#: const.py:252
 msgid "Confirmation"
 msgstr "Confirmação"
 
 # glade.c:2160
-#: const.py:246
+#: const.py:253
 msgid "Cremation"
 msgstr "Cremação"
 
 # glade.c:2161
-#: const.py:247
+#: const.py:254
 msgid "Degree"
 msgstr "Grau"
 
 # glade.c:2163
-#: const.py:249
+#: const.py:256
 msgid "Education"
 msgstr "Educação"
 
 # glade.c:2164
-#: const.py:250
+#: const.py:257
 msgid "Elected"
 msgstr "Eleito"
 
 # glade.c:2165
-#: const.py:251
+#: const.py:258
 msgid "Emigration"
 msgstr "Emigração"
 
 # glade.c:2166
-#: const.py:252
+#: const.py:259
 msgid "First Communion"
 msgstr "Primeira Comunhão"
 
 # glade.c:2167
-#: const.py:253
+#: const.py:260
 msgid "Immigration"
 msgstr "Imigração"
 
 # glade.c:2168
-#: const.py:254
+#: const.py:261
 msgid "Graduation"
 msgstr "Graduação"
 
 # glade.c:2169
-#: const.py:255
+#: const.py:262
 msgid "Medical Information"
 msgstr "Informações Médicas"
 
 # glade.c:2170
-#: const.py:256
+#: const.py:263
 msgid "Military Service"
 msgstr "Serviço Militar"
 
 # glade.c:2171
-#: const.py:257
+#: const.py:264
 msgid "Naturalization"
 msgstr "Naturalização"
 
 # glade.c:2172
-#: const.py:258
+#: const.py:265
 msgid "Nobility Title"
 msgstr "Título de Nobreza"
 
 # glade.c:2173
-#: const.py:259
+#: const.py:266
 msgid "Number of Marriages"
 msgstr "Número de Matrimônios"
 
 # glade.c:2174
-#: const.py:260
+#: const.py:267
 msgid "Occupation"
 msgstr "Ocupação"
 
 # glade.c:2175
-#: const.py:261
+#: const.py:268
 msgid "Ordination"
 msgstr "Ordenação"
 
 # glade.c:2176
-#: const.py:262
+#: const.py:269
 msgid "Probate"
 msgstr "Homologa (um testamento)"
 
 # glade.c:2177
-#: const.py:263
+#: const.py:270
 msgid "Property"
 msgstr "Propriedade"
 
 # glade.c:2178
-#: const.py:264
+#: const.py:271
 msgid "Religion"
 msgstr "Religião"
 
 # glade.c:2179
-#: const.py:265
+#: const.py:272
 msgid "Residence"
 msgstr "Residência"
 
 # glade.c:2180
-#: const.py:266
+#: const.py:273
 msgid "Retirement"
 msgstr "Aposentadoria"
 
 # glade.c:2181
-#: const.py:267
+#: const.py:274
 msgid "Will"
 msgstr "Testamento"
 
 # glade.c:2182
-#: const.py:312
+#: const.py:319
 msgid "Caste"
 msgstr "Casta"
 
 # glade.c:2184
-#: const.py:314
+#: const.py:321
 msgid "Identification Number"
 msgstr "Número de Identificação"
 
 # glade.c:2185
-#: const.py:315
+#: const.py:322
 msgid "National Origin"
 msgstr "Origem Nacional"
 
 # glade.c:2186
-#: const.py:316
+#: const.py:323
 msgid "Social Security Number"
 msgstr "Cadastro de Pessoas Físicas (Social Security Number)"
 
-# glade.c:2187
-#: const.py:355
-msgid "Number of Children"
-msgstr "Número de Filhos"
-
 # glade.c:2188
-#: const.py:391
+#: const.py:398
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "Matrimônio legalmente aceito entre marido e mulher"
 
 # glade.c:2189
-#: const.py:392
+#: const.py:399
 msgid "No legal or common-law relationship between man and woman"
 msgstr "Nenhuma relação legal ou 'de fato' entre homem e mulher"
 
 # glade.c:2189 glade.c:2194
-#: const.py:392 const.py:400
+#: const.py:399 const.py:407
 msgid "Unmarried"
 msgstr "Solteiro(a)"
 
 # glade.c:2190
-#: const.py:393
+#: const.py:400
 msgid "An established relationship between members of the same sex"
 msgstr "Uma relação estabelecida entre membros do mesmo sexo"
 
 # glade.c:2191
-#: const.py:394
+#: const.py:401
 msgid "Unknown relationship between a man and woman"
 msgstr "Relação desconhecida entre um homem e uma mulher"
 
 # glade.c:2192
-#: const.py:395
+#: const.py:402
 msgid "An unspecified relationship between a man and woman"
 msgstr "Uma relação não especificada entre um homem e uma mulher"
 
 # glade.c:2198
-#: const.py:419
+#: const.py:426
 msgid "No definition available"
 msgstr "Definição não disponível"
 
-#: const.py:860
+#: const.py:867
 msgid "Also Known As"
 msgstr "Também Conhecido Como"
 
 # glade.c:303
-#: const.py:861
+#: const.py:868
 msgid "Birth Name"
 msgstr "Nome de Nascimento"
 
 # glade.c:2074 glade.c:2188 glade.c:2193 glade.c:2596 glade.c:2597
-#: const.py:862
+#: const.py:869
 msgid "Married Name"
 msgstr "Nome de Casado"
 
 # glade.c:1355
-#: const.py:863
+#: const.py:870
 msgid "Other Name"
 msgstr "Outro Nome"
 
 # glade.c:751
-#: dialog.glade:18 dialog.glade:928
+#: dialog.glade:18 dialog.glade:939
 msgid "Event Editor - GRAMPS"
 msgstr "Editor de Eventos - GRAMPS"
 
@@ -2251,48 +2378,110 @@ msgstr "Editor de Eventos"
 msgid "Event Type"
 msgstr "Tipo de Evento"
 
+# glade.c:1494
+#: dialog.glade:369 dialog.glade:900 dialog.glade:1601 dialog.glade:2128
+#: dialog.glade:2431
+msgid "Private Record"
+msgstr "Registro Privado"
+
 # glade.c:682
-#: dialog.glade:383 dialog.glade:903
+#: dialog.glade:383 dialog.glade:914
 msgid "Edit source information for the highlighted event"
 msgstr "Edita as informações da fonte de referência para o evento destacado"
 
+# glade.c:676
+#: dialog.glade:391 dialog.glade:922 dialog.glade:1623 dialog.glade:2453
+msgid "Edit Source"
+msgstr "Edita Fonte de Referência"
+
+# glade.c:1692
+#: dialog.glade:501 dialog.glade:1883
+msgid "Selects the calendar format for display"
+msgstr "Seleciona o formato de apresentação do calendário"
+
 # glade.c:254
-#: dialog.glade:566
+#: dialog.glade:577
 msgid "Attribute Editor - GRAMPS"
 msgstr "Editor de Atributos - GRAMPS"
 
 # glade.c:251
-#: dialog.glade:649
+#: dialog.glade:660
 msgid "Attribute Editor"
 msgstr "Editor de Atributos"
 
 # glade.c:425
-#: dialog.glade:1079 gramps.glade:3117 places.glade:246 places.glade:689
+#: dialog.glade:1090 gramps.glade:3362 places.glade:246 places.glade:689
 #: places.glade:1123
 msgid "County"
 msgstr "Condado"
 
 # glade.c:1762
-#: dialog.glade:1131 gramps.glade:3174 places.glade:220 places.glade:767
+#: dialog.glade:1142 gramps.glade:3419 places.glade:220 places.glade:767
 #: places.glade:1136
 msgid "State"
 msgstr "Estado"
 
 # glade.c:379
-#: dialog.glade:1254 gramps.glade:3003 places.glade:597 places.glade:1001
+#: dialog.glade:1265 gramps.glade:3248 places.glade:597 places.glade:1001
 msgid "Church Parish"
 msgstr "Paróquia"
 
+# glade.c:207
+#: dialog.glade:1320
+msgid "Address Editor - GRAMPS"
+msgstr "Editor de Endereço - GRAMPS"
+
+# glade.c:123
+#: dialog.glade:1362 dialog.glade:1948 dialog.glade:2215 gramps.glade:5962
+#: marriage.glade:66
+msgid "Accept and close"
+msgstr "Aceita e fecha"
+
+# glade.c:204
+#: dialog.glade:1404
+msgid "Address Editor"
+msgstr "Editor de Endereço"
+
+# glade.c:685
+#: dialog.glade:1615
+msgid "Edit source information for this address"
+msgstr "Edita as informações da fonte de referência para este endereço"
+
+# glade.c:1032
+#: dialog.glade:1906
+msgid "Internet Address Editor - GRAMPS"
+msgstr "Editor de Endereço Internet - GRAMPS"
+
+# glade.c:232
+#: dialog.glade:2173
+msgid "Alternate Name Editor - GRAMPS"
+msgstr "Editor de Nome Alternativo - GRAMPS"
+
+# glade.c:1518
+#: dialog.glade:2231 gramps.glade:5978 marriage.glade:82
+msgid "Reject changes and close"
+msgstr "Rejeita as modificações e fecha"
+
+# glade.c:229
+#: dialog.glade:2258
+msgid "Alternate Name Editor"
+msgstr "Editor de Nome Alternativo"
+
+# glade.c:688
+#: dialog.glade:2445
+msgid "Edit source information for this name"
+msgstr "Edita as informações da fonte de referência para este nome"
+
 # glade.c:119
-#: docgen/AbiWordDoc.py:325
+#: docgen/AbiWordDoc.py:322
 msgid "AbiWord"
 msgstr "AbiWord"
 
-#: docgen/HtmlDoc.py:121
+#: docgen/HtmlDoc.py:142 docgen/HtmlDoc.py:167
 msgid "The marker '<!-- START -->' was not in the template"
 msgstr "O marcador '<!-- START -->' não estava no modelo"
 
-#: docgen/HtmlDoc.py:125 docgen/HtmlDoc.py:132
+#: docgen/HtmlDoc.py:178 docgen/HtmlDoc.py:185
 msgid ""
 "Could not open %s\n"
 "Using the default template"
@@ -2301,7 +2490,7 @@ msgstr ""
 "Usando o modelo pré-definido"
 
 # glade.c:987
-#: docgen/HtmlDoc.py:322 plugins/eventcmp.glade:195
+#: docgen/HtmlDoc.py:388 plugins/eventcmp.glade:195
 msgid "HTML"
 msgstr "HTML"
 
@@ -2315,7 +2504,7 @@ msgid "LaTeX"
 msgstr "LaTeX"
 
 # glade.c:1339
-#: docgen/OpenDrawDoc.py:449 docgen/OpenOfficeDoc.py:577
+#: docgen/OpenDrawDoc.py:449 docgen/OpenOfficeDoc.py:576
 msgid "OpenOffice/StarOffice 6"
 msgstr "OpenOffice/StarOffice 6"
 
@@ -2334,15 +2523,15 @@ msgid "The ReportLab modules are not installed"
 msgstr "Os módulos ReportLab não estão instalados"
 
 # glade.c:1364
-#: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:188
+#: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:160
 msgid "PDF"
 msgstr "PDF"
 
-#: docgen/RTFDoc.py:520
+#: docgen/RTFDoc.py:517
 msgid "Rich Text Format (RTF)"
 msgstr "Rich Text Format (RTF)"
 
-#: docgen/SvgDrawDoc.py:129
+#: docgen/SvgDrawDoc.py:128
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Gráficos Vetoriais Escaláveis)"
 
@@ -2447,14 +2636,14 @@ msgid "Names that contain a substring"
 msgstr "Nomes que contém uma cadeia de caracteres"
 
 # glade.c:850 glade.c:2283 glade.c:2292
-#: gramps.glade:35 gramps_main.py:661 gramps_main.py:725 preferences.glade:173
+#: gramps.glade:35 gramps_main.py:746 gramps_main.py:806 preferences.glade:173
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-# glade.c:1988
+# glade.c:467 glade.c:2108
 #: gramps.glade:93
-msgid "_New File"
-msgstr "_Novo Arquivo"
+msgid "_New Database"
+msgstr "_Novo Banco de Dados"
 
 # glade.c:1587
 #: gramps.glade:121
@@ -2655,7 +2844,7 @@ msgid "Show active person's anscestors"
 msgstr "Mostra os ancestrais da pessoa ativa"
 
 # glade.c:1401
-#: gramps.glade:641 gramps.glade:2515
+#: gramps.glade:641 gramps.glade:2760
 msgid "Pedigree"
 msgstr "Linhagem"
 
@@ -2675,7 +2864,7 @@ msgid "Display the list of media objects"
 msgstr "Exibe a lista de objetos multimídia"
 
 # glade.c:1174
-#: gramps.glade:686 gramps.glade:4227
+#: gramps.glade:686 gramps.glade:4472
 msgid "Media"
 msgstr "Médio"
 
@@ -2705,21 +2894,13 @@ msgid "Show persons that do not match the filtering rule"
 msgstr "Mostra as pessoas que não coincidem com a regra de seleção"
 
 # glade.c:1038
-#: gramps.glade:868 plugins/eventcmp.glade:791 plugins/eventcmp.glade:871
+#: gramps.glade:868 rule.glade:318
 msgid "Invert"
 msgstr "Inverte"
 
-# glade.c:1011
-#: gramps.glade:1033 gramps.glade:2236 gramps.glade:2641 gramps.glade:2946
-#: gramps.glade:3742 gramps.glade:3989 gramps.glade:5466 imagesel.glade:613
-#: imagesel.glade:1507 imagesel.glade:2370 mergedata.glade:1013
-#: mergedata.glade:1725 plugins/relcalc.glade:170 srcsel.glade:778
-msgid "ID"
-msgstr "ID"
-
 # glade.c:303
-#: gramps.glade:1161 gramps.glade:2350 gramps.glade:4938 gramps.glade:5133
-#: gramps.glade:5453 mergedata.glade:466 mergedata.glade:1232
+#: gramps.glade:1161 gramps.glade:2592 gramps.glade:5014 gramps.glade:5173
+#: gramps.glade:5539 mergedata.glade:466 mergedata.glade:1232
 msgid "Birth Date"
 msgstr "Data de Nascimento"
 
@@ -2729,7 +2910,7 @@ msgid "Death Date"
 msgstr "Data de Falecimento"
 
 # glade.c:173
-#: gramps.glade:1319 gramps.glade:6926
+#: gramps.glade:1319 gramps.glade:7054
 msgid "Add Person"
 msgstr "Adiciona Pessoa"
 
@@ -2739,7 +2920,7 @@ msgid "Edit/View Person"
 msgstr "Edita/Visualiza Pessoa"
 
 # glade.c:522
-#: gramps.glade:1347
+#: gramps.glade:1347 gramps_main.py:872 gramps_main.py:873
 msgid "Delete Person"
 msgstr "Apaga Pessoa"
 
@@ -2749,54 +2930,79 @@ msgid "Active Person"
 msgstr "Pessoa Ativa"
 
 # glade.c:760
-#: gramps.glade:1481
+#: gramps.glade:1451
 msgid "Exchange active person and displayed spouse"
 msgstr "Troca a pessoa ativa, com o cônjuge mostrado"
 
 # glade.c:1521
-#: gramps.glade:1562
+#: gramps.glade:1516 gramps_main.py:1536 gramps_main.py:1561
+#: gramps_main.py:1959
 msgid "Relationship"
 msgstr "Relação"
 
 # glade.c:1749 glade.c:2595 glade.c:2604
-#: gramps.glade:1598 plugins/FamilyGroup.py:277 plugins/FamilyGroup.py:381
-#: plugins/test.py:277 plugins/test.py:381
+#: gramps.glade:1555 plugins/FamilyGroup.py:277 plugins/FamilyGroup.py:381
 msgid "Spouse"
 msgstr "Cônjuge"
 
+# glade.c:1123
+#: gramps.glade:1607
+msgid "Make this the preferred spouse"
+msgstr "Torna este o cônjuge preferencial"
+
 # glade.c:691
-#: gramps.glade:1710 places.glade:1201 places.glade:1706
+#: gramps.glade:1743 places.glade:1201 places.glade:1706
 msgid "Edit/View"
 msgstr "Edita/Visualiza"
 
 # glade.c:1114
-#: gramps.glade:1820
+#: gramps.glade:1853
 msgid "Make the current father the active person"
 msgstr "Torna o pai corrente, a pessoa ativa"
 
 # glade.c:1117
-#: gramps.glade:1911
+#: gramps.glade:1944
 msgid "Make the current mother the active person"
 msgstr "Torna a mãe corrente, a pessoa ativa"
 
+# glade.c:446
+#: gramps.glade:2004 gramps.glade:2059
+msgid "Related by:"
+msgstr "Relacionado por:"
+
+# glade.c:1638
+#: gramps.glade:2114
+msgid "Select the previous parents"
+msgstr "Seleciona os pais anteriores"
+
+# glade.c:1638
+#: gramps.glade:2145
+msgid "Select the next parents"
+msgstr "Seleciona os próximos pais"
+
+# glade.c:1123
+#: gramps.glade:2208
+msgid "Make these the preferred parents"
+msgstr "Torna estes os pais preferenciais"
+
 # glade.c:197
-#: gramps.glade:1997
+#: gramps.glade:2239
 msgid "Add/Edit/View"
 msgstr "Adiciona/Edita/Visualiza"
 
 # glade.c:361 glade.c:2598 glade.c:2628 glade.c:2786
-#: gramps.glade:2022 plugins/FamilyGroup.py:311 plugins/IndivSummary.py:174
-#: plugins/WebPage.py:521 plugins/test.py:311
+#: gramps.glade:2264 plugins/FamilyGroup.py:311 plugins/IndivComplete.py:272
+#: plugins/IndivSummary.py:174 plugins/WebPage.py:521
 msgid "Children"
 msgstr "Filhos"
 
 # glade.c:1123
-#: gramps.glade:2065
+#: gramps.glade:2307
 msgid "Make the selected child the active person"
 msgstr "Torna o filho selecionado, a pessoa ativa"
 
 # glade.c:389
-#: gramps.glade:2115
+#: gramps.glade:2357
 msgid ""
 "Click column headers to sort. When sorted by birth date, drag and drop to "
 "reorder children."
@@ -2805,247 +3011,245 @@ msgstr ""
 "nascimento, arraste e solte para reorganizar os filhos."
 
 # glade.c:1769
-#: gramps.glade:2388
+#: gramps.glade:2630
 msgid "Status"
 msgstr "Status"
 
+# glade.c:2767
+#: gramps.glade:2673
+msgid "Choose child from the database"
+msgstr "Escolhe o filho a partir do banco de dados"
+
 # glade.c:157
-#: gramps.glade:2438
-msgid "Add Existing Children"
-msgstr "Adiciona Filhos Existentes"
+#: gramps.glade:2681
+msgid "Add Existing Child"
+msgstr "Adiciona Filho Existente"
+
+#: gramps.glade:2688
+msgid "Add new person to database (and this family)"
+msgstr "Adiciona uma nova pessoa ao banco de dados (e a esta família)"
 
 # glade.c:167
-#: gramps.glade:2452 gramps.glade:6443
+#: gramps.glade:2696 gramps.glade:6571
 msgid "Add New Child"
 msgstr "Adiciona Novo Filho"
 
+# glade.c:1548
+#: gramps.glade:2703
+msgid "Remove selected child from this family"
+msgstr "Remove o filho selecionado desta família"
+
 # glade.c:1542
-#: gramps.glade:2466
+#: gramps.glade:2711
 msgid "Remove Child"
 msgstr "Remove o filho"
 
 # glade.c:261
-#: gramps.glade:2697 gramps.glade:6010 srcsel.glade:182
+#: gramps.glade:2942 gramps.glade:6096 srcsel.glade:182
 msgid "Author"
 msgstr "Autor"
 
 # glade.c:179
-#: gramps.glade:2785
+#: gramps.glade:3030
 msgid "Add Source"
 msgstr "Adiciona Fonte de Referência"
 
 # glade.c:700
-#: gramps.glade:2800
+#: gramps.glade:3045
 msgid "Edit/View Source"
 msgstr "Edita/Visualiza Fonte de Referência"
 
-# glade.c:528
-#: gramps.glade:2815
-msgid "Delete Source"
-msgstr "Apaga Fonte de Referência"
-
 # glade.c:1449
-#: gramps.glade:2890
+#: gramps.glade:3135
 msgid "Place Name"
 msgstr "Nome do Lugar"
 
 # glade.c:176
-#: gramps.glade:3372
+#: gramps.glade:3617
 msgid "Add Place"
 msgstr "Adiciona Lugar"
 
 # glade.c:697
-#: gramps.glade:3387
+#: gramps.glade:3632
 msgid "Edit/View Place"
 msgstr "Edita/Visualiza Lugar"
 
-# glade.c:525
-#: gramps.glade:3402
-msgid "Delete Place"
-msgstr "Apaga Lugar"
-
 # glade.c:1481
-#: gramps.glade:3441 imagesel.glade:157
+#: gramps.glade:3686 imagesel.glade:157
 msgid "Preview"
 msgstr "Pré-visualização"
 
 # glade.c:1023
-#: gramps.glade:3461 plugins/pafexport.glade:179
+#: gramps.glade:3706 plugins/pafexport.glade:179
 msgid "Information"
 msgstr "Informação"
 
 # glade.c:1395
-#: gramps.glade:3690 gramps.glade:4101 imagesel.glade:508 imagesel.glade:1585
+#: gramps.glade:3935 gramps.glade:4346 imagesel.glade:508 imagesel.glade:1585
 msgid "Path"
 msgstr "Caminho"
 
 # glade.c:659
-#: gramps.glade:4202
+#: gramps.glade:4447
 msgid "Edit Media Object"
 msgstr "Edita Objeto Multimídia"
 
 # glade.c:1650
-#: gramps.glade:4266
+#: gramps.glade:4511
 msgid "Select File - GRAMPS"
 msgstr "Seleciona um Arquivo - GRAMPS"
 
 # glade.c:1303
-#: gramps.glade:4287
+#: gramps.glade:4532
 msgid "OK"
 msgstr "OK"
 
 # glade.c:337
-#: gramps.glade:4303
+#: gramps.glade:4548
 msgid "Cancel"
 msgstr "Cancela"
 
 # glade.c:370
-#: gramps.glade:4311
+#: gramps.glade:4556
 msgid "Choose Spouse - GRAMPS"
 msgstr "Escolhe o Cônjuge - GRAMPS"
 
-# glade.c:191
-#: gramps.glade:4362
-msgid "Add new person"
-msgstr "Adiciona nova pessoa"
-
-# glade.c:1677
-#: gramps.glade:4376
-msgid "Select existing person"
-msgstr "Seleciona uma pessoa existente"
-
 # glade.c:373
-#: gramps.glade:4396
+#: gramps.glade:4626
 msgid "Choose Spouse/Partner"
 msgstr "Escolhe o Cônjuge/Parceiro(a)"
 
-# glade.c:1680
-#: gramps.glade:4424
-msgid "Select existing person as spouse"
-msgstr "Seleciona uma pessoa existente como cônjuge"
-
 # glade.c:309
-#: gramps.glade:4476 plugins/relcalc.glade:183
+#: gramps.glade:4714 plugins/relcalc.glade:183
 msgid "Birthdate"
 msgstr "Aniversário"
 
-# glade.c:194
-#: gramps.glade:4492
-msgid "Add new person as spouse"
-msgstr "Adiciona nova pessoa como cônjuge"
-
-# glade.c:1524
-#: gramps.glade:4642 marriage.glade:161
-msgid "Relationship Type"
-msgstr "Tipo de Relação"
+# glade.c:191
+#: gramps.glade:4752
+msgid "Add new person"
+msgstr "Adiciona nova pessoa"
 
 # glade.c:1527
-#: gramps.glade:4699
+#: gramps.glade:4819
 msgid "Relationship definition"
 msgstr "Definição da Relação"
 
 # glade.c:367
-#: gramps.glade:4720
+#: gramps.glade:4840
 msgid "Choose Parents - GRAMPS"
 msgstr "Escolhe os Pais - GRAMPS"
 
 # glade.c:364
-#: gramps.glade:4804
+#: gramps.glade:4924
 msgid "Choose Parents"
 msgstr "Escolhe os Pais"
 
 # glade.c:1536
-#: gramps.glade:4963 gramps.glade:5158
+#: gramps.glade:5053 gramps.glade:5212
 msgid "Relationship to child"
 msgstr "Relação com o filho"
 
+# glade.c:191
+#: gramps.glade:5292
+msgid "Add New Person"
+msgstr "Adiciona Nova Pessoa"
+
 # glade.c:1388
-#: gramps.glade:5235
+#: gramps.glade:5321
 msgid "Parent Relationship"
 msgstr "Relação Entre os Genitores"
 
 # glade.c:148
-#: gramps.glade:5294
+#: gramps.glade:5380
 msgid "Add Child - GRAMPS"
 msgstr "Adiciona Filho - GRAMPS"
 
 # glade.c:151
-#: gramps.glade:5377
+#: gramps.glade:5463
 msgid "Add Children"
 msgstr "Adiciona Filhos"
 
 # glade.c:996
-#: gramps.glade:5487
+#: gramps.glade:5573
 msgid "Hide people not likely to be a child of this family"
 msgstr "Esconde as pessoas que provavelmente nao são filhos desta família"
 
 # glade.c:1530
-#: gramps.glade:5514 gramps.glade:6484
+#: gramps.glade:5600 gramps.glade:6612
 msgid "Relationship to Father"
 msgstr "Relação com o Pai"
 
 # glade.c:1533
-#: gramps.glade:5599 gramps.glade:6813
+#: gramps.glade:5685 gramps.glade:6941
 msgid "Relationship to Mother"
 msgstr "Relação com a Mãe"
 
 # glade.c:1129
-#: gramps.glade:5676
+#: gramps.glade:5762
 msgid "Marriage Editor - GRAMPS"
 msgstr "Editor de Matrimônio - GRAMPS"
 
 # glade.c:1126
-#: gramps.glade:5759
+#: gramps.glade:5845
 msgid "Marriage Editor"
 msgstr "Editor de Matrimônio"
 
 # glade.c:679
-#: gramps.glade:5787
+#: gramps.glade:5873
 msgid "Edit marriage information"
 msgstr "Edita informações de matrimônio"
 
 # glade.c:182
-#: gramps.glade:5802
+#: gramps.glade:5888
 msgid "Add a new spouse"
 msgstr "Adiciona um novo cônjuge"
 
 # glade.c:1545
-#: gramps.glade:5817
+#: gramps.glade:5903
 msgid "Remove current spouse"
 msgstr "Remove o cônjuge corrente"
 
 # glade.c:1729
-#: gramps.glade:5834
+#: gramps.glade:5920
 msgid "Source Editor - GRAMPS"
 msgstr "Editor de Fonte de Referências - GRAMPS"
 
 # glade.c:1726
-#: gramps.glade:5924
+#: gramps.glade:6010
 msgid "Source Editor"
 msgstr "Editor de Fonte de Referências"
 
 # glade.c:1500
-#: gramps.glade:6036
+#: gramps.glade:6122
 msgid "Publication Info"
 msgstr "Informação da Publicação"
 
+# glade.c:2215 glade.c:2223 glade.c:2228 glade.c:2231
+#: gramps.glade:6413
+msgid "Category"
+msgstr "Categoria"
+
+#: gramps.glade:6439
+msgid "Item"
+msgstr "Item"
+
 # glade.c:1515
-#: gramps.glade:6326 imagesel.glade:2398 places.glade:1761
+#: gramps.glade:6454 imagesel.glade:2398 places.glade:1761
 msgid "References"
 msgstr "Referências"
 
 # glade.c:170
-#: gramps.glade:6342
+#: gramps.glade:6470
 msgid "Add New Child - GRAMPS"
 msgstr "Adiciona Novo Filho - GRAMPS"
 
 # glade.c:455
-#: gramps.glade:6384
+#: gramps.glade:6512
 msgid "Creates the new child and adds him or her as a child of the family"
 msgstr "Cria um novo filho(a) e adiciona-o(a) como um filho da familia"
 
 # glade.c:213
-#: gramps.glade:6400
+#: gramps.glade:6528
 msgid ""
 "Adds the new person as a child of the family and displays the standard "
 "person dialog to allow for more data to be entered"
@@ -3054,32 +3258,68 @@ msgstr ""
 "permite que mais dados sejam incluídos para essa pessoa"
 
 # glade.c:154
-#: gramps.glade:6409
+#: gramps.glade:6537
 msgid "Add Data"
 msgstr "Adiciona Dados"
 
+# glade.c:668
+#: gramps.glade:6971
+msgid "Add Person - GRAMPS"
+msgstr "Adiciona Pessoa - GRAMPS"
+
 # glade.c:1324
-#: gramps.glade:7173
+#: gramps.glade:7301
 msgid "Open a Database - GRAMPS"
 msgstr "Abre um Banco de Dados - GRAMPS"
 
 # glade.c:1321
-#: gramps.glade:7257
+#: gramps.glade:7385
 msgid "Open a Database"
 msgstr "Abre um Banco de Dados"
 
 # glade.c:1336
-#: gramps.glade:7286
+#: gramps.glade:7414
 msgid "Open an Existing Database"
 msgstr "Abre um Banco de Dados Existente"
 
 # glade.c:428
-#: gramps.glade:7302
+#: gramps.glade:7430
 msgid "Create a New Database"
 msgstr "Cria um Novo Banco de Dados"
 
+# glade.c:668
+#: gramps.glade:7447
+msgid "Question - GRAMPS"
+msgstr "Pergunta - GRAMPS"
+
+# glade.c:373
+#: gramps.glade:7496
+msgid "Choose Spouse"
+msgstr "Escolhe o Cônjuge"
+
+# glade.c:1521
+#: gramps.glade:7509
+msgid "New Relationship"
+msgstr "Nova Relação"
+
+#: gramps.glade:7540
+msgid "Add a Spouse or Create a New Relationhip"
+msgstr "Adiciona um Cônjuge or Cria uma Nova Relação"
+
+#: gramps.glade:7581
+msgid ""
+"No spouse has been defined for the current relationship.\n"
+"\n"
+"You can either define the spouse of the current relationship\n"
+"or create a new relationship."
+msgstr ""
+"Nenhum cônjuge foi definido para a relação corrente.\n"
+"\n"
+"Você pode tanto definir o cônjuge da relação corrente\n"
+"ou criar uma nova relação."
+
 # glade.c:2314
-#: gramps_main.py:109
+#: gramps_main.py:113
 msgid ""
 "You are running GRAMPS as the 'root' user.\n"
 "This account is not meant for normal application use."
@@ -3088,27 +3328,47 @@ msgstr ""
 "Esta conta não é destinada ao uso de aplicações normais."
 
 # glade.c:2276
-#: gramps_main.py:350
+#: gramps_main.py:390
 msgid "Exactly two people must be selected to perform a merge"
-msgstr "Exatamente duas pessoas devem ser selecionadas a fim de se fazer uma fusão"
+msgstr ""
+"Exatamente duas pessoas devem ser selecionadas a fim de se fazer uma fusão"
 
 # glade.c:2277
-#: gramps_main.py:370
-msgid "Unsaved changes exist in the current database\n"
-msgstr "Existem modificações não salvas no banco de dados corrente\n"
+#: gramps_main.py:412
+msgid ""
+"Unsaved changes exist in the current database\n"
+"Do you wish to save the changes?"
+msgstr ""
+"Existem modificações não salvas no banco de dados corrente\n"
+"Você deseja salvar as modificações?"
 
-# glade.c:2278
-#: gramps_main.py:371
-msgid "Do you wish to save the changes?"
-msgstr "Deseja salvar as modificações?"
+# glade.c:1614 glade.c:2421 glade.c:2422
+#: gramps_main.py:414
+msgid "Save Changes"
+msgstr "Salva Modificações"
 
 # glade.c:2279
-#: gramps_main.py:515
+#: gramps_main.py:590
 msgid "Do you want to close the current database and create a new one?"
 msgstr "Deseja fechar o banco de dados corrente e criar um novo?"
 
+# glade.c:467 glade.c:2108
+#: gramps_main.py:591
+msgid "New Database"
+msgstr "Novo Banco de Dados"
+
+# glade.c:428
+#: gramps_main.py:592
+msgid "Close Current Database"
+msgstr "Fecha Banco de Dados Corrente"
+
+# glade.c:2613 glade.c:2814 glade.c:2822
+#: gramps_main.py:593
+msgid "Return to Current Database"
+msgstr "Retorna ao Banco de Dados Corrente"
+
 # glade.c:2280
-#: gramps_main.py:631
+#: gramps_main.py:706
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
@@ -3116,82 +3376,155 @@ msgstr ""
 "Existe um arquivo de salvamento automático para %s.\n"
 "Devo carregar esse arquivo ao invés da última versão gravada?"
 
+# glade.c:2295
+#: gramps_main.py:711
+msgid "Autosave File"
+msgstr "Arquivo de Auto-Salvamento"
+
+# glade.c:2295
+#: gramps_main.py:712
+msgid "Load Autosave File"
+msgstr "Carrega Arquivo de Auto-Salvamento"
+
+# glade.c:1623
+#: gramps_main.py:713
+msgid "Load Last Saved File"
+msgstr "Carrega o Último Arquivo Salvo"
+
 # glade.c:2281 glade.c:2286
-#: gramps_main.py:651 gramps_main.py:688
+#: gramps_main.py:737 gramps_main.py:773
 msgid "%s is not a directory"
 msgstr "%s não é um diretório"
 
 # glade.c:2282
-#: gramps_main.py:655
+#: gramps_main.py:740
 msgid "Loading %s ..."
 msgstr "Carregando %s..."
 
 # glade.c:2285
-#: gramps_main.py:681
+#: gramps_main.py:766
 msgid "Saving %s ..."
 msgstr "Salvando %s..."
 
 # glade.c:2293
-#: gramps_main.py:742
+#: gramps_main.py:826
 msgid "autosaving..."
 msgstr "salvando automaticamente..."
 
 # glade.c:2294
-#: gramps_main.py:745
+#: gramps_main.py:829
 msgid "autosave complete"
 msgstr "auto-salvamento completo"
 
 # glade.c:2295
-#: gramps_main.py:747
+#: gramps_main.py:831
 msgid "autosave failed"
 msgstr "auto-salvamento falhou"
 
 # glade.c:2296
-#: gramps_main.py:756
+#: gramps_main.py:840
 msgid "You requested too many people to edit at the same time"
 msgstr "Você solicitou que muitas pessoas fossem editadas ao mesmo tempo"
 
 # glade.c:2297
-#: gramps_main.py:785
+#: gramps_main.py:870
 msgid "Do you really wish to delete %s?"
 msgstr "Você tem certeza que quer apagar %s?"
 
+# glade.c:1252
+#: gramps_main.py:874
+msgid "Keep Person"
+msgstr "Mantém Pessoa"
+
 # glade.c:2298
-#: gramps_main.py:789
+#: gramps_main.py:876
 msgid "Currently, you can only delete one person at a time"
 msgstr "Por enquanto você pode apagar apenas uma pessoa por vez"
 
 # glade.c:2299
-#: gramps_main.py:1089
-msgid "Invalid move.  Children must be ordered by birth date."
+#: gramps_main.py:1172
+msgid "Invalid move. Children must be ordered by birth date."
 msgstr "Movimento inválido. Filhos devem ser ordenados por data de nascimento."
 
 # glade.c:2300
-#: gramps_main.py:1135
+#: gramps_main.py:1220
 msgid ""
 "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 "Deseja abandonar as modificações e reverter ao último banco de dados salvo?"
 
+# glade.c:1587
+#: gramps_main.py:1224
+msgid "Revert to Last Database"
+msgstr "Reverte ao Último Banco de Dados"
+
+# glade.c:2613 glade.c:2814 glade.c:2822
+#: gramps_main.py:1225
+msgid "Continue with Current Database"
+msgstr "Continua com o Banco de Dados Corrente"
+
 # glade.c:2301
-#: gramps_main.py:1138
+#: gramps_main.py:1227
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr "Não posso reverter a um banco de dados prévio, porque ele não existe"
 
+# glade.c:1388
+#: gramps_main.py:1534 gramps_main.py:1957
+msgid "Preferred Relationship"
+msgstr "Relação Preferencial"
+
+# glade.c:1521
+#: gramps_main.py:1570
+msgid "No Relationship"
+msgstr "Sem Relação"
+
+#: gramps_main.py:1600
+msgid "Preferred Parents (%d of %d)"
+msgstr "Genitores Preferenciais (%d de %d)"
+
+# glade.c:1478
+#: gramps_main.py:1602
+msgid "Preferred Parents"
+msgstr "Genitores Preferenciais"
+
+# glade.c:2343
+#: gramps_main.py:1605
+msgid "Alternate Parents (%d of %d)"
+msgstr "Genitores Alternativos (%d de %d)"
+
+# glade.c:1391
+#: gramps_main.py:1608
+msgid "No Parents"
+msgstr "Sem Genitores"
+
 # glade.c:2311
-#: gramps_main.py:1738
+#: gramps_main.py:1896
 msgid "No default/home person has been set"
 msgstr "Não se estabeleceu uma pessoa inicial"
 
 # glade.c:2312
-#: gramps_main.py:1743
+#: gramps_main.py:1901
 msgid "%s has been bookmarked"
 msgstr "%s foi inserido no marcador de página (bookmark)"
 
 # glade.c:2313
-#: gramps_main.py:1756
+#: gramps_main.py:1914
 msgid "Do you wish to set %s as the home person?"
 msgstr "Deseja marcar %s como a pessoa inicial?"
+
+# glade.c:522
+#: gramps_main.py:1916
+msgid "Set Home Person"
+msgstr "Fixa a Pessoa Inicial"
+
+# glade.c:1641 glade.c:2342
+#: gramps_main.py:1917
+msgid "Set as Home Person"
+msgstr "Fixa como a Pessoa Inicial"
+
+#: gramps_main.py:1918
+msgid "Do not change Home Person"
+msgstr "Não troca a Pessoa Inicial"
 
 # glade.c:1656
 #: imagesel.glade:18
@@ -3434,17 +3767,17 @@ msgid "Report Selection - GRAMPS"
 msgstr "Seleciona Relatório - GRAMPS"
 
 # glade.c:1659
-#: plugins.glade:213
+#: plugins.glade:239
 msgid "Select a report from those available on the left."
 msgstr "Selecione um relatório a partir daqueles disponívies à esquerda."
 
 # glade.c:1563
-#: plugins.glade:242
+#: plugins.glade:268
 msgid "Report Status"
 msgstr "Status do Relatório"
 
 # glade.c:913
-#: plugins.glade:281
+#: plugins.glade:307
 msgid "Plugin Status - GRAMPS"
 msgstr "Status dos Plugins - GRAMPS"
 
@@ -3454,55 +3787,55 @@ msgid "Document write failure"
 msgstr "Falha na escrita do documento"
 
 # glade.c:2464 glade.c:2469
-#: plugins/AncestorChart.py:258 plugins/AncestorChart.py:389
+#: plugins/AncestorChart.py:257 plugins/AncestorChart.py:469
 msgid "Ancestor Chart"
 msgstr "Diagrama de Ancestrais"
 
 # glade.c:2464 glade.c:2470 glade.c:2537 glade.c:2543 glade.c:2617
 # glade.c:2625
-#: plugins/AncestorChart.py:258 plugins/AncestorChart.py:390
-#: plugins/DesGraph.py:311 plugins/DesGraph.py:427 plugins/GraphViz.py:130
-#: plugins/GraphViz.py:289
+#: plugins/AncestorChart.py:257 plugins/AncestorChart.py:470
+#: plugins/DesGraph.py:307 plugins/DesGraph.py:452 plugins/GraphViz.py:61
+#: plugins/GraphViz.py:391
 msgid "Graphical Reports"
 msgstr "Relatórios Gráficos"
 
 # glade.c:2465
-#: plugins/AncestorChart.py:262
+#: plugins/AncestorChart.py:261
 msgid "Ancestor Chart for %s"
 msgstr "Diagrama de Ancestrais para %s"
 
 # glade.c:2466
-#: plugins/AncestorChart.py:267
+#: plugins/AncestorChart.py:266
 msgid "Save Ancestor Chart"
 msgstr "Salva Diagrama de Ancestrais"
 
 # glade.c:2467 glade.c:2540
-#: plugins/AncestorChart.py:279 plugins/DesGraph.py:328
+#: plugins/AncestorChart.py:278 plugins/DesGraph.py:324
 msgid "Display Format"
 msgstr "Formato de Exibição"
 
 # glade.c:2468 glade.c:2541
-#: plugins/AncestorChart.py:280 plugins/DesGraph.py:329
+#: plugins/AncestorChart.py:279 plugins/DesGraph.py:325
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr "Permite que você personalize os dados contidos nas campos do relatório"
 
 # glade.c:2471 glade.c:2497 glade.c:2535 glade.c:2579 glade.c:2607
 # glade.c:2624 glade.c:2641 glade.c:2764 glade.c:2812
-#: plugins/AncestorChart.py:391 plugins/AncestorReport.py:375
-#: plugins/DescendReport.py:276 plugins/DetAncestralReport.py:607
-#: plugins/FamilyGroup.py:460 plugins/GraphViz.py:288
-#: plugins/IndivSummary.py:431 plugins/Summary.py:133 plugins/WebPage.py:1070
-#: plugins/test.py:460
+#: plugins/AncestorChart.py:471 plugins/AncestorReport.py:404
+#: plugins/DescendReport.py:305 plugins/DetAncestralReport.py:634
+#: plugins/FamilyGroup.py:550 plugins/GraphViz.py:390
+#: plugins/IndivComplete.py:657 plugins/IndivSummary.py:521
+#: plugins/Summary.py:133 plugins/WebPage.py:1113
 msgid "Beta"
 msgstr "Beta"
 
 # glade.c:2472
-#: plugins/AncestorChart.py:392
+#: plugins/AncestorChart.py:472
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Produz um diagrama de ancestrais em forma de árvore"
 
 # glade.c:2473 glade.c:2546
-#: plugins/AncestorReport.py:59 plugins/DetAncestralReport.py:60
+#: plugins/AncestorReport.py:59 plugins/DetAncestralReport.py:59
 msgid "Could not open %s"
 msgstr "Não pude abrir %s"
 
@@ -3512,7 +3845,7 @@ msgid "Ahnentafel Report for %s"
 msgstr "Relatório Ahnentafel para %s"
 
 # glade.c:2475 glade.c:2574
-#: plugins/AncestorReport.py:100 plugins/DetAncestralReport.py:422
+#: plugins/AncestorReport.py:100 plugins/DetAncestralReport.py:421
 msgid "%s Generation"
 msgstr "%s Geração"
 
@@ -3602,27 +3935,28 @@ msgid " and was buried in %s."
 msgstr " e foi sepultado em %s."
 
 # glade.c:2492 glade.c:2495
-#: plugins/AncestorReport.py:238 plugins/AncestorReport.py:373
+#: plugins/AncestorReport.py:238 plugins/AncestorReport.py:402
 msgid "Ahnentafel Report"
 msgstr "Relatório Ahnentafel (Tábua de Ancestrais)"
 
 # glade.c:2492 glade.c:2496 glade.c:2530 glade.c:2534 glade.c:2580
 # glade.c:2599 glade.c:2606 glade.c:2637 glade.c:2642
-#: plugins/AncestorReport.py:238 plugins/AncestorReport.py:374
-#: plugins/DescendReport.py:143 plugins/DescendReport.py:275
-#: plugins/DetAncestralReport.py:608 plugins/FamilyGroup.py:338
-#: plugins/FamilyGroup.py:459 plugins/IndivSummary.py:332
-#: plugins/IndivSummary.py:432 plugins/test.py:338 plugins/test.py:459
+#: plugins/AncestorReport.py:238 plugins/AncestorReport.py:403
+#: plugins/DescendReport.py:143 plugins/DescendReport.py:304
+#: plugins/DetAncestralReport.py:635 plugins/FamilyGroup.py:338
+#: plugins/FamilyGroup.py:549 plugins/IndivComplete.py:447
+#: plugins/IndivComplete.py:658 plugins/IndivSummary.py:332
+#: plugins/IndivSummary.py:522
 msgid "Text Reports"
 msgstr "Relatórios em Forma de Texto"
 
 # glade.c:2494 glade.c:2577
-#: plugins/AncestorReport.py:247 plugins/DetAncestralReport.py:463
+#: plugins/AncestorReport.py:247 plugins/DetAncestralReport.py:462
 msgid "Save Ancestor Report"
 msgstr "Salva Relatório de Ancestrais"
 
 # glade.c:2498
-#: plugins/AncestorReport.py:376
+#: plugins/AncestorReport.py:405
 msgid "Produces a textual ancestral report"
 msgstr "Produz um relatório de ancestrais em formato texto"
 
@@ -3642,7 +3976,7 @@ msgid "Rename personal event types"
 msgstr "Renomeia os tipos de evento pessoais"
 
 # glade.c:2502 glade.c:2517 glade.c:2648 glade.c:2654 glade.c:2741
-#: plugins/ChangeTypes.py:93 plugins/Check.py:222 plugins/Merge.py:524
+#: plugins/ChangeTypes.py:93 plugins/Check.py:219 plugins/Merge.py:524
 #: plugins/PatchNames.py:120 plugins/ReorderIds.py:106
 msgid "Database Processing"
 msgstr "Processando o Banco de Dados"
@@ -3650,70 +3984,71 @@ msgstr "Processando o Banco de Dados"
 # glade.c:2503
 #: plugins/ChangeTypes.py:94
 msgid "Allows all the events of a certain name to be renamed to a new name"
-msgstr "Permite que todos os eventos de um nome sejam renomeados para um novo nome"
+msgstr ""
+"Permite que todos os eventos de um nome sejam renomeados para um novo nome"
 
 # glade.c:2504
-#: plugins/Check.py:164
+#: plugins/Check.py:161
 msgid "No errors were found"
 msgstr "Nenhum erro foi encontrado"
 
 # glade.c:2505
-#: plugins/Check.py:170
+#: plugins/Check.py:167
 msgid "1 broken family link was fixed\n"
 msgstr "1 vínculo familiar inconsistente foi reparado\n"
 
 # glade.c:2506
-#: plugins/Check.py:172
+#: plugins/Check.py:169
 msgid "%d broken family links were found\n"
 msgstr "%d vínculos familiares inconsistentes foram encontrados\n"
 
 # glade.c:2508
-#: plugins/Check.py:185
+#: plugins/Check.py:182
 msgid "%s was removed from the family of %s\n"
 msgstr "%s foi removido da família %s\n"
 
 # glade.c:2509
-#: plugins/Check.py:187
+#: plugins/Check.py:184
 msgid "1 empty family was found\n"
 msgstr "1 família vazia foi encontrada\n"
 
 # glade.c:2510
-#: plugins/Check.py:189
+#: plugins/Check.py:186
 msgid "%d empty families were found\n"
 msgstr "%d famílias vazias foram encontradas\n"
 
 # glade.c:2511
-#: plugins/Check.py:191
+#: plugins/Check.py:188
 msgid "1 corrupted family relationship fixed\n"
 msgstr "1 relacionamento familiar corrompido reparado\n"
 
 # glade.c:2512
-#: plugins/Check.py:193
+#: plugins/Check.py:190
 msgid "%d corrupted family relationship fixed\n"
 msgstr "Reparados %d relacionamentos familiares corrompidos\n"
 
 # glade.c:2513
-#: plugins/Check.py:195
+#: plugins/Check.py:192
 msgid "1 media object was referenced, but not found\n"
 msgstr "1 objeto multimídia foi referenciado, mas não encontrado\n"
 
 # glade.c:2514
-#: plugins/Check.py:197
+#: plugins/Check.py:194
 msgid "%d media objects were referenced, but not found\n"
 msgstr "%d objetos multimídia foram referenciados, mas nenhum foi encontrado\n"
 
 # glade.c:2515
-#: plugins/Check.py:205
+#: plugins/Check.py:202
 msgid "Check Integrity"
 msgstr "Verifica a Integridade"
 
 # glade.c:2516
-#: plugins/Check.py:221
+#: plugins/Check.py:218
 msgid "Check and repair database"
 msgstr "Verifica e repara o banco de dados"
 
 # glade.c:2518
-#: plugins/Check.py:223
+#: plugins/Check.py:220
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
@@ -3721,27 +4056,27 @@ msgstr ""
 "problemas que forem possíveis"
 
 # glade.c:2537 glade.c:2542
-#: plugins/DesGraph.py:311 plugins/DesGraph.py:426
+#: plugins/DesGraph.py:307 plugins/DesGraph.py:451
 msgid "Descendant Graph"
 msgstr "Gráfico de Descendentes"
 
 # glade.c:2538
-#: plugins/DesGraph.py:314
+#: plugins/DesGraph.py:310
 msgid "Descendant Graph for %s"
 msgstr "Gráfico de Descendentes para %s"
 
 # glade.c:2539
-#: plugins/DesGraph.py:317
+#: plugins/DesGraph.py:313
 msgid "Save Descendant Graph"
 msgstr "Salva Gráfico de Descendentes"
 
 # glade.c:2536 glade.c:2544
-#: plugins/DesGraph.py:428 plugins/DescendReport.py:277
+#: plugins/DesGraph.py:453 plugins/DescendReport.py:306
 msgid "Generates a list of descendants of the active person"
 msgstr "Gera uma lista de descendentes da pessoa ativa"
 
 # glade.c:2545
-#: plugins/DesGraph.py:429
+#: plugins/DesGraph.py:454
 msgid "Alpha"
 msgstr "Alfa"
 
@@ -3751,7 +4086,7 @@ msgid "Interactive descendant browser"
 msgstr "Navegador interativo de descendentes"
 
 # glade.c:2527 glade.c:2586
-#: plugins/Desbrowser.py:93 plugins/EventCmp.py:520
+#: plugins/Desbrowser.py:93 plugins/EventCmp.py:334
 msgid "Analysis and Exploration"
 msgstr "Análise e Exploração"
 
@@ -3761,13 +4096,15 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Provê uma hierarquia navegável baseada na pessoa ativa"
 
 # glade.c:2529 glade.c:2816 glade.c:2824
-#: plugins/DescendReport.py:96 plugins/WriteGedcom.py:428
-#: plugins/WriteGedcomXML.py:430 plugins/WritePafPalm.py:571
+#: plugins/DescendReport.py:96 plugins/GraphViz.py:86
+#: plugins/IndivComplete.py:476 plugins/WebPage.py:790
+#: plugins/WriteGedcom.py:318 plugins/WriteGedcomXML.py:429
+#: plugins/WritePafPalm.py:570
 msgid "Descendants of %s"
 msgstr "Descendentes de %s"
 
 # glade.c:2530 glade.c:2533
-#: plugins/DescendReport.py:143 plugins/DescendReport.py:274
+#: plugins/DescendReport.py:143 plugins/DescendReport.py:303
 msgid "Descendant Report"
 msgstr "Relatório de Descendentes"
 
@@ -3782,203 +4119,210 @@ msgid "Save Descendant Report"
 msgstr "Salva Relatório de Descendentes"
 
 # glade.c:2547
-#: plugins/DetAncestralReport.py:89
+#: plugins/DetAncestralReport.py:88
 msgid "Child of %s and %s is:"
 msgstr "O(a) filho(a) de %s e %s é:"
 
 # glade.c:2548
-#: plugins/DetAncestralReport.py:90
+#: plugins/DetAncestralReport.py:89
 msgid "Children of %s and %s are:"
 msgstr "Os(as) filhos(as) de de %s e %s são:"
 
 # glade.c:2549
-#: plugins/DetAncestralReport.py:100
+#: plugins/DetAncestralReport.py:99
 msgid " Born: "
 msgstr " Nascido(a): "
 
 # glade.c:2550
-#: plugins/DetAncestralReport.py:107
+#: plugins/DetAncestralReport.py:106
 msgid " Died: "
 msgstr " Falecido(a): "
 
 # glade.c:2551 glade.c:2568 glade.c:2571
-#: plugins/DetAncestralReport.py:123 plugins/DetAncestralReport.py:311
-#: plugins/DetAncestralReport.py:370
+#: plugins/DetAncestralReport.py:122 plugins/DetAncestralReport.py:310
+#: plugins/DetAncestralReport.py:369
 msgid "He"
 msgstr "Ele"
 
 # glade.c:2552 glade.c:2569 glade.c:2572
-#: plugins/DetAncestralReport.py:125 plugins/DetAncestralReport.py:313
-#: plugins/DetAncestralReport.py:372
+#: plugins/DetAncestralReport.py:124 plugins/DetAncestralReport.py:312
+#: plugins/DetAncestralReport.py:371
 msgid "She"
 msgstr "Ela"
 
-#: plugins/DetAncestralReport.py:144
+#: plugins/DetAncestralReport.py:143
 msgid "Notes for %s"
 msgstr "Notas para %s"
 
 # glade.c:2553
-#: plugins/DetAncestralReport.py:177
+#: plugins/DetAncestralReport.py:176
 msgid " was born on %s in %s."
 msgstr " nasceu em %s em %s."
 
 # glade.c:2554
-#: plugins/DetAncestralReport.py:179
+#: plugins/DetAncestralReport.py:178
 msgid " was born on %s."
 msgstr " nasceu em %s."
 
 # glade.c:2555
-#: plugins/DetAncestralReport.py:181
+#: plugins/DetAncestralReport.py:180
 msgid " was born in the year %s in %s."
 msgstr " nasceu no ano de %s em %s."
 
 # glade.c:2556
-#: plugins/DetAncestralReport.py:184
+#: plugins/DetAncestralReport.py:183
 msgid " was born in the year %s."
 msgstr " nasceu no ano de %s."
 
 # glade.c:2557
-#: plugins/DetAncestralReport.py:186
+#: plugins/DetAncestralReport.py:185
 msgid " in %s."
 msgstr " em %s."
 
 # glade.c:2558 glade.c:2559
-#: plugins/DetAncestralReport.py:188 plugins/DetAncestralReport.py:191
+#: plugins/DetAncestralReport.py:187 plugins/DetAncestralReport.py:190
 msgid "."
 msgstr "."
 
 # glade.c:2560
-#: plugins/DetAncestralReport.py:221
+#: plugins/DetAncestralReport.py:220
 msgid "  %s died on %s in %s"
 msgstr "  %s morreu em %s em %s"
 
 # glade.c:2561
-#: plugins/DetAncestralReport.py:222
+#: plugins/DetAncestralReport.py:221
 msgid "  %s died on %s"
 msgstr "  %s morreu em %s"
 
 # glade.c:2562
-#: plugins/DetAncestralReport.py:225
+#: plugins/DetAncestralReport.py:224
 msgid "  %s died in %s in %s"
 msgstr "  %s morreu em %s em %s"
 
 # glade.c:2563 glade.c:2564
-#: plugins/DetAncestralReport.py:226 plugins/DetAncestralReport.py:228
+#: plugins/DetAncestralReport.py:225 plugins/DetAncestralReport.py:227
 msgid "  %s died in %s"
 msgstr "  %s morreu em %s"
 
 # glade.c:2565
-#: plugins/DetAncestralReport.py:257
+#: plugins/DetAncestralReport.py:256
 msgid "  And %s was buried on %s in %s."
 msgstr "  E %s foi sepultado(a) em %s em %s."
 
 # glade.c:2566
-#: plugins/DetAncestralReport.py:259
+#: plugins/DetAncestralReport.py:258
 msgid "  And %s was buried on %s."
 msgstr "  E %s foi sepultado(a) em %s."
 
 # glade.c:2567
-#: plugins/DetAncestralReport.py:261
+#: plugins/DetAncestralReport.py:260
 msgid "  And %s was buried in %s."
 msgstr "  E %s foi sepultado(a) em %s."
 
 # glade.c:2476
-#: plugins/DetAncestralReport.py:281
+#: plugins/DetAncestralReport.py:280
 msgid " %s was the son of %s and %s."
 msgstr "%s era filho de %s e %s."
 
 # glade.c:2687
-#: plugins/DetAncestralReport.py:284 plugins/DetAncestralReport.py:287
+#: plugins/DetAncestralReport.py:283 plugins/DetAncestralReport.py:286
 msgid " %s was the son of %s."
 msgstr "%s era filho de %s."
 
 # glade.c:2699
-#: plugins/DetAncestralReport.py:292
+#: plugins/DetAncestralReport.py:291
 msgid " %s was the daughter of %s and %s."
 msgstr "%s era filha de %s e %s."
 
 # glade.c:2699
-#: plugins/DetAncestralReport.py:295 plugins/DetAncestralReport.py:298
+#: plugins/DetAncestralReport.py:294 plugins/DetAncestralReport.py:297
 msgid " %s was the daughter of %s."
 msgstr "%s era filha de %s."
 
 # glade.c:2570
-#: plugins/DetAncestralReport.py:338
+#: plugins/DetAncestralReport.py:337
 msgid "  %s married %s."
 msgstr "  %s casou com %s."
 
 # glade.c:2560
-#: plugins/DetAncestralReport.py:340
+#: plugins/DetAncestralReport.py:339
 msgid "  %s married %s in %s."
 msgstr "  %s casou com %s em %s."
 
 # glade.c:2561
-#: plugins/DetAncestralReport.py:342
+#: plugins/DetAncestralReport.py:341
 msgid "  %s married %s on %s."
 msgstr "  %s casou com %s em %s."
 
 # glade.c:2560
-#: plugins/DetAncestralReport.py:343
+#: plugins/DetAncestralReport.py:342
 msgid "  %s married %s on %s in %s."
 msgstr "  %s casou com %s em %s em %s."
 
 # glade.c:2570
-#: plugins/DetAncestralReport.py:347
+#: plugins/DetAncestralReport.py:346
 msgid "  %s married."
 msgstr "  %s casado(a)."
 
 # glade.c:2563 glade.c:2564
-#: plugins/DetAncestralReport.py:349
+#: plugins/DetAncestralReport.py:348
 msgid "  %s married in %s."
 msgstr "  %s casou em %s."
 
 # glade.c:2561
-#: plugins/DetAncestralReport.py:351
+#: plugins/DetAncestralReport.py:350
 msgid "  %s married on %s."
 msgstr "  %s casou em %s."
 
 # glade.c:2560
-#: plugins/DetAncestralReport.py:352
+#: plugins/DetAncestralReport.py:351
 msgid "  %s married on %s in %s."
 msgstr "  %s casou em %s em %s."
 
 # glade.c:2573 glade.c:2576
-#: plugins/DetAncestralReport.py:408 plugins/DetAncestralReport.py:458
+#: plugins/DetAncestralReport.py:407 plugins/DetAncestralReport.py:457
 msgid "Detailed Ancestral Report for %s"
 msgstr "Relatório Detalhado de Ancestrais para %s"
 
 # glade.c:2575
-#: plugins/DetAncestralReport.py:454
+#: plugins/DetAncestralReport.py:453
 msgid "Gramps - Ahnentafel Report"
 msgstr "Gramps - Relatório Ahnentafel"
 
 # glade.c:2578
-#: plugins/DetAncestralReport.py:606
+#: plugins/DetAncestralReport.py:633
 msgid "Detailed Ancestral Report"
 msgstr "Relatório Detalhado de Ancestrais"
 
 # glade.c:2581
-#: plugins/DetAncestralReport.py:609
+#: plugins/DetAncestralReport.py:636
 msgid "Produces a detailed ancestral report"
 msgstr "Produz um relatório detalhado de ancestrais"
 
 # glade.c:2582
-#: plugins/DetAncestralReport.py:712
+#: plugins/DetAncestralReport.py:739
 msgid " at the age of %d %s"
 msgstr " à idade de %d %s"
 
+# glade.c:2613 glade.c:2814 glade.c:2822
+#: plugins/EventCmp.py:132 plugins/GraphViz.py:82 plugins/IndivComplete.py:484
+#: plugins/WebPage.py:786 plugins/WriteGedcom.py:314
+#: plugins/WriteGedcomXML.py:420 plugins/WritePafPalm.py:561
+msgid "Entire Database"
+msgstr "Todo o Banco de Dados"
+
 # glade.c:2583
-#: plugins/EventCmp.py:180
+#: plugins/EventCmp.py:145
 msgid "No matches were found"
 msgstr "Nenhuma coincidência foi encontrada"
 
 # glade.c:2585
-#: plugins/EventCmp.py:519
+#: plugins/EventCmp.py:333
 msgid "Compare individual events"
 msgstr "Compara eventos individuais"
 
 # glade.c:2587
-#: plugins/EventCmp.py:521
+#: plugins/EventCmp.py:335
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
@@ -3989,37 +4333,37 @@ msgstr ""
 
 # glade.c:2588 glade.c:2599 glade.c:2605
 #: plugins/FamilyGroup.py:109 plugins/FamilyGroup.py:338
-#: plugins/FamilyGroup.py:458 plugins/test.py:109 plugins/test.py:338
+#: plugins/FamilyGroup.py:548
 msgid "Family Group Report"
 msgstr "Relatório do Grupo Familiar"
 
 # glade.c:2589
-#: plugins/FamilyGroup.py:118 plugins/test.py:118
+#: plugins/FamilyGroup.py:118
 msgid "Husband"
 msgstr "Marido"
 
 # glade.c:2590
-#: plugins/FamilyGroup.py:120 plugins/test.py:120
+#: plugins/FamilyGroup.py:120
 msgid "Wife"
 msgstr "Esposa"
 
 # glade.c:2600
-#: plugins/FamilyGroup.py:342 plugins/test.py:342
+#: plugins/FamilyGroup.py:342
 msgid "Family Group Report for %s"
 msgstr "Relatório do Grupo Familiar para %s"
 
 # glade.c:2601
-#: plugins/FamilyGroup.py:347 plugins/test.py:347
+#: plugins/FamilyGroup.py:347
 msgid "Save Family Group Report"
 msgstr "Salva Relatório do Grupo Familiar"
 
 # glade.c:2602
-#: plugins/FamilyGroup.py:369 plugins/test.py:369
+#: plugins/FamilyGroup.py:369
 msgid "No known marriages"
 msgstr "Nenhum matrimônio conhecido"
 
 # glade.c:2608
-#: plugins/FamilyGroup.py:461 plugins/test.py:461
+#: plugins/FamilyGroup.py:551
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -4027,107 +4371,278 @@ msgstr ""
 "Cria um relatório do grupo familiar, mostrando as informações em um conjunto "
 "composto de pais e seus filhos."
 
+# glade.c:1780 glade.c:2427
+#: plugins/FilterEditor.py:380
+msgid "Custom Filter Editor"
+msgstr "Editor de Filtro Personalizado"
+
+# glade.c:2738 glade.c:2744 glade.c:2768
+#: plugins/FilterEditor.py:381 plugins/FilterEditor.py:394
+#: plugins/RelCalc.py:437 plugins/Verify.py:292 plugins/soundgen.py:91
+msgid "Utilities"
+msgstr "Utilitários"
+
+#: plugins/FilterEditor.py:382
+msgid ""
+"The Custom Filter Editor builds custom filters that can be used to select "
+"people included in reports, exports, and other utilities."
+msgstr ""
+"O Editor de Filtro Personalizado constrói filtros que podem ser usados para "
+"selecionar pessoas inclusas nos relatórios, exportações e outros utilitários."
+
+# glade.c:1780 glade.c:2427
+#: plugins/FilterEditor.py:393
+msgid "System Filter Editor"
+msgstr "Editor de Filtro do Sistema"
+
+#: plugins/FilterEditor.py:395
+msgid ""
+"The System Filter Editor builds custom filters that can be used by anyone on "
+"the system to select people included in reports, exports, and other "
+"utilities."
+msgstr ""
+"O Editor de Filtros do Sistema constrói filtros que podem ser usados por "
+"qualquer um no sistema para selecionar pessoas inclusas nos relatórios, "
+"exportações e outros utilitários."
+
 # glade.c:2609
 #: plugins/Graph.py:209
 msgid "Quit"
 msgstr "Sai"
 
-# glade.c:2610 glade.c:2788
-#: plugins/GraphViz.py:98 plugins/WebPage.py:644
-msgid "Ancestors"
-msgstr "Ancestrais"
-
-# glade.c:2611 glade.c:2789
-#: plugins/GraphViz.py:99 plugins/WebPage.py:645
-msgid "Descendants"
-msgstr "Descendentes"
-
-# glade.c:2612
-#: plugins/GraphViz.py:100
-msgid "Ancestors and Descendants"
-msgstr "Ancestrais e Descendentes"
-
-# glade.c:2613 glade.c:2814 glade.c:2822
-#: plugins/GraphViz.py:101 plugins/WriteGedcom.py:419
-#: plugins/WriteGedcomXML.py:421 plugins/WritePafPalm.py:562
-msgid "Entire Database"
-msgstr "Todo o Banco de Dados"
-
 # glade.c:1710 glade.c:2614 glade.c:2619
-#: plugins/GraphViz.py:109 plugins/GraphViz.py:139
+#: plugins/GraphViz.py:39 plugins/GraphViz.py:70
 msgid "Single (scaled)"
 msgstr "Sozinho (em escala)"
 
 # glade.c:2615
-#: plugins/GraphViz.py:110
+#: plugins/GraphViz.py:40
 msgid "Single"
 msgstr "Sozinho"
 
 # glade.c:2616
-#: plugins/GraphViz.py:111
+#: plugins/GraphViz.py:41
 msgid "Multiple"
 msgstr "Múltiplo"
 
 # glade.c:2617 glade.c:2623
-#: plugins/GraphViz.py:130 plugins/GraphViz.py:287
+#: plugins/GraphViz.py:60 plugins/GraphViz.py:389
 msgid "Relationship Graph"
 msgstr "Gráfico de Relações"
 
 # glade.c:2618
-#: plugins/GraphViz.py:135
+#: plugins/GraphViz.py:66
 msgid "Graphviz File"
 msgstr "Arquivo Graphviz"
 
-# glade.c:2620
-#: plugins/GraphViz.py:272
-msgid "Generates relationship graphs, currently only in GraphViz format."
-msgstr "Gera gráficos de relações, por enquanto apenas em formato GraphViz."
+# glade.c:2815 glade.c:2823
+#: plugins/GraphViz.py:90 plugins/IndivComplete.py:480 plugins/WebPage.py:794
+#: plugins/WriteGedcom.py:322 plugins/WriteGedcomXML.py:425
+#: plugins/WritePafPalm.py:566
+msgid "Ancestors of %s"
+msgstr "Ancestrais de %s"
 
-# glade.c:2621
-#: plugins/GraphViz.py:274
-msgid ""
-"GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, "
-"svg, and many other formats."
-msgstr ""
-"GraphViz (dot) pode transformar o gráfico em postscript, jpeg, png, vrml, "
-"svg, e muitos outros formatos."
+# glade.c:2529 glade.c:2816 glade.c:2824
+#: plugins/GraphViz.py:99
+msgid "Descendants <- Ancestors"
+msgstr "Descendentes <- Ancestrais"
 
-# glade.c:2622
-#: plugins/GraphViz.py:276
+# glade.c:2529 glade.c:2816 glade.c:2824
+#: plugins/GraphViz.py:104
+msgid "Descendants -> Ancestors"
+msgstr "Descendentes -> Ancestrais"
+
+# glade.c:2530 glade.c:2533
+#: plugins/GraphViz.py:109
+msgid "Descendants <-> Ancestors"
+msgstr "Descendentes <-> Ancestrais"
+
+# glade.c:2530 glade.c:2533
+#: plugins/GraphViz.py:114
+msgid "Descendants - Ancestors"
+msgstr "Descendentes - Ancestrais"
+
+# glade.c:1382
+#: plugins/GraphViz.py:123 plugins/GraphViz.py:131 plugins/GraphViz.py:139
+#: plugins/GraphViz.py:149 plugins/GraphViz.py:159 plugins/GraphViz.py:173
+#: plugins/GraphViz.py:176 plugins/GraphViz.py:186 plugins/GraphViz.py:193
+msgid "GraphViz Options"
+msgstr "Opções do GraphViz"
+
+# glade.c:1382
+#: plugins/GraphViz.py:124
+msgid "Arrowhead Options"
+msgstr "Opções de Orientação das Setas"
+
+#: plugins/GraphViz.py:126
+msgid "Choose the direction that the arrows point."
+msgstr "Escolhe a direção que as setas apontam."
+
+#: plugins/GraphViz.py:128
+msgid "Include Birth and Death Dates"
+msgstr "Inclui as Datas de Nacimento e Falecimento"
+
+#: plugins/GraphViz.py:133
 msgid ""
-"For more information or to get a copy of GraphViz, goto http://www.graphviz."
-"org"
+"Include the years that the individual was born and/or died in the graph node "
+"labels."
 msgstr ""
-"Para maiores informações ou para obter uma cópia do GraphViz, visite http://"
-"www.graphviz.org"
+"Inclui os anos em que o indivíduo nasceu e/ou faleceu nos rótulos dos nós do "
+"gráfico."
+
+#: plugins/GraphViz.py:137
+msgid "Include URLs"
+msgstr "Inclui URLs"
+
+#: plugins/GraphViz.py:141
+msgid ""
+"Include a URL in each graph node so that PDF and imagemap files can be "
+"generated that contain active links to the files generated by the 'Generate "
+"Web Site' report."
+msgstr ""
+"Inclui uma URL em cada nó do gráfico a fim de que arquivos PDF e imagemap "
+"gerados contenham links ativos aos arquivos gerados pelo relatório 'Gera Web "
+"Site'."
+
+#: plugins/GraphViz.py:147
+msgid "Colorize Graph"
+msgstr "Coloriza o Gráfico"
+
+#: plugins/GraphViz.py:152
+msgid ""
+"Males will be outlined in blue, females will be outlined in pink.  If the "
+"sex of an individual is unknown it will be outlined in black."
+msgstr ""
+"Homens serão realçados em azul, mulheres serão realçadas em rosa. Se o sexo "
+"de um indivíduo é desconhecido, ele será realçado em preto."
+
+#: plugins/GraphViz.py:157
+msgid "Indicate non-birth relationships with dashed lines"
+msgstr "Indica relações não-nascidas com linhas pontilhadas"
+
+#: plugins/GraphViz.py:162
+msgid "Non-birth relationships will show up as dashed lines in the graph."
+msgstr "Relações não-nascidas serão exibidas como linhas pontilhadas no "
+"gráfico."
+
+#: plugins/GraphViz.py:174
+msgid "Top & Bottom Margins"
+msgstr "Margens Superior & Inferior"
+
+# glade.c:1602
+#: plugins/GraphViz.py:177
+msgid "Left & Right Margins"
+msgstr "Margens Esquerda & Direita"
+
+# glade.c:2173
+#: plugins/GraphViz.py:187
+msgid "Number of Horizontal Pages"
+msgstr "Número de Páginas Horizontais"
+
+#: plugins/GraphViz.py:189
+msgid ""
+"GraphViz can create very large graphs by spreading the graph across a "
+"rectangular array of pages. This controls the number pages in the array "
+"horizontally."
+msgstr ""
+"O GraphViz pode criar gráficos muito grandes, espalhando o gráfico através de "
+"uma cadeia retangular de páginas. Isto controla, horizontalmente,  o número "
+"de páginas na cadeia."
+
+# glade.c:2173
+#: plugins/GraphViz.py:194
+msgid "Number of Vertical Pages"
+msgstr "Número de Páginas Verticais"
+
+#: plugins/GraphViz.py:196
+msgid ""
+"GraphViz can create very large graphs by spreading the graph across a "
+"rectangular array of pages. This controls the number pages in the array "
+"vertically."
+msgstr ""
+"O GraphViz pode criar gráficos muito grandes, espalhando o gráfico através de "
+"uma cadeia retangular de páginas. Isto controla, verticalmente,  o número "
+"de páginas na cadeia."
+
+#: plugins/GraphViz.py:374
+msgid ""
+"Generates relationship graphs, currently only in GraphViz format. GraphViz "
+"(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and "
+"many other formats. For more information or to get a copy of GraphViz, goto "
+"http://www.graphviz.org"
+msgstr ""
+"Gera relações gráficas, por enquanto apenas no formato GraphViz. O GraphViz "
+"(dot) pode transformar o gráfico em postscript, jpeg, png, vrml, svg, e "
+"muitos outros formatos. Para maiores informações, ou para obter uma cópia do "
+"GraphViz, vá para: http://www.graphviz.org"
+
+# glade.c:2264
+#: plugins/IndivComplete.py:118
+msgid "%(date)s in %(place)s."
+msgstr "%(date)s em %(place)s"
+
+# glade.c:2148
+#: plugins/IndivComplete.py:177
+msgid "Alternate Parents"
+msgstr "Genitores Alternativos"
+
+# glade.c:1261
+#: plugins/IndivComplete.py:215
+msgid "Alternate Names"
+msgstr "Nomes Alternativos"
 
 # glade.c:2626 glade.c:2784
-#: plugins/IndivSummary.py:145 plugins/WebPage.py:484
+#: plugins/IndivComplete.py:244 plugins/IndivSummary.py:145
+#: plugins/WebPage.py:484
 msgid "Marriages/Children"
 msgstr "Matrimônios/Filhos"
 
+# glade.c:2636
+#: plugins/IndivComplete.py:318 plugins/IndivSummary.py:302
+msgid "Individual Facts"
+msgstr "Fatos do Indivíduo"
+
 # glade.c:2629 glade.c:2770 glade.c:2772
-#: plugins/IndivSummary.py:203 plugins/WebPage.py:89 plugins/WebPage.py:212
+#: plugins/IndivComplete.py:354 plugins/IndivSummary.py:203
+#: plugins/WebPage.py:90 plugins/WebPage.py:213
 msgid "Summary of %s"
 msgstr "Sumário de %s"
 
 # glade.c:2632 glade.c:2774
-#: plugins/IndivSummary.py:243 plugins/WebPage.py:238
+#: plugins/IndivComplete.py:384 plugins/IndivSummary.py:243
+#: plugins/WebPage.py:239
 msgid "Male"
 msgstr "Masculino"
 
 # glade.c:2633 glade.c:2775
-#: plugins/IndivSummary.py:245 plugins/WebPage.py:240
+#: plugins/IndivComplete.py:386 plugins/IndivSummary.py:245
+#: plugins/WebPage.py:241
 msgid "Female"
 msgstr "Feminino"
 
-# glade.c:2636
-#: plugins/IndivSummary.py:302
-msgid "Individual Facts"
-msgstr "Fatos do Indivíduo"
+# glade.c:1732
+#: plugins/IndivComplete.py:436
+msgid "Include Source Information"
+msgstr "Inclui Informação da Fonte de Referência"
+
+# glade.c:2585
+#: plugins/IndivComplete.py:447 plugins/IndivComplete.py:451
+#: plugins/IndivComplete.py:656
+msgid "Complete Individual Report"
+msgstr "Relatório Individual Completo"
+
+# glade.c:2585
+#: plugins/IndivComplete.py:456
+msgid "Save Complete Individual Report"
+msgstr "Salva Relatório Individual Completo"
+
+# glade.c:2643
+#: plugins/IndivComplete.py:659
+msgid "Produces a complete report on the selected people."
+msgstr "Produz um relatório completo da pessoa selecionada."
 
 # glade.c:2637 glade.c:2640
-#: plugins/IndivSummary.py:332 plugins/IndivSummary.py:430
+#: plugins/IndivSummary.py:332 plugins/IndivSummary.py:520
 msgid "Individual Summary"
 msgstr "Sumário do Indivíduo"
 
@@ -4142,7 +4657,7 @@ msgid "Save Individual Summary"
 msgstr "Salva Sumário Individual"
 
 # glade.c:2643
-#: plugins/IndivSummary.py:433
+#: plugins/IndivSummary.py:523
 msgid "Produces a detailed report on the selected person."
 msgstr "Produz um relatório detalhado da pessoa selecionada."
 
@@ -4195,12 +4710,16 @@ msgstr ""
 "talvez estejam contidos no campo nome de uma pessoa."
 
 # glade.c:2658 glade.c:2659
-#: plugins/ReadGedcom.py:230 plugins/ReadGedcom.py:241
+#: plugins/ReadGedcom.py:265 plugins/ReadGedcom.py:276
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr "Aviso: a linha %d não foi entendida e, portanto, foi ignorada."
 
+#: plugins/ReadGedcom.py:305
+msgid "Import Complete: %d seconds"
+msgstr "Importação Completa: %d segundos"
+
 # glade.c:2663
-#: plugins/ReadGedcom.py:1671 plugins/ReadGedcom.py:1697
+#: plugins/ReadGedcom.py:1737 plugins/ReadGedcom.py:1763
 msgid "Import from GEDCOM"
 msgstr "Importa a partir do GEDCOM"
 
@@ -4593,11 +5112,6 @@ msgstr "%s e %s"
 msgid "Relationship calculator"
 msgstr "Calculadora de Relacionamentos"
 
-# glade.c:2738 glade.c:2744 glade.c:2768
-#: plugins/RelCalc.py:437 plugins/Verify.py:292 plugins/soundgen.py:94
-msgid "Utilities"
-msgstr "Utilitários"
-
 # glade.c:2739
 #: plugins/RelCalc.py:438
 msgid "Calculates the relationship between two people"
@@ -4684,7 +5198,7 @@ msgid "Summary of the database"
 msgstr "Sumário do banco de dados"
 
 # glade.c:2524 glade.c:2765
-#: plugins/Summary.py:134 plugins/count_anc.py:92
+#: plugins/Summary.py:134 plugins/count_anc.py:88
 msgid "View"
 msgstr "Visualizar"
 
@@ -4704,7 +5218,7 @@ msgid "List exceptions to assertions or checks about the database"
 msgstr "Lista exceções, a afirmações ou verificações, do banco de dados"
 
 # glade.c:2780
-#: plugins/WebPage.py:274
+#: plugins/WebPage.py:275
 msgid "Return to the index of people"
 msgstr "Retorna ao índice de pessoas"
 
@@ -4713,143 +5227,119 @@ msgstr "Retorna ao índice de pessoas"
 msgid "Facts and Events"
 msgstr "Fatos e Eventos"
 
-# glade.c:2787
-#: plugins/WebPage.py:643
-msgid "Individual"
-msgstr "Indivíduo"
-
-# glade.c:2790
-#: plugins/WebPage.py:646
-msgid "Ancestors and descendants"
-msgstr "Ancestrais e descendentes"
-
-# glade.c:2791
-#: plugins/WebPage.py:647
-msgid "Grandparent's ancestors and descendants"
-msgstr "Ancestrais e descendentes dos avós"
-
-# glade.c:2792
-#: plugins/WebPage.py:648
-msgid "Entire database"
-msgstr "Todo o banco de dados"
-
 # glade.c:2793
-#: plugins/WebPage.py:675
+#: plugins/WebPage.py:570
 msgid "Creating Web Pages"
 msgstr "Criando as Páginas Web"
 
 # glade.c:953 glade.c:2793
-#: plugins/WebPage.py:675
+#: plugins/WebPage.py:570
 msgid "Generate HTML reports - GRAMPS"
 msgstr "Gera relatórios em HTML - GRAMPS"
 
 # glade.c:2794 glade.c:2795
-#: plugins/WebPage.py:685 plugins/WebPage.py:689
+#: plugins/WebPage.py:580 plugins/WebPage.py:584
 msgid "Family Tree Index"
 msgstr "Índice da Árvore Familiar"
 
+#: plugins/WebPage.py:618
+msgid "%s (continued)"
+msgstr "%s (continuado)"
+
 # glade.c:2796
-#: plugins/WebPage.py:708
+#: plugins/WebPage.py:635
 msgid "Neither %s nor %s are directories"
 msgstr "Nem %s nem %s são diretórios"
 
 # glade.c:2797 glade.c:2798 glade.c:2799 glade.c:2800
-#: plugins/WebPage.py:715 plugins/WebPage.py:719 plugins/WebPage.py:731
-#: plugins/WebPage.py:735
+#: plugins/WebPage.py:642 plugins/WebPage.py:646 plugins/WebPage.py:658
+#: plugins/WebPage.py:662
 msgid "Could not create the directory : %s"
 msgstr "Não pude criar o diretório : %s"
 
 # glade.c:1020 glade.c:2801
-#: plugins/WebPage.py:798
+#: plugins/WebPage.py:723
 msgid "Include a link to the index page"
 msgstr "Incluí um link na página de índice"
 
 # glade.c:622 glade.c:2802
-#: plugins/WebPage.py:799 plugins/gedcomexport.glade:295
+#: plugins/WebPage.py:724 plugins/gedcomexport.glade:295
 #: plugins/pafexport.glade:296
 msgid "Do not include records marked private"
 msgstr "Não inclui registros marcados como privados"
 
 # glade.c:1578 glade.c:2803
-#: plugins/WebPage.py:800
+#: plugins/WebPage.py:725
 msgid "Restrict information on living people"
 msgstr "Restringe informações de pessoas vivas"
 
 # glade.c:628 glade.c:2804
-#: plugins/WebPage.py:801
+#: plugins/WebPage.py:726
 msgid "Do not use images"
 msgstr "Não usa imagens"
 
 # glade.c:631 glade.c:2805
-#: plugins/WebPage.py:802
+#: plugins/WebPage.py:727
 msgid "Do not use images for living people"
 msgstr "Não usa imagens para pessoas vivas"
 
 # glade.c:618 glade.c:2806
-#: plugins/WebPage.py:803
+#: plugins/WebPage.py:728
 msgid "Do not include comments and text in source information"
 msgstr "Não inclui comentários e texto na fonte de informações"
 
 # glade.c:2809
-#: plugins/WebPage.py:804
+#: plugins/WebPage.py:729
 msgid "Image subdirectory"
 msgstr "Subdiretório imagem"
 
 # glade.c:1487 glade.c:2807
-#: plugins/WebPage.py:820
+#: plugins/WebPage.py:745
 msgid "Privacy Options"
 msgstr "Opções de Privacidade"
 
 # glade.c:2808 glade.c:2810
-#: plugins/WebPage.py:836 plugins/WebPage.py:1068
+#: plugins/WebPage.py:761 plugins/WebPage.py:1111
 msgid "Generate Web Site"
 msgstr "Gera o Web Site"
 
 # glade.c:2808 glade.c:2811
-#: plugins/WebPage.py:836 plugins/WebPage.py:1069
+#: plugins/WebPage.py:761 plugins/WebPage.py:1112
 msgid "Web Page"
 msgstr "Página Web"
 
 # glade.c:2809
-#: plugins/WebPage.py:841
+#: plugins/WebPage.py:766
 msgid "Target Directory"
 msgstr "Diretório de Destino"
 
 # glade.c:2813
-#: plugins/WebPage.py:1071
+#: plugins/WebPage.py:1114
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Gera páginas web (HTML) para indivíduos, ou conjunto de indivíduos."
 
-# glade.c:2815 glade.c:2823
-#: plugins/WriteGedcom.py:424 plugins/WriteGedcomXML.py:426
-#: plugins/WritePafPalm.py:567
-msgid "Ancestors of %s"
-msgstr "Ancestrais de %s"
+# glade.c:2821
+#: plugins/WriteGedcom.py:941 plugins/WriteGedcomXML.py:1012
+msgid "Export to GEDCOM"
+msgstr "Exporta para GEDCOM"
 
 # glade.c:2817 glade.c:2825
-#: plugins/WriteGedcom.py:432 plugins/WriteGedcomXML.py:434
-#: plugins/WritePafPalm.py:575
+#: plugins/WriteGedcomXML.py:433 plugins/WritePafPalm.py:574
 msgid "Ancestors and Descendants of %s"
 msgstr "Ancestrais e Descendentes de %s"
 
 # glade.c:2818 glade.c:2826
-#: plugins/WriteGedcom.py:436 plugins/WriteGedcomXML.py:438
-#: plugins/WritePafPalm.py:579
+#: plugins/WriteGedcomXML.py:437 plugins/WritePafPalm.py:578
 msgid "People somehow connected to %s"
 msgstr "Pessoas de alguma forma relacionadas com %s"
 
-# glade.c:2821
-#: plugins/WriteGedcom.py:1044 plugins/WriteGedcomXML.py:1013
-msgid "Export to GEDCOM"
-msgstr "Exporta para GEDCOM"
-
 # glade.c:2827
-#: plugins/WritePafPalm.py:594
+#: plugins/WritePafPalm.py:593
 msgid "Export to PAF for PalmOS"
 msgstr "Exporta para PAF destinado ao PalmOS"
 
 # glade.c:2828
-#: plugins/WritePkg.py:135
+#: plugins/WritePkg.py:134
 msgid "Export to GRAMPS package"
 msgstr "Exporta para pacote GRAMPS"
 
@@ -4864,32 +5354,32 @@ msgid "Change Event Type of"
 msgstr "Modifica o Tipo de Evento de"
 
 # glade.c:2519
-#: plugins/count_anc.py:48
+#: plugins/count_anc.py:44
 msgid "Number of ancestors of \"%s\" by generation"
 msgstr "Número de ancestrais de \"%s\" por geração"
 
 # glade.c:2520
-#: plugins/count_anc.py:58
+#: plugins/count_anc.py:54
 msgid "Generation %d has 1 individual.\n"
 msgstr "A geração %d possui 1 indivíduo.\n"
 
 # glade.c:2521
-#: plugins/count_anc.py:60
+#: plugins/count_anc.py:56
 msgid "Generation %d has %d individuals.\n"
 msgstr "A geração %d possui %d indivíduos.\n"
 
 # glade.c:2522
-#: plugins/count_anc.py:74
+#: plugins/count_anc.py:70
 msgid "Total ancestors in generations %d to -1 is %d .\n"
 msgstr "O total de ancestrais em gerações %d para -1 é %d .\n"
 
 # glade.c:2523
-#: plugins/count_anc.py:91
+#: plugins/count_anc.py:87
 msgid "Number of ancestors"
 msgstr "Número de ancestrais"
 
 # glade.c:2525
-#: plugins/count_anc.py:93
+#: plugins/count_anc.py:89
 msgid "Counts number of ancestors of selected person"
 msgstr "Conta o número de ancestrais da pessoa selecionada"
 
@@ -4934,7 +5424,7 @@ msgid "Choose the HTML template"
 msgstr "Escolhe o modelo HTML"
 
 # glade.c:742
-#: plugins/eventcmp.glade:277 plugins/eventcmp.glade:566
+#: plugins/eventcmp.glade:277 plugins/eventcmp.glade:421
 msgid "Event Comparison - GRAMPS"
 msgstr "Comparação de Eventos - GRAMPS"
 
@@ -4944,44 +5434,9 @@ msgid "Save As..."
 msgstr "Salva Como..."
 
 # glade.c:742
-#: plugins/eventcmp.glade:364
+#: plugins/eventcmp.glade:364 plugins/eventcmp.glade:503
 msgid "Event Comparison"
 msgstr "Comparação de Eventos"
-
-# glade.c:1650
-#: plugins/eventcmp.glade:420
-msgid "Complex Filter - GRAMPS"
-msgstr "Filtro Complexo - GRAMPS"
-
-# glade.c:1632
-#: plugins/eventcmp.glade:502
-msgid "Save complex filter as:"
-msgstr "Salva filtro complexo como:"
-
-# glade.c:745
-#: plugins/eventcmp.glade:648
-msgid "Event Comparison - Create a complex filter"
-msgstr "Comparação de Eventos - Cria um filtro complexo"
-
-# glade.c:160
-#: plugins/eventcmp.glade:908
-msgid "Add Filter"
-msgstr "Adiciona Filtro"
-
-# glade.c:515
-#: plugins/eventcmp.glade:923
-msgid "Delete Filter"
-msgstr "Apaga Filtro"
-
-# glade.c:1084
-#: plugins/eventcmp.glade:937
-msgid "Load Filters"
-msgstr "Carrega Filtros"
-
-# glade.c:1626
-#: plugins/eventcmp.glade:952
-msgid "Save Filters"
-msgstr "Salva Filtros"
 
 # glade.c:766
 #: plugins/gedcomexport.glade:18 plugins/gedcomexport.glade:328
@@ -5000,7 +5455,7 @@ msgid "Export GEDCOM"
 msgstr "Exporta GEDCOM"
 
 # glade.c:718
-#: plugins/gedcomexport.glade:179 plugins/gedcomimport.glade:377
+#: plugins/gedcomexport.glade:179 plugins/gedcomimport.glade:233
 msgid "Encoding"
 msgstr "Codificando"
 
@@ -5075,9 +5530,13 @@ msgid "Number of People"
 msgstr "Número de Pessoas"
 
 # glade.c:1288
-#: plugins/gedcomimport.glade:327
+#: plugins/gedcomimport.glade:207
 msgid "Number of Errors"
 msgstr "Número de Erros"
+
+#: plugins/gedcomimport.glade:428
+msgid "Close window when complete"
+msgstr "Fecha a janela quando completado"
 
 # glade.c:567
 #: plugins/merge.glade:35
@@ -5243,12 +5702,12 @@ msgid "Name used to generate SoundEx code"
 msgstr "Nome usado para gerar o código SoundEx"
 
 # glade.c:2743
-#: plugins/soundgen.py:93
+#: plugins/soundgen.py:90
 msgid "Generate SoundEx codes"
 msgstr "Gera códigos SoundEx"
 
 # glade.c:2745
-#: plugins/soundgen.py:95
+#: plugins/soundgen.py:92
 msgid "Generates SoundEx codes for names"
 msgstr "Gera códigos SoundEx para nomes"
 
@@ -5261,11 +5720,6 @@ msgstr "Sumário do Banco de Dados - GRAMPS"
 #: plugins/summary.glade:95
 msgid "Database Summary"
 msgstr "Sumário do Banco de Dados"
-
-# glade.c:2211
-#: plugins/test.py:458
-msgid "test"
-msgstr "teste"
 
 # glade.c:473
 #: plugins/verify.glade:18
@@ -5322,41 +5776,6 @@ msgstr "Número máximo de anos entre um filho e outro"
 msgid "Maximum span of years for all children"
 msgstr "Número de anos entre o primeiro e o último filho"
 
-# glade.c:79
-#: plugins/verify.glade:400
-msgid "8"
-msgstr "8"
-
-# glade.c:49
-#: plugins/verify.glade:425
-msgid "25"
-msgstr "25"
-
-# glade.c:52
-#: plugins/verify.glade:450
-msgid "3"
-msgstr "3"
-
-# glade.c:67
-#: plugins/verify.glade:475
-msgid "50"
-msgstr "50"
-
-# glade.c:40
-#: plugins/verify.glade:500 plugins/verify.glade:688
-msgid "17"
-msgstr "17"
-
-# glade.c:55
-#: plugins/verify.glade:525 plugins/verify.glade:575
-msgid "30"
-msgstr "30"
-
-# glade.c:85
-#: plugins/verify.glade:550
-msgid "90"
-msgstr "90"
-
 # glade.c:1939
 #: plugins/verify.glade:609
 msgid "Women"
@@ -5372,20 +5791,10 @@ msgstr "Idade mínima para dar a luz a um filho"
 msgid "Maximum age to bear a child"
 msgstr "Idade máxima para dar a luz a um filho"
 
-# glade.c:61
-#: plugins/verify.glade:713
-msgid "49"
-msgstr "49"
-
 # glade.c:1159
 #: plugins/verify.glade:733 plugins/verify.glade:911
 msgid "Maximum number of children"
 msgstr "Número máximo de filhos"
-
-# glade.c:31
-#: plugins/verify.glade:764
-msgid "11"
-msgstr "11"
 
 # glade.c:1180
 #: plugins/verify.glade:787
@@ -5401,21 +5810,6 @@ msgstr "Idade mínima para gerar um filho"
 #: plugins/verify.glade:835
 msgid "Maximum age to father a child"
 msgstr "Idade máxima para gerar um filho"
-
-# glade.c:43
-#: plugins/verify.glade:866
-msgid "18"
-msgstr "18"
-
-# glade.c:73
-#: plugins/verify.glade:891
-msgid "65"
-msgstr "65"
-
-# glade.c:37
-#: plugins/verify.glade:942
-msgid "15"
-msgstr "15"
 
 # glade.c:1472
 #: preferences.glade:19
@@ -5670,8 +6064,9 @@ msgstr "O diretório pré-definido de saída de diversos geradores de relatórios"
 # glade.c:1828
 #: preferences.glade:2425
 msgid "The default directory for the output of the Web Site report generators"
-msgstr "O diretório de armazenamento pré-definido dos geradores de relatórios "
-"de Web Sites"
+msgstr ""
+"O diretório de armazenamento pré-definido dos geradores de relatórios de Web "
+"Sites"
 
 # glade.c:109
 #: preferences.glade:2469
@@ -5814,7 +6209,7 @@ msgid "Changed by"
 msgstr "Modificado por"
 
 # glade.c:401
-#: revision.glade:377
+#: revision.glade:377 rule.glade:166 rule.glade:785
 msgid "Comment"
 msgstr "Comentário"
 
@@ -5827,6 +6222,86 @@ msgstr "Comentário do Controle de Revisões - GRAMPS"
 #: revision.glade:462
 msgid "Revision Control Comment"
 msgstr "Comentário do Controle de Revisões"
+
+# glade.c:1650
+#: rule.glade:18
+msgid "Define Filter - GRAMPS"
+msgstr "Define Filtro - GRAMPS"
+
+# glade.c:515
+#: rule.glade:99
+msgid "Define Filter"
+msgstr "Define Filtro"
+
+#: rule.glade:246
+msgid "Exactly one rule must apply"
+msgstr "Exatamente uma regra precisa ser aplicada"
+
+#: rule.glade:270
+msgid "At least one rule must apply"
+msgstr "Pelo menos uma regra precisa ser aplicada"
+
+#: rule.glade:294
+msgid "All rules must apply"
+msgstr "Todas as regras precisam ser aplicadas"
+
+#: rule.glade:377 rule.glade:575
+msgid "Rule"
+msgstr "Regra"
+
+# glade.c:1904
+#: rule.glade:390 rule.glade:622
+msgid "Values"
+msgstr "Valores"
+
+# glade.c:148
+#: rule.glade:467
+msgid "Add Rule - GRAMPS"
+msgstr "Adiciona Regra - GRAMPS"
+
+# glade.c:176
+#: rule.glade:537
+msgid "Add Rule"
+msgstr "Adiciona Regra"
+
+# glade.c:1650
+#: rule.glade:642
+msgid "User Defined Filters - GRAMPS"
+msgstr "Filtros Definidos pelo Usuário - GRAMPS"
+
+# glade.c:1899
+#: rule.glade:709
+msgid "User Defined Filters"
+msgstr "Filtros Definidos pelo Usuário"
+
+# glade.c:160
+#: rule.glade:814
+msgid "Add a new filter"
+msgstr "Adiciona um novo filtro"
+
+# glade.c:1216
+#: rule.glade:830
+msgid "Edit the selected filter"
+msgstr "Edita o filtro selecionado"
+
+# glade.c:544
+#: rule.glade:846
+msgid "Delete the selected filter"
+msgstr "Apaga o filtro selecionado"
+
+#: rule.glade:862
+msgid "Display people matching the filter"
+msgstr "Mostra as pessoas que coincidem com o filtro"
+
+# glade.c:2211
+#: rule.glade:870
+msgid "Test"
+msgstr "Testa"
+
+# glade.c:1650
+#: rule.glade:881
+msgid "Test Filter - GRAMPS"
+msgstr "Testa Filtro - GRAMPS"
 
 # glade.c:1735
 #: srcsel.glade:20
