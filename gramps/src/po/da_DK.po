@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
-"POT-Creation-Date: Wed Jul 17 18:55:58 2002\n"
+"POT-Creation-Date: Mon Aug  5 07:44:19 2002\n"
 "PO-Revision-Date: 2002-07-18 10:49+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
@@ -73,13 +73,13 @@ msgstr "Fødsel"
 msgid "Choose the Parents of %s"
 msgstr "Vælg forældrene til %s"
 
-#: ChooseParents.py:212 ChooseParents.py:213 gramps_main.py:1460
-#: gramps_main.py:1461
+#: ChooseParents.py:212 ChooseParents.py:213 gramps_main.py:1461
+#: gramps_main.py:1462
 msgid "Parent"
 msgstr "Forælder"
 
 #: ChooseParents.py:215 gramps.glade:1900 gramps.glade:5325
-#: gramps_main.py:1464 mergedata.glade:518 mergedata.glade:1180
+#: gramps_main.py:1465 mergedata.glade:518 mergedata.glade:1180
 #: plugins/FamilyGroup.py:198 plugins/IndivComplete.py:198
 #: plugins/IndivComplete.py:200 plugins/IndivComplete.py:411
 #: plugins/IndivSummary.py:283 plugins/WebPage.py:263 plugins/WebPage.py:266
@@ -87,7 +87,7 @@ msgid "Mother"
 msgstr "Moder"
 
 #: ChooseParents.py:216 gramps.glade:1809 gramps.glade:5065
-#: gramps_main.py:1463 mergedata.glade:766 mergedata.glade:1478
+#: gramps_main.py:1464 mergedata.glade:766 mergedata.glade:1478
 #: plugins/FamilyGroup.py:185 plugins/IndivComplete.py:190
 #: plugins/IndivComplete.py:192 plugins/IndivComplete.py:406
 #: plugins/IndivSummary.py:269 plugins/WebPage.py:262 plugins/WebPage.py:265
@@ -250,8 +250,8 @@ msgstr "FØR"
 msgid "AFTER"
 msgstr "EFTER"
 
-#: DbPrompter.py:100 gramps_main.py:788 gramps_main.py:1163
-#: gramps_main.py:1175
+#: DbPrompter.py:100 gramps_main.py:788 gramps_main.py:1164
+#: gramps_main.py:1176
 msgid "No Comment Provided"
 msgstr "Ingen kommentar tilgængelig"
 
@@ -264,9 +264,9 @@ msgid ""
 "\n"
 msgstr ""
 "GRAMPS har mødt en intern fejl.\n"
-"Kopier venligst beskeden nedenfor og send en fejlrapport på http://sourceforge.\n"
-"net/projects/gramps eller send en e-mail besked til gramps-user@lists.sourceforge.net\n"
-"\n"
+"Kopier venligst beskeden nedenfor og send en fejlrapport på http://\n"
+"sourceforge.net/projects/gramps eller send en e-mail besked til\n"
+"gramps-user@lists.sourceforge.net\n"
 
 #: DisplayTrace.py:67
 msgid "Internal Error - GRAMPS"
@@ -301,7 +301,7 @@ msgstr "Dato"
 #: EditPerson.glade:269 EditPerson.glade:513 EditPerson.glade:2260
 #: EditPerson.glade:2851 EditPerson.glade:5058 EditPerson.glade:5330
 #: EditPerson.glade:5628 GenericFilter.py:274 GenericFilter.py:312
-#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:661
+#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:670
 #: dialog.glade:232 filters/EventPlace.py:70 marriage.glade:375
 #: marriage.glade:934 marriage.glade:1946 preferences.glade:2783
 msgid "Place"
@@ -384,7 +384,7 @@ msgstr "Efternavn"
 msgid "Select source for this name information"
 msgstr "Vælg kilde for denne navneinformation"
 
-#: EditPerson.glade:1004 ImageSelect.py:654 Utils.py:194 Utils.py:196
+#: EditPerson.glade:1004 ImageSelect.py:663 Utils.py:194 Utils.py:196
 #: places.glade:350 preferences.glade:2809
 msgid "Source"
 msgstr "Kilde"
@@ -718,7 +718,7 @@ msgstr "%(father)s og %(mother)s"
 
 #: EditPerson.py:742 EditPerson.py:744 EditPerson.py:754 EditPerson.py:756
 #: Marriage.py:355 Marriage.py:358 gramps_main.py:405 gramps_main.py:409
-#: gramps_main.py:1116
+#: gramps_main.py:1117
 msgid "Abandon Changes"
 msgstr "Ignorer Rettelser"
 
@@ -730,19 +730,19 @@ msgstr "Er du sikker på at du vil ignorere dine rettelser"
 msgid "Continue Editing"
 msgstr "Fortsæt med at Editere"
 
-#: EditPerson.py:1090
+#: EditPerson.py:1085
 msgid "Make the selected name the preferred name"
 msgstr "Lad det valgte navn være det fortrukne navn"
 
-#: EditPerson.py:1151 Marriage.py:378
+#: EditPerson.py:1146 Marriage.py:378
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS ID værdi blev ikke ændret."
 
-#: EditPerson.py:1152
+#: EditPerson.py:1147
 msgid "%(grampsid)s is already used by %(person)s"
 msgstr "%(grampsid)s bliver allerede brugt af %(person)s"
 
-#: EditPerson.py:1255
+#: EditPerson.py:1250
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -1090,41 +1090,37 @@ msgstr "Gæt af Data"
 msgid "No default format"
 msgstr "Intet standard format"
 
-#: ImageSelect.py:133
+#: ImageSelect.py:140
 msgid "That is not a valid file name."
 msgstr "Det er ikke et gyldigt filnavn."
 
-#: ImageSelect.py:231
-msgid "Could not import %s - %s"
-msgstr "Kunne ikke importere %s - %s"
-
-#: ImageSelect.py:284 MediaView.py:293 plugins/ReadGedcom.py:838
-#: plugins/ReadGedcom.py:873 plugins/ReadGedcom.py:908
+#: ImageSelect.py:285 MediaView.py:293 plugins/ReadGedcom.py:864
+#: plugins/ReadGedcom.py:899 plugins/ReadGedcom.py:934
 msgid "Could not import %s"
 msgstr "Kunne ikke importere %s"
 
-#: ImageSelect.py:384 MediaView.py:122
+#: ImageSelect.py:391 MediaView.py:122
 msgid "View in the default viewer"
 msgstr "Vis i standard viseren"
 
-#: ImageSelect.py:388 MediaView.py:124
+#: ImageSelect.py:395 MediaView.py:124
 msgid "Edit with the GIMP"
 msgstr "Editer med GIMP"
 
-#: ImageSelect.py:390 MediaView.py:126
+#: ImageSelect.py:397 MediaView.py:126
 msgid "Edit Object Properties"
 msgstr "Editer Objekt Egenskaber"
 
-#: ImageSelect.py:393 MediaView.py:129
+#: ImageSelect.py:400 MediaView.py:129
 msgid "Convert to local copy"
 msgstr "Konverter til lokal kopi"
 
-#: ImageSelect.py:641 gramps.glade:1358 gramps.glade:1424
+#: ImageSelect.py:650 gramps.glade:1358 gramps.glade:1424
 #: plugins/EventCmp.py:286 preferences.glade:2731
 msgid "Person"
 msgstr "Person"
 
-#: ImageSelect.py:647 gramps.glade:626 gramps.glade:2722
+#: ImageSelect.py:656 gramps.glade:626 gramps.glade:2722
 #: preferences.glade:2757
 msgid "Family"
 msgstr "Familie"
@@ -1186,27 +1182,27 @@ msgstr "Dobbeltklik for at editere, Shift-Dobbeltklik for at gøre personen aktiv
 msgid "Double clicking will make %s the active person"
 msgstr "Dobbeltklik vil gøre %s til den aktive person"
 
-#: PlaceView.py:126
+#: PlaceView.py:125
 msgid "Exactly two places must be selected to perform a merge"
 msgstr "Præcis to steder skal vælges for at udføre en sammenlægning"
 
-#: PlaceView.py:179
+#: PlaceView.py:178
 msgid "Currently, you can only delete one place at a time"
 msgstr "For tiden kan du kun slette et sted ad gangen"
 
-#: PlaceView.py:199 PlaceView.py:201 gramps.glade:3648
+#: PlaceView.py:209 PlaceView.py:211 gramps.glade:3648
 msgid "Delete Place"
 msgstr "Slet Sted"
 
-#: PlaceView.py:200
+#: PlaceView.py:210
 msgid "This place is currently being used. Delete anyway?"
 msgstr "Dette sted er i brug. Slet alligevel?"
 
-#: PlaceView.py:202
+#: PlaceView.py:212
 msgid "Keep Place"
 msgstr "Behold Sted"
 
-#: PlaceView.py:211
+#: PlaceView.py:221
 msgid "You requested too many places to edit at the same time"
 msgstr "Du bad om for mange steder til at rette på en gang"
 
@@ -1236,21 +1232,20 @@ msgstr "Ukategoriseret"
 
 #: Plugins.py:378 Plugins.py:389 const.py:127 const.py:402 const.py:410
 #: gramps.glade:5294 gramps.glade:5553 gramps.glade:5969 gramps.glade:6034
-#: gramps.glade:7011 gramps.glade:7058 gramps_main.py:1350 gramps_main.py:1553
+#: gramps.glade:7011 gramps.glade:7058 gramps_main.py:1351 gramps_main.py:1554
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:145 ReadXML.py:149
+#: ReadXML.py:89 ReadXML.py:92 ReadXML.py:144 ReadXML.py:148
 #: plugins/ReadGedcom.py:131 plugins/ReadGedcom.py:135
 msgid "%s could not be opened\n"
 msgstr "%s kunne ikke åbnes\n"
 
-#: ReadXML.py:98 ReadXML.py:103 ReadXML.py:155 ReadXML.py:161 ReadXML.py:189
-#: ReadXML.py:195
+#: ReadXML.py:98 ReadXML.py:154 ReadXML.py:160 ReadXML.py:188
 msgid "Error reading %s"
 msgstr "Fejl ved læsning af %s"
 
-#: ReadXML.py:184
+#: ReadXML.py:183
 msgid "%s (revision %s)"
 msgstr "%s (revision %s)"
 
@@ -1932,11 +1927,13 @@ msgstr "CPR-nummer"
 
 #: const.py:399
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "Et registreret eller ægteskabslignende forhold mellem en mand og kvinde"
+msgstr ""
+"Et registreret eller ægteskabslignende forhold mellem en mand og kvinde"
 
 #: const.py:400
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Intet registreret eller ægteskabslignende forhold mellem en mand og kvinde"
+msgstr ""
+"Intet registreret eller ægteskabslignende forhold mellem en mand og kvinde"
 
 #: const.py:400 const.py:408
 msgid "Unmarried"
@@ -2062,7 +2059,7 @@ msgstr ""
 "Kunne ikke åbne %s\n"
 "Anvender standardskabelonen"
 
-#: docgen/HtmlDoc.py:395 plugins/eventcmp.glade:195
+#: docgen/HtmlDoc.py:395 docgen/HtmlDrawDoc.py:153 plugins/eventcmp.glade:195
 msgid "HTML"
 msgstr "HTML"
 
@@ -2090,7 +2087,7 @@ msgstr "ReportLabs moduler er ikke installeret"
 msgid "PDF"
 msgstr "PDF"
 
-#: docgen/RTFDoc.py:517
+#: docgen/RTFDoc.py:516
 msgid "Rich Text Format (RTF)"
 msgstr "Rich Text Format (RTF)"
 
@@ -2420,8 +2417,8 @@ msgstr "Aktuel Person"
 msgid "Exchange active person and displayed spouse"
 msgstr "Ombyt aktuel person og den viste ægtefælle"
 
-#: gramps.glade:1517 gramps_main.py:1408 gramps_main.py:1433
-#: gramps_main.py:1794
+#: gramps.glade:1517 gramps_main.py:1409 gramps_main.py:1434
+#: gramps_main.py:1795
 msgid "Relationship"
 msgstr "Slægtskab"
 
@@ -2834,78 +2831,78 @@ msgstr "Behold Person"
 msgid "Currently, you can only delete one person at a time"
 msgstr "For tiden kan du kunne slette en person af gangen"
 
-#: gramps_main.py:1065
+#: gramps_main.py:1066
 msgid "Invalid move. Children must be ordered by birth date."
 msgstr "Ugyldigt træk. Børn skal ordnes efter fødselsdato."
 
-#: gramps_main.py:1113
+#: gramps_main.py:1114
 msgid ""
 "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 "Ønsker du at ignorere dine ændringer og gå tilbage til den sidst gemte "
 "database?"
 
-#: gramps_main.py:1117
+#: gramps_main.py:1118
 msgid "Revert to Last Database"
 msgstr "Gå tilbage til den Forrige Database"
 
-#: gramps_main.py:1118
+#: gramps_main.py:1119
 msgid "Continue with Current Database"
 msgstr "Fortsæt med den Aktuelle Database"
 
-#: gramps_main.py:1120
+#: gramps_main.py:1121
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr "Kan ikke gå tilbage til en tidligere database, da en sådan ikke findes"
 
-#: gramps_main.py:1406 gramps_main.py:1792
+#: gramps_main.py:1407 gramps_main.py:1793
 msgid "Preferred Relationship"
 msgstr "Foretrukket Slægtskab"
 
-#: gramps_main.py:1442
+#: gramps_main.py:1443
 msgid "No Relationship"
 msgstr "Intet Slægtskab"
 
-#: gramps_main.py:1472
+#: gramps_main.py:1473
 msgid "Preferred Parents (%d of %d)"
 msgstr "Foretrukne forældre (%d af %d)"
 
-#: gramps_main.py:1474
+#: gramps_main.py:1475
 msgid "Preferred Parents"
 msgstr "Foretrukne Forældre"
 
-#: gramps_main.py:1477
+#: gramps_main.py:1478
 msgid "Alternate Parents (%d of %d)"
 msgstr "Andre Forældre"
 
-#: gramps_main.py:1480
+#: gramps_main.py:1481
 msgid "No Parents"
 msgstr "Ingen Forældre"
 
-#: gramps_main.py:1728
+#: gramps_main.py:1729
 msgid "No default/home person has been set"
 msgstr "Der er ikke valgt en proband"
 
-#: gramps_main.py:1734
+#: gramps_main.py:1735
 msgid "%s has been bookmarked"
 msgstr "%s er blevet tilføjet bogmærkerne"
 
-#: gramps_main.py:1737
+#: gramps_main.py:1738
 msgid "Bookmark could not be set because no one was selected"
 msgstr "Bogmærke kunne ikke oprettes da der ikke var valgt et"
 
-#: gramps_main.py:1749
+#: gramps_main.py:1750
 msgid "Do you wish to set %s as the home person?"
 msgstr "Ønsker du at vælge %s som proband?"
 
-#: gramps_main.py:1751
+#: gramps_main.py:1752
 msgid "Set Home Person"
 msgstr "Slet Proband"
 
-#: gramps_main.py:1752
+#: gramps_main.py:1753
 msgid "Set as Home Person"
 msgstr "Vælg som Proband"
 
-#: gramps_main.py:1753
+#: gramps_main.py:1754
 msgid "Do not change Home Person"
 msgstr "Vælg ikke en ny Proband"
 
@@ -3971,15 +3968,15 @@ msgstr ""
 "Gennemsøger hele databasen og forsøger at udtage titler og kælenavne, der er "
 "blevet indtastet i en persons fornavnefelt."
 
-#: plugins/ReadGedcom.py:279 plugins/ReadGedcom.py:290
+#: plugins/ReadGedcom.py:284 plugins/ReadGedcom.py:295
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr "Advarsel: linje %d blev ikke forstået, så den blev ignoreret."
 
-#: plugins/ReadGedcom.py:324
+#: plugins/ReadGedcom.py:329
 msgid "Import Complete: %d seconds"
 msgstr "Import Fuldført: %d sekunder"
 
-#: plugins/ReadGedcom.py:1633 plugins/ReadGedcom.py:1663
+#: plugins/ReadGedcom.py:1659 plugins/ReadGedcom.py:1689
 msgid "Import from GEDCOM"
 msgstr "Import fra GEDCOM"
 
@@ -3993,15 +3990,21 @@ msgstr "%(p1)s er fætter/kusine til %(p2)s."
 
 #: plugins/RelCalc.py:63
 msgid "%(p1)s is the first cousin once removed of %(p2)s."
-msgstr "%(p1)s er enten barn af en fætter/kusine til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten barn af en fætter/kusine til %(p2)s eller også er det "
+"omvendt."
 
 #: plugins/RelCalc.py:66
 msgid "%(p1)s is the first cousin twice removed of %(p2)s."
-msgstr "%(p1)s er enten barnebarn af en fætter/kusine til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten barnebarn af en fætter/kusine til %(p2)s eller også er det "
+"omvendt."
 
 #: plugins/RelCalc.py:69
 msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af en fætter/kusine til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af en fætter/kusine til %(p2)"
+"s eller også er det omvendt."
 
 #: plugins/RelCalc.py:73
 msgid "%(p1)s is the second cousin of %(p2)s."
@@ -4009,15 +4012,21 @@ msgstr "%(p1)s er næstsøskendebarn til %(p2)s."
 
 #: plugins/RelCalc.py:76
 msgid "%(p1)s is the second cousin once removed of %(p2)s."
-msgstr "%(p1)s er enten barn af et næstsøskendebarn til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten barn af et næstsøskendebarn til %(p2)s eller også er det "
+"omvendt."
 
 #: plugins/RelCalc.py:79
 msgid "%(p1)s is the second cousin twice removed of %(p2)s."
-msgstr "%(p1)s er enten barnebarn af et næstsøskendebarn til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten barnebarn af et næstsøskendebarn til %(p2)s eller også er "
+"det omvendt."
 
 #: plugins/RelCalc.py:82
 msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næstsøskendebarn til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næstsøskendebarn til %"
+"(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:86
 msgid "%(p1)s is the third cousin of %(p2)s."
@@ -4059,7 +4068,9 @@ msgstr ""
 
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næst-(%(level)d - 1)-søskendebarn til %(p2)s eller også er det omvendt."
+msgstr ""
+"%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næst-(%(level)d - 1)-"
+"søskendebarn til %(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
@@ -5424,6 +5435,9 @@ msgstr "top"
 #: styles.glade:1327
 msgid "bottom"
 msgstr "bund"
+
+#~ msgid "Could not import %s - %s"
+#~ msgstr "Kunne ikke importere %s - %s"
 
 #~ msgid "class"
 #~ msgstr "class"
