@@ -1,3 +1,7 @@
+2003-12-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/DescendReport.py (_make_default_style): fix indentation levels
+	* src/plugins/FamilyGroup.py (FamilyGroup.dump_child): handle missing spouse
+
 2003-12-26  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (__init__): Translate column header.
 	* doc/gramps-manual/ru/cmdline.xml: Update translation. 
