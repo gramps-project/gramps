@@ -39,8 +39,11 @@ import Report
 import BaseDoc
 import RelLib
 import Errors
+import DateHandler
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
+
+_dd = DateHandler.create_display()
 
 #------------------------------------------------------------------------
 #
@@ -121,7 +124,8 @@ class AncestorReport(Report.Report):
             birth_handle = person.get_birth_handle()
             if birth_handle:
                 birth = self.database.get_event_from_handle(birth_handle)
-                date = birth.get_date_object().get_start_date()
+                date = birth.get_date_object()
+                date_text = _dd.display(date)
                 place_handle = birth.get_place_handle()
                 if place_handle:
                     place = self.database.get_place_from_handle(place_handle).get_title()
@@ -129,22 +133,22 @@ class AncestorReport(Report.Report):
                     place = u''
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.get_date() != "" or place_handle:
-                    if date.get_date() != "":
+                if date_text != "" or place_handle:
+                    if date_text != "":
                         if date.get_day_valid() and date.get_month_valid():
                             if place != "":
                                 t = _("%s was born on %s in %s. ") % \
-                                    (name,date.get_date(),place)
+                                    (name,date_text,place)
                             else:
                                 t = _("%s was born on %s. ") % \
-                                    (name,date.get_date())
+                                    (name,date_text)
                         else:
                             if place != "":
                                 t = _("%s was born in the year %s in %s. ") % \
-                                    (name,date.get_date(),place)
+                                    (name,date_text,place)
                             else:
                                 t = _("%s was born in the year %s. ") % \
-                                    (name,date.get_date())
+                                    (name,date_text)
                         self.doc.write_text(t)
 
             buried = None
@@ -156,7 +160,8 @@ class AncestorReport(Report.Report):
             death_handle = person.get_death_handle()
             if death_handle:
                 death = self.database.get_event_from_handle(death_handle)
-                date = death.get_date_object().get_start_date()
+                date = death.get_date_object()
+                date_text = _dd.display(date)
                 place_handle = death.get_place_handle()
                 if place_handle:
                     place = self.database.get_place_from_handle(place_handle).get_title()
@@ -164,44 +169,45 @@ class AncestorReport(Report.Report):
                     place = u''
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.get_date() != "" or place_handle:
+                if date_text != "" or place_handle:
                     if person.get_gender() == RelLib.Person.male:
                         male = 1
                     else:
                         male = 0
 
-                    if date.get_date() != "":
+                    if date_text != "":
                         if date.get_day_valid() and date.get_month_valid():
                             if male:
                                 if place != "":
                                     t = _("He died on %s in %s") % \
-                                        (date.get_date(),place)
+                                        (date_text,place)
                                 else:
-                                    t = _("He died on %s") % date.get_date()
+                                    t = _("He died on %s") % date_text
                             else:
                                 if place != "":
                                     t = _("She died on %s in %s") % \
-                                        (date.get_date(),place)
+                                        (date_text,place)
                                 else:
-                                    t = _("She died on %s") % date.get_date()
+                                    t = _("She died on %s") % date_text
                         else:
                             if male:
                                 if place != "":
                                     t = _("He died in the year %s in %s") % \
-                                        (date.get_date(),place)
+                                        (date_text,place)
                                 else:
-                                    t = _("He died in the year %s") % date.get_date()
+                                    t = _("He died in the year %s") % date_text
                             else:
                                 if place != "":
                                     t = _("She died in the year %s in %s") % \
-                                        (date.get_date(),place)
+                                        (date_text,place)
                                 else:
-                                    t = _("She died in the year %s") % date.get_date()
+                                    t = _("She died in the year %s") % date_text
 
                         self.doc.write_text(t)
 
                     if buried:
-                        date = buried.get_date_object().get_start_date()
+                        date = buried.get_date_object()
+                        date_text = _dd.display(date)
                         place_handle = buried.get_place_handle()
                         if place_handle:
                             place = self.database.get_place_from_handle(place_handle).get_title()
@@ -209,22 +215,21 @@ class AncestorReport(Report.Report):
                             place = u''
                         if place[-1:] == '.':
                             place = place[:-1]
-                        if date.get_date() != "" or place_handle:
-                            if date.get_date() != "":
+                        if date_text != "" or place_handle:
+                            if date_text != "":
                                 if date.get_day_valid() and date.get_month_valid():
                                     if place != "":
                                         t = _(", and was buried on %s in %s.") % \
-                                            (date.get_date(),place)
+                                            (date_text,place)
                                     else:
-                                        t = _(", and was buried on %s.") % \
-                                            date.get_date()
+                                        t = _(", and was buried on %s.") % date_text
                                 else:
                                     if place != "":
                                         t = _(", and was buried in the year %s in %s.") % \
-                                            (date.get_date(),place)
+                                            (date_text,place)
                                     else:
                                         t = _(", and was buried in the year %s.") % \
-                                            date.get_date()
+                                            date_text
                             else:
                                 t = _(" and was buried in %s.") % place
                         self.doc.write_text(t)

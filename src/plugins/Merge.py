@@ -362,17 +362,14 @@ class Merge:
             return s1 == s2
 
     def date_match(self,date1,date2):
-        if date1.get_date() == "" or date2.get_date() == "":
+        if date1.is_empty() == "" or date2.is_empty() == "":
             return 0
-        if date1.get_date() == date2.get_date():
+        if date1.is_equal(date2):
             return 1
 
-        if date1.is_range() or date2.is_range():
+        if date1.is_compound() or date2.is_compound():
             return self.range_compare(date1,date2)
 
-        date1 = date1.get_start_date()
-        date2 = date2.get_start_date()
-        
         if date1.get_year() == date2.get_year():
             if date1.get_month() == date2.get_month():
                 return 0.75
@@ -384,27 +381,25 @@ class Merge:
             return -1
 
     def range_compare(self,date1,date2):
-        if date1.is_range() and date2.is_range():
-            if date1.get_start_date() >= date2.get_start_date() and \
-               date1.get_start_date() <= date2.get_stop_date() or \
-               date2.get_start_date() >= date1.get_start_date() and \
-               date2.get_start_date() <= date1.get_stop_date() or \
-               date1.get_stop_date() >= date2.get_start_date() and \
-               date1.get_stop_date() <= date2.get_stop_date() or \
-               date2.get_stop_date() >= date1.get_start_date() and \
-               date2.get_stop_date() <= date1.get_stop_date():
+        start_date_1 = date1.get_start_date()[0:3]
+        start_date_2 = date2.get_start_date()[0:3]
+        stop_date_1 = date1.get_stop_date()[0:3]
+        stop_date_2 = date2.get_stop_date()[0:3]
+        if date1.is_compound() and date2.is_compound():
+            if start_date_1 >= start_date_2 and start_date_1 <= stop_date_2 or \
+               start_date_2 >= start_date_1 and start_date_2 <= stop_date_1 or \
+               stop_date_1 >= start_date_2 and stop_date_1 <= stop_date_2 or \
+               stop_date_2 >= start_date_1 and stop_date_2 <= stop_date_1:
                 return 0.5
             else:
                 return -1
-        elif date2.is_range():
-            if date1.get_start_date() >= date2.get_start_date() and \
-               date1.get_start_date() <= date2.get_stop_date():
+        elif date2.is_compound():
+            if start_date_1 >= start_date_2 and start_date_1 <= stop_date_2:
                 return 0.5
             else:
                 return -1
         else:
-            if date2.get_start_date() >= date1.get_start_date() and \
-               date2.get_start_date() <= date1.get_stop_date():
+            if start_date_2 >= start_date_1 and start_date_2 <= stop_date_1:
                 return 0.5
             else:
                 return -1
@@ -611,6 +606,7 @@ class Merge:
                             if value != -1:
                                 chance = chance + value
 
+        print p1.get_gramps_id(), p2.get_gramps_id(), chance
         return chance
 
 #-------------------------------------------------------------------------

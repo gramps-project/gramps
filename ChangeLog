@@ -1,3 +1,15 @@
+2004-10-02 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateDisplay.py (display): Display text for text-only dates. 
+	Closes # 1036846.
+	* src/plugins/Merge.py (date_match,range_compare): Use new
+	Date API. Closes # 1036852.
+	* src/plugins/WebPage.py: Use new Date API. Use correct module
+	for gconf keys access. Closes # 1036856.
+	* src/Sort.py (by_date): Use new Date API.
+	* src/plugins/AncestorReport.py: Use new Date API. Closes # 1036858.
+	* src/plugins/Ancestor.py: Correct use of handles. 
+	Use new Date API. Closes # 1036859.
+
 2004-09-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: enhanced update/delete/add of person view
 	* src/PeopleModel.py: enhanced update/delete/add of person view

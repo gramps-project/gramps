@@ -104,4 +104,4 @@ class Sort:
             return 0
         a = self.database.get_event_from_handle(a_id)
         b = self.database.get_event_from_handle(b_id)
-        return Date.compare_dates(a.get_date_object(),b.get_date_object())
+        return cmp(a.get_date_object(),b.get_date_object())
