@@ -147,7 +147,7 @@
 
 	  <widget>
 	    <class>GnomePixmap</class>
-	    <name>pixmap1</name>
+	    <name>image</name>
 	    <filename>gramps.png</filename>
 	    <child>
 	      <padding>10</padding>
