@@ -237,6 +237,7 @@ class Gallery(ImageSelect):
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
 	if data and data.format == 8:
+            icon_index = w.get_icon_at(x,y)
             d = string.strip(string.replace(data.data,'\0',' '))
             if d[0:5] == "file:":
                 name = d[5:]
@@ -249,10 +250,27 @@ class Gallery(ImageSelect):
                 self.savephoto(photo)
             else:
                 if self.db.getObjectMap().has_key(data.data):
+                    index = 0
                     for p in self.dataobj.getPhotoList():
                         if data.data == p.getReference().getId():
-                            w.drag_finish(context, TRUE, FALSE, time)
-                            return
+                            if index == icon_index or icon_index == -1:
+                                w.drag_finish(context, TRUE, FALSE, time)
+                                return
+                            else:
+                                w.drag_finish(context, TRUE, FALSE, time)
+                                nl = self.dataobj.getPhotoList()
+                                item = nl[index]
+                                if icon_index == 0:
+                                    del nl[index]
+                                    nl = [item] + nl
+                                else:
+                                    del nl[index]
+                                    nl = nl[0:icon_index] + [item] + nl[icon_index:]
+                                self.dataobj.setPhotoList(nl)
+                                utils.modified()
+                                self.load_images()
+                                return
+                        index = index + 1
                     oref = ObjectRef()
                     oref.setReference(self.db.findObjectNoMap(data.data))
                     self.dataobj.addPhoto(oref)
