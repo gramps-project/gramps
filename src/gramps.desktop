@@ -2,8 +2,12 @@
 Encoding=Legacy-Mixed
 Name=GRAMPS Genealogy System
 Name[sv]=GRAMPS
+Name[no]=GRAMPS
+Name[nb]=GRAMPS
 Comment=Manage genealogical information, perform genealogical research and analysis
 Comment[sv]=Ett släktforskningsprogram
+Comment[no]=Et slektsforskningsprogram
+Comment[nb]=Et slektsforskningsprogram
 Exec=gramps
 Icon=gramps.png
 Terminal=false
