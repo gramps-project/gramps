@@ -158,13 +158,10 @@ class Report:
         self.ptop.vbox.add(gtk.HSeparator())
         self.ptop.vbox.set_spacing(10)
         self.pbar = gtk.ProgressBar()
-#        self.pbar.set_format_string(_("%v of %u (%P%%)"))
-#        self.pbar.configure(0.0,0.0,total)
-#        self.pbar.set_show_text(1)
         self.pbar_max = total
         self.pbar_index = 0.0
 
-        self.ptop.set_size_request(350,20)
+        self.ptop.set_size_request(350,100)
         self.ptop.vbox.add(self.pbar)
         self.ptop.show_all()
 
@@ -210,14 +207,14 @@ class ReportDialog:
         self.widgets = []
         self.frame_names = []
         self.frames = {}
-        
+
         self.window = gtk.Dialog('GRAMPS')
- #       self.window.set_default(0)
-        self.window.add_button(gtk.STOCK_OK,0)
+        self.ok = self.window.add_button(gtk.STOCK_OK,0)
+        self.ok.connect('clicked',self.on_ok_clicked)
+        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,1)
+        self.cancel.connect('clicked',self.on_cancel)
         self.window.set_response_sensitive(0,gtk.TRUE)
-        self.window.add_button(gtk.STOCK_CANCEL,1)
         self.window.set_response_sensitive(1,gtk.TRUE)
-#        self.window.button_connect(1,self.on_cancel)
         self.window.set_resize_mode(0)
 
         # Build the list of widgets that are used to extend the Options
@@ -239,13 +236,11 @@ class ReportDialog:
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.window.show_all()
-        self.setup_post_process()
 
-        result = self.window.run()
-        self.on_ok_clicked(result)
-        
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
+        self.setup_post_process()
+
 
     def setup_post_process(self):
         pass
@@ -932,39 +927,37 @@ class ReportDialog:
         menu for selecting a style."""
         StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
 
+    def on_cancel(self,obj):
+        self.window.destroy()
 
-    def on_ok_clicked(self, val):
+    def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate
         the output file name before doing anything else.  If there is
         a file name, gather the options and create the report."""
 
-        if val == 1:
-            self.window.destroy()
-        else:
+        # Is there a filename?  This should also test file permissions, etc.
+        if not self.parse_target_frame():
+            return
 
-            # Is there a filename?  This should also test file permissions, etc.
-            if not self.parse_target_frame():
-                return
-
-            # Preparation
-            self.parse_format_frame()
-            self.parse_style_frame()
-            self.parse_paper_frame()
-            self.parse_html_frame()
-            self.parse_report_options_frame()
-            self.parse_other_frames()
+        # Preparation
+        self.parse_format_frame()
+        self.parse_style_frame()
+        self.parse_paper_frame()
+        self.parse_html_frame()
+        self.parse_report_options_frame()
+        self.parse_other_frames()
+        
+        # Create the output document.
+        self.make_document()
+        
+        # Create the report object and product the report.
+        try:
+            self.make_report()
+        except (IOError,OSError),msg:
+            ErrorDialog(str(msg))
             
-            # Create the output document.
-            self.make_document()
-            
-            # Create the report object and product the report.
-            try:
-                self.make_report()
-            except (IOError,OSError),msg:
-                ErrorDialog(str(msg))
-
-            # Clean up the dialog object
-            self.window.destroy()
+        # Clean up the dialog object
+        self.window.destroy()
 
     #------------------------------------------------------------------------
     #

@@ -50,6 +50,11 @@ import RelLib
 import const
 import Utils
 import GrampsCfg
+import ListModel
+
+
+_titles = [(_('Name'),3,200),(_('ID'),1,50),(_('Birth Date'),4,50),('',0,50),('',0,0)]
+
 
 #-------------------------------------------------------------------------
 #
@@ -100,23 +105,12 @@ class ChooseParents:
         self.fcombo.set_popdown_strings(const.familyRelations)
 
 
-        self.fmodel = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                    gobject.TYPE_STRING)
-        self.father_list.set_model(self.fmodel)
-        self.fselection = self.father_list.get_selection()
-        self.fselection.connect('changed',self.father_list_select_row)
-
-        self.mmodel = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                    gobject.TYPE_STRING)
-        self.mother_list.set_model(self.mmodel)
-        self.mselection = self.mother_list.get_selection()
-        self.mselection.connect('changed',self.mother_list_select_row)
-
-        self.build_list(self.father_list)
-        self.build_list(self.mother_list)
+        self.fmodel = ListModel.ListModel(self.father_list, _titles,
+                                          self.father_list_select_row)
+        self.mmodel = ListModel.ListModel(self.mother_list, _titles,
+                                          self.mother_list_select_row)
         
+
         for (f,mr,fr) in self.person.getParentList():
             if f == self.family:
                 self.mother_rel.set_text(_(mr))
@@ -144,28 +138,6 @@ class ChooseParents:
         text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
         self.title.set_text(text)
 
-    def build_list(self,clist):
-        colno = 0
-        for title in [ (_('Name'),3,200),
-                       (_('ID'),1,50),
-                       (_('Birth Date'),4,50),
-                       ('',0,50),
-                       ('',0,0)]:
-            renderer = gtk.CellRendererText ()
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_clickable(gtk.TRUE)
-                column.set_visible(gtk.FALSE)
-            else:
-                column.set_resizable(gtk.TRUE)
-            column.set_sort_column_id(title[1])
-            column.set_min_width(title[2])
-            clist.append_column(column)
-            if colno == 1:
-                column.clicked()
-
     def redraw(self):
         """Redraws the potential father and mother lists"""
 
@@ -189,14 +161,15 @@ class ChooseParents:
             if gender == const.unknown:
                 continue
 
-            dinfo = self.db.getPersonDisplay(key)
+            d = self.db.getPersonDisplay(key)
+            info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
-                self.set_data(self.fmodel,self.fselection,dinfo,fid)
-                self.set_data(self.mmodel,self.mselection,dinfo,mid)
-            elif dinfo[2] == const.male:
-                self.set_data(self.fmodel,self.fselection,dinfo,fid)
+                self.fmodel.add(info,None,fid==d[1])
+                self.mmodel.add(info,None,mid==d[1])
+            elif d[2] == const.male:
+                self.fmodel.add(info,None,fid==d[1])
             else:
-                self.set_data(self.mmodel,self.mselection,dinfo,mid)
+                self.mmodel.add(info,None,mid==d[1])
 
         if self.type == "Partners":
             self.mlabel.set_label(_("Parent"))
@@ -204,12 +177,6 @@ class ChooseParents:
         else:
             self.mlabel.set_label(_("Mother"))
             self.flabel.set_label(_("Father"))
-
-    def set_data(self,model,selection,dinfo,key):
-        iter = model.append()
-        model.set(iter,0,dinfo[0],1,dinfo[1],2,dinfo[3],3,dinfo[5],4,dinfo[6])
-        if key == dinfo[1]:
-            selection.select_iter(iter)
 
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changegd"""
@@ -248,7 +215,7 @@ class ChooseParents:
         """Called when a row is selected in the mother list. Sets the
         active mother based off the id associated with the row."""
         
-        model, iter = self.mselection.get_selected()
+        model, iter = self.mmodel.get_selected()
         if iter:
             id = model.get_value(iter,1)
             self.mother = self.db.getPerson(id)
@@ -258,7 +225,7 @@ class ChooseParents:
     def father_list_select_row(self,obj):
         """Called when a row is selected in the father list. Sets the
         active father based off the id associated with the row."""
-        model, iter = self.fselection.get_selected()
+        model, iter = self.fmodel.get_selected()
         if iter:
             id = model.get_value(iter,1)
             self.father = self.db.getPerson(id)
@@ -310,23 +277,14 @@ class ChooseParents:
         id = person.getId()
         self.type = const.save_frel(self.prel.get_text())
         dinfo = self.db.getPersonDisplay(id)
-        rdata = [dinfo[0],dinfo[3],dinfo[5],dinfo[6]]
+        rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
 
         if self.type == "Partners":
             self.parent_relation_changed(self.prel)
         elif person.getGender() == RelLib.Person.male:
-            self.father_list.insert(0,rdata)
-            self.father_list.set_row_data(0,id)
-            self.father_list.select_row(0,0)
-            self.father_list.sort()
-            self.father_list.moveto(self.father_list.selection[0],0)
+            self.fmodel.add(rdata,None,1)
         else:
-            self.mother_list.insert(0,rdata)
-            self.mother_list.set_row_data(0,id)
-            self.mother_list.select_row(0,0)
-            self.mother_list.moveto(0,0)
-            self.mother_list.sort()
-            self.mother_list.moveto(self.mother_list.selection[0],0)
+            self.mmodel.add(rdata,None,1)
         self.full_update()
         
     def add_parent_clicked(self,obj):
