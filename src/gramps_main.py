@@ -1416,6 +1416,11 @@ class Gramps:
     def load_family(self,family=None):
         if family != None:
             self.active_family = family
+        elif self.active_person:
+            flist = self.active_person.getFamilyList() 
+            if len(flist) > 0:
+                self.active_family = flist[0]
+                
         if self.active_family:
             flist = self.active_person.getFamilyList()
             if self.active_person != self.active_family.getFather() and \
