@@ -379,8 +379,10 @@ def exportData(database, filename, callback):
 
             for photo in family.getPhotoList():
                 path = photo.getPath()
-                if os.path.dirname(path) == fileroot:
-                    path = os.path.basename(path)
+                l = len(fileroot)
+                if len(path) >= l:
+                    if fileroot == path[0:l]:
+                        path = path[l+1:]
                 g.write("      <img src=\"" + fix(path) + "\"")
                 g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
                 proplist = photo.getPropertyList()
@@ -416,14 +418,17 @@ def exportData(database, filename, callback):
                 writeNote(g,"note",source.getNote(),3)
             for photo in source.getPhotoList():
                 path = photo.getPath()
-                if os.path.dirname(path) == fileroot:
-                    path = os.path.basename(path)
-                    g.write("      <img src=\"" + fix(path) + "\"")
-                    g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
-                    proplist = photo.getPropertyList()
-                    if proplist:
-                        for key in proplist.keys():
-                            g.write(' %s="%s"' % (key,proplist[key]))
+                l = len(fileroot)
+                if len(path) >= l:
+                    if fileroot == path[0:l]:
+                        path = path[l+1:]
+                g.write("      <img src=\"" + fix(path) + "\"")
+                g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+                proplist = photo.getPropertyList()
+                if proplist:
+                    for key in proplist.keys():
+                        g.write(' %s="%s"' % (key,proplist[key]))
+                g.write("/>\n")
             g.write("    </source>\n")
         g.write("  </sources>\n")
 
