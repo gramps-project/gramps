@@ -385,6 +385,7 @@ class FtmDescendantReport(Report.Report):
                 else:
                     self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s') % {
                         'event_name' : event.getName(),
+                        'endnotes' : self.endnotes(event),
                         'place' : event.getPlaceName() })
                 self.doc.end_paragraph()
 
