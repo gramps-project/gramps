@@ -1,3 +1,8 @@
+2003-11-05  Tim Waugh  <twaugh@redhat.com>
+
+	* src/plugins/FilterEditor.py (ShowResults.__init__): Sort
+	results.
+
 2003-11-03  Tim Waugh  <twaugh@redhat.com>
 
 	* src/plugins/WriteGedcom.py (GedcomWriter.write_families): Use
