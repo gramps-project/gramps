@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +129,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
         for person_id in self.db.get_person_keys():
             
-            person = self.db.find_person_from_id(person_id,None)
+            person = self.db.try_to_find_person_from_id(person_id)
             surname = unicode(person.get_primary_name().get_surname())
 
             if self.sname_sub.has_key(surname):
@@ -344,7 +346,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if event:
                 place_id = event.get_place_id()
                 if place_id:
-                    return self.db.find_place_from_id(place_id).get_title()
+                    return self.db.try_to_find_place_from_id(place_id).get_title()
         return u""
 
     def column_death_place(self,data):
@@ -353,7 +355,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if event:
                 place_id = event.get_place_id()
                 if place_id:
-                    return self.db.find_place_from_id(place_id).get_title()
+                    return self.db.try_to_find_place_from_id(place_id).get_title()
         return u""
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]

@@ -229,7 +229,7 @@ class SourceView:
                     if sref.get_base_id() == source.get_id():
                         return 1
         for p_id in self.db.get_object_keys():
-            p = self.db.find_object_from_id(p_id)
+            p = self.db.try_to_find_object_from_id(p_id)
             for sref in p.get_source_references():
                 if sref.get_base_id() == source.get_id():
                     return 1

@@ -475,7 +475,7 @@ class EditPerson:
 
         build_dropdown(place,self.place_list)
         if ord and ord.get_place_id():
-            ord_place = self.db.find_place_from_id(ord.get_place_id(),None)
+            ord_place = self.db.try_to_find_place_from_id(ord.get_place_id())
             place.set_text(ord_place.get_title())
         return stat
 
@@ -535,8 +535,8 @@ class EditPerson:
                 continue
             f_id = fam.get_father_id()
             m_id = fam.get_mother_id()
-            f = self.db.find_person_from_id(f_id)
-            m = self.db.find_person_from_id(m_id)
+            f = self.db.try_to_find_person_from_id(f_id)
+            m = self.db.try_to_find_person_from_id(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     'father' : GrampsCfg.nameof(f),
@@ -626,7 +626,7 @@ class EditPerson:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_id = src.get_base_id()
-                    newbase = self.db.find_source_from_id(base_id)
+                    newbase = self.db.try_to_find_source_from_id(base_id)
                     src.set_base_id(newbase)
                 place = foo.get_place_id()
                 if place:
@@ -704,7 +704,7 @@ class EditPerson:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_id = src.get_base_id()
-                    newbase = self.db.find_source_from_id(base_id)
+                    newbase = self.db.try_to_find_source_from_id(base_id)
                     src.set_base_id(newbase)
                 self.alist.append(foo)
             self.lists_changed = 1
@@ -737,7 +737,7 @@ class EditPerson:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_id = src.get_base_id()
-                    newbase = self.db.find_source_from_id(base_id)
+                    newbase = self.db.try_to_find_source_from_id(base_id)
                     src.set_base_id(newbase)
                 self.plist.insert(row,foo)
                 
@@ -1229,7 +1229,7 @@ class EditPerson:
             if len(event.get_source_references()) > 0:
                 psrc_ref = event.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.find_source_from_id(psrc_id)
+                psrc = self.db.try_to_find_source_from_id(psrc_id)
                 self.event_src_field.set_text(short(psrc.get_title()))
                 self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1262,7 +1262,7 @@ class EditPerson:
             if len(addr.get_source_references()) > 0:
                 psrc_ref = addr.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.find_source_from_id(psrc_id)
+                psrc = self.db.try_to_find_source_from_id(psrc_id)
                 self.addr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
                 self.addr_src_field.set_text(short(psrc.get_title()))
             else:
@@ -1296,7 +1296,7 @@ class EditPerson:
             if len(name.get_source_references()) > 0:
                 psrc_ref = name.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.find_source_from_id(psrc_id)
+                psrc = self.db.try_to_find_source_from_id(psrc_id)
                 self.name_src_field.set_text(short(psrc.get_title()))
                 self.name_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1343,7 +1343,7 @@ class EditPerson:
             if len(attr.get_source_references()) > 0:
                 psrc_ref = attr.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_id()
-                psrc = self.db.find_source_from_id(psrc_id)
+                psrc = self.db.try_to_find_source_from_id(psrc_id)
                 self.attr_src_field.set_text(short(psrc.get_title()))
                 self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1659,7 +1659,7 @@ class EditPerson:
         if media_list:
             ph = media_list[0]
             object_id = ph.get_reference_id()
-            object = self.db.find_object_from_id(object_id,None)
+            object = self.db.try_to_find_object_from_id(object_id)
             if self.load_obj != object.get_path():
                 if object.get_mime_type()[0:5] == "image":
                     self.load_photo(object.get_path())
@@ -1735,7 +1735,7 @@ class EditPerson:
         prev_date = "00000000"
         for i in range(len(list)):
             child_id = list[i]
-            child = self.db.find_person_from_id(child_id)
+            child = self.db.try_to_find_person_from_id(child_id)
             if child.get_birth_id():
                 event = self.db.find_event_from_id(child.get_birth_id())
                 bday = event.get_date_object()
@@ -1768,7 +1768,7 @@ class EditPerson:
         index = list.index(person)
         target = index
         for i in range(index-1, -1, -1):
-            other = self.db.find_person_from_id(list[i])
+            other = self.db.try_to_find_person_from_id(list[i])
             event_id = other.get_birth_id()
             if event_id:
                 event = self.db.find_event_from_id(event_id)
@@ -1783,7 +1783,7 @@ class EditPerson:
         # Now try moving to a later position in the list
         if (target == index):
             for i in range(index, len(list)):
-                other = self.db.find_person_from_id(list[i])
+                other = self.db.try_to_find_person_from_id(list[i])
                 event_id = other.get_birth_id()
                 if event_id:
                     event = self.db.find_event_from_id(event_id)
@@ -1811,7 +1811,7 @@ def short(val,size=60):
 def place_title(db,event):
     pid = event.get_place_id()
     if pid:
-        return db.find_place_from_id(pid,None).get_title()
+        return db.try_to_find_place_from_id(pid).get_title()
     else:
         return u''
 

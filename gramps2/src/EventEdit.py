@@ -172,7 +172,7 @@ class EventEditor:
                 if place_id:
                     place_name = u""
                 else:
-                    place_name = self.db.find_place_from_id(place_id).get_title()
+                    place_name = self.db.try_to_find_place_from_id(place_id).get_title()
                 self.place_field.set_text(place_name)
 
             self.date_field.set_text(self.date.get_date())

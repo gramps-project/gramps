@@ -218,7 +218,7 @@ class EditSource:
                     if sref.get_base_id() == self.source.get_id():
                         p_addr_list.append((name,v.get_street()))
         for object_id in self.db.get_object_keys():
-            object = self.db.find_object_from_id(object_id,None)
+            object = self.db.try_to_find_object_from_id(object_id,None)
             name = object.get_description()
             for sref in object.get_source_references():
                 if sref.get_base_id() == self.source.get_id():
@@ -228,9 +228,9 @@ class EditSource:
             f_id = family.get_father_id()
             m_id = family.get_mother_id()
             if f_id:
-                f = self.db.find_person_from_id(f_id,None)
+                f = self.db.try_to_find_person_from_id(f_id,None)
             if m_id:
-                m = self.db.find_person_from_id(m_id,None)
+                m = self.db.try_to_find_person_from_id(m_id,None)
             if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.nameof(f),
@@ -404,13 +404,13 @@ class DelSrcQuery:
                 self.db.commit_family(p,trans)
 
         for p_id in self.db.get_object_keys():
-            p = self.db.find_object_from_id(p_id,trans)
+            p = self.db.try_to_find_object_from_id(p_id,trans)
             if self.delete_source(p):
                 self.db.commit_media_object(p,trans)
 
         for key in self.db.get_place_id_keys():
-            p = self.db.find_place_from_id(key)
-            if self.delete_source(self.db.find_place_from_id(key)):
+            p = self.db.try_to_find_place_from_id(key)
+            if self.delete_source(self.db.try_to_find_place_from_id(key)):
                 self.db.commit_place(p,trans)
 
         self.db.remove_source_id(self.source.get_id(),trans)

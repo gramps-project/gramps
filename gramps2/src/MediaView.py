@@ -177,7 +177,7 @@ class MediaView:
         
         id = store.get_value(iter,1)
         
-        mobj = self.db.find_object_from_id(id,None)
+        mobj = self.db.try_to_find_object_from_id(id,None)
         type = mobj.get_mime_type()
         type_name = Utils.get_mime_description(type)
         path = mobj.get_path()
@@ -225,7 +225,7 @@ class MediaView:
         store,iter = self.selection.get_selected()
         if iter:
             id = store.get_value(iter,1)
-            object = self.db.find_object_from_id(id,None)
+            object = self.db.try_to_find_object_from_id(id,None)
             self.obj = object
             mime_type = object.get_mime_type()
             
@@ -290,7 +290,7 @@ class MediaView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            object = self.db.find_object_from_id(id,None)
+            object = self.db.try_to_find_object_from_id(id,None)
             ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
 
     def on_delete_clicked(self,obj):
@@ -299,7 +299,7 @@ class MediaView:
             return
 
         id = store.get_value(iter,1)
-        mobj = self.db.find_object_from_id(id,None)
+        mobj = self.db.try_to_find_object_from_id(id,None)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
             QuestionDialog(_('Delete Media Object?'),
@@ -343,7 +343,7 @@ class MediaView:
         if not iter:
             return
         if (const.dnd_images):
-            object = self.db.find_object_from_id(store.get_value(iter,1),None)
+            object = self.db.try_to_find_object_from_id(store.get_value(iter,1),None)
             mtype = object.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),object)
             pix = gtk.gdk.pixbuf_new_from_file(name)

@@ -198,7 +198,7 @@ class PlaceView:
         for place in mlist:
             used = 0
             for key in self.db.get_person_keys():
-                p = self.db.find_person_from_id(key)
+                p = self.db.try_to_find_person_from_id(key)
                 event_list = []
                 for e in [p.get_birth_id(),p.get_death_id()] + p.get_event_list():
                     event = self.db.find_event_from_id(e)

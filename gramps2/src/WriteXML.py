@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -379,7 +379,7 @@ class XmlWriter:
             self.g.write("  <objects>\n")
             objList.sort ()
             for key in self.db.get_object_keys():
-                object = self.db.find_object_from_id(key)
+                object = self.db.try_to_find_object_from_id(key)
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
@@ -493,7 +493,7 @@ class XmlWriter:
         self.g.write('%s</lds_ord>\n' % sp)
     
     def dump_source_ref(self,source_ref,index=1):
-        source = self.db.find_source_from_id(source_ref.get_base_id())
+        source = self.db.try_to_find_source_from_id(source_ref.get_base_id())
         if source:
             p = source_ref.get_page()
             c = source_ref.get_comments()
