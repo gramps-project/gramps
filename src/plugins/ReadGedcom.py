@@ -1601,4 +1601,4 @@ def readData(database,active_person,cb):
 #-------------------------------------------------------------------------
 from Plugins import register_import
 
-register_import(readData,"Import from GEDCOM")
+register_import(readData,_("Import from GEDCOM"))

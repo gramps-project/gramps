@@ -99,10 +99,10 @@ def entire_db_filter(database,person,list):
 #------------------------------------------------------------------------
 
 filter_map = {
-    "Ancestors" : ancestor_filter,
-    "Descendants" : descendant_filter,
-    "Ancestors and Descendants" : an_des_filter,
-    "Entire Database" : entire_db_filter
+    _("Ancestors") : ancestor_filter,
+    _("Descendants") : descendant_filter,
+    _("Ancestors and Descendants") : an_des_filter,
+    _("Entire Database") : entire_db_filter
     }
     
 #------------------------------------------------------------------------

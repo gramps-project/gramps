@@ -237,7 +237,7 @@ def runTool(database,person,callback):
 
     name = person.getPrimaryName().getRegularName()
     
-    topDialog.get_widget("name").set_text("Relationship to " + name)
+    topDialog.get_widget("name").set_text(_("Relationship to %s") % name)
     peopleList = topDialog.get_widget("peopleList")
 
     name_list = database.getPersonMap().values()

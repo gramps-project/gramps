@@ -1,5 +1,5 @@
 %define ver      0.5.0
-%define rel      1
+%define rel      2
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
@@ -47,10 +47,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc README COPYING TODO
+%{prefix}/share/gnome/help/gramps-manual/C/*
+%{prefix}/share/gnome/help/extending-gramps/C/*
 %{prefix}/bin/gramps
 %{prefix}/share/gnome/apps/Applications/gramps.desktop
 %{prefix}/share/pixmaps/gramps.png
-# %{prefix}/share/gramps/*
 %{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
 %{prefix}/share/gramps/example/gedcom/*
 %{prefix}/share/gramps/example/gramps/*
