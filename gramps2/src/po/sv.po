@@ -1,7 +1,7 @@
 # Svenska meddelanden i Gramps.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Bo Rosén <bo.rosen@home.se>, 2001.
-# Jens Arvidsson <arvid-jens@algonet.se>, 2002, 2003.
+# Jens Arvidsson <jya@sverige.nu>, 2002, 2003.
 # 
 msgid ""
 msgstr ""
