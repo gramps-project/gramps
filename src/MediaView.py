@@ -337,7 +337,8 @@ class MediaView:
         if not node:
             return
         if (const.dnd_images):
-            obj = self.db.get_object_from_handle(store.get_value(node,1))
+            handle = store.get_value(node,5)
+            obj = self.db.get_object_from_handle(handle)
             image = self.db.get_thumbnail_image(obj.get_handle())
             context.set_icon_pixbuf(image,0,0)
 
