@@ -147,10 +147,10 @@ pkgpython_PYTHON = \
 	WritePkg.py\
 	WriteCD.py\
 	rel_ru.py\
-        eval.py\
+	eval.py\
 	leak.py\
-        SimpleBookTitle.py\
-        CustomBookText.py
+	SimpleBookTitle.py\
+	CustomBookText.py
 
 
 GLADEFILES = \
@@ -170,7 +170,8 @@ GLADEFILES = \
 	cdexport.glade\
 	eval.glade\
 	leak.glade\
-        book.glade
+	book.glade\
+	writeftree.glade
 
 
 dist_pkgdata_DATA = $(GLADEFILES)
