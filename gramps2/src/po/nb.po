@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Thu Sep 18 22:31:51 2003\n"
-"PO-Revision-Date: 2003-11-13 23:43+0100\n"
+"PO-Revision-Date: 2003-11-23 21:26+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -2290,7 +2290,7 @@ msgstr "Ingen definisjon tilgjengelig"
 
 #: const.py:964 const.py:971
 msgid "Also Known As"
-msgstr "Også Kjent som"
+msgstr "Også kjent som"
 
 #: const.py:965 const.py:972
 msgid "Birth Name"
@@ -2328,11 +2328,11 @@ msgstr "Be_skrivelse:"
 
 #: dialog.glade:203 edit_person.glade:4164
 msgid "_Place:"
-msgstr "Sted:"
+msgstr "_Sted:"
 
 #: dialog.glade:231
 msgid "_Cause:"
-msgstr "Grunn:"
+msgstr "_Grunn:"
 
 #: dialog.glade:258 dialog.glade:2049
 msgid "Selects the calendar format for display"
@@ -2363,7 +2363,7 @@ msgstr "<b>Generelt</b>"
 #: places.glade:1100 places.glade:1251 places.glade:1538 rule.glade:194
 #: rule.glade:857 srcsel.glade:841 styles.glade:138
 msgid "_Add..."
-msgstr "Legg til..."
+msgstr "_Legg til..."
 
 #: dialog.glade:584 dialog.glade:787 dialog.glade:1242 dialog.glade:2335
 #: dialog.glade:3372 edit_person.glade:1749 edit_person.glade:2298
@@ -2384,7 +2384,7 @@ msgstr "R_ediger..."
 #: places.glade:1131 places.glade:1284 places.glade:1641 rule.glade:230
 #: rule.glade:911 srcsel.glade:874 styles.glade:162
 msgid "_Delete"
-msgstr "Slett"
+msgstr "_Slett"
 
 #: dialog.glade:651 dialog.glade:1309 dialog.glade:2402 dialog.glade:3439
 #: gramps.glade:3088 places.glade:1182
@@ -2410,11 +2410,11 @@ msgstr "_Verdi:"
 
 #: dialog.glade:1491 places.glade:146 preferences.glade:1583
 msgid "_City:"
-msgstr "By:"
+msgstr "_By:"
 
 #: dialog.glade:1519 places.glade:202
 msgid "C_ounty:"
-msgstr "Fylke:"
+msgstr "_Fylke:"
 
 #: dialog.glade:1547 dialog.glade:1973
 msgid "Cou_ntry:"
@@ -2426,7 +2426,7 @@ msgstr "_Stat:"
 
 #: dialog.glade:1605 places.glade:314
 msgid "Church _parish:"
-msgstr "Kirke Sogn:"
+msgstr "Kirke S_ogn:"
 
 #: dialog.glade:1889
 msgid "Add_ress:"
@@ -2434,7 +2434,7 @@ msgstr "Ad_resse:"
 
 #: dialog.glade:1917
 msgid "_City/County:"
-msgstr "By/Fylke:"
+msgstr "_By/Fylke:"
 
 #: dialog.glade:1945
 msgid "_State/Province"
@@ -2442,7 +2442,7 @@ msgstr "_Stat/Provins"
 
 #: dialog.glade:2001 preferences.glade:1667
 msgid "_ZIP/Postal code:"
-msgstr "Postnummer:"
+msgstr "Post_nummer:"
 
 #: dialog.glade:2587
 msgid "_Web address:"
@@ -2450,7 +2450,7 @@ msgstr "_Webadresse:"
 
 #: dialog.glade:2615
 msgid "_Description:"
-msgstr "Beskrivelse:"
+msgstr "_Beskrivelse:"
 
 #: dialog.glade:2760 edit_person.glade:34 gramps.glade:5518 marriage.glade:35
 msgid "Abandon changes and close window"
@@ -2458,15 +2458,15 @@ msgstr "Lukke vindu uten å lagre endringer"
 
 #: dialog.glade:2844 edit_person.glade:128 gramps.glade:6273
 msgid "_Given name:"
-msgstr "Fornavn:"
+msgstr "_Fornavn:"
 
 #: dialog.glade:2872 edit_person.glade:153 gramps.glade:6140
 msgid "_Family name:"
-msgstr "Slektsnavn:"
+msgstr "_Slektsnavn:"
 
 #: dialog.glade:2900 edit_person.glade:203
 msgid "Suffi_x:"
-msgstr "Suffiks:"
+msgstr "_Etterstavelse:"
 
 #: dialog.glade:2928 edit_person.glade:278
 msgid "T_ype:"
@@ -2483,7 +2483,7 @@ msgstr "P_rivat opplysning"
 
 #: dialog.glade:3005 edit_person.glade:178
 msgid "Family _prefix:"
-msgstr "Familie forstavelser:"
+msgstr "F_orstavelse:"
 
 #: dialog.glade:3621 preferences.glade:2537
 msgid "_Person:"
@@ -2491,7 +2491,7 @@ msgstr "_Person:"
 
 #: dialog.glade:3649 rule.glade:290
 msgid "_Comment:"
-msgstr "Kommentar:"
+msgstr "_Kommentar:"
 
 #: dialog.glade:3701
 msgid "Person is in the _database"
@@ -2503,7 +2503,7 @@ msgstr "Velg en person fra databasen"
 
 #: dialog.glade:3768
 msgid "_Select"
-msgstr "Velg"
+msgstr "_Velg"
 
 #: docgen/AbiWord2Doc.py:277
 msgid "AbiWord (version 1.9 or greater)"
@@ -2592,7 +2592,7 @@ msgstr "Velg kilde for denne navneinformasjonen"
 
 #: edit_person.glade:393
 msgid "Source..."
-msgstr "Kilde..."
+msgstr "_Kilde..."
 
 #: edit_person.glade:411
 msgid "Enter/modify notes regarding this name"
@@ -2601,7 +2601,7 @@ msgstr "Skriv inn/endre kommentarer angående navnet"
 #: edit_person.glade:413 edit_person.glade:4214 edit_person.glade:4464
 #: edit_person.glade:4689 marriage.glade:1710
 msgid "Note..."
-msgstr "Kommentar..."
+msgstr "K_ommentar..."
 
 #: edit_person.glade:431
 msgid "The person's given name"
@@ -5415,7 +5415,7 @@ msgstr "Flere"
 
 #: plugins/GraphViz.py:79 plugins/GraphViz.py:523
 msgid "Relationship Graph"
-msgstr "Slektstre"
+msgstr "Relasjonsgraf"
 
 #: plugins/GraphViz.py:85
 msgid "Graphviz File"
