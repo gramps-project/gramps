@@ -108,7 +108,6 @@ prefsTop      = None
 pv            = {}
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
-sbar_active   = 1
 DataFilter    = Filter.create("")
 
 #-------------------------------------------------------------------------
@@ -202,7 +201,6 @@ def on_about_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_contents_activate(obj):
-    
     GnomeOkDialog(_("Sorry.  Online help for gramps is currently under development.\nUnfortunately, it is not yet ready."))
     
 #-------------------------------------------------------------------------
@@ -251,7 +249,21 @@ def on_remove_child_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_sp_clicked(obj):
-    add_spouse()
+    spouseDialog = libglade.GladeXML(const.gladeFile, "spouseDialog")
+    spouseList = spouseDialog.get_widget("spouseList")
+    spouseDialog.get_widget("rel_combo").set_popdown_strings(const.familyRelations)
+    rel_type = spouseDialog.get_widget("rel_type")
+    rel_type.set_data("d",spouseList)
+    spouseDialog.get_widget("spouseDialog").set_data("d",rel_type)
+
+    spouseDialog.signal_autoconnect({
+        "on_spouseList_select_row" : on_spouseList_select_row,
+        "on_select_spouse_clicked" : on_select_spouse_clicked,
+        "on_rel_type_changed" : on_rel_type_changed,
+        "destroy_passed_object" : utils.destroy_passed_object
+        })
+
+    rel_type.set_text(_("Unknown"))
 
 #-------------------------------------------------------------------------
 #
@@ -267,7 +279,28 @@ def on_edit_sp_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_sp_clicked(obj):
-    delete_spouse()
+    global active_family
+
+    if active_person == active_family.getFather():
+        person = active_family.getMother()
+        active_family.setMother(None)
+    else:
+        person = active_family.getFather()
+        active_family.setFather(None)
+
+    if person:
+        person.removeFamily(active_family)
+    
+    if len(active_family.getChildList()) == 0:
+        active_person.removeFamily(active_family)
+        database.deleteFamily(active_family)
+        if len(active_person.getFamilyList()) > 0:
+            active_family = active_person.getFamilyIndex(0)
+        else:
+            active_family = None
+
+    load_family()
+    utils.modified()
     
 #-------------------------------------------------------------------------
 #
@@ -323,34 +356,23 @@ def redraw_child_list(filter):
     index = 0
 
     bday = active_person.getBirth().getDateObj()
-    if  bday.getYear() != -1:
-        bday_valid = 1
-    else:
-        bday_valid = 0
     dday = active_person.getDeath().getDateObj()
-    if  dday.getYear() != -1:
-        dday_valid = 1
-    else:
-        dday_valid = 0
+
+    bday_valid = (bday.getYear() != -1)
+    dday_valid = (dday.getYear() != -1)
     
     slist = []
-    f = active_person.getMainFamily()
-    if f:
-        if f.getFather():
-            slist.append(f.getFather())
-        if f.getMother():
-            slist.append(f.getFather())
-            
-    for f in active_person.getFamilyList():
-        slist.append(f.getFather())
-        slist.append(f.getMother())
-        for c in f.getChildList():
-            slist.append(c)
+    for f in [active_person.getMainFamily()] + active_person.getFamilyList():
+        if f:
+            if f.getFather():
+                slist.append(f.getFather())
+            elif f.getMother():
+                slist.append(f.getMother())
+            for c in f.getChildList():
+                slist.append(c)
             
     for person in person_list:
         if filter:
-            if person.getMainFamily() == active_person.getMainFamily():
-                continue
             if person in slist:
                 continue
             if person.getMainFamily() != None:
@@ -931,6 +953,7 @@ def read_file(filename):
         if lastname and lastname not in const.surnames:
             const.surnames.append(lastname)
             
+    statusbar.set_progress(1.0)
     full_update()
     statusbar.set_progress(0.0)
 
@@ -956,9 +979,7 @@ def save_file(filename):
     import WriteXML
 
     filename = os.path.normpath(filename)
-    
-    if sbar_active:
-        statusbar.set_status(_("Saving %s ...") % filename)
+    statusbar.set_status(_("Saving %s ...") % filename)
 
     if os.path.exists(filename):
         if os.path.isdir(filename) == 0:
@@ -987,16 +1008,12 @@ def save_file(filename):
     except OSError, msg:
         GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
         return
-#    except:
-#        GnomeErrorDialog(_("Could not create %s") % filename)
-#        return
 
     database.setSavePath(old_file)
     utils.clearModified()
     Config.save_last_file(old_file)
-    if sbar_active:
-        statusbar.set_status("")
-        statusbar.set_progress(0)
+    statusbar.set_status("")
+    statusbar.set_progress(0)
 
 #-------------------------------------------------------------------------
 #
@@ -1301,29 +1318,6 @@ def on_editperson_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def add_spouse():
-
-    spouseDialog = libglade.GladeXML(const.gladeFile, "spouseDialog")
-    spouseList = spouseDialog.get_widget("spouseList")
-    spouseDialog.get_widget("rel_combo").set_popdown_strings(const.familyRelations)
-    rel_type = spouseDialog.get_widget("rel_type")
-    rel_type.set_data("d",spouseList)
-    spouseDialog.get_widget("spouseDialog").set_data("d",rel_type)
-
-    spouseDialog.signal_autoconnect({
-        "on_spouseList_select_row" : on_spouseList_select_row,
-        "on_select_spouse_clicked" : on_select_spouse_clicked,
-        "on_rel_type_changed" : on_rel_type_changed,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
-    rel_type.set_text(_("Unknown"))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_rel_type_changed(obj):
 	
     nameList = database.getPersonMap().values()
@@ -1367,35 +1361,6 @@ def on_delete_parents_clicked(obj):
         active_person.removeAltFamily(active_parents)
     load_family()
     
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def delete_spouse():
-    global active_family
-
-    if active_person == active_family.getFather():
-        person = active_family.getMother()
-        active_family.setMother(None)
-    else:
-        person = active_family.getFather()
-        active_family.setFather(None)
-
-    if person:
-        person.removeFamily(active_family)
-    
-    if len(active_family.getChildList()) == 0:
-        active_person.removeFamily(active_family)
-        database.deleteFamily(active_family)
-        if len(active_person.getFamilyList()) > 0:
-            active_family = active_person.getFamilyIndex(0)
-        else:
-            active_family = None
-
-    load_family()
-    utils.modified()
-
 #-------------------------------------------------------------------------
 #
 #
@@ -1600,7 +1565,6 @@ def modify_statusbar():
 #-------------------------------------------------------------------------
 def on_child_list_select_row(obj,a,b,c):
     global active_child
-
     active_child = obj.get_row_data(a)
 
 #-------------------------------------------------------------------------
@@ -1610,7 +1574,6 @@ def on_child_list_select_row(obj,a,b,c):
 #-------------------------------------------------------------------------
 def on_spouseList_select_row(obj,a,b,c):
     global select_spouse
-
     select_spouse = obj.get_row_data(a)
 
 #-------------------------------------------------------------------------
@@ -1892,9 +1855,8 @@ def on_filter_name_changed(obj):
 #
 #-------------------------------------------------------------------------
 def on_spouselist_changed(obj):
-    if active_person == None :
-        return
-    display_marriage(obj.get_data("family"))
+    if active_person:
+        display_marriage(obj.get_data("family"))
 
 #-------------------------------------------------------------------------
 #
@@ -2273,10 +2235,9 @@ def display_marriage(family):
 #
 #-------------------------------------------------------------------------
 def load_progress(value):
-    if sbar_active:
-        statusbar.set_progress(value)
-        while events_pending():
-            mainiteration()
+    statusbar.set_progress(value)
+    while events_pending():
+        mainiteration()
 
 #-------------------------------------------------------------------------
 #
@@ -2430,7 +2391,7 @@ def apply_filter():
                 pid = id2col[person]
                 del id2col[person]
 
-                for id in [pid] + dalt2col[person]:
+                for id in [pid] + alt2col[person]:
                     row = person_list.find_row_from_data(id)
                     person_list.remove(row)
 
@@ -2523,16 +2484,6 @@ def on_current_type_changed(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_statusbar_unmap(obj):
-    global sbar_active
-
-    sbar_active = 0
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def export_callback(obj,plugin_function):
     if active_person:
         plugin_function(database,active_person)
@@ -2568,20 +2519,17 @@ def on_preferences_activate(obj):
 #
 #
 #-------------------------------------------------------------------------
-def build_report_menu(report_item):
+def build_report_menu():
 
     report_menu = GtkMenu()
     report_menu.show()
-    report_item.set_submenu(report_menu)
     
     hash = {}
     for report in Plugins.reports:
         if report.__dict__.has_key("get_name"):
-            doc = report.get_name()
+            info = string.split(report.get_name(),'/')
         else:
-            doc = report.__doc__
-        info = string.split(doc,"/")
-
+            info = string.split(report.__doc__,'/')
         if hash.has_key(info[0]):
             hash[info[0]].append((info[1],report.report))
         else:
@@ -2603,6 +2551,7 @@ def build_report_menu(report_item):
             subentry.show()
             subentry.connect("activate",menu_report,name[1])
             submenu.append(subentry)
+    return report_menu
             
 #-------------------------------------------------------------------------
 #
@@ -2618,20 +2567,17 @@ def menu_report(obj,task):
 #
 #
 #-------------------------------------------------------------------------
-def build_tools_menu(report_item):
+def build_tools_menu():
 
     report_menu = GtkMenu()
     report_menu.show()
-    report_item.set_submenu(report_menu)
     
     hash = {}
     for report in Plugins.tools:
         if report.__dict__.has_key("get_name"):
-            doc = report.get_name()
+            info = string.split(report.get_name(),'/')
         else:
-            doc = report.__doc__
-        info = string.split(doc,"/")
-
+            info = string.split(report.__doc__,'/')
         if hash.has_key(info[0]):
             hash[info[0]].append((info[1],report.runTool))
         else:
@@ -2653,6 +2599,7 @@ def build_tools_menu(report_item):
             subentry.show()
             subentry.connect("activate",menu_tools,name[1])
             submenu.append(subentry)
+    return report_menu
             
 #-------------------------------------------------------------------------
 #
@@ -2689,8 +2636,10 @@ def main(arg):
 
     gtop = libglade.GladeXML(const.gladeFile, "gramps")
 
-    build_report_menu(gtop.get_widget("reports_menu"))
-    build_tools_menu(gtop.get_widget("tools_menu"))
+    gtop.get_widget("reports_menu").set_submenu(build_report_menu())
+    gtop.get_widget("tools_menu").set_submenu(build_tools_menu())
+    gtop.get_widget("export1").set_submenu(Plugins.export_menu(export_callback))
+    gtop.get_widget("import1").set_submenu(Plugins.import_menu(import_callback))
     
     statusbar   = gtop.get_widget("statusbar")
     topWindow   = gtop.get_widget("gramps")
@@ -2775,7 +2724,6 @@ def main(arg):
         "on_edit_father_clicked" : on_edit_father_clicked,
         "on_edit_mother_clicked" : on_edit_mother_clicked,
         "on_exit_activate" : on_exit_activate,
-        "on_statusbar_unmap" : on_statusbar_unmap,
         "on_add_source_clicked" : on_add_source_clicked,
         "on_source_list_button_press_event" : on_source_list_button_press_event,
         "on_source_list_select_row": on_source_list_select_row,
@@ -2795,9 +2743,6 @@ def main(arg):
         read_file(arg)
     elif Config.lastfile != None and Config.lastfile != "" and Config.autoload:
         read_file(Config.lastfile)
-
-    gtop.get_widget("export1").set_submenu(Plugins.export_menu(export_callback))
-    gtop.get_widget("import1").set_submenu(Plugins.import_menu(import_callback))
 
     database.setResearcher(Config.owner)
     mainloop()
