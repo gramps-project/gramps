@@ -424,7 +424,7 @@ class ChooseParents:
             self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(None)
 
-    def add_new_parent(self,epo,plist):
+    def add_new_parent(self,epo):
         """Adds a new person to either the father list or the mother list,
         depending on the gender of the person."""
 

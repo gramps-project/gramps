@@ -548,19 +548,17 @@ class FamilyView:
         except:
             DisplayTrace.DisplayTrace()
 
-    def spouse_after_edit(self,epo,plist):
+    def spouse_after_edit(self,epo):
         ap = self.parent.active_person
         if epo:
             self.parent.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
             self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.parent.people_view.redisplay_person_list(epo.person)
-        for p in plist:
-            self.parent.place_view.new_place_after_edit(p)
 
         self.parent.active_person = ap
         self.load_family(self.family)
         
-    def new_spouse_after_edit(self,epo,plist):
+    def new_spouse_after_edit(self,epo):
         if epo.person.getId() == "":
             self.parent.db.addPerson(epo.person)
         else:
@@ -622,7 +620,7 @@ class FamilyView:
         self.parent.update_person_list(person)
         self.load_family(self.family)
             
-    def new_child_after_edit(self,epo,plist):
+    def new_child_after_edit(self,epo):
         
         if epo.person.getId() == "":
             self.parent.db.addPerson(epo.person)

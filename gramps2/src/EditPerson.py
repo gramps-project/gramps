@@ -1529,7 +1529,7 @@ class EditPerson:
 
         self.update_lists()
         if self.callback:
-            self.callback(self,self.add_places)
+            self.callback(self)
 
         self.gallery.close()
         self.window.destroy()
