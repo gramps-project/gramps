@@ -292,7 +292,7 @@ class GraphVizDialog(Report.ReportDialog):
         if self.print_report.get_active ():
             os.environ["DOT"] = self.target_path
             os.system ('dot -Tps "$DOT" | %s &' %
-                       self.get_print_dialog_app ())
+                       Report.get_print_dialog_app ())
 
 #------------------------------------------------------------------------
 #
