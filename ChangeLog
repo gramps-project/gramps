@@ -1,3 +1,7 @@
+2004-01-30  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/AncestorChart2.py (write_book_item): 
+	Treat unconfigured title. 
+
 2004-01-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: fix encoding exception
 	* gramps-mdk.spec: Mandrake RPM spec file
