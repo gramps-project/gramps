@@ -18,35 +18,35 @@
       <!-- =============== Appendices Subsection ================ -->
   <sect2 id="append-cmdline">
   <title>Befehlszeilenreferenz</title>
-  <para>Dieser Anhang liefert eine Referent über die Möglichkeiten,
+  <para>Dieser Anhang liefert eine Referent Ã¼ber die MÃ¶glichkeiten,
   wenn Sie &app; aus dem Terminal starten.</para>
 
-  <para>Lassen Sie uns anmerken, dass &apps als ein interaktives
+  <para>Lassen Sie uns anmerken, dass &app; als ein interaktives
   Program entworfen wurde. Deshalb benutzt es eine grafische Ansicht und
   kann nicht von eine echten nicht-grafischen Konsole gestartet werden. Es
-  würde einen enormen Aufwand darstellen eine Ausführung in einem Nur-Text
-  Terminal zu ermöglichen. Aus diesem Grund zielen die möglichen
+  wÃ¼rde einen enormen Aufwand darstellen eine AusfÃ¼hrung in einem Nur-Text
+  Terminal zu ermÃ¶glichen. Aus diesem Grund zielen die mÃ¶glichen
   Befehlszeilenparameter nicht darauf ab, komplett auf die grafisch
   Anzeige zu verzichten. Eher machen sie einige typische Aufgaben
   angenehmer. Sie erlauben Ihnen auch diese Aufgaben aus Skripten
-  heraus auszuführen. Jedenfalls muss die grafische Anzeige immer
-  verfügbar sein!</para>
+  heraus auszufÃ¼hren. Jedenfalls muss die grafische Anzeige immer
+  verfÃ¼gbar sein!</para>
 
   <para>Zusammengefasst bietet die Benutzung der Befehlzeilenparameter
-  nicht-interaktives Verhalten, aber beseitigt nicht die Abhängigkeit
+  nicht-interaktives Verhalten, aber beseitigt nicht die AbhÃ¤ngigkeit
   von der grafischen Anzeige. Take it or leave it!
   </para>
 
 
       <sect3 id="cmdline-options">
-      <title>Verfügbare Parameter</title>
+      <title>VerfÃ¼gbare Parameter</title>
 
-      <para>Hier ist ein Liste der möglichen Parameter in &apps;:</para>
+      <para>Hier ist ein Liste der mÃ¶glichen Parameter in &app;:</para>
 
           <variablelist>
 
           <varlistentry><term>Format-Parameter</term>
-          <listitem><para>Das Format der Dateien für den Import oder
+          <listitem><para>Das Format der Dateien fÃ¼r den Import oder
 	  Export kann festgelegt werden mit dem
 	  	<command>-f</command> <replaceable>Format</replaceable>
           Parameter. <replaceable>Format</replaceable> kann eines der
@@ -56,32 +56,32 @@
 
           	<varlistentry><term>gramps</term>
           	<listitem><para> &app;-Datenbank. Dieses Format ist sowohl
-		für den Import als auch für den Export verfügbar. Falls
+		fÃ¼r den Import als auch fÃ¼r den Export verfÃ¼gbar. Falls
 		nicht gegeben wird es geraten, wenn der Dateiname ein
 		Verzeichnis darstellt.</para></listitem>
 		</varlistentry>
 
           	<varlistentry><term>gedcom</term>
-          	<listitem><para> GEDCOM-Datei. Dieses Format ist für den
-		Import und den Export vefügbar. Falls nicht angegeben
+          	<listitem><para> GEDCOM-Datei. Dieses Format ist fÃ¼r den
+		Import und den Export vefÃ¼gbar. Falls nicht angegeben
 		wird es geraten, wenn der Dateiname mit .ged endet.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
-          	<listitem><para> &app;-Paket. Dieses Format ist für den
-		Import und Export verfügbar. Falls nicht angegeben wird es
+          	<listitem><para> &app;-Paket. Dieses Format ist fÃ¼r den
+		Import und Export verfÃ¼gbar. Falls nicht angegeben wird es
 		geraten, wenn der Dateiname mit .tgz endet.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
-          	<listitem><para> Web Family Tree. Dieses Format ist nur für
-		den Export verfügbar. Falls nichts angegeben wird es
+          	<listitem><para> Web Family Tree. Dieses Format ist nur fÃ¼r
+		den Export verfÃ¼gbar. Falls nichts angegeben wird es
 		geraten, wenn der Dateiname mit .wft endet.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>iso</term>
-          	<listitem><para> CD-Image. Dieses Format ist nur für den
-		Export vefügbar. Es muss immer ausdrücklich angegeben
+          	<listitem><para> CD-Image. Dieses Format ist nur fÃ¼r den
+		Export vefÃ¼gbar. Es muss immer ausdrÃ¼cklich angegeben
 		werden.
                 </para></listitem></varlistentry>
 
@@ -91,17 +91,17 @@
           </varlistentry>
 
           <varlistentry><term>Import-Parameter</term>
-          <listitem><para>Die für den Import vorgesehenden Dateien können
+          <listitem><para>Die fÃ¼r den Import vorgesehenden Dateien kÃ¶nnen
 	  mit dem
           	<command>-i</command> <replaceable>Dateiname</replaceable>
           Parameter angegeben werden. Das Format kann mit dem
 	  <command>-f</command> Parameter, der sofort auf dem
 	  <replaceable>Dateiname</replaceable> folgt.
 	  Falls es nicht angegeben wird, wird versucht das Format aus
-	  dem <replaceable>Dateiname</replaceable>n zu ermitteln. Für
+	  dem <replaceable>Dateiname</replaceable>n zu ermitteln. FÃ¼r
 	  das<term>gramps</term>-Format, ist
 	  <replaceable>Dateiname</replaceable> der Name eines Verzeichnisses,
-	  unter dem sich die gramps Datenbank befindet. Für
+	  unter dem sich die gramps Datenbank befindet. FÃ¼r
           <term>gedcom</term> und <term>gramps-pkg</term> ist
           <replaceable>Dateiname</replaceable> des Name der entsprechenden
 	  Datei.</para>
@@ -114,7 +114,7 @@
           und
           <command>-i</command> <replaceable>Datei2</replaceable>
           <command>-i</command> <replaceable>Datei1</replaceable>
-	  könnte verschiedene gramps-IDs in der resultierenden
+	  kÃ¶nnte verschiedene gramps-IDs in der resultierenden
 	  Datenbank resultieren.
           </para></listitem>
           </varlistentry>
