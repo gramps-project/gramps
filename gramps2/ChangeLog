@@ -5,6 +5,12 @@
 	replace_source_references method; (People,Family,Event,MediaObject):
 	Add handle_reference methods.
 
+	* src/RelLib.py: Move handle_reference methods from BaseObject to
+	PrimaryObject; (MediaBase): Remove recursive child-related operations
+	on mediarefs, since only primary objects have mediarefs;
+	Rename DataObj to PrivateObject; (People,Family,Event,MediaObject):
+	remove get_handleholder_list, add low-level handle reference detector.
+
 2005-03-21  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/MergeData.py: further changes to adapt to new API
 
