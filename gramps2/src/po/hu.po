@@ -1,5 +1,5 @@
-# translation of template.po to hungarian hu.po
 # Hungarian translation for GRAMPS
+# translation of template.po to Hungarian hu.po
 # Copyright (C) 2003 the Gramps Project
 # Egyeki Gergely <egeri@elte.hu>, 2003, 2004.
 #
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Mon Jan 19 14:10:17 2004\n"
-"PO-Revision-Date: 2004-01-24 22:30+0100\n"
+"PO-Revision-Date: 2004-01-30 00:34+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
