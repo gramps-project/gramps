@@ -131,7 +131,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 
-SUBDIRS = C fr de ru
+SUBDIRS = C fr de ru hu
 subdir = doc/gramps-manual
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
