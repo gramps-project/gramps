@@ -1,3 +1,10 @@
+2003-10-21  Samuel Tardieu  <sam@rfc1149.net>
+	* configure.in: Detect iconv at configuration time.
+	* src/po/Makefile.am: Invoke detected iconv in its simplest form. 
+	Minor cleanup.
+	* gramps.sh.in: Correct paths for systems with custom datadir.
+	* src/DisplayTrace.py: Check for LANG before including in the message.
+
 2003-10-21  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleStore.py: Make sure that the key is in unicode
 	format. For some reason, python does not always seem to do the
