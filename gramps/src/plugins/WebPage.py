@@ -92,7 +92,7 @@ class IndividualPage:
         self.doc = doc
 	self.list = map
         self.private = private
-        self.alive = probably_alive(person) and restrict
+        self.alive = person.probablyAlive() and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.usecomments = not uc
         self.dir = dir_name
@@ -671,29 +671,6 @@ filter_map = {
     _("Entire database") : entire_db_filter
     }
     
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def probably_alive(person):
-
-    if person == None:
-        return 1
-
-    death = person.getDeath()
-    birth = person.getBirth()
-
-    if death.getDate() != "":
-        return 0
-    if birth.getDate() != "":
-        year = birth.getDateObj().get_start_date()
-        time_struct = time.localtime(time.time())
-        current_year = time_struct[0]
-        if year.getYearValid() and current_year - year.getYear() > 110:
-            return 0
-    return 1
-
 #------------------------------------------------------------------------
 #
 # 

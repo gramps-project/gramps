@@ -24,7 +24,7 @@ __author__ = "Don Allingham"
 
 
 from re import compile
-from Date import Date, compare_dates
+from Date import Date, compare_dates, not_too_old
 from string import strip
 
 CONF_VERY_HIGH = 4
@@ -1105,6 +1105,14 @@ class Person:
 
     def getLdsSeal(self):
         return self.lds_seal
+
+    def probablyAlive(self):
+        if self.death.getDate() != "":
+            return 0
+        if self.birth.getDate() != "":
+            return not_too_old(self.birth.getDateObj().get_start_date())
+        return 1
+    
     
 class Event(DataObj):
     """Event record, recording the event type, description, place, and date

@@ -571,18 +571,19 @@ class GedcomWriter:
         nump = float(len(self.flist))
         index = 0.0
         for family in self.flist:
+            father_alive = mother_alive = 0
             self.g.write("0 @%s@ FAM\n" % self.fid(family.getId()))
             person = family.getFather()
             if person != None:
                 self.g.write("1 HUSB @%s@\n" % self.pid(person.getId()))
+                father_alive = person.probablyAlive()
 
             person = family.getMother()
             if person != None:
                 self.g.write("1 WIFE @%s@\n" % self.pid(person.getId()))
+                mother_alive = person.probablyAlive()
 
-            father = family.getFather()
-            mother = family.getMother()
-            if not self.probably_alive(father) or not self.probably_alive(mother):
+            if not self.restrict or ( not father_alive and not mother_alive ):
                 self.write_ord("SLGS",family.getLdsSeal(),1)
 
                 for event in family.getEventList():
@@ -665,7 +666,7 @@ class GedcomWriter:
         elif person.getGender() == Person.female:	
             self.g.write("1 SEX F\n")
 
-        if not self.probably_alive(person):
+        if not self.restrict or not person.probablyAlive():
 
             birth = person.getBirth()
             if not (self.private and birth.getPrivacy()):
@@ -980,25 +981,6 @@ class GedcomWriter:
         if ref.getComments() != "":
             self.write_long_text("NOTE",level+1,ref.getComments())
         
-    def probably_alive(self,person):
-        if person == None:
-            return 1
-        if self.restrict == 0:
-            return 0
-    
-        death = person.getDeath()
-        birth = person.getBirth()
-        
-        if death.getDate() != "":
-            return 0
-        if birth.getDate() != "":
-            year = birth.getDateObj()
-            time_struct = time.localtime(time.time())
-            current_year = time_struct[0]
-            if year.getYearValid() and current_year - year.getYear() > 110:
-                return 0
-        return 1
-
     def fid(self,id):
         if self.fidmap.has_key(id):
             return self.fidmap[id]

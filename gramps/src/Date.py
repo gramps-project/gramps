@@ -22,6 +22,7 @@
 
 from re import IGNORECASE, compile
 import string
+import time
 
 from Calendar import *
 from intl import gettext
@@ -961,6 +962,18 @@ class SingleDate:
             self.year = y
             self.month = m-1
             self.day = d
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def not_too_old(date):
+    time_struct = time.localtime(time.time())
+    current_year = time_struct[0]
+    if date.year != UNDEF and current_year - date.year > 110:
+        return 0
+    return 1
 
 #-------------------------------------------------------------------------
 #
