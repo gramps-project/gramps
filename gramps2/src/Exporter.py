@@ -39,7 +39,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 import gnome
 
 #-------------------------------------------------------------------------
@@ -73,7 +72,8 @@ class Exporter:
         self.parent_window = parent_window
 
         self.build_exports()
-        
+        self.confirm_label = gtk.Label()
+
         self.w = gtk.Window()
 
         self.fg_color = gtk.gdk.color_parse('#7d684a')
@@ -86,10 +86,13 @@ class Exporter:
         d.add(self.build_info_page())
         d.add(self.build_format_page())
         d.add(self.build_file_sel_page())
+        d.add(self.build_confirm_page())
         self.last_page = self.build_last_page()
         d.add(self.last_page)
 
+        d.set_show_help(gtk.TRUE)
         d.connect('cancel',self.close)
+        d.connect('help',self.help)
         self.w.connect("destroy_event",self.close)
         self.w.set_transient_for(self.parent_window)
         
@@ -128,9 +131,34 @@ class Exporter:
         p.set_bg_color(self.bg_color)
         p.set_logo(self.logo)
         p.set_watermark(self.splash)
-        p.connect('prepare',self.save)
         p.connect('finish',self.close)
         return p
+
+    def build_confirm_page(self):
+        p = gnome.ui.DruidPageStandard()
+        p.set_title(_('Final save confirmation'))
+        p.set_title_foreground(self.fg_color)
+        p.set_background(self.bg_color)
+        p.set_logo(self.logo)
+        
+        p.append_item("",self.confirm_label,"")
+
+        p.connect('prepare',self.build_confirm_label)
+        p.connect('next',self.save)
+        return p
+
+    def build_confirm_label(self,obj,obj2):
+        filename = self.chooser.get_filename()
+        name = os.path.split(filename)[1]
+        folder = os.path.split(filename)[0]
+        format = self.exports[self.ix][1].replace('_','')
+
+        self.confirm_label.set_text(
+                _('The data will be saved as follows:\n\n'
+                'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
+                'Press Forward to proceed, Cancel to abort, or Back to '
+                'revisit your options.') % (format, name, folder))
+        self.confirm_label.set_line_wrap(gtk.TRUE)
 
     def save(self,obj,obj2):
         filename = self.chooser.get_filename()
@@ -138,11 +166,17 @@ class Exporter:
         if success:
             self.last_page.set_title(_('Your data has been saved'))
             self.last_page.set_text(_('You may press Apply button '
-                    'now to continue.'))
+                    'now to continue.\n\n'
+                    'Note: the database opened in your GRAMPS window '
+                    'is NOT the file you have just saved. Future editing '
+                    'of the currently opened database will not alter the '
+                    'copy you have just made. '))
         else:
             self.last_page.set_title(_('Saving failed'))
             self.last_page.set_text(_('There was an error '
-                    'while saving your data. Please go back and try again.'))
+                    'while saving your data. Please go back and try again.\n\n'
+                    'Your currently opened database is safe, it is a copy '
+                    'of your data that failed to save.'))
 
     def build_format_page(self):
         self.format_buttons = []
