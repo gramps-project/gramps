@@ -3198,7 +3198,7 @@
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>clicked</name>
-	  <handler>on_applyPerson_clicked</handler>
+	  <handler>on_apply_person_clicked</handler>
 	  <object>editPerson</object>
 	  <last_modification_time>Thu, 19 Oct 2000 19:26:54 GMT</last_modification_time>
 	</signal>

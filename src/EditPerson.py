@@ -81,6 +81,7 @@ class EditPerson:
         self.callback = callback
         self.path = db.getSavePath()
         self.not_loaded = 1
+        self.events_changed = 0
         
         self.top_window = libglade.GladeXML(const.editPersonFile, "editPerson")
 
@@ -171,7 +172,7 @@ class EditPerson:
             "on_addphoto_clicked" : on_add_photo_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
             "on_showsource_clicked" : on_showsource_clicked,
-            "on_applyPerson_clicked" : on_apply_person_clicked
+            "on_apply_person_clicked" : on_apply_person_clicked
             })
 
         if len(self.surname_list) > 0:
@@ -231,8 +232,7 @@ class EditPerson:
         # load photos into the photo window
         photo_list = person.getPhotoList()
         if len(photo_list) != 0:
-            thumb = self.db.getSavePath() + os.sep + ".thumb" + \
-                    os.sep + "i%s.jpg" % self.person.getId()
+            thumb = "%s%s.thumb%si%s" % ( self.path,os.sep,os.sep,self.person.getId())
             RelImage.check_thumb(photo_list[0].getPath(),thumb,const.picWidth)
             self.load_photo(thumb)
     
@@ -456,8 +456,7 @@ class EditPerson:
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
         src = photo.getPath()
-        thumb = self.db.getSavePath() + os.sep + ".thumb" + os.sep + \
-                os.path.basename(src)
+        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,os.path.basename(src))
 
         RelImage.check_thumb(src,thumb,const.thumbScale)
 
@@ -506,12 +505,12 @@ class EditPerson:
 def on_name_list_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     name = obj.get_row_data(row)
 
-    edit_person_obj.alt_given_field.set_text(name.getFirstName())
-    edit_person_obj.alt_last_field.set_text(name.getSurname())
-    edit_person_obj.alt_suffix_field.set_text(name.getSuffix())
+    epo.alt_given_field.set_text(name.getFirstName())
+    epo.alt_last_field.set_text(name.getSurname())
+    epo.alt_suffix_field.set_text(name.getSuffix())
 
 #-------------------------------------------------------------------------
 #
@@ -523,11 +522,11 @@ def on_name_list_select_row(obj,row,b,c):
 def on_web_list_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     url = obj.get_row_data(row)
 
-    edit_person_obj.web_url.set_text(url.get_path())
-    edit_person_obj.web_description.set_text(url.get_description())
+    epo.web_url.set_text(url.get_path())
+    epo.web_description.set_text(url.get_description())
 
 #-------------------------------------------------------------------------
 #
@@ -539,11 +538,11 @@ def on_web_list_select_row(obj,row,b,c):
 def on_attr_list_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     attr = obj.get_row_data(row)
 
-    edit_person_obj.attr_type.set_text(const.display_pattr(attr.getType()))
-    edit_person_obj.attr_value.set_text(attr.getValue())
+    epo.attr_type.set_text(const.display_pattr(attr.getType()))
+    epo.attr_value.set_text(attr.getValue())
 
 #-------------------------------------------------------------------------
 #
@@ -555,15 +554,15 @@ def on_attr_list_select_row(obj,row,b,c):
 def on_address_list_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     address = obj.get_row_data(row)
 
-    edit_person_obj.address_start.set_text(address.getDate())
-    edit_person_obj.address_street.set_text(address.getStreet())
-    edit_person_obj.address_city.set_text(address.getCity())
-    edit_person_obj.address_state.set_text(address.getState())
-    edit_person_obj.address_country.set_text(address.getCountry())
-    edit_person_obj.address_postal.set_text(address.getPostal())
+    epo.address_start.set_text(address.getDate())
+    epo.address_street.set_text(address.getStreet())
+    epo.address_city.set_text(address.getCity())
+    epo.address_state.set_text(address.getState())
+    epo.address_country.set_text(address.getCountry())
+    epo.address_postal.set_text(address.getPostal())
 
 #-------------------------------------------------------------------------
 #
@@ -575,13 +574,13 @@ def on_aka_update_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     name = obj.get_row_data(row)
-    name.setFirstName(edit_person_obj.alt_given_field.get_text())
-    name.setSurname(edit_person_obj.alt_last_field.get_text())
-    name.setSuffix(edit_person_obj.alt_suffix_field.get_text())
+    name.setFirstName(epo.alt_given_field.get_text())
+    name.setSurname(epo.alt_last_field.get_text())
+    name.setSuffix(epo.alt_suffix_field.get_text())
 
-    edit_person_obj.redraw_name_list()
+    epo.redraw_name_list()
 
 #-------------------------------------------------------------------------
 #
@@ -593,14 +592,14 @@ def on_update_url_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    path = edit_person_obj.web_url.get_text()
+    epo = obj.get_data(EDITPERSON)
+    path = epo.web_url.get_text()
 
     url = obj.get_row_data(row)
     url.set_path(path)
-    url.set_description(edit_person_obj.web_description.get_text())
+    url.set_description(epo.web_description.get_text())
 
-    edit_person_obj.redraw_url_list()
+    epo.redraw_url_list()
 
 #-------------------------------------------------------------------------
 #
@@ -612,12 +611,12 @@ def on_update_attr_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     attr = obj.get_row_data(row)
-    attr.setType(const.set_pattr(edit_person_obj.attr_type.get_text()))
-    attr.setValue(edit_person_obj.attr_value.get_text())
+    attr.setType(const.set_pattr(epo.attr_type.get_text()))
+    attr.setValue(epo.attr_value.get_text())
 
-    edit_person_obj.redraw_attr_list()
+    epo.redraw_attr_list()
 
 #-------------------------------------------------------------------------
 #
@@ -629,17 +628,17 @@ def on_update_address_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
 
     address = obj.get_row_data(row)
-    address.setDate(edit_person_obj.address_start.get_text())
-    address.setStreet(edit_person_obj.address_street.get_text())
-    address.setCity(edit_person_obj.address_city.get_text())
-    address.setState(edit_person_obj.address_state.get_text())
-    address.setCountry(edit_person_obj.address_country.get_text())
-    address.setPostal(edit_person_obj.address_postal.get_text())
+    address.setDate(epo.address_start.get_text())
+    address.setStreet(epo.address_street.get_text())
+    address.setCity(epo.address_city.get_text())
+    address.setState(epo.address_state.get_text())
+    address.setCountry(epo.address_country.get_text())
+    address.setPostal(epo.address_postal.get_text())
     utils.modified()
-    edit_person_obj.redraw_address_list()
+    epo.redraw_address_list()
 
 #-------------------------------------------------------------------------
 #
@@ -651,14 +650,14 @@ def on_aka_delete_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    list = edit_person_obj.person.getAlternateNames()
+    epo = obj.get_data(EDITPERSON)
+    list = epo.person.getAlternateNames()
     del list[row]
 
     if row > len(list)-1:
         obj.set_data(INDEX,row-1)
 
-    edit_person_obj.redraw_name_list()
+    epo.redraw_name_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -671,14 +670,14 @@ def on_delete_url_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    list = edit_person_obj.person.getUrlList()
+    epo = obj.get_data(EDITPERSON)
+    list = epo.person.getUrlList()
     del list[row]
 
     if row > len(list)-1:
         obj.set_data(INDEX,row-1)
 
-    edit_person_obj.redraw_url_list()
+    epo.redraw_url_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -691,14 +690,14 @@ def on_delete_attr_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    list = edit_person_obj.person.getAttributeList()
+    epo = obj.get_data(EDITPERSON)
+    list = epo.person.getAttributeList()
     del list[row]
 
     if row > len(list)-1:
         obj.set_data(INDEX,row-1)
 
-    edit_person_obj.redraw_attr_list()
+    epo.redraw_attr_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -711,14 +710,14 @@ def on_delete_address_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    list = edit_person_obj.person.getAddressList()
+    epo = obj.get_data(EDITPERSON)
+    list = epo.person.getAddressList()
     del list[row]
 
     if row > len(list)-1:
         obj.set_data(INDEX,row-1)
 
-    edit_person_obj.redraw_address_list()
+    epo.redraw_address_list()
     utils.modified()
     
 #-------------------------------------------------------------------------
@@ -727,15 +726,15 @@ def on_delete_address_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_aka_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
 
     name = Name()
-    name.setFirstName(edit_person_obj.alt_given_field.get_text())
-    name.setSurname(edit_person_obj.alt_last_field.get_text())
-    name.setSuffix(edit_person_obj.alt_suffix_field.get_text())
+    name.setFirstName(epo.alt_given_field.get_text())
+    name.setSurname(epo.alt_last_field.get_text())
+    name.setSuffix(epo.alt_suffix_field.get_text())
 
-    edit_person_obj.person.addAlternateName(name)
-    edit_person_obj.redraw_name_list()
+    epo.person.addAlternateName(name)
+    epo.redraw_name_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -744,16 +743,16 @@ def on_add_aka_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_url_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
 
     url = Url()
-    path = edit_person_obj.web_url.get_text()
+    path = epo.web_url.get_text()
 
     url.set_path(path)
-    url.set_description(edit_person_obj.web_description.get_text())
+    url.set_description(epo.web_description.get_text())
 
-    edit_person_obj.person.addUrl(url)
-    edit_person_obj.redraw_url_list()
+    epo.person.addUrl(url)
+    epo.redraw_url_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -762,20 +761,20 @@ def on_add_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_attr_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
 
     attr = Attribute()
-    name = edit_person_obj.attr_type.get_text()
+    name = epo.attr_type.get_text()
     attr.setType(const.save_pattr(name))
-    attr.setValue(edit_person_obj.attr_value.get_text())
+    attr.setValue(epo.attr_value.get_text())
 
     if name not in const.personalAttributes:
         const.personalAttributes.append(name)
-        menu = edit_person_obj.get_widget("attribute")
+        menu = epo.get_widget("attribute")
         menu.set_popdown_strings(const.personalAttributes)
 
-    edit_person_obj.person.addAttribute(attr)
-    edit_person_obj.redraw_attr_list()
+    epo.person.addAttribute(attr)
+    epo.redraw_attr_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -784,18 +783,18 @@ def on_add_attr_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_address_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
 
     address = Address()
-    address.setDate(edit_person_obj.address_start.get_text())
-    address.setStreet(edit_person_obj.address_street.get_text())
-    address.setCity(edit_person_obj.address_city.get_text())
-    address.setState(edit_person_obj.address_state.get_text())
-    address.setCountry(edit_person_obj.address_country.get_text())
-    address.setPostal(edit_person_obj.address_postal.get_text())
+    address.setDate(epo.address_start.get_text())
+    address.setStreet(epo.address_street.get_text())
+    address.setCity(epo.address_city.get_text())
+    address.setState(epo.address_state.get_text())
+    address.setCountry(epo.address_country.get_text())
+    address.setPostal(epo.address_postal.get_text())
 
-    edit_person_obj.person.addAddress(address)
-    edit_person_obj.redraw_address_list()
+    epo.person.addAddress(address)
+    epo.redraw_address_list()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -809,8 +808,8 @@ def on_add_address_clicked(obj):
 #-------------------------------------------------------------------------
 def on_event_add_clicked(obj):
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    editor = EventEditor(edit_person_obj,None)
+    epo = obj.get_data(EDITPERSON)
+    editor = EventEditor(epo,None)
 
 #-------------------------------------------------------------------------
 #
@@ -822,19 +821,19 @@ def on_event_add_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_delete_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     row = obj.get_data(INDEX)
 
     if row < 0:
         return
     
-    del edit_person_obj.elist[row]
+    del epo.elist[row]
 
-    if row > len(edit_person_obj.elist)-1:
+    if row > len(epo.elist)-1:
         obj.set_data(INDEX,row-1)
         
-    edit_person_obj.redraw_event_list()
-    edit_person_obj.events_changed = 1
+    epo.redraw_event_list()
+    epo.events_changed = 1
 
 #-------------------------------------------------------------------------
 #
@@ -850,9 +849,9 @@ def on_event_update_clicked(obj):
     if row < 0:
         return
 
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     event = obj.get_row_data(row)
-    editor = EventEditor(edit_person_obj,event)
+    editor = EventEditor(epo,event)
 
 #-------------------------------------------------------------------------
 #
@@ -865,11 +864,11 @@ def on_event_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
     event = obj.get_row_data(row)
 
-    edit_person_obj = obj.get_data(EDITPERSON)
-    edit_person_obj.event_date_field.set_text(event.getDate())
-    edit_person_obj.event_place_field.set_text(event.getPlace())
-    edit_person_obj.event_name_field.set_label(const.display_pevent(event.getName()))
-    edit_person_obj.event_descr_field.set_text(event.getDescription())
+    epo = obj.get_data(EDITPERSON)
+    epo.event_date_field.set_text(event.getDate())
+    epo.event_place_field.set_text(event.getPlace())
+    epo.event_name_field.set_label(const.display_pevent(event.getName()))
+    epo.event_descr_field.set_text(event.getDescription())
 
     if event.getNote() != "":
         details = _("Note")
@@ -880,7 +879,7 @@ def on_event_select_row(obj,row,b,c):
             details = _("Source")
         else:
             details = "%s, %s" % (_("Note"),_("Source"))
-    edit_person_obj.event_details_field.set_text(details)
+    epo.event_details_field.set_text(details)
 
 #-------------------------------------------------------------------------
 #
@@ -907,15 +906,15 @@ def on_photo_select_icon(obj,iconNumber,event):
 #
 #-------------------------------------------------------------------------
 def on_delete_photo_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    icon = edit_person_obj.selectedIcon
+    epo = obj.get_data(EDITPERSON)
+    icon = epo.selectedIcon
 
     if icon == -1:
         return
     
-    photolist = edit_person_obj.person.getPhotoList()
-    edit_person_obj.photo_list.remove(icon)
-    del photolist[edit_person_obj.selectedIcon]
+    photolist = epo.person.getPhotoList()
+    epo.photo_list.remove(icon)
+    del photolist[epo.selectedIcon]
 
 #-------------------------------------------------------------------------
 #
@@ -923,24 +922,23 @@ def on_delete_photo_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_primary_photo_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    if edit_person_obj.selectedIcon == None or \
-       edit_person_obj.selectedIcon == 0:
+    epo = obj.get_data(EDITPERSON)
+    if epo.selectedIcon == None or \
+       epo.selectedIcon == 0:
         return
 
-    photolist = edit_person_obj.person.getPhotoList()
-    selectedIcon = edit_person_obj.selectedIcon
+    photolist = epo.person.getPhotoList()
+    selectedIcon = epo.selectedIcon
     savePhoto = photolist[selectedIcon]
     for i in range(0,selectedIcon):
         photolist[selectedIcon-i] = photolist[selectedIcon-i-1]
     photolist[0] = savePhoto
-    edit_person_obj.load_images()
+    epo.load_images()
 
-    thumb = edit_person_obj.db.getSavePath() + os.sep + ".thumb" + os.sep + \
-            "i%s" % edit_person_obj.person.getId()
+    thumb = "%s%s.thumb%si%s" % (epo.path,os.sep,os.sep,epo.person.getId())
     
     RelImage.mk_thumb(savePhoto,thumb,const.picWidth)
-    edit_person_obj.load_photo(thumb)
+    epo.load_photo(thumb)
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -1019,14 +1017,14 @@ def on_name_changed(obj):
 #
 #-------------------------------------------------------------------------
 def on_apply_person_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    person = edit_person_obj.person
+    epo = obj.get_data(EDITPERSON)
+    person = epo.person
     
-    surname = edit_person_obj.surname_field.get_text()
-    suffix = edit_person_obj.suffix.get_text()
-    given = edit_person_obj.given.get_text()
-    nick = edit_person_obj.nick.get_text()
-    title = edit_person_obj.title.get_text()
+    surname = epo.surname_field.get_text()
+    suffix = epo.suffix.get_text()
+    given = epo.given.get_text()
+    nick = epo.nick.get_text()
+    title = epo.title.get_text()
 
     name = person.getPrimaryName()
 
@@ -1036,9 +1034,9 @@ def on_apply_person_clicked(obj):
 
     if surname != name.getSurname():
         name.setSurname(surname)
-        if surname not in edit_person_obj.surname_list:
-            edit_person_obj.surname_list.append(surname)
-            edit_person_obj.surname_list.sort()
+        if surname not in epo.surname_list:
+            epo.surname_list.append(surname)
+            epo.surname_list.sort()
         utils.modified()
 
     if given != name.getFirstName():
@@ -1054,12 +1052,12 @@ def on_apply_person_clicked(obj):
         utils.modified()
 
     birth  = person.getBirth()
-    bdate  = edit_person_obj.bdate.get_text()
-    bplace = edit_person_obj.bplace.get_text()
+    bdate  = epo.bdate.get_text()
+    bplace = epo.bplace.get_text()
     
     death  = person.getDeath()
-    ddate  = edit_person_obj.ddate.get_text()
-    dplace = edit_person_obj.dplace.get_text()
+    ddate  = epo.ddate.get_text()
+    dplace = epo.dplace.get_text()
 
     for place in [ dplace, bplace ]:
         if place not in const.places:
@@ -1081,7 +1079,7 @@ def on_apply_person_clicked(obj):
         person.setDeath(newDeath)
         utils.modified()
 
-    gender = edit_person_obj.is_male.get_active()
+    gender = epo.is_male.get_active()
     error = 0
     if gender and person.getGender() == Person.female:
         person.setGender(Person.male)
@@ -1107,19 +1105,19 @@ def on_apply_person_clicked(obj):
     if error == 1:
         msg = _("Changing the gender caused problems with marriage information.")
         msg2 = _("Please check the person's marriages.")
-        GnomeErrorDialog(msg + '\n' + msg2)
+        GnomeErrorDialog("%s\n%s" % (msg,msg2))
         
-    text = edit_person_obj.notes_field.get_chars(0,-1)
+    text = epo.notes_field.get_chars(0,-1)
     if text != person.getNote():
         person.setNote(text)
         utils.modified()
 
-    edit_person_obj.update_events()
-    if edit_person_obj.events_changed:
+    epo.update_events()
+    if epo.events_changed:
         utils.modified()
         
     utils.destroy_passed_object(obj)
-    edit_person_obj.callback(edit_person_obj)
+    epo.callback(epo)
 
 #-------------------------------------------------------------------------
 #
@@ -1127,8 +1125,8 @@ def on_apply_person_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_savephoto_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    image_select = edit_person_obj.isel
+    epo = obj.get_data(EDITPERSON)
+    image_select = epo.isel
     
     filename = image_select.get_widget("photosel").get_full_path(0)
     description = image_select.get_widget("photoDescription").get_text()
@@ -1136,14 +1134,14 @@ def on_savephoto_clicked(obj):
     if os.path.exists(filename) == 0:
         return
 
-    prefix = "i%s" % edit_person_obj.person.getId()
-    if edit_person_obj.external.get_active() == 1:
+    prefix = "i%s" % epo.person.getId()
+    if epo.external.get_active() == 1:
         if os.path.isfile(filename):
             name = filename
         else:
             return
     else:
-        name = RelImage.import_photo(filename,edit_person_obj.path,prefix)
+        name = RelImage.import_photo(filename,epo.path,prefix)
         if name == None:
             return
         
@@ -1151,8 +1149,8 @@ def on_savephoto_clicked(obj):
     photo.setPath(name)
     photo.setDescription(description)
     
-    edit_person_obj.person.addPhoto(photo)
-    edit_person_obj.add_thumbnail(photo)
+    epo.person.addPhoto(photo)
+    epo.add_thumbnail(photo)
 
     utils.modified()
     utils.destroy_passed_object(obj)
@@ -1179,9 +1177,9 @@ def on_save_note_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_birth_note_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    data = edit_person_obj.person.getBirth()
+    data = epo.person.getBirth()
     textobj = editnote.get_widget("notetext")
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data("n",data)
@@ -1202,9 +1200,9 @@ def on_birth_note_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_name_note_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    data = edit_person_obj.person.getPrimaryName()
+    data = epo.person.getPrimaryName()
     textobj = editnote.get_widget("notetext")
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data("n",data)
@@ -1225,10 +1223,10 @@ def on_name_note_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_death_note_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
     textobj = editnote.get_widget("notetext")
-    data = edit_person_obj.person.getDeath()
+    data = epo.person.getDeath()
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data("n",data)
     en_obj.set_data("w",textobj)
@@ -1248,8 +1246,8 @@ def on_death_note_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_death_source_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(edit_person_obj.person.getDeath(),edit_person_obj.db)
+    epo = obj.get_data(EDITPERSON)
+    Sources.SourceEditor(epo.person.getDeath(),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1257,8 +1255,8 @@ def on_death_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_name_source_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(edit_person_obj.person.getPrimaryName(),edit_person_obj.db)
+    epo = obj.get_data(EDITPERSON)
+    Sources.SourceEditor(epo.person.getPrimaryName(),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1266,8 +1264,8 @@ def on_name_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_birth_source_clicked(obj):
-    edit_person_obj = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(edit_person_obj.person.getBirth(),edit_person_obj.db)
+    epo = obj.get_data(EDITPERSON)
+    Sources.SourceEditor(epo.person.getBirth(),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1276,9 +1274,9 @@ def on_birth_source_clicked(obj):
 #-------------------------------------------------------------------------
 def on_showsource_clicked(obj):
     row = obj.get_data(INDEX)
-    edit_person_obj = obj.get_data(EDITPERSON)
+    epo = obj.get_data(EDITPERSON)
     if row >= 0:
-        Sources.SourceEditor(obj.get_row_data(row),edit_person_obj.db)
+        Sources.SourceEditor(obj.get_row_data(row),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1327,11 +1325,11 @@ def on_photolist_button_press_event(obj,event):
 #
 #-------------------------------------------------------------------------
 def on_convert_to_private(obj):
-    edit_person_obj = obj.get_data("m")
-    photo = edit_person_obj.person.getPhotoList()[edit_person_obj.selectedIcon]
+    epo = obj.get_data("m")
+    photo = epo.person.getPhotoList()[epo.selectedIcon]
 
-    prefix = "i%s" % edit_person_obj.person.getId()
-    name = RelImage.import_photo(photo.getPath(),edit_person_obj.path,prefix)
+    prefix = "i%s" % epo.person.getId()
+    name = RelImage.import_photo(photo.getPath(),epo.path,prefix)
 
     photo.setPath(name)
     photo.setPrivate(1)
