@@ -262,7 +262,12 @@ def exportData(database, filename, callback):
             if os.path.dirname(path) == fileroot:
                 path = os.path.basename(path)
             g.write("<img src=\"" + fix(path) + "\"")
-            g.write(" descrip=\""  + fix(photo.getDescription()) + "\"/>\n")
+            g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+            proplist = photo.getPropertyList()
+            if proplist:
+                for key in proplist.keys():
+                    g.write(' %s="%s"' % (key,proplist[key]))
+            g.write("/>\n")
 
         if len(person.getAddressList()) > 0:
             g.write("<addresses>\n")
@@ -338,7 +343,12 @@ def exportData(database, filename, callback):
             if os.path.dirname(path) == fileroot:
                 path = os.path.basename(path)
             g.write("<img src=\"" + fix(path) + "\"")
-            g.write(" descrip=\""  + fix(photo.getDescription()) + "\"/>\n")
+            g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+            proplist = photo.getPropertyList()
+            if proplist:
+                for key in proplist.keys():
+                    g.write(' %s="%s"' % (key,proplist[key]))
+            g.write("/>\n")
 
         if len(family.getChildList()) > 0:
             g.write("<childlist>\n")
@@ -374,7 +384,11 @@ def exportData(database, filename, callback):
                 if os.path.dirname(path) == fileroot:
                     path = os.path.basename(path)
                     g.write("<img src=\"" + fix(path) + "\"")
-                    g.write(" descrip=\""  + fix(photo.getDescription()) + "\"/>\n")
+                    g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+                    proplist = photo.getPropertyList()
+                    if proplist:
+                        for key in proplist.keys():
+                            g.write(' %s="%s"' % (key,proplist[key]))
             g.write("</source>\n")
         g.write("</sources>\n")
 
