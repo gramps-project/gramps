@@ -482,7 +482,8 @@ class Gramps:
                 p2 = self.person_list.get_row_data(self.person_list.selection[1])
                 p1 = self.db.getPerson(p1)
                 p2 = self.db.getPerson(p2)
-                MergeData.MergePeople(self.db,p1,p2,self.merge_update,self.update_after_edit)
+                MergeData.MergePeople(self.db,p1,p2,self.merge_update,
+                                      self.update_after_edit)
         elif page == 4:
             self.place_view.merge()
 
@@ -592,7 +593,8 @@ class Gramps:
             else:
                 try:
                     AddSpouse.AddSpouse(self.db,self.active_person,
-                                        self.family_view.load_family,self.redisplay_person_list)
+                                        self.family_view.load_family,
+                                        self.redisplay_person_list)
                 except:
                     DisplayTrace.DisplayTrace()
                     
@@ -600,7 +602,8 @@ class Gramps:
         Utils.destroy_passed_object(self.addornew)
         try:
             AddSpouse.SetSpouse(self.db,self.active_person,self.active_family,
-                                self.family_view.load_family, self.redisplay_person_list)
+                                self.family_view.load_family,
+                                self.redisplay_person_list)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1283,7 +1286,7 @@ class Gramps:
             self.merge_button.set_sensitive(0)
             self.family_view.load_family()
         elif page == 2:
-            self.enable_buttons(1)
+            self.enable_buttons(0)
             self.merge_button.set_sensitive(0)
             self.pedigree_view.load_canvas(self.active_person)
         elif page == 3:

@@ -397,7 +397,7 @@ class ModifyParents:
 
         self.glade.signal_autoconnect({
             "on_save_parents_clicked"  : self.save_parents_clicked,
-            "destroy_passed_object"    : Utils.destroy_passed_object
+            "destroy_passed_object"    : self.quit,
             })
 
         text = _("<b>Modify the Parents of %s</b>") % GrampsCfg.nameof(self.person)
@@ -413,16 +413,20 @@ class ModifyParents:
 
 
         if self.father:
-            self.glade.get_widget("fname").set_text(self.father.getPrimaryName().getName())
+            fname = self.father.getPrimaryName().getName()
+            self.glade.get_widget("fname").set_text(fname)
         else:
             self.father_rel.set_senstive(0)
             
-        if self.father:
-            self.glade.get_widget("mname").set_text(self.mother.getPrimaryName().getName())
+        if self.mother:
+            mname = self.mother.getPrimaryName().getName()
+            self.glade.get_widget("mname").set_text(mname)
         else:
             self.mother_rel.set_senstive(0)
-            
 
+    def quit(self,obj):
+        self.top.destroy()
+        
     def save_parents_clicked(self,obj):
         """
         Called with the OK button nis pressed. Saves the selected people as parents
