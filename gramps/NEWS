@@ -36,6 +36,8 @@ Version 0.6.0pre
   GRAMPS' ids. You can now set a prefix for each type (such as "I-"
   for individuals) or specify more powerful formatting using C-like
   format statements (such as "I-%04d").
+* Adoption relationships are visible on the pedigree view (seen as
+  a dotted line).
 
 Version 0.5.1
 * Bug fixes

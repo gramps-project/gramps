@@ -56,7 +56,7 @@ style_sheet_list = None
 #
 #
 #------------------------------------------------------------------------
-class AncestorReport:
+class DetAncestorReport:
 
     gen = {
         1 : _("First"),
@@ -92,7 +92,7 @@ class AncestorReport:
 
     #--------------------------------------------------------------------
     #
-    # 
+    #
     #
     #--------------------------------------------------------------------
     def __init__(self,database,person,output,max,pgbrk,doc):
@@ -127,31 +127,36 @@ class AncestorReport:
     def write_children(self, family):
         """ List children """
 
+        print "family: ", family.__dict__
         num_children= len(family.getChildList())
-        #print "Children= ", len(family.getChildList())
+        print "Children= ", len(family.getChildList())
         if num_children > 0:
             self.doc.start_paragraph("ChildTitle")
-            self.doc.write_text("Children:")
+            mother= family.getMother().getPrimaryName().getRegularName()
+            father= family.getFather().getPrimaryName().getRegularName()
+            if num_children == 1:
+                self.doc.write_text(_("Child of %s and %s is:") % (mother, father))
+            else: self.doc.write_text(_("Children of %s and %s are:") % (mother, father))
             self.doc.end_paragraph()
 
-        for child in family.getChildList():
-            self.doc.start_paragraph("ChildList")
-            t= child.getPrimaryName().getRegularName()
-            #print "getBirth()", child.getBirth().__dict__
-            if child.getBirth().getDate() != "" and \
-                    child.getBirth().getPlaceName() != "":
-                #print child.getBirth().getPlace().__dict__
-                t= t+ " Born: "+child.getBirth().getDate() + \
-                    " "+child.getBirth().getPlaceName()
-            #print "getDeath()", child.getDeath().__dict__
-            if child.getDeath().getPlace() != None:
-                #print child.getDeath().getPlace().__dict__
-                if child.getDeath().getDate() != "" or \
+            for child in family.getChildList():
+                self.doc.start_paragraph("ChildList")
+                t= child.getPrimaryName().getRegularName()
+                #print "getBirth()", child.getBirth().__dict__
+                if child.getBirth().getDate() != "" and \
+                        child.getBirth().getPlaceName() != "":
+                    #print child.getBirth().getPlace().__dict__
+                    t= t+ " Born: "+child.getBirth().getDate() + \
+                        " "+child.getBirth().getPlaceName()
+                #print "getDeath()", child.getDeath().__dict__
+                if child.getDeath().getPlace() != None:
+                #   print child.getDeath().getPlace().__dict__
+                    if child.getDeath().getDate() != "" or \
                             child.getDeath().getPlaceName() != "":
-                    t= t+ " Died: "+child.getDeath().getDate() + \
+                        t= t+ " Died: "+child.getDeath().getDate() + \
                             " "+child.getDeath().getPlaceName()
-            self.doc.write_text(_(t))
-            self.doc.end_paragraph()
+                self.doc.write_text(_(t))
+                self.doc.end_paragraph()
 
 
     def write_person(self, key, rptOptions):
@@ -173,85 +178,142 @@ class AncestorReport:
         self.doc.end_bold()
 
         # Check birth record
-        #print person.getPrimaryName().getRegularName()
+        birth = person.getBirth()
+        if birth:
+            self.write_birth(person, rptOptions)
+        self.write_death(person, firstName, rptOptions)
+        self.write_parents(person, firstName)
+        self.write_marriage(person, rptOptions)
+        self.doc.end_paragraph()
+
+        if key == 1:  self.write_mate(person, rptOptions)
+
+        if person.getNote() != "" and rptOptions.includeNotes == reportOptions.Yes:
+            self.doc.start_paragraph("Entry")
+            self.doc.write_text(_("Notes for %s" % name))
+            self.doc.end_paragraph()
+            self.doc.start_paragraph("Entry")
+            self.doc.write_text(person.getNote())
+            self.doc.end_paragraph()
+
+    def write_birth(self, person, rptOptions):
+        # Check birth record
+        #   Statement formats name precedes this
+        #       was born on DATE.
+        #       was born on ________.
+        #       was born on Date in Place.
+        #       was born on ________ in PLACE.
+        #       was born in ____________.
+        #       was born in the year YEAR.
+        #       was born in PLACE.
+        #       was born in ____________.
+        #       .
         birth = person.getBirth()
         if birth:
             date = birth.getDateObj().get_start_date()
             if birth.getPlaceName() != "":
                 place = birth.getPlaceName()
-            else: place= ""
-            if place[-1:] == '.':
-                place = place[:-1]
-            t= ""
-            if date.getDate() != "":
-                if date.getDay() != -1 and date.getMonth() != -1 and \
-                    rptOptions.fullDate == reportOptions.Yes:
-                    t= "on %s" % date.getDate()
-                else:
-                    t= "in the year %s" % date.getYear()
-            elif rptOptions.blankDate == reportOptions.Yes:
-                t= "on _______________"
-            if place != "":
-                t= t + " in %s" % place
-            elif rptOptions.blankPlace == reportOptions.Yes:
-                t= t + " in _____________________"
-
-            if t != "":
-                self.doc.write_text(_(" was born " + t + "."))
-            else: self.doc.write_text(_("."))
-
-        t= ""
-        death = person.getDeath()
-        buried = None
-        for event in person.getEventList():
-            if string.lower(event.getName()) == "burial":
-                buried = event
-
-            if death:
-                date = death.getDateObj().get_start_date()
-                place = death.getPlaceName()
                 if place[-1:] == '.':
                     place = place[:-1]
-                t= "  %s died " % firstName
-                if date.getDate() != "":
-                    if date.getDay() != -1 and date.getMonth() != -1 and \
-                            rptOptions.fullDate == reportOptions.Yes:
-                        t= t + ("on %s" % date.getDate())
+            elif rptOptions.blankDate == reportOptions.Yes:
+                place= "______________"
+            else: place= ""
+
+            if date.getDate() != "":
+                if date.getDay() != -1 and date.getMonth() != -1 and \
+                        rptOptions.fullDate == reportOptions.Yes:
+                    if place != "":
+                        self.doc.write_text(" was born on %s in %s." % (date.getDate(), place))
                     else:
-                        t= t + ("in the year %s" % date.getDate())
-                elif rptOptions.blankDate == reportOptions.Yes:
-                    t= "on ______________"
+                        self.doc.write_text(_(" was born on %s.") % date.getDate())
+                elif place != "":
+                    self.doc.write_text(_(" was born in the year %s in %s.") % \
+                              (date.getYear(), place))
+                else:
+                    self.doc.write_text(_(" was born in the year %s.") % date.getYear())
+            elif place != "":
+                self.doc.write_text(_(" in %s.") % place)
+            else:
+                self.doc.write_text(_("."))
 
+            return
+        self.doc.write_text(_("."))
+        return
+
+    def write_death(self, person, firstName, rptOptions):
+        t= ""
+        death = person.getDeath()
+        #print "death=", death, death.__dict__
+        if death != None:
+            date = death.getDateObj().get_start_date()
+            place = death.getPlaceName()
+            #print "date=", date.getDate(), "place=", place, "day= ", date.getDay(), \
+            #            "month= ", date.getMonth(), "year= ", date.getYear()
+            if place[-1:] == '.':
+                place = place[:-1]
+            elif place == "" and rptOptions.blankPlace == reportOptions.Yes:
+                place= "_____________"
+
+            if date.getDate() != "":
+                if date.getDay() > 0 and date.getMonth() > 0 and \
+                            rptOptions.fullDate == reportOptions.Yes:
+                    fulldate= date.getDate()
+                elif date.getMonth() > 0 and rptOptions.fullDate == reportOptions.Yes:
+                    fulldate= "%s %s" % (date.getMonth(), date.getYear())
+                else: fulldate= ""
+            elif rptOptions.blankDate == reportOptions.Yes:
+                fulldate= "_____________"
+            else: fulldate= ""
+
+            if fulldate != "":
                 if place != "":
-                    t= t + (" in %s") % place
-                elif rptOptions.blankPlace == reportOptions.Yes:
-                    t= t + (" in _____________")
+                    t= _("  %s died on %s in %s") % (firstName, fulldate, place)
+                else: t= _("  %s died on %s") % (firstName, fulldate)
+            elif date.getYear() > 0:
+                if place != "":
+                    t= _("  %s died in %s in %s") % (firstName, date.getYear(), place)
+                else: t= _("  %s died in %s") % (firstName, date.getYear())
+            elif place != "":
+                t= _("  %s died in %s") % (firstName, place)
 
+
+            if rptOptions.calcAgeFlag == reportOptions.Yes:
+                t= t + rptOptions.calcAge(person)
+
+            if t != "":
+                self.doc.write_text(t+".")
+                t= ""
+
+        famList= person.getFamilyList()
+        if len(famList) > 0:
+            for fam in famList:
+                #print "fam event=", fam.__dict__
+                buried= None
                 if buried:
                     date = buried.getDateObj().get_start_date()
                     place = buried.getPlaceName()
                     if place[-1:] == '.':
                         place = place[:-1]
-                    if date.getDate() != "" or place != "":
-                        t= t + ", and was buried "
-                        if date.getDate() != "":
-                           if date.getDay() != -1 and date.getMonth() != -1 and \
+                    fulldate= ""
+                    if date.getDate() != "":
+                        if date.getDay() != -1 and date.getMonth() != -1 and \
                                         rptOptions.fullDate == reportOptions.Yes:
-                               t= t + "on %s" % date.getDate()
-                               if place != "":
-                                   t = t + " in %s" % place
-                           else:
-                               t = t + "in the year %s" % date.getDate()
-                        elif rptOptions.blankDate == reportOptions.Yes:
-                               t= t + " on ___________"
-                        if place != "":
-                               t = t + " in %s" % place
+                            fulldate= date.getDate()
+                    elif rptOptions.blankDate == reportOptions.Yes:
+                            fulldate= "___________"
 
-                if rptOptions.calcAgeFlag == reportOptions.Yes:
-                        t= t + rptOptions.calcAge(birth.date.start, death.date.start)
+                    if fulldate != "" and place != "":
+                        t= _("  And %s was buried on %s in %s.") % (firstName, fulldate, place)
+                    elif fulldate != "" and place == "":
+                        t= _("  And %s was buried on %s.") % (firstName, fulldate)
+                    elif fulldate == "" and place != "":
+                        t= _("  And %s was buried in %s.") % (firstName, place)
+
                 if t != "":
-                    self.doc.write_text(_(t+"."))
+                    self.doc.write_text(t)
+                    t= ""
 
+    def write_parents(self, person, firstName):
         ext_family= person.getMainFamily()
         if ext_family != None:
             if ext_family.getFather() != None:
@@ -262,73 +324,123 @@ class AncestorReport:
             else: mother= ""
 
             if father != "" or mother != "":
-                t = "  %s was the " % firstName
                 if person.getGender() == RelLib.Person.male:
-                    t= t + "son of"
+                    if father != "":
+                        if mother != "":
+                            self.doc.write_text(_(" %s was the son of %s and %s." % \
+                                (firstName, father, mother)))
+                        else:
+                            self.doc.write_text(_(" %s was the son of %s." % \
+                                (firstName, father)))
+                    else:
+                        self.doc.write_text(_(" %s was the son of %s." % \
+                                (firstName, mother)))
                 else:
-                    t= t + "daughter of"
-                if father != "":
-                    t= t + " %s" % father
-                if mother != "":
-                    t= t + " and %s" % mother
-                else: t= t + " %s" % mother
+                    if father != "":
+                        if mother != "":
+                            self.doc.write_text(_(" %s was the daughter of %s and %s." % \
+                                (firstName, father, mother)))
+                        else:
+                            self.doc.write_text(_(" %s was the daughter of %s." % \
+                                (firstName, father)))
+                    else:
+                        self.doc.write_text(_(" %s was the daughter of %s." % \
+                                (firstName, mother)))
 
-                self.doc.write_text(_(t + "."))
-                t= ""
 
+    def write_marriage(self, person, rptOptions):
         famList= person.getFamilyList()
-        #print "len of famList=", len(famList)
+        #print "Marriage: len of famList=", len(famList)
         if len(famList) > 0:
             for fam in famList:
-                #print "fam", fam.__dict__
-                spouse= ""
+                #print "Marriage:fam", fam.__dict__
                 if person.getGender() == RelLib.Person.male:
                     if fam.getMother() != None:
                         spouse= fam.getMother().getPrimaryName().getRegularName()
                         heshe= "He"
-                    else:
-                        heshe= "She"
-                        if fam.getFather() != None:
-                            spouse= fam.getFather().getPrimaryName().getRegularName()
+                else:
+                    heshe= "She"
+                    if fam.getFather() != None:
+                        spouse= fam.getFather().getPrimaryName().getRegularName()
 
-                    marriage= fam.getMarriage()
-                    if marriage != None:
-                        #print "marriage", marriage.__dict__
-                        if spouse != "":
-                            t= "  %s married %s" % (heshe, spouse)
-                        else:
-                            t= "  %s was married" % heshe
-                        date= marriage.getDateObj()
-                        if date != None:
-                            #print "date", date.__dict__
-                            #print "date.start=", date.start.__dict__
-                            if date.getYear() != -1:
-                                if date.getDay() != -1 and \
-                                            date.getMonth() != -1 and \
-                                            rptOptions.fullDate == reportOptions.Yes:
-                                    t= t + " on "+date.getDate()
-                                else: t= t + " in the year %s" % date.getYear()
+                marriage= fam.getMarriage()
+                if marriage != None:
+                    if marriage.getPlace() != None and \
+                            marriage.getPlaceName() != "":
+                        place= marriage.getPlaceName()
+                    elif rptOptions.blankPlace == reportOptions.Yes:
+                        place= "____________"
+                    else: place= ""
+
+                    date= marriage.getDateObj()
+                    fulldate= ""
+                    if date != None:
+                        if date.getYear() != -1:
+                            if date.getDay() != -1 and date.getMonth() != -1 and \
+                                    rptOptions.fullDate == reportOptions.Yes:
+                                fulldate= date.getDate()
                             elif rptOptions.blankDate == reportOptions.Yes:
-                                t= t + " on __________"
-                        else: t= t + " on __________"
+                                fulldate= "__________"
 
-                        if marriage.getPlace() != None and \
-                                marriage.getPlaceName() != "":
-                            t= t + " in " + marriage.getPlaceName()
-                        elif rptOptions.blankPlace == reportOptions.Yes:
-                            t= t + " in ____________"
-            self.doc.write_text(_(t+"."))
+                    if spouse != "":
+                        if fulldate == "" and place == "":
+                            t= _("  %s married %s." % (heshe, spouse))
+                        elif fulldate == "" and place != "":
+                            t= _("  %s married %s in %s." % (heshe, spouse, place))
+                        elif fulldate != "" and place == "":
+                            t= _("  %s married %s on %s" % (heshe, spouse, fulldate))
+                        else: t= _("  %s married %s on %s in %s." % \
+                                (heshe, spouse, fulldate, place))
+                    else:
+                        if fulldate == "" and place == "":
+                            t= _("  %s married.")
+                        elif fulldate == "" and place != "":
+                            t= _("  %s married in %s." % (heshe, place))
+                        elif fulldate != "" and place == "":
+                            t= _("  %s married on %s" % (heshe, fulldate))
+                        else: t= _("  %s married on %s in %s." % \
+                                (heshe, fulldate, place))
 
+                    self.doc.write_text(t)
 
-        if person.getNote() != "" and rptOptions.includeNotes == reportOptions.Yes:
-            self.doc.end_paragraph()
-            self.doc.start_paragraph("Entry")
-            self.doc.write_text(_("Notes for %s" % name))
-            self.doc.end_paragraph()
-            self.doc.start_paragraph("Entry")
-            self.doc.write_text(person.getNote())
-            #print person.getNote()
-        self.doc.end_paragraph()
+    def write_mate(self, mate, rptOptions):
+        """Output birth, death, parentage, marriage and notes information """
+
+        famList= mate.getFamilyList()
+        #print "len of famList=", len(famList)
+        if len(famList) > 0:
+            for fam in famList:
+                person= ""
+                if mate.getGender() == RelLib.Person.male:
+                    if fam.getMother() != None:
+                        ind= fam.getMother()
+                        person= fam.getMother().getPrimaryName().getRegularName()
+                        firstName= fam.getMother().getPrimaryName().getFirstName()
+                        heshe= "He"
+                else:
+                    heshe= "She"
+                    if fam.getFather() != None:
+                        ind= fam.getFather()
+                        person= fam.getFather().getPrimaryName().getRegularName()
+                        firstName= fam.getFather().getPrimaryName().getFirstName()
+
+                if person != "":
+                    self.doc.start_paragraph("Entry")
+                    if rptOptions.firstName == reportOptions.No:
+                        firstName= heshe
+
+                    self.doc.write_text(person)
+
+                    self.write_birth(ind, rptOptions)
+
+                    self.write_death(ind, firstName, rptOptions)
+
+                    self.write_parents(ind, firstName)
+
+                    self.doc.end_paragraph()
+
+                    if rptOptions.listChildren == reportOptions.Yes:
+                        self.write_children(fam)
 
     #--------------------------------------------------------------------
     #
@@ -351,15 +463,12 @@ class AncestorReport:
         generation = 0
         need_header = 1
 
-        rptOpt.blankDate = reportOptions.No
-        rptOpt.blankPlace = reportOptions.No
-        
         for key in keys :
             if generation == 0 or key >= 2**generation:
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 self.doc.start_paragraph("Generation")
-                t = _("%s Generation") % AncestorReport.gen[generation+1]
+                t = _("%s Generation") % DetAncestorReport.gen[generation+1]
                 self.doc.write_text(t)
                 self.doc.end_paragraph()
                 generation = generation + 1
@@ -377,18 +486,18 @@ class AncestorReport:
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def report(database,person):
     import PaperMenu
-    
+
     global active_person
     global topDialog
     global glade_file
     global db
     global style_sheet_list
-    
+
     active_person = person
     db = database
 
@@ -401,7 +510,7 @@ def report(database,person):
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
     FindDoc.get_text_doc_menu(topDialog.get_widget("format"),0,option_switch)
-        
+
     styles.clear()
     font = FontStyle()
     font.set(face=FONT_SANS_SERIF,size=16,bold=1)
@@ -427,7 +536,7 @@ def report(database,person):
     para.set_left_margin(1.0)   # in centimeters
     para.set(pad=0.5)
     styles.add_style("ChildTitle",para)
- 
+
     para = ParagraphStyle()
     para.set(first_indent=1.0,lmargin=0.0,pad=0.25)
     styles.add_style("ChildList",para)
@@ -435,6 +544,12 @@ def report(database,person):
     para = ParagraphStyle()
     para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     styles.add_style("Entry",para)
+
+    table = TableStyle()
+    table.set_width(1000)
+    table.set_columns(3)
+    table.set_column_width(1,"30%")
+    #add_table_style("Images",table)
 
     style_sheet_list = StyleSheetList("det_ancestor_report.xml",styles)
     build_menu(None)
@@ -448,7 +563,7 @@ def report(database,person):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def build_menu(object):
@@ -464,7 +579,7 @@ def build_menu(object):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def option_switch(obj):
@@ -479,12 +594,12 @@ def option_switch(obj):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 def on_style_edit_clicked(obj):
     StyleListDisplay(style_sheet_list,build_menu,None)
-    
+
 #------------------------------------------------------------------------
 #
 #
@@ -513,7 +628,7 @@ def on_save_clicked(obj):
 
     doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
 
-    MyReport = AncestorReport(db,active_person,outputName,max_gen,pgbrk,doc)
+    MyReport = DetAncestorReport(db,active_person,outputName,max_gen,pgbrk,doc)
     MyReport.write_report()
 
     utils.destroy_passed_object(obj)
@@ -636,10 +751,10 @@ class reportOptions:
         #self.noSourceNotes= reportOptions.Yes
 
         #Replace missing Place with ___________
-        self.blankPlace= reportOptions.Yes
+        self.blankPlace= reportOptions.No
 
         #Replace missing dates with __________
-        self.blankDate= reportOptions.Yes
+        self.blankDate= reportOptions.No
 
         #Omit country code
         #self.noCountryInfo= reportOptions.No
@@ -649,6 +764,9 @@ class reportOptions:
 
         #Add "Died at the age of NN" in text
         self.calcAgeFlag= reportOptions.Yes
+
+        #Add Photos and Images to report
+        self.addImages= reportOptions.Yes
 
         #Omit sensitive information such as birth, christening, marriage
         #   for living after XXXXX date.
@@ -664,27 +782,31 @@ class reportOptions:
         #else:
             #self.images.append(key, fname, align, width, height)
 
-    def calcAge(self, birth, death):
+    def calcAge(self, ind):
         ### Calulate age ###
 
+        birth= ind.getBirth().getDateObj().get_start_date()
+        death= ind.getDeath().getDateObj().get_start_date()
+        #print "birth=", birth.__dict__
+        #print "death=", death.__dict__
         self.t= ""
-        if birth.year != -1 and death.year != -1:
-            self.age= death.year - birth.year
+        if birth.getYear() != -1 and death.getYear() != -1:
+            self.age= death.getYear() - birth.getYear()
             self.units= "year"
-            if birth.month != -1 and death.month != -1:
-                if birth.month > death.month:
+            if birth.getMonth() != -1 and death.getMonth() != -1:
+                if birth.getMonth() > death.getMonth():
                     self.age= self.age -1
-                if birth.day != -1 and death.day != -1:
-                    if birth.month == death.month and birth.day > death.day:
+                if birth.getDay() != -1 and death.getDay() != -1:
+                    if birth.getMonth() == death.getMonth() and birth.getDay() > death.getDay():
                         self.age= self.age -1
                         self.units= "month"
                     if self.age == 0:
-                        self.age= death.month - birth.month   # calc age in months
-                        if birth.day > death.day:
+                        self.age= death.getMonth() - birth.getMonth()   # calc age in months
+                        if birth.getDay() > death.getDay():
                             self.age= self.age - 1
                         if self.age == 0:
-                            self.age= death.day + 31 - birth.day # calc age in days
+                            self.age= death.getDay() + 31 - birth.getDay() # calc age in days
                             self.units= "day"
-            self.t= " at the age of %d %s" % (self.age, self.units)
+            self.t= _(" at the age of %d %s") % (self.age, self.units)
             if self.age > 1:  self.t= self.t + "s"
         return self.t
