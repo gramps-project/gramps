@@ -154,6 +154,10 @@ def find_goto_to(person):
     goto_active_person()
     update_display(0)
 
+def on_gramps_home_page_activate(obj):
+    import gnome.url
+    gnome.url.show("http://gramps.sourceforge.net")
+
 #-------------------------------------------------------------------------
 #
 # Merge
@@ -804,6 +808,7 @@ def change_sort(column):
 def sort_person_list():
     person_list.freeze()
     person_list.sort()
+    person_list.sort()
     if ListColors.get_enable():
         try:
             oddbg = gtk.GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
@@ -893,6 +898,7 @@ def modify_statusbar():
         else:
             name = pname
         statusbar.set_status(name)
+    return 0
 	
 #-------------------------------------------------------------------------
 #
@@ -1309,7 +1315,7 @@ def redisplay_person_list(person):
 
                 person_list.set_row_data(0,pos2)
 
-        sort_person_list()
+    sort_person_list()
 
 #-------------------------------------------------------------------------
 #
@@ -1781,6 +1787,9 @@ def on_home_clicked(obj):
 #-------------------------------------------------------------------------
 def on_add_bookmark_activate(obj):
     bookmarks.add(active_person)
+    name = Config.nameof(active_person)
+    statusbar.set_status(_("%s has been bookmarked") % name)
+    gtk.timeout_add(5000,modify_statusbar)
 
 def on_edit_bookmarks_activate(obj):
     bookmarks.edit()
@@ -1943,7 +1952,7 @@ def main(arg):
     
     person_list.column_titles_active()
     set_sort_arrow(sort_column,sort_direct)
-
+    change_sort(sort_column)
 
     gtop.signal_autoconnect({
         "delete_event"                      : delete_event,
@@ -2020,6 +2029,7 @@ def main(arg):
         "on_spouselist_changed"             : on_spouselist_changed,
         "on_swap_clicked"                   : on_swap_clicked,
         "on_tools_clicked"                  : on_tools_clicked,
+        "on_gramps_home_page_activate"      : on_gramps_home_page_activate,
         "on_writing_extensions_activate"    : on_writing_extensions_activate,
         })	
 
