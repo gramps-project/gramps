@@ -15,32 +15,34 @@ dist_pkgdata_DATA = \
 	gramps.svg \
 	gramps.keys \
 	gramps.mime \
+	gramps.xml \
 	gramps.schemas
 
 EXTRA_DIST = $(dist_pkgdata_DATA)
 
 install-schemas:
-	$(mkdir_p) $(DESTDIR)$(sysconfdir)/gconf/schemas
+	$(INSTALL) -d $(DESTDIR)$(sysconfdir)/gconf/schemas
 	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(sysconfdir)/gconf/schemas
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
+	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-install-rule $(top_srcdir)/src/data/gramps.schemas
 	pkill -HUP gconfd
 
 install-data-local:    install-schemas
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-	$(INSTALL_DATA) gramps.desktop $(DESTDIR)$(prefix)/share/applications
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/applications
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.desktop $(DESTDIR)$(prefix)/share/applications
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
-	$(INSTALL_DATA) gnome-mime-application-x-*.png $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gnome-mime-application-x-*.png $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/application-registry
-	$(INSTALL_DATA) gramps.applications $(DESTDIR)$(prefix)/share/application-registry
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.applications $(DESTDIR)$(prefix)/share/application-registry
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime/packages
-	$(INSTALL_DATA) gramps.xml $(DESTDIR)$(prefix)/share/mime/packages
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.xml $(DESTDIR)$(prefix)/share/mime/packages
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime-info
-	$(INSTALL_DATA) gramps.keys gramps.mime $(DESTDIR)$(prefix)/share/mime-info
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.keys $(DESTDIR)$(prefix)/share/mime-info
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.mime $(DESTDIR)$(prefix)/share/mime-info
 	update-mime-database $(DESTDIR)$(prefix)/share/mime
 
 uninstall-local:
-	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
+	-rm $(DESTDIR)$(prefix)/share/applications/gramps.desktop
 	-rm $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-*.png
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
@@ -48,5 +50,5 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
 	-rm $(DESTDIR)$(sysconfdir)/gconf/schemas/gramps.schemas
 	update-mime-database $(DESTDIR)$(prefix)/share/mime
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
+	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-uninstall-rule $(top_srcdir)/src/data/gramps.schemas
