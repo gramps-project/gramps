@@ -11,6 +11,9 @@
 	* src/ImageSelect.py (LocalMediaProperties.__init__, 
 	GlobalMediaProperties.update_info): Mark translatable string.
 
+	* src/docgen/HtmlDoc.py (add_photo): Enforce given image size.
+	Add optional alt argument.
+
 2004-03-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: TreeView enhancements
 	* src/PeopleModel.py: TreeView enhancements
