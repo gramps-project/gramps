@@ -1,3 +1,6 @@
+2004-01-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/AncestorChart2.py: first pass at multipage output
+
 2004-01-16  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/mainwin.xml: Update.
 	* doc/gramps-manual/fr/usage.xml: Update.
