@@ -1,5 +1,5 @@
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen filters plugins data po
+SUBDIRS = docgen filters plugins data po calendars
 
 # For intl. support, how do we compile?
 GVFSINC = @GPREF@

@@ -38,6 +38,11 @@ import time
 #
 #-------------------------------------------------------------------------
 import Calendar
+import Gregorian
+import Julian
+import Hebrew
+import FrenchRepublic
+
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -48,10 +53,10 @@ from intl import gettext as _
 UNDEF = -999999
 
 _calendar_val = [
-    Calendar.Gregorian,
-    Calendar.Julian,
-    Calendar.Hebrew,
-    Calendar.FrenchRepublic,
+    Gregorian.Gregorian,
+    Julian.Julian,
+    Hebrew.Hebrew,
+    FrenchRepublic.FrenchRepublic,
     ]
 
 #-------------------------------------------------------------------------
@@ -88,7 +93,7 @@ class Date:
             self.stop = None
             self.range = 0
             self.text = ""
-            self.calendar = Calendar.Gregorian()
+            self.calendar = Gregorian.Gregorian()
 
     def get_calendar(self):
         return self.calendar
@@ -242,8 +247,12 @@ class Date:
         return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not self.text
 
     def isValid(self):
-        return self.range != -1 
-
+        if self.range == -1:
+            return 0
+        elif self.range:
+            return self.start.getValid() and self.stop.getValid()
+        return self.start.getValid()
+    
     def isRange(self):
         return self.range == 1
         
@@ -267,7 +276,7 @@ class SingleDate:
             self.day = UNDEF
             self.year = UNDEF
             self.mode = Calendar.EXACT
-            self.calendar = Calendar.Gregorian()
+            self.calendar = Gregorian.Gregorian()
 
     def setMode(self,val):
         self.mode = self.calendar.set_mode_value(val)
@@ -316,7 +325,9 @@ class SingleDate:
 
     def getValid(self):
         """ Returns true if any part of the date is valid"""
-        return self.year != UNDEF or self.month != UNDEF or self.day != UNDEF
+        if self.year == UNDEF and self.month == UNDEF and self.day == UNDEF:
+            return 1
+        return self.calendar.check(self.year,self.month,self.day)
 
     def setMonthStr(self,text):
         self.calendar.set_month_string(text)
@@ -430,53 +441,3 @@ def compare_dates(f,s):
             return cmp(first.month,second.month)
         else:
             return cmp(first.day,second.day)
-            
-
-if __name__ == "__main__":
-
-    a = Date()
-    a.set("24 May 1961")
-    print "Gregorian : ", a.getDate()
-    a.set(a.getDate())
-    print "Gregorian : ", a.getDate()
-
-    a.set_calendar(Calendar.Julian)
-    print "Julian : ", a.getDate()
-    a.set(a.getDate())
-    print "Julian : ", a.getDate()
-
-    a.set_calendar(Calendar.Gregorian)
-    print "Gregorian : ", a.getDate()
-    a.set(a.getDate())
-    print "Gregorian : ", a.getDate()
-
-    a.set_calendar(Calendar.Hebrew)
-    print "Hebrew : ", a.getDate()
-    a.set(a.getDate())
-    print "Hebrew : ", a.getDate()
-
-    a.set_calendar(Calendar.Gregorian)
-    print "Gregorian : ", a.getDate()
-    a.set(a.getDate())
-    print "Gregorian : ", a.getDate()
-
-    a.set_calendar(Calendar.Persian)
-    print "Persian : ", a.getDate()
-    a.set(a.getDate())
-    print "Persian : ", a.getDate()
-
-    a.set_calendar(Calendar.Gregorian)
-    print "Gregorian : ", a.getDate()
-    a.set(a.getDate())
-    print "Gregorian : ", a.getDate()
-
-    a.set_calendar(Calendar.Islamic)
-    print "Islamic : ", a.getDate()
-    a.set(a.getDate())
-    print "Islamic : ", a.getDate()
-
-    a.set_calendar(Calendar.Gregorian)
-    print "Gregorian : ", a.getDate()
-    a.set(a.getDate())
-    print "Gregorian : ", a.getDate()
-
