@@ -1,3 +1,7 @@
+2004-03-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LPRDoc.py: Set and maintain self.brand_new_page.
+	Use constant factor for line spacing for given font size.
+
 2004-03-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: TreeView enhancements
 	* src/PeopleModel.py: TreeView enhancements
