@@ -61,6 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/gramps/*.glade
 %{prefix}/share/gramps/*.xpm
 %{prefix}/share/gramps/*.jpg
+%{prefix}/share/gramps/*.png
 %{prefix}/share/gramps/filters/*.py
 %{prefix}/share/gramps/filters/*.pyo
 %{prefix}/share/gramps/plugins/*.py

@@ -405,7 +405,7 @@
 	<class>GtkFrame</class>
 	<name>frame2</name>
 	<border_width>8</border_width>
-	<label>Match Treshold</label>
+	<label>Match Threshold</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>

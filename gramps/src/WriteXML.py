@@ -281,7 +281,7 @@ def write_attribute_list(g, list, indent=3):
     sp = '  ' * indent
     for attr in list:
         g.write('%s<attribute%s type="%s" value="%s"' % \
-                (sp,conf_priv(attr),attr.getType(),attr.getValue()))
+                (sp,conf_priv(attr),attr.getType(),fix(attr.getValue())))
         slist = attr.getSourceRefList()
         note = attr.getNote()
         if note == "" and len(slist) == 0:

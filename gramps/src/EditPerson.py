@@ -621,12 +621,15 @@ class EditPerson:
         if photo == None:
             self.get_widget("personPix").load_imlib(const.empty_image)
         else:
-            i = GdkImlib.Image(photo)
-            scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
-            x = int(scale*(i.rgb_width))
-            y = int(scale*(i.rgb_height))
-            i = i.clone_scaled_image(x,y)
-            self.get_widget("personPix").load_imlib(i)
+            try:
+                i = GdkImlib.Image(photo)
+                scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
+                x = int(scale*(i.rgb_width))
+                y = int(scale*(i.rgb_height))
+                i = i.clone_scaled_image(x,y)
+                self.get_widget("personPix").load_imlib(i)
+            except:
+                self.get_widget("personPix").load_imlib(const.empty_image)
 
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
