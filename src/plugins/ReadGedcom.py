@@ -768,7 +768,10 @@ class GedcomParser:
                 self.person.getPrimaryName().addSourceRef(source_ref)
 	    elif matches[1] == "REFN":
                 if intRE.match(matches[2]):
-                    self.refn[self.person.getId()] = int(matches[2])
+                    try:
+                        self.refn[self.person.getId()] = int(matches[2])
+                    except:
+                        pass
 	    elif matches[1] in ["AFN","CHAN","REFN","ASSO"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:
