@@ -110,13 +110,6 @@ unknown      = _("unknown")
 #
 #-------------------------------------------------------------------------
 
-output_formats = [
-    "OpenOffice",
-    "AbiWord",
-    "PDF",
-    "HTML"
-    ]
-
 childRelations = {
     _("Birth")     : "Birth",
     _("Adopted")   : "Adopted",

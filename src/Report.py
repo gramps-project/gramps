@@ -373,11 +373,11 @@ class ReportDialog:
         this report.  This menu will be generated based upon the type
         of document (text, draw, graph, etc. - a subclass), whether or
         not the document requires table support, etc."""
-        assert 0, _("The make_doc_menu function must be overridden.")
+        assert 0, "The make_doc_menu function must be overridden."
 
     def make_document(self):
         """Create a document of the type selected by the user."""
-        assert 0, _("The make_document function must be overridden.")
+        assert 0, "The make_document function must be overridden."
 
     def doc_type_changed(self, obj):
         """This routine is called when the user selects a new file
@@ -850,7 +850,7 @@ class ReportDialog:
         routine should either write the data directly to the file, or
         better yet, should create a subclass of a Report that will
         write the data to a file."""
-        assert 0, _("The make_report function must be overridden.")
+        assert 0, "The make_report function must be overridden."
 
     #------------------------------------------------------------------------
     #
