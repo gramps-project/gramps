@@ -674,6 +674,8 @@ class XmlWriter:
         self.write_line("suffix",name.get_suffix(),index+1)
         self.write_line("patronymic",name.get_patronymic(),index+1)
         self.write_line("title",name.get_title(),index+1)
+        if name.date:
+            self.write_date(name.date,4)
         if name.get_note() != "":
             self.write_note("note",name.get_note_object(),index+1)
         for s in name.get_source_references():

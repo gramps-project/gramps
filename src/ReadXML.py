@@ -154,7 +154,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     for m_id in database.get_media_object_handles():
         mobject = database.get_object_from_handle(m_id)
         oldfile = mobject.get_path()
-        if oldfile[0] != '/':
+        if oldfile and oldfile[0] != '/':
             if first:
                 os.mkdir(img_dir)
                 first = 0
@@ -979,6 +979,8 @@ class GrampsParser:
             dv = self.object.get_date_object()
         elif self.address:
             dv = self.address.get_date_object()
+        elif self.name:
+            dv = self.name.get_date_object()
         else:
             dv = self.event.get_date_object()
 
@@ -1031,6 +1033,8 @@ class GrampsParser:
             dv = self.object.get_date_object()
         elif self.address:
             dv = self.address.get_date_object()
+        elif self.name:
+            dv = self.name.get_date_object()
         else:
             dv = self.event.get_date_object()
 

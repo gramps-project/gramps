@@ -33,7 +33,7 @@ from RelLib import *
 from GrampsDbBase import *
 from bsddb import dbshelve, db
 
-_DBVERSION = 2
+_DBVERSION = 3
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -390,4 +390,18 @@ class GrampsBSDDB(GrampsDbBase):
                 self.commit_person(person,None)
                 data = cursor.next()
             cursor.close()
-        self.metadata['version'] = 2
+        if version < 3:
+            cursor = self.get_person_cursor()
+            data = cursor.first()
+            while data:
+                handle,info = data
+                person = Person()
+                person.unserialize(info)
+
+                person.primary_name.date = None
+                for name in person.alternate_names:
+                    name.date = None
+                self.commit_person(person,None)
+                data = cursor.next()
+            cursor.close()
+        self.metadata['version'] = 3

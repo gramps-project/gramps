@@ -46,6 +46,8 @@ import AutoComp
 import Sources
 import RelLib
 import NameDisplay
+import DateEdit
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -81,6 +83,13 @@ class NameEditor:
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.patronymic_field = self.top.get_widget("patronymic")
         self.combo = self.top.get_widget("alt_surname_list")
+        self.date = self.top.get_widget('date')
+        self.date_obj = self.name.get_date_object()
+        self.date.set_text(DateHandler.displayer.display(self.date_obj))
+
+        self.date_check = DateEdit.DateEdit(
+            self.date_obj, self.date,
+            self.top.get_widget("date_stat"), self.window)
 
         AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
         self.surname_field = self.combo.get_child()
