@@ -1,3 +1,8 @@
+2003-06-30  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py (generation): Report on the correct
+	number of generations (was out by one).  Fixed text style for
+	'(no photo)'.
+
 2003-06-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FtmStyleDescendants.py: handle missing "endnotes"
 	* src/DisplayTrace.py: identify more linux versions

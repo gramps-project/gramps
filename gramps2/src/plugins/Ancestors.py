@@ -192,7 +192,7 @@ class AncestorsReport (Report.Report):
 
     def generation (self, generations, families, already_described,
                     thisgen = 2):
-        if generations > 0 and len (families):
+        if generations > 1 and len (families):
             people = []
             for family in families:
                 people.extend (self.family (family, already_described))
@@ -292,7 +292,9 @@ class AncestorsReport (Report.Report):
 
                 if len (photos) == 0:
                     ret.append ((self.doc.start_cell, ["NoPhoto"]))
+                    ret.append ((self.doc.start_paragraph, ["NoPhotoText"]))
                     ret.append ((self.doc.write_text, ["(no photo)"]))
+                    ret.append ((self.doc.end_paragraph, []))
                     ret.append ((self.doc.end_cell, []))
                 else:
                     ret.append ((self.doc.start_cell, ["Photo"]))
@@ -629,6 +631,10 @@ def _make_default_style(self):
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
     self.default_style.add_style("Entry",para)
+
+    para = TextDoc.ParagraphStyle ()
+    para.set_description(_('Text style for missing photo.'))
+    self.default_style.add_style("NoPhotoText", para)
 
     details_font = TextDoc.FontStyle()
     details_font.set(face=TextDoc.FONT_SANS_SERIF,size=8,italic=1)
