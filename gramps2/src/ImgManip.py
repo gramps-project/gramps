@@ -21,13 +21,7 @@
 import os
 import const
 import signal
-
-#-------------------------------------------------------------------------
-#
-# Check for the python imaging library
-#
-#-------------------------------------------------------------------------
-
+import md5
 import popen2
 import gtk
 
@@ -94,4 +88,28 @@ class ImgManip:
         return self.fmt_scale_data(x,y,"png")
 
 
+def _build_thumb_path(path):
+    base = os.path.expanduser('~/.gramps/thumb')
+    m = md5.md5(path)
+    return os.path.join(base,m.hexdigest()+'.jpg')
 
+def set_thumbnail_image(path):
+    try:
+        pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+        w = pixbuf.get_width()
+        h = pixbuf.get_height()
+        scale = const.thumbScale / (float(max(w,h)))
+        
+        pw = int(w*scale)
+        ph = int(h*scale)
+        
+        pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
+        pixbuf.save(_build_thumb_path(path),"jpeg")
+    except:
+        print "Could not create thumbnail for",path
+
+def get_thumbnail_image(path):
+    filename = _build_thumb_path(path)
+    if not os.path.isfile(filename):
+        set_thumbnail_image(path)
+    return gtk.gdk.pixbuf_new_from_file(filename)

@@ -235,6 +235,7 @@ class GedcomParser:
         self.dp = DateParser.DateParser()
         self.db = dbase
         self.person = None
+        self.media_map = {}
         self.fmap = {}
         self.smap = {}
         self.nmap = {}
@@ -1108,12 +1109,16 @@ class GedcomParser:
                 self.warn(string.join(path,"\n\t\t"))
                 self.warn('\n')
             else:
-                photo = RelLib.MediaObject()
-                photo.set_path(path)
-                photo.set_description(title)
-                photo.set_mime_type(Utils.get_mime_type(path))
-                self.db.add_object(photo, self.trans)
-                self.db.set_thumbnail_image(photo.get_handle(),path)
+                photo_handle = self.media_map.get(path)
+                if photo_handle == None:
+                    photo = RelLib.MediaObject()
+                    photo.set_path(path)
+                    photo.set_description(title)
+                    photo.set_mime_type(Utils.get_mime_type(path))
+                    self.db.add_object(photo, self.trans)
+                    self.media_map[path] = photo.get_handle()
+                else:
+                    photo = self.db.get_object_from_handle(photo_handle)
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
                 self.person.add_media_reference(oref)

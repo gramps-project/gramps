@@ -87,6 +87,9 @@
 4 TEXT Alice Paula Perkins born 22 Nov 1933, Sparks, Washoe Co, Nevada daughter of Paul Perkins and Stella Mason.
 2 SOUR @S1601@
 1 SEX F
+1 OBJE
+2 FROM jpeg
+2 FILE foo/O0.jpg
 1 BIRT
 2 DATE 22 NOV 1933
 2 PLAC Sparks, Washoe Co., NV
