@@ -15,7 +15,7 @@ all:
 
 install:
 	${INSTALL} -d ${plugins}
-	${INSTALL} *.py *.pyc *.pyo *.glade ${plugins}
+	${INSTALL} *.py *.pyo *.glade ${plugins}
 
 uninstall:
 	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade ${plugins}/*.xpm
