@@ -64,19 +64,64 @@ class FamilyView:
     def __init__(self,parent):
         self.parent = parent
         self.top = parent.gtop
-        self.ap_data = self.top.get_widget('ap_data')
+        self.family = None
+        self.init_interface()
+
+    def set_widgets(self,val):
+        if (val):
+            self.parent.views.get_nth_page(1).hide()
+            self.parent.views.get_nth_page(2).show()
+            self.ap_data = self.top.get_widget('ap_data2')
+            self.swap_btn = self.top.get_widget('swap_btn2')
+            self.ap_parents = self.top.get_widget('ap_parents2')
+            self.add_spouse_btn = self.top.get_widget('add_spouse2')
+            self.sp_parents = self.top.get_widget('sp_parents2')
+            self.spouse_list = self.top.get_widget('sp_list2')
+            self.select_spouse_btn = self.top.get_widget('select_spouse2')
+            self.remove_spouse_btn = self.top.get_widget('remove_spouse2')
+            self.child_list = self.top.get_widget('chlist2')
+            self.top.get_widget('add_parents2').connect('clicked',self.add_parents_clicked)
+            self.top.get_widget('del_parents2').connect('clicked',self.del_parents_clicked)
+            self.top.get_widget('add_spparents2').connect('clicked',self.add_sp_parents)
+            self.top.get_widget('del_spparents2').connect('clicked',self.del_sp_parents)
+            self.top.get_widget('fam_back2').connect('clicked',self.child_back)
+            self.top.get_widget('del_child_btn2').connect('clicked',self.remove_child_clicked)
+            self.top.get_widget('add_child_btn2').connect('clicked',self.add_child_clicked)
+            self.top.get_widget('select_child2').connect('clicked',self.select_child_clicked)
+            self.top.get_widget('ap_parents_btn2').connect('clicked',self.ap_parents_clicked)
+            self.top.get_widget('sp_parents_btn2').connect('clicked',self.sp_parents_clicked)
+        else:
+            self.parent.views.get_nth_page(1).show()
+            self.parent.views.get_nth_page(2).hide()
+            self.ap_data = self.top.get_widget('ap_data')
+            self.swap_btn = self.top.get_widget('swap_spouse_btn')
+            self.ap_parents = self.top.get_widget('ap_parents')
+            self.add_spouse_btn = self.top.get_widget('add_spouse')
+            self.sp_parents = self.top.get_widget('sp_parents')
+            self.spouse_list = self.top.get_widget('sp_list')
+            self.select_spouse_btn = self.top.get_widget('select_spouse')
+            self.remove_spouse_btn = self.top.get_widget('remove_spouse')
+            self.child_list = self.top.get_widget('chlist')
+            self.top.get_widget('add_parents').connect('clicked',self.add_parents_clicked)
+            self.top.get_widget('del_parents').connect('clicked',self.del_parents_clicked)
+            self.top.get_widget('add_spparents').connect('clicked',self.add_sp_parents)
+            self.top.get_widget('del_spparents').connect('clicked',self.del_sp_parents)
+            self.top.get_widget('fam_back').connect('clicked',self.child_back)
+            self.top.get_widget('del_child_btn').connect('clicked',self.remove_child_clicked)
+            self.top.get_widget('add_child_btn').connect('clicked',self.add_child_clicked)
+            self.top.get_widget('select_child').connect('clicked',self.select_child_clicked)
+            self.top.get_widget('ap_parents_btn').connect('clicked',self.ap_parents_clicked)
+            self.top.get_widget('sp_parents_btn').connect('clicked',self.sp_parents_clicked)
+
+    def init_interface(self):
+        self.set_widgets(GrampsCfg.familyview)
+        
         self.ap_model = gtk.ListStore(gobject.TYPE_STRING)
         self.ap_data.set_model(self.ap_model)
         column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.ap_data.append_column(column)
         self.ap_data.connect('button-press-event',self.edit_active_person)
 
-        self.swap_btn = self.top.get_widget('swap_spouse_btn')
-        self.add_spouse_btn = self.top.get_widget('add_spouse')
-        self.select_spouse_btn = self.top.get_widget('select_spouse')
-        self.remove_spouse_btn = self.top.get_widget('remove_spouse')
-
-        self.ap_parents = self.top.get_widget('ap_parents')
         self.ap_parents_model = gtk.ListStore(gobject.TYPE_STRING)
         self.ap_parents.set_model(self.ap_parents_model)
         self.ap_selection = self.ap_parents.get_selection()
@@ -84,7 +129,6 @@ class FamilyView:
         self.ap_parents.append_column(column)
         self.ap_parents.connect('button-press-event',self.edit_ap_parents)
 
-        self.sp_parents = self.top.get_widget('sp_parents')
         self.sp_parents_model = gtk.ListStore(gobject.TYPE_STRING)
         self.sp_parents.set_model(self.sp_parents_model)
         self.sp_selection = self.sp_parents.get_selection()
@@ -92,27 +136,15 @@ class FamilyView:
         self.sp_parents.append_column(column)
         self.sp_parents.connect('button-press-event',self.edit_sp_parents)
 
-        self.spouse_list = self.top.get_widget('sp_list')
         self.spouse_model = gtk.ListStore(gobject.TYPE_STRING)
         self.spouse_list.set_model(self.spouse_model)
         self.spouse_selection = self.spouse_list.get_selection()
         self.spouse_selection.connect('changed',self.spouse_changed)
         self.spouse_list.connect('button-press-event',self.edit_relationship)
-
-        self.top.get_widget('add_parents').connect('clicked',self.add_parents_clicked)
-        self.top.get_widget('del_parents').connect('clicked',self.del_parents_clicked)
-        self.top.get_widget('add_spparents').connect('clicked',self.add_sp_parents)
-        self.top.get_widget('del_spparents').connect('clicked',self.del_sp_parents)
-        self.top.get_widget('fam_back').connect('clicked',self.child_back)
-        self.top.get_widget('del_child_btn').connect('clicked',self.remove_child_clicked)
-        self.top.get_widget('add_child_btn').connect('clicked',self.add_child_clicked)
-        self.top.get_widget('select_child').connect('clicked',self.select_child_clicked)
         
         column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.spouse_list.append_column(column)
         self.selected_spouse = None
-
-        self.child_list = self.top.get_widget('chlist')
 
         self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
         self.child_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
@@ -129,9 +161,6 @@ class FamilyView:
 
         self.child_list.connect('button-press-event',self.on_child_list_button_press)
 
-        self.top.get_widget('ap_parents_btn').connect('clicked',self.ap_parents_clicked)
-        self.top.get_widget('sp_parents_btn').connect('clicked',self.sp_parents_clicked)
-        
         self.swap_btn.connect('clicked',self.spouse_swap)
         self.remove_spouse_btn.connect('clicked',self.remove_spouse)
         self.add_spouse_btn.connect('clicked',self.add_spouse)
@@ -140,8 +169,6 @@ class FamilyView:
         self.child_list.set_model(self.child_model)
         self.child_list.set_search_column(0)
         self.child_selection = self.child_list.get_selection()
-
-        self.family = None
 
         Utils.build_columns(self.child_list,
                             [ ('',30,0), (_('Name'),250,-1), (_('ID'),50,-1),

@@ -89,6 +89,14 @@ _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
 
 _sel_mode = gtk.SELECTION_MULTIPLE
 
+PERSON_VIEW   = 0
+FAMILY_VIEW1  = 1
+FAMILY_VIEW2  = 2
+PEDIGREE_VIEW = 3
+SOURCE_VIEW   = 4
+PLACE_VIEW    = 5
+MEDIA_VIEW    = 6
+
 #-------------------------------------------------------------------------
 #
 # Main GRAMPS class
@@ -410,6 +418,7 @@ class Gramps:
             "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
             "on_exit_activate" : self.on_exit_activate,
             "on_family1_activate" : self.on_family1_activate,
+            "on_family2_activate" : self.on_family2_activate,
             "on_find_activate" : self.on_find_activate,
             "on_findname_activate" : self.on_findname_activate,
             "on_home_clicked" : self.on_home_clicked,
@@ -652,35 +661,35 @@ class Gramps:
    
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == 0:
+        if cpage == PERSON_VIEW:
             self.load_selected_people(obj)
-        elif cpage == 3:
+        elif cpage == SOURCE_VIEW:
             self.source_view.on_edit_clicked(obj)
-        elif cpage == 4:
+        elif cpage == PLACE_VIEW:
             self.place_view.on_edit_clicked(obj)
-        elif cpage == 5:
+        elif cpage == MEDIA_VIEW:
             self.media_view.on_edit_clicked(obj)
 
     def add_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == 0:
+        if cpage == PERSON_VIEW:
             self.load_new_person(obj)
-        elif cpage == 3:
+        elif cpage == SOURCE_VIEW:
             self.source_view.on_add_clicked(obj)
-        elif cpage == 4:
+        elif cpage == PLACE_VIEW:
             self.place_view.on_add_place_clicked(obj)
-        elif cpage == 5:
+        elif cpage == MEDIA_VIEW:
             self.media_view.on_add_clicked(obj)
 
     def remove_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == 0:
+        if cpage == PERSON_VIEW:
             self.delete_person_clicked(obj)
-        elif cpage == 3:
+        elif cpage == SOURCE_VIEW:
             self.source_view.on_delete_clicked(obj)
-        elif cpage == 4:
+        elif cpage == PLACE_VIEW:
             self.place_view.on_delete_clicked(obj)
-        elif cpage == 5:
+        elif cpage == MEDIA_VIEW:
             self.media_view.on_delete_clicked(obj)
 
     def enable_buttons(self,val):
@@ -758,17 +767,17 @@ class Gramps:
         
     def on_find_activate(self,obj):
         """Display the find box"""
-        if self.views.get_current_page() == 4:
+        if self.views.get_current_page() == PLACE_VIEW:
             if self.find_place:
                 self.find_place.show()
             else:
                 self.find_place = Find.FindPlace(self.find_goto_place,self.db)
-        elif self.views.get_current_page() == 3:
+        elif self.views.get_current_page() == SOURCE_VIEW:
             if self.find_source:
                 self.find_source.show()
             else:
                 Find.FindSource(self.find_goto_source,self.db)
-        elif self.views.get_current_page() == 5:
+        elif self.views.get_current_page() == MEDIA_VIEW:
             if self.find_media:
                 self.find_media.show()
             else:
@@ -813,7 +822,7 @@ class Gramps:
     def on_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""
         page = self.views.get_current_page()
-        if page == 0:
+        if page == PERSON_VIEW:
 
             mlist = self.person_tree.get_selected_objects()
 
@@ -829,7 +838,7 @@ class Gramps:
                 p2 = self.db.getPerson(mlist[1])
                 MergeData.MergePeople(self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
-        elif page == 4:
+        elif page == PLACE_VIEW:
             self.place_view.merge()
 
     def delete_event(self,widget, event):
@@ -1036,18 +1045,18 @@ class Gramps:
     def update_display(self,changed):
         """Incremental display update, update only the displayed page"""
         page = self.views.get_current_page()
-        if page == 0:
+        if page == PERSON_VIEW:
             if changed:
                 self.apply_filter()
             else:
                 self.goto_active_person()
-        elif page == 1:
+        elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
             self.family_view.load_family()
-        elif page == 2:
+        elif page == PEDIGREE_VIEW:
             self.pedigree_view.load_canvas(self.active_person)
-        elif page == 3:
+        elif page == SOURCE_VIEW:
             self.source_view.load_sources()
-        elif page == 4:
+        elif page == PLACE_VIEW:
             if len(self.db.getPlaceKeys()) > 2000:
                 self.status_text(_('Updating display - this may take a few seconds...'))
             else:
@@ -1784,19 +1793,23 @@ class Gramps:
     
     def on_person_list1_activate(self,obj):
         """Switches to the person list view"""
-        self.views.set_current_page(0)
+        self.views.set_current_page(PERSON_VIEW)
 
     def on_family1_activate(self,obj):
         """Switches to the family view"""
-        self.views.set_current_page(1)
+        self.views.set_current_page(FAMILY_VIEW1)
+
+    def on_family2_activate(self,obj):
+        """Switches to the family view"""
+        self.views.set_current_page(FAMILY_VIEW2)
 
     def on_pedigree1_activate(self,obj):
         """Switches to the pedigree view"""
-        self.views.set_current_page(2)
+        self.views.set_current_page(PEDIGREE_VIEW)
 
     def on_sources_activate(self,obj):
         """Switches to the sources view"""
-        self.views.set_current_page(3)
+        self.views.set_current_page(SOURCE_VIEW)
 
     def on_places_activate(self,obj):
         """Switches to the places view"""
@@ -1804,36 +1817,36 @@ class Gramps:
             self.status_text(_('Updating display - this may take a few seconds...'))
         else:
             self.status_text(_('Updating display...'))
-        self.views.set_current_page(4)
+        self.views.set_current_page(PLACE_VIEW)
         self.modify_statusbar()
 
     def on_media_activate(self,obj):
         """Switches to the media view"""
-        self.views.set_current_page(5)
+        self.views.set_current_page(MEDIA_VIEW)
 
     def on_views_switch_page(self,obj,junk,page):
         """Load the appropriate page after a notebook switch"""
-        if page == 0:
+        if page == PERSON_VIEW:
             self.enable_buttons(1)
             self.goto_active_person()
             self.merge_button.set_sensitive(1)
-        elif page == 1:
+        elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
             self.enable_buttons(0)
             self.merge_button.set_sensitive(0)
             self.family_view.load_family()
-        elif page == 2:
+        elif page == PEDIGREE_VIEW:
             self.enable_buttons(0)
             self.merge_button.set_sensitive(0)
             self.pedigree_view.load_canvas(self.active_person)
-        elif page == 3:
+        elif page == SOURCE_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
             self.source_view.load_sources()
-        elif page == 4:
+        elif page == PLACE_VIEW:
             self.enable_buttons(1)
             self.place_view.load_places()
             self.merge_button.set_sensitive(1)
-        elif page == 5:
+        elif page == MEDIA_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
             self.media_view.load_media()
