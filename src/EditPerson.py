@@ -1086,7 +1086,7 @@ class EditPerson:
         """Invokes the address editor to add a new address"""
         import AddrEdit
         AddrEdit.AddressEditor(self,None,self.addr_edit_callback,self.window,
-                               self.update_death_info, self.update_death_info)
+                               self.update_sources)
 
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
@@ -1658,7 +1658,7 @@ class EditPerson:
         store,node = self.ptree.get_selected()
         if node:
             AddrEdit.AddressEditor(
-                self, self.ptree. get_object(node), self.addr_edit_callback,
+                self, self.ptree.get_object(node), self.addr_edit_callback,
                 self.window, self.update_sources)
 
     def on_update_url_clicked(self,obj):
