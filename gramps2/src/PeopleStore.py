@@ -222,27 +222,25 @@ class PeopleStore:
 
     def expand_row(self,name,iter=None):
         path = self.model.get_path(self.tree_roots[name])
+        self.parent.parent.status_text(_('Updating display...'))
         self.tree.expand_row(path,1)
-        self.tree.expand_row(path,1)
+        self.parent.parent.modify_statusbar()
 
     def fill_row(self,name,iter=None):
         if not iter:
             iter = self.tree_roots[name]
         child = self.model.iter_children(iter)
         node_list = self.tree_list[name]
+
         if self.model.get_value(child,0) is None:
             self.model.remove(child)
             for d in self.tree_list[name]:
                 new_iter = self.model.append(iter)
-                col = 0
-                for o in d[:-1]:
-                    self.model.set_value(new_iter,col,o)
-                    col += 1
-                self.model.set_value(new_iter,_BCOL,pango.WEIGHT_NORMAL)
+                self.model.set(new_iter,0,d[0],1,d[1],2,d[2],3,d[3],4,d[4],
+                               5,d[5],6,d[6],7,d[7])
                 self.parent.id2col[d[1]] = (self,new_iter)
-
 	self.expand_row (name, iter)
-    
+
     def add(self,data,select=0):
         self.count = self.count + 1
 

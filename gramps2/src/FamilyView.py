@@ -423,7 +423,7 @@ class FamilyView:
                    else:
                        AddSpouse.AddSpouse(self.parent.db,self.person,
                                            self.load_family,
-                                           self.parent.redisplay_person_list,
+                                           self.parent.people_view.redisplay_person_list,
                                            self.family)
                except:
                    DisplayTrace.DisplayTrace()
@@ -434,7 +434,7 @@ class FamilyView:
         try:
             AddSpouse.AddSpouse(self.parent.db, self.person,
                                 self.load_family,
-                                self.parent.redisplay_person_list)
+                                self.parent.people_view.redisplay_person_list)
         except:
             DisplayTrace.DisplayTrace()
 
