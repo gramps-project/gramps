@@ -21,6 +21,8 @@
 from RelLib import *
 from GrampsParser import *
 import intl
+_ = intl.gettext
+
 
 import string
 import time
@@ -29,11 +31,19 @@ import os
 from gnome.ui import *
 
 import xml.sax
-import xml.sax.saxexts
 import xml.sax.saxutils
-import xml.parsers.expat
 
-_ = intl.gettext
+#-------------------------------------------------------------------------
+#
+# Try to abstract SAX1 from SAX2
+#
+#-------------------------------------------------------------------------
+try:
+    import xml.sax.saxexts
+    sax = 1
+except:
+    from codecs import *
+    sax = 2
 
 #-------------------------------------------------------------------------
 #
@@ -43,15 +53,23 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 def importData(database, filename, callback):
 
-    parser = xml.sax.saxexts.make_parser()
     basefile = os.path.dirname(filename)
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
-    parser.setDocumentHandler(GrampsParser(database,callback,basefile,1))
-    xml_file = gzip.open(filename,"rb")
 
-    parser.parseFile(xml_file)
+    if sax == 1:
+        parser = xml.sax.saxexts.make_parser()
+        parser.setDocumentHandler(GrampsParser(database,callback,basefile,1))
+        parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
+        xml_file = gzip.open(filename,"rb")
+        parser.parseFile(xml_file)
+    else:
+        parser = xml.sax.make_parser()
+        parser.setContentHandler(GrampsParser(database,callback,basefile,1))
+        xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
+        parser.parse(xml_file)
+        
     xml_file.close()
 
 #-------------------------------------------------------------------------
@@ -62,19 +80,26 @@ def importData(database, filename, callback):
 #-------------------------------------------------------------------------
 def loadData(database, filename, callback):
 
-    parser = xml.sax.saxexts.make_parser()
-
     basefile = os.path.dirname(filename)
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
-    parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
-    parser.setDocumentHandler(GrampsParser(database,callback,basefile,0))
 
     filename = os.path.normpath(filename)
 
+    if sax == 1:
+        parser = xml.sax.saxexts.make_parser()
+        parser.setDocumentHandler(GrampsParser(database,callback,basefile,0))
+        parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
+    else:
+        parser = xml.sax.make_parser()
+        parser.setContentHandler(GrampsParser(database,callback,basefile,0))
+
     try:
-        xml_file = gzip.open(filename,"rb")
+        if sax == 1:
+            xml_file = gzip.open(filename,"rb")
+        else:
+            xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
     except IOError,msg:
         GnomeErrorDialog(filename + _(" could not be opened\n") + str(msg))
         return 0
@@ -83,11 +108,11 @@ def loadData(database, filename, callback):
         return 0
         
     try:
-        parser.parseFile(xml_file)
+        if sax == 1:
+            parser.parseFile(xml_file)
+        else:
+            parser.parse(xml_file)
     except xml.sax.SAXParseException:
-        GnomeErrorDialog(filename + _(" is a corrupt file"))
-        return 0
-    except xml.parsers.expat.ExpatError:
         GnomeErrorDialog(filename + _(" is a corrupt file"))
         return 0
     except IOError,msg:
@@ -97,12 +122,29 @@ def loadData(database, filename, callback):
     except:
         GnomeErrorDialog(_("Could not read ") + filename)
         return 0
-        
+
+
     xml_file.close()
     return 1
 
 
+if __name__ == "__main__":
 
+    import sys
+    import time
+    import profile
+    
+    def lcb(val):
+        pass
+    
+    db = RelDataBase()
+    file = sys.argv[1]
+
+    t1 = time.time()
+
+    loadData(db,file,lcb)
+    t2 = time.time()
+    print t2 - t1
 
 
 
