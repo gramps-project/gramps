@@ -667,11 +667,18 @@ class ReportDialog:
         if max_rows == 0:
             return
 
-        frame = GtkFrame(_("Report Options"))
-        frame.set_border_width(ReportDialog.frame_pad)
-        self.window.vbox.add(frame)
         table = GtkTable(2,max_rows)
-        frame.add(table)
+
+        if len(self.frame_names) == 0:
+            frame = GtkFrame(_("Report Options"))
+            frame.set_border_width(ReportDialog.frame_pad)
+            self.window.vbox.add(frame)
+            frame.add(table)
+        else:
+            self.notebook = GtkNotebook()
+            self.window.vbox.pack_start(self.notebook,padding=ReportDialog.frame_pad)
+            self.notebook.append_page(table,GtkLabel(_("Report Options")))
+            self.notebook.set_border_width(ReportDialog.frame_pad)
 
         pad = ReportDialog.border_pad
         if len(local_filters):
@@ -747,15 +754,13 @@ class ReportDialog:
                 table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
             row = row + 1
         
+
     def setup_other_frames(self):
         pad = ReportDialog.border_pad
         for key in self.frame_names:
-            frame = GtkFrame(key)
-            frame.set_border_width(ReportDialog.frame_pad)
-            self.window.vbox.add(frame)
             list = self.frames[key]
             table = GtkTable(2,len(list))
-            frame.add(table)
+            self.notebook.append_page(table,GtkLabel(_(key)))
 
             row = 0
             for (text,widget) in list:
@@ -766,7 +771,7 @@ class ReportDialog:
                     text_widget = GtkLabel(text)
                     text_widget.set_alignment(1.0,0)
                     table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
-                    table.attach(widget,1,2,row,row+1,
+                    table.attach(widget,1,2,row,row+1,yoptions=0,
                                  xpadding=pad,ypadding=pad)
                 row = row + 1
 

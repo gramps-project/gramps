@@ -758,15 +758,17 @@ class WebReportDialog(ReportDialog):
 
         self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.use_link)
-        self.add_option('',self.include_id)
-        self.add_option(_('GRAMPS ID link URL'),self.linkpath)
-        
-        title = _("Privacy Options")
+
+        title = _("Privacy")
         self.add_frame_option(title,None,self.no_private)
         self.add_frame_option(title,None,self.restrict_living)
         self.add_frame_option(title,None,self.no_images)
         self.add_frame_option(title,None,self.no_living_images)
         self.add_frame_option(title,None,self.no_comments)
+
+        title = _('Advanced')
+        self.add_frame_option(title,'',self.include_id)
+        self.add_frame_option(title,_('GRAMPS ID link URL'),self.linkpath)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
 
