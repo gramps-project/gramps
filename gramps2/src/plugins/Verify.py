@@ -40,7 +40,6 @@ import cStringIO
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-from gnome.ui import *
 import gtk
 import gtk.glade 
 
@@ -118,7 +117,7 @@ class Verify:
             event = self.db.find_event_from_handle(event_handle)
             dateObj = event.get_date_object()
             if dateObj:
-                if dateObj.get_calendar().NAME != Gregorian.Gregorian:
+                if dateObj.get_calendar().NAME != Gregorian.NAME:
                     dateObj.set_calendar(Gregorian.Gregorian)
                 year = dateObj.get_year()
         return year
@@ -156,6 +155,16 @@ class Verify:
             bapyear = 0
             dyear = self.get_year( person.get_death_handle() )
             buryear = 0
+
+            for event_handle in person.get_event_list():
+                if event_handle:
+                    event = self.db.find_event_from_handle(event_handle)
+                    event_name = event.get_name().lower()
+                    if event.get_name() == "burial":
+                        buryear = get_year( event )
+                    elif event_name == "baptism":
+                        bapyear = get_year( event )
+
             if byear>0 and bapyear>0:
                 if byear > bapyear:
                     if person.get_gender() == RelLib.Person.male:
@@ -450,7 +459,7 @@ class Verify:
         if error:
             text = _("ERRORS:\n") + error.getvalue() + "\n" 
         if warn:
-            text = _("WARNINGS:\n") + warn.getvalue()
+            text = text + _("WARNINGS:\n") + warn.getvalue()
             
         error.close()
         warn.close()

@@ -34,7 +34,6 @@
 import RelLib
 import Relationship
 import types
-from gettext import gettext as _
 
 
 #-------------------------------------------------------------------------
@@ -71,13 +70,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     #-------------------------------------------------------------------------
     def get_parents (self,level):
         if level>len(_level)-1:
-            return _("remote ancestors")
+            return "remote ancestors"
         else:
             return "%si genitori" % _level[level]
 
     def get_father (self,level, gender="o"):
         if level>len(_level)-1:
-            return _("remote ancestor")
+            return "remote ancestor"
         elif level == 0: return ""
         elif level == 1: return "padre"
         elif level == 2: return "nonn%s" % gender
@@ -90,7 +89,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_son (self, level, gender="o"):
         if level>len(_level)-1:
-            return _("remote descendant")
+            return "remote descendant"
         elif   level == 0: return ""
         elif level == 1: return "figli%s" % gender
         elif level == 2: return "nipote"
@@ -102,7 +101,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_uncle (self, level, gender="o"):
         if level>len(_level)-1:
-            return _("remote ancestor")
+            return "remote ancestor"
         elif level == 0: return ""
         elif level == 1: return "fratello"
         elif level == 2: return "zi%s" % gender
@@ -115,7 +114,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_nephew (self,level, gender="o"):
         if level>len(_level)-1:
-            return _("remote descendant")
+            return "remote descendant"
         elif level == 0: return ""
         elif level == 1: return "nipote"
         elif level == 2: return "pronipote"
@@ -126,7 +125,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_male_cousin (self,levelA, levelB, gender="o"):
         if levelA+levelB>len(_level):
-            return _("remote relative")
+            return "remote relative"
         else:
             return "cugin%s di %so grado (%i-%i)" \
                    % (gender, _level[levelA+levelB-1], levelA, levelB)

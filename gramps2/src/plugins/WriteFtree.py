@@ -109,11 +109,11 @@ class FtreeWriter:
         
             des = GenericFilter.GenericFilter()
             des.set_name(_("Descendants of %s") % person.get_primary_name().get_name())
-            des.add_rule(GenericFilter.IsDescendantOf([person.get_handle()]))
+            des.add_rule(GenericFilter.IsDescendantOf([person.get_handle(),1]))
         
             ans = GenericFilter.GenericFilter()
             ans.set_name(_("Ancestors of %s") % person.get_primary_name().get_name())
-            ans.add_rule(GenericFilter.IsAncestorOf([person.get_handle()]))
+            ans.add_rule(GenericFilter.IsAncestorOf([person.get_handle(),1]))
         
             com = GenericFilter.GenericFilter()
             com.set_name(_("People with common ancestor with %s") %

@@ -47,6 +47,23 @@
 	* src/plugins/TimeLine.py: Use self.doc.string_width() method.
 	* src/plugins/eval.glade: HIG compliance. 
 
+	* src/plugins/Verify.py (on_apply_clicked): Append warnings
+	to errors instead of overwriting; determine actual dates of burial
+	and baptism; (get_year): Correctly compare calendar names.
+	* src/plugins/rel_it.py: removed translatable strings (should be 
+	already italian).
+	* src/plugins/IndivComplete.py (_get_report_filters):
+	Set both ancestor and descendant filters to be inclusive.
+	* src/plugins/RelGraph.py (get_report_filters): 
+	Set both ancestor and descendant filters to be inclusive.
+	* src/plugins/TimeLine.py (_get_report_filters):
+	Set both ancestor and descendant filters to be inclusive.
+	* src/plugins/WebPage.py (get_report_filters): 
+	Set both ancestor and descendant filters to be inclusive.
+	* src/plugins/WriteFtree.py (__init__): 
+	Set both ancestor and descendant filters to be inclusive.
+	* src/plugins/Ancestors.py (person_name): Use translated name type.
+
 2004-08-20  Tim Waugh  <twaugh@redhat.com>
 	* src/RelLib.py (Event.are_equal): Fixed comparison with None.
 
