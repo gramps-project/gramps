@@ -7,7 +7,7 @@ dist_pkgdata_DATA = \
 	papersize.xml \
 	tips.xml
 
-dist_data_DATA = \
+EXTRA_DIST = \
 	gramps.desktop \
 	gnome-mime-application-x-gramps.png \
 	gnome-mime-application-x-gedcom.png \

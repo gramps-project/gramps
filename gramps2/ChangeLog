@@ -1,3 +1,6 @@
+2004-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/Makefile.am: Replace dist_data_DATA with EXTRA_DIST.
+
 2004-12-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: bump up the version.
 
