@@ -1,3 +1,10 @@
+2005-03-29  Don Allingham  <don@gramps-project.org>
+	* src/ReadXML.py: handle date object on names
+	* src/gramps.glade: add menu items for merging
+	* src/MergePeople.py: new person merge 
+	* src/gramps_main.py: merge handling callbacks
+	* src/mergedata.glade: updated interface for merging
+
 2005-03-29  Alex Roitman  <shura@gramps-project.org>
 	* src/Witness.py (WitnessEditor.__init__): Work around missing
 	reference.
@@ -22,6 +29,10 @@
 	* src/plugins/ScratchPad.py (generate_family_event_tooltip, 
 	generate_family_event_tooltip, redraw_object_list): added support for 
 	family events and attributes.
+
+2005-03-27  Don Allingham  <don@gramps-project.org>
+	* src/SourceView.py: connect SourceView.merge into the multiple
+	selection mechanism
 
 2005-03-27  Alex Roitman  <shura@gramps-project.org>
 	* src/MergeData.py: Fixes for places and sources.
