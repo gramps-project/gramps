@@ -82,36 +82,40 @@ def exportData(database, filename):
 
     for f in database.getPersonMap().values():
         for p in f.getPhotoList():
-            base = os.path.basename(p.getPath())
+            object = p.getReference()
+            base = os.path.basename(object.getPath())
             try:
-                g = open(p.getPath(),"rb")
+                g = open(object.getPath(),"rb")
                 t.add_file(base,mtime,g)
                 g.close()
             except:
                 pass
     for f in database.getFamilyMap().values():
         for p in f.getPhotoList():
-            base = os.path.basename(p.getPath())
+            object = p.getReference()
+            base = os.path.basename(object.getPath())
             try:
-                g = open(p.getPath(),"rb")
+                g = open(object.getPath(),"rb")
                 t.add_file(base,mtime,g)
                 g.close()
             except:
                 pass
     for f in database.getSourceMap().values():
         for p in f.getPhotoList():
-            base = os.path.basename(p.getPath())
+            object = p.getReference()
+            base = os.path.basename(object.getPath())
             try:
-                g = open(p.getPath(),"rb")
+                g = open(object.getPath(),"rb")
                 t.add_file(base,mtime,g)
                 g.close()
             except:
                 pass
     for f in database.getPlaceMap().values():
         for p in f.getPhotoList():
-            base = os.path.basename(p.getPath())
+            object = p.getReference()
+            base = os.path.basename(object.getPath())
             try:
-                g = open(p.getPath(),"rb")
+                g = open(object.getPath(),"rb")
                 t.add_file(base,mtime,g)
                 g.close()
             except:
