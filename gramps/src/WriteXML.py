@@ -244,7 +244,8 @@ def exportData(database, filename, callback):
     else:
         g = gzip.open(filename,"wb")
 
-    g.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
+    g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
+    g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
     g.write("<database>\n")
     g.write("  <header>\n")
     g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
