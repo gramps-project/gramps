@@ -496,7 +496,6 @@ class GedcomParser:
 	    elif matches[1] == "CHIL":
                 mrel,frel = self.parse_ftw_relations(2)
                 child = self.db.findPerson(matches[2],self.pmap)
-                print child.getPrimaryName().getName(),mrel,frel
                 self.family.addChild(child)
                 if (mrel == "Birth" or mrel == "") and \
                    (frel == "Birth" or frel == "") :
@@ -967,10 +966,7 @@ class GedcomParser:
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
                 info = matches[2] + self.parse_continue_data(level+1)
-                if note == "":
-                    note = "%s: %s" % (_("Cause of Death"), info)
-                else:
-                    note = "%s\n%s: %s" % (note,_("Cause of Death"), info)
+                event.setCause(info)
             elif matches[1] == "NOTE":
                 info = matches[2] + self.parse_continue_data(level+1)
                 if note == "":
@@ -1061,12 +1057,8 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_source_reference(self,source,level):
+        """Reads the data associated with a SOUR reference"""
         while 1:
             matches = self.get_next()
 
@@ -1082,7 +1074,11 @@ class GedcomParser:
                 source.setDate(d)
                 source.setText(text)
             elif matches[1] == "QUAY":
-                pass
+                val = int(matches[2])
+                if val > 1:
+                    source.setConfidence(val+1)
+                else:
+                    source.setConfidence(val)
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
                     note = matches[1] + self.parse_continue_data(1)
@@ -1099,11 +1095,7 @@ class GedcomParser:
 	        self.barf(level+1)
         
     def parse_source_data(self,level):
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
+        """Parses the source data"""
         date = ""
         note = ""
         while 1:
@@ -1120,12 +1112,8 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_name(self,name,level):
+        """Parses the person's name information"""
         while 1:
 	    matches = self.get_next()
 
@@ -1174,12 +1162,8 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_header_head(self):
+        """validiates that this is a valid GEDCOM file"""
         line = string.replace(self.lines[self.index],'\r','')
 	match = headRE.search(line)
         if not match:

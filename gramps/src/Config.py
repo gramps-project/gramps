@@ -92,6 +92,7 @@ owner         = Researcher()
 prefsTop      = None
 autoload      = 0
 usetabs       = 0
+usevc         = 0
 uncompress    = 0
 show_detail   = 0
 hide_altnames = 0
@@ -150,6 +151,7 @@ def loadConfig(call):
     global autoload
     global owner
     global usetabs
+    global usevc
     global uncompress
     global id_visible
     global id_edit
@@ -172,6 +174,7 @@ def loadConfig(call):
     _callback = call
     lastfile = gnome.config.get_string("/gramps/data/LastFile")
     usetabs = gnome.config.get_bool("/gramps/config/UseTabs")
+    usevc = gnome.config.get_bool("/gramps/config/UseVersionControl")
     uncompress = gnome.config.get_bool("/gramps/config/DontCompressXML")
     id_visible = gnome.config.get_bool("/gramps/config/IdVisible")
     id_edit = gnome.config.get_bool("/gramps/config/IdEdit")
@@ -243,6 +246,8 @@ def loadConfig(call):
         autoload = 1
     if usetabs == None:
         usetabs = 0
+    if usevc == None:
+        usevc = 0
     if uncompress == None:
         uncompress = 0
     if id_visible == None:
@@ -348,6 +353,7 @@ def on_propertybox_apply(obj,page):
     global nameof
     global owner
     global usetabs
+    global usevc
     global uncompress
     global id_visible
     global id_edit
@@ -370,6 +376,7 @@ def on_propertybox_apply(obj,page):
     display_attr = prefsTop.get_widget("attr_display").get_active()
     attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
     usetabs = prefsTop.get_widget("usetabs").get_active()
+    usevc = prefsTop.get_widget("use_vc").get_active()
     uncompress = prefsTop.get_widget("uncompress").get_active()
     id_visible = prefsTop.get_widget("gid_visible").get_active()
     id_edit = prefsTop.get_widget("gid_edit").get_active()
@@ -400,6 +407,7 @@ def on_propertybox_apply(obj,page):
     output_preference = output_obj.get_data(DATA)
     
     gnome.config.set_bool("/gramps/config/UseTabs",usetabs)
+    gnome.config.set_bool("/gramps/config/UseVersionControl",usevc)
     gnome.config.set_bool("/gramps/config/DontCompressXML",uncompress)
     gnome.config.set_bool("/gramps/config/IdVisible",id_visible)
     gnome.config.set_bool("/gramps/config/IdEdit",id_edit)
@@ -542,6 +550,7 @@ def display_preferences_box():
     vis = prefsTop.get_widget("gid_visible")
     idedit = prefsTop.get_widget("gid_edit")
     tabs = prefsTop.get_widget("usetabs")
+    vc = prefsTop.get_widget("use_vc")
     compress = prefsTop.get_widget("uncompress")
     detail = prefsTop.get_widget("showdetail")
     display_attr_obj = prefsTop.get_widget("attr_display")
@@ -549,6 +558,7 @@ def display_preferences_box():
     auto.set_active(autoload)
     detail.set_active(show_detail)
     tabs.set_active(usetabs)
+    vc.set_active(usevc)
     compress.set_active(uncompress)
     vis.set_active(id_visible)
     idedit.set_active(id_edit)

@@ -1,3 +1,8 @@
+Version 0.5.1post
+* Support for QUAY on GEDCOM import. 
+* Confidence level moved to SourceReference instead of object
+* Support for revision control
+
 Version 0.5.1
 * Bug fixes
 * Allow gramps' ids to be edited

@@ -89,15 +89,10 @@ def dump_event(g,event,index=1):
 #
 #-------------------------------------------------------------------------
 def conf_priv(obj):
-    if obj.getConfidence() != 2:
-        cnf = ' conf="%d" ' % obj.getConfidence()
-    else:
-        cnf = ''
     if obj.getPrivacy() != 0:
-        priv = ' priv="%d"' % obj.getPrivacy()
+        return ' priv="%d"' % obj.getPrivacy()
     else:
-        priv = ''
-    return "%s%s" % (cnf,priv)
+        return ''
 
 #-------------------------------------------------------------------------
 #
@@ -111,6 +106,7 @@ def dump_my_event(g,name,event,index=1):
     date = event.getSaveDate()
     place = event.getPlace()
     description = event.getDescription()
+    cause = event.getCause()
     if (not name or name == "Birth" or name == "Death") and \
        not date and not place and not description:
         return
@@ -119,6 +115,7 @@ def dump_my_event(g,name,event,index=1):
     g.write('%s<event type="%s"%s>\n' % (sp,fix(name),conf_priv(event)))
     write_line(g,"date",date,index+1)
     write_ref(g,"place",place,index+1)
+    write_line(g,"cause",cause,index+1)
     write_line(g,"description",description,index+1)
     if event.getNote() != "":
         writeNote(g,"note",event.getNote(),index+1)
@@ -139,11 +136,15 @@ def dump_source_ref(g,source_ref,index=1):
             c = source_ref.getComments()
             t = source_ref.getText()
             d = source_ref.getDate().getSaveDate()
+            q = source_ref.getConfidence()
             g.write("  " * index)
-            if p == "" and c == "" and t == "" and d == "":
+            if p == "" and c == "" and t == "" and d == "" and q == 2:
                 g.write('<sourceref ref="%s"/>\n' % source.getId())
             else:
-                g.write('<sourceref ref="%s">\n' % source.getId())
+                if q == 2:
+                    g.write('<sourceref ref="%s">\n' % source.getId())
+                else:
+                    g.write('<sourceref ref="%s" conf="%d">\n' % (source.getId(),q))
                 write_line(g,"spage",p,index+1)
                 writeNote(g,"scomments",c,index+1)
                 writeNote(g,"stext",t,index+1)

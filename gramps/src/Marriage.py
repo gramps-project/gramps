@@ -103,6 +103,7 @@ class Marriage:
         # widgets
         self.date_field  = self.get_widget("marriageDate")
         self.place_field = self.get_widget("marriagePlace")
+        self.cause_field = self.get_widget("marriageCause")
         self.name_field  = self.get_widget("marriageEventName")
         self.descr_field = self.get_widget("marriageDescription")
         self.type_field  = self.get_widget("marriage_type")
@@ -379,6 +380,7 @@ def on_select_row(obj,row,b,c):
     
     family_obj.date_field.set_text(event.getDate())
     family_obj.place_field.set_text(event.getPlaceName())
+    family_obj.cause_field.set_text(event.getCause())
     family_obj.name_field.set_label(const.display_fevent(event.getName()))
     family_obj.event_details.set_text(utils.get_detail_text(event))
     family_obj.descr_field.set_text(event.getDescription())
@@ -392,7 +394,7 @@ def on_select_row(obj,row,b,c):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_attrib(attr,type,value,note,priv,conf):
+def update_attrib(attr,type,value,note,priv):
     changed = 0
         
     if attr.getType() != const.save_pattr(type):
@@ -411,10 +413,6 @@ def update_attrib(attr,type,value,note,priv,conf):
         attr.setPrivacy(priv)
         changed = 1
 
-    if attr.getConfidence() != conf:
-        attr.setConfidence(conf)
-        changed = 1
-
     return changed
 
 #-------------------------------------------------------------------------
@@ -426,7 +424,7 @@ def update_attrib(attr,type,value,note,priv,conf):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_event(event,name,date,place,desc,note,priv,conf):
+def update_event(event,name,date,place,desc,note,priv,cause):
     changed = 0
     if event.getPlace() != place:
         event.setPlace(place)
@@ -448,14 +446,14 @@ def update_event(event,name,date,place,desc,note,priv,conf):
         event.setDate(date)
         changed = 1
 
+    if event.getCause() != cause:
+        event.setCause(cause)
+        changed = 1
+
     if event.getPrivacy() != priv:
         event.setPrivacy(priv)
         changed = 1
 
-    if event.getConfidence() != conf:
-        event.setConfidence(conf)
-        changed = 1
-        
     return changed
 
 #-------------------------------------------------------------------------
@@ -734,13 +732,14 @@ class EventEditor:
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")
+        self.cause_field = self.top.get_widget("eventCause")
         self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
+        self.cause_field  = self.top.get_widget("eventCause")
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
         self.source_field = self.top.get_widget("event_source")
-        self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
 
         father = parent.family.getFather()
@@ -760,9 +759,8 @@ class EventEditor:
         self.window.editable_enters(self.name_field);
         self.window.editable_enters(self.place_field);
         self.window.editable_enters(self.date_field);
+        self.window.editable_enters(self.cause_field);
         self.window.editable_enters(self.descr_field);
-
-        utils.build_confidence_menu(self.conf_menu)
 
         values = self.parent.db.getPlaceMap().values()
         if event != None:
@@ -771,9 +769,8 @@ class EventEditor:
             utils.attach_places(values,self.place_combo,event.getPlace())
             self.place_field.set_text(event.getPlaceName())
             self.date_field.set_text(event.getDate())
+            self.cause_field.set_text(event.getCause())
             self.descr_field.set_text(event.getDescription())
-            self.conf_menu.set_history(event.getConfidence())
-
             self.priv.set_active(event.getPrivacy())
             
             srcref_base = self.event.getSourceRef().getBase()
@@ -787,7 +784,6 @@ class EventEditor:
             self.note_field.set_word_wrap(1)
         else:
             utils.attach_places(values,self.place_combo,None)
-            self.conf_menu.set_history(2)
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
@@ -816,12 +812,12 @@ def on_event_edit_ok_clicked(obj):
 
     ename = ee.name_field.get_text()
     edate = ee.date_field.get_text()
+    ecause = ee.cause_field.get_text()
     eplace = string.strip(ee.place_field.get_text())
     eplace_obj = utils.get_place_from_list(ee.place_combo)
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
-    econf = ee.conf_menu.get_menu().get_active().get_data("a")
 
     if event == None:
         event = Event()
@@ -832,7 +828,7 @@ def on_event_edit_ok_clicked(obj):
         eplace_obj.set_title(eplace)
         ee.parent.db.addPlace(eplace_obj)
 
-    if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,econf):
+    if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,ecause):
         ee.parent.lists_changed = 1
         
     if not source_refs_equal(event.getSourceRef(),ee.srcref):
@@ -859,7 +855,6 @@ class AttributeEditor:
         self.note_field = self.top.get_widget("attr_note")
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.source_field = self.top.get_widget("attr_source")
-        self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
         if self.attrib:
             self.srcref = SourceRef(self.attrib.getSourceRef())
@@ -885,8 +880,6 @@ class AttributeEditor:
         if len(const.familyAttributes) > 0:
             self.attrib_menu.set_popdown_strings(const.familyAttributes)
 
-        utils.build_confidence_menu(self.conf_menu)
-
         if attrib != None:
             self.type_field.set_text(attrib.getType())
             self.value_field.set_text(attrib.getValue())
@@ -896,14 +889,11 @@ class AttributeEditor:
             else:
                 self.source_field.set_text("")
                  
-            self.conf_menu.set_history(attrib.getConfidence())
             self.priv.set_active(attrib.getPrivacy())
 
             self.note_field.set_point(0)
             self.note_field.insert_defaults(attrib.getNote())
             self.note_field.set_word_wrap(1)
-        else:
-            self.conf_menu.set_history(2)
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
@@ -934,13 +924,12 @@ def on_attrib_edit_ok_clicked(obj):
     value = ee.value_field.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data("a")
 
     if attrib == None:
         attrib = Attribute()
         ee.parent.alist.append(attrib)
         
-    if update_attrib(attrib,type,value,note,priv,conf):
+    if update_attrib(attrib,type,value,note,priv):
         ee.parent.lists_changed = 1
         
     if not source_refs_equal(attrib.getSourceRef(),ee.srcref):
