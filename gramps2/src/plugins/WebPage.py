@@ -228,7 +228,7 @@ class IndividualPage:
         if person_handle:
             person = self.db.get_person_from_handle(person_handle)
             if self.list.has_key(person_handle):
-                self.doc.start_link("%s.%s" % (person_handle,self.ext))
+                self.doc.start_link("%s.%s" % (person.get_gramps_id(),self.ext))
                 self.doc.write_text(person.get_primary_name().get_regular_name())
                 self.doc.end_link()
             else:
@@ -290,7 +290,7 @@ class IndividualPage:
     def create_page(self,ind_list):
         """Generate the HTML page for the specific person"""
         
-        filebase = "%s.%s" % (self.person.get_handle(),self.ext)
+        filebase = "%s.%s" % (self.person.get_gramps_id(),self.ext)
         self.doc.open("%s/%s" % (self.dir,filebase))
 
         media_list = self.person.get_media_list()
@@ -318,7 +318,7 @@ class IndividualPage:
             if object.get_mime_type()[0:5] == "image":
                 src = object.get_path()
                 junk,ext = os.path.splitext(src)
-                base = '%s%s' % (object_handle,ext)
+                base = '%s%s' % (object.get_gramps_id(),ext)
 
                 if os.path.isfile(src):
                     self.doc.start_paragraph("Data")
@@ -338,10 +338,10 @@ class IndividualPage:
         self.write_normal_row("%s:" % _("Name"), name, name_obj.get_source_references())
         if self.use_id:
             if self.id_link:
-                val = '<a href="%s">%s</a>' % (self.id_link,self.person.get_handle())
-                val = val.replace('*',self.person.get_handle())
+                val = '<a href="%s">%s</a>' % (self.id_link,self.person.get_gramps_id())
+                val = val.replace('*',self.person.get_gramps_id())
             else:
-                val = self.person.get_handle()
+                val = self.person.get_gramps_id()
             self.write_id_row("%s:" % _("ID Number"),val)
             
         if self.person.get_gender() == RelLib.Person.male:
@@ -413,7 +413,7 @@ class IndividualPage:
             try:
                 src = obj.get_path()
                 junk,ext = os.path.splitext(src)
-                base = '%s%s' % (obj.get_handle(),ext)
+                base = '%s%s' % (obj.get_gramps_id(),ext)
                 
                 if self.image_dir:
                     shutil.copyfile(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
@@ -640,7 +640,7 @@ class IndividualPage:
             if spouse_id:
                 spouse = self.db.get_person_from_handle(spouse_id)
                 if self.list.has_key(spouse_id):
-                    self.doc.start_link("%s.%s" % (spouse_id,self.ext))
+                    self.doc.start_link("%s.%s" % (spouse.get_gramps_id(),self.ext))
                     self.doc.write_text(spouse.get_primary_name().get_regular_name())
                     self.doc.end_link()
                 else:
@@ -680,7 +680,7 @@ class IndividualPage:
                     else:
                         self.doc.write_text('\n')
                     if self.list.has_key(child_handle):
-                        self.doc.start_link("%s.%s" % (child_handle,self.ext))
+                        self.doc.start_link("%s.%s" % (child.get_gramps_id(),self.ext))
                         self.doc.write_text(name)
                         self.doc.end_link()
                     else:
@@ -884,7 +884,8 @@ class WebReport(Report.Report):
                 col_len = n_rows
 
                 for person_handle in p_id_list:
-                    name = self.db.get_person_from_handle(person_handle).get_primary_name().get_name()
+                    the_person = self.db.get_person_from_handle(person_handle)
+                    name = the_person.get_primary_name().get_name()
 
                     if self.birth_dates:
                         birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
@@ -901,7 +902,7 @@ class WebReport(Report.Report):
                         else:
                             birth_date = ""
 
-                    doc.start_link("%s.%s" % (person_handle,self.ext))
+                    doc.start_link("%s.%s" % (the_person.get_gramps_id(),self.ext))
                     doc.write_text(name)
                     if self.birth_dates and birth_date:
                         doc.write_text(' (%s %s)' % (_BORN,birth_date))
@@ -935,7 +936,8 @@ class WebReport(Report.Report):
                 col_len = col_len - 1
 
                 for person_handle in p_id_list:
-                    name = self.db.get_person_from_handle(person_handle).get_primary_name().get_name()
+                    the_person = self.db.get_person_from_handle(person_handle)
+                    name = the_person.get_primary_name().get_name()
 
                     if self.birth_dates:
                         birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
@@ -952,7 +954,7 @@ class WebReport(Report.Report):
                         else:
                             birth_date = ""
 
-                    doc.start_link("%s.%s" % (person_handle,self.ext))
+                    doc.start_link("%s.%s" % (the_person.get_gramps_id(),self.ext))
                     doc.write_text(name)
                     if self.birth_dates and birth_date:
                         doc.write_text(' (%s %s)' % (_BORN,birth_date))
@@ -1565,7 +1567,7 @@ class MiniTree:
             self.lines_map[position] += indent
 
         if person and person.get_handle() and self.map.has_key(person.get_handle()):
-            self.lines_map[position] += "<A HREF='%s%s'>%s</A>" % (person.get_handle(),
+            self.lines_map[position] += "<A HREF='%s%s'>%s</A>" % (person.get_gramps_id(),
                                                            self.doc.ext, name)
         else:
             self.lines_map[position] += "<U>%s</U>" % name
@@ -1622,7 +1624,7 @@ class MiniTree:
 
     def draw_link(self, line, person, name):
         if person and person.get_handle() and self.map.has_key(person.get_handle()):
-            self.lines[line] += "<A HREF='%s%s'>%s</A>" % (person.get_handle(),
+            self.lines[line] += "<A HREF='%s%s'>%s</A>" % (person.get_gramps_id(),
                                                            self.doc.ext, name)
         else:
             self.lines[line] += "<U>%s</U>" % name
