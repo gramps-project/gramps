@@ -286,7 +286,7 @@ class GrampsParser:
         self.gid2oid = {}
         self.gid2sid = {}
         self.change = change
-        self.dp = DateHandler.create_parser()
+        self.dp = DateHandler.parser
         
         self.ord = None
         self.objref = None

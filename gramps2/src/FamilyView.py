@@ -183,7 +183,6 @@ class FamilyView:
 
     def init_interface(self):
         fv = GrampsGconfKeys.get_family_view()
-        self.dd = DateHandler.create_display()
         self.set_widgets(fv)
 
         already_init = self.cadded[fv]
@@ -926,18 +925,21 @@ class FamilyView:
         dd = self.parent.db.get_event_from_handle(self.person.get_death_handle())
 
         if bd and dd:
-            n = "%s [%s]\n\t%s %s\n\t%s %s " % (GrampsCfg.get_nameof()(self.person),
-                                                self.person.get_gramps_id(),
-                                                _BORN,self.dd.display(bd.get_date_object()),
-                                                _DIED,self.dd.display(dd.get_date_object()))
+            n = "%s [%s]\n\t%s %s\n\t%s %s " % (
+                GrampsCfg.get_nameof()(self.person),
+                self.person.get_gramps_id(),
+                _BORN,DateHandler.displayer.display(bd.get_date_object()),
+                _DIED,DateHandler.displayer.display(dd.get_date_object()))
         elif bd:
-            n = "%s [%s]\n\t%s %s" % (GrampsCfg.get_nameof()(self.person),
-                                      self.person.get_gramps_id(),
-                                      _BORN,self.dd.display(bd.get_date_object()))
+            n = "%s [%s]\n\t%s %s" % (
+                GrampsCfg.get_nameof()(self.person),
+                self.person.get_gramps_id(),
+                _BORN,DateHandler.displayer.display(bd.get_date_object()))
         elif dd:
-            n = "%s [%s]\n\t%s %s" % (GrampsCfg.get_nameof()(self.person),
-                                      self.person.get_gramps_id(),
-                                      _DIED,self.dd.display(dd.get_date_object()))
+            n = "%s [%s]\n\t%s %s" % (
+                GrampsCfg.get_nameof()(self.person),
+                self.person.get_gramps_id(),
+                _DIED,DateHandler.displayer.display(dd.get_date_object()))
         else:
             n = "%s [%s]" % (GrampsCfg.get_nameof()(self.person),
                              self.person.get_gramps_id())
@@ -976,13 +978,13 @@ class FamilyView:
                 sp = self.parent.db.get_person_from_handle(sp_id)
                 event = self.find_marriage(fm)
                 if event:
-                    mdate = " - %s" % self.dd.display(event.get_date_object())
+                    mdate = " - %s" % DateHandler.displayer.display(event.get_date_object())
                 else:
                     mdate = ""
-                v = "%s [%s]\n\t%s%s" % (GrampsCfg.get_nameof()(sp),
-                                         sp.get_gramps_id(),
-                                         const.family_relations[fm.get_relationship()][0],
-                                         mdate)
+                v = "%s [%s]\n\t%s%s" % (
+                    GrampsCfg.get_nameof()(sp),
+                    sp.get_gramps_id(),
+                    const.family_relations[fm.get_relationship()][0], mdate)
                 self.spouse_model.set(node,0,v)
                 self.spouse_model.set(node,1,f)
             else:

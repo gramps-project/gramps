@@ -344,14 +344,12 @@ class SourceEditor:
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
-        self.dd = DateHandler.create_display()
-
         self.date_entry_field = self.get_widget("sdate")
 
         if self.source_ref:
             self.active_source = self.db.get_source_from_handle(self.source_ref.get_base_handle())
             self.date_obj = self.source_ref.get_date()
-            self.date_entry_field.set_text(self.dd.display(self.date_obj))
+            self.date_entry_field.set_text(DateHandler.displayer.display(self.date_obj))
             self.private.set_active(self.source_ref.get_privacy())
         else:
             self.date_obj = Date.Date()

@@ -68,44 +68,6 @@ _lang_to_display = {
     'en'     : DateDisplay.DateDisplay,
     }
 
-#-------------------------------------------------------------------------
-#
-# Functions 
-#
-#-------------------------------------------------------------------------
-def create_parser():
-    """
-    Creates a new date parser class, based on the current locale.
-
-    @returns: DateParser class specific to the locale specific. If
-    no parser exists for the current locale, the English language
-    parser is returned.
-    @rtype: DateParser
-    """
-    try:
-        return _lang_to_parser[_lang]()
-    except:
-        import traceback
-        traceback.print_stack()
-        print "Date parser for",_lang,"not available"
-        return DateParser.DateParser()
-
-def create_display():
-    """
-    Creates a new date displayer class, based on the current locale.
-
-    @returns: DateDisplay class specific to the locale specific. If
-    no parser exists for the current locale, the English language
-    parser is returned.
-    @rtype: DateDisplay
-    """
-    try:
-        val = GrampsGconfKeys.get_date_format(_lang_to_display[_lang].formats)
-        return _lang_to_display[_lang](val)
-    except:
-        print "Date displayer for",_lang,"not available"
-        return DateDisplay.DateDisplay(3)
-
 def get_date_formats():
     """
     Returns the lists supported formats for date parsers and displayers
@@ -148,4 +110,25 @@ def register_datehandler(locales,parse_class,display_class):
 from Plugins import load_plugins
 from const import datesDir
 load_plugins(datesDir)
+
+#-------------------------------------------------------------------------
+#
+# Initialize global parser
+#
+#-------------------------------------------------------------------------
+
+try:
+    parser = _lang_to_parser[_lang]()
+except:
+    import traceback
+    traceback.print_stack()
+    print "Date parser for",_lang,"not available, using default"
+    parser = DateParser.DateParser()
+
+try:
+    val = GrampsGconfKeys.get_date_format(_lang_to_display[_lang].formats)
+    displayer = _lang_to_display[_lang](val)
+except:
+    print "Date displayer for",_lang,"not available, using default"
+    displayer = DateDisplay.DateDisplay(3)
 

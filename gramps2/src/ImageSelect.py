@@ -876,8 +876,8 @@ class GlobalMediaProperties:
 
     def __init__(self,db,obj,update,parent,parent_window=None):
         self.parent = parent
-        self.dp = DateHandler.create_parser()
-        self.dd = DateHandler.create_display()
+        self.dp = DateHandler.parser
+        self.dd = DateHandler.displayer
         if obj:
             if self.parent.parent.child_windows.has_key(obj.get_handle()):
                 self.parent.parent.child_windows[obj.get_handle()].present(None)

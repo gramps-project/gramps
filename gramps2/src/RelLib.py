@@ -43,8 +43,6 @@ import time
 #-------------------------------------------------------------------------
 import Date
 import DateHandler
-import GrampsCfg
-import const
 
 #-------------------------------------------------------------------------
 #
@@ -57,14 +55,6 @@ CONF_HIGH      = 3
 CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
-
-#-------------------------------------------------------------------------
-#
-# Class definitions
-#
-#-------------------------------------------------------------------------
-display = DateHandler.create_display()
-parser  = DateHandler.create_parser()
 
 #-------------------------------------------------------------------------
 #
@@ -429,24 +419,6 @@ class Person(PrimaryObject,SourceNote):
         """
         return self.complete
 
-    def get_display_info(self):
-        """
-        Returns a list consisting of the information typically used for a
-        display. The data consists of: Display Name, ID, Gender, Date of Birth,
-        Date of Death, sort name, etc.
-        """
-        if self.gender == Person.male:
-            gender = const.male
-        elif self.gender == Person.female:
-            gender = const.female
-        else:
-            gender = const.unknown
-        bday = self.birth_handle
-        dday = self.death_handle
-        return [ GrampsCfg.get_display_name()(self), self.gramps_id,
-                 gender, bday, dday, self.get_primary_name().get_sort_name(),
-                 GrampsCfg.get_display_surname()(self.primary_name)]
-                                          
     def set_primary_name(self,name):
         """
         Sets the primary name of the Person to the specified
@@ -1399,12 +1371,12 @@ class Event(PrimaryObject,DataObj):
 
     def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
-        self.date = parser.parse(date)
+        self.date = DateHandler.parser.parse(date)
 
     def get_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return display.display(self.date)
+            return DateHandler.displayer.display(self.date)
         return u""
 
     def get_preferred_date(self) :
@@ -1415,7 +1387,7 @@ class Event(PrimaryObject,DataObj):
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
         if self.date:
-            return display.quote_display(self.date)
+            return DateHandler.displayer.quote_display(self.date)
         return u""
 
     def get_date_object(self):
@@ -1639,7 +1611,7 @@ class MediaObject(PrimaryObject,SourceNote):
     def get_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return display.display(self.date)
+            return DateHandler.displayer.display(self.date)
         return u""
 
     def get_date_object(self):
@@ -1650,7 +1622,7 @@ class MediaObject(PrimaryObject,SourceNote):
 
     def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
-        self.date = parser.parse(date)
+        self.date = DateHandler.parser.parse(date)
 
     def set_date_object(self,date):
         """sets the Date object associated with the Event"""
@@ -1720,10 +1692,6 @@ class Source(PrimaryObject):
          self.pubinfo, self.note, self.media_list,
          self.abbrev, self.change, self.datamap) = data
         
-    def get_display_info(self):
-        return [self.title,self.gramps_id,self.author,
-                self.title.upper(),self.author.upper()]
-
     def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Source instance's image list"""
         self.media_list.append(media_id)
@@ -1863,12 +1831,12 @@ class LdsOrd(SourceNote):
         """attempts to sets the date of the ordinance"""
         if not self.date:
             self.date = Date.Date()
-        parser.set_date(self.date,date)
+        DateHandler.parser.set_date(self.date,date)
 
     def get_date(self) :
         """returns a string representation of the date of the ordinance"""
         if self.date:
-            return display.display(self.date)
+            return DateHandler.displayer.display(self.date)
         return u""
 
     def get_date_object(self):
@@ -2213,13 +2181,13 @@ class Address(DataObj):
     def set_date(self,text):
         """attempts to sets the date that the person lived at the address
         from the passed string"""
-        self.date = parser.parse(text)
+        self.date = DateHandler.parser.parse(text)
 
     def get_date(self):
         """returns a string representation of the date that the person
         lived at the address"""
         if self.date:
-            return display.display(self.date)
+            return DateHandler.displayer.display(self.date)
         return u""
 
     def get_preferred_date(self):

@@ -84,7 +84,7 @@ class Marriage:
         self.cb = callback
         self.update_fv = update
         self.pmap = {}
-        self.dp = DateHandler.create_parser()
+        self.dp = DateHandler.parser
 
         if family:
             self.srcreflist = family.get_source_references()

@@ -81,8 +81,8 @@ class EventEditor:
         self.plist = []
         self.pmap = {}
 
-        self.dp = DateHandler.create_parser()
-        self.dd = DateHandler.create_display()
+        self.dp = DateHandler.parser
+        self.dd = DateHandler.displayer
 
         values = {}
         for v in elist:
