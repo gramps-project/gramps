@@ -2379,7 +2379,7 @@
 	      <last_modification_time>Thu, 31 May 2001 17:22:45 GMT</last_modification_time>
 	    </signal>
 	    <columns>5</columns>
-	    <column_widths>293,60,372,5,5</column_widths>
+	    <column_widths>293,60,344,5,5</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -2684,7 +2684,7 @@
 	      <last_modification_time>Tue, 30 Oct 2001 18:18:53 GMT</last_modification_time>
 	    </signal>
 	    <columns>14</columns>
-	    <column_widths>222,47,102,88,77,80,20,5,5,5,5,5,5,5</column_widths>
+	    <column_widths>222,47,102,88,77,80,5,5,5,5,5,5,5,5</column_widths>
 	    <selection_mode>GTK_SELECTION_EXTENDED</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -3601,33 +3601,6 @@
 
 	      <widget>
 		<class>GtkLabel</class>
-		<name>mdesc</name>
-		<width>550</width>
-		<label></label>
-		<justify>GTK_JUSTIFY_RIGHT</justify>
-		<wrap>True</wrap>
-		<xalign>0</xalign>
-		<yalign>0</yalign>
-		<xpad>5</xpad>
-		<ypad>0</ypad>
-		<child>
-		  <left_attach>2</left_attach>
-		  <right_attach>3</right_attach>
-		  <top_attach>2</top_attach>
-		  <bottom_attach>3</bottom_attach>
-		  <xpad>0</xpad>
-		  <ypad>0</ypad>
-		  <xexpand>True</xexpand>
-		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
-		  <yshrink>False</yshrink>
-		  <xfill>True</xfill>
-		  <yfill>False</yfill>
-		</child>
-	      </widget>
-
-	      <widget>
-		<class>GtkLabel</class>
 		<name>mid</name>
 		<label></label>
 		<justify>GTK_JUSTIFY_LEFT</justify>
@@ -3703,6 +3676,33 @@
 		  <yfill>True</yfill>
 		</child>
 	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>mdesc</name>
+		<width>550</width>
+		<label></label>
+		<justify>GTK_JUSTIFY_RIGHT</justify>
+		<wrap>True</wrap>
+		<xalign>0</xalign>
+		<yalign>0</yalign>
+		<xpad>5</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>2</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>True</yfill>
+		</child>
+	      </widget>
 	    </widget>
 	  </widget>
 	</widget>
@@ -3767,7 +3767,7 @@
 		  <class>GtkLabel</class>
 		  <child_name>CList:title</child_name>
 		  <name>label291</name>
-		  <label>Description</label>
+		  <label>Title</label>
 		  <justify>GTK_JUSTIFY_CENTER</justify>
 		  <wrap>False</wrap>
 		  <xalign>0.5</xalign>
