@@ -37,7 +37,7 @@ import EditSource
 import DisplayModels
 import const
 import Utils
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -72,6 +72,7 @@ class SourceView:
         #self.list.set_property('fixed-height-mode',True)
         self.list.connect('button-press-event',self.button_press)        
         self.selection = self.list.get_selection()
+        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
 
         self.renderer = gtk.CellRendererText()
 
@@ -114,6 +115,7 @@ class SourceView:
         self.model = DisplayModels.SourceModel(self.parent.db)
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
+        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -200,3 +202,20 @@ class SourceView:
 
     def update_display(self,source):
         self.model.update_row_by_handle(source.get_handle())
+
+    def merge(self):
+        ErrorDialog("NOT IMPLEMENTED",
+            "Need to correct SourceView.merge method.")
+        return
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        
+        if len(mlist) != 2:
+            msg = _("Cannot merge sources.")
+            msg2 = _("Exactly two sources must be selected to perform a merge. "
+                "A second source can be selected by holding down the "
+                "control key while clicking on the desired source.")
+            ErrorDialog(msg,msg2)
+        else:
+            import MergeData
+            MergeData.MergeSources(self.parent.db,mlist[0],mlist[1],self.build_tree)

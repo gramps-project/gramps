@@ -1018,6 +1018,8 @@ class Gramps:
                                       self.update_after_edit)
         elif page == PLACE_VIEW:
             self.place_view.merge()
+        elif page == SOURCE_VIEW:
+            self.source_view.merge()
 
     def delete_event(self,widget, event):
         """Catch the destruction of the top window, prompt to save if needed"""
@@ -1582,7 +1584,7 @@ class Gramps:
             self.pedigree_view.load_canvas(self.active_person)
         elif page == SOURCE_VIEW:
             self.enable_buttons(1)
-            self.merge_button.set_sensitive(0)
+            self.merge_button.set_sensitive(1)
         elif page == PLACE_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(1)
