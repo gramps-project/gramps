@@ -1,4 +1,6 @@
 2003-11-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PedView.py (PedigreeView.find_children): used italics instead of
+	'*' to indicate children in popup menu
 	* src/docgen/OpenOfficeDoc.py (OpenOfficeDoc.close): replace hardcoded
 	"oowriter" with the command found by querying the mime database with
 	the open office document type. Different distributions seem to install
