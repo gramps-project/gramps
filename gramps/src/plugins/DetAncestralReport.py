@@ -1,4 +1,3 @@
-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -41,7 +40,7 @@ import libglade
 #
 #------------------------------------------------------------------------
 class DetAncestorReport(Report):
-    
+
     #--------------------------------------------------------------------
     #
     #
@@ -88,6 +87,9 @@ class DetAncestorReport(Report):
                 NAME Born: DATE PLACE Died: DATE                e
                 NAME Born: DATE PLACE Died: PLACE               d
                 NAME Born: DATE PLACE                           c
+                NAME Born: DATE Died: DATE PLACE                b
+                NAME Born: DATE Died: DATE                      a
+                NAME Born: DATE Died: PLACE                     9
                 NAME Born: DATE                                 8
                 NAME Born: PLACE Died: DATE PLACE               7
                 NAME Born: PLACE Died: DATE                     6
@@ -124,10 +126,8 @@ class DetAncestorReport(Report):
                     childID= child.getId()
                     if self.prevGenIDs.get(childID) != None:
                         name= "[" + str(self.prevGenIDs.get(childID)) + "] "+ name
-                #print "Child List: <", birth.getDate(), ">", birth.getPlaceName()
                 if birth.getDate() != "":
-                    #print birth.getPlaceName()
-                    if birth.getPlaceName() != None:
+                    if birth.getPlaceName() != "":
                         if death.getDate() != "":
                             if death.getPlaceName() != "":
                                 self.doc.write_text(_("- %s Born: %s %s Died: %s %s") % \
@@ -152,13 +152,13 @@ class DetAncestorReport(Report):
                             else:
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getDate(), death.getDate())) # a
-                        elif death.PlaceName() != "":
+                        elif death.getPlaceName() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.getDate(), birth.getPlaceName())) # 9
+                                    (name, birth.getDate(), death.getPlaceName())) # 9
                         else:   self.doc.write_text(_("- %s Born: %s") % \
                                     (name, birth.getDate()))               # 8
                 else:
-                    if birth.getPlaceName() != None:
+                    if birth.getPlaceName() != "":
                         if death.getDate() != "":
                             if death.getPlaceName() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
@@ -168,7 +168,7 @@ class DetAncestorReport(Report):
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getPlaceName(), death.getDate())) # 6
                         elif death.getPlaceName() != "":
-                                self.doc.write_text(_("- %s Born: %s Died: %s") % \
+                                self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
                                     (name, birth.getPlaceName(), death.getPlaceName())) # 5
                         else:   self.doc.write_text(_("- %s Born: %s") % \
                                     (name, birth.getPlaceName()))             # 4
@@ -431,22 +431,27 @@ class DetAncestorReport(Report):
         HE/SHE married SPOUSE on FULLDATE in PLACE.
         HE/SHE married SPOUSE on FULLDATE.
         HE/SHE married SPOUSE in PLACE.
-        He/SHE married SPOUSE
+        HE/SHE married SPOUSE
+        HE/SHE married on FULLDATE in PLACE.
+        HE/SHE married on FULLDATE.
+        HE/SHE married in PLACE.
         """
         famList= person.getFamilyList()
         if len(famList) > 0:
             fam_num= 0
+            endOfSent= ""
             for fam in famList:
                 fam_num= fam_num + 1
                 spouse= ""
+                t= ""
                 if person.getGender() == RelLib.Person.male:
                     if fam.getMother() != None:
                         spouse= fam.getMother().getPrimaryName().getRegularName()
-                        if fam_num == 1:
-                            heshe= _("He")
-                        elif fam_num < len(famList):
-                            heshe= _(",")
-                        else: heshe= _("and he")
+                    if fam_num == 1:
+                        heshe= _("He")
+                    elif fam_num < len(famList):
+                        heshe= _(",")
+                    else: heshe= _("and he")
                 else:
                     if fam_num == 1:
                         heshe= _("She")
@@ -478,25 +483,26 @@ class DetAncestorReport(Report):
 
                 if spouse != "":
                     if fulldate == "" and place == "":
-                        t= _("  %s married %s" % (heshe, spouse))
+                        t= _("  %s married %s") % (heshe, spouse)
                     elif fulldate == "" and place != "":
-                        t= _("  %s married %s in %s" % (heshe, spouse, place))
+                        t= _("  %s married %s in %s") % (heshe, spouse, place)
                     elif fulldate != "" and place == "":
-                        t= _("  %s married %s on %s" % (heshe, spouse, fulldate))
-                    else: t= _("  %s married %s on %s in %s" % \
-                            (heshe, spouse, fulldate, place))
+                        t= _("  %s married %s on %s") % (heshe, spouse, fulldate)
+                    else: t= _("  %s married %s on %s in %s") % \
+                            (heshe, spouse, fulldate, place)
                 else:
-                    if fulldate == "" and place == "":
-                        t= _("  %s married")
-                    elif fulldate == "" and place != "":
-                        t= _("  %s married in %s" % (heshe, place))
+                    if fulldate == "" and place != "":
+                        t= _("  %s married in %s") % (heshe, place)
                     elif fulldate != "" and place == "":
-                        t= _("  %s married on %s" % (heshe, fulldate))
-                    else: t= _("  %s married on %s in %s" % \
-                       (heshe, fulldate, place))
+                        t= _("  %s married on %s") % (heshe, fulldate)
+                    elif fulldate != "" and place != "":
+                        t= _("  %s married on %s in %s") % \
+                                             (heshe, fulldate, place)
 
-                if t != "": self.doc.write_text(t)
-                if fam_num == len(famList): self.doc.write_text(".")
+                if t != "":
+                    self.doc.write_text(t)
+                    endOfSent= "."
+                if fam_num == len(famList): self.doc.write_text(endOfSent)
 
     def write_mate(self, mate, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
@@ -510,9 +516,9 @@ class DetAncestorReport(Report):
                         ind= fam.getMother()
                         person= fam.getMother().getPrimaryName().getRegularName()
                         firstName= fam.getMother().getPrimaryName().getFirstName()
-                        heshe= _("He")
+                        heshe= _("She")
                 else:
-                    heshe= _("She")
+                    heshe= _("He")
                     if fam.getFather() != None:
                         ind= fam.getFather()
                         person= fam.getFather().getPrimaryName().getRegularName()
@@ -599,10 +605,10 @@ class DetAncestorReport(Report):
     #
     #
     #--------------------------------------------------------------------
-    def write_report(self):
+    def write_report(self, rptOpt):
 
         self.filter(self.start,1)
-        rptOpt= reportOptions()
+        #rptOpt= reportOptions()
 
         name = self.start.getPrimaryName().getRegularName()
         self.doc.start_paragraph("Title")
@@ -738,8 +744,139 @@ class DetAncestorReportDialog(TextReportDialog):
         output file opened."""
         MyReport = DetAncestorReport(self.db, self.person, self.target_path,
                                      self.max_gen, self.pg_brk, self.doc)
-        MyReport.write_report()
 
+        rptOpt= reportOptions()
+        rptOpt.firstName= self.firstName
+        rptOpt.fullDate= self.fullDate
+        rptOpt.listChildren= self.listChildren
+        rptOpt.includeNotes= self.includeNotes
+        rptOpt.blankPlace= self.blankPlace
+        rptOpt.blankDate= self.blankDate
+        rptOpt.calcAgeFlag= self.calcAgeFlag
+        rptOpt.dupPersons= self.dupPersons
+        rptOpt.childRef= self.childRef
+        rptOpt.addImages= self.addImages
+
+        MyReport.write_report(rptOpt)
+
+#*** Begin change
+    def add_user_options(self):
+        # Create a GTK Checkbox widgets
+
+        # Pronoun instead of first name
+        self.first_name_option = gtk.GtkCheckButton(_("Use first names instead of pronouns"))
+        self.first_name_option.set_active(0)
+
+        # Full date usage
+        self.full_date_option = gtk.GtkCheckButton(_("Use full dates instead of only the year"))
+        self.full_date_option.set_active(1)
+
+        # Children List
+        self.list_children_option = gtk.GtkCheckButton(_("List children"))
+        self.list_children_option.set_active(1)
+
+        # Print notes
+        self.include_notes_option = gtk.GtkCheckButton(_("Include notes"))
+        self.include_notes_option.set_active(1)
+
+        # Replace missing Place with ___________
+        self.place_option = gtk.GtkCheckButton(_("Replace Place with ______"))
+        self.place_option.set_active(0)
+
+        # Replace missing dates with __________
+        self.date_option = gtk.GtkCheckButton(_("Replace Dates with ______"))
+        self.date_option.set_active(0)
+
+        # Add "Died at the age of NN" in text
+        self.age_option = gtk.GtkCheckButton(_("Compute age"))
+        self.age_option.set_active(1)
+
+        # Omit duplicate persons, occurs when distant cousins marry
+        self.dupPersons_option = gtk.GtkCheckButton(_("Omit duplicate ancestors"))
+        self.dupPersons_option.set_active(1)
+
+        #Add descendant reference in child list
+        self.childRef_option = gtk.GtkCheckButton(_("Add descendant reference in child list"))
+        self.childRef_option.set_active(1)
+
+        #Add photo/image reference
+        self.image_option = gtk.GtkCheckButton(_("Include Photo/Images from Gallery"))
+        self.image_option.set_active(0)
+
+        # Add new options. The first argument is the tab name for grouping options.
+        # if you want to put everyting in the generic "Options" category, use
+        # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
+
+        self.add_frame_option('Content','',self.first_name_option)
+        self.add_frame_option('Content','',self.full_date_option)
+        self.add_frame_option('Content','',self.list_children_option)
+        self.add_frame_option('Content','',self.include_notes_option)
+        self.add_frame_option('Content','',self.place_option)
+        self.add_frame_option('Content','',self.date_option)
+        self.add_frame_option('Content','',self.age_option)
+        self.add_frame_option('Content','',self.dupPersons_option)
+        self.add_frame_option('Content','',self.childRef_option)
+        self.add_frame_option('Content','',self.image_option)
+
+
+    def parse_report_options_frame(self):
+        """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
+
+        # call the parent task to handle normal options
+        ReportDialog.parse_report_options_frame(self)
+
+        # get values from the widgets
+        if self.first_name_option.get_active():
+            self.firstName = reportOptions.Yes
+        else:
+            self.firstName = reportOptions.No
+
+        if self.full_date_option.get_active():
+            self.fullDate = reportOptions.Yes
+        else:
+            self.fullDate = reportOptions.No
+
+        if self.list_children_option.get_active():
+            self.listChildren = reportOptions.Yes
+        else:
+            self.listChildren = reportOptions.No
+
+        if self.include_notes_option.get_active():
+            self.includeNotes = reportOptions.Yes
+        else:
+            self.includeNotes = reportOptions.No
+
+        if self.place_option.get_active():
+            self.blankPlace = reportOptions.Yes
+        else:
+            self.blankPlace = reportOptions.No
+
+        if self.date_option.get_active():
+            self.blankDate = reportOptions.Yes
+        else:
+            self.blankDate = reportOptions.No
+
+        if self.age_option.get_active():
+            self.calcAgeFlag = reportOptions.Yes
+        else:
+            self.calcAgeFlag = reportOptions.No
+
+        if self.dupPersons_option.get_active():
+            self.dupPersons = reportOptions.Yes
+        else:
+            self.dupPersons = reportOptions.No
+
+        if self.childRef_option.get_active():
+            self.childRef = reportOptions.Yes
+        else:
+            self.childRef = reportOptions.No
+
+        if self.image_option.get_active():
+            self.addImages = reportOptions.Yes
+        else:
+            self.addImages = reportOptions.No
+
+#*** End of change
 
 #------------------------------------------------------------------------
 #
@@ -834,8 +971,6 @@ register_report(
 class reportOptions:
     Yes=1
     No= 0
-    Left= 2
-    Right= 3
 
     def __init__(self):
         ### Initialize report options###
@@ -883,9 +1018,9 @@ class reportOptions:
         self.calcAgeFlag= reportOptions.Yes
 
         #Add Photos and Images to report
-        self.addImages= reportOptions.No
-        #self.imageAttrTag= "DetAncestralReport-H"
-        self.imageAttrTag= "DetAncestralReport-L"
+        self.addImages= reportOptions.Yes
+        self.imageAttrTag= "DetAncestralReport-H"
+        #self.imageAttrTag= "DetAncestralReport-L"
 
         #Omit sensitive information such as birth, christening, marriage
         #   for living after XXXXX date.
@@ -907,8 +1042,6 @@ class reportOptions:
 
         birth= ind.getBirth().getDateObj().get_start_date()
         death= ind.getDeath().getDateObj().get_start_date()
-        #print "birth=", birth.__dict__
-        #print "death=", death.__dict__
         self.t= ""
         if birth.getYearValid() and death.getYearValid():
             self.age= death.getYear() - birth.getYear()
