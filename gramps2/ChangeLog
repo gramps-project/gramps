@@ -1,5 +1,6 @@
 2003-07-07  Tim Waugh  <twaugh@redhat.com>
-	* src/plugins/WriteGedcom.py: Fix GEDCOM export.
+	* src/plugins/WriteGedcom.py: Fix GEDCOM export.  Fixed date
+	construction logic to handle datestrs.
 
 2003-07-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* gramps.sh.in: Don't override an existing PYTHONPATH environment
