@@ -2,6 +2,8 @@
 	* src/GrampsDbBase.py: move all thumbnail creation here to have
 	a common thumbnail scheme.
 	* src/GrampsInMemDB.py: remove thumbnail handling, use base class
+	* src/DateHandler.py: Don't force English parser if problem with
+	config value, but LANG is set properly
 
 2005-01-02 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Add support for a semi-common 'dispf'.
