@@ -22,7 +22,7 @@ import sys
 
 if sys.version[0] != '1':
     def utf8_to_latin(s):
-        return s.encode('latin-1')
+        return s.encode('latin-1','replace')
 
     def latin_to_utf8(s):
         return s
@@ -37,7 +37,7 @@ else:
         def utf8_to_latin(s):
             y = UTF8String(s)
             try:
-                return y.encode("iso-8859-1")
+                return y.encode("iso-8859-1",'replace')
             except:
                 return s
 
