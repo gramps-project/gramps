@@ -998,7 +998,12 @@ def on_delete_place_clicked(obj):
 
                 msg = t % (fname,e[0].getId(),e[1].getName())
                 textbox.insert_defaults(msg)
-
+    else:
+        map = database.getPlaceMap()
+        del map[place.getId()]
+        utils.modified()
+        update_display(0)
+        
 #-------------------------------------------------------------------------
 #
 #

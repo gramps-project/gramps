@@ -213,6 +213,32 @@ def dump_name(g,label,name,index=1):
     
     g.write('%s</%s>\n' % (sp,label))
 
+
+def append_value(orig,val):
+    if orig:
+        return "%s, %s" % (orig,val)
+    else:
+        return val
+
+def build_place_title(loc):
+    "Builds a title from a location"
+    city = fix(loc.get_city())
+    state = fix(loc.get_state())
+    country = fix(loc.get_country())
+    county = fix(loc.get_county())
+
+    value = ""
+
+    if city:
+        value = city
+    if county:
+        value = append_value(value,county)
+    if state:
+        value = append_value(value,state)
+    if country:
+        value = append_value(value,country)
+    return value
+
 def dump_location(g,loc):
     "Writes the location information to the output file"
     city = fix(loc.get_city())
@@ -233,6 +259,46 @@ def dump_location(g,loc):
     if country:
         g.write(' country="%s"' % country)
     g.write('/>\n')
+
+
+def write_place_obj(g,place):
+    title = place.get_title()
+
+    if title == "":
+        title = build_place_title(place.get_main_location())
+    
+    g.write('    <placeobj id="%s" title="%s">\n' % \
+            (place.getId(),fix(title)))
+    if place.get_longitude() != "" or place.get_latitude() != "":
+        g.write('      <coord long="%s" lat=%s"/>\n' % \
+                (fix(place.get_longitude()),fix(place.get_latitude())))
+    dump_location(g,place.get_main_location())
+    for loc in place.get_alternate_locations():
+        dump_location(g,loc)
+    for photo in place.getPhotoList():
+        path = photo.getPath()
+        l = len(fileroot)
+        if len(path) >= l:
+            if fileroot == path[0:l]:
+                path = path[l+1:]
+        g.write("      <img src=\"" + fix(path) + "\"")
+        g.write(" description=\""  + fix(photo.getDescription()) + "\"")
+        proplist = photo.getPropertyList()
+        if proplist:
+            for key in proplist.keys():
+                g.write(' %s="%s"' % (key,fix(proplist[key])))
+            g.write("/>\n")
+    for url in place.getUrlList():
+        g.write('      <url href="%s"' % fix(url.get_path()))
+        if url.getPrivacy() == 1:
+            g.write(' priv="1"')
+        if url.get_description() != "":
+            g.write(' description="%s"' % fix(url.get_description()))
+        g.write('/>\n')
+    if place.getNote() != "":
+        writeNote(g,"note",place.getNote(),3)
+    dump_source_ref(g,place.getSourceRef(),3)
+    g.write("    </placeobj>\n")
 
 #-------------------------------------------------------------------------
 #
@@ -465,39 +531,7 @@ def exportData(database, filename, callback):
     if len(placeList) > 0:
         g.write("  <places>\n")
         for place in placeList:
-            g.write('    <placeobj id="%s" title="%s">\n' % \
-                    (place.getId(),fix(place.get_title())))
-            if place.get_longitude() != "" or place.get_latitude() != "":
-                g.write('      <coord long="%s" lat=%s"/>\n' % \
-                        (fix(place.get_longitude()),fix(place.get_latitude())))
-            dump_location(g,place.get_main_location())
-            for loc in place.get_alternate_locations():
-                dump_location(g,loc)
-            for photo in place.getPhotoList():
-                path = photo.getPath()
-                l = len(fileroot)
-                if len(path) >= l:
-                    if fileroot == path[0:l]:
-                        path = path[l+1:]
-                g.write("      <img src=\"" + fix(path) + "\"")
-                g.write(" description=\""  + fix(photo.getDescription()) + "\"")
-                proplist = photo.getPropertyList()
-                if proplist:
-                    for key in proplist.keys():
-                        g.write(' %s="%s"' % (key,fix(proplist[key])))
-                g.write("/>\n")
-            if len(place.getUrlList()) > 0:
-                for url in place.getUrlList():
-                    g.write('      <url href="%s"' % fix(url.get_path()))
-                    if url.getPrivacy() == 1:
-                        g.write(' priv="1"')
-                    if url.get_description() != "":
-                        g.write(' description="%s"' % fix(url.get_description()))
-                    g.write('/>\n')
-            if place.getNote() != "":
-                writeNote(g,"note",place.getNote(),3)
-            dump_source_ref(g,place.getSourceRef(),3)
-            g.write("    </placeobj>\n")
+            write_place_obj(g,place)
         g.write("  </places>\n")
 
     if len(database.getBookmarks()) > 0:

@@ -7,7 +7,7 @@
 <article id="index"> <!-- please do not change the id -->
 
   <artheader>
-    <title>gramps User Manual</title>
+    <title>GRAMPS User Manual</title>
     <copyright>
       <year>2001</year>
       <holder>Donald N. Allingham</holder>
@@ -80,7 +80,7 @@
 
   <!-- This is the manual version, not application version. --> 
     <releaseinfo>
-       This is version 1.0 of the gramps manual.
+       This is version 1.0 of the GRAMPS manual.
     </releaseinfo>
 
   </artheader>
@@ -91,7 +91,7 @@
   <sect1 id="intro">
     <title>Introduction</title>
     <para>
-    <application>gramps</application> is an acronym for the
+    <application>GRAMPS</application> is an acronym for the
     Genealogical Research and Analysis Management Programming System.
     It was conceived under the concept that most genealogy programs
     were designed to provide the researcher the capability to input
@@ -106,11 +106,11 @@
     being researched.  Various other enhancements may also be provided
     in the genealogical program that allows for different degrees of
     importing and exporting data from other programs and printing of
-    the data contained in the various reports.  gramps, on the other
+    the data contained in the various reports.  GRAMPS, on the other
     hand, attempts to provide all of the common capabilities of these
     programs, but, more importantly, to provide a capability not
     common to these programs.  This is the ability to input any bits
-    and pieces of information directly into gramps and
+    and pieces of information directly into GRAMPS and
     rearrange/manipulate any/all data events in the entire data base
     (in any order or sequence) to assist the user in doing research,
     analysis and correlation with the potential of filling
@@ -120,7 +120,7 @@
     instead of pencils and unmanageable reams of paper.
     </para>
     <para>
-    To run <application>gramps</application>, select
+    To run <application>GRAMPS</application>, select
       <menuchoice>
 	<guisubmenu>Programs</guisubmenu>
 	<guisubmenu>Applications</guisubmenu>
@@ -131,7 +131,7 @@
     </para>
     <para>
     This document describes version &version; of
-    <application>gramps</application>.
+    <application>GRAMPS</application>.
     </para>
   </sect1>
 
@@ -139,10 +139,10 @@
  <!-- This section should describe basic usage of the application. -->
 
   <sect1 id="firsttime">
-    <title>Running gramps for the first time.</title>
+    <title>Running GRAMPS for the first time.</title>
     <para>
     The first time you run the program,
-    <application>gramps</application> will display its Getting Started
+    <application>GRAMPS</application> will display its Getting Started
     screens.
     </para>
     <figure id="druidpg1">
@@ -173,14 +173,14 @@
   <sect1 id="gettingstarted">
     <title>Getting Started</title>
     <para>
-    Starting <application>gramps</application> opens the
+    Starting <application>GRAMPS</application> opens the
     <interface>Main window</interface>, shown in <xref
     linkend="mainwindow-fig">. The window is at first empty.
     </para>
     <figure id="mainwindow-fig">
-      <title>gramps Main Window</title>
+      <title>GRAMPS Main Window</title>
       <screenshot>
-	<screeninfo>gramps Main Window</screeninfo>
+	<screeninfo>GRAMPS Main Window</screeninfo>
 	<graphic fileref="mainwin" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
@@ -189,7 +189,7 @@
       <title>Importing data</title>
       <para>
       If you already have a family file created using another
-      genealogy program you can import your GEDCOM file into Gramps.
+      genealogy program you can import your GEDCOM file into GRAMPS.
       To do this you select <menuchoice> <guimenu>File</guimenu>
       <guisubmenu>Import</guisubmenu> <guimenuitem>Import from
       GEDCOM</guimenuitem> </menuchoice>.  The <interface>GEDCOM
@@ -211,13 +211,13 @@
       <title>Entering Data</title>
       <para>
       If you have never used a genealogy program or you do not have a
-      GEDCOM file to import you can start creating your database right
-      away. From the main window click the <guibutton>Add
+      GEDCOM file to import, you can start creating your database
+      right away. From the main window click the <guibutton>Add
       Person</guibutton> button and the <interface>Edit
-      Person</interface> dialog will open.  Start entering in the
-      information you have on the first person.  Start with their
-      general information (Name, Birth and Death Date/Place) and then
-      move on to the <interface>Names</interface>,
+      Person</interface> dialog will open.  Enter in the information
+      you have on the first person.  Start with their general
+      information (Name, Birth and Death Date/Place) and then move on
+      to the <interface>Names</interface>,
       <interface>Events</interface>,
       <interface>Attributes</interface>,
       <interface>Addresses</interface>, <interface>Notes</interface>,
@@ -262,11 +262,11 @@
     <sect2 id="seleditindv">
       <title>Selecting and Editing Individuals</title>
       <para>
-      The People View lists the individuals in the database. An in
-      dividual can be selected as the active person by clicking on an
-      entry in the list. Once a person has been selected as the active
-      person, the person's name appears in the status bar in the lower
-      left hand corner of the window.
+      The People View lists the individuals in the database. An
+      individual can be selected as the active person by clicking on
+      an entry in the list. Once a person has been selected as the
+      active person, the person's name appears in the status bar in
+      the lower left hand corner of the window.
       </para>
       <para>
       Once the active person has been selected, pressing the
@@ -296,7 +296,7 @@
     <sect2>
       <title>Applying Filters</title>
       <para>
-      <application>gramps</application> allows you to apply filters to
+      <application>GRAMPS</application> allows you to apply filters to
       the People View. When a filter is applied, the People View will
       only display the entries matching the filter. All of the entries
       remain in the database, but are temporarily hidden.
@@ -309,7 +309,7 @@
       information for the filter. Many filters do not require the
       qualifier, and it will be grayed out if not needed.  The third
       part of the filter is the invert selection.  When this option is
-      selected, <application>gramps</application> will display the
+      selected, <application>GRAMPS</application> will display the
       entries that do not match the filter.
       </para>
       <para>
@@ -324,7 +324,7 @@
       Four columns are shown in the People View display. The entries
       in the list can be sorted by three of the fields: Name, Birth
       Date, or Death Date.  Clicking on the column label will cause
-      the list to be resorted by that column.  Arrows on the label
+      the list to be re-sorted by that column.  Arrows on the label
       indicate whether the list is sort by ascending or descending
       order.
       </para>
@@ -332,8 +332,8 @@
       If the list is already sorted by a particular column, clicking
       on the same column label will switch sorting order.  For
       example, if the list is currently sorted in ascending order by
-      Name, clicking on the Name column header will resort the list in
-      descending order.
+      Name, clicking on the Name column header will re-sort the list
+      in descending order.
       </para>
     </sect2>
   </sect1>
@@ -374,10 +374,10 @@
         </screenshot>
       </figure>
       <para>
-      Its possible for people to use more than one name during their
+      It is possible for people to use more than one name during their
       lifetime. These may be legal names changes, or just informal
-      names. Examples would be a person changing his or her name due
-      to marriage or adoption. <application>gramps</application>
+      names. An example would be a person changing his or her name due
+      to marriage or adoption. <application>GRAMPS</application>
       allows multiple alternate names to be specified for each person.
       </para>
       <para>
@@ -394,9 +394,9 @@
       <para>
       The <interface>Events</interface> tab allows information about
       various events in a person's life to be
-      recorded. <application>gramps</application> provides a list of
+      recorded. <application>GRAMPS</application> provides a list of
       common events, but allows you to name an event anything that you
-      want.
+      choose.
       </para>
       <para>
       An event consists of a name of an event (such as "Baptism" or
@@ -412,10 +412,10 @@
       to limit information provided to others.
       </para>
       <para>
-      <application>gramps</application> allows you to specify your
+      <application>GRAMPS</application> allows you to specify your
       confidence in the information you have. By default, a confidence
       level of "Normal" is associated with each event. This can be
-      changed either up ("High" or "Very High") or down ("Low" or
+      increased ("High" or "Very High") or decreased ("Low" or
       "Very Low") to indicate the confidence you have in the
       information. For example, if Aunt Martha thinks that her
       grandmother was born in a particular year, you may wish to mark
@@ -491,8 +491,8 @@
       <para>
       Addresses are used to record information about where a person
       has lived. Addresses are different from
-      <application>gramps'</application> concept of a place. A address
-      as <application>gramps</application> sees it consists of an
+      <application>GRAMPS'</application> concept of a place. A address
+      as <application>GRAMPS</application> sees it consists of an
       equivalent of a mailing address and the date or date range when
       the person lived at the address.
       </para>
@@ -531,7 +531,7 @@
       <title>Notes Tab</title>
       <para>
       In addition to the notes that may be attached to any particular
-      event, attribute, or address, <application>gramps</application>
+      event, attribute, or address, <application>GRAMPS</application>
       has a generic note attached to the person.
       </para>
       <figure id="ep_notes-fig">
@@ -556,13 +556,13 @@
       PNG.
       </para>
       <para>
-       <application>gramps</application> can either refer to an
+       <application>GRAMPS</application> can either refer to an
       existing file, or make its own copy. By default,
-      <application>gramps</application> will make its own copy. There
+      <application>GRAMPS</application> will make its own copy. There
       are advantages and disadvatages to both approaches. Refering to
       an external copy reduces disk space. Allowing
-      <application>gramps</application> to make its own copy
-      eliminates allows gramps to still have the image if the orignal
+      <application>GRAMPS</application> to make its own copy
+      eliminates allows GRAMPS to still have the image if the orignal
       is altered, deleted, or moved. It also simplifies the transfer
       of a database from one machine to another.
       </para>
@@ -583,10 +583,10 @@
       Prmimary</guibutton> button. Images may be added by clicking the
       <guibutton>Add</guibutton> button, and deleted by clicking the
       <guibutton>Delete</guibutton> button. If the image is a
-      reference to another file, <application>gramps</application>
+      reference to another file, <application>GRAMPS</application>
       will remove the reference to the file. If the file is a copy
-      maintained by <application>gramps</application>, then
-      <application>gramps</application> will remove the file from the
+      maintained by <application>GRAMPS</application>, then
+      <application>GRAMPS</application> will remove the file from the
       file system.
       </para>
       <para>
@@ -626,8 +626,8 @@
 	    <para>
 	    This option is only displayed if the image is a reference
 	    to a file that is not controlled by
-	    <application>gramps</application>. Selecting the option
-	    causes <application>gramps</application> to make its own
+	    <application>GRAMPS</application>. Selecting the option
+	    causes <application>GRAMPS</application> to make its own
 	    copy of the image.
 	    </para>
 	  </listitem>
@@ -662,7 +662,7 @@
       </para>
       <para>
       Clicking on the internet address displayed at the top part of
-      the window will cause <application>gramps</application> to attempt
+      the window will cause <application>GRAMPS</application> to attempt
       to display the site using the GNOME default browser.
       </para>
       <para>
@@ -710,7 +710,7 @@
       <para>
       On the right hand side of the window displays the parents of the
       active person. By default, a birth relationship is
-      assumed. <application>gramps</application> supports multiple
+      assumed. <application>GRAMPS</application> supports multiple
       family relationships for each person. For example, a person may
       have natural birth parents and adopted parents. In this case, an
       option menu will appear below the parents names, allowing you to
@@ -819,13 +819,13 @@
       </para>
     </sect2>
   </sect1>
-  <sect1 id="pedegreeview">
-    <title>Pedegree View</title>
+  <sect1 id="pedigreeview">
+    <title>Pedigree View</title>
     <para>
-    The Pedegree View window displays the active person, the active
+    The Pedigree View window displays the active person, the active
     person's parents, and the active parent's grandparents in a
     somewhat graphical manner. At any time, you can return to the this
-    view either by pressing the Pedegree button at the top of the
+    view either by pressing the Pedigree button at the top of the
     screen, or by choosing the
       <menuchoice>
         <guimenu>View</guimenu>
@@ -833,10 +833,10 @@
       </menuchoice>
     entry from the menus.
     </para>
-    <figure id="pedegreeview-fig">
-      <title>Pedegree View</title>
+    <figure id="pedigreeview-fig">
+      <title>Pedigree View</title>
       <screenshot>
-	<screeninfo>Pedegree View</screeninfo>
+	<screeninfo>Pedigree View</screeninfo>
 	<graphic fileref="pedegreeview" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
@@ -854,11 +854,11 @@
     ways. Clicking on the arrow next to the active person will display
     a menu listing the children of the active person. Selecting a
     person from this list will change the active person to the
-    selected child, effectively shifting the pedegree view to the
+    selected child, effectively shifting the pedigree view to the
     left, or down one generation. Clicking one of the arrow buttons on
     the left side of the screen will make the select either the active
     person's father (top button) or mother (bottom button),
-    effectively shifting the pedegree view to the right, or up one
+    effectively shifting the pedigree view to the right, or up one
     generation. If the active person does not have any children, then
     the button on the left hand side of the screen will not
     appear. Similarly, if the active person does have a father or
@@ -941,14 +941,14 @@
   <sect1 id="bookmarks">
     <title>Bookmarking People</title>
     <para>
-    <application>gramps</application> supports two mechanisms to
+    <application>GRAMPS</application> supports two mechanisms to
     quickly find people - the home person and bookmarks.
     </para>
     <sect2 id="homeperson">
       <title>Home Person</title>
       <para>
       The home person is the default person of the database. Upon
-      loading the database, <application>gramps</application> will set
+      loading the database, <application>GRAMPS</application> will set
       the active person to the default person. At any time, clicking
       the <guibutton>Home</guibutton> button will return the active
       person to the home person.
@@ -1043,7 +1043,7 @@
       </figure>
       <para>
       The General Preferences tab contains basic information to
-      control the operation of <application>gramps</application>.
+      control the operation of <application>GRAMPS</application>.
       </para>
       <variablelist>
         <title>General Preferences options</title>
@@ -1060,10 +1060,10 @@
 	  <term><guilabel>Do not compress XML data file</guilabel></term>
           <listitem>
             <para>
-	    <application>gramps</application> normally compresses its
+	    <application>GRAMPS</application> normally compresses its
 	    data file to conserve disk space. If you do not which to
 	    have the file compressed, selecting this option will cause
-	    <application>gramps</application> to leave the file
+	    <application>GRAMPS</application> to leave the file
 	    uncompressed.  This may be desirable if other applications
 	    need to process the generated XML file.
   	    </para>
@@ -1080,11 +1080,11 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>Display gramps ID in list</guilabel></term>
+	  <term><guilabel>Display GRAMPS ID in list</guilabel></term>
           <listitem>
             <para>
 	    This will add a new column to the Person View with the
-	    Gramps ID for each individual.
+	    GRAMPS ID for each individual.
 	    </para>
           </listitem>
 	</varlistentry>
@@ -1137,7 +1137,7 @@
 	    Numerical date formats can be ambiguous. Some people enter
 	    the day, month, and year (European style), while others
 	    prefer month, day, year (American style). Selecting the
-	    option here informs <application>gramps</application> how
+	    option here informs <application>GRAMPS</application> how
 	    it should interpret numerical dates.
             </para>
           </listitem>
@@ -1178,7 +1178,7 @@
             (3) preferences you can chose from.  The first is Active
             person's name only - this will display the active person's
             name only in the status bar.  The second is Active
-            person's name and gramps ID - This will display the name
+            person's name and GRAMPS ID - This will display the name
             and ID for the active person ( [I9] Edwin Michael Smith ).
             The last option is Active person's name and attribute -
             this is just like the second option but shows the
@@ -1213,7 +1213,7 @@
       </figure>
       <para>
       This is where you are able to change the information you entered
-      when you started gramps for the first time and was asked to
+      when you started GRAMPS for the first time and was asked to
       enter in some information. (This information shows up in your
       GEDCOM files as being the researcher/author of the file)
       </para>
@@ -1229,7 +1229,7 @@
         </screenshot>
       </figure>
       <para>
-      Many of the reports that <application>gramps</application>
+      Many of the reports that <application>GRAMPS</application>
       produces can be generated in different file formats and
       different paper sizes. Selecting a <guilabel>Preferred Output
       Format</guilabel> and a <guilabel>Preferred Output
@@ -1260,7 +1260,7 @@
   <sect1 id="genreports">
     <title>Generating Reports</title>
     <para>
-    <application>gramps</application> can produce a wide variety of
+    <application>GRAMPS</application> can produce a wide variety of
     reports. New report generators can be written by the user without
     modifying the main program. For this reason, there may be more
     reports available than are documented by this manual
@@ -1274,9 +1274,9 @@
       </screenshot>
     </figure>
     <para>
-    Unlike many genealogy programs, <application>gramps</application>
+    Unlike many genealogy programs, <application>GRAMPS</application>
     does not directly print reports. Instead,
-    <application>gramps</application> produces reports in formats that
+    <application>GRAMPS</application> produces reports in formats that
     are understood by other programs.  These formats include
     OpenOffice, AbiWord, PDF, and HTML, among others. This allows the
     generated reports to be modified after they are generated, stored
@@ -1295,7 +1295,7 @@
     Selecting one of those options you can then change the font (font
     face, size, color, and options) for each Paragraph Style along
     with the Paragraph Options (Alignment, background color, margins,
-    and morders).  Once you are satisfied with the style you are ready
+    and dorders).  Once you are satisfied with the style you are ready
     to proceed with the generation of your report.  The next step is
     to choose the options (if any for that specific report) and then
     Choose the Templete (for HTML format only) and click OK.  Your
@@ -1313,7 +1313,7 @@
       option of modifying hundreds of files by hand.
       </para>
       <para>
-      To solve this problem, <application>gramps</application> allows
+      To solve this problem, <application>GRAMPS</application> allows
       the user to specify a template to be used for generating HTML
       files.  At the time the report is generated, if HTML is selected
       as the target format, the user can select an HTML template to be
@@ -1321,26 +1321,26 @@
       different template may be chosen each time, allowing the user to
       change the appearence of the generated files at any time.
       Nearly any existing HTML file can be used as an HTML template
-      for <application>gramps</application>.
+      for <application>GRAMPS</application>.
       </para>
       <para>
       When a file has been established as the HTML template file,
-      <application>gramps</application> uses the template for each
-      file that it generates. <application>gramps</application> starts
+      <application>GRAMPS</application> uses the template for each
+      file that it generates. <application>GRAMPS</application> starts
       each file by copying data from the template until it reaches an
       HTML comment uses as a marker.  At that point,
-      <application>gramps</application> inserts its data into the
-      output file. <application>gramps</application> the continues
+      <application>GRAMPS</application> inserts its data into the
+      output file. <application>GRAMPS</application> the continues
       reading the until it reaches a second comment that tells it to
       resume copying from the template.
       </para>
       <para>
-      <application>gramps</application> uses the string
+      <application>GRAMPS</application> uses the string
       <function>&lt;!-- START --&gt;</function> to indicate where it
       should start inserting its information, and the string
       <function>&lt;!-- STOP --&gt;</function> to indicate where it
       should resume copying data from the template.  The effect is
-      that <application>gramps</application> will create a new
+      that <application>GRAMPS</application> will create a new
       document, replacing everything between the <function>&lt;!--
       START --&gt;</function> and <function>&lt;!-- STOP
       --&gt;</function> comments with the report information.
@@ -1352,7 +1352,7 @@
       </para>
       <para>
       If no HTML template is specified, or if the specified template
-      cannot be read, <application>gramps</application> will use a
+      cannot be read, <application>GRAMPS</application> will use a
       default, predefined template.
       </para>
       <figure id="templateexample">
@@ -1370,14 +1370,14 @@ This is a simple template.  This text will appear in the html output.
 &lt;/P&gt;
 &lt;!-- START --&gt;
 &lt;P&gt;
-This is where gramps will place its report information. Any 
+This is where GRAMPS will place its report information. Any 
 information between the two comments, including this paragraph,
-will not appear in the gramps generated output.
+will not appear in the GRAMPS generated output.
 &lt;/P&gt;
 &lt;!-- STOP --&gt;
 &lt;P&gt;
 This text, since it appears after the stop comment, will also
-appear in every gramps generated file.
+appear in every GRAMPS generated file.
 &lt;/P&gt;
 &lt;/BODY&gt;
 &lt;/HTML&gt;
@@ -1391,7 +1391,7 @@ appear in every gramps generated file.
   <sect1 id="runtools">
     <title>Running Tools</title>
     <para>
-    <application>gramps</application> supports standard and user
+    <application>GRAMPS</application> supports standard and user
     written tools. These tools can operate on the database to perform
     a specified task.
     </para>
@@ -1464,10 +1464,10 @@ appear in every gramps generated file.
 	</listitem>
       </varlistentry>
       <varlistentry>
-        <term>Reorder gramps ID's</term>
+        <term>Reorder GRAMPS ID's</term>
 	<listitem>
 	  <para>
-	  Reorders the gramps ID's according to gramps' default rules.
+	  Reorders the GRAMPS ID's according to GRAMPS' default rules.
 	  </para>
 	</listitem>
       </varlistentry>
@@ -1508,10 +1508,10 @@ appear in every gramps generated file.
   <sect1 id="authors">
     <title>Authors</title>
     <para>
-    <application>gramps</application> was written by Don Allingham
+    <application>GRAMPS</application> was written by Don Allingham
     (<email>dallingham@users.sourceforge.net</email>). To find more
-    information about <application>gramps</application>, please visit
-    the <ulink url="http://gramps.sourceforge.net" type="http">gramps
+    information about <application>GRAMPS</application>, please visit
+    the <ulink url="http://gramps.sourceforge.net" type="http">GRAMPS
     Web page</ulink>.
     </para>
     <para>
