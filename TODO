@@ -20,10 +20,6 @@
 * Speed up the reading of the database. The python XML routines are not
   as fast as I would like, and it can take a minute or so to read a
   large database. This is way too slow.
-* Progress report on the WebPage report generation. I've been told that
-  for large databases, this can take up to about 10 minutes. A progress
-  bar would give people an indication of where they are in the process,
-  and an indication that gramps has not locked up on them.
 * GEDCOM import should use the GEDCOM ID values as the GRAMPS ids if the
   current database is empty. This would help us in the future if we want
   to do an incremental update. Having the GEDCOM ID and the gramps ID
@@ -38,7 +34,6 @@
 * Disable the save buttons if gramps database is marked read-only. Disable 
   the adding of media objects as well, since this will cause gramps to
   try to create a thumbnail in a readonly database.
-* Dates do not understand alternate calendars
 * OpenOffice zip file is not handled very gracefully.  Uses the "system"
   call to generate the zip file using the hard coded path of /usr/bin/zip. 
   Python 2.0 provides a zip interface, so this may need to hold off until 
