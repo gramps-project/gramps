@@ -534,13 +534,19 @@ class Gramps:
     def on_about_activate(self,obj):
         """Displays the about box.  Called from Help menu"""
         pixbuf = gtk.gdk.pixbuf_new_from_file(const.logo)
+
+        if const.translators[0:11] == "TRANSLATORS":
+            trans = ""
+        else:
+            trans = const.translators
+        
         gnome.ui.About(const.progName,
                        const.version,
                        const.copyright,
                        const.comments,
                        const.authors,
                        const.documenters,
-                       const.translators,
+                       trans,
                        pixbuf).show()
     
     def on_contents_activate(self,obj):

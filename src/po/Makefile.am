@@ -20,4 +20,4 @@ uninstall-local:
 SUFFIXES = .po .mo
 
 .po.mo:
-	${MSGFMT} $< -o $@
+	${MSGFMT} -v -c $< -o $@
