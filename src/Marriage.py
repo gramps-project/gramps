@@ -132,15 +132,8 @@ class Marriage:
         fid = family.get_father_handle()
         mid = family.get_mother_handle()
 
-        if fid:
-            father = self.db.try_to_find_person_from_handle(family.get_father_handle())
-        else:
-            father = None
-
-        if mid:
-            mother = self.db.try_to_find_person_from_handle(family.get_mother_handle())
-        else:
-            mother = None
+        father = self.db.try_to_find_person_from_handle(fid)
+        mother = self.db.try_to_find_person_from_handle(mid)
         
         self.title = _("%s and %s") % (GrampsCfg.get_nameof()(father),
                                   GrampsCfg.get_nameof()(mother))
@@ -199,6 +192,11 @@ class Marriage:
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
 
+        rel_list = []
+        for (val,junk) in const.family_relations:
+            rel_list.append(val)
+        AutoComp.fill_option_text(self.type_field,rel_list)
+
         frel = family.get_relationship()
         self.type_field.set_active(frel)
         self.gid.set_text(family.get_handle())
@@ -208,12 +206,12 @@ class Marriage:
 
         place_list = self.pmap.keys()
         place_list.sort()
-        self.autoplace = AutoComp.fill_combo(self.lds_place, place_list)
+        AutoComp.fill_combo(self.lds_place, place_list)
 
         ord = self.family.get_lds_sealing()
         if ord:
             if ord.get_place_handle():
-                self.lds_place.entry.set_text(ord.get_place_handle().get_title())
+                self.lds_place.child.set_text(ord.get_place_handle().get_title())
             self.lds_date.set_text(ord.get_date())
             if ord.get_temple() != "":
                 name = const.lds_temple_to_abrev[ord.get_temple()]
@@ -223,7 +221,7 @@ class Marriage:
             self.seal_stat = ord.get_status()
         else:
             self.lds_temple.child.set_text("")
-            self.lds_place.entry.set_text("")
+            self.lds_place.child.set_text("")
             self.seal_stat = 0
 
         if self.family.get_complete():
@@ -236,16 +234,24 @@ class Marriage:
         else:
             Utils.unbold_label(self.lds_label)
         
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,gtk.gdk.ACTION_COPY)
-        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,pycode_tgts, gtk.gdk.ACTION_COPY)
-        self.event_list.connect('drag_data_get', self.ev_source_drag_data_get)
-        self.event_list.connect('drag_data_received',self.ev_dest_drag_data_received)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                      pycode_tgts,gtk.gdk.ACTION_COPY)
+        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                                        pycode_tgts, gtk.gdk.ACTION_COPY)
+        self.event_list.connect('drag_data_get',
+                                self.ev_source_drag_data_get)
+        self.event_list.connect('drag_data_received',
+                                self.ev_dest_drag_data_received)
         self.event_list.connect('drag_begin', self.ev_drag_begin)
 
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,gtk.gdk.ACTION_COPY)
-        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK, pycode_tgts,gtk.gdk.ACTION_COPY)
-        self.attr_list.connect('drag_data_get', self.at_source_drag_data_get)
-        self.attr_list.connect('drag_data_received',self.at_dest_drag_data_received)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                     pycode_tgts,gtk.gdk.ACTION_COPY)
+        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
+                                       pycode_tgts,gtk.gdk.ACTION_COPY)
+        self.attr_list.connect('drag_data_get',
+                               self.at_source_drag_data_get)
+        self.attr_list.connect('drag_data_received',
+                               self.at_dest_drag_data_received)
         self.attr_list.connect('drag_begin', self.at_drag_begin)
 
         # set notes data
@@ -275,7 +281,7 @@ class Marriage:
         self.child_windows = {}
 
     def close(self,ok=0):
-        self.gallery.close(ok)
+        self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
         self.window.destroy()
@@ -388,7 +394,8 @@ class Marriage:
             if mytype != 'fevent':
                 return
             elif family == self.family.get_handle():
-                self.move_element(self.elist,self.etree.get_selected_row(),row)
+                self.move_element(self.elist,self.etree.get_selected_row(),
+                                  row)
             else:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
@@ -638,7 +645,8 @@ class Marriage:
         import EventEdit
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.display_fevent,None,None,0,self.event_edit_callback,
+                              const.display_fevent,None,None,
+                              0,self.event_edit_callback,
                               const.defaultMarriageEvent)
 
     def on_event_update_clicked(self,obj):
@@ -649,7 +657,8 @@ class Marriage:
         event = self.etree.get_object(iter)
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.display_fevent,event,None,0,self.event_edit_callback)
+                              const.display_fevent,event,
+                              None,0,self.event_edit_callback)
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.elist):
@@ -772,7 +781,7 @@ class Marriage:
             Utils.unbold_label(self.lds_label)
 
     def get_place(self,makenew,trans=None):
-        field = self.lds_place.entry
+        field = self.lds_place.child
         text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):

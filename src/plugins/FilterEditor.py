@@ -143,7 +143,7 @@ class MyPlaces(gtk.Entry):
     def __init__(self,places):
         gtk.Entry.__init__(self)
         
-        self.comp = AutoComp.fill_entry(self,places)
+        AutoComp.fill_entry(self,places)
         self.show()
         
 #-------------------------------------------------------------------------

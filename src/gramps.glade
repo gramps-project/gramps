@@ -13055,7 +13055,7 @@ Other</property>
 		      <child>
 			<widget class="GtkComboBox" id="marriage_type">
 			  <property name="visible">True</property>
-			  <property name="items" translatable="yes">Married</property>
+			  <property name="items" translatable="yes"></property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
