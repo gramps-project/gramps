@@ -36,7 +36,7 @@ import GrampsCfg
 _level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
                 "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
                 "thirteenth", "fourteenth", "fifteenth", "sixteenth",
-                "seventeenth", "eigthteenth", "nineteenth", "twentieth" ]
+                "seventeenth", "eighteenth", "nineteenth", "twentieth" ]
 
 _removed_level = [ "", " once removed", " twice removed", " three times removed",
                    " four times removed", " five times removed", " six times removed",
@@ -54,8 +54,8 @@ _father_level = [ "", "father", "grandfather", "great grandfather", "second grea
                   "eleventh great grandfather",  "twelefth great grandfather",
                   "thirteenth great grandfather", "fourteenth great grandfather",
                   "fifteenth great grandfather", "sixteenth great grandfather",
-                  "seventeenth great grandfather", "eightteenth great grandfather",
-                  "ninetheen great grandfather", "twentieth great grandfather", ]
+                  "seventeenth great grandfather", "eighteenth great grandfather",
+                  "nineteenth great grandfather", "twentieth great grandfather", ]
 
 _mother_level = [ "", "mother", "grandmother", "great grandmother", "second great grandmother",
                   "third great grandmother",  "fourth great grandmother",
@@ -65,8 +65,8 @@ _mother_level = [ "", "mother", "grandmother", "great grandmother", "second grea
                   "eleventh great grandmother",  "twelefth great grandmother",
                   "thirteenth great grandmother", "fourteenth great grandmother",
                   "fifteenth great grandmother", "sixteenth great grandmother",
-                  "seventeenth great grandmother", "eightteenth great grandmother",
-                  "ninetheen great grandmother", "twentieth great grandmother", ]
+                  "seventeenth great grandmother", "eighteenth great grandmother",
+                  "nineteenth great grandmother", "twentieth great grandmother", ]
 
 _son_level = [ "", "son", "grandson", "great grandson", "second great grandson",
                "third great grandson",  "fourth great grandson",
@@ -76,8 +76,8 @@ _son_level = [ "", "son", "grandson", "great grandson", "second great grandson",
                "eleventh great grandson",  "twelefth great grandson",
                "thirteenth great grandson", "fourteenth great grandson",
                "fifteenth great grandson", "sixteenth great grandson",
-               "seventeenth great grandson", "eightteenth great grandson",
-               "ninetheen great grandson", "twentieth great grandson", ]
+               "seventeenth great grandson", "eighteenth great grandson",
+               "nineteenth great grandson", "twentieth great grandson", ]
 
 _daughter_level = [ "", "daughter", "granddaughter", "great granddaughter",
                     "second great granddaughter",
@@ -88,8 +88,8 @@ _daughter_level = [ "", "daughter", "granddaughter", "great granddaughter",
                     "eleventh great granddaughter",  "twelefth great granddaughter",
                     "thirteenth great granddaughter", "fourteenth great granddaughter",
                     "fifteenth great granddaughter", "sixteenth great granddaughter",
-                    "seventeenth great granddaughter", "eightteenth great granddaughter",
-                    "ninetheen great granddaughter", "twentieth great granddaughter", ]
+                    "seventeenth great granddaughter", "eighteenth great granddaughter",
+                    "nineteenth great granddaughter", "twentieth great granddaughter", ]
 
 _sister_level = [ "", "sister", "aunt", "grandaunt", "great grandaunt", "second great grandaunt",
                   "third great grandaunt",  "fourth great grandaunt",
@@ -99,8 +99,8 @@ _sister_level = [ "", "sister", "aunt", "grandaunt", "great grandaunt", "second 
                   "eleventh great grandaunt",  "twelefth great grandaunt",
                   "thirteenth great grandaunt", "fourteenth great grandaunt",
                   "fifteenth great grandaunt", "sixteenth great grandaunt",
-                  "seventeenth great grandaunt", "eightteenth great grandaunt",
-                  "ninetheen great grandaunt", "twentieth great grandaunt", ]
+                  "seventeenth great grandaunt", "eighteenth great grandaunt",
+                  "nineteenth great grandaunt", "twentieth great grandaunt", ]
 
 _brother_level = [ "", "brother", "uncle", "granduncle", "great granduncle", "second great granduncle",
                    "third great granduncle",  "fourth great granduncle",
@@ -110,8 +110,8 @@ _brother_level = [ "", "brother", "uncle", "granduncle", "great granduncle", "se
                    "eleventh great granduncle",  "twelefth great granduncle",
                    "thirteenth great granduncle", "fourteenth great granduncle",
                    "fifteenth great granduncle", "sixteenth great granduncle",
-                   "seventeenth great granduncle", "eightteenth great granduncle",
-                   "ninetheen great granduncle", "twentieth great granduncle", ]
+                   "seventeenth great granduncle", "eighteenth great granduncle",
+                   "nineteenth great granduncle", "twentieth great granduncle", ]
 
 _nephew_level = [ "", "nephew", "grandnephew", "great grandnephew", "second great grandnephew",
                   "third great grandnephew",  "fourth great grandnephew",
@@ -121,8 +121,8 @@ _nephew_level = [ "", "nephew", "grandnephew", "great grandnephew", "second grea
                   "eleventh great grandnephew",  "twelefth great grandnephew",
                   "thirteenth great grandnephew", "fourteenth great grandnephew",
                   "fifteenth great grandnephew", "sixteenth great grandnephew",
-                  "seventeenth great grandnephew", "eightteenth great grandnephew",
-                  "ninetheen great grandnephew", "twentieth great grandnephew", ]
+                  "seventeenth great grandnephew", "eighteenth great grandnephew",
+                  "nineteenth great grandnephew", "twentieth great grandnephew", ]
 
 _niece_level = [ "", "niece", "grandniece", "great grandniece", "second great grandniece",
                  "third great grandniece",  "fourth great grandniece",
@@ -132,8 +132,8 @@ _niece_level = [ "", "niece", "grandniece", "great grandniece", "second great gr
                  "eleventh great grandniece",  "twelefth great grandniece",
                  "thirteenth great grandniece", "fourteenth great grandniece",
                  "fifteenth great grandniece", "sixteenth great grandniece",
-                 "seventeenth great grandniece", "eightteenth great grandniece",
-                 "ninetheen great grandniece", "twentieth great grandniece", ]
+                 "seventeenth great grandniece", "eighteenth great grandniece",
+                 "nineteenth great grandniece", "twentieth great grandniece", ]
 
 #-------------------------------------------------------------------------
 #
