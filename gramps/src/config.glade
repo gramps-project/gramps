@@ -214,9 +214,38 @@
 
       <widget>
 	<class>GtkFrame</class>
-	<name>frame12</name>
+	<name>frame18</name>
 	<border_width>5</border_width>
-	<label>Display</label>
+	<label>Find</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>autocomp</name>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>toggled</name>
+	    <handler>on_object_toggled</handler>
+	    <object>propertybox</object>
+	    <last_modification_time>Wed, 12 Dec 2001 03:34:00 GMT</last_modification_time>
+	  </signal>
+	  <label>Enable autocompletion</label>
+	  <active>True</active>
+	  <draw_indicator>True</draw_indicator>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame17</name>
+	<border_width>5</border_width>
+	<label>Toolbar</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>
@@ -227,82 +256,71 @@
 
 	<widget>
 	  <class>GtkVBox</class>
-	  <name>vbox31</name>
+	  <name>vbox35</name>
 	  <homogeneous>False</homogeneous>
 	  <spacing>0</spacing>
 
 	  <widget>
-	    <class>GtkCheckButton</class>
-	    <name>usetabs</name>
-	    <border_width>3</border_width>
+	    <class>GtkRadioButton</class>
+	    <name>tool1</name>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>toggled</name>
 	      <handler>on_object_toggled</handler>
 	      <object>propertybox</object>
-	      <last_modification_time>Thu, 15 Feb 2001 21:32:23 GMT</last_modification_time>
+	      <last_modification_time>Wed, 30 May 2001 02:18:01 GMT</last_modification_time>
 	    </signal>
-	    <label>Use tabbed pages</label>
-	    <active>False</active>
+	    <label>Display only icons</label>
+	    <active>True</active>
 	    <draw_indicator>True</draw_indicator>
+	    <group>toolbar</group>
 	    <child>
-	      <padding>5</padding>
+	      <padding>0</padding>
 	      <expand>False</expand>
 	      <fill>False</fill>
 	    </child>
 	  </widget>
 
 	  <widget>
-	    <class>GtkHBox</class>
-	    <name>hbox1</name>
-	    <homogeneous>False</homogeneous>
-	    <spacing>0</spacing>
+	    <class>GtkRadioButton</class>
+	    <name>tool2</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
+	    </signal>
+	    <label>Display only text</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>toolbar</group>
 	    <child>
 	      <padding>0</padding>
-	      <expand>True</expand>
-	      <fill>True</fill>
+	      <expand>False</expand>
+	      <fill>False</fill>
 	    </child>
+	  </widget>
 
-	    <widget>
-	      <class>GtkCheckButton</class>
-	      <name>attr_display</name>
-	      <can_focus>True</can_focus>
-	      <signal>
-		<name>toggled</name>
-		<handler>on_object_toggled</handler>
-		<object>propertybox</object>
-		<last_modification_time>Thu, 24 May 2001 21:14:10 GMT</last_modification_time>
-	      </signal>
-	      <label>Display attribute on Edit Person form</label>
-	      <active>False</active>
-	      <draw_indicator>True</draw_indicator>
-	      <child>
-		<padding>3</padding>
-		<expand>False</expand>
-		<fill>False</fill>
-	      </child>
-	    </widget>
-
-	    <widget>
-	      <class>GtkEntry</class>
-	      <name>attr_name</name>
-	      <can_focus>True</can_focus>
-	      <signal>
-		<name>changed</name>
-		<handler>on_object_toggled</handler>
-		<object>propertybox</object>
-		<last_modification_time>Thu, 24 May 2001 21:14:30 GMT</last_modification_time>
-	      </signal>
-	      <editable>True</editable>
-	      <text_visible>True</text_visible>
-	      <text_max_length>0</text_max_length>
-	      <text></text>
-	      <child>
-		<padding>5</padding>
-		<expand>True</expand>
-		<fill>True</fill>
-	      </child>
-	    </widget>
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>tool3</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:29 GMT</last_modification_time>
+	    </signal>
+	    <label>Display both icons and text</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>toolbar</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
 	  </widget>
 	</widget>
       </widget>
@@ -974,9 +992,9 @@
 
       <widget>
 	<class>GtkFrame</class>
-	<name>frame17</name>
+	<name>frame12</name>
 	<border_width>5</border_width>
-	<label>Toolbar</label>
+	<label>Display</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>
@@ -996,71 +1014,82 @@
 
 	<widget>
 	  <class>GtkVBox</class>
-	  <name>vbox35</name>
+	  <name>vbox31</name>
 	  <homogeneous>False</homogeneous>
 	  <spacing>0</spacing>
 
 	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>tool1</name>
+	    <class>GtkCheckButton</class>
+	    <name>usetabs</name>
+	    <border_width>3</border_width>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>toggled</name>
 	      <handler>on_object_toggled</handler>
 	      <object>propertybox</object>
-	      <last_modification_time>Wed, 30 May 2001 02:18:01 GMT</last_modification_time>
+	      <last_modification_time>Thu, 15 Feb 2001 21:32:23 GMT</last_modification_time>
 	    </signal>
-	    <label>Display only icons</label>
-	    <active>True</active>
+	    <label>Use tabbed pages</label>
+	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
-	    <group>toolbar</group>
 	    <child>
-	      <padding>0</padding>
+	      <padding>5</padding>
 	      <expand>False</expand>
 	      <fill>False</fill>
 	    </child>
 	  </widget>
 
 	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>tool2</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>toggled</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
-	    </signal>
-	    <label>Display only text</label>
-	    <active>False</active>
-	    <draw_indicator>True</draw_indicator>
-	    <group>toolbar</group>
+	    <class>GtkHBox</class>
+	    <name>hbox1</name>
+	    <homogeneous>False</homogeneous>
+	    <spacing>0</spacing>
 	    <child>
 	      <padding>0</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
+	      <expand>True</expand>
+	      <fill>True</fill>
 	    </child>
-	  </widget>
 
-	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>tool3</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>toggled</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Wed, 30 May 2001 02:18:29 GMT</last_modification_time>
-	    </signal>
-	    <label>Display both icons and text</label>
-	    <active>False</active>
-	    <draw_indicator>True</draw_indicator>
-	    <group>toolbar</group>
-	    <child>
-	      <padding>0</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
-	    </child>
+	    <widget>
+	      <class>GtkCheckButton</class>
+	      <name>attr_display</name>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>toggled</name>
+		<handler>on_object_toggled</handler>
+		<object>propertybox</object>
+		<last_modification_time>Thu, 24 May 2001 21:14:10 GMT</last_modification_time>
+	      </signal>
+	      <label>Display attribute on Edit Person form</label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
+	      <child>
+		<padding>3</padding>
+		<expand>False</expand>
+		<fill>False</fill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkEntry</class>
+	      <name>attr_name</name>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>changed</name>
+		<handler>on_object_toggled</handler>
+		<object>propertybox</object>
+		<last_modification_time>Thu, 24 May 2001 21:14:30 GMT</last_modification_time>
+	      </signal>
+	      <editable>True</editable>
+	      <text_visible>True</text_visible>
+	      <text_max_length>0</text_max_length>
+	      <text></text>
+	      <child>
+		<padding>5</padding>
+		<expand>True</expand>
+		<fill>True</fill>
+	      </child>
+	    </widget>
 	  </widget>
 	</widget>
       </widget>
@@ -1345,246 +1374,6 @@
       <column_spacing>0</column_spacing>
 
       <widget>
-	<class>GtkEntry</class>
-	<name>resname</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:33:49 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>0</top_attach>
-	  <bottom_attach>1</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>resaddr</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:34:37 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>1</top_attach>
-	  <bottom_attach>2</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>rescity</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:35:00 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>2</top_attach>
-	  <bottom_attach>3</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>resstate</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:35:18 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>3</top_attach>
-	  <bottom_attach>4</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>rescountry</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:35:38 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>4</top_attach>
-	  <bottom_attach>5</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>respostal</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:35:53 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>5</top_attach>
-	  <bottom_attach>6</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>resphone</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:36:08 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>6</top_attach>
-	  <bottom_attach>7</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkEntry</class>
-	<name>resemail</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 14 Jun 2001 14:36:27 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>7</top_attach>
-	  <bottom_attach>8</bottom_attach>
-	  <xpad>3</xpad>
-	  <ypad>3</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
 	<class>GtkLabel</class>
 	<name>label143</name>
 	<label>Name</label>
@@ -1791,6 +1580,246 @@
 	  <yfill>False</yfill>
 	</child>
       </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>resaddr</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:34:37 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>resname</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:33:49 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>rescity</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:00 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>2</top_attach>
+	  <bottom_attach>3</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>resstate</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:18 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>3</top_attach>
+	  <bottom_attach>4</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>rescountry</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:38 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>4</top_attach>
+	  <bottom_attach>5</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>respostal</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:53 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>5</top_attach>
+	  <bottom_attach>6</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>resphone</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:36:08 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>6</top_attach>
+	  <bottom_attach>7</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkEntry</class>
+	<name>resemail</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:36:27 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>7</top_attach>
+	  <bottom_attach>8</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>3</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
     </widget>
 
     <widget>
@@ -1810,7 +1839,7 @@
       <class>GtkTable</class>
       <name>table25</name>
       <rows>4</rows>
-      <columns>2</columns>
+      <columns>3</columns>
       <homogeneous>False</homogeneous>
       <row_spacing>0</row_spacing>
       <column_spacing>0</column_spacing>
@@ -1868,140 +1897,6 @@
       </widget>
 
       <widget>
-	<class>GtkOptionMenu</class>
-	<name>paper_size</name>
-	<can_focus>True</can_focus>
-	<items>Letter
-A4
-</items>
-	<initial_choice>0</initial_choice>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>1</top_attach>
-	  <bottom_attach>2</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkOptionMenu</class>
-	<name>output_format</name>
-	<can_focus>True</can_focus>
-	<items>OpenOffice
-HTML
-PDF
-AbiWord
-</items>
-	<initial_choice>0</initial_choice>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>0</top_attach>
-	  <bottom_attach>1</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GnomeFileEntry</class>
-	<name>repdir</name>
-	<history_id>repdir</history_id>
-	<max_saved>10</max_saved>
-	<title>Gramps - Select default report directory</title>
-	<directory>True</directory>
-	<modal>False</modal>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>2</top_attach>
-	  <bottom_attach>3</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-
-	<widget>
-	  <class>GtkEntry</class>
-	  <child_name>GnomeEntry:entry</child_name>
-	  <name>entry1</name>
-	  <tooltip>The default directory for the output of many report generators</tooltip>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>changed</name>
-	    <handler>on_object_toggled</handler>
-	    <object>propertybox</object>
-	    <last_modification_time>Thu, 28 Jun 2001 13:49:30 GMT</last_modification_time>
-	  </signal>
-	  <editable>True</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GnomeFileEntry</class>
-	<name>htmldir</name>
-	<history_id>repdir</history_id>
-	<max_saved>10</max_saved>
-	<title>Gramps - Select default report directory</title>
-	<directory>True</directory>
-	<modal>False</modal>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>3</top_attach>
-	  <bottom_attach>4</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-
-	<widget>
-	  <class>GtkEntry</class>
-	  <child_name>GnomeEntry:entry</child_name>
-	  <name>entry2</name>
-	  <tooltip>The default directory for the output of the Web Site report generators</tooltip>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>changed</name>
-	    <handler>on_object_toggled</handler>
-	    <object>propertybox</object>
-	    <last_modification_time>Thu, 28 Jun 2001 13:49:30 GMT</last_modification_time>
-	  </signal>
-	  <editable>True</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
-	</widget>
-      </widget>
-
-      <widget>
 	<class>GtkLabel</class>
 	<name>label206</name>
 	<label>Default report directory</label>
@@ -2052,6 +1947,140 @@ AbiWord
 	  <yfill>False</yfill>
 	</child>
       </widget>
+
+      <widget>
+	<class>GnomeFileEntry</class>
+	<name>repdir</name>
+	<history_id>repdir</history_id>
+	<max_saved>10</max_saved>
+	<title>Gramps - Select default report directory</title>
+	<directory>True</directory>
+	<modal>False</modal>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>3</right_attach>
+	  <top_attach>2</top_attach>
+	  <bottom_attach>3</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+
+	<widget>
+	  <class>GtkEntry</class>
+	  <child_name>GnomeEntry:entry</child_name>
+	  <name>entry1</name>
+	  <tooltip>The default directory for the output of many report generators</tooltip>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>changed</name>
+	    <handler>on_object_toggled</handler>
+	    <object>propertybox</object>
+	    <last_modification_time>Thu, 28 Jun 2001 13:49:30 GMT</last_modification_time>
+	  </signal>
+	  <editable>True</editable>
+	  <text_visible>True</text_visible>
+	  <text_max_length>0</text_max_length>
+	  <text></text>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GnomeFileEntry</class>
+	<name>htmldir</name>
+	<history_id>repdir</history_id>
+	<max_saved>10</max_saved>
+	<title>Gramps - Select default report directory</title>
+	<directory>True</directory>
+	<modal>False</modal>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>3</right_attach>
+	  <top_attach>3</top_attach>
+	  <bottom_attach>4</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+
+	<widget>
+	  <class>GtkEntry</class>
+	  <child_name>GnomeEntry:entry</child_name>
+	  <name>entry2</name>
+	  <tooltip>The default directory for the output of the Web Site report generators</tooltip>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>changed</name>
+	    <handler>on_object_toggled</handler>
+	    <object>propertybox</object>
+	    <last_modification_time>Thu, 28 Jun 2001 13:49:30 GMT</last_modification_time>
+	  </signal>
+	  <editable>True</editable>
+	  <text_visible>True</text_visible>
+	  <text_max_length>0</text_max_length>
+	  <text></text>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkOptionMenu</class>
+	<name>output_format</name>
+	<can_focus>True</can_focus>
+	<items>OpenOffice
+HTML
+PDF
+AbiWord
+</items>
+	<initial_choice>0</initial_choice>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkOptionMenu</class>
+	<name>paper_size</name>
+	<can_focus>True</can_focus>
+	<items>Letter
+A4
+</items>
+	<initial_choice>0</initial_choice>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
     </widget>
 
     <widget>
@@ -2081,7 +2110,7 @@ AbiWord
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>
-	  <padding>0</padding>
+	  <padding>5</padding>
 	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
@@ -2270,96 +2299,6 @@ AbiWord
 	  </widget>
 
 	  <widget>
-	    <class>GtkEntry</class>
-	    <name>iprefix</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>changed</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Sat, 20 Oct 2001 13:59:28 GMT</last_modification_time>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text>I</text>
-	    <child>
-	      <left_attach>1</left_attach>
-	      <right_attach>2</right_attach>
-	      <top_attach>0</top_attach>
-	      <bottom_attach>1</bottom_attach>
-	      <xpad>2</xpad>
-	      <ypad>2</ypad>
-	      <xexpand>True</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkEntry</class>
-	    <name>fprefix</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>changed</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Sat, 20 Oct 2001 14:00:26 GMT</last_modification_time>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text>F</text>
-	    <child>
-	      <left_attach>1</left_attach>
-	      <right_attach>2</right_attach>
-	      <top_attach>1</top_attach>
-	      <bottom_attach>2</bottom_attach>
-	      <xpad>2</xpad>
-	      <ypad>2</ypad>
-	      <xexpand>True</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkEntry</class>
-	    <name>pprefix</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>changed</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Sat, 20 Oct 2001 14:00:13 GMT</last_modification_time>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text>P</text>
-	    <child>
-	      <left_attach>1</left_attach>
-	      <right_attach>2</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
-	      <xpad>2</xpad>
-	      <ypad>2</ypad>
-	      <xexpand>True</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label211</name>
 	    <label>Family</label>
@@ -2438,36 +2377,6 @@ AbiWord
 	  </widget>
 
 	  <widget>
-	    <class>GtkEntry</class>
-	    <name>sprefix</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>changed</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Sat, 20 Oct 2001 14:00:46 GMT</last_modification_time>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text>S</text>
-	    <child>
-	      <left_attach>1</left_attach>
-	      <right_attach>2</right_attach>
-	      <top_attach>3</top_attach>
-	      <bottom_attach>4</bottom_attach>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
-	      <xexpand>True</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label214</name>
 	    <label>Media Object</label>
@@ -2495,6 +2404,126 @@ AbiWord
 
 	  <widget>
 	    <class>GtkEntry</class>
+	    <name>iprefix</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>changed</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Sat, 20 Oct 2001 13:59:28 GMT</last_modification_time>
+	    </signal>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text>I</text>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>2</right_attach>
+	      <top_attach>0</top_attach>
+	      <bottom_attach>1</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <name>fprefix</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>changed</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Sat, 20 Oct 2001 14:00:26 GMT</last_modification_time>
+	    </signal>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text>F</text>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>2</right_attach>
+	      <top_attach>1</top_attach>
+	      <bottom_attach>2</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <name>pprefix</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>changed</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Sat, 20 Oct 2001 14:00:13 GMT</last_modification_time>
+	    </signal>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text>P</text>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>2</right_attach>
+	      <top_attach>2</top_attach>
+	      <bottom_attach>3</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <name>sprefix</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>changed</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Sat, 20 Oct 2001 14:00:46 GMT</last_modification_time>
+	    </signal>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text>S</text>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>2</right_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkEntry</class>
 	    <name>oprefix</name>
 	    <can_focus>True</can_focus>
 	    <signal>
@@ -2512,8 +2541,8 @@ AbiWord
 	      <right_attach>2</right_attach>
 	      <top_attach>4</top_attach>
 	      <bottom_attach>5</bottom_attach>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
 	      <xexpand>True</xexpand>
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
@@ -2529,7 +2558,7 @@ AbiWord
 	<class>GtkFrame</class>
 	<name>frame13</name>
 	<border_width>5</border_width>
-	<label>Display</label>
+	<label>User Defined IDs</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>

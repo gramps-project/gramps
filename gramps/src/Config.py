@@ -95,6 +95,7 @@ pprefix       = "P"
 fprefix       = "F"
 autoload      = 0
 usetabs       = 0
+autocomp      = 1
 usevc         = 0
 vc_comment    = 0
 uncompress    = 0
@@ -162,6 +163,7 @@ def loadConfig(call):
     global autoload
     global owner
     global usetabs
+    global autocomp
     global calendar
     global usevc
     global iprefix, fprefix, pprefix, oprefix, sprefix
@@ -193,6 +195,7 @@ def loadConfig(call):
     _callback = call
     lastfile = get_string("/gramps/data/LastFile")
     usetabs = get_bool("/gramps/config/UseTabs")
+    ac = get_bool("/gramps/config/DisableAutoComplete")
     mediaref = get_bool("/gramps/config/MakeReference")
     globalprop = get_bool("/gramps/config/DisplayGlobal")
     localprop = get_bool("/gramps/config/DisplayLocal")
@@ -300,6 +303,11 @@ def loadConfig(call):
         localprop =1 
     if usetabs == None:
         usetabs = 0
+    if ac == None:
+        autocomp = 1
+    else:
+        autocomp = not ac
+        
     if calendar == None:
         calendar = 0
     if usevc == None:
@@ -415,6 +423,7 @@ def on_propertybox_apply(obj,page):
     global nameof
     global owner
     global usetabs
+    global autocomp
     global mediaref
     global globalprop
     global localprop
@@ -450,6 +459,7 @@ def on_propertybox_apply(obj,page):
     display_attr = prefsTop.get_widget("attr_display").get_active()
     attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
     usetabs = prefsTop.get_widget("usetabs").get_active()
+    autocomp = prefsTop.get_widget("autocomp").get_active()
     mediaref = prefsTop.get_widget("mediaref").get_active()
     localprop = prefsTop.get_widget("localprop").get_active()
     globalprop = prefsTop.get_widget("globalprop").get_active()
@@ -510,6 +520,7 @@ def on_propertybox_apply(obj,page):
     output_preference = output_obj.get_data(DATA)
     
     set_bool("/gramps/config/UseTabs",usetabs)
+    set_bool("/gramps/config/DisableAutoComplete",not autocomp)
     set_bool("/gramps/config/MakeReference",mediaref)
     set_bool("/gramps/config/DisplayGlobal",globalprop)
     set_bool("/gramps/config/DisplayLocal",localprop)
@@ -677,6 +688,7 @@ def display_preferences_box(db):
     idedit = prefsTop.get_widget("gid_edit")
     index_vis = prefsTop.get_widget("show_child_id")
     tabs = prefsTop.get_widget("usetabs")
+    ac = prefsTop.get_widget("autocomp")
     mr = prefsTop.get_widget("mediaref")
     mc = prefsTop.get_widget("mediacopy")
     dg = prefsTop.get_widget("globalprop")
@@ -691,6 +703,7 @@ def display_preferences_box(db):
     auto.set_active(autoload)
     detail.set_active(show_detail)
     tabs.set_active(usetabs)
+    ac.set_active(autocomp)
     if mediaref:
         mr.set_active(1)
     else:
