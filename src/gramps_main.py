@@ -109,12 +109,23 @@ mdetails      = None
 preview       = None
 database      = None
 nameArrow     = None
+idArrow       = None
 deathArrow    = None
 dateArrow     = None
+
+place_arrow   = None
+place_id_arrow= None
+city_arrow    = None
+county_arrow  = None
+state_arrow   = None
+country_arrow = None
+
 canvas        = None
 merge_button  = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
+p_sort_column = 0
+p_sort_direct = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
 c_birth_order = 0
 c_name        = 1
@@ -939,11 +950,13 @@ def on_person_list_select_row(obj,row,b,c):
 #-------------------------------------------------------------------------
 def on_person_list_click_column(obj,column):
     if column == 0:
-        change_sort(5,gtop.get_widget("nameSort"))
+        change_sort(5,nameArrow)
+    elif column == 1:
+        change_sort(1,idArrow)
     elif column == 3:
-        change_sort(6,gtop.get_widget("dateSort"))
+        change_sort(6,dateArrow)
     elif column == 4:
-        change_sort(7,gtop.get_widget("deathSort"))
+        change_sort(7,deathArrow)
     else:
         return
 
@@ -951,6 +964,41 @@ def on_person_list_click_column(obj,column):
     if id2col.has_key(active_person):
         row = person_list.find_row_from_data(id2col[active_person])
         person_list.moveto(row)
+
+
+def on_place_list_click_column(obj,column):
+    global p_sort_direct, p_sort_column
+
+    obj.freeze()
+    if len(obj.selection):
+        sel = obj.get_row_data(obj.selection[0])
+    else:
+        sel = None
+        
+    place_arrows = [ place_arrow, place_id_arrow, city_arrow,
+                     county_arrow, state_arrow, country_arrow ]
+
+    for a in place_arrows:
+        a.hide()
+    arrow = place_arrows[column]
+    if p_sort_column == column:
+        if p_sort_direct == SORT_DESCENDING:
+            p_sort_direct = SORT_ASCENDING
+            arrow.set(GTK.ARROW_DOWN,2)
+        else:
+            p_sort_direct = SORT_DESCENDING
+            arrow.set(GTK.ARROW_UP,2)
+    else:
+        p_sort_direct = SORT_ASCENDING
+        arrow.set(GTK.ARROW_DOWN,2)
+    p_sort_column = column
+    place_list.set_sort_type(p_sort_direct)
+    place_list.set_sort_column(p_sort_column + 6)
+    arrow.show()
+    place_list.sort()
+    if sel:
+        place_list.moveto(place_list.find_row_from_data(sel))
+    obj.thaw()
 
 #-------------------------------------------------------------------------
 #
@@ -961,9 +1009,9 @@ def change_sort(column,arrow):
     global sort_direct
     global sort_column
 
-    nameArrow.hide()
-    deathArrow.hide()
-    dateArrow.hide()
+    for a in [ nameArrow, deathArrow, dateArrow, idArrow ]:
+        if arrow != a:
+            a.hide()
     arrow.show()
     
     if sort_column == column:
@@ -975,6 +1023,7 @@ def change_sort(column,arrow):
             arrow.set(GTK.ARROW_UP,2)
     else:
         sort_direct = SORT_ASCENDING
+        arrow.set(GTK.ARROW_DOWN,2)
     sort_column = column
     person_list.set_sort_type(sort_direct)
     person_list.set_sort_column(sort_column)
@@ -1347,21 +1396,21 @@ def on_media_activate(obj):
 def on_notebook1_switch_page(obj,junk,page):
     if page == 0:
         goto_active_person()
-        merge_button.show()
+        merge_button.set_sensitive(1)
     elif page == 1:
-        merge_button.hide()
+        merge_button.set_sensitive(0)
         load_family()
     elif page == 2:
-        merge_button.hide()
+        merge_button.set_sensitive(0)
         load_canvas()
     elif page == 3:
-        merge_button.hide()
+        merge_button.set_sensitive(0)
         load_sources()
     elif page == 4:
-        merge_button.show()
+        merge_button.set_sensitive(1)
         load_places()
     elif page == 5:
-        merge_button.hide()
+        merge_button.set_sensitive(0)
         load_media()
 
 #-------------------------------------------------------------------------
@@ -1381,10 +1430,7 @@ def load_places():
     index = 0
     places = database.getPlaceMap().values()
 
-    nlist = map(lambda x: (string.upper(x.get_title()),x),places)
-    nlist.sort()
-    places = map(lambda(key,x): x, nlist)
-    
+    u = string.upper
     for src in places:
         title = src.get_title()
         id = src.getId()
@@ -1393,7 +1439,8 @@ def load_places():
         county = mloc.get_county()
         state = mloc.get_state()
         country = mloc.get_country()
-        place_list.append([title,id,city,county,state,country])
+        place_list.append([title,id,city,county,state,country,
+                           u(title), u(id), u(city), u(county), u(state), u(country)])
         place_list.set_row_data(index,src)
         index = index + 1
 
@@ -2601,8 +2648,10 @@ def main(arg):
     global statusbar,notebook
     global person_list, source_list, place_list, canvas, media_list
     global topWindow, preview, merge_button
-    global nameArrow, dateArrow, deathArrow
+    global nameArrow, dateArrow, deathArrow, idArrow
     global cNameArrow, cDateArrow
+    global place_arrow, place_id_arrow, city_arrow, county_arrow
+    global state_arrow, country_arrow
     global mid, mtype, mdesc, mpath, mdetails
     
     rc_parse(const.gtkrcFile)
@@ -2635,9 +2684,16 @@ def main(arg):
     filter_list = gtop.get_widget("filter_list")
     notebook    = gtop.get_widget(NOTEBOOK)
     nameArrow   = gtop.get_widget("nameSort")
+    idArrow     = gtop.get_widget("idSort")
     dateArrow   = gtop.get_widget("dateSort")
     deathArrow  = gtop.get_widget("deathSort")
     merge_button= gtop.get_widget("merge")
+    place_arrow   = gtop.get_widget("place_arrow")
+    place_id_arrow= gtop.get_widget("place_id_arrow")
+    city_arrow    = gtop.get_widget("city_arrow")
+    county_arrow  = gtop.get_widget("county_arrow")
+    state_arrow   = gtop.get_widget("state_arrow")
+    country_arrow = gtop.get_widget("country_arrow")
     
     t = [ ('STRING', 0, 0),
           ('text/plain',0,0),
@@ -2652,6 +2708,15 @@ def main(arg):
     person_list.set_column_visibility(7,0)
     person_list.set_sort_column(sort_column)
     person_list.set_sort_type(sort_direct)
+
+    place_list.set_column_visibility(6,0)
+    place_list.set_column_visibility(7,0)
+    place_list.set_column_visibility(8,0)
+    place_list.set_column_visibility(9,0)
+    place_list.set_column_visibility(10,0)
+    place_list.set_column_visibility(11,0)
+    place_list.set_sort_column(p_sort_column +6 )
+    place_list.set_sort_type(p_sort_direct)
 
     fw = gtop.get_widget('filter')
     filter_list.set_menu(Filter.build_filter_menu(on_filter_name_changed,fw))
@@ -2717,6 +2782,7 @@ def main(arg):
         "on_person_list_click_column"       : on_person_list_click_column,
         "on_person_list_select_row"         : on_person_list_select_row,
         "on_place_list_button_press_event"  : on_place_list_button_press_event,
+        "on_place_list_click_column"        : on_place_list_click_column,
         "on_main_key_release_event"         : on_main_key_release_event,
         "on_add_media_clicked"              : create_add_dialog,
         "on_media_activate"                 : on_media_activate,

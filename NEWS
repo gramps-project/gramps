@@ -40,6 +40,7 @@ Version 0.6.0pre
   a dotted line).
 * Reordering GRAMPS' ids attempts to preserve the integer originally
   assigned to the object.
+* The person view can be sorted by GRAMPS id.
 
 Version 0.5.1
 * Bug fixes

@@ -265,11 +265,14 @@ class ComplexFilterFile:
     def __init__(self,name):
         self.filters = {}
         self.fname = name
-        f = open(self.fname)
-        parser = make_parser()
-        parser.setContentHandler(ComplexFilterParser(self))
-        parser.parse(f)
-        f.close()
+        try:
+            f = open(self.fname)
+            parser = make_parser()
+            parser.setContentHandler(ComplexFilterParser(self))
+            parser.parse(f)
+            f.close()
+        except IOError:
+            pass
 
     def get_filter_names(self):
         return self.filters.keys()
