@@ -2493,8 +2493,13 @@ class GrampsDB:
     #EARNEY, may eventually be able to use secondary indexes for this
     #that way we will not have to track these with code.
     def get_surnames(self):
-        return []
-#        return self.surnames.keys()
+        names = self.surnames.keys()
+        a = {}
+        for name in names:
+            a[name] = 1
+        vals = a.keys()
+        vals.sort()
+        return vals
 
     #this function may eventually become obsolete.. if we use
     #secondary indexes.
