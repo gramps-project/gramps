@@ -51,25 +51,37 @@ class BaseModel(gtk.GenericTreeModel):
     def rebuild_data(self):
         if self.db.is_open():
             self.datalist = self.sort_keys()
+            i = 0
+            self.indexlist = {}
+            for key in self.datalist:
+                self.indexlist[key] = i
+                i += 1
         else:
             self.datalist = []
+            self.indexlist = []
         
     def on_row_inserted(self,obj,path,node):
         self.rebuild_data()
 
     def add_row_by_handle(self,handle):
         self.datalist = self.sort_keys()
-        index = self.datalist.index(handle)
+        i = 0
+        self.indexlist = {}
+        for key in self.datalist:
+            self.indexlist[key] = i
+            i += 1
+        index = self.indexlist[handle]
         node = self.get_iter(index)
         self.row_inserted(index,node)
 
     def delete_row_by_handle(self,handle):
-        index = self.datalist.index(handle)
+        index = self.indexlist[handle]
         del self.datalist[index]
+        del self.indexlist[handle]
         self.row_deleted(index)
 
     def update_row_by_handle(self,handle):
-        index = self.datalist.index(handle)
+        index = self.indexlist[handle]
         node = self.get_iter(index)
         self.row_changed(index,node)
 
@@ -83,7 +95,7 @@ class BaseModel(gtk.GenericTreeModel):
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
 	levels) for a particular node.'''
-        return self.datalist.index(node[0])
+        return self.indexlist[node[0]]
 
     def on_get_column_type(self,index):
         return gobject.TYPE_STRING
@@ -103,7 +115,7 @@ class BaseModel(gtk.GenericTreeModel):
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
         try:
-            return self.datalist[self.datalist.index(node)+1]
+            return self.datalist[self.indexlist[node]+1]
         except IndexError:
             return None
 

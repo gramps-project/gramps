@@ -1,3 +1,21 @@
+2004-12-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: use a dictionary to handle reverse
+	indices instead of list.index function. Drastically reduces
+	time are larger lists.
+	* src/GrampsDbBase.py: use cursors to build sorted key lists
+	* src/PeopleModel.py: fetch sort names out of database first
+	instead of continuously fetching from database during sort
+	* src/PeopleView.py: remove unnecessary apply_filter
+	* src/PlaceView.py: remove commented-out code
+	* src/ReadXML.py: add gtk event handling to allow screen to
+	update
+	* src/gramps.glade: use gramps.png for loading message window
+	* src/gramps_main.py: remove delete_abandoned_photos calls
+
+2004-12-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleModel.py: Fixed rebuild_display
+	* src/ReadXML.py: Fixed calendar handling
+
 2004-12-16  Julio Sanchez <julio.sanchez@gmail.com>
 	* src/po/es.po: forward port of the Spanish translations in STABLE,
 	plus many new translations

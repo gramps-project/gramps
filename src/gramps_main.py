@@ -77,10 +77,7 @@ import RecentFiles
 
 from QuestionDialog import *
 
-try:                       # First try python2.3 and later: this is the future
-    from bsddb import db
-except ImportError:        # try python2.2
-    from bsddb3 import db
+from bsddb import db
 
 #-------------------------------------------------------------------------
 #
@@ -598,7 +595,8 @@ class Gramps:
                         item = gtk.MenuItem("_%d. %s [%s]" % 
                                             (num,person.get_primary_name().get_name(),
                                              person.get_gramps_id()))
-                        item.connect("activate",self.bookmark_callback,person.get_handle())
+                        item.connect("activate",self.bookmark_callback,
+                                     person.get_handle())
                         item.show()
                         gomenu.append(item)
                         num = num + 1
@@ -629,7 +627,9 @@ class Gramps:
                     break
                 person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,person.get_primary_name().get_name(),person.get_gramps_id()))
+                    (hotkey,
+                     person.get_primary_name().get_name(),
+                     person.get_gramps_id()))
                 item.connect("activate",self.back_clicked,num)
                 item.show()
                 backhistmenu.append(item)
@@ -657,7 +657,9 @@ class Gramps:
                     break
                 person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,person.get_primary_name().get_name(),person.get_gramps_id()))
+                    (hotkey,
+                     person.get_primary_name().get_name(),
+                     person.get_gramps_id()))
                 item.connect("activate",self.fwd_clicked,num)
                 item.show()
                 fwdhistmenu.append(item)
@@ -901,28 +903,17 @@ class Gramps:
 
     def on_exit_activate(self,obj):
         """Prompt to save on exit if needed"""
-        self.delete_abandoned_photos()
         self.db.close()
         gtk.main_quit()
 
     def quit(self):
         """Catch the reponse to the save on exit question"""
-        self.delete_abandoned_photos()
         self.db.close()
         gtk.main_quit()
         
     def close_noquit(self):
         """Close database and delete abandoned photos, no quit"""
-        self.delete_abandoned_photos()
         self.db.close()
-
-    def delete_abandoned_photos(self):
-        """
-        We only want to delete local objects, not external objects, however, we
-        can delete any thumbnail images. The thumbnails may or may not exist, depending
-        on if the image was previewed.
-        """
-        self.db.set_people_view_maps(self.people_view.get_maps())
 
     def on_about_activate(self,obj):
         """Displays the about box.  Called from Help menu"""
@@ -1026,7 +1017,8 @@ class Gramps:
     def read_xml(self,filename):
         import ReadXML
         
-        filename = os.path.normpath(os.path.abspath(os.path.join(filename,const.xmlFile)))
+        filename = os.path.normpath(
+            os.path.abspath(os.path.join(filename,const.xmlFile)))
 
         try:
             ReadXML.importData(self.db,filename,None)
@@ -1602,9 +1594,10 @@ class Gramps:
         if self.db.load(filename,self.load_progress) == 0:
             self.status_text('')
             return 0
-            
         self.status_text('')
-        return self.post_load(name)
+
+        val = self.post_load(name)
+        return val
 
     def setup_bookmarks(self):
         self.bookmarks = Bookmarks.Bookmarks(self.db,self.db.get_bookmarks(),
