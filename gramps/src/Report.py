@@ -141,7 +141,7 @@ class Report:
 class ReportDialog:
 
     frame_pad = 5
-    border_pad = 5
+    border_pad = 2
 
     def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
@@ -546,10 +546,7 @@ class ReportDialog:
         its strings should be."""
 
         (pagecount_map, start_text) = self.get_print_pagecount_map()
-        if pagecount_map:
-            table = GtkTable(2,4)
-        else:
-            table = GtkTable(1,4)
+        table = GtkTable(2,4)
         self.paper_frame.add(table)
         self.papersize_menu = GtkOptionMenu()
         self.orientation_menu = GtkOptionMenu()
@@ -565,13 +562,18 @@ class ReportDialog:
         PaperMenu.make_paper_menu(self.papersize_menu)
         PaperMenu.make_orientation_menu(self.orientation_menu)
 
+        l = GtkLabel(_("Quality"))
+        l.set_alignment(1.0,0.5)
+        table.attach(l,0,1,2,3,FILL,FILL,pad,pad)
+        l = GtkOptionMenu()
+        table.attach(l,1,2,2,3,xpadding=pad,ypadding=pad)
         # The optional pagecount stuff.
         if pagecount_map:
             self.pagecount_menu = GtkOptionMenu()
             myMenu = utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-            table.attach(GtkLabel(_("Page Count")),0,1,1,2,FILL,FILL,pad,pad)
-            table.attach(self.pagecount_menu,1,2,1,2,xpadding=pad,ypadding=pad)
+            table.attach(GtkLabel(_("Page Count")),2,1,3,2,FILL,FILL,pad,pad)
+            table.attach(self.pagecount_menu,3,2,4,2,xpadding=pad,ypadding=pad)
 
     def setup_html_frame(self):
         """Set up the html frame of the dialog.  This sole purpose of
