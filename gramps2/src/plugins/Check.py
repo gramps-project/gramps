@@ -59,6 +59,7 @@ def runTool(database,active_person,callback,parent=None):
     try:
         trans = database.transaction_begin()
         trans.set_batch(True)
+        database.disable_signals()
         checker = CheckIntegrity(database,parent,trans)
         checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
@@ -66,6 +67,8 @@ def runTool(database,active_person,callback,parent=None):
         checker.cleanup_empty_families(0)
         checker.check_events()
         database.transaction_commit(trans, _("Check Integrity"))
+        database.enable_signals()
+        database.request_rebuild()
 
         errs = checker.build_report(0)
         if errs:

@@ -125,6 +125,7 @@ class TestcaseGenerator:
 
         self.trans = self.db.transaction_begin()
         self.trans.set_batch(True)
+        self.db.disable_signals()
         
         if generate_bugs:
             self.generate_broken_relations()
@@ -145,6 +146,8 @@ class TestcaseGenerator:
                         break
             
         self.db.transaction_commit(self.trans,_("Testcase generator"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
         self.top.destroy()
         
 

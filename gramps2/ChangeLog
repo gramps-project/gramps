@@ -14,6 +14,12 @@
 	(change_db): Use supplied database.
 	* src/SourceView.py (__init__): dont call change_cb because on initialisation
 	there is no real database and this will be done by the signal.
+	
+	* src/plugins/ChangeNames.py: Block signal emission during run
+	* src/plugins/Check.py: Block signal emission during run
+	* src/plugins/ImportGeneWeb.py: Block signal emission during run
+	* src/plugins/ImportvCard.py: Block signal emission during run
+	* src/plugins/TestcaseGenerator.py: Block signal emission during run
 
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: made clear buttons sensitive to contents of 
