@@ -259,6 +259,14 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.f.close()
         self.m.close()
 
+        if self.print_req:
+            import grampslib
+
+            apptype = 'application/x-kword'
+            prog = grampslib.default_application_command(apptype)
+            os.environ["FILE"] = self.filename
+            os.system ('%s "$FILE" &' % prog)
+
     def start_page(self,orientation=None):
         pass
 
@@ -481,5 +489,16 @@ class KwordDoc(BaseDoc.BaseDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
+
+try:
+    import grampslib
+    import Utils
+
+    prog = grampslib.default_application_command("application/x-kword")
+    desc = grampslib.default_application_name("application/x-kword")
+    if Utils.search_for(prog):
+        print_label=_("Open in %s") % desc
+except:
+    print_label = None
 
 Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1,".kwd")
