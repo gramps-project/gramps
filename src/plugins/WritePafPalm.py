@@ -265,32 +265,6 @@ def sortByName(first,second):
 #
 #
 #-------------------------------------------------------------------------
-def probably_alive(person):
-
-    if person == None:
-        return 1
-
-    if restrict == 0:
-        return 0
-    
-    death = person.getDeath()
-    birth = person.getBirth()
-
-    if death.getDate() != "":
-        return 0
-    if birth.getDate() != "":
-        year = birth.getDateObj()
-        time_struct = time.localtime(time.time())
-        current_year = time_struct[0]
-        if year.getYearValid() and current_year - year.getYear() > 110:
-            return 0
-    return 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def get_year( event ):
     year = 0
     if event != None:
