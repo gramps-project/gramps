@@ -2415,21 +2415,14 @@
       <sect3 id="rep-graph"> 
 	<title>Graphical Reports</title> 
 	<para> Graphical reports represent information in forms of charts 
-	and graphs. The following graphical reports are currently 
-	available in &app;: </para>
-	
-	<itemizedlist>
-	<listitem><para>Timeline Graph</para></listitem>
-	<listitem><para>Relationship Graph</para></listitem>
-	<listitem><para>Descendant Graph</para></listitem>
-	<listitem><para>Ancestor Chart</para></listitem>
-	</itemizedlist>
-	
-	<para>Most of the options are common among graphical reports, 
+	and graphs. Most of the options are common among graphical reports, 
 	therefore they will be described only once, at the end of this 
 	section. Few options specific to the given report will be 
-	described directly in that report's entry. </para>
+	described directly in that report's entry.</para>
 
+	<para>The following graphical reports are currently 
+	available in &app;: </para>
+	
 	<variablelist>
 
 	<varlistentry><term>Timeline Graph</term>
@@ -2476,24 +2469,14 @@
       <sect3 id="rep-text"> 
 	<title>Text Reports</title> 
 	<para> Text reports represent the desired information as formatted 
-	text. The following text reports are currently available 
-	in &app;:</para>
-
-	<itemizedlist>
-	<listitem><para>Individual Summary</para></listitem>
-	<listitem><para>Family Group Report</para></listitem>
-	<listitem><para>Detailed Descendant Report</para></listitem>
-	<listitem><para>Detailed Ancestral Report</para></listitem>
-	<listitem><para>Descendant Report</para></listitem>
-	<listitem><para>Complete Individual Report</para></listitem>
-	<listitem><para>Ahnentafel Report</para></listitem>
-	</itemizedlist>
-	
-	<para>Most of the options are common among text reports, 
+	text. Most of the options are common among text reports, 
 	therefore they will be described only once, at the end of this 
 	section. Few options specific to the given report will be 
-	described directly in that report's entry. </para>
+	described directly in that report's entry.</para>
 	
+	<para>The following text reports are currently 
+	available in &app;:</para>
+
 	<variablelist>
 
 	<varlistentry><term>Individual Summary</term>
@@ -2657,14 +2640,40 @@
 	errors in the data. The following database processing tools are 
 	currently available in &app;:</para>
 
-	<itemizedlist>
-	<listitem><para>Check and repair database</para></listitem>
-	<listitem><para>Extract information from names</para></listitem>
-	<listitem><para>Find possible duplicate people</para></listitem>
-	<listitem><para>Rename personal event types</para></listitem>
-	<listitem><para>Reorder &app; IDs</para></listitem>
-	</itemizedlist>
+	<variablelist>
 
+ 	<varlistentry><term>Check and repair database</term>
+	<listitem><para>This tool checks the database for integrity problems, 
+	fixing the problems it can. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Extract information from names</term>
+	<listitem><para>This tool searches the entire database and attempts 
+	to extract titles and nicknames that may be embedded in a person's 
+	given name field. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Find possible duplicate people</term>
+	<listitem><para>This tool searches the entire database, looking 
+	for the entries that may represent the same person. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Rename personal event types</term>
+	<listitem><para>This tool allows all the events of a certain name
+	to be renamed to a new name. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Reorder &app; IDs</term>
+	<listitem><para>This tool reorders the &app; IDs according to the
+	defaults of &app;.
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
 
       </sect3>
 
@@ -2678,17 +2687,36 @@
 	database, but they will not modify your existing data. 
 	The following utilities are currently available in &app;:</para>
 
-	<itemizedlist>
-	<listitem><para>Custom Filter Editor</para></listitem>
-	<listitem><para>Generate SoundEx codes</para></listitem>
-	<listitem><para>Relationship calculator</para></listitem>
-	<listitem><para>Verify the database</para></listitem>
-	</itemizedlist>
-     </sect3>
+	<variablelist>
 
-<!--
-[ FIXME: STOPPED HERE ] 
--->
+ 	<varlistentry><term>Custom Filter Editor</term>
+	<listitem><para>The Custom Filter Editor builds custom filters 
+	that can be used to select people included in reports, exports, 
+	and other tools and utilities.
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Generate SoundEx codes</term>
+	<listitem><para>This utility generates SoundEx codes for the names of
+	people in the database.
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Relationship calculator</term>
+	<listitem><para>This utility calculates the relationship between 
+	two people from the database. 
+	</para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Verify the database</term>
+	<listitem><para>This utility allows you to verify the database based 
+	on the set of criteria specified by you. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+     </sect3>
 
     </sect2>
 
@@ -2706,6 +2734,10 @@
     <sect2 id="gramps-prefs-usage"> 
       <title>Usage</title> 
 	<para> </para>
+
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-find"> 
