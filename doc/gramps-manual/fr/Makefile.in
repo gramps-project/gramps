@@ -166,8 +166,8 @@ pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 figdir = figures
 docname = gramps-manual
-lang = C
-omffile = gramps-manual-C.omf
+lang = fr
+omffile = gramps-manual-fr.omf
 entities = legal.xml\
 	getstart.xml\
 	mainwin.xml\
@@ -194,7 +194,7 @@ CLEANFILES = omf_timestamp *.out
 
 omf_dest_dir = $(datadir)/omf/@PACKAGE@
 scrollkeeper_localstate_dir = $(localstatedir)/scrollkeeper
-subdir = doc/gramps-manual/C
+subdir = doc/gramps-manual/fr
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 DIST_SOURCES =
@@ -204,7 +204,7 @@ all: all-am
 .SUFFIXES:
 $(srcdir)/Makefile.in:  Makefile.am $(top_srcdir)/doc/xmldocs.make $(top_srcdir)/doc/omf.make $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  doc/gramps-manual/C/Makefile
+	  $(AUTOMAKE) --gnu  doc/gramps-manual/fr/Makefile
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 uninstall-info-am:
@@ -337,10 +337,10 @@ install-data-hook-omf:
 uninstall-local-omf:
 	-for file in $(srcdir)/*.omf; do \
 		basefile=`basename $$file`; \
-		rm -f $(omf_dest_dir)/$$basefile; \
+		rm -f $(DESTDIR)$(omf_dest_dir)/$$basefile; \
 	done
-	-rmdir $(omf_dest_dir)
-	-scrollkeeper-update -p $(scrollkeeper_localstate_dir)
+	-rmdir $(DESTDIR)$(omf_dest_dir)
+	-scrollkeeper-update -p $(scrollkeeper_localstate_dir) -o $(DESTDIR)/$(omf_dest_dir)
 
 all: omf
 

@@ -34,6 +34,10 @@
 	* src/plugins/eval.py: Unicode conversion.
 	* src/plugins/soundgen.py: Unicode conversion.
 
+	* doc/gramps-manual/fr: Add infrastructure for French documentation.
+	* doc/gramps-manual/fr/Makefile.am: Correct settings.
+	* doc/gramps-manual/Makefile.am: Correct settings.
+
 2003-12-17  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py
 	(ComprehensiveAncestorsReport.write_report): No need for separate

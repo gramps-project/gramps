@@ -240,6 +240,7 @@ src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
+doc/gramps-manual/fr/Makefile	
 doc/gramps-manual/de/Makefile	
 doc/gramps-manual/ru/Makefile	
 example/Makefile
