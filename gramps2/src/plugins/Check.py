@@ -99,12 +99,10 @@ class CheckIntegrity:
                 mother = self.db.find_person_from_id(mother_id)
 
             if father_id and family_id not in father.get_family_id_list():
-                Utils.modified()
                 self.broken_parent_links.append((father_id,family_id))
                 father.add_family_id(family_id)
                 self.db.commit_person(father)
             if mother_id and family_id not in mother.get_family_id_list():
-                Utils.modified()
                 self.broken_parent_links.append((mother_id,family_id))
                 mother.add_family_id(family_id)
                 self.db.commit_person(mother)
@@ -118,7 +116,6 @@ class CheckIntegrity:
                 else:
                     family.remove_child_id(child_id)
                     self.db.commit_family(family)
-                    Utils.modified()
                     self.broken_links.append((child_id,family_id))
 
     def cleanup_missing_photos(self,cl=0):
@@ -175,7 +172,6 @@ class CheckIntegrity:
                     self.db.commit_place(p)
             self.removed_photo.append(ObjectId)
             self.db.remove_object(ObjectId) 
-            Utils.modified()
     
         def leave_clicked():
             self.bad_photo.append(ObjectId)
@@ -235,7 +231,6 @@ class CheckIntegrity:
         for key in self.db.get_family_keys():
             family = self.db.find_family_from_id(key)
             if not family.get_father_id() and not family.get_mother_id():
-                Utils.modified()
                 self.empty_family.append(family_id)
                 self.delete_empty_family(family_id)
 

@@ -210,7 +210,6 @@ class PatchNames:
                 name.set_first_name(grp[1])
                 p.set_nick_name(grp[2])
                 self.db.commit_person(p)
-                Utils.modified()
 
         for grp in self.title_list:
             iter = self.title_hash[grp[0]]
@@ -221,7 +220,6 @@ class PatchNames:
                 name.set_first_name(grp[2])
                 name.set_title(grp[1])
                 self.db.commit_person(p)
-                Utils.modified()
 
         self.close(obj)
         self.cb(1)

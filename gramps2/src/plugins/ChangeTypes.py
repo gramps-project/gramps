@@ -87,7 +87,6 @@ class ChangeTypes:
                 if event.get_name() == original:
                     event.set_name(new)
                     modified = modified + 1
-                    Utils.modified()
                     self.db.commit_event(event)
 
         if modified == 1:

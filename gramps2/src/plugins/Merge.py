@@ -266,7 +266,7 @@ class Merge:
         self.window.destroy()
 
     def add_show_to_menu(self):
-        self.show_parent.child_windows[self.win_show_key] = self.window
+        self.parent.child_windows[self.win_show_key] = self.window
         self.show_parent_menu_item = gtk.MenuItem(_('Potential Merges'))
         self.show_parent_menu_item.connect("activate",self.present_show)
         self.show_parent_menu_item.show()

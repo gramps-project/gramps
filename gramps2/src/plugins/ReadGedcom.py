@@ -175,7 +175,6 @@ def importData(database, filename, cb=None):
     if close:
         statusWindow.destroy()
     
-    Utils.modified()
     if cb:
         statusWindow.destroy()
         cb(1)
