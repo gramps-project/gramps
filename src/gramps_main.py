@@ -140,7 +140,7 @@ class Gramps:
         self.relationship = Plugins.relationship_function()
         self.init_interface()
 
-        self.cl = 0
+        self.cl = 1
         if args:
             options,leftargs = getopt.getopt(args,
                 const.shortopts,const.longopts)
@@ -190,6 +190,9 @@ class Gramps:
                 elif o == 'a':
                     action = options[opt_ix][1]
             
+            if not (outfname or action):
+                self.cl = 0
+
             if imports:
                 # Create dir for imported database(s)
                 self.impdir_path = os.path.expanduser("~/.gramps/import" )
@@ -202,21 +205,28 @@ class Gramps:
                 elif not os.access(self.impdir_path,os.W_OK):
                     print "Import directory %s is not writable" % self.impdir_path 
                     return
+                # and clean it up before use
+                files = os.listdir(self.impdir_path) ;
+                for fn in files:
+                    if os.path.isfile(fn):
+                        os.remove( os.path.join(self.impdir_path,fn) )
 
                 self.clear_database(0)
                 self.db.setSavePath(self.impdir_path)
                 for imp in imports:
+                    print "Importing: file %s, format %s." % (imp[0],imp[1])
                     self.cl_import(imp[0],imp[1])
 
-	    if outfname:
+            if outfname:
+                print "Exporting: file %s, format %s." % (outfname,outformat)
                 self.cl_export(outfname,outformat)
-                self.cl = 1
 
             if action:
+                print "Performing: action %s." % action
                 self.cl_action(action)
-                self.cl = 1
             
             if self.cl:
+                print "Exiting."
                 os._exit(0)
 
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
@@ -731,22 +741,23 @@ class Gramps:
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
 
-        self.topWindow.set_title("GRAMPS")
-        self.active_person = None
-        self.id2col = {}
+        if not self.cl:
+            self.topWindow.set_title("GRAMPS")
+            self.active_person = None
+            self.id2col = {}
 
-        Utils.clearModified()
-        Utils.clear_timer()
-        self.change_active_person(None)
-        for model in self.pl_page:
-            model.clear()
-        self.family_view.clear()
-        self.family_view.load_family()
-        self.pedigree_view.clear()
-        self.source_view.load_sources()
-        self.place_view.load_places()
-        self.place_loaded = 0
-        self.media_view.load_media()
+            Utils.clearModified()
+            Utils.clear_timer()
+            self.change_active_person(None)
+            for model in self.pl_page:
+                model.clear()
+            self.family_view.clear()
+            self.family_view.load_family()
+            self.pedigree_view.clear()
+            self.source_view.load_sources()
+            self.place_view.load_places()
+            self.place_loaded = 0
+            self.media_view.load_media()
     
     def tool_callback(self,val):
         if val:
@@ -956,20 +967,55 @@ class Gramps:
             files = os.listdir(tmpdir_path) 
             for fn in files:
                 os.remove(os.path.join(tmpdir_path,fn))
-
             os.rmdir(tmpdir_path)
-
         else:
             print "Invalid format:  %s" % format
             return
-
-        return self.post_load(self.impdir_path)
+        if not self.cl:
+            return self.post_load(self.impdir_path)
 
     def cl_export(self,filename,format):
-        pass
+        if format == 'gedcom':
+            print "Command-line export to gedcom is not implemented yet."
+        elif format == 'gramps':
+            filename = os.path.normpath(os.path.abspath(filename))
+            dbname = os.path.join(filename,const.xmlFile)
+            if filename:
+                self.save_media(filename)
+                self.db.save(dbname,None)
+        elif format == 'gramps-pkg':
+            import TarFile
+            import time
+            import WriteXML
+            from cStringIO import StringIO
+
+            t = TarFile.TarFile(filename)
+            mtime = time.time()
+        
+            # Write media files first, since the database may be modified 
+            # during the process (i.e. when removing object)
+            ObjectMap = self.db.getObjectMap()
+            for ObjectId in ObjectMap.keys():
+                oldfile = ObjectMap[ObjectId].getPath()
+                base = os.path.basename(oldfile)
+                if os.path.isfile(oldfile):
+                    g = open(oldfile,"rb")
+                    t.add_file(base,mtime,g)
+                    g.close()
+
+            # Write XML now
+            g = StringIO()
+            gfile = WriteXML.XmlWriter(self.db,None,1)
+            gfile.write_handle(g)
+            mtime = time.time()
+            t.add_file("data.gramps",mtime,g)
+            g.close()
+            t.close()
+        elif format == 'iso':
+            print "Command-line export to iso is not implemented yet."
 
     def cl_action(self,action):
-        pass
+        print "Command-line action is not implemented yet."
 
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
@@ -1017,11 +1063,9 @@ class Gramps:
                 p.setPhotoList(nl)
             self.db.removeObject(ObjectId) 
     
-
         def leave_clicked():
             # File is lost => do nothing, leave as is
             pass
-
 
         def select_clicked():
             # File is lost => select a file to replace the lost one
