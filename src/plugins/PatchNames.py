@@ -81,13 +81,13 @@ class PatchNames:
         self.cb = callback
         self.db = db
         self.parent = parent
-        self.trans = db.start_transaction()
+        self.trans = db.transaction_begin()
         self.win_key = self
         self.child_windows = {}
         self.title_list = []
         self.nick_list = []
 
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
         
             person = self.db.get_person_from_handle(key)
             first = person.get_primary_name().get_first_name()
@@ -221,7 +221,7 @@ class PatchNames:
                 name.set_title(grp[1].strip())
                 self.db.commit_person(p,self.trans)
 
-        self.db.add_transaction(self.trans,_("Extract information from names"))
+        self.db.transaction_commit(self.trans,_("Extract information from names"))
         self.close(obj)
         self.cb(1)
         

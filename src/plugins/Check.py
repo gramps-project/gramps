@@ -58,13 +58,13 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 def runTool(database,active_person,callback,parent=None):
 
     try:
-        trans = database.start_transaction()
+        trans = database.transaction_begin()
         checker = CheckIntegrity(database,parent,trans)
         checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
-        database.add_transaction(trans, _("Check Integrity"))
+        database.transaction_commit(trans, _("Check Integrity"))
 
         errs = checker.build_report(0)
         if errs:
@@ -93,7 +93,7 @@ class CheckIntegrity:
 
     def check_for_broken_family_links(self):
         self.broken_links = []
-        for family_handle in self.db.get_family_keys():
+        for family_handle in self.db.get_family_handles():
             family = self.db.find_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
@@ -127,7 +127,7 @@ class CheckIntegrity:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            for person_handle in self.db.get_family_keys():
+            for person_handle in self.db.get_family_handles():
                 p = self.db.get_person_from_handle(person_handle)
                 nl = p.get_media_list()
                 changed = 0
@@ -139,7 +139,7 @@ class CheckIntegrity:
                     p.set_media_list(nl)
                     self.db.commit_person(p,self.trans)
                     
-            for key in self.db.get_person_keys():
+            for key in self.db.get_person_handles(sort_handles=False):
                 p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 changed = 0
@@ -151,7 +151,7 @@ class CheckIntegrity:
                     p.set_media_list(nl)
                     self.db.commit_person(p,self.trans)
                     
-            for key in self.db.get_source_keys():
+            for key in self.db.get_source_handles():
                 p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
                 changed = 0
@@ -163,7 +163,7 @@ class CheckIntegrity:
                     p.set_media_list(nl)
                     self.db.commit_source(p,self.trans)
                 
-            for key in self.db.get_place_handle_keys():
+            for key in self.db.get_place_handles():
                 p = self.db.get_place_handle(key)
                 nl = p.get_media_list()
                 changed = 0
@@ -206,7 +206,7 @@ class CheckIntegrity:
 
         #-------------------------------------------------------------------------
         
-        for ObjectId in self.db.get_object_keys():
+        for ObjectId in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(ObjectId)
             photo_name = obj.get_path()
             if not os.path.isfile(photo_name):
@@ -232,21 +232,21 @@ class CheckIntegrity:
                         select_clicked()
 
     def cleanup_empty_families(self,automatic):
-        for family_handle in self.db.get_family_keys():
+        for family_handle in self.db.get_family_handles():
             family = self.db.find_family_from_handle(family_handle)
             if not family.get_father_handle() and not family.get_mother_handle():
                 self.empty_family.append(family_handle)
                 self.delete_empty_family(family_handle)
 
     def delete_empty_family(self,family_handle):
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             child = self.db.get_person_from_handle(key)
             child.remove_parent_family_handle(family_handle)
             child.remove_family_handle(family_handle)
-        self.db.delete_family(family_handle,self.trans)
+        self.db.remove_family_handle(family_handle,self.trans)
 
     def check_parent_relationships(self):
-        for key in self.db.get_family_keys():
+        for key in self.db.get_family_handles():
             family = self.db.find_family_from_handle(key)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()

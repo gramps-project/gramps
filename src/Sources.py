@@ -425,7 +425,7 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
-        keys = self.db.get_source_keys()
+        keys = self.db.get_source_handles()
         keys.sort(self.db.sortbysource)
         
         sel_child = None

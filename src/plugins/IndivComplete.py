@@ -373,7 +373,7 @@ class IndivComplete(Report.Report):
             self.d.page_break()
 
         #plist = self.database.get_person_handle_map().values()
-        plist = self.database.get_person_keys()
+        plist = self.database.get_person_handles(sort_handles=False)
         if self.filter:
             ind_list = self.filter.apply(self.database,plist)
         else:

@@ -89,8 +89,8 @@ class Marriage:
         else:
             self.srcreflist = []
 
-        for key in db.get_place_handle_keys():
-            p = db.get_place_display(key)
+        for key in db.get_place_handles():
+            p = db.get_place_from_handle(key).get_display_info()
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
@@ -224,7 +224,7 @@ class Marriage:
             self.lds_place.child.set_text("")
             self.seal_stat = 0
 
-        if self.family.get_complete():
+        if self.family.get_complete_flag():
             self.complete.set_active(1)
 
         self.build_seal_menu()
@@ -498,7 +498,7 @@ class Marriage:
         if self.type_field.get_active() != self.family.get_relationship():
             changed = 1
 
-        if self.complete.get_active() != self.family.get_complete():
+        if self.complete.get_active() != self.family.get_complete_flag():
             changed = 1
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
@@ -561,7 +561,7 @@ class Marriage:
 
     def on_close_marriage_editor(self,*obj):
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
 
         idval = unicode(self.gid.get_text())
         family = self.family
@@ -591,8 +591,8 @@ class Marriage:
         if format != self.family.get_note_format():
             self.family.set_note_format(format)
 
-        if self.complete.get_active() != self.family.get_complete():
-            self.family.set_complete(self.complete.get_active())
+        if self.complete.get_active() != self.family.get_complete_flag():
+            self.family.set_complete_flag(self.complete.get_active())
 
         date = unicode(self.lds_date.get_text())
         temple = unicode(self.lds_temple.child.get_text())
@@ -628,7 +628,7 @@ class Marriage:
 
         self.update_lists()
         self.db.commit_family(self.family,trans)
-        self.db.add_transaction(trans,_("Edit Marriage"))
+        self.db.transaction_commit(trans,_("Edit Marriage"))
         self.update_fv(self.family)
 
         self.close(1)

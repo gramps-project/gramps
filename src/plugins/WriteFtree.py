@@ -149,7 +149,7 @@ class FtreeWriter:
     def export(self, filename, cfilter, restrict ):
 
         if cfilter == None:
-            for p in self.db.get_person_keys():
+            for p in self.db.get_person_handles(sort_handles=False):
                 self.plist[p] = 1
         else:
             try:

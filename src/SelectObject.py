@@ -98,7 +98,7 @@ class SelectObject:
         self.object_model.clear()
         self.object_model.new_model()
 
-        for key in self.db.get_object_keys():
+        for key in self.db.get_media_object_handles():
             object = self.db.get_object_from_handle(key)
             title = object.get_description()
             the_id = object.get_handle()

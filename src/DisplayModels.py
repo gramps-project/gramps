@@ -125,7 +125,7 @@ class BaseModel(gtk.GenericTreeModel):
 class SourceModel(BaseModel):
 
     def __init__(self,db):
-        self.sort_keys = db.sort_source_keys
+        self.sort_keys = db.get_source_handles
         self.map = db.source_map
         self.fmap = [
             self.column_title,
@@ -163,7 +163,7 @@ class SourceModel(BaseModel):
 class PlaceModel(BaseModel):
 
     def __init__(self,db):
-        self.sort_keys = db.sort_place_keys
+        self.sort_keys = db.get_place_handles
         self.map = db.place_map
         self.fmap = [
             self.column_name,
@@ -232,7 +232,7 @@ class PlaceModel(BaseModel):
 class MediaModel(BaseModel):
 
     def __init__(self,db):
-        self.sort_keys = db.sort_media_keys
+        self.sort_keys = db.get_media_object_handles
         self.map = db.media_map
         
         self.fmap = [

@@ -85,8 +85,8 @@ class Merge:
         self.update = callback
         self.use_soundex = 1
 
-        self.family_list = database.get_family_keys()[:]
-        self.person_list = database.get_person_keys()[:]
+        self.family_list = database.get_family_handles()[:]
+        self.person_list = database.get_person_handles(sort_handles=False)[:]
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")

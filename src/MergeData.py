@@ -315,7 +315,7 @@ class MergePeople:
                 orig_family.remove_child_handle(self.p1)
                 self.p1.remove_parent_family_handle(orig_family)
            
-            (source_family,mrel,frel) = self.p2.get_main_parents_family_handleRel()
+            (source_family,mrel,frel) = self.p2.get_main_parents_family_handle()
             self.p1.set_main_parent_family_handle(source_family)
 
             if source_family:
@@ -346,7 +346,7 @@ class MergePeople:
             self.p1.set_note(old_note + self.p2.get_note())
 
         try:
-            self.db.remove_person_handle(self.p2.get_handle())
+            self.db.remove_person(self.p2.get_handle())
             self.db.personMap[self.p1.get_handle()] = self.p1
         except:
             print "%s is not in the person map!" % (GrampsCfg.get_nameof()(self.p2))
@@ -361,7 +361,7 @@ class MergePeople:
             father = family.get_father_handle()
             mother = self.p1.get_handle()
 
-        for myfamily_handle in self.db.get_family_keys():
+        for myfamily_handle in self.db.get_family_handles():
             myfamily = self.db.find_family_from_handle(myfamily_handle)
             if myfamily.get_father_handle() == father and myfamily.get_mother_handle() == mother:
                 return myfamily
@@ -887,7 +887,7 @@ class MergePlaces:
                     self.p1.add_alternate_locations(l)
 
         # loop through people, changing event references to P2 to P1
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for event in [p.get_birth(), p.get_death()] + p.get_event_list():
                 if event.get_place_handle() == self.p2:

@@ -55,8 +55,8 @@ from gnome.ui import *
 #------------------------------------------------------------------------
 def build_report(database,person):
 
-    personList = database.get_person_keys()
-    familyList = database.get_family_keys()
+    personList = database.get_person_handles(sort_handles=False)
+    familyList = database.get_family_handles()
 
     with_photos = 0
     total_photos = 0
@@ -69,8 +69,8 @@ def build_report(database,person):
     namelist = []
     notfound = []
     
-    pobjects = len(database.get_object_keys())
-    for photo_id in database.get_object_keys():
+    pobjects = len(database.get_media_object_handles())
+    for photo_id in database.get_media_object_handles():
         photo = database.get_object_from_handle(photo_id)
         try:
             bytes = bytes + posixpath.getsize(photo.get_path())

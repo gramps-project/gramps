@@ -61,6 +61,14 @@ from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialo
 
 from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+_PICTURE_WIDTH = 200.0
+
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
@@ -102,8 +110,8 @@ class EditPerson:
                                     person.get_gender () ==
                                     RelLib.Person.unknown)
 
-        for key in db.get_place_handle_keys():
-            p = db.get_place_display(key)
+        for key in db.get_place_handles():
+            p = db.get_place_from_handle(key).get_display_info()
             self.pdmap[p[0]] = key
             
         self.load_obj = None
@@ -287,7 +295,7 @@ class EditPerson:
 
         build_dropdown(self.bplace,self.place_list)
         build_dropdown(self.dplace,self.place_list)
-        build_dropdown(self.surname,self.db.get_surnames())
+        build_dropdown(self.surname,self.db.get_surname_list())
             
         self.gid.set_text(person.get_gramps_id())
         self.gid.set_editable(1)
@@ -418,7 +426,7 @@ class EditPerson:
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
-        if self.person.get_complete():
+        if self.person.get_complete_flag():
             self.complete.set_active(1)
 
         self.redraw_event_list()
@@ -1092,7 +1100,7 @@ class EditPerson:
         changed = 0
         name = self.person.get_primary_name()
 
-        if self.complete.get_active() != self.person.get_complete():
+        if self.complete.get_active() != self.person.get_complete_flag():
             changed = 1
 
         if self.person.get_gramps_id() != idval:
@@ -1412,7 +1420,7 @@ class EditPerson:
             try:
                 i = pixbuf_new_from_file(photo)
                 ratio = float(max(i.get_height(),i.get_width()))
-                scale = float(const.picWidth)/ratio
+                scale = float(_PICTURE_WIDTH)/ratio
                 x = int(scale*(i.get_width()))
                 y = int(scale*(i.get_height()))
                 i = i.scale_simple(x,y,INTERP_BILINEAR)
@@ -1434,7 +1442,7 @@ class EditPerson:
 
     def on_apply_person_clicked(self,obj):
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         
         surname = unicode(self.surname.get_text())
         suffix = unicode(self.suffix.get_text())
@@ -1495,8 +1503,8 @@ class EditPerson:
             self.person.set_nick_name(nick)
 
         self.pdmap.clear()
-        for key in self.db.get_place_handle_keys():
-            p = self.db.get_place_display(key)
+        for key in self.db.get_place_handles():
+            p = self.db.get_place_from_handle(key).get_display_info()
             self.pdmap[p[0]] = key
 
         if self.orig_birth == None:
@@ -1581,8 +1589,8 @@ class EditPerson:
         if format != self.person.get_note_format():
             self.person.set_note_format(format)
 
-        if self.complete.get_active() != self.person.get_complete():
-            self.person.set_complete(self.complete.get_active())
+        if self.complete.get_active() != self.person.get_complete_flag():
+            self.person.set_complete_flag(self.complete.get_active())
 
         if self.lds_not_loaded == 0:
             self.check_lds()
@@ -1607,7 +1615,7 @@ class EditPerson:
 
         self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
-        self.db.add_transaction(trans,_("Edit Person (%s)") % n)
+        self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         self.close()
 
     def get_place(self,field,makenew=0):
@@ -1618,9 +1626,9 @@ class EditPerson:
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
-                trans = self.db.start_transaction()
+                trans = self.db.transaction_begin()
                 self.db.add_place(place,trans)
-                self.db.add_transaction(trans,_('Add Place (%s)' % text))
+                self.db.transaction_commit(trans,_('Add Place (%s)' % text))
                 self.pdmap[text] = place.get_handle()
                 self.add_places.append(place)
                 return place.get_handle()

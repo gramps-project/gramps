@@ -54,7 +54,7 @@ class ChangeTypes:
     def __init__(self,db,person,parent):
         self.person = person
         self.db = db
-        self.trans = db.start_transaction()
+        self.trans = db.transaction_begin()
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
@@ -79,7 +79,7 @@ class ChangeTypes:
         original = unicode(self.auto1.child.get_text())
         new = unicode(self.auto2.child..get_text())
 
-        for person_handle in self.db.get_person_keys():
+        for person_handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(person_handle)
             for event_handle in person.get_event_list():
                 if not event_handle:
@@ -96,7 +96,7 @@ class ChangeTypes:
             msg = _("%d event records were modified") % modified
             
         OkDialog(_('Change types'),msg)
-        self.db.add_transaction(self.trans,_('Change types'))
+        self.db.transaction_commit(self.trans,_('Change types'))
         Utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------

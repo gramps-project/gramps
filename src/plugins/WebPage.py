@@ -1007,7 +1007,7 @@ class WebReport(Report.Report):
                                  image_dir_name)
                 return
     
-        ind_list = self.filter.apply(self.db,self.db.get_person_keys())
+        ind_list = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)

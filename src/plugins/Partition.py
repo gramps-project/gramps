@@ -185,7 +185,7 @@ def report(db, person):
           database = RelLib.GrampsDB()
           work_on_person( database, p )
 	  
-	  person_len = len(database.get_person_keys())
+	  person_len = len(database.get_person_handles(sort_handles=False))
 	  if person_len > 0:
              g = WriteXML.XmlWriter(database,None,0,0)
              g.write(prefix+str(count)+".xml")
@@ -194,7 +194,7 @@ def report(db, person):
 
     g = WriteXML.XmlWriter(database_for_unlinked_persons,None,0,0)
     g.write(prefix+".xml")
-    text += "partition "+prefix+".xml written ( "+str(len(database_for_unlinked_persons.get_person_keys()))+" persons)\n"
+    text += "partition "+prefix+".xml written ( "+str(len(database_for_unlinked_persons.get_person_handles(sort_handles=False)))+" persons)\n"
 
     base = os.path.dirname(__file__)
     glade_file = "%s/summary.glade" % base

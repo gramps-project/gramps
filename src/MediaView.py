@@ -87,10 +87,7 @@ class MediaView:
         self.topWindow = glade.get_widget("gramps")
         self.renderer = gtk.CellRendererText()
 
-        if const.nosort_tree:
-            self.model = DisplayModels.MediaModel(self.db)
-        else:
-            self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.db))
+        self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.db))
 
         self.selection = self.list.get_selection()
 
@@ -132,9 +129,8 @@ class MediaView:
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)
 
-        if not const.nosort_tree:
-            column.set_clickable(gtk.TRUE)
-            column.set_sort_column_id(0)
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(0)
         column.set_min_width(225)
         self.list.append_column(column)
         self.columns = [column]
@@ -146,9 +142,8 @@ class MediaView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            if not const.nosort_tree:
-                column.set_clickable(gtk.TRUE)
-                column.set_sort_column_id(index)
+            column.set_clickable(gtk.TRUE)
+            column.set_sort_column_id(index)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
@@ -161,10 +156,7 @@ class MediaView:
 
     def build_tree(self):
         self.list.set_model(None)
-        if const.nosort_tree:
-            self.model = DisplayModels.MediaModel(self.parent.db)
-        else:
-            self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
+        self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
             
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
@@ -313,28 +305,28 @@ class MediaView:
                            _('_Delete Media Object'),
                            ans.query_response)
         else:
-            trans = self.db.start_transaction()
+            trans = self.db.transaction_begin()
             self.db.remove_object(mobj.get_handle(),trans)
-            self.db.add_transaction(trans,_("Remove Media Object"))
+            self.db.transaction_commit(trans,_("Remove Media Object"))
             self.build_tree()
 
     def is_object_used(self,mobj):
-        for family_handle in self.db.get_family_keys():
+        for family_handle in self.db.get_family_handles():
             p = self.db.find_family_from_handle(family_handle)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1
-        for key in self.db.get_source_keys():
+        for key in self.db.get_source_handles():
             p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1
-        for key in self.db.get_place_handle_keys():
+        for key in self.db.get_place_handles():
             p = self.db.get_place_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
@@ -376,7 +368,7 @@ class MediaView:
                 photo.set_mime_type(mime)
                 description = os.path.basename(name)
                 photo.set_description(description)
-                trans = self.db.start_transaction()
+                trans = self.db.transaction_begin()
                 self.db.add_object(photo,trans)
                 self.load_media()
                 if GrampsCfg.get_media_reference() == 0:
@@ -387,7 +379,7 @@ class MediaView:
                         photo.set_path(name)
 
                 self.db.commit_media_object(photo,trans)
-                self.db.add_transaction(trans,_("Add Media Object"))
+                self.db.transaction_commit(trans,_("Add Media Object"))
                 
                 if GrampsCfg.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media,
@@ -405,7 +397,7 @@ class MediaView:
                 photo.set_mime_type(mime)
                 photo.set_description(d)
                 photo.set_path(tfile)
-                trans = self.db.start_transaction()
+                trans = self.db.transaction_begin()
                 self.db.add_object(photo,trans)
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
@@ -420,7 +412,7 @@ class MediaView:
                     return
 
                 self.db.commit_media_object(photo,trans)
-                self.db.add_transaction(trans,_("Add Media Object"))
+                self.db.transaction_commit(trans,_("Add Media Object"))
                 
                 if GrampsCfg.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,None,

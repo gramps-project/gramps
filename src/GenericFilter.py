@@ -279,7 +279,7 @@ class HasCompleteRecord(Rule):
         return _('Matches all people whose records are complete')
 
     def apply(self,db,p_id):
-        return db.get_person_from_handle(p_id).get_complete() == 1
+        return db.get_person_from_handle(p_id).get_complete_flag() == 1
 
 #-------------------------------------------------------------------------
 #
@@ -393,7 +393,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
-            for person_handle in db.get_person_keys():
+            for person_handle in db.get_person_handles(sort_handles=False):
                 if filter.apply (db, person_handle):
                     self.init_list (person_handle, first)
         return self.map.has_key(p_id)
@@ -524,7 +524,7 @@ class IsChildOfFilterMatch(Rule):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
-            for person_handle in db.get_person_keys():
+            for person_handle in db.get_person_handles(sort_handles=False):
                 if filter.apply (db, person_handle):
                     self.init_list (person_handle)
         return self.map.has_key(p_id)
@@ -682,7 +682,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list[0])
-            for person_handle in db.get_person_keys():
+            for person_handle in db.get_person_handles(sort_handles=False):
                 if filter.apply (db, person_handle):
                     self.init_ancestor_list (person_handle,first)
         return self.map.has_key(p_id)
@@ -827,7 +827,7 @@ class IsParentOfFilterMatch(Rule):
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
-            for person_handle in db.get_person_keys():
+            for person_handle in db.get_person_handles(sort_handles=False):
                 if filter.apply (db, person_handle):
                     self.init_list (person_handle)
         return self.map.has_key(p_id)
@@ -912,7 +912,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     def init_ancestor_cache(self,db):
         filter = MatchesFilter(self.list)
         def init(self,pid): self.ancestor_cache[pid] = 1
-        for p_id in db.get_person_keys():
+        for p_id in db.get_person_handles(sort_handles=False):
             if (not self.ancestor_cache.has_key (p_id)
                 and filter.apply (db, p_id)):
                 for_each_ancestor([p_id],init,self)

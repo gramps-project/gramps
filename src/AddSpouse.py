@@ -212,11 +212,11 @@ class AddSpouse:
         been closed.
         """
         person = epo.person
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         handle = self.db.add_person(person,trans)
 
         n = person.get_primary_name().get_name()
-        self.db.add_transaction(trans,_('Add Person (%s)' % n))
+        self.db.transaction_commit(trans,_('Add Person (%s)' % n))
         self.addperson(person)
         self.update_data(handle)
         
@@ -252,10 +252,11 @@ class AddSpouse:
                 Utils.destroy_passed_object(obj)
                 return
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
 
         if not self.active_family:
-            self.active_family = self.db.new_family(trans)
+            self.active_family = RelLib.Family()
+            self.db.add_family(family,trans)
             self.person.add_family_handle(self.active_family.get_handle())
             self.db.commit_person(self.person,trans)
 
@@ -272,7 +273,7 @@ class AddSpouse:
         rtype = self.rel_combo.get_active()
         self.active_family.set_relationship(rtype)
         self.db.commit_family(self.active_family,trans)
-        self.db.add_transaction(trans,_("Add Spouse"))
+        self.db.transaction_commit(trans,_("Add Spouse"))
 
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)

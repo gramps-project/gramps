@@ -102,7 +102,7 @@ class PeopleView:
         self.columns = [column]
 
         index = 1
-        for pair in self.parent.db.get_column_order():
+        for pair in self.parent.db.get_person_column_order():
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
@@ -210,7 +210,7 @@ class PeopleView:
         self.person_model.rebuild_data()
         self.parent.status_text(_('Updating display...'))
         keys = self.DataFilter.apply(self.parent.db,
-                                     self.parent.db.get_person_keys())
+                                     self.parent.db.get_person_handles(sort_handles=False))
         self.person_model.reset_visible()
         for person_handle in keys:
             self.person_model.set_visible(person_handle,1)

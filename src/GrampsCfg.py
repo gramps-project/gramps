@@ -265,22 +265,22 @@ def save_usetips(val):
     set_bool("/apps/gramps/behavior/use-tips",val)
 
 # preferences keys
-def get_iprefix():
+def get_person_id_prefix():
     return get_string("/apps/gramps/preferences/iprefix")
 
-def get_eprefix():
+def get_event_id_prefix():
     return get_string("/apps/gramps/preferences/iprefix")
 
 def save_iprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/iprefix",val)
 
-def get_oprefix():
+def get_object_id_prefix():
     return get_string("/apps/gramps/preferences/oprefix")
 
 def save_oprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/oprefix",val)
 
-def get_sprefix():
+def get_source_id_prefix():
     return get_string("/apps/gramps/preferences/sprefix")
 
 def save_sprefix(val):
@@ -289,13 +289,13 @@ def save_sprefix(val):
 def save_eprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/eprefix",val)
 
-def get_pprefix():
+def get_place_id_prefix():
     return get_string("/apps/gramps/preferences/pprefix")
 
 def save_pprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/pprefix",val)
 
-def get_fprefix():
+def get_family_id_prefix():
     return get_string("/apps/gramps/preferences/fprefix")
 
 def save_fprefix(val):
@@ -741,19 +741,19 @@ class GrampsPreferences:
         index_vis.connect('toggled',lambda obj: save_index_visible(obj.get_active()))
 
         ipr = self.top.get_widget("iprefix")
-        ipr.set_text(get_iprefix())
+        ipr.set_text(get_person_id_prefix())
         ipr.connect('changed',lambda obj: save_iprefix(obj.get_text()))
         opr = self.top.get_widget("oprefix")
-        opr.set_text(get_oprefix())
+        opr.set_text(get_object_id_prefix())
         opr.connect('changed',lambda obj: save_oprefix(obj.get_text()))
         fpr = self.top.get_widget("fprefix")
-        fpr.set_text(get_fprefix())
+        fpr.set_text(get_family_id_prefix())
         fpr.connect('changed',lambda obj: save_fprefix(obj.get_text()))
         spr = self.top.get_widget("sprefix")
-        spr.set_text(get_sprefix())
+        spr.set_text(get_source_id_prefix())
         spr.connect('changed',lambda obj: save_sprefix(obj.get_text()))
         ppr = self.top.get_widget("pprefix")
-        ppr.set_text(get_pprefix())
+        ppr.set_text(get_place_id_prefix())
         ppr.connect('changed',lambda obj: save_pprefix(obj.get_text()))
 
         sb2 = self.top.get_widget("stat2")

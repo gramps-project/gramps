@@ -279,7 +279,7 @@ class TimeLine:
         low  =  999999
         high = -999999
         
-        self.plist = self.filter.apply(self.db,self.db.get_person_keys())
+        self.plist = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
 
         for p_id in self.plist:
             p = self.db.get_person_from_handle(p_id)
@@ -314,7 +314,7 @@ class TimeLine:
         return (low,high)
 
     def name_size(self):
-        self.plist = self.filter.apply(self.db,self.db.get_person_keys())
+        self.plist = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
 
         style_name = self.d.draw_styles['TLG-text'].get_paragraph_style()
         font = self.d.style_list[style_name].get_font()

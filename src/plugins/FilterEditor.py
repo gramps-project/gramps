@@ -355,7 +355,7 @@ class FilterEditor:
         store,iter = self.clist.get_selected()
         if iter:
             filt = self.clist.get_object(iter)
-            id_list = filt.apply(self.db,self.db.get_person_keys())
+            id_list = filt.apply(self.db,self.db.get_person_handles(sort_handles=False))
             ShowResults(self,self.db,id_list,filt.get_name())
 
     def delete_filter(self,obj):

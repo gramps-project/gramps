@@ -414,7 +414,7 @@ class ArgHandler:
             try:
                 # Write media files first, since the database may be modified 
                 # during the process (i.e. when removing object)
-                for m_id in self.parent.db.get_object_keys():
+                for m_id in self.parent.db.get_media_object_handles():
                     mobject = self.parent.db.get_object_from_handle(m_id)
                     oldfile = mobject.get_path()
                     base = os.path.basename(oldfile)
