@@ -9,8 +9,8 @@
 	  document under the terms of the GNU Free Documentation
 	  License (GFDL), Version 1.1 or any later version published
 	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
+	  no Front-Cover Texts, and no Back-Cover Texts.
+          A copy of the license is included in the file COPYING-DOCS
           distributed with this manual.
 -->
 
@@ -18,241 +18,240 @@
 
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-keybind">
-      <title>Keybindings reference</title>
-      <para>This appendix contains the list of keybindings that are not 
-      displayed in menus of &app;.
-      </para>
-      
+      <title>Tastenkürzel-Referenz</title>
+      <para>Dieser Anhang enthält die Liste der Tastenkürzel, die
+      nicht in den Menüs von &app; angezeigt werden.</para>
+
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="keybind-people">
-        <title>People View</title>
-        <para>The following bindings are available in the People View:</para>
-        
-        <informaltable frame="topbot"> 
-        <tgroup cols="2"> 
-        <colspec colname="col1"/> 
-        <colspec colname="col2"/> 
-        <thead> 
+        <title>Personenansicht</title>
+        <para>Die folgenden Kürzel sind in der Personenansicht verfügbar:</para>
+
+        <informaltable frame="topbot">
+        <tgroup cols="2">
+        <colspec colname="col1"/>
+        <colspec colname="col2"/>
+        <thead>
         <row valign="top">
-          <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-          <entry colname="col2" valign="top"><para>Function</para></entry> 
-        </row> 
+          <entry colname="col1" colsep="0" valign="top"><para>Taste</para></entry>
+          <entry colname="col2" valign="top"><para>Funktion</para></entry>
+        </row>
         </thead>
-        <tbody> 
-        <row valign="top"> 
-          <entry><para><keycap>Enter</keycap></para></entry> 
-          <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog 
-          with the selected person.</para></entry> 
-        </row>  
-        </tbody> 
+        <tbody>
+        <row valign="top">
+          <entry><para><keycap>Enter</keycap></para></entry>
+          <entry><para><guilabel>Person bearbeiten</guilabel>-Dialog
+          für die ausgewählte Person aufrufen.</para></entry>
+        </row>
+        </tbody>
         </tgroup>
-        </informaltable> 
+        </informaltable>
 
         </sect3>
 
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="keybind-family">
-        <title>Family View</title>
-        <para>The bindings available in the Family View depend on where the
-        focus is. The following tables list the bindings for all focus 
-        targets.</para>
-        
+        <title>Familienansicht</title>
+        <para>Die Kürzel, die in der Familienansicht verfügbar sind, hängen
+        davon ab, wo der Fokus ist. Die folgenden Tabellen listen die Kürzel
+        für alle Fokusziele auf.</para>
+
           <variablelist>
 
-          <varlistentry><term>Focus on the Active Person</term>
+          <varlistentry><term>Fokus auf der aktiven Person</term>
           <listitem>
 
-          <informaltable frame="topbot"> 
-          <tgroup cols="2"> 
-          <colspec colname="col1"/> 
-          <colspec colname="col2"/> 
-          <thead> 
+          <informaltable frame="topbot">
+          <tgroup cols="2">
+          <colspec colname="col1"/>
+          <colspec colname="col2"/>
+          <thead>
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
-          </row> 
+            <entry colname="col1" colsep="0" valign="top"><para>Taste</para></entry>
+            <entry colname="col2" valign="top"><para>Funktion</para></entry>
+          </row>
           </thead>
-          <tbody> 
-          <row valign="top"> 
-            <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog with 
-            the active person.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Ctrl</keycap>+<keycap>Down</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Right</keycap></para></entry> 
-            <entry><para>Swap the Active Person and the selected spouse.
-            Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family  
-            View.</para></entry> 
-          </row>  
-          </tbody> 
+          <tbody>
+          <row valign="top">
+            <entry><para><keycap>Enter</keycap></para></entry>
+            <entry><para><guilabel>Person bearbeiten</guilabel>-Dialog für die
+            aktive Person aufrufen.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Strg</keycap>+<keycap>Unten</keycap>
+            or <keycap>Strg</keycap>+<keycap>Rechts</keycap></para></entry>
+            <entry><para>Die aktive Person und den ausgewählten Partner vertauschen.
+            Benutzen Sie <keycap>Strg</keycap>+<keycap>Unten</keycap> in der 
+            Standard-Familienansicht und <keycap>Strg</keycap>+<keycap>Rechts</keycap>
+            in der alternativen Familienansicht.</para></entry>
+          </row>
+          </tbody>
           </tgroup>
-          </informaltable> 
+          </informaltable>
 
           </listitem>
           </varlistentry>
 
 
-          <varlistentry><term>Focus on the Spouse box</term>
+          <varlistentry><term>Fokus auf dem Partnerfeld</term>
           <listitem>
-          
-          <informaltable frame="topbot"> 
-          <tgroup cols="2"> 
-          <colspec colname="col1"/> 
-          <colspec colname="col2"/> 
-          <thead> 
+
+          <informaltable frame="topbot">
+          <tgroup cols="2">
+          <colspec colname="col1"/>
+          <colspec colname="col2"/>
+          <thead>
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
-          </row> 
+            <entry colname="col1" colsep="0" valign="top"><para>Taste</para></entry>
+            <entry colname="col2" valign="top"><para>Funktion</para></entry>
+          </row>
           </thead>
-          <tbody> 
-          <row valign="top"> 
-            <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit relationship between the Active Person and 
-            the selected spouse.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit the personal information for the selected
-            spouse.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a person from the database to the spouse 
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new person to the database and to the spouse 
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Delete</keycap></para></entry> 
-            <entry><para>Delete the selected spouse from the spouse 
-            list. The spouse is not deleted from the database.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Ctrl</keycap>+<keycap>Up</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Left</keycap></para></entry> 
-            <entry><para>Swap the selected spouse and the Active Person.
-            Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family  
-            View.</para></entry> 
-          </row>  
-          </tbody> 
+          <tbody>
+          <row valign="top">
+            <entry><para><keycap>Enter</keycap></para></entry>
+            <entry><para>Die Beziehung zwischen der aktiven Person und dem
+            ausgewählten Partner bearbeiten.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry>
+            <entry><para>Die persönlichen Informationen des ausgewählten Partners
+            bearbeiten.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Einfg</keycap></para></entry>
+            <entry><para>Eine Personen aus der Datenbank zu der Partner hinzufügen.
+            </para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Shift</keycap>+<keycap>Einfg</keycap></para></entry>
+            <entry><para>Eine neue Person zur Datenbank und zu der Partnerliste
+            hinzufügen.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Entf</keycap></para></entry>
+            <entry><para>Den ausgewählten Partner aus der Partnerliste löschen. Der
+            Partner wird nicht aus der Datenbank gelöscht.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Strg</keycap>+<keycap>Oben</keycap>
+            oder <keycap>Strg</keycap>+<keycap>Links</keycap></para></entry>
+            <entry><para>Den gewählten Partner und die aktive Personen vertauschen.
+            Benutzen Sie <keycap>Strg</keycap>+<keycap>Oben</keycap> in der
+            Standard-Familienansicht und <keycap>Strg</keycap>+<keycap>Rechts</keycap>
+            in der alternativen Familienansicht.</para></entry>
+          </row>
+          </tbody>
           </tgroup>
-          </informaltable> 
-          
+          </informaltable>
+
           </listitem>
           </varlistentry>
 
 
-          <varlistentry><term>Focus on the Parents box</term>
+          <varlistentry><term>Fokus auf dem Elternfeld</term>
           <listitem>
-          
-          <informaltable frame="topbot"> 
-          <tgroup cols="2"> 
-          <colspec colname="col1"/> 
-          <colspec colname="col2"/> 
-          <thead> 
+
+          <informaltable frame="topbot">
+          <tgroup cols="2">
+          <colspec colname="col1"/>
+          <colspec colname="col2"/>
+          <thead>
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
-          </row> 
+            <entry colname="col1" colsep="0" valign="top"><para>Taste</para></entry>
+            <entry colname="col2" valign="top"><para>Funktion</para></entry>
+          </row>
           </thead>
-          <tbody> 
-          <row valign="top"> 
-            <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit relationship between the parents and their 
-            child (either the Active Person or the selected spouse, depending 
-            which parents box the focus is in).</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new set of parents from the database to the 
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new set of parents to the database and to the 
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Delete</keycap></para></entry> 
-            <entry><para>Delete the selected parents from the list. 
-            The parents are not deleted from the database.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Ctrl</keycap>+<keycap>Right</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Down</keycap></para></entry> 
-            <entry><para>Make the selected parents the active family.
-            Use <keycap>Ctrl</keycap>+<keycap>Right</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Down</keycap> in alternative Family  
-            View.</para></entry> 
-          </row>  
-          </tbody> 
+          <tbody>
+          <row valign="top">
+            <entry><para><keycap>Enter</keycap></para></entry>
+            <entry><para>Die Beziehung zwischen den Eltern und ihrem Kind
+            (entweder die aktive Person oder der ausgewählte Partner,
+            je nach dem, in welchem Elternfeld sich der Fokus befindet.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Einfg</keycap></para></entry>
+            <entry><para>Ein neues Paar Eltern aus der Datenbank zur Liste
+            hinzufügen.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Shift</keycap>+<keycap>Einfg</keycap></para></entry>
+            <entry><para>Ein neues Paar Eltern zur Datenbank und zur Liste
+            hinzufügen.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Entf</keycap></para></entry>
+            <entry><para>Die ausgwählten Eltern aus der Liste entfernen.
+            Die Eltern werden nicht aus der Datenbank gelöscht.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Strg</keycap>+<keycap>Rechts</keycap>
+            oder <keycap>Strg</keycap>+<keycap>Unten</keycap></para></entry>
+            <entry><para>Die gewählten Eltern zur aktiven Familie machen.
+            Benutzen Sie <keycap>Strg</keycap>+<keycap>Rechts</keycap> in der
+            Standard-Familienansicht und <keycap>Strg</keycap>+<keycap>Unten</keycap>
+            in der alternativen Familienansicht.</para></entry>
+          </row>
+          </tbody>
           </tgroup>
-          </informaltable> 
-          
+          </informaltable>
+
           </listitem>
           </varlistentry>
 
 
-          <varlistentry><term>Focus on the Children box</term>
+          <varlistentry><term>Fokus auf dem Kinderfeld</term>
           <listitem>
-          
-          <informaltable frame="topbot"> 
-          <tgroup cols="2"> 
-          <colspec colname="col1"/> 
-          <colspec colname="col2"/> 
-          <thead> 
+
+          <informaltable frame="topbot">
+          <tgroup cols="2">
+          <colspec colname="col1"/>
+          <colspec colname="col2"/>
+          <thead>
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
-          </row> 
+            <entry colname="col1" colsep="0" valign="top"><para>Taste</para></entry>
+            <entry colname="col2" valign="top"><para>Funktion</para></entry>
+          </row>
           </thead>
-          <tbody> 
-          <row valign="top"> 
-            <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit relationship between the child and his/her  
-            parents (the Active Person and the selected 
-            spouse).</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit the personal information for the selected
-            child.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new person from the database to the children 
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new person to the database and to the children
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Delete</keycap></para></entry> 
-            <entry><para>Delete the selected child from the list. 
-            The child is not deleted from the database.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Ctrl</keycap>+<keycap>Left</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Up</keycap></para></entry> 
-            <entry><para>Make the selected child the Active Person.
-            Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family  
-            View.</para></entry> 
-          </row>  
-          </tbody> 
+          <tbody>
+          <row valign="top">
+            <entry><para><keycap>Enter</keycap></para></entry>
+            <entry><para>Die Beziehung zwischem dem Kind und seinen/ihren
+            Eltern (die aktive Person und der ausgewählte Partner) bearbeiten.
+            </para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry>
+            <entry><para>Die persönlichen Information des ausgewählten Kindes
+            bearbeiten.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Einfg</keycap></para></entry>
+            <entry><para>Eine neue Person aus der Datenbank zur Kinderliste
+            hinzufügen.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Shift</keycap>+<keycap>Einfg</keycap></para></entry>
+            <entry><para>Eine neue Person zur Datenbank und zur Kinderliste
+            hinzufügen.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Entf</keycap></para></entry>
+            <entry><para>Das ausgewählte Kind aus der Liste entfernen.
+            Das Kind wird nicht aus der Datenbank gelöscht.</para></entry>
+          </row>
+          <row valign="top">
+            <entry><para><keycap>Strg</keycap>+<keycap>Links</keycap>
+            oder <keycap>Strg</keycap>+<keycap>Oben</keycap></para></entry>
+            <entry><para>Das ausgewählte Kind zur aktiven Person machen.
+            Benutzen Sie <keycap>Strg</keycap>+<keycap>Links</keycap> in der
+            Standard-Familienansicht und <keycap>Strg</keycap>+<keycap>Oben</keycap>
+            in der alternativen Familienansicht.</para></entry>
+          </row>
+          </tbody>
           </tgroup>
-          </informaltable> 
-          
+          </informaltable>
+
           </listitem>
           </varlistentry>
 
