@@ -324,7 +324,7 @@ class ReportDialog:
         this task."""
         pass
 
-    def add_option(self,label_text,widget):
+    def add_option(self,label_text,widget,tooltip=None):
         """Takes a text string and a Gtk Widget, and stores them to be
         appended to the Options section of the dialog. The text string
         is used to create a label for the passed widget. This allows the
@@ -333,8 +333,10 @@ class ReportDialog:
         extracting the final value before the report executes. This task
         should only be called in the add_user_options task."""
         self.widgets.append((label_text,widget))
+        if tooltip:
+            self.add_tooltip(widget,tooltip)
 
-    def add_frame_option(self,frame_name,label_text,widget):
+    def add_frame_option(self,frame_name,label_text,widget,tooltip=None):
         """Similar to add_option this method takes a frame_name, a
         text string and a Gtk Widget. When the interface is built,
         all widgets with the same frame_name are grouped into a
@@ -349,7 +351,9 @@ class ReportDialog:
         else:
             self.frames[frame_name] = [(label_text,widget)]
             self.frame_names.append(frame_name)
-            
+        if tooltip:
+            self.add_tooltip(widget,tooltip)
+        
     #------------------------------------------------------------------------
     #
     # Functions to create a default output style.
