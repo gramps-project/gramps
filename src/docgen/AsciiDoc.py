@@ -265,8 +265,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
     #--------------------------------------------------------------------
     #
     # Start a row. Initialize lists for cell contents, number of lines,
-    # and the widths. 
-    # It is necessary to keep a list of cell contents
+    # and the widths. It is necessary to keep a list of cell contents
     # that is to be written after all the cells are defined.
     #
     #--------------------------------------------------------------------
@@ -291,14 +290,16 @@ class AsciiDoc(BaseDoc.BaseDoc):
         self.in_cell = 0
         cell_text = [None]*self.ncols
         for cell in range(self.ncols):
-            blanks = ' '*self.cell_widths[cell] + '\n'
-            if self.cell_lines[cell] < self.maxlines and cell < self.ncols - 1:
-                self.cellpars[cell] = self.cellpars[cell] \
+            if self.cell_widths[cell]:
+                blanks = ' '*self.cell_widths[cell] + '\n'
+                if self.cell_lines[cell] < self.maxlines and cell < self.ncols - 1:
+                    self.cellpars[cell] = self.cellpars[cell] \
                               + blanks * (self.maxlines-self.cell_lines[cell])
-            cell_text[cell] = self.cellpars[cell].split('\n')
+                cell_text[cell] = self.cellpars[cell].split('\n')
         for line in range(self.maxlines):
             for cell in range(self.ncols):
-                self.f.write(cell_text[cell][line])
+                if self.cell_widths[cell]:
+                    self.f.write(cell_text[cell][line])
             self.f.write('\n')
 
     #--------------------------------------------------------------------
@@ -309,6 +310,11 @@ class AsciiDoc(BaseDoc.BaseDoc):
     def start_cell(self,style_name,span=1):
         self.in_cell = 1
         self.cellnum = self.cellnum + span
+        span = span - 1
+        while span:
+            self.cell_widths[self.cellnum-span] = 0
+            span = span - 1
+            
 
     #--------------------------------------------------------------------
     #
