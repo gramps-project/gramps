@@ -45,7 +45,7 @@ _top = [
     '  <TITLE>\n',
     '  </TITLE>\n',
     '  <STYLE type="text/css">\n',
-   '  <!--\n',
+    '  <!--\n',
     '    BODY { background-color: #ffffff }\n',
     '    .parent_name { font-family: Arial; font-style: bold }\n',
     '    .child_name { font-family: Arial; font-style: bold }\n',
@@ -174,10 +174,10 @@ class HtmlDoc(TextDoc):
 	       left = 'thin solid #000000'
             if style.get_right_border():
                 right = 'thin solid #000000'
-            text.append('.%s {\n' \
-                        '\tpadding: %s %s %s %s;\n' \
-                        '\tborder-top:%s; border-bottom:%s;\n' \
-                        '\tborder-left:%s; border-right:%s;\n}' \
+            text.append('.%s {\n'
+                        '\tpadding: %s %s %s %s;\n'
+                        '\tborder-top:%s; border-bottom:%s;\n' 
+                        '\tborder-left:%s; border-right:%s;\n}' 
                         % (key, pad, pad, pad, pad, top, bottom, left, right))
 
         for key in self.style_list.keys():
@@ -210,13 +210,13 @@ class HtmlDoc(TextDoc):
             else:
                 family = '"Times New Roman","Times","serif"'
 
-            text.append('.%s {\n' \
-                        '\tfont-size: %dpt; color: %s;\n' \
-                        '\ttext-align: %s; text-indent: %scm;\n' \
-                        '\tmargin-right: %scm; margin-left: %scm;\n' \
-                        '\tborder-top:%s; border-bottom:%s;\n' \
-                        '\tborder-left:%s; border-right:%s;\n' \
-                        '\t%s%sfont-family:%s;\n}' \
+            text.append('.%s {\n'
+                        '\tfont-size: %dpt; color: %s;\n' 
+                        '\ttext-align: %s; text-indent: %scm;\n' 
+                        '\tmargin-right: %scm; margin-left: %scm;\n' 
+                        '\tborder-top:%s; border-bottom:%s;\n' 
+                        '\tborder-left:%s; border-right:%s;\n' 
+                        '\t%s%sfont-family:%s;\n}' 
                         % (key, font_size, font_color,
                            align, text_indent,
                            right_margin, left_margin,
@@ -233,9 +233,7 @@ class HtmlDoc(TextDoc):
 
     def add_photo(self,name,pos,x,y):
         self.empty = 0
-
         size = int(max(x,y) * float(150.0/2.54))
-
         refname = "is%s" % os.path.basename(name)
 
         if self.image_dir:

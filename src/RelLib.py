@@ -872,7 +872,6 @@ class Url:
         if self.desc != other.desc:
             return 0
         return 1
-    
         
 class Person:
     """Represents an individual person in the gramps database"""

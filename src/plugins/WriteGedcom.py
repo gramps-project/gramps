@@ -21,6 +21,7 @@
 "Export to GEDCOM"
 
 from RelLib import *
+import GenericFilter
 import os
 import string
 import time
@@ -61,113 +62,6 @@ _calmap = {
     Date.FRENCH : (_fmonth, '@#FRENCH R@'),
     Date.JULIAN : (_month, '@#JULIAN@'),
     }
-
-
-#-------------------------------------------------------------------------
-#
-# Filters
-#
-#-------------------------------------------------------------------------
-def entire_database(database,person,private):
-    plist = database.getPersonMap().values()
-    flist = database.getFamilyMap().values()
-    slist = database.getSourceMap().values()
-    return (plist,flist,slist)
-
-def active_person_descendants(database,person,private):
-    plist = []
-    flist = []
-    slist = []
-    descend(person,plist,flist,slist,private)
-    return (plist,flist,slist)
-    
-def active_person_ancestors_and_descendants(database,person,private):
-    plist = []
-    flist = []
-    slist = []
-    descend(person,plist,flist,slist,private)
-    ancestors(person,plist,flist,slist,private)
-    return (plist,flist,slist)
-
-def active_person_ancestors(database,person,private):
-    plist = []
-    flist = []
-    slist = []
-    ancestors(person,plist,flist,slist,private)
-    return (plist,flist,slist)
-
-def interconnected(database,person,private):
-    plist = []
-    flist = []
-    slist = []
-    walk(person,plist,flist,slist,private)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def descend(person,plist,flist,slist,private):
-    if person == None or person in plist:
-        return
-    plist.append(person)
-    add_persons_sources(person,slist,private)
-    for family in person.getFamilyList():
-        add_familys_sources(family,slist,private)
-        flist.append(family)
-        father = family.getFather()
-        mother = family.getMother()
-        if father != None and father not in plist:
-            plist.append(father)
-            add_persons_sources(father,slist,private)
-        if mother != None and mother not in plist:
-            plist.append(mother)
-            add_persons_sources(mother,slist,private)
-        for child in family.getChildList():
-            descend(child,plist,flist,slist,private)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def ancestors(person,plist,flist,slist,private):
-    if person == None or person in plist:
-        return
-    plist.append(person)
-    add_persons_sources(person,slist,private)
-    family = person.getMainParents()
-    if family == None or family in flist:
-        return
-    add_familys_sources(family,slist,private)
-    flist.append(family)
-    ancestors(family.getMother(),plist,flist,slist,private)
-    ancestors(family.getFather(),plist,flist,slist,private)
-    
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def walk(person,plist,flist,slist,private):
-    if person == None or person in plist:
-        return
-    plist.append(person)
-    add_persons_sources(person,slist,private)
-    families = person.getFamilyList()
-    families.append(person.getMainParents())
-    for f in person.getParentList():
-        families.append(f[0])
-    for family in families:
-        if family == None or family in flist:
-            continue
-        add_familys_sources(family,slist,private)
-        flist.append(family)
-        walk(family.getFather(),plist,flist,slist,private)
-        walk(family.getMother(),plist,flist,slist,private)
-        for child in family.getChildList():
-            walk(child,plist,flist,slist,private)
 
 #-------------------------------------------------------------------------
 #
@@ -417,8 +311,6 @@ class GedcomWriter:
         filter_obj = self.topDialog.get_widget("filter")
         myMenu = gtk.GtkMenu()
 
-        import GenericFilter
-
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
@@ -474,7 +366,6 @@ class GedcomWriter:
         self.cal = self.target_ged.get_alt_calendar()
         self.obje = self.target_ged.get_obje()
         self.resi = self.target_ged.get_resi()
-
 
         if self.topDialog.get_widget("ansel").get_active():
             self.cnvtxt = latin_to_ansel

@@ -25,8 +25,10 @@ import const
 import os
 import string
 import Utils
-import intl
 import Plugins
+import GenericFilter
+
+import intl
 
 _ = intl.gettext
 
@@ -258,11 +260,11 @@ class ReportDialog:
         is the name of menu item to pre-select."""
         return (None, None)
     
-    def get_report_filter_strings(self):
+    def get_report_filters(self):
         """Return the data used to fill out the 'filter' combo box in
         the report options box.  The return value is the list of
         strings to be inserted into the pulldown."""
-        return None
+        return []
     
     def get_report_generations(self):
         """Return the default number of generations to start the
@@ -624,12 +626,14 @@ class ReportDialog:
         self.template_combo.entry.set_editable(0)
         self.template_combo.entry.connect('changed',self.html_file_enable)
         
-        table.attach(self.template_combo,1,2,0,1,FILL|EXPAND,FILL|EXPAND,pad,pad)
-
-        table.attach(GtkLabel(_("User Template")),0,1,1,2,FILL,FILL,pad,pad)
+        table.attach(self.template_combo,1,2,0,1,
+                     FILL|EXPAND,FILL|EXPAND,pad,pad)
+        table.attach(GtkLabel(_("User Template")),0,1,1,2,
+                     FILL,FILL,pad,pad)
         self.html_fileentry = GnomeFileEntry(_("HTML Template"),_("Choose File"))
         self.html_fileentry.set_sensitive(0)
-        table.attach(self.html_fileentry,1,2,1,2,FILL|EXPAND,FILL|EXPAND,pad,pad)
+        table.attach(self.html_fileentry,1,2,1,2,
+                     FILL|EXPAND,FILL|EXPAND,pad,pad)
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -640,7 +644,7 @@ class ReportDialog:
         (but not all) dialog boxes."""
 
         (use_gen, use_break) = self.get_report_generations()
-        filter_strings = self.get_report_filter_strings()
+        local_filter = self.get_report_filters()
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
         (et_label, string, et_tip) = self.get_report_extra_textbox_info()
 
@@ -650,7 +654,7 @@ class ReportDialog:
             max_rows = max_rows + 1
             if use_break:
                 max_rows = max_rows + 1
-        if filter_strings:
+        if len(local_filter):
             max_rows = max_rows + 1
         if extra_map:
             max_rows = max_rows + 1
@@ -669,14 +673,24 @@ class ReportDialog:
         frame.add(table)
 
         pad = ReportDialog.border_pad
-        if filter_strings:
-            self.filter_combo = GtkCombo()
+        if len(local_filter):
+            myMenu = GtkMenu()
+            self.filter_combo = GtkOptionMenu()
             l = GtkLabel(_("Filter"))
             l.set_alignment(1.0,0.5)
             table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(self.filter_combo,1,2,row,row+1,xpadding=pad,ypadding=pad)
-            filter_strings.sort()
-            self.filter_combo.set_popdown_strings(filter_strings)
+            table.attach(self.filter_combo,1,2,row,row+1,
+                         xpadding=pad,ypadding=pad)
+
+            flist = GenericFilter.GenericFilterList(const.custom_filters)
+            flist.load()
+            for f in local_filter + flist.get_filters():
+                menuitem = gtk.GtkMenuItem(_(f.get_name()))
+                myMenu.append(menuitem)
+                menuitem.set_data("filter",f)
+                menuitem.show()
+            self.filter_combo.set_menu(myMenu)
+            self.filter_menu = myMenu
             row = row + 1
             
         # Set up the generations spin and page break checkbox
@@ -689,12 +703,15 @@ class ReportDialog:
             l = GtkLabel(_("Generations"))
             l.set_alignment(1.0,0.5)
             table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(self.generations_spinbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            table.attach(self.generations_spinbox,1,2,row,row+1,
+                         xpadding=pad,ypadding=pad)
             row = row + 1
 
             if use_break:
-                self.pagebreak_checkbox = GtkCheckButton(_("Page break between generations"))
-                table.attach(self.pagebreak_checkbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
+                msg = _("Page break between generations")
+                self.pagebreak_checkbox = GtkCheckButton(msg)
+                table.attach(self.pagebreak_checkbox,1,2,row,row+1,
+                             xpadding=pad,ypadding=pad)
                 row = row + 1
 
         # Now the "extra" option menu
@@ -706,8 +723,10 @@ class ReportDialog:
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
-            table.attach(self.extra_menu_label,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(self.extra_menu,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            table.attach(self.extra_menu_label,0,1,row,row+1,
+                         FILL,FILL,pad,pad)
+            table.attach(self.extra_menu,1,2,row,row+1,
+                         xpadding=pad,ypadding=pad)
             row = row + 1
             
         # Now the "extra" text box
@@ -746,12 +765,14 @@ class ReportDialog:
             row = 0
             for (text,widget) in list:
                 if text == None:
-                    table.attach(widget,0,2,row,row+1,xpadding=pad,ypadding=pad)
+                    table.attach(widget,0,2,row,row+1,
+                                 xpadding=pad,ypadding=pad)
                 else:
                     text_widget = GtkLabel(text)
                     text_widget.set_alignment(1.0,0)
                     table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
-                    table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
+                    table.attach(widget,1,2,row,row+1,
+                                 xpadding=pad,ypadding=pad)
                 row = row + 1
 
     #------------------------------------------------------------------------
@@ -832,9 +853,9 @@ class ReportDialog:
             self.pg_brk = 0
 
         if self.filter_combo:
-            self.filter = self.filter_combo.entry.get_text()
+            self.filter = self.filter_menu.get_active().get_data("filter")
         else:
-            self.filter = ""
+            self.filter = None
 
         if self.extra_menu:
             self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")

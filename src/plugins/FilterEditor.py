@@ -35,8 +35,17 @@ import GenericFilter
 import intl
 _ = intl.gettext
 
+_name2list = {
+    _('Personal Event')     : const.personalEvents,
+    _('Family Event')       : const.marriageEvents,
+    _('Personal Attribute') : const.personalAttributes,
+    _('Family Attribute')   : const.familyAttributes,
+    _('Relationship Type')  : const.familyRelations,
+}
+
 class FilterEditor:
-    def __init__(self,filterdb):
+    def __init__(self,filterdb,db):
+        self.db = db
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
         
@@ -47,6 +56,7 @@ class FilterEditor:
         self.editor.signal_autoconnect({
             'on_add_clicked' : self.add_new_filter,
             'on_edit_clicked' : self.edit_filter,
+            'on_test_clicked' : self.test_clicked,
             'on_close_clicked' : self.close_filter_editor,
             'on_delete_clicked' : self.delete_filter,
             })
@@ -74,6 +84,14 @@ class FilterEditor:
             return
         filter = self.filter_list.get_row_data(sel[0])
         self.filter_editor(GenericFilter.GenericFilter(filter))
+
+    def test_clicked(self,obj):
+        sel = self.filter_list.selection
+        if len(sel) != 1:
+            return
+        filt = self.filter_list.get_row_data(sel[0])
+        list = filt.apply(self.db.getPersonMap().values())
+        ShowResults(list)
 
     def delete_filter(self,obj):
         sel = self.filter_list.selection
@@ -106,7 +124,7 @@ class FilterEditor:
         self.rule_list.clear()
         row = 0
         for r in self.filter.get_rules():
-            self.rule_list.append([r.name(),r.display_values()])
+            self.rule_list.append([r.trans_name(),r.display_values()])
             self.rule_list.set_row_data(row,r)
             row = row + 1
             
@@ -173,18 +191,12 @@ class FilterEditor:
             list.append(c)
             map[name] = c
             for v in arglist:
-                l = gtk.GtkLabel(v)
+                l = gtk.GtkLabel(_(v))
                 l.set_alignment(1,0.5)
                 l.show()
-                if v == 'Event':
+                if _name2list.has_key(_(v)):
                     t = gtk.GtkCombo()
-                    t.set_popdown_strings(const.personalEvents)
-                    t.set_value_in_list(1,0)
-                    t.entry.set_editable(0)
-                    tlist.append(t.entry)
-                elif v == 'Attribute':
-                    t = gtk.GtkCombo()
-                    t.set_popdown_strings(const.personalAttributes)
+                    t.set_popdown_strings(_name2list[_(v)])
                     t.set_value_in_list(1,0)
                     t.entry.set_editable(0)
                     tlist.append(t.entry)
@@ -203,7 +215,7 @@ class FilterEditor:
         self.rname.list.clear_items(0,-1)
         self.rname.list.append_items(list)
         for v in map.keys():
-            self.rname.set_item_string(map[v],v)
+            self.rname.set_item_string(map[_(v)],_(v))
 
         if self.active_rule:
             page = self.name2page[self.active_rule.name()]
@@ -249,13 +261,29 @@ class FilterEditor:
     def rule_cancel(self,obj):
         self.rule_top.destroy()
 
+class ShowResults:
+    def __init__(self,plist):
+        self.glade = libglade.GladeXML(const.filterFile,'test')
+        self.top = self.glade.get_widget('test')
+        text = self.glade.get_widget('text')
+        self.glade.signal_autoconnect({
+            'on_close_clicked' : self.close,
+            })
+
+        for p in plist:
+            n = "%s [%s]\n" % (p.getPrimaryName().getName(),p.getId())
+            text.insert_defaults(n)
+            
+    def close(self,obj):
+        self.top.destroy()
+        
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 def runTool(database,person,callback):
-    FilterEditor(const.custom_filters)
+    FilterEditor(const.custom_filters,database)
 
 #-------------------------------------------------------------------------
 #
@@ -268,5 +296,7 @@ register_tool(
     runTool,
     _("Custom Filter Editor"),
     category=_("Utilities"),
-    description=_("The Custom Filter Editor builds custom filters that can be used to select people included reports, exports, and other utilities.")
+    description=_("The Custom Filter Editor builds custom "
+                  "filters that can be used to select people "
+                  "included reports, exports, and other utilities.")
     )

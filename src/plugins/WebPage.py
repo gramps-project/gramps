@@ -4,7 +4,7 @@
 # Copyright (C) 2000  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
+# it under the terms of the GNU General Pubilc License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
@@ -25,6 +25,7 @@ from HtmlDoc import *
 
 import const
 import GrampsCfg
+import GenericFilter
 import intl
 _ = intl.gettext
 
@@ -635,21 +636,6 @@ def an_des_of_gparents_filter(database,person,list,generations):
 
 #------------------------------------------------------------------------
 #
-# Mams menu items to filter functions
-#
-#------------------------------------------------------------------------
-
-filter_map = {
-    _("Individual") : individual_filter,
-    _("Ancestors") : ancestor_filter,
-    _("Descendants") : descendant_filter,
-    _("Ancestors and descendants") : an_des_filter,
-    _("Grandparent's ancestors and descendants") : an_des_of_gparents_filter,
-    _("Entire database") : entire_db_filter
-    }
-    
-#------------------------------------------------------------------------
-#
 # 
 #
 #------------------------------------------------------------------------
@@ -738,9 +724,7 @@ class WebReport(Report):
                                  image_dir_name)
                 return
     
-        filter = filter_map[self.filter]
-        ind_list = []
-        filter(self.db,self.person,ind_list,self.max_gen)
+        ind_list = self.filter.apply(self.db.getPersonMap().values())
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
@@ -765,8 +749,8 @@ class WebReport(Report):
                 mainiteration()
             
         if len(ind_list) > 1:
-            self.dump_index(ind_list,self.selected_style,self.template_name,dir_name)
-    
+            self.dump_index(ind_list,self.selected_style,
+                            self.template_name,dir_name)
         self.progress_bar_done()
 
     def add_styles(self,doc):
@@ -854,9 +838,24 @@ class WebReportDialog(ReportDialog):
         """Default to ten generations, no page break box."""
         return (10, 0)
 
-    def get_report_filter_strings(self):
+    def get_report_filters(self):
         """Set up the list of possible content filters."""
-        return filter_map.keys()
+
+        name = self.person.getPrimaryName().getName()
+        
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % name)
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+        
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % name)
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
+
+        return [all,des,ans]
 
     #------------------------------------------------------------------------
     #

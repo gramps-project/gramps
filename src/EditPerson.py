@@ -455,9 +455,9 @@ class EditPerson:
     def set_lds_seal(self,obj):
         self.seal_stat = obj.get_data("val")
     
-    def ev_drag_data_received(self,widget,context,x,y,selection_data,info,time):
-        if selection_data and selection_data.data:
-            exec 'data = %s' % selection_data.data
+    def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
             if person == self.person.getId() or mytype != 'pevent':
@@ -474,17 +474,17 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_event_list()
 
-    def ev_drag_data_get(self,widget, context, selection_data, info, time):
+    def ev_drag_data_get(self,widget, context, sel_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('pevent',self.person.getId(),pickled));
-        selection_data.set(selection_data.target, bits_per, data)
+        sel_data.set(sel_data.target, bits_per, data)
 
-    def url_drag_data_received(self,widget,context,x,y,selection_data,info,time):
-        if selection_data and selection_data.data:
-            exec 'data = %s' % selection_data.data
+    def url_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
             if person == self.person.getId() or mytype != 'url':
@@ -494,17 +494,17 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_url_list()
 
-    def url_drag_data_get(self,widget, context, selection_data, info, time):
+    def url_drag_data_get(self,widget, context, sel_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('url',self.person.getId(),pickled));
-        selection_data.set(selection_data.target, bits_per, data)
+        sel_data.set(sel_data.target, bits_per, data)
 
-    def at_drag_data_received(self,widget,context,x,y,selection_data,info,time):
-        if selection_data and selection_data.data:
-            exec 'data = %s' % selection_data.data
+    def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
             if person == self.person.getId() or mytype != 'pattr':
@@ -518,17 +518,17 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_attr_list()
 
-    def at_drag_data_get(self,widget, context, selection_data, info, time):
+    def at_drag_data_get(self,widget, context, sel_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('pattr',self.person.getId(),pickled));
-        selection_data.set(selection_data.target, bits_per, data)
+        sel_data.set(sel_data.target, bits_per, data)
 
-    def ad_drag_data_received(self,widget,context,x,y,selection_data,info,time):
-        if selection_data and selection_data.data:
-            exec 'data = %s' % selection_data.data
+    def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
             if person == self.person.getId() or mytype != 'paddr':
@@ -542,13 +542,13 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_addr_list()
 
-    def ad_drag_data_get(self,widget, context, selection_data, info, time):
+    def ad_drag_data_get(self,widget, context, sel_data, info, time):
         ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('paddr',self.person.getId(),pickled));
-        selection_data.set(selection_data.target, bits_per, data)
+        sel_data.set(sel_data.target, bits_per, data)
 
     def menu_changed(self,obj):
         self.ldsfam = obj.get_data("f")
@@ -1012,8 +1012,8 @@ class EditPerson:
             item = gtk.GtkTearoffMenuItem()
             item.show()
             menu.append(item)
-            Utils.add_menuitem(menu,_("Make the selected name the preferred name"),
-                               None,self.change_name)
+            msg = _("Make the selected name the preferred name")
+            Utils.add_menuitem(menu,msg,None,self.change_name)
             menu.popup(None,None,None,0,0)
 
     def on_aka_update_clicked(self,obj):
@@ -1029,7 +1029,8 @@ class EditPerson:
         else:
             try:
                 i = GdkImlib.Image(photo)
-                scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
+                ratio = float(max(i.rgb_height,i.rgb_width))
+                scale = float(const.picWidth)/ratio
                 x = int(scale*(i.rgb_width))
                 y = int(scale*(i.rgb_height))
                 i = i.clone_scaled_image(x,y)
@@ -1177,9 +1178,10 @@ class EditPerson:
             Utils.modified()
 
         if error == 1:
-            msg = _("Changing the gender caused problems with marriage information.")
-            msg2 = _("Please check the person's marriages.")
-            GnomeErrorDialog("%s\n%s" % (msg,msg2))
+            msg = _("Changing the gender caused problems "
+                    "with marriage information.\nPlease check "
+                    "the person's marriages.")
+            GnomeErrorDialog(msg)
         
         text = self.notes_field.get_chars(0,-1)
         if text != self.person.getNote():
@@ -1195,7 +1197,8 @@ class EditPerson:
                 temple = ""
             ord = self.person.getLdsBaptism()
             place = self.get_place(self.ldsbapplace,1)
-            update_ord(self.person.setLdsBaptism,ord,date,temple,self.bap_stat,place)
+            update_ord(self.person.setLdsBaptism,ord,date,
+                       temple,self.bap_stat,place)
 
             date = self.ldsend_date.get_text()
             temple = self.ldsend_temple.entry.get_text()
@@ -1205,7 +1208,8 @@ class EditPerson:
                 temple = ""
             ord = self.person.getLdsEndowment()
             place = self.get_place(self.ldsendowplace,1)
-            update_ord(self.person.setLdsEndowment,ord,date,temple,self.end_stat,place)
+            update_ord(self.person.setLdsEndowment,ord,date,
+                       temple,self.end_stat,place)
 
             date = self.ldsseal_date.get_text()
             temple = self.ldsseal_temple.entry.get_text()
@@ -1359,7 +1363,8 @@ class EditPerson:
 
     def write_primary_name(self):
         # initial values
-        self.get_widget("activepersonTitle").set_text(GrampsCfg.nameof(self.person))
+        name = GrampsCfg.nameof(self.person)
+        self.get_widget("activepersonTitle").set_text(name)
         self.suffix.set_text(self.pname.getSuffix())
 
         self.surname_field.set_text(self.pname.getSurname())

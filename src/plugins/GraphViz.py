@@ -31,78 +31,6 @@ _ = intl.gettext
 import libglade
 from Report import *
 
-ind_list = []
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def ancestor_filter(database,person,list,generations):
-
-    if person == None:
-        return
-    if person not in list:
-        list.append(person)
-    if generations <= 1:
-        return
-    
-    family = person.getMainParents()
-    if family != None:
-        ancestor_filter(database,family.getFather(),list,generations-1)
-        ancestor_filter(database,family.getMother(),list,generations-1)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def descendant_filter(database,person,list,generations):
-
-    if person == None:
-        return
-    if person not in list:
-        list.append(person)
-    if generations <= 1:
-        return
-    
-    for family in person.getFamilyList():
-        for child in family.getChildList():
-            descendant_filter(database,child,list,generations-1)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def an_des_filter(database,person,list,generations):
-
-    descendant_filter(database,person,list,generations)
-    ancestor_filter(database,person,list,generations)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def entire_db_filter(database,person,list,generations):
-
-    for entry in database.getPersonMap().values():
-        list.append(entry)
-    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-
-filter_map = {
-    _("Ancestors") : ancestor_filter,
-    _("Descendants") : descendant_filter,
-    _("Ancestors and Descendants") : an_des_filter,
-    _("Entire Database") : entire_db_filter
-    }
-    
 _scaled = 0
 _single = 1
 _multiple = 2
@@ -129,7 +57,8 @@ class GraphVizDialog(ReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Relationship Graph"),_("Graphical Reports"))
+        return "%s - %s - GRAMPS" % (_("Relationship Graph"),
+                                     _("Graphical Reports"))
 
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
@@ -144,9 +73,24 @@ class GraphVizDialog(ReportDialog):
         """Default to 10 generations, no page breaks."""
         return (10, 0)
 
-    def get_report_filter_strings(self):
+    def get_report_filters(self):
         """Set up the list of possible content filters."""
-        return filter_map.keys()
+
+        name = self.person.getPrimaryName().getName()
+        
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % name)
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+        
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % name)
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
+
+        return [all,des,ans]
 
     def add_user_options(self):
     
@@ -171,26 +115,41 @@ class GraphVizDialog(ReportDialog):
         menu.set_active(0)
         self.arrowhead_optionmenu.set_menu(menu)
         self.add_frame_option(_("GraphViz Options"), _("Arrowhead Options"),
-                              self.arrowhead_optionmenu,_("Choose the direction that the arrows point."))
-
-        self.includedates_checkbutton = GtkCheckButton(_("Include Birth and Death Dates"))
+                              self.arrowhead_optionmenu,
+                              _("Choose the direction that the arrows point."))
+        msg = _("Include Birth and Death Dates")
+        self.includedates_checkbutton = GtkCheckButton(msg)
         self.includedates_checkbutton.set_active(1)
-        self.add_frame_option(_("GraphViz Options"), '', self.includedates_checkbutton,
-                              _("Include the years that the individual was born and/or died in the graph node labels."))
+        self.add_frame_option(_("GraphViz Options"), '',
+                              self.includedates_checkbutton,
+                              _("Include the years that the individual "
+                                "was born and/or died in the graph node "
+                                "labels."))
 
         self.includeurl_checkbutton = GtkCheckButton(_("Include URLs"))
         self.includeurl_checkbutton.set_active(1)
-        self.add_frame_option(_("GraphViz Options"), '', self.includeurl_checkbutton,
-                              _("Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Generate Web Site' report."))
+        self.add_frame_option(_("GraphViz Options"), '',
+                              self.includeurl_checkbutton,
+                              _("Include a URL in each graph node so "
+                                "that PDF and imagemap files can be "
+                                "generated that contain active links "
+                                "to the files generated by the 'Generate "
+                                "Web Site' report."))
 
-        self.tb_margin_adjustment = GtkAdjustment(value=0.5, lower=0.25, upper=100.0, step_incr=0.25)
-        self.lr_margin_adjustment = GtkAdjustment(value=0.5, lower=0.25, upper=100.0, step_incr=0.25)
+        tb_margin_adj = GtkAdjustment(value=0.5, lower=0.25,
+                                      upper=100.0, step_incr=0.25)
+        lr_margin_adj = GtkAdjustment(value=0.5, lower=0.25,
+                                      upper=100.0, step_incr=0.25)
 
-        self.tb_margin_spinbutton = GtkSpinButton(adj=self.tb_margin_adjustment, digits=2)
-        self.lr_margin_spinbutton = GtkSpinButton(adj=self.lr_margin_adjustment, digits=2)
+        self.tb_margin_sb = GtkSpinButton(adj=tb_margin_adj, digits=2)
+        self.lr_margin_sb = GtkSpinButton(adj=lr_margin_adj, digits=2)
 
-        self.add_frame_option(_("GraphViz Options"), _("Top & Bottom Margins"), self.tb_margin_spinbutton)
-        self.add_frame_option(_("GraphViz Options"), _("Left & Right Margins"), self.lr_margin_spinbutton)
+        self.add_frame_option(_("GraphViz Options"),
+                              _("Top & Bottom Margins"),
+                              self.tb_margin_sb)
+        self.add_frame_option(_("GraphViz Options"),
+                              _("Left & Right Margins"),
+                              self.lr_margin_sb)
         
     #------------------------------------------------------------------------
     #
@@ -228,11 +187,12 @@ class GraphVizDialog(ReportDialog):
         pass
 
     def parse_other_frames(self):
-        self.arrowhead_option = self.arrowhead_optionmenu.get_menu().get_active().get_data('i')
+        menu = self.arrowhead_optionmenu.get_menu()
+        self.arrowhead_option = menu.get_active().get_data('i')
         self.includedates = self.includedates_checkbutton.get_active()
         self.includeurl = self.includeurl_checkbutton.get_active()
-        self.tb_margin = self.tb_margin_spinbutton.get_value_as_float()
-        self.lr_margin = self.lr_margin_spinbutton.get_value_as_float()
+        self.tb_margin = self.tb_margin_sb.get_value_as_float()
+        self.lr_margin = self.lr_margin_sb.get_value_as_float()
         
     #------------------------------------------------------------------------
     #
@@ -246,10 +206,7 @@ class GraphVizDialog(ReportDialog):
 
         file = open(self.target_path,"w")
 
-        filter = filter_map[self.filter]
-        ind_list = []
-
-        filter(self.db,self.person,ind_list,self.max_gen)
+        ind_list = self.filter.apply(self.db.getPersonMap().values())
 
         file.write("digraph g {\n")
         file.write("bgcolor=white;\n")
@@ -258,8 +215,8 @@ class GraphVizDialog(ReportDialog):
 
         if self.pagecount == _scaled:
             file.write("ratio=compress;\n")
-            file.write("size=\"%3.1f,%3.1f\";\n" % (width-(self.lr_margin * 2),
-                                                    height-(self.tb_margin * 2)))
+            file.write('size="%3.1f' % (width-(self.lr_margin*2)))
+            file.write(',%3.1f";\n' % (height-(self.tb_margin*2)))
         else:
             file.write("ratio=auto;\n")
         
@@ -333,11 +290,11 @@ def dump_index(person_list,file,includedates,includeurl):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Generates relationship graphs, currently only in GraphViz format.") + \
-           " " + \
-           _("GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, svg, and many other formats.") + \
-           " " + \
-           _("For more information or to get a copy of GraphViz, goto http://www.graphviz.org")
+    return _("Generates relationship graphs, currently only in GraphViz"
+             "format. GraphViz (dot) can transform the graph into "
+             "postscript, jpeg, png, vrml, svg, and many other formats. "
+             "For more information or to get a copy of GraphViz, "
+             "goto http://www.graphviz.org")
 
 #------------------------------------------------------------------------
 #
