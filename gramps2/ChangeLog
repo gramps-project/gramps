@@ -1,3 +1,8 @@
+2005-03-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditPerson.py: Remove numerous multiple definitions.
+	* src/AttrEdit.py (__init__): Set text to translated attribute type.
+	* src/const.py.in (display_attr): Add function.
+
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.
 	* src/EditPerson.py (on_add_addr_clicked): Typos.

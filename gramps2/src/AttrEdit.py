@@ -123,7 +123,7 @@ class AttributeEditor:
         AutoComp.fill_combo(self.attrib_menu,list)
 
         if attrib != None:
-            self.type_field.set_text(attrib.get_type())
+            self.type_field.set_text(const.display_attr(attrib.get_type()))
             self.value_field.set_text(attrib.get_value())
             self.priv.set_active(attrib.get_privacy())
 
