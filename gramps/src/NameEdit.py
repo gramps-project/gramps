@@ -32,6 +32,7 @@ import libglade
 #-------------------------------------------------------------------------
 import const
 import Utils
+import AutoComp
 from RelLib import *
 
 from intl import gettext
@@ -52,8 +53,10 @@ class NameEditor:
         self.given_field  = self.top.get_widget("alt_given")
         self.surname_field = self.top.get_widget("alt_last")
         self.suffix_field = self.top.get_widget("alt_suffix")
+        self.type_field = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
-        Utils.attach_surnames(self.top.get_widget("alt_surname_list"))
+        slist = self.top.get_widget("alt_surname_list")
+        self.combo = AutoComp.AutoCombo(slist,const.surnames)
         self.priv = self.top.get_widget("priv")
 
         if self.name:
@@ -70,11 +73,13 @@ class NameEditor:
         self.window.editable_enters(self.given_field)
         self.window.editable_enters(self.surname_field)
         self.window.editable_enters(self.suffix_field)
+        self.window.editable_enters(self.type_field.entry)
         
         if name != None:
             self.given_field.set_text(name.getFirstName())
             self.surname_field.set_text(name.getSurname())
             self.suffix_field.set_text(name.getSuffix())
+            self.type_field.entry.set_text(_(name.getType()))
             self.priv.set_active(name.getPrivacy())
             self.note_field.set_point(0)
             self.note_field.insert_defaults(name.getNote())
@@ -97,19 +102,25 @@ class NameEditor:
         suffix = self.suffix_field.get_text()
         note = self.note_field.get_chars(0,-1)
         priv = self.priv.get_active()
+
+        type = self.type_field.entry.get_text()
+        if const.NameTypesMap.has_key(type):
+            type = const.NameTypesMap[type]
+        else:
+            type = "Also Known As"
         
         if self.name == None:
             self.name = Name()
             self.name.setSourceRefList(self.srcreflist)
             self.parent.nlist.append(self.name)
         
-        self.update_name(first,last,suffix,note,priv)
+        self.update_name(first,last,suffix,type,note,priv)
         self.parent.lists_changed = 1
 
         self.parent.redraw_name_list()
         Utils.destroy_passed_object(obj)
 
-    def update_name(self,first,last,suffix,note,priv):
+    def update_name(self,first,last,suffix,type,note,priv):
         
         if self.name.getFirstName() != first:
             self.name.setFirstName(first)
@@ -124,6 +135,10 @@ class NameEditor:
 
         if self.name.getSuffix() != suffix:
             self.name.setSuffix(suffix)
+            self.parent.lists_changed = 1
+
+        if self.name.getType() != type:
+            self.name.setType(type)
             self.parent.lists_changed = 1
 
         if self.name.getNote() != note:

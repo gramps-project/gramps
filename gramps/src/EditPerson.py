@@ -174,6 +174,7 @@ class EditPerson:
         self.alt_given_field = self.get_widget("alt_given")
         self.alt_last_field = self.get_widget("alt_last")
         self.alt_suffix_field = self.get_widget("alt_suffix")
+        self.name_type_field = self.get_widget("name_type")
         self.surname_field = self.get_widget("surname")
         self.suffix = self.get_widget("suffix")
         self.given = self.get_widget("givenName")
@@ -227,7 +228,7 @@ class EditPerson:
         self.gid.set_text(person.getId())
         self.gid.set_editable(GrampsCfg.id_edit)
         self.event_list.set_column_visibility(3,GrampsCfg.show_detail)
-        self.name_list.set_column_visibility(1,GrampsCfg.show_detail)
+        self.name_list.set_column_visibility(2,GrampsCfg.show_detail)
         self.attr_list.set_column_visibility(2,GrampsCfg.show_detail)
         self.addr_list.set_column_visibility(2,GrampsCfg.show_detail)
 
@@ -972,6 +973,7 @@ class EditPerson:
         self.alt_given_field.set_text(name.getFirstName())
         self.alt_last_field.set_text(name.getSurname())
         self.alt_suffix_field.set_text(name.getSuffix())
+        self.name_type_field.set_text(name.getType())
         self.name_details_field.set_text(Utils.get_detail_text(name))
 
     def on_web_list_select_row(self,obj,row,b,c):
@@ -1350,7 +1352,7 @@ def update_ord(func,ord,date,temple,stat,place):
 #
 #-------------------------------------------------------------------------
 def disp_name(name):
-    return [name.getName(),Utils.get_detail_flags(name)]
+    return [name.getName(),name.getType(),Utils.get_detail_flags(name)]
 
 #-------------------------------------------------------------------------
 #

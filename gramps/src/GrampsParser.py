@@ -192,20 +192,20 @@ class GrampsParser:
         self.event = Event()
         self.event_type = u2l(attrs["type"])
         if attrs.has_key("conf"):
-            self.conf = int(attrs["conf"])
+            self.event.conf = int(attrs["conf"])
         else:
-            self.conf = 2
+            self.event.conf = 2
         if attrs.has_key("priv"):
             self.event.private = int(attrs["priv"])
         
     def start_attribute(self,attrs):
         self.attribute = Attribute()
         if attrs.has_key("conf"):
-            self.conf = int(attrs["conf"])
+            self.attribute.conf = int(attrs["conf"])
         else:
-            self.conf = 2
+            self.attribute.conf = 2
         if attrs.has_key("priv"):
-            self.attribute.privacy = int(attrs["priv"])
+            self.attribute.private = int(attrs["priv"])
         if attrs.has_key('type'):
             self.attribute.setType(u2l(attrs["type"]))
         if attrs.has_key('value'):
@@ -225,9 +225,9 @@ class GrampsParser:
         self.address = Address()
         self.person.addAddress(self.address)
         if attrs.has_key("conf"):
-            self.conf = int(attrs["conf"])
+            self.address.conf = int(attrs["conf"])
         else:
-            self.conf = 2
+            self.address.conf = 2
         if attrs.has_key("priv"):
             self.address.private = int(attrs["priv"])
 
@@ -311,10 +311,12 @@ class GrampsParser:
 
     def start_name(self,attrs):
         self.name = Name()
+        if attrs.has_key("type"):
+            self.name.setType(u2l(attrs["type"]))
         if attrs.has_key("conf"):
-            self.conf = int(attrs["conf"])
+            self.name.conf = int(attrs["conf"])
         else:
-            self.conf = 2
+            self.name.conf = 2
         if attrs.has_key("priv"):
             self.name.private = int(attrs["priv"])
         
@@ -722,6 +724,8 @@ class GrampsParser:
 
     def stop_aka(self,tag):
         self.person.addAlternateName(self.name)
+        if self.name.getType() == "":
+            self.name.setType("Also Known As")
         self.name = None
 
     func_map = {
