@@ -473,6 +473,20 @@
 
 	    <widget>
 	      <class>GtkPixmapMenuItem</class>
+	      <name>gramps_mailing_lists</name>
+	      <tooltip>Subscribe to mailing lists or browse archives</tooltip>
+	      <signal>
+		<name>activate</name>
+		<handler>on_gramps_mailing_lists_activate</handler>
+		<last_modification_time>Sun, 23 Dec 2001 22:11:41 GMT</last_modification_time>
+	      </signal>
+	      <label>GRAMPS _Mailing Lists</label>
+	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_MAIL</stock_icon>
+	    </widget>
+
+	    <widget>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>about1</name>
 	      <signal>
 		<name>activate</name>

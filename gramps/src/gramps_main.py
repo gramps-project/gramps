@@ -158,6 +158,10 @@ def on_gramps_home_page_activate(obj):
     import gnome.url
     gnome.url.show("http://gramps.sourceforge.net")
 
+def on_gramps_mailing_lists_activate(obj):
+    import gnome.url
+    gnome.url.show("http://sourceforge.net/mail/?group_id=25770")
+
 #-------------------------------------------------------------------------
 #
 # Merge
@@ -2030,6 +2034,7 @@ def main(arg):
         "on_swap_clicked"                   : on_swap_clicked,
         "on_tools_clicked"                  : on_tools_clicked,
         "on_gramps_home_page_activate"      : on_gramps_home_page_activate,
+        "on_gramps_mailing_lists_activate"  : on_gramps_mailing_lists_activate,
         "on_writing_extensions_activate"    : on_writing_extensions_activate,
         })	
 
