@@ -106,13 +106,13 @@ class DescendantReport:
     def dump(self,level,person):
 
         if level != 0:
-            self.doc.start_paragraph("Level" + str(level))
-            self.doc.write_text(str(level) + '. ')
+            self.doc.start_paragraph("Level%d" % level)
+            self.doc.write_text("%d." % level)
             self.doc.write_text(person.getPrimaryName().getRegularName())
             self.dump_dates(person)
             self.doc.end_paragraph()
 
-        if (level >= self.max_generations):
+        if level >= self.max_generations:
             return
         
         childlist = []
@@ -172,11 +172,11 @@ class DescendantReportDialog(TextReportDialog):
         self.default_style.add_style("Title",p)
 
         f = FontStyle()
-        for i in range(1,10):
+        for i in range(1,32):
             p = ParagraphStyle()
             p.set_font(f)
-            p.set_left_margin(float(i-1))
-            self.default_style.add_style("Level" + str(i),p)
+            p.set_left_margin(max(10.0,float(i-1)))
+            self.default_style.add_style("Level%d" % i,p)
 
     #------------------------------------------------------------------------
     #

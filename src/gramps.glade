@@ -912,6 +912,7 @@
 	  <widget>
 	    <class>GtkCList</class>
 	    <name>person_list</name>
+	    <width>750</width>
 	    <height>350</height>
 	    <can_focus>True</can_focus>
 	    <signal>

@@ -64,7 +64,7 @@ class AncestorReport(Report):
     #
     #--------------------------------------------------------------------
     def filter(self,person,index):
-        if person == None or index >= 2**self.max_generations:
+        if person == None or index >= (1 << 31):
             return
         self.map[index] = person
     
@@ -93,7 +93,7 @@ class AncestorReport(Report):
         generation = 0
 
         for key in keys :
-            if generation == 0 or key >= 2**generation:
+            if generation == 0 or key >= ( 1 << 31):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
                 self.doc.start_paragraph("Generation")
