@@ -289,18 +289,26 @@ class GedcomParser:
 
     def parse_source(self,name,level):
         self.source = self.db.findSource(name,self.smap)
-        
+
+        note = ""
         while 1:
             matches = self.get_next()
 	    if int(matches[0]) < level:
+                if note:
+                    self.source.setNote(note)
+                if not self.source.getTitle():
+                    self.source.setTitle("No title - ID %s" % self.source.getId())
                 self.backup()
                 return
-            elif matches[1] == "DATA" or matches[1] == "TEXT":
-                self.ignore_sub_junk(2)
             elif matches[1] == "TITL":
                 title = matches[2] + self.parse_continue_data(level+1)
                 title = string.replace(title,'\n',' ')
                 self.source.setTitle(title)
+            elif matches[1] == "TAXT" or matches[1] == "PERI": # EasyTree Sierra On-Line
+                if self.source.getTitle() == "":
+                    title = matches[2] + self.parse_continue_data(level+1)
+                    title = string.replace(title,'\n',' ')
+                    self.source.setTitle(title)
             elif matches[1] == "AUTH":
                 self.source.setAuthor(matches[2] + self.parse_continue_data(level+1))
             elif matches[1] == "PUBL":
@@ -309,8 +317,10 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    self.source.setNote(note)
+                    if note:
+                        note = "%s\n%s%s" % (note,matches[2],self.parse_continue_data(level+1))
+                    else:
+                        note = matches[2] + self.parse_continue_data(level+1)
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
@@ -319,6 +329,20 @@ class GedcomParser:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
                         self.source.setNoteObj(noteobj)
+            elif matches[1] == "TEXT":
+                d = self.parse_continue_data(level+1)
+                if note:
+                    note = "%s\n%s %s%s" % (note,matches[1],matches[2],d)
+                else:
+                    note = "%s %s%s" % (matches[1],matches[2],d)
+                title = matches[2] + d
+                title = string.replace(title,'\n',' ')
+                self.source.setTitle(title)
+            else:
+                if note:
+                    note = "%s\n%s %s" % (note,matches[1],matches[2])
+                else:
+                    note = "%s %s" % (matches[1],matches[2])
 
     def parse_record(self):
         while 1:
@@ -360,9 +384,9 @@ class GedcomParser:
                     self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
                 if text == "":
-                    noteobj.set(self.parse_continue_data(1))
+                    noteobj.set(self.parse_note_continue(1))
                 else:
-                    noteobj.set(text + self.parse_continue_data(1))
+                    noteobj.set(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
                 self.ignore_sub_junk(1)
@@ -1527,6 +1551,27 @@ class GedcomParser:
             if int(matches[0]) < level:
                 self.backup()
                 return data
+            elif matches[1] == "CONC":
+                if self.broken_conc:
+                    data = "%s %s" % (data,matches[2])
+                else:
+                    data = "%s%s" % (data,matches[2])
+            elif matches[1] == "CONT":
+                data = "%s\n%s" % (data,matches[2])
+            else:
+                self.backup()
+                return data
+
+    def parse_note_continue(self,level):
+	data = ""
+        while 1:
+            matches = self.get_next()
+
+            if int(matches[0]) < level:
+                self.backup()
+                return data
+            elif matches[1] == "NOTE":
+                data = "%s\n%s%s" % (data,matches[2],self.parse_continue_data(level+1))
             elif matches[1] == "CONC":
                 if self.broken_conc:
                     data = "%s %s" % (data,matches[2])

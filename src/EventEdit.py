@@ -100,7 +100,7 @@ class EventEditor:
         self.window.editable_enters(self.cause_field);
         self.window.editable_enters(self.descr_field);
 
-        AutoComp.AutoComp(self.place_field,self.pmap.keys())
+        AutoComp.AutoEntry(self.place_field,self.pmap.keys())
         
         if event != None:
             self.name_field.set_text(event.getName())

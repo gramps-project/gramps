@@ -243,7 +243,7 @@ class NewChild:
         self.surname = self.xml.get_widget("surname")
         self.given = self.xml.get_widget("childGiven")
         if Config.autocomp:
-            self.comp = AutoComp.AutoComp(self.surname,const.surnames)
+            self.comp = AutoComp.AutoEntry(self.surname,const.surnames)
 
         self.surname.set_text(self.update_surname(2))
 
