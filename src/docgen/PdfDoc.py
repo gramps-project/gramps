@@ -158,6 +158,9 @@ class PdfDoc(TextDoc.TextDoc):
         except:
             raise Errors.ReportError(_("Could not create %s") % self.filename)
 
+    def page_break(self):
+        self.end_page()
+
     def end_page(self):
         self.story.append(PageBreak())
 
@@ -285,6 +288,7 @@ class PdfDoc(TextDoc.TextDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
+        self.story.append(Spacer(1,0.5*cm))
         self.story.append(Image(name,act_width*cm,act_height*cm))
         self.story.append(Spacer(1,0.5*cm))
         self.image = 1

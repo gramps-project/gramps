@@ -829,17 +829,17 @@ class BookReportDialog(Report.ReportDialog):
         
         # FIXME:
         # dirty hack to use the style of the first item for the whole book
+
+        self.default_style = TextDoc.StyleSheet()
         for item in self.book.get_item_list():
             name = item.get_name()
             item = BookItem(name)
             style_file = item.get_style_file()
             make_default_style = item.get_make_default_style()
-            self.default_style = TextDoc.StyleSheet()
             make_default_style(self.default_style)
             style_list = TextDoc.StyleSheetList(style_file,self.default_style)
             style_name = item.get_style_name()
             self.selected_style = style_list.get_style_sheet(style_name)
-            return
 
     def setup_style_frame(self): pass
     def setup_report_options_frame(self): pass
@@ -873,21 +873,22 @@ class BookReportDialog(Report.ReportDialog):
     def make_report(self):
         """The actual book report. Start it out, then go through the item list 
         and call each item's write_book_item method."""
-        self.doc.start_paragraph("Title")
-        title = _("Book Report")
-        self.doc.write_text(title)
-        self.doc.end_paragraph()
-        first = 1
+
+        rptlist = []
+        
+        newpage = 0
         for item in self.book.get_item_list():
             write_book_item = item.get_write_item()
             options = item.get_options()
             if write_book_item:
-                if first:
-                    first = 0
-                newpage = not first
-                write_book_item(self.database,self.person,
-                    self.doc,options,newpage)
-
+                obj = write_book_item(self.database,self.person,
+                                      self.doc,options,newpage)
+                obj.setup()
+                rptlist.append(obj)
+                newpage = 1
+        
+        for item in rptlist:
+            item.write_report()
         self.doc.close()
 
 #------------------------------------------------------------------------
@@ -998,7 +999,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Book Report"),
-    category=_("Text Reports"),
+    category=_("Books"),
     status=(_("Unstable")),
     description=_("Creates a book containg several reports."),
     xpm=get_xpm_image(),

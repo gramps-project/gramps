@@ -53,16 +53,18 @@ class FtmAncestorReport(Report.Report):
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
+        self.newpage = newpage
         if output:
             self.standalone = 1
             self.doc.open(output)
         else:
             self.standalone = 0
-            if newpage:
-                self.doc.page_break()
         self.sref_map = {}
         self.sref_index = 1
         
+    def setup(self):
+        pass
+
     def apply_filter(self,person,index,generation=1):
         if person == None or generation > self.max_generations:
             return
@@ -74,6 +76,9 @@ class FtmAncestorReport(Report.Report):
             self.apply_filter(family.getMother(),(index*2)+1,generation+1)
 
     def write_report(self):
+
+        if self.newpage:
+            self.doc.page_break()
 
         self.apply_filter(self.start,1)
         
@@ -911,9 +916,7 @@ def write_book_item(database,person,doc,options,newpage=0):
             person = database.getPerson(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
-        MyReport = FtmAncestorReport(database, person, 
-            max_gen, pg_brk, doc, None, newpage )
-        MyReport.write_report()
+        return FtmAncestorReport(database, person, max_gen, pg_brk, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
