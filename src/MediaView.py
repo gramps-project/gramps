@@ -174,11 +174,11 @@ class MediaView:
             self.on_edit_clicked(obj)
             return 1
         elif event.button == 3:
-            self.build_context_menu()
+            self.build_context_menu(event)
             return 1
         return 0
 
-    def build_context_menu(self):
+    def build_context_menu(self,event):
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
 
@@ -214,7 +214,7 @@ class MediaView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def popup_view_photo(self, obj):
         Utils.view_photo(self.obj)
