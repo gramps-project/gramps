@@ -30,6 +30,22 @@ _ = intl.gettext
 from TextDoc import *
 import const
 
+#------------------------------------------------------------------------
+#
+# Attempt to load the Python Imaging Library for the handling of photos.
+#
+#------------------------------------------------------------------------
+try:
+    import PIL.Image
+    no_pil = 0
+except:
+    no_pil = 1
+
+#------------------------------------------------------------------------
+#
+# Default template
+#
+#------------------------------------------------------------------------
 _top = [
     '<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">\n',
     '<HTML>\n',
@@ -64,6 +80,7 @@ class HtmlDoc(TextDoc):
         self.template = template
         self.top = []
         self.bottom = []
+        self.base = ""
 
     def open(self,filename):
         
@@ -119,6 +136,8 @@ class HtmlDoc(TextDoc):
             self.filename = filename
         else:
             self.filename = filename + ".html"
+
+        self.base = os.path.dirname(self.filename)
 
         self.f = open(self.filename,"w")
         
@@ -190,6 +209,43 @@ class HtmlDoc(TextDoc):
         for line in self.bottom:
             self.f.write(line)
         self.f.close()
+
+    def add_photo(self,name,x,y):
+	if no_pil:
+	    return
+
+	im = PIL.Image.open(name)
+        nx,ny = im.size
+
+        scale = float(nx)/float(ny)
+        if scale > 1.0:
+            scale = 1.0/scale
+            act_width = x
+            act_height = y * scale
+        else:
+            act_width = x * scale
+            act_height = y
+
+        cmtopt = 72.0/2.54
+        pixw = int(act_width*cmtopt)
+        pixx = int(act_height*cmtopt)
+        im.thumbnail((pixw,pixx))
+
+        imdir = self.base + os.sep + "images"
+        if not os.path.isdir(imdir):
+            try:
+                os.mkdir(imdir)
+            except:
+                return
+
+        refname = "is%s" % os.path.basename(name)
+        try:
+            im.save(imdir + os.sep + refname)
+        except:
+            return
+
+        self.f.write('<img src="images/%s" width="%d" height="%d">\n' % \
+                     (refname,pixw,pixx))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]
