@@ -207,9 +207,9 @@ class DateDisplay:
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = "%s-%d" % (year,date_val[1])
+                    value = "%s-%02d" % (year,date_val[1])
             else:
-                value = "%s-%d-%d" % (year,date_val[1],date_val[0])
+                value = "%s-%02d-%02d" % (year,date_val[1],date_val[0])
         elif self.format == 1:
             if date_val[0] == 0 and date_val[1] == 0:
                 value = str(date_val[2])
