@@ -52,6 +52,7 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 import RelLib
+import GrampsBSDDB
 import PedView
 import MediaView
 import PlaceView
@@ -128,7 +129,7 @@ class Gramps:
         self.mhistory = []
         self.hindex = -1
                 
-        self.db = RelLib.GrampsDB()
+        self.db = GrampsBSDDB.GrampsBSDDB()
         self.db.set_iprefix(GrampsCfg.get_iprefix())
         self.db.set_oprefix(GrampsCfg.get_oprefix())
         self.db.set_fprefix(GrampsCfg.get_fprefix())

@@ -56,6 +56,11 @@ try:
 except:
     gzip_ok = 0
 
+_FAMILY_TRANS = {
+    'Married' : 0,      'Unmarried' : 1,  'Partners' : 1,
+    'Civil Union' : 2,  'Unknown' : 3,    'Other' : 4
+    }
+
 #-------------------------------------------------------------------------
 #
 # Importing data into the currently open database. 
@@ -425,7 +430,7 @@ class GrampsParser:
         if self.idswap.get(id):
             return self.idswap[id]
         else:
-            if self.db.idtrans.get(str(id)):
+            if self.db.id_trans.get(str(id)):
                 self.idswap[id] = self.db.find_next_gramps_id()
             else:
                 self.idswap[id] = id
@@ -636,7 +641,7 @@ class GrampsParser:
         self.family = self.db.find_family_no_conflicts(attrs["id"],
                                                        self.fmap,self.trans)
         if attrs.has_key("type"):
-            self.family.set_relationship(const.save_frel(attrs["type"]))
+            self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],const.FAMILY_UNKNOWN))
         if attrs.has_key("complete"):
             self.family.set_complete(int(attrs['complete']))
         else:
