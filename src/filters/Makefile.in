@@ -13,7 +13,7 @@ all:
 	${pycomp} *.py
 
 install:
-	-mkdir ${filters}
+	${INSTALL} -d ${filters}
 	${INSTALL} -c *.py *.pyo ${datadir}/filters
 
 uninstall:

@@ -11,11 +11,11 @@ pycomp		= ${srcdir}/py-compile
 all:
 
 install:
-	-mkdir ${data}
-	${INSTALL} -c *.sxw ${data}
+	${INSTALL} -d ${data}
+	${INSTALL} -c *.sxd table.* ${data}
 
 uninstall:
-	rm ${data}/*.sxw
+	rm -f ${data}/*.sxd ${data}/table.html ${data}/table.sxc
 	-rmdir ${data}
 
 clean:
