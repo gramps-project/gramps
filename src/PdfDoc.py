@@ -99,8 +99,6 @@ class PdfDoc(TextDoc):
             pdf_style.firstLineIndent = first
             pdf_style.bulletIndent = first
 
-            print first,left
-            
 	    align = style.get_alignment()
             if align == PARA_ALIGN_RIGHT:
 		pdf_style.alignment = TA_RIGHT
@@ -234,16 +232,18 @@ class PdfDoc(TextDoc):
             im = PIL.Image.open(name)
 
             nx,ny = im.size
-            scale = float(y)/float(nx)
-            act_width = int(nx * scale)
-            act_height = int(ny * scale)
-            
-            self.story.append(PIL.Image(name,act_width*0.5,act_height*0.5))
+            scale = float(nx)/float(ny)
+            if scale > 1.0:
+                scale = 1.0/scale
+                act_width = x
+                act_height = y * scale
+            else:
+                act_width = x * scale
+                act_height = y
+
+            self.story.append(Image(name,act_width*cm,act_height*cm))
 	    self.story.append(Spacer(1,0.5*cm))
             self.image = 1
-
-    def horizontal_line(self):
-        pass
 
     def write_text(self,text):
 	self.text = self.text + text
