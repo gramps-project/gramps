@@ -262,6 +262,20 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         along with a list of common ancestors (typically father,mother)
         """
 
+        if orig_person == None:
+            return ("undefined",[])
+
+        if orig_person.get_handle() == other_person.get_handle():
+            return ('', [])
+
+        if self.is_spouse(orig_person,other_person):
+            if other_person.get_gender() == RelLib.Person.male:
+                #FIXME: husband
+                return ("spouse",[])
+            else:
+                #FIXME: wife
+                return ("spouse",[])
+
         if self.is_fathermother_in_law(other_person,orig_person):
             if other_person.getGender() == RelLib.Person.male:
                 return ("apósa",self.get_fathermother_in_law_common(other_person,orig_person))

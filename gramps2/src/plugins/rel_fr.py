@@ -143,7 +143,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if orig_person == None:
             return ("undefined",[])
 
-        if orig_person == other_person:
+        if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
         if self.is_spouse(orig_person,other_person):
