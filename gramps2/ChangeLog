@@ -1,3 +1,10 @@
+2004-06-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson,py: allow reordering of event columns
+	* src/TransTable.py: allow to be initialized with a list instead of a map
+	* src/gramps.glade: allow reordering of event columns
+	* src/gramps_main.py: catch program_init exception
+	* src/ListModel.py: allow reordering of columns
+
 2004-06-22  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ArgHandler.py (parse_args): Switch from 'tgz' to 'gpkg'
 	for Gramps package; (handle_args): Use separate dir for all 

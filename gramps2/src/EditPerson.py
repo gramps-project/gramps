@@ -55,6 +55,7 @@ import ListModel
 import RelLib
 import Sources
 import DateEdit
+import TransTable
 
 from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
 
@@ -234,9 +235,24 @@ class EditPerson:
             Utils.bold_label(self.gallery_label)
 
         # event display
-        etitles = [(_('Event'),-1,150),(_('Description'),-1,150),
-                   (_('Date'),-1,100),(_('Place'),-1,100)]
-        
+
+        event_default = [ 'Event', 'Description', 'Date', 'Place' ]
+        self.event_trans = TransTable.TransTable(event_default)
+        evalues = {
+            'Event'       : (_('Event'),-1,150),
+            'Description' : (_('Description'),-1,150),
+            'Date'        : (_('Date'),-1,100),
+            'Place'       : (_('Place'),-1,100)
+            }
+
+        values = self.db.metadata.get('event_order')
+        if not values:
+            values = event_default
+
+        etitles = []
+        for val in values:
+            etitles.append(evalues[val])
+            
         self.etree = ListModel.ListModel(self.event_list,etitles,
                                          self.on_event_select_row,
                                          self.on_event_update_clicked)
@@ -315,13 +331,16 @@ class EditPerson:
                 self.flowed.set_active(1)
             Utils.bold_label(self.notes_label)
 
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, pycode_tgts,
+                                      ACTION_COPY)
         self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_drag_data_get)
         self.event_list.connect('drag_begin', self.ev_drag_begin)
-        self.event_list.connect('drag_data_received',self.ev_drag_data_received)
+        self.event_list.connect('drag_data_received',
+                                self.ev_drag_data_received)
 
-        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
+                                    ACTION_COPY)
         self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.web_list.connect('drag_data_get', self.url_drag_data_get)
         self.web_list.connect('drag_begin', self.url_drag_begin)
@@ -417,6 +436,11 @@ class EditPerson:
         self.child_windows = {}
 
     def close(self,ok=0):
+        event_list = []
+        for col in self.event_list.get_columns():
+            event_list.append(self.event_trans.find_key(col.get_title()))
+        self.db.metadata['event_order'] = event_list
+        
         self.gallery.close(ok)
         self.close_child_windows()
         self.remove_itself_from_winsmenu()

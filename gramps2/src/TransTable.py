@@ -26,11 +26,17 @@ class TransTable:
     def __init__(self,map={}):
         self.map = {}
         self.rmap = {}
-        
-        for key in map.keys():
-            val = unicode(map[key])
-            self.map[key] = val
-            self.rmap[val] = unicode(key)
+
+        if type(map) == type([]):
+            for key in map:
+                val = unicode(_(key))
+                self.map[key] = val
+                self.rmap[val] = unicode(key)
+        else:
+            for key in map.keys():
+                val = unicode(map[key])
+                self.map[key] = val
+                self.rmap[val] = unicode(key)
             
     def add_pair(self,first,second):
         first = unicode(first)
