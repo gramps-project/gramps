@@ -172,7 +172,6 @@ class TimeLine:
         if self.newpage:
             self.d.page_break()
         self.d.start_page()
-        self.build_grid(low,high,start,stop)
 
         index = 1
         current = 1;
@@ -215,6 +214,7 @@ class TimeLine:
 
             if (y2 + incr) >= self.d.get_usable_height():
                 if current != length:
+                    self.build_grid(low,high,start,stop)
                     self.d.end_page()
                     self.d.start_page()
                     self.build_grid(low,high,start,stop)
@@ -224,6 +224,7 @@ class TimeLine:
                 index += 1;
             current += 1
             
+        self.build_grid(low,high,start,stop)
         self.d.end_page()    
         if self.standalone:
             self.d.close()

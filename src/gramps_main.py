@@ -1053,6 +1053,9 @@ class Gramps:
     def import_tool_callback(self):
         Utils.modified()
         self.clear_person_tabs()
+        if not self.active_person:
+            self.change_active_person(self.find_initial_person())
+        self.goto_active_person()
         self.full_update()
             
     def full_update(self):
@@ -2056,17 +2059,20 @@ class Gramps:
     
         self.statusbar.set_progress_percentage(1.0)
 
+        self.change_active_person(self.find_initial_person())
+
+        self.full_update()
+        self.statusbar.set_progress_percentage(0.0)
+        return 1
+
+    def find_initial_person(self):
         person = self.db.getDefaultPerson()
         if not person:
             the_ids = self.db.getPersonMap().keys()
             if the_ids:
                 the_ids.sort()
                 person = self.db.getPerson(the_ids[0])
-        self.change_active_person(person)
-
-        self.full_update()
-        self.statusbar.set_progress_percentage(0.0)
-        return 1
+        return person
     
     def load_database(self,name):
 
