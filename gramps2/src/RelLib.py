@@ -614,8 +614,12 @@ class MediaObject(SourceNote):
                 self.source_list, self.note)
 
     def unserialize(self,data):
-        (self.id, self.thumb, self.path, self.mime, self.desc, self.attrlist,
-         self.source_list, self.note) = data
+        try:
+            (self.id, self.path, self.mime, self.desc, self.attrlist,
+             self.source_list, self.note) = data
+        except:
+            (self.id, junk, self.path, self.mime, self.desc, self.attrlist,
+             self.source_list, self.note) = data
     
     def set_thumbnail(self,thumb):
         """set the thumbnail"""
