@@ -187,7 +187,7 @@ class ListModel:
             col = col + 1
         self.model.set_value(iter,col,info)
         if info:
-            self.idmap[info] = iter
+            self.idmap[str(info)] = iter
         if select:
             self.selection.select_iter(iter)
         return iter
@@ -204,7 +204,7 @@ class ListModel:
             col = col + 1
         self.model.set_value(iter,col,info)
         if info:
-            self.idmap[info] = iter
+            self.idmap[str(info)] = iter
         if select:
             self.sel_iter = iter
             self.selection.select_iter(self.sel_iter)
@@ -217,7 +217,7 @@ class ListModel:
             col = col + 1
         self.model.set_value(iter,col,info)
         if info:
-            self.idmap[info] = iter
+            self.idmap[str(info)] = iter
         if select:
             self.sel_iter = iter
         return iter
@@ -230,7 +230,7 @@ class ListModel:
             self.model.set_value(iter,col,object)
             col = col + 1
         if info:
-            self.idmap[info] = iter
+            self.idmap[str(info)] = iter
         self.model.set_value(iter,col,info)
         self.selection.select_iter(iter)
 
@@ -248,7 +248,7 @@ class ListModel:
 
     def find(self,info):
         if info in self.idmap.keys():
-            iter = self.idmap[info]
+            iter = self.idmap[str(info)]
             self.selection.select_iter(iter)
 
     def cleanup(self):
