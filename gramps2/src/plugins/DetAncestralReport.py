@@ -491,7 +491,9 @@ class DetAncestorReport(Report):
                     else: t= _("  %s married %s on %s in %s") % \
                             (heshe, spouse, fulldate, place)
                 else:
-                    if fulldate == "" and place != "":
+                    if fulldate == "" and place == "":
+                        t= _("  %s married") % heshe
+                    elif fulldate == "" and place != "":
                         t= _("  %s married in %s") % (heshe, place)
                     elif fulldate != "" and place == "":
                         t= _("  %s married on %s") % (heshe, fulldate)
