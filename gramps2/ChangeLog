@@ -3,6 +3,8 @@
 	* doc/gramps-manual/C/getstart.xml: More "open a directory" stuff. 
 	* src/gramps.glade: Add Help button to opendb dialog.
 	* src/DbPrompter.py (open_help_clicked): Add function.
+	* src/PedView.py: Remove references to self.presel_descendants
+	(closes bug #854626).
 
 2003-12-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/getstart.xml: Remove ZODB support section. 
