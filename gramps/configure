@@ -1441,7 +1441,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=gramps
- VERSION=0.8.0rc1
+ VERSION=0.8.0
 
 
 cat >>confdefs.h <<_ACEOF
@@ -1567,7 +1567,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=1
+RELEASE=rc1
 
 VERSIONSTRING=$VERSION
 #if test x"$RELEASE" != "x"
