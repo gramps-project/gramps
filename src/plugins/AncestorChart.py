@@ -44,16 +44,11 @@ def pt2cm(pt):
 
 #------------------------------------------------------------------------
 #
-# 
+# AncestorChart
 #
 #------------------------------------------------------------------------
 class AncestorChart:
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,database,person,output,max,doc,display):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
@@ -67,14 +62,11 @@ class AncestorChart:
         self.lines = 0
         self.display = display
         
-    #--------------------------------------------------------------------
-    #
-    # filter - traverse the ancestors recursively until either the end
-    # of a line is found, or until we reach the maximum number of 
-    # generations that we want to deal with
-    #
-    #--------------------------------------------------------------------
     def filter(self,person,index):
+        """traverse the ancestors recursively until either the end
+        of a line is found, or until we reach the maximum number of 
+        generations that we want to deal with"""
+        
         if person == None or index >= 2**self.max_generations:
             return
         self.map[index] = person
@@ -87,6 +79,26 @@ class AncestorChart:
         d = person.getDeath().getDate()
         B = person.getBirth().getPlaceName()
         D = person.getDeath().getPlaceName()
+        if len(person.getFamilyList()) > 0:
+            f = person.getFamilyList()[0]
+            if f.getFather() == person:
+                s = f.getMother().getPrimaryName().getRegularName()
+                S = f.getMother().getPrimaryName().getName()
+            else:
+                s = ""
+                S = ""
+            m = ''
+            M = ''
+            for e in f.getEventList():
+                if e.getName == 'Marriage':
+                    m = e.getDate()
+                    M = e.getPlace()
+        else:
+            s = ""
+            S = ""
+            m = ""
+            M = ""
+            
         i = "%s" % person.getId()
         A = GrampsCfg.attr_name
         a = ""
@@ -105,6 +117,10 @@ class AncestorChart:
             line = string.replace(line,"$i",i)
             line = string.replace(line,"$a",a)
             line = string.replace(line,"$A",A)
+            line = string.replace(line,"$S",S)
+            line = string.replace(line,"$s",s)
+            line = string.replace(line,"$m",m)
+            line = string.replace(line,"$M",M)
             line = string.replace(line,"$$",'$')
             self.text[index].append(line)
 

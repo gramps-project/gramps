@@ -1349,10 +1349,8 @@ class Event(DataObj):
         """returns 1 if the specified event is the same as the instance"""
         if other == None:
             return 0
-        if (self.name != other.name or
-            self.place != other.place or
-            self.description != other.description or
-            self.cause != other.cause or
+        if (self.name != other.name or self.place != other.place or
+            self.description != other.description or self.cause != other.cause or
             self.private != other.private or
             compare_dates(self.getDateObj(),other.getDateObj()) or
             len(self.getSourceRefList()) != len(other.getSourceRefList())):
