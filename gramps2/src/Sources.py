@@ -50,6 +50,7 @@ import RelLib
 import Date
 import DateEdit
 import DateHandler
+import GrampsDBCallback
 
 from DdTargets import DdTargets
 
@@ -410,24 +411,28 @@ class SourceEditor:
             handle = self.source_ref.get_base_handle()
             self.active_source = self.db.get_source_from_handle(handle)
             self.date_obj = self.source_ref.get_date_object()
-            self.date_entry_field.set_text(DateHandler.displayer.display(self.date_obj))
+            date_str = DateHandler.displayer.display(self.date_obj)
+            self.date_entry_field.set_text(date_str)
             self.private.set_active(self.source_ref.get_privacy())
         else:
             self.date_obj = Date.Date()
             self.active_source = None
 
         date_stat = self.get_widget("date_stat")
-        self.date_check = DateEdit.DateEdit(self.date_obj,
-                                            self.date_entry_field,
-                                            date_stat,
-                                            self.sourceDisplay)
+        self.date_check = DateEdit.DateEdit(
+            self.date_obj, self.date_entry_field,
+            date_stat, self.sourceDisplay)
 
         self.draw(self.active_source,fresh=True)
         self.set_button()
         if self.parent:
             self.sourceDisplay.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
+        self.db.connect('source-add', self.rebuild_menu)
         self.sourceDisplay.show()
+
+    def rebuild_menu(self,handle_list):
+        self.build_source_menu()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -495,7 +500,8 @@ class SourceEditor:
 
             scom = self.get_widget("scomment")
             scom.get_buffer().set_text(self.source_ref.get_note())
-            src = self.db.get_source_from_handle(self.source_ref.get_base_handle())
+            idval = self.source_ref.get_base_handle()
+            src = self.db.get_source_from_handle(idval)
             self.active_source = src
             if src:
                 self.author_field.set_text(src.get_author())
@@ -503,14 +509,16 @@ class SourceEditor:
         else:
             self.author_field.set_text("")
             self.pub_field.set_text("")
+        self.active_source = sel
+        self.build_source_menu()
 
+    def build_source_menu(self):
         keys = self.db.get_source_handles()
         keys.sort(self.db._sortbysource)
 
         store = gtk.ListStore(str)
 
         sel_child = None
-        self.active_source = sel
         index = 0
         sel_index = 0
         self.handle_list = []
@@ -521,7 +529,7 @@ class SourceEditor:
             handle = src.get_handle()
             store.append(row=["%s [%s]" % (title,gid)])
             self.handle_list.append(handle)
-            if sel and sel.get_handle() == src_id:
+            if self.active_source and self.active_source.get_handle() == src_id:
                 sel_index = index
             index += 1
         self.title_menu.set_model(store)

@@ -1212,8 +1212,7 @@ class EditPerson:
             self,pname, const.personalEvents,
             const.personal_events,event,def_placename,1,
             self.event_edit_callback,
-            noedit=self.db.readonly,
-            redraw_main_source_list=self.update_sources)
+            noedit=self.db.readonly)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
@@ -1233,8 +1232,7 @@ class EditPerson:
             self,pname,const.personalEvents,
             const.personal_events,event,def_placename,1,
             self.event_edit_callback,
-            noedit=self.db.readonly,
-            redraw_main_source_list=self.update_sources)
+            noedit=self.db.readonly)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -1488,8 +1486,7 @@ class EditPerson:
         EventEdit.EventEditor(
             self,pname,const.personalEvents,
             const.personal_events,event,None,0,
-            self.event_edit_callback,noedit=self.db.readonly,
-            redraw_main_source_list=self.update_sources)
+            self.event_edit_callback,noedit=self.db.readonly)
         
     def on_event_select_row(self,obj):
         store,node = obj.get_selected()
