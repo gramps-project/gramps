@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Database Processing/Check database integrity"
+"Database Processing/Check and repair database"
 
 import RelLib
 import utils
@@ -86,6 +86,7 @@ class CheckIntegrity:
                         break
                 else:
                     family.removeChild(child)
+                    utils.modified()
                     self.broken_links.append((child,family))
 
     #-------------------------------------------------------------------------
@@ -233,7 +234,7 @@ class CheckIntegrity:
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return _("Checks the database for any relationship errors")
+    return _("Checks the database for integrity problems, fixing the problems that it can")
 
 def get_name():
-    return _("Database Processing/Check database integrity")
+    return _("Database Processing/Check and repair database")

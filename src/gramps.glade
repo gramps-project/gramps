@@ -278,6 +278,20 @@
 
 	<widget>
 	  <class>GtkMenuItem</class>
+	  <name>reports_menu</name>
+	  <label>_Reports</label>
+	  <right_justify>False</right_justify>
+	</widget>
+
+	<widget>
+	  <class>GtkMenuItem</class>
+	  <name>tools_menu</name>
+	  <label>_Tools</label>
+	  <right_justify>False</right_justify>
+	</widget>
+
+	<widget>
+	  <class>GtkMenuItem</class>
 	  <name>settings1</name>
 	  <stock_item>GNOMEUIINFO_MENU_SETTINGS_TREE</stock_item>
 
