@@ -241,7 +241,7 @@ workaround is to generate reports in OOo format and the export to PDF from OOo.
     and Family View?
 
 This will be addressed after the TreeModelSort bug is fixed in pygtk,
-see http://bugzilla.gnome.org/show_activity.cgi?id=125172 for the details.
+see http://bugzilla.gnome.org/show_bug.cgi?id=125172 for the details.
 Once the patch is committed and incorporated into pygtk, we will add the 
 ability to add/remove/edit sortable columns.
 
