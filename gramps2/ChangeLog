@@ -9,6 +9,9 @@
 	* src/GrampsGconfKeys.py (get_event_id_prefix): Typo.
 	* src/GrampsIniKeys.py (get_event_id_prefix): Typo.
 
+	* src/Utils.py (for_each_ancestor): Switch from Person to handle.
+	* src/GenericFilter.py (for_each_ancestor): Pass db instance.
+
 2005-01-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPlace.py (EditPlace.display_references):
 	Fix event and object references.

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -334,7 +334,7 @@ def build_columns(tree,list):
 #  Iterate over ancestors.
 #
 #-------------------------------------------------------------------------
-def for_each_ancestor(start, func, data):
+def for_each_ancestor(db, start, func, data):
     """
     Recursively iterate (breadth-first) over ancestors of
     people listed in start.
@@ -345,21 +345,23 @@ def for_each_ancestor(start, func, data):
     todo = start
     doneIds = {}
     while len(todo):
-        p = todo.pop()
-        pid = p.get_handle()
-        # Don't process the same Id twice.  This can happen
+        p_handle = todo.pop()
+        p = db.get_person_from_handle(p_handle)
+        # Don't process the same handle twice.  This can happen
         # if there is a cycle in the database, or if the
         # initial list contains X and some of X's ancestors.
-        if doneIds.has_key(pid):
+        if doneIds.has_key(p_handle):
             continue
-        doneIds[pid] = 1
-        if func(data,pid):
+        doneIds[p_handle] = 1
+        if func(data,p_handle):
             return 1
-        for fam, mrel, frel in p.get_parent_family_handle_list():
-            f = fam.get_father_handle()
-            m = fam.get_mother_handle()
-            if f: todo.append(f)
-            if m: todo.append(m)
+        for fam_handle, mrel, frel in p.get_parent_family_handle_list():
+            fam = db.get_family_from_handle(fam_handle)
+            if fam:
+                f_handle = fam.get_father_handle()
+                m_handle = fam.get_mother_handle()
+                if f_handle: todo.append(f_handle)
+                if m_handle: todo.append(m_handle)
     return 0
 
 def title(n):
