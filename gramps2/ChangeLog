@@ -1,3 +1,6 @@
+2003-09-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: fixed delete person problem.
+
 2003-09-29  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* TODO: Update the list with the postponed todo items.
 	* configure.in: Increment release number.
