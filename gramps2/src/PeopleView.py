@@ -143,7 +143,6 @@ class PeopleView:
             self.parent.change_active_person(person)
         except:
             self.parent.change_active_person(None)
-            self.person_selection.unselect_all()
 
     def change_db(self,db):
         self.build_columns()
