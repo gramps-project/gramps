@@ -718,15 +718,12 @@ class GedcomWriter:
                 for srcref in addr.getSourceRefList():
                     self.write_source_ref(3,srcref)
 
-        family = person.getMainParents()
-        if family != None and family in self.flist:
-            self.g.write("1 FAMC @%s@\n" % self.fid(family.getId()))
-
         for family in person.getParentList():
-            self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
-            if self.adopt == ADOPT_PEDI:
-                if string.lower(family[1]) == "adopted":
-                    self.g.write("2 PEDI Adopted\n")
+            if family in self.flist:
+                self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
+                if self.adopt == ADOPT_PEDI:
+                    if string.lower(family[1]) == "adopted":
+                        self.g.write("2 PEDI Adopted\n")
         
         for family in person.getFamilyList():
             if family != None and family in self.flist:
@@ -948,3 +945,6 @@ class GedcomWriter:
 from Plugins import register_export
 
 register_export(writeData,_("Export to GEDCOM"))
+
+    
+    
