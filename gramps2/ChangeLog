@@ -12,6 +12,10 @@
 	* TODO: Add parameter definition of Filter Rules to the filter itself, so
 	it can be removed from the filter editor and used by PeopleView.
 
+	* src/plugins/ImportvCard.py: A quickly hacked version of a vCard
+	importer. Maybe it is useful for someone.
+	* src/const.py.in: added mime for vCard import.
+
 2005-03-16  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ScratchPad.py (ScratchPad): improved the generation of 
 	tooltip information for most object types.
