@@ -1,3 +1,7 @@
+2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FtmStyleDescendants.py (print_children):
+	End children's table only if it was started.
+
 2003-06-02  Tim Waugh  <twaugh@users.sourceforge.net>
 	* src/plugins/DetDescendantReport.py (write_mate): Swap mate and
 	person variables, clear code a bit.
