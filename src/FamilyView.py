@@ -928,7 +928,7 @@ class FamilyView:
         if not family:
             return
 
-        if family.get_father_id() == self.person:
+        if family.get_father_id() == self.person.get_id():
             self.selected_spouse = self.parent.db.find_person_from_id(family.get_mother_id())
         else:
             self.selected_spouse = self.parent.db.find_person_from_id(family.get_father_id())
@@ -948,7 +948,7 @@ class FamilyView:
 
             child = self.parent.db.find_person_from_id(child_id)
             for fam in child.get_parent_family_id_list():
-                if fam[0] == family:
+                if fam[0] == family.get_id():
                     if self.person == family.get_father_id():
                         status = "%s/%s" % (_(fam[2]),_(fam[1]))
                     else:
