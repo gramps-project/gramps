@@ -191,7 +191,7 @@ class FamilyView:
         if not already_init:
             Utils.build_columns(self.child_list,
                                 [ (' ',30,0), (_('Name'),250,-1), (_('ID'),50,-1),
-                                  (_('Gender'),100,-1), (_('Birth date'),150,6),
+                                  (_('Gender'),75,-1), (_('Birth date'),150,6),
                                   (_('Status'),100,-1), ('',0,-1) ])
         self.cadded[fv] = 1
         
