@@ -589,25 +589,18 @@ def cancel_callback(a):
 # 
 #
 #-------------------------------------------------------------------------
-def save_callback(a):
-    if a==0:
-        save_person(quit)
-        
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def on_delete_event(obj,b):
-    obj.hide()
+
     if did_data_change(obj):
         global quit
-        q = _("Data was modified. Do you wish to save your changes?")
+        q = _("Data was modified. Are you sure you want to abandon your changes?")
         quit = obj
-        GnomeQuestionDialog(q,save_callback)
+        GnomeQuestionDialog(q,cancel_callback)
+        return 1
     else:
         utils.destroy_passed_object(obj)
-    
+        return 0
+
 #-------------------------------------------------------------------------
 #
 # on_name_list_select_row - sets the row object attached to the passed
