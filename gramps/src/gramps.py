@@ -28,9 +28,10 @@ else:
     arg = None
 
 try:
-    if gnome.config.get_string("/gramps/researcher/name") == None:
-        from StartupDialog import StartupDialog
-        StartupDialog(gramps_main.main,arg)
+    import StartupDialog
+    
+    if StartupDialog.need_to_run():
+        StartupDialog.StartupDialog(gramps_main.main,arg)
     else:
         gramps_main.main(arg)
 except:
