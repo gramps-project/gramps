@@ -1120,6 +1120,9 @@ def save_person(obj):
     if idval != person.getId():
         m = epo.db.getPersonMap() 
         if not m.has_key(idval):
+            if m.has_key(person.getId()):
+                del m[person.getId()]
+                m[idval] = person
             person.setId(idval)
         else:
             n = Config.nameof(m[idval])
