@@ -107,19 +107,19 @@ class AbiWordDoc(TextDoc):
         import GdkImlib
 
         image = GdkImlib.Image(name)
-        scale = float(y)/float(image.rgb_height)
-        act_width = int(image.rgb_width * scale)
-        act_height = int(image.rgb_height * scale)
+        scale = float(image.rgb_width)/float(image.rgb_height)
+        act_width = x * scale
+        act_height = y * scale
 
-        self.photo_list.append((name,act_width,act_height))
+        self.photo_list.append((name,act_width*40,act_height*40))
 
 	base = "/tmp/%s.png" % os.path.basename(name)
         tag = string.replace(base,'.','_')
 
         self.f.write('<image dataid="')
         self.f.write(tag)
-        width = cnv("%.3f",((float(act_width)/72.0)/2.54))
-        height = cnv("%.3f",((float(act_height)/72.0)/2.54))
+        width = cnv("%.3f",act_width)
+        height = cnv("%.3f",act_height)
         self.f.write('" props="width:%sin; ' % width)
         self.f.write('height:%sin"/>'  % height)
 
