@@ -12,7 +12,7 @@ to this list, please email your suggestions to gramps-devel@lists.sf.net
 
  2. Where do I get it and how much does it cost?
 
- 3. Does it work with Windows?
+ 3. Does it work with Windows (tm)?
 
  4. Does it work with the Mac?
 
@@ -73,28 +73,23 @@ You have full access to the source code and are allowed to distribute the
 program and source code freely. 
 
 
-3. Does it work with Windows?
+3. Does it work with Windows (tm)?
 
-In principle, it could. GRAMPS depends on Python (http://www.python.org) 
-and GNOME (http://www.gnome.org), so as long as these two are available, 
-GRAMPS will work. Currently, we are not aware of working GNOME2 port to 
-Windows platform. This, however, may change in the future. 
-
-GRAMPS is being developed and tested on Linux, and virtually all Linux
-distributions satisfy the requirements for GRAMPS. 
+No. GRAMPS uses the GTK and GNOME libraries. While the GTK libraries 
+have been ported to Windows, the GNOME libraries have not.
+This, however, may change in the future. 
 
 
 4. Does it work with the Mac?
 
-A port of GRAMPS to Mac OS X exists from the Fink project
-(http://fink.sf.net/pdb/package.php/gramps). It is not unusual 
-for this version to lag behind the Linux version. The port is not supported 
-by the GRAMPS project (since few if any of us have Macs), but we try to 
-help out where we can. 
+The Fink project (http://fink.sf.net) has ported an old version of 
+GRAMPS (0.8.0) to OSX. The Mac OSX port is not directly supported by 
+the GRAMPS project, primarily because none of the GRAMPS developers 
+have access to Mac OSX.
 
-If you have problems installing the Mac port, you will need to contact 
-the Fink project. If you encounter a run time bug or have issues not 
-specifically related to the Mac, contact the GRAMPS project. 
+The GNOME 2 version of GRAMPS (0.9.x) does not appear to have been 
+ported by the Fink project. Please contact the Fink project for more
+information.
 
 
 5. Does it work with KDE?
