@@ -104,11 +104,6 @@ class PeopleView:
             self.model_used[self.person_tree] = 1
             self.apply_filter(self.person_tree)
             self.person_list.connect('button-press-event',self.on_plist_button_press)
-        mlist = self.person_tree.get_selected_objects()
-        if mlist:
-            self.parent.set_buttons(1)
-        else:
-            self.parent.set_buttons(0)
         
     def clear_person_tabs(self):
         self.clearing_tabs = 1

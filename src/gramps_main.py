@@ -1369,7 +1369,7 @@ class Gramps:
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
-     
+
         if person:
             self.set_buttons(1)
         else:
