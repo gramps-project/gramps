@@ -1,3 +1,6 @@
+2003-07-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: handle autosave more gracefully
+
 2003-07-28  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/AncestorChart.py: Printable hook.
 	* src/plugins/GraphViz.py: Adapt.
