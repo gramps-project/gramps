@@ -80,10 +80,8 @@ class PlaceView:
         self.place_list.set_column_visibility(1,Config.id_visible)
         
         index = 0
-        places = self.db.getPlaceMap().values()
-
         u = string.upper
-        for src in places:
+        for src in self.db.getPlaceMap().values():
             title = src.get_title()
             id = src.getId()
             mloc = src.get_main_location()
@@ -108,7 +106,7 @@ class PlaceView:
             self.active = None
             
         self.place_list.thaw()
-
+        
     def select_row(self,obj,row,b,c):
         if row == obj.selection[0]:
             self.active = self.place_list.get_row_data(row)
@@ -167,12 +165,35 @@ class PlaceView:
             self.place_list.moveto(self.place_list.find_row_from_data(sel))
         obj.thaw()
 
+    def insert_place(self,place):
+        title = place.get_title()
+        id = place.getId()
+        mloc = place.get_main_location()
+        city = mloc.get_city()
+        county = mloc.get_county()
+        state = mloc.get_state()
+        parish = mloc.get_parish()
+        country = mloc.get_country()
+        u = string.upper
+        self.place_list.append([title,id,parish,city,county,state,country,
+                                u(title), u(parish), u(city),
+                                u(county),u(state), u(country)])
+        self.place_list.set_row_data(self.place_list.rows-1,place)
+        
     def new_place_after_edit(self,place):
+        self.place_list.freeze()
         self.db.addPlace(place)
-        self.update_display(0)
+        self.insert_place(place)
+        self.place_list.sort()
+        self.place_list.thaw()
 
     def update_display_after_edit(self,place):
-        self.update_display(0)
+        self.place_list.freeze()
+        index = self.place_list.find_row_from_data(place)
+        self.place_list.remove(index)
+        self.insert_place(place)
+        self.place_list.sort()
+        self.place_list.thaw()
 
     def on_add_place_clicked(self,obj):
         EditPlace.EditPlace(Place(),self.db,self.new_place_after_edit)
@@ -203,10 +224,10 @@ class PlaceView:
             msg = _("This place is currently being used. Delete anyway?")
             gnome.ui.GnomeQuestionDialog(msg,ans.query_response)
         else:
+            obj.remove(index)
             map = self.db.getPlaceMap()
             del map[place.getId()]
             utils.modified()
-            self.update_display(0)
 
     def on_edit_place_clicked(self,obj):
         """Display the selected places in the EditPlace display"""
@@ -217,4 +238,7 @@ class PlaceView:
             for p in obj.selection:
                 place = obj.get_row_data(p)
                 EditPlace.EditPlace(place,self.db,self.update_display_after_edit)
+
+
+
 

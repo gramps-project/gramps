@@ -82,6 +82,8 @@ class EditPerson:
         self.update_birth = 0
         self.update_death = 0
         self.pmap = {}
+        self.add_places = []
+
         for p in db.getPlaces():
             self.pmap[p.get_title()] = p
 
@@ -106,7 +108,6 @@ class EditPerson:
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
             "on_attr_button_press"      : self.attr_double_click,
             "on_attr_list_select_row"   : self.on_attr_list_select_row,
-            "on_combo_insert_text"      : utils.combo_insert_text,
             "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
             "on_edit_death_clicked"     : self.on_edit_death_clicked,
             "on_delete_address_clicked" : self.on_delete_addr_clicked,
@@ -641,7 +642,7 @@ class EditPerson:
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,None,None,0)
+                              const.save_fevent,None,None,0,self.callback)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
@@ -657,7 +658,8 @@ class EditPerson:
         if p != None:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,event,def_placename,1)
+                              const.save_fevent,event,def_placename,1,
+                              self.callback)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
@@ -673,7 +675,8 @@ class EditPerson:
         if p != None:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,\
-                              const.save_fevent,event,def_placename,1)
+                              const.save_fevent,event,def_placename,1,
+                              self.callback)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -932,7 +935,9 @@ class EditPerson:
             return
         pname = self.person.getPrimaryName().getName()
         event = obj.get_row_data(obj.selection[0])
-        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,None,0)
+        EventEdit.EventEditor(self,pname,const.personalEvents,
+                              const.save_fevent,event,None,0,
+                              self.callback)
 
     def on_event_select_row(self,obj,row,b,c):
         event = obj.get_row_data(row)
@@ -1206,7 +1211,7 @@ class EditPerson:
 
         self.update_lists()
         if self.callback:
-            self.callback(self)
+            self.callback(self,self.add_places)
         utils.destroy_passed_object(obj)
 
     def get_place(self,field,makenew=0):
@@ -1219,6 +1224,7 @@ class EditPerson:
                 place.set_title(text)
                 self.pmap[text] = place
                 self.db.addPlace(place)
+                self.add_places.append(place)
                 utils.modified()
                 return place
             else:
