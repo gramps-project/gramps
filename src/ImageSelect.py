@@ -247,7 +247,7 @@ class Gallery(ImageSelect):
         self.dataobj   = dataobj;
         self.iconlist = icon_list;
         self.root = self.iconlist.root()
-	self.old_photo_list = self.dataobj.getPhotoList()[:]
+        self.old_photo_list = self.dataobj.getPhotoList()[:]
         
         # Local object variables
         self.y = 0
@@ -266,11 +266,11 @@ class Gallery(ImageSelect):
             a[2].destroy()
         self.p_map = None
         self.canvas_list = None
-	# restore old photo list, in case we removed some and then 
-	# hit cancel button or closed the window
-	if not ok:
-	    if self.old_photo_list is not None:
-	    	self.dataobj.setPhotoList(self.old_photo_list)
+    # restore old photo list, in case we removed some and then 
+    # hit cancel button or closed the window
+    if not ok:
+        if self.old_photo_list is not None:
+            self.dataobj.setPhotoList(self.old_photo_list)
 
         
     def on_canvas1_event(self,obj,event):
