@@ -921,9 +921,6 @@ class EditPerson:
         original record"""
 
         surname = unicode(self.surname_field.get_text())
-        if GrampsCfg.capitalize:
-            surname = surname.upper()
-
         self.birth.setDate(self.bdate.get_text())
         self.death.setDate(self.ddate.get_text())
 
@@ -949,12 +946,8 @@ class EditPerson:
             changed = 1
         if prefix != name.getSurnamePrefix():
             changed = 1
-        if GrampsCfg.capitalize:
-            if surname != name.getSurname():
-                changed = 1
-        else:
-            if surname.upper() != name.getSurname().upper():
-                changed = 1
+        if surname.upper() != name.getSurname().upper():
+            changed = 1
         if ntype != const.InverseNameTypesMap[name.getType()]:
             changed = 1
         if given != name.getFirstName():
@@ -1316,14 +1309,9 @@ class EditPerson:
         if ntype != name.getType():
             name.setType(ntype)
             
-        if GrampsCfg.capitalize:
-            if surname.upper() != name.getSurname().upper():
-                name.setSurname(surname.upper())
-                self.db.addSurname(surname.upper())
-        else:
-            if surname != name.getSurname():
-                name.setSurname(surname)
-                self.db.addSurname(surname)
+        if surname != name.getSurname():
+            name.setSurname(surname)
+            self.db.addSurname(surname)
 
         if given != name.getFirstName():
             name.setFirstName(given)

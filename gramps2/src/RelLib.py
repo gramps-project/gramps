@@ -38,6 +38,7 @@ import os
 #
 #-------------------------------------------------------------------------
 from Date import Date, SingleDate, compare_dates, not_too_old
+import GrampsCfg
 import sort
 import const
 
@@ -878,6 +879,10 @@ class Name(DataObj):
         """returns the surname (or last name) for the Name instance"""
         return self.Surname
 
+    def getUpperSurname(self):
+        """returns the surname (or last name) for the Name instance"""
+        return self.Surname.upper()
+
     def getSuffix(self):
         """returns the suffix for the Name instance"""
         return self.Suffix
@@ -905,6 +910,21 @@ class Name(DataObj):
             else:
                 return "%s, %s" % (self.Surname, self.FirstName)
 
+    def getUpperName(self):
+        """returns a name string built from the components of the Name
+        instance, in the form of Surname, Firstname"""
+        
+        if self.Suffix:
+            if self.Prefix:
+                return "%s %s, %s %s" % (self.Prefix.upper(), self.Surname.upper(), self.FirstName, self.Suffix)
+            else:
+                return "%s, %s %s" % (self.Surname.upper(), self.FirstName, self.Suffix)
+        else:
+            if self.Prefix:
+                return "%s %s, %s" % (self.Prefix.upper(), self.Surname.upper(), self.FirstName)
+            else:
+                return "%s, %s" % (self.Surname.upper(), self.FirstName)
+
     def getRegularName(self):
         """returns a name string built from the components of the Name
         instance, in the form of Firstname Surname"""
@@ -918,6 +938,20 @@ class Name(DataObj):
                 return "%s %s %s, %s" % (self.FirstName, self.Prefix, self.Surname, self.Suffix)
             else:
                 return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
+
+    def getRegularUpperName(self):
+        """returns a name string built from the components of the Name
+        instance, in the form of Firstname Surname"""
+        if (self.Suffix == ""):
+            if self.Prefix:
+                return "%s %s %s" % (self.FirstName, self.Prefix.upper(), self.Surname.upper())
+            else:
+                return "%s %s" % (self.FirstName, self.Surname.upper())
+        else:
+            if self.Prefix:
+                return "%s %s %s, %s" % (self.FirstName, self.Prefix.upper(), self.Surname.upper(), self.Suffix)
+            else:
+                return "%s %s, %s" % (self.FirstName, self.Surname.upper(), self.Suffix)
 
     def are_equal(self,other):
         """compares to names to see if they are equal, return 0 if they
@@ -1044,11 +1078,11 @@ class Person(Persistent):
             gender = const.unknown
         bday = self.getBirth().getDateObj()
         dday = self.getDeath().getDateObj()
-        return [ self.getPrimaryName().getName(),self.id,gender,
+        return [ GrampsCfg.display_name(self),self.id,gender,
                  bday.getQuoteDate(), dday.getQuoteDate(),
                  sort.build_sort_name(self.getPrimaryName()),
                  sort.build_sort_date(bday),sort.build_sort_date(dday),
-                 self.getPrimaryName().getSurname()]
+                 GrampsCfg.display_surname(self.PrimaryName)]
                                           
     def setPrimaryName(self,name):
         """sets the primary name of the Person to the specified
