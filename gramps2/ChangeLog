@@ -2,6 +2,7 @@
 	* src/gramps.py: catch missing textdomain in gtk.glade for
 	older versions of pygtk
 	* src/po/template.po: update
+	* src/plugins/GraphViz.py: Allow truetype or postscript fonts
 
 2003-08-19  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenDrawDoc.py: Fixed escaping.
