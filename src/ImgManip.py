@@ -55,20 +55,6 @@ class ImgManip:
                 im = im.convert("RGB")
             im.save(dest,"JPEG")
 
-    def png_thumbnail(self,dest,width,height):
-        if no_pil:
-            w = int(width)
-            h = int(height)
-            cmd = "%s -geometry %dx%d '%s' 'png:%s'" % (const.convert,w,h,self.source,dest)
-            os.system(cmd)
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"PNG")
-
     def size(self):
         if no_pil:
             img = GdkImlib.Image(self.source)
@@ -149,6 +135,33 @@ class ImgManip:
             g.close()
             return buf
 
+    def eps_thumbnail(self,dest,width,height):
+        if no_pil:
+            w = int(width)
+            h = int(height)
+            cmd = "%s -geometry %dx%d '%s' 'eps:%s'" % (const.convert,w,h,self.source,dest)
+            os.system(cmd)
+        else:
+            im = PIL.Image.open(self.source)
+            im.thumbnail((width,height))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(dest,"eps")
+
+    def eps_convert(self,dest):
+        if no_pil:
+            cmd = "%s -geometry '%s' 'eps:%s'" % (const.convert,self.source,dest)
+            os.system(cmd)
+        else:
+            im = PIL.Image.open(self.source)
+            im.thumbnail((width,height))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(dest,"eps")
+
+
     def png_data(self):
         if no_pil:
             cmd = "%s -geometry '%s' 'jpg:-'" % (const.convert,self.source)
@@ -179,5 +192,30 @@ class ImgManip:
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
             return im.tostring("png","RGB")
+
+    def png_thumbnail(self,dest,width,height):
+        if no_pil:
+            w = int(width)
+            h = int(height)
+            cmd = "%s -geometry %dx%d '%s' 'png:%s'" % (const.convert,w,h,self.source,dest)
+            os.system(cmd)
+        else:
+            im = PIL.Image.open(self.source)
+            im.thumbnail((width,height))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(dest,"PNG")
+
+    def png_convert(self,dest)
+        if no_pil:
+            cmd = "%s '%s' 'png:%s'" % (const.convert,self.source,dest)
+            os.system(cmd)
+        else:
+            im = PIL.Image.open(self.source)
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(dest,"PNG")
 
             
