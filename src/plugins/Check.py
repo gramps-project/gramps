@@ -99,14 +99,24 @@ class CheckIntegrity:
             mother_handle = family.get_mother_handle()
             if father_handle:
                 father = self.db.get_person_from_handle(father_handle)
+                if not father:
+                    family.set_father_handle(None)
+                    self.db.commit_family(family,self.trans)
+                    self.broken_parent_links.append((father_handle,family_handle))
+                    father_handle = None
             if mother_handle:
                 mother = self.db.get_person_from_handle(mother_handle)
+                if not mother:
+                    family.set_father_handle(None)
+                    self.db.commit_family(family,self.trans)
+                    self.broken_parent_links.append((mother_handle,family_handle))
+                    mother_handle = None
 
-            if father_handle and family_handle not in father.get_family_handle_list():
+            if father_handle and father and family_handle not in father.get_family_handle_list():
                 self.broken_parent_links.append((father_handle,family_handle))
                 father.add_family_handle(family_handle)
                 self.db.commit_person(father,self.trans)
-            if mother_handle and family_handle not in mother.get_family_handle_list():
+            if mother_handle and mother and family_handle not in mother.get_family_handle_list():
                 self.broken_parent_links.append((mother_handle,family_handle))
                 mother.add_family_handle(family_handle)
                 self.db.commit_person(mother,self.trans)
@@ -238,8 +248,10 @@ class CheckIntegrity:
             family = self.db.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
+            father = None
             if father_handle:
                 father = self.db.get_person_from_handle(father_handle)
+            mother = None
             if mother_handle:
                 mother = self.db.get_person_from_handle(mother_handle)
             rel_type = family.get_relationship()
@@ -247,12 +259,12 @@ class CheckIntegrity:
             if not father_handle and not mother_handle:
                 continue
             elif not father_handle:
-                if mother.get_gender() == RelLib.Person.MALE:
+                if mother and mother.get_gender() == RelLib.Person.MALE:
                     family.set_father_handle(mother_handle)
                     family.set_mother_handle(None)
                     self.db.commit_family(family,self.trans)
             elif not mother_handle:
-                if father.get_gender() == RelLib.Person.FEMALE:
+                if father and father.get_gender() == RelLib.Person.FEMALE:
                     family.set_mother_handle(father_handle)
                     family.set_father_handle(None)
                     self.db.commit_family(family,self.trans)
@@ -333,7 +345,10 @@ class CheckIntegrity:
             for (person_handle,family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 family = self.db.get_family_from_handle(family_handle)
-                cn = person.get_primary_name().get_name()
+                if person:
+                    cn = person.get_primary_name().get_name()
+                else:
+                    cn = _("Non existing person")
                 f = self.db.get_person_from_handle(family.get_father_handle())
                 m = self.db.get_person_from_handle(family.get_mother_handle())
                 if f and m:
@@ -341,10 +356,12 @@ class CheckIntegrity:
                                            m.get_primary_name().get_name())
                 elif f:
                     pn = f.get_primary_name().get_name()
-                else:
+                elif m:
                     pn = m.get_primary_name().get_name()
-                    self.text.write('\t')
-                    self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
+                else:
+                    pn = "Non existing person"
+                self.text.write('\t')
+                self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
             self.text.write(_("1 empty family was found\n"))
