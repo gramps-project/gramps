@@ -168,16 +168,10 @@ def destroy_passed_object(obj):
 #
 #-------------------------------------------------------------------------
 
-if string.find("%.3f" % 1.2, ",") == -1:
-    def txt2fl(st):
-        return string.atof(string.replace(st,',','.'))
-    def fl2txt(fmt,val):
-        return fmt % val
-else:
-    def txt2fl(st):
-        return string.atof(string.replace(st,'.',','))
-    def fl2txt(fmt,val):
-        return string.replace(fmt % val, ',', '.')
+def txt2fl_(st):
+    return string.atof(string.replace(st,',','.'))
+def fl2txt(fmt,val):
+    return string.replace(fmt % val, ',', '.')
 
 #-------------------------------------------------------------------------
 #

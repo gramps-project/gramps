@@ -297,7 +297,7 @@
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
   <allow_shrink>False</allow_shrink>
-  <allow_grow>False</allow_grow>
+  <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
   <auto_close>False</auto_close>
   <hide_on_close>False</hide_on_close>
@@ -377,7 +377,7 @@
     <widget>
       <class>GtkVBox</class>
       <name>vbox1</name>
-      <width>600</width>
+      <width>620</width>
       <homogeneous>False</homogeneous>
       <spacing>0</spacing>
       <child>
@@ -612,78 +612,6 @@
 		<xshrink>False</xshrink>
 		<yshrink>False</yshrink>
 		<xfill>True</xfill>
-		<yfill>False</yfill>
-	      </child>
-	    </widget>
-
-	    <widget>
-	      <class>GtkRadioButton</class>
-	      <name>bfather1</name>
-	      <can_focus>True</can_focus>
-	      <label></label>
-	      <active>False</active>
-	      <draw_indicator>True</draw_indicator>
-	      <group>father</group>
-	      <child>
-		<left_attach>2</left_attach>
-		<right_attach>3</right_attach>
-		<top_attach>8</top_attach>
-		<bottom_attach>9</bottom_attach>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<xexpand>False</xexpand>
-		<yexpand>False</yexpand>
-		<xshrink>True</xshrink>
-		<yshrink>False</yshrink>
-		<xfill>False</xfill>
-		<yfill>False</yfill>
-	      </child>
-	    </widget>
-
-	    <widget>
-	      <class>GtkRadioButton</class>
-	      <name>death1</name>
-	      <can_focus>True</can_focus>
-	      <label></label>
-	      <active>True</active>
-	      <draw_indicator>True</draw_indicator>
-	      <group>death</group>
-	      <child>
-		<left_attach>2</left_attach>
-		<right_attach>3</right_attach>
-		<top_attach>5</top_attach>
-		<bottom_attach>6</bottom_attach>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<xexpand>False</xexpand>
-		<yexpand>False</yexpand>
-		<xshrink>True</xshrink>
-		<yshrink>True</yshrink>
-		<xfill>False</xfill>
-		<yfill>False</yfill>
-	      </child>
-	    </widget>
-
-	    <widget>
-	      <class>GtkRadioButton</class>
-	      <name>bbirth1</name>
-	      <can_focus>True</can_focus>
-	      <label></label>
-	      <active>False</active>
-	      <draw_indicator>True</draw_indicator>
-	      <group>birth</group>
-	      <child>
-		<left_attach>2</left_attach>
-		<right_attach>3</right_attach>
-		<top_attach>2</top_attach>
-		<bottom_attach>3</bottom_attach>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<xexpand>False</xexpand>
-		<yexpand>False</yexpand>
-		<xshrink>True</xshrink>
-		<yshrink>True</yshrink>
-		<xfill>False</xfill>
 		<yfill>False</yfill>
 	      </child>
 	    </widget>
@@ -1030,6 +958,78 @@
 		<yfill>True</yfill>
 	      </child>
 	    </widget>
+
+	    <widget>
+	      <class>GtkRadioButton</class>
+	      <name>bfather1</name>
+	      <can_focus>True</can_focus>
+	      <label></label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
+	      <group>father</group>
+	      <child>
+		<left_attach>2</left_attach>
+		<right_attach>3</right_attach>
+		<top_attach>8</top_attach>
+		<bottom_attach>10</bottom_attach>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<xexpand>False</xexpand>
+		<yexpand>False</yexpand>
+		<xshrink>True</xshrink>
+		<yshrink>False</yshrink>
+		<xfill>False</xfill>
+		<yfill>False</yfill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkRadioButton</class>
+	      <name>death1</name>
+	      <can_focus>True</can_focus>
+	      <label></label>
+	      <active>True</active>
+	      <draw_indicator>True</draw_indicator>
+	      <group>death</group>
+	      <child>
+		<left_attach>2</left_attach>
+		<right_attach>3</right_attach>
+		<top_attach>5</top_attach>
+		<bottom_attach>7</bottom_attach>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<xexpand>False</xexpand>
+		<yexpand>False</yexpand>
+		<xshrink>True</xshrink>
+		<yshrink>True</yshrink>
+		<xfill>False</xfill>
+		<yfill>False</yfill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkRadioButton</class>
+	      <name>bbirth1</name>
+	      <can_focus>True</can_focus>
+	      <label></label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
+	      <group>birth</group>
+	      <child>
+		<left_attach>2</left_attach>
+		<right_attach>3</right_attach>
+		<top_attach>2</top_attach>
+		<bottom_attach>4</bottom_attach>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<xexpand>False</xexpand>
+		<yexpand>False</yexpand>
+		<xshrink>True</xshrink>
+		<yshrink>True</yshrink>
+		<xfill>False</xfill>
+		<yfill>False</yfill>
+	      </child>
+	    </widget>
 	  </widget>
 	</widget>
 
@@ -1068,30 +1068,6 @@
 		<right_attach>3</right_attach>
 		<top_attach>0</top_attach>
 		<bottom_attach>1</bottom_attach>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<xexpand>False</xexpand>
-		<yexpand>False</yexpand>
-		<xshrink>True</xshrink>
-		<yshrink>False</yshrink>
-		<xfill>False</xfill>
-		<yfill>False</yfill>
-	      </child>
-	    </widget>
-
-	    <widget>
-	      <class>GtkRadioButton</class>
-	      <name>death2</name>
-	      <can_focus>True</can_focus>
-	      <label></label>
-	      <active>False</active>
-	      <draw_indicator>True</draw_indicator>
-	      <group>death</group>
-	      <child>
-		<left_attach>2</left_attach>
-		<right_attach>3</right_attach>
-		<top_attach>5</top_attach>
-		<bottom_attach>6</bottom_attach>
 		<xpad>0</xpad>
 		<ypad>0</ypad>
 		<xexpand>False</xexpand>
@@ -1234,30 +1210,6 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkRadioButton</class>
-	      <name>bbirth2</name>
-	      <can_focus>True</can_focus>
-	      <label></label>
-	      <active>False</active>
-	      <draw_indicator>True</draw_indicator>
-	      <group>birth</group>
-	      <child>
-		<left_attach>2</left_attach>
-		<right_attach>3</right_attach>
-		<top_attach>2</top_attach>
-		<bottom_attach>3</bottom_attach>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<xexpand>False</xexpand>
-		<yexpand>False</yexpand>
-		<xshrink>True</xshrink>
-		<yshrink>False</yshrink>
-		<xfill>False</xfill>
-		<yfill>False</yfill>
-	      </child>
-	    </widget>
-
-	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label32</name>
 	      <label>Death Place</label>
@@ -1279,30 +1231,6 @@
 		<xshrink>False</xshrink>
 		<yshrink>False</yshrink>
 		<xfill>True</xfill>
-		<yfill>False</yfill>
-	      </child>
-	    </widget>
-
-	    <widget>
-	      <class>GtkRadioButton</class>
-	      <name>bfather2</name>
-	      <can_focus>True</can_focus>
-	      <label></label>
-	      <active>False</active>
-	      <draw_indicator>True</draw_indicator>
-	      <group>father</group>
-	      <child>
-		<left_attach>2</left_attach>
-		<right_attach>3</right_attach>
-		<top_attach>8</top_attach>
-		<bottom_attach>9</bottom_attach>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<xexpand>False</xexpand>
-		<yexpand>False</yexpand>
-		<xshrink>True</xshrink>
-		<yshrink>False</yshrink>
-		<xfill>False</xfill>
 		<yfill>False</yfill>
 	      </child>
 	    </widget>
@@ -1647,6 +1575,78 @@
 		<yshrink>False</yshrink>
 		<xfill>True</xfill>
 		<yfill>True</yfill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkRadioButton</class>
+	      <name>bbirth2</name>
+	      <can_focus>True</can_focus>
+	      <label></label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
+	      <group>birth</group>
+	      <child>
+		<left_attach>2</left_attach>
+		<right_attach>3</right_attach>
+		<top_attach>2</top_attach>
+		<bottom_attach>4</bottom_attach>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<xexpand>False</xexpand>
+		<yexpand>False</yexpand>
+		<xshrink>True</xshrink>
+		<yshrink>False</yshrink>
+		<xfill>False</xfill>
+		<yfill>False</yfill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkRadioButton</class>
+	      <name>death2</name>
+	      <can_focus>True</can_focus>
+	      <label></label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
+	      <group>death</group>
+	      <child>
+		<left_attach>2</left_attach>
+		<right_attach>3</right_attach>
+		<top_attach>5</top_attach>
+		<bottom_attach>7</bottom_attach>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<xexpand>False</xexpand>
+		<yexpand>False</yexpand>
+		<xshrink>True</xshrink>
+		<yshrink>False</yshrink>
+		<xfill>False</xfill>
+		<yfill>False</yfill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkRadioButton</class>
+	      <name>bfather2</name>
+	      <can_focus>True</can_focus>
+	      <label></label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
+	      <group>father</group>
+	      <child>
+		<left_attach>2</left_attach>
+		<right_attach>3</right_attach>
+		<top_attach>8</top_attach>
+		<bottom_attach>10</bottom_attach>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<xexpand>False</xexpand>
+		<yexpand>False</yexpand>
+		<xshrink>True</xshrink>
+		<yshrink>False</yshrink>
+		<xfill>False</xfill>
+		<yfill>False</yfill>
 	      </child>
 	    </widget>
 	  </widget>
