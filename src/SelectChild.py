@@ -27,12 +27,6 @@ from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -104,7 +98,7 @@ class SelectChild:
 
         self.frel.set_text(_("Birth"))
 
-        titles = [(_('Name'),3,150),(_('ID'),1,50), (_('Birth Date'),4,100),
+        titles = [(_('Name'),3,150),(_('ID'),1,50), (_('Birth date'),4,100),
                   ('',-1,0),('',-1,0)]
         
         self.refmodel = ListModel.ListModel(self.add_child,titles)
@@ -214,7 +208,7 @@ class SelectChild:
         self.redraw(self.family)
         
     def on_show_toggled(self,obj):
-        self.redraw_child_list(obj.get_active())
+        self.redraw_child_list(not obj.get_active())
 
     def on_add_person_clicked(self,obj):
         """Called with the Add button is pressed. Calls the QuickAdd

@@ -103,7 +103,9 @@ class Marriage:
         text_win = self.get_widget("marriageTitle")
         title = _("%s and %s") % (GrampsCfg.nameof(family.getFather()),
                                   GrampsCfg.nameof(family.getMother()))
-        text_win.set_text(title)
+        
+        text_win.set_text('<span weight="bold" size="larger">%s</span>' % title)
+        text_win.set_use_markup(gtk.TRUE)
         
         self.event_list = self.get_widget("marriageEventList")
 
@@ -135,7 +137,7 @@ class Marriage:
         # set initial data
         self.gallery.load_images()
 
-        etitles = [(_('Event'),-1,150),(_('Date'),-1,150),(_('Place'),-1,150)]
+        etitles = [(_('Event'),-1,100),(_('Date'),-1,125),(_('Place'),-1,150)]
         atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
 
         self.etree = ListModel.ListModel(self.event_list, etitles,

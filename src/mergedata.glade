@@ -405,7 +405,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label8">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Birth Date</property>
+			  <property name="label" translatable="yes">Birth date</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1090,7 +1090,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label9">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Birth Date</property>
+			  <property name="label" translatable="yes">Birth date</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>

@@ -52,7 +52,7 @@ import GrampsCfg
 import ListModel
 import Date
 
-_titles = [(_('Name'),3,200),(_('ID'),1,50),(_('Birth Date'),4,50),('',0,50),('',0,0)]
+_titles = [(_('Name'),3,200),(_('ID'),1,50),(_('Birth date'),4,50),('',0,50),('',0,0)]
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +102,8 @@ class ChooseParents:
         self.mother_list = self.glade.get_widget("mother_list")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
-        self.showall = self.glade.get_widget('showall')
+        self.showallf = self.glade.get_widget('showall')
+        self.showallm = self.glade.get_widget('showallm')
         
         self.fcombo.set_popdown_strings(const.familyRelations)
 
@@ -138,7 +139,8 @@ class ChooseParents:
             })
 
         text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
-        self.title.set_text(text)
+        self.title.set_text('<span size="larger" weight="bold">%s</span>' % text)
+        self.title.set_use_markup(gtk.TRUE)
 
     def redraw(self):
         """Redraws the potential father and mother lists"""
@@ -157,7 +159,8 @@ class ChooseParents:
         else:
             mid = None
             
-        compare = self.date.isValid() and not self.showall.get_active()
+        comparef = self.date.isValid() and not self.showallf.get_active()
+        comparem = self.date.isValid() and not self.showallm.get_active()
             
         for key in self.db.getPersonKeys():
             if pkey == key:
@@ -166,25 +169,29 @@ class ChooseParents:
                 continue
 
             p = self.db.getPerson(key)
-            if compare and self.not_likely(p):
-                continue
                 
             d = self.db.getPersonDisplay(key)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
-                self.fmodel.add(info,None,fid==d[1])
-                self.mmodel.add(info,None,mid==d[1])
+                if not(comparef and self.not_likely(p)):
+                    self.fmodel.add(info,None,fid==d[1])
+                if not(comparem and self.not_likely(p)):
+                    self.mmodel.add(info,None,mid==d[1])
             elif d[2] == const.male:
+                if comparef and self.not_likely(p):
+                    continue
                 self.fmodel.add(info,None,fid==d[1])
             else:
+                if comparem and self.not_likely(p):
+                    continue
                 self.mmodel.add(info,None,mid==d[1])
 
         if self.type == "Partners":
-            self.mlabel.set_label(_("Parent"))
-            self.flabel.set_label(_("Parent"))
+            self.mlabel.set_label("<b>%s</b>" % _("Parent"))
+            self.flabel.set_label("<b>%s</b>" % _("Parent"))
         else:
-            self.mlabel.set_label(_("Mother"))
-            self.flabel.set_label(_("Father"))
+            self.mlabel.set_label("<b>%s</b>" % _("Mother"))
+            self.flabel.set_label("<b>%s</b>" % _("Father"))
 
     def not_likely(self,person):
         """

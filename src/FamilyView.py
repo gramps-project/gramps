@@ -143,8 +143,8 @@ class FamilyView:
         self.family = None
 
         Utils.build_columns(self.child_list,
-                            [ ('',30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
-                              (_('Gender'),100,-1), (_('Birth Date'),150,-1),
+                            [ ('',30,0), (_('Name'),250,-1), (_('ID'),50,-1),
+                              (_('Gender'),100,-1), (_('Birth date'),150,6),
                               (_('Status'),100,-1), ('',0,-1) ])
 
     def edit_active_person(self,obj,event):
@@ -448,14 +448,15 @@ class FamilyView:
             
             if fiter == None:
                 fiter = self.child_model.get_path(iter)
+            val = self.parent.db.getPersonDisplay(child.getId())
             self.child_model.set(iter,
                                  0,(i+1),
-                                 1,GrampsCfg.nameof(child),
-                                 2,child.getId(),
-                                 3,gender,
-                                 4,Utils.birthday(child),
+                                 1,val[0],
+                                 2,val[1],
+                                 3,val[2],
+                                 4,val[3],
                                  5,status,
-                                 6,attr)
+                                 6,val[6])
                 
     def edit_ap_parents(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
