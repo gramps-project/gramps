@@ -90,7 +90,7 @@ class SubstKeywords:
                     self.s = f.getFather().getPrimaryName().getRegularName()
                     self.S = f.getFather().getPrimaryName().getName()
             for e in f.getEventList():
-                if e.getName == 'Marriage':
+                if e.getName() == 'Marriage':
                     self.m = e.getDate()
                     self.M = e.getPlaceName()
 
