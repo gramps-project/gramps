@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+#  -*- coding: iso-8859-1 -*-
+#
 # Originally written by Barry Warsaw <barry@zope.com>
 #
 # Minimally patched to make it even more xgettext compatible 
@@ -7,6 +9,8 @@
 # Completely butchered to add glade support for the GRAMPS
 # project by Don Allingham (dallingham@users.sourceforge.net)
 #
+
+# $Id$
 
 """pygettext -- Python equivalent of xgettext(1)
 
@@ -230,7 +234,6 @@ msgstr ""
 
 ''')
 
-
 def usage(code, msg=''):
     sys.stderr.write(_(__doc__) % globals())
     if msg:
@@ -239,7 +242,6 @@ def usage(code, msg=''):
     sys.exit(code)
 
 
-
 escapes = []
 
 def make_escapes(pass_iso8859):
