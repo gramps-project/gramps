@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "POT-Creation-Date: Mon Jan 26 08:48:33 2004\n"
-"PO-Revision-Date: 2004-01-27 16:18+0100\n"
+"PO-Revision-Date: 2004-02-05 16:18+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1048,7 +1048,7 @@ msgstr "a un ancêtre commun avec"
 
 #: GenericFilter.py:1430
 msgid "Has a common ancestor with filter match"
-msgstr "Est l'ascendant commun d'individus résultant du filtrage"
+msgstr "A un ascendant commun avec les individus résultant du filtrage"
 
 #: GenericFilter.py:1432
 msgid "Is a female"
