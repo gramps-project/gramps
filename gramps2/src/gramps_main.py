@@ -736,7 +736,7 @@ class Gramps:
                 msg = _("Cannot merge people.")
                 msg2 = _("Exactly two people must be selected to perform a merge. "
                          "A second person can be selected by holding down the "
-                         "control key while clicking on a the desired person.")
+                         "control key while clicking on the desired person.")
                 ErrorDialog(msg,msg2)
             else:
                 import MergeData

@@ -519,7 +519,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
     def description(self):
         return _("Matches people that are ancestors "
-            "of of someone matched by a filter")
+            "of someone matched by a filter")
     
     def category(self):
         return _("Ancestral filters")

@@ -116,7 +116,7 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,db,active,list,msg):
+    def __init__(self,db,active,list,msg,label=None):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -148,6 +148,8 @@ class PluginDialog:
         
         self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
+        if label:
+            self.description.set_text(label)
         self.status = self.dialog.get_widget("report_status")
 
         Utils.set_title_label(self.dialog,msg)
@@ -275,7 +277,8 @@ class ToolPlugins(PluginDialog):
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
 
-        PluginDialog.__init__(self,db,active,_tools,_("Tool Selection"))
+        PluginDialog.__init__(self,db,active,_tools,_("Tool Selection"),
+					_("Select a tool from those available on the left."))
         self.update = update
 
 #-------------------------------------------------------------------------

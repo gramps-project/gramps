@@ -149,7 +149,7 @@ class PlaceView:
             msg = _("Cannot merge places.")
             msg2 = _("Exactly two places must be selected to perform a merge. "
                 "A second place can be selected by holding down the "
-                "control key while clicking on a the desired place.")
+                "control key while clicking on the desired place.")
             ErrorDialog(msg,msg2)
         else:
             import MergeData
