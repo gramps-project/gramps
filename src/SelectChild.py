@@ -235,7 +235,6 @@ class SelectChild:
         depending on the gender of the person."""
         id = person.getId()
         dinfo = self.db.getPersonDisplay(id)
-        print dinfo
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
         self.refmodel.add_and_select(rdata)
         self.add_person(person)

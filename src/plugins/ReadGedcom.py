@@ -1414,7 +1414,7 @@ class GedcomParser:
                     self.code = ANSEL
                     self.cnv = ansel_to_utf8
                 else:
-                    self.cnv = latin_to_utf8
+                    self.cnv = latin_utf8.latin_to_utf8
                 self.ignore_sub_junk(2)
                 self.update(self.encoding_obj,matches[2])
    	    elif matches[1] == "GEDC":

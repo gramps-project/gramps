@@ -130,7 +130,6 @@ class AttributeEditor:
 
         self.attrib.setSourceRefList(self.srcreflist)
         self.update(type,value,note,priv)
-        print self.parent
         self.parent.redraw_attr_list()
         Utils.destroy_passed_object(obj)
 

@@ -747,7 +747,8 @@ class EditPerson:
                            _("Are you sure you want to abandon your changes?"),
                            self.cancel_callback)
         else:
-            Utils.destroy_passed_object(obj)
+            self.gallery.close()
+            self.window.destroy()
 
     def on_delete_event(self,obj,b):
         """If the data has changed, give the user a chance to cancel
@@ -758,12 +759,14 @@ class EditPerson:
                            self.cancel_callback)
             return 1
         else:
-            Utils.destroy_passed_object(obj)
+            self.gallery.close()
+            self.window.destroy()
             return 0
 
     def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
-        Utils.destroy_passed_object(self.window)
+        self.gallery.close()
+        self.window.destroy()
 
     def did_data_change(self):
         """Check to see if any of the data has changed from the
@@ -1257,7 +1260,8 @@ class EditPerson:
         self.update_lists()
         if self.callback:
             self.callback(self,self.add_places)
-        Utils.destroy_passed_object(obj)
+        self.gallery.close()
+        self.window.destroy()
 
     def get_place(self,field,makenew=0):
         text = string.strip(field.get_text())

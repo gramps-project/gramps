@@ -1941,10 +1941,6 @@
 			      <property name="spacing">0</property>
 
 			      <child>
-				<placeholder/>
-			      </child>
-
-			      <child>
 				<widget class="GtkButton" id="add_spouse">
 				  <property name="visible">True</property>
 				  <property name="tooltip" translatable="yes">Adds a spouse</property>
@@ -1964,10 +1960,14 @@
 				  </child>
 				</widget>
 				<packing>
-				  <property name="padding">0</property>
+				  <property name="padding">5</property>
 				  <property name="expand">False</property>
 				  <property name="fill">False</property>
 				</packing>
+			      </child>
+
+			      <child>
+				<placeholder/>
 			      </child>
 
 			      <child>
@@ -1990,14 +1990,10 @@
 				  </child>
 				</widget>
 				<packing>
-				  <property name="padding">0</property>
+				  <property name="padding">5</property>
 				  <property name="expand">False</property>
 				  <property name="fill">False</property>
 				</packing>
-			      </child>
-
-			      <child>
-				<placeholder/>
 			      </child>
 			    </widget>
 			    <packing>

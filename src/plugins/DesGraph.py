@@ -84,17 +84,17 @@ class DescendantReport:
         self.text = {}
         for (p,x,y) in self.v:
 
-            self.text[p] = []
+            self.text[p.getId()] = []
             subst = SubstKeywords(p)
             for line in self.display:
-                self.text[p].append(subst.replace(line))
+                self.text[p.getId()].append(subst.replace(line))
 
             self.font = self.doc.style_list["Normal"].get_font()
-            for line in self.text[p]:
+            for line in self.text[p.getId()]:
                 new_width = string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
 
-            self.lines = max(self.lines,len(self.text[p]))    
+            self.lines = max(self.lines,len(self.text[p.getId()]))    
 
     def write_report(self):
 
@@ -242,7 +242,7 @@ class DescendantReport:
 
         if plist:
             for (p,x,y) in plist:
-                name = string.join(self.text[p],"\n")
+                name = string.join(self.text[p.getId()],"\n")
                 x = (x-1)*delta + left + _sep
                 y = (y-1)*(self.height+_sep)+top
                 self.doc.draw_box("box",name,x,y)
