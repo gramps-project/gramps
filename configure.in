@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 AC_INIT(src/gramps.py)
-AM_INIT_AUTOMAKE(gramps, 0.9.0pre2)
-RELEASE=rc4
+AM_INIT_AUTOMAKE(gramps, 0.9.0)
+RELEASE=pre3
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
@@ -32,7 +32,7 @@ AC_SUBST(POFILES)
 AC_SUBST(MOFILES)
 
 dnl Checks for programs.  
-dnl We first only check for python >= 1.5
+dnl We first only check for python >= 2.2
 AM_PATH_PYTHON(2.2)
 
 dnl override automatic python detection with our own place
@@ -78,38 +78,6 @@ GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
 dnl Check if python bindings for gtk are installed
 
-AC_MSG_CHECKING(Python bindings for sax/xml)
-changequote(,)
-cat > conftest.py <<EOF
-try:
-    from xml.sax import make_parser, handler
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
-except ImportError:
-
-    try:
-        from _xmlplus.sax import make_parser, handler
-        f = open("conftest.out", "w")
-        f.write("YES")
-        f.close()
-    except ImportError:
-        f = open("conftest.out", "w")
-        f.write("NO")
-        f.close()
-EOF
-changequote([, ])
-$PYTHON conftest.py
-has_sax=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test "YES" != $has_sax
-then
-   AC_MSG_ERROR([
-
-**** The python interpreter can't find the SAX/XML bindings.])
-fi
-AC_MSG_RESULT(ok)
-
 AC_MSG_CHECKING(Python bindings for gtk)
 changequote(,)
 cat > conftest.py <<EOF
@@ -131,7 +99,7 @@ if test "YES" != $has_pygtk
 then
    AC_MSG_ERROR([
 
-**** The python interpreter can't find the python bindings for gtk 2.0.])
+**** The python bindings for gtk 2.0 (pygtk2) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
@@ -155,32 +123,7 @@ rm -f conftest.out conftest.py
 if test "YES" != $has_pygnome
 then
    AC_MSG_ERROR([
-**** The python interpreter can't find the python bindings for GNOME.])
-fi
-AC_MSG_RESULT(ok)
-
-AC_MSG_CHECKING(Python/libglade bindings)
-changequote(,)
-cat > conftest.py <<EOF
-try:
-    import gtk.glade
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
-except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
-EOF
-changequote([, ])
-$PYTHON conftest.py
-has_pygtk=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test "YES" != $has_pygtk
-then
-   AC_MSG_ERROR([
-
-**** The python interpreter can't find the python bindings for libglade.])
+**** The python bindings for GNOME 2.0 (gnome-python2) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
@@ -204,8 +147,56 @@ rm -f conftest.out conftest.py
 if test "YES" != $has_gconf
 then
    AC_MSG_ERROR([
+**** The python bindings for gconf (gnome-python2-gconf) could not be found.])
+fi
+AC_MSG_RESULT(ok)
 
-**** The python interpreter can't find the python bindings for gconf.])
+AC_MSG_CHECKING(Python bindings for GNOME canvas)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    import gnome.canvas
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_canvas=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_canvas
+then
+   AC_MSG_ERROR([
+**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found.])
+fi
+AC_MSG_RESULT(ok)
+
+AC_MSG_CHECKING(Python bindin for glade)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    import gtk.glade
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygtk
+then
+   AC_MSG_ERROR([
+
+**** The python bindings for glade (pytgk2-libglade) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
