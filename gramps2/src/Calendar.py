@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  Donald N. Allingham
+# Copyright (C) 2001-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -149,7 +149,7 @@ class Calendar:
 
     def month(self,val):
         try:
-            return Calendar.MONTHS[val-1]
+	    return unicode(Calendar.MONTHS[val-1])
         except:
             return "Illegal Month"
 
@@ -437,9 +437,9 @@ class Calendar:
         
         match = fmt2.match(text)
         if match != None:
-            matches = match.groups()
+	    matches = match.groups()
             mode = self.set_mode_value(matches[0])
-            month = self.set_month_string(matches[2])
+            month = self.set_month_string(unicode(matches[2]))
             if month != UNDEF:
                 day = self.set_value(matches[1])
                 if len(matches) == 4 and matches[3] != None:
