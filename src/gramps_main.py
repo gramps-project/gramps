@@ -1261,7 +1261,7 @@ class Gramps:
         self.topWindow.set_title("%s - GRAMPS" % name)
         self.status_text("")
         self.statusbar.set_progress_percentage(0.0)
-        self.statusbar.set_pulse_step(0.02)
+        #self.statusbar.set_pulse_step(0.02)
         self.delete_autosave(old_file)
 
     def delete_autosave(self,filename):
