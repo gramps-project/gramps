@@ -1,3 +1,10 @@
+2004-02-28  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/GrampsParser.py (start_childof): Call add_parent_family_id()
+	with three arguments, instead of a tuple.
+	* src/ReadXML.py: Comment out renaming lost media objects for now.
+	* src/RelLib.py (find_place_no_conflicts,
+	find_family_no_conflicts): Use str(idVal). 
+
 2004-02-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: switch to DB as default, remove save option
 	* src/RelLib.py: setup DB environment better

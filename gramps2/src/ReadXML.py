@@ -203,44 +203,44 @@ def importData(database, filename, callback,cl=0):
 
 #-------------------------------------------------------------------------
 
-    # Rename media files if they were conflicting with existing ones
-    ObjectMap = database.get_object_map()
-    newpath = database.get_save_path()
-    for OldMediaID in parser.MediaFileMap.keys():
-        NewMediaID = parser.MediaFileMap[OldMediaID]
-        oldfile = ObjectMap[NewMediaID].get_path()
-        (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
-        oldfile = os.path.join(basefile,OldMediaID+oldext)
-        newfile = os.path.join(newpath,NewMediaID+oldext)
-    	ObjectMap[NewMediaID].set_path(newfile)
-        ObjectMap[NewMediaID].setLocal(1)
-        try:
-	    shutil.copyfile(oldfile,newfile)
-            try:
-                shutil.copystat(oldfile,newfile)
-            except:
-                pass
-        except:
-            if cl:
-                print "Warning: media file %s was not found," \
-                    % os.path.basename(oldfile), "so it was ignored."
-            else:
-                # File is lost => ask what to do (if we were not told yet)
-                if missmedia_action == 0:
-                    mmd = MissingMediaDialog(_("Media object could not be found"),
-	                _("%(file_name)s is referenced in the database, but no longer exists. " 
-                            "The file may have been deleted or moved to a different location. " 
-                            "You may choose to either remove the reference from the database, " 
-                            "keep the reference to the missing file, or select a new file." 
-                            ) % { 'file_name' : oldfile },
-                        remove_clicked, leave_clicked, select_clicked)
-                    missmedia_action = mmd.default_action
-                elif missmedia_action == 1:
-                    remove_clicked()
-                elif missmedia_action == 2:
-                    leave_clicked()
-                elif missmedia_action == 3:
-                    select_clicked()
+#    # Rename media files if they were conflicting with existing ones
+#    ObjectMap = database.get_object_map()
+#    newpath = database.get_save_path()
+#    for OldMediaID in parser.MediaFileMap.keys():
+#        NewMediaID = parser.MediaFileMap[OldMediaID]
+#        oldfile = ObjectMap[NewMediaID].get_path()
+#        (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
+#        oldfile = os.path.join(basefile,OldMediaID+oldext)
+#        newfile = os.path.join(newpath,NewMediaID+oldext)
+#    	ObjectMap[NewMediaID].set_path(newfile)
+#        ObjectMap[NewMediaID].setLocal(1)
+#        try:
+#	    shutil.copyfile(oldfile,newfile)
+#            try:
+#                shutil.copystat(oldfile,newfile)
+#            except:
+#                pass
+#        except:
+#            if cl:
+#                print "Warning: media file %s was not found," \
+#                    % os.path.basename(oldfile), "so it was ignored."
+#            else:
+#                # File is lost => ask what to do (if we were not told yet)
+#                if missmedia_action == 0:
+#                    mmd = MissingMediaDialog(_("Media object could not be found"),
+#	                _("%(file_name)s is referenced in the database, but no longer exists. " 
+#                            "The file may have been deleted or moved to a different location. " 
+#                            "You may choose to either remove the reference from the database, " 
+#                            "keep the reference to the missing file, or select a new file." 
+#                            ) % { 'file_name' : oldfile },
+#                        remove_clicked, leave_clicked, select_clicked)
+#                    missmedia_action = mmd.default_action
+#                elif missmedia_action == 1:
+#                    remove_clicked()
+#                elif missmedia_action == 2:
+#                    leave_clicked()
+#                elif missmedia_action == 3:
+#                    select_clicked()
 
     del parser
     return 1

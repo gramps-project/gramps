@@ -946,7 +946,7 @@ class GrampsImportParser(GrampsParser):
             frel = attrs["frel"]
         else:
             frel = "Birth"
-        self.person.add_parent_family_id((family.get_id(),mrel,frel))
+        self.person.add_parent_family_id(family.get_id(),mrel,frel)
 
     def start_parentin(self,attrs):
         self.person.add_family_id(attrs["ref"])
