@@ -1027,6 +1027,7 @@ class GedcomParser:
                         place = Place()
                         place.set_title(matches[2])
                         self.db.addPlace(place)
+                        placemap[val] = place
                     event.setPlace(place)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
@@ -1102,6 +1103,7 @@ class GedcomParser:
                     place = Place()
                     place.set_title(matches[2])
                     self.db.addPlace(place)
+                    placemap[val] = place
                 event.setPlace(place)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
