@@ -112,7 +112,7 @@ class AddressEditor:
             self.window.set_transient_for(parent_window)
         val = self.window.run()
         if val == gtk.RESPONSE_OK:
-            self.on_name_edit_ok_clicked()
+            self.ok_clicked()
         self.window.destroy()
 
     def ok_clicked(self):
