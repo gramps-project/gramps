@@ -1,3 +1,7 @@
+2005-04-01  Don Allingham  <don@gramps-project.org>
+	* src/gramps.glade: disable scrollbars in Pedigree View
+	* src/PedView.py: Apply Martin Hawlisch's canvas resize patch
+
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ImageSelect.py (on_photolist_drag_data_get): forgot to remove print statement.
 	
