@@ -1,3 +1,8 @@
+2003-08-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: removed #! at top of file
+	* src/gramps.py: removed #! at top of file
+	* src/EditSource.py: removed #! at top of file
+
 2003-08-14  Alexandre Duret-Lutz  <adl@gnu.org>
 	* configure.in: Check for include directory of $PYTHON, not $PYTHON22.
 	Set PYTHON_CPPFLAGS accordingly.  Do not set $PYTHON22 and
