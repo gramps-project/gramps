@@ -1636,11 +1636,11 @@ class SourceRef:
 #
 #
 #-------------------------------------------------------------------------
-class RelDataBase:
+class GrampsDB:
     """Gramps database object"""
 
     def __init__(self):
-        """creates a new RelDataBase"""
+        """creates a new GrampsDB"""
         self.iprefix = "I%d"
         self.sprefix = "S%d"
         self.oprefix = "O%d"
@@ -1683,7 +1683,7 @@ class RelDataBase:
             self.fprefix = val + "%d"
 
     def new(self):
-        """initializes the RelDataBase to empty values"""
+        """initializes the GrampsDB to empty values"""
 
         # eliminate memory reference cycles for 1.5.2 garbage collection 
         for f in self.familyMap.values():

@@ -137,8 +137,9 @@ attr_name     = ""
 status_bar    = 0
 toolbar       = 2
 calendar      = 0
-paper_preference = None
-output_preference = None
+paper_preference = ""
+output_preference = ""
+goutput_preference = ""
 lastnamegen   = None
 report_dir    = "./"
 web_dir       = "./"
@@ -212,6 +213,7 @@ def loadConfig(call):
     global _callback
     global paper_preference
     global output_preference
+    global goutput_preference
     global lastnamegen
     global report_dir
     global web_dir
@@ -254,6 +256,7 @@ def loadConfig(call):
     dateEntry = get_int("/gramps/config/dateEntry")
     paper_preference = get_string("/gramps/config/paperPreference")
     output_preference = get_string("/gramps/config/outputPreference")
+    goutput_preference = get_string("/gramps/config/goutputPreference")
     lastnamegen = get_int("/gramps/config/surnameGuessing")
     _name_format = get_int("/gramps/config/nameFormat")
 
@@ -298,7 +301,10 @@ def loadConfig(call):
         paper_preference = "Letter"
 
     if output_preference == None:
-        output_preference = "OpenOffice"
+        output_preference = ""
+
+    if goutput_preference == None:
+        goutput_preference = ""
         
     if iprefix == None:
         iprefix = "I"
@@ -571,6 +577,7 @@ class GrampsPreferences:
         self.tree = self.top.get_widget("tree")
         self.panel = self.top.get_widget("panel")
         self.ofmt = self.top.get_widget("output_format")
+        self.gfmt = self.top.get_widget("graphical_format")
 
         self.build_tree()
         self.build()
@@ -689,8 +696,6 @@ class GrampsPreferences:
 
         menu = gtk.GtkMenu()
         choice = 0
-
-        choice = 0
         index = 0
         for name in Plugins.get_text_doc_list():
             if name == output_preference:
@@ -703,6 +708,21 @@ class GrampsPreferences:
             index = index + 1
         menu.set_active(choice)
         self.ofmt.set_menu(menu)
+
+        menu = gtk.GtkMenu()
+        choice = 0
+        index = 0
+        for name in Plugins.get_draw_doc_list():
+            if name == goutput_preference:
+                choice = index
+            item = gtk.GtkMenuItem(name)
+            item.set_data(DATA,name)
+            item.connect("activate", self.on_format_toggled)
+            item.show()
+            menu.append(item)
+            index = index + 1
+        menu.set_active(choice)
+        self.gfmt.set_menu(menu)
 
         date_option = self.top.get_widget("date_format")
         date_menu = gtk.GtkMenu()
@@ -884,6 +904,7 @@ class GrampsPreferences:
         global hide_altnames
         global paper_preference
         global output_preference
+        global goutput_preference
         global show_detail
         global report_dir
         global web_dir
@@ -911,7 +932,8 @@ class GrampsPreferences:
         index_visible = self.top.get_widget("show_child_id").get_active()
         hide_altnames = self.top.get_widget("display_altnames").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
-        output_obj = self.top.get_widget("output_format").get_menu().get_active()
+        output_obj = self.ofmt.get_menu().get_active()
+        goutput_obj = self.gfmt.get_menu().get_active()
         
         if self.top.get_widget("stat1").get_active():
             status_bar = 0
@@ -957,6 +979,7 @@ class GrampsPreferences:
 
         paper_preference = paper_obj.get_data(DATA)
         output_preference = output_obj.get_data(DATA)
+        goutput_preference = goutput_obj.get_data(DATA)
     
         set_bool("/gramps/config/UseTabs",usetabs)
         set_bool("/gramps/config/UseLDS",uselds)
@@ -978,6 +1001,7 @@ class GrampsPreferences:
         set_string("/gramps/config/DisplayAttrName",attr_name)
         set_string("/gramps/config/paperPreference",paper_preference)
         set_string("/gramps/config/outputPreference",output_preference)
+        set_string("/gramps/config/goutputPreference",goutput_preference)
         set_bool("/gramps/config/autoLoad",autoload)
         set_int("/gramps/config/autoSaveInterval",autosave_int)
         
