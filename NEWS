@@ -12,6 +12,7 @@ Version 0.1.4
   supports HTML, OpenOffice (625+), and AbiWord (0.7.13+).  Allows 
   control of paragraph and font styles.
 * Added into CVS on sourceforge
+* Fixed quite a few bugs
 
 Version 0.1.3
 
