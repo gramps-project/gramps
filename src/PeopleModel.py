@@ -89,7 +89,7 @@ class PeopleModel(gtk.GenericTreeModel):
             ]
 
         maps = self.db.get_people_view_maps()
-        if maps[0] != None:
+        if maps[0] != None and len(maps[0]) != 0:
             self.top_iter2path = maps[0]
             self.top_path2iter = maps[1]
             self.iter2path = maps[2]
@@ -137,7 +137,7 @@ class PeopleModel(gtk.GenericTreeModel):
             return
 
         for person_handle in self.db.get_person_keys():
-            
+
             person = self.db.try_to_find_person_from_handle(person_handle)
             surname = unicode(person.get_primary_name().get_surname())
 

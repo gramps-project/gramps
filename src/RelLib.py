@@ -1505,7 +1505,7 @@ class Person(SourceNote):
             for family_handle in person.get_family_handle_list():
                 family = db.find_family_from_handle(family_handle)
                 for child_handle in family.get_child_handle_list():
-                    child = db.find_person_from_handle(child_handle)
+                    child = db.try_to_find_person_from_handle(child_handle)
                     if child.birth_handle:
                         child_birth = db.find_event_from_handle(child.birth_handle)
                         if child_birth.get_date() != "":
@@ -1538,7 +1538,7 @@ class Person(SourceNote):
                     if not parent_id:
                         continue
 
-                    parent = db.find_person_from_handle(parent_id)
+                    parent = db.try_to_find_person_from_handle(parent_id)
                     if parent.birth_handle:
                         parent_birth = db.find_event_from_handle(parent.birth_handle)
                         if parent_birth.get_date():
@@ -1570,7 +1570,7 @@ class Person(SourceNote):
                     continue
                 if spouse_id == self.handle:
                     continue
-                spouse = db.find_person_from_handle(spouse_id)
+                spouse = db.try_to_find_person_from_handle(spouse_id)
                 if spouse.birth_handle:
                     spouse_birth = db.find_event_from_handle(spouse.birth_handle)
                     if spouse_birth.get_date() != "":
@@ -2309,13 +2309,3 @@ class GenderStats:
         return Person.unknown
 
 
-from bsddb import dbshelve, db
-
-def find_surname(key,data):
-    return str(data[3].get_surname())
-
-def find_idmap(key,data):
-    return str(data[1])
-
-def find_eventname(key,data):
-    return str(data[1])

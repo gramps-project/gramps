@@ -342,8 +342,7 @@ class AddSpouse:
         return 1
 
     def set_gender(self):
-        family_type = const.family_relations[value][0]
-        if text == const.FAMILY_CIVIL_UNION:
+        if self.rel_type.get_active() == const.FAMILY_CIVIL_UNION:
             if self.gender == RelLib.Person.male:
                 self.sgender = RelLib.Person.female
             else:

@@ -447,7 +447,7 @@ class GrampsParser:
         self.db.set_researcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
-            person = self.db.find_person_from_gramps_id(id,self.trans)
+            person = self.find_person_by_gramps_id(id)
             if person:
                 self.db.set_default_person_handle(person.get_handle())
 
@@ -602,15 +602,15 @@ class GrampsParser:
             self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
-        person = self.db.find_person_from_gramps_id(self.map_gid(attrs["ref"]),self.trans)
+        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.set_father_handle(person.get_handle())
 
     def start_mother(self,attrs):
-        person = self.db.find_person_from_gramps_id(self.map_gid(attrs["ref"]),self.trans)
+        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.set_mother_handle(person.get_handle())
     
     def start_child(self,attrs):
-        person = self.db.find_person_from_gramps_id(self.map_gid(attrs["ref"]),self.trans)
+        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.add_child_handle(person.get_handle())
 
     def start_url(self,attrs):

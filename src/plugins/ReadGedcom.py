@@ -129,6 +129,8 @@ def importData(database, filename, cb=None):
     # add some checking here
 
     glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
+    if not os.path.isfile(glade_file):
+        glade_file = "plugins/gedcomimport.glade"
 
     statusTop = gtk.glade.XML(glade_file,"status","gramps")
     statusWindow = statusTop.get_widget("status")
@@ -219,6 +221,7 @@ class GedcomParser:
         self.broken_conc = 0
         self.is_ftw = 0
         self.idswap = {}
+        self.gid2id = {}
 
         self.f = open(file,"rU")
         self.filename = file
@@ -514,7 +517,7 @@ class GedcomParser:
                 self.indi_count = self.indi_count + 1
                 id = matches[1]
                 id = id[1:-1]
-                self.person = self.find_or_create_person(id)
+                self.person = self.find_or_create_person(self.map_gid(id))
                 self.added[self.person.get_handle()] = 1
                 self.parse_individual()
                 self.db.commit_person(self.person, self.trans)
@@ -545,14 +548,23 @@ class GedcomParser:
         if self.idswap.get(id):
             return self.idswap[id]
         else:
-            if self.db.idtrans.get(str(id)):
+            if self.db.id_trans.get(str(id)):
                 self.idswap[id] = self.db.find_next_gid()
             else:
                 self.idswap[id] = id
             return self.idswap[id]
 
-    def find_or_create_person(self,id):        
-        person = self.db.find_person_from_gramps_id(self.map_gid(id),self.trans)
+    def find_or_create_person(self,gramps_id):
+        person = RelLib.Person()
+        intid = self.gid2id.get(gramps_id)
+        if self.db.person_map.has_key(intid):
+            person.unserialize(self.db.person_map.get(intid))
+        else:
+            intid = Utils.create_id()
+            person.set_handle(intid)
+            person.set_gramps_id(gramps_id)
+            self.db.add_person_as(person,self.trans)
+            self.gid2id[gramps_id] = intid
         return person
 
     def parse_cause(self,event,level):
@@ -620,12 +632,12 @@ class GedcomParser:
                 return
             elif matches[1] == "HUSB":
                 id = matches[2]
-                person = self.find_or_create_person(id[1:-1])
+                person = self.find_or_create_person(self.map_gid(id[1:-1]))
                 self.family.set_father_handle(person.get_handle())
                 self.ignore_sub_junk(2)
             elif matches[1] == "WIFE":
                 id = matches[2]
-                person = self.find_or_create_person(id[1:-1])
+                person = self.find_or_create_person(self.map_gid(id[1:-1]))
                 self.family.set_mother_handle(person.get_handle())
                 self.ignore_sub_junk(2)
             elif matches[1] == "SLGS":
@@ -639,7 +651,7 @@ class GedcomParser:
             elif matches[1] == "CHIL":
                 mrel,frel = self.parse_ftw_relations(2)
                 id = matches[2]
-                child = self.find_or_create_person(id[1:-1])
+                child = self.find_or_create_person(self.map_gid(id[1:-1]))
                 self.family.add_child_handle(child.get_handle())
 
                 for f in child.get_parent_family_handle_list():
@@ -1734,7 +1746,7 @@ class GedcomParser:
                 new_key = prefix % val
                 new_pmax = max(new_pmax,val)
 
-                person = self.db.find_person_from_handle(pid,self.trans)
+                person = self.db.try_to_find_person_from_handle(pid,self.trans)
 
                 # new ID is not used
                 if not self.db.has_person_handle(new_key):
@@ -1743,7 +1755,7 @@ class GedcomParser:
                     person.set_gramps_id(new_key)
                     self.db.add_person(person,self.trans)
                 else:
-                    tp = self.db.find_person_from_handle(new_key,self.trans)
+                    tp = self.db.try_to_find_person_from_handle(new_key,self.trans)
                     # same person, just change it
                     if person == tp:
                         self.db.remove_person_handle(pid,self.trans)
