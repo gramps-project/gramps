@@ -1,3 +1,7 @@
+2003-08-30  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/PdfDoc.py (page_break): Minor cleanup; 
+	(end_page): Was defined twice -- remove the first occurence. 
+
 2003-08-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: Support drawing functions.
 	* src/docgen/PdfDrawDoc.py: remove - all functions integrated into

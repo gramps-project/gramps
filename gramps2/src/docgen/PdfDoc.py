@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -165,9 +165,6 @@ class PdfDoc(BaseDoc.BaseDoc):
             raise Errors.ReportError(_("Could not create %s") % self.filename)
 
     def page_break(self):
-        self.end_page()
-
-    def end_page(self):
         self.story.append(PageBreak())
 
     def start_paragraph(self,style_name,leader=None):
@@ -314,7 +311,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.drawing = Drawing(self.get_usable_width()*cm, self.get_usable_height()*cm)
 
     def end_page(self):
-	self.story.append(self.drawing)
+       self.story.append(self.drawing)
 
     def draw_line(self,style,x1,y1,x2,y2):
         y1 = self.get_usable_height() - y1
