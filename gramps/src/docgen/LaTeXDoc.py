@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 from TextDoc import *
 import Plugins
+import ImgManip
 import intl
 _ = intl.gettext
 
@@ -95,6 +96,7 @@ class LaTeXDoc(TextDoc):
         self.f.write('\\usepackage[latin1]{inputenc}\n')
 	# add packages (should be standard on a default installation)
 	# for finer output control.  Put comments in file for user to read
+        self.f.write('\\usepackage{graphicx} % Extended graphics support\n')
         self.f.write('\\usepackage{longtable} % For multi-page tables\n')
         self.f.write('\\usepackage{calc} % For margin indents\n')
 	self.f.write('%\n% Depending on your LaTeX installation, the')
@@ -119,6 +121,7 @@ class LaTeXDoc(TextDoc):
 
         self.in_list = 0
 	self.in_table = 0
+	self.imagenum = 0
 	
 	#Establish some local styles for the report
 	self.latexstyle = {}
@@ -303,9 +306,21 @@ class LaTeXDoc(TextDoc):
 	    self.f.write('& ')
 
     def add_photo(self,name,pos,x,y):
-        """Currently no photo support"""
-        pass
-    
+        """Add photo to report"""
+	self.imagenum = self.imagenum + 1
+        pic = ImgManip.ImgManip(name)
+	picf = self.filename[:-4] + '_img' + str(self.imagenum) + '.eps'
+	pic.eps_convert(picf)
+	
+	# x and y will be maximum width OR height in units of cm
+	mysize = _('width=%dcm,height=%dcm,keepaspectratio' % (x,y))
+	if pos == "right":
+	    self.f.write('\\fil\\includegraphics[%s]{%s}\n' % (mysize,picf))
+	elif pos == "left":
+	    self.f.write('\\includegraphics[%s]{%s}\\fil\n' % (mysize,picf))
+	else:
+	    self.f.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
+		
     def write_text(self,text):
         """Write the text to the file"""
         self.f.write(text)
