@@ -3351,7 +3351,7 @@ class GrampsDB:
     def get_place_display(self,key):
         # fix this up better
         place = Place()
-        place.unserialize(self.place_map[key])
+        place.unserialize(self.place_map[str(key)])
         return place.get_display_info()
         
     def get_source_keys(self):

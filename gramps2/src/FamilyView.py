@@ -867,14 +867,21 @@ class FamilyView:
         dd = self.parent.db.find_event_from_id(self.person.get_death_id())
 
         if bd and dd:
-            n = "%s\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
-	    	_BORN,bd.get_date(),_DIED,dd.get_date())
+            n = "%s [%s]\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
+                                                self.person.get_id(),
+                                                _BORN,bd.get_date(),
+                                                _DIED,dd.get_date())
         elif bd:
-            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_BORN,bd.get_date())
+            n = "%s [%s]\n\t%s %s" % (GrampsCfg.nameof(self.person),
+                                      self.person.get_id(),
+                                      _BORN,bd.get_date())
         elif dd:
-            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_DIED,dd.get_date())
+            n = "%s [%s]\n\t%s %s" % (GrampsCfg.nameof(self.person),
+                                      self.person.get_id(),
+                                      _DIED,dd.get_date())
         else:
-            n = GrampsCfg.nameof(self.person)
+            n = "%s [%s]" % (GrampsCfg.nameof(self.person),
+                             self.person.get_id())
 
         self.ap_model.clear()
         self.ap_data.get_selection().set_mode(gtk.SELECTION_NONE)
@@ -915,9 +922,10 @@ class FamilyView:
                     mdate = " - %s" % event.get_date()
                 else:
                     mdate = ""
-                v = "%s\n\t%s%s" % (GrampsCfg.nameof(sp),
-                                    const.display_frel(fm.get_relationship()),
-                                    mdate)
+                v = "%s [%s]\n\t%s%s" % (GrampsCfg.nameof(sp),
+                                         sp.get_id(),
+                                         const.display_frel(fm.get_relationship()),
+                                         mdate)
                 self.spouse_model.set(iter,0,v)
             else:
                 self.spouse_model.set(iter,0,"%s\n" % _("<double click to add spouse>"))
@@ -974,7 +982,8 @@ class FamilyView:
     def nameof(self,l,p,mode):
         if p:
             n = GrampsCfg.nameof(p)
-            return _("%s: %s\n\tRelationship: %s") % (l,n,_(mode))
+            pid = p.get_id()
+            return _("%s: %s [%s]\n\tRelationship: %s") % (l,n,pid,_(mode))
         else:
             return _("%s: unknown") % (l)
 
