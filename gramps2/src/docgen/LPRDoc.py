@@ -55,7 +55,10 @@ newpath = [
     ]
 sys.path = newpath + sys.path
 ### end FIXME ###
+
 import gnomeprint, gnomeprint.ui
+
+### FIXME ###
 if gnomeprint.Context.__dict__.has_key('grestore'):
     support_photos = 1
 else:
@@ -63,6 +66,7 @@ else:
     print "LPRDoc: Photos and rotated text (used in TimeChart)"
     print "are not supported for direct priting."
     print "Get gnome-python from CVS or wait for the next gnome-python release."
+### end FIXME ###
 
 #------------------------------------------------------------------------
 #
@@ -89,13 +93,77 @@ _SUPER_ELEVATION_FRACTION = 0.3
 _SUPER_SIZE_REDUCTION = 2
 
 # Font constants -- specific for gnome-print
-_FONT_SANS_SERIF    = "Arial"
-_FONT_SERIF         = "Times New Roman"
-_FONT_MONOSPACE     = "Courier New"
-_FONT_BOLD          = "Bold"
-_FONT_ITALIC        = "Italic"
-_FONT_BOLD_ITALIC   = "Bold Italic"
-_FONT_REGULAR       = "Regular"
+_TTF_FREEFONT = ( ( 'FreeSerif Medium', 
+                    'FreeSerif Bold', 
+                    'FreeSerif Italic', 
+                    'FreeSerif BoldItalic' ),
+                  ( 'FreeSans Medium',
+                    'FreeSans Bold',
+                    'FreeSans Oblique',
+                    'FreeSans BoldOblique'),
+                  ( 'FreeMono Medium',
+                    'FreeMono Bold',
+                    'FreeMono Oblique',
+                    'FreeMono BoldOblique')
+                )
+_MS_TTFONT = (  (   'Times New Roman Regular', 
+                    'Times New Roman Bold', 
+                    'Times New Roman Italic', 
+                    'Times New Roman Bold Italic' ),
+                  ( 'Arial Regular',
+                    'Arial Bold',
+                    'Arial Italic',
+                    'Arial Bold Italic'),
+                  ( 'Courier New Regular',
+                    'Courier New Bold',
+                    'Courier New Italic',
+                    'Courier New Bold Italic')
+                )
+_GNOME_FONT = ( (   'Serif Regular', 
+                    'Serif Bold', 
+                    'Serif Italic', 
+                    'Serif Bold Italic' ),
+                  ( 'Sans Regular',
+                    'Sans Bold',
+                    'Sans Italic',
+                    'Sans Bold Italic'),
+                  ( 'Monospace Regular',
+                    'Monospace New Bold',
+                    'Monospace New Italic',
+                    'Monospace New Bold Italic')
+                )
+
+# Search for ttf-freefont first
+ttf_not_found = 0
+for family in _TTF_FREEFONT:
+    for font in family:
+        if font not in gnomeprint.font_list():
+            ttf_not_found = 1
+            break
+
+if ttf_not_found:
+    print "Free true type fonts not found."
+    # Search for MS ttfs
+    ms_not_found = 0
+    for family in _MS_TTFONT:
+        for font in family:
+            if font not in gnomeprint.font_list():
+                ms_not_found = 1
+                break
+    if ms_not_found:
+        print "Microsoft true type fonts not found."
+        print "Using Gnome standard fonts."
+        print "Non-ascii characters will appear garbled in the output."
+        print "INSTALL Free true type fonts from http://www.nongnu.org/freefont/"
+        _FONT_SET = _GNOME_FONT
+    else:
+        print "Found Microsoft true type fonts. Will use them for now."
+        print "These fonts are not free. "
+        print "We would advise you to switch to Free true type fonts"
+        print "INSTALL Free true type fonts from http://www.nongnu.org/freefont/"
+        _FONT_SET = _MS_TTFONT
+else:
+    _FONT_SET = _TTF_FREEFONT
 
 # Formatting directive constants
 _LINE_BREAK = "Break"
@@ -127,24 +195,25 @@ def find_font_from_fontstyle(fontstyle):
     fontstyle       - a BaseDoc.FontStyle() instance
     """
 
-    if fontstyle.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-        face = _FONT_SANS_SERIF
-    elif fontstyle.get_type_face() == BaseDoc.FONT_SERIF:
-        face = _FONT_SERIF
+    if fontstyle.get_type_face() == BaseDoc.FONT_SERIF:
+        family = _FONT_SET[0]
+    elif fontstyle.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+        family = _FONT_SET[1]
     elif fontstyle.get_type_face() == BaseDoc.FONT_MONOSPACE:
-        face = _FONT_MONOSPACE
+        family = _FONT_SET[2]
         
     if fontstyle.get_bold():
-        modifier = _FONT_BOLD
         if fontstyle.get_italic():
-            modifier = _FONT_BOLD_ITALIC
+            font = family[3]
+        else:
+            font = family[1]
     elif fontstyle.get_italic():
-        modifier = _FONT_ITALIC
+        font = family[2]
     else:
-        modifier = _FONT_REGULAR
+        font = family[0]
 
     size = fontstyle.get_size()
-    return gnomeprint.font_find_closest("%s %s" % (face, modifier),size)
+    return gnomeprint.font_find_closest(font,size)
 
 #------------------------------------------------------------------------
 #
