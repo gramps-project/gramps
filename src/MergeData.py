@@ -111,12 +111,14 @@ class MergePeople:
         self.glade.get_widget("bplace2_text").set_text(bplace2)
         self.glade.get_widget("bplace2_text").set_position(0)
 
-        if not birth1 and not bplace1 and birth2 or bplace2:
+        if ((not birth1 and not bplace1) and (birth2 or bplace2) or
+            (not birth1 or not bplace1) and (birth2 and bplace2)):
             self.glade.get_widget('bbirth2').set_active(1)
         else:
             self.glade.get_widget('bbirth1').set_active(1)
 
-        if not death1 and not dplace1 and death2 or dplace2:
+        if ((not death1 and not dplace1) and (death2 or dplace2) or
+            (not death1 or not dplace1) and (death2 and dplace2)):
             self.glade.get_widget('death2').set_active(1)
         else:
             self.glade.get_widget('death1').set_active(1)
@@ -180,15 +182,19 @@ class MergePeople:
             self.altname.set_sensitive(0)
             self.altname.set_active(0)
 
-        if not birth1 and not bplace1 or not birth2 and not bplace2:
-            self.altbirth.set_active(0)
-        else:
+        if birth1 and birth2 and birth1 != birth2:
             self.altbirth.set_active(1)
-
-        if not death1 and not dplace1 or not death2 and not dplace2:
-            self.altdeath.set_active(0)
+        if bplace1 and bplace2 or bplace1 != bplace2:
+            self.altbirth.set_active(1)
         else:
+            self.altbirth.set_active(0)
+
+        if death1 and death2 and death1 != death2:
             self.altdeath.set_active(1)
+        if dplace1 and dplace2 or dplace1 != dplace2:
+            self.altdeath.set_active(1)
+        else:
+            self.altdeath.set_active(0)
 
     def place_name(self,event):
         place = event.getPlace()
@@ -197,10 +203,26 @@ class MergePeople:
         else:
             return ""
 
+    def empty(self,junk):
+        pass
+    
     def on_merge_edit_clicked(self,obj):
         import EditPerson
         self.on_merge_clicked(obj)
-        EditPerson.EditPerson(self.p1,self.db,self.update)
+        EditPerson.EditPerson(self.p1,self.db,self.empty)
+
+    def copy_note(self,one,two):
+        if one.getNote() != two.getNote():
+            one.setNote("%s\n\n%s" % (one.getNote(),two.getNote()))
+
+    def copy_sources(self,one,two):
+        slist = one.getSourceRefList()[:]
+        for xsrc in two.getSourceRefList():
+            for src in slist:
+                if src.are_equal(xsrc):
+                    break
+            else:
+                one.addSourceRef(xsrc)
 
     #---------------------------------------------------------------------
     #
@@ -210,10 +232,39 @@ class MergePeople:
     def on_merge_clicked(self,obj):
         utils.modified()
 
-        for name in self.p2.getAlternateNames():
-            self.p1.addAlternateName(name)
-        for event in self.p2.getEventList():
-            self.p1.addEvent(event)
+        anames = self.p1.getAlternateNames()[:]
+        for xname in self.p2.getAlternateNames():
+            for name in anames:
+                if name.getFirstName() == xname.getFirstName() and \
+                   name.getSurname() == xname.getSurname() and \
+                   name.getTitle() == xname.getTitle() and \
+                   name.getSuffix() == xname.getSuffix():
+                    self.copy_note(xname,name)
+                    self.copy_sources(xname,name)
+                    break
+            else:
+                self.p1.addAlternateName(xname)
+
+        anames = self.p1.getAttributeList()[:]
+        for xname in self.p2.getAttributeList():
+            for name in anames:
+                if name.getType() == xname.getType() and \
+                   name.getValue() == xname.getValue():
+                    self.copy_note(xname,name)
+                    self.copy_sources(xname,name)
+                    break
+            else:
+                self.p1.addAttribute(xname)
+
+        elist = self.p1.getEventList()[:]
+        for xevent in self.p2.getEventList():
+            for event in elist:
+                if event.are_equal(xevent):
+                    self.copy_note(xevent,event)
+                    self.copy_sources(xevent,event)
+                    break
+            else:
+                self.p1.addEvent(xevent)
 
         if self.bname1.get_active():
             if self.altname.get_active():
