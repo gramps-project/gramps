@@ -11,6 +11,10 @@
 	* src/Exporter.py (native_export): Use real export.
 	* src/WriteGrdb.py (exportData): Provide default cl value.
 
+	* src/gramps_main.py (on_new_clicked): Do not prematurely close db.
+	* src/DbPrompter.py (NewNativeDbPrompter.chooser): Close old db
+	if positively opening a new one.
+
 2005-02-21  Don Allingham  <dallingham@users.sourceforge.net>
 	* Release: Version 1.1.90 "Successful encyclopedia salesman" released.
 
