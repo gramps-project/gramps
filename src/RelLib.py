@@ -58,12 +58,37 @@ CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
 
-PERSON_KEY     = 0
-FAMILY_KEY     = 1
-SOURCE_KEY     = 2
-EVENT_KEY      = 3
-MEDIA_KEY      = 4
-PLACE_KEY      = 5
+#-------------------------------------------------------------------------
+#
+# Primary Object
+#
+#-------------------------------------------------------------------------
+
+class PrimaryObject:
+
+    def __init__(self,source=None):
+        if source:
+            self.gramps_id = source.gramps_id
+            self.handle = source.handle
+        else:
+            self.gramps_id = ""
+            self.handle = ""
+
+    def set_handle(self,handle):
+        """Sets the database handle for the place object"""
+        self.handle = handle
+
+    def get_handle(self):
+        """Returns the database handle for the place object"""
+        return self.handle
+
+    def set_gramps_id(self,gramps_id):
+        """Sets the GRAMPS ID for the place object"""
+        self.gramps_id = gramps_id
+
+    def get_gramps_id(self):
+        """Returns the GRAMPS ID for the place object"""
+        return self.gramps_id
 
 #-------------------------------------------------------------------------
 #
@@ -282,7 +307,7 @@ class DataObj(SourceNote):
 # Place
 #
 #-------------------------------------------------------------------------
-class Place(SourceNote):
+class Place(PrimaryObject,SourceNote):
     """Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
     a collection of images and URLs, a note and a source"""
@@ -291,7 +316,7 @@ class Place(SourceNote):
         """Creates a new Place object.
 
         source - Object to copy. If none supplied, create an empty place object"""
-        
+        PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
         if source:
             self.long = source.long
@@ -301,8 +326,6 @@ class Place(SourceNote):
             self.alt_loc = []
             for loc in source.alt_loc:
                 self.alt_loc = Location(loc)
-            self.handle = source.handle
-            self.gramps_id = source.gramps_id
             self.urls = []
             for u in source.urls:
                 self.urls.append(Url(u))
@@ -315,8 +338,6 @@ class Place(SourceNote):
             self.title = ""
             self.main_loc = None
             self.alt_loc = []
-            self.handle = ""
-            self.gramps_id = ""
             self.urls = []
             self.media_list = []
 
@@ -342,22 +363,6 @@ class Place(SourceNote):
         """Add a URL to the URL list"""
         self.urls.append(url)
     
-    def set_handle(self,handle):
-        """Sets the database handle for the place object"""
-        self.handle = handle
-
-    def get_handle(self):
-        """Returns the database handle for the place object"""
-        return self.handle
-
-    def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
-        return self.gramps_id
-
     def set_title(self,name):
         """Sets the title of the place object"""
         self.title = name
@@ -633,13 +638,13 @@ class Note:
 # MediaObject
 #
 #-------------------------------------------------------------------------
-class MediaObject(SourceNote):
+class MediaObject(PrimaryObject,SourceNote):
     """Containter for information about an image file, including location,
     description and privacy"""
     
     def __init__(self,source=None):
         """Create a new MediaObject object, copying from the source if provided"""
-
+        PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
 
         self.attrlist = []
@@ -647,14 +652,10 @@ class MediaObject(SourceNote):
             self.path = source.path
             self.mime = source.mime
             self.desc = source.desc
-            self.handle = source.handle
-            self.gramps_id = source.gramps_id
             self.thumb = source.thumb
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
         else:
-            self.handle = ""
-            self.gramps_id = ""
             self.path = ""
             self.mime = ""
             self.desc = ""
@@ -668,22 +669,6 @@ class MediaObject(SourceNote):
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          self.attrlist, self.source_list, self.note) = data
     
-    def set_handle(self,handle):
-        """Sets the database handle for the place object"""
-        self.handle = handle
-
-    def get_handle(self):
-        """Returns the database handle for the place object"""
-        return self.handle
-
-    def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
-        return self.gramps_id
-
     def set_mime_type(self,type):
         self.mime = type
 
@@ -891,7 +876,7 @@ class Address(DataObj):
         """returns the state portion of the Address"""
         return self.state
 
-    def setCountry(self,val):
+    def set_country(self,val):
         """sets the country portion of the Address"""
         self.country = val
 
@@ -1145,7 +1130,7 @@ class Url:
 # Person
 #
 #-------------------------------------------------------------------------
-class Person(SourceNote):
+class Person(PrimaryObject,SourceNote):
     """Represents an individual person in the gramps database"""
     
     unknown = 2
@@ -1154,9 +1139,8 @@ class Person(SourceNote):
 
     def __init__(self,handle=""):
         """creates a new Person instance"""
+        PrimaryObject.__init__(self)
         SourceNote.__init__(self)
-        self.handle = handle
-        self.gramps_id = ""
         self.primary_name = Name()
         self.event_list = []
         self.family_list = []
@@ -1273,30 +1257,6 @@ class Person(SourceNote):
         """adds a URL instance to the list"""
         self.urls.append(url)
     
-    def set_gramps_id(self,gramps_id):
-        """sets the GRAMPS ID for the Person"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """returns the GRAMPS ID for the Person"""
-        return self.gramps_id
-
-    def set_handle(self,handle):
-        """sets the database handle for the Person"""
-        self.handle = handle
-
-    def get_handle(self):
-        """returns the database handle for the Person"""
-        return self.handle
-
-    def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
-        return self.gramps_id
-
     def set_nick_name(self,name):
         """sets the nickname for the Person"""
         self.nickname = name
@@ -1628,7 +1588,7 @@ class Person(SourceNote):
 # Event
 #
 #-------------------------------------------------------------------------
-class Event(DataObj):
+class Event(PrimaryObject,DataObj):
     """Event record, recording the event type, description, place, and date
     of a particular event"""
 
@@ -1637,7 +1597,8 @@ class Event(DataObj):
     
     def __init__(self,source=None):
         """creates a new Event instance, copying from the source if present"""
-        
+
+        PrimaryObject.__init__(self,source)
         DataObj.__init__(self,source)
         
         if source:
@@ -1646,8 +1607,6 @@ class Event(DataObj):
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
-            self.handle = source.handle
-            self.gramps_id = source.gramps_id
             self.media_list = [MediaRef(media_id) for media_id in source.media_list]
             try:
                 if source.witness:
@@ -1663,8 +1622,6 @@ class Event(DataObj):
             self.name = ""
             self.cause = ""
             self.witness = None
-            self.handle = ""
-            self.gramps_id = ""
             self.media_list = []
 
     def clone(self,source):
@@ -1708,22 +1665,6 @@ class Event(DataObj):
     def set_media_list(self,mlist):
         """Sets the list of Photo objects"""
         self.media_list = mlist
-
-    def set_handle(self,handle):
-        """Sets the database handle for the place object"""
-        self.handle = handle
-
-    def get_handle(self):
-        """Returns the database handle for the place object"""
-        return self.handle
-
-    def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
-        return self.gramps_id
 
     def get_witness_list(self):
         return self.witness
@@ -1894,19 +1835,18 @@ class Witness:
 # Family
 #
 #-------------------------------------------------------------------------
-class Family(SourceNote):
+class Family(PrimaryObject,SourceNote):
     """Represents a family unit in the gramps database"""
 
     def __init__(self):
         """creates a new Family instance"""
+        PrimaryObject.__init__(self)
         SourceNote.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
         self.type = const.FAMILY_MARRIED
         self.event_list = []
-        self.handle = ""
-        self.gramps_id = ""
         self.media_list = []
         self.attribute_list = []
         self.lds_seal = None
@@ -1953,22 +1893,6 @@ class Family(SourceNote):
     def set_attribute_list(self,list) :
         """sets the attribute list to the specified list"""
         self.attribute_list = list
-
-    def set_handle(self,handle) :
-        """sets the database handle for the Family"""
-       	self.handle = str(handle)
-
-    def get_handle(self) :
-        """returns the database handle for the Family"""
-       	return unicode(self.handle)
-
-    def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
-        return self.gramps_id
 
     def set_relationship(self,type):
         """assigns a string indicating the relationship between the
@@ -2084,18 +2008,17 @@ class Family(SourceNote):
 # Source
 #
 #-------------------------------------------------------------------------
-class Source:
+class Source(PrimaryObject):
     """A record of a source of information"""
     
     def __init__(self):
         """creates a new Source instance"""
+        PrimaryObject.__init__(self)
         self.title = ""
         self.author = ""
         self.pubinfo = ""
         self.note = Note()
         self.media_list = []
-        self.handle = ""
-        self.gramps_id = ""
         self.abbrev = ""
 
     def serialize(self):
@@ -2108,22 +2031,6 @@ class Source:
         
     def get_display_info(self):
         return [self.title,self.gramps_id,self.author,self.title.upper(),self.author.upper()]
-
-    def set_handle(self,handle):
-        """sets the gramps' ID for the Source instance"""
-        self.handle = str(handle)
-
-    def get_handle(self):
-        """returns the gramps' ID of the Source instance"""
-        return self.handle
-
-    def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
-        self.gramps_id = gramps_id
-
-    def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
-        return self.gramps_id
 
     def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Source instance's image list"""
