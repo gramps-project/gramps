@@ -43,6 +43,9 @@ gdir_PYTHON = \
 	GenericFilter.py\
 	GrampsCfg.py\
 	GrampsBSDDB.py\
+	GrampsDbBase.py\
+	GrampsXMLDB.py\
+	GrampsGEDDB.py\
 	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\

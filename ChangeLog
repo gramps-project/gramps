@@ -1,3 +1,7 @@
+2004-08-1  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Makefile.am: Ship new files: GrampsDbBase.py, GrampsXMLDB.py,
+	and GrampsGEDDB.py. 
+
 2004-08-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: rework of the API
 	* src/*.py: rework of the api
