@@ -48,7 +48,6 @@ import gtk
 import const
 import RelLib
 import Date
-import Calendar
 from TransTable import TransTable
 from gettext import gettext as _
 from Utils import for_each_ancestor
@@ -60,15 +59,14 @@ from Utils import for_each_ancestor
 #-------------------------------------------------------------------------
 def date_cmp(rule,value):
     sd = rule.get_start_date()
-    s = sd.mode
-    if s == Calendar.BEFORE:
-        return Date.compare_dates(rule,value) == 1
-    elif s == Calendar.AFTER:
-        return Date.compare_dates(rule,value) == -1
-    elif sd.month == Date.UNDEF and sd.year != Date.UNDEF:
-        return sd.year == value.get_start_date().year
+    s = sd.get_modifier()
+    val = s.get_start_date()
+    if s == Date.MOD_BEFORE:
+        return rule > value
+    elif s == Date.MOD_AFTER:
+        return rule < value
     else:
-        return Date.compare_dates(rule,value) == 0
+        return rule == value
 
 #-------------------------------------------------------------------------
 #
