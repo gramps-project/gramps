@@ -629,7 +629,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 #------------------------------------------------------------------------
 class GraphVizDialog(Report.ReportDialog):
 
-    def __init__(self,database,person):#,options_class,name,translated_name):
+    def __init__(self,database,person):
         self.database = database 
         self.person = person
         name = "rel_graph"
@@ -668,7 +668,6 @@ class GraphVizDialog(Report.ReportDialog):
 
     def make_report(self):
         """Create the object that will produce the GraphViz file."""
-        
         GraphViz(self.database,self.person,self.options_class)
 
 #------------------------------------------------------------------------

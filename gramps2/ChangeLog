@@ -1,3 +1,9 @@
+2005-01-06 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgeHandler.py: Support for WEB for CLI mode.
+	* src/Report.py: Support for WEB reports.
+	* src/plugins/GraphViz.py: Minor tweaks.
+	* src/plugins/WebPage.py: Convert to new scheme. Still rough.
+
 2005-01-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: switch to ComboBox from OptionMenu
 	* src/GenericFilter.py: switch to ComboBox from OptionMenu

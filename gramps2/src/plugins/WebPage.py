@@ -28,10 +28,8 @@
 #
 #------------------------------------------------------------------------
 import os
-import re
-import string
-import time
 import shutil
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -58,7 +56,7 @@ import Report
 import Errors
 import Utils
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
+import ReportOptions
 
 #------------------------------------------------------------------------
 #
@@ -233,7 +231,7 @@ class IndividualPage:
             self.write_info(base.get_title())
             self.write_info(base.get_author())
             self.write_info(base.get_publication_info())
-            self.write_info(DateHander.displayer.display(sref.get_date()))
+            self.write_info(DateHandler.displayer.display(sref.get_date()))
             self.write_info(sref.get_page())
             if self.usecomments:
                 self.write_info(sref.get_text())
@@ -734,38 +732,85 @@ class IndividualPage:
 #
 #------------------------------------------------------------------------
 class WebReport(Report.Report):
-    def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
-                 private, srccomments, include_link, include_mini_tree,
-                 style, image_dir, template_name,use_id,id_link,gendex,places,ext,
-                 include_alpha_links,separate_alpha,n_cols,ind_template_name,
-                 depth,birth_dates,year_only):
-        self.db = db
-        self.ext = ext
-        self.use_id = use_id
-        self.id_link = id_link
-        self.person = person
-        self.target_path = target_path
-        self.max_gen = max_gen
-        self.photos = photos
-        self.filter = filter
-        self.restrict = restrict
-        self.private = private
-        self.srccomments = srccomments
-        self.include_link = include_link
-        self.include_mini_tree = include_mini_tree
-        self.selected_style = style
-        self.image_dir = image_dir
-        self.use_gendex = gendex
-        self.use_places = places
-        self.template_name = template_name
-        self.include_alpha_links = include_alpha_links
-        self.separate_alpha = separate_alpha
-        self.n_cols = n_cols
-        self.ind_template_name = ind_template_name
-        self.depth = depth
-        self.birth_dates = birth_dates
-        self.year_only = year_only
-        self.sort = Sort.Sort(self.db)
+    def __init__(self,database,person,options_class):
+        """
+        Creates WebReport object that produces the report.
+        
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        filter
+        od
+        HTMLimg
+        HTMLrestrictinfo
+        HTMLincpriv
+        HTMLnotxtsi
+        HTMLlnktoalphabet
+        HTMLsplita
+        HTMLplaceidx
+        HTMLshorttree
+        HTMLidxcol
+        HTMLimagedir
+        HTMLincid
+        HTMLidurl
+        HTMLlinktidx
+        HTMLext
+        HTMLtreed
+        HTMLidxt
+        HTMLgendex
+        HTMLidxbirth
+        yearso
+        """
+#    self,db,person,target_path,max_gen,photos,filter,restrict,
+#                 private, srccomments, include_link, include_mini_tree,
+#                 style, image_dir, template_name,use_id,id_link,gendex,places,ext,
+#                 include_alpha_links,separate_alpha,n_cols,ind_template_name,
+#                 depth,birth_dates,year_only):
+        self.database = database
+        self.start_person = person
+        self.options_class = options_class
+
+        filter_num = options_class.get_filter_number()
+        filters = options_class.get_report_filters(person)
+        filters.extend(GenericFilter.CustomFilters.get_filters())
+        self.filter = filters[filter_num]
+
+        default_style = BaseDoc.StyleSheet()
+        self.options_class.make_default_style(default_style)
+        style_file = self.options_class.handler.get_stylesheet_savefile()
+        style_list = BaseDoc.StyleSheetList(style_file,default_style)
+        style_name = self.options_class.handler.get_default_stylesheet_name()
+        self.selected_style = style_list.get_style_sheet(style_name)
+
+        self.template_name = options_class.handler.template_name
+
+        self.target_path = options_class.handler.options_dict['HTMLod']
+        self.ext = options_class.handler.options_dict['HTMLext']
+        self.use_id = options_class.handler.options_dict['HTMLincid']
+        self.id_link = options_class.handler.options_dict['HTMLlinktidx']
+        self.photos = options_class.handler.options_dict['HTMLimg']
+        self.restrict = options_class.handler.options_dict['HTMLrestrictinfo']
+        self.private = options_class.handler.options_dict['HTMLincpriv']
+        self.srccomments = options_class.handler.options_dict['HTMLcmtxtsi']
+        self.include_link = options_class.handler.options_dict['HTMLlinktidx']
+        self.include_mini_tree = options_class.handler.options_dict['HTMLshorttree']
+        self.image_dir = options_class.handler.options_dict['HTMLimagedir']
+        self.use_gendex = options_class.handler.options_dict['HTMLgendex']
+        self.use_places = options_class.handler.options_dict['HTMLplaceidx']
+        self.include_alpha_links = options_class.handler.options_dict['HTMLlnktoalphabet']
+        self.separate_alpha = options_class.handler.options_dict['HTMLsplita']
+        self.n_cols = options_class.handler.options_dict['HTMLidxcol']
+        self.ind_template_name = options_class.handler.options_dict['HTMLidxt']
+        self.depth = options_class.handler.options_dict['HTMLtreed']
+        self.birth_dates = options_class.handler.options_dict['HTMLidxbirth']
+        self.year_only = options_class.handler.options_dict['HTMLyearso']
+        self.sort = Sort.Sort(self.database)
 
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"),
@@ -779,7 +824,7 @@ class WebReport(Report.Report):
         except:
             return
         for p_id in person_handle_list:
-            p = self.db.get_person_from_handle(p_id)
+            p = self.database.get_person_from_handle(p_id)
             name = p.get_primary_name()
             firstName = name.get_first_name()
             surName = name.get_surname()
@@ -793,13 +838,13 @@ class WebReport(Report.Report):
                 f.write("%s /%s/, %s|" % (firstName,surName, suffix))
             for e_id in [p.get_birth_handle(),p.get_death_handle()]:
                 if e_id:
-                    e = self.db.get_event_from_handle(e_id)
+                    e = self.database.get_event_from_handle(e_id)
                 else:
                     continue
                 if e:
                     f.write("%s|" % DateHander.displayer.display(e.get_date_object()))
                     if e.get_place_handle():
-                        f.write('%s|' % self.db.get_place_from_handle(e.get_place_handle()).get_title())
+                        f.write('%s|' % self.database.get_place_from_handle(e.get_place_handle()).get_title())
                     else:
                         f.write('|')
                 else:
@@ -821,25 +866,25 @@ class WebReport(Report.Report):
 
         used_places = {}
         for person_handle in person_handle_list:
-            person = self.db.get_person_from_handle(person_handle)
+            person = self.database.get_person_from_handle(person_handle)
             for event_handle in [person.get_birth_handle(), person.get_death_handle()] + person.get_event_list():
-                event = self.db.get_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 if event:
                     if event.get_place_handle() not in used_places:
                         used_places[event.get_place_handle()] = []
                     used_places[event.get_place_handle()].append((person_handle, event.get_name()))
             for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
+                family = self.database.get_family_from_handle(family_handle)
                 for event_handle in family.get_event_list():
-                    event = self.db.get_event_from_handle(event_handle)
+                    event = self.database.get_event_from_handle(event_handle)
                     if event:
                         if event.get_place_handle() not in used_places:
                             used_places[event.get_place_handle()] = []
                         used_places[event.get_place_handle()].append((person_handle, event.get_name()))
         
-        for key in self.db.get_place_handles():
+        for key in self.database.get_place_handles():
             if key in used_places:
-                myplace = self.db.get_place_from_handle(key)
+                myplace = self.database.get_place_from_handle(key)
                 doc.start_paragraph("IndexLabel")
                 doc.write_linktarget(myplace.get_gramps_id())
                 doc.write_text(myplace.get_title())
@@ -848,13 +893,13 @@ class WebReport(Report.Report):
                 for match in used_places[key]:
                     person_handle = match[0]
                     event_name = match[1]
-                    person = self.db.get_person_from_handle(person_handle)
+                    person = self.database.get_person_from_handle(person_handle)
                     name = person.get_primary_name().get_name()
 
                     if self.birth_dates:
-                        birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
+                        birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()
                         if birth_handle:
-                            birth_event = self.db.get_event_from_handle(birth_handle)
+                            birth_event = self.database.get_event_from_handle(birth_handle)
                             if self.year_only:
                                 birth_dobj = birth_event.get_date_object()
                                 if birth_dobj.get_year_valid():
@@ -898,7 +943,7 @@ class WebReport(Report.Report):
 
         a = {}
         for person_handle in person_handle_list:
-            person = self.db.get_person_from_handle(person_handle)
+            person = self.database.get_person_from_handle(person_handle)
             n = person.get_primary_name().get_surname()
             if n:
                 a[n[0]] = 1
@@ -929,8 +974,8 @@ class WebReport(Report.Report):
             doc.close()
             for n in link_keys:
                 p_id_list = [ p_id for p_id in person_handle_list if \
-                            (self.db.get_person_from_handle(p_id).get_primary_name().get_surname() \
-                            and (self.db.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
+                            (self.database.get_person_from_handle(p_id).get_primary_name().get_surname() \
+                            and (self.database.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
                 doc = HtmlLinkDoc(self.selected_style,None,template,None)
                 doc.set_extension(self.ext)
                 doc.set_title(_("Section %s") % n)
@@ -948,13 +993,13 @@ class WebReport(Report.Report):
                 col_len = n_rows
 
                 for person_handle in p_id_list:
-                    the_person = self.db.get_person_from_handle(person_handle)
+                    the_person = self.database.get_person_from_handle(person_handle)
                     name = the_person.get_primary_name().get_name()
 
                     if self.birth_dates:
-                        birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
+                        birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()
                         if birth_handle:
-                            birth_event = self.db.get_event_from_handle(birth_handle)
+                            birth_event = self.database.get_event_from_handle(birth_handle)
                             if self.year_only:
                                 birth_dobj = birth_event.get_date_object()
                                 if birth_dobj.get_year_valid():
@@ -989,8 +1034,8 @@ class WebReport(Report.Report):
             col_len = n_rows
             for n in link_keys:
                 p_id_list = [ p_id for p_id in person_handle_list if \
-                            (self.db.get_person_from_handle(p_id).get_primary_name().get_surname() \
-                            and (self.db.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
+                            (self.database.get_person_from_handle(p_id).get_primary_name().get_surname() \
+                            and (self.database.get_person_from_handle(p_id).get_primary_name().get_surname()[0] == n) ) ]
                 doc.start_paragraph('IndexLabel')
                 if self.include_alpha_links:
                     doc.write_linktarget("%03d" % a[n])
@@ -999,13 +1044,13 @@ class WebReport(Report.Report):
                 col_len = col_len - 1
 
                 for person_handle in p_id_list:
-                    the_person = self.db.get_person_from_handle(person_handle)
+                    the_person = self.database.get_person_from_handle(person_handle)
                     name = the_person.get_primary_name().get_name()
 
                     if self.birth_dates:
-                        birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
+                        birth_handle = self.database.get_person_from_handle(person_handle).get_birth_handle()
                         if birth_handle:
-                            birth_event = self.db.get_event_from_handle(birth_handle)
+                            birth_event = self.database.get_event_from_handle(birth_handle)
                             if self.year_only:
                                 birth_dobj = birth_event.get_date_object()
                                 if birth_dobj.get_year_valid():
@@ -1078,7 +1123,7 @@ class WebReport(Report.Report):
                                  image_dir_name)
                 return
     
-        ind_list = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
+        ind_list = self.filter.apply(self.database,self.database.get_person_handles(sort_handles=False))
         progress_steps = len(ind_list)
         if len(ind_list) > 1:
             progress_steps = progress_steps+1
@@ -1099,12 +1144,12 @@ class WebReport(Report.Report):
         for l in ind_list:
             my_map[l] = l
         for person_handle in ind_list:
-            person = self.db.get_person_from_handle(person_handle)
+            person = self.database.get_person_from_handle(person_handle)
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)
             tdoc.set_keywords([person.get_primary_name().get_surname(),
                                person.get_primary_name().get_regular_name()])
-            idoc = IndividualPage(self.db,person, self.photos, self.restrict,
+            idoc = IndividualPage(self.database,person, self.photos, self.restrict,
                                   self.private, self.srccomments,
                                   self.include_link, self.use_places,
                                   self.include_mini_tree, my_map, dir_name,
@@ -1152,20 +1197,86 @@ class WebReport(Report.Report):
         cell.set_padding(0.2)
         doc.add_cell_style("NoteCell",cell)
 
-
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-class WebReportDialog(Report.ReportDialog):
+class WebReportOptions(ReportOptions.ReportOptions):
 
-    report_options = {}
+    """
+    Defines options and provides handling interface.
+    """
 
-    def __init__(self,database,person):
-        Report.ReportDialog.__init__(self,database,person, self.report_options)
+    def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
 
-    def add_user_options(self):
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'HTMLod'            : '',
+            'HTMLimg'           : 2,
+            'HTMLrestrictinfo'  : 0,
+            'HTMLincpriv'       : 0,
+            'HTMLcmtxtsi'       : 0, 
+            'HTMLlnktoalphabet' : 0, 
+            'HTMLsplita'        : 0, 
+            'HTMLshorttree'     : 1,
+            'HTMLimagedir'      : 'images', 
+            'HTMLincid'         : 0,
+            'HTMLidurl'         : '',
+            'HTMLlinktidx'      : 1,
+            'HTMLext'           : 'html',
+            'HTMLtreed'         : 3,
+            'HTMLidxt'          : '',
+            'HTMLidxcol'        : 2,
+            'HTMLgendex'        : 0,
+            'HTMLidxbirth'      : 0,
+            'HTMLplaceidx'      : 0,
+            'HTMLyearso'        : 1,
+        }
+
+        self.options_help = {
+        }
+
+    def enable_options(self):
+        # Semi-common options that should be enabled for this report
+        self.enable_dict = {
+            'filter'    : 0,
+        }
+
+    def get_report_filters(self,person):
+        """Set up the list of possible content filters."""
+        if person:
+            name = person.get_primary_name().get_name()
+            handle = person.get_handle()
+        else:
+            name = 'PERSON'
+            handle = ''
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % name)
+        des.add_rule(GenericFilter.IsDescendantOf([handle,1]))
+
+        df = GenericFilter.GenericFilter()
+        df.set_name(_("Descendant Families of %s") % name)
+        df.add_rule(GenericFilter.IsDescendantFamilyOf([handle]))
+
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % name)
+        ans.add_rule(GenericFilter.IsAncestorOf([handle,1]))
+
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([handle]))
+
+        return [all,des,df,ans,com]
+
+    def add_user_options(self,dialog):
         lnk_msg = _("Include a link to the index page")
         priv_msg = _("Do not include records marked private")
         restrict_msg = _("Restrict information on living people")
@@ -1182,46 +1293,78 @@ class WebReportDialog(Report.ReportDialog):
         sep_alpha_msg = _("Split alphabetical sections to separate pages")
         birth_date_msg = _("Append birth dates to the names")
         year_only_msg = _("Use only year of birth")
-
         tree_msg = _("Include short ancestor tree")
+
         self.mini_tree = gtk.CheckButton(tree_msg)
-        self.mini_tree.set_active(1)
+        self.mini_tree.set_active(self.options_dict['HTMLshorttree'])
+
         self.depth = gtk.SpinButton()
         self.depth.set_digits(0)
         self.depth.set_increments(1,2)
         self.depth.set_range(1,10)
         self.depth.set_numeric(gtk.TRUE)
-        self.depth.set_value(3)
+        self.depth.set_value(self.options_dict['HTMLtreed'])
 
         self.use_link = gtk.CheckButton(lnk_msg)
-        self.use_link.set_active(1) 
+        self.use_link.set_active(self.options_dict['HTMLlinktidx'])
+
         self.no_private = gtk.CheckButton(priv_msg)
-        self.no_private.set_active(1)
+        self.no_private.set_active(not self.options_dict['HTMLincpriv'])
+
         self.restrict_living = gtk.CheckButton(restrict_msg)
+        self.restrict_living.set_active(self.options_dict['HTMLrestrictinfo'])
+
+        # FIXME: document this:
+        # 0 -- no images of any kind
+        # 1 -- no living images, but some images
+        # 2 -- any images
+        images = self.options_dict['HTMLimg']
         self.no_images = gtk.CheckButton(no_img_msg)
+        self.no_images.set_active(not images)
+
         self.no_living_images = gtk.CheckButton(no_limg_msg)
+        self.no_living_images.set_sensitive(not images)
+        self.no_living_images.set_active(images in (0,1))
+
         self.no_comments = gtk.CheckButton(no_com_msg)
+        self.no_comments.set_active(not self.options_dict['HTMLcmtxtsi'])
+
         self.include_id = gtk.CheckButton(include_id_msg)
+        self.include_id.set_active(self.options_dict['HTMLincid'])
+
         self.gendex = gtk.CheckButton(gendex_msg)
+        self.gendex.set_active(self.options_dict['HTMLgendex'])
+
         self.places = gtk.CheckButton(places_msg)
+        self.places.set_active(self.options_dict['HTMLplaceidx'])
+
         self.imgdir = gtk.Entry()
-        self.imgdir.set_text("images")
+        self.imgdir.set_text(self.options_dict['HTMLimagedir'])
+
         self.linkpath = gtk.Entry()
-        self.linkpath.set_sensitive(0)
+        self.linkpath.set_sensitive(self.options_dict['HTMLincid'])
+        self.linkpath.set_text(self.options_dict['HTMLidurl'])
+
         self.include_id.connect('toggled',self.show_link)
         self.ext = gtk.Combo()
         self.ext.set_popdown_strings(['.html','.htm','.php','.php3',
                                       '.cgi'])
+        #self.ext.set_active(self.options_dict['HTMLext'])
 
         self.use_alpha_links = gtk.CheckButton(alpha_links_msg)
+        self.use_alpha_links.set_active(self.options_dict['HTMLlnktoalphabet'])
+
         self.use_sep_alpha = gtk.CheckButton(sep_alpha_msg)
-        self.use_sep_alpha.set_sensitive(0)
+        self.use_sep_alpha.set_sensitive(self.options_dict['HTMLlnktoalphabet'])
+        self.use_sep_alpha.set_active(self.options_dict['HTMLsplita'])
+
         self.use_n_cols = gtk.SpinButton()
-        self.use_n_cols.set_value(2)
         self.use_n_cols.set_digits(0)
         self.use_n_cols.set_increments(1,2)
         self.use_n_cols.set_range(1,5)
         self.use_n_cols.set_numeric(gtk.TRUE)
+        self.use_n_cols.set_value(self.options_dict['HTMLidxcol'])
+
         self.ind_template = gtk.Combo()
         template_list = [ Report._default_template ]
         tlist = Report._template_map.keys()
@@ -1234,17 +1377,20 @@ class WebReportDialog(Report.ReportDialog):
         self.ind_template.entry.set_editable(0)
         self.ind_user_template = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
         self.ind_user_template.set_sensitive(0)
+
         self.add_birth_date = gtk.CheckButton(birth_date_msg)
+        self.add_birth_date.set_active(self.options_dict['HTMLidxbirth'])
+
         self.use_year_only = gtk.CheckButton(year_only_msg)
-        self.use_year_only.set_active(1)
-        self.use_year_only.set_sensitive(0)
+        self.use_year_only.set_active(self.options_dict['HTMLyearso'])
+        self.use_year_only.set_sensitive(self.options_dict['HTMLidxbirth'])
 
         self.add_birth_date.connect('toggled',self.on_birth_date_toggled)
 
-        self.add_option(imgdir_msg,self.imgdir)
-        self.add_option('',self.mini_tree)
-        self.add_option(depth_msg,self.depth)
-        self.add_option('',self.use_link)
+        dialog.add_option(imgdir_msg,self.imgdir)
+        dialog.add_option('',self.mini_tree)
+        dialog.add_option(depth_msg,self.depth)
+        dialog.add_option('',self.use_link)
 
         self.mini_tree.connect('toggled',self.on_mini_tree_toggled)
 
@@ -1252,346 +1398,110 @@ class WebReportDialog(Report.ReportDialog):
         self.ind_template.entry.connect('changed',self.ind_template_changed)
 
         title = _("Privacy")
-        self.add_frame_option(title,None,self.no_private)
-        self.add_frame_option(title,None,self.restrict_living)
-        self.add_frame_option(title,None,self.no_images)
-        self.add_frame_option(title,None,self.no_living_images)
-        self.add_frame_option(title,None,self.no_comments)
+        dialog.add_frame_option(title,None,self.no_private)
+        dialog.add_frame_option(title,None,self.restrict_living)
+        dialog.add_frame_option(title,None,self.no_images)
+        dialog.add_frame_option(title,None,self.no_living_images)
+        dialog.add_frame_option(title,None,self.no_comments)
 
         title = _('Index page')
-        self.add_frame_option(title,_('Template'),self.ind_template)
-        self.add_frame_option(title,_("User Template"),self.ind_user_template)
-        self.add_frame_option(title,None,self.use_alpha_links)
-        self.add_frame_option(title,None,self.use_sep_alpha)
-        self.add_frame_option(title,_('Number of columns'),self.use_n_cols)
-        self.add_frame_option(title,None,self.add_birth_date)
-        self.add_frame_option(title,None,self.use_year_only)
+        dialog.add_frame_option(title,_('Template'),self.ind_template)
+        dialog.add_frame_option(title,_("User Template"),self.ind_user_template)
+        dialog.add_frame_option(title,None,self.use_alpha_links)
+        dialog.add_frame_option(title,None,self.use_sep_alpha)
+        dialog.add_frame_option(title,_('Number of columns'),self.use_n_cols)
+        dialog.add_frame_option(title,None,self.add_birth_date)
+        dialog.add_frame_option(title,None,self.use_year_only)
 
         title = _('Advanced')
-        self.add_frame_option(title,'',self.include_id)
-        self.add_frame_option(title,_('GRAMPS ID link URL'),self.linkpath)
-        self.add_frame_option(title,'',self.gendex)
-        self.add_frame_option(title,'',self.places)
-        self.add_frame_option(title,ext_msg,self.ext)
+        dialog.add_frame_option(title,'',self.include_id)
+        dialog.add_frame_option(title,_('GRAMPS ID link URL'),self.linkpath)
+        dialog.add_frame_option(title,'',self.gendex)
+        dialog.add_frame_option(title,'',self.places)
+        dialog.add_frame_option(title,ext_msg,self.ext)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
 
-    def show_link(self,obj):
-        self.linkpath.set_sensitive(obj.get_active())
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Generate Web Site"),_("Web Page"))
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Target Directory")
-
-    def get_target_is_directory(self):
-        """This report creates a directory full of files, not a single file."""
-        return 1
-    
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return "webpage.xml"
-    
-    def get_report_generations(self):
-        """No generations, no page break box."""
-        return (0, 0)
-
-    def get_report_filters(self):
-        """Set up the list of possible content filters."""
-
-        name = self.person.get_primary_name().get_name()
-        
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Direct Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle(),1]))
-
-        df = GenericFilter.GenericFilter()
-        df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(GenericFilter.IsDescendantFamilyOf([self.person.get_handle()]))
-        
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle(),1]))
-
-        return [all,des,df,ans]
-
-    def get_default_directory(self):
-        """Get the name of the directory to which the target dialog
-        box should default.  This value can be set in the preferences
-        panel."""
-        return GrampsKeys.get_web_dir()
-    
-    def set_default_directory(self, value):
-        """Save the name of the current directory, so that any future
-        reports will default to the most recently used directory.
-        This also changes the directory name that will appear in the
-        preferences panel, but does not change the preference in disk.
-        This means that the last directory used will only be
-        remembered for this session of gramps unless the user saves
-        his/her preferences."""
-        GrampsKeys.save_web_dir(value)
-    
-    def make_default_style(self):
-        """Make the default output style for the Web Pages Report."""
-        font = BaseDoc.FontStyle()
-        font.set(bold=1, face=BaseDoc.FONT_SANS_SERIF, size=16)
-        p = BaseDoc.ParagraphStyle()
-        p.set(align=BaseDoc.PARA_ALIGN_CENTER,font=font)
-        p.set_description(_("The style used for the title of the page."))
-        self.default_style.add_style("Title",p)
-        
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header that identifies "
-                            "facts and events."))
-        self.default_style.add_style("EventsTitle",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header for the notes section."))
-        self.default_style.add_style("NotesTitle",p)
-
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,align=BaseDoc.PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the copyright notice."))
-        self.default_style.add_style("Copyright",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header for the sources section."))
-        self.default_style.add_style("SourcesTitle",p)
-
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font)
-        p.set_description(_("The style used on the index page that labels each section."))
-        self.default_style.add_style("IndexLabel",p)
-
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,align=BaseDoc.PARA_ALIGN_CENTER)
-        p.set_description(_("The style used on the index page that labels links to each section."))
-        self.default_style.add_style("IndexLabelLinks",p)
-
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header for the image section."))
-        self.default_style.add_style("GalleryTitle",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header for the siblings section."))
-        self.default_style.add_style("SiblingsTitle",p)
-
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header for the marriages "
-                            "and children section."))
-        self.default_style.add_style("FamilyTitle",p)
-        
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the spouse's name."))
-        self.default_style.add_style("Spouse",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set(size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the general data labels."))
-        self.default_style.add_style("Label",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set_size(12)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the general data."))
-        self.default_style.add_style("Data",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the description of images."))
-        self.default_style.add_style("PhotoDescription",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set(size=12)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the notes associated with images."))
-        self.default_style.add_style("PhotoNote",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set_size(10)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the source information."))
-        self.default_style.add_style("SourceParagraph",p)
-    
-        font = BaseDoc.FontStyle()
-        font.set_size(12)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the note information."))
-        self.default_style.add_style("NotesParagraph",p)
-
-        font = BaseDoc.FontStyle()
-        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
-        p = BaseDoc.ParagraphStyle()
-        p.set(font=font,bborder=1)
-        p.set_description(_("The style used for the header for the URL section."))
-        self.default_style.add_style("UrlTitle",p)
-
-        font = BaseDoc.FontStyle()
-        font.set_size(12)
-        p = BaseDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the URL information."))
-        self.default_style.add_style("UrlList",p)
-
-    #------------------------------------------------------------------------
-    #
-    # Functions related to selecting/changing the current file format
-    #
-    #------------------------------------------------------------------------
-    def make_document(self):
-        """Do Nothing.  This document will be created in the
-        make_report routine."""
-        pass
-
-
-    def setup_format_frame(self):
-        """Do nothing, since we don't want a format frame (HTML only)"""
-        pass
-    
-    #------------------------------------------------------------------------
-    #
-    # Functions related to setting up the dialog window
-    #
-    #------------------------------------------------------------------------
-    def setup_post_process(self):
-        """The format frame is not used in this dialog.  Hide it, and
-        set the output notebook to always display the html template
-        page."""
-        self.output_notebook.set_current_page(1)
-
-    #------------------------------------------------------------------------
-    #
-    # Functions related to retrieving data from the dialog window
-    #
-    #------------------------------------------------------------------------
-
-    def parse_format_frame(self):
-        """The format frame is not used in this dialog."""
-        pass
-    
-    def parse_report_options_frame(self):
-        """Parse the report options frame of the dialog.  Save the
-        user selected choices for later use."""
-        Report.ReportDialog.parse_report_options_frame(self)
-        self.include_link = self.use_link.get_active()
-        self.include_mini_tree = self.mini_tree.get_active()
-
-    def parse_other_frames(self):
+    def parse_user_options(self,dialog):
         """Parse the privacy options frame of the dialog.  Save the
         user selected choices for later use."""
-        self.restrict = self.restrict_living.get_active()
-        self.private = self.no_private.get_active()
-        self.img_dir_text = unicode(self.imgdir.get_text())
-        self.depth_value = self.depth.get_value()
+        
+        self.options_dict['HTMLrestrictinfo'] = int(self.restrict_living.get_active())
+        self.options_dict['HTMLincpriv'] = int(not self.no_private.get_active())
+        self.options_dict['HTMLimagedir'] = unicode(self.imgdir.get_text())
+        self.options_dict['HTMLshorttree'] = int(self.mini_tree.get_active())
+        self.options_dict['HTMLtreed'] = self.depth.get_value_as_int()
+        self.options_dict['HTMLlinktidx'] = int(self.use_link.get_active())
 
-        self.html_ext = unicode(self.ext.entry.get_text().strip())
-        if self.html_ext[0] == '.':
-            self.html_ext = self.html_ext[1:]
-        self.use_id = self.include_id.get_active()
-        self.use_gendex = self.gendex.get_active()
-        self.use_places = self.places.get_active()
-        self.id_link = unicode(self.linkpath.get_text().strip())
-        self.srccomments = self.no_comments.get_active()
-        if self.no_images.get_active() == 1:
-            self.photos = 0
-        elif self.no_living_images.get_active() == 1:
-            self.photos = 1
+        html_ext = unicode(self.ext.entry.get_text().strip())
+        if html_ext[0] == '.':
+            html_ext = html_ext[1:]
+        self.options_dict['HTMLext'] = html_ext
+
+        self.options_dict['HTMLincid'] = int(self.include_id.get_active())
+        self.options_dict['HTMLgendex'] = int(self.gendex.get_active())
+        self.options_dict['HTMLplaceidx'] = int(self.places.get_active())
+        self.options_dict['HTMLidurl'] = unicode(self.linkpath.get_text().strip())
+
+        self.options_dict['HTMLcmtxtsi'] = int(not self.no_comments.get_active())
+        if self.no_images.get_active():
+            photos = 0
+        elif self.no_living_images.get_active():
+            photos = 1
         else:
-            self.photos = 2
+            photos = 2
+        self.options_dict['HTMLimg'] = photos
 
         text = unicode(self.ind_template.entry.get_text())
         if Report._template_map.has_key(text):
             if text == Report._user_template:
-                self.ind_template_name = self.ind_user_template.get_full_path(0)
+                ind_template_name = dialog.ind_user_template.get_full_path(0)
             else:
-                self.ind_template_name = "%s/%s" % (const.template_dir,Report._template_map[text])
+                ind_template_name = "%s/%s" % (const.template_dir,Report._template_map[text])
         else:
-            self.ind_template_name = None
-        self.include_alpha_links = self.use_alpha_links.get_active()
-        if self.include_alpha_links:
-            self.separate_alpha = self.use_sep_alpha.get_active()
+            ind_template_name = None
+        self.options_dict['HTMLidxt'] = ind_template_name
+
+        self.options_dict['HTMLlnktoalphabet'] = int(self.use_alpha_links.get_active())
+
+        if self.options_dict['HTMLlnktoalphabet']:
+            separate_alpha = int(self.use_sep_alpha.get_active())
         else:
-            self.separate_alpha = 0
-        self.n_cols = self.use_n_cols.get_value()
-        self.birth_dates = self.add_birth_date.get_active()
-        self.year_only = self.use_year_only.get_active()
+            separate_alpha = 0
+        self.options_dict['HTMLsplita'] = int(separate_alpha)
+
+        self.options_dict['HTMLidxcol'] = self.use_n_cols.get_value_as_int()
+        self.options_dict['HTMLidxbirth'] = int(self.add_birth_date.get_active())
+        self.options_dict['HTMLyearso'] = int(self.use_year_only.get_active())
+        self.options_dict['HTMLod'] = dialog.target_path
 
     #------------------------------------------------------------------------
     #
     # Callback functions from the dialog
     #
     #------------------------------------------------------------------------
+    def show_link(self,obj):
+        self.linkpath.set_sensitive(obj.get_active())
+
     def on_nophotos_toggled(self,obj):
         """Keep the 'restrict photos' checkbox in line with the 'no
         photos' checkbox.  If there are no photos included, it makes
         no sense to worry about restricting which photos are included,
         now does it?"""
-        if obj.get_active():
-            self.no_living_images.set_sensitive(0)
-        else:
-            self.no_living_images.set_sensitive(1)
+        self.no_living_images.set_sensitive(not obj.get_active())
 
     def on_use_alpha_links_toggled(self,obj):
         """Keep the 'split alpha sections to separate pages' checkbox in 
         line with the 'use alpha links' checkbox.  If there are no alpha
         links included, it makes no sense to worry about splitting or not
         the alpha link target to separate pages."""
-        if obj.get_active():
-            self.use_sep_alpha.set_sensitive(1)
-        else:
-            self.use_sep_alpha.set_sensitive(0)
+        self.use_sep_alpha.set_sensitive(obj.get_active())
 
     def on_mini_tree_toggled(self,obj):
         """Keep the 'Mini tree depth' spin button in line with 
         the 'include short tree' checkbox.  If there is no mini tree included, 
         it makes no sense to worry about its depth."""
-        if obj.get_active():
-            self.depth.set_sensitive(1)
-        else:
-            self.depth.set_sensitive(0)
+        self.depth.set_sensitive(obj.get_active())
 
     def ind_template_changed(self,obj):
         text = unicode(obj.get_text())
@@ -1607,21 +1517,215 @@ class WebReportDialog(Report.ReportDialog):
         """Keep the 'User year only' check button in line with
         the 'Add birth date' checkbox.  If no mini birth date is added
         then it makes no sense to worry about its format."""
-        if obj.get_active():
-            self.use_year_only.set_sensitive(1)
-        else:
-            self.use_year_only.set_sensitive(0)
+        self.use_year_only.set_sensitive(obj.get_active())
 
-    #------------------------------------------------------------------------
-    #
-    # Functions related to creating the actual report document.
-    #
-    #------------------------------------------------------------------------
+    def make_default_style(self,default_style):
+        """Make the default output style for the Web Pages Report."""
+        font = BaseDoc.FontStyle()
+        font.set(bold=1, face=BaseDoc.FONT_SANS_SERIF, size=16)
+        p = BaseDoc.ParagraphStyle()
+        p.set(align=BaseDoc.PARA_ALIGN_CENTER,font=font)
+        p.set_description(_("The style used for the title of the page."))
+        default_style.add_style("Title",p)
+        
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header that identifies "
+                            "facts and events."))
+        default_style.add_style("EventsTitle",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the notes section."))
+        default_style.add_style("NotesTitle",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,align=BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_("The style used for the copyright notice."))
+        default_style.add_style("Copyright",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the sources section."))
+        default_style.add_style("SourcesTitle",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font)
+        p.set_description(_("The style used on the index page that labels each section."))
+        default_style.add_style("IndexLabel",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,align=BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_("The style used on the index page that labels links to each section."))
+        default_style.add_style("IndexLabelLinks",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the image section."))
+        default_style.add_style("GalleryTitle",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the siblings section."))
+        default_style.add_style("SiblingsTitle",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the marriages "
+                            "and children section."))
+        default_style.add_style("FamilyTitle",p)
+        
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the spouse's name."))
+        default_style.add_style("Spouse",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set(size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the general data labels."))
+        default_style.add_style("Label",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the general data."))
+        default_style.add_style("Data",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the description of images."))
+        default_style.add_style("PhotoDescription",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set(size=12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the notes associated with images."))
+        default_style.add_style("PhotoNote",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set_size(10)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the source information."))
+        default_style.add_style("SourceParagraph",p)
+    
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the note information."))
+        default_style.add_style("NotesParagraph",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the URL section."))
+        default_style.add_style("UrlTitle",p)
+
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the URL information."))
+        default_style.add_style("UrlList",p)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class WebReportDialog(Report.ReportDialog):
+
+    def __init__(self,database,person):
+        self.database = database 
+        self.person = person
+        name = "webpage"
+        translated_name = _("Generate Web Site")
+        self.options_class = WebReportOptions(name)
+        self.category = const.CATEGORY_WEB
+        Report.ReportDialog.__init__(self,database,person,self.options_class,
+                                    name,translated_name)
+
+        response = self.window.run()
+        if response == True:
+            try:
+                self.make_report()
+            except (IOError,OSError),msg:
+                ErrorDialog(str(msg))
+        self.window.destroy()
+
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - %s - GRAMPS" % (_("Generate Web Site"),_("Web Page"))
+
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Target Directory")
+
+    def get_target_is_directory(self):
+        """This report creates a directory full of files, not a single file."""
+        return 1
+    
+    def get_default_directory(self):
+        """Get the name of the directory to which the target dialog
+        box should default.  This value can be set in the preferences
+        panel."""
+        return self.options_class.handler.options_dict['HTMLod']    
+
+    def make_document(self):
+        """Do Nothing.  This document will be created in the
+        make_report routine."""
+        pass
+
+    def setup_format_frame(self):
+        """Do nothing, since we don't want a format frame (HTML only)"""
+        pass
+    
+    def setup_post_process(self):
+        """The format frame is not used in this dialog.  Hide it, and
+        set the output notebook to always display the html template
+        page."""
+        self.output_notebook.set_current_page(1)
+
+    def parse_format_frame(self):
+        """The format frame is not used in this dialog."""
+        pass
+    
     def make_report(self):
         """Create the object that will produce the web pages."""
 
         try:
-            MyReport = WebReport(self.db, self.person, self.target_path,
+            MyReport = WebReport(self.database,self.person,self.options_class)
+            """
+            self.target_path,
                                  self.max_gen, self.photos, self.filter,
                                  self.restrict, self.private, self.srccomments,
                                  self.include_link, self.include_mini_tree,
@@ -1632,19 +1736,25 @@ class WebReportDialog(Report.ReportDialog):
                                  self.separate_alpha,self.n_cols,
                                  self.ind_template_name,self.depth_value,
                                  self.birth_dates,self.year_only)
+            """
             MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class MiniTree:
     """
     This is one dirty piece of code, that is why I made it it's own
     class.  I'm sure that someone with more knowledge of GRAMPS can make
     it much cleaner.
     """
-    def __init__(self,db,person,doc,map,depth):
-        self.map = map
+    def __init__(self,db,person,doc,the_map,depth):
+        self.map = the_map
         self.db = db
         self.doc = doc
         self.depth = depth
@@ -1734,8 +1844,20 @@ class MiniTree:
 # 
 #
 #------------------------------------------------------------------------
-def report(database,person):
-    WebReportDialog(database,person)
+def cl_report(database,name,category,options_str_dict):
+
+    clr = Report.CommandLineReport(database,name,category,WebReportOptions,options_str_dict)
+
+    # Exit here if show option was given
+    if clr.show:
+        return
+
+    try:
+        MyReport = WebReport(database,clr.person,clr.option_class)
+        MyReport.write_report()
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
@@ -1743,12 +1865,13 @@ def report(database,person):
 #
 #-------------------------------------------------------------------------
 from PluginMgr import register_report
-
 register_report(
-    report,
-    _("Generate Web Site"),
-    category=_("Web Page"),
+    name = 'webpage',
+    category = const.CATEGORY_WEB,
+    report_class = WebReportDialog,
+    options_class = cl_report,
+    modes = Report.MODE_GUI | Report.MODE_CLI,
+    translated_name = _("Generate Web Site"),
     status=(_("Beta")),
     description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
     )
-
