@@ -276,10 +276,7 @@ def load_plugins(dir):
             a = __import__(plugin)
             _success.append(a)
         except:
-            print _("Failed to load the module: %s") % plugin
-            import traceback
-            traceback.print_exc()
-            _failed.append(plugin)
+            print _("Note: failed to load the plugin module: %s") % plugin
 
 #-------------------------------------------------------------------------
 #
@@ -298,10 +295,7 @@ def reload_plugins(obj):
         try: 
             reload(plugin)
         except:
-            print _("Failed to load the module: %s") % plugin
-            import traceback
-            traceback.print_exc()
-            _failed.append(plugin)
+            print _("Note: failed to load the plugin module: %s") % plugin
             
     # attempt to load the plugins that have failed in the past
     
@@ -309,10 +303,7 @@ def reload_plugins(obj):
         try: 
             __import__(plugin)
         except:
-            print _("Failed to load the module: %s") % plugin
-            import traceback
-            traceback.print_exc()
-            _failed.append(plugin)
+            print _("Note: failed to load the plugin module: %s") % plugin
 
     # attempt to load any new files found
     for dir in _loaddir:
@@ -329,10 +320,7 @@ def reload_plugins(obj):
                 a = __import__(plugin)
                 _success.append(a)
             except:
-                print _("Failed to load the module: %s") % plugin
-                import traceback
-                traceback.print_exc()
-                _failed.append(plugin)
+                print _("Note: failed to load the plugin module: %s") % plugin
 
 #-------------------------------------------------------------------------
 #
