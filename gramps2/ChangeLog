@@ -17,8 +17,8 @@
 	* src/edit_person.glade: Add colon after "Type" label.
 	* src/dialog.glade: Add accelerator to "Address" label of AddrEdit.
 	* src/po/template.po: Update the above corrections in template.
-	* src/plugins/Makefile.am: Ship CustomBookText.py
-	* src/plugins/FtmStyleAncestors.py: Fix coma-sepration for endnotes. 
+	* src/plugins/Makefile.am: Ship CustomBookText.py.
+	* src/plugins/FtmStyleAncestors.py: Fix coma-separation for endnotes. 
 	Translate "Endnotes" sub-heading. Enable pagebreak only when 
 	generation > 1 (was 0).
 	* src/plugins/FtmStyleDescendants.py: Likewise. 
