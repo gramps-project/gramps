@@ -483,9 +483,11 @@ class DelSrcQuery:
                 v = self.db.get_event_from_handle(v_id)
                 if v:
                     commit += self.delete_source(v)
+                    self.db.commit_event(v,trans)
 
             for v in p.get_attribute_list():
                 commit += self.delete_source(v)
+                self.db.commit_event(v,trans)
             if commit > 0:
                 self.db.commit_family(p,trans)
 

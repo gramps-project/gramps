@@ -1,3 +1,6 @@
+2005-02-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditSource.py: commit events after deleting sources
+
 2005-02-16  Eero Tamminen <eerot@sf>
 	* src/plugins/GraphViz.py: 'pagesv' value comes from 'vpages'
 	  field, not 'hpages'
