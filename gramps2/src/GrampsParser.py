@@ -61,6 +61,7 @@ class GrampsParser:
         self.in_note = 0
         self.in_stext = 0
         self.in_scomments = 0
+        self.in_witness = 0
         self.db = database
         self.base = base
         self.photo = None
@@ -100,6 +101,7 @@ class GrampsParser:
 	self.func_list = [None]*50
 	self.func_index = 0
 	self.func = None
+        self.witness_comment = ""
 
         self.func_map = {
             "address"    : (self.start_address, self.stop_address),
@@ -116,7 +118,9 @@ class GrampsParser:
             "childof"    : (self.start_childof,None),
             "city"       : (None, self.stop_city),
             "country"    : (None, self.stop_country),
+            "comment"    : (None, self.stop_comment),
             "created"    : (self.start_created, None),
+            "ref"        : (None, self.stop_ref),
             "database"   : (None, None),
             "date"       : (None, self.stop_date),
             "cause"      : (None, self.stop_cause),
@@ -267,9 +271,11 @@ class GrampsParser:
             self.locations = self.locations + 1
 
     def start_witness(self,attrs):
+        self.in_witness = 1
         if attrs.has_key('ref'):
             self.witness = RelLib.Witness(RelLib.Event.ID,attrs['ref'])
         if attrs.has_key('name'):
+            print "name",attrs['name']
             self.witness = RelLib.Witness(RelLib.Event.NAME,attrs['name'])
         
     def start_coord(self,attrs):
@@ -392,15 +398,16 @@ class GrampsParser:
         self.person.FamilyList.append(self.db.findFamilyNoMap(attrs["ref"]))
 
     def start_name(self,attrs):
-        self.name = RelLib.Name()
-        if attrs.has_key("type"):
-            self.name.setType(attrs["type"])
-        if attrs.has_key("conf"):
-            self.name.conf = int(attrs["conf"])
-        else:
-            self.name.conf = 2
-        if attrs.has_key("priv"):
-            self.name.private = int(attrs["priv"])
+        if not self.in_witness:
+            self.name = RelLib.Name()
+            if attrs.has_key("type"):
+                self.name.setType(attrs["type"])
+            if attrs.has_key("conf"):
+                self.name.conf = int(attrs["conf"])
+            else:
+                self.name.conf = 2
+            if attrs.has_key("priv"):
+                self.name.private = int(attrs["priv"])
 
     def start_last(self,attrs):
         if attrs.has_key('prefix'):
@@ -581,9 +588,21 @@ class GrampsParser:
     def stop_attribute(self,tag):
         self.attribute = None
 
+    def stop_comment(self,tag):
+        if tag.strip():
+            self.witness_comment = tag
+        else:
+            self.witness_comment = ""
+
     def stop_witness(self,tag):
-        self.witness.set_comment(tag)
+        if self.witness_comment:
+            self.witness.set_comment(self.witness_comment)
+        elif tag.strip():
+            self.witness.set_comment(tag)
+        else:
+            self.witness.set_comment("")
         self.event.add_witness(self.witness)
+        self.in_witness = 0
 
     def stop_attr_type(self,tag):
         self.attribute.setType(tag)
@@ -622,10 +641,16 @@ class GrampsParser:
         self.event = None
 
     def stop_name(self,tag):
-        if self.name.getType() == "":
-            self.name.setType("Birth Name")
-        self.person.setPrimaryName (self.name)
-        self.name = None
+        if self.in_witness:
+            self.witness = RelLib.Witness(RelLib.Event.NAME,tag)
+        else:
+            if self.name.getType() == "":
+                self.name.setType("Birth Name")
+            self.person.setPrimaryName (self.name)
+            self.name = None
+
+    def stop_ref(self,tag):
+        self.witness = RelLib.Witness(RelLib.Event.ID,tag)
 
     def stop_place(self,tag):
         if self.placeobj == None:

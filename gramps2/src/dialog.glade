@@ -3551,7 +3551,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="cancel_clicked" last_modification_time="Tue, 18 Feb 2003 16:46:57 GMT"/>
 	    </widget>
 	  </child>
 
@@ -3564,7 +3563,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="ok_clicked" last_modification_time="Tue, 18 Feb 2003 16:46:37 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
