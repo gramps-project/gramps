@@ -1,4 +1,4 @@
-#
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000  Donald N. Allingham
@@ -793,6 +793,8 @@ class StyleSheetList:
         try:
             parser = make_parser()
             parser.setContentHandler(SheetParser(self))
+            if self.file[0:7] != "file://":
+                self.file = "file://" + self.file
             parser.parse(self.file)
         except (IOError,OSError,SAXParseException):
             pass
