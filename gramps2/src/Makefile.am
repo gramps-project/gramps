@@ -107,6 +107,8 @@ gdir_PYTHON = \
 	SelectPerson.py\
 	ArgHandler.py\
 	Exporter.py\
+	GrampsKeys.py\
+	GrampsIniKeys.py\
 	GrampsGconfKeys.py\
 	RecentFiles.py\
 	ReportOptions.py
