@@ -54,7 +54,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 _title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
-_nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
+_nick_re = re.compile(r"(.+)\s*[(\"](.*)[)\"]")
 
 #-------------------------------------------------------------------------
 #
@@ -65,12 +65,8 @@ _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback,parent=None):
     try:
-        trans = database.start_transaction()
-        PatchNames(database,callback,parent,trans)
-        database.add_transaction(trans)
+        PatchNames(database,callback,parent)
     except:
-        database.add_transaction(trans)
-        database.undo()
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
@@ -81,11 +77,11 @@ def runTool(database,active_person,callback,parent=None):
 #-------------------------------------------------------------------------
 class PatchNames:
 
-    def __init__(self,db,callback,parent,trans):
+    def __init__(self,db,callback,parent):
         self.cb = callback
         self.db = db
         self.parent = parent
-        self.trans = trans
+        self.trans = db.start_transaction()
         self.win_key = self
         self.child_windows = {}
         self.title_list = []
@@ -111,7 +107,6 @@ class PatchNames:
         else:
             OkDialog(_('No modifications made'),
                      _("No titles or nicknames were found"))
-            self.cb(0)
 
     def toggled(self,cell,path_string):
         path = tuple([int (i) for i in path_string.split(':')])
@@ -212,8 +207,8 @@ class PatchNames:
             if val:
                 p = self.db.get_person(grp[0])
                 name = p.get_primary_name()
-                name.set_first_name(grp[1])
-                p.set_nick_name(grp[2])
+                name.set_first_name(grp[1].strip())
+                p.set_nick_name(grp[2].strip())
                 self.db.commit_person(p,self.trans)
 
         for grp in self.title_list:
@@ -222,10 +217,11 @@ class PatchNames:
             if val:
                 p = self.db.find_person_from_id(grp[0])
                 name = p.get_primary_name()
-                name.set_first_name(grp[2])
-                name.set_title(grp[1])
+                name.set_first_name(grp[2].strip())
+                name.set_title(grp[1].strip())
                 self.db.commit_person(p,self.trans)
 
+        self.db.add_transaction(self.trans)
         self.close(obj)
         self.cb(1)
         
@@ -240,5 +236,7 @@ register_tool(
     runTool,
     _("Extract information from names"),
     category=_("Database Processing"),
-    description=_("Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field.")
+    description=_("Searches the entire database and attempts to "
+                  "extract titles and nicknames that may be embedded "
+                  "in a person's given name field.")
     )

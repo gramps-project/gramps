@@ -70,9 +70,6 @@ def runTool(database,active_person,callback,parent=None):
         if errs:
             checker.report(0)
     except:
-        database.add_transaction(trans)
-        database.undo()
-
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 

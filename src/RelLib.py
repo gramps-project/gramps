@@ -2663,23 +2663,20 @@ class GrampsDB:
         if len(self.translist) == 0:
             return
         transaction = self.translist.pop()
+        transaction.display()
 
         subitems = transaction.get_data()
         subitems.reverse()
         for (key, gid, data) in subitems:
             if key == PERSON_KEY:
                 if data == None:
-                    print "removing PERSON",gid
                     del self.person_map[gid]
                 else:
-                    print "altering PERSON",gid
                     self.person_map.put(gid,data)
             elif key == FAMILY_KEY:
                 if data == None:
-                    print "removing FAMILY",gid
                     del self.family_map[gid]
                 else:
-                    print "altering FAMILY",gid
                     self.family_map.put(gid,data)
             elif key == SOURCE_KEY:
                 if data == None:
@@ -2688,10 +2685,8 @@ class GrampsDB:
                     self.source_map.put(gid,data)
             elif key == EVENT_KEY:
                 if data == None:
-                    print "removing EVENT",gid
                     del self.event_map[gid]
                 else:
-                    print "altering EVENT",gid
                     self.event_map.put(gid,data)
             elif key == PLACE_KEY:
                 if data == None:
