@@ -806,7 +806,7 @@ class Gramps:
                 os.mkdir(filename)
             except (OSError,IOError), msg:
                 emsg = _("Could not create %s") % filename
-                ErrorDialog(emsg,_("An was detected while attempting to create the file. ",
+                ErrorDialog(emsg,_("An error was detected while attempting to create the file. ",
                                    'The operating system reported "%s"' % str(msg)))
                 return
             except:
@@ -1533,15 +1533,15 @@ class Gramps:
                 os.mkdir(dest)
             except IOError,msg:
                 ErrorDialog(_('Could not create database'),
-                            _('The directgory ~/.gramps/example could not '
+                            _('The directory ~/.gramps/example could not '
                               'be created.' + '\n' + str(msg) ))
             except OSError,msg:
                 ErrorDialog(_('Could not create database'),
-                            _('The directgory ~/.gramps/example could not '
+                            _('The directory ~/.gramps/example could not '
                               'be created.' + '\n' + str(msg) ))
             except:
                 ErrorDialog(_('Could not create database'),
-                            _('The directgory ~/.gramps/example could not '
+                            _('The directory ~/.gramps/example could not '
                               'be created.'))
 
             try:
