@@ -3,6 +3,10 @@
 	* src/docgen/SvgDrawDoc.py: Change from Text/DrawDoc to BaseDoc
 
 2003-09-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py (BookList.save): Enable saving options 
+	which are lists; 
+	(BookParser.startElement, BookParser.endElement): Enable parsing 
+	options which are lists.
 	* src/PaperMenu.py: Change from TextDoc to BaseDoc.
 	* src/Report.py: Likewise.
 	* src/SpreadSheetDoc.py: Likewise. 

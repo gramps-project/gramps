@@ -376,8 +376,16 @@ class BookList:
                 f.write('  <item name="%s">\n' % item.get_name() )
                 options = item.get_options()
                 for opt_index in range(len(options)):
-                    f.write('    <option number="%d" value="%s"/>\n' % (
-                        opt_index,options[opt_index]) )
+                    if type(options[opt_index]) == type([]):
+                        f.write('    <option number="%d" value="" length="%d">\n' % (
+                                opt_index, len(options[opt_index]) ) )
+                        for list_index in range(len(options[opt_index])):
+                            f.write('      <listitem number="%d" value="%s"/>\n' % (
+                                    list_index, options[opt_index][list_index]) )
+                        f.write('    </option>\n')
+                    else:
+                        f.write('    <option number="%d" value="%s"/>\n' % (
+                                opt_index,options[opt_index]) )
                 f.write('    <style name="%s"/>\n' % item.get_style_name() )
                 f.write('  </item>\n')
             f.write('</book>\n')
@@ -417,6 +425,7 @@ class BookParser(handler.ContentHandler):
         self.b = None
         self.i = None
         self.o = None
+        self.an_o = None
         self.s = None
         self.bname = None
         self.iname = None
@@ -435,13 +444,20 @@ class BookParser(handler.ContentHandler):
             self.i = BookItem(attrs['name'])
             self.o = []
         elif tag == "option":
-            self.o.append(attrs['value'])
+            if attrs.has_key('length'):
+                self.an_o = []
+            else:
+                self.an_o = attrs['value']
+        elif tag == "listitem":
+            self.an_o.append(attrs['value'])
         elif tag == "style":
             self.s = attrs['name']
 
     def endElement(self,tag):
         "Overridden class that handles the end of a XML element"
-        if tag == "item":
+        if tag == "option":
+            self.o.append(self.an_o)
+        elif tag == "item":
             self.i.set_options(self.o)
             self.i.set_style_name(self.s)
             self.b.append_item(self.i)
