@@ -1,3 +1,6 @@
+2004-07-28  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/Makefile.am: Uninstall everything that we install.
+
 2004-07-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py, etc.: convert get_id to get_handle
 
