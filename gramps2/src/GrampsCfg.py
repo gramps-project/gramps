@@ -208,6 +208,12 @@ def get_startup():
 def save_startup(val):
     set_int("/apps/gramps/behavior/startup",val,(0,1))
 
+def get_screen_size_checked():
+    return get_bool("/apps/gramps/interface/size-checked")
+
+def save_screen_size_checked(val):
+    set_bool("/apps/gramps/interface/size-checked",val)
+
 def get_autoload():
     return get_bool("/apps/gramps/behavior/autoload")
 
