@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 1.0.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-02-01 20:46-0500\n"
-"Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
+"PO-Revision-Date: 2004-02-01 23:14-0600\n"
+"Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3911,7 +3911,7 @@ msgstr "_Выбрать Файл"
 # !!!FIXME!!!
 #: errdialogs.glade:1086
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
-msgstr "Отметте, если Вы хотите применить этот выбор ко всем утерянным документам (никаких дополнительных вопросов по поводу утерянных документов не будет задано)."
+msgstr "Отметьте, если Вы хотите применить этот выбор ко всем утерянным документам (никаких дополнительных вопросов по поводу утерянных документов не будет задано)."
 
 #: errdialogs.glade:1088
 msgid "_Use this selection for all missing media files"
