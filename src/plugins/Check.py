@@ -136,13 +136,12 @@ class CheckIntegrity:
     #-------------------------------------------------------------------------
     def check_parent_relationships(self):
 
-        family_list = self.db.getFamilyMap().values()[:]
-        for family in family_list:
+        for family in self.db.getFamilyMap().values():
             father = family.getFather()
             mother = family.getMother()
             type = family.getRelationship()
 
-            if not father or not mother:
+            if father == None or mother == None:
                 continue
             if type != "Partners":
                 if father.getGender() == mother.getGender():
