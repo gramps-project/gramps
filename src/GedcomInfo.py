@@ -141,19 +141,16 @@ class GedcomInfoDB:
 
         self.standard = GedcomDescription("GEDCOM 5.5 standard")
         self.standard.set_dest("GEDCOM 5.5")
-        
+
         try:
             file = "%s/gedcom.xml" % const.dataDir
             f = open(file,"r")
         except:
             return
-        
-        try:
-            parser = GedInfoParser(self)
-            parser.parse(f)
-            f.close()
-        except:
-            pass
+
+        parser = GedInfoParser(self)
+        parser.parse(f)
+        f.close()
 
     def add_description(self,name,obj):
         self.map[name] = obj
@@ -198,6 +195,7 @@ class GedInfoParser:
         elif tag == "dest":
             self.current.set_dest(attrs['val'])
         elif tag == "adopt":
+            val = attrs['val']
             if val == 'none':
                 self.current.set_adopt(ADOPT_NONE)
             elif val == 'event':
@@ -212,6 +210,7 @@ class GedInfoParser:
             if attrs['val'] == 'broken':
                 self.current.set_conc(CONC_BROKEN)
         elif tag == "alternate_names":
+            val = attrs['val']
             if val == 'none':
                 self.current.set_alt_name(ALT_NAME_NONE)
             elif val == 'event_aka':
@@ -237,5 +236,5 @@ class GedInfoParser:
             if attrs['val'] == 'place':
                 self.current.set_resi(RESIDENCE_PLAC)
         elif tag == "source_refs":
-            if u2l(attrs['val']) == 'no':
+            if attrs['val'] == 'no':
                 self.current.set_source_refs(SOURCE_REFS_NO)

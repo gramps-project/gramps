@@ -891,6 +891,7 @@ class Gramps:
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
             self.ptabs.set_current_page(self.model2page[model])
+            model.selection.unselect_all()
             model.selection.select_iter(iter);
             itpath = model.model.get_path(iter)
             col = model.tree.get_column(0)

@@ -68,6 +68,9 @@ class ListModel:
             self.double_click = event_func
             self.tree.connect('event',self.button_press)
 
+    def unselect(self):
+        self.selection.unselect_all()
+
     def set_reorderable(self,order):
         self.tree.set_reorderable(order)
         

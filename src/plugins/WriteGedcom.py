@@ -49,6 +49,7 @@ import GenericFilter
 import const
 import Utils
 import Date
+import Calendar
 from intl import gettext as _
 from latin_utf8  import latin_to_utf8
 from GedcomInfo import *
@@ -77,15 +78,15 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _calmap = {
-    Date.HEBREW : (_hmonth, '@#HEBREW@'),
-    Date.FRENCH : (_fmonth, '@#FRENCH R@'),
-    Date.JULIAN : (_month, '@#JULIAN@'),
+    Calendar.Hebrew : (_hmonth, '@#HEBREW@'),
+    Calendar.FrenchRepublic : (_fmonth, '@#FRENCH R@'),
+    Calendar.Julian : (_month, '@#JULIAN@'),
     }
 
 _caldef = {
-    Date.SingleDate.about : "ABT",
-    Date.SingleDate.about : "BEF",
-    Date.SingleDate.about : "AFT",
+    Calendar.ABOUT : "ABT",
+    Calendar.BEFORE : "BEF",
+    Calendar.AFTER : "AFT",
     }
 
 #-------------------------------------------------------------------------
@@ -168,7 +169,7 @@ def addr_append(text,data):
         return "%s, %s" % (text,data)
     else:
         return text
-    
+
 #-------------------------------------------------------------------------
 #
 #
@@ -199,6 +200,12 @@ def make_date(subdate):
     day_valid = subdate.getDayValid()
     mon_valid = subdate.getMonthValid()
     year_valid = subdate.getYearValid()
+
+    # Adjust `mon' so it can be used as index in our _Xmonth arrays.
+    if mon_valid:
+        mon += 1
+    else:
+        mon = 0
 
     if _calmap.has_key(subdate.calendar):
         (mmap,prefix) = _calmap[subdate.calendar]
@@ -370,11 +377,16 @@ class GedcomWriter:
         ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
         ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
 
-        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans])
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") %
+                     person.getPrimaryName().getName())
+        com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+
+        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
         filter_obj.set_menu(self.filter_menu)
 
         gedmap = GedcomInfoDB()
-        
+
         target_obj = self.topDialog.get_widget("target")
         myMenu = gtk.Menu()
         for name in gedmap.get_name_list():
@@ -425,9 +437,9 @@ class GedcomWriter:
             for p in self.db.getPersonKeys():
                 self.plist[p] = 1
         else:
-            for p in cfilter.apply(self.db.getPersonMap().values()):
+            for p in cfilter.apply(self.db, self.db.getPersonMap().values()):
                 self.plist[p.getId()] = 1
-        
+
         self.flist = {}
         self.slist = {}
         for key in self.plist.keys():
@@ -537,8 +549,8 @@ class GedcomWriter:
         if self.source_refs:
             self.write_sources()
         else:
-            self.sbar.set_value(100.0)
-        
+            self.sbar.set_fraction(1.0)
+
         self.g.write("0 TRLR\n")
         self.g.close()
 
@@ -950,10 +962,6 @@ class GedcomWriter:
         if ref.getBase() == None:
             return
 
-        self.g.write("%d SOUR @%s@\n" % (level,self.sid(ref.getBase().getId())))
-        if ref.getPage():
-            self.g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
-
         if self.source_refs:
             self.g.write("%d SOUR @%s@\n" %
                          (level,self.sid(ref.getBase().getId())))
@@ -969,9 +977,9 @@ class GedcomWriter:
                 self.print_date(pfx,ref.getDate())
         else:
             # We put title, page, and date on the SOUR line.
-            # Not using CONC because GeneWeb does not support this.
+            # Not using CONC and CONT because GeneWeb does not support these.
             # TEXT and NOTE will be ignored by GeneWeb, but we can't
-            # output paragaphs in SOUR if we don't use CONC.
+            # output paragaphs in SOUR without CONT.
             sbase = ref.getBase()
             if sbase and sbase.getTitle():
                 txt = sbase.getTitle() + ".  "
