@@ -2,17 +2,30 @@ Please read the COPYING file first.
 
 Requirements
 --------------------------------
-Python 1.5.2 
-(I get some strange floating point errors when using this version: "Python 2.0 (#1, Jun 23 2001, 03:45:59)"  -- Jesper )
+Python 1.5.2 or greater
+Gnome 1.2 or greater
+PyGnome 1.0.53 or greater
 
-Gnome 1.2 (included in Helix Gnome)
-PyGnome 1.0.53 (included in Helix Gnome)
+PyXML 0.6.2 or greater (http://sourceforge.net/project/showfiles.php?group_id=6473)
 
-PyXML 0.6.2 (http://sourceforge.net/project/showfiles.php?group_id=6473)
+Building on non-Linux systems: i18n support and GNU make
+--------------------------------------------------------
+
+Linux has libintl (GNU gettext) built-in the C library. Other systems
+are likely to have libintl as a separate or optional library. Also,
+other systems may have a different make utility.
+
+On those systems, like FreeBSD, you must tell configure where to find
+the libintl library and the libintl.h include file:
+
+CPPFLAGS="-I/usr/local/include -L/usr/local/lib" ./configure --prefix=/usr/local
+
+Once you have done this, if make fails, use gmake (the name FreeBSD
+gives to GNU make) instead.
 
 --------------------------------
 Donald Allingham
-donaldallingham@home.com
+dallingham@users.sourceforge.net
 
 
 
