@@ -132,7 +132,6 @@
       <widget>
 	<class>GtkNotebook</class>
 	<name>notebook3</name>
-	<width>450</width>
 	<height>350</height>
 	<can_focus>True</can_focus>
 	<signal>
@@ -964,7 +963,6 @@
 	    <widget>
 	      <class>GtkCList</class>
 	      <name>loc_list</name>
-	      <width>500</width>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>select_row</name>
@@ -1117,7 +1115,6 @@
 	  <widget>
 	    <class>GtkText</class>
 	    <name>place_note</name>
-	    <width>500</width>
 	    <can_focus>True</can_focus>
 	    <editable>True</editable>
 	    <text></text>
@@ -1604,6 +1601,36 @@
 	  <child_name>Notebook:tab</child_name>
 	  <name>label261</name>
 	  <label>Internet</label>
+	  <justify>GTK_JUSTIFY_CENTER</justify>
+	  <wrap>False</wrap>
+	  <xalign>0.5</xalign>
+	  <yalign>0.5</yalign>
+	  <xpad>0</xpad>
+	  <ypad>0</ypad>
+	</widget>
+
+	<widget>
+	  <class>GtkScrolledWindow</class>
+	  <name>scrolledwindow31</name>
+	  <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
+	  <vscrollbar_policy>GTK_POLICY_ALWAYS</vscrollbar_policy>
+	  <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
+	  <vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
+
+	  <widget>
+	    <class>GtkText</class>
+	    <name>refinfo</name>
+	    <can_focus>True</can_focus>
+	    <editable>False</editable>
+	    <text></text>
+	  </widget>
+	</widget>
+
+	<widget>
+	  <class>GtkLabel</class>
+	  <child_name>Notebook:tab</child_name>
+	  <name>label278</name>
+	  <label>References</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>0.5</xalign>

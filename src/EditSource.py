@@ -43,6 +43,7 @@ import libglade
 import intl
 import const
 import utils
+import Config
 from RelLib import *
 import ImageSelect
 
@@ -62,6 +63,7 @@ class EditSource:
         self.callback = func
         self.path = db.getSavePath()
         self.not_loaded = 1
+        self.ref_not_loaded = 1
 
         self.top_window = libglade.GladeXML(const.gladeFile,"sourceEditor")
         sid = "s%s" % source.getId()
@@ -71,7 +73,8 @@ class EditSource:
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.note = self.top_window.get_widget("source_note")
-
+        self.refinfo = self.top_window.get_widget("refinfo")
+        
         self.title.set_text(source.getTitle())
         self.author.set_text(source.getAuthor())
         self.pubinfo.set_text(source.getPubInfo())
@@ -87,6 +90,7 @@ class EditSource:
             "on_switch_page" : self.on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
+            "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_sourceapply_clicked" : self.on_source_apply_clicked
             })
 
@@ -96,9 +100,101 @@ class EditSource:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
-        self.top.editable_enters(self.title);
-        self.top.editable_enters(self.author);
-        self.top.editable_enters(self.pubinfo);
+        self.top.editable_enters(self.title)
+        self.top.editable_enters(self.author)
+        self.top.editable_enters(self.pubinfo)
+
+    def display_references(self):
+        p_event_list = []
+        p_attr_list = []
+        p_addr_list = []
+        p_name_list = []
+        m_list = []
+        f_event_list = []
+        f_attr_list = []
+        p_list = []
+        for p in self.db.getPlaceMap().values():
+            name = p.get_title()
+            for sref in p.getSourceRefList():
+                if sref.getBase() == self.source:
+                    p_list.append(name)
+        for p in self.db.getPersonMap().values():
+            name = Config.nameof(p)
+            for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
+                for sref in v.getSourceRefList():
+                    if sref.getBase() == self.source:
+                        p_event_list.append((name,v.getName()))
+            for v in p.getAttributeList():
+                for sref in v.getSourceRefList():
+                    if sref.getBase() == self.source:
+                        p_attr_list.append((name,v.getType()))
+            for v in p.getAlternateNames() + [p.getPrimaryName()]:
+                for sref in v.getSourceRefList():
+                    if sref.getBase() == self.source:
+                        p_name_list.append((name,v.getName()))
+            for v in p.getAddressList():
+                for sref in v.getSourceRefList():
+                    if sref.getBase() == self.source:
+                        p_addr_list.append((name,v.getStreet()))
+        for p in self.db.getObjectMap().values():
+            name = p.getDescription()
+            for sref in p.getSourceRefList():
+                if sref.getBase() == self.source:
+                    m_list.append(name)
+        for p in self.db.getFamilyMap().values():
+            f = p.getFather()
+            m = p.getMother()
+            if f and m:
+                name = _("%s and %s") % (Config.nameof(f),Config.nameof(m))
+            elif f:
+                name = "%s" % Config.nameof(f)
+            else:
+                name = "%s" % Config.nameof(m)
+            for v in p.getEventList():
+                for sref in v.getSourceRefList():
+                    if sref.getBase() == self.source:
+                        f_event_list.append((n,v.getName()))
+            for v in p.getAttributeList():
+                for sref in v.getSourceRefList():
+                    if sref.getBase() == self.source:
+                        f_attr_list.append((name,v.getType()))
+
+        add = self.refinfo.insert_defaults
+        if len(p_event_list) > 0:
+            add(_("Individual Events"))
+            add("\n-----------------------------\n")
+            for p in p_event_list:
+                add("%s: %s\n" % (p[0],const.display_pevent(p[1])))
+        if len(p_attr_list) > 0:
+            add(_("Individual Attributes"))
+            add("\n-----------------------------\n")
+            for p in p_attr_list:
+                add("%s: %s\n" % (p[0],const.display_pattr(p[1])))
+        if len(p_name_list) > 0:
+            add(_("Individual Names"))
+            add("\n-----------------------------\n")
+            for p in p_name_list:
+                add("%s: %s\n" % p)
+        if len(f_event_list) > 0:
+            add(_("Family Events"))
+            add("\n-----------------------------\n")
+            for p in f_event_list:
+                add("%s: %s\n" % (p[0],const.display_fevent(p[1])))
+        if len(f_attr_list) > 0:
+            add(_("Family Attributes"))
+            add("\n-----------------------------\n")
+            for p in f_event_list:
+                add("%s: %s\n" % (p[0],const.display_fattr(p[1])))
+        if len(m_list) > 0:
+            add(_("Media Objects"))
+            add("\n-----------------------------\n")
+            for p in m_event_list:
+                add("%s\n" % m)
+        if len(m_list) > 0:
+            add(_("Places"))
+            add("\n-----------------------------\n")
+            for p in p_list:
+                add("%s\n" % m)
 
     def on_source_apply_clicked(self,obj):
 
@@ -130,4 +226,61 @@ class EditSource:
         if page == 2 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
+        elif page == 3 and self.ref_not_loaded:
+            self.ref_not_loaded = 0
+            self.display_references()
+
+
+class DelSrcQuery:
+    def __init__(self,source,db,update):
+        self.source = source
+        self.db = db
+        self.update = update
+
+    def delete_source(self,object):
+        m = 0
+        l = []
+        for sref in object.getSourceRefList():
+            if sref.getBase() != self.source:
+                l.append(sref)
+            else:
+                m = 1
+        if m:
+            object.setSourceRefList(l)
+
+    def query_response(self,ans):
+        if ans == 1:
+            return
+        del self.db.getSourceMap()[self.source.getId()]
+        utils.modified()
+
+        for p in self.db.getPersonMap().values():
+            for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
+                self.delete_source(v)
+
+            for v in p.getAttributeList():
+                self.delete_source(v)
+
+            for v in p.getAlternateNames() + [p.getPrimaryName()]:
+                self.delete_source(v)
+
+            for v in p.getAddressList():
+                self.delete_source(v)
+
+        for p in self.db.getFamilyMap().values():
+            for v in p.getEventList():
+                self.delete_source(v)
+
+            for v in p.getAttributeList():
+                self.delete_source(v)
+
+        for p in self.db.getObjectMap().values():
+            self.delete_source(p)
+
+        for p in self.db.getPlaceMap().values():
+            self.delete_source(p)
+
+        self.update(0)
+
+
 

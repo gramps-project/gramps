@@ -54,7 +54,6 @@ from RelLib import *
 import const
 import sort
 import utils
-import Config
 
 class AddSpouse:
     def __init__(self,db,person,update,addperson):

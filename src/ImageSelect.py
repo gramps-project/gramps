@@ -366,8 +366,9 @@ class Gallery(ImageSelect):
     #
     #-------------------------------------------------------------------------
     def popup_change_description(self, obj):
-        photo = self.dataobj.getPhotoList()[self.selectedIcon]
-        LocalMediaProperties(photo,self.path)
+        if self.selectedIcon >=0:
+            photo = self.dataobj.getPhotoList()[self.selectedIcon]
+            LocalMediaProperties(photo,self.path)
 
 
 class LocalMediaProperties:

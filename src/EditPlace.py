@@ -63,6 +63,7 @@ class EditPlace:
         self.callback = func
         self.path = db.getSavePath()
         self.not_loaded = 1
+        self.ref_not_loaded = 1
         self.lists_changed = 0
         if place:
             self.srcreflist = place.getSourceRefList()
@@ -105,6 +106,7 @@ class EditPlace:
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
+        self.refinfo = self.top_window.get_widget("refinfo")
 
         self.note.set_point(0)
         self.note.insert_defaults(place.getNote())
@@ -148,7 +150,7 @@ class EditPlace:
 
         self.redraw_url_list()
         self.redraw_location_list()
-
+        
     def update_lists(self):
         self.place.setUrlList(self.ulist)
         self.place.set_alternate_locations(self.llist)
@@ -232,6 +234,9 @@ class EditPlace:
         if page == 3 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
+        elif page == 5 and self.ref_not_loaded:
+            self.ref_not_loaded = 0
+            self.display_references()
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -294,6 +299,48 @@ class EditPlace:
         self.loc_state.set_text(loc.get_state())
         self.loc_country.set_text(loc.get_country())
 
+    def display_references(self):
+        pevent = []
+        fevent = []
+        for p in self.db.getPersonMap().values():
+            for event in [p.getBirth(), p.getDeath()] + p.getEventList():
+                if event.getPlace() == self.place:
+                    pevent.append((p,event))
+        for f in self.db.getFamilyMap().values():
+            for event in f.getEventList():
+                if event.getPlace() == self.place:
+                    fevent.append((f,event))
+                    
+        self.refinfo.set_point(0)
+        self.refinfo.set_word_wrap(1)
+
+        if len(pevent) > 0:
+            self.refinfo.insert_defaults(_("People") + "\n")
+            self.refinfo.insert_defaults("_________________________\n\n")
+            t = _("%s [%s]: event %s\n")
+
+            for e in pevent:
+                msg = t % (Config.nameof(e[0]),e[0].getId(),e[1].getName())
+                self.refinfo.insert_defaults(msg)
+
+        if len(fevent) > 0:
+            self.refinfo.insert_defaults("\n%s\n" % _("Families"))
+            self.refinfo.insert_defaults("_________________________\n\n")
+            t = _("%s [%s]: event %s\n")
+
+            for e in fevent:
+                father = e[0].getFather()
+                mother = e[0].getMother()
+                if father and mother:
+                    fname = "%s and %s" % (Config.nameof(father),Config.nameof(mother))
+                elif father:
+                    fname = "%s" % Config.nameof(father)
+                else:
+                    fname = "%s" % Config.nameof(mother)
+
+                msg = t % (fname,e[0].getId(),e[1].getName())
+                self.refinfo.insert_defaults(msg)
+        
 #-------------------------------------------------------------------------
 #
 # 
@@ -316,56 +363,23 @@ def src_changed(parent):
 
 class DeletePlaceQuery:
 
-    def __init__(self,db,place,update,pevent,fevent):
+    def __init__(self,place,db,update):
         self.db = db
         self.place = place
         self.update = update
-        self.pevent = pevent
-        self.fevent = fevent
         
-        msg = []
-        self.xml = libglade.GladeXML(const.gladeFile,"place_query")
-        self.xml.signal_autoconnect({
-            'on_force_delete_clicked': self.on_force_delete_clicked,
-            'destroy_passed_object' : utils.destroy_passed_object}) 
-        
-        textbox = self.xml.get_widget("text")
-        textbox.set_point(0)
-        textbox.set_word_wrap(1)
-
-        if len(pevent) > 0:
-            textbox.insert_defaults(_("People") + "\n")
-            textbox.insert_defaults("_________________________\n\n")
-            t = _("%s [%s]: event %s\n")
-
-            for e in pevent:
-                msg = t % (Config.nameof(e[0]),e[0].getId(),e[1].getName())
-                textbox.insert_defaults(msg)
-
-        if len(fevent) > 0:
-            textbox.insert_defaults("\n%s\n" % _("Families"))
-            textbox.insert_defaults("_________________________\n\n")
-            t = _("%s [%s]: event %s\n")
-
-            for e in fevent:
-                father = e[0].getFather()
-                mother = e[0].getMother()
-                if father and mother:
-                    fname = "%s and %s" % (Config.nameof(father),Config.nameof(mother))
-                elif father:
-                    fname = "%s" % Config.nameof(father)
-                else:
-                    fname = "%s" % Config.nameof(mother)
-
-                msg = t % (fname,e[0].getId(),e[1].getName())
-                textbox.insert_defaults(msg)
-        
-    def on_force_delete_clicked(self,obj):
-        for event in self.pevent + self.fevent:
-            event[1].setPlace(None)
-        map = self.db.getPlaceMap()
-        del map[self.place.getId()]
+    def query_response(self,ans):
+        if ans == 1:
+            return
+        del self.db.getPlaceMap()[self.place.getId()]
         utils.modified()
-        utils.destroy_passed_object(obj)
+
+        for p in self.db.getPersonMap().values():
+            for event in [p.getBirth(), p.getDeath()] + p.getEventList():
+                if event.getPlace() == self.place:
+                    event.setPlace(None)
+        for f in self.db.getFamilyMap().values():
+            for event in f.getEventList():
+                if event.getPlace() == self.place:
+                    event.setPlace(None)
         self.update(0)
-    

@@ -495,41 +495,99 @@ def on_add_place_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_delete_source_clicked(obj):
-    pass
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_delete_place_clicked(obj):
     if len(obj.selection) == 0:
         return
     else:
         index = obj.selection[0]
 
-    pevent = []
-    fevent = []
+    used = 0
     place = obj.get_row_data(index)
     for p in database.getPersonMap().values():
         for event in [p.getBirth(), p.getDeath()] + p.getEventList():
             if event.getPlace() == place:
-                pevent.append((p,event))
+                used = 1
     for f in database.getFamilyMap().values():
         for event in f.getEventList():
             if event.getPlace() == place:
-                fevent.append((f,event))
+                used = 1
 
-    if len(pevent) > 0 or len(fevent) > 0:
+    if used == 1:
         import EditPlace
-        EditPlace.DeletePlaceQuery(database,place,update_display,pevent,fevent)
+        ans = EditPlace.DeletePlaceQuery(place,database,update_display)
+        msg = _("This place is currently being used. Delete anyway?")
+        GnomeQuestionDialog(msg,ans.query_response)
     else:
         map = database.getPlaceMap()
         del map[place.getId()]
         utils.modified()
         update_display(0)
-        
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+
+
+def on_delete_source_clicked(obj):
+    import EditSource
+    
+    if len(obj.selection) == 0:
+        return
+    else:
+        index = obj.selection[0]
+
+    source = obj.get_row_data(index)
+
+    ans = EditSource.DelSrcQuery(source,database,update_display)
+
+    if is_source_used(source):
+        msg = _("This source is currently being used. Delete anyway?")
+        GnomeQuestionDialog(msg,ans.query_response)
+    else:
+        map = database.getSourceMap()
+        del map[source.getId()]
+        utils.modified()
+        update_display(0)
+
+def is_source_used(source):
+    for p in database.getPlaceMap().values():
+        for sref in p.getSourceRefList():
+            if sref.getBase() == source:
+                return 1
+    for p in database.getPersonMap().values():
+        for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
+            for sref in v.getSourceRefList():
+                if sref.getBase() == source:
+                    return 1
+        for v in p.getAttributeList():
+            for sref in v.getSourceRefList():
+                if sref.getBase() == source:
+                    return 1
+        for v in p.getAlternateNames() + [p.getPrimaryName()]:
+            for sref in v.getSourceRefList():
+                if sref.getBase() == source:
+                    return 1
+        for v in p.getAddressList():
+            for sref in v.getSourceRefList():
+                if sref.getBase() == source:
+                    return 1
+    for p in database.getObjectMap().values():
+        for sref in p.getSourceRefList():
+            if sref.getBase() == source:
+                return 1
+    for p in database.getFamilyMap().values():
+        for v in p.getEventList():
+            for sref in v.getSourceRefList():
+                if sref.getBase() == source:
+                    return 1
+        for v in p.getAttributeList():
+            for sref in v.getSourceRefList():
+                if sref.getBase() == source:
+                    return 1
+    return 0
+
 #-------------------------------------------------------------------------
 #
 #
