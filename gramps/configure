@@ -602,6 +602,7 @@ PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
 
 
 
+
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
   if test -f $ac_dir/install-sh; then
@@ -633,7 +634,7 @@ ac_configure=$ac_aux_dir/configure # This should be Cygnus configure.
 # SVR4 /usr/ucb/install, which tries to use the nonexistent group "staff"
 # ./install, which can be erroneously created by make from ./install.sh.
 echo $ac_n "checking for a BSD compatible install""... $ac_c" 1>&6
-echo "configure:637: checking for a BSD compatible install" >&5
+echo "configure:638: checking for a BSD compatible install" >&5
 if test -z "$INSTALL"; then
 if eval "test \"`echo '$''{'ac_cv_path_install'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -686,7 +687,7 @@ test -z "$INSTALL_SCRIPT" && INSTALL_SCRIPT='${INSTALL_PROGRAM}'
 test -z "$INSTALL_DATA" && INSTALL_DATA='${INSTALL} -m 644'
 
 echo $ac_n "checking whether ${MAKE-make} sets \${MAKE}""... $ac_c" 1>&6
-echo "configure:690: checking whether ${MAKE-make} sets \${MAKE}" >&5
+echo "configure:691: checking whether ${MAKE-make} sets \${MAKE}" >&5
 set dummy ${MAKE-make}; ac_make=`echo "$2" | sed 'y%./+-%__p_%'`
 if eval "test \"`echo '$''{'ac_cv_prog_make_${ac_make}_set'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -716,7 +717,7 @@ fi
 # Extract the first word of "gcc", so it can be a program name with args.
 set dummy gcc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:720: checking for $ac_word" >&5
+echo "configure:721: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -746,7 +747,7 @@ if test -z "$CC"; then
   # Extract the first word of "cc", so it can be a program name with args.
 set dummy cc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:750: checking for $ac_word" >&5
+echo "configure:751: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -797,7 +798,7 @@ fi
       # Extract the first word of "cl", so it can be a program name with args.
 set dummy cl; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:801: checking for $ac_word" >&5
+echo "configure:802: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -829,7 +830,7 @@ fi
 fi
 
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:833: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+echo "configure:834: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
 
 ac_ext=c
 # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -840,12 +841,12 @@ cross_compiling=$ac_cv_prog_cc_cross
 
 cat > conftest.$ac_ext << EOF
 
-#line 844 "configure"
+#line 845 "configure"
 #include "confdefs.h"
 
 main(){return(0);}
 EOF
-if { (eval echo configure:849: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:850: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cc_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -871,12 +872,12 @@ if test $ac_cv_prog_cc_works = no; then
   { echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&2; exit 1; }
 fi
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:875: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:876: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cc_cross" 1>&6
 cross_compiling=$ac_cv_prog_cc_cross
 
 echo $ac_n "checking whether we are using GNU C""... $ac_c" 1>&6
-echo "configure:880: checking whether we are using GNU C" >&5
+echo "configure:881: checking whether we are using GNU C" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gcc'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -885,7 +886,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:889: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:890: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
   ac_cv_prog_gcc=yes
 else
   ac_cv_prog_gcc=no
@@ -904,7 +905,7 @@ ac_test_CFLAGS="${CFLAGS+set}"
 ac_save_CFLAGS="$CFLAGS"
 CFLAGS=
 echo $ac_n "checking whether ${CC-cc} accepts -g""... $ac_c" 1>&6
-echo "configure:908: checking whether ${CC-cc} accepts -g" >&5
+echo "configure:909: checking whether ${CC-cc} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cc_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -940,7 +941,7 @@ fi
 # Extract the first word of "gnome-config", so it can be a program name with args.
 set dummy gnome-config; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:944: checking for $ac_word" >&5
+echo "configure:945: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_HAVE_GNOME_CONFIG'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -967,10 +968,11 @@ else
   echo "$ac_t""no" 1>&6
 fi
 
+GNOMEHELP=`gnome-config --prefix`
 
 
 echo $ac_n "checking Python bindings for sax/xml""... $ac_c" 1>&6
-echo "configure:974: checking Python bindings for sax/xml" >&5
+echo "configure:976: checking Python bindings for sax/xml" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1003,7 +1005,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python bindings for gtk+""... $ac_c" 1>&6
-echo "configure:1007: checking Python bindings for gtk+" >&5
+echo "configure:1009: checking Python bindings for gtk+" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1029,7 +1031,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python bindings for GNOME""... $ac_c" 1>&6
-echo "configure:1033: checking Python bindings for GNOME" >&5
+echo "configure:1035: checking Python bindings for GNOME" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1055,7 +1057,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python/libglade bindings""... $ac_c" 1>&6
-echo "configure:1059: checking Python/libglade bindings" >&5
+echo "configure:1061: checking Python/libglade bindings" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1081,7 +1083,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python/GNOME bindings for libglade""... $ac_c" 1>&6
-echo "configure:1085: checking Python/GNOME bindings for libglade" >&5
+echo "configure:1087: checking Python/GNOME bindings for libglade" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1109,7 +1111,7 @@ echo "$ac_t""ok" 1>&6
 
 
 echo $ac_n "checking for headers required to compile python extensions""... $ac_c" 1>&6
-echo "configure:1113: checking for headers required to compile python extensions" >&5
+echo "configure:1115: checking for headers required to compile python extensions" >&5
 py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
 py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
 PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
@@ -1280,6 +1282,7 @@ s%@PYTHON@%$PYTHON%g
 s%@ZIP@%$ZIP%g
 s%@PYTHON_VERSION@%$PYTHON_VERSION%g
 s%@PACKAGE@%$PACKAGE%g
+s%@GNOMEHELP@%$GNOMEHELP%g
 s%@INSTALL_PROGRAM@%$INSTALL_PROGRAM%g
 s%@INSTALL_SCRIPT@%$INSTALL_SCRIPT%g
 s%@INSTALL_DATA@%$INSTALL_DATA%g

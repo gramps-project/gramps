@@ -67,6 +67,7 @@ import EditSource
 import EditPerson
 import EditPlace
 import Marriage
+import Find
 
 #-------------------------------------------------------------------------
 #
@@ -166,6 +167,23 @@ def deathday(person):
 #
 #
 #-------------------------------------------------------------------------
+def find_goto_to(person):
+    change_active_person(person)
+    goto_active_person()
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_find_activate(obj):
+    Find.Find(person_list,find_goto_to)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def delete_event(widget, event):
     widget.hide()
     if utils.wasModified():
@@ -214,7 +232,19 @@ def on_about_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_contents_activate(obj):
-    GnomeOkDialog(_("Sorry.  Online help for gramps is currently under development.\nUnfortunately, it is not yet ready."))
+    import gnome.help
+
+    gnome.help.display("gramps-manual","index.html")
+
+#-------------------------------------------------------------------------
+#
+# Display the help box
+#
+#-------------------------------------------------------------------------
+def on_writing_extensions_activate(obj):
+    import gnome.help
+
+    gnome.help.display("extending-gramps","index.html")
     
 #-------------------------------------------------------------------------
 #
@@ -2963,6 +2993,7 @@ def main(arg):
         "on_exit_activate"                  : on_exit_activate,
         "on_family1_activate"               : on_family1_activate,
         "on_father_next_clicked"            : on_father_next_clicked,
+        "on_find_activate"                  : on_find_activate,
         "on_fv_prev_clicked"                : on_fv_prev_clicked,
         "on_home_clicked"                   : on_home_clicked,
         "on_mother_next_clicked"            : on_mother_next_clicked,
@@ -2991,6 +3022,7 @@ def main(arg):
         "on_spouselist_changed"             : on_spouselist_changed,
         "on_swap_clicked"                   : on_swap_clicked,
         "on_tools_clicked"                  : on_tools_clicked,
+        "on_writing_extensions_activate"    : on_writing_extensions_activate,
         })	
 
     database = RelDataBase()
