@@ -680,7 +680,7 @@ class BookReportSelector:
             if data[1] == _("Title"):
                 data.append(_("Not Applicable"))
             else:
-                pname = self.db.find_person_from_id(options[0])
+                pname = self.db.try_to_find_person_from_id(options[0])
                 data.append(pname.get_primary_name().get_regular_name())
             self.bk_model.add(data)
 

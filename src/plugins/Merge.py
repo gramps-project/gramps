@@ -147,7 +147,7 @@ class Merge:
         if (not p1_id) or (p1_id in id_list):
             return
         id_list.append(p1_id)
-        p1 = self.db.find_person_from_id(p1_id)
+        p1 = self.db.try_to_find_person_from_id(p1_id)
         f1_id = p1.get_main_parents_family_id()
         if f1_id:
             f1 = self.db.find_family_from_id(f1_id)
@@ -179,7 +179,7 @@ class Merge:
         males = {}
         females = {}
         for p1_id in self.person_list:
-            p1 = self.db.find_person_from_id(p1_id)
+            p1 = self.db.try_to_find_person_from_id(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
             if p1.get_gender() == RelLib.Person.male:
                 if males.has_key(key):
@@ -196,7 +196,7 @@ class Merge:
 
         num = 0
         for p1key in self.person_list:
-            p1 = self.db.find_person_from_id(p1key)
+            p1 = self.db.try_to_find_person_from_id(p1key)
             if num % 25 == 0:
                 self.progress_update((float(num)/float(length))*100)
             num = num + 1
@@ -212,7 +212,7 @@ class Merge:
                 index = index + 1
                 if p1key == p2key:
                     continue
-                p2 = self.db.find_person_from_id(p2key)
+                p2 = self.db.try_to_find_person_from_id(p2key)
                 if self.map.has_key(p2key):
                     (v,c) = self.map[p2key]
                     if v == p1key:
@@ -292,8 +292,8 @@ class Merge:
         for (c,p1key,p2key) in list:
             c1 = "%5.2f" % c
             c2 = "%5.2f" % (100-c)
-            pn1 = self.db.find_person_from_id(p1key).get_primary_name().get_name()
-            pn2 = self.db.find_person_from_id(p2key).get_primary_name().get_name()
+            pn1 = self.db.try_to_find_person_from_id(p1key).get_primary_name().get_name()
+            pn2 = self.db.try_to_find_person_from_id(p2key).get_primary_name().get_name()
             self.list.add([c, pn1, pn2,c2],(p1key,p2key))
 
     def on_do_merge_clicked(self,obj):
@@ -302,8 +302,8 @@ class Merge:
             return
 
         (p1,p2) = self.list.get_object(iter)
-        pn1 = self.db.find_person_from_id(p1)
-        pn2 = self.db.find_person_from_id(p2)
+        pn1 = self.db.try_to_find_person_from_id(p1)
+        pn2 = self.db.try_to_find_person_from_id(p2)
         MergeData.MergePeople(self.parent,self.db,pn1,pn2,self.on_update)
 
     def on_update(self,p1_id,p2_id,old_id):
@@ -438,13 +438,13 @@ class Merge:
         if not p1_id:
             name1 = ""
         else:
-            p1 = self.db.find_place_from_id(p1_id)
+            p1 = self.db.try_to_find_place_from_id(p1_id)
             name1 = p1.get_title()
 
         if not p2_id:
             name2 = ""
         else:
-            p2 = self.db.find_place_from_id(p2_id)
+            p2 = self.db.try_to_find_place_from_id(p2_id)
             name2 = p2.get_title()
         
         if not (name1 and name2):
@@ -540,12 +540,12 @@ class Merge:
             f2 = self.db.find_family_from_id(f2_id)
             dad1_id = f1.get_father_id()
             if dad1_id:
-            	dad1 = get_name_obj(self.db.find_person_from_id(dad1_id))
+            	dad1 = get_name_obj(self.db.try_to_find_person_from_id(dad1_id))
             else:
                 dad1 = None
             dad2_id = f2.get_father_id()
             if dad2_id:
-            	dad2 = get_name_obj(self.db.find_person_from_id(dad2_id))
+            	dad2 = get_name_obj(self.db.try_to_find_person_from_id(dad2_id))
             else:
                 dad2 = None
             
@@ -558,12 +558,12 @@ class Merge:
             
             mom1_id = f1.get_mother_id()
             if mom1_id:
-            	mom1 = get_name_obj(self.db.find_person_from_id(mom1_id))
+            	mom1 = get_name_obj(self.db.try_to_find_person_from_id(mom1_id))
             else:
                 mom1 = None
             mom2_id = f2.get_mother_id()
             if mom2_id:
-            	mom2 = get_name_obj(self.db.find_person_from_id(mom2_id))
+            	mom2 = get_name_obj(self.db.try_to_find_person_from_id(mom2_id))
             else:
                 mom2 = None
 
@@ -584,8 +584,8 @@ class Merge:
                         if father1_id == father2_id:
                             chance = chance + 1
                         else:
-                            father1 = self.db.find_person_from_id(father1_id)
-                            father2 = self.db.find_person_from_id(father2_id)
+                            father1 = self.db.try_to_find_person_from_id(father1_id)
+                            father2 = self.db.try_to_find_person_from_id(father2_id)
                             fname1 = get_name_obj(father1)
                             fname2 = get_name_obj(father2)
                             value = self.name_match(fname1,fname2)
@@ -598,8 +598,8 @@ class Merge:
                         if mother1_id == mother2_id:
                             chance = chance + 1
                         else:
-                            mother1 = self.db.find_person_from_id(mother1_id)
-                            mother2 = self.db.find_person_from_id(mother2_id)
+                            mother1 = self.db.try_to_find_person_from_id(mother1_id)
+                            mother2 = self.db.try_to_find_person_from_id(mother2_id)
                             mname1 = get_name_obj(mother1)
                             mname2 = get_name_obj(mother2)
                             value = self.name_match(mname1,mname2)

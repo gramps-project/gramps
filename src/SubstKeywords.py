@@ -68,7 +68,7 @@ class SubstKeywords:
     def __init__(self,database,person_id):
         """Creates a new object and associates a person with it."""
 
-        person = database.find_person_from_id(person_id)
+        person = database.try_to_find_person_from_id(person_id)
         self.n = person.get_primary_name().get_regular_name()
         self.N = person.get_primary_name().get_name()
         self.b = ""
@@ -86,14 +86,14 @@ class SubstKeywords:
             self.b = birth.get_date()
             bplace_id = birth.get_place_id()
             if bplace_id:
-                self.B = database.find_place_from_id(bplace_id).get_title()
+                self.B = database.try_to_find_place_from_id(bplace_id).get_title()
         death_id = person.get_death_id()
         if death_id:
             death = database.find_event_from_id(death_id)
             self.d = death.get_date()
             dplace_id = death.get_place_id()
             if dplace_id:
-                self.D = database.find_place_from_id(dplace_id).get_title()
+                self.D = database.try_to_find_place_from_id(dplace_id).get_title()
         self.i = str(person_id)
 
         if person.get_family_id_list():
@@ -103,12 +103,12 @@ class SubstKeywords:
             mother_id = f.get_mother_id()
             if father_id == person_id:
                 if mother_id:
-                    mother = database.find_person_from_id(mother_id)
+                    mother = database.try_to_find_person_from_id(mother_id)
                     self.s = mother.get_primary_name().get_regular_name()
                     self.S = mother.get_primary_name().get_name()
             else:
                 if father_id:
-                    father = database.find_person_from_id(father_id)
+                    father = database.try_to_find_person_from_id(father_id)
                     self.s = father.get_primary_name().get_regular_name()
                     self.S = father.get_primary_name().get_name()
             for e_id in f.get_event_list():
@@ -119,7 +119,7 @@ class SubstKeywords:
                     self.m = e.get_date()
                     mplace_id = e.get_place_id()
                     if mplace_id:
-                        self.M = database.find_place_from_id(mplace_id).get_title()
+                        self.M = database.try_to_find_place_from_id(mplace_id).get_title()
 
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""

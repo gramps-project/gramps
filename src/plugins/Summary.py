@@ -71,7 +71,7 @@ def build_report(database,person):
     
     pobjects = len(database.get_object_keys())
     for photo_id in database.get_object_keys():
-        photo = database.find_object_from_id(photo_id)
+        photo = database.try_to_find_object_from_id(photo_id)
         try:
             bytes = bytes + posixpath.getsize(photo.get_path())
         except:
@@ -83,7 +83,7 @@ def build_report(database,person):
             with_photos = with_photos + 1
             total_photos = total_photos + length
                 
-        person = database.find_person_from_id(person_id)
+        person = database.try_to_find_person_from_id(person_id)
         name = person.get_primary_name()
         if name.get_first_name() == "" or name.get_surname() == "":
             incomp_names = incomp_names + 1

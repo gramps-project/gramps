@@ -69,7 +69,7 @@ class FtmAncestorReport(Report.Report):
             return
         self.map[index] = (person_id,generation)
 
-        person = self.database.find_person_from_id(person_id)
+        person = self.database.try_to_find_person_from_id(person_id)
         family_id = person.get_main_parents_family_id()
         if family_id:
             family = self.database.find_family_from_id(family_id)
@@ -103,7 +103,7 @@ class FtmAncestorReport(Report.Report):
                 self.doc.end_paragraph()
                 old_gen = generation
 
-            person = self.database.find_person_from_id(person_id)
+            person = self.database.try_to_find_person_from_id(person_id)
             pri_name = person.get_primary_name()
             self.doc.start_paragraph("FTA-Entry","%d." % key)
             name = pri_name.get_regular_name()
@@ -119,7 +119,7 @@ class FtmAncestorReport(Report.Report):
                 birth = self.database.find_event_from_id(birth_id)
                 place_id = birth.get_place_id()
                 if place_id:
-                    bplace = self.database.find_place_from_id(place_id).get_title()
+                    bplace = self.database.try_to_find_place_from_id(place_id).get_title()
                 else:
                     bplace = u''
                 bdate = birth.get_date()
@@ -134,7 +134,7 @@ class FtmAncestorReport(Report.Report):
                 death = self.database.find_event_from_id(death_id)
                 place_id = death.get_place_id()
                 if place_id:
-                    dplace = self.database.find_place_from_id(place_id).get_title()
+                    dplace = self.database.try_to_find_place_from_id(place_id).get_title()
                 else:
                     dplace = u''
                 ddate = death.get_date()
@@ -448,7 +448,7 @@ class FtmAncestorReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            base = self.database.find_source_from_id(srcref.get_base_id())
+            base = self.database.try_to_find_source_from_id(srcref.get_base_id())
             
             self.doc.start_paragraph('FTA-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
@@ -537,7 +537,7 @@ class FtmAncestorReport(Report.Report):
             date = event.get_date()
             place_id = event.get_place_id()
             if place_id:
-                place = self.database.find_place_from_id(place_id).get_title()
+                place = self.database.try_to_find_place_from_id(place_id).get_title()
             else:
                 place = u''
                 
@@ -584,7 +584,7 @@ class FtmAncestorReport(Report.Report):
             spouse_id = family.get_father_id()
         if not spouse_id:
             return
-        spouse = self.database.find_person_from_id(spouse_id)
+        spouse = self.database.try_to_find_person_from_id(spouse_id)
         spouse_name = spouse.get_primary_name().get_regular_name()
 
         for event_id in family.get_event_list():
@@ -598,7 +598,7 @@ class FtmAncestorReport(Report.Report):
         date = event.get_date()
         place_id = event.get_place_id()
         if place_id:
-            place = self.database.find_place_from_id(place_id).get_title()
+            place = self.database.try_to_find_place_from_id(place_id).get_title()
         else:
             place = u''
 
@@ -657,7 +657,7 @@ class FtmAncestorReport(Report.Report):
             ddate = death.get_date()
             place_id = death.get_place_id()
             if place_id:
-                dplace = self.database.find_place_from_id(place_id).get_title()
+                dplace = self.database.try_to_find_place_from_id(place_id).get_title()
             else:
                 dplace = u''
         else:
@@ -672,7 +672,7 @@ class FtmAncestorReport(Report.Report):
             bdate = birth.get_date()
             place_id = birth.get_place_id()
             if place_id:
-                bplace = self.database.find_place_from_id(place_id).get_title()
+                bplace = self.database.try_to_find_place_from_id(place_id).get_title()
             else:
                 bplace = u''
         else:
@@ -962,10 +962,10 @@ class FtmAncestorReport(Report.Report):
             mother_id = family.get_mother_id()
             father_id = family.get_father_id()
             if mother_id:
-                mother = self.database.find_person_from_id(mother_id)
+                mother = self.database.try_to_find_person_from_id(mother_id)
                 mother_name = mother.get_primary_name().get_regular_name()
             if father_id:
-                father = self.database.find_person_from_id(father_id)
+                father = self.database.try_to_find_person_from_id(father_id)
                 father_name = father.get_primary_name().get_regular_name()
                 
             if person.get_gender() == RelLib.Person.male:

@@ -184,7 +184,7 @@ class TimeLine:
         self.plist.sort(self.sort_func)
         
         for p_id in self.plist:
-            p = self.db.find_person_from_id(p_id)
+            p = self.db.try_to_find_person_from_id(p_id)
             b_id = p.get_birth_id()
             if b_id:
                 b = self.db.find_event_from_id(b_id).get_date_object().get_year()
@@ -282,7 +282,7 @@ class TimeLine:
         self.plist = self.filter.apply(self.db,self.db.get_person_keys())
 
         for p_id in self.plist:
-            p = self.db.find_person_from_id(p_id)
+            p = self.db.try_to_find_person_from_id(p_id)
             b_id = p.get_birth_id()
             if b_id:
                 b = self.db.find_event_from_id(b_id).get_date_object().get_year()
@@ -321,7 +321,7 @@ class TimeLine:
         
         size = 0
         for p_id in self.plist:
-            p = self.db.find_person_from_id(p_id)
+            p = self.db.try_to_find_person_from_id(p_id)
             n = p.get_primary_name().get_name()
             size = max(FontScale.string_width(font,n),size)
         return pt2cm(size)
@@ -641,7 +641,7 @@ def write_book_item(database,person,doc,options,newpage=0):
         filters = _get_report_filters(person)
         afilter = filters[filter_num]
         sort_func_num = int(options[2])
-        sort_functions = _get_sort_functions()
+        sort_functions = _get_sort_functions(Sort.Sort(database))
         sort_func = sort_functions[sort_func_num][1]
         title_str = options[3]
         return TimeLine(database, person, 

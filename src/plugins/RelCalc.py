@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -144,12 +144,12 @@ class RelCalc:
         length = len(common)
 
         if length == 1:
-            person = self.db.find_person_from_id(common[0])
+            person = self.db.try_to_find_person_from_id(common[0])
             name = person.get_primary_name().get_regular_name()
             commontext = " " + _("Their common ancestor is %s.") % name
         elif length == 2:
-            p1 = self.db.find_person_from_id(common[0])
-            p2 = self.db.find_person_from_id(common[1])
+            p1 = self.db.try_to_find_person_from_id(common[0])
+            p2 = self.db.try_to_find_person_from_id(common[1])
             commontext = " " + _("Their common ancestors are %s and %s.") % \
                          (p1.get_primary_name().get_regular_name(),\
                           p2.get_primary_name().get_regular_name())
@@ -157,7 +157,7 @@ class RelCalc:
             index = 0
             commontext = " " + _("Their common ancestors are : ")
             for person_id in common:
-                person = self.db.find_person_form_id(person_id)
+                person = self.db.try_to_find_person_from_id(person_id)
                 if index != 0:
                     commontext = commontext + ", "
                 commontext = commontext + person.get_primary_name().get_regular_name()

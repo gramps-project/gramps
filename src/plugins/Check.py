@@ -64,7 +64,7 @@ def runTool(database,active_person,callback,parent=None):
         checker.cleanup_missing_photos(0)
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
-        database.add_transaction(trans)
+        database.add_transaction(trans, _("Check Integrity"))
 
         errs = checker.build_report(0)
         if errs:
@@ -98,9 +98,9 @@ class CheckIntegrity:
             father_id = family.get_father_id()
             mother_id = family.get_mother_id()
             if father_id:
-                father = self.db.find_person_from_id(father_id)
+                father = self.db.try_to_find_person_from_id(father_id)
             if mother_id:
-                mother = self.db.find_person_from_id(mother_id)
+                mother = self.db.try_to_find_person_from_id(mother_id)
 
             if father_id and family_id not in father.get_family_id_list():
                 self.broken_parent_links.append((father_id,family_id))
@@ -111,7 +111,7 @@ class CheckIntegrity:
                 mother.add_family_id(family_id)
                 self.db.commit_person(mother,self.trans)
             for child_id in family.get_child_id_list():
-                child = self.db.find_person_from_id(child_id)
+                child = self.db.try_to_find_person_from_id(child_id)
                 if family_id == child.get_main_parents_family_id():
                     continue
                 for family_type in child.get_parent_family_id_list():
@@ -128,7 +128,7 @@ class CheckIntegrity:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             for person_id in self.db.get_family_keys():
-                p = self.db.find_family_from_id(person_id)
+                p = self.db.try_to_find_person_from_id(person_id)
                 nl = p.get_media_list()
                 changed = 0
                 for o in nl:
@@ -140,7 +140,7 @@ class CheckIntegrity:
                     self.db.commit_person(p,self.trans)
                     
             for key in self.db.get_person_keys():
-                p = self.db.find_person_from_id(key)
+                p = self.db.try_to_find_person_from_id(key)
                 nl = p.get_media_list()
                 changed = 0
                 for o in nl:
@@ -152,7 +152,7 @@ class CheckIntegrity:
                     self.db.commit_person(p,self.trans)
                     
             for key in self.db.get_source_keys():
-                p = self.db.find_source_from_id(key)
+                p = self.db.try_to_find_source_from_id(key)
                 nl = p.get_media_list()
                 changed = 0
                 for o in nl:
@@ -207,7 +207,7 @@ class CheckIntegrity:
         #-------------------------------------------------------------------------
         
         for ObjectId in self.db.get_object_keys():
-            obj = self.db.find_object_from_id(ObjectId)
+            obj = self.db.try_to_find_object_from_id(ObjectId)
             photo_name = obj.get_path()
             if not os.path.isfile(photo_name):
                 if cl:
@@ -240,7 +240,7 @@ class CheckIntegrity:
 
     def delete_empty_family(self,family_id):
         for key in self.db.get_person_keys():
-            child = self.db.find_person_from_id(key)
+            child = self.db.try_to_find_person_from_id(key)
             child.remove_parent_family_id(family_id)
             child.remove_family_id(family_id)
         self.db.delete_family(family_id,self.trans)
@@ -251,9 +251,9 @@ class CheckIntegrity:
             mother_id = family.get_mother_id()
             father_id = family.get_father_id()
             if father_id:
-            	father = self.db.find_person_from_id(father_id)
+            	father = self.db.try_to_find_person_from_id(father_id)
             if mother_id:
-                mother = self.db.find_person_from_id(mother_id)
+                mother = self.db.try_to_find_person_from_id(mother_id)
             type = family.get_relationship()
 
             if not father_id and not mother_id:
@@ -316,11 +316,11 @@ class CheckIntegrity:
             else:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
             for (person_id,family_id) in self.broken_links:
-                person = self.db.find_person_from_id(person_id)
+                person = self.db.try_to_find_person_from_id(person_id)
                 family = self.db.find_family_from_id(family_id)
                 cn = person.get_primary_name().get_name()
-                f = self.db.find_person_from_id(family.get_father_id())
-                m = self.db.find_person_from_id(family.get_mother_id())
+                f = self.db.try_to_find_person_from_id(family.get_father_id())
+                m = self.db.try_to_find_person_from_id(family.get_mother_id())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())
@@ -339,11 +339,11 @@ class CheckIntegrity:
             else:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for (person_id,family_id) in self.broken_parent_links:
-                person = self.db.find_person_from_id(person_id)
+                person = self.db.try_to_find_person_from_id(person_id)
                 family = self.db.find_family_from_id(family_id)
                 cn = person.get_primary_name().get_name()
-                f = self.db.find_person_from_id(family.get_father_id())
-                m = self.db.find_person_from_id(family.get_mother_id())
+                f = self.db.try_to_find_person_from_id(family.get_father_id())
+                m = self.db.try_to_find_person_from_id(family.get_mother_id())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())

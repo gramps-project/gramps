@@ -117,21 +117,21 @@ class PackageWriter:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_person_keys():
-                p = self.db.find_person_from_id(key)
+                p = self.db.try_to_find_person_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_source_keys():
-                p = self.db.find_person_from_source(key)
+                p = self.db.try_to_find_source_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
-                p = self.db.find_place_from_id(key)
+                p = self.db.try_to_find_place_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
@@ -170,7 +170,7 @@ class PackageWriter:
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
         for ObjectId in self.db.get_object_keys():
-            oldfile = self.db.find_object_from_id(ObjectId).get_path()
+            oldfile = self.db.try_to_find_object_from_id(ObjectId).get_path()
             base = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 g = open(oldfile,"rb")

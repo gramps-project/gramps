@@ -316,7 +316,7 @@ class DisplayChart:
 
     def build_row_data(self):
         for individual_id in self.my_list:
-            individual = self.db.find_person_from_id(individual_id)
+            individual = self.db.try_to_find_person_from_id(individual_id)
             name = individual.get_primary_name().get_name()
             birth_id = individual.get_birth_id()
             bdate = ""
@@ -326,7 +326,7 @@ class DisplayChart:
                 bdate = birth.get_date()
                 bplace_id = birth.get_place_id()
                 if bplace_id:
-                    bplace = self.db.find_place_from_id(bplace_id).get_title()
+                    bplace = self.db.try_to_find_place_from_id(bplace_id).get_title()
             death_id = individual.get_death_id()
             ddate = ""
             dplace = ""
@@ -335,7 +335,7 @@ class DisplayChart:
                 ddate = death.get_date()
                 dplace_id = death.get_place_id()
                 if dplace_id:
-                    dplace = self.db.find_place_from_id(dplace_id).get_title()
+                    dplace = self.db.try_to_find_place_from_id(dplace_id).get_title()
             map = {}
             elist = individual.get_event_list()[:]
             for ievent_id in elist:
@@ -368,7 +368,7 @@ class DisplayChart:
                             date = event.get_date()
                             place_id = event.get_place_id()
                             if place_id:
-                                place = self.db.find_place_from_id(place_id).get_title()
+                                place = self.db.try_to_find_place_from_id(place_id).get_title()
                         tlist.append("%s\n%s" % (date, place))
                         added = 1
                     else:
@@ -387,7 +387,7 @@ class DisplayChart:
         name, birth, and death. This should be the column titles of the report"""
         map = {}
         for individual_id in self.my_list:
-            individual = self.db.find_person_from_id(individual_id)
+            individual = self.db.try_to_find_person_from_id(individual_id)
             elist = individual.get_event_list()
             for event_id in elist:
                 if not event_id:

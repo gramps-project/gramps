@@ -226,7 +226,7 @@ class IndividualPage:
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
         if person_id:
-            person = self.db.find_person_from_id(person_id)
+            person = self.db.try_to_find_person_from_id(person_id)
             if self.list.has_key(person_id):
                 self.doc.start_link("%s.%s" % (person_id,self.ext))
                 self.doc.write_text(person.get_primary_name().get_regular_name())
@@ -250,7 +250,7 @@ class IndividualPage:
             self.doc.write_text('%d. ' % index)
             index = index + 1
             base_id = sref.get_base_id()
-            base = self.db.find_source_from_id(base_id)
+            base = self.db.try_to_find_source_from_id(base_id)
             self.write_info(base.get_title())
             self.write_info(base.get_author())
             self.write_info(base.get_publication_info())
@@ -314,7 +314,7 @@ class IndividualPage:
         
         if self.photos and len(media_list) > 0:
             object_id = media_list[0].get_reference_id()
-            object = self.db.find_object_from_id(object_id)
+            object = self.db.try_to_find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 src = object.get_path()
                 junk,ext = os.path.splitext(src)
@@ -403,7 +403,7 @@ class IndividualPage:
         index = 0
         for object_ref in self.person.get_media_list():
             obj_id = object_ref.get_reference_id()
-            obj = self.db.find_object_from_id(obj_id)
+            obj = self.db.try_to_find_object_from_id(obj_id)
             if obj.get_mime_type()[0:5] != "image":
                 continue
             if object_ref.get_privacy():
@@ -500,7 +500,7 @@ class IndividualPage:
             descr = event.get_description()
             place_id = event.get_place_id()
             if place_id:
-                place = self.db.find_place_from_id(place_id).get_title()
+                place = self.db.try_to_find_place_from_id(place_id).get_title()
             else:
                 place = ""
             srcref = event.get_source_references()
@@ -557,7 +557,7 @@ class IndividualPage:
         date = event.get_date()
         place_id = event.get_place_id()
         if place_id:
-            place = self.db.find_place_from_id(place_id).get_title()
+            place = self.db.try_to_find_place_from_id(place_id).get_title()
         else:
             place = ""
         descr = event.get_description()
@@ -614,7 +614,7 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse_id:
-                spouse = self.db.find_person_from_id(spouse_id)
+                spouse = self.db.try_to_find_person_from_id(spouse_id)
                 if self.list.has_key(spouse_id):
                     self.doc.start_link("%s.%s" % (spouse_id,self.ext))
                     self.doc.write_text(spouse.get_primary_name().get_regular_name())
@@ -649,7 +649,7 @@ class IndividualPage:
                 
                 first = 1
                 for child_id in family.get_child_id_list():
-                    child = self.db.find_person_from_id(child_id)
+                    child = self.db.try_to_find_person_from_id(child_id)
                     name = child.get_primary_name().get_regular_name()
                     if first == 1:
                         first = 0
@@ -766,7 +766,7 @@ class WebReport(Report.Report):
         except:
             return
         for p_id in person_id_list:
-            p = self.db.find_person_from_id(p_id)
+            p = self.db.try_to_find_person_from_id(p_id)
             name = p.get_primary_name()
             firstName = name.get_first_name()
             surName = name.get_surname()
@@ -786,7 +786,7 @@ class WebReport(Report.Report):
                 if e:
                     f.write("%s|" % self.make_date(e.get_date_object()))
                     if e.get_place_id():
-                        f.write('%s|' % self.db.find_place_from_id(e.get_place_id()).get_title())
+                        f.write('%s|' % self.db.try_to_find_place_from_id(e.get_place_id()).get_title())
                     else:
                         f.write('|')
                 else:
@@ -810,7 +810,7 @@ class WebReport(Report.Report):
 
         a = {}
         for person_id in person_id_list:
-            person = self.db.find_person_from_id(person_id)
+            person = self.db.try_to_find_person_from_id(person_id)
             n = person.get_primary_name().get_surname()
             if n:
                 a[n[0]] = 1
@@ -841,8 +841,8 @@ class WebReport(Report.Report):
             doc.close()
             for n in link_keys:
                 p_id_list = [ p_id for p_id in person_id_list if \
-                            (self.db.find_person_from_id(p_id).get_primary_name().get_surname() \
-                            and (self.db.find_person_from_id(p_id).get_primary_name().get_surname()[0] == n) ) ]
+                            (self.db.try_to_find_person_from_id(p_id).get_primary_name().get_surname() \
+                            and (self.db.try_to_find_person_from_id(p_id).get_primary_name().get_surname()[0] == n) ) ]
                 doc = HtmlLinkDoc(self.selected_style,None,template,None)
                 doc.set_extension(self.ext)
                 doc.set_title(_("Section %s") % n)
@@ -860,10 +860,10 @@ class WebReport(Report.Report):
                 col_len = n_rows
 
                 for person_id in p_id_list:
-                    name = self.db.find_person_from_id(person_id).get_primary_name().get_name()
+                    name = self.db.try_to_find_person_from_id(person_id).get_primary_name().get_name()
 
                     if self.birth_dates:
-                        birth_id = self.db.find_person_from_id(person_id).get_birth_id()
+                        birth_id = self.db.try_to_find_person_from_id(person_id).get_birth_id()
                         if birth_id:
                             birth_event = self.db.find_event_from_id(birth_id)
                             if self.year_only:
@@ -901,8 +901,8 @@ class WebReport(Report.Report):
             col_len = n_rows
             for n in link_keys:
                 p_id_list = [ p_id for p_id in person_id_list if \
-                            (self.db.find_person_from_id(p_id).get_primary_name().get_surname() \
-                            and (self.db.find_person_from_id(p_id).get_primary_name().get_surname()[0] == n) ) ]
+                            (self.db.try_to_find_person_from_id(p_id).get_primary_name().get_surname() \
+                            and (self.db.try_to_find_person_from_id(p_id).get_primary_name().get_surname()[0] == n) ) ]
                 doc.start_paragraph('IndexLabel')
                 if self.include_alpha_links:
                     doc.write_linktarget("%03d" % a[n])
@@ -911,10 +911,10 @@ class WebReport(Report.Report):
                 col_len = col_len - 1
 
                 for person_id in p_id_list:
-                    name = self.db.find_person_from_id(person_id).get_primary_name().get_name()
+                    name = self.db.try_to_find_person_from_id(person_id).get_primary_name().get_name()
 
                     if self.birth_dates:
-                        birth_id = self.db.find_person_from_id(person_id).get_birth_id()
+                        birth_id = self.db.try_to_find_person_from_id(person_id).get_birth_id()
                         if birth_id:
                             birth_event = self.db.find_event_from_id(birth_id)
                             if self.year_only:
@@ -997,7 +997,7 @@ class WebReport(Report.Report):
         for l in ind_list:
             my_map[l] = l
         for person_id in ind_list:
-            person = self.db.find_person_from_id(person_id)
+            person = self.db.try_to_find_person_from_id(person_id)
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)
             tdoc.set_keywords([person.get_primary_name().get_surname(),
@@ -1560,13 +1560,13 @@ class MiniTree:
             mother_indent = indent[:-1] + ' ' + ' ' * len(name) + '|'
 
         if father_id:
-            father = self.db.find_person_from_id(father_id)
+            father = self.db.try_to_find_person_from_id(father_id)
             next_pos = position - offset 
             self.lines_map[position] += '|'
             self.draw_parents(father,next_pos,father_indent,generations,1)
             
         if mother_id:
-            mother = self.db.find_person_from_id(mother_id)
+            mother = self.db.try_to_find_person_from_id(mother_id)
             next_pos = position + offset
             self.draw_parents(mother,next_pos,mother_indent,generations,0)
 

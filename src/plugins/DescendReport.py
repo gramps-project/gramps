@@ -133,7 +133,7 @@ class DescendantReport:
 
         childlist.sort(self.by_birthdate)
         for child_id in childlist:
-            child = self.database.find_person_from_id(child_id)
+            child = self.database.try_to_find_person_from_id(child_id)
             self.dump(level+1,child)
 
 #------------------------------------------------------------------------

@@ -135,7 +135,7 @@ class FamilyGroup:
         if not person_id:
             return
         
-        person = self.db.find_person_from_id(person_id)
+        person = self.db.try_to_find_person_from_id(person_id)
         
         if person.get_gender() == RelLib.Person.male:
             id = _("Husband")
@@ -160,7 +160,7 @@ class FamilyGroup:
             bdate = birth.get_date()
             bplace_id = birth.get_place_id()
             if bplace_id:
-                bplace = self.db.find_place_from_id(bplace_id).get_title()
+                bplace = self.db.try_to_find_place_from_id(bplace_id).get_title()
         
         death_id = person.get_death_id()
         ddate = ""
@@ -170,7 +170,7 @@ class FamilyGroup:
             ddate = death.get_date()
             dplace_id = death.get_place_id()
             if dplace_id:
-                dplace = self.db.find_place_from_id(dplace_id).get_title()
+                dplace = self.db.try_to_find_place_from_id(dplace_id).get_title()
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -215,10 +215,10 @@ class FamilyGroup:
             family = self.db.find_family_from_id(family_id)
             father_id = family.get_father_id() 
             if father_id:
-                father_name = self.db.find_person_from_id(father_id).get_primary_name().get_regular_name()
+                father_name = self.db.try_to_find_person_from_id(father_id).get_primary_name().get_regular_name()
             mother_id = family.get_mother_id() 
             if mother_id:
-                mother_name = self.db.find_person_from_id(mother_id).get_primary_name().get_regular_name()
+                mother_name = self.db.try_to_find_person_from_id(mother_id).get_primary_name().get_regular_name()
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -255,7 +255,7 @@ class FamilyGroup:
             date = event.get_date()
             place_id = event.get_place_id()
             if place_id:
-                place = self.db.find_place_from_id(place_id).get_title()
+                place = self.db.try_to_find_place_from_id(place_id).get_title()
 
         self.doc.start_row()
         self.doc.start_cell(text)
@@ -281,7 +281,7 @@ class FamilyGroup:
         
     def dump_child(self,index,person_id):
 
-        person = self.db.find_person_from_id(person_id)
+        person = self.db.try_to_find_person_from_id(person_id)
         self.doc.start_row()
         self.doc.start_cell('FGR-TextChild1')
         self.doc.start_paragraph('FGR-ChildText')
@@ -344,7 +344,7 @@ class FamilyGroup:
             self.doc.start_cell('FGR-TextContentsEnd',2)
             self.doc.start_paragraph('FGR-Normal')
             if spouse_id:
-                spouse = self.db.find_person_from_id(spouse_id)
+                spouse = self.db.try_to_find_person_from_id(spouse_id)
                 self.doc.write_text(spouse.get_primary_name().get_regular_name())
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -547,7 +547,7 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
         return 1
 
     def get_report_extra_menu_info(self):
-        self.spouse_map = _build_spouse_map(self.person)
+        self.spouse_map = _build_spouse_map(self.db,self.person)
         return (_("Spouse"), self.spouse_map, None, None)
 
     def on_center_person_change_clicked(self,obj):
@@ -556,7 +556,7 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
-            self.new_spouse_map = _build_spouse_map(self.new_person)
+            self.new_spouse_map = _build_spouse_map(self.db,self.new_person)
 
             if self.new_spouse_map:
                 if not self.extra_menu:
@@ -577,7 +577,7 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
                     self.extra_menu = None
 
             new_name = new_person.get_primary_name().get_regular_name()
-	    if new_name:
+            if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )
                 self.person_label.set_use_markup(gtk.TRUE)
 
@@ -619,7 +619,7 @@ def write_book_item(database,person,doc,options,newpage=0):
         if options[0]:
             person = database.get_person(options[0])
         spouse_name = options[1]
-        spouse_map = _build_spouse_map(person)
+        spouse_map = _build_spouse_map(database,person)
         if spouse_map:
             if spouse_map.has_key(spouse_name):
                 family = spouse_map[spouse_name]
@@ -704,7 +704,7 @@ def _build_spouse_map(database,person):
         else:
             spouse_id = family.get_father_id()
         if spouse_id:
-            spouse = database.find_person_from_id(spouse_id)
+            spouse = database.try_to_find_person_from_id(spouse_id)
             name = spouse.get_primary_name().get_name()
         else:
             name= _("unknown")
