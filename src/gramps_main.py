@@ -1080,11 +1080,6 @@ class Gramps:
                         _('%s could not be opened.' % filename) + '\n' + msg[1])
             return 0
         
-        if new_db:
-            OkDialog(_('New database created'),
-                     _('GRAMPS has created a new database called %s') %
-                     filename)
-        
         self.topWindow.set_resizable(gtk.TRUE)
         self.people_view.apply_filter()
         self.goto_active_person()
@@ -1484,10 +1479,7 @@ class Gramps:
 
     def on_places_activate(self,obj):
         """Switches to the places view"""
-        if len(self.db.get_place_id_keys()) > 2000:
-            self.status_text(_('Updating display - this may take a few seconds...'))
-        else:
-            self.status_text(_('Updating display...'))
+        self.status_text(_('Updating display...'))
         self.views.set_current_page(PLACE_VIEW)
         self.modify_statusbar()
 

@@ -2390,6 +2390,7 @@ class GrampsDB:
         self.metadata   = None
         self.undolabel  = None
         self.redolabel  = None
+        self.undodb     = None
 
     def set_undo_label(self,label):
         self.undolabel = label
@@ -2404,6 +2405,7 @@ class GrampsDB:
             self.close()
 
         self.env = db.DBEnv()
+        self.env.set_cachesize(0,4*1024*1024) # 2MB
         flags = db.DB_CREATE|db.DB_INIT_MPOOL|db.DB_PRIVATE
 
         self.undolog = "%s.log" % name
@@ -3299,9 +3301,7 @@ class GrampsDB:
             return None
 
     def sortbyplace(self,f,s):
-        fp = self.place_map[f][1].upper()
-        sp = self.place_map[s][1].upper()
-        return cmp(fp,sp)
+        return cmp(self.placesortmap[f], self.placesortmap[s])
 
     def sortbysource(self,f,s):
         fp = self.source_map[f][1].upper()
@@ -3315,9 +3315,12 @@ class GrampsDB:
 
     def sort_place_keys(self):
         if self.place_map:
-            keys = self.place_map.keys()
-            if type(keys) == type([]):
-                keys.sort(self.sortbyplace)
+            self.placesortmap = {}
+            for key in self.place_map.keys():
+                self.placesortmap[key] = self.place_map[key][1].upper()
+            keys = self.placesortmap.keys()
+            keys.sort(self.sortbyplace)
+            del self.placesortmap
             return keys
         return []
 

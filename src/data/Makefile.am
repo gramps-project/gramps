@@ -2,7 +2,7 @@
 SUBDIRS = templates
 pkgdatadir = $(datadir)/@PACKAGE@/data
 
-pkgdata_DATA = gedcom.xml \
+dist_pkgdata_DATA = gedcom.xml \
 	       papersize.xml \
 	       tips.xml \
 	       gnome-mime-application-x-gramps.png \
