@@ -20,10 +20,13 @@
 
 "Database Processing/Reorder gramps IDs"
 
+import re
 import utils
 import intl
 
 _ = intl.gettext
+
+_findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
 #-------------------------------------------------------------------------
 #
@@ -32,64 +35,46 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
 
-    for prefix in ["xyzzytemporaryid%d", database.iprefix] :
-        index = 0
-        pmap = database.getPersonMap()
-        for id in pmap.keys():
-            newid = prefix % index
-            person = pmap[id]
-            person.setId(newid)
-            pmap[newid] = person
-            del pmap[id]
-            index = index + 1
-
-    for prefix in ["xyzzytemporaryid%d", database.fprefix] :
-        index = 0
-        pmap = database.getFamilyMap()
-        for id in pmap.keys():
-            newid = prefix % index
-            person = pmap[id]
-            person.setId(newid)
-            pmap[newid] = person
-            del pmap[id]
-            index = index + 1
-
-    for prefix in ["xyzzytemporaryid%d", database.sprefix] :
-        index = 0
-        pmap = database.getSourceMap()
-        for id in pmap.keys():
-            newid = prefix % index
-            person = pmap[id]
-            person.setId(newid)
-            pmap[newid] = person
-            del pmap[id]
-            index = index + 1
-
-    for prefix in ["xyzzytemporaryid%d", database.pprefix] :
-        index = 0
-        pmap = database.getPlaceMap()
-        for id in pmap.keys():
-            newid = prefix % index
-            person = pmap[id]
-            person.setId(newid)
-            pmap[newid] = person
-            del pmap[id]
-            index = index + 1
-
-    for prefix in ["xyzzytemporaryid%d", database.oprefix] :
-        index = 0
-        pmap = database.getObjectMap()
-        for id in pmap.keys():
-            newid = prefix % index
-            person = pmap[id]
-            person.setId(newid)
-            pmap[newid] = person
-            del pmap[id]
-            index = index + 1
-
+    make_new_ids(database.getPersonMap(),database.iprefix)
+    make_new_ids(database.getFamilyMap(),database.fprefix)
+    make_new_ids(database.getObjectMap(),database.oprefix)
+    make_new_ids(database.getSourceMap(),database.sprefix)
+    make_new_ids(database.getPlaceMap(),database.pprefix)
     utils.modified()
     callback(1)
 
+
+def make_new_ids(data_map,prefix):
+    dups = []
+    newids = []
+    for id in data_map.keys():
+        match = _findint.match(id)
+        if match:
+            index = match.groups()[0]
+            newid = prefix % int(index)
+            if newid == id:
+                continue
+            elif data_map.has_key(newid):
+                dups.append(id)
+            else:
+                newids.append(id)
+                data = data_map[id]
+                data.setId(newid)
+                data_map[newid] = data
+                del data_map[id]
+    index = 0
+    for id in dups:
+        while 1:
+            newid = prefix % index
+            if newid not in newids:
+                break
+            index = index + 1
+        newids.append(newid)
+        data = data_map[id]
+        data.setId(newid)
+        data_map[newid] = data
+        del data_map[id]
+    
 #-------------------------------------------------------------------------
 #
 #
