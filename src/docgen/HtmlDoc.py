@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ class HtmlDoc(TextDoc.TextDoc):
             self.base = ""
             self.load_template()
             self.build_header()
-            self.build_style_declaration()
+            self.style_declaration = None
             self.image_dir = "images"
         else:
             self.meta = source.meta
@@ -235,6 +235,8 @@ class HtmlDoc(TextDoc.TextDoc):
         else:
             line = self.file_header
         self.f.write(line)
+        if not self.style_declaration:
+            self.build_style_declaration()
         self.f.write(self.style_declaration)
 
     def build_header(self):
