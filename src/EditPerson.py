@@ -803,15 +803,15 @@ def on_add_addr_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_add_clicked(obj):
-    EventEditor(obj.get_data(EDITPERSON),None)
+    EventEditor(obj.get_data(EDITPERSON),None,0)
 
 def on_edit_birth_clicked(obj):
     person = obj.get_data(EDITPERSON)
-    EventEditor(person,person.birth)
+    EventEditor(person,person.birth,1)
 
 def on_edit_death_clicked(obj):
     person = obj.get_data(EDITPERSON)
-    EventEditor(person,person.death)
+    EventEditor(person,person.death,1)
 
 #-------------------------------------------------------------------------
 #
@@ -825,7 +825,7 @@ def on_edit_death_clicked(obj):
 def on_event_update_clicked(obj):
     row = obj.get_data(INDEX)
     if row >= 0:
-        EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+        EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(row),0)
 
 #-------------------------------------------------------------------------
 #
@@ -1430,7 +1430,7 @@ def on_ok_clicked(obj):
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,event):
+    def __init__(self,parent,event,name_read_only):
         self.parent = parent
         self.event = event
         if event:
@@ -1453,6 +1453,8 @@ class EventEditor:
         title = _("Event Editor for %s") % name 
         self.top.get_widget("eventTitle").set_text(title)
         self.event_menu.set_popdown_strings(const.personalEvents)
+        if name_read_only:
+            self.event_menu.set_sensitive(0)
 
         # Typing CR selects OK button
         self.window.editable_enters(self.name_field);
