@@ -1346,7 +1346,7 @@ def load_family(family=None):
     if len(family_types) > 0:
         typeMenu = GtkMenu()
         if main_family:
-            menuitem = GtkMenuItem("Birth")
+            menuitem = GtkMenuItem(_("Birth"))
             menuitem.set_data("parents",main_family)
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()

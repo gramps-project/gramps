@@ -5032,7 +5032,7 @@ Unknown
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
-	    <text>Birth</text>
+	    <text></text>
 	  </widget>
 	</widget>
       </widget>
@@ -5109,7 +5109,7 @@ Unknown
 	    <editable>False</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
-	    <text></text>
+	    <text>Birth</text>
 	  </widget>
 	</widget>
       </widget>
