@@ -5,7 +5,7 @@
 >GRAMPS Manual V2.0</TITLE
 ><META
 NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.77+"></HEAD
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
 ><BODY
 CLASS="article"
 BGCOLOR="#FFFFFF"
@@ -21,11 +21,11 @@ CLASS="TITLEPAGE"
 CLASS="title"
 ><A
 NAME="AEN2"
-></A
 ><SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> Manual V2.0</H1
+> Manual V2.0</A
+></H1
 ><DIV
 CLASS="authorgroup"
 ><A
@@ -46,12 +46,12 @@ CLASS="orgname"
 CLASS="address"
 ><P
 CLASS="address"
->&nbsp;<TT
+>&nbsp;<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:shura@alex.neuro.umn.edu"
 >shura@alex.neuro.umn.edu</A
->&#62;</TT
+>&#62;</CODE
 >&nbsp;</P
 ></DIV
 ></DIV
@@ -70,12 +70,12 @@ CLASS="orgname"
 CLASS="address"
 ><P
 CLASS="address"
->&nbsp;<TT
+>&nbsp;<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:dallingham@users.sourceforge.net"
 >dallingham@users.sourceforge.net</A
->&#62;</TT
+>&#62;</CODE
 >&nbsp;</P
 ></DIV
 ></DIV
@@ -410,6 +410,11 @@ HREF="#adv-at"
 HREF="#adv-ad"
 >Edit Addresses</A
 ></DT
+><DT
+>4.8.11. <A
+HREF="#adv-wit"
+>Edit Witnesses</A
+></DT
 ></DL
 ></DD
 ><DT
@@ -563,8 +568,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-intro"
-></A
->1. Introduction</H2
+>1. Introduction</A
+></H2
 ><P
 > The <SPAN
 CLASS="application"
@@ -597,11 +602,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="why-gramps"
-></A
 >1.1. Why <SPAN
 CLASS="application"
 >GRAMPS</SPAN
->?</H3
+>?</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -654,18 +659,18 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-getting-started"
-></A
->2. Getting Started</H2
+>2. Getting Started</A
+></H2
 ><DIV
 CLASS="sect2"
 ><H3
 CLASS="sect2"
 ><A
 NAME="gramps-start"
-></A
 >2.1. To Start <SPAN
 CLASS="application"
 >GRAMPS</SPAN
+></A
 ></H3
 ><P
 >You can start <SPAN
@@ -729,19 +734,15 @@ CLASS="application"
 >&#13;	<B
 CLASS="command"
 >gramps</B
-> <TT
+> <VAR
 CLASS="replaceable"
-><I
->filename.ged</I
-></TT
+>filename.ged</VAR
 >
     	</P
 ><P
->where <TT
+>where <VAR
 CLASS="replaceable"
-><I
->filename.ged</I
-></TT
+>filename.ged</VAR
 > is the name 
 	of the file you	want to open/import. </P
 ></DD
@@ -754,11 +755,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="run-1st-time"
-></A
 >2.2. Running <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> for the first time</H3
+> for the first time</A
+></H3
 ><P
 > 
  
@@ -789,8 +790,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="choose-db-start"
-></A
->2.2.1. Choosing a database on startup</H4
+>2.2.1. Choosing a database on startup</A
+></H4
 ><P
 >If <SPAN
 CLASS="application"
@@ -833,8 +834,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="zodb-support"
-></A
->2.2.2. Optional ZODB support</H4
+>2.2.2. Optional ZODB support</A
+></H4
 ><P
 >If either StandaloneZODB or Zope is installed on your system, 
       <SPAN
@@ -873,8 +874,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-mainwin"
-></A
->3. Main Window</H2
+>3. Main Window</A
+></H2
 ><P
 >When you open a database (either existing or brand new), 
     the following window is displayed.</P
@@ -1031,8 +1032,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-views"
-></A
->3.1. Views</H3
+>3.1. Views</A
+></H3
 ><P
 >Views are the various ways to display different aspects of 
       genealogical information, as described below. Since the relevant 
@@ -1048,8 +1049,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="view-modes"
-></A
->3.1.1. Switching Views and Viewing Modes</H4
+>3.1.1. Switching Views and Viewing Modes</A
+></H4
 ><P
 >Depending on the state of the <SPAN
 CLASS="guimenu"
@@ -1131,8 +1132,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="people-view"
-></A
->3.1.2. People View</H4
+>3.1.2. People View</A
+></H4
 ><P
 >When <SPAN
 CLASS="application"
@@ -1182,8 +1183,8 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="filters"
-></A
->3.1.2.1. Filters</H5
+>3.1.2.1. Filters</A
+></H5
 ><P
 >Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
@@ -1305,8 +1306,8 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="alpha-tabs"
-></A
->3.1.2.2. Alphabetical Tabs</H5
+>3.1.2.2. Alphabetical Tabs</A
+></H5
 ><P
 ><SPAN
 CLASS="application"
@@ -1350,8 +1351,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="family-view"
-></A
->3.1.3. Family View</H4
+>3.1.3. Family View</A
+></H4
 ><P
 >Family View displays the Family information of a currently 
 	selected (or Active) person. Specifically, this view shows the 
@@ -1461,8 +1462,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="pedigree-view"
-></A
->3.1.4. Pedigree View</H4
+>3.1.4. Pedigree View</A
+></H4
 ><P
 >Pedigree View helps to visualize the place of the Active 
 	person in the tree of its ancestors. Pedigree View shows four 
@@ -1513,8 +1514,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="sources-view"
-></A
->3.1.5. Sources View</H4
+>3.1.5. Sources View</A
+></H4
 ><P
 >Sources View lists the sources of information stored in the 
 	database. This can include various documents (birth, death, and 
@@ -1542,8 +1543,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="places-view"
-></A
->3.1.6. Places View</H4
+>3.1.6. Places View</A
+></H4
 ><P
 >Places View lists the geographical places in which the events 
 	of the database took place. These could be places of birth, death, 
@@ -1582,8 +1583,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="media-view"
-></A
->3.1.7. Media View</H4
+>3.1.7. Media View</A
+></H4
 ><P
 >Media View is a list of Media Objects used in the database. 
 	Media Objects are any files that relate somehow to the stored 
@@ -1602,8 +1603,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-usage"
-></A
->4. Usage</H2
+>4. Usage</A
+></H2
 ><P
 >As commonly encountered in everyday life, in
     <SPAN
@@ -1621,8 +1622,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="open-db"
-></A
->4.1. Opening Database</H3
+>4.1. Opening Database</A
+></H3
 ><P
 >To open a database, either choose <SPAN
 CLASS="guimenu"
@@ -1688,8 +1689,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="new-db"
-></A
->4.2. Starting New Database</H3
+>4.2. Starting New Database</A
+></H3
 ><P
 >To start a new database, choose <SPAN
 CLASS="guimenu"
@@ -1712,8 +1713,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="save-db"
-></A
->4.3. Saving Database</H3
+>4.3. Saving Database</A
+></H3
 ><P
 >To save changes made to your database, choose <SPAN
 CLASS="guimenu"
@@ -1728,11 +1729,9 @@ CLASS="guibutton"
 > on the Toolbar. The Status line will then 
       display <SPAN
 CLASS="guilabel"
->Saving <TT
+>Saving <VAR
 CLASS="replaceable"
-><I
->filename</I
-></TT
+>filename</VAR
 >...</SPAN
 > 
       message, and the progress bar will advance as the saving progresses.</P
@@ -1743,8 +1742,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="import-gedcom"
-></A
->4.4. Importing GEDCOM Data</H3
+>4.4. Importing GEDCOM Data</A
+></H3
 ><P
 >Importing GEDCOM data allows you to incorporate the data created in 
       other genealogical programs into your currently 
@@ -1813,8 +1812,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="export-gedcom"
-></A
->4.5. Exporting GEDCOM Data</H3
+>4.5. Exporting GEDCOM Data</A
+></H3
 ><P
 >Exporting GEDCOM data allows you to share any portion of you 
       <SPAN
@@ -1927,11 +1926,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-package-impex"
-></A
 >4.6. Importing and Exporting <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> Packages</H3
+> Packages</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -2013,8 +2012,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-edit-quick"
-></A
->4.7. Editing Data: Quick Start</H3
+>4.7. Editing Data: Quick Start</A
+></H3
 ><P
 > Editing any portion of data allows you to amend and/or 
 	modify information stored in the database. The available editing 
@@ -2030,8 +2029,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-add-pers"
-></A
->4.7.1. To Add a Person</H4
+>4.7.1. To Add a Person</A
+></H4
 ><P
 > To add a person to the database, switch to the People View 
 	(<A
@@ -2063,8 +2062,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-spec-rel"
-></A
->4.7.2. To Specify a Relationship</H4
+>4.7.2. To Specify a Relationship</A
+></H4
 ><P
 >To specify a relationship, first switch to the Family View 
 	(<A
@@ -2094,8 +2093,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-spec-par"
-></A
->4.7.3. To Specify Parents</H4
+>4.7.3. To Specify Parents</A
+></H4
 ><P
 >To specify parents of an active person, first switch to the 
 	Family View (<A
@@ -2146,8 +2145,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-spec-ch"
-></A
->4.7.4. To Specify Children</H4
+>4.7.4. To Specify Children</A
+></H4
 ><P
 >To specify children of an active person, switch to the 
 	Family View (<A
@@ -2187,8 +2186,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-add-img"
-></A
->4.7.5. To Add Images</H4
+>4.7.5. To Add Images</A
+></H4
 ><P
 >You can add images (as well as other media objects) to 
 	individual people, events, sources, places, as well as images 
@@ -2312,8 +2311,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-edit-src-plc"
-></A
->4.7.6. To Edit Sources and Places</H4
+>4.7.6. To Edit Sources and Places</A
+></H4
 ><P
 > To add a source or a place to the database, switch to 
 	the appropriate Sources or Places View (<A
@@ -2350,16 +2349,16 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-edit-complete"
-></A
->4.8. Editing Data: Complete Description</H3
+>4.8. Editing Data: Complete Description</A
+></H3
 ><DIV
 CLASS="sect3"
 ><H4
 CLASS="sect3"
 ><A
 NAME="adv-pers"
-></A
->4.8.1. Edit Personal Information</H4
+>4.8.1. Edit Personal Information</A
+></H4
 ><P
 > Editing of personal data can be performed in the 
 	following ways. </P
@@ -2962,8 +2961,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-rel"
-></A
->4.8.2. Edit Relationship Data</H4
+>4.8.2. Edit Relationship Data</A
+></H4
 ><P
 > Editing of relationship data is performed in the following 
 	<SPAN
@@ -3261,8 +3260,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-src"
-></A
->4.8.3. Edit Source Data</H4
+>4.8.3. Edit Source Data</A
+></H4
 ><P
 > To edit source data, switch to the Sources View and select the
 	desired entry in the list of sources. Double-clik on that entry or
@@ -3465,8 +3464,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-plc"
-></A
->4.8.4. Edit Place Data</H4
+>4.8.4. Edit Place Data</A
+></H4
 ><P
 > To edit place data, switch to the Places View and select the
 	desired entry in the list of places. Double-clik on that entry or
@@ -3648,7 +3647,7 @@ CLASS="guibutton"
 CLASS="guibutton"
 >Delete</SPAN
 > allow 
-	to correspondingly add, modify, and remove a a source reference  
+	to correspondingly add, modify, and remove a source reference  
 	to this place. Note that <SPAN
 CLASS="guibutton"
 >Edit...</SPAN
@@ -3799,8 +3798,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-media"
-></A
->4.8.5. Edit Media Data</H4
+>4.8.5. Edit Media Data</A
+></H4
 ><P
 > To edit media data, switch to the Media View and select the
 	desired entry in the list of sources. Double-clik on that entry or
@@ -3875,8 +3874,8 @@ CLASS="guilabel"
 	<SPAN
 CLASS="guilabel"
 >General</SPAN
-> tab allows the title which labels this
-	object in the database. The title can be typed in the appropriate 
+> tab allows to edit the title which labels 
+	this object in the database. The title can be typed in the appropriate 
 	text entry field. If the object is not local (i.e. the corresponding
 	file does not reside under <SPAN
 CLASS="application"
@@ -4017,10 +4016,201 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-ev"
-></A
->4.8.6. Edit Events</H4
+>4.8.6. Edit Events</A
+></H4
 ><P
-> </P
+> Events are edited through the following <SPAN
+CLASS="guilabel"
+>Event
+	Editor</SPAN
+> dialog: </P
+><DIV
+CLASS="figure"
+><A
+NAME="edit-ev-fig"
+></A
+><P
+><B
+>Figure 16. Event Editor dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/edit-ev.png"></P
+></DIV
+></DIV
+><P
+> The top of the window shows the dialog title including the name
+	of the person whose event is being edited. The central part of the 
+	window displays four notebook tabs containing different categories of 
+	available information. You can bring any tab to the top for viewing or 
+	editing by clicking on the appropriate tab heading. The bottom part has 
+	<SPAN
+CLASS="guibutton"
+>OK</SPAN
+> and <SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> buttons. 
+	Clicking <SPAN
+CLASS="guibutton"
+>OK</SPAN
+> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </P
+><P
+>The tabs provide the following information categories of 
+	the event data: </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>General</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>General</SPAN
+> tab allows editing of the most general
+	information about the event: its type, date, place, cause, adn
+	description. The type can be selected from available types listed 
+	in the <SPAN
+CLASS="guilabel"
+>Event type </SPAN
+> drop-down menu. The rest 
+	of the information can be typed in the appropriate text entry fields. 
+	Check the <SPAN
+CLASS="guilabel"
+>Private record</SPAN
+> box to mark this event
+	record as private. This will give you a chance to omit this event from
+	being included in the reports, if you choose so among the report 
+	generation options. </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Sources</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>Sources</SPAN
+> tab displays information about sources 
+	relevant to this event and the controls allowing its modification. 
+	The central part displays the list of all such sources references 
+	stored in the database. The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> 
+	allow to correspondingly add, modify, and remove a source reference  
+	to this event. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	a source reference is selected from the list. </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Note</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Note</SPAN
+> tab displays any notes concerning 
+	the event. To add a note or modify existing notes simply edit the 
+	text in the text entry field.
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Witnesses</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>Witnesses</SPAN
+> tab displays information about witnesses 
+	relevant to this event and the controls allowing its modification. 
+	The central part displays the list of all such witnesses 
+	stored in the database. The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> 
+	allow to correspondingly add, modify, and remove a witness reference  
+	to this event. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	a witness reference is selected from the list. </P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -4028,10 +4218,76 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-si"
-></A
->4.8.7. Edit Source Information</H4
+>4.8.7. Edit Source Information</A
+></H4
 ><P
-> </P
+> When adding source references to events, places, etc., 
+	the following dialog appears: </P
+><DIV
+CLASS="figure"
+><A
+NAME="edit-si-fig"
+></A
+><P
+><B
+>Figure 17. Source Information dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/edit-si.png"></P
+></DIV
+></DIV
+><P
+> The top of the window shows the dialog title. The central part 
+	displays the source information. The bottom part has 
+	<SPAN
+CLASS="guibutton"
+>OK</SPAN
+> and <SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> buttons.  
+	Clicking <SPAN
+CLASS="guibutton"
+>OK</SPAN
+> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </P
+><P
+>Note that this dialog does not let you
+	modify sources or create new sources. It only allows you to make a
+	reference to the existing source. To add or modify a source, switch to
+	the Sources View and click <SPAN
+CLASS="guibutton"
+>Add</SPAN
+> or
+	<SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar, as appropriate. </P
+><P
+> The source can be selected from available sources listed in the
+	<SPAN
+CLASS="guilabel"
+>Title</SPAN
+> drop-down menu. You can also set the 
+	details specific for this particular reference: confidence,
+	volume/file/page. date, text, and comments. Choose the confidence 
+	level from the <SPAN
+CLASS="guilabel"
+>Confidence</SPAN
+> drop-down menu. 
+	The rest of the details can be typed in the appropriate text entry
+	fields. </P
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -4039,10 +4295,157 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-an"
-></A
->4.8.8. Edit Alternate Names</H4
+>4.8.8. Edit Alternate Names</A
+></H4
 ><P
-> </P
+> Alternate names are edited through the following 
+	<SPAN
+CLASS="guilabel"
+>Alternate Names Editor</SPAN
+> dialog: </P
+><DIV
+CLASS="figure"
+><A
+NAME="edit-an-fig"
+></A
+><P
+><B
+>Figure 18. Alternate Names Editor dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/edit-an.png"></P
+></DIV
+></DIV
+><P
+> The top of the window shows the dialog title including the name
+	of the person whose alternate name is being edited. The central part 
+	of the window displays three notebook tabs containing different 
+	categories of available information. You can bring any tab to the 
+	top for viewing or editing by clicking on the appropriate tab heading. 
+	The bottom part has <SPAN
+CLASS="guibutton"
+>OK</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> buttons. Clicking 
+	<SPAN
+CLASS="guibutton"
+>OK</SPAN
+> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </P
+><P
+>The tabs provide the following information categories of 
+	the alternate name data: </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>General</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>General</SPAN
+> tab allows editing of the most general
+	information about the alternate name: given name, family name, family 
+	prefix, suffix, title, and type of the name. The information can be 
+	typed in the appropriate text entry fields. The family name and the 
+	type can be also selected from available choices listed in the 
+	appropriate drop-down menus. 
+	Check the <SPAN
+CLASS="guilabel"
+>Private record</SPAN
+> box to mark this name
+	record as private. This will give you a chance to omit this event from
+	being included in the reports, if you choose so among the report 
+	generation options. </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Sources</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>Sources</SPAN
+> tab displays information about sources 
+	relevant to this name and the controls allowing its modification. 
+	The central part displays the list of all such sources references 
+	stored in the database. The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> 
+	allow to correspondingly add, modify, and remove a source reference  
+	to this name. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	a source reference is selected from the list. </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Note</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Note</SPAN
+> tab displays any notes concerning 
+	the name. To add a note or modify existing notes simply edit the 
+	text in the text entry field.
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -4050,8 +4453,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-at"
-></A
->4.8.9. Edit Attributes</H4
+>4.8.9. Edit Attributes</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4061,8 +4464,19 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-ad"
-></A
->4.8.10. Edit Addresses</H4
+>4.8.10. Edit Addresses</A
+></H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-wit"
+>4.8.11. Edit Witnesses</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4073,8 +4487,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-nav"
-></A
->4.9. Navigation</H3
+>4.9. Navigation</A
+></H3
 ><P
 > </P
 ><DIV
@@ -4083,8 +4497,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-default"
-></A
->4.9.1. Setting Default Person</H4
+>4.9.1. Setting Default Person</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4094,8 +4508,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-bookmk"
-></A
->4.9.2. Bookmarking People</H4
+>4.9.2. Bookmarking People</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4105,8 +4519,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-family"
-></A
->4.9.3. Using Family View</H4
+>4.9.3. Using Family View</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4116,8 +4530,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-pedigree"
-></A
->4.9.4. Using Pedigree View</H4
+>4.9.4. Using Pedigree View</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4128,8 +4542,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gen-reports"
-></A
->4.10. Generating Reports</H3
+>4.10. Generating Reports</A
+></H3
 ><P
 > </P
 ></DIV
@@ -4139,8 +4553,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-tools"
-></A
->4.11. Running Tools</H3
+>4.11. Running Tools</A
+></H3
 ><P
 > </P
 ></DIV
@@ -4151,8 +4565,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-prefs"
-></A
->5. Settings</H2
+>5. Settings</A
+></H2
 ><P
 >To configure <SPAN
 CLASS="application"
@@ -4204,8 +4618,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-usage"
-></A
->5.1. Usage</H3
+>5.1. Usage</A
+></H3
 ><P
 > </P
 ><DIV
@@ -4214,8 +4628,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-find"
-></A
->5.1.1. Find</H4
+>5.1.1. Find</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4225,8 +4639,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-report"
-></A
->5.1.2. Report Preferences</H4
+>5.1.2. Report Preferences</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4236,8 +4650,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-res"
-></A
->5.1.3. Researcher Information</H4
+>5.1.3. Researcher Information</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4247,8 +4661,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-guess"
-></A
->5.1.4. Data Guessing</H4
+>5.1.4. Data Guessing</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4259,8 +4673,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-display"
-></A
->5.2. Display</H3
+>5.2. Display</A
+></H3
 ><P
 > </P
 ><DIV
@@ -4269,8 +4683,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-gen"
-></A
->5.2.1. General</H4
+>5.2.1. General</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4280,8 +4694,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-date"
-></A
->5.2.2. Dates and Calendar</H4
+>5.2.2. Dates and Calendar</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4291,8 +4705,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-bars"
-></A
->5.2.3. Tool and Status Bars</H4
+>5.2.3. Tool and Status Bars</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4303,8 +4717,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-db"
-></A
->5.3. Database</H3
+>5.3. Database</A
+></H3
 ><P
 > </P
 ><DIV
@@ -4313,8 +4727,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-gen"
-></A
->5.3.1. General</H4
+>5.3.1. General</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4324,8 +4738,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-media"
-></A
->5.3.2. Media Objects</H4
+>5.3.2. Media Objects</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4335,11 +4749,11 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-id"
-></A
 >5.3.3. <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> internal IDs</H4
+> internal IDs</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4349,8 +4763,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-rcs"
-></A
->5.3.4. Revision Control</H4
+>5.3.4. Revision Control</A
+></H4
 ><P
 > </P
 ></DIV
@@ -4362,22 +4776,22 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-about"
-></A
 >6. About <SPAN
 CLASS="application"
 >GRAMPS</SPAN
+></A
 ></H2
 ><P
 > <SPAN
 CLASS="application"
 >GRAMPS</SPAN
 > was written by Donald N. Allingham
-      (<TT
+      (<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:dallingham@users.sourceforge.net"
 >dallingham@users.sourceforge.net</A
->&#62;</TT
+>&#62;</CODE
 >). 
       To find more information about <SPAN
 CLASS="application"
