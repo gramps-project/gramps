@@ -5,7 +5,7 @@
 >GRAMPS Manual V2.0</TITLE
 ><META
 NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.77+"></HEAD
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
 ><BODY
 CLASS="article"
 BGCOLOR="#FFFFFF"
@@ -21,11 +21,11 @@ CLASS="TITLEPAGE"
 CLASS="title"
 ><A
 NAME="AEN2"
-></A
 ><SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> Manual V2.0</H1
+> Manual V2.0</A
+></H1
 ><DIV
 CLASS="authorgroup"
 ><A
@@ -46,12 +46,12 @@ CLASS="orgname"
 CLASS="address"
 ><P
 CLASS="address"
->&nbsp;<TT
+>&nbsp;<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:shura@alex.neuro.umn.edu"
 >shura@alex.neuro.umn.edu</A
->&#62;</TT
+>&#62;</CODE
 >&nbsp;</P
 ></DIV
 ></DIV
@@ -70,12 +70,12 @@ CLASS="orgname"
 CLASS="address"
 ><P
 CLASS="address"
->&nbsp;<TT
+>&nbsp;<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:dallingham@users.sourceforge.net"
 >dallingham@users.sourceforge.net</A
->&#62;</TT
+>&#62;</CODE
 >&nbsp;</P
 ></DIV
 ></DIV
@@ -238,7 +238,7 @@ HREF="#gramps-views"
 ><DT
 >3.1.1. <A
 HREF="#view-modes"
->Viewing Modes: Sidebar versus Tabs</A
+>Switching Views and Viewing Modes: Sidebar versus Tabs</A
 ></DT
 ><DT
 >3.1.2. <A
@@ -317,51 +317,56 @@ CLASS="application"
 ><DT
 >4.7. <A
 HREF="#gramps-edit"
->Editing</A
+>Editing Data</A
 ></DT
 ><DD
 ><DL
 ><DT
 >4.7.1. <A
-HREF="#gramps-edit-pers"
->Edit Personal Data</A
+HREF="#gramps-add-pers"
+>To Add a Person</A
 ></DT
 ><DT
 >4.7.2. <A
-HREF="#gramps-edit-rel"
->Edit Relationship Data</A
+HREF="#gramps-spec-rel"
+>To Specify a Relashionship</A
 ></DT
 ><DT
 >4.7.3. <A
-HREF="#gramps-edit-child"
->Edit Children Data</A
+HREF="#gramps-spec-par"
+>To Specify Parents</A
 ></DT
 ><DT
 >4.7.4. <A
-HREF="#gramps-edit-parent"
->Edit Parental Data</A
+HREF="#gramps-spec-ch"
+>To Specify Children</A
 ></DT
 ><DT
 >4.7.5. <A
-HREF="#gramps-edit-sources"
->Edit Sources</A
+HREF="#gramps-add-img"
+>To Add Images</A
 ></DT
 ><DT
 >4.7.6. <A
-HREF="#gramps-edit-places"
->Edit Places</A
+HREF="#gramps-edit-src-plc"
+>To Edit Sources and Places</A
 ></DT
 ><DT
 >4.7.7. <A
-HREF="#gramps-edit-media"
->Edit Media Objects</A
+HREF="#adv-pers"
+>Advanced: To Edit Personal Information</A
+></DT
+><DT
+>4.7.8. <A
+HREF="#adv-rel"
+>Advanced: To Edit Relationship Data</A
 ></DT
 ></DL
 ></DD
 ><DT
 >4.8. <A
 HREF="#gramps-nav"
->Nevigation</A
+>Navigation</A
 ></DT
 ><DD
 ><DL
@@ -509,8 +514,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-intro"
-></A
->1. Introduction</H2
+>1. Introduction</A
+></H2
 ><P
 > The <SPAN
 CLASS="application"
@@ -543,11 +548,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="why-gramps"
-></A
 >1.1. Why <SPAN
 CLASS="application"
 >GRAMPS</SPAN
->?</H3
+>?</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -600,18 +605,18 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-getting-started"
-></A
->2. Getting Started</H2
+>2. Getting Started</A
+></H2
 ><DIV
 CLASS="sect2"
 ><H3
 CLASS="sect2"
 ><A
 NAME="gramps-start"
-></A
 >2.1. To Start <SPAN
 CLASS="application"
 >GRAMPS</SPAN
+></A
 ></H3
 ><P
 >You can start <SPAN
@@ -675,19 +680,15 @@ CLASS="application"
 >&#13;	<B
 CLASS="command"
 >gramps</B
-> <TT
+> <VAR
 CLASS="replaceable"
-><I
->filename.ged</I
-></TT
+>filename.ged</VAR
 >
     	</P
 ><P
->where <TT
+>where <VAR
 CLASS="replaceable"
-><I
->filename.ged</I
-></TT
+>filename.ged</VAR
 > is the name 
 	of the file you	want to open/import. </P
 ></DD
@@ -700,11 +701,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="run-1st-time"
-></A
 >2.2. Running <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> for the first time</H3
+> for the first time</A
+></H3
 ><P
 > 
  
@@ -735,8 +736,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="choose-db-start"
-></A
->2.2.1. Choosing a database on startup</H4
+>2.2.1. Choosing a database on startup</A
+></H4
 ><P
 >If <SPAN
 CLASS="application"
@@ -779,8 +780,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="zodb-support"
-></A
->2.2.2. Optional ZODB support</H4
+>2.2.2. Optional ZODB support</A
+></H4
 ><P
 >If either StandaloneZODB or Zope is installed on your system, 
       <SPAN
@@ -819,8 +820,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-mainwin"
-></A
->3. Main Window</H2
+>3. Main Window</A
+></H2
 ><P
 >When you open a database (either existing or brand new), 
     the following window is displayed.</P
@@ -977,8 +978,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-views"
-></A
->3.1. Views</H3
+>3.1. Views</A
+></H3
 ><P
 >Views are the various ways to display different aspects of 
       genealogical information, as described below. Since the relevant 
@@ -994,8 +995,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="view-modes"
-></A
->3.1.1. Viewing Modes: Sidebar versus Tabs</H4
+>3.1.1. Switching Views and Viewing Modes: Sidebar versus Tabs</A
+></H4
 ><P
 >Depending on the state of the <SPAN
 CLASS="guimenu"
@@ -1005,21 +1006,16 @@ CLASS="guimenuitem"
 >Sidebar</SPAN
 > menu item, the View could be switched either in the 
 	sidebar or in the notebook tabs in the top part of the window. 
-	To switch the View, click on the desired sidebar icon or the notebook 
-	tab. To switch between sidebar and notebook viewing modes, 
-	choose <SPAN
-CLASS="guimenu"
->View</SPAN
->-&gt;<SPAN
-CLASS="guimenuitem"
->Sidebar</SPAN
-> from the <SPAN
-CLASS="application"
-><SPAN
-CLASS="application"
->GRAMPS</SPAN
-></SPAN
-> menu.</P
+	</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>To switch the View while in a Sidebar mode, 
+	click on the desired sidebar icon.</DT
+><DD
 ><DIV
 CLASS="figure"
 ><A
@@ -1036,6 +1032,11 @@ CLASS="mediaobject"
 SRC="figures/side-nofilt.png"></P
 ></DIV
 ></DIV
+></DD
+><DT
+>To switch the View while in a Notebook mode, 
+		click on the desired notebook tab.</DT
+><DD
 ><DIV
 CLASS="figure"
 ><A
@@ -1052,6 +1053,24 @@ CLASS="mediaobject"
 SRC="figures/noside-nofilt.png"></P
 ></DIV
 ></DIV
+></DD
+></DL
+></DIV
+><P
+>To switch between sidebar and notebook viewing modes, 
+	choose <SPAN
+CLASS="guimenu"
+>View</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Sidebar</SPAN
+> from the <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> menu.</P
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -1059,8 +1078,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="people-view"
-></A
->3.1.2. People View</H4
+>3.1.2. People View</A
+></H4
 ><P
 >When <SPAN
 CLASS="application"
@@ -1110,8 +1129,8 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="filters"
-></A
->3.1.2.1. Filters</H5
+>3.1.2.1. Filters</A
+></H5
 ><P
 >Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
@@ -1233,8 +1252,8 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="alpha-tabs"
-></A
->3.1.2.2. Alphabetical Tabs</H5
+>3.1.2.2. Alphabetical Tabs</A
+></H5
 ><P
 ><SPAN
 CLASS="application"
@@ -1278,8 +1297,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="family-view"
-></A
->3.1.3. Family View</H4
+>3.1.3. Family View</A
+></H4
 ><P
 >Family View displays the Family information of a currently 
 	selected (or Active) person. Specifically, this view shows the 
@@ -1377,7 +1396,7 @@ CLASS="guibutton"
 CLASS="guibutton"
 >+</SPAN
 > buttons allow to add and remove 
-	children, respectively. Pressing <SPAN
+	children, respectively. Clicking <SPAN
 CLASS="guibutton"
 >&#60;-</SPAN
 > makes 
@@ -1389,8 +1408,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="pedigree-view"
-></A
->3.1.4. Pedigree View</H4
+>3.1.4. Pedigree View</A
+></H4
 ><P
 >Pedigree View helps to visualize the place of the Active 
 	person in the tree of its ancestors. Pedigree View shows four 
@@ -1441,8 +1460,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="sources-view"
-></A
->3.1.5. Sources View</H4
+>3.1.5. Sources View</A
+></H4
 ><P
 >Sources View lists the sources of information stored in the 
 	database. This can include various documents (birth, death, and 
@@ -1470,8 +1489,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="places-view"
-></A
->3.1.6. Places View</H4
+>3.1.6. Places View</A
+></H4
 ><P
 >Places View lists the geographical places in which the events 
 	of the database took place. These could be places of birth, death, 
@@ -1510,8 +1529,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="media-view"
-></A
->3.1.7. Media View</H4
+>3.1.7. Media View</A
+></H4
 ><P
 >Media View is a list of Media Objects used in the database. 
 	Media Objects are any files that relate somehow to the stored 
@@ -1530,8 +1549,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-usage"
-></A
->4. Usage</H2
+>4. Usage</A
+></H2
 ><P
 >As commonly encountered in everyday life, in
     <SPAN
@@ -1549,8 +1568,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="open-db"
-></A
->4.1. Opening Database</H3
+>4.1. Opening Database</A
+></H3
 ><P
 >To open a database, either choose <SPAN
 CLASS="guimenu"
@@ -1571,7 +1590,7 @@ CLASS="guilabel"
 CLASS="guilabel"
 >Database</SPAN
 > text 
-      entry field, or press <SPAN
+      entry field, or click <SPAN
 CLASS="guibutton"
 >Browse...</SPAN
 > to get the 
@@ -1616,8 +1635,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="new-db"
-></A
->4.2. Starting New Database</H3
+>4.2. Starting New Database</A
+></H3
 ><P
 >To start a new database, choose <SPAN
 CLASS="guimenu"
@@ -1640,8 +1659,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="save-db"
-></A
->4.3. Saving Database</H3
+>4.3. Saving Database</A
+></H3
 ><P
 >To save changes made to your database, choose <SPAN
 CLASS="guimenu"
@@ -1656,11 +1675,9 @@ CLASS="guibutton"
 > on the Toolbar. The Status line will then 
       display <SPAN
 CLASS="guilabel"
->Saving <TT
+>Saving <VAR
 CLASS="replaceable"
-><I
->filename</I
-></TT
+>filename</VAR
 >...</SPAN
 > 
       message, and the progress bar will advance as the saving progresses.</P
@@ -1671,8 +1688,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="import-gedcom"
-></A
->4.4. Importing GEDCOM Data</H3
+>4.4. Importing GEDCOM Data</A
+></H3
 ><P
 >Importing GEDCOM data allows you to incorporate the data created in 
       other genealogical programs into your currently 
@@ -1741,8 +1758,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="export-gedcom"
-></A
->4.5. Exporting GEDCOM Data</H3
+>4.5. Exporting GEDCOM Data</A
+></H3
 ><P
 >Exporting GEDCOM data allows you to share any portion of you 
       <SPAN
@@ -1855,11 +1872,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-package-impex"
-></A
 >4.6. Importing and Exporting <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> Packages</H3
+> Packages</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -1941,10 +1958,10 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-edit"
-></A
->4.7. Editing</H3
+>4.7. Editing Data</A
+></H3
 ><P
-> Editing of any portion of data allows you to amend and 
+> Editing of any portion of data allows you to amend and/or 
 	modify information stored in the database. The available editing 
 	options include editing personal data, relationship data, data about
 	children and parents, information about sources, places, and media
@@ -1957,9 +1974,328 @@ CLASS="sect3"
 ><HR><H4
 CLASS="sect3"
 ><A
-NAME="gramps-edit-pers"
-></A
->4.7.1. Edit Personal Data</H4
+NAME="gramps-add-pers"
+>4.7.1. To Add a Person</A
+></H4
+><P
+> To add a person to the database, switch to the People View 
+	(<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>) and then click 
+	<SPAN
+CLASS="guibutton"
+>Add</SPAN
+> on the toolbar. 
+	Enter any data you know about this person into the <SPAN
+CLASS="guilabel"
+>Edit 
+	Person</SPAN
+> Dialog (see <A
+HREF="#adv-pers"
+>Section 4.7.7</A
+> 
+	for details). To edit information about a person already present 
+	in the database, select an entry you would like to view/modify, 
+	and then click	<SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar. </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-spec-rel"
+>4.7.2. To Specify a Relashionship</A
+></H4
+><P
+>To specify a relashionship, first switch to the Family View 
+	(<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>). Then click <SPAN
+CLASS="guibutton"
+>+</SPAN
+>
+	button on the right of the spouse box. Select a spouse/partner from the
+	list and specify their relationship using the menu at the bottom. If
+	necessary, you can add a person to the list by clicking 
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> button. To edit information about 
+	relationship already present in the database, move the mouse over 
+	<SPAN
+CLASS="guilabel"
+>Spouse</SPAN
+> box and double-click. 
+	</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-spec-par"
+>4.7.3. To Specify Parents</A
+></H4
+><P
+>To specify parents of an active person, first switch to the 
+	Family View (<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>). Then click
+	<SPAN
+CLASS="guibutton"
+>+</SPAN
+> button on the right of the active person's
+	parents list-box. Select the parents from two lists and specify the
+	parents' relationships to the active person using menus at the bottom. 
+	You can also specify parents' relationship to each other. 
+	If necessary, you can add a person to the list by clicking 
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> button. </P
+><P
+> The top and bottom lists contain males and females, 
+	respectively. By default, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> will
+	limit both lists to people who could possibly be the parents (jugded
+	by the date of birth) of the active person. To override this, check
+	the <SPAN
+CLASS="guilabel"
+>Show all</SPAN
+> box for each list. 
+	</P
+><P
+>To specify parents of the active person's spouse, switch to the 
+	Family View and then click <SPAN
+CLASS="guibutton"
+>+</SPAN
+> button on the 
+	right of the spouse's parents list-box. To edit information about 
+	parents already present in the database, move the mouse over 
+	the corresponding parents' box and double-click.</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-spec-ch"
+>4.7.4. To Specify Children</A
+></H4
+><P
+>To specify children of an active person, switch to the 
+	Family View (<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>) and then 
+	click <SPAN
+CLASS="guibutton"
+>+</SPAN
+> button on the 
+	right of the children list-box. Select a child from the list and 
+	specify	child's relationship with father and motehr using menus 
+	at the bottom. If necessary, you can add a person to the list by 
+	clicking <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> button.</P
+><P
+> By default, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> will
+	limit the list lists to people who could possibly be the child (jugded
+	by the date of birth) of the active person. To override this, check
+	the <SPAN
+CLASS="guilabel"
+>Show all</SPAN
+> box. 
+	</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-add-img"
+>4.7.5. To Add Images</A
+></H4
+><P
+>You can add images (as well as other media objects) to 
+	individual people, events, sources, places, as well as images 
+	generally related to the database (e.g. group family photos). </P
+><P
+> To add images related to a single person, switch to the 
+	People View (<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>), select a person, and 
+	then click <SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar to invoke 
+	the <SPAN
+CLASS="guilabel"
+>Edit Person</SPAN
+> Dialog 
+	(<A
+HREF="#adv-pers"
+>Section 4.7.7</A
+>). Then, select the 
+	<SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+> tab, and click 
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> to invoke <SPAN
+CLASS="guilabel"
+>Select a media 
+	object</SPAN
+> dialog. Type filename or select a file with the 
+	image, then provide a title for that image. To prevent the file from
+	being copied into your database directory, check the <SPAN
+CLASS="guilabel"
+>Do not
+	make a local copy</SPAN
+> box. Keep adding images until you are 
+	done. </P
+><P
+> To add images related to a relationship (e.g. marriage), 
+	switch to the Family View (<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>) and then
+	double click on the Spouse box invoke <SPAN
+CLASS="guilabel"
+>Marriage/Relationship 
+	editor</SPAN
+> dialog. Select the <SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+> 
+	tab and click <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> to add an image. </P
+><P
+> To add images related to a source or a place, first switch to 
+	the Sources View or Places View, respectively 
+	(<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>). Then select the appropriate source or
+	place and then either double click on it or click 
+	<SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar to invoke 
+	<SPAN
+CLASS="guilabel"
+>Source Editor</SPAN
+> (or <SPAN
+CLASS="guilabel"
+>Place
+	Editor</SPAN
+>) dialog. Select the <SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+> 
+	tab and click <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> to add an image. </P
+><P
+> Finally, to add images that are generally related to the 
+	database but not limited to any person, relationship, source, or place 
+	in particular, switch to the Media View (<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>). 
+	Then click <SPAN
+CLASS="guibutton"
+>Add</SPAN
+> on the toolbar to add an image. 
+	If you have already added any images to any individual galleries, 
+	you will also find the listed in the Media View. </P
+><P
+> In any gallery, you can also use <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> 
+	and <SPAN
+CLASS="guibutton"
+>Remove</SPAN
+> buttons to edit image information
+	and to remove the image reference from that gallery. Note that in all
+	galleries removing the reference to the image does not remove the image
+	from the database. To completely remove the image from the database, 
+	delete it from Media View by first selecting it and then 
+	clicking <SPAN
+CLASS="guibutton"
+>Remove</SPAN
+> on the toolbar. </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-src-plc"
+>4.7.6. To Edit Sources and Places</A
+></H4
+><P
+> To add a source or a place to the database, switch to 
+	the appropriate Sources or Places View (<A
+HREF="#view-modes"
+>Section 3.1.1</A
+>). 
+	Then click <SPAN
+CLASS="guibutton"
+>Add</SPAN
+> on the toolbar to add a
+	source/place. Enter the information into the <SPAN
+CLASS="guilabel"
+>Source 
+	Editor</SPAN
+> (or <SPAN
+CLASS="guilabel"
+>Place Editor</SPAN
+>) dialog. 
+	</P
+><P
+> To edit information about sources and places already present
+	in the database, switch to the approrpiate view, select an entry
+	you would like to view/modify, and then click
+	<SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar. 
+	</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-pers"
+>4.7.7. Advanced: To Edit Personal Information</A
+></H4
 ><P
 > Editing of personal data can be performed in the 
 	following ways. </P
@@ -2028,7 +2364,7 @@ CLASS="guilabel"
 > and
 	<SPAN
 CLASS="guibutton"
->Cance</SPAN
+>Cancel</SPAN
 > buttons. Clicking <SPAN
 CLASS="guibutton"
 >OK</SPAN
@@ -2564,66 +2900,11 @@ CLASS="sect3"
 ><HR><H4
 CLASS="sect3"
 ><A
-NAME="gramps-edit-rel"
-></A
->4.7.2. Edit Relationship Data</H4
+NAME="adv-rel"
+>4.7.8. Advanced: To Edit Relationship Data</A
+></H4
 ><P
-> </P
-></DIV
-><DIV
-CLASS="sect3"
-><HR><H4
-CLASS="sect3"
-><A
-NAME="gramps-edit-child"
-></A
->4.7.3. Edit Children Data</H4
-><P
-> </P
-></DIV
-><DIV
-CLASS="sect3"
-><HR><H4
-CLASS="sect3"
-><A
-NAME="gramps-edit-parent"
-></A
->4.7.4. Edit Parental Data</H4
-><P
-> </P
-></DIV
-><DIV
-CLASS="sect3"
-><HR><H4
-CLASS="sect3"
-><A
-NAME="gramps-edit-sources"
-></A
->4.7.5. Edit Sources</H4
-><P
-> </P
-></DIV
-><DIV
-CLASS="sect3"
-><HR><H4
-CLASS="sect3"
-><A
-NAME="gramps-edit-places"
-></A
->4.7.6. Edit Places</H4
-><P
-> </P
-></DIV
-><DIV
-CLASS="sect3"
-><HR><H4
-CLASS="sect3"
-><A
-NAME="gramps-edit-media"
-></A
->4.7.7. Edit Media Objects</H4
-><P
-> </P
+>  </P
 ></DIV
 ></DIV
 ><DIV
@@ -2632,8 +2913,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-nav"
-></A
->4.8. Nevigation</H3
+>4.8. Navigation</A
+></H3
 ><P
 > </P
 ><DIV
@@ -2642,8 +2923,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-default"
-></A
->4.8.1. Setting Default Person</H4
+>4.8.1. Setting Default Person</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2653,8 +2934,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-bookmk"
-></A
->4.8.2. Bookmarking People</H4
+>4.8.2. Bookmarking People</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2664,8 +2945,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-family"
-></A
->4.8.3. Using Family View</H4
+>4.8.3. Using Family View</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2675,8 +2956,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-pedigree"
-></A
->4.8.4. Using Pedigree View</H4
+>4.8.4. Using Pedigree View</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2687,8 +2968,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gen-reports"
-></A
->4.9. Generating Reports</H3
+>4.9. Generating Reports</A
+></H3
 ><P
 > </P
 ></DIV
@@ -2698,8 +2979,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-tools"
-></A
->4.10. Running Tools</H3
+>4.10. Running Tools</A
+></H3
 ><P
 > </P
 ></DIV
@@ -2710,8 +2991,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-prefs"
-></A
->5. Settings</H2
+>5. Settings</A
+></H2
 ><P
 >To configure <SPAN
 CLASS="application"
@@ -2763,8 +3044,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-usage"
-></A
->5.1. Usage</H3
+>5.1. Usage</A
+></H3
 ><P
 > </P
 ><DIV
@@ -2773,8 +3054,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-find"
-></A
->5.1.1. Find</H4
+>5.1.1. Find</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2784,8 +3065,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-report"
-></A
->5.1.2. Report Preferences</H4
+>5.1.2. Report Preferences</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2795,8 +3076,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-res"
-></A
->5.1.3. Researcher Information</H4
+>5.1.3. Researcher Information</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2806,8 +3087,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-guess"
-></A
->5.1.4. Data Guessing</H4
+>5.1.4. Data Guessing</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2818,8 +3099,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-display"
-></A
->5.2. Display</H3
+>5.2. Display</A
+></H3
 ><P
 > </P
 ><DIV
@@ -2828,8 +3109,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-gen"
-></A
->5.2.1. General</H4
+>5.2.1. General</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2839,8 +3120,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-date"
-></A
->5.2.2. Dates and Calendar</H4
+>5.2.2. Dates and Calendar</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2850,8 +3131,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-bars"
-></A
->5.2.3. Tool and Status Bars</H4
+>5.2.3. Tool and Status Bars</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2862,8 +3143,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-db"
-></A
->5.3. Database</H3
+>5.3. Database</A
+></H3
 ><P
 > </P
 ><DIV
@@ -2872,8 +3153,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-gen"
-></A
->5.3.1. General</H4
+>5.3.1. General</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2883,8 +3164,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-media"
-></A
->5.3.2. Media Objects</H4
+>5.3.2. Media Objects</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2894,11 +3175,11 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-id"
-></A
 >5.3.3. <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> internal IDs</H4
+> internal IDs</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2908,8 +3189,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-rcs"
-></A
->5.3.4. Revision Control</H4
+>5.3.4. Revision Control</A
+></H4
 ><P
 > </P
 ></DIV
@@ -2921,22 +3202,22 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-about"
-></A
 >6. About <SPAN
 CLASS="application"
 >GRAMPS</SPAN
+></A
 ></H2
 ><P
 > <SPAN
 CLASS="application"
 >GRAMPS</SPAN
 > was written by Donald N. Allingham
-      (<TT
+      (<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:dallingham@users.sourceforge.net"
 >dallingham@users.sourceforge.net</A
->&#62;</TT
+>&#62;</CODE
 >). 
       To find more information about <SPAN
 CLASS="application"

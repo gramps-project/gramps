@@ -373,37 +373,47 @@
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="view-modes">
-        <title>Viewing Modes: Sidebar versus Tabs</title>
+        <title>Switching Views and Viewing Modes: Sidebar versus Tabs</title>
 	<para>Depending on the state of the <menuchoice> 
-	<guimenu>View</guimenu> <guimenuitem>Sidebar</guimenuitem> 
+	<guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem> 
 	</menuchoice> menu item, the View could be switched either in the 
 	sidebar or in the notebook tabs in the top part of the window. 
-	To switch the View, click on the desired sidebar icon or the notebook 
-	tab. To switch between sidebar and notebook viewing modes, 
+	</para>
+
+	<variablelist>
+	<varlistentry><term>To switch the View while in a Sidebar mode, 
+	click on the desired sidebar icon.</term>
+	  <listitem>
+	  <!-- ==== Figure: Sidebar Notebook Mode ==== -->
+	  <figure id="side-nofilt-fig"> 
+	  <title>Sidebar Viewing Mode</title> 
+	  <screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/side-nofilt.png" format="PNG"/></imageobject>
+	  <textobject> 
+	  <phrase>Shows sidebar viewing mode.  </phrase>
+	  </textobject></mediaobject></screenshot></figure>
+	  <!-- ==== End of Figure ==== -->
+	  </listitem></varlistentry>
+
+	<varlistentry><term>To switch the View while in a Notebook mode, 
+		click on the desired notebook tab.</term>
+	  <listitem>
+	  <!-- ==== Figure: Tabbed Notebook Mode ==== -->
+	  <figure id="noside-nofilt-fig"> 
+	  <title>Tabbed Viewing Mode</title> 
+	  <screenshot><mediaobject><imageobject><imagedata 
+	  	fileref="figures/noside-nofilt.png" format="PNG"/></imageobject>
+	  <textobject> 
+	  <phrase>Shows tabbed viewing mode.  </phrase>
+	  </textobject></mediaobject></screenshot></figure>
+	  <!-- ==== End of Figure ==== -->
+	  </listitem></varlistentry>
+	</variablelist>
+
+	<para>To switch between sidebar and notebook viewing modes, 
 	choose <menuchoice> <guimenu>View</guimenu> 
 	<guimenuitem>Sidebar</guimenuitem> 
 	</menuchoice> from the <application>&app;</application> menu.</para>
-
-	<!-- ==== Figure: Sidebar Notebook Mode ==== -->
-	<figure id="side-nofilt-fig"> 
-	<title>Sidebar Viewing Mode</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/side-nofilt.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows sidebar viewing mode.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
-
-
-	<!-- ==== Figure: Tabbed Notebook Mode ==== -->
-	<figure id="noside-nofilt-fig"> 
-	<title>Tabbed Viewing Mode</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/noside-nofilt.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows tabbed viewing mode.  </phrase>
-	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Figure ==== -->
     
       </sect3>
 
@@ -546,7 +556,7 @@
 	etc.) The three buttons are available on the right side of the 
 	children list-box. The <guibutton>+</guibutton> 
 	and <guibutton>+</guibutton> buttons allow to add and remove 
-	children, respectively. Pressing <guibutton><-</guibutton> makes 
+	children, respectively. Clicking <guibutton><-</guibutton> makes 
 	the selected child the Active person.</para> 
       </sect3>
 
@@ -647,7 +657,7 @@
       or click <guibutton>Open</guibutton> button on the Toolbar. 
       The <guilabel>Open Database</guilabel> dialog will appear. 
       Either type the full path into the <guilabel>Database</guilabel> text 
-      entry field, or press <guibutton>Browse...</guibutton> to get the 
+      entry field, or click <guibutton>Browse...</guibutton> to get the 
       <guilabel>Open File</guilabel> dialog in which you can select the file
       that you want to open. After you have selected the file, click
       <guibutton>OK</guibutton> to open it. </para>
@@ -797,8 +807,8 @@
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit"> 
-      <title>Editing</title> 
-	<para> Editing of any portion of data allows you to amend and 
+      <title>Editing Data</title> 
+	<para> Editing of any portion of data allows you to amend and/or 
 	modify information stored in the database. The available editing 
 	options include editing personal data, relationship data, data about
 	children and parents, information about sources, places, and media
@@ -808,8 +818,150 @@
 	editing of that empty structure. </para>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-pers"> 
-        <title>Edit Personal Data</title> 
+      <sect3 id="gramps-add-pers"> 
+        <title>To Add a Person</title> 
+	<para> To add a person to the database, switch to the People View 
+	(<xref linkend="view-modes"/>) and then click 
+	<guibutton>Add</guibutton> on the toolbar. 
+	Enter any data you know about this person into the <guilabel>Edit 
+	Person</guilabel> Dialog (see <xref linkend="adv-pers"/> 
+	for details). To edit information about a person already present 
+	in the database, select an entry you would like to view/modify, 
+	and then click	<guibutton>Edit</guibutton> on the toolbar. </para> 
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-spec-rel"> 
+        <title>To Specify a Relashionship</title> 
+	<para>To specify a relashionship, first switch to the Family View 
+	(<xref linkend="view-modes"/>). Then click <guibutton>+</guibutton>
+	button on the right of the spouse box. Select a spouse/partner from the
+	list and specify their relationship using the menu at the bottom. If
+	necessary, you can add a person to the list by clicking 
+	<guibutton>Add...</guibutton> button. To edit information about 
+	relationship already present in the database, move the mouse over 
+	<guilabel>Spouse</guilabel> box and double-click. 
+	</para>
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-spec-par"> 
+        <title>To Specify Parents</title> 
+	<para>To specify parents of an active person, first switch to the 
+	Family View (<xref linkend="view-modes"/>). Then click
+	<guibutton>+</guibutton> button on the right of the active person's
+	parents list-box. Select the parents from two lists and specify the
+	parents' relationships to the active person using menus at the bottom. 
+	You can also specify parents' relationship to each other. 
+	If necessary, you can add a person to the list by clicking 
+	<guibutton>Add...</guibutton> button. </para>
+	
+	<para> The top and bottom lists contain males and females, 
+	respectively. By default, <application>&app;</application> will
+	limit both lists to people who could possibly be the parents (jugded
+	by the date of birth) of the active person. To override this, check
+	the <guilabel>Show all</guilabel> box for each list. 
+	</para>
+	
+	<para>To specify parents of the active person's spouse, switch to the 
+	Family View and then click <guibutton>+</guibutton> button on the 
+	right of the spouse's parents list-box. To edit information about 
+	parents already present in the database, move the mouse over 
+	the corresponding parents' box and double-click.</para>
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-spec-ch"> 
+        <title>To Specify Children</title> 
+	<para>To specify children of an active person, switch to the 
+	Family View (<xref linkend="view-modes"/>) and then 
+	click <guibutton>+</guibutton> button on the 
+	right of the children list-box. Select a child from the list and 
+	specify	child's relationship with father and motehr using menus 
+	at the bottom. If necessary, you can add a person to the list by 
+	clicking <guibutton>Add...</guibutton> button.</para>
+
+	<para> By default, <application>&app;</application> will
+	limit the list lists to people who could possibly be the child (jugded
+	by the date of birth) of the active person. To override this, check
+	the <guilabel>Show all</guilabel> box. 
+	</para>
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-add-img"> 
+        <title>To Add Images</title> 
+	<para>You can add images (as well as other media objects) to 
+	individual people, events, sources, places, as well as images 
+	generally related to the database (e.g. group family photos). </para>
+	
+	<para> To add images related to a single person, switch to the 
+	People View (<xref linkend="view-modes"/>), select a person, and 
+	then click <guibutton>Edit</guibutton> on the toolbar to invoke 
+	the <guilabel>Edit Person</guilabel> Dialog 
+	(<xref linkend="adv-pers"/>). Then, select the 
+	<guilabel>Gallery</guilabel> tab, and click 
+	<guibutton>Add...</guibutton> to invoke <guilabel>Select a media 
+	object</guilabel> dialog. Type filename or select a file with the 
+	image, then provide a title for that image. To prevent the file from
+	being copied into your database directory, check the <guilabel>Do not
+	make a local copy</guilabel> box. Keep adding images until you are 
+	done. </para>
+
+	<para> To add images related to a relationship (e.g. marriage), 
+	switch to the Family View (<xref linkend="view-modes"/>) and then
+	double click on the Spouse box invoke <guilabel>Marriage/Relationship 
+	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
+	tab and click <guibutton>Add...</guibutton> to add an image. </para>
+
+	<para> To add images related to a source or a place, first switch to 
+	the Sources View or Places View, respectively 
+	(<xref linkend="view-modes"/>). Then select the appropriate source or
+	place and then either double click on it or click 
+	<guibutton>Edit</guibutton> on the toolbar to invoke 
+	<guilabel>Source Editor</guilabel> (or <guilabel>Place
+	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
+	tab and click <guibutton>Add...</guibutton> to add an image. </para>
+
+	<para> Finally, to add images that are generally related to the 
+	database but not limited to any person, relationship, source, or place 
+	in particular, switch to the Media View (<xref linkend="view-modes"/>). 
+	Then click <guibutton>Add</guibutton> on the toolbar to add an image. 
+	If you have already added any images to any individual galleries, 
+	you will also find the listed in the Media View. </para>
+
+	<para> In any gallery, you can also use <guibutton>Edit...</guibutton> 
+	and <guibutton>Remove</guibutton> buttons to edit image information
+	and to remove the image reference from that gallery. Note that in all
+	galleries removing the reference to the image does not remove the image
+	from the database. To completely remove the image from the database, 
+	delete it from Media View by first selecting it and then 
+	clicking <guibutton>Remove</guibutton> on the toolbar. </para>
+
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-edit-src-plc"> 
+        <title>To Edit Sources and Places</title> 
+
+	<para> To add a source or a place to the database, switch to 
+	the appropriate Sources or Places View (<xref linkend="view-modes"/>). 
+	Then click <guibutton>Add</guibutton> on the toolbar to add a
+	source/place. Enter the information into the <guilabel>Source 
+	Editor</guilabel> (or <guilabel>Place Editor</guilabel>) dialog. 
+	</para>
+
+	<para> To edit information about sources and places already present
+	in the database, switch to the approrpiate view, select an entry
+	you would like to view/modify, and then click
+	<guibutton>Edit</guibutton> on the toolbar. 
+	</para>
+
+      </sect3>
+      
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-pers"> 
+        <title>Advanced: To Edit Personal Information</title> 
 	<para> Editing of personal data can be performed in the 
 	following ways. </para>
 	<variablelist>
@@ -843,7 +995,7 @@
 	information. You can bring any tab to the top for viewing
 	or editing by clicking on the appropriate tab heading. 
 	The bottom part has <guilabel>OK</guilabel> and
-	<guibutton>Cance</guibutton> buttons. Clicking <guibutton>OK</guibutton> 
+	<guibutton>Cancel</guibutton> buttons. Clicking <guibutton>OK</guibutton> 
 	at any time will apply all the changes made in all tabs and close the
 	dialog window. Clicking <guilabel>Cancel</guilabel> at any time will 
 	close the window without applying any changes. If any of the data
@@ -1050,49 +1202,21 @@
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-rel"> 
-        <title>Edit Relationship Data</title> 
-	<para> </para>
+      <sect3 id="adv-rel"> 
+        <title>Advanced: To Edit Relationship Data</title> 
+	<para>  </para>
+
+      </sect3>
 <!--
 [ FIXME: STOPPED HERE ] 
 -->
-      </sect3>
 
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-child"> 
-        <title>Edit Children Data</title> 
-	<para> </para>
-      </sect3>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-parent"> 
-        <title>Edit Parental Data</title> 
-	<para> </para>
-      </sect3>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-sources"> 
-        <title>Edit Sources</title> 
-	<para> </para>
-      </sect3>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-places"> 
-        <title>Edit Places</title> 
-	<para> </para>
-      </sect3>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-media"> 
-        <title>Edit Media Objects</title> 
-	<para> </para>
-      </sect3>
 
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
-       <title>Nevigation</title> 
+       <title>Navigation</title> 
 	<para> </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
