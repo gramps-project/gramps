@@ -1303,7 +1303,7 @@
 		<object>marriageEditor</object>
 		<last_modification_time>Thu, 29 Mar 2001 13:45:03 GMT</last_modification_time>
 	      </signal>
-	      <label>Add Image</label>
+	      <label>Add Media Object</label>
 	      <relief>GTK_RELIEF_NORMAL</relief>
 	    </widget>
 
@@ -1318,7 +1318,22 @@
 		<object>marriageEditor</object>
 		<last_modification_time>Thu, 29 Mar 2001 13:45:15 GMT</last_modification_time>
 	      </signal>
-	      <label>Delete Image</label>
+	      <label>Delete Media Object</label>
+	      <relief>GTK_RELIEF_NORMAL</relief>
+	    </widget>
+
+	    <widget>
+	      <class>GtkButton</class>
+	      <name>button109</name>
+	      <can_default>True</can_default>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>clicked</name>
+		<handler>on_edit_properties_clicked</handler>
+		<object>marriageEditor</object>
+		<last_modification_time>Sat, 13 Oct 2001 17:40:21 GMT</last_modification_time>
+	      </signal>
+	      <label>Edit Properties</label>
 	      <relief>GTK_RELIEF_NORMAL</relief>
 	    </widget>
 	  </widget>

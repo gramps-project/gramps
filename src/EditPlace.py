@@ -48,6 +48,7 @@ from RelLib import *
 import RelImage
 import Sources
 import ImageSelect
+import UrlEdit
 
 _ = intl.gettext
 
@@ -68,7 +69,7 @@ class EditPlace:
         self.callback = func
         self.path = db.getSavePath()
         self.not_loaded = 1
-        self.list_changed = 0
+        self.lists_changed = 0
         if place:
             self.srcreflist = place.getSourceRefList()
         else:
@@ -123,6 +124,7 @@ class EditPlace:
             "on_switch_page" : on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
+            "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_add_url_clicked" : on_add_url_clicked,
             "on_delete_url_clicked" : on_delete_url_clicked,
             "on_update_url_clicked" : on_update_url_clicked,
@@ -220,7 +222,7 @@ def on_place_apply_clicked(obj):
         mloc.set_city(city)
         utils.modified()
 
-    if edit.list_changed:
+    if edit.lists_changed:
         edit.place.setSourceRefList(edit.srcreflist)
         utils.modified()
 
@@ -276,7 +278,12 @@ def on_switch_page(obj,a,page):
 def on_update_url_clicked(obj):
     if len(obj.selection) > 0:
         row = obj.selection[0]
-        UrlEditor(obj.get_data(_PLACE),obj.get_row_data(row))
+        mobj = obj.get_data(_PLACE)
+        if mobj.place:
+            name = _("Internet Address Editor for %s") % mobj.place.get_title()
+        else:
+            name = _("Internet Address Editor")
+        UrlEdit.UrlEditor(mobj,name,obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -316,7 +323,12 @@ def on_delete_loc_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_url_clicked(obj):
-    UrlEditor(obj.get_data(_PLACE),None)
+    mobj = obj.get_data(_PLACE)
+    if mobj.place:
+        name = _("Internet Address Editor for %s") % mobj.place.get_title()
+    else:
+        name = _("Internet Address Editor")
+    UrlEdit.UrlEditor(mobj,name,None)
 
 #-------------------------------------------------------------------------
 #
@@ -336,64 +348,7 @@ def on_source_clicked(obj):
     Sources.SourceSelector(epo.srcreflist,epo,src_changed)
 
 def src_changed(parent):
-    parent.list_changed = 1
-
-#-------------------------------------------------------------------------
-#
-# UrlEditor class
-#
-#-------------------------------------------------------------------------
-class UrlEditor:
-
-    def __init__(self,parent,url):
-        self.parent = parent
-        self.url = url
-        self.top = libglade.GladeXML(const.editPersonFile, "url_edit")
-        self.window = self.top.get_widget("url_edit")
-        self.des  = self.top.get_widget("url_des")
-        self.addr = self.top.get_widget("url_addr")
-        self.priv = self.top.get_widget("priv")
-
-        if parent.place:
-            name = _("Internet Address Editor for %s") % parent.place.get_title()
-        else:
-            name = _("Internet Address Editor")
-            
-        self.top.get_widget("urlTitle").set_text(name) 
-
-        if url != None:
-            self.des.set_text(url.get_description())
-            self.addr.set_text(url.get_path())
-            self.priv.set_active(url.getPrivacy())
-
-        self.window.set_data("o",self)
-        self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "on_url_edit_ok_clicked" : on_url_edit_ok_clicked
-            })
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_url_edit_ok_clicked(obj):
-    ee = obj.get_data("o")
-    url = ee.url
-
-    des = ee.des.get_text()
-    addr = ee.addr.get_text()
-    priv = ee.priv.get_active()
-
-    if url == None:
-        url = Url()
-        ee.parent.ulist.append(url)
-        
-    if update_url(url,des,addr,priv):
-        ee.parent.lists_changed = 1
-        
-    ee.parent.redraw_url_list()
-    utils.destroy_passed_object(obj)
+    parent.lists_changed = 1
 
 #-------------------------------------------------------------------------
 #
@@ -433,32 +388,6 @@ def on_loc_list_select_row(obj,row,b,c):
     epo.loc_county.set_text(loc.get_county())
     epo.loc_state.set_text(loc.get_state())
     epo.loc_country.set_text(loc.get_country())
-
-#-------------------------------------------------------------------------
-#
-# update_url
-# 
-# Updates the specified event with the specified date.  Compares against
-# the previous value, so the that modified flag is not set if nothing has
-# actually changed.
-#
-#-------------------------------------------------------------------------
-def update_url(url,des,addr,priv):
-    changed = 0
-        
-    if url.get_path() != addr:
-        url.set_path(addr)
-        changed = 1
-        
-    if url.get_description() != des:
-        url.set_description(des)
-        changed = 1
-
-    if url.getPrivacy() != priv:
-        url.setPrivacy(priv)
-        changed = 1
-
-    return changed
 
 #-------------------------------------------------------------------------
 #
