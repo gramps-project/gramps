@@ -212,7 +212,7 @@ class FtreeWriter:
             death = p.get_death().get_date_object()
 
             if restrict:
-                alive = p.probably_alive()
+                alive = p.probably_alive(db)
             else:
                 alive = 0
                 

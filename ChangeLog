@@ -8,6 +8,8 @@
 	* src/plugins/WebPage.py: Convert to ids. Call probably_alive
 	with db as an argument. Move by_date inside the class (needs db).
 	* src/RelLib.py: Correct probably_alive to ids.
+	* src/plugins/WriteFtree.py: Call probably_alive with db.
+	* src/plugins/WriteGedcom.py: Call probably_alive with db.
 
 2004-03-10  Leonid Mamtchenkov  <leonid@leonid.maks.net>
 	* src/plugins/WebPage.py: Link main photo to the original.
