@@ -1,3 +1,7 @@
+2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: Change column sizes on the FamilyView to
+	fit with the new column
+
 2003-11-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Utils.py (bold_label, unbold label): Add functions.
 	* src/EditPerson.py (bold_label, unbold label): Remove functions; 
