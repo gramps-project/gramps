@@ -270,7 +270,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_people(self,attrs):
         if attrs.has_key("default"):
-            self.tempDefault = attrs["default"]
+            self.tempDefault = u2l(attrs["default"])
 
     #---------------------------------------------------------------------
     #
@@ -345,24 +345,23 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_childof(self,attrs):
         family = self.db.findFamilyNoMap(u2l(attrs["ref"]))
-        if attrs.has_key("type"):
-            type = u2l(attrs["type"])
-            self.person.AltFamilyList.append((family,type,type))
-        elif attrs.has_key("mrel") or attrs.has_key("frel"):
+        if len(attrs) == 1:
+            self.person.MainFamily = family
+        else:
+            mrel = ""
+            frel = ""
             if attrs.has_key("mrel"):
-                mrel = u2l(attrs["mrel"])
-            else:
-                mrel = ""
+                mrel = attrs["mrel"]
             if attrs.has_key("frel"):
-                frel = u2l(attrs["frel"])
-            else:
-                frel = ""
+                frel = attrs["frel"]
             if mrel=="Birth" and frel=="Birth":
                 self.person.MainFamily = family
             else:
-                self.person.AltFamilyList.append((family,mrel,frel))
-        else:
-            self.person.MainFamily = family
+                if mrel or frel:
+                    self.person.AltFamilyList.append((family,mrel,frel))
+                else:
+                    type = u2l(attrs["type"])
+                    self.person.AltFamilyList.append((family,type,type))
 
     #---------------------------------------------------------------------
     #
@@ -449,7 +448,7 @@ class GrampsParser(handler.ContentHandler):
                 elif self.placeobj:
                     self.placeobj.addPhoto(photo)
             else:
-                photo.addProperty(key,attrs[key])
+                photo.addProperty(key,u2l(attrs[key]))
 
     #---------------------------------------------------------------------
     #
@@ -465,7 +464,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_pos(self,attrs):
-        self.person.position = (int(u2l(attrs["x"])), int(u2l(attrs["y"])))
+        self.person.position = (int(attrs["x"]), int(attrs["y"]))
 
     #---------------------------------------------------------------------
     #
