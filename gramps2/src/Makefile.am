@@ -86,6 +86,7 @@ gdir_PYTHON = \
 	RelImage.py\
 	RelLib.py\
 	Report.py\
+	ReportUtils.py\
 	SelectChild.py\
 	SelectObject.py\
 	Sort.py\
