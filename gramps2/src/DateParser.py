@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 U.S. English date parsing class. Serves as the base class for any localized
 date parsing class.
@@ -26,13 +28,28 @@ date parsing class.
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 import re
 import time
 import locale
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import Date
 
 
+#-------------------------------------------------------------------------
+#
+# Parser class
+#
+#-------------------------------------------------------------------------
 class DateParser:
     """
     Converts a text string into a Date object. If the date cannot be
@@ -216,7 +233,7 @@ class DateParser:
                            re.IGNORECASE)
     _numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
     _iso      = re.compile("(\d+)-(\d+)-(\d+)")
-    _rfc      = re.compile("%s,\s+(\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d:\d\d\s+(\+|-)\d\d\d\d" 
+    _rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
                         % (_rfc_day_str,_rfc_mon_str))
 
 
@@ -325,9 +342,9 @@ class DateParser:
         match = self._rfc.match(text)
         if match:
             groups = match.groups()
-            d = self._get_int(groups[1])
-            m = self._rfc_mons_to_int[groups[2]]
-            y = self._get_int(groups[3])
+            d = self._get_int(groups[2])
+            m = self._rfc_mons_to_int[groups[3]]
+            y = self._get_int(groups[4])
             return (d,m,y,False)
 
         match = self._numeric.match(text)

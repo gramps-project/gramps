@@ -1,5 +1,6 @@
 2004-09-27 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version number.
+	* src/DateParser.py: Better compliance with the RFC-2822.
 
 2004-09-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* Release: Version 1.1.1 "Rat cake, rat sorbet, rat pudding, 
