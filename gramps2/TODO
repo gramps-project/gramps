@@ -25,4 +25,8 @@
   the adding of media objects as well, since this will cause gramps to
   try to create a thumbnail in a readonly database.
 * Startup tips.
+* Add sequence number to childlist in family view
+* Add completeness level to person/family
+* Add string substitutions for web page generation (name, report name,
+  date, etc).
 * And a whole lot more....

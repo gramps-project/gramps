@@ -1,5 +1,5 @@
 %define ver      0.9.4
-%define rel      0.CVS20030908
+%define rel      0.CVS20030919
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 
@@ -78,7 +78,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/gramps.png
 
-%{_datadir}/gramps/*
+%{_libdir}/gramps
+%{_datadir}/gramps
 %{_datadir}/omf/gramps
 
 %post
@@ -88,6 +89,9 @@ if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
  
 %changelog
+* Fri Sep 19 2003 Tim Waugh <twaugh@redhat.com>
+- Own %%{_datadir/gramps directory.
+- Ship %%{_libdir}/gramps.
 * Mon May 20 2003 Donald Peterson <dpeterson@sigmaxi.org>
 - Override RPMs default of localstatedir to /var/lib..
   This is done in accordance with GNOME and FHS compliance guidelines 
