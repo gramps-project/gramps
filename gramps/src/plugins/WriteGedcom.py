@@ -194,11 +194,12 @@ def walk(person):
 #-------------------------------------------------------------------------
 def add_persons_sources(person):
     elist = person.getEventList()[:]
-    if person.getBirth():
-        elist.append(person.getBirth())
-    if person.getDeath():
-        elist.append(person.getDeath())
+
+    elist.append(person.getBirth())
+    elist.append(person.getDeath())
     for event in elist:
+        if private and event.getPrivacy():
+            continue
         source_ref = event.getSourceRef()
         if source_ref != None:
             source_list.append(source_ref)
@@ -209,12 +210,9 @@ def add_persons_sources(person):
 #
 #-------------------------------------------------------------------------
 def add_familys_sources(family):
-    elist = family.getEventList()[:]
-    if family.getMarriage():
-        elist.append(family.getMarriage())
-    if family.getDivorce():
-        elist.append(family.getDivorce())
-    for event in elist:
+    for event in family.getEventList():
+        if private and event.getPrivacy():
+            continue
         source_ref = event.getSourceRef()
         if source_ref != None:
             source_list.append(source_ref)
@@ -369,20 +367,24 @@ def write_person(g,person):
     if not probably_alive(person):
 
         birth = person.getBirth()
-        if birth.getSaveDate() != "" or birth.getPlace() != "":
-            g.write("1 BIRT\n")
-            dump_event_stats(g,birth)
+        if not (private and birth.getPrivacy()):
+            if birth.getSaveDate() != "" or birth.getPlace() != "":
+                g.write("1 BIRT\n")
+                dump_event_stats(g,birth)
 				
         death = person.getDeath()
-        if death.getSaveDate() != "" or death.getPlace() != "":
-            g.write("1 DEAT\n")
-            dump_event_stats(g,death)
+        if not (private and death.getPrivacy()):
+            if death.getSaveDate() != "" or death.getPlace() != "":
+                g.write("1 DEAT\n")
+                dump_event_stats(g,death)
 
         uid = person.getPafUid()
         if uid != "":
             g.write("1 _UID %s\n" % uid)
             
         for event in person.getEventList():
+            if private and event.getPrivacy():
+                continue
             name = event.getName()
             if const.personalConstantEvents.has_key(name):
                 val = const.personalConstantEvents[name]
@@ -396,6 +398,8 @@ def write_person(g,person):
             dump_event_stats(g,event)
 
         for attr in person.getAttributeList():
+            if private and attr.getPrivacy():
+                continue
             name = attr.getType()
             if const.personalConstantAttributes.has_key(name):
                 val = const.personalConstantAttributes[name]
@@ -413,6 +417,8 @@ def write_person(g,person):
                 write_source_ref(g,2,attr.getSourceRef())
 
         for addr in person.getAddressList():
+            if private and addr.getPrivacy():
+                continue
             write_long_text(g,"RESI",1,addr.getStreet())
             if addr.getCity() != "":
                 g.write("2 CITY %s\n" % addr.getCity())
@@ -512,17 +518,9 @@ def exportData(database, filename):
         father = family.getFather()
         mother = family.getMother()
         if not probably_alive(father) or not probably_alive(mother):
-            event = family.getMarriage()
-            if event != None:
-                g.write("1 MARR\n");
-                dump_event_stats(g,event)
-
-            event = family.getDivorce()
-            if event != None:
-                g.write("1 DIV\n");
-                dump_event_stats(g,event)
-
             for event in family.getEventList():
+                if private and event.getPrivacy():
+                    continue
                 name = event.getName()
 
                 if const.familyConstantEvents.has_key(name):
@@ -618,9 +616,11 @@ def on_ok_clicked(obj):
     global db
     global topDialog
     global restrict
+    global private
     global cnvtxt
     
     restrict = topDialog.get_widget("restrict").get_active()
+    private = topDialog.get_widget("private").get_active()
     filter_obj = topDialog.get_widget("filter").get_menu().get_active()
     filter = filter_obj.get_data("filter")
 

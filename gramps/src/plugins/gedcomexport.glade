@@ -239,13 +239,40 @@
 	</child>
 
 	<widget>
-	  <class>GtkCheckButton</class>
-	  <name>restrict</name>
-	  <border_width>5</border_width>
-	  <can_focus>True</can_focus>
-	  <label>Restrict data on living people</label>
-	  <active>True</active>
-	  <draw_indicator>True</draw_indicator>
+	  <class>GtkVBox</class>
+	  <name>vbox3</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkCheckButton</class>
+	    <name>private</name>
+	    <border_width>3</border_width>
+	    <can_focus>True</can_focus>
+	    <label>Do not include records marked &quot;Private&quot;</label>
+	    <active>True</active>
+	    <draw_indicator>True</draw_indicator>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkCheckButton</class>
+	    <name>restrict</name>
+	    <border_width>3</border_width>
+	    <can_focus>True</can_focus>
+	    <label>Restrict data on living people</label>
+	    <active>True</active>
+	    <draw_indicator>True</draw_indicator>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
 	</widget>
       </widget>
     </widget>
