@@ -25,8 +25,6 @@ import string
 import os
 import sys
 
-from xml.sax import handler
-
 #-------------------------------------------------------------------------
 #
 # Try to abstract SAX1 from SAX2
@@ -34,8 +32,13 @@ from xml.sax import handler
 #-------------------------------------------------------------------------
 if sys.version[0] != '1':
     sax = 2
+    try:
+        from _xmlplus.sax import handler
+    else:
+        from xml.sax import handler
 else:
     try:
+        from xml.sax import handler
         import xml.sax.saxexts
         sax = 1
     except:

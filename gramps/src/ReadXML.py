@@ -31,8 +31,13 @@ import os
 from gnome.ui import *
 
 import sys
-import xml.sax
-import xml.sax.saxutils
+try:
+    import _xmlplus.sax
+    import _xmlplus.sax.saxutils
+except:
+    import xml.sax
+    import xml.sax.saxutils
+    
 
 #-------------------------------------------------------------------------
 #
@@ -42,11 +47,18 @@ import xml.sax.saxutils
 
 if sys.version[0] != '1':
     sax = 2
+    try:
+        from _xmlplus.sax import make_parser, SAXParseException
+    except:
+        from xml.sax import make_parser, SAXParseException
 else:
     try:
-        import xml.sax.saxexts
+        from xml.sax.saxexts import make_parser
+        from xml.sax import SAXParseException
+        from xml.sax.saxutils import ErrorRaiser
         sax = 1
     except:
+        from xml.sax import make_parser, SAXParseException
         sax = 2
 
 #-------------------------------------------------------------------------
@@ -63,12 +75,12 @@ def importData(database, filename, callback):
     database.fmap = {}
 
     if sax == 1:
-        parser = xml.sax.saxexts.make_parser()
+        parser = make_parser()
         parser.setDocumentHandler(GrampsImportParser(database,callback,basefile))
-        parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
+        parser.setErrorHandler(ErrorRaiser())
          
     else:
-        parser = xml.sax.make_parser()
+        parser = make_parser()
         parser.setContentHandler(GrampsImportParser(database,callback,basefile))
          
     try:
@@ -119,11 +131,11 @@ def loadData(database, filename, callback):
     filename = os.path.normpath(filename)
 
     if sax == 1:
-        parser = xml.sax.saxexts.make_parser()
+        parser = make_parser()
         parser.setDocumentHandler(GrampsParser(database,callback,basefile))
-        parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
+        parser.setErrorHandler(ErrorRaiser())
     else:
-        parser = xml.sax.make_parser()
+        parser = make_parser()
         parser.setContentHandler(GrampsParser(database,callback,basefile))
 
     try:

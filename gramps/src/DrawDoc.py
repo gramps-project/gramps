@@ -23,23 +23,7 @@ from TextDoc import *
 import string
 import os
 import sys
-import xml.sax
-import xml.sax.saxutils
 import utils
-
-#-------------------------------------------------------------------------
-#
-# Try to abstract SAX1 from SAX2
-#
-#-------------------------------------------------------------------------
-if sys.version[0] != '1':
-    sax = 2
-else:
-    try:
-        import xml.sax.saxexts
-        sax = 1
-    except:
-        sax = 2
 
 #------------------------------------------------------------------------
 #
