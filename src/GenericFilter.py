@@ -50,6 +50,7 @@ import gtk
 import const
 import RelLib
 import Date
+import Calendar
 from intl import gettext as _
 from Utils import for_each_ancestor
 
@@ -61,9 +62,9 @@ from Utils import for_each_ancestor
 def date_cmp(rule,value):
     sd = rule.get_start_date()
     s = sd.mode
-    if s == Date.SingleDate.before:
+    if s == Calendar.BEFORE:
         return Date.compare_dates(rule,value) == 1
-    elif s == Date.SingleDate.after:
+    elif s == Calendar.AFTER:
         return Date.compare_dates(rule,value) == -1
     elif sd.month == Date.UNDEF and sd.year != Date.UNDEF:
         return sd.year == value.get_start_date().year
@@ -325,13 +326,16 @@ class HasEvent(Rule):
             val = 1
             if self.list[0] and event.getName() != self.list[0]:
                 val = 0
-            if self.list[3] and find(event.getDescription(),self.list[3])==-1:
+            if self.list[3] and find(event.getDescription().upper(),
+                                     self.list[3].upper())==-1:
                 val = 0
             if self.date:
                 if date_cmp(self.date,event.getDateObj()):
                     val = 0
-            if self.list[2] and find(p.getPlaceName(),self.list[2]) == -1:
-                val = 0
+            if self.list[2]:
+                pn = event.getPlaceName()
+                if find(pn.upper(),self.list[2].upper()) == -1:
+                    val = 0
             if val == 1:
                 return 1
         return 0
@@ -365,12 +369,13 @@ class HasFamilyEvent(Rule):
                 if self.list[0] and event.getName() != self.list[0]:
                     val = 0
                 v = self.list[3]
-                if v and find(event.getDescription(),v)==-1:
+                if v and find(event.getDescription().upper(),v.upper())==-1:
                     val = 0
                 if self.date:
                     if date_cmp(self.date,event.getDateObj()):
                         val = 0
-                if self.list[2] and find(p.getPlaceName(),self.list[2]) == -1:
+                pn = event.getPlaceName().upper()
+                if self.list[2] and find(pn,self.list[2].upper()) == -1:
                     val = 0
                 if val == 1:
                     return 1
@@ -449,12 +454,14 @@ class HasBirth(Rule):
 
     def apply(self,db,p):
         event = p.getBirth()
-        if len(self.list) > 2 and find(event.getDescription(),self.list[2])==-1:
+        ed = event.getDescription().upper()
+        if len(self.list) > 2 and find(ed,self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.getDateObj()) == 0:
                 return 0
-        if len(self.list) > 1 and find(event.getPlaceName(),self.list[1]) == -1:
+        pn = event.getPlaceName().upper()
+        if len(self.list) > 1 and find(pn,self.list[1].upper()) == -1:
             return 0
         return 1
 
@@ -481,12 +488,14 @@ class HasDeath(Rule):
 
     def apply(self,db,p):
         event = p.getDeath()
-        if self.list[2] and find(event.getDescription(),self.list[2])==-1:
+        ed = event.getDescription().upper()
+        if self.list[2] and find(ed,self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.getDateObj()) == 0:
                 return 0
-        if self.list[1] and find(p.getPlaceName(),self.list[1]) == -1:
+        pn = p.getPlaceName().upper()
+        if self.list[1] and find(pn,self.list[1].upper()) == -1:
             return 0
         return 1
 
@@ -507,7 +516,8 @@ class HasAttribute(Rule):
         for event in p.getAttributes():
             if self.list[0] and event.getType() != self.list[0]:
                 return 0
-            if self.list[1] and find(event.getValue(),self.list[1])==-1:
+            ev = event.getValue().upper()
+            if self.list[1] and find(ev,self.list[1].upper())==-1:
                 return 0
         return 1
 
@@ -530,7 +540,8 @@ class HasFamilyAttribute(Rule):
                 val = 1
                 if self.list[0] and event.getType() != self.list[0]:
                     val = 0
-                if self.list[1] and find(event.getValue(),self.list[1])==-1:
+                ev = event.getValue().upper()
+                if self.list[1] and find(ev,self.list[1].upper())==-1:
                     val = 0
                 if val == 1:
                     return 1
@@ -556,13 +567,13 @@ class HasNameOf(Rule):
         self.t = self.list[3]
         for name in [p.getPrimaryName()] + p.getAlternateNames():
             val = 1
-            if self.f and find(name.getFirstName(),self.f) == -1:
+            if self.f and find(name.getFirstName().upper(),self.f.upper()) == -1:
                 val = 0
-            if self.l and find(name.getSurname(),self.l) == -1:
+            if self.l and find(name.getSurname().upper(),self.l.upper()) == -1:
                 val = 0
-            if self.s and find(name.getSuffix(),self.s) == -1:
+            if self.s and find(name.getSuffix().upper(),self.s.upper()) == -1:
                 val = 0
-            if self.t and find(name.getTitle(),self.t) == -1:
+            if self.t and find(name.getTitle().upper(),self.t.upper()) == -1:
                 val = 0
             if val == 1:
                 return 1
@@ -637,6 +648,9 @@ class GenericFilter:
     
     def add_rule(self,rule):
         self.flist.append(rule)
+
+    def delete_rule(self,rule):
+        self.flist.remove(rule)
 
     def set_rules(self,rules):
         self.flist = rules
@@ -756,8 +770,9 @@ class GenericFilterList:
             parser = make_parser()
             parser.setContentHandler(FilterParser(self))
             if self.file[0:7] != "file://":
-                self.file = "file://" + self.file
-            parser.parse(self.file)
+                parser.parse("file://" + self.file)
+            else:
+                parser.parse(self.file)
         except (IOError,OSError,SAXParseException):
             pass
 
@@ -769,10 +784,12 @@ class GenericFilterList:
         return replace(l,'"','&quot;')
 
     def save(self):
-        try:
-            f = open(self.file,'w')
-        except:
-            return
+#        try:
+#            f = open(self.file,'w')
+#        except:
+#            return
+
+        f = open(self.file,'w')
         
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
@@ -878,44 +895,17 @@ if not CustomFilters:
 def build_filter_menu(local_filters = []):
     menu = gtk.Menu()
 
-    menuitem = gtk.MenuItem(_("Local Filters"))
-    menu.append(menuitem)
-    menuitem.show()
-    menuitem.set_sensitive(0)
-
-    menuitem = gtk.MenuItem()
-    menuitem.show()
-    menu.append(menuitem)
-    
     for filter in local_filters:
         menuitem = gtk.MenuItem(filter.get_name())
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
 
-    menuitem = gtk.MenuItem(_("System Filters"))
-    menuitem.show()
-    menu.append(menuitem)
-    menuitem.set_sensitive(0)
-
-    menuitem = gtk.MenuItem()
-    menuitem.show()
-    menu.append(menuitem)
-
     for filter in SystemFilters.get_filters():
         menuitem = gtk.MenuItem(_(filter.get_name()))
         menuitem.show()
         menu.append(menuitem)
         menuitem.set_data("filter", filter)
-
-    menuitem = gtk.MenuItem(_("Custom Filters"))
-    menu.append(menuitem)
-    menuitem.show()
-    menuitem.set_sensitive(0)
-
-    menuitem = gtk.MenuItem()
-    menuitem.show()
-    menu.append(menuitem)
 
     for filter in CustomFilters.get_filters():
         menuitem = gtk.MenuItem(_(filter.get_name()))

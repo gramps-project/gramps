@@ -84,13 +84,13 @@ except:
 # Constants
 #
 #-------------------------------------------------------------------------
-_HOMEPAGE = "http://gramps.sourceforge.net"
-_MAILLIST = "http://sourceforge.net/mail/?group_id=25770"
+_HOMEPAGE  = "http://gramps.sourceforge.net"
+_MAILLIST  = "http://sourceforge.net/mail/?group_id=25770"
 _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
 
-pl_titles = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
-              (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
-              ('',6,0), ('',7,0) ]
+pl_titles  = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
+               (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
+               ('',6,0), ('',7,0) ]
 
 _sel_mode = gtk.SELECTION_MULTIPLE
 
@@ -103,6 +103,8 @@ class Gramps:
 
     def __init__(self,arg):
 
+        import sys
+        
         self.program = gnome.program_init("gramps",const.version)
         
         self.DataFilter = Filter.Filter("")
@@ -199,6 +201,7 @@ class Gramps:
 
         self.alpha_page = {}
         self.model2page = {}
+        self.model_used = {}
         self.tab_list = []
         
         self.filter_list = self.gtop.get_widget("filter_list")
@@ -315,14 +318,13 @@ class Gramps:
         self.enable_sidebar(self.use_sidebar)
         self.enable_filter(self.use_filter)
         
-#       WarningDialog("This is a non-stable, prerelease version of GRAMPS.\n"
-#                     "Significant bugs may exist in this version, so please "
-#                     "use at your own risk.")
-
     def change_alpha_page(self,obj,junk,page):
         self.person_tree = self.pl_page[page]
         self.person_list = self.pl_page[page].tree
         self.person_model = self.pl_page[page].model
+        if not self.model_used.has_key(self.person_tree) or self.model_used[self.person_tree] == 0:
+            self.model_used[self.person_tree] = 1
+            self.apply_filter(self.person_tree)
         
     def edit_button_clicked(self,obj):
         cpage = self.notebook.get_current_page()
@@ -564,7 +566,7 @@ class Gramps:
         """Prompt for permission to close the current database"""
         
         QuestionDialog(_('Create a New Database'),
-                       _('Creating a new database will close the existing database, ',
+                       _('Creating a new database will close the existing database, '
                          'discarding any unsaved changes. You will then be prompted '
                          'to create a new database'),
                        _('Create New Database'),
@@ -589,6 +591,7 @@ class Gramps:
         self.tab_list = []
         self.alpha_page = {}
         self.model2page = {}
+        self.model_used = {}
 
         self.person_tree = self.pl_page[-1]
         self.person_list = self.pl_page[-1].tree
@@ -717,6 +720,7 @@ class Gramps:
                          _('Load saved database'),
                          self.loadsaved_file)
         else:
+            self.active_person = None
             self.read_file(filename)
 
     def autosave_query(self):
@@ -939,12 +943,19 @@ class Gramps:
 
     def goto_active_person(self):
         if not self.active_person:
+            self.person_tree = self.pl_page[0]
+            self.person_list = self.pl_page[0].tree
+            self.person_model = self.pl_page[0].model
             self.ptabs.set_current_page(0)
             return
         id = self.active_person.getId()
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
             self.ptabs.set_current_page(self.model2page[model])
+            if self.model_used[model] == 0:
+                self.model_used[model] = 1
+                self.apply_filter(model)
+                
             model.selection.unselect_all()
             model.selection.select_iter(iter);
             itpath = model.model.get_path(iter)
@@ -958,6 +969,7 @@ class Gramps:
             val = 1
         else:
             val = 0
+        
         self.report_menu.set_sensitive(val)
         self.tools_menu.set_sensitive(val)
         self.report_button.set_sensitive(val)
@@ -1328,13 +1340,33 @@ class Gramps:
         for key in keys:
             self.alpha_page[key].new_model()
         self.id2col = {}
-        self.apply_filter()
+        self.model_used = {}
+
+        for key in self.db.getPersonKeys():
+            person = self.db.getPerson(key)
+            val = self.db.getPersonDisplay(key)
+            pg = val[5]
+            if pg:
+                pg = pg[0]
+            else:
+                pg = ''
+            if pg != '@':
+                if not self.alpha_page.has_key(pg):
+                    self.create_new_panel(pg)
+                model = self.alpha_page[pg]
+            else:
+                model = self.default_list
+
+#        self.apply_filter()
         for key in keys:
             self.alpha_page[key].connect_model()
-        
+
+        self.goto_active_person()
         self.modify_statusbar()
 
-    def apply_filter(self):
+    def apply_filter(self,current_model=None):
+        self.status_text(_('Updating display...'))
+
         datacomp = self.DataFilter.compare
 
         for key in self.db.getPersonKeys():
@@ -1356,15 +1388,18 @@ class Gramps:
                 else:
                     model = self.default_list
 
-                iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
-                                  val[6],val[7]],key)
-                self.id2col[key] = (model,iter)
+                if current_model == None or current_model == model:
+                    iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
+                                      val[6],val[7]],key)
+                    self.id2col[key] = (model,iter)
             else:
                 if self.id2col.has_key(key):
                     (model,iter) = self.id2col[key]
-                    model.remove(iter)
+                    if current_model == None or current_model == model:
+                        model.remove(iter)
         for i in self.pl_page:
             i.sort()
+        self.modify_statusbar()
 
     def create_new_panel(self,pg):
         display = gtk.ScrolledWindow()
@@ -1395,7 +1430,9 @@ class Gramps:
         for index in range(0,len(self.tab_list)):
             model = self.alpha_page[self.tab_list[index]]
             self.model2page[model] = index
+            self.model_used[model] = 0
         self.model2page[self.default_list] = len(self.tab_list)
+        self.model_used[self.default_list] = 0
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()

@@ -71,6 +71,10 @@ class DesBrowse:
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
         top = self.glade.get_widget("top")
+
+        Utils.set_titles(top,self.glade.get_widget('title'),
+                         _("Descendant Browser"))
+        
         self.tree= self.glade.get_widget("tree1")
         col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.tree.append_column(col)

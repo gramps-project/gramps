@@ -46,6 +46,7 @@ import sort
 import Utils
 import TextDoc
 import OpenSpreadSheet
+import const
 
 from QuestionDialog import WarningDialog
 from intl import gettext as _
@@ -131,20 +132,34 @@ class EventComparison:
         self.filterDialog = gtk.glade.XML(self.glade_file,"filters")
         self.filterDialog.signal_autoconnect({
             "on_apply_clicked"       : self.on_apply_clicked,
+            "on_editor_clicked"      : self.filter_editor_clicked,
+            "on_filter_list_enter"   : self.filter_list_enter,
             "destroy_passed_object"  : Utils.destroy_passed_object
             })
     
         top =self.filterDialog.get_widget("filters")
-        filters = self.filterDialog.get_widget("filter_list")
+        self.filters = self.filterDialog.get_widget("filter_list")
 
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
+        Utils.set_titles(top,self.filterDialog.get_widget('title'),
+                         _('Event comparison filter selection'))
 
-        self.filter_menu = GenericFilter.build_filter_menu([all])
-        filters.set_menu(self.filter_menu)
+        self.all = GenericFilter.GenericFilter()
+        self.all.set_name(_("Entire Database"))
+        self.all.add_rule(GenericFilter.Everyone([]))
+
+        self.filter_menu = GenericFilter.build_filter_menu([self.all])
+        self.filters.set_menu(self.filter_menu)
         top.show()
 
+    def filter_editor_clicked(self,obj):
+        import FilterEditor
+
+        FilterEditor.FilterEditor(const.custom_filters,self.db)
+
+    def filter_list_enter(self,obj):
+        self.filter_menu = GenericFilter.build_filter_menu([self.all])
+        self.filters.set_menu(self.filter_menu)
+        
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
@@ -201,6 +216,9 @@ class DisplayChart:
 
         self.top = self.topDialog.get_widget("view")
         self.eventlist = self.topDialog.get_widget('treeview')
+
+        Utils.set_titles(self.top, self.topDialog.get_widget('title'),
+                         _('Event Comparison'))
     
         self.my_list.sort(sort.by_last_name)
 

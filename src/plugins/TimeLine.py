@@ -147,6 +147,7 @@ class TimeLine:
     def write_report(self):
 
         (low,high) = self.find_year_range()
+
         st_size = self.name_size()
 
         font = self.d.style_list['Name'].get_font()
@@ -273,11 +274,16 @@ class TimeLine:
 	       high = max(high,b)
 
 	    if d != Date.UNDEF:
-	       low = min(low,b)
-	       high = max(high,b)
-
+	       low = min(low,d)
+	       high = max(high,d)
+               
 	low = (low/10)*10
 	high = ((high+9)/10)*10
+        
+        if low == Date.UNDEF:
+            low = high
+        if high == Date.UNDEF:
+            high = low
         
         return (low,high)
 
@@ -370,7 +376,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         f.set_type_face(TextDoc.FONT_SANS_SERIF)
         p = TextDoc.ParagraphStyle()
         p.set_font(f)
-        para.set_description(_("The style used for the person's name."))
+        p.set_description(_("The style used for the person's name."))
         self.default_style.add_style("Name",p)
 
         f = TextDoc.FontStyle()
@@ -378,7 +384,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         f.set_type_face(TextDoc.FONT_SANS_SERIF)
         p = TextDoc.ParagraphStyle()
         p.set_font(f)
-        para.set_description(_("The style used for the year labels."))
+        p.set_description(_("The style used for the year labels."))
         self.default_style.add_style("Label",p)
 
         f = TextDoc.FontStyle()

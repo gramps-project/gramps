@@ -114,7 +114,7 @@ class FilterEditor:
     def delete_filter(self,obj):
         store,iter = self.clist.get_selected()
         if iter:
-            fil = self.clist.get_object(iter)
+            filter = self.clist.get_object(iter)
             self.filterdb.get_filters().remove(filter)
             self.draw_filters()
 
@@ -313,8 +313,11 @@ class FilterEditor:
             self.draw_rules()
 
     def rule_changed(self,obj):
-        page = self.name2page[obj.get_text()]
-        self.notebook.set_current_page(page)
+        try:
+            page = self.name2page[obj.get_text()]
+            self.notebook.set_current_page(page)
+        except:
+            pass
 
     def rule_ok(self,obj):
         name = self.rname.entry.get_text()
@@ -325,9 +328,9 @@ class FilterEditor:
             value_list.append(x.get_text())
         new_rule = c(value_list)
         store,iter = self.rlist.get_selected()
-        if iter:
-            rule = self.rlist.get_object(iter)
-            self.filter.delete_rule(rule)
+#        if iter:
+#            rule = self.rlist.get_object(iter)
+#            self.filter.delete_rule(rule)
         self.filter.add_rule(new_rule)
         self.draw_rules()
         self.rule_top.destroy()
@@ -339,8 +342,11 @@ class ShowResults:
     def __init__(self,plist):
         self.glade = gtk.glade.XML(const.filterFile,'test')
         self.top = self.glade.get_widget('test')
-        self.top.set_title('%s - GRAMPS' % _('Test Filter'))
         text = self.glade.get_widget('text')
+
+        Utils.set_titles(self.top, self.glade.get_widget('title'),
+                         _('Filter Test'))
+        
         self.glade.signal_autoconnect({
             'on_close_clicked' : self.close,
             })

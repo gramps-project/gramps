@@ -121,6 +121,9 @@ class Merge:
         self.menu = top.get_widget("menu")
         self.menu.set_menu(my_menu)
 
+        Utils.set_titles(top.get_widget('dialog'), top.get_widget('title'),
+                         _('Merge people'))
+
         top.signal_autoconnect({
             "on_merge_ok_clicked" : self.on_merge_ok_clicked,
             "destroy_passed_object" : Utils.destroy_passed_object
@@ -134,7 +137,7 @@ class Merge:
         self.show()
     
     def progress_update(self,val):
-        self.progress.update(val/100.0)
+        self.progress.set_fraction(val/100.0)
         while gtk.events_pending():
             gtk.mainiteration()
 
@@ -142,8 +145,10 @@ class Merge:
         top = gtk.glade.XML(self.glade_file,"message")
         self.topWin = top.get_widget("message")
         self.progress = top.get_widget("progressbar1")
-        self.topWin.show()
 
+        Utils.set_titles(self.topWin,top.get_widget('title'),
+                         _('Determining possible merges'))
+        
         index = 0
 
         males = {}
@@ -205,6 +210,10 @@ class Merge:
     def show(self):
         top = gtk.glade.XML(self.glade_file,"mergelist")
         self.window = top.get_widget("mergelist")
+
+        Utils.set_titles(self.window, top.get_widget('title'),
+                         _('Potential Merges'))
+        
         self.mlist = top.get_widget("mlist")
         top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
