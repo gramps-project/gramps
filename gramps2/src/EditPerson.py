@@ -1658,7 +1658,7 @@ class EditPerson:
         event = self.etree.get_object(node)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.personal_events,event,None,0,
-                              noedit=self.db.readonly)
+                              self.event_edit_callback,noedit=self.db.readonly)
         
     def on_event_select_row(self,obj):
         store,node = obj.get_selected()
