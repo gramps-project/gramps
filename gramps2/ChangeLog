@@ -1,3 +1,9 @@
+2003-09-10  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/SimpleBookTitle.py: Add functionality to "From file".  
+	* src/AddMedia.py: Make it a modal dialog. 
+	* src/MediaView.py: Call AddMedia as modal dialog. 
+	* src/imagesel.glade: Change responses for dialog buttons. 
+
 2003-09-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/SimpleBookTitle.py 
 	(SimpleBookTitleDialog.add_user_options): Add a tab for an image, 

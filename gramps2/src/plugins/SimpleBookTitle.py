@@ -38,6 +38,7 @@ from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 import SelectObject
 import Utils
+import AddMedia
 
 import gtk
 import gnome
@@ -289,7 +290,23 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.remove_obj_button.set_sensitive(gtk.TRUE)
 
     def select_file(self, obj):
-        pass
+        a_o = AddMedia.AddMediaObject(self.db)
+        object = a_o.run()
+        if object:
+            self.object_id = object.getId()
+        else:
+            return
+        self.obj_title.set_text(object.getDescription())
+        the_type = Utils.get_mime_description(object.getMimeType())
+        path = object.getPath()
+        thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+        pexists = os.path.exists(path)
+        if pexists and os.path.exists(thumb_path):
+            self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
+        else:
+            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
+            self.preview.set_from_pixbuf(icon_image)
+        self.remove_obj_button.set_sensitive(gtk.TRUE)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options

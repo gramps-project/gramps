@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ class AddMediaObject:
     a media object from the file system, while providing a description.
     """
     
-    def __init__(self,db,update):
+    def __init__(self,db,update=None):
         """
         Creates and displays the dialog box
 
@@ -81,19 +81,18 @@ class AddMediaObject:
         self.file_text = self.glade.get_widget("fname")
         self.update = update
         self.temp_name = ""
+        self.object = None
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
         
         self.glade.signal_autoconnect({
-            "on_savephoto_clicked"  : self.on_savephoto_clicked,
             "on_name_changed"       : self.on_name_changed,
-            "destroy_passed_object" : Utils.destroy_passed_object
             })
         
         self.window.show()
 
-    def on_savephoto_clicked(self,obj):
+    def on_savephoto_clicked(self):
         """
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
@@ -126,8 +125,9 @@ class AddMediaObject:
         mobj.setPath(name)
 
         Utils.modified()
-        self.update()
-        Utils.destroy_passed_object(obj)
+        if self.update:
+            self.update()
+        self.object = mobj
         
     def on_name_changed(self,obj):
         """
@@ -152,3 +152,14 @@ class AddMediaObject:
             else:
                 image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
             self.image.set_from_pixbuf(image)
+
+    def run(self):
+        val = self.window.run()
+
+        if val == gtk.RESPONSE_OK:
+            self.on_savephoto_clicked()
+            self.window.destroy()
+	    return self.object
+        else:
+            self.window.destroy()
+            return None
