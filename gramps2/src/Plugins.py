@@ -194,7 +194,7 @@ class PluginDialog:
         task_to_call is bound to the 'select' callback of the menu entry."""
 
         ilist = []
-        
+
         # build the tree items and group together based on the category name
         item_hash = {}
         for report in list:
@@ -425,6 +425,14 @@ def register_report(task, name,
     
     if xpm == None:
         xpm = no_image()
+
+    del_index = -1
+    for i in range(0,len(_reports)):
+        val = _reports[i]
+        if val[2] == name:
+            del_index = i
+    if del_index != -1:
+        del _reports[del_index]
     _reports.append((task, category, name, description, xpm, status, author_name, author_email))
 
 def register_tool(task, name,
@@ -438,6 +446,13 @@ def register_tool(task, name,
     """Register a tool with the plugin system"""
     if xpm == None:
         xpm = no_image()
+    del_index = -1
+    for i in range(0,len(_tools)):
+        val = _tools[i]
+        if val[2] == name:
+            del_index = i
+    if del_index != -1:
+        del _tools[del_index]
     _tools.append((task, category, name, description, xpm, status, author_name, author_name))
 
 
