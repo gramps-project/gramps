@@ -150,17 +150,17 @@ class PlaceView:
         for a in self.sort_arrow:
             a.hide()
         if self.sort_col == column:
-            if self.sort_direct == GTK.SORT_DESCENDING:
-                self.sort_direct = GTK.SORT_ASCENDING
+            if self.sort_dir == GTK.SORT_DESCENDING:
+                self.sort_dir = GTK.SORT_ASCENDING
             else:
-                self.sort_direct = GTK.SORT_DESCENDING
+                self.sort_dir = GTK.SORT_DESCENDING
         else:
-            self.sort_direct = GTK.SORT_ASCENDING
+            self.sort_dir = GTK.SORT_ASCENDING
         self.sort_col = column
         self.set_arrow(column)
-        self.place_list.set_sort_type(self.sort_direct)
+        self.place_list.set_sort_type(self.sort_dir)
         self.place_list.set_sort_column(self.sort_map[self.sort_col])
-        Config.save_sort_cols("place",self.sort_col,self.sort_direct)
+        Config.save_sort_cols("place",self.sort_col,self.sort_dir)
 
         self.place_list.sort()
         if sel:
