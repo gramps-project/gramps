@@ -1,3 +1,4 @@
+# translation of nb.po to Norwegian bokmål
 # translation of new_nb.po to Norsk Bokmål
 # translation of nb.po to Norsk Bokmål
 # translation of nb_NO.po to Norsk Bokmål
@@ -5,14 +6,16 @@
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
 # Frode Jemtland <frode.jemtland@skolelinux.no>, 2003.
+# Axel Bojer <axelb@skolelinux.no>, 2003.
+# Axel Bojer <axelb@skolelinux.no.no>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2003-12-01 12:16+0100\n"
-"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
-"Language-Team: Norsk Bokmål\n"
+"PO-Revision-Date: 2003-12-15 16:28+0100\n"
+"Last-Translator: Axel Bojer <axelb@skolelinux.no>\n"
+"Language-Team: Norsk Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +24,7 @@ msgstr ""
 
 #: AddMedia.py:87 ImageSelect.py:109
 msgid "Select a media object"
-msgstr "Velg et media objekt"
+msgstr "Velg et mediaobjekt"
 
 #: AddMedia.py:105 ImageSelect.py:159
 msgid "Cannot import %s"
@@ -29,7 +32,7 @@ msgstr "Kan ikke importere %s"
 
 #: AddMedia.py:106 ImageSelect.py:160
 msgid "The filename supplied could not be found."
-msgstr "Kan ikke finne den angitte filen."
+msgstr "Fant ikke den angitte fila."
 
 #: AddSpouse.py:90 ChooseParents.py:57 EditPerson.py:246 FamilyView.py:208
 #: PeopleStore.py:55 SelectChild.py:120 SelectPerson.py:76 gramps_main.py:103
@@ -55,11 +58,11 @@ msgstr "Fødselsdato"
 
 #: AddSpouse.py:101
 msgid "Choose Spouse/Partner of %s"
-msgstr "Velg Ektefelle/Partner av %s"
+msgstr "Velg ektefelle/partner av %s"
 
 #: AddSpouse.py:105
 msgid "Choose Spouse/Partner"
-msgstr "Velg Ektefelle/Partner"
+msgstr "Velg ektefelle/partner"
 
 #: AddSpouse.py:116 const.py:491 const.py:499 plugins/FamilyGroup.py:303
 #: plugins/FamilyGroup.py:305
@@ -76,27 +79,27 @@ msgstr "Adresseredigering"
 
 #: AddrEdit.py:89
 msgid "Address Editor for %s"
-msgstr "Adresseredigering for %s"
+msgstr "Adresseendring for %s"
 
 #: AttrEdit.py:102 AttrEdit.py:106
 msgid "Attribute Editor"
-msgstr "Egenskapsredigering"
+msgstr "Endre egenskaper"
 
 #: AttrEdit.py:104
 msgid "Attribute Editor for %s"
-msgstr "Egenskapsredigering for %s"
+msgstr "Endre egenskapene til %s"
 
 #: AttrEdit.py:157
 msgid "New attribute type created"
-msgstr "Ny attributt type laget"
+msgstr "Det ble laget en ny attributt-type"
 
 #: AttrEdit.py:158
 msgid ""
 "The \"%s\" attribute type has been added to this database.\n"
 "It will now appear in the attribute menus for this database"
 msgstr ""
-"\"%s\" attributt type har blitt lagt til denne databasen.\n"
-"Den vil nå vises i attributt menyen for denne databasen"
+"«%s» attributt-typen har blitt lagt til denne databasen.\n"
+"Den vil nå vises i menyen over attributter for denne databasen"
 
 #: Bookmarks.py:90 Bookmarks.py:95
 msgid "Edit Bookmarks"
@@ -117,7 +120,7 @@ msgstr "est\\.?"
 
 #: Calendar.py:55 Calendar.py:115
 msgid "circa"
-msgstr "cirka"
+msgstr "omtrent"
 
 #: Calendar.py:56 Calendar.py:116
 msgid "around"
@@ -226,15 +229,15 @@ msgstr "ett"
 
 #: Calendar.py:141
 msgid "Undefined Calendar"
-msgstr "Udefinert Kalender"
+msgstr "Kalenderen er ikke satt opp"
 
 #: ChooseParents.py:100
 msgid "Choose the Parents of %s"
-msgstr "Velg foreldrene til %s"
+msgstr "Angi foreldrene til %s"
 
 #: ChooseParents.py:102
 msgid "Choose Parents"
-msgstr "Velg foreldrene"
+msgstr "Angi foreldrene"
 
 #: ChooseParents.py:129 ChooseParents.py:130 ChooseParents.py:520
 #: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:168
@@ -270,7 +273,7 @@ msgstr "Endre foreldrene til %s"
 
 #: ChooseParents.py:513
 msgid "Modify Parents"
-msgstr "Endre Foreldre"
+msgstr "Endre foreldre"
 
 #: Date.py:75
 #, fuzzy
@@ -291,7 +294,7 @@ msgstr "Åpne en database"
 
 #: DbPrompter.py:88
 msgid "Create database"
-msgstr "Lag database"
+msgstr "Lage en database"
 
 #: DbPrompter.py:90 gramps.glade:741 gramps_main.py:1463
 msgid "Save database"
@@ -311,18 +314,18 @@ msgid ""
 "\n"
 msgstr ""
 "Det har oppstått en intern feil i GRAMPS.\n"
-"Vennligst kopier feilmeldingen under og post en feil rapport\n"
+"Vennligst kopier feilmeldingen under og send en feil rapport\n"
 "på http://sourceforge.net/projects/gramps, eller send en \n"
-"email til gramps-bugs@lists.sourceforge.net\n"
+"e-post til gramps-bugs@lists.sourceforge.net\n"
 "\n"
 
 #: DisplayTrace.py:100
 msgid "Internal Error"
-msgstr "Intern Feil"
+msgstr "Intern feil"
 
 #: EditPerson.py:103
 msgid "Edit Person"
-msgstr "Rediger person"
+msgstr "Endre personinformasjon"
 
 #: EditPerson.py:226 EditPerson.py:252 EditPlace.py:107 const.py:391
 #: plugins/pafexport.glade:217
@@ -385,19 +388,19 @@ msgstr "ukjent"
 
 #: EditPerson.py:962
 msgid "Save changes to %s?"
-msgstr "Lagre forandringer til %s?"
+msgstr "Lagre endringene i %s?"
 
 #: EditPerson.py:963 EditPerson.py:980 Marriage.py:470
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Hvis du lukker uten å lagre, vil dine forandringer bli borte"
+msgstr "Hvis du lukker uten å lagre, vil dine endringer bli borte"
 
 #: EditPerson.py:979
 msgid "Save Changes to %s?"
-msgstr "Lagre endringer til %s?"
+msgstr "Lagre endringene i %s?"
 
 #: EditPerson.py:1302
 msgid "Make the selected name the preferred name"
-msgstr "Gjør det valgte navnet til det foretrukne navnet"
+msgstr "Gjør det valgte navnet til det foretrukne"
 
 #: EditPerson.py:1367 Marriage.py:495
 msgid "GRAMPS ID value was not changed."
@@ -408,24 +411,24 @@ msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
 msgstr ""
-"Du har prøvd å forandre GRAMPS ID'en til verdien %(grampsid)s. Denne verdien "
+"Du har prøvd å forandre GRAMPS ID-en til verdien %(grampsid)s. Denne verdien "
 "er allerede brukt av %(person)s."
 
 #: EditPerson.py:1476
 msgid "Problem changing the gender"
-msgstr "Problem med å forandre kjønn"
+msgstr "Problem med å endre kjønn"
 
 #: EditPerson.py:1477
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"Forandring av kjønn ført til problemer med ekteskaps informasjonen.\n"
-"Vennligst sjekk personens giftemål."
+"Forandring av kjønn førte til problemer med informasjonen om ekteskapet.\n"
+"Sjekk personens giftemål."
 
 #: EditPlace.py:86
 msgid "Place Editor"
-msgstr "Stedsredigering"
+msgstr "Rediger steder"
 
 #: EditPlace.py:124 PlaceView.py:63
 msgid "City"
@@ -445,11 +448,11 @@ msgstr "Land"
 
 #: EditPlace.py:326 EditPlace.py:353 UrlEdit.py:62
 msgid "Internet Address Editor for %s"
-msgstr "Internetadresse Redigering for %s"
+msgstr "Redigering av internettadresser for %s"
 
 #: EditPlace.py:328 EditPlace.py:355 UrlEdit.py:60 UrlEdit.py:66
 msgid "Internet Address Editor"
-msgstr "Internetadresse Redigering"
+msgstr "Redigering av internettadresser"
 
 #: EditPlace.py:414 gramps.glade:907
 msgid "People"
@@ -477,15 +480,15 @@ msgstr "Kildetype"
 
 #: EditSource.py:184
 msgid "Individual Events"
-msgstr "Individ hendelser"
+msgstr "Individuelle hendelser"
 
 #: EditSource.py:189
 msgid "Individual Attributes"
-msgstr "Individ Egenskaper"
+msgstr "Individuelle egenskaper"
 
 #: EditSource.py:194
 msgid "Individual Names"
-msgstr "Individ Navn"
+msgstr "Individuelle navn"
 
 #: EditSource.py:198
 msgid "Family Events"
@@ -505,23 +508,23 @@ msgstr "Steder"
 
 #: EventEdit.py:92 EventEdit.py:97
 msgid "Event Editor"
-msgstr "Hendelses redigering"
+msgstr "Rediger hendelser"
 
 #: EventEdit.py:94
 msgid "Event Editor for %s"
-msgstr "Hendelses Redigering for %s"
+msgstr "Rediger hendelser for %s"
 
 #: EventEdit.py:245
 msgid "New event type created"
-msgstr "Ny hendelsestype laget"
+msgstr "Det ble opprettet en ny type hendelse"
 
 #: EventEdit.py:246
 msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
 msgstr ""
-"\"%s\" hendelses typen har blitt lagt til denne databasen.\n"
-"Den vil nå vises i hendelses menyen for denne databasen"
+"Hendelsestypen «%s» har blitt lagt til databasen.\n"
+"Den vil nå vises i menyen for denne databasen"
 
 #: FamilyView.py:53 PedView.py:45 plugins/AncestorChart.py:52
 #: plugins/DesGraph.py:52 plugins/DescendReport.py:51
@@ -550,7 +553,7 @@ msgstr "Legg til bokmerke"
 #: FamilyView.py:304 FamilyView.py:325 FamilyView.py:348 FamilyView.py:371
 #: PedView.py:451 PeopleView.py:388
 msgid "People Menu"
-msgstr "Person Meny"
+msgstr "Personmeny"
 
 #: FamilyView.py:345 FamilyView.py:368 FamilyView.py:938 FamilyView.py:969
 msgid "Add parents"
@@ -558,15 +561,15 @@ msgstr "Legg til foreldre"
 
 #: FamilyView.py:397
 msgid "Child Menu"
-msgstr "Barn Meny"
+msgstr "Barnemeny"
 
 #: FamilyView.py:416
 msgid "Make the selected child an active person"
-msgstr "Gjør valgte barn til aktive person"
+msgstr "Gjør det valgte barnet til en aktiv person"
 
 #: FamilyView.py:417 FamilyView.py:937 FamilyView.py:968
 msgid "Edit the child/parent relationships"
-msgstr "Rediger barn/foreldre relasjon"
+msgstr "Rediger barn/foreldre-relasjonene"
 
 #: FamilyView.py:418
 msgid "Edit the selected child"
@@ -578,11 +581,11 @@ msgstr "Fjern det valgte barnet"
 
 #: FamilyView.py:454
 msgid "Spouse Menu"
-msgstr "Ektefelle Meny"
+msgstr "Ektefelle-meny"
 
 #: FamilyView.py:473
 msgid "Make the selected spouse an active person"
-msgstr "Gjør valgte ektefelle til aktive person"
+msgstr "Gjør den valgte ektefellen til en aktiv person"
 
 #: FamilyView.py:474
 msgid "Edit relationship"
@@ -590,15 +593,15 @@ msgstr "Rediger relasjon"
 
 #: FamilyView.py:475
 msgid "Remove the selected spouse"
-msgstr "Fjern valgte ektefelle"
+msgstr "Fjern den valgte ektefellen"
 
 #: FamilyView.py:476
 msgid "Edit the selected spouse"
-msgstr "Rediger valgte ektefelle"
+msgstr "Rediger den valgte ektefellen"
 
 #: FamilyView.py:477
 msgid "Set the selected spouse as the preferred spouse"
-msgstr "Sett valgte ektefelle til aktive person"
+msgstr "Gjør den valgte ektefellen til et forhåndsvalg"
 
 #: FamilyView.py:680
 msgid "Remove %s as a spouse of %s?"
@@ -639,19 +642,19 @@ msgstr "Ukjent"
 
 #: FamilyView.py:917
 msgid "Parents Menu"
-msgstr "Foreldre Meny"
+msgstr "Foreldremeny"
 
 #: FamilyView.py:936 FamilyView.py:967
 msgid "Make the selected parents the active family"
-msgstr "Gjør de valgte foreldre til aktive familie"
+msgstr "Gjør de valgte foreldre til den aktive familien"
 
 #: FamilyView.py:939 FamilyView.py:970
 msgid "Remove parents"
-msgstr "Fjern foreldre"
+msgstr "Fjern foreldrene"
 
 #: FamilyView.py:948
 msgid "Spouse Parents Menu"
-msgstr "Ektefelle Foreldre Meny"
+msgstr "Ektefelle/foreldre-Meny"
 
 #: FamilyView.py:1032 FamilyView.py:1047
 msgid "Remove Parents of %s"
@@ -663,7 +666,7 @@ msgid ""
 "parents. The parents are not removed from the database, and the relationship "
 "between the parents is not removed."
 msgstr ""
-"Fjerne foreldrene til en person fjerner personen som barn av foreldrene. "
+"Å fjerne foreldrene til en person fjerner personen som barn av foreldrene. "
 "Foreldrene blir ikke fjernet fra databasen, og relasjonen mellom foreldrene "
 "blir ikke forandret."
 
@@ -673,19 +676,19 @@ msgstr "Fje_rne foreldre"
 
 #: FamilyView.py:1154
 msgid "Attempt to Reorder Children Failed"
-msgstr "Forsøket på å Omorganisere Barnene Feilet"
+msgstr "Klarte ikke å omgruppere barnene"
 
 #: FamilyView.py:1155
 msgid "Children must be ordered by their birth dates."
-msgstr "Barn må organiseres etter deres fødselsdato."
+msgstr "Barn må ordnes etter fødselsdato."
 
 #: Filter.py:73
 msgid "All people"
-msgstr "Alle mennesker"
+msgstr "Alle personer"
 
 #: Filter.py:73 Filter.py:80
 msgid "Qualifier"
-msgstr "Kvalifikator"
+msgstr "Godkjenner"
 
 #: Filter.py:82 GenericFilter.py:101 VersionControl.py:304 rule.glade:1255
 msgid "No description"
@@ -709,11 +712,11 @@ msgstr "Finn kilde"
 
 #: Find.py:215
 msgid "Find Media Object"
-msgstr "Finn Media Objekt"
+msgstr "Finn mediaobjekt"
 
 #: FrenchRepublic.py:70
 msgid "French Republican"
-msgstr "Fransk Republikansk"
+msgstr "Fransk-republikansk"
 
 #: GenericFilter.py:98
 msgid "Miscellaneous filters"
@@ -722,11 +725,11 @@ msgstr "Diverse filtre"
 #: GenericFilter.py:130 GenericFilter.py:264 GenericFilter.py:283
 #: GenericFilter.py:888 GenericFilter.py:1190
 msgid "General filters"
-msgstr "Generele filtre"
+msgstr "Generelle filtre"
 
 #: GenericFilter.py:133
 msgid "Matches everyone in the database"
-msgstr "Treffer alle i databasen"
+msgstr "Gjelder alle i databasen"
 
 #: GenericFilter.py:147 GenericFilter.py:255 GenericFilter.py:300
 #: GenericFilter.py:390 GenericFilter.py:435 GenericFilter.py:519
@@ -739,24 +742,23 @@ msgstr "ID:"
 
 #: GenericFilter.py:158
 msgid "Relationship filters"
-msgstr "Relasjons filtere"
+msgstr "Relasjonsfiltere"
 
 #: GenericFilter.py:161
-#, fuzzy
 msgid ""
 "Matches the ancestors of two people back to a common ancestor, producing the "
 "relationship path between two people."
 msgstr ""
-"Treffer forfedrene til to personer tilbake til en felles forfar, gir relasjons stien mellom "
-"to personer."
+"Gjelder for forfedrene til to personer tilbake til en felles forfar, "
+"dette gir dermed linja for et slektskaps mellom to personer."
 
 #: GenericFilter.py:261
 msgid "Matches the person with a specified GRAMPS ID"
-msgstr "Treffer en personen med en bestemt GRAMPS ID"
+msgstr "Gjelder en personen med en bestemt GRAMPS ID"
 
 #: GenericFilter.py:286
 msgid "Matches all females"
-msgstr "Treffer alle kvinner"
+msgstr "Gjelder alle kvinner"
 
 #: GenericFilter.py:300 GenericFilter.py:349 GenericFilter.py:564
 #: GenericFilter.py:620 plugins/FilterEditor.py:464
@@ -766,21 +768,21 @@ msgstr "Inkludert:"
 #: GenericFilter.py:311 GenericFilter.py:358 GenericFilter.py:401
 #: GenericFilter.py:450 GenericFilter.py:525
 msgid "Descendant filters"
-msgstr "Etterfølger filtre"
+msgstr "Filtere for etterkommere"
 
 #: GenericFilter.py:314
 msgid "Matches all descendants for the specified person"
-msgstr "Treffer alle etterfølgere av den valgte personen"
+msgstr "Gjelder alle etterkommerne til den valgte personen"
 
 #: GenericFilter.py:349 GenericFilter.py:478 GenericFilter.py:620
 #: GenericFilter.py:764 GenericFilter.py:851 GenericFilter.py:1220
 #: GenericFilter.py:1243 plugins/FilterEditor.py:460
 msgid "Filter name:"
-msgstr "Filter navn:"
+msgstr "Filternavn:"
 
 #: GenericFilter.py:361
 msgid "Matches people that are descendants of someone matched by a filter"
-msgstr "Treffer personer som er etterfølgere av noen som treffes av et filter"
+msgstr "Gjelder de som er etterkommere av noen som er funnet ved hjelp av et filter."
 
 #: GenericFilter.py:390 GenericFilter.py:435 GenericFilter.py:662
 #: GenericFilter.py:714 plugins/FilterEditor.py:456
@@ -792,7 +794,7 @@ msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Treffer personer som er etterfølgere av en spesiell person ikke mer en N "
+"Gjelder de som er etterkommere av en bestemt person ikke mer en N "
 "antall generasjoner unna"
 
 #: GenericFilter.py:446
@@ -800,45 +802,45 @@ msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Treffer personer som er etterfølgere av en spesiell person minst N "
+"Gjelder de som er etterkommere av en bestemt person minst N "
 "generasjoner unna"
 
 #: GenericFilter.py:489
 msgid "Matches the person that is a child of someone matched by a filter"
-msgstr "Treffer personen som er barn av noen som treffes av et filter"
+msgstr "Gjelder personen som er barn av noen som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:492 GenericFilter.py:778 GenericFilter.py:1008
 #: GenericFilter.py:1252
 msgid "Family filters"
-msgstr "Familie filter"
+msgstr "Familie-filtere"
 
 #: GenericFilter.py:528
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
 msgstr ""
-"Treffer personer som er etterfølgere, eller ektefelle av en etterfølger av "
-"en spesifikk person"
+"Gjelder de som er etterkommere, eller ektefellen til en etterkommer, av "
+"en bestemt person"
 
 #: GenericFilter.py:575
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Treffer personer som er forfedrene til en spesiell person"
+msgstr "Gjelder de som er forfedrene til en bestemt person"
 
 #: GenericFilter.py:578 GenericFilter.py:633 GenericFilter.py:677
 #: GenericFilter.py:729 GenericFilter.py:815 GenericFilter.py:861
 msgid "Ancestral filters"
-msgstr "Forfedre filtre"
+msgstr "Forfedre-filtre"
 
 #: GenericFilter.py:629
 msgid "Matches people that are ancestors of someone matched by a filter"
-msgstr "Treffer person som er forfedre av noen som treffes av et filter"
+msgstr "Gjelder de som er forfedre av noen som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:673
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Treffer personer som er forfedre av en spesiell person ikke mer en N "
+"Gjelder de som er forfedre av en bestemt person ikke mer en N "
 "generasjoner unna"
 
 #: GenericFilter.py:725
@@ -846,24 +848,24 @@ msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Treffer personer som er forfedre av en spesiell person minst N generasjoner "
+"Gjelder de som er forfedre av en bestemt person minst N generasjoner "
 "unna"
 
 #: GenericFilter.py:775
 msgid "Matches the person that is a parent of someone matched by a filter"
-msgstr "Treffer personen som er en foreldre til noen som treffes av et filter"
+msgstr "Gjelder den som er en forelder til noen funnet ved hjelp av et filter"
 
 #: GenericFilter.py:811
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Treffer personene som har en felles forfedre med en spesiell person"
+msgstr "Gjelder de som har en felles forfar med en bestemt person"
 
 #: GenericFilter.py:857
 msgid "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Treffer personer som har en felles forfedre med noen som treffes av et filter"
+msgstr "Gjelder de som har en felles forfar med noen som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:891
 msgid "Matches all males"
-msgstr "Treffer alle menn"
+msgstr "Gjelder alle menn"
 
 #: GenericFilter.py:904 GenericFilter.py:951 GenericFilter.py:1053
 #: GenericFilter.py:1093 edit_person.glade:1885 edit_person.glade:3795
@@ -891,20 +893,20 @@ msgstr "Personlig hendelse:"
 
 #: GenericFilter.py:918
 msgid "Matches the person with a personal event of a particular value"
-msgstr "Treffer personen med en personlig hendelse med en bestemt verdi"
+msgstr "Gjelder personen med en personlig hendelse med en bestemt verdi"
 
 #: GenericFilter.py:921 GenericFilter.py:968 GenericFilter.py:1070
 #: GenericFilter.py:1110
 msgid "Event filters"
-msgstr "Hendelse filter"
+msgstr "Filter for hendelser"
 
 #: GenericFilter.py:951 plugins/FilterEditor.py:57
 msgid "Family event:"
-msgstr "Familie hendelse:"
+msgstr "Familie-hendelse:"
 
 #: GenericFilter.py:965
 msgid "Matches the person with a family event of a particular value"
-msgstr "Treffer en person med en familiehendelse av en bestemt verdi"
+msgstr "Gjelder en person med en familie-hendelse av en bestemt verdi"
 
 #: GenericFilter.py:997
 msgid "Number of relationships:"
@@ -920,15 +922,15 @@ msgstr "Antall barn:"
 
 #: GenericFilter.py:1005
 msgid "Matches the person who has a particular relationship"
-msgstr "Treffer personen som har en spesifikk relasjon"
+msgstr "Gjelder personen som har en bestemt relasjon"
 
 #: GenericFilter.py:1067
 msgid "Matches the person with a birth of a particular value"
-msgstr "Treffer personen som har fødsel av en bestemt verdi"
+msgstr "Gjelder personen som har fødsel av en bestemt verdi"
 
 #: GenericFilter.py:1107
 msgid "Matches the person with a death of a particular value"
-msgstr "Treffer personen som har dødsfall av en bestemt verdi"
+msgstr "Gjelder personen som har dødsfall av en bestemt verdi"
 
 #: GenericFilter.py:1133 GenericFilter.py:1155 edit_person.glade:2465
 #: imagesel.glade:832 imagesel.glade:1589
@@ -941,7 +943,7 @@ msgstr "Personlig egenskap:"
 
 #: GenericFilter.py:1155 plugins/FilterEditor.py:59
 msgid "Family attribute:"
-msgstr "Familie egenskap:"
+msgstr "Familie-egenskap:"
 
 #: GenericFilter.py:1181 choose.glade:630 edit_person.glade:1393
 #: gramps.glade:3464 imagesel.glade:693
@@ -954,7 +956,7 @@ msgstr "Etterstavelse:"
 
 #: GenericFilter.py:1181 edit_person.glade:1345
 msgid "Family name:"
-msgstr "Familie navn:"
+msgstr "Etternavn:"
 
 #: GenericFilter.py:1181 edit_person.glade:1369
 msgid "Given name:"
@@ -962,11 +964,11 @@ msgstr "Fornavn:"
 
 #: GenericFilter.py:1187
 msgid "Matches the person with a specified (partial) name"
-msgstr "Treffer personen med et bestemt (delvis) navn"
+msgstr "Gjelder personen med et bestemt (del av et) navn"
 
 #: GenericFilter.py:1249
 msgid "Matches the person married to someone matching a filter"
-msgstr "Treffer en person gift med noen som treffes av et filter"
+msgstr "Gjelderen person som er gift med en som er funnet ved hjelp av et filter"
 
 #: GenericFilter.py:1396
 msgid "Everyone"
@@ -974,7 +976,7 @@ msgstr "Enhver"
 
 #: GenericFilter.py:1397
 msgid "Has the Id"
-msgstr "Har Id'en"
+msgstr "Har Id-en"
 
 #: GenericFilter.py:1398
 msgid "Has a name"
@@ -990,7 +992,7 @@ msgstr "Har dødsfallet"
 
 #: GenericFilter.py:1401
 msgid "Has the birth"
-msgstr "Har fødsel"
+msgstr "Er født ..."
 
 #: GenericFilter.py:1402
 msgid "Is a descendant of"
@@ -998,23 +1000,23 @@ msgstr "Er en etterkommer av"
 
 #: GenericFilter.py:1403
 msgid "Is a descendant family member of"
-msgstr "Er etterfølgende familiemedlem av"
+msgstr "Er etterkommer og familiemedlem av"
 
 #: GenericFilter.py:1404
 msgid "Is a descendant of filter match"
-msgstr "Er en etterfølger av filter treff"
+msgstr "Er en etterkommer av et filtertreff"
 
 #: GenericFilter.py:1405
 msgid "Is a descendant of person not more than N generations away"
-msgstr "Er en etterfølger av en person ikke mer en N generasjoner unna"
+msgstr "Er en etterkommer av en person ikke mer en N generasjoner unna"
 
 #: GenericFilter.py:1407
 msgid "Is a descendant of person at least N generations away"
-msgstr "Er en etterfølger av en person minst N generasjoner unna"
+msgstr "Er en etterkommer av en person minst N generasjoner unna"
 
 #: GenericFilter.py:1409
 msgid "Is a child of filter match"
-msgstr "Er et barn av filter treff"
+msgstr "Er et barn av et filtertreff"
 
 #: GenericFilter.py:1410
 msgid "Is an ancestor of"
@@ -1023,7 +1025,7 @@ msgstr "Er stamfar til"
 # <
 #: GenericFilter.py:1411
 msgid "Is an ancestor of filter match"
-msgstr "Er en stamfar av et filter treff"
+msgstr "Er en stamfar av et filtertreff"
 
 #: GenericFilter.py:1412
 msgid "Is an ancestor of person not more than N generations away"
@@ -1035,7 +1037,7 @@ msgstr "Er en stamfar av en person minst N generasjoner unna"
 
 #: GenericFilter.py:1416
 msgid "Is a parent of filter match"
-msgstr "Er en forelder av et filter treff"
+msgstr "Er en forelder av et filtertreff"
 
 #: GenericFilter.py:1417
 msgid "Has a common ancestor with"
@@ -1043,7 +1045,7 @@ msgstr "Har en felles stamfar med"
 
 #: GenericFilter.py:1418
 msgid "Has a common ancestor with filter match"
-msgstr "Har en felles stamfar med filter treff"
+msgstr "Har en felles stamfar med et filtertreff"
 
 #: GenericFilter.py:1420
 msgid "Is a female"
@@ -1055,11 +1057,11 @@ msgstr "Er en mann"
 
 #: GenericFilter.py:1422
 msgid "Has the personal event"
-msgstr "Har personhendelsen"
+msgstr "Har person-hendelsen"
 
 #: GenericFilter.py:1423
 msgid "Has the family event"
-msgstr "Har familie hendelsen"
+msgstr "Har familie-hendelsen"
 
 #: GenericFilter.py:1424
 msgid "Has the personal attribute"
@@ -1067,19 +1069,19 @@ msgstr "Har den personlige egenskapen"
 
 #: GenericFilter.py:1425
 msgid "Has the family attribute"
-msgstr "Har familie egenskapen"
+msgstr "Har familie-egenskapen"
 
 #: GenericFilter.py:1426
 msgid "Matches the filter named"
-msgstr "Treffer det navngitte filteret"
+msgstr "Gjelder det filteret som heter ..."
 
 #: GenericFilter.py:1427
 msgid "Is spouse of filter match"
-msgstr "Er en ektefelle av filter treffet"
+msgstr "Er en ektefelle av et filtertreff"
 
 #: GenericFilter.py:1428
 msgid "Relationship path between two people"
-msgstr "Relasjons sti mellem to personer"
+msgstr "Relasjonstre mellem to personer"
 
 #: GrampsCfg.py:70
 msgid "Father's surname"
@@ -1095,15 +1097,15 @@ msgstr "Islandsk stil"
 
 #: GrampsCfg.py:77
 msgid "Month Day, Year"
-msgstr "Måned Dag, År"
+msgstr "Måned dag, år"
 
 #: GrampsCfg.py:78
 msgid "MON Day, Year"
-msgstr "MÅN Dag, År"
+msgstr "MÅN dag, år"
 
 #: GrampsCfg.py:79
 msgid "Day MON Year"
-msgstr "Dag MÅN År"
+msgstr "Dag MÅN år"
 
 #: GrampsCfg.py:80
 msgid "MM/DD/YYYY"
@@ -1131,7 +1133,7 @@ msgstr "DD.MM.ÅÅÅÅ"
 
 #: GrampsCfg.py:86
 msgid "DD. Month Year"
-msgstr "DD. Måned År"
+msgstr "DD. måned år"
 
 #: GrampsCfg.py:87
 msgid "YYYY/MM/DD"
@@ -1159,11 +1161,11 @@ msgstr "ÅÅÅÅ/MM/DD, ÅÅÅÅ.MM.DD, eller ÅÅÅÅ-MM-DD"
 
 #: GrampsCfg.py:99
 msgid "Firstname Surname"
-msgstr "Fornavn Etternavn"
+msgstr "Fornavn etternavn"
 
 #: GrampsCfg.py:100
 msgid "Surname, Firstname"
-msgstr "Etternavn, Fornavn"
+msgstr "Etternavn, fornavn"
 
 #: GrampsCfg.py:101
 msgid "Firstname SURNAME"
@@ -1171,7 +1173,7 @@ msgstr "Fornavn ETTERNAVN"
 
 #: GrampsCfg.py:102
 msgid "SURNAME, Firstname"
-msgstr "ETTERNAVN, Fornavn"
+msgstr "ETTERNAVN, fornavn"
 
 #: GrampsCfg.py:106
 msgid "Database"
@@ -1179,7 +1181,7 @@ msgstr "Database"
 
 #: GrampsCfg.py:107 GrampsCfg.py:112 edit_person.glade:1208
 msgid "General"
-msgstr "Generell"
+msgstr "Generelt"
 
 #: GrampsCfg.py:109
 msgid "GRAMPS internal IDs"
@@ -1187,7 +1189,7 @@ msgstr "GRAMPS intern ID"
 
 #: GrampsCfg.py:110
 msgid "Revision Control"
-msgstr "Revisjons kontroll"
+msgstr "Revisjonskontroll"
 
 #: GrampsCfg.py:111
 msgid "Display"
@@ -1199,7 +1201,7 @@ msgstr "Datoer og kalendere"
 
 #: GrampsCfg.py:114
 msgid "Toolbar and Statusbar"
-msgstr "Verktøy- og Statuslinje"
+msgstr "Verktøy- og statuslinje"
 
 #: GrampsCfg.py:115
 msgid "Usage"
@@ -1211,7 +1213,7 @@ msgstr "Finn"
 
 #: GrampsCfg.py:117
 msgid "Report Preferences"
-msgstr "Rapportinstillinger"
+msgstr "Rapportinnstillinger"
 
 #: GrampsCfg.py:118 StartupDialog.py:141
 msgid "Researcher Information"
@@ -1219,7 +1221,7 @@ msgstr "Forskerinformasjon"
 
 #: GrampsCfg.py:119
 msgid "Data Guessing"
-msgstr "Data gjetting"
+msgstr "Data-gjetting"
 
 #: GrampsCfg.py:659 GrampsCfg.py:674
 msgid "No default format"
@@ -1235,7 +1237,7 @@ msgstr "Hebraisk"
 
 #: ImageSelect.py:382
 msgid "Thumbnail %s could not be found"
-msgstr "Minibilde %s kunne ikke bli funnet"
+msgstr "Fant ikke minibildet %s"
 
 #: ImageSelect.py:477 RelImage.py:56
 msgid "Could not import %s"
@@ -1243,7 +1245,7 @@ msgstr "Kan ikke importere %s"
 
 #: ImageSelect.py:577 MediaView.py:187
 msgid "Media Object"
-msgstr "Media Objekt"
+msgstr "Mediaobjekt"
 
 #: ImageSelect.py:582
 msgid "Open in %s"
@@ -1255,19 +1257,19 @@ msgstr "Rediger med GIMP"
 
 #: ImageSelect.py:587
 msgid "Edit Object Properties"
-msgstr "Rediger Objekt Egenskaper"
+msgstr "Rediger objekt-egenskapene"
 
 #: ImageSelect.py:590 MediaView.py:199
 msgid "Convert to local copy"
-msgstr "Konverter til lokal kopi"
+msgstr "Gjør om til en lokal kopi"
 
 #: ImageSelect.py:640
 msgid "Change local media object properties"
-msgstr "Forandre lokal media objekt egenskaper"
+msgstr "Endre objektegenskapene til et lokalt media"
 
 #: ImageSelect.py:768
 msgid "Change global media object properties"
-msgstr "Forandre global media objekt egenskaper"
+msgstr "Endre generelle objektegenskaper for media"
 
 #: ImageSelect.py:886 plugins/EventCmp.py:306
 msgid "Person"
@@ -1291,7 +1293,7 @@ msgstr "Stedsredigering"
 
 #: Marriage.py:95
 msgid "Marriage/Relationship Editor"
-msgstr "Ekteskap/Relasjons Redigering"
+msgstr "Redigering av ekteskap/relasjon"
 
 #: Marriage.py:124 Marriage.py:649 Marriage.py:668 Utils.py:178 Utils.py:192
 #: plugins/Check.py:267 plugins/Check.py:288
@@ -1304,7 +1306,7 @@ msgstr "Lagre endringer?"
 
 #: Marriage.py:496
 msgid "The GRAMPS ID that you chose for this relationship is already being used."
-msgstr "GRAMPS ID'en du har valgt for denne relasjonen er allerede i bruk."
+msgstr "GRAMPS ID-en du har valgt for denne relasjonen er allerede i bruk."
 
 #: MediaView.py:77 SelectObject.py:86 SourceView.py:70 Sources.py:79
 #: Sources.py:175 plugins/BookReport.py:682 plugins/BookReport.py:699
@@ -1316,7 +1318,7 @@ msgstr "Tittel"
 
 #: MediaView.py:125
 msgid "Thumbnails not available"
-msgstr "Minibilde er ikke tilgjengelig"
+msgstr "Minibildet er ikke tilgjengelig"
 
 #: MediaView.py:126
 msgid ""
@@ -1325,14 +1327,14 @@ msgid ""
 "available at http://www.pythonware.com/products/pil/ or ImageMagick, "
 "available at http://www.imagemagick.org/"
 msgstr ""
-"Det er ingen passende verktøy til å generere minibilde med. Hvis du ønsker å "
-"aktivere denne muligheten, installer Python Imaging Library (PIL), "
+"Det finnes intet passende verktøy for å lage minibilder. Hvis du ønsker å "
+"skru på denne muligheten, installer Python Imaging Library (PIL), "
 "tilgjengelig på http://www.pythonware.com/products/pil/ eller ImageMagick, "
 "tilgjengelig på http://www.imagemagick.org/"
 
 #: MediaView.py:169 SelectObject.py:140
 msgid "The file no longer exists"
-msgstr "Filen eksisterer ikke lenger"
+msgstr "Fila eksisterer ikke lenger"
 
 #: MediaView.py:194
 msgid "View in the default viewer"
@@ -1340,35 +1342,35 @@ msgstr "Vis i standard fremviser"
 
 #: MediaView.py:211
 msgid "Edit properties"
-msgstr "Rediger egenskaper"
+msgstr "Rediger egenskapene"
 
 #: MediaView.py:286
 msgid "Delete Media Object?"
-msgstr "Slett Media Objekt?"
+msgstr "Vil du slette mediaobjektet?"
 
 #: MediaView.py:287
 msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
 msgstr ""
-"Dette media objektet er for tiden i bruk. Hvis du sletter dette objektet, "
-"vil det bli fjernet fra databasen og fra alle henviste poster."
+"Dette mediaobjektet er for tiden i bruk. Hvis du sletter dette objektet, "
+"vil det bli fjernet fra databasen og fra alle refererte poster."
 
 #: MediaView.py:291
 msgid "_Delete Media Object"
-msgstr "Slett Me_dia Objekt"
+msgstr "Slett me_dia-objekt"
 
 #: MediaView.py:373
 msgid "Image import failed"
-msgstr "Bilde import feilet"
+msgstr "Klarte ikke å importere bildet"
 
 #: MergeData.py:65
 msgid "Merge Places"
-msgstr "Flett Sammen Steder"
+msgstr "Flett sammen steder"
 
 #: MergeData.py:65
 msgid "Select the title for the merged place"
-msgstr "Velg tittelen for det flettede stedet"
+msgstr "Gi navn til det flettede stedet"
 
 #: MergeData.py:82
 msgid "Merge %s and %s"
@@ -1380,31 +1382,31 @@ msgstr "Flett personer"
 
 #: NameEdit.py:86 NameEdit.py:90
 msgid "Alternate Name Editor"
-msgstr "Alternativ Navn Redigering"
+msgstr "Alternativ navneredigering"
 
 #: NameEdit.py:88
 msgid "Alternate Name Editor for %s"
-msgstr "Alternativ Navn Redigering for %s"
+msgstr "Alternativ navneredigering for %s"
 
 #: NoteEdit.py:51 NoteEdit.py:58
 msgid "Edit Note"
-msgstr "Rediger Kommentarer"
+msgstr "Rediger kommentarer"
 
 #: PaperMenu.py:83
 msgid "Portrait"
-msgstr "Portrett"
+msgstr "Stående"
 
 #: PaperMenu.py:90
 msgid "Landscape"
-msgstr "Landskap"
+msgstr "Liggende"
 
 #: PaperMenu.py:130 PaperMenu.py:143
 msgid "Custom Size"
-msgstr "Tilpasset Størrelse"
+msgstr "Tilpasset størrelse"
 
 #: PedView.py:399
 msgid "Double clicking will make %s the active person"
-msgstr "Dobbel klikke vil sette %s som aktiv person"
+msgstr "Å dobbelklikke vil gjøre %s til den aktiv personen"
 
 #: PeopleStore.py:56 gramps_main.py:104
 msgid "Death date"
@@ -1426,7 +1428,7 @@ msgstr "Sogn"
 
 #: PlaceView.py:62
 msgid "Place Name"
-msgstr "Steds Navn"
+msgstr "Stedsnavn"
 
 #: PlaceView.py:147
 msgid "Cannot merge places."
@@ -1438,17 +1440,16 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"Nøyaktig to steder må være valgt for å kunne gjennomføre en fletting. Sted "
-"nummer to kan velges ved å holde nede Ctrl tasten mens du klikker på det "
-"ønskede stedet."
+"Presis to steder må være valgt for å kunne flette. Du kan velge sted nummer to "
+"ved å holde nede Ctrl-tasten mens du klikker på det andre stedet."
 
 #: PlaceView.py:184 SourceView.py:149
 msgid "Source Menu"
-msgstr "Kilde meny"
+msgstr "Kildemeny"
 
 #: PlaceView.py:235 SourceView.py:174 gramps_main.py:1276
 msgid "Delete %s?"
-msgstr "Slett %s?"
+msgstr "Vil du slette %s?"
 
 #: PlaceView.py:236
 msgid ""
@@ -1456,12 +1457,12 @@ msgid ""
 "Deleting it will remove it from the database and remove it from all records "
 "that reference it."
 msgstr ""
-"Dette stedsnavnet brukes av minst en post i basen. Ved å slette dette vil "
-"det bli fjernet fra databasen, og fra alle poster det er henvist."
+"Dette stedsnavnet brukes av minst en post i basen. Hvis du sletter det vil "
+"det bli fjernet fra databasen, og fra alle poster det er henvisninger til."
 
 #: PlaceView.py:240
 msgid "_Delete Place"
-msgstr "Slett Ste_d"
+msgstr "Slett ste_d"
 
 #: Plugins.py:98
 msgid "No description was provided"
@@ -1473,15 +1474,15 @@ msgstr "Bruk"
 
 #: Plugins.py:276
 msgid "Report Selection"
-msgstr "Valg av Rapport"
+msgstr "Valg av rapport"
 
 #: Plugins.py:277 plugins.glade:248
 msgid "Select a report from those available on the left."
-msgstr "Velg en rapport fra de som er tilgjengelige til venstre."
+msgstr "Velg en rapport fra de som er tilgjengelige på venstre side."
 
 #: Plugins.py:278
 msgid "Generate selected report"
-msgstr "Lag valgte rapport"
+msgstr "Lag den valgte rapporten"
 
 #: Plugins.py:278
 msgid "_Generate"
@@ -1489,27 +1490,27 @@ msgstr "La_g"
 
 #: Plugins.py:294
 msgid "Tool Selection"
-msgstr "Valg av Verktøy"
+msgstr "Valg av verktøy"
 
 #: Plugins.py:295
 msgid "Select a tool from those available on the left."
-msgstr "Velg en verktøy fra de som er tilgjengelige til venstre."
+msgstr "Velg et verktøy blant dem som er tilgjengelige på venstre side."
 
 #: Plugins.py:296
 msgid "Run selected tool"
-msgstr "Kjør valgte verktøy"
+msgstr "Bruk det valgte verktøyet"
 
 #: Plugins.py:296
 msgid "_Run"
-msgstr "Kjø_r"
+msgstr "B_ruk"
 
 #: Plugins.py:312
 msgid "Plugin status"
-msgstr "Programtilleggs status"
+msgstr "Status for tilleggsprogram"
 
 #: Plugins.py:321
 msgid "All modules were successfully loaded."
-msgstr "Alle moduler ble lastet riktig."
+msgstr "Alle modulene ble lastet riktig."
 
 #: Plugins.py:323
 msgid "The following modules could not be loaded:"
@@ -1521,7 +1522,7 @@ msgstr "Ukategorisert"
 
 #: ReadXML.py:94 ReadXML.py:101
 msgid "%s could not be opened"
-msgstr "%s kunne ikke åpnes"
+msgstr "Klarte ikke å åpne %s"
 
 #: ReadXML.py:114 ReadXML.py:124 ReadXML.py:282 ReadXML.py:287 ReadXML.py:316
 msgid "Error reading %s"
@@ -1529,17 +1530,17 @@ msgstr "Feil ved lesing av %s"
 
 #: ReadXML.py:125
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Filen er sannsynligvis enten korrupt eller ikke en gyldig GRAMPS database."
+msgstr "Fila er sannsynligvis enten ødelagt eller ikke en gyldig GRAMPS database."
 
 #: ReadXML.py:194 gramps_main.py:1127 plugins/Check.py:171
 #: plugins/WriteCD.py:225 plugins/WritePkg.py:150
 msgid "Select file"
-msgstr "Velg fil"
+msgstr "Velg en fil"
 
 #: ReadXML.py:226 gramps_main.py:1150 plugins/Check.py:188
 #: plugins/WriteCD.py:247 plugins/WritePkg.py:173
 msgid "Media object could not be found"
-msgstr "Kunne ikke finne media objekt"
+msgstr "Fant ikke mediaobjektet"
 
 #: ReadXML.py:227 gramps_main.py:1151 plugins/Check.py:189
 #: plugins/WriteCD.py:248 plugins/WritePkg.py:174
@@ -1549,14 +1550,16 @@ msgid ""
 "either remove the reference from the database, keep the reference to the "
 "missing file, or select a new file."
 msgstr ""
-"%(file_name)s er henvist til i databasen, men eksisterer ikke lenger. Filen "
-"kan ha bli slettet eller flyttet til en annen lokasjon. Du kan velge enten å "
-"slette referansen fra databasen, beholde referansen til den savnede filen, "
+"%(file_name)s har en (eller flere) henvisning(er) i databasen, "
+"men eksisterer ikke lenger. Fila "
+"kan ha bli slettet eller flyttet til et annet sted. "
+"Du kan enten slette referansen fra databasen, "
+"beholde referansen til den savnede fila, "
 "eller velge en ny fil."
 
 #: ReadXML.py:272 ReadXML.py:276
 msgid "%s could not be opened."
-msgstr "%s kunne ikke åpnes."
+msgstr "Klarte ikke å åpne %s"
 
 #: ReadXML.py:311
 msgid "%s (revision %s)"
@@ -1564,7 +1567,7 @@ msgstr "%s (revisjon %s)"
 
 #: RelImage.py:57
 msgid "The file has been moved or deleted"
-msgstr "Filen har blitt flyttet eller slettet"
+msgstr "Fila har blitt flyttet eller slettet"
 
 #: RelImage.py:71 RelImage.py:74 RelImage.py:147 RelImage.py:150
 #: docgen/AbiWord2Doc.py:71 docgen/AbiWord2Doc.py:74 docgen/AbiWordDoc.py:70
@@ -1584,11 +1587,11 @@ msgstr "Kunne ikke lage %s"
 
 #: RelImage.py:81
 msgid "Error creating the thumbnail: %s"
-msgstr "Feil ved opprettelse av miniatyrbilde: %s"
+msgstr "Det oppsto en feil under opprettelsen av miniatyrbildet %s"
 
 #: RelImage.py:91
 msgid "Error copying %s"
-msgstr "Feil ved kopiering av %s"
+msgstr "Det oppsto en feil under kopieringen av %s"
 
 #: RelImage.py:115 RelImage.py:127
 msgid "Cannot display %s"
@@ -1598,7 +1601,7 @@ msgstr "Kan ikke vise %s"
 msgid ""
 "GRAMPS is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr "GRAMPS kan ikke vise billedfilen. Dette kan skyldes en defekt fil."
+msgstr "GRAMPS kan ikke vise billedfilen. Dette kan skyldes en ødelagt fil."
 
 #: RelImage.py:157
 msgid "Could not replace %s"
@@ -1606,24 +1609,23 @@ msgstr "Kan ikke erstatte %s"
 
 #: RelImage.py:162 RelImage.py:170
 msgid "Could not create a thumbnail for %s"
-msgstr "Kan ikke opprette miniatyrbilde for %s"
+msgstr "Kan ikke opprette et miniatyrbilde for %s"
 
 #: RelImage.py:163
 msgid "The file has been moved or deleted."
-msgstr "Filen har blitt flyttet eller slettet."
+msgstr "Fila har blitt flyttet eller slettet."
 
 #: Relationship.py:225
-#, fuzzy
 msgid "Relationship loop detected"
-msgstr "Relasjons sløyfe oppdaget"
+msgstr "Fant en relasjons-løkke"
 
 #: Report.py:75
 msgid "Default Template"
-msgstr "Standard Maler"
+msgstr "Standardmaler"
 
 #: Report.py:76
 msgid "User Defined Template"
-msgstr "Brukerdefinert Mal"
+msgstr "Egendefinerte maler"
 
 #: Report.py:117
 msgid "First"
@@ -1743,7 +1745,7 @@ msgstr "Tjueniende"
 
 #: Report.py:137
 msgid "Progress Report"
-msgstr "Fremdrifts Rapport"
+msgstr "Fremdriftsvisning"
 
 #: Report.py:137
 msgid "Working"
@@ -1754,13 +1756,12 @@ msgid "Document Options"
 msgstr "Dokumentalternativer"
 
 #: Report.py:425
-#, fuzzy
 msgid "Center Person"
-msgstr "Senter Person"
+msgstr "Plasser en person i midten"
 
 #: Report.py:437
 msgid "C_hange"
-msgstr "Endre"
+msgstr "_Endre"
 
 #: Report.py:450
 msgid "Style"
@@ -1768,11 +1769,11 @@ msgstr "Stil"
 
 #: Report.py:454 StyleEditor.py:80
 msgid "Style Editor"
-msgstr "Stil Redigering"
+msgstr "Endre stil"
 
 #: Report.py:511
 msgid "Report Options"
-msgstr "Rapport Alternativer"
+msgstr "Innstillinger for rapporter"
 
 #: Report.py:529 plugins/FilterEditor.py:252 plugins/pafexport.glade:127
 msgid "Filter"
@@ -1788,7 +1789,7 @@ msgstr "Sideskift mellom generasjoner"
 
 #: Report.py:809
 msgid "Save Report As"
-msgstr "Lagre Rapport Som"
+msgstr "Lagre rapporten som"
 
 #: Report.py:884 Report.py:962 docgen/PSDrawDoc.py:382
 msgid "Print a copy"
@@ -1800,7 +1801,7 @@ msgstr "Lagre som"
 
 #: Report.py:942
 msgid "Directory"
-msgstr "Katalog"
+msgstr "Mappe"
 
 #: Report.py:944
 msgid "Filename"
@@ -1808,7 +1809,7 @@ msgstr "Filnavn"
 
 #: Report.py:968
 msgid "Output Format"
-msgstr "Utdataformat"
+msgstr "Utdata-format"
 
 #: Report.py:1027 Report.py:1029
 msgid "Paper Options"
@@ -1837,7 +1838,7 @@ msgstr "Bredde"
 
 #: Report.py:1081
 msgid "Page Count"
-msgstr "Sider Antall"
+msgstr "Vis antall sider"
 
 #: Report.py:1107 Report.py:1112
 msgid "HTML Options"
@@ -1857,14 +1858,14 @@ msgstr "Velg fil"
 
 #: Report.py:1164
 msgid "Invalid file name"
-msgstr "Ugyldig fil navn"
+msgstr "Ugyldig filnavn"
 
 #: Report.py:1165
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
 msgstr ""
-"Filnavnet du ga er en katalog.\n"
+"Filnavnet du ga er en mappe.\n"
 "Du må gi et gyldig filnavn."
 
 #: Report.py:1170
@@ -1873,7 +1874,7 @@ msgstr "Fila finnes allerede"
 
 #: Report.py:1171
 msgid "You can choose to either overwrite the file, or change the selected filename."
-msgstr "Du kan velge å enten overskrive filen, eller å endre det valgte filnavnet."
+msgstr "Du kan enten velge å overskrive fila, eller å endre det valgte filnavnet."
 
 #: Report.py:1173
 msgid "_Overwrite"
@@ -1881,11 +1882,11 @@ msgstr "_Overskriv"
 
 #: Report.py:1174
 msgid "_Change filename"
-msgstr "Forandre filnavn"
+msgstr "Endre filnavn"
 
 #: SelectChild.py:82
 msgid "Add Child to Family"
-msgstr "Legg til Barn til Familie"
+msgstr "Legg til et barn til en familie"
 
 #: SelectChild.py:92 SelectChild.py:318
 msgid "Relationship to %(father)s"
@@ -1921,19 +1922,19 @@ msgid ""
 "database and from all records that reference it."
 msgstr ""
 "Denne kilden er for øyeblikket i bruk. Hvis du sletter denne vil den bli "
-"fjernet fra databasen og all henviste poster."
+"fjernet fra databasen og alle henviste poster."
 
 #: SourceView.py:178
 msgid "_Delete Source"
-msgstr "Slett Kil_de"
+msgstr "Slett kil_de"
 
 #: Sources.py:62
 msgid "Source Reference Selection"
-msgstr "Valg av Kilde Referanse"
+msgstr "Velg kildehenvisning"
 
 #: Sources.py:252
 msgid "Source Information"
-msgstr "Kilde Informasjon"
+msgstr "Kilde-informasjon"
 
 #: StartupDialog.py:80
 msgid "Getting Started"
@@ -1947,11 +1948,10 @@ msgid ""
 "to be used. Any of this information can be changed in the future in the "
 "Preferences dialog under the Settings menu."
 msgstr ""
-"Velkommen til GRAMPS, the Genealogical Research and Analysis Management "
-"Programming System.\n"
+"Velkommen til GRAMPS, et program for slektsforskning og -analyse.\n"
 "En del innstillinger og informasjon må fylles ut før GRAMPS er klar til "
-"bruk. Denne informasjonen kan endres på et senere tidspunkt i dialog boksen "
-"til Innstillings menyen. "
+"bruk. Denne informasjonen kan endres på et senere tidspunkt i dialogvinduet "
+"i innstillings-menyen. "
 
 #: StartupDialog.py:95
 msgid "Complete"
@@ -1965,12 +1965,13 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
-"GRAMPS er et Open-Source prosjekt. Dets suksess avhenger av brukerne. "
-"Brukernes tilbakemeldinger er viktige. Vennligst bli medlem på e-post "
-"listene, send inn feilmeldinger og forbedrings forslag, og se hvordan du kan "
-"bidra.\n"
+"GRAMPS er et prosjekt med åpen kildekode. Om det blir en suksess, "
+"avhenger av brukerne. "
+"Brukernes tilbakemeldinger er viktige. "
+"Bli medlem på e-post-listene, send inn feilmeldinger og forbedrings forslag, "
+"og se hvordan du kan bidra.\n"
 "\n"
-"God fornøyelse med bruk av GRAMPS."
+"Ha det morro med GRAMPS."
 
 #: StartupDialog.py:150
 msgid ""
@@ -1998,7 +1999,7 @@ msgstr "By:"
 
 #: StartupDialog.py:164 edit_person.glade:2991
 msgid "State/Province:"
-msgstr "Stat/Provins:"
+msgstr "Stat/provins:"
 
 #: StartupDialog.py:165 edit_person.glade:2895 places.glade:688
 msgid "Country:"
@@ -2018,7 +2019,7 @@ msgstr "E-post:"
 
 #: StartupDialog.py:196
 msgid "Numerical date formats"
-msgstr "Numerisk dato format"
+msgstr "Numeriske dato format"
 
 #: StartupDialog.py:205
 msgid ""
@@ -2027,9 +2028,9 @@ msgid ""
 "tell what format you are using. Please indicate your preferred format\n"
 "for entering numerical dates."
 msgstr ""
-"Det er tre vanlige måter å skrive inn en dato i et numerisk format.\n"
-"Uten en eller annen form for indikasjon , kan ikke GRAMPS forstå hvilke\n"
-"format du bruker. Vennligst indiker ditt ønskede numeriske dato format."
+"Det er tre vanlige måter å skrive inn en dato i et numerisk format på.\n"
+"Uten en eller annen form for antydning kan ikke GRAMPS forstå hvilket\n"
+"format du bruker. Angi hvilket nummerformat du vil bruke for datoer."
 
 #: StartupDialog.py:216
 msgid "MM/DD/YYYY (United States)"
@@ -2045,7 +2046,7 @@ msgstr "ÅÅÅÅ-MM-DD (ISO)"
 
 #: StartupDialog.py:240
 msgid "Alternate calendar support"
-msgstr "Bruk av alternativ kalendere"
+msgstr "Bruk alternative kalendere"
 
 #: StartupDialog.py:249
 msgid ""
@@ -2055,15 +2056,15 @@ msgid ""
 "that you will need one or more of these alternate calendars, enable\n"
 "alternate calendar support\n"
 msgstr ""
-"Som standard, blir alle datoer, i GRAMPS, lagret i formatet til den \n"
-"Gregorianske kalenderen. Dette er normalt bra nok for de fleste. Det er\n"
-"mulig å aktivere støtte for den Julianske, Fransk Republikanske, og \n"
-"Jødiske kalenderen. Hvis du tror du vil trenge en eller flere av disse \n"
-"alternative kalenderene, så aktiver støtte for alternative kalendere.\n"
+"Som standard blir alle datoeene i GRAMPS lagret i henhold til den \n"
+"Gregorianske kalenderen. Dette passer vanligvis for de fleste. Det er\n"
+"mulig å skru på støtten for den julianske, fransk-republikanske, eller den\n"
+"jødiske kalender. Hvis du tror du vil trenge en eller flere av disse \n"
+"kalenderene, så må du skru på støtte for alternative kalendere.\n"
 
 #: StartupDialog.py:260
 msgid "Enable support for alternate calendars"
-msgstr "Aktivere støtte for alternative kalendere"
+msgstr "Skru på støtte for alternative kalendere"
 
 #: StartupDialog.py:274
 msgid "LDS extensions"
@@ -2080,8 +2081,8 @@ msgstr ""
 "GRAMPS støtter SDH ordineringer, som er spesielle hendelser relatert til\n"
 "Jesu kristi kirke av de siste dagers hellige.\n"
 "\n"
-"Du kan velge å aktivere eller deaktivere støtte for dette. Du kan forandre\n"
-"dette valget senere i dialogboksen til Innstillingsmenyen."
+"Du kan velge å skru av eller på støtten for dette. Du kan endre\n"
+"dette valget senere i dialogvinduet i innstillingsmenyen."
 
 #: StartupDialog.py:294
 msgid "Enable LDS ordinance support"
@@ -2122,7 +2123,7 @@ msgstr "standard"
 
 #: VersionControl.py:85
 msgid "Revision control comment"
-msgstr "Versjonskontroll kommentar"
+msgstr "Kommentar i versjonskontrollen"
 
 #: VersionControl.py:112
 msgid "Select an older revision"
@@ -2142,7 +2143,7 @@ msgstr "Kommentar"
 
 #: VersionControl.py:293
 msgid "Could not retrieve version"
-msgstr "Kunne ikke hente versjon"
+msgstr "Kunne ikke hente versjonen"
 
 #: VersionControl.py:296 preferences.glade:558
 msgid "RCS"
@@ -2158,11 +2159,11 @@ msgstr "Vitneredigering"
 
 #: WriteXML.py:86
 msgid "Failure writing %s"
-msgstr "Feil ved skrivning av %s"
+msgstr "Det oppsto en feil under skrivningen av %s"
 
 #: WriteXML.py:87
 msgid "An attempt is being made to recover the original file"
-msgstr "Forsøker nå å gjenopprette den originale filen."
+msgstr "Forsøker nå å gjenopprette den opprinnelige fila."
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -2209,11 +2210,11 @@ msgid ""
 "a personal genealogy program."
 msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) er "
-"et personlig genealogi program."
+"et program for slektsforskning."
 
 #: const.py:125
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr "Frode Jemtland"
+msgstr "Frode Jemtland, Axel Bojer"
 
 #: const.py:169 const.py:289 gramps.glade:4541 gramps.glade:4734
 #: gramps.glade:5174 gramps.glade:5354 gramps.glade:6810 gramps.glade:7056
@@ -2243,7 +2244,7 @@ msgstr "Andre"
 
 #: const.py:184 srcsel.glade:459
 msgid "Very High"
-msgstr "Veldig Høy"
+msgstr "Veldig høy"
 
 #: const.py:185 plugins/Merge.py:115 srcsel.glade:451
 msgid "High"
@@ -2251,7 +2252,7 @@ msgstr "Høy"
 
 #: const.py:186 srcsel.glade:443
 msgid "Normal"
-msgstr "Normalt"
+msgstr "Normal"
 
 #: const.py:187 plugins/Merge.py:107 srcsel.glade:435
 msgid "Low"
@@ -2263,7 +2264,7 @@ msgstr "Veldig lav"
 
 #: const.py:208
 msgid "Alternate Marriage"
-msgstr "Alternativt Ekteskap"
+msgstr "Alternativt ekteskap"
 
 #: const.py:209
 msgid "Annulment"
@@ -2299,15 +2300,15 @@ msgstr "Ekteskap"
 
 #: const.py:290
 msgid "Alternate Birth"
-msgstr "Alternativ Fødsel"
+msgstr "Alternativ fødsel"
 
 #: const.py:291
 msgid "Alternate Death"
-msgstr "Alternativ Død"
+msgstr "Alternativ død"
 
 #: const.py:292
 msgid "Adult Christening"
-msgstr "Voksen dåp"
+msgstr "Voksendåp"
 
 #: const.py:293
 msgid "Baptism"
@@ -2350,9 +2351,8 @@ msgid "Cremation"
 msgstr "Kremering"
 
 #: const.py:303
-#, fuzzy
 msgid "Degree"
-msgstr "Eksamen/Grad"
+msgstr "Eksamen/grad"
 
 #: const.py:305
 msgid "Education"
@@ -2372,7 +2372,7 @@ msgstr "Første altergang"
 
 #: const.py:309
 msgid "Immigration"
-msgstr "Immigrering"
+msgstr "Immigrasjon"
 
 #: const.py:310
 msgid "Graduation"
@@ -2380,7 +2380,7 @@ msgstr "Eksamen"
 
 #: const.py:311
 msgid "Medical Information"
-msgstr "Medisinsk Informasjon"
+msgstr "Medisinsk informasjon"
 
 #: const.py:312
 msgid "Military Service"
@@ -2388,7 +2388,7 @@ msgstr "Militærtjeneste"
 
 #: const.py:313
 msgid "Naturalization"
-msgstr "Naturalisering"
+msgstr "Naturalisasjon"
 
 #: const.py:314
 msgid "Nobility Title"
@@ -2396,7 +2396,7 @@ msgstr "Adelstittel"
 
 #: const.py:315
 msgid "Number of Marriages"
-msgstr "Antall Ekteskap"
+msgstr "Antall ekteskap"
 
 #: const.py:316
 msgid "Occupation"
@@ -2404,12 +2404,11 @@ msgstr "Yrke"
 
 #: const.py:317
 msgid "Ordination"
-msgstr "Ordinasjon"
+msgstr "Prestevielse"
 
 #: const.py:318
-#, fuzzy
 msgid "Probate"
-msgstr "skiftesak, arvesak, stadfeste, testamentstadfeste"
+msgstr "Testamentstadfeste"
 
 #: const.py:319
 msgid "Property"
@@ -2429,7 +2428,7 @@ msgstr "Pensjonert"
 
 #: const.py:323
 msgid "Will"
-msgstr "Testament"
+msgstr "Testamente"
 
 #: const.py:390
 msgid "Caste"
@@ -2445,7 +2444,7 @@ msgstr "Opprinnelsesland"
 
 #: const.py:394
 msgid "Social Security Number"
-msgstr "Person nummer"
+msgstr "Personnummer"
 
 #: const.py:433
 msgid "Number of Children"
@@ -2453,7 +2452,7 @@ msgstr "Antall barn"
 
 #: const.py:491
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "En registrert eller ekteskapslignende relasjon mellom en mann og kvinne"
+msgstr "En registrert eller ekteskapslignende relasjon mellom mann og kvinne"
 
 #: const.py:492
 msgid "No legal or common-law relationship between man and woman"
@@ -2473,7 +2472,7 @@ msgstr "Ukjent relasjon mellom mann og kvinne"
 
 #: const.py:495
 msgid "An unspecified relationship between a man and woman"
-msgstr "En uspesifisert relasjon mellom en mann og en kvinne"
+msgstr "En uspesifisert relasjon mellom mann og kvinne"
 
 #: const.py:519
 msgid "No definition available"
@@ -2493,11 +2492,11 @@ msgstr "Navn som gift"
 
 #: const.py:967 const.py:974
 msgid "Other Name"
-msgstr "Annet Navn"
+msgstr "Annet navn"
 
 #: dialog.glade:34
 msgid "Close window without changes"
-msgstr "Lukk vinduet uten å lagre endringer"
+msgstr "Lukk vinduet uten å lagre endringene"
 
 #: dialog.glade:48 dialog.glade:1830 dialog.glade:2579 dialog.glade:2840
 #: edit_person.glade:48 gramps.glade:5569 marriage.glade:49
@@ -2527,7 +2526,7 @@ msgstr "_Grunn:"
 
 #: dialog.glade:269 dialog.glade:2102
 msgid "Selects the calendar format for display"
-msgstr "Velg kalender format for fremvisning"
+msgstr "Velg kalenderformatet på visningen"
 
 #: dialog.glade:304 dialog.glade:2137
 msgid "French"
@@ -2615,7 +2614,7 @@ msgstr "_Stat:"
 
 #: dialog.glade:1643 places.glade:327
 msgid "Church _parish:"
-msgstr "Kirke S_ogn:"
+msgstr "Kirkes_ogn:"
 
 #: dialog.glade:1942
 msgid "Add_ress:"
@@ -2623,11 +2622,11 @@ msgstr "Ad_resse:"
 
 #: dialog.glade:1970
 msgid "_City/County:"
-msgstr "_By/Fylke:"
+msgstr "_By/fylke:"
 
 #: dialog.glade:1998
 msgid "_State/Province"
-msgstr "_Stat/Provins"
+msgstr "_Stat/provins"
 
 #: dialog.glade:2054 preferences.glade:1590
 msgid "_ZIP/Postal code:"
@@ -2635,7 +2634,7 @@ msgstr "Post_nummer:"
 
 #: dialog.glade:2652
 msgid "_Web address:"
-msgstr "_Webadresse:"
+msgstr "_Nettadresse:"
 
 #: dialog.glade:2680
 msgid "_Description:"
@@ -2643,7 +2642,7 @@ msgstr "_Beskrivelse:"
 
 #: dialog.glade:2826 edit_person.glade:34 gramps.glade:5556 marriage.glade:35
 msgid "Abandon changes and close window"
-msgstr "Lukke vindu uten å lagre endringer"
+msgstr "Lukk vinduet uten å lagre endringene"
 
 #: dialog.glade:2924 edit_person.glade:141 gramps.glade:6324
 msgid "_Given name:"
@@ -2651,7 +2650,7 @@ msgstr "_Fornavn:"
 
 #: dialog.glade:2952 edit_person.glade:166 gramps.glade:6191
 msgid "_Family name:"
-msgstr "_Slektsnavn:"
+msgstr "_Etternavn:"
 
 #: dialog.glade:2980 edit_person.glade:216
 msgid "Suffi_x:"
@@ -2712,7 +2711,7 @@ msgid ""
 "Using the default template"
 msgstr ""
 "Kan ikke åpne %s\n"
-"ved å bruke standard mal"
+"ved å bruke standardmalen"
 
 #: docgen/HtmlDoc.py:449 plugins/eventcmp.glade:164
 msgid "HTML"
@@ -2769,7 +2768,7 @@ msgstr "Kalle_navn:"
 
 #: edit_person.glade:384
 msgid "Invoke birth event editor"
-msgstr "Start redigering av fødsels hendelse"
+msgstr "Registrer en fødselshendelse"
 
 #: edit_person.glade:386 edit_person.glade:1128
 msgid "Edit..."
@@ -2785,7 +2784,7 @@ msgstr "_Kilde..."
 
 #: edit_person.glade:424
 msgid "Enter/modify notes regarding this name"
-msgstr "Skriv inn/endre kommentarer angående navnet"
+msgstr "Skriv inn/endre kommentarer om navnet"
 
 #: edit_person.glade:426 edit_person.glade:4348 edit_person.glade:4598
 #: edit_person.glade:4823 marriage.glade:1866
@@ -2805,18 +2804,18 @@ msgid ""
 "An optional prefix for the family name that is not used in sorting, such as "
 "\"de\" or \"van\""
 msgstr ""
-"Valgfritt forstavelse for familienavn som ikke er med i sortering, som for "
-"eksempel \"de\", \"van\" eller \"von\""
+"Valgfri forstavelse for familienavn som ikke er med i sortering, som for "
+"eksempel «de», «van» eller «von»"
 
 #: edit_person.glade:530
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Valgfri etterstavelse på navnet, som for eksempel \"Jr.\" eller \"III\""
+msgstr "Valgfri etterstavelse på navnet, som for eksempel «Jr.» eller «III»"
 
 #: edit_person.glade:552
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr ""
-"Tittel brukt til å henvise til personen, som for eksempel \"Dr.\" eller "
-"\"Rev.\""
+"Tittel som brukes for å henvise til personen, som for eksempel «Dr.» eller "
+"«Rev.»"
 
 #: edit_person.glade:574
 msgid "A name that the person was more commonly known by"
@@ -2876,7 +2875,7 @@ msgstr "St_ed:"
 
 #: edit_person.glade:1126
 msgid "Invoke death event editor"
-msgstr "Start redigering av dødsfall"
+msgstr "Registrer et dødsfall"
 
 #: edit_person.glade:1273 edit_person.glade:2053 edit_person.glade:2537
 #: edit_person.glade:2943 marriage.glade:492 marriage.glade:912
@@ -2898,7 +2897,7 @@ msgstr "<b>Primærkilde</b>"
 
 #: edit_person.glade:1741
 msgid "Create an alternate name for this person"
-msgstr "Lag et alternativt navn for denne personen"
+msgstr "Lag et alternativt navn på denne personen"
 
 #: edit_person.glade:1760
 msgid "Edit the selected name"
@@ -2906,7 +2905,7 @@ msgstr "Rediger det valgte navnet"
 
 #: edit_person.glade:1778
 msgid "Delete selected name"
-msgstr "Slett merket navn"
+msgstr "Slett det markerte navnet"
 
 #: edit_person.glade:1820
 msgid "Names"
@@ -2926,11 +2925,11 @@ msgstr "Lag en ny hendelse"
 
 #: edit_person.glade:2309
 msgid "Edit the selected event"
-msgstr "Rediger valgte hendelse"
+msgstr "Rediger den valgte hendelsen"
 
 #: edit_person.glade:2327
 msgid "Delete the selected event"
-msgstr "Slett valgte hendelse"
+msgstr "Slett den valgte hendelsen"
 
 #: edit_person.glade:2376 marriage.glade:853
 msgid "Events"
@@ -2947,12 +2946,12 @@ msgstr "Lag en ny egenskap"
 
 #: edit_person.glade:2721
 msgid "Edit the selected attribute"
-msgstr "Rediger merkede egenskap"
+msgstr "Rediger den merkede egenskapen"
 
 #: edit_person.glade:2739 imagesel.glade:1008 imagesel.glade:1788
 #: marriage.glade:1206
 msgid "Delete the selected attribute"
-msgstr "Slett merkede egenskap"
+msgstr "Slett den merkede egenskapen"
 
 #: edit_person.glade:2788 imagesel.glade:1843 marriage.glade:1248
 msgid "Attributes"
@@ -2960,7 +2959,7 @@ msgstr "Egenskaper"
 
 #: edit_person.glade:2823
 msgid "City/County:"
-msgstr "By/Fylke:"
+msgstr "By/fylke:"
 
 #: edit_person.glade:3015
 msgid "<b>Addresses</b>"
@@ -2972,11 +2971,11 @@ msgstr "Lag ny adresse"
 
 #: edit_person.glade:3351
 msgid "Edit the selected address"
-msgstr "Rediger valgte adresse"
+msgstr "Rediger den valgte adressen"
 
 #: edit_person.glade:3369
 msgid "Delete the selected address"
-msgstr "Slett valgte adresse"
+msgstr "Slett den valgte adressen"
 
 #: edit_person.glade:3418
 msgid "Addresses"
@@ -2984,7 +2983,7 @@ msgstr "Adresser"
 
 #: edit_person.glade:3446
 msgid "Enter miscellaneous relevant data and documentation"
-msgstr "Skriv inn diverse relevant data og dokumentasjon"
+msgstr "Skriv inn diverse informasjon og dokumentasjon"
 
 #: edit_person.glade:3471 imagesel.glade:1894 marriage.glade:1299
 #: plugins/IndivComplete.py:166 plugins/WebPage.py:521
@@ -3001,11 +3000,11 @@ msgstr "Sett inn nytt mediaobjekt i dette galleriet"
 
 #: edit_person.glade:3677
 msgid "Edit the properties of the selected object"
-msgstr "Rediger egenskaper til det valgte objektet"
+msgstr "Endre egenskapene til det valgte objektet"
 
 #: edit_person.glade:3694 gramps.glade:5961 marriage.glade:1515
 msgid "Remove selected object from this gallery only"
-msgstr "Fjern valgte objekt kun fra dette galleriet"
+msgstr "Fjern det valgte objekt bare fra dette galleriet"
 
 #: edit_person.glade:3697 gramps.glade:276
 msgid "_Remove"
@@ -3022,11 +3021,11 @@ msgstr "Nettadresse:"
 
 #: edit_person.glade:3866 places.glade:1479
 msgid "<b>Internet addresses</b>"
-msgstr "<b>Internett adresser</b>"
+msgstr "<b>Internett-adresser</b>"
 
 #: edit_person.glade:3937
 msgid "Add an internet reference about this person"
-msgstr "Legg til en internett henvisning om denne personen"
+msgstr "Legg til en internett-henvisning om denne personen"
 
 #: edit_person.glade:3972
 msgid "Go to this web page"
@@ -3038,11 +3037,11 @@ msgstr "_Gå"
 
 #: edit_person.glade:4044
 msgid "Delete selected reference"
-msgstr "Slett valgte henvisning"
+msgstr "Slett den valgte henvisningen"
 
 #: edit_person.glade:4086 places.glade:1706
 msgid "Internet"
-msgstr "Internet"
+msgstr "Internett"
 
 #: edit_person.glade:4115
 msgid "<b>LDS baptism</b>"
@@ -3095,27 +3094,27 @@ msgstr "Avslutt uten å lagre"
 
 #: errdialogs.glade:851
 msgid "Remove object and all references to it from the database"
-msgstr "Fjern objektet og alle henvisninger til det, fra databasen."
+msgstr "Fjern objektet og alle henvisningene til det fra databasen."
 
 #: errdialogs.glade:891
 msgid "_Remove Object"
-msgstr "Fje_rn Objekt"
+msgstr "_Slett objektet"
 
 #: errdialogs.glade:918
 msgid "Keep reference to the missing file"
-msgstr "Behold henvisningen til den savnede filen"
+msgstr "Behold henvisningen til den savnede fila"
 
 #: errdialogs.glade:921
 msgid "_Keep Reference"
-msgstr "Behold Henvisningen"
+msgstr "Behold henvisningen"
 
 #: errdialogs.glade:931
 msgid "Select replacement for the missing file"
-msgstr "Velg erstatning for den savnede filen"
+msgstr "Velg en erstatning for den savnede fila"
 
 #: errdialogs.glade:973
 msgid "_Select File"
-msgstr "Velg Fil"
+msgstr "Velg en fil"
 
 #: filters/After.py:54
 msgid "People with an event after ..."
@@ -3131,7 +3130,7 @@ msgstr "Personer med en hendelse før..."
 
 #: filters/Disconnected.py:38 plugins/Summary.py:104
 msgid "Disconnected individuals"
-msgstr "Slektsløse individer"
+msgstr "Slektsløse personer"
 
 #: filters/EventPlace.py:68
 msgid "People with an event location of ..."
@@ -3139,7 +3138,7 @@ msgstr "Personer med hendelsesstedet ..."
 
 #: filters/EventType.py:40
 msgid "People who have an event type of ..."
-msgstr "Personer som har en hendelses type av..."
+msgstr "Personer som har hendelses-typen ..."
 
 #: filters/Females.py:39 plugins/Summary.py:101
 msgid "Females"
@@ -3179,7 +3178,7 @@ msgstr "Personer med flere ekteskap"
 
 #: filters/NeverMarried.py:38
 msgid "People with no marriage records"
-msgstr "Personer uten ekteskaps informasjon"
+msgstr "Personer der informasjon om ekteskap mangler"
 
 #: filters/NoBirthdate.py:38
 msgid "People without a birth date"
@@ -3206,7 +3205,7 @@ msgstr "Tekst"
 
 #: filters/SubString.py:42
 msgid "Names that contain a substring of ..."
-msgstr "Navn som inneholder del setning ..."
+msgstr "Navn som inneholder del-setningen ..."
 
 #: gramps.glade:10
 msgid "GRAMPS"
@@ -3234,19 +3233,19 @@ msgstr "L_agre som..."
 
 #: gramps.glade:141
 msgid "_Import"
-msgstr "_Import"
+msgstr "_Importer"
 
 #: gramps.glade:149
 msgid "_Export"
-msgstr "_Eksport"
+msgstr "_Eksporter"
 
 #: gramps.glade:169 gramps_main.py:1438
 msgid "_Revert"
-msgstr "Gå Tilbake"
+msgstr "Gå tilbake"
 
 #: gramps.glade:190
 msgid "Re_load plugins"
-msgstr "Gjeninn_les programtillegg"
+msgstr "_Les inn programtillegget på nytt"
 
 #: gramps.glade:217
 msgid "_Quit"
@@ -3258,7 +3257,7 @@ msgstr "R_ediger"
 
 #: gramps.glade:252 gramps.glade:817
 msgid "Add a new item"
-msgstr "Legg til nytt element"
+msgstr "Legg til et nytt element"
 
 #: gramps.glade:275 gramps.glade:832
 msgid "Remove the currently selected item"
@@ -3266,27 +3265,27 @@ msgstr "Fjern det valgte elementet"
 
 #: gramps.glade:298 gramps.glade:843
 msgid "Edit the selected item"
-msgstr "Rediger valgte element"
+msgstr "Rediger det valgte elementet"
 
 #: gramps.glade:299
 msgid "E_dit..."
-msgstr "Re_diger..."
+msgstr "Re_diger ..."
 
 #: gramps.glade:314
 msgid "_Find..."
-msgstr "_Finn..."
+msgstr "_Finn ..."
 
 #: gramps.glade:336
 msgid "_Merge..."
-msgstr "Flette sa_mmen..."
+msgstr "Flette sa_mmen ..."
 
 #: gramps.glade:364
 msgid "Prefere_nces..."
-msgstr "Foretruk_ne innstillinger..."
+msgstr "Foretruk_ne innstillinger ..."
 
 #: gramps.glade:385
 msgid "Set _Home person..."
-msgstr "Sett _Hjemperson..."
+msgstr "Sett _Hjemperson ..."
 
 #: gramps.glade:410
 msgid "_View"
@@ -3314,7 +3313,7 @@ msgstr "Legg til bokmerke"
 
 #: gramps.glade:492
 msgid "_Edit bookmarks..."
-msgstr "R_ediger bokmerker..."
+msgstr "R_ediger bokmerker ..."
 
 #: gramps.glade:520
 msgid "_Go to bookmark"
@@ -3334,10 +3333,9 @@ msgstr "_Hjelp"
 
 #: gramps.glade:557
 msgid "_User manual"
-msgstr "Br_uker veiledning"
+msgstr "Br_ukerveiledning"
 
 #: gramps.glade:579
-#, fuzzy
 msgid "_FAQ"
 msgstr "_OSS"
 
@@ -3347,19 +3345,19 @@ msgstr "GRAMPS _hjemmeside"
 
 #: gramps.glade:627
 msgid "GRAMPS _mailing lists"
-msgstr "GRA_MPS e-post lister"
+msgstr "GRA_MPS e-postlister"
 
 #: gramps.glade:648
 msgid "_Report a bug"
-msgstr "_Rapport en feil"
+msgstr "_Rapporter en feil"
 
 #: gramps.glade:663
 msgid "_Show plugin status..."
-msgstr "Vi_s programtilleggs status..."
+msgstr "Vi_s status for programtillegg"
 
 #: gramps.glade:672
 msgid "_Open example database"
-msgstr "Åpne eksempel database"
+msgstr "Åpne eksempel-database"
 
 #: gramps.glade:681
 msgid "_About"
@@ -3395,7 +3393,7 @@ msgstr "Fremover"
 
 #: gramps.glade:780
 msgid "Make the Home Person the active person"
-msgstr "Gjør Hjemperson til den aktive personen"
+msgstr "Gjør hjempersonen til den aktive personen"
 
 #: gramps.glade:781
 msgid "Home"
@@ -3411,7 +3409,7 @@ msgstr "Rapporter"
 
 #: gramps.glade:806
 msgid "Run tools"
-msgstr "Kjør verktøy"
+msgstr "Bruk verktøy"
 
 #: gramps.glade:807
 msgid "Tools"
@@ -3439,11 +3437,11 @@ msgstr "Fi_lter:"
 
 #: gramps.glade:1258
 msgid "Qualifier:"
-msgstr "Kvalifikator:"
+msgstr "Godkjenner:"
 
 #: gramps.glade:1313
 msgid "Show people that do not match the filtering rule"
-msgstr "Vis personer som ikke passer med filter regelen"
+msgstr "Vis personer som ikke filterreglene passer på"
 
 #: gramps.glade:1315
 msgid "_Invert"
@@ -3452,7 +3450,7 @@ msgstr "_Inverter"
 #: gramps.glade:1332
 #, fuzzy
 msgid "Apply filter using the selected controls"
-msgstr "Bruk filter med de valgte kontrollene"
+msgstr "Bruk filteret med de valgte kontrollene"
 
 #: gramps.glade:1487
 msgid "<b>People</b>"
@@ -3460,23 +3458,23 @@ msgstr "<b>Personer</b>"
 
 #: gramps.glade:1516 gramps.glade:2964
 msgid "Exchange the current spouse with the active person"
-msgstr "Bytt ut gjeldende ektefellen med den aktive personen"
+msgstr "Bytt ut gjeldende ektefelle med den aktive personen"
 
 #: gramps.glade:1581 gramps.glade:2732
 msgid "Adds a new person to the database and to a new relationship"
-msgstr "Legg til en ny person til databasen og til en ny relasjon"
+msgstr "Legg til en ny person i databasen med en ny relasjon"
 
 #: gramps.glade:1607 gramps.glade:2758
 msgid "Selects an existing person from the database and adds to a new relationship"
-msgstr "Velger en eksisterende person fra databasen og legger til en ny relasjon"
+msgstr "Velger en eksisterende person fra databasen og legg til en ny relasjon"
 
 #: gramps.glade:1633 gramps.glade:2784
 msgid "Removes the currently selected spouse"
-msgstr "Fjerne den valgte ektefellen"
+msgstr "Fjern den valgte ektefellen"
 
 #: gramps.glade:1675 gramps.glade:2876
 msgid "Make the active person's parents the active family"
-msgstr "Sett den aktiv personens familie til den aktive familien"
+msgstr "Gjør den aktiv personens familie til den aktive familien"
 
 #: gramps.glade:1701 gramps.glade:2902
 msgid "Adds a new set of parents to the active person"
@@ -3488,15 +3486,15 @@ msgstr "Slett de valgte foreldrene fra den aktive personen"
 
 #: gramps.glade:1772 gramps.glade:2051 gramps.glade:2381 gramps.glade:2411
 msgid "Double-click to edit the relationship to the selected parents"
-msgstr "Dobbel klikk for å redigere relasjonen til de valgte foreldrene"
+msgstr "Dobbelklikk for å redigere relasjonene til de valgte foreldrene"
 
 #: gramps.glade:1799 gramps.glade:2613
 msgid "Make the selected spouse's parents the active family"
-msgstr "Sett den valgte ektefelles familie til den aktive familien"
+msgstr "Gjør den valgte ektefellens familie til den aktive familien"
 
 #: gramps.glade:1825 gramps.glade:2639
 msgid "Adds a new set of parents to the selected spouse"
-msgstr "Legge til et nytt sett med foreldre til den valgte ektefellen"
+msgstr "Legg til et nytt sett med foreldre til den valgte ektefellen"
 
 #: gramps.glade:1851 gramps.glade:2665
 msgid "Deletes the selected parents from the selected spouse"
@@ -3508,7 +3506,7 @@ msgstr "<b>Barn</b>"
 
 #: gramps.glade:1912 gramps.glade:2820
 msgid "<b>_Active person</b>"
-msgstr "<b>_Aktive person</b>"
+msgstr "<b>_Aktiv person</b>"
 
 #: gramps.glade:1937 gramps.glade:2845
 msgid "<b>Active person's _parents</b>"
@@ -3524,31 +3522,31 @@ msgstr "<b>Ektefellens foreldre</b>"
 
 #: gramps.glade:2081 gramps.glade:2441
 msgid "Double-click to edit the active person"
-msgstr "Dobbel klikk for å rediger den aktive personen"
+msgstr "Dobbeltklikk for å rediger den aktive personen"
 
 #: gramps.glade:2111 gramps.glade:2296
 msgid ""
 "Double-click to edit the relationship information, Shift-click to edit the "
 "person"
 msgstr ""
-"Dobbel klikk for å rediger relasjonsinformasjonen, Shift-klikk for å "
+"Dobbeltklikk for å rediger relasjonsinformasjonen, trykk «Shift» og klikk for å "
 "redigere personen"
 
 #: gramps.glade:2138 gramps.glade:2468
 msgid "Make the selected child the active person"
-msgstr "Sett det valgte barnet til den aktive personen"
+msgstr "Gjør det valgte barnet til den aktive personen"
 
 #: gramps.glade:2164 gramps.glade:2494
 msgid "Adds a new child to the database and to the current family"
-msgstr "Legge til et nytt barn til databasen og til den aktuelle familien"
+msgstr "Legg til et nytt barn i databasen og i den aktuelle familien"
 
 #: gramps.glade:2190 gramps.glade:2520
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
 msgstr ""
-"Velger en eksisterende person fra databasen og legger denne til som et barn "
-"til den aktuelle familien"
+"Velger en eksisterende person fra databasen og legger den til som et barn "
+"i den aktuelle familien"
 
 #: gramps.glade:2216 gramps.glade:2546
 msgid "Deletes the selected child from the selected family"
@@ -3579,8 +3577,8 @@ msgid ""
 "Check to show all people in the list.  Uncheck to get the list filtered by "
 "birth and death dates."
 msgstr ""
-"Huk av for å vise alle personer i listen. Blank for å filtrere listen på "
-"fødsels og døds datoer."
+"Kryss av for å vise alle personene i lista. Fjern krysset for å filtrere lista på "
+"fødsels- og dødsdatoer."
 
 #: gramps.glade:3802 gramps.glade:4240 gramps.glade:5046
 msgid "_Show all"
@@ -3596,11 +3594,11 @@ msgstr "Relasjonsdefinisjon\n"
 
 #: gramps.glade:4109
 msgid "_Father's relationship to child:"
-msgstr "_Fars relasjon til barn:"
+msgstr "_Fars til barn:"
 
 #: gramps.glade:4137
 msgid "_Mother's relationship to child:"
-msgstr "_Mors relasjon til barn:"
+msgstr "_Mor til et barn:"
 
 #: gramps.glade:4165
 msgid "_Parents' relationship to each other:"
@@ -3675,8 +3673,8 @@ msgid ""
 "Indicates that the parents should be used as the preferred parents for "
 "reporting and display purposes"
 msgstr ""
-"Indikerer at foreldrene skal bli brukt som de foretrukne foreldre for "
-"rapport og fremvisning"
+"Angi at foreldrene skal bli brukt som de foretrukne foreldrene i"
+"rapporter og ved fremvisning"
 
 #: gramps.glade:7291
 msgid "Use as preferred parents"
@@ -3692,7 +3690,7 @@ msgstr "OSS - GRAMPS"
 
 #: gramps_main.py:123
 msgid "GRAMPS is being run as the 'root' user."
-msgstr "GRAMPS blir kjørt som 'root' bruker."
+msgstr "GRAMPS kjøres som 'root' (superbruker)."
 
 #: gramps_main.py:124
 msgid ""
@@ -3700,17 +3698,17 @@ msgid ""
 "applications in the administrative account is rarely a wise idea, and can "
 "open up potential security risks."
 msgstr ""
-"Denne kontoen er ikke ment for normal applikasjons kjøring. Å kjøre bruker "
-"applikasjoner med administrator kontoen er sjeldent smart, og kan åpne for "
-"potensielle sikerhets risiko."
+"Denne kontoen er ikke ment for vanlig programkjøring. Å kjøre brukerprogrammer "
+"med administrator-kontoen er sjeldent lurt, og kan være en risiko for sikkerheten "
+"på systemet."
 
 #: gramps_main.py:441
 msgid "Back Menu"
-msgstr "Tilbake Meny"
+msgstr "Tilbake-meny"
 
 #: gramps_main.py:470
 msgid "Forward Menu"
-msgstr "Fremover Meny"
+msgstr "Frem-meny"
 
 #: gramps_main.py:733
 msgid "Cannot merge people."
@@ -3722,33 +3720,33 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"Nøyaktig to personer må være valgt for å gjennomføre en fletting. Den andre "
-"personen kan bli valgt ved å holde nede Ctrl tasten samtidig som man klikker "
-"på den ønskede personen."
+"Nøyaktig to personer må være valgt for å gjennomføre en fletting. Person nummer to "
+"kan bli valgt ved å holde nede Ctrl tasten samtidig som man klikker "
+"på den andre personen."
 
 #: gramps_main.py:756 gramps_main.py:1400 gramps_main.py:1840
 msgid "Save Changes Made to the Database?"
-msgstr "Lagre endringer som er gjort til Databasen?"
+msgstr "Vil du lagre de endringer som er gjort til databasen?"
 
 #: gramps_main.py:757 gramps_main.py:1401 gramps_main.py:1841
 msgid ""
 "Unsaved changes exist in the current database. If you close without saving, "
 "the changes you have made will be lost."
 msgstr ""
-"Ikke lagrede forandringer eksisterer i den gjeldende databasen. Hvis du "
-"lukker uten å lagre vil disse forandringen bli mistet."
+"Noen endringer i den gjeldende databasen er ikke lagret. Hvis du "
+"lukker uten å lagre vil disse endringene gå tapt."
 
 #: gramps_main.py:861
 msgid "Create a New Database"
-msgstr "Lag en Ny Database"
+msgstr "Lag en ny database"
 
 #: gramps_main.py:862
 msgid ""
 "Creating a new database will close the existing database, discarding any "
 "unsaved changes. You will then be prompted to create a new database"
 msgstr ""
-"Lag en ny database vil lukke den eksisterende databasen, uten å ta vare på "
-"ikke lagrede forandringer. Du vil så bli forespurt om å lage en ny database"
+"Å lage en ny database vil lukke den eksisterende databasen uten å ta vare på "
+"endringer som ikke er lagret. Du vil så bli spurt om å lage en ny database"
 
 #: gramps_main.py:865
 msgid "_Create New Database"
@@ -3769,31 +3767,30 @@ msgid ""
 "was unexpected shutdown before the data was saved. You may load this file to "
 "try to recover any missing data."
 msgstr ""
-"GRAMPS har oppdaget en autolagret fil for den valgte databasen. Denne filen "
+"GRAMPS har oppdaget en autolagret fil for den valgte databasen. Denne fila "
 "er nyere en den sist lagrede databasen. Dette pleier å skje når GRAMPS har "
-"hatt en uventet avslutning før data ble lagret. Du kan laste denne filen for "
-"å prøve å gjenopprette tapt data."
+"hatt en uventet avslutning før data ble lagret. Du kan laste denne fila for "
+"å prøve å gjenopprette tapte data."
 
 #: gramps_main.py:1008
 msgid "_Load autosave file"
-msgstr "_Last inn autolagret fil"
+msgstr "_Last inn den autolagret fila"
 
 #: gramps_main.py:1010
 msgid "Load _saved database"
-msgstr "La_st inn lagret database"
+msgstr "La_st inn en lagret database"
 
 #: gramps_main.py:1046 gramps_main.py:1171
 msgid "Database could not be opened"
-msgstr "Databasen kunne ikke åpnes"
+msgstr "Klarte ikke å åpne databasen"
 
 #: gramps_main.py:1047 gramps_main.py:1172
 msgid "%s is not a directory."
-msgstr "%s er ikke en katalog."
+msgstr "%s er ikke en mappe."
 
 #: gramps_main.py:1048 gramps_main.py:1173
-#, fuzzy
 msgid "You should select a directory that contains a data.gramps file."
-msgstr "Du skal velge en katalog, som inneholder en data.gramps fil."
+msgstr "Du må velge en mappe, som inneholder en grampsfil."
 
 #: gramps_main.py:1162
 msgid "Saving %s ..."
@@ -3804,12 +3801,12 @@ msgid ""
 "An error was detected while attempting to create the file. The operating "
 "system reported \"%s\""
 msgstr ""
-"En feil ble oppdaget under forsøk på å lage filen. Operativsystemet "
-"rapporterte \"%s\""
+"En feil ble oppdaget under forsøket på å lage fila. Operativsystemet "
+"rapporterte «%s»"
 
 #: gramps_main.py:1186 gramps_main.py:1196
 msgid "An error was detected while trying to create the file"
-msgstr "En feil ble oppdaget under forsøk på å lage filen"
+msgstr "En feil ble oppdaget under forsøket på å lage fila"
 
 #: gramps_main.py:1232
 msgid "autosaving..."
@@ -3817,11 +3814,11 @@ msgstr "autolagrer..."
 
 #: gramps_main.py:1235
 msgid "autosave complete"
-msgstr "autolagring fullført"
+msgstr "autolagringen er fullført"
 
 #: gramps_main.py:1239
 msgid "autosave failed"
-msgstr "autolagring mislykket"
+msgstr "autolagringen mislykket"
 
 #: gramps_main.py:1277
 msgid ""
@@ -3829,13 +3826,13 @@ msgid ""
 "only be recovered by closing the database without saving changes. This "
 "change will become permanent after you save the database."
 msgstr ""
-"Slette personen vil fjerne personen fra databasen. Dataene kan kun "
-"gjenopprettes ved å lukke databasen uten å lagre forandringer. Denne "
-"forandringen vil bli permanent etter at du har lagret databasen."
+"Å slette personen vil fjerne personen fra databasen. Dataene kan kun "
+"gjenopprettes ved å lukke databasen uten å lagre endringer. Denne "
+"endringen vil bli varig når du har lagret databasen."
 
 #: gramps_main.py:1282
 msgid "_Delete Person"
-msgstr "Slett Person"
+msgstr "Slett en person"
 
 #: gramps_main.py:1389
 msgid "%(relationship)s of %(person)s"
@@ -3843,23 +3840,23 @@ msgstr "%(relationship)s til %(person)s"
 
 #: gramps_main.py:1434
 msgid "Revert to last saved database?"
-msgstr "Gå tilbake til den sist lagrede databasen?"
+msgstr "Vil du gå tilbake til den sist lagrede databasen?"
 
 #: gramps_main.py:1435
 msgid ""
 "Reverting to the last saved database will cause all unsaved changes to be "
 "lost, and the last saved database will be loaded."
 msgstr ""
-"Tilbakestill til siste lagrede database vil resultere i at alle ikke lagrede "
-"data vil bli borte, og den siste lagrede databasen vil bli lastet."
+"Å gå tilbake til den siste lagrede databasen vil føre til at alle data som ikke er lagret "
+"vil bli borte, og den siste lagrede databasen vil bli lastet inn."
 
 #: gramps_main.py:1441
 msgid "Could Not Revert to the Previous Database."
-msgstr "Kunne ikke gå tilbake til den forrige databasen."
+msgstr "Klarte ikke å gå tilbake til den forrige databasen."
 
 #: gramps_main.py:1442
 msgid "GRAMPS could not find a previous version of the database"
-msgstr "GRAMPS kunne ikke finne en tidligere versjon av databasen"
+msgstr "GRAMPS fant ingen tidligere versjon av databasen"
 
 #: gramps_main.py:1724 gramps_main.py:1734
 msgid "Loading %s..."
@@ -3867,32 +3864,33 @@ msgstr "Laster inn %s..."
 
 #: gramps_main.py:1760
 msgid "No Home Person has been set."
-msgstr "Ingen hjemperson har blitt satt."
+msgstr "Ingen hjemperson har blitt valgt."
 
 #: gramps_main.py:1761
 msgid "The Home Person may be set from the Settings menu."
-msgstr "Hjempersonen kan settes fra innstillings menyen."
+msgstr "Hjempersonen kan velges fra innstillings-menyen."
 
 #: gramps_main.py:1767
 msgid "%s has been bookmarked"
-msgstr "%s er tilføyd som bokmerke"
+msgstr "%s er lagt til som et bokmerke"
 
 #: gramps_main.py:1770
 msgid "Could Not Set a Bookmark"
-msgstr "Kunne ikke opprette bokmerke"
+msgstr "Klarte ikke å opprette bokmerket"
 
 #: gramps_main.py:1771
 msgid "A bookmark could not be set because no one was selected."
-msgstr "Bokmerke kunne ikke settes da ingen er valgt."
+msgstr "Bokmerket kunne ikke lages fordi ingen er valgt."
 
 #: gramps_main.py:1782
 msgid "Could Not Go to a Person"
-msgstr "Kunne ikke gå til en person"
+msgstr "Klarte ikke å gå til noen person"
 
 #: gramps_main.py:1783
-#, fuzzy
 msgid "Either stale bookmark or broken history caused by IDs reorder."
-msgstr "Enten et gammelt bokmerke eller en brutt historie på grunn av omorganiserte ID'er."
+msgstr ""
+"På grunn av omorganiserte ID-er er det enten oppstått et gammelt bokmerke eller en "
+"ødelagt historie."
 
 #: gramps_main.py:1791
 msgid "Set %s as the Home Person"
@@ -3904,7 +3902,7 @@ msgid ""
 "make the home person the active person."
 msgstr ""
 "Så snart en hjemperson er definert, vil man gå til denne personen ved å "
-"tykke på Hjem knappen på verktøylinjen."
+"tykke på hjem-knappen på verktøylinjen."
 
 #: gramps_main.py:1795
 msgid "_Set Home Person"
@@ -3912,27 +3910,25 @@ msgstr "Velg hjemperson"
 
 #: gramps_main.py:1807
 msgid "A person must be selected to export"
-msgstr "En person må være valgt for å eksportere"
+msgstr "Du må ha valgt en person som skal eksporteres"
 
 #: gramps_main.py:1808
 msgid ""
 "Exporting requires that an active person be selected. Please select a person "
 "and try again."
-msgstr ""
-"Eksport krever at en aktiv person er valgt. Vennligst velg en person og prøv "
-"igjen."
+msgstr "Eksport krever at en aktiv person er valgt. Velg en person og prøv igjen."
 
 #: gramps_main.py:1854 gramps_main.py:1858 gramps_main.py:1862
 msgid "Could not create database"
-msgstr "Kunne ikke lage database"
+msgstr "Klarte ikke å lage databasen"
 
 #: gramps_main.py:1855 gramps_main.py:1859 gramps_main.py:1863
 msgid "The directory ~/.gramps/example could not be created."
-msgstr "Katalogen ~/.gramps/example kunne ikke lages."
+msgstr "Klarte ikke å lagre mappa ~/.gramps/example."
 
 #: gramps_main.py:1876 gramps_main.py:1878
 msgid "Example database not created"
-msgstr "Eksempel database ble ikke laget"
+msgstr "Eksempel-databasen ble ikke laget"
 
 #: imagesel.glade:204
 msgid "_File:"
@@ -3956,19 +3952,19 @@ msgstr "<b>Kommentarer</b>"
 
 #: imagesel.glade:974
 msgid "Creates a new object attribute from the above data"
-msgstr "Lag ny objekt egenskap fra de overstående data"
+msgstr "Lag en ny objekt-egenskap av de ovenstående dataene"
 
 #: imagesel.glade:1503
 msgid "Copies the object into the database"
-msgstr "Kopier objektet inn i databasen"
+msgstr "Kopier objektet til databasen"
 
 #: imagesel.glade:1505
 msgid "_Make a local copy"
-msgstr "Lag lokal kopi"
+msgstr "_Lag en lokal kopi"
 
 #: imagesel.glade:1754
 msgid "Creates a new attribute from the above data"
-msgstr "Lag ny egenskap fra de overstående data"
+msgstr "Lag nye egenskaper av de ovenstående dataene"
 
 #: marriage.glade:168
 msgid "_GRAMPS ID:"
@@ -3984,19 +3980,19 @@ msgstr "<b>Hendelser</b>"
 
 #: marriage.glade:777
 msgid "Add new event for this marriage"
-msgstr "Legg til ny hendelse for dette ekteskapet"
+msgstr "Legg til en ny hendelse for dette ekteskapet"
 
 #: marriage.glade:811
 msgid "Delete selected event"
-msgstr "Slett merket hendelse"
+msgstr "Slett den markerte hendelsen"
 
 #: marriage.glade:1172
 msgid "Create a new attribute for this marriage"
-msgstr "Lag ny egenskap for dette ekteskapet"
+msgstr "Lag en ny egenskap for dette ekteskapet"
 
 #: marriage.glade:1585
 msgid "<b>Sealed to spouse</b>"
-msgstr "<b>Bundet til ektefelle</b>"
+msgstr "<b>Bundet til en ektefelle</b>"
 
 #: marriage.glade:1633
 msgid "Temple:"
@@ -4048,11 +4044,11 @@ msgstr "Behold det andre navnet som et alternativt navn"
 
 #: mergedata.glade:1742
 msgid "Keep other birth event as an alternate birth event"
-msgstr "Behold annen fødsels hendelse som alternativ fødsels hendelse"
+msgstr "Behold en annen fødselshendelse som alternativ fødselshendelse"
 
 #: mergedata.glade:1760
 msgid "Keep other death event as an alternate death event"
-msgstr "Behold annen døds hendelse som alternativ døds hendelse"
+msgstr "Behold en annen dødshendelse som alternativ dødshendelse"
 
 #: places.glade:159
 msgid "C_ity:"
@@ -4104,7 +4100,7 @@ msgstr "Forfatter:"
 
 #: plugins.glade:348
 msgid "Author's email:"
-msgstr "Forfatters e-post:"
+msgstr "Forfatterens e-postadresse:"
 
 #: plugins/AncestorChart.py:225 plugins/AncestorReport.py:411
 #: plugins/Ancestors.py:778 plugins/Ancestors.py:794 plugins/Ancestors.py:800
@@ -4115,7 +4111,7 @@ msgstr "Forfatters e-post:"
 #: plugins/FtmStyleDescendants.py:1387 plugins/FtmStyleDescendants.py:1392
 #: plugins/IndivComplete.py:688 plugins/IndivSummary.py:616
 msgid "The basic style used for the text display."
-msgstr "Grunnleggende stil som brukt til tekstvisning."
+msgstr "Basis-stilen som skal brukes til tekstvisning."
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:345
 #: plugins/AncestorChart.py:559 plugins/AncestorChart.py:570
@@ -4136,21 +4132,21 @@ msgstr "Slektstavle for %s"
 
 #: plugins/AncestorChart.py:251
 msgid "Save Ancestor Chart"
-msgstr "Lagre Slektstavle"
+msgstr "Lagre slektstavla"
 
 #: plugins/AncestorChart.py:263 plugins/AncestorChart.py:361
 #: plugins/DesGraph.py:346 plugins/DesGraph.py:440
 msgid "Display Format"
-msgstr "Vis Format"
+msgstr "Vis formatet"
 
 #: plugins/AncestorChart.py:264 plugins/AncestorChart.py:362
 #: plugins/DesGraph.py:347 plugins/DesGraph.py:441
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr "Lar deg tilpasse innholdet i rapportens bokser"
+msgstr "Lar deg tilpasse innholdet i rapportboksene"
 
 #: plugins/AncestorChart.py:349
 msgid "Ancestor Chart for GRAMPS Book"
-msgstr "Slektstavle for GRAMPS bok"
+msgstr "Slektstavle for GRAMP-book"
 
 #: plugins/AncestorChart.py:561 plugins/AncestorReport.py:515
 #: plugins/Ancestors.py:1107 plugins/DescendReport.py:406
@@ -4174,7 +4170,7 @@ msgstr "Grafikk"
 
 #: plugins/AncestorReport.py:84 plugins/AncestorReport.py:242
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel rapport for %s"
+msgstr "Slektstre over forfedrene til %s"
 
 #: plugins/AncestorReport.py:97 plugins/DetAncestralReport.py:646
 #: plugins/DetDescendantReport.py:654
@@ -4252,7 +4248,7 @@ msgstr ", og ble begravd i %s."
 #: plugins/AncestorReport.py:238 plugins/AncestorReport.py:334
 #: plugins/AncestorReport.py:513 plugins/AncestorReport.py:524
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel rapport"
+msgstr "Rapport for slektsre over forfedre"
 
 #: plugins/AncestorReport.py:238 plugins/AncestorReport.py:514
 #: plugins/Ancestors.py:833 plugins/Ancestors.py:1106
@@ -4264,15 +4260,15 @@ msgstr "Ahnentafel rapport"
 #: plugins/IndivComplete.py:474 plugins/IndivComplete.py:821
 #: plugins/IndivSummary.py:340 plugins/IndivSummary.py:630
 msgid "Text Reports"
-msgstr "Tekst Rapporter"
+msgstr "Tekstrapporter"
 
 #: plugins/AncestorReport.py:247
 msgid "Save Ahnentafel Report"
-msgstr "Lagre Ahnentafel rapport"
+msgstr "Lagre rapporten med slekstre over forfedrene"
 
 #: plugins/AncestorReport.py:338
 msgid "Ahnentafel Report for GRAMPS Book"
-msgstr "Ahnentafel rapport til GRAMPS rok"
+msgstr "Rapport for slekstre over forfedre, GRAMPS bok"
 
 #: plugins/AncestorReport.py:397 plugins/Ancestors.py:763
 #: plugins/DescendReport.py:294 plugins/FamilyGroup.py:611
@@ -4281,12 +4277,12 @@ msgstr "Ahnentafel rapport til GRAMPS rok"
 #: plugins/SimpleBookTitle.py:120 plugins/TimeLine.py:342
 #: plugins/WebPage.py:1028
 msgid "The style used for the title of the page."
-msgstr "Stilen, som brukes til sidens tittel."
+msgstr "Stilen som brukes på sidens tittel."
 
 #: plugins/AncestorReport.py:406 plugins/Ancestors.py:773
 #: plugins/FtmStyleAncestors.py:964 plugins/FtmStyleDescendants.py:1372
 msgid "The style used for the generation header."
-msgstr "Stilen, som brukes til generasjonsoverskrift."
+msgstr "Stilen, som brukes til generasjons-overskrift."
 
 #: plugins/AncestorReport.py:516
 msgid "Produces a textual ancestral report"
@@ -4361,7 +4357,7 @@ msgstr "Hun er datter av "
 
 #: plugins/Ancestors.py:503
 msgid "He is the son of "
-msgstr "Han er sønnen av "
+msgstr "Han er sønn av "
 
 #: plugins/Ancestors.py:520 plugins/FtmStyleAncestors.py:933
 #: plugins/FtmStyleDescendants.py:1336
@@ -4395,7 +4391,7 @@ msgstr "Han er sønn av %(father)s og %(mother)s."
 
 #: plugins/Ancestors.py:562
 msgid "Mrs."
-msgstr "Fru."
+msgstr "Fru"
 
 #: plugins/Ancestors.py:564
 msgid "Miss"
@@ -4415,7 +4411,7 @@ msgstr " (ukjent)"
 
 #: plugins/Ancestors.py:647
 msgid ", and they had a child named "
-msgstr ", og de hadde et barn med navnet "
+msgstr ", og de hadde et barn som het "
 
 #: plugins/Ancestors.py:649
 msgid ", and they had %d children: "
@@ -4443,7 +4439,7 @@ msgstr "  Han giftet seg med %(name)s"
 
 #: plugins/Ancestors.py:698
 msgid "  Note about their name: "
-msgstr "  Kommentar om deres navn: "
+msgstr "  Kommentar til navnene: "
 
 #: plugins/Ancestors.py:731
 msgid "More about %(name)s:"
@@ -4451,7 +4447,7 @@ msgstr "Mer om %(name)s:"
 
 #: plugins/Ancestors.py:782
 msgid "Text style for missing photo."
-msgstr "Tekststil til manglende bilde."
+msgstr "Tekststil til bilder som mangler."
 
 #: plugins/Ancestors.py:789
 msgid "Style for details about a person."
@@ -4459,33 +4455,33 @@ msgstr "Stil for persondetaljer."
 
 #: plugins/Ancestors.py:805
 msgid "Introduction to the children."
-msgstr "Introduksjon til barnene."
+msgstr "Introduksjon til barna."
 
 #: plugins/Ancestors.py:832 plugins/Ancestors.py:945 plugins/Ancestors.py:1105
 #: plugins/Ancestors.py:1116
 msgid "Comprehensive Ancestors Report"
-msgstr "Omfattende forfedrerapport"
+msgstr "Omfattende rapport over forfedre"
 
 #: plugins/Ancestors.py:837
 msgid "Ancestors for %s"
-msgstr "Forfedre til %s"
+msgstr "Forfedrene til %s"
 
 #: plugins/Ancestors.py:842 plugins/DetAncestralReport.py:751
 #: plugins/FtmStyleAncestors.py:1016
 msgid "Save Ancestor Report"
-msgstr "Lagre Forfedrerapport"
+msgstr "Lagre rapporten over forfedre"
 
 #: plugins/Ancestors.py:852 plugins/Ancestors.py:956
 msgid "Cite sources"
-msgstr "Sitter kilder"
+msgstr "Siterte kilder"
 
 #: plugins/Ancestors.py:949
 msgid "Comprehensive Ancestors Report for GRAMPS Book"
-msgstr "Omfattende forfedrerapport til GRAMPS bok"
+msgstr "Omfattende rapport over forfedre til GRAMPS bok"
 
 #: plugins/Ancestors.py:1108
 msgid "Produces a detailed ancestral report."
-msgstr "Lager en detaljert forfedrerapport."
+msgstr "Lager en detaljert rapport over forfedre."
 
 #: plugins/BookReport.py:496
 msgid "Available Books"
@@ -4505,9 +4501,8 @@ msgid "New Book"
 msgstr "Ny bok"
 
 #: plugins/BookReport.py:606
-#, fuzzy
 msgid "_Available items"
-msgstr "Tilgjengelige emner"
+msgstr "_Tilgjengelige emner"
 
 #: plugins/BookReport.py:610
 msgid "Current _book"
@@ -4515,7 +4510,7 @@ msgstr "Gjeldende _bok"
 
 #: plugins/BookReport.py:615
 msgid "Item name"
-msgstr "Emne navn"
+msgstr "Emnenavn"
 
 #: plugins/BookReport.py:616
 msgid "Center person"
@@ -4534,16 +4529,16 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"Denne bok ble laget med referanser til database %s.\n"
+"Denne boka ble laget med referanser til databasen %s.\n"
 "\n"
-"Dette gjør referansene til den sentrale person lagret i boken ugyldige.\n"
+"Dette gjør at referansene til den sentrale person lagret i boken blir ugyldige.\n"
 "\n"
-"Derfor settes den sentrale personen for hvert emne til den aktive personen i "
-"den gjeldende åpne databasen."
+"Derfor blir den sentrale personen for hvert emne til den aktive personen i "
+"den åpne databasen."
 
 #: plugins/BookReport.py:683 plugins/BookReport.py:700
 msgid "Not Applicable"
-msgstr "Ikke Anvendelig"
+msgstr "Kan ikke brukes"
 
 #: plugins/BookReport.py:810
 msgid "Setup"
@@ -4551,15 +4546,15 @@ msgstr "Oppsett"
 
 #: plugins/BookReport.py:820
 msgid "Book Menu"
-msgstr "Bok Meny"
+msgstr "Bokmeny"
 
 #: plugins/BookReport.py:843
 msgid "Available Items Menu"
-msgstr "Meny over Tilgjengelige Emner"
+msgstr "Meny over tilgjengelige emner"
 
 #: plugins/BookReport.py:943
 msgid "GRAMPS Book"
-msgstr "GRAMPS Bok"
+msgstr "GRAMPS-bok"
 
 #: plugins/BookReport.py:1090
 msgid "Books"
@@ -4575,15 +4570,15 @@ msgstr "Lager en bok som inneholder flere rapporter."
 
 #: plugins/ChangeTypes.py:67
 msgid "Change event types"
-msgstr "Endre hendelses type"
+msgstr "Endre hendelsestype"
 
 #: plugins/ChangeTypes.py:87
 msgid "1 event record was modified"
-msgstr "1 hendelse ble endrett"
+msgstr "1 hendelse ble endret"
 
 #: plugins/ChangeTypes.py:89
 msgid "%d event records were modified"
-msgstr "%d hendelse ble endrett"
+msgstr "%d hendelse ble endret"
 
 #: plugins/ChangeTypes.py:91
 msgid "Change types"
@@ -4591,12 +4586,12 @@ msgstr "Endre typer"
 
 #: plugins/ChangeTypes.py:103
 msgid "Rename personal event types"
-msgstr "Endre navn på personlig hendelses typer"
+msgstr "Endre navn på personlige hendelsestyper"
 
 #: plugins/ChangeTypes.py:104 plugins/Check.py:353 plugins/Merge.py:554
 #: plugins/PatchNames.py:209 plugins/ReorderIds.py:130
 msgid "Database Processing"
-msgstr "Database behandling"
+msgstr "Databasebehandling"
 
 #: plugins/ChangeTypes.py:105
 msgid "Allows all the events of a certain name to be renamed to a new name"
@@ -4616,7 +4611,7 @@ msgstr "1 brutt familierelasjon ble reparert\n"
 
 #: plugins/Check.py:261
 msgid "%d broken child/family links were found\n"
-msgstr "%d brutte familierelasjon ble funnet\n"
+msgstr "%d brutte familierelasjoner ble funnet\n"
 
 #: plugins/Check.py:276
 msgid "%s was removed from the family of %s\n"
@@ -4628,7 +4623,7 @@ msgstr "1 brutt ektefelle/familierelasjon ble reparert\n"
 
 #: plugins/Check.py:282
 msgid "%d broken spouse/family links were found\n"
-msgstr "%d brutte ektefelle/familierelasjon ble funnet\n"
+msgstr "%d brutte ektefelle/familierelasjoner ble funnet\n"
 
 #: plugins/Check.py:295
 msgid "%s was restored to the family of %s\n"
@@ -4644,11 +4639,11 @@ msgstr "%d tomme familier ble funnet\n"
 
 #: plugins/Check.py:302
 msgid "1 corrupted family relationship fixed\n"
-msgstr "1 defekt familie relasjon ble reparert\n"
+msgstr "1 defekt familierelasjon ble reparert\n"
 
 #: plugins/Check.py:304
 msgid "%d corrupted family relationship fixed\n"
-msgstr "%d defekte familie relasjon ble reparert\n"
+msgstr "%d defekte familierelasjoner ble reparert\n"
 
 #: plugins/Check.py:306
 msgid "1 media object was referenced, but not found\n"
@@ -4692,60 +4687,60 @@ msgstr "Kontroller og reparer database"
 
 #: plugins/Check.py:354
 msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Kontroller databasen for integritetsproblemer og rett det den kan"
+msgstr "Kontrollerer databasen for integritetsproblemer og retter det den kan"
 
 #: plugins/CustomBookText.py:107
 msgid "The style used for the first portion of the custom text."
-msgstr "Stilen brukt for den første delen av tilpasset tekst."
+msgstr "Stil som blir brukt på første del av en tilpasset tekst."
 
 #: plugins/CustomBookText.py:116
 msgid "The style used for the middle portion of the custom text."
-msgstr "Stilen brukt for den midterste delen av tilpasset tekst."
+msgstr "Stil som blir brukt på midterste del av en tilpasset tekst."
 
 #: plugins/CustomBookText.py:125
 msgid "The style used for the last portion of the custom text."
-msgstr "Stilen brukt for den siste delen av tilpasset tekst."
+msgstr "Stil som blir brukt for siste del av en tilpasset tekst."
 
 #: plugins/CustomBookText.py:187 plugins/CustomBookText.py:389
 msgid "Custom Text"
-msgstr "Tilpasset Tekst"
+msgstr "Tilpasset tekst"
 
 #: plugins/CustomBookText.py:191
 msgid "Custom Text for GRAMPS Book"
-msgstr "Tilpasset Tekst for GRAMPS Bok"
+msgstr "Tilpasset tekst for GRAMPS-bok"
 
 #: plugins/CustomBookText.py:222
 msgid "Initial Text"
-msgstr "Innledende Tekst"
+msgstr "Innledende tekst"
 
 #: plugins/CustomBookText.py:223
 msgid "Middle Text"
-msgstr "Midterste Tekst"
+msgstr "Midterste tekst"
 
 #: plugins/CustomBookText.py:224
 msgid "Final Text"
-msgstr "Avsluttende Tekst"
+msgstr "Avsluttende tekst"
 
 #: plugins/DesGraph.py:329 plugins/DesGraph.py:424 plugins/DesGraph.py:585
 #: plugins/DesGraph.py:596
 msgid "Descendant Graph"
-msgstr "Etterkommer slektstre"
+msgstr "Slektstre over etterkommere"
 
 #: plugins/DesGraph.py:332
 msgid "Descendant Graph for %s"
-msgstr "Etterkommer slektstre for %s"
+msgstr "Slektstre over etterkommere for %s"
 
 #: plugins/DesGraph.py:335
 msgid "Save Descendant Graph"
-msgstr "Lagre Etterkommer Slektstre"
+msgstr "Lagre slektstreet over etterkommere"
 
 #: plugins/DesGraph.py:428
 msgid "Descendant Graph for GRAMPS Book"
-msgstr "Etterkommer Slektstre for GRAMPS bok"
+msgstr "Slektstre over etterkommere for GRAMPS bok"
 
 #: plugins/DesGraph.py:587
 msgid "Generates a graph of descendants of the active person"
-msgstr "Lager en graf med etterfølgere etter den aktive personen"
+msgstr "Lager en graf med etterkommere av den aktive personen"
 
 #: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
@@ -4753,11 +4748,11 @@ msgstr "Alfa"
 
 #: plugins/Desbrowser.py:76
 msgid "Descendant Browser"
-msgstr "Etterkommer utforsker"
+msgstr "Etterkommer-utforsker"
 
 #: plugins/Desbrowser.py:120
 msgid "Interactive descendant browser"
-msgstr "Interaktiv etterkommer utforsker"
+msgstr "Interaktiv etterkommer-utforsker"
 
 #: plugins/Desbrowser.py:121 plugins/EventCmp.py:353
 msgid "Analysis and Exploration"
@@ -4779,19 +4774,19 @@ msgstr "Etterkommere av %s"
 #: plugins/DescendReport.py:133 plugins/DescendReport.py:229
 #: plugins/DescendReport.py:404 plugins/DescendReport.py:415
 msgid "Descendant Report"
-msgstr "Etterkommerrapport"
+msgstr "Rapport over etterkommere"
 
 #: plugins/DescendReport.py:137
 msgid "Descendant Report for %s"
-msgstr "Etterkommerrapport for %s"
+msgstr "Rapport over etterkommere for %s"
 
 #: plugins/DescendReport.py:142 plugins/DetDescendantReport.py:759
 msgid "Save Descendant Report"
-msgstr "Lagre Etterkommerrapport"
+msgstr "Lagre rapport over etterkommere"
 
 #: plugins/DescendReport.py:233
 msgid "Descendant Report for GRAMPS Book"
-msgstr "Etterkommerrapport for GRAMPS Bok"
+msgstr "Rapport over etterkommere for GRAMPS-bok"
 
 #: plugins/DescendReport.py:302
 msgid "The style used for the level %d display."
@@ -4799,7 +4794,7 @@ msgstr "Stilen som brukes til visning av nivå %d."
 
 #: plugins/DescendReport.py:407
 msgid "Generates a list of descendants of the active person"
-msgstr "Lage liste over etterkommere til den aktive personen"
+msgstr "Lager en liste over den aktive personens etterkommere"
 
 #: plugins/DetAncestralReport.py:123 plugins/DetDescendantReport.py:128
 msgid "Child of %s and %s is:"
@@ -5021,16 +5016,16 @@ msgstr "  %s giftet seg den %s i %s"
 
 #: plugins/DetAncestralReport.py:632 plugins/DetAncestralReport.py:746
 msgid "Detailed Ancestral Report for %s"
-msgstr "Detaljert forfedrerapport for %s"
+msgstr "Detaljert rapport over forfedrene til %s"
 
 #: plugins/DetAncestralReport.py:742 plugins/DetDescendantReport.py:750
 msgid "Gramps - Ahnentafel Report"
-msgstr "Gramps - Ahnentafel rapport"
+msgstr "Gramps - rapport over forfedre"
 
 #: plugins/DetAncestralReport.py:793 plugins/DetAncestralReport.py:1013
 #: plugins/DetDescendantReport.py:802 plugins/DetDescendantReport.py:1023
 msgid "Use first names instead of pronouns"
-msgstr "Bruk fornavn i stedet for pronomens ord"
+msgstr "Bruk fornavn i stedet for pronomen"
 
 #: plugins/DetAncestralReport.py:797 plugins/DetAncestralReport.py:1017
 #: plugins/DetDescendantReport.py:806 plugins/DetDescendantReport.py:1027
@@ -5040,7 +5035,7 @@ msgstr "Bruk fulle datoer i stedet for kun årstallet"
 #: plugins/DetAncestralReport.py:801 plugins/DetAncestralReport.py:1021
 #: plugins/DetDescendantReport.py:810 plugins/DetDescendantReport.py:1031
 msgid "List children"
-msgstr "List barn"
+msgstr "Lag en liste over alle barna"
 
 #: plugins/DetAncestralReport.py:805 plugins/DetAncestralReport.py:1025
 #: plugins/DetDescendantReport.py:814 plugins/DetDescendantReport.py:1035
@@ -5050,12 +5045,12 @@ msgstr "Ta med kommentarer"
 #: plugins/DetAncestralReport.py:809 plugins/DetAncestralReport.py:1029
 #: plugins/DetDescendantReport.py:818 plugins/DetDescendantReport.py:1039
 msgid "Replace Place with ______"
-msgstr "Erstatt Sted med ______"
+msgstr "Erstatt sted med ______"
 
 #: plugins/DetAncestralReport.py:813 plugins/DetAncestralReport.py:1033
 #: plugins/DetDescendantReport.py:822 plugins/DetDescendantReport.py:1043
 msgid "Replace Dates with ______"
-msgstr "Erstatt Datoer med ______"
+msgstr "Erstatt datoer med ______"
 
 #: plugins/DetAncestralReport.py:817 plugins/DetAncestralReport.py:1037
 #: plugins/DetDescendantReport.py:826 plugins/DetDescendantReport.py:1047
@@ -5065,17 +5060,17 @@ msgstr "Beregn alder"
 #: plugins/DetAncestralReport.py:821 plugins/DetAncestralReport.py:1041
 #: plugins/DetDescendantReport.py:1051
 msgid "Omit duplicate ancestors"
-msgstr "Utelat duplikate forfedre"
+msgstr "Utelat dobbelt oppførte forfedre"
 
 #: plugins/DetAncestralReport.py:825 plugins/DetAncestralReport.py:1045
 #: plugins/DetDescendantReport.py:834 plugins/DetDescendantReport.py:1055
 msgid "Add descendant reference in child list"
-msgstr "Legg til etterkommer henvisning i listen over barn"
+msgstr "Legg til en henvisning om etterkommere i lista over barn"
 
 #: plugins/DetAncestralReport.py:829 plugins/DetAncestralReport.py:1049
 #: plugins/DetDescendantReport.py:838 plugins/DetDescendantReport.py:1059
 msgid "Include Photo/Images from Gallery"
-msgstr "Inkluder Foto/Bilder fra Galleriet"
+msgstr "Ta med foto/bilder fra galleriet"
 
 #: plugins/DetAncestralReport.py:836 plugins/DetAncestralReport.py:837
 #: plugins/DetAncestralReport.py:838 plugins/DetAncestralReport.py:839
@@ -5093,15 +5088,15 @@ msgstr "Innhold"
 #: plugins/DetAncestralReport.py:999 plugins/DetAncestralReport.py:1249
 #: plugins/DetAncestralReport.py:1260
 msgid "Detailed Ancestral Report"
-msgstr "Detaljert forfedrerapport"
+msgstr "Detaljert rapport over forfedre"
 
 #: plugins/DetAncestralReport.py:1003
 msgid "Detailed Ancestral Report for GRAMPS Book"
-msgstr "Detaljert forfedrerapport til GRAMPS bok"
+msgstr "Detaljert rapport over forfedre til GRAMPS bok"
 
 #: plugins/DetAncestralReport.py:1252
 msgid "Produces a detailed ancestral report"
-msgstr "Lag en detaljert forfedrerapport"
+msgstr "Lag en detaljert rapport over forfedre"
 
 #: plugins/DetAncestralReport.py:1369 plugins/DetDescendantReport.py:1378
 msgid " at the age of %d days"
@@ -5129,36 +5124,35 @@ msgstr " i en alder av %d år"
 
 #: plugins/DetDescendantReport.py:641 plugins/DetDescendantReport.py:754
 msgid "Detailed Descendant Report for %s"
-msgstr "Detaljert etterkommerrapport for %s"
+msgstr "Detaljert rapport over etterkommere for %s"
 
 #: plugins/DetDescendantReport.py:830
 msgid "Omit duplicate people"
-msgstr "Utelat duplikate personer"
+msgstr "Utelat dobbelt oppførte personer"
 
 #: plugins/DetDescendantReport.py:1009 plugins/DetDescendantReport.py:1258
 #: plugins/DetDescendantReport.py:1269
 msgid "Detailed Descendant Report"
-msgstr "Detaljert etterkommerrapport"
+msgstr "Detaljert rapport over etterkommere"
 
 #: plugins/DetDescendantReport.py:1013
 msgid "Detailed Descendant Report for GRAMPS Book"
-msgstr "Detaljert etterkommerrapport til GRAMPS bok"
+msgstr "Detaljert rapport over etterkommere til GRAMPS bok"
 
 #: plugins/DetDescendantReport.py:1261
 msgid "Produces a detailed descendant report"
-msgstr "Lager en detaljert etterkommerrapport"
+msgstr "Lager en detaljert rapport over etterkommere"
 
 #: plugins/EventCmp.py:144
-#, fuzzy
 msgid "Event comparison filter selection"
-msgstr "Hendelsessammenlignings filtervalg"
+msgstr "Filtervalg for sammenligning av hendelser"
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:104
 #: plugins/IndivComplete.py:715 plugins/RelGraph.py:132
 #: plugins/TimeLine.py:356 plugins/WebPage.py:989 plugins/WriteFtree.py:106
 #: plugins/WriteGedcom.py:385
 msgid "Entire Database"
-msgstr "Hele Databasen"
+msgstr "Hele databasen"
 
 #: plugins/EventCmp.py:169
 msgid "No matches were found"
@@ -5166,7 +5160,7 @@ msgstr "Ingen passer"
 
 #: plugins/EventCmp.py:221
 msgid "Event Comparison"
-msgstr "Hendelsessammenligning"
+msgstr "Sammenligning av hendelser"
 
 #: plugins/EventCmp.py:306 plugins/FamilyGroup.py:171
 #: plugins/FamilyGroup.py:274 plugins/FamilyGroup.py:276
@@ -5182,8 +5176,8 @@ msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
 msgstr ""
-"Bistår ved analyse av data ved å tillate utvikling av egendefinerte filtre "
-"som kan brukes på databasen for å finne lignene hendelser"
+"Hjelper til med å analysere data ved å la deg lage egne filtre."
+"Disse kan brukes på databasen for å finne hendelser som ligner på hverandre."
 
 #: plugins/FamilyGroup.py:133
 msgid "Husband"
@@ -5215,68 +5209,68 @@ msgstr "Familierapport for %s"
 
 #: plugins/FamilyGroup.py:369
 msgid "Save Family Group Report"
-msgstr "Lagre Familierapport"
+msgstr "Lagre familierapport"
 
 #: plugins/FamilyGroup.py:483
 msgid "Family Group Report for GRAMPS Book"
-msgstr "Familiegrupperapport til GRAMPS Bok"
+msgstr "Familierapport til GRAMPS-bok"
 
 #: plugins/FamilyGroup.py:629
 msgid "The style used for the text related to the children."
-msgstr "Stilen brukt for tekst relatert til barnene"
+msgstr "Stil som blir brukt på tekst som henviser til barna"
 
 #: plugins/FamilyGroup.py:638
 msgid "The style used for the parent's name"
-msgstr "Stilen brukt for foreldrenes navn"
+msgstr "Stil som blir brukt på foreldrenes navn"
 
 #: plugins/FamilyGroup.py:762
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
 msgstr ""
-"Lager en familierapport ,som viser informasjon om et par foreldre og deres "
-"barn."
+"Lager en familierapport som viser informasjon om et foreldrepar "
+"og deres barn."
 
 #: plugins/FanChart.py:187
 msgid "Five Generation Fan Chart for %s"
-msgstr "Fem generasjoners vifte slektstavle for %s"
+msgstr "Slektstavle i vifteform over 5 generasjoner for %s"
 
 #: plugins/FanChart.py:293
 msgid "The style used for the title."
-msgstr "Stilen brukt for titelen."
+msgstr "Stil som blir brukt på tittelen."
 
 #: plugins/FanChart.py:310 plugins/FanChart.py:396 plugins/FanChart.py:461
 #: plugins/FanChart.py:469
 msgid "Fan Chart"
-msgstr "Vifte slektstavle"
+msgstr "Vifteformet slektstavle"
 
 #: plugins/FanChart.py:314
 msgid "Fan Chart for %s"
-msgstr "Vifte slektstavle for %s"
+msgstr "Vifteformet slektstavle for %s"
 
 #: plugins/FanChart.py:319
 msgid "Save Fan Chart"
-msgstr "Lagre Vifte slektstavle"
+msgstr "Lagre en vifteformet slektstavle"
 
 #: plugins/FanChart.py:400
 msgid "Fan Chart for GRAMPS Book"
-msgstr "Vifte slektstavle for GRAMPS Bok"
+msgstr "Vifteformet slektstavle for GRAMPS-bok"
 
 #: plugins/FanChart.py:464
 msgid "Produces a five generation fan chart"
-msgstr "Lage en fem generasjoners vifte slektstavle"
+msgstr "Lag en vifteformet slektstavle over fem generasjoner"
 
 #: plugins/FilterEditor.py:159
 msgid "Select..."
-msgstr "Velg..."
+msgstr "Velg ..."
 
 #: plugins/FilterEditor.py:165
 msgid "Select person from a list"
-msgstr "Velg person fra en liste"
+msgstr "Velg en person fra en liste"
 
 #: plugins/FilterEditor.py:171
 msgid "Select Person"
-msgstr "Velg Person"
+msgstr "Velg en person"
 
 #: plugins/FilterEditor.py:187
 msgid "Not a valid person"
@@ -5288,35 +5282,35 @@ msgstr "Brukerdefinerte filtre"
 
 #: plugins/FilterEditor.py:309
 msgid "Define filter"
-msgstr "Definere filter"
+msgstr "Lag filtere"
 
 #: plugins/FilterEditor.py:392
 msgid "Add Rule"
-msgstr "Legg til Regel"
+msgstr "Ny regel"
 
 #: plugins/FilterEditor.py:398
 msgid "Edit Rule"
-msgstr "Rediger Regel"
+msgstr "Rediger en regel"
 
 #: plugins/FilterEditor.py:465
 msgid "Include original person"
-msgstr "Inkluder originale person"
+msgstr "Ta med den opprinnelige personen"
 
 #: plugins/FilterEditor.py:478
 msgid "Rule Name"
-msgstr "Regel Navn"
+msgstr "Navn på regelen"
 
 #: plugins/FilterEditor.py:541 rule.glade:1213
 msgid "No rule selected"
-msgstr "Ingen regel valgt"
+msgstr "Ingen regel ble valgt"
 
 #: plugins/FilterEditor.py:591
 msgid "Filter Test"
-msgstr "Filter Test"
+msgstr "Filtertest"
 
 #: plugins/FilterEditor.py:630
 msgid "Custom Filter Editor"
-msgstr "Tilpasset filter behandler"
+msgstr "Tilpasset filterbehandler"
 
 #: plugins/FilterEditor.py:631 plugins/FilterEditor.py:644
 #: plugins/RelCalc.py:160 plugins/Verify.py:418 plugins/soundgen.py:95
@@ -5328,13 +5322,13 @@ msgid ""
 "The Custom Filter Editor builds custom filters that can be used to select "
 "people included in reports, exports, and other utilities."
 msgstr ""
-"Den Tilpassede Filter Behandler bygger tilpassede filtre, som kan brukes til "
+"Den tilpassede filterbehandleren bygger tilpassede filtre, som kan brukes til "
 "å velge personer som skal være med i rapporter, eksporteringer eller i andre "
 "redskaper."
 
 #: plugins/FilterEditor.py:643
 msgid "System Filter Editor"
-msgstr "System Filter Behandler"
+msgstr "Endre systemfilter"
 
 #: plugins/FilterEditor.py:645
 msgid ""
@@ -5342,13 +5336,13 @@ msgid ""
 "the system to select people included in reports, exports, and other "
 "utilities."
 msgstr ""
-"System Filter Behandler bygger tilpassede filtre, som kan bli brukt av alle "
-"på systemet til å velge personer som skal være med i rapporter, "
-"eksporteringer eller i andre redskaper."
+"Funksjonen «Endring av systemfilter» bygger tilpassede filtre, "
+"som kan bli brukt av alle på systemet til å velge hvem som skal være med i rapporter, "
+"eksporteringer eller andre redskaper."
 
 #: plugins/FtmStyleAncestors.py:98 plugins/FtmStyleDescendants.py:124
 msgid "Generation No. %d"
-msgstr "Generasjon Nr. %d"
+msgstr "Generasjon nr. %d"
 
 #: plugins/FtmStyleAncestors.py:129 plugins/FtmStyleAncestors.py:620
 #: plugins/FtmStyleDescendants.py:159 plugins/FtmStyleDescendants.py:675
@@ -5750,24 +5744,24 @@ msgstr "Hun var datter av %(father)s."
 
 #: plugins/FtmStyleAncestors.py:1007
 msgid "FTM Style Ancestral Report"
-msgstr "?Slektsrapport i FTM stil"
+msgstr "Slektsrapport i FTM stil"
 
 #: plugins/FtmStyleAncestors.py:1011
 msgid "FTM Style Ancestral Report for %s"
-msgstr "Slektsrapport over %s i FTM stil"
+msgstr "Slektsrapport for %s i FTM stil"
 
 #: plugins/FtmStyleAncestors.py:1102 plugins/FtmStyleAncestors.py:1252
 #: plugins/FtmStyleAncestors.py:1263
 msgid "FTM Style Ancestor Report"
-msgstr "Forfedrerapport i FTM stil"
+msgstr "Rapport over forfedre i FTM stil"
 
 #: plugins/FtmStyleAncestors.py:1106
 msgid "FTM Style Ancestor Report for GRAMPS Book"
-msgstr "Forfedrerapport i FTM stil til GRAMPS Bok"
+msgstr "Rapport over forfedre i FTM stil til GRAMPS-bok"
 
 #: plugins/FtmStyleAncestors.py:1255
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
-msgstr "Lager en slektsrapport i tekst, som minner om Family Tree Maker."
+msgstr "Lager en slektsrapport i tekst, som minner om «Family Tree Maker»."
 
 #: plugins/FtmStyleDescendants.py:590
 msgid "More about %(husband)s and %(wife)s:"
@@ -5800,11 +5794,11 @@ msgstr "%(female_name)s%(endnotes)s."
 #: plugins/FtmStyleDescendants.py:1415 plugins/FtmStyleDescendants.py:1507
 #: plugins/FtmStyleDescendants.py:1660 plugins/FtmStyleDescendants.py:1671
 msgid "FTM Style Descendant Report"
-msgstr "Etterkommerrapport i FTM stil"
+msgstr "Rapport over etterkommere i FTM stil"
 
 #: plugins/FtmStyleDescendants.py:1419
 msgid "FTM Style Descendant Report for %s"
-msgstr "Etterkommerrapport over %s i FTM stil"
+msgstr "Rapport over etterkommere av %s i FTM stil"
 
 #: plugins/FtmStyleDescendants.py:1424
 msgid "Save FTM Style Descendant Report"
@@ -5812,16 +5806,16 @@ msgstr "Lagre Etterkommerrapport i FTM stil"
 
 #: plugins/FtmStyleDescendants.py:1511
 msgid "FTM Style Descendant Report for GRAMPS Book"
-msgstr "Etterkommerrapport i FTM stil til GRAMPS Bok"
+msgstr "Etterkommerrapport i FTM stil til GRAMPS-bok"
 
 #: plugins/FtmStyleDescendants.py:1663
 msgid "Produces a textual descendant report similar to Family Tree Maker."
-msgstr "Lager en etterkommerrapport i tekst, som minner om Family Tree Maker."
+msgstr "Lager en rapport over etterkommere i tekst, som minner om «Family Tree Maker»."
 
 #: plugins/GraphViz.py:62 plugins/GraphViz.py:92 plugins/RelGraph.py:69
 #: plugins/RelGraph.py:120
 msgid "Single (scaled)"
-msgstr "Enkel (Skalert)"
+msgstr "Enkel (skalert)"
 
 #: plugins/GraphViz.py:63 plugins/RelGraph.py:70
 msgid "Single"
@@ -5847,19 +5841,19 @@ msgstr "Personer med samme forfedre som %s"
 
 #: plugins/GraphViz.py:125 plugins/RelGraph.py:157
 msgid "Descendants <- Ancestors"
-msgstr "Etterkommere <- Forfedre"
+msgstr "Etterkommere <- forfedre"
 
 #: plugins/GraphViz.py:130 plugins/RelGraph.py:162
 msgid "Descendants -> Ancestors"
-msgstr "Etterkommere -> Forfedre"
+msgstr "Etterkommere -> forfedre"
 
 #: plugins/GraphViz.py:135 plugins/RelGraph.py:167
 msgid "Descendants <-> Ancestors"
-msgstr "Etterkommere <-> Forfedre"
+msgstr "Etterkommere <-> forfedre"
 
 #: plugins/GraphViz.py:140 plugins/RelGraph.py:172
 msgid "Descendants - Ancestors"
-msgstr "Etterkommere - Forfedre"
+msgstr "Etterkommere - forfedre"
 
 #: plugins/GraphViz.py:152 plugins/RelGraph.py:184
 msgid "TrueType"
@@ -5873,19 +5867,19 @@ msgstr "TrueType"
 #: plugins/RelGraph.py:249 plugins/RelGraph.py:257 plugins/RelGraph.py:267
 #: plugins/RelGraph.py:277
 msgid "GraphViz Options"
-msgstr "GraphViz Valgmuligheter"
+msgstr "Innstillinger for GraphViz"
 
 #: plugins/GraphViz.py:165 plugins/RelGraph.py:197
 msgid "Font Options"
-msgstr "Font Alternativer"
+msgstr "Fontvalg"
 
 #: plugins/GraphViz.py:167 plugins/RelGraph.py:199
 msgid "Choose the font family."
-msgstr "Velg font familien."
+msgstr "Velg fontfamilie."
 
 #: plugins/GraphViz.py:170 plugins/RelGraph.py:202
 msgid "Arrowhead Options"
-msgstr "Pilespis Valgmuligheter"
+msgstr "Valg av pilhode"
 
 #: plugins/GraphViz.py:172 plugins/RelGraph.py:204
 msgid "Choose the direction that the arrows point."
@@ -5893,14 +5887,14 @@ msgstr "Velg pilens retning."
 
 #: plugins/GraphViz.py:174 plugins/RelGraph.py:229
 msgid "Include Birth, Marriage and Death Dates"
-msgstr "Inkluder Fødsels-, Ekteskaps- og Døds Datoer"
+msgstr "Ta med fødsels-, ekteskaps- og dødsdatoer"
 
 #: plugins/GraphViz.py:179 plugins/RelGraph.py:234
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr ""
-"Inkluder datoene for når individet ble født, gift og/eller døde i graf "
+"Ta med datoene for når personen ble født, gift og/eller døde i graf "
 "etikettene."
 
 #: plugins/GraphViz.py:183 plugins/RelGraph.py:238
@@ -5917,7 +5911,7 @@ msgstr ""
 
 #: plugins/GraphViz.py:193 plugins/RelGraph.py:255
 msgid "Include URLs"
-msgstr "Ta med URL'er"
+msgstr "Ta med URL-er"
 
 #: plugins/GraphViz.py:197 plugins/RelGraph.py:259
 msgid ""
@@ -5926,11 +5920,11 @@ msgid ""
 "Web Site' report."
 msgstr ""
 "Ta med en URL ved hver merkelapp, så PDF- og imagemap-filene kan lages med "
-"aktive linker til filtrene som er laget med 'Lag Websider' rapporten."
+"aktive linker til filtrene som er laget med rapporten 'lag nettsider'."
 
 #: plugins/GraphViz.py:203 plugins/RelGraph.py:265
 msgid "Colorize Graph"
-msgstr "Farvelegg Treet"
+msgstr "Farvelegg treet"
 
 #: plugins/GraphViz.py:208 plugins/RelGraph.py:270
 msgid ""
@@ -5950,7 +5944,7 @@ msgstr "Ikke-fødte relasjoner vises som stiplede linjer i treet."
 
 #: plugins/GraphViz.py:221 plugins/RelGraph.py:215
 msgid "Show family nodes"
-msgstr "Vis familie noder"
+msgstr "Grupper familier"
 
 #: plugins/GraphViz.py:226 plugins/RelGraph.py:220
 msgid "Families will show up as ellipses, linked to parents and children."
@@ -5960,19 +5954,19 @@ msgstr "Familier vises som ovaler, forbundet til foreldre og barn."
 #: plugins/GraphViz.py:257 plugins/RelGraph.py:291 plugins/RelGraph.py:294
 #: plugins/RelGraph.py:304 plugins/RelGraph.py:311
 msgid "Page Options"
-msgstr "Side Valg"
+msgstr "Sidevalg"
 
 #: plugins/GraphViz.py:238 plugins/RelGraph.py:292
 msgid "Top & Bottom Margins"
-msgstr "Topp & Bunn Marger"
+msgstr "Topp- & bunnmarger"
 
 #: plugins/GraphViz.py:241 plugins/RelGraph.py:295
 msgid "Left & Right Margins"
-msgstr "Venstre & Høyre Marger"
+msgstr "Venstre- & høyremarger"
 
 #: plugins/GraphViz.py:251 plugins/RelGraph.py:305
 msgid "Number of Horizontal Pages"
-msgstr "Antall Vannrette Sider"
+msgstr "Antall sider vannrette"
 
 #: plugins/GraphViz.py:253 plugins/RelGraph.py:307
 msgid ""
@@ -5980,12 +5974,12 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally."
 msgstr ""
-"GraphViz kan lage meget store trær ved å spre treet over et rektangulert "
-"antall sider. Dette bestemmer av antall sider i den vannrette retningen."
+"GraphViz kan lage meget store trær ved å fordele treet over flere sider "
+"ved siden av hverandre. Dette avhenger av antall sider vannrett."
 
 #: plugins/GraphViz.py:258 plugins/RelGraph.py:312
 msgid "Number of Vertical Pages"
-msgstr "Antall Loddrette Sider"
+msgstr "Antall sider loddrett"
 
 #: plugins/GraphViz.py:260 plugins/RelGraph.py:314
 msgid ""
@@ -5993,8 +5987,8 @@ msgid ""
 "rectangular array of pages. This controls the number pages in the array "
 "vertically."
 msgstr ""
-"GraphViz kan lage meget store trær ved å spre treet over et rektangulert "
-"antall sider. Dette bestemmer av antall sider i den loddrette retningen."
+"GraphViz kan lage meget store trær ved å fordele treet over flere sider "
+"over og under hverandre. Dette avhenger av antall sider loddrett."
 
 #: plugins/GraphViz.py:280 plugins/RelGraph.py:347
 msgid "Generate print output"
@@ -6018,20 +6012,20 @@ msgstr "%(date)s i %(place)s."
 
 #: plugins/IndivComplete.py:193
 msgid "Alternate Parents"
-msgstr "Alternative Foreldre"
+msgstr "Alternative foreldre"
 
 #: plugins/IndivComplete.py:231
 msgid "Alternate Names"
-msgstr "Alternative Navn"
+msgstr "Alternative navn"
 
 #: plugins/IndivComplete.py:260 plugins/IndivSummary.py:156
 #: plugins/WebPage.py:574
 msgid "Marriages/Children"
-msgstr "Ekteskap/Barn"
+msgstr "Ekteskap/barn"
 
 #: plugins/IndivComplete.py:334 plugins/IndivSummary.py:312
 msgid "Individual Facts"
-msgstr "Individuelle Fakta"
+msgstr "Personlige fakta"
 
 #: plugins/IndivComplete.py:378 plugins/IndivSummary.py:213
 #: plugins/WebPage.py:131 plugins/WebPage.py:296
@@ -6050,33 +6044,33 @@ msgstr "Kvinne"
 
 #: plugins/IndivComplete.py:463
 msgid "Include Source Information"
-msgstr "Inkluder Kilde Informasjon"
+msgstr "Ta med kildeangivelser"
 
 #: plugins/IndivComplete.py:474 plugins/IndivComplete.py:478
 #: plugins/IndivComplete.py:819
 msgid "Complete Individual Report"
-msgstr "Komplett individuell rapport"
+msgstr "Fullstendig personrapport"
 
 #: plugins/IndivComplete.py:483
 msgid "Save Complete Individual Report"
-msgstr "Lagre komplett individuell rapport"
+msgstr "Lagre en fullstendig personrapport"
 
 #: plugins/IndivComplete.py:590 plugins/IndivComplete.py:827
 msgid "Individual Complete"
-msgstr "Individ Komplett"
+msgstr "Ferdige personrapporter"
 
 #: plugins/IndivComplete.py:594
 msgid "Individual Complete Report for GRAMPS Book"
-msgstr "Individuell Komplett Rapport for GRAMPS Bok"
+msgstr "Lagre en fullstendig personrapport for GRAMPS-bok"
 
 #: plugins/IndivComplete.py:672 plugins/IndivSummary.py:600
 msgid "The style used for category labels."
-msgstr "Stilen brukt for kategorimerke."
+msgstr "Stil som brukes på kategorimerker."
 
 #: plugins/IndivComplete.py:681 plugins/IndivSummary.py:609
 #: plugins/WebPage.py:1086
 msgid "The style used for the spouse's name."
-msgstr "Stilen brukt for ektefelles navn."
+msgstr "Stil som brukes på ektefelles navn."
 
 #: plugins/IndivComplete.py:822
 msgid "Produces a complete report on the selected people."
@@ -6109,7 +6103,7 @@ msgstr "Medium"
 
 #: plugins/Merge.py:150
 msgid "Determining possible merges"
-msgstr "Finner hva som kanskje kan flettes sammen"
+msgstr "Finner ut hva som kanskje kan flettes sammen"
 
 #: plugins/Merge.py:215
 msgid "Potential Merges"
@@ -6117,19 +6111,19 @@ msgstr "Kan kanskje flettes sammen"
 
 #: plugins/Merge.py:223
 msgid "First Person"
-msgstr "Første Person"
+msgstr "Første person"
 
 #: plugins/Merge.py:223
 msgid "Rating"
-msgstr "Vurderer"
+msgstr "Vurdering"
 
 #: plugins/Merge.py:224
 msgid "Second Person"
-msgstr "Andre Person"
+msgstr "Andre person"
 
 #: plugins/Merge.py:553
 msgid "Find possible duplicate people"
-msgstr "Finn mulige duplikate personer"
+msgstr "Finn dobbelt oppførte personer"
 
 #: plugins/Merge.py:555
 msgid ""
@@ -6137,11 +6131,11 @@ msgid ""
 "represent the same person."
 msgstr ""
 "Søk igjennom hele databasen, for å se etter personregistreringer som kanskje "
-"kan representere den samme personen."
+"representerer den samme personen."
 
 #: plugins/PatchNames.py:103
 msgid "No modifications made"
-msgstr "Ingen endringer gjort"
+msgstr "Ingen endringer ble gjort"
 
 #: plugins/PatchNames.py:104
 msgid "No titles or nicknames were found"
@@ -6149,7 +6143,7 @@ msgstr "Ingen titler eller kallenavn ble funnet"
 
 #: plugins/PatchNames.py:125
 msgid "Name and title extraction tool"
-msgstr "Navn- og tittel- ut hentingsverktøy"
+msgstr "Verktøy for å hente ut navn- og tittel"
 
 #: plugins/PatchNames.py:133 plugins/SimpleBookTitle.py:337
 msgid "Select"
@@ -6161,15 +6155,15 @@ msgstr "Kallenavn"
 
 #: plugins/PatchNames.py:208
 msgid "Extract information from names"
-msgstr "Hente ut informasjon fra navn"
+msgstr "Hent ut informasjon fra navn"
 
 #: plugins/PatchNames.py:210
 msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
 msgstr ""
-"Søk gjennom hele databasen og prøv å hente ut tittler og kallenavn som kan "
-"være innlemmet i en persons navnefelt."
+"Søk gjennom hele databasen og prøv å hente ut titler og kallenavn som kan "
+"være en del av en persons navnefelt."
 
 #: plugins/ReadGedcom.py:74
 msgid "Import from GEDCOM"
@@ -6198,7 +6192,7 @@ msgstr "GEDCOM import status"
 #: plugins/ReadGedcom.py:148 plugins/ReadGedcom.py:152
 #: plugins/ReadGedcom.py:160
 msgid "%s could not be opened\n"
-msgstr "%s kunne ikke åpnes\n"
+msgstr "Klarte ikke  åpne %s\n"
 
 #: plugins/ReadGedcom.py:276
 msgid ""
@@ -6207,9 +6201,9 @@ msgid ""
 "systems available on this system:\n"
 "\n"
 msgstr ""
-"Følgende Windows filsystems monteringspunkter vil brukes for å lete etter "
-"bilder. Disse katalogene er basert på de Windows kompatible filsystemer, som "
-"er til rådighet på dette systemet:\n"
+"Følgende monteringspunkter vil bli brukt for Windows-filsystemer for å lete etter "
+"bilder. Disse mappene er basert på de Windows-kompatible filsystemene som "
+"er tilgjengelige på dette systemet:\n"
 "\n"
 
 #: plugins/ReadGedcom.py:283
@@ -6217,25 +6211,25 @@ msgid ""
 "Images that cannot be found in the specfied path in the GEDCOM file will be "
 "searched for in the same directory in which the GEDCOM file exists (%s).\n"
 msgstr ""
-"Bilder, som ikke fins i den spesifiserte katalogen som er angitt i GEDCOM-"
-"filen, vil bli søkt etter i den katalog hvor GEDCOM filen eksisterer (%s).\n"
+"Bilder som ikke blir funnet i mappa som er angitt i GEDCOM-fila "
+"vil programmet lete etter i den mappa der GEDCOM-fila er (%s).\n"
 
 #: plugins/ReadGedcom.py:341
 msgid "GEDCOM file ended unexpectedly"
-msgstr "GEDCOM filen sluttet uventet"
+msgstr "GEDCOM-fila  fikk en uventet avsluttning"
 
 #: plugins/ReadGedcom.py:357 plugins/ReadGedcom.py:367
 msgid "Warning: line %d was not understood, so it was ignored."
-msgstr "Advarsel: linje %d ble ikke forstått, så den ble ignorert."
+msgstr "Advarsel: linje %d var ikke forståeølig, så den ble forbigått."
 
 #: plugins/ReadGedcom.py:402
 msgid "Import Complete: %d seconds"
-msgstr "Import Fullført: %d sekunder"
+msgstr "Importeringen er fullført: %d sekunder"
 
 #: plugins/ReadGedcom.py:947 plugins/ReadGedcom.py:985
 #: plugins/ReadGedcom.py:1023
 msgid "Warning: could not import %s"
-msgstr "Advarsel: Kunne ikke importere %s"
+msgstr "Advarsel: Kla<rte ikke å importere %s"
 
 #: plugins/ReadGedcom.py:948 plugins/ReadGedcom.py:986
 #: plugins/ReadGedcom.py:1024
@@ -6243,32 +6237,32 @@ msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
 msgstr ""
-"\tFølgende kataloger ble prøvd:\n"
+"\tFølgende stier ble forsøkt:\n"
 "\t\t"
 
 #: plugins/ReadNative.py:34
 msgid "Import from GRAMPS database"
-msgstr "Import fra GRAMPS database"
+msgstr "Import fra GRAMPS-atabase"
 
 #: plugins/ReadPkg.py:37
 msgid "Import from GRAMPS package"
-msgstr "Import fra GRAMPS pakke"
+msgstr "Import fra GRAMPS-pakke"
 
 #: plugins/ReadPkg.py:92
 msgid "Could not create temporary directory %s"
-msgstr "Kunne ikke lage midlertidig katalog %s"
+msgstr "Klarte ikke å lage den midlertidige mappa %s"
 
 #: plugins/ReadPkg.py:96
 msgid "Temporary directory %s is not writable"
-msgstr "Midlertidig katalog %s er ikke skrivbar"
+msgstr "Den midlertidige mappa %s er skrivebeskyttet"
 
 #: plugins/ReadPkg.py:108
 msgid "Error extracting into %s"
-msgstr "Feil ved ut henting til %s"
+msgstr "Feil ved uthenting til %s"
 
 #: plugins/RelCalc.py:83 plugins/RelCalc.py:159
 msgid "Relationship calculator"
-msgstr "Relasjonskalkulator"
+msgstr "Relasjonsberegning"
 
 #: plugins/RelCalc.py:88 plugins/TimeLine.py:380
 msgid "Birth Date"
@@ -6276,15 +6270,15 @@ msgstr "Fødselsdato"
 
 #: plugins/RelCalc.py:118
 msgid "Their common ancestor is %s."
-msgstr "Deres felles ane er %s."
+msgstr "Deres felles forfar er %s."
 
 #: plugins/RelCalc.py:122
 msgid "Their common ancestors are %s and %s."
-msgstr "Deres felles aner er %s og %s."
+msgstr "Deres felles forfedre er %s og %s."
 
 #: plugins/RelCalc.py:127
 msgid "Their common ancestors are : "
-msgstr "Deres felles aner er : "
+msgstr "Deres felles forfedre er : "
 
 #: plugins/RelCalc.py:142
 msgid "%(person)s and %(active_person)s are not related."
@@ -6314,11 +6308,11 @@ msgstr "Hovedpersonene vises sammen med deres ektefelle i en stabel."
 
 #: plugins/RelGraph.py:222
 msgid "Include IDs"
-msgstr "Ta med ID'er"
+msgstr "Ta med ID-er"
 
 #: plugins/RelGraph.py:227
 msgid "Include individual and family IDs."
-msgstr "Inkluder person og famile ID'er"
+msgstr "Inkluder person og famile ID-er"
 
 #: plugins/RelGraph.py:246
 msgid "Place/cause when no date"
@@ -6329,28 +6323,28 @@ msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field (or cause field when blank) will be used."
 msgstr ""
-"Når ingen fødsels, ekteskaps, eller døds dato er tilgjengelig, vil det tilhørende "
-"steds feltet (eller grunn feltet når blank) vil bli brukt."
+"Når ingen fødsels-, ekteskaps-, eller dødsdato er tilgjengelig, vil det tilhørende "
+"stedsfeltet (eller grunnfeltet hvis blankt) bli brukt."
 
 #: plugins/ReorderIds.py:129
 msgid "Reorder gramps IDs"
-msgstr "Sortere gramps ID'er"
+msgstr "Sortere gramps ID-er"
 
 #: plugins/ReorderIds.py:131
 msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr "Sorter gramps ID'ene etter gramps standard regler."
+msgstr "Sorter gramps ID-ene etter gramps standardregler."
 
 #: plugins/SimpleBookTitle.py:130
 msgid "The style used for the subtitle."
-msgstr "Stilen brukt til undertitelen."
+msgstr "Stil som blir brukt på undertitler."
 
 #: plugins/SimpleBookTitle.py:140
 msgid "The style used for the footer."
-msgstr "Stilen brukt til bunntekst"
+msgstr "Stil som blir brukt på bunnteksten."
 
 #: plugins/SimpleBookTitle.py:150
 msgid "Fit page"
-msgstr "Tilpass til side"
+msgstr "Tilpass til siden"
 
 #: plugins/SimpleBookTitle.py:151 plugins/SimpleBookTitle.py:152
 #: plugins/SimpleBookTitle.py:153
@@ -6359,11 +6353,11 @@ msgstr "%d cm"
 
 #: plugins/SimpleBookTitle.py:222 plugins/SimpleBookTitle.py:432
 msgid "Title of the Book"
-msgstr "Bokens Tittel"
+msgstr "Tittelen på boken"
 
 #: plugins/SimpleBookTitle.py:227 plugins/SimpleBookTitle.py:436
 msgid "Subtitle of the Book"
-msgstr "Undertittel for Boken"
+msgstr "Bokens undertittel"
 
 #: plugins/SimpleBookTitle.py:245 plugins/SimpleBookTitle.py:452
 msgid "Copyright %d %s"
@@ -6371,11 +6365,11 @@ msgstr "Opphavsrett %d %s"
 
 #: plugins/SimpleBookTitle.py:280
 msgid "Simple Book Title"
-msgstr "Enkel Bok Tittel"
+msgstr "Enkel boktittel"
 
 #: plugins/SimpleBookTitle.py:284
 msgid "Title Page for GRAMPS Book"
-msgstr "Tittel Side for GRAMPS Bok"
+msgstr "Tittelside for GRAMPS-bok"
 
 #: plugins/SimpleBookTitle.py:303
 msgid "Subtitle"
@@ -6387,11 +6381,11 @@ msgstr "Bunntekst"
 
 #: plugins/SimpleBookTitle.py:319
 msgid "From gallery..."
-msgstr "Fra galleri..."
+msgstr "Fra galleri ..."
 
 #: plugins/SimpleBookTitle.py:321
 msgid "From file..."
-msgstr "Fra fil..."
+msgstr "Fra fil ..."
 
 #: plugins/SimpleBookTitle.py:336
 msgid "Preview"
@@ -6404,27 +6398,27 @@ msgstr "Bilde"
 
 #: plugins/SimpleBookTitle.py:363
 msgid "Select an Object"
-msgstr "Velg et Objekt"
+msgstr "Velg et objekt"
 
 #: plugins/SimpleBookTitle.py:565
 msgid "Title Page"
-msgstr "Tittel Side"
+msgstr "Tittelside"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
-msgstr "Individer"
+msgstr "Personer"
 
 #: plugins/Summary.py:99
 msgid "Number of individuals"
-msgstr "Antall individer"
+msgstr "Antall personer"
 
 #: plugins/Summary.py:102
 msgid "Individuals with incomplete names"
-msgstr "Individer uten komplette navn"
+msgstr "Personer uten fullstendige navn"
 
 #: plugins/Summary.py:103
 msgid "Individuals missing birth dates"
-msgstr "Individer med manglende fødsels datoer"
+msgstr "Personer uten fødselsdato"
 
 #: plugins/Summary.py:105
 msgid "Family Information"
@@ -6440,11 +6434,11 @@ msgstr "Unike etternavn"
 
 #: plugins/Summary.py:111
 msgid "Individuals with media objects"
-msgstr "Individer med mediaobjekter"
+msgstr "Personer med mediaobjekter"
 
 #: plugins/Summary.py:112
 msgid "Total number of media object references"
-msgstr "Totalt antall henviste mediaobjekter"
+msgstr "Totalt antall henvisninger til mediaobjekter"
 
 #: plugins/Summary.py:113
 msgid "Number of unique media objects"
@@ -6452,7 +6446,7 @@ msgstr "Antall unike mediaobjekter"
 
 #: plugins/Summary.py:114
 msgid "Total size of media objects"
-msgstr "Samlet størrelse av mediaobjekter"
+msgstr "Samlet størrelse på mediaobjekter"
 
 #: plugins/Summary.py:115
 msgid "bytes"
@@ -6460,11 +6454,11 @@ msgstr "bytes"
 
 #: plugins/Summary.py:118
 msgid "Missing Media Objects"
-msgstr "Manglende Mediaobjekter"
+msgstr "Manglende mediaobjekter"
 
 #: plugins/Summary.py:144
 msgid "Database summary"
-msgstr "Database oppsummering"
+msgstr "Oppsummering av databasen"
 
 #: plugins/Summary.py:161
 msgid "Summary of the database"
@@ -6480,11 +6474,11 @@ msgstr "Viser en oppsummering for denne databasen"
 
 #: plugins/TimeLine.py:326
 msgid "The style used for the person's name."
-msgstr "Stilen brukt til personens navn."
+msgstr "Stil som brukes på personens navn."
 
 #: plugins/TimeLine.py:334
 msgid "The style used for the year labels."
-msgstr "Stilen brukt for årstall etikett."
+msgstr "Stil som brukes på årstallsmerkelapper."
 
 #: plugins/TimeLine.py:398 plugins/TimeLine.py:546 plugins/TimeLine.py:658
 #: plugins/TimeLine.py:668
@@ -6497,7 +6491,7 @@ msgstr "Tidslinjegraf for %s"
 
 #: plugins/TimeLine.py:412
 msgid "Timeline File"
-msgstr "Tidslinje Fil"
+msgstr "Tidslinjefil"
 
 #: plugins/TimeLine.py:435 plugins/TimeLine.py:577
 msgid "Sort by"
@@ -6509,21 +6503,21 @@ msgstr "Lager en tidslinjegraf."
 
 #: plugins/TimeLine.py:550
 msgid "Timeline Graph for GRAMPS Book"
-msgstr "Tidslinjegraf for GRAMPS Bok"
+msgstr "Tidslinjegraf for GRAMPS-bok"
 
 #: plugins/Verify.py:91 plugins/Verify.py:398
 msgid "Database Verify"
-msgstr "Kontrollere Database"
+msgstr "Kontrollere database"
 
 #: plugins/Verify.py:128
 msgid "Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
-msgstr "Døpt før fødsel: %(male_name)s født %(byear)d, døpt %(bapyear)d.\n"
+msgstr "Døpt før fødselen: %(male_name)s født %(byear)d, døpt %(bapyear)d.\n"
 
 #: plugins/Verify.py:131
 msgid ""
 "Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
 "d.\n"
-msgstr "Døpt før fødsel: %(female_name)s født %(byear)d, døpt %(bapyear)d.\n"
+msgstr "Døpt før fødselen: %(female_name)s født %(byear)d, døpt %(bapyear)d.\n"
 
 #: plugins/Verify.py:135
 msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
@@ -6535,11 +6529,11 @@ msgstr "Døpt sent: %(female_name)s født %(byear)d, døpt %(bapyear)d.\n"
 
 #: plugins/Verify.py:143
 msgid "Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Begravet før død: %(male_name)s død %(dyear)d, begravet %(buryear)d.\n"
+msgstr "Begravet før døden: %(male_name)s død %(dyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:146
 msgid "Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
-msgstr "Begravet før død: %(female_name)s død %(dyear)d, begravet %(buryear)d.\n"
+msgstr "Begravet før døden: %(female_name)s død %(dyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:150
 msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
@@ -6551,39 +6545,39 @@ msgstr "Begravet sent: %(female_name)s død %(dyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:157
 msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Død før fødsel: %(male_name)s født %(byear)d, død %(dyear)d.\n"
+msgstr "Død før fødselen: %(male_name)s født %(byear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:160
 msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
-msgstr "Død før fødsel: %(female_name)s født %(byear)d, død %(dyear)d.\n"
+msgstr "Død før fødselen: %(female_name)s født %(byear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:164
 msgid "Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr "Død før dåp: %(male_name)s døpt %(bapyear)d, død %(dyear)d.\n"
+msgstr "Død før dåpen: %(male_name)s døpt %(bapyear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:167
 msgid "Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
-msgstr "Død før dåp: %(female_name)s døpt %(bapyear)d, død %(dyear)d.\n"
+msgstr "Død før dåpen: %(female_name)s døpt %(bapyear)d, død %(dyear)d.\n"
 
 #: plugins/Verify.py:171
 msgid "Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Begravet før fødsel: %(male_name)s født %(byear)d, begravet %(buryear)d.\n"
+msgstr "Begravet før fødselen: %(male_name)s født %(byear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:174
 msgid "Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
-msgstr "Begravet før fødsel: %(female_name)s født %(byear)d, begravet %(buryear)d.\n"
+msgstr "Begravet før fødselen: %(female_name)s født %(byear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:178
 msgid ""
 "Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
 "d.\n"
-msgstr "Begravet før dåp: %(male_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
+msgstr "Begravet før dåpen: %(male_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:181
 msgid ""
 "Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
 "(buryear)d.\n"
-msgstr "Begravet før dåp: %(female_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
+msgstr "Begravet før dåpen: %(female_name)s døpt %(bapyear)d, begravet %(buryear)d.\n"
 
 #: plugins/Verify.py:193
 msgid ""
@@ -6603,11 +6597,11 @@ msgstr ""
 
 #: plugins/Verify.py:208
 msgid "Unknown gender for %s.\n"
-msgstr "Ukjent kjønn for %s.\n"
+msgstr "Ukjent kjønn på %s.\n"
 
 #: plugins/Verify.py:212
 msgid "Ambiguous gender for %s.\n"
-msgstr "Tvetydig kjønn for %s.\n"
+msgstr "Tvetydig kjønn på %s.\n"
 
 #: plugins/Verify.py:218
 msgid "Multiple parentage for %s.\n"
@@ -6656,7 +6650,7 @@ msgid ""
 "Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
 "(spouse)s.\n"
 msgstr ""
-"Viet før fødsel: %(male_name)s født %(byear)d, viet %(maryear)d med %(spouse)"
+"Viet før fødselen: %(male_name)s født %(byear)d, viet %(maryear)d med %(spouse)"
 "s.\n"
 
 #: plugins/Verify.py:285
@@ -6664,7 +6658,7 @@ msgid ""
 "Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
 "%(spouse)s.\n"
 msgstr ""
-"Viet før fødsel: %(female_name)s født %(byear)d, viet %(maryear)d med %"
+"Viet før fødselen: %(female_name)s født %(byear)d, viet %(maryear)d med %"
 "(spouse)s.\n"
 
 #: plugins/Verify.py:290
@@ -6688,7 +6682,7 @@ msgid ""
 "Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
 msgstr ""
-"Viet etter død: %(male_name)s død %(dyear)d, viet %(maryear)d med %(spouse)"
+"Viet etter døden: %(male_name)s død %(dyear)d, viet %(maryear)d med %(spouse)"
 "s.\n"
 
 #: plugins/Verify.py:307
@@ -6696,7 +6690,7 @@ msgid ""
 "Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
 "(spouse)s.\n"
 msgstr ""
-"Viet etter død: %(female_name)s død %(dyear)d, viet %(maryear)d med %(spouse)"
+"Viet etter døden: %(female_name)s død %(dyear)d, viet %(maryear)d med %(spouse)"
 "s.\n"
 
 #: plugins/Verify.py:311
@@ -6704,7 +6698,7 @@ msgid ""
 "Marriage before birth from previous family: %(male_name)s married %(maryear)"
 "d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
 msgstr ""
-"Viet før fødsel fra foregående familie: %(male_name)s viet %(maryear)d med %"
+"Viet før fødselen fra foregående familie: %(male_name)s viet %(maryear)d med %"
 "(spouse)s, foregående fødsel %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:314
@@ -6712,7 +6706,7 @@ msgid ""
 "Marriage before birth from previous family: %(female_name)s married %"
 "(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
 msgstr ""
-"Viet før fødsel fra foregående familie: %(female_name)s viet %(maryear)d med "
+"Viet før fødselen fra foregående familie: %(female_name)s viet %(maryear)d med "
 "%(spouse)s, foregående fødsel %(prev_cbyear)d.\n"
 
 #: plugins/Verify.py:324
@@ -6809,31 +6803,31 @@ msgstr "Bekreft databasen"
 
 #: plugins/Verify.py:419
 msgid "Lists exceptions to assertions or checks about the database"
-msgstr "Lister unntak for forutsetninger eller kontrollregler for databasen"
+msgstr "Liste over unntak for forutsetninger eller kontrollregler for databasen"
 
 #: plugins/WebPage.py:328
 msgid "ID Number"
-msgstr "ID Nummer"
+msgstr "ID-nummer"
 
 #: plugins/WebPage.py:372
 msgid "Return to the index of people"
-msgstr "Tilbake til indeksen over personer"
+msgstr "Tilbake til registeret over personer"
 
 #: plugins/WebPage.py:487
 msgid "Facts and Events"
-msgstr "Fakta og Hendelser"
+msgstr "Fakta og hendelser"
 
 #: plugins/WebPage.py:665
 msgid "Creating Web Pages"
-msgstr "Lage nett sider"
+msgstr "Lag nettsider"
 
 #: plugins/WebPage.py:665
 msgid "Generate HTML reports - GRAMPS"
-msgstr "Lage HTML rapporter - GRAMPS"
+msgstr "Lag HTML rapporter - GRAMPS"
 
 #: plugins/WebPage.py:754 plugins/WebPage.py:758
 msgid "Family Tree Index"
-msgstr "Familietreindeks"
+msgstr "Familietre-register"
 
 #: plugins/WebPage.py:792
 msgid "%s (continued)"
@@ -6841,20 +6835,20 @@ msgstr "%s (fortsatt)"
 
 #: plugins/WebPage.py:808
 msgid "Neither %s nor %s are directories"
-msgstr "Hverken %s eller %s er kataloger"
+msgstr "Hverken %s eller %s er mapper"
 
 #: plugins/WebPage.py:815 plugins/WebPage.py:819 plugins/WebPage.py:831
 #: plugins/WebPage.py:835
 msgid "Could not create the directory: %s"
-msgstr "Kunne ikke opprette katalogen: %s"
+msgstr "Klarte ikke å opprette mappa: %s"
 
 #: plugins/WebPage.py:906
 msgid "Include a link to the index page"
-msgstr "Inkludere link til indekssiden"
+msgstr "Ta med en lenke til forsiden (index-siden)."
 
 #: plugins/WebPage.py:907 plugins/pafexport.glade:276
 msgid "Do not include records marked private"
-msgstr "Ikke inkluder opplysninger merket private"
+msgstr "Ikke ta med opplysninger som er markert som private"
 
 #: plugins/WebPage.py:908 plugins/pafexport.glade:292
 msgid "Restrict information on living people"
@@ -6870,27 +6864,27 @@ msgstr "Ikke bruk bilder av levende personer"
 
 #: plugins/WebPage.py:911
 msgid "Do not include comments and text in source information"
-msgstr "Ikke inkluder kommentarer og tekst i kilde henvisninger"
+msgstr "Ikke ta med kommentarer og tekst i kildehenvisninger"
 
 #: plugins/WebPage.py:912
 msgid "Include the GRAMPS ID in the report"
-msgstr "Inkluder GRAMPS ID'en i rapporten"
+msgstr "Ta med GRAMPS ID-en i rapporten"
 
 #: plugins/WebPage.py:913
 msgid "Create a GENDEX index"
-msgstr "Lag en GENDEX indeks"
+msgstr "Lag en GENDEX-rapport"
 
 #: plugins/WebPage.py:914
 msgid "Image subdirectory"
-msgstr "Bildeunderkatalog"
+msgstr "Bilde-undermappe"
 
 #: plugins/WebPage.py:915
 msgid "File extension"
-msgstr "Fil etternavn"
+msgstr "Filetternavn"
 
 #: plugins/WebPage.py:917
 msgid "Include short ancestor tree"
-msgstr "Inkluder et kort slektstre"
+msgstr "Ta med et kort slektstre"
 
 #: plugins/WebPage.py:944
 msgid "Privacy"
@@ -6902,23 +6896,23 @@ msgstr "Avansert"
 
 #: plugins/WebPage.py:953
 msgid "GRAMPS ID link URL"
-msgstr "GRAMPS ID link URL"
+msgstr "GRAMPS ID-lenke"
 
 #: plugins/WebPage.py:964 plugins/WebPage.py:1402
 msgid "Generate Web Site"
-msgstr "Lag websted"
+msgstr "Lag nettsted"
 
 #: plugins/WebPage.py:964 plugins/WebPage.py:1403
 msgid "Web Page"
-msgstr "Nett side"
+msgstr "Nettside"
 
 #: plugins/WebPage.py:969
 msgid "Target Directory"
-msgstr "Målkatalog"
+msgstr "Målmappe"
 
 #: plugins/WebPage.py:993
 msgid "Direct Descendants of %s"
-msgstr "Direkte Etterkommere av %s"
+msgstr "Direkte etterkommere av %s"
 
 #: plugins/WebPage.py:997
 msgid "Descendant Families of %s"
@@ -6926,71 +6920,71 @@ msgstr "Familier som nedstammer fra %s"
 
 #: plugins/WebPage.py:1035
 msgid "The style used for the header that identifies facts and events."
-msgstr "Stilen brukt til overskriften som tilkjennegir fakta og hendelser."
+msgstr "Stil som blir brukt på overskriftene for fakta og hendelser."
 
 #: plugins/WebPage.py:1043
 msgid "The style used for the header for the notes section."
-msgstr "Stilen brukt til overskrift for kommentar seksjonen"
+msgstr "Stil som blir brukt på overskriftene i kommentardelen."
 
 #: plugins/WebPage.py:1050
 msgid "The style used for the copyright notice."
-msgstr "Stilen brukt til opphavsrett kommentaren."
+msgstr "Stil som blir brukt på opphavsrett-kommentaren."
 
 #: plugins/WebPage.py:1057
 msgid "The style used for the header for the sources section."
-msgstr "Stilen brukt til overskriften til kilde seksjonen."
+msgstr "Stil som blir brukt på overskriften i kildedelen."
 
 #: plugins/WebPage.py:1064
 msgid "The style used on the index page that labels each section."
-msgstr "Stilen brukt til indeks siden som markerer hver seksjon."
+msgstr "Stil som blir brukt på forsiden (indekssiden) som angir hver del."
 
 #: plugins/WebPage.py:1071
 msgid "The style used for the header for the image section."
-msgstr "Stilen brukt til overskriften for bildeseksjonen."
+msgstr "Stil som blir brukt på overskriften for bildedelen."
 
 #: plugins/WebPage.py:1078
 msgid "The style used for the header for the marriages and children section."
-msgstr "Stilen brukt til overskrift på seksjonen angående ekteskap og barn."
+msgstr "Stil som blir brukt på overskrift på delen angående ekteskap og barn."
 
 #: plugins/WebPage.py:1093
 msgid "The style used for the general data labels."
-msgstr "Stilen brukt for de generelle data etiketter."
+msgstr "Stil som brukes på generelle dataetiketter."
 
 #: plugins/WebPage.py:1100
 msgid "The style used for the general data."
-msgstr "Stilen brukt for de generelle data."
+msgstr "Stil som brukes på generelle data."
 
 #: plugins/WebPage.py:1107
 msgid "The style used for the description of images."
-msgstr "Stilen brukt til beskrivelser av bilder."
+msgstr "Stil som blir brukt på bildetekster."
 
 #: plugins/WebPage.py:1114
 msgid "The style used for the notes associated with images."
-msgstr "Stilen brukt til kommentarer i forbindelse med bilder."
+msgstr "Stil som blir brukt på kommentarer i forbindelse med bilder."
 
 #: plugins/WebPage.py:1121
 msgid "The style used for the source information."
-msgstr "Stilen brukt til kilde informasjon."
+msgstr "Stil som blir brukt på kildeinformasjon."
 
 #: plugins/WebPage.py:1128
 msgid "The style used for the note information."
-msgstr "Stilen brukt til kommentar informasjon."
+msgstr "Stil som blir brukt på kommentarinformasjon."
 
 #: plugins/WebPage.py:1405
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr "Lager web (HTML) sider for personer, eller for en gruppe med personer."
+msgstr "Lager nettsider (HTML) for personer, eller for en gruppe med personer."
 
 #: plugins/WriteCD.py:55
 msgid "Export to CD"
-msgstr "Eksport til CD"
+msgstr "Overfør til CD"
 
 #: plugins/WriteFtree.py:55
 msgid "Export to Web Family Tree"
-msgstr "Eksport til Web Familie Tre"
+msgstr "Overfør til et familietre på nettet"
 
 #: plugins/WriteGedcom.py:62
 msgid "Export to GEDCOM"
-msgstr "Eksport til GEDCOM"
+msgstr "Overfør til GEDCOM"
 
 #: plugins/WriteGedcom.py:379 plugins/WriteGedcom.py:514
 msgid "GEDCOM export"
@@ -6998,11 +6992,11 @@ msgstr "GEDCOM eksport"
 
 #: plugins/WritePkg.py:52
 msgid "Export to GRAMPS package"
-msgstr "Eksport til GRAMPS pakke"
+msgstr "Overfør til GRAMPS pakke"
 
 #: plugins/WritePkg.py:88
 msgid "Package export"
-msgstr "Pakke eksport"
+msgstr "Pakkeoverføring"
 
 #: plugins/book.glade:11
 msgid "Book"
@@ -7018,15 +7012,15 @@ msgstr "Tøm boken"
 
 #: plugins/book.glade:154
 msgid "Save current set of configured selections"
-msgstr "Lagrer gjeldende innstillinger for de konfigurerte valgene"
+msgstr "Lagre de innstillingene du har gjort"
 
 #: plugins/book.glade:182
 msgid "Open previously created book"
-msgstr "Åpne en tidligere laget bok"
+msgstr "Åpne en tidligere bok"
 
 #: plugins/book.glade:210
 msgid "Manage previously created books"
-msgstr "Håndtere tidligere lagde bøker"
+msgstr "Håndtere tidligere bøker"
 
 #: plugins/book.glade:418
 msgid "Add an item to the book"
@@ -7038,19 +7032,19 @@ msgstr "Fjern det valgte elementet fra boken"
 
 #: plugins/book.glade:474
 msgid "Move current selection one step up in the book"
-msgstr "Flytt det markerte utvalget et skritt opp i boken"
+msgstr "Flytt det markerte utvalget et trinn opp i boken"
 
 #: plugins/book.glade:502
 msgid "Move current selection one step down in the book"
-msgstr "Flytt det markerte utvalget et skritt ned i boken"
+msgstr "Flytt det markerte utvalget et trinn ned i boken"
 
 #: plugins/book.glade:530
 msgid "Configure currently selected item"
-msgstr "Konfigurer det valgte elementet"
+msgstr "Sett opp det valgte elementet"
 
 #: plugins/cdexport.glade:84
 msgid "_Export to CD"
-msgstr "_Eksport til CD"
+msgstr "Ov_erfør til CD"
 
 #: plugins/cdexport.glade:149
 msgid ""
@@ -7060,11 +7054,11 @@ msgid ""
 "After exporting, go to the <b>burn:///</b> directory in nautilus and select "
 "the Write to CD button."
 msgstr ""
-"Eksport til CD vil ikke skrive CD'en med en gang. Nautilus-cd-brenner vil "
-"bli forberet, så du kan brenne CD'en fra Nautilus.\n"
+"Å overføre til CD vil ikke skrive CD-en med en gang. Nautilus-cd-brenner vil "
+"bli forbedret, så du kan brenne CD-en fra Nautilus.\n"
 "\n"
-"Etter eksport, gå til <b>brenn:///</b> katalogen i nautilus og trykk på "
-"Skriv til CD knappen."
+"Etter overføringen, gå til <b>brenn:///</b> mappa i Nautilus og trykk på "
+"«Skriv til CD»-knappen."
 
 #: plugins/changetype.glade:92
 msgid ""
@@ -7074,7 +7068,7 @@ msgid ""
 msgstr ""
 "Dette verktøyet vil endre navn på alle hendelser av en type til en annen "
 "type. Så snart dette er gjort, kan ikke dette gjøres om uten å miste alle "
-"forandringer gjort siden siste database lagring."
+"endringer siden siste lagring."
 
 #: plugins/changetype.glade:245
 msgid "_Original event type:"
@@ -7086,7 +7080,7 @@ msgstr "_Ny hendelsestype:"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
-msgstr "Antall forfedre til \"%s\" etter generasjon"
+msgstr "Antall forfedre til «%s» etter generasjon"
 
 #: plugins/count_anc.py:61
 msgid "Generation %d has 1 individual.\n"
@@ -7106,7 +7100,7 @@ msgstr "Antall forfedre"
 
 #: plugins/count_anc.py:96
 msgid "Counts number of ancestors of selected person"
-msgstr "Teller antall forfedre av valgte person"
+msgstr "Teller antall forfedre til den valgte person"
 
 #: plugins/eval.glade:130
 msgid "<b>Evaluation Window</b>"
@@ -7122,11 +7116,11 @@ msgstr "<b>Feilvindu</b>"
 
 #: plugins/eval.py:53
 msgid "Python Evaluation Window"
-msgstr "Python Evalueringsvindu"
+msgstr "Evalueringsvindu for Python"
 
 #: plugins/eval.py:90
 msgid "Python evaluation window"
-msgstr "Python evalueringsvindu"
+msgstr "Evalueringsvindu for Python"
 
 #: plugins/eval.py:91 plugins/leak.py:79
 msgid "Debug"
@@ -7134,11 +7128,11 @@ msgstr "Feilsøke"
 
 #: plugins/eval.py:92
 msgid "Provides a window that can evaluate python code"
-msgstr "Gir et vindu som kan evaluere python kode"
+msgstr "Gir et vindu som kan evaluere python-kode"
 
 #: plugins/eventcmp.glade:9
 msgid "Save as a Spreadsheet - GRAMPS"
-msgstr "Lagre som Regneark - GRAMPS"
+msgstr "Lagre som regneark - GRAMPS"
 
 #: plugins/eventcmp.glade:71
 msgid "Save data as a spreadsheet"
@@ -7146,7 +7140,7 @@ msgstr "Lagre data som et regneark"
 
 #: plugins/eventcmp.glade:105
 msgid "Save Data"
-msgstr "Lagre Data"
+msgstr "Lagre data"
 
 #: plugins/eventcmp.glade:147
 msgid "OpenOffice Spreadsheet"
@@ -7154,7 +7148,7 @@ msgstr "OpenOffice Spreadsheet (regneark)"
 
 #: plugins/eventcmp.glade:215
 msgid "Choose the HTML template"
-msgstr "Velg HTML mal"
+msgstr "Velg HTML-mal"
 
 #: plugins/eventcmp.glade:252
 msgid "Format"
@@ -7170,12 +7164,12 @@ msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
-"Verktøyet til sammenligning av hendelser, bruker filtre som er definert i "
-"Tilpasset Filter Redigering."
+"Verktøyet for sammenligning av hendelser bruker filtre som er angitt under "
+"tilpasningene for filtere."
 
 #: plugins/eventcmp.glade:532
 msgid "_Custom filter editor"
-msgstr "Tilpasset filter redigering"
+msgstr "_Tilpasset filter redigering"
 
 #: plugins/gedcomexport.glade:105 plugins/pkgexport.glade:97
 #: plugins/writeftree.glade:106
@@ -7184,7 +7178,7 @@ msgstr "Eksporter GEDCOM"
 
 #: plugins/gedcomexport.glade:185
 msgid "_Target:"
-msgstr "Mål:"
+msgstr "_Mål:"
 
 #: plugins/gedcomexport.glade:223
 msgid "Standard GEDCOM 5.5"
@@ -7192,11 +7186,11 @@ msgstr "Standard GEDCOM 5.5"
 
 #: plugins/gedcomexport.glade:243
 msgid "_Copyright:"
-msgstr "Opphavsrett:"
+msgstr "_Opphavsrett:"
 
 #: plugins/gedcomexport.glade:280
 msgid "Standard Copyright"
-msgstr "Alminnelig Opphavsrett"
+msgstr "Alminnelig opphavsrett"
 
 #: plugins/gedcomexport.glade:289
 msgid "GNU Free Documentation License"
@@ -7306,11 +7300,11 @@ msgstr "Vis løse objekter"
 
 #: plugins/leak.py:80
 msgid "Provide a window listing all uncollected objects"
-msgstr "Gir et vindu som lister alle løse objekter"
+msgstr "Gir et vindu med en liste over alle løse objekter"
 
 #: plugins/merge.glade:46
 msgid "Please be patient. This may take a while."
-msgstr "Vennligst ha tålmodighet. Dette kan ta noe tid."
+msgstr "Vennligst ha tålmodighet. Dette kan ta tid."
 
 #: plugins/merge.glade:126
 msgid "_Merge"
@@ -7318,7 +7312,7 @@ msgstr "Flett sa_mmen"
 
 #: plugins/merge.glade:316
 msgid "<b>Match Threshold</b>"
-msgstr "<b>Sammenfallende Grenseverdier</b>"
+msgstr "<b>Sammenfallende grenseverdier</b>"
 
 #: plugins/merge.glade:365
 msgid "Use soundex codes"
@@ -7326,11 +7320,11 @@ msgstr "Bruk soundex koder"
 
 #: plugins/pafexport.glade:8
 msgid "Export PAF for PalmOS file"
-msgstr "Eksport PAF for PalmOS fil"
+msgstr "Overfør en PAF-fil (for PalmOS)"
 
 #: plugins/pafexport.glade:70
 msgid "PAF for PalmOS Export"
-msgstr "PAF for PalmOS Eksport"
+msgstr "Overføring av PAF-filer (PalmOS)"
 
 #: plugins/pafexport.glade:157
 msgid "Information"
@@ -7351,15 +7345,14 @@ msgid ""
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Nedenfor er en liste av de kallenavn og tittler som GRAMPS kan trekke ut "
-"fra \n"
-"den aktuelle databasen. Hvis du tillater endringene, vil GRAMS endre de "
-"valgte \n"
-"postene."
+"Nedenfor er en liste av de kallenavnene og titlene der GRAMPS kan hente informasjon"
+"\n"
+"fra den aktuelle databasen. Hvis du tillater endringene, vil GRAMS endre de \n"
+"valgte postene."
 
 #: plugins/patchnames.glade:106
 msgid "_Accept changes and close"
-msgstr "Godt_a forandringer og lukk"
+msgstr "Godt_a endringer og lukk"
 
 #: plugins/relcalc.glade:90
 msgid "Select a person to determine the relationship"
@@ -7367,7 +7360,7 @@ msgstr "Velg en person for å avgjøre relasjonen"
 
 #: plugins/soundex.glade:30
 msgid "Close Window"
-msgstr "Lukk Vindu"
+msgstr "Lukk vinduet"
 
 #: plugins/soundex.glade:113
 msgid "SoundEx code:"
@@ -7375,19 +7368,19 @@ msgstr "SoundEx kode:"
 
 #: plugins/soundex.glade:146
 msgid "Name used to generate SoundEx code"
-msgstr "Navn brukt til å generere SoundEx kode"
+msgstr "Navn som brukes til å lage SoundEx-kode"
 
 #: plugins/soundgen.py:56
 msgid "SoundEx code generator"
-msgstr "SoundEx kode generator"
+msgstr "Program for å lage SoundEx-kode"
 
 #: plugins/soundgen.py:94
 msgid "Generate SoundEx codes"
-msgstr "Generere SoundEx koder"
+msgstr "Lag SoundEx kode"
 
 #: plugins/soundgen.py:96
 msgid "Generates SoundEx codes for names"
-msgstr "Generer SoundEx koder for navn"
+msgstr "Lag SoundEx koder for navn"
 
 #: plugins/verify.glade:186
 msgid "Maximum age"
@@ -7395,15 +7388,15 @@ msgstr "Høyeste alder"
 
 #: plugins/verify.glade:210
 msgid "Maximum husband-wife age difference"
-msgstr "Største alders differanse mellom ektefolk"
+msgstr "Største aldersforskjell mellom ektefolk"
 
 #: plugins/verify.glade:234
 msgid "Minimum age to marry"
-msgstr "Laveste alder for å gifte seg"
+msgstr "Laveste giftealder"
 
 #: plugins/verify.glade:258
 msgid "Maximum age to marry"
-msgstr "Høyeste alder for å gifte seg"
+msgstr "Høyeste giftealder"
 
 #: plugins/verify.glade:282
 msgid "Maximum number of spouses for a person"
@@ -7411,7 +7404,7 @@ msgstr "Høyest antall ektefeller for en person"
 
 #: plugins/verify.glade:306
 msgid "Maximum number of consecutive years of widowhood"
-msgstr "Største antall fortløpende år som enke(mann)"
+msgstr "Største antall sammenhengende år som enke(mann)"
 
 #: plugins/verify.glade:330
 msgid "Maximum number of years between children"
@@ -7455,7 +7448,7 @@ msgstr "Estimer manglende datoer"
 
 #: preferences.glade:8
 msgid "GRAMPS Preferences"
-msgstr "GRAMPS Innstillinger"
+msgstr "GRAMPS innstillinger"
 
 #: preferences.glade:60
 msgid "<b>Categories:</b>"
@@ -7466,7 +7459,7 @@ msgid ""
 "To change your preferences, select one of the subcategories in the menu on "
 "the left hand side of the window."
 msgstr ""
-"For å forandre dine innstillinger, velg en av under kategoriene i menyen på "
+"For å forandre innstillingene, velg en av underkategoriene i menyen på "
 "venstre side av vinduet."
 
 #: preferences.glade:235
@@ -7475,7 +7468,7 @@ msgstr "A_utolagreinterval:"
 
 #: preferences.glade:281
 msgid "D_efault database directory:"
-msgstr "Standard databas_e katalog:"
+msgstr "Standard databas_e mappe:"
 
 #: preferences.glade:306
 msgid "minutes"
@@ -7487,19 +7480,19 @@ msgstr "<b>Database</b>"
 
 #: preferences.glade:356
 msgid "Select default database directory - GRAMPS"
-msgstr "Velg standard database katalog - GRAMPS"
+msgstr "Velg standard databasemappe - GRAMPS"
 
 #: preferences.glade:363
 msgid "The default directory for storing databases"
-msgstr "Standardkatalogen til lagring av databaser"
+msgstr "Standardmappe for lagring av databaser"
 
 #: preferences.glade:389
 msgid "_Do not compress XML data file"
-msgstr "Ikke komprimer XML _datafilen"
+msgstr "Ikke komprimer XML _datafiler"
 
 #: preferences.glade:411
 msgid "_Automatically load last database"
-msgstr "_Automatisk last inn den siste databasen"
+msgstr "Last inn den siste databasen _automatisk "
 
 #: preferences.glade:480
 msgid "<b>Revision control</b>"
@@ -7543,23 +7536,24 @@ msgstr "Tekst ved siden av ikoner"
 
 #: preferences.glade:790
 msgid "GNOME Settings"
-msgstr "GNOME Innstillinger"
+msgstr "GNOME innstillinger"
 
 #: preferences.glade:811
 msgid "Active person's _relationship to Home Person"
-msgstr "Den Aktive pe_rsonens relasjon med Hjemperson"
+msgstr "Den aktive pe_rsonens relasjon til hjempersonen"
 
 #: preferences.glade:833
 msgid "Active person's name and _GRAMPS ID"
-msgstr "Den aktive persons navn og _GRAMPS ID"
+msgstr "Den aktive personens navn og _GRAMPS-ID"
 
 #: preferences.glade:855
 msgid "<b>Statusbar</b>"
 msgstr "<b>Statuslinje</b>"
 
 #: preferences.glade:929
+#, fuzzy
 msgid "_Always display the LDS ordinance tabs"
-msgstr "Vis _alltid faneblader med SDH-ordinanser"
+msgstr "Vis _alltid faneblader med SDH-vedtekter"
 
 #: preferences.glade:952
 msgid "_Show index numbers in child list"
@@ -7571,27 +7565,27 @@ msgstr "<b>Vis</b>"
 
 #: preferences.glade:997
 msgid "<b>Default view</b>"
-msgstr "<b>Standard visning</b>"
+msgstr "<b>Standardvisning</b>"
 
 #: preferences.glade:1022
 msgid "_Person view"
-msgstr "_Person visning"
+msgstr "_Personvisning"
 
 #: preferences.glade:1044
 msgid "_Family view"
-msgstr "_Familie visning"
+msgstr "_Familievisning"
 
 #: preferences.glade:1066
 msgid "<b>Family view style</b>"
-msgstr "<b>Familie visnings stil</b>"
+msgstr "<b>Stil for familievisning</b>"
 
 #: preferences.glade:1091
 msgid "Left to right"
-msgstr "Venstre til høyre"
+msgstr "Fra venstre til høyre"
 
 #: preferences.glade:1113
 msgid "Top to bottom"
-msgstr "Topp til bunn"
+msgstr "Ovenfra og ned"
 
 #: preferences.glade:1183
 msgid "_Date format:"
@@ -7607,7 +7601,7 @@ msgstr "D_atoformat:"
 
 #: preferences.glade:1303
 msgid "_Show calendar format selection menu"
-msgstr "Vi_s kalenderformat valgmeny"
+msgstr "Vi_s menyen valgene for kalenderformat"
 
 #: preferences.glade:1324
 msgid "<b>Display formats</b>"
@@ -7631,7 +7625,7 @@ msgstr "_Adresse:"
 
 #: preferences.glade:1540
 msgid "_State/Province:"
-msgstr "_Stat/Provins:"
+msgstr "_Stat/provins:"
 
 #: preferences.glade:1565
 msgid "_Country:"
@@ -7671,27 +7665,27 @@ msgstr "A4"
 
 #: preferences.glade:2070
 msgid "_Default report directory:"
-msgstr "Stan_dard rapport katalog:"
+msgstr "Stan_dard rapportmappe:"
 
 #: preferences.glade:2097 preferences.glade:2156
 msgid "Select default report directory - GRAMPS"
-msgstr "Velg standard rapport katalog - GRAMPS"
+msgstr "Velg standard rapportmappe - GRAMPS"
 
 #: preferences.glade:2104
 msgid "The default directory for the output of many report generators"
-msgstr "Standard katalog til skriving av utdata for mange rapportgeneratorer"
+msgstr "Standardmappe for skriving av utdata for mange standardrapporter"
 
 #: preferences.glade:2129
 msgid "Default _web site directory:"
-msgstr "Standard _webstedkatalog:"
+msgstr "Standardmappe for nettsider"
 
 #: preferences.glade:2163
 msgid "The default directory for the output of the Web Site report generators"
-msgstr "Standard katalog til skrivning av utdata fra Webstedsrapportgeneratorer"
+msgstr "Standardmappe for utdata fra nettside-rapporter"
 
 #: preferences.glade:2188
 msgid "<b>Report preferences</b>"
-msgstr "<b>Foretrukne rapportinstillinger</b>"
+msgstr "<b>Foretrukne rapportinnstillinger</b>"
 
 #: preferences.glade:2256
 msgid "Make a _reference to the object when the object is dropped"
@@ -7703,19 +7697,19 @@ msgstr "Lag en lokal kopi når objektet slippes"
 
 #: preferences.glade:2303
 msgid "Display _global properties editor when object is dropped"
-msgstr "Vis den _globale egenskapsredigeringen når et objekt slippes"
+msgstr "Vis den _generelle redigeringen av egenskaper når et objekt slippes"
 
 #: preferences.glade:2326
 msgid "Display _local properties editor when object is dropped"
-msgstr "Vis den _lokale egenskabsredigeringen når et objektet slippes"
+msgstr "Vis den _lokale redigeringen av egenskaper når et objektet slippes"
 
 #: preferences.glade:2347
 msgid "<b>Drag and drop from an external source</b>"
-msgstr "<b>Trekk og slipp fra en ekstern kilde</b>"
+msgstr "<b>Dra og slipp fra en ekstern kilde</b>"
 
 #: preferences.glade:2371
 msgid "<b>Drag and drop from an internal source</b>"
-msgstr "<b>Trekk og slipp fra en intern kilde</b>"
+msgstr "<b>Dra og slipp fra en intern kilde</b>"
 
 #: preferences.glade:2461
 msgid "_Family:"
@@ -7751,7 +7745,7 @@ msgstr "O"
 
 #: preferences.glade:2671
 msgid "<b>User defined IDs</b>"
-msgstr "<b>Brukerdefinerte ID'er</b>"
+msgstr "<b>Brukerdefinerte ID-er</b>"
 
 #: preferences.glade:2695
 msgid "<b>GRAMPS ID prefixes</b>"
@@ -7763,7 +7757,7 @@ msgstr "Till_at at interne GRAMPS ID-numre blir redigert"
 
 #: preferences.glade:2790
 msgid "_Family name guessing:"
-msgstr "Gjette _Familie Etternavn:"
+msgstr "Gjett etternavn:"
 
 #: preferences.glade:2815
 msgid "<b>Customization</b>"
@@ -7775,7 +7769,7 @@ msgstr "_Database:"
 
 #: revision.glade:162
 msgid "_Revert to an older version from revision control"
-msgstr "_Returner til en eldre versjon fra revisjons kontroll"
+msgstr "Gå tilbake til en eldre versjon fra revisjons kontroll"
 
 #: revision.glade:400
 msgid "Comment:"
@@ -7787,7 +7781,7 @@ msgstr "<b>Definisjon</b>"
 
 #: rule.glade:130
 msgid "<b>Rule List</b>"
-msgstr "<b>Regel Liste</b>"
+msgstr "<b>Regelliste</b>"
 
 #: rule.glade:359
 msgid "All _rules must apply"
@@ -7803,11 +7797,11 @@ msgstr "Presis en regel skal gjelde"
 
 #: rule.glade:423
 msgid "Rule operations:"
-msgstr "Regel operasjoner:"
+msgstr "Regeloperasjoner:"
 
 #: rule.glade:448
 msgid "_Return values that do not match the filter rules (invert)"
-msgstr "_Returner verdier som ikke passer på filtreringsregler (inverter, motsatt)"
+msgstr "Vis verdier som ikke passer på filtreringsregler (inverter, motsatt)"
 
 #: rule.glade:674 rule.glade:1276
 msgid "<b>Values</b>"
@@ -7827,15 +7821,15 @@ msgstr "Rediger valgte filter"
 
 #: rule.glade:892
 msgid "_Test..."
-msgstr "_Test..."
+msgstr "_Test ..."
 
 #: rule.glade:908
 msgid "Delete the selected filter"
-msgstr "Slett det valgte filter"
+msgstr "Slett det valgte filteret"
 
 #: rule.glade:1192
 msgid "<b>Selected Rule</b>"
-msgstr "<b>Valgte Regel</b>"
+msgstr "<b>Valgte regel</b>"
 
 #: rule.glade:1234 styles.glade:446
 msgid "<b>Description</b>"
@@ -7847,7 +7841,7 @@ msgstr "Troverdighet:"
 
 #: srcsel.glade:150
 msgid "_Volume/Film/Page:"
-msgstr "Bind/Film/Side:"
+msgstr "Bind/film/side:"
 
 #: srcsel.glade:203
 msgid "Te_xt:"
@@ -7863,7 +7857,7 @@ msgstr "Publikasjonsinformasjon:"
 
 #: srcsel.glade:342
 msgid "Selects an existing source from the Source View"
-msgstr "Velger en eksisterende kilde fra Kilde Oversikt"
+msgstr "Velger en eksisterende kilde fra kildeoversikten"
 
 #: srcsel.glade:397
 msgid "Creates a new source"
@@ -7871,7 +7865,7 @@ msgstr "Lager en ny kilde"
 
 #: srcsel.glade:399
 msgid "_New..."
-msgstr "_Ny..."
+msgstr "_Ny ..."
 
 #: srcsel.glade:620
 msgid "<b>Source selection</b>"
@@ -7879,11 +7873,11 @@ msgstr "<b>Valg av kilde</b>"
 
 #: srcsel.glade:644
 msgid "<b>Source details</b>"
-msgstr "<b>Kilde detaljer</b>"
+msgstr "<b>Kildedetaljer</b>"
 
 #: srcsel.glade:840
 msgid "Double click will edit the selected source"
-msgstr "Dobbeltklikk vil redigere den valgte kilden"
+msgstr "Å dobbeltklikke vil redigere den valgte kilden"
 
 #: styles.glade:286
 msgid "Style _name:"
@@ -7911,7 +7905,7 @@ msgstr "_Understrek"
 
 #: styles.glade:602
 msgid "<b>Type face</b>"
-msgstr "<b>Typesnitt</b>"
+msgstr "<b>Skrifttype</b>"
 
 #: styles.glade:626
 msgid "<b>Size</b>"
@@ -7931,7 +7925,7 @@ msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
 #: styles.glade:772
 msgid "<b>Font options</b>"
-msgstr "<b>Font alternativer</b>"
+msgstr "<b>Fontvalg</b>"
 
 #: styles.glade:819
 msgid "R_ight:"
@@ -7959,7 +7953,7 @@ msgstr "Høy_re"
 
 #: styles.glade:1103
 msgid "_Justify"
-msgstr "_Juster"
+msgstr "_Justert"
 
 #: styles.glade:1125
 msgid "_Center"
@@ -7971,11 +7965,11 @@ msgstr "Høyre"
 
 #: styles.glade:1168
 msgid "_Bottom"
-msgstr "_Bunn"
+msgstr "Nederst"
 
 #: styles.glade:1189
 msgid "_Top"
-msgstr "_Top"
+msgstr "Øverst"
 
 #: styles.glade:1209
 msgid "<b>Background</b>"
@@ -7995,7 +7989,7 @@ msgstr "<b>Justering</b>"
 
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
-msgstr "<b>Avsnitt alternativer</b>"
+msgstr "<b>Avsnittsalternativer</b>"
 
 #~ msgid "Add Person"
 #~ msgstr "Legg til Person"
