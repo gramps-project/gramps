@@ -33,6 +33,10 @@
  * and things like that.
  *
  * $Log$
+ * Revision 1.2  2004/01/09 03:12:28  dallingham
+ * * src/docgen/KwordDoc.py (KwordDoc.close): handle KWord mime type
+ * * src/grampslib_wrap.c: handle NULL pointers
+ *
  * Revision 1.1  2002/11/26 04:06:23  dallingham
  * use pygtk.require to determine database
  *
@@ -564,12 +568,20 @@ extern const char *gnome_vfs_mime_get_value(const char *,const char *);
 
 const char* default_application_name(const char* type) {
 	GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
-	return a->name;
+	if (a) {
+	  return a->name;
+	} else {
+	  return (char*)0;
+	}
 }
 
 const char* default_application_command(const char* type) {
 	GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
-	return a->command;
+	if (a) {
+	  return a->command;
+	} else {
+	  return (char*)0;
+	}
 }
 
 static PyObject *_wrap_gnome_vfs_mime_get_icon(PyObject *self, PyObject *args) {
