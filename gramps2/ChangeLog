@@ -1,3 +1,8 @@
+2003-11-03  Tim Waugh  <twaugh@redhat.com>
+
+	* src/plugins/gedcomexport.glade, src/plugins/WriteGedcom.py: Added
+	support for external image references.
+
 2003-11-02  Tim Waugh  <twaugh@redhat.com>
 
 	* src/ArgHandler.py, src/DbPrompter,py: clear_database takes no

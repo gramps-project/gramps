@@ -420,7 +420,7 @@ class GedcomWriter:
         
             filetgt = self.topDialog.get_widget('fileentry1')
             filetgt.set_filename(pathname)
-        
+
             self.topDialog.get_widget("gedcomExport").show()
 
     def gnu_free(self,obj):
@@ -454,6 +454,10 @@ class GedcomWriter:
         act_tgt = self.target_menu.get_active()
 
         self.target_ged =  act_tgt.get_data("data")
+        self.images = self.topDialog.get_widget ("images").get_active ()
+        if self.images:
+            images_path = self.topDialog.get_widget ("images_path")
+            self.images_path = images_path.get_text ()
 
         self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
@@ -561,6 +565,7 @@ class GedcomWriter:
         self.g.write('%s%s' % (text,self.nl))
         
     def export_data(self,filename):
+        self.dirname = os.path.dirname (filename)
         try:
             self.g = open(filename,"w")
         except IOError,msg:
@@ -934,6 +939,32 @@ class GedcomWriter:
                     self.write_long_text("NOTE",2,self.cnvtxt(addr.getNote()))
                 for srcref in addr.getSourceRefList():
                     self.write_source_ref(2,srcref)
+
+            if self.images:
+                photos = person.getPhotoList ()
+            else:
+                photos = []
+
+            for photo in photos:
+                if photo.ref.getMimeType() == "image/jpeg":
+                    self.writeln('1 OBJE')
+                    self.writeln('2 FORM jpg')
+                    path = photo.ref.getPath ()
+                    dirname = os.path.join (self.dirname, self.images_path)
+                    basename = os.path.basename (path)
+                    self.writeln('2 FILE %s' % os.path.join(self.images_path,
+                                                            basename))
+                    try:
+                        os.mkdir (dirname)
+                    except:
+                        pass
+                    dest = os.path.join (dirname, basename)
+                    try:
+                        os.link (path, dest)
+                    except OSError, e:
+                        file (dest,
+                              "wb").writelines (file (path,
+                                                      "rb").xreadlines ())
 
         for family in person.getParentList():
             if self.flist.has_key(family[0].getId()):
