@@ -27,7 +27,6 @@ from DrawDoc import *
 
 from latin_utf8 import latin_to_utf8
 import const
-from utils import fl2txt
 
 try:
     from codecs import *
@@ -258,7 +257,7 @@ class OpenDrawDoc(DrawDoc):
             self.f.write('<style:properties ')
 
             if style.get_padding() != 0.0:
-	       self.f.write('fo:padding="%scm" ' % fl2txt("%.3f",style.get_padding()))
+	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
 
             align = style.get_alignment()
 	    if align == PARA_ALIGN_LEFT:
@@ -286,9 +285,9 @@ class OpenDrawDoc(DrawDoc):
 	    if font.get_underline():
 		self.f.write('style:text-underline="single" ')
                 self.f.write('style:text-underline-color="font-color" ')
-            self.f.write('fo:text-indent="%scm" '%fl2txt("%.2f",style.get_first_indent()))
-            self.f.write('fo:margin-right="%scm" '%fl2txt("%.2f",style.get_right_margin()))
-            self.f.write('fo:margin-left="%scm" '%fl2txt("%.2f",style.get_left_margin()))
+            self.f.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
+            self.f.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
+            self.f.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
             self.f.write('fo:margin-top="0cm" ')
             self.f.write('fo:margin-bottom="0.212cm"')
             self.f.write('/>\n')
@@ -299,17 +298,17 @@ class OpenDrawDoc(DrawDoc):
         self.f.write('</office:styles>\n')
         self.f.write('<office:automatic-styles>\n')
         self.f.write('<style:page-master style:name="PM0">\n')
-        self.f.write('<style:properties fo:page-width="%scm" ' % fl2txt("%.2f",self.width))
-        self.f.write('fo:page-height="%scm" ' % fl2txt("%.2f",self.height))
+        self.f.write('<style:properties fo:page-width="%.2fcm" ' % self.width)
+        self.f.write('fo:page-height="%.2fcm" ' % self.height)
         self.f.write('style:num-format="1" ')
         if self.orientation == PAPER_PORTRAIT:
             self.f.write('style:print-orientation="portrait" ')
         else:
             self.f.write('style:print-orientation="landscape" ')
-        self.f.write('fo:margin-top="%scm" ' % fl2txt("%.2f",self.tmargin))
-        self.f.write('fo:margin-bottom="%scm" ' % fl2txt("%.2f",self.bmargin))
-        self.f.write('fo:margin-left="%scm" ' % fl2txt("%.2f",self.lmargin))
-        self.f.write('fo:margin-right="%scm"/>\n' % fl2txt("%.2f",self.rmargin))
+        self.f.write('fo:margin-top="%.2fcm" ' % self.tmargin)
+        self.f.write('fo:margin-bottom="%.2fcm" ' % self.bmargin)
+        self.f.write('fo:margin-left="%.2fcm" ' % self.lmargin)
+        self.f.write('fo:margin-right="%.2fcm"/>\n' % self.rmargin)
         self.f.write('</style:page-master>\n')
 	self.f.write('<style:style style:name="dp1" style:family="drawing-page">\n')
 	self.f.write('<style:properties draw:background-size="border" draw:fill="none"/>\n')
@@ -416,10 +415,10 @@ class OpenDrawDoc(DrawDoc):
     def draw_line(self,style,x1,y1,x2,y2):
         self.f.write('<draw:line draw:style="')
         self.f.write(style)
-        self.f.write('" svg:x1="%scm" ' % fl2txt("%.3f",x1))
-        self.f.write('svg:y1="%scm" ' % fl2txt("%.3f",y1))
-        self.f.write('svg:x2="%scm" ' % fl2txt("%.3f",x2))
-        self.f.write('svg:y2="%scm"/>\n' % fl2txt("%.3f",y2))
+        self.f.write('" svg:x1="%.3fcm" ' % x1)
+        self.f.write('svg:y1="%.3fcm" ' % y1)
+        self.f.write('svg:x2="%.3fcm" ' % x2)
+        self.f.write('svg:y2="%.3fcm"/>\n' % y2)
 
     def draw_box(self,style,text,x,y):
 	box_style = self.draw_styles[style]
@@ -428,10 +427,10 @@ class OpenDrawDoc(DrawDoc):
 	self.f.write('<draw:rect draw:style-name="')
 	self.f.write(style)
 	self.f.write('" draw:layer="layout" ')
-	self.f.write('svg:width="%scm" ' % fl2txt("%.3f",box_style.get_width()))
-	self.f.write('svg:height="%scm" ' % fl2txt("%.3f",box_style.get_height()))
-	self.f.write('svg:x="%scm" ' % fl2txt("%.3f",float(x)))
-        self.f.write('svg:y="%scm"' % fl2txt("%.3f",float(y)))
+	self.f.write('svg:width="%.3fcm" ' % box_style.get_width())
+	self.f.write('svg:height="%.3fcm" ' % box_style.get_height())
+	self.f.write('svg:x="%.3fcm" ' % float(x))
+        self.f.write('svg:y="%.3fcm"' % float(y))
 	if text != "":
             text = string.replace(text,'\t','<text:tab-stop/>')
             text = latin_to_utf8(string.replace(text,'\n','<text:line-break/>'))
