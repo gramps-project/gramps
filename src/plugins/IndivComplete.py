@@ -145,9 +145,9 @@ class IndivComplete(Report.Report):
         self.normal_cell(name)
         if self.use_srcs:
             for s in event.get_source_references():
-                #src_id = s.get_base_handle()
-                #src = self.database.find_source_from_handle(src_id)
-                text = "%s [%s]" % (text,s.get_base_handle())
+                src_handle = s.get_base_handle()
+                src = self.database.get_source_from_handle(src_handle)
+                text = "%s [%s]" % (text,src.get_gramps_id())
                 self.slist.append(s)
         self.normal_cell(text)
         self.d.end_row()
@@ -249,7 +249,9 @@ class IndivComplete(Report.Report):
             text = name.get_regular_name()
             if self.use_srcs:
                 for s in name.get_source_references():
-                    text = "%s [%s]" % (text,s.get_base_handle().get_handle())
+                    src_handle = s.get_base_handle()
+                    src = self.database.get_source_from_handle(src_handle)
+                    text = "%s [%s]" % (text,src.get_gramps_id())
                     self.slist.append(s)
             self.normal_cell(text)
             self.d.end_row()
@@ -334,9 +336,9 @@ class IndivComplete(Report.Report):
         
         for source in self.slist:
             self.d.start_row()
-            s_id = source.get_base_handle()
-            self.normal_cell(s_id)
-            src = self.database.get_source_from_handle(s_id)
+            s_handle = source.get_base_handle()
+            src = self.database.get_source_from_handle(s_handle)
+            self.normal_cell(src.get_gramps_id())
             self.normal_cell(src.get_title())
             self.d.end_row()
         self.d.end_table()
@@ -418,7 +420,9 @@ class IndivComplete(Report.Report):
         if self.use_srcs:
             for s in name.get_source_references():
                 self.slist.append(s)
-                text = "%s [%s]" % (text,s.get_base_handle())
+                src_handle = s.get_base_handle()
+                src = self.database.get_source_from_handle(src_handle)
+                text = "%s [%s]" % (text,src.get_gramps_id())
         self.normal_cell(text)
         self.d.end_row()
 
