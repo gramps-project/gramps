@@ -1,3 +1,14 @@
+2003-10-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: Person and Family now inherit from SourceNote
+	* src/EditPerson.py: Added source tab to apply generic sources
+	to a person
+	* src/Marriage.py: Added source tab to apply generic sources
+	to a person, add "complete" flag
+	* src/WriteXML.py: Store source information for Family and Person,
+	store complete flag for Family
+	* src/GrampsParser.py: Parse source information for Family and
+	Person, read complete flag for Famiy
+
 2003-10-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/AbiWordDoc2.py: make sure that an object is
 	an image before attempting to include in in a report
