@@ -96,6 +96,9 @@ class Extract:
             #(_("TODO: Estimated Ages for bearing the last child"), self.last_child_age),
             #(_("TODO: Number of children"), self.child_count),
             #(_("TODO: Cause of death"), self.death_cause),
+            #(_("TODO: Birth place"), self.birth_place),
+            #(_("TODO: Marriage place"), self.marriage_place),
+            #(_("TODO: Death place"), self.death_place),
             (_("Genders"), self.gender)
         ]
 
@@ -189,6 +192,9 @@ class Extract:
     def marriage_age(self, db, person):
         return "Marriage age stat unimplemented"
 
+    def marriage_place(self, db, person):
+        return "Marriage place stat unimplemented"
+
     def first_child_age(self, db, person):
         return "First child bearing age stat unimplemented"
 
@@ -200,7 +206,13 @@ class Extract:
 
     def death_cause(self, db, person):
         return "Death cause stat unimplemented"
-    
+
+    def death_place(self, db, person):
+        return "Death place stat unimplemented"
+
+    def birth_place(self, db, person):
+        return "Birth place stat unimplemented"
+        
     def gender(self, db, person):
         # TODO: why there's no Person.getGenderName?
         # It could be used by getDisplayInfo & this...
