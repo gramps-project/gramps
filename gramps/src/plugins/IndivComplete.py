@@ -336,7 +336,7 @@ class IndivComplete:
         self.d.end_cell()
 
     def write_report(self):
-        ind_list = self.filter.apply(self.database.getPersonMap().values())
+        ind_list = self.filter.apply(self.database,self.database.getPersonMap().values())
         count = 0
         for self.person in ind_list:
             self.write_person(count)
@@ -480,11 +480,15 @@ class IndivSummaryDialog(TextReportDialog):
         ans.set_name(_("Ancestors of %s") % name)
         ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
 
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
 
-        return [id,des,ans,all]
+        return [id,des,ans,com,all]
 
     #------------------------------------------------------------------------
     #
@@ -659,11 +663,3 @@ register_report(
     description=_("Produces a complete report on the selected people."),
     xpm=get_xpm_image()
     )
-
-
-
-
-
-
-
-

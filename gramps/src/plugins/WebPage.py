@@ -766,7 +766,7 @@ class WebReport(Report):
                                  image_dir_name)
                 return
     
-        ind_list = self.filter.apply(self.db.getPersonMap().values())
+        ind_list = self.filter.apply(self.db,self.db.getPersonMap().values())
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
@@ -925,7 +925,11 @@ class WebReportDialog(ReportDialog):
         ans.set_name(_("Ancestors of %s") % name)
         ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
 
-        return [all,des,df,ans]
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+
+        return [all,des,df,ans,com]
 
     #------------------------------------------------------------------------
     #
@@ -1253,4 +1257,3 @@ register_report(
     description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
     xpm=get_xpm_image()
     )
-

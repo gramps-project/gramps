@@ -553,3 +553,35 @@ def build_string_optmenu(mapping, start_val):
         myMenu.set_active(start_index)
     return myMenu
 
+#-------------------------------------------------------------------------
+#
+#  Iterate over ancestors.
+#
+#-------------------------------------------------------------------------
+def for_each_ancestor(start, func, data):
+    """
+    Recursively iterate (breadth-first) over ancestors of
+    people listed in start.
+    Call func(data,pid) for the Id of each person encountered.
+    Exit and return 1, as soon as func returns true.
+    Return 0 otherwise.
+    """
+    todo = start
+    doneIds = {}
+    while len(todo):
+        p = todo.pop()
+        pid = p.getId()
+        # Don't process the same Id twice.  This can happen
+        # if there is a cycle in the database, or if the
+        # initial list contains X and some of X's ancestors.
+        if doneIds.has_key(pid):
+            continue
+        doneIds[pid] = 1
+        if func(data,pid):
+            return 1
+        for fam, mrel, frel in p.getParentList():
+            f = fam.getFather()
+            m = fam.getMother()
+            if f: todo.append(f)
+            if m: todo.append(m)
+    return 0

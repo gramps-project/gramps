@@ -54,6 +54,7 @@ from RelLib import *
 import Date
 from intl import gettext
 _ = gettext
+from Utils import for_each_ancestor
 
 #-------------------------------------------------------------------------
 #
@@ -98,7 +99,7 @@ class Rule:
     def check(self):
         return len(self.list) == len(self.labels)
 
-    def apply(self,p):
+    def apply(self,db,p):
         return 1
 
     def display_values(self):
@@ -121,7 +122,7 @@ class Everyone(Rule):
     def name(self):
         return 'Everyone'
 
-    def apply(self,p):
+    def apply(self,db,p):
         return 1
 
 #-------------------------------------------------------------------------
@@ -137,7 +138,7 @@ class HasIdOf(Rule):
     def name(self):
         return 'Has the Id'
 
-    def apply(self,p):
+    def apply(self,db,p):
         return p.getId() == self.list[0]
 
 #-------------------------------------------------------------------------
@@ -153,7 +154,7 @@ class IsFemale(Rule):
     def name(self):
         return 'Is a female'
 
-    def apply(self,p):
+    def apply(self,db,p):
         return p.getGender() == Person.female
 
 #-------------------------------------------------------------------------
@@ -170,7 +171,7 @@ class IsDescendantOf(Rule):
     def name(self):
         return 'Is a descendant of'
 
-    def apply(self,p):
+    def apply(self,db,p):
         return self.search(p)
 
     def search(self,p):
@@ -197,7 +198,7 @@ class IsDescendantFamilyOf(Rule):
     def name(self):
         return "Is a descendant family member of"
 
-    def apply(self,p):
+    def apply(self,db,p):
         return self.search(p,1)
 
     def search(self,p,val):
@@ -233,7 +234,7 @@ class IsAncestorOf(Rule):
     def name(self):
         return 'Is an ancestor of'
 
-    def apply(self,p):
+    def apply(self,db,p):
         return self.search(p)
 
     def search(self,p):
@@ -249,6 +250,44 @@ class IsAncestorOf(Rule):
 
 #-------------------------------------------------------------------------
 #
+# HasCommonAncestorWith
+#
+#-------------------------------------------------------------------------
+class HasCommonAncestorWith(Rule):
+    """Rule that checks for a person that has a common ancestor with a specified person"""
+
+    labels = [ _('ID') ]
+
+    def name(self):
+        return 'Has a common ancestor with'
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        # Keys in `ancestor_cache' are ancestors of list[0].
+        # We delay the computation of ancestor_cache until the
+        # first use, because it's not uncommon to instantiate
+        # this class and not use it.
+        self.ancestor_cache = {}
+
+    def init_ancestor_cache(self,db):
+        # list[0] is an Id, but we need to pass a Person to for_each_ancestor.
+        p = db.getPerson(self.list[0])
+        if p:
+            def init(self,pid): self.ancestor_cache[pid] = 1
+            for_each_ancestor([p],init,self)
+
+    def apply(self,db,p):
+        # On the first call, we build the ancestor cache for the
+        # reference person.   Then, for each person to test,
+        # we browse his ancestors until we found one in the cache.
+        if len(self.ancestor_cache) == 0:
+            self.init_ancestor_cache(db)
+        return for_each_ancestor([p],
+                                 lambda self,p: self.ancestor_cache.has_key(p),
+                                 self);
+
+#-------------------------------------------------------------------------
+#
 # IsMale
 #
 #-------------------------------------------------------------------------
@@ -260,7 +299,7 @@ class IsMale(Rule):
     def name(self):
         return 'Is a male'
 
-    def apply(self,p):
+    def apply(self,db,p):
         return p.getGender() == Person.male
 
 #-------------------------------------------------------------------------
@@ -284,7 +323,7 @@ class HasEvent(Rule):
     def name(self):
         return 'Has the personal event'
 
-    def apply(self,p):
+    def apply(self,db,p):
         for event in p.getEventList():
             val = 1
             if self.list[0] and event.getName() != self.list[0]:
@@ -322,7 +361,7 @@ class HasFamilyEvent(Rule):
     def name(self):
         return 'Has the family event'
 
-    def apply(self,p):
+    def apply(self,db,p):
         for f in p.getFamilyList():
             for event in f.getEventList():
                 val = 1
@@ -355,7 +394,7 @@ class HasRelationship(Rule):
     def name(self):
         return 'Has the relationships'
 
-    def apply(self,p):
+    def apply(self,db,p):
         rel_type = 0
         cnt = 0
         num_rel = len(p.getFamilyList())
@@ -411,7 +450,7 @@ class HasBirth(Rule):
     def name(self):
         return 'Has the birth'
 
-    def apply(self,p):
+    def apply(self,db,p):
         event = p.getBirth()
         if len(self.list) > 2 and find(event.getDescription(),self.list[2])==-1:
             return 0
@@ -443,7 +482,7 @@ class HasDeath(Rule):
     def name(self):
         return 'Has the death'
 
-    def apply(self,p):
+    def apply(self,db,p):
         event = p.getDeath()
         if self.list[2] and find(event.getDescription(),self.list[2])==-1:
             return 0
@@ -467,7 +506,7 @@ class HasAttribute(Rule):
     def name(self):
         return 'Has the personal attribute'
 
-    def apply(self,p):
+    def apply(self,db,p):
         for event in p.getAttributes():
             if self.list[0] and event.getType() != self.list[0]:
                 return 0
@@ -488,7 +527,7 @@ class HasFamilyAttribute(Rule):
     def name(self):
         return 'Has the family attribute'
 
-    def apply(self,p):
+    def apply(self,db,p):
         for f in p.getFamilyList():
             for event in f.getAttributes():
                 val = 1
@@ -513,7 +552,7 @@ class HasNameOf(Rule):
     def name(self):
         return 'Has a name'
     
-    def apply(self,p):
+    def apply(self,db,p):
         self.f = self.list[0]
         self.l = self.list[1]
         self.s = self.list[2]
@@ -541,7 +580,7 @@ class MatchesFilter(Rule):
     def name(self):
         return 'Matches the filter named'
 
-    def apply(self, p):
+    def apply(self,db,p):
         for filter in SystemFilters.get_filters():
             if filter.get_name() == self.list[0]:
                 return filter.check(p)
@@ -608,10 +647,10 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
-    def check_or(self,p):
+    def check_or(self,db,p):
         test = 0
         for rule in self.flist:
-            test = test or rule.apply(p)
+            test = test or rule.apply(db,p)
             if test:
                 break
         if self.invert:
@@ -619,20 +658,20 @@ class GenericFilter:
         else:
             return test
 
-    def check_xor(self,p):
+    def check_xor(self,db,p):
         test = 0
         for rule in self.flist:
-            temp = rule.apply(p)
+            temp = rule.apply(db,p)
             test = ((not test) and temp) or (test and (not temp))
         if self.invert:
             return not test
         else:
             return test
 
-    def check_one(self,p):
+    def check_one(self,db,p):
         count = 0
         for rule in self.flist:
-            if rule.apply(p):
+            if rule.apply(db,p):
                 count = count + 1
                 if count > 1:
                     break
@@ -641,10 +680,10 @@ class GenericFilter:
         else:
             return count == 1
 
-    def check_and(self,p):
+    def check_and(self,db,p):
         test = 1
         for rule in self.flist:
-            test = test and rule.apply(p)
+            test = test and rule.apply(db,p)
             if not test:
                 break
         if self.invert:
@@ -652,21 +691,24 @@ class GenericFilter:
         else:
             return test
     
-    def check(self,p):
+    def get_check_func(self):
         try:
             m = getattr(self, 'check_' + self.logical_op)
         except AttributeError:
             m = self.check_and
+        return m
 
-        return m(p)
+    def check(self,db,p):
+        return self.get_check_func()(db,p)
 
-    def apply(self,list):
-        try:
-            m = getattr(self, 'check_' + self.logical_op)
-        except AttributeError:
-            m = self.check_and
+    def apply(self,db,list):
+        m = self.get_check_func()
+        res = []
+        for p in list:
+            if m(db,p):
+                res.append(p)
+        return res
 
-        return filter(m, list)
 
 #-------------------------------------------------------------------------
 #
@@ -683,6 +725,7 @@ tasks = {
     _("Is a descendant of")              : IsDescendantOf,
     _("Is a descendant family member of"): IsDescendantFamilyOf,
     _("Is an ancestor of")               : IsAncestorOf,
+    _("Has a common ancestor with")      : HasCommonAncestorWith,
     _("Is a female")                     : IsFemale,
     _("Is a male")                       : IsMale,
     _("Has the personal event")          : HasEvent,
