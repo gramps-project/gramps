@@ -1,5 +1,8 @@
 2005-01-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/EditPlace.py: make reference lists work properly for places
+	* src/EditPlace.py (EditPlace.display_references):
+	Fix event and object references.
+	* src/ImageSelect.py (GlobalMediaProperties.display_refs):
+	Add references for personal and family events.
 
 2005-01-10 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/StatisticsChart.py: Misc fixes.
