@@ -148,11 +148,15 @@ class Gramps:
 
         self.report_button = self.gtop.get_widget("reports")
         self.tool_button  = self.gtop.get_widget("tools")
+        self.remove_button  = self.gtop.get_widget("removebtn")
+        self.edit_button  = self.gtop.get_widget("editbtn")
         self.sidebar = self.gtop.get_widget('side_event')
         self.filterbar = self.gtop.get_widget('filterbar')
 
         self.tool_button.set_sensitive(0)
         self.report_button.set_sensitive(0)
+        self.remove_button.set_sensitive(0)
+        self.edit_button.set_sensitive(0)
 
         set_panel(self.sidebar)
         set_panel(self.gtop.get_widget('side_people'))
@@ -632,10 +636,7 @@ class Gramps:
         
     def full_update(self):
         """Brute force display update, updating all the pages"""
-        self.id2col = {}
-        for model in self.pl_page:
-            model.clear()
-        self.apply_filter()
+        self.complete_rebuild()
         self.family_view.load_family()
         self.source_view.load_sources()
         self.place_view.load_places()
@@ -927,11 +928,15 @@ class Gramps:
             self.tools_menu.set_sensitive(1)
             self.report_button.set_sensitive(1)
             self.tool_button.set_sensitive(1)
+            self.remove_button.set_sensitive(1)
+            self.edit_button.set_sensitive(1)
         else:
             self.report_menu.set_sensitive(0)
             self.tools_menu.set_sensitive(0)
             self.report_button.set_sensitive(0)
             self.tool_button.set_sensitive(0)
+            self.remove_button.set_sensitive(0)
+            self.edit_button.set_sensitive(0)
     
     def modify_statusbar(self):
         if self.active_person == None:
@@ -1343,8 +1348,17 @@ class Gramps:
         ErrorDialog(msg)
         self.status_text("")
 
+    def complete_rebuild(self):
+        self.status_text(_("Updating display..."))
+        keys = self.alpha_page.keys()
+        for key in keys:
+            self.alpha_page[key].new_model()
+        self.apply_filter()
+        for key in keys:
+            self.alpha_page[key].connect_model()
+        self.modify_statusbar()
+
     def apply_filter(self):
-        self.status_text(_("Updating display"))
         datacomp = self.DataFilter.compare
 
         for key in self.db.getPersonKeys():
@@ -1372,7 +1386,6 @@ class Gramps:
                 if self.id2col.has_key(key):
                     (model,iter,page) = self.id2col[key]
                     model.remove(iter)
-        self.modify_statusbar()
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()
