@@ -27,7 +27,7 @@ import intl
 _ = intl.gettext
 
 class EventPlace(Filter.Filter):
-    "People with an event location of ..."
+    """Finds people with a specfied event location in any field"""
 
     def __init__(self,text):
         self.ok = 1
@@ -44,9 +44,23 @@ class EventPlace(Filter.Filter):
         list.append(person.getDeath())
         for event in list:
             if self.regexp.search(event.getPlaceName()):
-                val = 1
-                break
-        return val
+                return 1
+            place = event.getPlace()
+            if not place:
+                continue
+            locs = [place.get_main_location()] + place.get_alternate_locations()
+            for location in locs:
+                if self.regexp.search(location.get_city()):
+                    return 1
+                if self.regexp.search(location.get_parish()):
+                    return 1
+                if self.regexp.search(location.get_county()):
+                    return 1
+                if self.regexp.search(location.get_state()):
+                    return 1
+                if self.regexp.search(location.get_country()):
+                    return 1
+        return 0
 
 #------------------------------------------------------------------------
 #

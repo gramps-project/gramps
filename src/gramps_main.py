@@ -162,6 +162,10 @@ def on_gramps_mailing_lists_activate(obj):
     import gnome.url
     gnome.url.show("http://sourceforge.net/mail/?group_id=25770")
 
+def on_gramps_report_bug_activate(obj):
+    import gnome.url
+    gnome.url.show("http://sourceforge.net/tracker/?group_id=25770&atid=385137")
+    
 #-------------------------------------------------------------------------
 #
 # Merge
@@ -381,14 +385,17 @@ def on_new_clicked(obj):
     gnome.ui.GnomeQuestionDialog(msg,new_database_response)
 
 def new_database_response(val):
+    if val == 1:
+        return
+    clear_database()
+    DbPrompter(database,1)
+    
+def clear_database():
     """Clear out the database if permission was granted"""
     global active_person, active_father
     global active_family, active_mother
     global active_child, active_spouse
     global id2col,alt2col,person_list
-
-    if val == 1:
-        return
 
     const.personalEvents = const.initialize_personal_event_list()
     const.personalAttributes = const.initialize_personal_attribute_list()
@@ -408,6 +415,7 @@ def new_database_response(val):
     alt2col       = {}
 
     utils.clearModified()
+    utils.clear_timer()
     change_active_person(None)
     person_list.clear()
     load_family()
@@ -504,7 +512,7 @@ def on_ok_button1_clicked(obj):
     if filename == "" or filename == None:
         return
 
-    new_database_response(0)
+    clear_database()
     
     if getoldrev.get_active():
         vc = VersionControl.RcsVersionControl(filename)
@@ -559,7 +567,12 @@ def save_file(filename,comment):
 
     path = filename
     filename = os.path.normpath(filename)
+    autosave = "%s/autosave.gramps" % filename
+    
     statusbar.set_status(_("Saving %s ...") % filename)
+
+    utils.clearModified()
+    utils.clear_timer()
 
     if os.path.exists(filename):
         if os.path.isdir(filename) == 0:
@@ -590,15 +603,46 @@ def save_file(filename,comment):
         return
 
     database.setSavePath(old_file)
-    utils.clearModified()
     Config.save_last_file(old_file)
 
     if Config.usevc:
         vc = VersionControl.RcsVersionControl(path)
         vc.checkin(filename,comment,not Config.uncompress)
                
+    topWindow.set_title("Gramps - " + database.getSavePath())
     statusbar.set_status("")
     statusbar.set_progress(0)
+    if os.path.exists(autosave):
+        try:
+            os.remove(autosave)
+        except:
+            pass
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def autosave_database():
+    import WriteXML
+
+    path = database.getSavePath()
+    filename = os.path.normpath(path)
+    utils.clearModified()
+
+    filename = "%s/autosave.gramps" % (database.getSavePath())
+    
+    statusbar.set_status(_("autosaving..."));
+    try:
+        WriteXML.quick_write(database,filename,quick_progress)
+        statusbar.set_status(_("autosave complete"));
+    except (IOError,OSError):
+        statusbar.set_status(_("autosave failed"));
+    except:
+        import traceback
+        traceback.print_exc()
+
+    return 0
 
 #-------------------------------------------------------------------------
 #
@@ -1100,6 +1144,7 @@ def revert_query(value):
         database.new()
         read_file(file)
         utils.clearModified()
+        utils.clear_timer()
 
 #-------------------------------------------------------------------------
 #
@@ -1598,6 +1643,18 @@ def load_progress(value):
 #
 #
 #-------------------------------------------------------------------------
+def quick_progress(value):
+    gtk.threads_enter()
+    statusbar.set_progress(value)
+    while gtk.events_pending():
+        gtk.mainiteration()
+    gtk.threads_leave()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def post_load(name):
     global active_person
 
@@ -1883,7 +1940,7 @@ def on_main_key_release_event(obj,event):
         on_delete_person_clicked(obj)
     elif event.keyval == GDK.Insert:
         load_new_person(obj)
-    
+
 #-------------------------------------------------------------------------
 #
 # Main program
@@ -1913,7 +1970,7 @@ def main(arg):
     Config.loadConfig(full_update)
 
     gtop = libglade.GladeXML(const.gladeFile, "gramps")
-    toolbar     = gtop.get_widget("toolbar1")
+    toolbar = gtop.get_widget("toolbar1")
     toolbar.set_style(Config.toolbar)
 
     statusbar   = gtop.get_widget("statusbar")
@@ -2034,6 +2091,7 @@ def main(arg):
         "on_swap_clicked"                   : on_swap_clicked,
         "on_tools_clicked"                  : on_tools_clicked,
         "on_gramps_home_page_activate"      : on_gramps_home_page_activate,
+        "on_gramps_report_bug_activate"     : on_gramps_report_bug_activate,
         "on_gramps_mailing_lists_activate"  : on_gramps_mailing_lists_activate,
         "on_writing_extensions_activate"    : on_writing_extensions_activate,
         })	
@@ -2054,10 +2112,98 @@ def main(arg):
         read_file(arg)
     elif Config.lastfile != None and Config.lastfile != "" and Config.autoload:
         read_file(Config.lastfile)
+    else:
+        DbPrompter(database,0)
+
+    if Config.autosave and Config.autosave_int != 0:
+        utils.enable_autosave(autosave_database,Config.autosave_int)
 
     database.setResearcher(Config.owner)
-
     gtk.mainloop()
+
+#-------------------------------------------------------------------------
+#
+# Make sure a database is opened
+#
+#-------------------------------------------------------------------------
+class DbPrompter:
+    def __init__(self,db,want_new):
+        self.db = db
+        self.want_new = want_new
+        self.show()
+
+    def show(self):
+        opendb = libglade.GladeXML(const.gladeFile, "opendb")
+        opendb.signal_autoconnect({
+            "on_open_ok_clicked" : self.open_ok_clicked,
+            "on_open_cancel_clicked" : self.open_cancel_clicked,
+            "on_opendb_delete_event": self.open_delete_event,
+            })
+        self.new = opendb.get_widget("new")
+        if self.want_new:
+            self.new.set_active(1)
+
+    def open_ok_clicked(self,obj):
+        if self.new.get_active():
+            self.save_as_activate()
+        else:
+            self.open_activate()
+        utils.destroy_passed_object(obj)
+
+    def save_as_activate(self):
+        wFs = libglade.GladeXML (const.gladeFile, FILESEL)
+        wFs.signal_autoconnect({
+            "on_ok_button1_clicked": self.save_ok_button_clicked,
+            "destroy_passed_object": self.cancel_button_clicked,
+            })
+
+    def save_ok_button_clicked(self,obj):
+        filename = obj.get_filename()
+        if filename:
+            utils.destroy_passed_object(obj)
+            if Config.usevc and Config.vc_comment:
+                display_comment_box(filename)
+            else:
+                save_file(filename,_("No Comment Provided"))
+
+    def open_activate(self):
+        wFs = libglade.GladeXML(const.revisionFile, "dbopen")
+        wFs.signal_autoconnect({
+            "on_ok_button1_clicked": self.ok_button_clicked,
+            "destroy_passed_object": self.cancel_button_clicked,
+            })
+
+        self.fileSelector = wFs.get_widget("dbopen")
+        self.dbname = wFs.get_widget("dbname")
+        self.getoldrev = wFs.get_widget("getoldrev")
+        self.dbname.set_default_path(Config.db_dir)
+        self.getoldrev.set_sensitive(Config.usevc)
+
+    def cancel_button_clicked(self,obj):
+        utils.destroy_passed_object(obj)
+        self.show()
+        
+    def ok_button_clicked(self,obj):
+        filename = self.dbname.get_full_path(0)
+
+        if not filename:
+            return
+
+        utils.destroy_passed_object(obj)
+        clear_database()
+    
+        if self.getoldrev.get_active():
+            vc = VersionControl.RcsVersionControl(filename)
+            VersionControl.RevisionSelect(self.db,filename,vc,load_revision,self.show)
+        else:
+            read_file(filename)
+
+    def open_delete_event(self,obj,event):
+        gtk.mainquit()
+
+    def open_cancel_clicked(self,obj):
+        gtk.mainquit()
+
 
 #-------------------------------------------------------------------------
 #
@@ -2066,3 +2212,4 @@ def main(arg):
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
     main(None)
+

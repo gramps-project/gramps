@@ -488,12 +488,12 @@ def exportData(database, filename, callback):
         GnomeErrorDialog(_("Failure writing %s, original file restored") % filename)
         shutil.copy(filename + ".bak", filename)
 
-def quick_write(database, filename):
+def quick_write(database, filename,callback=None):
     global fileroot
 
     fileroot = os.path.dirname(filename)
     g = gzip.open(filename,"wb")
-    write_xml_data(database, g, None, 0)
+    write_xml_data(database, g, callback, 0)
     g.close()
 
 def write_xml_data(database, g, callback, sp):
