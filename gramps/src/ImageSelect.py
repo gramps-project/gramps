@@ -249,7 +249,11 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         object = photo.getReference()
         name = utils.thumb_path(self.db.getSavePath(),object)
-        thumb = GdkImlib.Image(name)
+        try:
+            thumb = GdkImlib.Image(name)
+        except IOError,msg:
+            gnome.ui.GnomeErrorDialog(_("Could not import %s - %s") % (name,msg))
+            return
         self.icon_cache.append(thumb)
         description = object.getDescription()
         if len(description) > 50:

@@ -671,7 +671,7 @@ class WebReport(Report):
     #------------------------------------------------------------------------
     def dump_index(self,person_list,styles,template,html_dir):
     
-        doc = HtmlLinkDoc(styles,template)
+        doc = HtmlLinkDoc(self.selected_style,None,template,None)
         doc.set_title(_("Family Tree Index"))
     
         doc.open(html_dir + os.sep + "index.html")
@@ -728,7 +728,7 @@ class WebReport(Report):
         filter(self.db,self.person,ind_list,self.max_gen)
         self.progress_bar_setup(float(len(ind_list)))
         
-        doc = HtmlLinkDoc(self.selected_style,self.template_name)
+        doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
         self.add_styles(doc)
         doc.build_style_declaration()
 
@@ -736,7 +736,7 @@ class WebReport(Report):
         for l in ind_list:
             my_map[l] = 1
         for person in ind_list:
-            tdoc = HtmlLinkDoc(self.selected_style,None,doc)
+            tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             idoc = IndividualPage(person, self.photos, self.restrict,
                                   self.private, self.srccomments,
                                   self.include_link, my_map, dir_name, tdoc)

@@ -17,7 +17,7 @@ install:
 	${INSTALL} *.py *.pyo ${datadir}/filters
 
 uninstall:
-	rm ${filters}/*.py ${filters}/*.pyo ${filters}/*.glade ${filters}/*.xpm
+	rm ${filters}/*.py ${filters}/*.pyo
 	-rmdir ${filters}
 
 clean:

@@ -24,22 +24,12 @@ import re
 import utils
 import gnome.ui
 import Plugins
+import ImgManip
+from TextDoc import *
 
 from intl import gettext
 _ = gettext
 
-from TextDoc import *
-
-#------------------------------------------------------------------------
-#
-# Attempt to load the Python Imaging Library for the handling of photos.
-#
-#------------------------------------------------------------------------
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
 
 t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)", re.DOTALL|re.IGNORECASE|re.MULTILINE)
 
@@ -238,41 +228,22 @@ class HtmlDoc(TextDoc):
         self.f.close()
 
     def add_photo(self,name,pos,x,y):
-	if no_pil:
-	    return
-
         self.empty = 0
-        try:
-            im = PIL.Image.open(name)
-        except:
-            return
-        
-        nx,ny = im.size
 
-        scale = float(nx)/float(ny)
-        if scale > 1.0:
-            scale = 1.0/scale
-            act_width = float(x)
-            act_height = float(y * scale)
-        else:
-            act_width = float(x * scale)
-            act_height = float(y)
+        size = int(max(x,y) * float(150.0/2.54))
 
-        cmtopt = float(150.0/2.54)
-        pixx = int(act_width*cmtopt)
-        pixy = int(act_height*cmtopt)
-        im.thumbnail((pixx,pixy))
-
+        refname = "is%s" % os.path.basename(name)
         imdir = self.base + os.sep + "images"
+
         if not os.path.isdir(imdir):
             try:
                 os.mkdir(imdir)
             except:
                 return
 
-        refname = "is%s" % os.path.basename(name)
         try:
-            im.save(imdir + os.sep + refname)
+            img = ImgManip.ImgManip(name)
+            img.jpg_thumbnail(imdir + os.sep + refname,size,size)
         except:
             return
 
@@ -283,8 +254,8 @@ class HtmlDoc(TextDoc):
         else:
             xtra = ''
             
-        self.f.write('<img src="images/%s" border="0" width="%d" height="%d"%s>\n' % \
-                     (refname,pixx,pixy,xtra))
+        self.f.write('<img src="images/%s" border="0""%s>\n' % \
+                     (refname,xtra))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]

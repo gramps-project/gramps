@@ -34,19 +34,9 @@ from latin_utf8 import latin_to_utf8
 import const
 import string
 import Plugins
+import ImgManip
 import intl
 _ = intl.gettext
-
-#-------------------------------------------------------------------------
-#
-# Attemp to import the Python Imaging Library
-#
-#-------------------------------------------------------------------------
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
 
 #-------------------------------------------------------------------------
 #
@@ -102,23 +92,16 @@ class AbiWordDoc(TextDoc):
                 file = file_tuple[0]
                 width = file_tuple[1]
                 height = file_tuple[2]
-                base = "/tmp/%s.png" % os.path.basename(file)
+                base = "%s/%s_png" % (os.path.dirname(file),os.path.basename(file))
                 tag = string.replace(base,'.','_')
 
-                if no_pil:
-                    cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,width,height,file,base)
-                    os.system(cmd)
-                else:
-                    im = PIL.Image.open(file)
-                    im.thumbnail((width,height))
-                    im.save(base,"PNG")
+                img = ImgManip.ImgManip(file)
+                buf = img.png_scale_data(width,height)
 
                 self.f.write('<d name="')
                 self.f.write(tag)
                 self.f.write('" mime-type="image/png" base64="yes">\n')
-                f = open(base,"rb")
-                base64.encode(f,self.f)
-                f.close()
+                self.f.write(base64.encodestring(buf))
                 os.unlink(base)
                 self.f.write('</d>\n')
             self.f.write('</data>\n')
@@ -238,5 +221,4 @@ class AbiWordDoc(TextDoc):
             self.f.write('; text-decoration:underline')
         self.f.write('">')
 
-    
 Plugins.register_text_doc(_("AbiWord"),AbiWordDoc,0,1,1)

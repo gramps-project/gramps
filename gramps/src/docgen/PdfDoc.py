@@ -42,17 +42,6 @@ import reportlab.lib.styles
 
 #------------------------------------------------------------------------
 #
-# Attempt to load the python imaging library
-#
-#------------------------------------------------------------------------
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
-
-#------------------------------------------------------------------------
-#
 # GrampsDocTemplate
 #
 #------------------------------------------------------------------------
@@ -267,22 +256,20 @@ class PdfDoc(TextDoc):
         self.col = self.col + self.span
 
     def add_photo(self,name,pos,x,y):
-        if no_pil == 0:
-            im = PIL.Image.open(name)
+        img = ImgManip.ImgManip(name)
+        nx,ny = img.size()
+        scale = float(nx)/float(ny)
+        if scale > 1.0:
+            scale = 1.0/scale
+            act_width = x
+            act_height = y * scale
+        else:
+            act_width = x * scale
+            act_height = y
 
-            nx,ny = im.size
-            scale = float(nx)/float(ny)
-            if scale > 1.0:
-                scale = 1.0/scale
-                act_width = x
-                act_height = y * scale
-            else:
-                act_width = x * scale
-                act_height = y
-
-            self.story.append(Image(name,act_width*cm,act_height*cm))
-	    self.story.append(Spacer(1,0.5*cm))
-            self.image = 1
+        self.story.append(Image(name,act_width*cm,act_height*cm))
+        self.story.append(Spacer(1,0.5*cm))
+        self.image = 1
 
     def write_text(self,text):
 	self.text = self.text + text

@@ -41,19 +41,10 @@ from gnome.ui import GnomeErrorDialog, GnomeWarningDialog
 #-------------------------------------------------------------------------
 import const
 import utils
+import ImgManip
 from intl import gettext
 _ = gettext
 
-#-------------------------------------------------------------------------
-#
-# Check for the python imaging library
-#
-#-------------------------------------------------------------------------
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +79,7 @@ def import_media_object(filename,path,base):
             path = "%s/%s" % (thumb,base)
             mk_thumb(filename,path,const.thumbScale)
         except:
-            GnomeErrorDialog(_("Error creating the thumbnail : %s") + "\n" + msg)
+            GnomeErrorDialog(_("Error creating the thumbnail : %s"))
             return ""
 
         try:
@@ -159,20 +150,12 @@ def mk_thumb(source,dest,size):
     if not os.path.exists(source):
         GnomeErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % source)
 
-    if no_pil:
-        cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
-        os.system(cmd)
-    else:
-        try:
-            im = PIL.Image.open(source)
-            im.thumbnail((size,size))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"JPEG")
-        except:
-            GnomeErrorDialog(_("Could not create a thumbnail for %s") % source)
-            return
+    try:
+        img = ImgManip.ImgManip(source)
+        img.jpg_thumbnail(dest,size,size)
+    except:
+        GnomeErrorDialog(_("Could not create a thumbnail for %s") % source)
+        return
 
 #-------------------------------------------------------------------------
 #

@@ -26,7 +26,8 @@ import utils
 def need_to_run():
     if gnome.config.get_string("/gramps/config/startup") == None:
         return 1
-    if gnome.config.get_int("/gramps/config/startup") < const.startup:
+    val  = gnome.config.get_int("/gramps/config/startup") 
+    if val < const.startup:
         return 1
     return 0
 

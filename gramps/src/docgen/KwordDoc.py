@@ -27,14 +27,9 @@ import os
 import gzip
 from TarFile import TarFile
 import Plugins
+import ImgManip
 import intl
 _ = intl.gettext
-
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
 
 def points(val):
     inch = float(val)/2.54
@@ -356,11 +351,9 @@ class KwordDoc(TextDoc):
         pass
 
     def add_photo(self,name,pos,x,y):
-        if no_pil:
-            return
 
-        im = PIL.Image.open(name)
-        nx,ny = im.size
+        im = ImgManip.ImgMapip(name)
+        nx,ny = im.size()
 
         scale = float(nx)/float(ny)
         x = points(x)
