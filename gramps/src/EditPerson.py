@@ -43,12 +43,14 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-
+import intl
 import const
 import utils
 import Config
 from RelLib import *
 import RelImage
+
+_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
