@@ -264,103 +264,98 @@ def exportData(database, filename, callback):
     g.write("    </researcher>\n")
     g.write("  </header>\n")
 
-    g.write("  <people")
-    person = database.getDefaultPerson()
-    if person:
-        g.write(' default="%s"' % person.getId())
-    g.write(">\n")
+    if len(personList) > 0:
+        g.write("  <people")
+        person = database.getDefaultPerson()
+        if person:
+            g.write(' default="%s"' % person.getId())
+        g.write(">\n")
 
-    total = len(personList) + len(familyList)
-    delta = max(int(total/50),1)
+        total = len(personList) + len(familyList)
+        delta = max(int(total/50),1)
 
-    count = 0
-    for person in personList:
-        if count % delta == 0:
-            callback(float(count)/float(total))
-        count = count + 1
+        count = 0
+        for person in personList:
+            if count % delta == 0:
+                callback(float(count)/float(total))
+            count = count + 1
             
-        write_id(g,"person",person,2)
-        if person.getGender() == Person.male:
-            write_line(g,"gender","M",3)
-        else:
-            write_line(g,"gender","F",3)
-        dump_name(g,"name",person.getPrimaryName(),3)
-        for name in person.getAlternateNames():
-            dump_name(g,"aka",name,3)
+            write_id(g,"person",person,2)
+            if person.getGender() == Person.male:
+                write_line(g,"gender","M",3)
+            else:
+                write_line(g,"gender","F",3)
+            dump_name(g,"name",person.getPrimaryName(),3)
+            for name in person.getAlternateNames():
+                dump_name(g,"aka",name,3)
             
-        write_line(g,"uid",person.getPafUid(),3)
-        write_line(g,"nick",person.getNickName(),3)
-        dump_my_event(g,"Birth",person.getBirth(),3)
-        dump_my_event(g,"Death",person.getDeath(),3)
-        for event in person.getEventList():
-            dump_event(g,event,3)
+            write_line(g,"uid",person.getPafUid(),3)
+            write_line(g,"nick",person.getNickName(),3)
+            dump_my_event(g,"Birth",person.getBirth(),3)
+            dump_my_event(g,"Death",person.getDeath(),3)
+            for event in person.getEventList():
+                dump_event(g,event,3)
 
-        for photo in person.getPhotoList():
-            path = photo.getPath()
-            if os.path.dirname(path) == fileroot:
-                path = os.path.basename(path)
-            g.write('      <img src="%s"' % fix(path) )
-            g.write(' descrip="%s"' % fix(photo.getDescription()))
-            proplist = photo.getPropertyList()
-            if proplist:
-                for key in proplist.keys():
-                    g.write(' %s="%s"' % (key,proplist[key]))
-            g.write("/>\n")
+            for photo in person.getPhotoList():
+                path = photo.getPath()
+                if os.path.dirname(path) == fileroot:
+                    path = os.path.basename(path)
+                g.write('      <img src="%s"' % fix(path) )
+                g.write(' descrip="%s"' % fix(photo.getDescription()))
+                proplist = photo.getPropertyList()
+                if proplist:
+                    for key in proplist.keys():
+                        g.write(' %s="%s"' % (key,proplist[key]))
+                g.write("/>\n")
 
-        if len(person.getAddressList()) > 0:
-            g.write("      <addresses>\n")
-            for address in person.getAddressList():
-                g.write('        <address%s">\n' % conf_priv(address))
-                write_line(g,"date",address.getDateObj().getSaveDate(),5)
-                write_line(g,"street",address.getStreet(),5)
-                write_line(g,"city",address.getCity(),5)
-                write_line(g,"state",address.getState(),5)
-                write_line(g,"country",address.getCountry(),5)
-                write_line(g,"postal",address.getPostal(),5)
-                if address.getNote() != "":
-                    writeNote(g,"note",address.getNote(),5)
-                dump_source_ref(g,address.getSourceRef(),5)
-                g.write('        </address>\n')
-            g.write('      </addresses>\n')
+            if len(person.getAddressList()) > 0:
+                for address in person.getAddressList():
+                    g.write('      <address%s">\n' % conf_priv(address))
+                    write_line(g,"date",address.getDateObj().getSaveDate(),5)
+                    write_line(g,"street",address.getStreet(),5)
+                    write_line(g,"city",address.getCity(),5)
+                    write_line(g,"state",address.getState(),5)
+                    write_line(g,"country",address.getCountry(),5)
+                    write_line(g,"postal",address.getPostal(),5)
+                    if address.getNote() != "":
+                        writeNote(g,"note",address.getNote(),5)
+                    dump_source_ref(g,address.getSourceRef(),5)
+                    g.write('      </address>\n')
 
-        if len(person.getAttributeList()) > 0:
-            g.write("      <attributes>\n")
-            for attr in person.getAttributeList():
-                if attr.getSourceRef() or attr.getNote():
-                    g.write('        <attribute%s>\n' % conf_priv(attr))
-                    write_line(g,"attr_type",attr.getType(),5)
-                    write_line(g,"attr_value",attr.getValue(),5)
-                    dump_source_ref(g,attr.getSourceRef(),5)
-                    writeNote(g,"note",attr.getNote(),5)
-                    g.write('        </attribute>\n')
-                else:
-                    g.write('        <attribute type="%s">' % attr.getType())
-                    g.write(fix(attr.getValue()))
-                    g.write('</attribute>\n')
-            g.write('      </attributes>\n')
+            if len(person.getAttributeList()) > 0:
+                for attr in person.getAttributeList():
+                    if attr.getSourceRef() or attr.getNote():
+                        g.write('      <attribute%s>\n' % conf_priv(attr))
+                        write_line(g,"attr_type",attr.getType(),5)
+                        write_line(g,"attr_value",attr.getValue(),5)
+                        dump_source_ref(g,attr.getSourceRef(),5)
+                        writeNote(g,"note",attr.getNote(),5)
+                        g.write('      </attribute>\n')
+                    else:
+                        g.write('      <attribute type="%s">' % attr.getType())
+                        g.write(fix(attr.getValue()))
+                        g.write('</attribute>\n')
 
-        if len(person.getUrlList()) > 0:
-            g.write("      <urls>\n")
-            for url in person.getUrlList():
-                g.write('        <url priv="%d" href="%s"' % \
-                        (url.getPrivacy(),url.get_path()))
-                if url.get_description() != "":
-                    g.write(' description="' + url.get_description() + '"')
-                g.write('/>\n')
-            g.write('      </urls>\n')
+            if len(person.getUrlList()) > 0:
+                for url in person.getUrlList():
+                    g.write('      <url priv="%d" href="%s"' % \
+                            (url.getPrivacy(),url.get_path()))
+                    if url.get_description() != "":
+                        g.write(' description="' + url.get_description() + '"')
+                    g.write('/>\n')
 
-        write_ref(g,"childof",person.getMainFamily(),3)
-        for alt in person.getAltFamilyList():
-            g.write("      <childof ref=\"%s\" mrel=\"%s\" frel=\"%s\"/>\n" % \
-                    (alt[0].getId(), alt[1], alt[2]))
+            write_ref(g,"childof",person.getMainFamily(),3)
+            for alt in person.getAltFamilyList():
+                g.write("      <childof ref=\"%s\" mrel=\"%s\" frel=\"%s\"/>\n" % \
+                        (alt[0].getId(), alt[1], alt[2]))
 
-        for family in person.getFamilyList():
-            write_ref(g,"parentin",family,3)
+            for family in person.getFamilyList():
+                write_ref(g,"parentin",family,3)
 
-        writeNote(g,"note",person.getNote(),3)
+            writeNote(g,"note",person.getNote(),3)
 
-        g.write("    </person>\n")
-    g.write("  </people>\n")
+            g.write("    </person>\n")
+        g.write("  </people>\n")
 
     if len(familyList) > 0:
         g.write("  <families>\n")
@@ -374,8 +369,6 @@ def exportData(database, filename, callback):
             write_ref(g,"father",family.getFather(),3)
             write_ref(g,"mother",family.getMother(),3)
 
-            dump_event(g,family.getMarriage(),3)
-            dump_event(g,family.getDivorce(),3)
             for event in family.getEventList():
                 dump_event(g,event,3)
 
@@ -397,15 +390,13 @@ def exportData(database, filename, callback):
                     write_ref(g,"child",person,4)
                 g.write("      </childlist>\n")
             if len(family.getAttributeList()) > 0:
-                g.write("      <attributes>\n")
                 for attr in family.getAttributeList():
-                    g.write('        <attribute>\n')
+                    g.write('      <attribute>\n')
                     write_line(g,"attr_type",attr.getType(),5)
                     write_line(g,"attr_value",attr.getValue(),5)
                     dump_source_ref(g,attr.getSourceRef(),5)
                     writeNote(g,"note",attr.getNote(),5)
-                    g.write('        </attribute>\n')
-                g.write('      </attributes>\n')
+                    g.write('      </attribute>\n')
             writeNote(g,"note",family.getNote(),3)
             g.write("    </family>\n")
         g.write("  </families>\n")

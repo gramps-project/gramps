@@ -279,6 +279,9 @@ def on_add_child_clicked(obj):
         mname = mother.getPrimaryName().getName()
         childWindow.get_widget("mlabel").set_text(_("Relationship to %s") % mname)
 
+    childWindow.get_widget("mrel").set_text(_("Birth"))
+    childWindow.get_widget("frel").set_text(_("Birth"))
+    
     redraw_child_list(2)
     selectChild.show()
 
@@ -344,6 +347,8 @@ def on_add_new_child_clicked(obj):
 
     newChildWindow.get_widget("childSurname").set_text(surname)
     newChildWindow.get_widget("addChild").show()
+    newChildWindow.get_widget("mrel").set_text(_("Birth"))
+    newChildWindow.get_widget("frel").set_text(_("Birth"))
 
 #-------------------------------------------------------------------------
 #
@@ -531,11 +536,11 @@ def on_prel_changed(obj):
     fatherList.clear()
     motherList.clear()
 
-    fatherList.append(["unknown",""])
+    fatherList.append(["Unknown",""])
     fatherList.set_row_data(0,None)
     fatherList.set_data("father_text",fatherName)
 
-    motherList.append(["unknown",""])
+    motherList.append(["Unknown",""])
     motherList.set_row_data(0,None)
     motherList.set_data("mother_text",motherName)
 
@@ -1995,7 +2000,7 @@ def display_marriage(family):
         child_list.sort(sort.by_birthdate)
         attr = ""
         for child in child_list:
-            status = _("unknown")
+            status = _("Unknown")
             if child.getGender():
                 gender = const.male
             else:
@@ -2006,9 +2011,9 @@ def display_marriage(family):
                 for fam in child.getAltFamilyList():
                     if fam[0] == family:
                         if active_person == family.getFather():
-                            status = "%s/%s" % (fam[2],fam[1])
+                            status = "%s/%s" % (_(fam[2]),_(fam[1]))
                         else:
-                            status = "%s/%s" % (fam[1],fam[2])
+                            status = "%s/%s" % (_(fam[1]),_(fam[2]))
 
             if Config.show_detail:
                 attr = ""

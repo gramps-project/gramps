@@ -30,6 +30,7 @@ import gnome.mime
 import libglade
 import os
 import intl
+import Sources
 
 _ = intl.gettext
 
@@ -87,7 +88,6 @@ class Marriage:
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_addphoto_clicked" : on_add_photo_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
-            "on_event_note_clicked" : on_event_note_clicked,
             "on_close_marriage_editor" : on_close_marriage_editor,
             "destroy_passed_object" : utils.destroy_passed_object
             })
@@ -110,14 +110,19 @@ class Marriage:
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
+        self.event_details = self.get_widget("event_details")
+        self.attr_details_field = self.get_widget("attr_details")
 
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
 
+        self.elist = family.getEventList()[:]
+        self.alist = family.getAttributeList()[:]
+        self.events_changed = 0
+        self.attr_changed = 0
+
         # set initial data
         mevent_list = self.get_widget("marriageEvent")
-        mevent_list.set_popdown_strings(const.marriageEvents)
-        self.name_field.set_text("")
         self.load_images()
 
         self.type_field.set_popdown_strings(const.familyRelations)
@@ -130,10 +135,6 @@ class Marriage:
         self.attr_list.set_data(MARRIAGE,self)
         self.attr_list.set_data(INDEX,-1)
 
-        attr_names = self.get_widget("attr_combo")
-        attr_names.set_popdown_strings(const.personalAttributes)
-        attr_names.entry.set_text("")
-
         # set notes data
         self.notes_field.set_point(0)
         self.notes_field.insert_defaults(family.getNote())
@@ -142,6 +143,22 @@ class Marriage:
         self.redraw_events()
         self.redraw_attr_list()
         top_window.show()
+
+    #-------------------------------------------------------------------------
+    #
+    #
+    #
+    #-------------------------------------------------------------------------
+    def update_events(self):
+        self.family.setEventList(self.elist)
+
+    #-------------------------------------------------------------------------
+    #
+    #
+    #
+    #-------------------------------------------------------------------------
+    def update_attributes(self):
+        self.family.setAttributeList(self.alist)
 
     #---------------------------------------------------------------------
     #
@@ -153,13 +170,8 @@ class Marriage:
         self.attr_list.clear()
 
 	self.attr_index = 0
-        details = ""
-        for attr in self.family.getAttributeList():
-            if Config.show_detail:
-                if attr.getNote() != "":
-                    detail = "N"
-                if attr.getSourceRef():
-                    detail = detail + "S"
+        for attr in self.alist:
+            details = get_detail_flags(attr)
             self.attr_list.append([const.display_fattr(attr.getType()),\
                                    attr.getValue(),details])
             self.attr_list.set_row_data(self.attr_index,attr)
@@ -186,12 +198,7 @@ class Marriage:
     def add_event(self,text,event):
         if not event:
             return
-        detail = ""
-        if Config.show_detail:
-            if event.getNote() != "":
-                detail = "N"
-            if event.getSourceRef():
-                detail = detail + "S"
+        detail = get_detail_flags(event)
         self.event_list.append([text,event.getQuoteDate(),event.getPlace(),detail])
         self.event_list.set_row_data(self.lines,event)
         self.lines = self.lines + 1
@@ -242,9 +249,7 @@ class Marriage:
         self.event_list.freeze()
         self.event_list.clear()
 
-        self.add_event(const.display_fevent("Marriage"),self.family.getMarriage())
-        self.add_event(const.display_fevent("Divorce"),self.family.getDivorce())
-        for event in self.family.getEventList():
+        for event in self.elist:
             self.add_event(const.display_fevent(event.getName()),event)
 
         current_row = self.event_list.get_data(INDEX)
@@ -297,6 +302,14 @@ def on_close_marriage_editor(obj):
 
     utils.destroy_passed_object(family_obj.get_widget("marriageEditor"))
 
+    family_obj.update_events()
+    if family_obj.events_changed:
+        utils.modified()
+
+    family_obj.update_events()
+    if family_obj.events_changed:
+        utils.modified()
+
 #-------------------------------------------------------------------------
 #
 # on_add_clicked - creates a new event from the data displayed in the
@@ -305,34 +318,7 @@ def on_close_marriage_editor(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_clicked(obj):
-
-    family_obj = obj.get_data(MARRIAGE)
-    
-    date = family_obj.date_field.get_text()
-    place= family_obj.place_field.get_text()
-    name = family_obj.name_field.get_text()
-    desc = family_obj.descr_field.get_text()
-
-    if name == "Marriage":
-        if family_obj.family.getMarriage() == None:
-            event = Event()
-            family_obj.family.setMarriage(event)
-        else:
-            event = family_obj.family.getMarriage()
-    elif name == "Divorce":
-        if family_obj.family.getDivorce() == None:
-            event = Event()
-            family_obj.family.setDivorce(event)
-        else:
-            event = family_obj.family.getDivorce()
-    else:
-        event = Event()
-        family_obj.family.addEvent(event)
-
-    event.set(name,date,place,desc)
-    
-    family_obj.redraw_events()
-    utils.modified()
+    editor = EventEditor(obj.get_data(MARRIAGE),None)
 
 #-------------------------------------------------------------------------
 #
@@ -347,14 +333,7 @@ def on_update_clicked(obj):
 
     family_obj = obj.get_data(MARRIAGE)
     event = obj.get_row_data(row)
-
-    date = family_obj.date_field.get_text()
-    place= family_obj.place_field.get_text()
-    name = family_obj.name_field.get_text()
-    desc = family_obj.descr_field.get_text()
-
-    update_event(event,name,date,place,desc)
-    family_obj.redraw_events()
+    editor = EventEditor(family_obj,event)
 
 #-------------------------------------------------------------------------
 #
@@ -369,27 +348,13 @@ def on_delete_clicked(obj):
     if row < 0:
         return
     
-    active_event = obj.get_row_data(row)
+    del family_obj.elist[row]
 
-    if active_event == family_obj.family.getMarriage():
-        family_obj.family.setMarriage(None)
-    elif active_event == family_obj.family.getDivorce():
-        family_obj.family.setDivorce(None)
-    else:
-        count = 0
-        list = family_obj.family.getEventList()
-        for event in list:
-            if event == active_event:
-                del list[count]
-                break
-            count = count + 1
-
-    if family_obj.lines == 1:
-        obj.set_data(INDEX,None)
-    elif row > family_obj.lines-1:
+    if row > len(family_obj.elist)-1:
         obj.set_data(INDEX,row-1)
         
     family_obj.redraw_events()
+    family_obj.events_changed = 1
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -405,8 +370,43 @@ def on_select_row(obj,row,b,c):
     
     family_obj.date_field.set_text(event.getDate())
     family_obj.place_field.set_text(event.getPlace())
-    family_obj.name_field.set_text(const.display_fevent(event.getName()))
+    family_obj.name_field.set_label(const.display_fevent(event.getName()))
+    family_obj.event_details.set_text(get_detail_text(event))
     family_obj.descr_field.set_text(event.getDescription())
+
+#-------------------------------------------------------------------------
+#
+# update_attrib
+# 
+# Updates the specified event with the specified date.  Compares against
+# the previous value, so the that modified flag is not set if nothing has
+# actually changed.
+#
+#-------------------------------------------------------------------------
+def update_attrib(attr,type,value,note,priv,conf):
+    changed = 0
+        
+    if attr.getType() != const.save_pattr(type):
+        attr.setType(const.save_pattr(type))
+        changed = 1
+        
+    if attr.getValue() != value:
+        attr.setValue(value)
+        changed = 1
+
+    if attr.getNote() != note:
+        attr.setNote(note)
+        changed = 1
+
+    if attr.getPrivacy() != priv:
+        attr.setPrivacy(priv)
+        changed = 1
+
+    if attr.getConfidence() != conf:
+        attr.setConfidence(conf)
+        changed = 1
+
+    return changed
 
 #-------------------------------------------------------------------------
 #
@@ -417,22 +417,37 @@ def on_select_row(obj,row,b,c):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_event(event,name,date,place,desc):
+def update_event(event,name,date,place,desc,note,priv,conf):
+    changed = 0
     if event.getPlace() != place:
         event.setPlace(place)
-        utils.modified()
+        changed = 1
         
-    if event.getName() != const.save_fevent(name):
-        event.setName(const.save_fevent(name))
-        utils.modified()
+    if event.getName() != const.save_pevent(name):
+        event.setName(const.save_pevent(name))
+        changed = 1
         
     if event.getDescription() != desc:
         event.setDescription(desc)
-        utils.modified()
+        changed = 1
+
+    if event.getNote() != note:
+        event.setNote(note)
+        changed = 1
 
     if event.getDate() != date:
         event.setDate(date)
-        utils.modified()
+        changed = 1
+
+    if event.getPrivacy() != priv:
+        event.setPrivacy(priv)
+        changed = 1
+
+    if event.getConfidence() != conf:
+        event.setConfidence(conf)
+        changed = 1
+        
+    return changed
 #-------------------------------------------------------------------------
 #
 #
@@ -627,49 +642,6 @@ def on_ok_clicked(obj):
 
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-def on_event_note_clicked(obj):
-    row = obj.get_data(INDEX)
-    data = obj.get_row_data(row)
-    family_obj = obj.get_data(MARRIAGE)
-
-    if row >= 0:
-        editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-        textobj = editnote.get_widget("notetext")
-        en_obj = editnote.get_widget("editnote")
-        en_obj.set_data("n",data)
-        en_obj.set_data("w",textobj)
-
-        textobj.set_point(0)
-        textobj.insert_defaults(data.getNote())
-        textobj.set_word_wrap(1)
-        
-        editnote.signal_autoconnect({
-            "on_save_note_clicked" : on_save_note_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
-            })
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_save_note_clicked(obj):
-    textbox = obj.get_data("w")
-    data = obj.get_data("n")
-
-    text = textbox.get_chars(0,-1)
-    if text != data.getNote():
-        data.setNote(text)
-        utils.modified()
-
-    utils.destroy_passed_object(obj)
-
-
-#-------------------------------------------------------------------------
-#
 # on_attr_list_select_row - sets the row object attached to the passed
 # object, and then updates the display with the data corresponding to
 # the row.
@@ -681,8 +653,9 @@ def on_attr_list_select_row(obj,row,b,c):
     family_obj = obj.get_data(MARRIAGE)
     attr = obj.get_row_data(row)
 
-    family_obj.attr_type.set_text(const.display_fattr(attr.getType()))
+    family_obj.attr_type.set_label(const.display_fattr(attr.getType()))
     family_obj.attr_value.set_text(attr.getValue())
+    family_obj.attr_details_field.set_text(get_detail_text(attr))
 
 #-------------------------------------------------------------------------
 #
@@ -693,13 +666,7 @@ def on_update_attr_clicked(obj):
     row = obj.get_data(INDEX)
     if row < 0:
         return
-
-    family_obj = obj.get_data(MARRIAGE)
-    attr = obj.get_row_data(row)
-    attr.setType(const.save_fattr(family_obj.attr_type.get_text()))
-    attr.setValue(family_obj.attr_value.get_text())
-
-    family_obj.redraw_attr_list()
+    AttributeEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -712,10 +679,9 @@ def on_delete_attr_clicked(obj):
         return
 
     family_obj = obj.get_data(MARRIAGE)
-    list = family_obj.family.getAttributeList()
-    del list[row]
+    del family_obj.alist[row]
 
-    if row > len(list)-1:
+    if row > len(family_obj.alist)-1:
         obj.set_data(INDEX,row-1)
 
     family_obj.redraw_attr_list()
@@ -727,18 +693,256 @@ def on_delete_attr_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_attr_clicked(obj):
-    family_obj = obj.get_data(MARRIAGE)
+    AttributeEditor(obj.get_data(MARRIAGE),None)
 
-    attr = Attribute()
-    name = family_obj.attr_type.get_text()
-    attr.setType(const.save_fattr(name))
-    attr.setValue(family_obj.attr_value.get_text())
+#-------------------------------------------------------------------------
+#
+# EventEditor class
+#
+#-------------------------------------------------------------------------
+class EventEditor:
 
-    if name not in const.familyAttributes:
-        const.familyAttributes.append(name)
-        menu = family_obj.get_widget("attr_combo")
-        menu.set_popdown_strings(const.familyAttributes)
+    def __init__(self,parent,event):
+        self.parent = parent
+        self.event = event
+        self.top = libglade.GladeXML(const.dialogFile, "event_edit")
+        self.window = self.top.get_widget("event_edit")
+        self.name_field  = self.top.get_widget("eventName")
+        self.place_field = self.top.get_widget("eventPlace")
+        self.date_field  = self.top.get_widget("eventDate")
+        self.descr_field = self.top.get_widget("eventDescription")
+        self.note_field = self.top.get_widget("eventNote")
+        self.event_menu = self.top.get_widget("personalEvents")
+        self.source_field = self.top.get_widget("event_source")
+        self.conf_menu = self.top.get_widget("conf")
+        self.priv = self.top.get_widget("priv")
 
-    family_obj.family.addAttribute(attr)
-    family_obj.redraw_attr_list()
-    utils.modified()
+        father = parent.family.getFather()
+        mother = parent.family.getMother()
+        if father and mother:
+            name = _("%s and %s") % (father.getPrimaryName().getName(),
+                                     mother.getPrimaryName().getName())
+        elif father:
+            name = father.getPrimaryName().getName()
+        else:
+            name = mother.getPrimaryName().getName()
+            
+        self.top.get_widget("eventTitle").set_text(name) 
+        self.event_menu.set_popdown_strings(const.marriageEvents)
+
+        myMenu = GtkMenu()
+        index = 0
+        for name in const.confidence:
+            item = GtkMenuItem(name)
+            item.set_data("a",index)
+            item.show()
+            myMenu.append(item)
+            index = index + 1
+
+        self.conf_menu.set_menu(myMenu)
+
+        if event != None:
+            self.name_field.set_text(event.getName())
+            self.place_field.set_text(event.getPlace())
+            self.date_field.set_text(event.getDate())
+            self.descr_field.set_text(event.getDescription())
+            self.conf_menu.set_history(event.getConfidence())
+
+            self.priv.set_active(event.getPrivacy())
+            
+            srcref_base = self.event.getSourceRef().getBase()
+            if srcref_base:
+                self.source_field.set_text(srcref_base.getTitle())
+            else:
+                self.source_field.set_text("")
+                 
+            self.note_field.set_point(0)
+            self.note_field.insert_defaults(event.getNote())
+            self.note_field.set_word_wrap(1)
+        else:
+            self.conf_menu.set_history(2)
+
+        self.window.set_data("o",self)
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_event_edit_ok_clicked" : on_event_edit_ok_clicked,
+            "on_source_clicked" : on_edit_source_clicked
+            })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_edit_source_clicked(obj):
+    ee = obj.get_data("o")
+    Sources.SourceEditor(ee.event,ee.parent.db,ee.source_field)
+            
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_event_edit_ok_clicked(obj):
+    ee = obj.get_data("o")
+    event = ee.event
+
+    ename = ee.name_field.get_text()
+    edate = ee.date_field.get_text()
+    eplace = ee.place_field.get_text()
+    enote = ee.note_field.get_chars(0,-1)
+    edesc = ee.descr_field.get_text()
+    epriv = ee.priv.get_active()
+    econf = ee.conf_menu.get_menu().get_active().get_data("a")
+
+    if event == None:
+        event = Event()
+        ee.parent.elist.append(event)
+        
+    if update_event(event,ename,edate,eplace,edesc,enote,epriv,econf):
+        ee.parent.events_changed = 1
+        
+    ee.parent.redraw_events()
+    utils.destroy_passed_object(obj)
+
+
+#-------------------------------------------------------------------------
+#
+# AttributeEditor class
+#
+#-------------------------------------------------------------------------
+class AttributeEditor:
+
+    def __init__(self,parent,attrib):
+        self.parent = parent
+        self.attrib = attrib
+        self.top = libglade.GladeXML(const.dialogFile, "attr_edit")
+        self.window = self.top.get_widget("attr_edit")
+        self.type_field  = self.top.get_widget("attr_type")
+        self.value_field = self.top.get_widget("attr_value")
+        self.note_field = self.top.get_widget("attr_note")
+        self.attrib_menu = self.top.get_widget("attr_menu")
+        self.source_field = self.top.get_widget("attr_source")
+        self.conf_menu = self.top.get_widget("conf")
+        self.priv = self.top.get_widget("priv")
+
+        father = parent.family.getFather()
+        mother = parent.family.getMother()
+        if father and mother:
+            name = _("%s and %s") % (father.getPrimaryName().getName(),
+                                     mother.getPrimaryName().getName())
+        elif father:
+            name = father.getPrimaryName().getName()
+        else:
+            name = mother.getPrimaryName().getName()
+        
+        self.top.get_widget("attrTitle").set_text(_("Attribute Editor for %s") % name)
+        if len(const.familyAttributes) > 0:
+            self.attrib_menu.set_popdown_strings(const.familyAttributes)
+
+        myMenu = GtkMenu()
+        index = 0
+        for name in const.confidence:
+            item = GtkMenuItem(name)
+            item.set_data("a",index)
+            item.show()
+            myMenu.append(item)
+            index = index + 1
+        self.conf_menu.set_menu(myMenu)
+
+        if attrib != None:
+            self.type_field.set_text(attrib.getType())
+            self.value_field.set_text(attrib.getValue())
+            srcref_base = self.attrib.getSourceRef().getBase()
+            if srcref_base:
+                self.source_field.set_text(srcref_base.getTitle())
+            else:
+                self.source_field.set_text("")
+                 
+            self.conf_menu.set_history(attrib.getConfidence())
+
+            self.priv.set_active(attrib.getPrivacy())
+
+            self.note_field.set_point(0)
+            self.note_field.insert_defaults(attrib.getNote())
+            self.note_field.set_word_wrap(1)
+        else:
+            self.conf_menu.set_history(2)
+
+        self.window.set_data("o",self)
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_attr_edit_ok_clicked" : on_attrib_edit_ok_clicked,
+            "on_source_clicked" : on_attrib_source_clicked
+            })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_attrib_source_clicked(obj):
+    ee = obj.get_data("o")
+    Sources.SourceEditor(ee.attrib,ee.parent.db,ee.source_field)
+            
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_attrib_edit_ok_clicked(obj):
+    ee = obj.get_data("o")
+    attrib = ee.attrib
+
+    type = ee.type_field.get_text()
+    value = ee.value_field.get_text()
+    note = ee.note_field.get_chars(0,-1)
+    priv = ee.priv.get_active()
+    conf = ee.conf_menu.get_menu().get_active().get_data("a")
+
+    if attrib == None:
+        attrib = Attribute()
+        ee.parent.alist.append(attrib)
+        
+    if update_attrib(attrib,type,value,note,priv,conf):
+        ee.parent.attr_changed = 1
+        
+    ee.parent.redraw_attr_list()
+    utils.destroy_passed_object(obj)
+
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_flags(obj):
+    detail = ""
+    if Config.show_detail:
+        if obj.getNote() != "":
+            detail = "N"
+        if obj.getSourceRef().getBase():
+            detail = detail + "S"
+        if obj.getPrivacy():
+            detail = detail + "P"
+    return detail
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_text(obj):
+    if obj.getNote() != "":
+        details = _("Note")
+    else:
+        details = ""
+    if obj.getSourceRef().getBase() != None:
+        if details == "":
+            details = _("Source")
+        else:
+            details = "%s, %s" % (details,_("Source"))
+    if obj.getPrivacy() == 1:
+        if details == "":
+            details = _("Private")
+        else:
+            details = "%s, %s" % (details,_("Private"))
+    return details

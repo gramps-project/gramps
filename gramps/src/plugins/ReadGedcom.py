@@ -495,20 +495,9 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             elif matches[1] == "SOUR":
                 self.ignore_sub_junk(2)
-            elif matches[1] == "MARR":
-                event = Event()
-                event.setName("Marriage")
-                self.family.setMarriage(event)
-                self.parse_family_event(event,2)
-            elif matches[1] == "DIV":
-                event = Event()
-                event.setName("Divorce")
-                self.family.setDivorce(event)
-                self.parse_family_event(event,2)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
                     self.barf(2)
-#                    self.ignore_sub_junk(2)
                 else:
                     self.parse_family_object(2)
             elif matches[1] == "NOTE":

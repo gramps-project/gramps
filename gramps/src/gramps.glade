@@ -1743,7 +1743,7 @@
 		<last_modification_time>Thu, 21 Dec 2000 20:47:47 GMT</last_modification_time>
 	      </signal>
 	      <columns>6</columns>
-	      <column_widths>210,60,50,150,75,50</column_widths>
+	      <column_widths>210,60,85,150,75,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>

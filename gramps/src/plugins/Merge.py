@@ -401,30 +401,6 @@ class Merge:
                 for event in src_family.getEventList():
                     tgt_family.addEvent(event)
 
-                # add mariage information
-                marriage = src_family.getMarriage()
-                if marriage:
-                    other_marriage = tgt_family.getMarriage()
-                    if other_marriage != None:
-                        if other_marriage.getPlace() == "":
-                            other_marriage.setPlace(marriage.getPlace())
-                        if other_marriage.getDate() == "":
-                            other_marriage.setDate(marriage.getDate())
-                    else:
-                        tgt_family.setMarriage(marriage)
-
-                # add divorce information
-                divorce = src_family.getDivorce()
-                if divorce != None:
-                    other_divorce = tgt_family.getDivorce()
-                    if other_divorce != None:
-                        if other_divorce.getPlace() == "":
-                            other_divorce.setPlace(divorce.getPlace())
-                        if other_divorce.getDate() == "":
-                            other_divorce.setDate(divorce.getDate())
-                    else:
-                        tgt_family.setDivorce(divorce)
-
                 # change parents of the family to point to the new
                 # family
                 
