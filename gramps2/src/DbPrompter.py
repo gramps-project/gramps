@@ -97,7 +97,7 @@ class DbPrompter:
         wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Save database'))
 
     def save_ok_button_clicked(self,obj):
-        filename = obj.get_filename()
+        filename = obj.get_filename().encode('iso8859-1')
         if filename:
             Utils.destroy_passed_object(obj)
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
@@ -126,7 +126,7 @@ class DbPrompter:
         self.show()
         
     def ok_button_clicked(self,obj):
-        filename = self.dbname.get_full_path(0)
+        filename = self.dbname.get_full_path(0).encode('iso8859-1')
 
         if not filename:
             return

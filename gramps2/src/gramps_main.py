@@ -965,10 +965,10 @@ class Gramps:
         else:
             val = self.db.getPersonDisplay(id)
             pg = val[5]
-            if pg:
+            if pg and pg != '@':
                 pg = pg[0]
             else:
-                pg = '@'
+                pg = ''
             model = self.alpha_page[pg]
             iter = None
 
@@ -1215,7 +1215,7 @@ class Gramps:
         pg = pg[0]
         if self.DataFilter.compare(person):
 
-            if pg != '@':
+            if pg and pg != '@':
                 if not self.alpha_page.has_key(pg):
                     self.create_new_panel(pg)
                 model = self.alpha_page[pg]
@@ -1366,6 +1366,7 @@ class Gramps:
         self.id2col = {}
         self.model_used = {}
         self.alpha_page = {}
+        self.tab_list = []
         self.apply_filter()
         self.goto_active_person()
         self.modify_statusbar()
@@ -1382,15 +1383,15 @@ class Gramps:
             person = self.db.getPerson(key)
             val = self.db.getPersonDisplay(key)
             pg = val[5]
-            if pg:
+            if pg and pg != '@':
                 pg = pg[0]
             else:
-                pg = '@'
+                pg = ''
 
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
-                if pg != '@':
+                if pg and pg != '@':
                     if not self.alpha_page.has_key(pg):
                         self.create_new_panel(pg)
                     model = self.alpha_page[pg]

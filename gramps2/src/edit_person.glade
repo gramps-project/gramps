@@ -5,7 +5,6 @@
 <requires lib="canvas"/>
 
 <widget class="GtkDialog" id="editPerson">
-  <property name="visible">True</property>
   <property name="has_focus">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -3813,7 +3812,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="button134">
+			<widget class="GtkButton" id="edit_url">
 			  <property name="visible">True</property>
 			  <property name="sensitive">False</property>
 			  <property name="can_focus">True</property>

@@ -326,8 +326,8 @@ class EditPerson:
         self.redraw_addr_list()
         self.redraw_name_list()
         self.redraw_url_list()
-
         self.given.grab_focus()
+        self.window.show()
 
     def build_columns(self,tree,list):
         cnum = 0
