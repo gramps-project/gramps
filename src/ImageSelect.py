@@ -779,6 +779,10 @@ class GlobalMediaProperties:
 
         self.attr_list = self.change_dialog.get_widget("attr_list")
 
+        self.attr_label = self.change_dialog.get_widget("attrGlobal")
+        self.notes_label = self.change_dialog.get_widget("notesGlobal")
+        self.refs_label = self.change_dialog.get_widget("refsGlobal")
+
         titles = [(_('Attribute'),0,150),(_('Value'),1,100)]
 
         self.atree = ListModel.ListModel(self.attr_list,titles,
@@ -797,6 +801,9 @@ class GlobalMediaProperties:
         
         self.change_dialog.get_widget("type").set_text(Utils.get_mime_description(mtype))
         self.notes.get_buffer().set_text(self.object.getNote())
+        if self.object.getNote():
+            Utils.bold_label(self.notes_label)
+
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked"      : Utils.destroy_passed_object,
             "on_up_clicked"          : self.on_up_clicked,
@@ -810,6 +817,7 @@ class GlobalMediaProperties:
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
         self.redraw_attr_list()
+        self.display_refs()
 
     def on_up_clicked(self,obj):
         store,iter = self.atree.get_selected()
@@ -851,6 +859,11 @@ class GlobalMediaProperties:
             d = [attr.getType(),attr.getValue()]
             iter = self.atree.add(d,attr)
             self.amap[str(attr)] = iter
+        if self.alist:
+            Utils.bold_label(self.attr_label)
+        else:
+            Utils.unbold_label(self.attr_label)
+
 
     def button_press(self,obj):
         store,iter = self.refmodel.selection.get_selected()
@@ -865,29 +878,44 @@ class GlobalMediaProperties:
         titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Value'),2,100)]
         self.refmodel = ListModel.ListModel(self.change_dialog.get_widget("refinfo"),
                                             titles,event_func=self.button_press)
+        any = 0
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     self.refmodel.add([_("Person"),p.getId(),GrampsCfg.nameof(p)])
+                    any = 1
         for p in self.db.getFamilyMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     self.refmodel.add([_("Family"),p.getId(),Utils.family_name(p)])
+                    any = 1
         for key in self.db.getSourceKeys():
             p = self.db.getSource(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     self.refmodel.add([_("Source"),p.getId(),p.getTitle()])
+                    any = 1
         for key in self.db.getPlaceKeys():
             p = self.db.getPlace(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     self.refmodel.add([_("Place"),p.getId(),p.get_title()])
+                    any = 1
+        if any:
+            Utils.bold_label(self.refs_label)
+        else:
+            Utils.unbold_label(self.refs_label)
         
     def on_notebook_switch_page(self,obj,junk,page):
         if page == 3:
             self.display_refs()
+        t = self.notes.get_buffer()
+        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)
             
     def on_apply_clicked(self, obj):
         t = self.notes.get_buffer()
