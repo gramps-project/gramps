@@ -1,3 +1,8 @@
+2005-01-01 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetAncestralReport.py: Minor cleanup.
+	* src/plugins/DetDescendantReport.py: Convert to new scheme.
+	* src/plugins/FamilyGroup.py: Convert to new scheme.
+
 2004-12-31  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: remove name display options
 	* src/GrampsCfg.py: remove name displaying functions
