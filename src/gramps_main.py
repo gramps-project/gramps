@@ -105,9 +105,12 @@ class Gramps:
 
     def __init__(self,args):
 
-        self.program = gnome.program_init('gramps',const.version, 
-                    gnome.libgnome_module_info_get(), 
-                    args, const.popt_table)
+        try:
+            self.program = gnome.program_init('gramps',const.version, 
+                                              gnome.libgnome_module_info_get(),
+                                              args, const.popt_table)
+        except:
+            self.program = gnome.program_init('gramps',const.version)
         self.program.set_property('app-libdir','%s/lib' % const.prefixdir)
         self.program.set_property('app-datadir','%s/share/gramps' % const.prefixdir)
         self.program.set_property('app-sysconfdir','%s/etc' % const.prefixdir)
