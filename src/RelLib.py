@@ -217,6 +217,7 @@ class LdsOrd(SourceNote):
                 return 0
         if (self.famc != other.famc or
             self.place != other.place or
+            self.status != other.status or
             self.temple != other.temple or
             compare_dates(self.getDateObj(),other.getDateObj()) or
             len(self.getSourceRefList()) != len(other.getSourceRefList())):

@@ -512,7 +512,7 @@ class EditPerson:
         else:
             self.is_female.set_active (1)
 
-    def build_menu(self,list,task,opt_menu):
+    def build_menu(self,list,task,opt_menu,type):
         menu = gtk.Menu()
         index = 0
         for val in list:
@@ -523,25 +523,28 @@ class EditPerson:
             menu.append(menuitem)
             index = index + 1
         opt_menu.set_menu(menu)
-        opt_menu.set_history(self.bstat)
+        opt_menu.set_history(type)
                    
     def build_bap_menu(self):
-        self.build_menu(const.lds_baptism,self.set_lds_bap,self.ldsbapstat)
+        self.build_menu(const.lds_baptism,self.set_lds_bap,self.ldsbapstat,
+                        self.bstat)
 
     def build_endow_menu(self):
-        self.build_menu(const.lds_baptism,self.set_lds_endow,self.ldsendowstat)
+        self.build_menu(const.lds_baptism,self.set_lds_endow,self.ldsendowstat,
+                        self.estat)
 
     def build_seal_menu(self):
-        self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat)
+        self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat,
+                        self.seal_stat)
 
     def set_lds_bap(self,obj):
-        self.bstat = obj.get_data("val")
+        self.lds_baptism.setStatus(obj.get_data("val"))
 
     def set_lds_endow(self,obj):
-        self.estat = obj.get_data("val")
+        self.lds_endowment.setStatus(obj.get_data("val"))
 
     def set_lds_seal(self,obj):
-        self.seal_stat = obj.get_data("val")
+        self.lds_sealing.setStatus(obj.get_data("val"))
     
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
         row = self.etree.get_row_at(x,y)
