@@ -35,6 +35,8 @@ from intl import gettext as _
 
 t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)",
                               re.DOTALL|re.IGNORECASE|re.MULTILINE)
+t_keyword_line_re = re.compile(r'(.*name="keywords"\s+content=")([^\"]*)(".*)$',
+                              re.DOTALL|re.IGNORECASE|re.MULTILINE)
 
 #------------------------------------------------------------------------
 #
@@ -45,7 +47,8 @@ _top = [
     '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">\n',
     '<HTML>\n',
     '<HEAD>\n',
-    '  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">\n',
+    '  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">\n',
+    '  <META NAME="keywords" CONTENT="">\n',
     '  <TITLE>\n',
     '  </TITLE>\n',
     '  <STYLE type="text/css">\n',
@@ -78,6 +81,7 @@ class HtmlDoc(TextDoc.TextDoc):
         self.year = time.localtime(time.time())[0]
         self.ext = '.html'
         if source == None:
+            self.meta = ""
             self.copyright = 'Copyright &copy; %d' % (self.year)
             self.map = None
             self.f = None
@@ -90,6 +94,7 @@ class HtmlDoc(TextDoc.TextDoc):
             self.build_style_declaration()
             self.image_dir = "images"
         else:
+            self.meta = source.meta
             self.owner = source.owner
             self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
             self.map = source.map
@@ -117,6 +122,10 @@ class HtmlDoc(TextDoc.TextDoc):
     def set_image_dir(self,dirname):
         self.image_dir = dirname
 
+    def set_keywords(self,keywords):
+        self.meta = string.join(keywords,",")
+        print self.meta
+        
     def load_tpkg(self):
         start = re.compile(r"<!--\s*START\s*-->")
         stop = re.compile(r"<!--\s*STOP\s*-->")
@@ -210,7 +219,16 @@ class HtmlDoc(TextDoc.TextDoc):
         self.base = os.path.dirname(self.filename)
 
         self.f = open(self.filename,"w")
-        self.f.write(self.file_header)
+        if self.meta:
+            match = t_keyword_line_re.match(self.file_header)
+            if match:
+                g = match.groups()
+                line = "%s%s%s" % (g[0],self.meta,g[2])
+            else:
+                line = self.file_header
+        else:
+            line = self.file_header
+        self.f.write(line)
         self.f.write(self.style_declaration)
 
     def build_header(self):
