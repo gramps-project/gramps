@@ -1,4 +1,7 @@
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ImageSelect.py (on_photolist_drag_data_get): forgot to remove print statement.
+	
+2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/DdTargets.py: added dnd type for media objects
 	* src/ImageSelect.py: altered dnd code to use gramps specific dnd target
 	when dnd is used between gramps windows.
