@@ -332,7 +332,11 @@ class SingleDate:
             _("bef.")   : before,
             _("after")  : after,
             _("aft.")   : after,
-            _("aft")    : after }
+            _("aft")    : after,
+            # And the untranslated versions for backward compatability
+            "abt"	: about,
+            "after"	: after,
+            "before"	: before }
 
     modifiers = "(" + \
                 _("abt\.?") + '|' + \
