@@ -496,8 +496,7 @@ def on_ok_button1_clicked(obj):
     if filename == "" or filename == None:
         return
 
-    if os.path.isdir(filename):
-        new_database_response(0)
+    new_database_response(0)
     
     if getoldrev.get_active():
         vc = VersionControl.RcsVersionControl(filename)
