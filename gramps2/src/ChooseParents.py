@@ -181,12 +181,14 @@ class ChooseParents:
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(0)
         column.set_min_width(225)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
         column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(1)
         column.set_min_width(75)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
@@ -291,7 +293,7 @@ class ChooseParents:
 
     def redrawf(self):
         """Redraws the potential father list"""
-        self.father_model = PeopleModel.PeopleModel(self.db, self.father_filter)
+        self.father_model = gtk.TreeModelSort(PeopleModel.PeopleModel(self.db, self.father_filter))
         self.father_list.set_model(self.father_model)
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
@@ -300,7 +302,7 @@ class ChooseParents:
 
     def redrawm(self):
         """Redraws the potential mother list"""
-        self.mother_model = PeopleModel.PeopleModel(self.db, self.mother_filter)
+        self.mother_model = gtk.TreeModelSort(PeopleModel.PeopleModel(self.db, self.mother_filter))
         self.mother_list.set_model(self.mother_model)
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))

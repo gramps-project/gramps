@@ -77,7 +77,7 @@ class PlaceView:
 
         self.active = None
 
-        self.model = DisplayModels.PlaceModel(self.db)
+        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
@@ -94,9 +94,9 @@ class PlaceView:
             
         column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_clickable(gtk.TRUE)
         column.set_min_width(225)
-        #column.set_sort_column_id(0)
+        column.set_sort_column_id(0)
         self.list.append_column(column)
         self.columns = [column]
 
@@ -109,7 +109,7 @@ class PlaceView:
             column.set_resizable(gtk.TRUE)
             column.set_clickable(gtk.TRUE)
             column.set_min_width(75)
-            column.set_sort_column_id(0)
+            column.set_sort_column_id(index)
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -123,14 +123,9 @@ class PlaceView:
 
     def build_tree(self):
         self.list.set_model(None)
-        self.model = DisplayModels.PlaceModel(self.parent.db)
-
+        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
         self.list.set_model(self.model)
-
         self.selection = self.list.get_selection()
-        #self.selection.connect('changed',self.row_changed)
-        #self.list.connect('row_activated', self.alpha_event)
-        #self.model.connect('button-press-event',self.on_plist_button_press)        
 
     def load_places(self,id=None):
         """Rebuilds the entire place view. This can be very time consuming

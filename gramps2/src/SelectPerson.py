@@ -42,7 +42,7 @@ import gtk.glade
 import RelLib
 import const
 import Utils
-import ListModel
+import PeopleModel
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +53,7 @@ class SelectPerson:
 
     def __init__(self,db,title,flabel="",filter=None,parent_window=None):
 
+        self.renderer = gtk.CellRendererText()
         self.db = db
         self.filter = filter
         gladefile = "%s/choose.glade" % const.rootDir
@@ -60,9 +61,7 @@ class SelectPerson:
         self.top = self.glade.get_widget('select')
         title_label = self.glade.get_widget('title')
         self.filter_select = self.glade.get_widget('filter')
-        self.female = self.glade.get_widget('female')
-        self.male =  self.glade.get_widget('male')
-        self.unknown =  self.glade.get_widget('unknown')
+        self.plist =  self.glade.get_widget('plist')
         self.notebook =  self.glade.get_widget('notebook')
         if filter:
             self.use_filter = 1
@@ -71,12 +70,7 @@ class SelectPerson:
 
         Utils.set_titles(self.top,title_label,title)
 
-        titles = [(_('Name'),3,150),(_('ID'),1,50), (_('Birth date'),4,100),
-                  ('',0,0),('',0,0)]
-
-        self.fmodel = ListModel.ListModel(self.female,titles)
-        self.mmodel = ListModel.ListModel(self.male,titles)
-        self.umodel = ListModel.ListModel(self.unknown,titles)
+        self.model = PeopleModel.PeopleModel(self.db)
 
         if filter:
             self.filter_select.set_label(flabel)
@@ -86,7 +80,9 @@ class SelectPerson:
         else:
             self.filter_select.hide()
 
+        self.add_columns(self.plist)
         self.redraw()
+        self.plist.set_model(self.model)
         self.top.show()
 
         if parent_window:
@@ -95,18 +91,29 @@ class SelectPerson:
     def redraw_cb(self,obj):
         self.use_filter = self.filter_select.get_active()
         self.redraw()
+
+    def add_columns(self,tree):
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(0)
+        column.set_min_width(225)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
+        column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(1)
+        column.set_min_width(75)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
+        #column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        tree.append_column(column)
         
     def redraw(self):
-        
-        self.fmodel.clear()
-        self.fmodel.new_model()
 
-        self.mmodel.clear()
-        self.mmodel.new_model()
-
-        self.umodel.clear()
-        self.umodel.new_model()
-
+        return
+    
         for key in self.db.sort_person_keys():
             person = self.db.get_person(key)
             if self.use_filter and not self.filter(person):
@@ -114,33 +121,28 @@ class SelectPerson:
                 
             data = self.db.get_person_display(key)
             gender = person.get_gender()
-            if gender == RelLib.Person.male:
+            if gender == RelLib.Person.plist:
                 self.mmodel.add([data[0],data[1],data[3],data[5],data[6]],key)
-            elif gender == RelLib.Person.female:
+            elif gender == RelLib.Person.feplist:
                 self.fmodel.add([data[0],data[1],data[3],data[5],data[6]],key)
             else:
                 self.umodel.add([data[0],data[1],data[3],data[5],data[6]],key)
 
-        self.fmodel.connect_model()
-        self.mmodel.connect_model()
-        self.umodel.connect_model()
-        
+    def select_function(self,store,path,iter,id_list):
+        id_list.append(self.model.get_value(iter,1))
+
+    def get_selected_ids(self):
+        mlist = []
+        self.plist.get_selection().selected_foreach(self.select_function,mlist)
+        return mlist
+
     def run(self):
         val = self.top.run()
-        page = self.notebook.get_current_page()
-
         if val == gtk.RESPONSE_OK:
-	    if page == 0:
-                lmodel = self.fmodel
-            elif page == 1:
-                lmodel = self.mmodel
-            else:
-                lmodel = self.umodel
 
-            model,iter = lmodel.get_selected()
-            if iter:
-                id = lmodel.get_object(iter)
-                return_value = self.db.get_person(id)
+            idlist = self.get_selected_ids()
+            if idlist and idlist[0]:
+                return_value = self.db.get_person(idlist[0])
             else:
                 return_value = None
             self.top.destroy()

@@ -2567,15 +2567,20 @@ class GrampsDB:
         self.metadata['default'] = str(person.get_id())
 #        if person:
 #            self.default.set_ancestor(1)
-    
+
+    def set_default_person_id(self,id):
+        """sets the default Person to the passed instance"""
+        assert(type(id) == types.StringType or type(id) == types.UnicodeType)
+        self.metadata['default'] = id
+
     def get_default_person(self):
         """returns the default Person of the database"""
-        if self.metadata:
-            if self.metadata.has_key('default'):
-                person = Person()
-                data = self.person_map.get(self.metadata['default'])
-                person.unserialize(data)
-                return person
+        if self.metadata and self.metadata.has_key('default'):
+            person = Person()
+            id = self.metadata['default']
+            data = self.person_map.get(str(id))
+            person.unserialize(data)
+            return person
         return None
 
     def get_person(self,id):

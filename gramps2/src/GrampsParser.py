@@ -200,7 +200,7 @@ class GrampsParser:
         if self.tempDefault != None:
             id = self.tempDefault
             if self.db.has_person_id(id) and self.db.get_default_person() == None:
-                self.db.set_default_person(id)
+                self.db.set_default_person_id(id)
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -550,8 +550,8 @@ class GrampsParser:
         if attrs.has_key("cformat"):
             d.set_calendar(Calendar.find_calendar(attrs['calendar']))
 
-        d.get_start_date().setIsoDate(attrs['start'])
-        d.get_stop_date().setIsoDate(attrs['stop'])
+        d.get_start_date().set_iso_date(attrs['start'])
+        d.get_stop_date().set_iso_date(attrs['stop'])
         d.range = 1
         
     def start_dateval(self,attrs):
@@ -570,12 +570,12 @@ class GrampsParser:
         if attrs.has_key("cformat"):
             d.set_calendar(Calendar.find_calendar(attrs['cformat']))
 
-        d.get_start_date().setIsoDate(attrs['val'])
+        d.get_start_date().set_iso_date(attrs['val'])
         
         if attrs.has_key("type"):
-            d.get_start_date().setMode(attrs['type'])
+            d.get_start_date().set_mode(attrs['type'])
         else:
-            d.get_start_date().setMode(None)
+            d.get_start_date().set_mode(None)
 
     def start_datestr(self,attrs):
         if self.source_ref:

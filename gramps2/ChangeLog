@@ -5,6 +5,8 @@
 	* src/PeopleModel.py: handle sorting of columns
 	* src/ChooseParents.py: handle sorting of columns
 	* src/SelectPerson.py: use PersonModel
+	* src/SelectChild.py: use PersonModel
+	* src/plugins/FilterEditor.py: use new SelectPerson
 
 2004-03-22  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Fix colliding name.

@@ -121,9 +121,6 @@ class Gramps:
                            "is rarely a wise idea, and can open up potential "
                            "security risks."))
 
-        # This will never contain data - It will be replaced by either
-        # a GrampsXML
-
         self.history = []
         self.mhistory = []
         self.hindex = -1
@@ -244,9 +241,12 @@ class Gramps:
             self.change_active_person, self.load_person
             )
         
-        self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop,self.update_display)
-        self.source_view = SourceView.SourceView(self,self.db,self.gtop,self.update_display)
-        self.media_view  = MediaView.MediaView(self,self.db,self.gtop,self.update_display)
+        self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop,
+                                               self.update_display)
+        self.source_view = SourceView.SourceView(self,self.db,self.gtop,
+                                                 self.update_display)
+        self.media_view  = MediaView.MediaView(self,self.db,self.gtop,
+                                               self.update_display)
 
         self.add_button = self.gtop.get_widget('addbtn')
         self.add_item = self.gtop.get_widget('add_item')
@@ -312,7 +312,6 @@ class Gramps:
             "on_filter1_activate" : self.on_filter_activate,
             "on_places_activate" : self.on_places_activate,
             "on_preferences1_activate" : self.on_preferences_activate,
-            "on_reload_plugins_activate" : Plugins.reload_plugins,
             "on_reports_clicked" : self.on_reports_clicked,
             "on_revert_activate" : self.on_revert_activate,
             "on_show_plugin_status" : self.on_show_plugin_status,
@@ -919,7 +918,10 @@ class Gramps:
             
     def full_update(self):
         """Brute force display update, updating all the pages"""
-        self.update_display(1)
+        self.place_view.change_db(self.db)
+        self.people_view.change_db(self.db)
+        self.source_view.change_db(self.db)
+        self.media_view.change_db(self.db)
         self.toolbar.set_style(GrampsCfg.toolbar)
 
     def update_display(self,changed):
@@ -1300,7 +1302,6 @@ class Gramps:
         self.people_view.remove_from_history(self.active_person)
         self.db.remove_person_id(self.active_person.get_id())
         self.people_view.remove_from_person_list(self.active_person)
-        #self.people_view.person_model.sort_column_changed()
 
         if self.hindex >= 0:
             self.active_person = self.db.get_person(self.history[self.hindex])
@@ -1535,13 +1536,11 @@ class Gramps:
     def update_after_edit(self,epo,change=1):
         if epo:
             if change:
-                print "change"
                 self.people_view.redisplay_person_list(epo.person)
             else:
-                print "no change"
                 iter = self.people_view.person_model.get_iter((0,))
                 id = epo.person.get_id()
-                path = self.people_view.person_model.find_path(id)
+                path = self.people_view.person_model.on_get_path(id)
                 self.people_view.person_model.row_changed(path,iter)
         self.update_display(0)
 
