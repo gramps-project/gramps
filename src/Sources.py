@@ -247,7 +247,6 @@ class SourceEditor:
         self.conf_menu.set_history(srcref.getConfidence())
         self.list = []
 
-
         self.title_menu.list.select_item(0)
         self.title_menu.list.remove_items(self.title_menu.list.get_selection())
         
@@ -259,7 +258,7 @@ class SourceEditor:
         else:
             self.active_source = None
 
-        self.draw()
+        self.draw(self.active_source)
         self.set_button()
         self.sourceDisplay.show()
 
@@ -312,10 +311,13 @@ class SourceEditor:
             if self.active_source == src:
                 sel_child = c
 
-        self.title_menu.list.append_items(self.list)
-        
-        if sel_child:
-            self.title_menu.list.select_child(sel_child)
+        if len(self.list) > 0:
+            self.title_menu.list.append_items(self.list)
+            self.title_menu.set_sensitive(1)
+            if sel_child:
+                self.title_menu.list.select_child(sel_child)
+        else:
+            self.title_menu.set_sensitive(0)
 
     def on_sourceok_clicked(self,obj):
 

@@ -912,6 +912,8 @@ class Name(DataObj):
             return 0
         if self.Surname != other.Surname:
             return 0
+        if self.Prefix != other.Prefix:
+            return 0
         if self.Suffix != other.Suffix:
             return 0
         if self.Title != other.Title:

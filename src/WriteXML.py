@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000, 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ import string
 import time
 import shutil
 import os
+import codecs
 
 #-------------------------------------------------------------------------
 #
@@ -100,7 +101,7 @@ class XmlWriter:
 
     def __init__(self,db,callback,strip_photos,compress=1):
         """
-        Initializes, but nots not write, and XML file.
+        Initializes, but does not write, an XML file.
 
         db - database to write
         callback - function to provide progress indication
@@ -114,39 +115,43 @@ class XmlWriter:
         
     def write(self,filename):
         """
-        Write the database to the specfied file.
+        Write the database to the specified file.
         """
         self.fileroot = os.path.dirname(filename)
         if self.compress:
             try:
-                self.g = gzip.open(filename,"wb")
+                g = gzip.open(filename,"wb")
             except:
-                self.g = open(filename,"w")
+                g = open(filename,"w")
         else:
-            self.g = open(filename,"w")
+            g = open(filename,"w")
+        self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()
-        self.g.close()
+        g.close()
 
     def write_handle(self,handle):
         """
-        Write the database to the specfied file handle.
+        Write the database to the specified file handle.
         """
 
         use_g = 0
         if self.compress:
             try:
-                self.g = gzip.GzipFile(mode="wb",fileobj=handle)
+                g = gzip.GzipFile(mode="wb",fileobj=handle)
                 use_g = 1
             except:
-                self.g = handle
+                g = handle
         else:
-            self.g = handle
+            g = handle
+
+        self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()
+        self.g.close()
         if use_g:
-            self.g.close()
-
+            g.close()
+            
     def write_xml_data(self):
 
         date = string.split(time.ctime(time.time()))

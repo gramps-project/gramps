@@ -266,8 +266,15 @@ class ChooseParents:
         Called with the OK button nis pressed. Saves the selected people as parents
         of the main perosn.
         """
-        mother_rel = const.childRelations[self.mother_rel.get_text()]
-        father_rel = const.childRelations[self.father_rel.get_text()]
+        try:
+            mother_rel = const.childRelations[self.mother_rel.get_text()]
+        except KeyError:
+            mother_rel = const.childRelations["Birth"]
+
+        try:
+            father_rel = const.childRelations[self.father_rel.get_text()]
+        except KeyError:
+            father_rel = const.childRelations["Birth"]
 
         if self.father or self.mother:
             if self.mother and not self.father:
