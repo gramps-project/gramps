@@ -30,7 +30,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import os
-import string
 
 #-------------------------------------------------------------------------
 #
@@ -664,7 +663,7 @@ class BareReportDialog:
         if self.extra_textbox:
             b = self.extra_textbox.get_buffer()
             text_val = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
-            self.report_text = string.split(text_val,'\n')
+            self.report_text = text_val.split('\n')
         else:
             self.report_text = ""
         
@@ -1310,7 +1309,7 @@ class TemplateParser(handler.ContentHandler):
             
 try:
     parser = make_parser()
-    apath = const.template_dir
+    spath = const.template_dir
     parser.setContentHandler(TemplateParser(_template_map,spath))
     parser.parse("file://%s/templates.xml" % spath)
     parser = make_parser()
