@@ -1,3 +1,7 @@
+2005-03-04 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/GenericFilter.py (HasAttribute.apply): Make work when no value
+	is given; (HasFamilyAttribute.apply): Make work when no value is given.
+
 2005-03-03 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GenericFilter.py (HasAttribute.apply): Fix the rule.
 	(HasFamilyAttribute.apply): Fix the rule.
