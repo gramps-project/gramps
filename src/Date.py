@@ -41,12 +41,12 @@ class Date:
     normal = 0
 
     from_str = _("(from|between|bet)")
-    to_str = _("(and|to)")
+    to_str = _("(and|to|-)")
     
-    efmt = re.compile(r"\s*(from|between|bet)\s+(.+)\s+(and|to)\s+(.+)\s*$",
+    efmt = re.compile(r"\s*(from|between|bet)\.?\s+(.+)\s+(and|to)\s+(.+)\s*$",
                       re.IGNORECASE)
 
-    fmt = re.compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
+    fmt = re.compile(r"\s*" + from_str + r"\.?\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
                      re.IGNORECASE)
 
     def __init__(self):
