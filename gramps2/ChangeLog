@@ -1,3 +1,14 @@
+2005-01-22 Eero Tamminen <eerot@sf>
+	* src/plugins/StatisticsChart.py:
+	  - Move data item options to separate tab in report GUI
+	  - Each data item option can now be selected separately and
+	    therefore they have separate option names
+	    - Note: Generating separate Chart for data options maybe be
+	      broken because I couldn't test it because of BaseDoc problems
+	  - Put options with predefined values to separate class
+	    (like in GraphViz.py)
+	  - Add non-localized option value descriptions for CLI
+
 2005-01-21 Eero Tamminen <eerot@sf>
 	* src/plugins/GraphViz.py: Change CLI help to use non-localized
 	  option descriptions
