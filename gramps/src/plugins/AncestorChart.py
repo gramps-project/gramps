@@ -282,7 +282,7 @@ def report(database,person):
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-    FindDoc.get_draw_doc_menu(topDialog.get_widget("format"),0,option_switch)
+    FindDoc.get_draw_doc_menu(topDialog.get_widget("format"))
 
     styles.clear()
     f = FontStyle()

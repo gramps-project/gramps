@@ -148,7 +148,7 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
 # 
 #
 #-------------------------------------------------------------------------
-def get_draw_doc_menu(main_menu,callback,obj=None):
+def get_draw_doc_menu(main_menu,callback=None,obj=None):
 
     index = 0
     myMenu = gtk.GtkMenu()
@@ -162,6 +162,7 @@ def get_draw_doc_menu(main_menu,callback,obj=None):
         myMenu.append(menuitem)
         if name == Config.output_preference:
             myMenu.set_active(index)
+        if callback:
             callback(menuitem)
         index = index + 1
     main_menu.set_menu(myMenu)
