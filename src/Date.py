@@ -454,9 +454,9 @@ class Date:
         """
         Returns True if the date is a regular date.
         
-        The regular date is a single exact, i.e. not text-only, not a range 
-        or a span, not estimated/calculated, not about/before/after date,
-        and having year, month, and day other than zero.
+        The regular date is a single exact date, i.e. not text-only, not 
+        a range or a span, not estimated/calculated, not about/before/after 
+        date, and having year, month, and day all non-zero.
         """
         return self.modifier == MOD_NONE and self.quality == QUAL_NONE\
                     and self.get_year_valid() and self.get_month_valid\
