@@ -52,7 +52,7 @@ from intl import gettext as _
 #------------------------------------------------------------------------
 class FtmDescendantReport(Report.Report):
 
-    def __init__(self,database,person,output,max,doc,pgbrk):
+    def __init__(self,database,person,max,pgbrk,doc,output):
         self.anc_map = {}
         self.gen_map = {}
         self.database = database
@@ -60,7 +60,11 @@ class FtmDescendantReport(Report.Report):
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
-        self.doc.open(output)
+        if output:
+            self.standalone = 1
+            self.doc.open(output)
+        else:
+            self.standalone = 0
         self.sref_map = {}
         self.sref_index = 1
         
@@ -215,7 +219,8 @@ class FtmDescendantReport(Report.Report):
                     self.print_children(person)
 
         self.write_endnotes()
-        self.doc.close()
+        if self.standalone:
+            self.doc.close()
 
     def write_endnotes(self):
         keys = self.sref_map.keys()
@@ -1119,9 +1124,58 @@ class FtmDescendantReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
+def _make_default_style(self):
+    """Make the default output style for the FTM Style Descendant report."""
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(1)
+    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set(pad=0.5)
+    para.set_description(_('The style used for the title of the page.'))
+    self.default_style.add_style("Title",para)
+    
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(2)
+    para.set(pad=0.5)
+    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_description(_('The style used for the generation header.'))
+    self.default_style.add_style("Generation",para)
+    
+    para = TextDoc.ParagraphStyle()
+    para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+    para.set_description(_('The basic style used for the text display.'))
+    self.default_style.add_style("Entry",para)
+    
+    para = TextDoc.ParagraphStyle()
+    para.set(lmargin=1.0,pad=0.05)
+    para.set_description(_('The basic style used for the text display.'))
+    self.default_style.add_style("Details",para)
+    
+    para = TextDoc.ParagraphStyle()
+    para.set(lmargin=1.0,pad=0.25)
+    para.set_description(_('The basic style used for the text display.'))
+    self.default_style.add_style("SubEntry",para)
+    
+    para = TextDoc.ParagraphStyle()
+    para.set(pad=0.05)
+    para.set_description(_('The basic style used for the text display.'))
+    self.default_style.add_style("Endnotes",para)
+
+
+#------------------------------------------------------------------------
+#
+# Dialog for a standalone report
+#
+#------------------------------------------------------------------------
 class FtmDescendantReportDialog(Report.TextReportDialog):
     def __init__(self,database,person):
         Report.TextReportDialog.__init__(self,database,person)
+        self.make_default_style = _make_default_style
 
     #------------------------------------------------------------------------
     #
@@ -1145,56 +1199,13 @@ class FtmDescendantReportDialog(Report.TextReportDialog):
         """Where to save styles for this report."""
         return "ftm_descendant_report.xml"
     
-    def make_default_style(self):
-        """Make the default output style for the FTM Style Descendant report."""
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
-        para.set(pad=0.5)
-        para.set_description(_('The style used for the title of the page.'))
-        self.default_style.add_style("Title",para)
-    
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(2)
-        para.set(pad=0.5)
-        para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the generation header.'))
-        self.default_style.add_style("Generation",para)
-    
-        para = TextDoc.ParagraphStyle()
-        para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
-        para.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Entry",para)
-
-        para = TextDoc.ParagraphStyle()
-        para.set(lmargin=1.0,pad=0.05)
-        para.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Details",para)
-
-        para = TextDoc.ParagraphStyle()
-        para.set(lmargin=1.0,pad=0.25)
-        para.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("SubEntry",para)
-
-        para = TextDoc.ParagraphStyle()
-        para.set(pad=0.05)
-        para.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Endnotes",para)
-
-
     def make_report(self):
         """Create the object that will produce the FTM Style Descendant Report.
         All user dialog has already been handled and the output file
         opened."""
         try:
-            MyReport = FtmDescendantReport(self.db, self.person, self.target_path,
-                                      self.max_gen, self.doc, self.pg_brk)
+            MyReport = FtmDescendantReport(self.db, self.person,
+                self.max_gen, self.pg_brk, self.doc, self.target_path)
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
@@ -1208,12 +1219,116 @@ class FtmDescendantReportDialog(Report.TextReportDialog):
 
 #------------------------------------------------------------------------
 #
-# 
+# Standalone report function
 #
 #------------------------------------------------------------------------
 def report(database,person):
     FtmDescendantReportDialog(database,person)
 
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+class FakeObj(object):
+    pass
+
+fo = FakeObj()
+fo.default_style = TextDoc.StyleSheet()
+
+_make_default_style(fo)
+_style = fo.default_style
+_max_gen = 10
+_pg_brk = 0
+
+def options_dialog(database,person):
+    FtmDescendantBareReportDialog(database,person) 
+
+def get_style():
+    return _style
+
+def get_options():
+    return [ None, _max_gen, _pg_brk ]
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class FtmDescendantBareReportDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,get_opt,get_stl):
+
+        options = get_opt()
+        if options[0]:
+            self.person = options[0]
+        else:
+            self.person = person
+        Report.BareReportDialog.__init__(self,database,self.person)
+        self.make_default_style = _make_default_style
+        self.max_gen = options[1] 
+        self.pg_brk = options[2]
+        self.selected_style = get_stl()
+
+        self.generations_spinbox.set_value(self.max_gen)
+        self.pagebreak_checkbox.set_active(self.pg_brk)
+        
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("FTM Style Descendant Report"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("FTM Style Descendant Report for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return "ftm_descendant_report.xml"
+    
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        # Clean up the dialog object
+        self.window.destroy()
+    
+    def get_options(self):
+        return [ self.person, self.max_gen, self.pg_brk ]
+    
+    def get_style(self):
+        return self.selected_style
+
+
+def write_book_item(database,person,doc,options):
+    """Write the FTM Style Descendant Report options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = options[0]
+        max_gen = options[1]
+        pg_brk = options[2]
+        MyReport = FtmDescendantReport(database, person, 
+            max_gen, pg_brk, doc, None )
+        MyReport.write_report()
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #
@@ -1310,7 +1425,7 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -1323,3 +1438,12 @@ register_report(
     author_email="shura@alex.neuro.umn.edu"
     )
 
+# register_book_item( name, category, dialog, write_item, get_options, get_style)
+register_book_item( 
+    _("FTM Style Descendant Report"), 
+    _("Text"),
+    FtmDescendantBareReportDialog,
+    write_book_item,
+    get_options,
+    get_style
+)

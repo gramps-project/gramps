@@ -227,6 +227,7 @@ class BareReportDialog:
         self.setup_html_frame()
         self.setup_report_options_frame()
         self.setup_other_frames()
+        self.setup_center_person()
         self.window.show_all()
 
     #------------------------------------------------------------------------
@@ -259,6 +260,14 @@ class BareReportDialog:
         Report for %s'."""
         return(name)
         
+    def get_stylesheet_savefile(self):
+        """Where should new styles for this report be saved?  This is
+        the name of an XML file that will be located in the ~/.gramps
+        directory.  This file does not have to exist; it will be
+        created when needed.  All subclasses should probably override
+        this function."""
+        return "basic_report.xml"
+
     def get_report_filters(self):
         """Return the data used to fill out the 'filter' combo box in
         the report options box.  The return value is the list of
@@ -334,6 +343,34 @@ class BareReportDialog:
         if tooltip:
             self.add_tooltip(widget,tooltip)
         
+    #------------------------------------------------------------------------
+    #
+    # Functions to create a default output style.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Create the default style to be used by the associated report.  This
+        routine is a default implementation and should be overridden."""
+        font = TextDoc.FontStyle()
+        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
+        para = TextDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(1)
+        para.set(pad=0.5)
+        self.default_style.add_style("Title",para)
+
+    def build_style_menu(self):
+        """Build a menu of style sets that are available for use in
+        this report.  This menu will always have a default style
+        available, and will have any other style set name that the
+        user has previously created for this report.  This menu is
+        created here instead of inline with the rest of the style
+        frame, because it must be recreated to reflect any changes
+        whenever the user closes the style editor dialog."""
+        style_sheet_map = self.style_sheet_list.get_style_sheet_map()
+        myMenu = Utils.build_string_optmenu(style_sheet_map, "default")
+        self.style_menu.set_menu(myMenu)
+
     #------------------------------------------------------------------------
     #
     # Functions related to setting up the dialog window.
@@ -508,11 +545,70 @@ class BareReportDialog:
                     table.attach(widget,2,3,row,row+1)
                 row = row + 1
 
+    def setup_style_frame(self):
+        """Set up the style frame of the dialog.  This function relies
+        on other routines create the default style for this report,
+        and to read in any user defined styles for this report.  It
+        the builds a menu of all the available styles for the user to
+        choose from."""
+
+        # Styles Frame
+        label = gtk.Label("%s:" % _("Styles"))
+        label.set_alignment(0.0,0.5)
+
+        self.style_menu = gtk.OptionMenu()
+        self.style_button = gtk.Button("%s..." % _("Style Editor"))
+        self.style_button.connect('clicked',self.on_style_edit_clicked)
+
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
+        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.col += 1
+        
+        # Build the default style set for this report.
+        self.default_style = TextDoc.StyleSheet()
+        self.make_default_style()
+
+        # Build the initial list of available styles sets.  This
+        # includes the default style set and any style sets saved from
+        # previous invocations of gramps.
+        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
+                                                       self.default_style)
+
+        # Now build the actual menu.
+        self.build_style_menu()
+
+    def setup_center_person(self): 
+        center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
+        center_label.set_use_markup(gtk.TRUE)
+        center_label.set_alignment(0.0,0.5)
+        self.tbl.set_border_width(12)
+        self.tbl.attach(center_label,0,4,1,2,gtk.SHRINK|gtk.FILL)
+        
+        name = self.person.getPrimaryName().getRegularName()
+        self.person_label = gtk.Label( "<i>%s</i>" % name )
+        self.person_label.set_use_markup(gtk.TRUE)
+        self.person_label.set_alignment(0.0,0.5)
+        self.tbl.attach(self.person_label,2,3,2,3)
+        
+        change_button = gtk.Button("%s..." % _('_Change') )
+        change_button.connect('clicked',self.on_center_person_change_clicked)
+        self.tbl.attach(change_button,3,4,2,3,gtk.SHRINK|gtk.SHRINK)
+
+
     #------------------------------------------------------------------------
     #
     # Functions related to retrieving data from the dialog window
     #
     #------------------------------------------------------------------------
+    def parse_style_frame(self):
+        """Parse the style frame of the dialog.  Save the user
+        selected output style for later use.  Note that this routine
+        retrieves a value whether or not the menu is displayed on the
+        screen.  The subclass will know whether this menu was enabled.
+        This is for simplicity of programming."""
+        self.selected_style = self.style_menu.get_menu().get_active().get_data("d")
+
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the
         user selected choices for later use.  Note that this routine
@@ -563,33 +659,34 @@ class BareReportDialog:
         self.window.destroy()
 
     def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices.  Validate
-        the output file name before doing anything else.  If there is
-        a file name, gather the options and create the report."""
-
-        # Is there a filename?  This should also test file permissions, etc.
-        if not self.parse_target_frame():
-            return
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
 
         # Preparation
-        self.parse_format_frame()
         self.parse_style_frame()
-        self.parse_paper_frame()
-        self.parse_html_frame()
         self.parse_report_options_frame()
         self.parse_other_frames()
         
-        # Create the output document.
-        self.make_document()
-        
-        # Create the report object and product the report.
-        try:
-            self.make_report()
-        except (IOError,OSError),msg:
-            ErrorDialog(str(msg))
-            
         # Clean up the dialog object
         self.window.destroy()
+
+    def on_style_edit_clicked(self, obj):
+        """The user has clicked on the 'Edit Styles' button.  Create a
+        style sheet editor object and let them play.  When they are
+        done, the previous routine will be called to update the dialog
+        menu for selecting a style."""
+        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
+
+    def on_center_person_change_clicked(self,obj):
+        import SelectPerson
+        sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
+        new_person = sel_person.run()
+        if new_person:
+            self.person = new_person
+            new_name = new_person.getPrimaryName().getRegularName()
+	    if new_name:
+                self.person_label.set_text( "<i>%s</i>" % new_name )
+                self.person_label.set_use_markup(gtk.TRUE)
 
     #------------------------------------------------------------------------
     #
@@ -642,6 +739,7 @@ class ReportDialog(BareReportDialog):
     def setup_post_process(self):
         pass
 
+    def setup_center_person(self): pass
 
     #------------------------------------------------------------------------
     #
@@ -662,14 +760,6 @@ class ReportDialog(BareReportDialog):
         may also control checking of the selected filename."""
         return None
     
-    def get_stylesheet_savefile(self):
-        """Where should new styles for this report be saved?  This is
-        the name of an XML file that will be located in the ~/.gramps
-        directory.  This file does not have to exist; it will be
-        created when needed.  All subclasses should probably override
-        this function."""
-        return "basic_report.xml"
-
     def get_default_basename(self):
         """What should the default name be?
         """
@@ -705,34 +795,6 @@ class ReportDialog(BareReportDialog):
         remembered for this session of gramps unless the user saves
         his/her preferences."""
         GrampsCfg.report_dir = value
-
-    #------------------------------------------------------------------------
-    #
-    # Functions to create a default output style.
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self):
-        """Create the default style to be used by the associated report.  This
-        routine is a default implementation and should be overridden."""
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set(pad=0.5)
-        self.default_style.add_style("Title",para)
-
-    def build_style_menu(self):
-        """Build a menu of style sets that are available for use in
-        this report.  This menu will always have a default style
-        available, and will have any other style set name that the
-        user has previously created for this report.  This menu is
-        created here instead of inline with the rest of the style
-        frame, because it must be recreated to reflect any changes
-        whenever the user closes the style editor dialog."""
-        style_sheet_map = self.style_sheet_list.get_style_sheet_map()
-        myMenu = Utils.build_string_optmenu(style_sheet_map, "default")
-        self.style_menu.set_menu(myMenu)
 
     #------------------------------------------------------------------------
     #
@@ -853,39 +915,6 @@ class ReportDialog(BareReportDialog):
                 path = os.path.normpath("%s/%s%s" % (path,base,ext))
                 self.target_fileentry.set_filename(path)
 
-
-    def setup_style_frame(self):
-        """Set up the style frame of the dialog.  This function relies
-        on other routines create the default style for this report,
-        and to read in any user defined styles for this report.  It
-        the builds a menu of all the available styles for the user to
-        choose from."""
-
-        # Styles Frame
-        label = gtk.Label("%s:" % _("Styles"))
-        label.set_alignment(0.0,0.5)
-
-        self.style_menu = gtk.OptionMenu()
-        self.style_button = gtk.Button("%s..." % _("Style Editor"))
-        self.style_button.connect('clicked',self.on_style_edit_clicked)
-
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
-        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.col += 1
-        
-        # Build the default style set for this report.
-        self.default_style = TextDoc.StyleSheet()
-        self.make_default_style()
-
-        # Build the initial list of available styles sets.  This
-        # includes the default style set and any style sets saved from
-        # previous invocations of gramps.
-        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
-                                                       self.default_style)
-
-        # Now build the actual menu.
-        self.build_style_menu()
 
     def setup_output_notebook(self):
         """Set up the output notebook of the dialog.  This sole
@@ -1077,14 +1106,6 @@ class ReportDialog(BareReportDialog):
         selected output format for later use."""
         self.format = self.format_menu.get_menu().get_active().get_data("name")
 
-    def parse_style_frame(self):
-        """Parse the style frame of the dialog.  Save the user
-        selected output style for later use.  Note that this routine
-        retrieves a value whether or not the menu is displayed on the
-        screen.  The subclass will know whether this menu was enabled.
-        This is for simplicity of programming."""
-        self.selected_style = self.style_menu.get_menu().get_active().get_data("d")
-
     def parse_paper_frame(self):
         """Parse the paper frame of the dialog.  Save the user
         selected choices for later use.  Note that this routine
@@ -1130,17 +1151,34 @@ class ReportDialog(BareReportDialog):
             self.template_name = None
 
 
-    #------------------------------------------------------------------------
-    #
-    # Callback functions from the dialog
-    #
-    #------------------------------------------------------------------------
-    def on_style_edit_clicked(self, obj):
-        """The user has clicked on the 'Edit Styles' button.  Create a
-        style sheet editor object and let them play.  When they are
-        done, the previous routine will be called to update the dialog
-        menu for selecting a style."""
-        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices.  Validate
+        the output file name before doing anything else.  If there is
+        a file name, gather the options and create the report."""
+
+        # Is there a filename?  This should also test file permissions, etc.
+        if not self.parse_target_frame():
+            return
+
+        # Preparation
+        self.parse_format_frame()
+        self.parse_style_frame()
+        self.parse_paper_frame()
+        self.parse_html_frame()
+        self.parse_report_options_frame()
+        self.parse_other_frames()
+        
+        # Create the output document.
+        self.make_document()
+        
+        # Create the report object and product the report.
+        try:
+            self.make_report()
+        except (IOError,OSError),msg:
+            ErrorDialog(str(msg))
+            
+        # Clean up the dialog object
+        self.window.destroy()
 
 
 class TextReportDialog(ReportDialog):

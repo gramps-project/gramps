@@ -1,3 +1,10 @@
+2003-06-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Clean up the split into BareReportDialog and
+	ReportDialog classes.
+	* src/Plugins.py: Enable book item registration. 
+	* src/plugins/BookReport.py: lots of changes -- trying to get it work. 
+	* src/plugins/FtmStyleDescendants.py: book item functionality. 
+
 2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
 
 	* src/EditPerson.py: Allow a default gender to be specified if a new
