@@ -87,23 +87,42 @@ class SourceNote:
         """Return in note instance, not just the text"""
         return self.note
 
-class LdsOrd:
+class LdsOrd(SourceNote):
     """LDS Ordinance support"""
     def __init__(self,source=None):
+        SourceNote.__init__(self,source)
         if source:
             self.famc = source.famc
             self.date = Date(source.date)
             self.temple = source.temple
+            self.status = source.status
+            self.place = source.place
         else:
             self.famc = None
             self.date = None
             self.temple = ""
+            self.status = 0
+            self.place = None
+
+    def setPlace(self,place):
+        """sets the Place instance of the Event"""
+        self.place = place
+
+    def getPlace(self):
+        """returns the Place instance of the Event"""
+        return self.place 
 
     def setFamily(self,family):
         self.famc = family
 
     def getFamily(self):
         return self.famc
+
+    def setStatus(self,val):
+        self.status = val
+
+    def getStatus(self):
+        return self.status
 
     def setDate(self, date) :
         """attempts to sets the date of the LdsOrd instance"""
