@@ -977,7 +977,6 @@ class Gramps:
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
-        self.db.close()
         prompter = DbPrompter.NewNativeDbPrompter(self,self.topWindow)
         prompter.chooser()
 
