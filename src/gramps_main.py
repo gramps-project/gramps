@@ -1387,6 +1387,8 @@ class Gramps:
                 if self.id2col.has_key(key):
                     (model,iter,page) = self.id2col[key]
                     model.remove(iter)
+        for i in self.pl_page:
+            i.sort()
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()

@@ -32,6 +32,8 @@ class ListModel:
         self.selection = self.tree.get_selection()
 
         self.data_index = l
+
+        self.cids = []
         
         cnum = 0
         for name in dlist:
@@ -46,21 +48,15 @@ class ListModel:
                 column.set_clickable(gtk.FALSE)
             else:
                 column.set_clickable(gtk.TRUE)
-            cnum = cnum + 1
-            self.tree.append_column(column)
-            
-        self.column = None
-        num = 0
-        for name in dlist:
-            column = self.tree.get_column(num)
-            if name[1] != -1:
                 column.set_sort_column_id(name[1])
-            if not self.column:
-                self.column = column
-            num = num + 1
+
+            cnum = cnum + 1
+            self.cids.append(name[1])
+            if name[1] != -1:
+                self.tree.append_column(column)
             
+        self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
         self.connect_model()
-        self.model.set_sort_column_id(0,gtk.SORT_ASCENDING)
         
         if select_func:
             self.selection.connect('changed',select_func)
@@ -73,11 +69,15 @@ class ListModel:
 
     def connect_model(self):
         self.tree.set_model(self.model)
-        self.model.set_sort_column_id(0,gtk.SORT_ASCENDING)
+        self.sort()
 
     def sort(self):
         val = self.model.get_sort_column_id()
-        self.model.set_sort_column_id(val[0],val[1])
+        col = val[0]
+        if col > 0:
+            self.model.set_sort_column_id(col,val[1])
+        else:
+            self.model.set_sort_column_id(self.cids[0],val[1])
         self.model.sort_column_changed()
         
     def get_selected(self):
