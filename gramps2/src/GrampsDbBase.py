@@ -893,9 +893,13 @@ class GrampsDbBase:
         if self.metadata and self.metadata.has_key('default'):
             person = Person()
             handle = self.metadata['default']
-            data = self.person_map.get(str(handle))
-            person.unserialize(data)
-            return person
+            data = self.person_map.get(str(handle),None)
+            if data:
+                person.unserialize(data)
+                return person
+            else:
+                self.metadata['default'] = None
+                return None
         return None
 
     def get_save_path(self):
@@ -971,6 +975,14 @@ class GrampsDbBase:
     def remove_place(self,handle,transaction):
         """
         Removes the Place specified by the database handle from the
+        database, preserving the change in the passed transaction. This
+        method must be overridden in the derived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
+
+    def remove_family(self,handle,transaction):
+        """
+        Removes the Family specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """

@@ -190,7 +190,8 @@ class PeopleView:
             return
         p = self.parent.active_person
         path = self.person_model.on_get_path(p.get_handle())
-        top_name = self.parent.db.get_name_group_mapping(p.get_primary_name().get_group_name())
+        group_name = p.get_primary_name().get_group_name()
+        top_name = self.parent.db.get_name_group_mapping(group_name)
         top_path = self.person_model.on_get_path(top_name)
         self.person_tree.expand_row(top_path,0)
         self.person_selection.select_path(path)
@@ -262,8 +263,8 @@ class PeopleView:
     def add_person(self,person):
         node = person.get_handle()
         top = person.get_primary_name().get_group_name()
-        if not self.person_model.sname_sub.has_key(top) or \
-               len(self.person_model.sname_sub[top]) == 1:
+        if (not self.person_model.sname_sub.has_key(top) or 
+            len(self.person_model.sname_sub[top]) == 1):
             path = self.person_model.on_get_path(top)
             pnode = self.person_model.get_iter(path)
             self.person_model.row_inserted(path,pnode)
