@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,10 @@ from gettext import gettext as _
 
 class EvalWindow:
 
-    def __init__(self):
+    def __init__(self,parent):
+        self.parent = parent
+        self.win_key = self
+
         glade_file = "%s/%s" % (os.path.dirname(__file__),"eval.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
@@ -48,11 +51,36 @@ class EvalWindow:
         self.glade.signal_autoconnect({
             "on_apply_clicked" : self.apply_clicked,
             "on_close_clicked" : self.close_clicked,
+            "on_delete_event"  : self.on_delete_event,
             "on_clear_clicked" : self.clear_clicked,
             })
 
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          _("Python Evaluation Window"))
+
+        self.add_itself_to_menu()
+        self.top.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close_clicked(self,obj):
+        self.remove_itself_from_menu()
+        self.top.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('Python Evaluation Window'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.top.present()
 
     def apply_clicked(self,obj):
         text = unicode(self.ebuf.get_text(self.ebuf.get_start_iter(),
@@ -73,10 +101,6 @@ class EvalWindow:
         self.ebuf.set_text("")
         self.error.set_text("")
 
-    def close_clicked(self,obj):
-        self.top.destroy()
-        
-        
 #------------------------------------------------------------------------
 #
 # 
@@ -84,8 +108,8 @@ class EvalWindow:
 #------------------------------------------------------------------------
 from Plugins import register_tool
 
-def runtool(database,person,callback):
-    EvalWindow()
+def runtool(database,person,callback,parent):
+    EvalWindow(parent)
 
 register_tool(
     runtool,
@@ -93,4 +117,3 @@ register_tool(
     category=_("Debug"),
     description=_("Provides a window that can evaluate python code")
     )
-        

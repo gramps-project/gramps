@@ -21,6 +21,13 @@
 	* src/plugins/Verify.py: Window management.
 	* src/plugins/verify.glade: Define event handler.
 
+	* src/plugins/Eval.py: Window management. Replaces eval.py.
+	* src/plugins/eval.py: Remove from CVS. 
+	* src/plugins/eval.glade: Define event handler.
+	* src/plugins/Leak.py: Window management. Replaces leak.py.
+	* src/plugins/leak.py: Remove from CVS. 
+	* src/plugins/leak.glade: Define event handler.
+
 2004-05-09  Don Allingham  <donaldallingham@users.sourceforge.net>
 	* src/DbPrompter.py: added a .grdb if not specified.
 
