@@ -150,11 +150,17 @@ class EditPlace:
         self.gallery_label = self.top_window.get_widget("galleryPlaceEdit")
         self.inet_label = self.top_window.get_widget("inetPlaceEdit")
         self.refs_label = self.top_window.get_widget("refsPlaceEdit")
+        self.flowed = self.top_window.get_widget("place_flowed")
+        self.preform = self.top_window.get_widget("place_preform")
 
         self.note_buffer = self.note.get_buffer()
         if place.getNote():
             self.note_buffer.set_text(place.getNote())
             Utils.bold_label(self.notes_label)
+            if place.getNoteFormat() == 1:
+                self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
 
         if self.place.getPhotoList():
             Utils.bold_label(self.gallery_label)
@@ -285,7 +291,8 @@ class EditPlace:
 
         note = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                          self.note_buffer.get_end_iter(),gtk.FALSE)
-        mloc = self.place.get_main_location()
+        format = self.preform.get_active()
+	mloc = self.place.get_main_location()
 
         self.set(self.city,mloc.get_city,mloc.set_city)
         self.set(self.parish,mloc.get_parish,mloc.set_parish)
@@ -306,6 +313,10 @@ class EditPlace:
         
         if note != self.place.getNote():
             self.place.setNote(note)
+            Utils.modified()
+
+        if format != self.place.getNoteFormat():
+            self.place.setNoteFormat(format)
             Utils.modified()
 
         self.update_lists()
