@@ -701,6 +701,8 @@ class Gramps:
         dbname = obj.get_data("dbname")
         getoldrev = obj.get_data("getoldrev")
         filename = dbname.get_full_path(0)
+        print filename
+        
         Utils.destroy_passed_object(obj)
 
         if filename == "" or filename == None:

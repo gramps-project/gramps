@@ -261,7 +261,7 @@ msgstr "(en|tot|-)"
 
 #: Date.py:228 Date.py:241
 msgid "from %(start_date)s to %(stop_date)s"
-msgstr "van %(begin_datum)s tot %(eind_datum)s"
+msgstr "van %(start_date)s tot %(stop_date)s"
 
 #: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:987 revision.glade:131
 msgid "Open a database"
@@ -349,7 +349,7 @@ msgstr "Geen"
 
 #: EditPerson.py:413 EditSource.py:141
 msgid "%(father)s and %(mother)s"
-msgstr "%(vader)s en %(moeder)s"
+msgstr "%(father)s en %(mother)s"
 
 #: EditPerson.py:421 const.py:144 plugins/FamilyGroup.py:385
 #: plugins/IndivComplete.py:259 plugins/IndivSummary.py:155
@@ -4344,7 +4344,7 @@ msgstr "Genereert relatiegrafieken, momenteel alleen in GraphViz-formaat. GraphV
 
 #: plugins/IndivComplete.py:117
 msgid "%(date)s in %(place)s."
-msgstr "%(datum)s in %(plaats)en"
+msgstr "%(date)s in %(place)en"
 
 #: plugins/IndivComplete.py:149 plugins/WebPage.py:463
 msgid "Notes"

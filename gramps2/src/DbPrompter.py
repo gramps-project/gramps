@@ -126,7 +126,7 @@ class DbPrompter:
         self.show()
         
     def ok_button_clicked(self,obj):
-        filename = self.dbname.get_full_path(0).encode('iso8859-1')
+        filename = self.dbname.get_full_path(0)
 
         if not filename:
             return
