@@ -1192,6 +1192,8 @@ trap 'rm -fr `echo "Makefile \
 	src/plugins/Makefile\
 	src/filters/Makefile\
 	src/data/Makefile\
+	doc/gramps-manual/C/Makefile\
+	omf-install/Makefile\
 	gramps.sh" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
@@ -1281,6 +1283,8 @@ CONFIG_FILES=\${CONFIG_FILES-"Makefile \
 	src/plugins/Makefile\
 	src/filters/Makefile\
 	src/data/Makefile\
+	doc/gramps-manual/C/Makefile\
+	omf-install/Makefile\
 	gramps.sh"}
 EOF
 cat >> $CONFIG_STATUS <<\EOF
