@@ -315,7 +315,7 @@
       do not match the filter.
       </para>
       <figure id="filter-fig">
-      <title>Filter that reqires an argument</title>
+      <title>Filter that requires an argument</title>
       <screenshot>
 	<screeninfo>Filter that requires an argument</screeninfo>
 	<graphic fileref="filter" format="png" srccredit="Don Allingham">
@@ -355,11 +355,11 @@
     </para>
     <sect2>
       <title>General Information Tab</title>
-      <figure id="ep_general-fig">
+      <figure id="ep-general-fig">
         <title>General Information Tab</title>
         <screenshot>
 	  <screeninfo>General Information Tab</screeninfo>
-	  <graphic fileref="ep_general" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-general" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -375,11 +375,11 @@
     </sect2>
     <sect2>
       <title>Alternate Names Tab</title>
-      <figure id="ep_names-fig">
+      <figure id="ep-names-fig">
         <title>Alternate Names Tab</title>
         <screenshot>
 	  <screeninfo>Alternate Names Tab</screeninfo>
-	  <graphic fileref="ep_altname" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-altname" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -414,11 +414,11 @@
       the place where the event occurred, and a description of the
       event. A note or a source may also be attached to the event.
       </para>
-      <figure id="ep_event-fig">
+      <figure id="ep-event-fig">
         <title>Events Tab</title>
         <screenshot>
 	  <screeninfo>Events Tab</screeninfo>
-	  <graphic fileref="ep_event" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-event" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -453,11 +453,11 @@
       Like events, attributes may also have a note, source, privacy
       marker, and confidence level associated with them.
       </para>
-      <figure id="ep_attributes-fig">
+      <figure id="ep-attributes-fig">
         <title>Attributes Tab</title>
         <screenshot>
 	  <screeninfo>Attributes Tab</screeninfo>
-	  <graphic fileref="ep_attributes" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-attributes" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -494,11 +494,11 @@
       source, privacy marker, and confidence level associated with
       them.
       </para>
-      <figure id="ep_address-fig">
+      <figure id="ep-address-fig">
         <title>Addresses Tab</title>
         <screenshot>
 	  <screeninfo>Addresses Tab</screeninfo>
-	  <graphic fileref="ep_address" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-address" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -527,11 +527,11 @@
       event, attribute, or address, <application>GRAMPS</application>
       has a generic note attached to the person.
       </para>
-      <figure id="ep_notes-fig">
+      <figure id="ep-notes-fig">
         <title>Notes Tab</title>
         <screenshot>
 	  <screeninfo>Notes Tab</screeninfo>
-	  <graphic fileref="ep_notes" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-notes" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -546,14 +546,14 @@
       The <interface>Gallery</interface> tab allows you to associate
       files (known in <application>GRAMPS</application> as media
       objects) with a particular person. These files are typically
-      images or photographs, but may be of any filetype, such as (but
+      images or photographs, but may be of any file type, such as (but
       not limited to) sound files and word processing documents.
       </para>
-      <figure id="ep_gallery-fig">
+      <figure id="ep-gallery-fig">
         <title>Gallery Tab</title>
         <screenshot>
 	  <screeninfo>Gallery Tab</screeninfo>
-	  <graphic fileref="ep_gallery" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-gallery" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -676,11 +676,11 @@
       database. This allows you to keep track of the web sites you 
       can periodically check them for any addition information.
       </para>
-      <figure id="ep_internet-fig">
+      <figure id="ep-internet-fig">
         <title>Internet Tab</title>
         <screenshot>
 	  <screeninfo>Internet Tab</screeninfo>
-	  <graphic fileref="ep_internet" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-internet" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -717,11 +717,11 @@
       be selected. This tab allows you to enter specific information used 
       by the Church of Jesus Christ of Latter Day Saints.
       </para>
-      <figure id="ep_lds-fig">
+      <figure id="ep-lds-fig">
         <title>LDS Tab</title>
         <screenshot>
 	  <screeninfo>LDS Tab</screeninfo>
-	  <graphic fileref="ep_lds" format="png" srccredit="Don Allingham">
+	  <graphic fileref="ep-lds" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -754,7 +754,7 @@
     families in which the person is a child, and families in which the
     person is a spouse or parent.
     </para>
-    <sect2 id="ap_parents">
+    <sect2 id="ap-parents">
       <title>Relationships to Parents</title>
       <para>
       On the right hand side of the window displays the parents of the
@@ -792,7 +792,7 @@
       <interface>Edit Person</interface> for the corresponding person.
       </para>
     </sect2>
-    <sect2 id="sp_relationships">
+    <sect2 id="sp-relationships">
       <title>Marriage/Relationship Information</title>
       <para>
       On the left side of the window, below the active person's name,
@@ -840,7 +840,7 @@
       only parent.
       </para>
     </sect2>
-    <sect2 id="sp_children">
+    <sect2 id="sp-children">
       <title>Children of a Relationship</title>
       <para>
       The bottom of the window contains the list of children related
@@ -1175,7 +1175,7 @@
 	  <guimenu>Bookmarks</guimenu>
 	  <guimenuitem>Go to Bookmark</guimenuitem>
         </menuchoice>
-      displays a submenu which allows you to choose a person who was
+      displays a sub-menu which allows you to choose a person who was
       previously bookmarked. Selecting a person from this menu will
       make that person the active person.
       </para>
@@ -1283,16 +1283,16 @@
         <guimenuitem>Preferences...</guimenuitem>
        </menuchoice>.  This opens the
     <interface>Preferences</interface> dialog, shown in <xref
-    linkend="prefs_main">.
+    linkend="prefs-main">.
     </para>
 
-    <sect2 id="prefs_main">
+    <sect2 id="prefs-main">
       <title>Preferences Dialog</title>
-      <figure id="prefs_main_fig">
+      <figure id="prefs-main-fig">
         <title>Preferences Dialog</title>
         <screenshot>
           <screeninfo>Preferences Dialog</screeninfo>
-          <graphic fileref="prefs_main" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-main" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1303,13 +1303,13 @@
       corresponding settings in the right hand side of the dialog.
       </para>
     </sect2>
-    <sect2 id="prefs_gen">
+    <sect2 id="prefs-gen">
       <title>General Database options</title>
-      <figure id="prefs_gen_fig">
+      <figure id="prefs-gen-fig">
         <title>General Database options</title>
         <screenshot>
           <screeninfo>General Database Options</screeninfo>
-          <graphic fileref="prefs_gen" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-gen" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1342,13 +1342,13 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term>Autosave interval (minues)</term>
+	  <term>Autosave interval (minutes)</term>
           <listitem>
             <para>
 	    If this value is set to a non-zero value, <application>GRAMPS</application>
 	    will save an autosave file every few minutes, depending on the 
 	    value set. If for some reason the execution of <application>GRAMPS</application>
-	    is interupted, you can recover to the last autosave point.
+	    is interrupted, you can recover to the last autosave point.
   	    </para>
           </listitem>
 	</varlistentry>
@@ -1363,13 +1363,13 @@
 	</varlistentry>
       </variablelist>
     </sect2>    
-    <sect2 id="prefs_tab1">
+    <sect2 id="prefs-tab1">
       <title>Dates and Calendars</title>
-      <figure id="prefs_dates">
+      <figure id="prefs-dates">
         <title>Dates and Calendars</title>
         <screenshot>
           <screeninfo>Dates and Calendars</screeninfo>
-          <graphic fileref="prefs_dates" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-dates" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1421,90 +1421,90 @@
 	</varlistentry>
       </variablelist>
     </sect2>
-    <sect2 id="prefs_tab2">
+    <sect2 id="prefs-tab2">
       <title>Media Options</title>
-      <figure id="prefs_media">
+      <figure id="prefs-media">
         <title>Media Options</title>
         <screenshot>
           <screeninfo>Media Options</screeninfo>
-          <graphic fileref="prefs_media" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-media" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab_ids">
+    <sect2 id="prefs-tab-ids">
       <title>GRAMPS ID Options</title>
-      <figure id="prefs_ids">
+      <figure id="prefs-ids">
         <title>GRAMPS ID Options</title>
         <screenshot>
           <screeninfo>GRAMPS ID Options</screeninfo>
-          <graphic fileref="prefs_ids" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-ids" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab_rev">
+    <sect2 id="prefs-tab-rev">
       <title>Revision Control Options</title>
-      <figure id="prefs_rev">
+      <figure id="prefs-rev">
         <title>Revision Control Options</title>
         <screenshot>
           <screeninfo>Revision Control Options</screeninfo>
-          <graphic fileref="prefs_revision" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-revision" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab_disp">
+    <sect2 id="prefs-tab-disp">
       <title>General Display Options</title>
-      <figure id="prefs_disp">
+      <figure id="prefs-disp">
         <title>General Display Options</title>
         <screenshot>
           <screeninfo>General Display Options</screeninfo>
-          <graphic fileref="prefs_disp" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-disp" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab_bars">
+    <sect2 id="prefs-tab-bars">
       <title>Tool and Status Bar Options</title>
-      <figure id="prefs_bars">
+      <figure id="prefs-bars">
         <title>Tool and Status Bar Options</title>
         <screenshot>
           <screeninfo>Tools and Status Bar Options</screeninfo>
-          <graphic fileref="prefs_bars" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-bars" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab_colors">
+    <sect2 id="prefs-tab-colors">
       <title>List Color Options</title>
-      <figure id="prefs_color">
+      <figure id="prefs-color">
         <title>List Color Options</title>
         <screenshot>
           <screeninfo>List Color Options</screeninfo>
-          <graphic fileref="prefs_colors" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-colors" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab_find">
+    <sect2 id="prefs-tab-find">
       <title>Find Options</title>
-      <figure id="prefs_find">
+      <figure id="prefs-find">
         <title>Find Options</title>
         <screenshot>
           <screeninfo>Find Options</screeninfo>
-          <graphic fileref="prefs_find" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-find" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
     </sect2>
-    <sect2 id="prefs_tab4">
+    <sect2 id="prefs-tab4">
       <title>Report Options</title>
-      <figure id="prefs_report">
+      <figure id="prefs-report">
         <title>Report Options</title>
         <screenshot>
           <screeninfo>Report Options</screeninfo>
-          <graphic fileref="prefs_report" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-report" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1518,13 +1518,13 @@
       not support all possible formats.
       </para>
     </sect2>
-    <sect2 id="prefs_tab3">
+    <sect2 id="prefs-tab3">
       <title>Researcher Information</title>
-      <figure id="prefs_research">
+      <figure id="prefs-research">
         <title>Researcher Information</title>
         <screenshot>
           <screeninfo>Researcher Information</screeninfo>
-          <graphic fileref="prefs_research" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-research" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1535,13 +1535,13 @@
       GEDCOM files as being the researcher/author of the file)
       </para>
     </sect2>
-    <sect2 id="prefs_tab5">
+    <sect2 id="prefs-tab5">
       <title>Data Guessing Options</title>
-      <figure id="prefs_tab_guess">
+      <figure id="prefs-tab-guess">
         <title>Data Guessing Options</title>
         <screenshot>
           <screeninfo>Data Guessing Options</screeninfo>
-          <graphic fileref="prefs_guess" format="png" srccredit="Don Allingham">
+          <graphic fileref="prefs-guess" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1660,7 +1660,7 @@ This is my Title
 &lt;/HEAD&gt;
 &lt;BODY BGCOLOR="#FFFFFF"&gt;
 &lt;P&gt;
-This is a simple template.  This text will appear in the html output.
+This is a simple template.  This text will appear in the HTML output.
 &lt;/P&gt;
 &lt;!-- START --&gt;
 &lt;P&gt;
