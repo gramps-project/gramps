@@ -3,6 +3,12 @@
 	does no longer exist in database
 
 	* src/plugins/Check.py (check_parent_relationships): typo
+	
+	* src/plugins/Check.py (check_parent_relationships): Catch some more
+	database errors. Messages in the report still need some work.
+	* src/plugins/TestcaseGenerator.py: New plugin that creates some of
+	the errors that crashed Check.py before.
+	
 
 2005-03-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ScratchPad.py (ScratchPadWindow): moved content of pad to a 
