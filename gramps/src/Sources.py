@@ -83,7 +83,8 @@ class SourceSelector:
         del self.orig[:]
         for s in self.list:
             self.orig.append(s)
-        self.update(self.parent)
+        if self.update:
+            self.update(self.parent)
         Utils.destroy_passed_object(self.sourcesel)
     
     def on_edit_src_clicked(self,obj):

@@ -366,12 +366,13 @@ class GrampsParser:
         self.object.setMimeType(u2l(attrs['mime']))
         self.object.setDescription(u2l(attrs['description']))
         src = u2l(attrs["src"])
-        if src[0] != '/':
-            self.object.setPath("%s/%s" % (self.base,src))
-            self.object.setLocal(1)
-        else:
-            self.object.setPath(src)
-            self.object.setLocal(0)
+        if src:
+            if src[0] != '/':
+                self.object.setPath("%s/%s" % (self.base,src))
+                self.object.setLocal(1)
+            else:
+                self.object.setPath(src)
+                self.object.setLocal(0)
 
     def stop_object(self,tag):
         self.object = None
