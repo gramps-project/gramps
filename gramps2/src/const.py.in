@@ -600,6 +600,9 @@ lds_temple_codes = {
     "Columbia River, Washington" : "CRIVE", #121 Added
     "Columbus, Ohio"             : "COLUM", #29 Added
     "Copenhagen, Denmark"        : "COPEN", #30 Added
+    "Curitiba, Brazil"           : "CURIT",
+    "Manhattan, New York"        : "MANHA",
+    "Panama City, Panama"        : "PCITY",
     "Dallas, Texas"              : "DALLA", #31
     "Denver, Colorado"           : "DENVE", #32
     "Detroit, Michigan"          : "DETRO", #33 Added
