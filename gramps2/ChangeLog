@@ -1,3 +1,24 @@
+2004-07-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddSpouse.py: fix gender selection
+	* src/DbPrompter.py: support other DB formats
+	* src/GrampsBSDDB.py: BSDDB format, derived from GrampsDbBase
+	* src/GrampsDbBase.py: base class for database classes
+	* src/GrampsGEDDB.py: GEDCOM format, derived from GrampsDbBase
+	* src/GrampsXMLDB.py: XML format, derived from GrampsDbBase
+	* src/PeopleModel.py: handle rebuilds better
+	* src/RelLib.py: use try_to_find_person_from_handle
+	* src/WriteXML.py: use gramps ids instead of handles
+	* src/const.py.in: handle family relations correctly
+	* src/gramps_main.py: remove prefix settings
+	* src/data/gnome-mime-application-x-gramps-xml.png: new icon
+	* src/data/gramps.applications: support for x-gramps-xml
+	* src/data/gramps.keys: support for x-gramps-xml
+	* src/data/gramps.mime: support for x-gramps-xml
+	* src/data/gramps.schemas: added event format 
+	* src/data/gramps.xml: support for x-gramps-xml
+	* src/plugins/ReadGedcom.py: start of GEDDB support
+	* src/plugins/WriteGedcom.py: start of GEDDB support
+
 2004-07-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/const.py.in: fix relationship types
 

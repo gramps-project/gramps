@@ -48,6 +48,9 @@ import Utils
 import const
 import QuestionDialog
 import Plugins
+import GrampsBSDDB
+import GrampsXMLDB
+import GrampsGEDDB
 
 #-------------------------------------------------------------------------
 #
@@ -144,8 +147,21 @@ class ExistingDbPrompter:
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
             filetype = gnome.vfs.get_mime_type(filename)
+            print filetype
+            
             if filetype == 'application/x-gramps':
                 choose.destroy()
+                self.parent.db = GrampsBSDDB.GrampsBSDDB()
+                self.parent.read_file(filename)
+                return 1
+            if filetype == 'application/x-gramps-xml' or filetype == 'text/xml' or filetype == 'application/x-gzip':
+                choose.destroy()
+                self.parent.db = GrampsXMLDB.GrampsXMLDB()
+                self.parent.read_file(filename)
+                return 1
+            if filetype == 'application/x-gedcom':
+                choose.destroy()
+                self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
                 return 1
             (junk,the_file) = os.path.split(filename)

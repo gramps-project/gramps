@@ -374,6 +374,9 @@ class GedcomWriterOptionBox:
         self.adopt = GedcomInfo.ADOPT_EVENT
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
+        if not os.path.isfile(glade_file):
+            glade_file = "plugins/gedcomexport.glade"
+
         self.topDialog = gtk.glade.XML(glade_file,"gedcomExport","gramps")
         self.topDialog.signal_autoconnect({
                 "gnu_free" : self.gnu_free,

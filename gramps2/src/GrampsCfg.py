@@ -268,6 +268,9 @@ def save_usetips(val):
 def get_iprefix():
     return get_string("/apps/gramps/preferences/iprefix")
 
+def get_eprefix():
+    return get_string("/apps/gramps/preferences/iprefix")
+
 def save_iprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/iprefix",val)
 
@@ -282,6 +285,9 @@ def get_sprefix():
 
 def save_sprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/sprefix",val)
+
+def save_eprefix(val):
+    set_string_as_id_prefix("/apps/gramps/preferences/eprefix",val)
 
 def get_pprefix():
     return get_string("/apps/gramps/preferences/pprefix")

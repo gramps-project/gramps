@@ -12,4 +12,8 @@
     <comment xml:lang="en">GRAMPS package</comment>
     <glob pattern="*.gpkg"/>
   </mime-type>
+  <mime-type type="application/x-gramps-xml">
+    <comment xml:lang="en">GRAMPS XML database</comment>
+    <glob pattern="*.gramps"/>
+  </mime-type>
 </mime-info>
