@@ -460,18 +460,18 @@ def reload_plugins(obj):
 # Plugin registering
 #
 #-------------------------------------------------------------------------
-def register_export(task, name):
-    """Register an export filter, taking the task and name"""
-    _exports.append((task, name))
-
-#def register_import(task, name):
-#    """Register an import filter, taking the task and name"""
-#    _imports.append((task, name))
+def register_export(task, ffilter, pattern_list=None):
+    """
+    Register an export filter, taking the task, file filter, 
+    and the list of patterns for the filename matching.
+    """
+    if pattern_list:
+        _exports.append((task, ffilter, pattern_list))
 
 def register_import(task, ffilter, mime=None):
     """Register an import filter, taking the task and file filter"""
     if mime:
-    	_imports.append((task, ffilter, mime))
+        _imports.append((task, ffilter, mime))
 
 def register_report(task, name,
                     category=_("Uncategorized"),
@@ -640,36 +640,6 @@ def build_report_menu(top_menu,callback):
 #-------------------------------------------------------------------------
 def build_tools_menu(top_menu,callback):
     build_menu(top_menu,_tools,callback)
-
-#-------------------------------------------------------------------------
-#
-# build_export_menu
-#
-#-------------------------------------------------------------------------
-def build_export_menu(top_menu,callback):
-    myMenu = gtk.Menu()
-
-    for report in _exports:
-        item = gtk.MenuItem("%s..." % report[1])
-        item.connect("activate", callback ,report[0])
-        item.show()
-        myMenu.append(item)
-    top_menu.set_submenu(myMenu)
-
-#-------------------------------------------------------------------------
-#
-# build_import_menu
-#
-#-------------------------------------------------------------------------
-def build_import_menu(top_menu,callback):
-    myMenu = gtk.Menu()
-
-    for report in _imports:
-        item = gtk.MenuItem("%s..." % report[1])
-        item.connect("activate", callback ,report[0])
-        item.show()
-        myMenu.append(item)
-    top_menu.set_submenu(myMenu)
 
 #-------------------------------------------------------------------------
 #

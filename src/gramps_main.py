@@ -315,6 +315,8 @@ class Gramps:
             "on_notebook1_switch_page" : self.on_views_switch_page,
             "on_ok_button1_clicked" : self.on_ok_button1_clicked,
             "on_open_activate" : self.on_open_activate,
+            "on_import_activate" : self.on_import_activate,
+            "on_export_activate" : self.on_export_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
             "on_main_key_release_event" : self.on_main_key_release_event,
@@ -714,8 +716,6 @@ class Gramps:
 
         Plugins.build_report_menu(self.report_menu,self.menu_report)
         Plugins.build_tools_menu(self.tools_menu,self.menu_tools)
-        Plugins.build_export_menu(export_menu,self.export_callback)
-        Plugins.build_import_menu(import_menu,self.import_callback)
 
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(self.db)
@@ -1465,7 +1465,7 @@ class Gramps:
 
     def on_open_activate(self,obj):
 
-        choose = gtk.FileChooserDialog('Open GRAMPS database',
+        choose = gtk.FileChooserDialog(_('GRAMPS: Open database'),
                                        self.topWindow,
                                        gtk.FILE_CHOOSER_ACTION_OPEN,
                                        (gtk.STOCK_CANCEL,
@@ -1520,6 +1520,115 @@ class Gramps:
                             _('The type "%s" is not in the list of known file types') % filetype )
         choose.destroy()
  
+    def on_import_activate(self,obj):
+        choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
+                                       self.topWindow,
+                                       gtk.FILE_CHOOSER_ACTION_OPEN,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
+
+        # Always add automatic (macth all files) filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('Automatic'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+
+#   FIXME: Uncomment when we have grdb importer
+#
+#        # Always add native format filter
+#        filter = gtk.FileFilter()
+#        filter.set_name(_('GRAMPS databases'))
+#        filter.add_mime_type('application/x-gramps')
+#        choose.add_filter(filter)
+
+        for (importData,filter,mime_type) in Plugins._imports:
+            choose.add_filter(filter)
+
+        if GrampsCfg.lastfile:
+            choose.set_filename(GrampsCfg.lastfile)
+
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            filename = os.path.normpath(os.path.abspath(filename))
+            filetype = gnome.vfs.get_mime_type(filename)
+            (junk,the_file) = os.path.split(filename)
+
+#   FIXME: Uncomment when we have grdb importer
+#
+#            if filetype == 'application/x-gramps':
+#                if self.auto_save_load(filename) == 0:
+#                    DbPrompter.DbPrompter(self,0,self.topWindow)
+#            else:
+            if True:
+                opened = 0
+                for (importData,filter,mime_type) in Plugins._imports:
+                    if filetype == mime_type or the_file == mime_type:
+                        importData(self.db,filename)
+                        self.import_tool_callback()
+                        opened = 1
+                        break
+                if not opened:
+                    ErrorDialog( _("Could not open file: %s") % filename,
+                            _('The type "%s" is not in the list of known file types') % filetype )
+        choose.destroy()
+
+    def on_export_activate(self,obj):
+        choose = gtk.FileChooserDialog(_('GRAMPS: Export database'),
+                                       self.topWindow,
+                                       gtk.FILE_CHOOSER_ACTION_SAVE,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
+
+        # Always add automatic (macth all files) filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('By extension'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+
+#   FIXME: Uncomment when we have grdb importer
+#
+#        # Always add native format filter
+#        filter = gtk.FileFilter()
+#        filter.set_name(_('GRAMPS databases'))
+#        filter.add_mime_type('application/x-gramps')
+#        choose.add_filter(filter)
+
+        for (exportData,filter,pattern_list) in Plugins._exports:
+            choose.add_filter(filter)
+
+        if GrampsCfg.lastfile:
+            choose.set_filename(GrampsCfg.lastfile)
+
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            filename = os.path.normpath(os.path.abspath(filename))
+            (junk,the_file) = os.path.split(filename)
+
+#   FIXME: Uncomment when we have grdb importer
+#
+#            if filetype == 'application/x-gramps':
+#                if self.auto_save_load(filename) == 0:
+#                    DbPrompter.DbPrompter(self,0,self.topWindow)
+#            else:
+            if True:
+                opened = 0
+                for (exportData,filter,pattern_list) in Plugins._exports:
+                    for pattern in pattern_list:
+                        if filter.filter((filename,None,None,None)):
+                            exportData(self.db,filename)
+                            opened = 1
+                            break
+                if not opened:
+                    ErrorDialog( _("Could not write file: %s") % filename,
+                            _('The type is not in the list of known file types') )
+        choose.destroy()
+
     def on_revert_activate(self,obj):
         pass
         
