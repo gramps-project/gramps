@@ -1,3 +1,7 @@
+2005-01-21 Eero Tamminen <eerot@sf>
+	* src/plugins/GraphViz.py: Change CLI help to use non-localized
+	  option descriptions
+
 2005-01-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ReportUtils.py: added estimate_age and sanitize_person
 	* src/BaseDoc.py: Add checks attempting to add styles after initializing 
