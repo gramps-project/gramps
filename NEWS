@@ -1,6 +1,5 @@
 Version 0.9.4 -- the "This used to bug me..." release
 * More compliance with GNOME HIG.
-* User can choose either the People or Family view as default
 * Fixed style problems for book items. 
 * New Book item: Custom Text.
 * New export plugin: Web Family Tree.
@@ -10,8 +9,8 @@ Version 0.9.4 -- the "This used to bug me..." release
 * Various Merge and Import fixes.
 * More privacy options for GEDCOM export.
 * New types of filter rules: 
-    (1) iterating over other filters, 
-    (2) specifying number of generations away for ancestors and descendants.
+    (1) Iterating over other filters;
+    (2) Specifying number of generations away for ancestors and descendants.
 * Preliminary support for printing copies of reports. 
 * Performance improvements for list views. 
 * Context menus in Family View upon right-click.
@@ -19,6 +18,18 @@ Version 0.9.4 -- the "This used to bug me..." release
 * Proper saving of standard family relations, event types, and attributes. 
 * New interface for adding/editing filter rules. 
 * Configure/build improvements. 
+* Removal of intl*.so and switching to Python's gettext.
+* Python2.3 compliance.
+* User can choose either the People or Family view as default
+* New icons for People and Family sidebar buttons. 
+* History-based browser-style navigation tools:
+    (1) Back and Forward toolbad buttons; 
+    (2) Go menu with Back, Forward, Home, and History items;
+    (3) History popups upon right-clicking on Back and Forward buttons;
+    (4) Context menus in the People, Family, and Pedigree Views. 
+* User can choose between the usual (left to right) or alternative (top to 
+  bottom) Family View. 
+* Support for graphics in Book Report. 
 * Fair share of bug fixes. 
 
 Version 0.9.3

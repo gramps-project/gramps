@@ -1,16 +1,3 @@
-* History of navigation and the Back button. The RFE 747529, see 
-  http://sourceforge.net/tracker/index.php?func=detail&aid=747529&group_id=25770&atid=385140
-  asks for the Back button in the Family View, but it'd be more consistent 
-  to enable it in all navigatable views (People, Pedigree, and Family). 
-  We'd have to keep track of the active persons and enable Back-Forward buttons,
-  maybe even a history popup with the list of those people. Very similar to
-  browsers and, therefore, very useful and familiar to users. We already have 
-  bookmarks and home button.
-  
-  As for the interface, we can have "Go" menu with Back, Forward, and 
-  Home. Back and Forward can have down-arrow popups. Plus, all the views 
-  can have Back and Forward in the context menus. 
-
 * Remember where the images are added from (RFE 748974). This is actually 
   very useful when you add 50 new images -- navigating 50 times to the same 
   place is a nightmare. All that's needed is keeping track of a single 
@@ -20,10 +7,6 @@
   either a column in the People View or something like boldfaces "Notes" 
   tab title. I like the latter because it can be uniformly applied to 
   any notes, not only people's. Not so hard to implement. 
-
-* Following the only child in a family view (RFE 750987). If there's a single 
-  kid, an arrow should clearly follow this child, even if (s)he's not selected. 
-  This is a minor thing and also should not be too hard.
 
 * Allow for multiple notes. A tabbed interface would be really useful,
   since there are no titles for notes. Not all objects would necessarily
