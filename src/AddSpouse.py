@@ -85,7 +85,7 @@ class AddSpouse:
 
         self.name_list = self.db.getPersonMap().values()
         self.name_list.sort(sort.by_last_name)
-
+        self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
 

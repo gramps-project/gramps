@@ -1100,6 +1100,7 @@ class Person:
     def setMainParents(self,family):
         """sets the main Family of the Person, the Family in which the
         Person is a natural born child"""
+        print family,self.AltFamilyList
         assert(family in self.AltFamilyList)
         f = self.removeAltFamily(family)
         if f:
