@@ -14,6 +14,8 @@
 	* src/plugins/WriteCD.py (PackageWriter.on_ok_clicked):
 	Convert missing media handling to the database interface.
 
+	* doc/gramps.1.in, doc/gramps.1: Update.
+
 2004-06-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/gramps.keys, src/data/mime: Add package and GEDCOM.
 	* src/PedView.py: Fix anchors. Switch from storing person objects

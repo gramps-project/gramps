@@ -1,23 +1,27 @@
-.TH gramps 1 "1.1.0" "February 2004" "1.1.0"
+.TH gramps 1 "1.1.1" "June 2004" "1.1.1"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
 .SH SYNOPSIS
 .B gramps
-.RB [ \-\^\-help ]
+.RB [ \-?|\-\^\-help ]
+.RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
-.RB [ \-i 
-.IR FILENAME 
-.RB [ \-f 
+.RB [ \-i|\-\^\-import=
+.IR FILE 
+.RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
-.RB [ \-i 
+.RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-o 
-.IR FILENAME 
-.RB [ \-f 
+.RB [ \-o|\-\^\-output= 
+.IR FILE
+.RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
-.RB [ \-a 
+.RB [ \-a|\-\^\-action= 
 .IR ACTION ]
+.RB [
+.IR FILE
+.RB ]
 
 .SH DESCRIPTION
 .PP 
@@ -32,27 +36,36 @@ wide by almost all other genealogy software.
 
 .SH OPTIONS
 .TP 
-.BI \-f " FORMAT"
-Explicitly specify format of \fIFILENAME\fR given by preceding \fB\-i\fR or 
-\fB\-o\fR option. If the \fB\-f\fR option is not given for any \fIFILENAME\fR, 
+.BI gramps " FILE" 
+When \fIFILE\fR is given (without any flags) then it is
+opened and an interactive session is started. The rest of the options
+is ignored. This way of launching is suitable for using gramps
+as a handler for genealogical data in e.g. web browsers. This invokation
+can accept any data format known to gramps, see below.
+.br
+
+.TP 
+.BI \-f,\-\^\-format= " FORMAT"
+Explicitly specify format of \fIFILE\fR given by preceding \fB\-i\fR or 
+\fB\-o\fR option. If the \fB\-f\fR option is not given for any \fIFILE\fR, 
 the format of that file is guessed according to its extension. 
 .br
 
 Formats 
-available for import are \fBgramps\fR (guessed if \fIFILENAME\fR is a 
-directory), \fBgedcom\fR (guessed if \fIFILENAME\fR ends with \fB.ged\fR), and 
-\fBgramps\-pkg\fR (guessed if \fIFILENAME\fR ends with \fB.tgz\fR). 
+available for import are \fBgramps\-xml\fR (guessed if \fIFILE\fR is a 
+directory), \fBgedcom\fR (guessed if \fIFILE\fR ends with \fB.ged\fR), and 
+\fBgramps\-pkg\fR (guessed if \fIFILE\fR ends with \fB.gpkg\fR). 
 .br
 
-Formats available for export are \fBgramps\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, 
-\fBwft\fR (guessed if \fIFILENAME\fR ends with \fB.wft\fR), and \fBiso\fR 
+Formats available for export are \fBgramps\-xml\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, 
+\fBwft\fR (guessed if \fIFILE\fR ends with \fB.wft\fR), and \fBiso\fR 
 (never guessed, always specify with \fB\-f\fR option).
 
 .TP 
-.BI \-i " FILENAME"
-Import data from \fIFILENAME\fR. For \fBgramps\fR format, the \fIFILENAME\fR 
+.BI \-i,\-\^\-import= " FILE"
+Import data from \fIFILE\fR. For \fBgramps\-xml\fR format, the \fIFILE\fR 
 is actually the name of directory under which the gramps database resides. 
-For \fBgedcom\fR and \fBgramps\-pkg\fR, the \fIFILENAME\fR is the name of 
+For \fBgedcom\fR and \fBgramps\-pkg\fR, the \fIFILE\fR is the name of 
 the corresponding file. 
 .br
 
@@ -63,18 +76,18 @@ and \fB\-i\fR \fIFILE2\fR \fB\-i\fR \fIFILE1\fR might produce different
 gramps IDs in the resulting database. 
 
 .TP 
-.BI \-o " FILENAME"
-Export data into \fIFILENAME\fR. For \fBgramps\fR and \fBiso\fR formats, the 
-\fIFILENAME\fR is actually the name of directory the gramps database will be 
+.BI \-o,\-\^\-output= " FILE"
+Export data into \fIFILE\fR. For \fBgramps\-xml\fR and \fBiso\fR formats, the 
+\fIFILE\fR is actually the name of directory the gramps database will be 
 written into. For \fBgedcom\fR, \fBwft\fR, and \fBgramps\-pkg\fR, 
-the \fIFILENAME\fR is the name of the resulting file. 
+the \fIFILE\fR is the name of the resulting file. 
 .br
 
 When more than one output file is given, each has to be preceded 
 by \fB\-o\fR flag. The files are written one by one, in the specified order.
 
 .TP 
-.BI \-a " ACTION"
+.BI \-a,\-\^\-action= " ACTION"
 Perform \fIACTION\fR on the imported data. This is done after all imports
 are succesfully completed. Currently available actions are \fBsummary\fR 
 (same as Reports->View->Summary) and \fBcheck\fR (same as Tools->Database 
@@ -127,26 +140,11 @@ Supports a python\-based plugin system, allowing import and export writers,
 report generators, tools, and display filters to be added without modification 
 of the main program.
 .LP 
-Data is stored in an gzip'ed XML format
-.LP 
-Instead of generating direct printer output, report generators target other 
-systems, such as \fIOpen Office\fR, \fIAbiWord\fR, HTML or LaTeX to allow the 
-user to modify the format to suit his or her needs. 
+In addition to generating direct printer output, report generators also 
+target other systems, such as \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML 
+or LaTeX to allow the users to modify the format to suit their needs. 
 
 .SH KNOWN BUGS AND LIMITATIONS
-Currently, \fIGramps\fP loads all data into memory, which tends to bog down 
-the system for large databases (over 15000 people for a typical system). 
-This will be addressed with the 1.2 release by incorporating a database 
-backend. The database backend should dramatically improve both speed and 
-memory usage. 
-.LP 
-Direct printing is not currently supported. This is planned to be fixed after
-the stable 1.0 release by using gnome-print architechture. 
-.LP 
-PS and PDF reports output garbage in place of unicode characters.
-This should also be solved when we move to gnome-print. In the meantime, a
-decent workaround is to produce reports in OpenOffice.org format and then 
-export into PDF from withing OpenOffice.org application.
 
 .SH FILES
 .LP 
