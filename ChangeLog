@@ -1,3 +1,6 @@
+2005-04-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Truncate place names because they tend to be loooong.
+
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/DdTargets.py: added PERSON_LINK_LIST target.
 	* src/FamilyView.py: corrected bug when person is droped if there is no current 

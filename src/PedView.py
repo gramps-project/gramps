@@ -770,7 +770,10 @@ def build_detail_string(db,person):
         if place_handle:
             place_title = db.get_place_from_handle(place_handle).get_title()
             if place_title != "":
-                ep = place_title
+                if len(place_title) > 15:
+                    ep = place_title[:14]+"..."
+                else:
+                    ep = place_title
         if ep:
             return u"\n%s %s, %s" % (label,ed,ep)
         return u"\n%s %s" % (label,ed)
