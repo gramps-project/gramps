@@ -76,6 +76,12 @@ class PaperStyle:
     def get_width(self):
         return self.width
 
+    def get_height_inches(self):
+        return self.height / 2.54
+
+    def get_width_inches(self):
+        return self.width / 2.54
+
 #------------------------------------------------------------------------
 #
 # 
@@ -401,6 +407,9 @@ class StyleSheetList:
 
     def delete_style_sheet(self,name):
         del self.map[name]
+
+    def get_style_sheet_map(self):
+        return self.map
 
     def get_style_sheet(self,name):
         return self.map[name]

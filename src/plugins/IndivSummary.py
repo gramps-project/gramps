@@ -32,20 +32,10 @@ _ = intl.gettext
 
 from TextDoc import *
 from StyleEditor import *
-import FindDoc
+from Report import *
 
 import gtk
 import libglade
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-active_person = None
-db = None
-styles = StyleSheet()
-style_sheet_list = None
 
 #------------------------------------------------------------------------
 #
@@ -326,145 +316,105 @@ class IndivSummary:
 # 
 #
 #------------------------------------------------------------------------
-def report(database,person):
-    import PaperMenu
+class IndivSummaryDialog(TextReportDialog):
+    def __init__(self,database,person):
+        ReportDialog.__init__(self,database,person)
 
-    global active_person
-    global topDialog
-    global db
-    global style_sheet_list
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return _("Gramps - Individual Summary")
 
-    if person == None:
-        return
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Individual Summary for %s") % name
+
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Save Individual Summary")
     
-    active_person = person
-    db = database
-
-    glade_file = "%s/indsum.glade" % os.path.dirname(__file__)
-    topDialog = libglade.GladeXML(glade_file,"dialog1")
-    topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
-
-    name = person.getPrimaryName().getRegularName()
-    label = topDialog.get_widget("labelTitle")
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return "family_group.xml"
     
-    label.set_text(_("Individual Summary for %s") % name)
+    def doc_uses_tables(self):
+        """This report requires table support."""
+        return 1
 
-    PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
-    PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),1,option_switch)
-
-    font = FontStyle()
-    font.set_bold(1)
-    font.set_type_face(FONT_SANS_SERIF)
-    font.set_size(16)
-    p = ParagraphStyle()
-    p.set_alignment(PARA_ALIGN_CENTER)
-    p.set_font(font)
-    styles.add_style("Title",p)
-    
-    font = FontStyle()
-    font.set_bold(1)
-    font.set_type_face(FONT_SANS_SERIF)
-    font.set_size(12)
-    font.set_italic(1)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("TableTitle",p)
-    
-    font = FontStyle()
-    font.set_bold(1)
-    font.set_type_face(FONT_SANS_SERIF)
-    font.set_size(12)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("Spouse",p)
-
-    font = FontStyle()
-    font.set_size(12)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("Normal",p)
-
-    style_sheet_list = StyleSheetList("individual_summary.xml",styles)
-    build_menu(None)
-
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
-        "on_style_edit_clicked" : on_style_edit_clicked,
-        "on_save_clicked" : on_save_clicked
-        })
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def build_menu(object):
-    menu = topDialog.get_widget("style_menu")
-
-    myMenu = gtk.GtkMenu()
-    for style in style_sheet_list.get_style_names():
-        menuitem = gtk.GtkMenuItem(style)
-        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
-        menuitem.show()
-        myMenu.append(menuitem)
-    menu.set_menu(myMenu)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_style_edit_clicked(obj):
-    StyleListDisplay(style_sheet_list,build_menu,None)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def option_switch(obj):
-    val = obj.get_data("paper")
-    st = obj.get_data("styles")
-    notebook = topDialog.get_widget("option_notebook")
-    if val == 1:
-        notebook.set_page(0)
-    else:
-        notebook.set_page(1)
-    topDialog.get_widget("style_frame").set_sensitive(st)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_save_clicked(obj):
-    global active_person
-    global db
-
-    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if not outputName:
-        return
-
-    paper_obj = topDialog.get_widget("papersize")
-    paper = paper_obj.get_menu().get_active().get_data("i")
-    orien_obj = topDialog.get_widget("orientation")
-    orien = orien_obj.get_menu().get_active().get_data("i")
-    template = topDialog.get_widget("htmltemplate").get_full_path(0)
-
-    item = topDialog.get_widget("format").get_menu().get_active()
-    format = item.get_data("name")
-    
-    styles = topDialog.get_widget("style_menu").get_menu().get_active().get_data("d")
-    
-    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
-
-    MyReport = IndivSummary(db,active_person,outputName,doc)
-
-    MyReport.setup()
-    MyReport.write_report()
+    #------------------------------------------------------------------------
+    #
+    # Create output styles appropriate to this report.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Make the default output style for the Individual Summary Report."""
+        font = FontStyle()
+        font.set_bold(1)
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(16)
+        p = ParagraphStyle()
+        p.set_alignment(PARA_ALIGN_CENTER)
+        p.set_font(font)
+        self.default_style.add_style("Title",p)
         
-    utils.destroy_passed_object(obj)
+        font = FontStyle()
+        font.set_bold(1)
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(12)
+        font.set_italic(1)
+        p = ParagraphStyle()
+        p.set_font(font)
+        self.default_style.add_style("TableTitle",p)
+        
+        font = FontStyle()
+        font.set_bold(1)
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(12)
+        p = ParagraphStyle()
+        p.set_font(font)
+        self.default_style.add_style("Spouse",p)
+    
+        font = FontStyle()
+        font.set_size(12)
+        p = ParagraphStyle()
+        p.set_font(font)
+        self.default_style.add_style("Normal",p)
+    
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to setting up the dialog window
+    #
+    #------------------------------------------------------------------------
+    def setup_report_options(self):
+        """The 'Report Options' frame is not used in this dialog."""
+        self.topDialog.get_widget("options_frame").hide()
+
+    #------------------------------------------------------------------------
+    #
+    # Create the contents of the report.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the object that will produce the Ancestor Chart.
+        All user dialog has already been handled and the output file
+        opened."""
+        MyReport = IndivSummary(self.db, self.person, self.target_path, self.doc)
+        MyReport.setup()
+        MyReport.write_report()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def report(database,person):
+    IndivSummaryDialog(database,person)
 
 #------------------------------------------------------------------------
 #
