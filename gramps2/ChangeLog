@@ -1,3 +1,7 @@
+2003-09-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (__init__): Pass parent window to DbPrompter.
+	* src/DbPrompter.py (show): Gracefully deal with empty parent.
+
 2003-09-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: handle multiple image classes defined
 	by reportlab
