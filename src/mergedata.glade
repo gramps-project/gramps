@@ -360,7 +360,7 @@
 		  <property name="visible">True</property>
 		  <property name="label_xalign">0</property>
 		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+		  <property name="shadow_type">GTK_SHADOW_NONE</property>
 
 		  <child>
 		    <widget class="GtkTable" id="table6">
@@ -517,7 +517,6 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">bname1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -632,7 +631,6 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">bname1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -789,7 +787,6 @@
 			  <property name="active">True</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">bname1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -901,7 +898,6 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">bname1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -1022,7 +1018,7 @@
 		  <property name="visible">True</property>
 		  <property name="label_xalign">0</property>
 		  <property name="label_yalign">0.5</property>
-		  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+		  <property name="shadow_type">GTK_SHADOW_NONE</property>
 
 		  <child>
 		    <widget class="GtkTable" id="table7">
@@ -1368,7 +1364,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkRadioButton" id="radiobutton2">
+			<widget class="GtkRadioButton" id="bname2">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
 			  <property name="label" translatable="yes"></property>
@@ -1377,6 +1373,7 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
+			  <property name="group">bname1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -1419,7 +1416,7 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">radiobutton2</property>
+			  <property name="group">id1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -1483,7 +1480,7 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">radiobutton2</property>
+			  <property name="group">bbirth1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -1547,7 +1544,7 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">radiobutton2</property>
+			  <property name="group">death1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -1611,7 +1608,7 @@
 			  <property name="active">False</property>
 			  <property name="inconsistent">False</property>
 			  <property name="draw_indicator">True</property>
-			  <property name="group">radiobutton2</property>
+			  <property name="group">bfather1</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
