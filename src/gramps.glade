@@ -4008,6 +4008,7 @@
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
   <property name="has_separator">False</property>
+  <signal name="delete_event" handler="on_familyDialog_delete_event" last_modification_time="Wed, 25 Feb 2004 01:24:37 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox3">

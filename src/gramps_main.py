@@ -267,7 +267,7 @@ class Gramps:
         self.wins = self.gtop.get_widget("windows1")
         self.wins.set_submenu(gtk.Menu())
         self.winsmenu = self.wins.get_submenu()
-        self.wins_dict = {}
+        self.child_windows = {}
 
         self.gtop.signal_autoconnect({
             "on_back_clicked" : self.back_clicked,

@@ -178,7 +178,7 @@ class WitnessEditor:
         self.parent_menu_item = gtk.MenuItem(_('Witness Editor'))
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
-        self.parent.parent.menu.append(self.parent_menu_item)
+        self.parent.parent.winsmenu.append(self.parent_menu_item)
 
     def remove_itself_from_menu(self):
         self.parent.parent.child_windows[self.win_key]
