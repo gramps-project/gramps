@@ -25,7 +25,6 @@ import string
 import re
 import time
 
-import gnome.ui
 import Plugins
 import ImgManip
 import TarFile
@@ -157,7 +156,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            gnome.ui.GnomeErrorDialog(mymsg)
+            QuestionDialog.ErrorDialog(_("Template Error"),mymsg)
 
     def load_html(self):
         start = re.compile(r"<!--\s*START\s*-->")
@@ -182,7 +181,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            gnome.ui.GnomeErrorDialog(mymsg)
+            QuestionDilaog.ErrorDialog(_("Template Error"),mymsg)
             
     def load_template(self):
         if self.template:

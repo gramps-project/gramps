@@ -138,7 +138,10 @@ class GrampsInMemDB(GrampsDbBase):
 
     def get_person_from_gramps_id(self,val):
         handle = self.id_trans.get(str(val))
-        return self.person_map[handle]
+        if handle:
+            return self.person_map[handle]
+        else:
+            return None
 
     def get_family_from_gramps_id(self,val):
         handle = self.fid_trans.get(str(val))

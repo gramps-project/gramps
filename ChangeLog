@@ -1,3 +1,12 @@
+2004-10-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsInMemDB.py: handle null handle
+	* src/GrampsXMLDB.py: disable undo during normal read of database
+	* src/ReadGedcom.py: handle lines shorter than 50 lines, disable undo during
+	normal reads of the database
+	* src/ReadXML.py: disable undo during normal read of databas
+	* src/RelLib.py: revert Name.__cmp__ to Name.is_equal
+	* src/docgen/HTMLDoc.py: drop deprecated gnome.ui dialogs
+	
 2004-10-10 Eero Tamminen <eerot@sf>
 	* TestPlan.txt: Add test for reports like in stable version
 
