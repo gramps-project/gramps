@@ -526,7 +526,7 @@
 	    <object>notebook1</object>
 	    <last_modification_time>Tue, 07 Nov 2000 14:34:15 GMT</last_modification_time>
 	  </signal>
-	  <label>Pedegree</label>
+	  <label>Pedigree</label>
 	  <icon>pedegree.xpm</icon>
 	</widget>
 
@@ -2057,7 +2057,7 @@
 	<class>GtkLabel</class>
 	<child_name>Notebook:tab</child_name>
 	<name>label237</name>
-	<label>Pedegree</label>
+	<label>Pedigree</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
