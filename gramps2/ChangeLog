@@ -1,5 +1,6 @@
 2005-02-22 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version.
+	* src/docgen/PdfDoc.py (write_note): Attempt latin1 encoding.
 
 2005-02-21  Don Allingham  <dallingham@users.sourceforge.net>
 	* Release: Version 1.1.90 "Successful encyclopedia salesman" released.

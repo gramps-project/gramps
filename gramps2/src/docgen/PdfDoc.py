@@ -342,6 +342,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             self.story.append(Spacer(1,0.5*cm))
 
     def write_note(self,text,format,style_name):
+        text = enc(text)
         current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
         self.super = "<font size=%d><super>" % (self.my_para.get_font().get_size()-2)
