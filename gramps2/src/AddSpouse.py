@@ -55,6 +55,7 @@ import PeopleModel
 import Date
 import Marriage
 import NameDisplay
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -245,10 +246,18 @@ class AddSpouse:
         # don't do anything if the marriage already exists
         for f in self.person.get_family_handle_list():
             fam = self.db.get_family_from_handle(f)
-            if spouse_id == fam.get_mother_handle() or \
-                   spouse_id == fam.get_father_handle():
-                Utils.destroy_passed_object(obj)
-                return
+            if fam:
+                if spouse_id in \
+                        (fam.get_mother_handle(),fam.get_father_handle()):
+                    ErrorDialog(_("Error adding a spouse"),
+                            _("The spouse is already present in this family"))
+                    Utils.destroy_passed_object(obj)
+                    return
+                if spouse_id in fam.get_child_handle_list():
+                    ErrorDialog(_("Error adding a spouse"),
+                            _("A person cannot be linked as his/her own parent"))
+                    Utils.destroy_passed_object(obj)
+                    return
 
         trans = self.db.transaction_begin()
 
