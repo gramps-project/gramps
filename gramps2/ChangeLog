@@ -1,3 +1,6 @@
+2004-10-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/DescendReport.py: fix get_valid_year
+
 2004-10-25  Don Allingham  <dallingham@users.sourceforge.net>
         * src/StartupDialog.py: handle delete event
 	* src/docgen/HtmlDoc.py: fix typo
