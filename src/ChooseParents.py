@@ -300,8 +300,18 @@ class ChooseParents:
         """Redraws the potential father list"""
         self.father_nsort = PeopleModel.PeopleModel(self.db)
         self.father_nsort.rebuild_data()
-        self.father_model = gtk.TreeModelSort(self.father_nsort)
+        self.father_nsort.reset_visible()
+
+        for pid in self.db.get_person_keys():
+            person = self.db.try_to_find_person_from_id(pid)
+            visible = self.father_filter(person)
+            if visible:
+                self.father_nsort.set_visible(pid,visible)
+
+        self.father_model = gtk.TreeModelSort(self.father_nsort).filter_new()
+        self.father_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.father_list.set_model(self.father_model)
+        self.father_model.refilter()
         
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
@@ -312,8 +322,18 @@ class ChooseParents:
         """Redraws the potential mother list"""
         self.mother_nsort = PeopleModel.PeopleModel(self.db)
         self.mother_nsort.rebuild_data()
-        self.mother_model = gtk.TreeModelSort(self.mother_nsort)
+        self.mother_nsort.reset_visible()
+        
+        for pid in self.db.get_person_keys():
+            person = self.db.try_to_find_person_from_id(pid)
+            visible = self.mother_filter(person)
+            if visible:
+                self.mother_nsort.set_visible(pid,visible)
+
+        self.mother_model = gtk.TreeModelSort(self.mother_nsort).filter_new()
+        self.mother_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.mother_list.set_model(self.mother_model)
+        self.mother_model.refilter()
         
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
@@ -547,8 +567,18 @@ class ChooseParents:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.male:
             self.redrawf()
+            path = self.father_model.on_get_path(id)
+            top_path = self.father_model.on_get_path(person.get_primary_name().get_surname())
+            self.father_list.expand_row(top_path,0)
+            self.father_selection.select_path(path)
+            self.father_list.scroll_to_cell(path,None,1,0.5,0)
         else:
             self.redrawm()
+            path = self.mother_model.on_get_path(id)
+            top_path = self.mother_model.on_get_path(person.get_primary_name().get_surname())
+            self.mother_list.expand_row(top_path,0)
+            self.mother_selection.select_path(path)
+            self.mother_list.scroll_to_cell(path,None,1,0.5,0)
         self.full_update()
         
     def add_parent_clicked(self,obj):

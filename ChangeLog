@@ -1,3 +1,9 @@
+2004-06-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: fix reordering of children
+	* src/ChooseParents.py: get filters working again
+	* src/AddSpouse.py: update display after addition of person
+	* src/Utils.py: new id generation algorithm
+
 2004-06-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ChooseParents.py: fix parent selection
 	* src/FamilyView.py: fix update of parents after selction
