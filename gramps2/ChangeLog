@@ -2,6 +2,14 @@
 	* src/filters/*: removed
 	* src/plugins/WritePkg.py: brought up to date
 
+2004-06-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Typos. 
+	* src/ImageSelect.py: Correctly update property editors on OK
+	and Cancel. 
+	* src/EventEdit.py: Typo. 
+	* src/Sources.py: Set change flag on deletion of the source reference.
+	* src/RelLib.py: Add media list into serialization and restore. 
+
 2004-06-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteGedcom.py: brought up to date
 	* src/gramps_main.py: beta warning

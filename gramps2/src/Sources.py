@@ -276,6 +276,7 @@ class SourceTab:
         if iter:
             path = store.get_path(iter)
             del self.list[path[0]]
+            self.parent.lists_changed = 1
             self.redraw()
 
 #-------------------------------------------------------------------------

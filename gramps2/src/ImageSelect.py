@@ -239,7 +239,7 @@ class Gallery(ImageSelect):
         self.dataobj   = dataobj;
         self.iconlist = icon_list;
         self.root = self.iconlist.root()
-        self.old_media_list = self.dataobj.get_media_list()[:]
+        self.old_media_list = [RelLib.MediaRef(ref) for ref in self.dataobj.get_media_list()]
         
         # Local object variables
         self.y = 0
@@ -697,10 +697,10 @@ class LocalMediaProperties:
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
         
-        self.slist  = self.change_dialog.get_widget("src_slist")
+        self.slist  = self.change_dialog.get_widget("src_list")
         self.sources_label = self.change_dialog.get_widget("source_label")
         if self.object:
-            self.srcreflist = self.photo.get_source_references()
+            self.srcreflist = [RelLib.SourceRef(ref) for ref in self.photo.get_source_references()]
         else:
             self.srcreflist = []
     
@@ -818,11 +818,14 @@ class LocalMediaProperties:
             self.photo.set_note(text)
             self.photo.set_privacy(priv)
             self.parent.lists_changed = 1
+            self.parent.parent.lists_changed = 1
         if format != self.photo.get_note_format():
             self.photo.set_note_format(format)
         if self.lists_changed:
             self.photo.set_attribute_list(self.alist)
+            self.photo.set_source_reference_list(self.srcreflist)
             self.parent.lists_changed = 1
+            self.parent.parent.lists_changed = 1
 
         trans = self.db.start_transaction()
         self.db.commit_media_object(self.object,trans)
@@ -930,7 +933,7 @@ class GlobalMediaProperties:
         self.slist  = self.change_dialog.get_widget("src_list")
         self.sources_label = self.change_dialog.get_widget("sourcesGlobal")
         if self.object:
-            self.srcreflist = self.object.get_source_references()
+            self.srcreflist = [RelLib.SourceRef(ref) for ref in self.object.get_source_references()]
         else:
             self.srcreflist = []
     
@@ -1113,6 +1116,7 @@ class GlobalMediaProperties:
             self.object.set_note_format(format)
         if self.lists_changed:
             self.object.set_attribute_list(self.alist)
+            self.object.set_source_reference_list(self.srcreflist)
         if self.update != None:
             self.update()
         trans = self.db.start_transaction()
@@ -1125,7 +1129,7 @@ class GlobalMediaProperties:
         
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)
-        Utils.destroy_passed_object(obj)
+        self.close(obj)
 
     def on_attr_list_select_row(self,obj):
         store,iter = self.atree.get_selected()

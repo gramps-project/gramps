@@ -1687,12 +1687,12 @@ class Event(DataObj):
     def serialize(self):
         return (self.id, self.name, self.date, self.description,
                 self.place, self.cause, self.private, self.source_list,
-                self.note, self.witness)
+                self.note, self.witness, self.media_list)
 
     def unserialize(self,data):
         (self.id, self.name, self.date, self.description,
          self.place, self.cause, self.private, self.source_list,
-         self.note, self.witness) = data
+         self.note, self.witness, self.media_list) = data
 
     def add_media_reference(self,media_id):
         """Adds a Photo object to the Event object's image list"""
