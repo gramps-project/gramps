@@ -702,7 +702,7 @@ class EditPerson:
         for name in self.nlist:
             iter = self.ntree.add([name.getName(),_(name.getType())],name)
             self.nmap[str(name)] = iter
-        if self.ntree:
+        if self.nlist:
             self.ntree.select_row(0)
             self.bold_label(self.names_label)
         else:
