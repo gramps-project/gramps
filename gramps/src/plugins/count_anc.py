@@ -22,10 +22,6 @@
 
 from RelLib import *
 import os
-import posixpath
-import re
-import sort
-import string
 import Utils
 import intl
 _ = intl.gettext

@@ -30,6 +30,7 @@ import gtk
 import const
 import GrampsCfg
 import intl
+import VersionControl
 _ = intl.gettext
 
 #-------------------------------------------------------------------------
@@ -116,12 +117,3 @@ class DbPrompter:
     def open_cancel_clicked(self,obj):
         gtk.mainquit()
 
-
-#-------------------------------------------------------------------------
-#
-# Start it all
-#
-#-------------------------------------------------------------------------
-if __name__ == '__main__':
-    Gramps(None)
-    gtk.mainloop()

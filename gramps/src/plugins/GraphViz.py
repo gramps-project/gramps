@@ -107,7 +107,7 @@ _scaled = 0
 _single = 1
 _multiple = 2
 
-pagecount_map = {
+_pagecount_map = {
     _("Single (scaled)") : _scaled,
     _("Single") : _single,
     _("Multiple") : _multiple,
@@ -138,7 +138,7 @@ class GraphVizDialog(ReportDialog):
 
     def get_print_pagecount_map(self):
         """Set up the list of possible page counts."""
-        return (pagecount_map, _("Single (scaled)"))
+        return (_pagecount_map, _("Single (scaled)"))
 
     def get_report_generations(self):
         """Default to 10 generations, no page breaks."""

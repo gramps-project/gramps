@@ -76,10 +76,7 @@ class SoundGen:
         self.glade.get_widget("soundEx").show()    
 
     def on_apply_clicked(self,obj):
-        
-        text = obj.get_text()
-        value = self.value.set_text(soundex.soundex(text))
-    
+        self.value.set_text(soundex.soundex(obj.get_text()))
 
 #-------------------------------------------------------------------------
 #

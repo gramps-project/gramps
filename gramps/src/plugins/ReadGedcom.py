@@ -53,16 +53,16 @@ photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "jpg", "tiff", "pcx" ]
 
 ged2gramps = {}
-for val in const.personalConstantEvents.keys():
-    key = const.personalConstantEvents[val]
-    if key != "":
-        ged2gramps[key] = val
+for _val in const.personalConstantEvents.keys():
+    _key = const.personalConstantEvents[_val]
+    if _key != "":
+        ged2gramps[_key] = _val
 
 ged2fam = {}
-for val in const.familyConstantEvents.keys():
-    key = const.familyConstantEvents[val]
-    if key != "":
-        ged2fam[key] = val
+for _val in const.familyConstantEvents.keys():
+    _key = const.familyConstantEvents[_val]
+    if _key != "":
+        ged2fam[_key] = _val
 
 intRE = re.compile(r"\s*(\d+)\s*$")
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")

@@ -21,14 +21,6 @@
 The AddSpouse module provides the AddSpouse class that allows the user to
 add a new spouse to the active person.
 """
-
-#-------------------------------------------------------------------------
-#
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-import string
-
 #-------------------------------------------------------------------------
 #
 # internationalization

@@ -498,15 +498,14 @@ class OpenOfficeDoc(TextDoc):
 
         for file_tuple in self.photo_list:
             file = file_tuple[0]
-            width = file_tuple[1]
-            height = file_tuple[2]
             base = os.path.basename(file)
             image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
 
             try:
                 shutil.copy(file,image_name)
             except IOError,msg:
-                GnomeErrorDialog(_("Error copying %s") + "\n" + msg)
+                import gnome.ui
+                gnome.ui.GnomeErrorDialog(_("Error copying %s") + "\n" + msg)
 
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"

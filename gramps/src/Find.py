@@ -163,7 +163,6 @@ class FindPlace(FindBase):
             return
         orow = self.row
         func()
-        place = None
         while self.row != orow:
             value = self.clist.get_row_data(self.row)
             if value == None:
@@ -204,7 +203,6 @@ class FindSource(FindBase):
             return
         orow = self.row
         func()
-        place = None
         while self.row != orow:
             value = self.clist.get_row_data(self.row)
             if value == None:
@@ -245,7 +243,6 @@ class FindMedia(FindBase):
             return
         orow = self.row
         func()
-        place = None
         while self.row != orow:
             value = self.clist.get_row_data(self.row)
             if value == None:

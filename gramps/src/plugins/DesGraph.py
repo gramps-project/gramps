@@ -222,12 +222,8 @@ class DescendantReport:
     #
     #--------------------------------------------------------------------
     def calc(self):
-	width = 0
-
 	self.height = self.lines*pt2cm(1.25*self.font.get_size())
 	self.box_width = pt2cm(self.box_width+20)
-
-        start = self.doc.get_right_margin()
 
 	self.maxx = int(self.doc.get_usable_width()/(self.box_width+_sep))
         self.maxy = int(self.doc.get_usable_height()/(self.height+_sep))

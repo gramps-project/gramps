@@ -23,7 +23,6 @@
 
 import RelLib
 import os
-import sort
 import intl
 
 _ = intl.gettext
