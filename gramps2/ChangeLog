@@ -1,6 +1,9 @@
 2004-10-08 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsCfg.py (build): Typo.
 
+	* src/GrampsCfg.py: Remove unused code.
+	* src/TipOfDay.py (TipParser.escape): Add method.
+
 2004-10-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: pychecker fixes
 	* src/DbPrompter.py: pychecker fixes

@@ -125,7 +125,7 @@ class TipParser:
 
     def endElement(self,tag):
         if tag == "tip":
-            text = ''.join(self.tlist)
+            text = self.escape(''.join(self.tlist))
             self.mylist.append(' '.join(text.split()))
         elif tag != "tips":
             # let all the other tags through, except for the "tips" tag
@@ -133,3 +133,11 @@ class TipParser:
 
     def characters(self, data):
         self.tlist.append(data)
+
+    def escape(self,text):
+        """
+        The tip's text will be interpreted as a markup, so we need to escape
+        some special chars.
+        """
+        text = text.replace('&','&amp;');       # Must be first
+        return text
