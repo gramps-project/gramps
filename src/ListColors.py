@@ -54,7 +54,7 @@ class ColorList:
             else:
                 self.clist.set_background(self.index,self.evenbg)
                 self.clist.set_foreground(self.index,self.evenfg)
-            self.index = self.index + 1
+        self.index = self.index + 1
 
     def add_with_data(self,list,data):
         self.add(list)

@@ -50,6 +50,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+from Date import *
 
 import Researcher
 import const
@@ -511,7 +512,7 @@ def display_preferences_box():
         item.connect("activate", on_format_toggled)
         item.show()
         date_menu.append(item)
-    date_menu.set_active(Date.get_format_code())
+    date_menu.set_active(get_format_code())
     date_option.set_menu(date_menu)
 
     date_entry = prefsTop.get_widget("date_entry_format")
