@@ -117,9 +117,10 @@ class EditPerson:
         self.title = self.get_widget("title")
         self.bdate  = self.get_widget("birthDate")
         self.bplace = self.get_widget("birthPlace")
-        self.dcause = self.get_widget("deathCause")
+        self.bpcombo = self.get_widget("bpcombo")
         self.ddate  = self.get_widget("deathDate")
         self.dplace = self.get_widget("deathPlace")
+        self.dpcombo = self.get_widget("dpcombo")
         self.is_male = self.get_widget("genderMale")
         self.is_female = self.get_widget("genderFemale")
         self.is_unknown = self.get_widget("genderUnknown")
@@ -152,7 +153,6 @@ class EditPerson:
         self.window.editable_enters(self.bplace);
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
-        self.window.editable_enters(self.dcause);
         
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
@@ -202,6 +202,11 @@ class EditPerson:
         self.name_list.set_column_visibility(1,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
         self.addr_list.set_column_visibility(2,Config.show_detail)
+
+        plist = self.db.getPlaceMap().values()
+        if len(plist) > 0:
+            utils.attach_places(plist,self.dpcombo,self.death.getPlace())
+            utils.attach_places(plist,self.bpcombo,self.birth.getPlace())
 
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
@@ -284,6 +289,10 @@ class EditPerson:
     def redraw_event_list(self):
         """redraws the event list for the person"""
         utils.redraw_list(self.elist,self.event_list,disp_event)
+        self.bplace.set_text(self.birth.getPlaceName())
+        self.dplace.set_text(self.death.getPlaceName())
+        self.bdate.set_text(self.birth.getDate())
+        self.ddate.set_text(self.death.getDate())
 
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
@@ -315,12 +324,21 @@ class EditPerson:
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         event = self.birth
-        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,1)
+        event.setDate(self.bdate.get_text())
+        p = utils.get_place_from_list(self.bpcombo)
+        if p != None:
+            event.setPlace(p)
+        EventEdit.EventEditor(self,pname,const.personalEvents,\
+                              const.save_fevent,event,1)
 
     def on_edit_death_clicked(self,obj):
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         event = self.death
+        event.setDate(self.ddate.get_text())
+        p = utils.get_place_from_list(self.dpcombo)
+        if p != None:
+            event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,1)
 
     def on_aka_delete_clicked(self,obj):
@@ -390,6 +408,19 @@ class EditPerson:
         if self.pname.getNote() != name.getNote():
             changed = 1
 
+        bplace = string.strip(self.bplace.get_text())
+        dplace = string.strip(self.dplace.get_text())
+
+        p1 = utils.get_place_from_list(self.bpcombo)
+        if p1 == None and bplace != "":
+            changed = 1
+        self.birth.setPlace(p1)
+
+        p1 = utils.get_place_from_list(self.dpcombo)
+        if p1 == None and dplace != "":
+            changed = 1
+        self.death.setPlace(p1)
+
         if not self.birth.are_equal(self.person.getBirth()):
             changed = 1
 
@@ -418,12 +449,10 @@ class EditPerson:
         self.ddate.set_text(self.death.getDate())
         self.dplace.set_text(self.death.getPlaceName())
         self.dplace.set_text(self.death.getPlaceName())
-        self.dcause.set_text(self.death.getCause())
         self.bdate.set_position(0)
         self.ddate.set_position(0)
         self.bplace.set_position(0)
         self.dplace.set_position(0)
-        self.dcause.set_position(0)
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -579,11 +608,25 @@ class EditPerson:
             utils.modified()
 
         self.birth.setDate(self.bdate.get_text())
+        bplace_obj = utils.get_place_from_list(self.bpcombo)
+        bplace = string.strip(self.bplace.get_text())
+        if bplace_obj == None and bplace != "":
+            p1 = Place()
+            p1.set_title(bplace)
+            self.db.addPlace(p1)
+        self.birth.setPlace(bplace_obj)
 
         if not self.person.getBirth().are_equal(self.birth):
             self.person.setBirth(self.birth)
     
         self.death.setDate(self.ddate.get_text())
+        dplace_obj = utils.get_place_from_list(self.dpcombo)
+        dplace = string.strip(self.dplace.get_text())
+        if dplace_obj == None and dplace != "":
+            p1 = Place()
+            p1.set_title(dplace)
+            self.db.addPlace(p1)
+        self.death.setPlace(dplace_obj)
 
         if not self.person.getDeath().are_equal(self.death):
             self.person.setDeath(self.death)
