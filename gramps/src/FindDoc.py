@@ -104,7 +104,7 @@ except:
 
 try:
     import RTFDoc
-    _textdoc.append((_RTF, _no_tables, _paper, _styles))
+    _textdoc.append((_RTF, _has_tables, _paper, _styles))
 except:
     pass
 
