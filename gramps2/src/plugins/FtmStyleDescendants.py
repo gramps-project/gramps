@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #
 # Written by Alex Roitman, largely based on the FtmStyleAncestors.py
 # report by Don Allingham
@@ -463,7 +465,7 @@ class FtmDescendantReport(Report.Report):
             self.doc.start_paragraph('FTD-Endnotes',"%d." % key)
             self.doc.write_text(base.getTitle())
 
-            for item in [ base.getAuthor(), base.getPubInfo(), base.getCallNumber(),
+            for item in [ base.getAuthor(), base.getPubInfo(), base.getAbbrev(),
                           srcref.getDate().getDate(),]:
                 if item:
                     self.doc.write_text('; %s' % item)

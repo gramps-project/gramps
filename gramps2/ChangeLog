@@ -36,6 +36,10 @@
 	* src/gramps.glade (sourceEditor): Remove Call Number widgets.
 	* src/EditSource.py: Remove Call Number support. 
 	* src/plugins/WriteGedcom.py (write_sources): Remove CallNumber export.
+	* src/plugins/FtmStyleDescendants.py (write_endnotes): Replace 
+	CallNumber with Abbreviation.
+	* src/plugins/FtmStyleAncestors.py (write_endnotes): Replace 
+	CallNumber with Abbreviation.
 
 2003-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/filters/Complete.py: Add filter matching people with the 
