@@ -1521,10 +1521,10 @@ class EditPerson:
             self.draw_lds()
 
     def change_name(self,obj):
-        if self.name_list.selection:
+        sel_objs = self.ntree.get_selected_objects()
+        if sel_objs:
             old = self.pname
-            row = self.name_list.selection[0]
-            new = self.name_list.get_row_data(row)
+            new = sel_objs[0]
             self.nlist.remove(new)
             self.nlist.append(old)
             self.redraw_name_list()

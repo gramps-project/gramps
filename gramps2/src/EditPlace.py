@@ -204,8 +204,8 @@ class EditPlace:
             self.redraw_url_list()
 
     def url_source_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
-        
+
+        ev = self.web_model.get_selected_objects()[0]
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
         data = str(('url',self.place.getId(),pickled));
