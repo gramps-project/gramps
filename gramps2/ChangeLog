@@ -1,10 +1,18 @@
+2005-03-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsBSDDB.py: add upgrade to version 3 for new Name type
+	* src/NameEdit.py: add date editor field
+	* src/ReadXML.py: read date field attached to a name
+	* src/WriteXML.py: write date field attached to a name
+	* src/RelLib.py: add date field to Name
+	* src/gramps.glade: add date editor field to Name Editor dialog
+
 2005-03-06 Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/EditSource.py (display_references): List source's references
-	from personal and family gallery objects.
+        * src/EditSource.py (display_references): List source's references
+        from personal and family gallery objects.
 
 2005-03-04 Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/GenericFilter.py (HasAttribute.apply): Make work when no value
-	is given; (HasFamilyAttribute.apply): Make work when no value is given.
+        * src/GenericFilter.py (HasAttribute.apply): Make work when no value
+        is given; (HasFamilyAttribute.apply): Make work when no value is given.
 
 2005-03-03 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GenericFilter.py (HasAttribute.apply): Fix the rule.

@@ -2629,6 +2629,10 @@ class Name(DataObj):
             self.group_as = source.group_as
             self.sort_as = source.sort_as
             self.display_as = source.display_as
+            if source.date:
+                self.date = Date.Date(source.date)
+            else:
+                self.date = None
         else:
             self.first_name = ""
             self.surname = ""
@@ -2641,6 +2645,7 @@ class Name(DataObj):
             self.group_as = ""
             self.sort_as = self.DEF
             self.display_as = self.DEF
+            self.date = None
 
     def set_group_as(self,name):
         """
@@ -2885,6 +2890,66 @@ class Name(DataObj):
                 return True
             index += 1
         return True
+
+    def set_date(self, date) :
+        """
+        Sets the date of the L{Name} instance. The date is parsed into
+        a L{Date} instance.
+
+        @param date: String representation of a date. The locale specific
+            L{DateParser} is used to parse the string into a GRAMPS L{Date}
+            object.
+        @type date: str
+        """
+        self.date = DateHandler.parser.parse(date)
+
+    def get_date(self) :
+        """
+        Returns a string representation of the date of the L{Name} instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance.
+
+        @return: Returns a string representing the L{Name}'s date
+        @rtype: str
+        """
+        if self.date:
+            return DateHandler.displayer.display(self.date)
+        return u""
+
+    def get_quote_date(self) :
+        """
+        Returns a string representation of the date of the L{Name} instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance. The date is enclosed in
+        quotes if the L{Date} is not a valid date.
+
+        @return: Returns a string representing the L{Name}'s date
+        @rtype: str
+        """
+        if self.date:
+            return DateHandler.displayer.quote_display(self.date)
+        return u""
+
+    def get_date_object(self):
+        """
+        Returns the L{Date} object associated with the L{Name}.
+
+        @return: Returns a L{Name}'s L{Date} instance.
+        @rtype: L{Date}
+        """
+        if not self.date:
+            self.date = Date.Date()
+        return self.date
+
+    def set_date_object(self,date):
+        """
+        Sets the L{Date} object associated with the L{Name}.
+
+        @param date: L{Date} instance to be assigned to the L{Name}
+        @type date: L{Date}
+        """
+        self.date = date
+
 
 class Url:
     """Contains information related to internet Uniform Resource Locators,
