@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
-"POT-Creation-Date: Wed Jul  9 00:10:20 2003\n"
+"POT-Creation-Date: Tue Jul 15 19:54:41 2003\n"
 "PO-Revision-Date: 2002-07-18 10:49+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
@@ -24,7 +24,7 @@ msgstr "Det angivne filnavn kunne ikke findes."
 #: AddSpouse.py:86 ChooseParents.py:54 EditPerson.py:209 FamilyView.py:146
 #: SelectChild.py:116 SelectPerson.py:76 gramps_main.py:102
 #: plugins/BookReport.py:594 plugins/FilterEditor.py:130
-#: plugins/IndivComplete.py:394 plugins/IndivSummary.py:231
+#: plugins/IndivComplete.py:395 plugins/IndivSummary.py:232
 #: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:340
 #: plugins/WebPage.py:277
 msgid "Name"
@@ -50,8 +50,8 @@ msgstr "Vælg ægtefælle/partner til %s"
 msgid "Choose Spouse/Partner"
 msgstr "Vælg Ægtefælle/Partner"
 
-#: AddSpouse.py:111 const.py:444 const.py:452 plugins/FamilyGroup.py:305
-#: plugins/FamilyGroup.py:307
+#: AddSpouse.py:111 const.py:444 const.py:452 plugins/FamilyGroup.py:302
+#: plugins/FamilyGroup.py:304
 msgid "Married"
 msgstr "Viet"
 
@@ -211,7 +211,7 @@ msgstr "Vælg Forældre"
 #: ChooseParents.py:482 SelectChild.py:112 SelectChild.py:114 const.py:166
 #: gramps.glade:3618 gramps.glade:3811 gramps.glade:4255 gramps.glade:4435
 #: gramps.glade:5889 gramps.glade:6135 gramps.glade:6686 gramps.glade:6857
-#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:155 plugins/GraphViz.py:342
+#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:152 plugins/GraphViz.py:342
 #: plugins/GraphViz.py:343
 msgid "Birth"
 msgstr "Fødsel"
@@ -222,16 +222,16 @@ msgid "Parent"
 msgstr "Forælder"
 
 #: ChooseParents.py:216 ChooseParents.py:503 FamilyView.py:500
-#: plugins/FamilyGroup.py:201 plugins/IndivComplete.py:205
-#: plugins/IndivComplete.py:207 plugins/IndivComplete.py:429
-#: plugins/IndivSummary.py:278 plugins/WebPage.py:295 plugins/WebPage.py:298
+#: plugins/FamilyGroup.py:198 plugins/IndivComplete.py:206
+#: plugins/IndivComplete.py:208 plugins/IndivComplete.py:430
+#: plugins/IndivSummary.py:279 plugins/WebPage.py:295 plugins/WebPage.py:298
 msgid "Father"
 msgstr "Fader"
 
 #: ChooseParents.py:292 ChooseParents.py:502 FamilyView.py:501
-#: plugins/FamilyGroup.py:214 plugins/IndivComplete.py:213
-#: plugins/IndivComplete.py:215 plugins/IndivComplete.py:434
-#: plugins/IndivSummary.py:292 plugins/WebPage.py:296 plugins/WebPage.py:299
+#: plugins/FamilyGroup.py:211 plugins/IndivComplete.py:214
+#: plugins/IndivComplete.py:216 plugins/IndivComplete.py:435
+#: plugins/IndivSummary.py:293 plugins/WebPage.py:296 plugins/WebPage.py:299
 msgid "Mother"
 msgstr "Moder"
 
@@ -344,8 +344,8 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
 
 #: EditPerson.py:430 choose.glade:218 const.py:136 plugins/Check.py:274
-#: plugins/FamilyGroup.py:655 plugins/IndivComplete.py:275
-#: plugins/IndivSummary.py:171 plugins/WebPage.py:548 select_person.glade:218
+#: plugins/FamilyGroup.py:653 plugins/IndivComplete.py:276
+#: plugins/IndivSummary.py:172 plugins/WebPage.py:548 select_person.glade:218
 msgid "unknown"
 msgstr "ukendt"
 
@@ -477,16 +477,18 @@ msgstr "Hændelseseditor"
 msgid "Event Editor for %s"
 msgstr "Hændelseseditor for %s"
 
-#: FamilyView.py:51 PedView.py:43
+#: FamilyView.py:51 PedView.py:43 plugins/AncestorChart.py:53
+#: plugins/DesGraph.py:53
 msgid "b."
 msgstr "f."
 
-#: FamilyView.py:52 PedView.py:44
+#: FamilyView.py:52 PedView.py:44 plugins/AncestorChart.py:54
+#: plugins/DesGraph.py:54
 msgid "d."
 msgstr "d."
 
-#: FamilyView.py:147 gramps_main.py:102 plugins/IndivComplete.py:405
-#: plugins/IndivSummary.py:245 plugins/WebPage.py:287 plugins/WebPage.py:289
+#: FamilyView.py:147 gramps_main.py:102 plugins/IndivComplete.py:406
+#: plugins/IndivSummary.py:246 plugins/WebPage.py:287 plugins/WebPage.py:289
 #: plugins/WebPage.py:291
 msgid "Gender"
 msgstr "Køn"
@@ -971,7 +973,7 @@ msgstr "GRAMPS ID'et du valgte for dette slægtskab er allerede i brug."
 
 #: MediaView.py:75 SourceView.py:68 Sources.py:77 Sources.py:160
 #: plugins/BookReport.py:676 plugins/BookReport.py:749
-#: plugins/PatchNames.py:168 plugins/SimpleBookTitle.py:358
+#: plugins/PatchNames.py:168 plugins/SimpleBookTitle.py:359
 #: plugins/TimeLine.py:351
 msgid "Title"
 msgstr "Titel"
@@ -988,9 +990,9 @@ msgid ""
 "available at http://www.imagemagick.org/"
 msgstr ""
 "Der er ikke noget redskab til at danne miniaturer for billederne. Hvis du "
-"ønsker at anvende miniaturer, så installer Python Imaging Library (PIL), "
-"som kan fås på http://www.pythonware.com/products/pil/ eller ImageMagick, "
-"som kan fås på http://www.imagemagick.org/"
+"ønsker at anvende miniaturer, så installer Python Imaging Library (PIL), som "
+"kan fås på http://www.pythonware.com/products/pil/ eller ImageMagick, som "
+"kan fås på http://www.imagemagick.org/"
 
 #: MediaView.py:163
 msgid "The file no longer exists"
@@ -1143,17 +1145,17 @@ msgstr ""
 "Filen er sandsynligvis enten defekt eller ikke en gyldig GRAMPS database."
 
 #: ReadXML.py:194 gramps_main.py:1171 plugins/Check.py:171
-#: plugins/WriteCD.py:224 plugins/WritePkg.py:149
+#: plugins/WriteCD.py:225 plugins/WritePkg.py:150
 msgid "Select file"
 msgstr "Vælg fil"
 
 #: ReadXML.py:226 gramps_main.py:1194 plugins/Check.py:188
-#: plugins/WriteCD.py:246 plugins/WritePkg.py:172
+#: plugins/WriteCD.py:247 plugins/WritePkg.py:173
 msgid "Media object could not be found"
 msgstr "Medieobjekt kunne ikke findes"
 
 #: ReadXML.py:227 gramps_main.py:1195 plugins/Check.py:189
-#: plugins/WriteCD.py:247 plugins/WritePkg.py:173
+#: plugins/WriteCD.py:248 plugins/WritePkg.py:174
 msgid ""
 "%(file_name)s is referenced in the database, but no longer exists. The file "
 "may have been deleted or moved to a different location. You may choose to "
@@ -1189,9 +1191,9 @@ msgstr "Filen er blevet flyttet eller slettet"
 #: docgen/PdfDoc.py:159 docgen/PdfDrawDoc.py:90 docgen/PdfDrawDoc.py:92
 #: docgen/RTFDoc.py:71 docgen/RTFDoc.py:74 docgen/SvgDrawDoc.py:84
 #: docgen/SvgDrawDoc.py:86 gramps_main.py:1225 gramps_main.py:1230
-#: gramps_main.py:1240 plugins/AncestorChart.py:113 plugins/DesGraph.py:210
-#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:549
-#: plugins/WriteGedcom.py:554
+#: gramps_main.py:1240 plugins/AncestorChart.py:116 plugins/DesGraph.py:213
+#: plugins/DesGraph.py:222 plugins/WriteGedcom.py:551
+#: plugins/WriteGedcom.py:556
 msgid "Could not create %s"
 msgstr "Kunne ikke danne %s"
 
@@ -1370,8 +1372,8 @@ msgid "C_hange"
 msgstr "Ret"
 
 #: Report.py:423
-msgid "Styles"
-msgstr "Stile"
+msgid "Style"
+msgstr "Stil"
 
 #: Report.py:427 StyleEditor.py:81
 msgid "Style Editor"
@@ -1393,7 +1395,7 @@ msgstr "Generationer"
 msgid "Page break between generations"
 msgstr "Sideskift imellem generationer"
 
-#: Report.py:776
+#: Report.py:777
 msgid "Save Report As"
 msgstr "Gem Rapport Som"
 
@@ -1582,9 +1584,9 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
-"GRAMPS er et Open-Source projekt. Dets succes afhænger af brugerne. Brugernes "
-"tilbagemeldinger er vigtige. Tilmeld dig venligst e-mail-listerne, indsend "
-"fejlmeldinger, foreslå forbedringer, og se hvordan du kan bidrage.\n"
+"GRAMPS er et Open-Source projekt. Dets succes afhænger af brugerne. "
+"Brugernes tilbagemeldinger er vigtige. Tilmeld dig venligst e-mail-listerne, "
+"indsend fejlmeldinger, foreslå forbedringer, og se hvordan du kan bidrage.\n"
 "\n"
 "God fornøjelse med GRAMPS."
 
@@ -1604,7 +1606,7 @@ msgstr ""
 msgid "Name:"
 msgstr "Navn:"
 
-#: StartupDialog.py:157 dialog.glade:1889 edit_person.glade:2858
+#: StartupDialog.py:157 edit_person.glade:2858
 msgid "Address:"
 msgstr "Adresse:"
 
@@ -1838,25 +1840,25 @@ msgstr "Pleje"
 msgid "Other"
 msgstr "Anden"
 
-#: const.py:182 srcsel.glade:418
-msgid "Very Low"
-msgstr "Meget lav"
+#: const.py:182 srcsel.glade:450
+msgid "Very High"
+msgstr "Meget Høj"
 
-#: const.py:183 plugins/Merge.py:107 srcsel.glade:426
-msgid "Low"
-msgstr "Lav"
+#: const.py:183 plugins/Merge.py:115 srcsel.glade:442
+msgid "High"
+msgstr "Høj"
 
 #: const.py:184 srcsel.glade:434
 msgid "Normal"
 msgstr "Normal"
 
-#: const.py:185 plugins/Merge.py:115 srcsel.glade:442
-msgid "High"
-msgstr "Høj"
+#: const.py:185 plugins/Merge.py:107 srcsel.glade:426
+msgid "Low"
+msgstr "Lav"
 
-#: const.py:186 srcsel.glade:450
-msgid "Very High"
-msgstr "Meget Høj"
+#: const.py:186 srcsel.glade:418
+msgid "Very Low"
+msgstr "Meget lav"
 
 #: const.py:206
 msgid "Annulment"
@@ -2216,6 +2218,10 @@ msgstr "Sogn:"
 msgid "Accept and close"
 msgstr "Accepter og luk"
 
+#: dialog.glade:1889
+msgid "Add_ress:"
+msgstr "Ad_resse:"
+
 #: dialog.glade:1916
 msgid "_City/County:"
 msgstr "By/Amt:"
@@ -2252,7 +2258,7 @@ msgstr "Slægtsnavn:"
 msgid "Suffi_x:"
 msgstr "Suffiks:"
 
-#: dialog.glade:2927
+#: dialog.glade:2927 edit_person.glade:278
 msgid "T_ype:"
 msgstr "T_ype:"
 
@@ -2322,7 +2328,7 @@ msgstr "Kunne ikke åbne %s"
 msgid "KWord"
 msgstr "KWord"
 
-#: docgen/LaTeXDoc.py:401
+#: docgen/LaTeXDoc.py:414 docgen/LaTeXDoc.py:423
 msgid "LaTeX"
 msgstr "LaTeX"
 
@@ -2365,10 +2371,6 @@ msgstr "Accepter rettelser og afslut dialogen"
 #: edit_person.glade:253
 msgid "_Nickname:"
 msgstr "Kæle_navn:"
-
-#: edit_person.glade:278
-msgid "T_ype"
-msgstr "T_ype"
 
 #: edit_person.glade:371
 msgid "Invoke birth event editor"
@@ -2792,11 +2794,12 @@ msgid "Names that match a regular expression"
 msgstr "Navne som matcher et regulært udtryk"
 
 #: filters/RegExMatch.py:52 filters/SubString.py:43
-#: plugins/AncestorReport.py:523 plugins/Ancestors.py:970
-#: plugins/DescendReport.py:413 plugins/DetAncestralReport.py:1256
-#: plugins/DetDescendantReport.py:1263 plugins/FamilyGroup.py:768
-#: plugins/FtmStyleAncestors.py:1041 plugins/FtmStyleDescendants.py:1448
-#: plugins/IndivComplete.py:823 plugins/IndivSummary.py:635
+#: plugins/AncestorReport.py:521 plugins/Ancestors.py:968
+#: plugins/CustomBookText.py:389 plugins/DescendReport.py:412
+#: plugins/DetAncestralReport.py:1253 plugins/DetDescendantReport.py:1262
+#: plugins/FamilyGroup.py:766 plugins/FtmStyleAncestors.py:1040
+#: plugins/FtmStyleDescendants.py:1449 plugins/IndivComplete.py:825
+#: plugins/IndivSummary.py:638
 msgid "Text"
 msgstr "Tekst"
 
@@ -2856,9 +2859,9 @@ msgstr "_Editer"
 msgid "_Find..."
 msgstr "_Find..."
 
-#: gramps.glade:274 plugins/merge.glade:126
-msgid "_Merge"
-msgstr "Slå sa_mmen"
+#: gramps.glade:274
+msgid "_Merge..."
+msgstr "Slå sa_mmen..."
 
 #: gramps.glade:299
 msgid "_View"
@@ -2881,8 +2884,8 @@ msgid "_Add bookmark"
 msgstr "Tilføj Bogmærke"
 
 #: gramps.glade:363
-msgid "_Edit bookmarks"
-msgstr "R_et Bogmærker"
+msgid "_Edit bookmarks..."
+msgstr "R_et Bogmærker..."
 
 #: gramps.glade:391
 msgid "_Go to bookmark"
@@ -2902,8 +2905,8 @@ msgstr "Ind_stillinger"
 
 # FIXME Better translation?
 #: gramps.glade:428
-msgid "Prefere_nces"
-msgstr "Foretruk_ne indstillinger"
+msgid "Prefere_nces..."
+msgstr "Foretruk_ne indstillinger..."
 
 #: gramps.glade:449
 msgid "_Default Person"
@@ -2930,8 +2933,8 @@ msgid "_Report a bug"
 msgstr "_Rapporter en fejl"
 
 #: gramps.glade:567
-msgid "_Show plugin status"
-msgstr "Vi_s plugin Status"
+msgid "_Show plugin status..."
+msgstr "Vi_s plugin status..."
 
 #: gramps.glade:576
 msgid "_Open example database"
@@ -3009,7 +3012,7 @@ msgstr "Ret"
 msgid "Pedigree"
 msgstr "Aner"
 
-#: gramps.glade:925 plugins/IndivComplete.py:315 plugins/WebPage.py:208
+#: gramps.glade:925 plugins/IndivComplete.py:316 plugins/WebPage.py:208
 msgid "Sources"
 msgstr "Kilder"
 
@@ -3053,7 +3056,8 @@ msgstr "Tilføjer en ny person til databasen og til et nyt slægtskab"
 #: gramps.glade:1480
 msgid ""
 "Selects an existing person from the database and adds to a new relationship"
-msgstr "Vælger en eksisterende person fra databasen og føjer til et nyt slægtsskab"
+msgstr ""
+"Vælger en eksisterende person fra databasen og føjer til et nyt slægtsskab"
 
 #: gramps.glade:1506
 msgid "Removes the currently selected spouse"
@@ -3131,8 +3135,9 @@ msgstr "Tilføjer et nyt barn til databasen og til den aktuelle familie"
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
-msgstr "Vælger en eksisterende person fra databasen og tilføjer som et "
-"barn til den aktuelle familie"
+msgstr ""
+"Vælger en eksisterende person fra databasen og tilføjer som et barn til den "
+"aktuelle familie"
 
 #: gramps.glade:2084
 msgid "Deletes the selected child from the selected family"
@@ -3674,219 +3679,219 @@ msgstr "Forfatter:"
 msgid "Author's email:"
 msgstr "Forfatterens e-mail:"
 
-#: plugins/AncestorChart.py:214 plugins/AncestorChart.py:426
+#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:429
 msgid "Ancestor Chart"
 msgstr "Anetavle"
 
-#: plugins/AncestorChart.py:214 plugins/AncestorChart.py:427
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:464 plugins/FanChart.py:280
+#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:430
+#: plugins/DesGraph.py:311 plugins/DesGraph.py:467 plugins/FanChart.py:280
 #: plugins/FanChart.py:353 plugins/GraphViz.py:80 plugins/GraphViz.py:455
 #: plugins/TimeLine.py:316 plugins/TimeLine.py:465
 msgid "Graphical Reports"
 msgstr "Grafisk rapport"
 
-#: plugins/AncestorChart.py:218
+#: plugins/AncestorChart.py:221
 msgid "Ancestor Chart for %s"
 msgstr "Anetavle for %s"
 
-#: plugins/AncestorChart.py:223
+#: plugins/AncestorChart.py:226
 msgid "Save Ancestor Chart"
 msgstr "Gem Anetavle"
 
-#: plugins/AncestorChart.py:235 plugins/DesGraph.py:325
+#: plugins/AncestorChart.py:238 plugins/DesGraph.py:328
 msgid "Display Format"
 msgstr "Format for Fremvisning"
 
-#: plugins/AncestorChart.py:236 plugins/DesGraph.py:326
+#: plugins/AncestorChart.py:239 plugins/DesGraph.py:329
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr "Tillader dig at tilpasse oplysningerne i kasserne i rapporten"
 
-#: plugins/AncestorChart.py:245 plugins/AncestorReport.py:409
-#: plugins/Ancestors.py:639 plugins/Ancestors.py:655 plugins/Ancestors.py:660
-#: plugins/DesGraph.py:335 plugins/FamilyGroup.py:619
-#: plugins/FtmStyleAncestors.py:750 plugins/FtmStyleAncestors.py:755
-#: plugins/FtmStyleAncestors.py:760 plugins/FtmStyleAncestors.py:765
-#: plugins/FtmStyleDescendants.py:1156 plugins/FtmStyleDescendants.py:1161
-#: plugins/FtmStyleDescendants.py:1166 plugins/FtmStyleDescendants.py:1171
-#: plugins/IndivComplete.py:683 plugins/IndivSummary.py:611
+#: plugins/AncestorChart.py:248 plugins/AncestorReport.py:407
+#: plugins/Ancestors.py:636 plugins/Ancestors.py:652 plugins/Ancestors.py:657
+#: plugins/DesGraph.py:338 plugins/FamilyGroup.py:617
+#: plugins/FtmStyleAncestors.py:748 plugins/FtmStyleAncestors.py:753
+#: plugins/FtmStyleAncestors.py:758 plugins/FtmStyleAncestors.py:763
+#: plugins/FtmStyleDescendants.py:1157 plugins/FtmStyleDescendants.py:1162
+#: plugins/FtmStyleDescendants.py:1167 plugins/FtmStyleDescendants.py:1172
+#: plugins/IndivComplete.py:685 plugins/IndivSummary.py:614
 msgid "The basic style used for the text display."
 msgstr "Den grundlæggende stil brugt til tekstvisning."
 
-#: plugins/AncestorChart.py:428 plugins/AncestorReport.py:513
-#: plugins/Ancestors.py:960 plugins/DescendReport.py:403
-#: plugins/DetAncestralReport.py:1245 plugins/DetDescendantReport.py:1252
-#: plugins/FamilyGroup.py:760 plugins/FtmStyleAncestors.py:1031
-#: plugins/FtmStyleDescendants.py:1438 plugins/GraphViz.py:454
-#: plugins/IndivComplete.py:815 plugins/IndivSummary.py:624
+#: plugins/AncestorChart.py:431 plugins/AncestorReport.py:511
+#: plugins/Ancestors.py:958 plugins/DescendReport.py:402
+#: plugins/DetAncestralReport.py:1242 plugins/DetDescendantReport.py:1251
+#: plugins/FamilyGroup.py:758 plugins/FtmStyleAncestors.py:1030
+#: plugins/FtmStyleDescendants.py:1439 plugins/GraphViz.py:454
+#: plugins/IndivComplete.py:817 plugins/IndivSummary.py:627
 #: plugins/Summary.py:162 plugins/TimeLine.py:464 plugins/WebPage.py:1284
 msgid "Beta"
 msgstr "Beta"
 
-#: plugins/AncestorChart.py:429
+#: plugins/AncestorChart.py:432
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Laver et grafisk stamtræ"
 
-#: plugins/AncestorReport.py:86 plugins/AncestorReport.py:241
+#: plugins/AncestorReport.py:83 plugins/AncestorReport.py:238
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafel Rapport for %s"
 
-#: plugins/AncestorReport.py:99 plugins/DetAncestralReport.py:644
-#: plugins/DetDescendantReport.py:651
+#: plugins/AncestorReport.py:96 plugins/DetAncestralReport.py:641
+#: plugins/DetDescendantReport.py:649
 msgid "%s Generation"
 msgstr "%s Generation"
 
-#: plugins/AncestorReport.py:128
+#: plugins/AncestorReport.py:125
 msgid "%s was born on %s in %s. "
 msgstr "%s blev født den %s i %s."
 
-#: plugins/AncestorReport.py:131
+#: plugins/AncestorReport.py:128
 msgid "%s was born on %s. "
 msgstr "%s blev født den %s. "
 
-#: plugins/AncestorReport.py:135
+#: plugins/AncestorReport.py:132
 msgid "%s was born in the year %s in %s. "
 msgstr "%s blev født i år %s i %s. "
 
-#: plugins/AncestorReport.py:138
+#: plugins/AncestorReport.py:135
 msgid "%s was born in the year %s. "
 msgstr "%s blev født i år %s. "
 
-#: plugins/AncestorReport.py:163
+#: plugins/AncestorReport.py:160
 msgid "He died on %s in %s"
 msgstr "Han døde den %s i %s"
 
-#: plugins/AncestorReport.py:166
+#: plugins/AncestorReport.py:163
 msgid "He died on %s"
 msgstr "Han døde den %s"
 
-#: plugins/AncestorReport.py:169
+#: plugins/AncestorReport.py:166
 msgid "She died on %s in %s"
 msgstr "Hun døde den %s i %s"
 
-#: plugins/AncestorReport.py:172
+#: plugins/AncestorReport.py:169
 msgid "She died on %s"
 msgstr "Hun døde den %s"
 
-#: plugins/AncestorReport.py:176
+#: plugins/AncestorReport.py:173
 msgid "He died in the year %s in %s"
 msgstr "Han døde år %s i %s"
 
-#: plugins/AncestorReport.py:179
+#: plugins/AncestorReport.py:176
 msgid "He died in the year %s"
 msgstr "Han døde år %s"
 
-#: plugins/AncestorReport.py:182
+#: plugins/AncestorReport.py:179
 msgid "She died in the year %s in %s"
 msgstr "Hun døde år %s i %s"
 
-#: plugins/AncestorReport.py:185
+#: plugins/AncestorReport.py:182
 msgid "She died in the year %s"
 msgstr "Hun døde år %s"
 
-#: plugins/AncestorReport.py:198
+#: plugins/AncestorReport.py:195
 msgid ", and was buried on %s in %s."
 msgstr ", og blev begravet den %s i %s."
 
-#: plugins/AncestorReport.py:201
+#: plugins/AncestorReport.py:198
 msgid ", and was buried on %s."
 msgstr ", og blev begravet den %s."
 
-#: plugins/AncestorReport.py:205
+#: plugins/AncestorReport.py:202
 msgid ", and was buried in the year %s in %s."
 msgstr ", og blev begravet den %s i %s."
 
-#: plugins/AncestorReport.py:208
+#: plugins/AncestorReport.py:205
 msgid ", and was buried in the year %s."
 msgstr ", og blev begravet år %s."
 
-#: plugins/AncestorReport.py:211
+#: plugins/AncestorReport.py:208
 msgid " and was buried in %s."
 msgstr ", og blev begravet i %s."
 
-#: plugins/AncestorReport.py:237 plugins/AncestorReport.py:332
-#: plugins/AncestorReport.py:511 plugins/AncestorReport.py:522
+#: plugins/AncestorReport.py:234 plugins/AncestorReport.py:330
+#: plugins/AncestorReport.py:509 plugins/AncestorReport.py:520
 msgid "Ahnentafel Report"
 msgstr "Ahnentafel Rapport"
 
-#: plugins/AncestorReport.py:237 plugins/AncestorReport.py:512
-#: plugins/Ancestors.py:688 plugins/Ancestors.py:959
-#: plugins/DescendReport.py:132 plugins/DescendReport.py:402
-#: plugins/DetAncestralReport.py:1246 plugins/DetDescendantReport.py:1253
-#: plugins/FamilyGroup.py:359 plugins/FamilyGroup.py:759
-#: plugins/FtmStyleAncestors.py:785 plugins/FtmStyleAncestors.py:1030
-#: plugins/FtmStyleDescendants.py:1191 plugins/FtmStyleDescendants.py:1437
-#: plugins/IndivComplete.py:470 plugins/IndivComplete.py:816
-#: plugins/IndivSummary.py:337 plugins/IndivSummary.py:625
+#: plugins/AncestorReport.py:234 plugins/AncestorReport.py:510
+#: plugins/Ancestors.py:685 plugins/Ancestors.py:957
+#: plugins/DescendReport.py:129 plugins/DescendReport.py:401
+#: plugins/DetAncestralReport.py:1243 plugins/DetDescendantReport.py:1252
+#: plugins/FamilyGroup.py:356 plugins/FamilyGroup.py:757
+#: plugins/FtmStyleAncestors.py:783 plugins/FtmStyleAncestors.py:1029
+#: plugins/FtmStyleDescendants.py:1192 plugins/FtmStyleDescendants.py:1438
+#: plugins/IndivComplete.py:471 plugins/IndivComplete.py:818
+#: plugins/IndivSummary.py:338 plugins/IndivSummary.py:628
 msgid "Text Reports"
 msgstr "Tekst Rapporter"
 
-#: plugins/AncestorReport.py:246
+#: plugins/AncestorReport.py:243
 msgid "Save Ahnentafel Report"
 msgstr "Gem Ahnentafel Rapport"
 
-#: plugins/AncestorReport.py:336
+#: plugins/AncestorReport.py:334
 msgid "Ahnentafel Report for GRAMPS Book"
 msgstr "Ahnentafel Rapport til GRAMPS Bog"
 
-#: plugins/AncestorReport.py:395 plugins/Ancestors.py:624
-#: plugins/DescendReport.py:291 plugins/FamilyGroup.py:610
-#: plugins/FtmStyleAncestors.py:735 plugins/FtmStyleDescendants.py:1141
-#: plugins/IndivComplete.py:657 plugins/IndivSummary.py:585
+#: plugins/AncestorReport.py:393 plugins/Ancestors.py:621
+#: plugins/DescendReport.py:290 plugins/FamilyGroup.py:608
+#: plugins/FtmStyleAncestors.py:733 plugins/FtmStyleDescendants.py:1142
+#: plugins/IndivComplete.py:659 plugins/IndivSummary.py:588
 #: plugins/SimpleBookTitle.py:97 plugins/TimeLine.py:399
 #: plugins/WebPage.py:971
 msgid "The style used for the title of the page."
 msgstr "Stilen, der bruges til sidens titel."
 
-#: plugins/AncestorReport.py:404 plugins/Ancestors.py:634
-#: plugins/FtmStyleAncestors.py:745 plugins/FtmStyleDescendants.py:1151
+#: plugins/AncestorReport.py:402 plugins/Ancestors.py:631
+#: plugins/FtmStyleAncestors.py:743 plugins/FtmStyleDescendants.py:1152
 msgid "The style used for the generation header."
 msgstr "Stilen, der bruges til generations-hovedet."
 
-#: plugins/AncestorReport.py:514
+#: plugins/AncestorReport.py:512
 msgid "Produces a textual ancestral report"
 msgstr "Danner en anerapport i tekst"
 
-#: plugins/Ancestors.py:118 plugins/FtmStyleAncestors.py:87
-#: plugins/GraphViz.py:109 plugins/IndivComplete.py:706
-#: plugins/TimeLine.py:367 plugins/WebPage.py:944 plugins/WriteGedcom.py:390
+#: plugins/Ancestors.py:115 plugins/FtmStyleAncestors.py:84
+#: plugins/GraphViz.py:109 plugins/IndivComplete.py:708
+#: plugins/TimeLine.py:367 plugins/WebPage.py:944 plugins/WriteGedcom.py:392
 msgid "Ancestors of %s"
 msgstr "Aner til %s"
 
-#: plugins/Ancestors.py:643
+#: plugins/Ancestors.py:640
 msgid "Text style for missing photo."
 msgstr "Tekststil til manglende foto."
 
-#: plugins/Ancestors.py:650
+#: plugins/Ancestors.py:647
 msgid "Style for details about a person."
 msgstr "Stil for persondetaljer."
 
-#: plugins/Ancestors.py:665
+#: plugins/Ancestors.py:662
 msgid "Introduction to the children."
 msgstr "Introduktion til børnene."
 
-#: plugins/Ancestors.py:688 plugins/Ancestors.py:798 plugins/Ancestors.py:958
-#: plugins/Ancestors.py:969
+#: plugins/Ancestors.py:685 plugins/Ancestors.py:796 plugins/Ancestors.py:956
+#: plugins/Ancestors.py:967
 msgid "Ancestors Report"
 msgstr "Anerapport"
 
-#: plugins/Ancestors.py:692
+#: plugins/Ancestors.py:689
 msgid "Ancestors for %s"
 msgstr "Aner til %s"
 
-#: plugins/Ancestors.py:697 plugins/DetAncestralReport.py:746
-#: plugins/FtmStyleAncestors.py:794
+#: plugins/Ancestors.py:694 plugins/DetAncestralReport.py:743
+#: plugins/FtmStyleAncestors.py:792
 msgid "Save Ancestor Report"
 msgstr "Gem Anerapport"
 
-#: plugins/Ancestors.py:707 plugins/Ancestors.py:809
+#: plugins/Ancestors.py:704 plugins/Ancestors.py:807
 msgid "Cite sources"
 msgstr "Citer kilder"
 
-#: plugins/Ancestors.py:802
+#: plugins/Ancestors.py:800
 msgid "Ancestors Report for GRAMPS Book"
 msgstr "Anerapport til GRAMPS Bog"
 
-#: plugins/Ancestors.py:961
+#: plugins/Ancestors.py:959
 msgid "Produces a detailed ancestral report."
 msgstr "Laver en detaljeret anerapport."
 
@@ -3898,8 +3903,8 @@ msgstr "Bøger til rådighed"
 msgid "Book List"
 msgstr "Bogliste"
 
-#: plugins/BookReport.py:582 plugins/BookReport.py:849
-#: plugins/BookReport.py:999
+#: plugins/BookReport.py:582 plugins/BookReport.py:847
+#: plugins/BookReport.py:995
 msgid "Book Report"
 msgstr "Bograpport"
 
@@ -3940,26 +3945,26 @@ msgstr ""
 "\n"
 "Dette gør referencerne til den centrale person gemt i bogen ugyldige.\n"
 "\n"
-"Derfor sættes den centrale person for hvert emne til den aktive person i "
-"den aktuelt åbne database."
+"Derfor sættes den centrale person for hvert emne til den aktive person i den "
+"aktuelt åbne database."
 
 #: plugins/BookReport.py:677
 msgid "Not Applicable"
 msgstr "Ikke Anvendelig"
 
-#: plugins/BookReport.py:852
+#: plugins/BookReport.py:850
 msgid "GRAMPS Book"
 msgstr "GRAMPS Bog"
 
-#: plugins/BookReport.py:1000
+#: plugins/BookReport.py:996
 msgid "Books"
 msgstr "Bøger"
 
-#: plugins/BookReport.py:1001
+#: plugins/BookReport.py:997
 msgid "Unstable"
 msgstr "Ustabil"
 
-#: plugins/BookReport.py:1002
+#: plugins/BookReport.py:998
 msgid "Creates a book containg several reports."
 msgstr "Danner en bog der indeholder flere rapporter."
 
@@ -4085,23 +4090,55 @@ msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerer databasen for integritetsproblemer og retter det den kan"
 
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:463
+#: plugins/CustomBookText.py:106
+msgid "The style used for the first portion of the custom text."
+msgstr "Stilen, der bruges til den første del af den tilpassede tekst."
+
+#: plugins/CustomBookText.py:115
+msgid "The style used for the middle portion of the custom text."
+msgstr "Stilen, der bruges til den midterste del af den tilpassede tekst."
+
+#: plugins/CustomBookText.py:124
+msgid "The style used for the last portion of the custom text."
+msgstr "Stilen, der bruges til den sidste del af den tilpassede tekst."
+
+#: plugins/CustomBookText.py:186 plugins/CustomBookText.py:388
+msgid "Custom Text"
+msgstr "Tilpasset Tekst"
+
+#: plugins/CustomBookText.py:190
+msgid "Custom Text for GRAMPS Book"
+msgstr "Tilpasset tekst til GRAMPS Bog"
+
+#: plugins/CustomBookText.py:221
+msgid "Initial Text"
+msgstr "Indledende Tekst"
+
+#: plugins/CustomBookText.py:222
+msgid "Middle Text"
+msgstr "Midterste Tekst"
+
+#: plugins/CustomBookText.py:223
+msgid "Final Text"
+msgstr "Afsluttende Tekst"
+
+#: plugins/DesGraph.py:311 plugins/DesGraph.py:466
 msgid "Descendant Graph"
 msgstr "Efterkommertræ"
 
-#: plugins/DesGraph.py:311
+#: plugins/DesGraph.py:314
 msgid "Descendant Graph for %s"
 msgstr "Efterkommertræ for %s"
 
-#: plugins/DesGraph.py:314
+#: plugins/DesGraph.py:317
 msgid "Save Descendant Graph"
 msgstr "Gem Efterkommertræ"
 
-#: plugins/DesGraph.py:465 plugins/DescendReport.py:404
+#: plugins/DesGraph.py:468 plugins/DescendReport.py:403
 msgid "Generates a list of descendants of the active person"
 msgstr "Danner en liste af efterkommere for den aktuelle person"
 
-#: plugins/DesGraph.py:466 plugins/FanChart.py:354
+#: plugins/DesGraph.py:469 plugins/FanChart.py:354
 msgid "Alpha"
 msgstr "Alfa"
 
@@ -4123,364 +4160,364 @@ msgstr ""
 "Giver et hierarki, der kan gennembladres, og som er baseret på den aktuelle "
 "person"
 
-#: plugins/DescendReport.py:93 plugins/FtmStyleDescendants.py:112
-#: plugins/GraphViz.py:105 plugins/IndivComplete.py:702
-#: plugins/TimeLine.py:363 plugins/WriteGedcom.py:386
+#: plugins/DescendReport.py:90 plugins/FtmStyleDescendants.py:112
+#: plugins/GraphViz.py:105 plugins/IndivComplete.py:704
+#: plugins/TimeLine.py:363 plugins/WriteGedcom.py:388
 msgid "Descendants of %s"
 msgstr "Efterkommere af %s"
 
-#: plugins/DescendReport.py:132 plugins/DescendReport.py:226
-#: plugins/DescendReport.py:401 plugins/DescendReport.py:412
+#: plugins/DescendReport.py:129 plugins/DescendReport.py:225
+#: plugins/DescendReport.py:400 plugins/DescendReport.py:411
 msgid "Descendant Report"
 msgstr "Efterkommerrapport"
 
-#: plugins/DescendReport.py:136
+#: plugins/DescendReport.py:133
 msgid "Descendant Report for %s"
 msgstr "Efterkommerrapport for %s"
 
-#: plugins/DescendReport.py:141 plugins/DetDescendantReport.py:753
+#: plugins/DescendReport.py:138 plugins/DetDescendantReport.py:751
 msgid "Save Descendant Report"
 msgstr "Gem Efterkommerrapport"
 
-#: plugins/DescendReport.py:230
+#: plugins/DescendReport.py:229
 msgid "Descendant Report for GRAMPS Book"
 msgstr "Efterkommerrapport til GRAMPS Bog"
 
-#: plugins/DescendReport.py:299
+#: plugins/DescendReport.py:298
 msgid "The style used for the level %d display."
 msgstr "Stilen, der bruges for niveau %d visningen."
 
-#: plugins/DetAncestralReport.py:125 plugins/DetDescendantReport.py:129
+#: plugins/DetAncestralReport.py:122 plugins/DetDescendantReport.py:127
 msgid "Child of %s and %s is:"
 msgstr "Barn af %s og %s er:"
 
-#: plugins/DetAncestralReport.py:126 plugins/DetDescendantReport.py:130
+#: plugins/DetAncestralReport.py:123 plugins/DetDescendantReport.py:128
 msgid "Children of %s and %s are:"
 msgstr "Børn af %s og %s er:"
 
-#: plugins/DetAncestralReport.py:143 plugins/DetDescendantReport.py:149
+#: plugins/DetAncestralReport.py:140 plugins/DetDescendantReport.py:147
 msgid "- %s Born: %s %s Died: %s %s"
 msgstr "- %s Født: %s %s Død: %s %s"
 
-#: plugins/DetAncestralReport.py:147 plugins/DetAncestralReport.py:151
-#: plugins/DetDescendantReport.py:153 plugins/DetDescendantReport.py:157
+#: plugins/DetAncestralReport.py:144 plugins/DetAncestralReport.py:148
+#: plugins/DetDescendantReport.py:151 plugins/DetDescendantReport.py:155
 msgid "- %s Born: %s %s Died: %s"
 msgstr "- %s Født: %s %s Død: %s"
 
-#: plugins/DetAncestralReport.py:154 plugins/DetDescendantReport.py:160
+#: plugins/DetAncestralReport.py:151 plugins/DetDescendantReport.py:158
 msgid "- %s Born: %s %s"
 msgstr "- %s Født: %s %s"
 
-#: plugins/DetAncestralReport.py:159 plugins/DetAncestralReport.py:174
-#: plugins/DetDescendantReport.py:165 plugins/DetDescendantReport.py:180
+#: plugins/DetAncestralReport.py:156 plugins/DetAncestralReport.py:171
+#: plugins/DetDescendantReport.py:163 plugins/DetDescendantReport.py:178
 msgid "- %s Born: %s Died: %s %s"
 msgstr "- %s Født: %s Død: %s %s"
 
-#: plugins/DetAncestralReport.py:163 plugins/DetAncestralReport.py:166
-#: plugins/DetAncestralReport.py:178 plugins/DetAncestralReport.py:181
-#: plugins/DetDescendantReport.py:169 plugins/DetDescendantReport.py:172
-#: plugins/DetDescendantReport.py:184 plugins/DetDescendantReport.py:187
+#: plugins/DetAncestralReport.py:160 plugins/DetAncestralReport.py:163
+#: plugins/DetAncestralReport.py:175 plugins/DetAncestralReport.py:178
+#: plugins/DetDescendantReport.py:167 plugins/DetDescendantReport.py:170
+#: plugins/DetDescendantReport.py:182 plugins/DetDescendantReport.py:185
 msgid "- %s Born: %s Died: %s"
 msgstr "- %s Født: %s Død: %s"
 
-#: plugins/DetAncestralReport.py:168 plugins/DetAncestralReport.py:183
-#: plugins/DetDescendantReport.py:174 plugins/DetDescendantReport.py:189
+#: plugins/DetAncestralReport.py:165 plugins/DetAncestralReport.py:180
+#: plugins/DetDescendantReport.py:172 plugins/DetDescendantReport.py:187
 msgid "- %s Born: %s"
 msgstr "- %s Født: %s"
 
-#: plugins/DetAncestralReport.py:188 plugins/DetDescendantReport.py:194
+#: plugins/DetAncestralReport.py:185 plugins/DetDescendantReport.py:192
 msgid "- %s Died: %s %s"
 msgstr "- %s Død: %s %s"
 
-#: plugins/DetAncestralReport.py:191 plugins/DetAncestralReport.py:194
-#: plugins/DetDescendantReport.py:197 plugins/DetDescendantReport.py:200
+#: plugins/DetAncestralReport.py:188 plugins/DetAncestralReport.py:191
+#: plugins/DetDescendantReport.py:195 plugins/DetDescendantReport.py:198
 msgid "- %s Died: %s"
 msgstr "- %s Død: %s"
 
-#: plugins/DetAncestralReport.py:196 plugins/DetDescendantReport.py:202
+#: plugins/DetAncestralReport.py:193 plugins/DetDescendantReport.py:200
 msgid "- %s"
 msgstr "- %s"
 
-#: plugins/DetAncestralReport.py:214 plugins/DetAncestralReport.py:461
-#: plugins/DetAncestralReport.py:533 plugins/DetDescendantReport.py:220
-#: plugins/DetDescendantReport.py:462 plugins/DetDescendantReport.py:529
-#: plugins/FtmStyleAncestors.py:406 plugins/FtmStyleAncestors.py:416
-#: plugins/FtmStyleAncestors.py:427 plugins/FtmStyleAncestors.py:436
-#: plugins/FtmStyleAncestors.py:446 plugins/FtmStyleAncestors.py:455
-#: plugins/FtmStyleAncestors.py:464 plugins/FtmStyleAncestors.py:471
-#: plugins/FtmStyleAncestors.py:482 plugins/FtmStyleAncestors.py:490
-#: plugins/FtmStyleAncestors.py:499 plugins/FtmStyleAncestors.py:506
-#: plugins/FtmStyleAncestors.py:515 plugins/FtmStyleAncestors.py:521
-#: plugins/FtmStyleAncestors.py:528 plugins/FtmStyleDescendants.py:798
-#: plugins/FtmStyleDescendants.py:808 plugins/FtmStyleDescendants.py:819
-#: plugins/FtmStyleDescendants.py:828 plugins/FtmStyleDescendants.py:838
-#: plugins/FtmStyleDescendants.py:847 plugins/FtmStyleDescendants.py:856
-#: plugins/FtmStyleDescendants.py:864 plugins/FtmStyleDescendants.py:875
-#: plugins/FtmStyleDescendants.py:883 plugins/FtmStyleDescendants.py:892
-#: plugins/FtmStyleDescendants.py:900 plugins/FtmStyleDescendants.py:909
-#: plugins/FtmStyleDescendants.py:916 plugins/FtmStyleDescendants.py:924
+#: plugins/DetAncestralReport.py:211 plugins/DetAncestralReport.py:458
+#: plugins/DetAncestralReport.py:530 plugins/DetDescendantReport.py:218
+#: plugins/DetDescendantReport.py:460 plugins/DetDescendantReport.py:527
+#: plugins/FtmStyleAncestors.py:404 plugins/FtmStyleAncestors.py:414
+#: plugins/FtmStyleAncestors.py:425 plugins/FtmStyleAncestors.py:434
+#: plugins/FtmStyleAncestors.py:444 plugins/FtmStyleAncestors.py:453
+#: plugins/FtmStyleAncestors.py:462 plugins/FtmStyleAncestors.py:469
+#: plugins/FtmStyleAncestors.py:480 plugins/FtmStyleAncestors.py:488
+#: plugins/FtmStyleAncestors.py:497 plugins/FtmStyleAncestors.py:504
+#: plugins/FtmStyleAncestors.py:513 plugins/FtmStyleAncestors.py:519
+#: plugins/FtmStyleAncestors.py:526 plugins/FtmStyleDescendants.py:799
+#: plugins/FtmStyleDescendants.py:809 plugins/FtmStyleDescendants.py:820
+#: plugins/FtmStyleDescendants.py:829 plugins/FtmStyleDescendants.py:839
+#: plugins/FtmStyleDescendants.py:848 plugins/FtmStyleDescendants.py:857
+#: plugins/FtmStyleDescendants.py:865 plugins/FtmStyleDescendants.py:876
+#: plugins/FtmStyleDescendants.py:884 plugins/FtmStyleDescendants.py:893
+#: plugins/FtmStyleDescendants.py:901 plugins/FtmStyleDescendants.py:910
+#: plugins/FtmStyleDescendants.py:917 plugins/FtmStyleDescendants.py:925
 msgid "He"
 msgstr "Han"
 
-#: plugins/DetAncestralReport.py:216 plugins/DetAncestralReport.py:467
-#: plugins/DetAncestralReport.py:531 plugins/DetDescendantReport.py:222
-#: plugins/DetDescendantReport.py:468 plugins/DetDescendantReport.py:523
-#: plugins/FtmStyleAncestors.py:541 plugins/FtmStyleAncestors.py:551
-#: plugins/FtmStyleAncestors.py:562 plugins/FtmStyleAncestors.py:580
-#: plugins/FtmStyleAncestors.py:589 plugins/FtmStyleAncestors.py:598
-#: plugins/FtmStyleAncestors.py:605 plugins/FtmStyleAncestors.py:615
-#: plugins/FtmStyleAncestors.py:623 plugins/FtmStyleAncestors.py:632
-#: plugins/FtmStyleAncestors.py:639 plugins/FtmStyleAncestors.py:648
-#: plugins/FtmStyleAncestors.py:654 plugins/FtmStyleAncestors.py:661
-#: plugins/FtmStyleDescendants.py:937 plugins/FtmStyleDescendants.py:947
-#: plugins/FtmStyleDescendants.py:958 plugins/FtmStyleDescendants.py:967
-#: plugins/FtmStyleDescendants.py:977 plugins/FtmStyleDescendants.py:986
-#: plugins/FtmStyleDescendants.py:995 plugins/FtmStyleDescendants.py:1003
-#: plugins/FtmStyleDescendants.py:1013 plugins/FtmStyleDescendants.py:1021
-#: plugins/FtmStyleDescendants.py:1030 plugins/FtmStyleDescendants.py:1038
-#: plugins/FtmStyleDescendants.py:1047 plugins/FtmStyleDescendants.py:1054
-#: plugins/FtmStyleDescendants.py:1062
+#: plugins/DetAncestralReport.py:213 plugins/DetAncestralReport.py:464
+#: plugins/DetAncestralReport.py:528 plugins/DetDescendantReport.py:220
+#: plugins/DetDescendantReport.py:466 plugins/DetDescendantReport.py:521
+#: plugins/FtmStyleAncestors.py:539 plugins/FtmStyleAncestors.py:549
+#: plugins/FtmStyleAncestors.py:560 plugins/FtmStyleAncestors.py:578
+#: plugins/FtmStyleAncestors.py:587 plugins/FtmStyleAncestors.py:596
+#: plugins/FtmStyleAncestors.py:603 plugins/FtmStyleAncestors.py:613
+#: plugins/FtmStyleAncestors.py:621 plugins/FtmStyleAncestors.py:630
+#: plugins/FtmStyleAncestors.py:637 plugins/FtmStyleAncestors.py:646
+#: plugins/FtmStyleAncestors.py:652 plugins/FtmStyleAncestors.py:659
+#: plugins/FtmStyleDescendants.py:938 plugins/FtmStyleDescendants.py:948
+#: plugins/FtmStyleDescendants.py:959 plugins/FtmStyleDescendants.py:968
+#: plugins/FtmStyleDescendants.py:978 plugins/FtmStyleDescendants.py:987
+#: plugins/FtmStyleDescendants.py:996 plugins/FtmStyleDescendants.py:1004
+#: plugins/FtmStyleDescendants.py:1014 plugins/FtmStyleDescendants.py:1022
+#: plugins/FtmStyleDescendants.py:1031 plugins/FtmStyleDescendants.py:1039
+#: plugins/FtmStyleDescendants.py:1048 plugins/FtmStyleDescendants.py:1055
+#: plugins/FtmStyleDescendants.py:1063
 msgid "She"
 msgstr "Hun"
 
-#: plugins/DetAncestralReport.py:229 plugins/DetDescendantReport.py:235
+#: plugins/DetAncestralReport.py:226 plugins/DetDescendantReport.py:233
 msgid " is the same person as [%s]."
 msgstr " er den samme person som [%s]."
 
-#: plugins/DetAncestralReport.py:247 plugins/DetDescendantReport.py:253
+#: plugins/DetAncestralReport.py:244 plugins/DetDescendantReport.py:251
 msgid "Notes for %s"
 msgstr "Noter for %s"
 
-#: plugins/DetAncestralReport.py:284 plugins/DetDescendantReport.py:290
+#: plugins/DetAncestralReport.py:281 plugins/DetDescendantReport.py:288
 msgid " was born on %s in %s."
 msgstr " blev født den %s i %s."
 
-#: plugins/DetAncestralReport.py:286 plugins/DetDescendantReport.py:292
+#: plugins/DetAncestralReport.py:283 plugins/DetDescendantReport.py:290
 msgid " was born on %s."
 msgstr " blev født den %s."
 
-#: plugins/DetAncestralReport.py:288 plugins/DetDescendantReport.py:294
+#: plugins/DetAncestralReport.py:285 plugins/DetDescendantReport.py:292
 msgid " was born in the year %s in %s."
 msgstr " blev født år %s i %s."
 
-#: plugins/DetAncestralReport.py:291 plugins/DetDescendantReport.py:297
+#: plugins/DetAncestralReport.py:288 plugins/DetDescendantReport.py:295
 msgid " was born in the year %s."
 msgstr " blev født år %s."
 
-#: plugins/DetAncestralReport.py:293 plugins/DetDescendantReport.py:299
+#: plugins/DetAncestralReport.py:290 plugins/DetDescendantReport.py:297
 msgid " was born in %s."
 msgstr " blev født i %s."
 
-#: plugins/DetAncestralReport.py:295 plugins/DetAncestralReport.py:298
-#: plugins/DetDescendantReport.py:301 plugins/DetDescendantReport.py:304
+#: plugins/DetAncestralReport.py:292 plugins/DetAncestralReport.py:295
+#: plugins/DetDescendantReport.py:299 plugins/DetDescendantReport.py:302
 msgid "."
 msgstr "."
 
-#: plugins/DetAncestralReport.py:349 plugins/DetDescendantReport.py:355
+#: plugins/DetAncestralReport.py:346 plugins/DetDescendantReport.py:353
 msgid "  %s died on %s in %s"
 msgstr "  %s døde den %s i %s"
 
-#: plugins/DetAncestralReport.py:350 plugins/DetDescendantReport.py:356
+#: plugins/DetAncestralReport.py:347 plugins/DetDescendantReport.py:354
 msgid "  %s died on %s"
 msgstr "  %s døde den %s"
 
-#: plugins/DetAncestralReport.py:353 plugins/DetDescendantReport.py:359
+#: plugins/DetAncestralReport.py:350 plugins/DetDescendantReport.py:357
 msgid "  %s died in %s in %s"
 msgstr "  %s døde den %s i %s"
 
-#: plugins/DetAncestralReport.py:354 plugins/DetAncestralReport.py:356
-#: plugins/DetDescendantReport.py:360 plugins/DetDescendantReport.py:362
+#: plugins/DetAncestralReport.py:351 plugins/DetAncestralReport.py:353
+#: plugins/DetDescendantReport.py:358 plugins/DetDescendantReport.py:360
 msgid "  %s died in %s"
 msgstr "  %s døde i %s"
 
-#: plugins/DetAncestralReport.py:384 plugins/DetDescendantReport.py:390
+#: plugins/DetAncestralReport.py:381 plugins/DetDescendantReport.py:388
 msgid "  And %s was buried on %s in %s."
 msgstr "  Og %s blev begravet den %s i %s."
 
-#: plugins/DetAncestralReport.py:386 plugins/DetDescendantReport.py:392
+#: plugins/DetAncestralReport.py:383 plugins/DetDescendantReport.py:390
 msgid "  And %s was buried on %s."
 msgstr "  Og %s blev begravet den %s."
 
-#: plugins/DetAncestralReport.py:388 plugins/DetDescendantReport.py:394
+#: plugins/DetAncestralReport.py:385 plugins/DetDescendantReport.py:392
 msgid "  And %s was buried in %s."
 msgstr "  Og %s blev begravet i %s."
 
-#: plugins/DetAncestralReport.py:418 plugins/DetDescendantReport.py:424
+#: plugins/DetAncestralReport.py:415 plugins/DetDescendantReport.py:422
 msgid " %s was the son of %s and %s."
 msgstr " %s var søn af %s og %s."
 
-#: plugins/DetAncestralReport.py:421 plugins/DetAncestralReport.py:424
-#: plugins/DetDescendantReport.py:427 plugins/DetDescendantReport.py:430
+#: plugins/DetAncestralReport.py:418 plugins/DetAncestralReport.py:421
+#: plugins/DetDescendantReport.py:425 plugins/DetDescendantReport.py:428
 msgid " %s was the son of %s."
 msgstr " %s var søn af %s."
 
-#: plugins/DetAncestralReport.py:429 plugins/DetDescendantReport.py:435
+#: plugins/DetAncestralReport.py:426 plugins/DetDescendantReport.py:433
 msgid " %s was the daughter of %s and %s."
 msgstr " %s var datter af %s og %s."
 
-#: plugins/DetAncestralReport.py:432 plugins/DetAncestralReport.py:435
-#: plugins/DetDescendantReport.py:438 plugins/DetDescendantReport.py:441
+#: plugins/DetAncestralReport.py:429 plugins/DetAncestralReport.py:432
+#: plugins/DetDescendantReport.py:436 plugins/DetDescendantReport.py:439
 msgid " %s was the daughter of %s."
 msgstr " %s var datter af %s."
 
-#: plugins/DetAncestralReport.py:463 plugins/DetAncestralReport.py:469
-#: plugins/DetDescendantReport.py:464 plugins/DetDescendantReport.py:470
+#: plugins/DetAncestralReport.py:460 plugins/DetAncestralReport.py:466
+#: plugins/DetDescendantReport.py:462 plugins/DetDescendantReport.py:468
 msgid ","
 msgstr ","
 
-#: plugins/DetAncestralReport.py:464 plugins/DetDescendantReport.py:465
+#: plugins/DetAncestralReport.py:461 plugins/DetDescendantReport.py:463
 msgid "and he"
 msgstr "og han"
 
-#: plugins/DetAncestralReport.py:470 plugins/DetDescendantReport.py:471
+#: plugins/DetAncestralReport.py:467 plugins/DetDescendantReport.py:469
 msgid "and she"
 msgstr "og hun"
 
-#: plugins/DetAncestralReport.py:496 plugins/DetDescendantReport.py:497
+#: plugins/DetAncestralReport.py:493 plugins/DetDescendantReport.py:495
 msgid "  %s married %s"
 msgstr "  %s giftede sig med %s"
 
-#: plugins/DetAncestralReport.py:498 plugins/DetDescendantReport.py:499
+#: plugins/DetAncestralReport.py:495 plugins/DetDescendantReport.py:497
 msgid "  %s married %s in %s"
 msgstr "  %s giftede sig med %s i %s"
 
-#: plugins/DetAncestralReport.py:500 plugins/DetDescendantReport.py:501
+#: plugins/DetAncestralReport.py:497 plugins/DetDescendantReport.py:499
 msgid "  %s married %s on %s"
 msgstr "  %s giftede sig med %s den %s"
 
-#: plugins/DetAncestralReport.py:501 plugins/DetDescendantReport.py:502
+#: plugins/DetAncestralReport.py:498 plugins/DetDescendantReport.py:500
 msgid "  %s married %s on %s in %s"
 msgstr "  %s giftede sig med %s den %s i %s"
 
-#: plugins/DetAncestralReport.py:505 plugins/DetDescendantReport.py:506
+#: plugins/DetAncestralReport.py:502 plugins/DetDescendantReport.py:504
 msgid "  %s married"
 msgstr "  %s giftede sig"
 
-#: plugins/DetAncestralReport.py:507 plugins/DetDescendantReport.py:508
+#: plugins/DetAncestralReport.py:504 plugins/DetDescendantReport.py:506
 msgid "  %s married in %s"
 msgstr "  %s giftede sig i %s"
 
-#: plugins/DetAncestralReport.py:509 plugins/DetDescendantReport.py:510
+#: plugins/DetAncestralReport.py:506 plugins/DetDescendantReport.py:508
 msgid "  %s married on %s"
 msgstr "  %s giftede sig den %s"
 
-#: plugins/DetAncestralReport.py:511 plugins/DetDescendantReport.py:511
+#: plugins/DetAncestralReport.py:508 plugins/DetDescendantReport.py:509
 msgid "  %s married on %s in %s"
 msgstr "  %s giftede sig den %s i %s"
 
-#: plugins/DetAncestralReport.py:630 plugins/DetAncestralReport.py:741
+#: plugins/DetAncestralReport.py:627 plugins/DetAncestralReport.py:738
 msgid "Detailed Ancestral Report for %s"
 msgstr "Detaljeret Anerapport for %s"
 
-#: plugins/DetAncestralReport.py:737 plugins/DetDescendantReport.py:744
+#: plugins/DetAncestralReport.py:734 plugins/DetDescendantReport.py:742
 msgid "Gramps - Ahnentafel Report"
 msgstr "Gramps - Ahnentafel Rapport"
 
-#: plugins/DetAncestralReport.py:788 plugins/DetAncestralReport.py:1008
-#: plugins/DetDescendantReport.py:796 plugins/DetDescendantReport.py:1016
+#: plugins/DetAncestralReport.py:785 plugins/DetAncestralReport.py:1005
+#: plugins/DetDescendantReport.py:794 plugins/DetDescendantReport.py:1015
 msgid "Use first names instead of pronouns"
 msgstr "Brug fornavne i stedet for stedord"
 
-#: plugins/DetAncestralReport.py:792 plugins/DetAncestralReport.py:1012
-#: plugins/DetDescendantReport.py:800 plugins/DetDescendantReport.py:1020
+#: plugins/DetAncestralReport.py:789 plugins/DetAncestralReport.py:1009
+#: plugins/DetDescendantReport.py:798 plugins/DetDescendantReport.py:1019
 msgid "Use full dates instead of only the year"
 msgstr "Anvend fulde datoer istedet for kun årstallet"
 
-#: plugins/DetAncestralReport.py:796 plugins/DetAncestralReport.py:1016
-#: plugins/DetDescendantReport.py:804 plugins/DetDescendantReport.py:1024
+#: plugins/DetAncestralReport.py:793 plugins/DetAncestralReport.py:1013
+#: plugins/DetDescendantReport.py:802 plugins/DetDescendantReport.py:1023
 msgid "List children"
 msgstr "Vis børn"
 
-#: plugins/DetAncestralReport.py:800 plugins/DetAncestralReport.py:1020
-#: plugins/DetDescendantReport.py:808 plugins/DetDescendantReport.py:1028
+#: plugins/DetAncestralReport.py:797 plugins/DetAncestralReport.py:1017
+#: plugins/DetDescendantReport.py:806 plugins/DetDescendantReport.py:1027
 msgid "Include notes"
 msgstr "Medtag noter"
 
-#: plugins/DetAncestralReport.py:804 plugins/DetAncestralReport.py:1024
-#: plugins/DetDescendantReport.py:812 plugins/DetDescendantReport.py:1032
+#: plugins/DetAncestralReport.py:801 plugins/DetAncestralReport.py:1021
+#: plugins/DetDescendantReport.py:810 plugins/DetDescendantReport.py:1031
 msgid "Replace Place with ______"
 msgstr "Erstat Sted med ______"
 
-#: plugins/DetAncestralReport.py:808 plugins/DetAncestralReport.py:1028
-#: plugins/DetDescendantReport.py:816 plugins/DetDescendantReport.py:1036
+#: plugins/DetAncestralReport.py:805 plugins/DetAncestralReport.py:1025
+#: plugins/DetDescendantReport.py:814 plugins/DetDescendantReport.py:1035
 msgid "Replace Dates with ______"
 msgstr "Erstat Datoer med ______"
 
-#: plugins/DetAncestralReport.py:812 plugins/DetAncestralReport.py:1032
-#: plugins/DetDescendantReport.py:820 plugins/DetDescendantReport.py:1040
+#: plugins/DetAncestralReport.py:809 plugins/DetAncestralReport.py:1029
+#: plugins/DetDescendantReport.py:818 plugins/DetDescendantReport.py:1039
 msgid "Compute age"
 msgstr "Beregn alder"
 
-#: plugins/DetAncestralReport.py:816 plugins/DetAncestralReport.py:1036
-#: plugins/DetDescendantReport.py:1044
+#: plugins/DetAncestralReport.py:813 plugins/DetAncestralReport.py:1033
+#: plugins/DetDescendantReport.py:1043
 msgid "Omit duplicate ancestors"
 msgstr "Udelad dobbelte aner"
 
-#: plugins/DetAncestralReport.py:820 plugins/DetAncestralReport.py:1040
-#: plugins/DetDescendantReport.py:828 plugins/DetDescendantReport.py:1048
+#: plugins/DetAncestralReport.py:817 plugins/DetAncestralReport.py:1037
+#: plugins/DetDescendantReport.py:826 plugins/DetDescendantReport.py:1047
 msgid "Add descendant reference in child list"
 msgstr "Tilføj efterkommer-henvisning i listen over børn"
 
-#: plugins/DetAncestralReport.py:824 plugins/DetAncestralReport.py:1044
-#: plugins/DetDescendantReport.py:832 plugins/DetDescendantReport.py:1052
+#: plugins/DetAncestralReport.py:821 plugins/DetAncestralReport.py:1041
+#: plugins/DetDescendantReport.py:830 plugins/DetDescendantReport.py:1051
 msgid "Include Photo/Images from Gallery"
 msgstr "Inkluder Fotos/Billeder fra Galleriet"
 
-#: plugins/DetAncestralReport.py:994 plugins/DetAncestralReport.py:1244
-#: plugins/DetAncestralReport.py:1255
+#: plugins/DetAncestralReport.py:991 plugins/DetAncestralReport.py:1241
+#: plugins/DetAncestralReport.py:1252
 msgid "Detailed Ancestral Report"
 msgstr "Detaljeret Anerapport"
 
-#: plugins/DetAncestralReport.py:998
+#: plugins/DetAncestralReport.py:995
 msgid "Detailed Ancestral Report for GRAMPS Book"
 msgstr "Detaljeret Anerapport til GRAMPS Bog"
 
-#: plugins/DetAncestralReport.py:1247
+#: plugins/DetAncestralReport.py:1244
 msgid "Produces a detailed ancestral report"
 msgstr "Laver en detaljeret anerapport"
 
-#: plugins/DetAncestralReport.py:1364 plugins/DetDescendantReport.py:1371
+#: plugins/DetAncestralReport.py:1361 plugins/DetDescendantReport.py:1370
 msgid " at the age of %d days"
 msgstr " i en alder af %d dage"
 
-#: plugins/DetAncestralReport.py:1366 plugins/DetDescendantReport.py:1373
+#: plugins/DetAncestralReport.py:1363 plugins/DetDescendantReport.py:1372
 msgid " at the age of %d months"
 msgstr " i en alder af %d måneder"
 
-#: plugins/DetAncestralReport.py:1368 plugins/DetDescendantReport.py:1375
+#: plugins/DetAncestralReport.py:1365 plugins/DetDescendantReport.py:1374
 msgid " at the age of %d years"
 msgstr " i en alder af %d år"
 
-#: plugins/DetAncestralReport.py:1371 plugins/DetDescendantReport.py:1378
+#: plugins/DetAncestralReport.py:1368 plugins/DetDescendantReport.py:1377
 msgid " at the age of %d day"
 msgstr " i en alder af %d dag"
 
-#: plugins/DetAncestralReport.py:1373 plugins/DetDescendantReport.py:1380
+#: plugins/DetAncestralReport.py:1370 plugins/DetDescendantReport.py:1379
 msgid " at the age of %d month"
 msgstr " i en alder af %d måned"
 
-#: plugins/DetAncestralReport.py:1375 plugins/DetDescendantReport.py:1382
+#: plugins/DetAncestralReport.py:1372 plugins/DetDescendantReport.py:1381
 msgid " at the age of %d year"
 msgstr " i en alder af %d år"
 
-#: plugins/DetDescendantReport.py:638 plugins/DetDescendantReport.py:748
+#: plugins/DetDescendantReport.py:636 plugins/DetDescendantReport.py:746
 msgid "Detailed Descendant Report for %s"
 msgstr "Detaljeret Efterkommerrapport for %s"
 
-#: plugins/DetDescendantReport.py:824
+#: plugins/DetDescendantReport.py:822
 msgid "Omit duplicate people"
 msgstr "Udelad dobbelte personer"
 
-#: plugins/DetDescendantReport.py:1002 plugins/DetDescendantReport.py:1251
-#: plugins/DetDescendantReport.py:1262
+#: plugins/DetDescendantReport.py:1001 plugins/DetDescendantReport.py:1250
+#: plugins/DetDescendantReport.py:1261
 msgid "Detailed Descendant Report"
 msgstr "Detaljeret Efterkommerrapport"
 
-#: plugins/DetDescendantReport.py:1006
+#: plugins/DetDescendantReport.py:1005
 msgid "Detailed Descendant Report for GRAMPS Book"
 msgstr "Detaljeret Efterkommerrapport til GRAMPS Bog"
 
-#: plugins/DetDescendantReport.py:1254
+#: plugins/DetDescendantReport.py:1253
 msgid "Produces a detailed descendant report"
 msgstr "Laver en detaljeret efterkommerrapport"
 
@@ -4489,8 +4526,8 @@ msgid "Event comparison filter selection"
 msgstr "Hændelsessammenligning filtervalg"
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:101
-#: plugins/IndivComplete.py:710 plugins/TimeLine.py:359 plugins/WebPage.py:932
-#: plugins/WriteGedcom.py:382
+#: plugins/IndivComplete.py:712 plugins/TimeLine.py:359 plugins/WebPage.py:932
+#: plugins/WriteGedcom.py:384
 msgid "Entire Database"
 msgstr "Hele Databasen"
 
@@ -4502,7 +4539,7 @@ msgstr "Ingen passer"
 msgid "Event Comparison"
 msgstr "Hændelsessammenligning"
 
-#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:173
+#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:170
 msgid "Death"
 msgstr "Død"
 
@@ -4518,51 +4555,51 @@ msgstr ""
 "Hjælper ved analyse af data ved at tillade udviklingen af egne filtre, der "
 "kan bruges på databasen til at finde lignende hændelser"
 
-#: plugins/FamilyGroup.py:135
+#: plugins/FamilyGroup.py:132
 msgid "Husband"
 msgstr "Mand"
 
-#: plugins/FamilyGroup.py:137
+#: plugins/FamilyGroup.py:134
 msgid "Wife"
 msgstr "Hustru"
 
-#: plugins/FamilyGroup.py:294 plugins/FamilyGroup.py:384
-#: plugins/FamilyGroup.py:498
+#: plugins/FamilyGroup.py:291 plugins/FamilyGroup.py:381
+#: plugins/FamilyGroup.py:496
 msgid "Spouse"
 msgstr "Ægtefælle"
 
-#: plugins/FamilyGroup.py:319 plugins/FamilyGroup.py:359
-#: plugins/FamilyGroup.py:478 plugins/FamilyGroup.py:758
-#: plugins/FamilyGroup.py:767
+#: plugins/FamilyGroup.py:316 plugins/FamilyGroup.py:356
+#: plugins/FamilyGroup.py:476 plugins/FamilyGroup.py:756
+#: plugins/FamilyGroup.py:765
 msgid "Family Group Report"
 msgstr "Familierapport"
 
-#: plugins/FamilyGroup.py:336 plugins/IndivComplete.py:287
-#: plugins/IndivSummary.py:184 plugins/WebPage.py:564
+#: plugins/FamilyGroup.py:333 plugins/IndivComplete.py:288
+#: plugins/IndivSummary.py:185 plugins/WebPage.py:564
 msgid "Children"
 msgstr "Børn"
 
-#: plugins/FamilyGroup.py:363
+#: plugins/FamilyGroup.py:360
 msgid "Family Group Report for %s"
 msgstr "Familierapport for %s"
 
-#: plugins/FamilyGroup.py:368
+#: plugins/FamilyGroup.py:365
 msgid "Save Family Group Report"
 msgstr "Gem Familierapport"
 
-#: plugins/FamilyGroup.py:482
+#: plugins/FamilyGroup.py:480
 msgid "Family Group Report for GRAMPS Book"
 msgstr "Familiegrupperapport til GRAMPS Bog"
 
-#: plugins/FamilyGroup.py:628
+#: plugins/FamilyGroup.py:626
 msgid "The style used for the text related to the children."
 msgstr "Stilen, der bruges til tekst der handler om børnene."
 
-#: plugins/FamilyGroup.py:637
+#: plugins/FamilyGroup.py:635
 msgid "The style used for the parent's name"
 msgstr "Stilen, der bruges til forælderens navn"
 
-#: plugins/FamilyGroup.py:761
+#: plugins/FamilyGroup.py:759
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
@@ -4637,101 +4674,105 @@ msgstr ""
 "systemet til at vælge personer til medtagelse i rapporter, eksporteringer, "
 "og andre redskaber."
 
-#: plugins/FtmStyleAncestors.py:100 plugins/FtmStyleDescendants.py:123
+#: plugins/FtmStyleAncestors.py:97 plugins/FtmStyleDescendants.py:123
 msgid "Generation No. %d"
 msgstr "Generation Nr. %d"
 
-#: plugins/FtmStyleAncestors.py:136
+#: plugins/FtmStyleAncestors.py:133
 msgid "born %(date)s in %(place)s%(endnotes)s"
 msgstr "født %(date)s i %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:142
+#: plugins/FtmStyleAncestors.py:139
 msgid "born %(date)s%(endnotes)s"
 msgstr "født %(date)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:148
+#: plugins/FtmStyleAncestors.py:145
 msgid "born in %(place)s%(endnotes)s"
 msgstr "født i %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:168
+#: plugins/FtmStyleAncestors.py:165
 msgid "died %(date)s in %(place)s%(endnotes)s."
 msgstr "død %(date)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:174
+#: plugins/FtmStyleAncestors.py:171
 msgid "died %(date)s%(endnotes)s."
 msgstr "død %(date)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:180
+#: plugins/FtmStyleAncestors.py:177
 msgid "died in %(place)s%(endnotes)s."
 msgstr "død i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:224 plugins/FtmStyleDescendants.py:254
+#: plugins/FtmStyleAncestors.py:202 plugins/FtmStyleDescendants.py:235
+msgid "Endnotes"
+msgstr "Slutnoter"
+
+#: plugins/FtmStyleAncestors.py:221 plugins/FtmStyleDescendants.py:254
 msgid "Text:"
 msgstr "Tekst:"
 
-#: plugins/FtmStyleAncestors.py:231 plugins/FtmStyleDescendants.py:261
+#: plugins/FtmStyleAncestors.py:228 plugins/FtmStyleDescendants.py:261
 msgid "Comments:"
 msgstr "Kommentarer:"
 
-#: plugins/FtmStyleAncestors.py:260 plugins/FtmStyleDescendants.py:290
+#: plugins/FtmStyleAncestors.py:258 plugins/FtmStyleDescendants.py:291
 msgid "Notes for %(person)s:"
 msgstr "Noter for %(person)s:"
 
-#: plugins/FtmStyleAncestors.py:275 plugins/FtmStyleAncestors.py:296
-#: plugins/FtmStyleDescendants.py:305 plugins/FtmStyleDescendants.py:326
+#: plugins/FtmStyleAncestors.py:273 plugins/FtmStyleAncestors.py:294
+#: plugins/FtmStyleDescendants.py:306 plugins/FtmStyleDescendants.py:327
 msgid "More about %(person_name)s:"
 msgstr "Mere om %(person_name)s:"
 
-#: plugins/FtmStyleAncestors.py:280 plugins/FtmStyleDescendants.py:310
+#: plugins/FtmStyleAncestors.py:278 plugins/FtmStyleDescendants.py:311
 msgid "Name %(count)d: %(name)s%(endnotes)s"
 msgstr "Navn %(count)d: %(name)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:303 plugins/FtmStyleDescendants.py:332
-#: plugins/FtmStyleDescendants.py:375
+#: plugins/FtmStyleAncestors.py:301 plugins/FtmStyleDescendants.py:333
+#: plugins/FtmStyleDescendants.py:376
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
 msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:309 plugins/FtmStyleDescendants.py:338
-#: plugins/FtmStyleDescendants.py:381
+#: plugins/FtmStyleAncestors.py:307 plugins/FtmStyleDescendants.py:339
+#: plugins/FtmStyleDescendants.py:382
 msgid "%(event_name)s: %(date)s%(endnotes)s"
 msgstr "%(event_name)s: %(date)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:314 plugins/FtmStyleDescendants.py:343
-#: plugins/FtmStyleDescendants.py:386
+#: plugins/FtmStyleAncestors.py:312 plugins/FtmStyleDescendants.py:344
+#: plugins/FtmStyleDescendants.py:387
 msgid "%(event_name)s: %(place)s%(endnotes)s"
 msgstr "%(event_name)s: %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:339 plugins/FtmStyleDescendants.py:733
+#: plugins/FtmStyleAncestors.py:337 plugins/FtmStyleDescendants.py:734
 msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Han giftede sig med %(spouse)s %(date)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:345 plugins/FtmStyleDescendants.py:739
+#: plugins/FtmStyleAncestors.py:343 plugins/FtmStyleDescendants.py:740
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Hun giftede sig med %(spouse)s %(date)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:352 plugins/FtmStyleDescendants.py:746
+#: plugins/FtmStyleAncestors.py:350 plugins/FtmStyleDescendants.py:747
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
 msgstr "Han giftede sig med %(spouse)s %(date)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:357 plugins/FtmStyleAncestors.py:368
-#: plugins/FtmStyleDescendants.py:751 plugins/FtmStyleDescendants.py:762
+#: plugins/FtmStyleAncestors.py:355 plugins/FtmStyleAncestors.py:366
+#: plugins/FtmStyleDescendants.py:752 plugins/FtmStyleDescendants.py:763
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hun giftede sig med %(spouse)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:363 plugins/FtmStyleDescendants.py:757
+#: plugins/FtmStyleAncestors.py:361 plugins/FtmStyleDescendants.py:758
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Han giftede sig med %(spouse)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:374 plugins/FtmStyleDescendants.py:768
+#: plugins/FtmStyleAncestors.py:372 plugins/FtmStyleDescendants.py:769
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr "Han giftede sig med %(spouse)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:379 plugins/FtmStyleDescendants.py:772
+#: plugins/FtmStyleAncestors.py:377 plugins/FtmStyleDescendants.py:773
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Hun giftede sig med %(spouse)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:402 plugins/FtmStyleDescendants.py:454
-#: plugins/FtmStyleDescendants.py:794
+#: plugins/FtmStyleAncestors.py:400 plugins/FtmStyleDescendants.py:455
+#: plugins/FtmStyleDescendants.py:795
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
@@ -4741,8 +4782,8 @@ msgstr ""
 "(birth_endnotes)s, og døde %(death_date)s i %(death_place)s%(death_endnotes)"
 "s."
 
-#: plugins/FtmStyleAncestors.py:413 plugins/FtmStyleDescendants.py:463
-#: plugins/FtmStyleDescendants.py:805
+#: plugins/FtmStyleAncestors.py:411 plugins/FtmStyleDescendants.py:464
+#: plugins/FtmStyleDescendants.py:806
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
@@ -4750,7 +4791,7 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, og døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:424 plugins/FtmStyleDescendants.py:472
+#: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:473
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -4758,7 +4799,7 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, og døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:434
+#: plugins/FtmStyleAncestors.py:432
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s. "
@@ -4766,8 +4807,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:443 plugins/FtmStyleDescendants.py:488
-#: plugins/FtmStyleDescendants.py:835
+#: plugins/FtmStyleAncestors.py:441 plugins/FtmStyleDescendants.py:489
+#: plugins/FtmStyleDescendants.py:836
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -4775,8 +4816,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s, og "
 "døde %(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:453 plugins/FtmStyleDescendants.py:497
-#: plugins/FtmStyleDescendants.py:845
+#: plugins/FtmStyleAncestors.py:451 plugins/FtmStyleDescendants.py:498
+#: plugins/FtmStyleDescendants.py:846
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -4784,8 +4825,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s, og "
 "døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:462 plugins/FtmStyleDescendants.py:506
-#: plugins/FtmStyleDescendants.py:854
+#: plugins/FtmStyleAncestors.py:460 plugins/FtmStyleDescendants.py:507
+#: plugins/FtmStyleDescendants.py:855
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -4793,12 +4834,12 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s, og "
 "døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:470
+#: plugins/FtmStyleAncestors.py:468
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr "%(male_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:479 plugins/FtmStyleDescendants.py:522
-#: plugins/FtmStyleDescendants.py:872
+#: plugins/FtmStyleAncestors.py:477 plugins/FtmStyleDescendants.py:523
+#: plugins/FtmStyleDescendants.py:873
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -4806,8 +4847,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s, og "
 "døde %(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:488 plugins/FtmStyleDescendants.py:531
-#: plugins/FtmStyleDescendants.py:881
+#: plugins/FtmStyleAncestors.py:486 plugins/FtmStyleDescendants.py:532
+#: plugins/FtmStyleDescendants.py:882
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -4815,8 +4856,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s, og "
 "døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:497 plugins/FtmStyleDescendants.py:540
-#: plugins/FtmStyleDescendants.py:890
+#: plugins/FtmStyleAncestors.py:495 plugins/FtmStyleDescendants.py:541
+#: plugins/FtmStyleDescendants.py:891
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -4824,14 +4865,14 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s, og "
 "døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:505
+#: plugins/FtmStyleAncestors.py:503
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 "%(male_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:513 plugins/FtmStyleDescendants.py:556
-#: plugins/FtmStyleDescendants.py:907
+#: plugins/FtmStyleAncestors.py:511 plugins/FtmStyleDescendants.py:557
+#: plugins/FtmStyleDescendants.py:908
 msgid ""
 "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
@@ -4839,18 +4880,18 @@ msgstr ""
 "%(male_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%"
 "(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:520 plugins/FtmStyleDescendants.py:562
-#: plugins/FtmStyleDescendants.py:914
+#: plugins/FtmStyleAncestors.py:518 plugins/FtmStyleDescendants.py:563
+#: plugins/FtmStyleDescendants.py:915
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:527 plugins/FtmStyleDescendants.py:569
-#: plugins/FtmStyleDescendants.py:922
+#: plugins/FtmStyleAncestors.py:525 plugins/FtmStyleDescendants.py:570
+#: plugins/FtmStyleDescendants.py:923
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:537 plugins/FtmStyleDescendants.py:582
-#: plugins/FtmStyleDescendants.py:933
+#: plugins/FtmStyleAncestors.py:535 plugins/FtmStyleDescendants.py:583
+#: plugins/FtmStyleDescendants.py:934
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
@@ -4860,8 +4901,8 @@ msgstr ""
 "(birth_endnotes)s, og døde %(death_date)s i %(death_place)s%(death_endnotes)"
 "s."
 
-#: plugins/FtmStyleAncestors.py:548 plugins/FtmStyleDescendants.py:591
-#: plugins/FtmStyleDescendants.py:944
+#: plugins/FtmStyleAncestors.py:546 plugins/FtmStyleDescendants.py:592
+#: plugins/FtmStyleDescendants.py:945
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
@@ -4869,8 +4910,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, og døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:559 plugins/FtmStyleDescendants.py:600
-#: plugins/FtmStyleDescendants.py:955
+#: plugins/FtmStyleAncestors.py:557 plugins/FtmStyleDescendants.py:601
+#: plugins/FtmStyleDescendants.py:956
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -4878,7 +4919,7 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, og døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:569
+#: plugins/FtmStyleAncestors.py:567
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s. "
@@ -4886,8 +4927,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:577 plugins/FtmStyleDescendants.py:616
-#: plugins/FtmStyleDescendants.py:974
+#: plugins/FtmStyleAncestors.py:575 plugins/FtmStyleDescendants.py:617
+#: plugins/FtmStyleDescendants.py:975
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -4895,8 +4936,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s, og "
 "døde %(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:587 plugins/FtmStyleDescendants.py:625
-#: plugins/FtmStyleDescendants.py:984
+#: plugins/FtmStyleAncestors.py:585 plugins/FtmStyleDescendants.py:626
+#: plugins/FtmStyleDescendants.py:985
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -4904,8 +4945,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s, og "
 "døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:596 plugins/FtmStyleDescendants.py:634
-#: plugins/FtmStyleDescendants.py:993
+#: plugins/FtmStyleAncestors.py:594 plugins/FtmStyleDescendants.py:635
+#: plugins/FtmStyleDescendants.py:994
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -4913,13 +4954,13 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s, og "
 "døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:604
+#: plugins/FtmStyleAncestors.py:602
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:613 plugins/FtmStyleDescendants.py:650
-#: plugins/FtmStyleDescendants.py:1011
+#: plugins/FtmStyleAncestors.py:611 plugins/FtmStyleDescendants.py:651
+#: plugins/FtmStyleDescendants.py:1012
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -4927,8 +4968,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s, "
 "og døde %(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:621 plugins/FtmStyleDescendants.py:659
-#: plugins/FtmStyleDescendants.py:1019
+#: plugins/FtmStyleAncestors.py:619 plugins/FtmStyleDescendants.py:660
+#: plugins/FtmStyleDescendants.py:1020
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s%(death_endnotes)s."
@@ -4936,8 +4977,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s, "
 "og døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:630 plugins/FtmStyleDescendants.py:668
-#: plugins/FtmStyleDescendants.py:1028
+#: plugins/FtmStyleAncestors.py:628 plugins/FtmStyleDescendants.py:669
+#: plugins/FtmStyleDescendants.py:1029
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died in %(death_place)s%(death_endnotes)s."
@@ -4945,14 +4986,14 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s, "
 "og døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:638
+#: plugins/FtmStyleAncestors.py:636
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 "%(female_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:646 plugins/FtmStyleDescendants.py:684
-#: plugins/FtmStyleDescendants.py:1045
+#: plugins/FtmStyleAncestors.py:644 plugins/FtmStyleDescendants.py:685
+#: plugins/FtmStyleDescendants.py:1046
 msgid ""
 "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
@@ -4960,81 +5001,81 @@ msgstr ""
 "%(female_name)s%(endnotes)s døde %(death_date)s i %(death_place)s%"
 "(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:653 plugins/FtmStyleDescendants.py:1052
+#: plugins/FtmStyleAncestors.py:651 plugins/FtmStyleDescendants.py:1053
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
 msgstr "%(female_name)s%(endnotes)s døde %(death_date)s%(death_endotes)s."
 
-#: plugins/FtmStyleAncestors.py:660 plugins/FtmStyleDescendants.py:697
-#: plugins/FtmStyleDescendants.py:1060
+#: plugins/FtmStyleAncestors.py:658 plugins/FtmStyleDescendants.py:698
+#: plugins/FtmStyleDescendants.py:1061
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr "%(female_name)s%(endnotes)s døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:678 plugins/FtmStyleDescendants.py:1079
+#: plugins/FtmStyleAncestors.py:676 plugins/FtmStyleDescendants.py:1080
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Han var søn af %(father)s og %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:682 plugins/FtmStyleDescendants.py:1083
+#: plugins/FtmStyleAncestors.py:680 plugins/FtmStyleDescendants.py:1084
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr "Han er søn af %(father)s og %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:687 plugins/FtmStyleDescendants.py:1088
+#: plugins/FtmStyleAncestors.py:685 plugins/FtmStyleDescendants.py:1089
 msgid "He was the son of %(mother)s."
 msgstr "Han var søn af %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:690 plugins/FtmStyleDescendants.py:1091
+#: plugins/FtmStyleAncestors.py:688 plugins/FtmStyleDescendants.py:1092
 msgid "He is the son of %(mother)s."
 msgstr "han er søn af %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:694 plugins/FtmStyleDescendants.py:1095
+#: plugins/FtmStyleAncestors.py:692 plugins/FtmStyleDescendants.py:1096
 msgid "He was the son of %(father)s."
 msgstr "Han var søn af %(father)s."
 
-#: plugins/FtmStyleAncestors.py:697 plugins/FtmStyleDescendants.py:1098
+#: plugins/FtmStyleAncestors.py:695 plugins/FtmStyleDescendants.py:1099
 msgid "He is the son of %(father)s."
 msgstr "Han er søn af %(father)s."
 
-#: plugins/FtmStyleAncestors.py:702 plugins/FtmStyleDescendants.py:1103
+#: plugins/FtmStyleAncestors.py:700 plugins/FtmStyleDescendants.py:1104
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Hun var datter af %(father)s and %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:706 plugins/FtmStyleDescendants.py:1107
+#: plugins/FtmStyleAncestors.py:704 plugins/FtmStyleDescendants.py:1108
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr "Hun er datter af %(father)s and %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:711 plugins/FtmStyleDescendants.py:1112
+#: plugins/FtmStyleAncestors.py:709 plugins/FtmStyleDescendants.py:1113
 msgid "She was the daughter of %(mother)s."
 msgstr "Hun var datter af %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:714 plugins/FtmStyleDescendants.py:1115
+#: plugins/FtmStyleAncestors.py:712 plugins/FtmStyleDescendants.py:1116
 msgid "She is the daughter of %(mother)s."
 msgstr "Hun er datter af %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:718 plugins/FtmStyleDescendants.py:1119
+#: plugins/FtmStyleAncestors.py:716 plugins/FtmStyleDescendants.py:1120
 msgid "She was the daughter of %(father)s."
 msgstr "Hun var datter af %(father)s."
 
-#: plugins/FtmStyleAncestors.py:721 plugins/FtmStyleDescendants.py:1122
+#: plugins/FtmStyleAncestors.py:719 plugins/FtmStyleDescendants.py:1123
 msgid "She is the daughter of %(father)s."
 msgstr "Hun er datter af %(father)s."
 
-#: plugins/FtmStyleAncestors.py:785
+#: plugins/FtmStyleAncestors.py:783
 msgid "FTM Style Ancestral Report"
 msgstr "Anerapport i FTM stil"
 
-#: plugins/FtmStyleAncestors.py:789
+#: plugins/FtmStyleAncestors.py:787
 msgid "FTM Style Ancestral Report for %s"
 msgstr "Anerapport over %s i FTM stil"
 
-#: plugins/FtmStyleAncestors.py:879 plugins/FtmStyleAncestors.py:1029
-#: plugins/FtmStyleAncestors.py:1040
+#: plugins/FtmStyleAncestors.py:878 plugins/FtmStyleAncestors.py:1028
+#: plugins/FtmStyleAncestors.py:1039
 msgid "FTM Style Ancestor Report"
 msgstr "Anerapport i FTM stil"
 
-#: plugins/FtmStyleAncestors.py:883
+#: plugins/FtmStyleAncestors.py:882
 msgid "FTM Style Ancestor Report for GRAMPS Book"
 msgstr "Anerapport i FTM stil til GRAMPS Bog"
 
-#: plugins/FtmStyleAncestors.py:1032
+#: plugins/FtmStyleAncestors.py:1031
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
 msgstr "Danner en anerapport i tekst, som minder om Family Tree Maker."
 
@@ -5062,19 +5103,19 @@ msgstr "og døde %(date)s%(endnotes)s."
 msgid "and died in %(place)s%(endnotes)s."
 msgstr "og døde i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:369
+#: plugins/FtmStyleDescendants.py:370
 msgid "More about %(husband)s and %(wife)s:"
 msgstr "Mere om %(husband)s og %(wife)s:"
 
-#: plugins/FtmStyleDescendants.py:418
+#: plugins/FtmStyleDescendants.py:419
 msgid "Children of %(person_name)s and %(spouse_name)s are:"
 msgstr "Børn af %(person_name)s og %(spouse_name)s er:"
 
-#: plugins/FtmStyleDescendants.py:421
+#: plugins/FtmStyleDescendants.py:422
 msgid "Children of %(person_name)s are:"
 msgstr "Børn af %(person_name)s er:"
 
-#: plugins/FtmStyleDescendants.py:480 plugins/FtmStyleDescendants.py:826
+#: plugins/FtmStyleDescendants.py:481 plugins/FtmStyleDescendants.py:827
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
@@ -5082,21 +5123,21 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:514 plugins/FtmStyleDescendants.py:862
+#: plugins/FtmStyleDescendants.py:515 plugins/FtmStyleDescendants.py:863
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:548 plugins/FtmStyleDescendants.py:898
+#: plugins/FtmStyleDescendants.py:549 plugins/FtmStyleDescendants.py:899
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 "%(male_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:575
+#: plugins/FtmStyleDescendants.py:576
 msgid "%(male_name)s%(endnotes)s."
 msgstr "%(male_name)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:608
+#: plugins/FtmStyleDescendants.py:609
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
@@ -5104,26 +5145,26 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:642 plugins/FtmStyleDescendants.py:1001
+#: plugins/FtmStyleDescendants.py:643 plugins/FtmStyleDescendants.py:1002
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:676 plugins/FtmStyleDescendants.py:1036
+#: plugins/FtmStyleDescendants.py:677 plugins/FtmStyleDescendants.py:1037
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s blev født i %(birth_place)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:690
+#: plugins/FtmStyleDescendants.py:691
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr "%(female_name)s%(endnotes)s døde %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:703
+#: plugins/FtmStyleDescendants.py:704
 msgid "%(female_name)s%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:816
+#: plugins/FtmStyleDescendants.py:817
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -5131,7 +5172,7 @@ msgstr ""
 "%(male_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s %"
 "(birth_endnotes)s, og døde i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:965
+#: plugins/FtmStyleDescendants.py:966
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
 "(birth_endnotes)s."
@@ -5139,24 +5180,24 @@ msgstr ""
 "%(female_name)s%(endnotes)s blev født %(birth_date)s i %(birth_place)s %"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:1191 plugins/FtmStyleDescendants.py:1283
-#: plugins/FtmStyleDescendants.py:1436 plugins/FtmStyleDescendants.py:1447
+#: plugins/FtmStyleDescendants.py:1192 plugins/FtmStyleDescendants.py:1284
+#: plugins/FtmStyleDescendants.py:1437 plugins/FtmStyleDescendants.py:1448
 msgid "FTM Style Descendant Report"
 msgstr "Efterkommerrapport i FTM stil"
 
-#: plugins/FtmStyleDescendants.py:1195
+#: plugins/FtmStyleDescendants.py:1196
 msgid "FTM Style Descendant Report for %s"
 msgstr "Efterkommerrapport over %s i FTM stil"
 
-#: plugins/FtmStyleDescendants.py:1200
+#: plugins/FtmStyleDescendants.py:1201
 msgid "Save FTM Style Descendant Report"
 msgstr "Gem Efterkommerrapport i FTM stil"
 
-#: plugins/FtmStyleDescendants.py:1287
+#: plugins/FtmStyleDescendants.py:1288
 msgid "FTM Style Descendant Report for GRAMPS Book"
 msgstr "Efterkommerrapport i FTM stil til GRAMPS Bog"
 
-#: plugins/FtmStyleDescendants.py:1439
+#: plugins/FtmStyleDescendants.py:1440
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr "Danner en efterkommerrapport i tekst, som minder om Family Tree Maker."
 
@@ -5180,7 +5221,7 @@ msgstr "Slægtstræ"
 msgid "Graphviz File"
 msgstr "Graphviz Fil"
 
-#: plugins/GraphViz.py:113 plugins/TimeLine.py:371 plugins/WriteGedcom.py:394
+#: plugins/GraphViz.py:113 plugins/TimeLine.py:371 plugins/WriteGedcom.py:396
 msgid "People with common ancestor with %s"
 msgstr "Personer med samme ane som %s"
 
@@ -5315,98 +5356,98 @@ msgstr ""
 "http://www.graphviz.org for mere information og for at hente en kopi af "
 "GraphViz."
 
-#: plugins/IndivComplete.py:133
+#: plugins/IndivComplete.py:134
 msgid "%(date)s in %(place)s."
 msgstr "%(date)s i %(place)s."
 
-#: plugins/IndivComplete.py:165 plugins/WebPage.py:474
+#: plugins/IndivComplete.py:166 plugins/WebPage.py:474
 msgid "Notes"
 msgstr "Noter"
 
-#: plugins/IndivComplete.py:192
+#: plugins/IndivComplete.py:193
 msgid "Alternate Parents"
 msgstr "Andre Forældre"
 
-#: plugins/IndivComplete.py:230
+#: plugins/IndivComplete.py:231
 msgid "Alternate Names"
 msgstr "Andre Navne"
 
-#: plugins/IndivComplete.py:259 plugins/IndivSummary.py:155
+#: plugins/IndivComplete.py:260 plugins/IndivSummary.py:156
 #: plugins/WebPage.py:527
 msgid "Marriages/Children"
 msgstr "Ægteskaber/Børn"
 
-#: plugins/IndivComplete.py:333 plugins/IndivSummary.py:311
+#: plugins/IndivComplete.py:334 plugins/IndivSummary.py:312
 msgid "Individual Facts"
 msgstr "Individuelle Fakta"
 
-#: plugins/IndivComplete.py:377 plugins/IndivSummary.py:212
+#: plugins/IndivComplete.py:378 plugins/IndivSummary.py:213
 #: plugins/WebPage.py:126 plugins/WebPage.py:252
 msgid "Summary of %s"
 msgstr "Opsummering af %s"
 
-#: plugins/IndivComplete.py:407 plugins/IndivSummary.py:252
+#: plugins/IndivComplete.py:408 plugins/IndivSummary.py:253
 #: plugins/WebPage.py:287
 msgid "Male"
 msgstr "Mand"
 
-#: plugins/IndivComplete.py:409 plugins/IndivSummary.py:254
+#: plugins/IndivComplete.py:410 plugins/IndivSummary.py:255
 #: plugins/WebPage.py:289
 msgid "Female"
 msgstr "Kvinde"
 
-#: plugins/IndivComplete.py:459
+#: plugins/IndivComplete.py:460
 msgid "Include Source Information"
 msgstr "Medtag Kildeinformation"
 
-#: plugins/IndivComplete.py:470 plugins/IndivComplete.py:474
-#: plugins/IndivComplete.py:814
+#: plugins/IndivComplete.py:471 plugins/IndivComplete.py:475
+#: plugins/IndivComplete.py:816
 msgid "Complete Individual Report"
 msgstr "Komplet Individuel Rapport"
 
-#: plugins/IndivComplete.py:479
+#: plugins/IndivComplete.py:480
 msgid "Save Complete Individual Report"
 msgstr "Gem Komplet Individuel Rapport"
 
-#: plugins/IndivComplete.py:585 plugins/IndivComplete.py:822
+#: plugins/IndivComplete.py:587 plugins/IndivComplete.py:824
 msgid "Individual Complete"
 msgstr "Individ Komplet"
 
-#: plugins/IndivComplete.py:589
+#: plugins/IndivComplete.py:591
 msgid "Individual Complete Report for GRAMPS Book"
 msgstr "Individuel Komplet Rapport til GRAMPS Bog"
 
-#: plugins/IndivComplete.py:667 plugins/IndivSummary.py:595
+#: plugins/IndivComplete.py:669 plugins/IndivSummary.py:598
 msgid "The style used for category labels."
 msgstr "Stilen som anvendes til kategorimærkater."
 
-#: plugins/IndivComplete.py:676 plugins/IndivSummary.py:604
+#: plugins/IndivComplete.py:678 plugins/IndivSummary.py:607
 #: plugins/WebPage.py:1029
 msgid "The style used for the spouse's name."
 msgstr "Stilen som anvendes til ægtefællens navn."
 
-#: plugins/IndivComplete.py:817
+#: plugins/IndivComplete.py:819
 msgid "Produces a complete report on the selected people."
 msgstr "Danner en komplet rapport om de valgte personer."
 
-#: plugins/IndivSummary.py:337 plugins/IndivSummary.py:520
-#: plugins/IndivSummary.py:623 plugins/IndivSummary.py:634
+#: plugins/IndivSummary.py:338 plugins/IndivSummary.py:523
+#: plugins/IndivSummary.py:626 plugins/IndivSummary.py:637
 msgid "Individual Summary"
 msgstr "Individuel Opsummering"
 
-#: plugins/IndivSummary.py:341
+#: plugins/IndivSummary.py:342
 msgid "Individual Summary for %s"
 msgstr "Individuel Opsummering for %s"
 
-#: plugins/IndivSummary.py:346
+#: plugins/IndivSummary.py:347
 msgid "Save Individual Summary"
 msgstr "Gem Individuel Opsummering"
 
-#: plugins/IndivSummary.py:524
+#: plugins/IndivSummary.py:527
 msgid "Individual Summary Report for GRAMPS Book"
 msgstr "Individuel Opsummering til GRAMPS Bog"
 
-#: plugins/IndivSummary.py:626
+#: plugins/IndivSummary.py:629
 msgid "Produces a detailed report on the selected person."
 msgstr "Danner en detaljeret rapport om den valgte person."
 
@@ -5478,32 +5519,36 @@ msgstr ""
 "Gennemsøger hele databasen og forsøger at udtage titler og kælenavne, der er "
 "blevet indtastet i en persons fornavnefelt."
 
-#: plugins/ReadGedcom.py:79 plugins/ReadGedcom.py:80
+#: plugins/ReadGedcom.py:72
+msgid "Import from GEDCOM"
+msgstr "Import fra GEDCOM"
+
+#: plugins/ReadGedcom.py:81 plugins/ReadGedcom.py:82
 msgid "Windows 9x file system"
 msgstr "Windows 9x filsystem"
 
-#: plugins/ReadGedcom.py:81
+#: plugins/ReadGedcom.py:83
 msgid "Windows NT file system"
 msgstr "Windows NT filsystem"
 
-#: plugins/ReadGedcom.py:82
+#: plugins/ReadGedcom.py:84
 msgid "CD ROM"
 msgstr "CD-ROM"
 
-#: plugins/ReadGedcom.py:83
+#: plugins/ReadGedcom.py:85
 msgid "Networked Windows file system"
 msgstr "Windows netværksfilsystem"
 
-#: plugins/ReadGedcom.py:133
+#: plugins/ReadGedcom.py:135
 msgid "GEDCOM import status"
 msgstr "GEDCOM import status"
 
-#: plugins/ReadGedcom.py:144 plugins/ReadGedcom.py:148
-#: plugins/ReadGedcom.py:156
+#: plugins/ReadGedcom.py:146 plugins/ReadGedcom.py:150
+#: plugins/ReadGedcom.py:158
 msgid "%s could not be opened\n"
 msgstr "%s kunne ikke åbnes\n"
 
-#: plugins/ReadGedcom.py:272
+#: plugins/ReadGedcom.py:274
 msgid ""
 "Windows style path names for images will use the following mount points to "
 "try to find the images. These paths are based on Windows compatible file "
@@ -5515,7 +5560,7 @@ msgstr ""
 "filsystemer, som er til rådighed på dette system:\n"
 "\n"
 
-#: plugins/ReadGedcom.py:279
+#: plugins/ReadGedcom.py:281
 msgid ""
 "Images that cannot be found in the specfied path in the GEDCOM file will be "
 "searched for in the same directory in which the GEDCOM file exists (%s).\n"
@@ -5523,25 +5568,25 @@ msgstr ""
 "Billeder, som ikke kan findes i den i GEDCOM-filen angivne sti, vil blive "
 "søgt efter i den folder, hvor GEDCOM-filen findes (%s).\n"
 
-#: plugins/ReadGedcom.py:337
+#: plugins/ReadGedcom.py:339
 msgid "GEDCOM file ended unexpectedly"
 msgstr "GEDCOM-filen endte uventet"
 
-#: plugins/ReadGedcom.py:353 plugins/ReadGedcom.py:362
+#: plugins/ReadGedcom.py:355 plugins/ReadGedcom.py:364
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr "Advarsel: linje %d blev ikke forstået, så den blev ignoreret."
 
-#: plugins/ReadGedcom.py:396
+#: plugins/ReadGedcom.py:398
 msgid "Import Complete: %d seconds"
 msgstr "Import Fuldført: %d sekunder"
 
-#: plugins/ReadGedcom.py:931 plugins/ReadGedcom.py:969
-#: plugins/ReadGedcom.py:1007
+#: plugins/ReadGedcom.py:933 plugins/ReadGedcom.py:971
+#: plugins/ReadGedcom.py:1009
 msgid "Warning: could not import %s"
 msgstr "Advarsel: Kunne ikke importere %s"
 
-#: plugins/ReadGedcom.py:932 plugins/ReadGedcom.py:970
-#: plugins/ReadGedcom.py:1008
+#: plugins/ReadGedcom.py:934 plugins/ReadGedcom.py:972
+#: plugins/ReadGedcom.py:1010
 msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
@@ -5549,29 +5594,23 @@ msgstr ""
 "\tDe følgende stier blev forsøgt:\n"
 "\t\t"
 
-#: plugins/ReadGedcom.py:1735 plugins/ReadGedcom.py:1778
-msgid "Import from GEDCOM"
-msgstr "Import fra GEDCOM"
-
-#: plugins/ReadNative.py:52 plugins/ReadNative.py:63 plugins/ReadNative.py:66
-#: plugins/ReadNative.py:105
+#: plugins/ReadNative.py:34
 msgid "Import from GRAMPS database"
 msgstr "Import fra GRAMPS database"
 
-#: plugins/ReadPkg.py:55 plugins/ReadPkg.py:66 plugins/ReadPkg.py:69
-#: plugins/ReadPkg.py:140
+#: plugins/ReadPkg.py:37
 msgid "Import from GRAMPS package"
 msgstr "Import fra GRAMPS pakke"
 
-#: plugins/ReadPkg.py:91
+#: plugins/ReadPkg.py:92
 msgid "Could not create temporary directory %s"
 msgstr "Kunne ikke oprette midlertidig folder %s"
 
-#: plugins/ReadPkg.py:95
+#: plugins/ReadPkg.py:96
 msgid "Temporary directory %s is not writable"
 msgstr "Temporær folder %s er ikke skrivbar"
 
-#: plugins/ReadPkg.py:107
+#: plugins/ReadPkg.py:108
 msgid "Error extracting into %s"
 msgstr "Fejl ved udtræk ind i %s"
 
@@ -5619,31 +5658,31 @@ msgstr "Sorter gramps ID'erne efter gramps standard regler."
 msgid "The style used for the subtitle."
 msgstr "Stilen, der bruges til undertitlen."
 
-#: plugins/SimpleBookTitle.py:145 plugins/SimpleBookTitle.py:239
+#: plugins/SimpleBookTitle.py:147 plugins/SimpleBookTitle.py:240
 msgid "Title of the Book"
 msgstr "Bogens Titel"
 
-#: plugins/SimpleBookTitle.py:153 plugins/SimpleBookTitle.py:246
+#: plugins/SimpleBookTitle.py:155 plugins/SimpleBookTitle.py:247
 msgid "Copyright %d %s"
 msgstr "Ophavsret %d %s"
 
-#: plugins/SimpleBookTitle.py:173 plugins/SimpleBookTitle.py:357
+#: plugins/SimpleBookTitle.py:174 plugins/SimpleBookTitle.py:358
 msgid "Simple Book Title"
 msgstr "Enkel Bog Titel"
 
-#: plugins/SimpleBookTitle.py:177
+#: plugins/SimpleBookTitle.py:178
 msgid "Title Page for GRAMPS Book"
 msgstr "Titelside til GRAMPS Bog"
 
-#: plugins/SimpleBookTitle.py:195
+#: plugins/SimpleBookTitle.py:196
 msgid "Title String"
 msgstr "Titel Streng"
 
-#: plugins/SimpleBookTitle.py:195 plugins/SimpleBookTitle.py:196
+#: plugins/SimpleBookTitle.py:196 plugins/SimpleBookTitle.py:197
 msgid "Contents"
 msgstr "Indhold"
 
-#: plugins/SimpleBookTitle.py:196
+#: plugins/SimpleBookTitle.py:197
 msgid "Copyright String"
 msgstr "Ophavsrets Streng"
 
@@ -6232,29 +6271,25 @@ msgstr "Stilen, der anvendes til noteinformation."
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Danner web (HTML) sider for personer, eller for en gruppe af personer."
 
-#: plugins/WriteCD.py:94
+#: plugins/WriteCD.py:55
 msgid "Export to CD"
 msgstr "Eksport til CD"
 
-#: plugins/WriteCD.py:268
-msgid "Export to CD (nautilus)"
-msgstr "Eksport til CD (nautilus)"
-
-#: plugins/WriteGedcom.py:376 plugins/WriteGedcom.py:493
-msgid "GEDCOM export"
-msgstr "GEDCOM eksport"
-
-#: plugins/WriteGedcom.py:1146
+#: plugins/WriteGedcom.py:62
 msgid "Export to GEDCOM"
 msgstr "Eksport til GEDCOM"
 
-#: plugins/WritePkg.py:87
-msgid "Package export"
-msgstr "pakke eksport"
+#: plugins/WriteGedcom.py:378 plugins/WriteGedcom.py:495
+msgid "GEDCOM export"
+msgstr "GEDCOM eksport"
 
-#: plugins/WritePkg.py:197
+#: plugins/WritePkg.py:52
 msgid "Export to GRAMPS package"
 msgstr "Eksport til GRAMPS pakke"
+
+#: plugins/WritePkg.py:88
+msgid "Package export"
+msgstr "pakke eksport"
 
 #: plugins/book.glade:59
 msgid "Book _name: "
@@ -6304,11 +6339,11 @@ msgstr "Håndter tidligere dannede bøger"
 msgid "_Edit books"
 msgstr "R_et bøger"
 
-#: plugins/cdexport.glade:73
+#: plugins/cdexport.glade:71
 msgid "_Export to CD"
 msgstr "_Eksport til CD"
 
-#: plugins/cdexport.glade:151
+#: plugins/cdexport.glade:149
 msgid ""
 "Exporting to a CD will not immediately write the CD. It will prepare the "
 "nautilus-cd-burner so that you can burn the CD from nautilus.\n"
@@ -6543,6 +6578,10 @@ msgstr "Stiller et vindue til rådighed, som viser alle løse objekter"
 #: plugins/merge.glade:46
 msgid "Please be patient. This may take a while."
 msgstr "Hav venligst tålmodighed. Dette kan tage noget tid."
+
+#: plugins/merge.glade:126
+msgid "_Merge"
+msgstr "Slå sa_mmen"
 
 #: plugins/merge.glade:316
 msgid "<b>Match Threshold</b>"
@@ -7196,25 +7235,31 @@ msgstr "<b>Retstilling</b>"
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Sætningsvalgmuligheder</b>"
 
+#~ msgid "T_ype"
+#~ msgstr "T_ype"
+
+#~ msgid "Export to CD (nautilus)"
+#~ msgstr "Eksport til CD (nautilus)"
+
 #, fuzzy
 #~ msgid "Relationship to %(father)sfather"
-#~ msgstr "Slægtskab til fader:"
+#~ msgstr "Slægtskab til %(father)sfader"
 
 #, fuzzy
 #~ msgid "Relationship to %(mother)smother"
-#~ msgstr "Slægtskab til moder:"
+#~ msgstr "Slægtskab til %(mother)smoder"
 
 #, fuzzy
 #~ msgid "Full Family Chart for %s"
-#~ msgstr "Familierapport for %s"
+#~ msgstr "Helt Familiekort for %s"
 
 #, fuzzy
 #~ msgid "Save Full Family Chart"
-#~ msgstr "Gem Familierapport"
+#~ msgstr "Gem Helt Familiekort"
 
 #, fuzzy
 #~ msgid "title"
-#~ msgstr "Titel"
+#~ msgstr "titel"
 
 #~ msgid "Loop detected while applying filter"
 #~ msgstr "En løkke opdagedes ved anvendelsen af filter"
