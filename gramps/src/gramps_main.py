@@ -69,6 +69,7 @@ import Marriage
 import Find
 import VersionControl
 import RelImage
+import ImageSelect
 
 #-------------------------------------------------------------------------
 #
@@ -3522,6 +3523,7 @@ def main(arg):
         "on_edit_active_person"             : load_active_person,
         "on_edit_bookmarks_activate"        : on_edit_bookmarks_activate,
         "on_edit_father_clicked"            : on_edit_father_clicked,
+        "on_edit_media_clicked"             : on_edit_media_clicked,
         "on_edit_mother_clicked"            : on_edit_mother_clicked,
         "on_edit_place_clicked"             : on_edit_place_clicked,
         "on_edit_source_clicked"            : on_edit_source_clicked,
@@ -3663,6 +3665,12 @@ def on_name_changed(obj):
         else:
             glade.get_widget("image").load_file(utils.find_icon(type))
 
+def on_edit_media_clicked(obj):
+    if len(media_list.selection) <= 0:
+        return
+    object = media_list.get_row_data(media_list.selection[0])
+    ImageSelect.GlobalMediaProperties(object,database.getSavePath())
+    
 def on_media_list_drag_data_received(w, context, x, y, data, info, time):
     if data and data.format == 8:
         d = string.strip(string.replace(data.data,'\0',' '))

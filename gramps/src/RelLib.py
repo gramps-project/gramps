@@ -407,6 +407,9 @@ class Photo(SourceNote):
         """returns the property list associated with the image"""
         return self.attrlist
 
+    def setAttributeList(self,list):
+        self.attrlist = list
+
 class ObjectRef:
 
     def __init__(self,source=None):

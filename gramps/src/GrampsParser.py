@@ -85,7 +85,6 @@ class GrampsParser(handler.ContentHandler):
         self.pref = None
         self.use_p = 0
         self.in_note = 0
-        self.in_old_attr = 0
         self.in_stext = 0
         self.in_scomments = 0
         self.db = database
@@ -231,10 +230,9 @@ class GrampsParser(handler.ContentHandler):
         if attrs.has_key("priv"):
             self.attribute.privacy = int(attrs["priv"])
         if attrs.has_key('type'):
-            self.in_old_attr = 1
             self.attribute.setType(u2l(attrs["type"]))
-        else:
-            self.in_old_attr = 0
+        if attrs.has_key('value'):
+            self.attribute.setValue(u2l(attrs["value"]))
         if self.photo:
             self.photo.addAttribute(self.attribute)
         elif self.object:
@@ -540,9 +538,6 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_attribute(self,tag):
-        if self.in_old_attr:
-            self.attribute.setValue(u2l(tag))
-        self.in_old_attr = 0
         self.attribute = None
 
     #---------------------------------------------------------------------
@@ -857,14 +852,14 @@ class GrampsParser(handler.ContentHandler):
 
         if self.address:
             self.address.setNote(note)
+        elif self.attribute:
+            self.attribute.setNote(note)
         elif self.object:
             self.object.setNote(note)
         elif self.objref:
             self.objref.setNote(note)
         elif self.photo:
             self.photo.setNote(note)
-        elif self.attribute:
-            self.attribute.setNote(note)
         elif self.name:
             self.name.setNote(note)
         elif self.source:
