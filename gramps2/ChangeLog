@@ -1,4 +1,5 @@
 2004-01-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* configure.in: fix gnome-python-vfs error message
 	* src/docgen/OpenOfficeDoc.py: proper handling of center_text
 	* src/docgen/PdfDoc.py: proper handling of center_text
 	* src/plugins/TimeLine.py: switch to using center_text instead of draw_text
