@@ -3,6 +3,14 @@
 	Family.get_text_data_child_list): Add missing lists.
 	* src/GenericFilter.py (FullTextSearch): Correct description.
 
+	* src/GenericFilter.py (HasTextMatchingSubstringOf):
+	Rename FullTextSearch as well as its descriptions.
+	* src/gramps_main.py: Change string for filter menu.
+	* src/plugins/FilterEditor.py (EditRule.__init__): Hide window while
+	drawing.
+	* src/DateEdit.py (DateEditorDialog.__init__): Hide window while
+	drawing.
+
 2005-03-15  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Makefile.am : Added TreeTip.py to list of installed modules.
 	* src/TreeTip.py: New module that implements tooltips on TreeView rows.

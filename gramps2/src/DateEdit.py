@@ -188,6 +188,7 @@ class DateEditorDialog:
 
         self.top = gtk.glade.XML(const.dialogFile, "date_edit","gramps" )
         self.top_window = self.top.get_widget('date_edit')
+        self.top_window.hide()
         title = self.top.get_widget('title')
         Utils.set_titles(self.top_window,title,_('Date selection'))
 

@@ -948,8 +948,8 @@ class Gramps:
         filter_list.append(all)
 
         all = GenericFilter.ParamFilter()
-        all.set_name(_("Full-text search ..."))
-        all.add_rule(GenericFilter.FullTextSearch([]))
+        all.set_name(_("Any textual record contains..."))
+        all.add_rule(GenericFilter.HasTextMatchingSubstringOf([]))
         filter_list.append(all)
 
         self.filter_model = GenericFilter.FilterStore(filter_list)

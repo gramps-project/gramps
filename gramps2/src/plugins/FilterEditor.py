@@ -573,6 +573,7 @@ class EditRule:
         self.active_rule = val
         self.rule = gtk.glade.XML(const.filterFile,'rule_editor',"gramps")
         self.window = self.rule.get_widget('rule_editor')
+        self.window.hide()
         self.valuebox = self.rule.get_widget('valuebox')
         self.rname = self.rule.get_widget('ruletree')
         self.rule_name = self.rule.get_widget('rulename')
