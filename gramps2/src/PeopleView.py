@@ -218,6 +218,7 @@ class PeopleView:
             top_name = self.parent.db.get_name_group_mapping(group_name)
             top_path = self.person_model.on_get_path(top_name)
             self.person_tree.expand_row(top_path,0)
+            self.person_selection.unselect_all()
             self.person_selection.select_path(path)
             self.person_tree.scroll_to_cell(path,None,1,0.5,0)
         except KeyError:
