@@ -809,8 +809,8 @@ class FamilyView:
             self.clear()
             return
 
-        bd = self.person.get_birth().get_date()
-        dd = self.person.get_death().get_date()
+        bd = self.parent.db.find_event_from_id(self.person.get_birth_id()).get_date()
+        dd = self.parent.db.find_event_from_id(self.person.get_death_id()).get_date()
 
         if bd and dd:
             n = "%s\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
@@ -855,8 +855,9 @@ class FamilyView:
             flist[f] = iter
                 
             if sp:
-                if fm.get_marriage():
-                    mdate = " - %s" % fm.get_marriage().get_date()
+                event = self.find_marriage(fm)
+                if event:
+                    mdate = " - %s" % event.get_date()
                 else:
                     mdate = ""
                 v = "%s\n\t%s%s" % (GrampsCfg.nameof(sp),
@@ -880,6 +881,13 @@ class FamilyView:
             self.display_marriage(None)
 
         self.update_list(self.ap_parents_model,self.ap_parents,self.person)
+
+    def find_marriage(self,family):
+        for event_id in family.get_event_list():
+            event = self.parent.db.find_event_from_id(event_id)
+            if event.get_name() == "Marriage":
+                return event
+        return None
 
     def update_list(self,model,tree,person):
         model.clear()

@@ -413,8 +413,10 @@ class Marriage:
     def redraw_event_list(self):
         self.etree.clear()
         self.emap = {}
-        for data in self.elist:
+        for event_id in self.elist:
+            data = self.db.find_event_from_id(event_id)
             place_id = data.get_place_id()
+            
             if place_id:
                 place_name = self.db.find_place_from_id(place_id).get_title()
             else:

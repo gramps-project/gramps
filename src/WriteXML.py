@@ -256,9 +256,12 @@ class XmlWriter:
                     self.dump_name("aka",name,3)
             
                 self.write_line("nick",person.get_nick_name(),3)
-                self.dump_my_event("Birth",person.get_birth(),3)
-                self.dump_my_event("Death",person.get_death(),3)
-                for event in person.get_event_list():
+                birth = self.db.find_event_from_id(person.get_birth_id())
+                death = self.db.find_event_from_id(person.get_death_id())
+                self.dump_my_event("Birth",birth,3)
+                self.dump_my_event("Death",death,3)
+                for event_id in person.get_event_list():
+                    event = self.db.find_event_from_id(event_id)
                     self.dump_event(event,3)
                 
                 self.dump_ordinance("baptism",person.get_lds_baptism(),3)
@@ -321,7 +324,8 @@ class XmlWriter:
                 self.write_family_id(family,2)
                 self.write_ref("father",family.get_father_id(),3)
                 self.write_ref("mother",family.get_mother_id(),3)
-                for event in family.get_event_list():
+                for event_id in family.get_event_list():
+                    event = self.db.find_event_from_id(event_id)
                     self.dump_event(event,3)
                 self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
 
@@ -538,8 +542,8 @@ class XmlWriter:
                 self.g.write('>\n')
 
     def write_last(self,name,indent=1):
-        p = name.Prefix
-        n = name.Surname
+        p = name.get_surname_prefix()
+        n = name.get_surname()
         if p:
             self.g.write('%s<last prefix="%s">%s</last>\n' % ('  '*indent,p,self.fix(n)))
         else:

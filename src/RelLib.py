@@ -1103,8 +1103,8 @@ class Person(SourceNote):
         self.nickname = ""
         self.alternate_names = []
         self.gender = 2
-        self.death = None
-        self.birth = None
+        self.death_id = None
+        self.birth_id = None
         self.address_list = []
         self.attribute_list = []
         self.urls = []
@@ -1122,7 +1122,7 @@ class Person(SourceNote):
     def serialize(self):
         return (self.id, self.gender, 
                 self.primary_name, self.alternate_names, self.nickname, 
-                self.death, self.birth, self.event_list,
+                self.death_id, self.birth_id, self.event_list,
                 self.family_list, self.parent_family_list,
                 self.photo_list, 
                 self.address_list,
@@ -1144,12 +1144,17 @@ class Person(SourceNote):
             gender = const.female
         else:
             gender = const.unknown
-        bday = self.get_birth().get_date_object()
-        dday = self.get_death().get_date_object()
-        return [ GrampsCfg.display_name(self),self.id,gender,
-                 bday.get_quote_date(), dday.get_quote_date(),
+        bday = self.birth_id
+        dday = self.death_id
+        return [ GrampsCfg.display_name(self),
+                 self.id,
+                 gender,
+                 bday,
+                 dday,
                  self.get_primary_name().get_sort_name(),
-                 sort.build_sort_date(bday),sort.build_sort_date(dday),
+#                  sort.build_sort_date(bday),
+#                  sort.build_sort_date(dday),
+                 bday, dday,
                  GrampsCfg.display_surname(self.primary_name)]
                                           
     def set_primary_name(self,name):
@@ -1225,47 +1230,41 @@ class Person(SourceNote):
         """returns the gender of the Person"""
         return self.gender
 
-    def set_birth(self,event) :
+    def set_birth_id(self,event_id) :
         """sets the birth event to the passed event"""
-        self.birth = event
+        self.birth_id = event_id
 
-    def set_death(self,event) :
+    def set_death_id(self,event_id) :
         """sets the death event to the passed event"""
-        self.death = event
+        self.death_id = event_id
 
-    def get_birth(self) :
+    def get_birth_id(self) :
         """returns the birth event"""
-        if self.birth == None:
-            self.birth = Event()
-            self.birth.name = "Birth"
-        return self.birth
+        return self.birth_id
 
-    def get_death(self) :
+    def get_death_id(self) :
         """returns the death event"""
-        if self.death == None:
-            self.death = Event()
-            self.death.name = "Death"
-        return self.death
+        return self.death_id
 
-    def get_valid_death(self):
-        e = self.death
-        if e == None:
-            return None
-        if e.place == None and (e.date == None or not e.date.getValid()) and \
-           e.description == "" and e.cause == "" and e.witness == None:
-            return None
-        else:
-            return e
+#     def get_valid_death(self):
+#         e = self.death
+#         if e == None:
+#             return None
+#         if e.place == None and (e.date == None or not e.date.getValid()) and \
+#            e.description == "" and e.cause == "" and e.witness == None:
+#             return None
+#         else:
+#             return e
 
-    def get_valid_birth(self):
-        e = self.birth
-        if e == None:
-            return None
-        if e.place == None and (e.date == None or not e.date.getValid()) and \
-           e.description == "" and e.cause == "" and e.witness == None:
-            return None
-        else:
-            return e
+#     def get_valid_birth(self):
+#         e = self.birth
+#         if e == None:
+#             return None
+#         if e.place == None and (e.date == None or not e.date.getValid()) and \
+#            e.description == "" and e.cause == "" and e.witness == None:
+#             return None
+#         else:
+#             return e
 
     def add_photo(self,photo):
         """adds a Photo instance to the image list"""
@@ -1279,9 +1278,9 @@ class Person(SourceNote):
         """Sets the list of Photo objects"""
         self.photo_list = list
 
-    def add_event(self,event):
+    def add_event_id(self,event_id):
         """adds an Event to the event list"""
-        self.event_list.append(event)
+        self.event_list.append(event_id)
 
     def get_event_list(self):
         """returns the list of Event instances"""
@@ -1561,6 +1560,7 @@ class Event(DataObj):
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
+            self.id = source.id
             try:
                 if source.witness:
                     self.witness = source.witness[:]
@@ -1575,6 +1575,30 @@ class Event(DataObj):
             self.name = ""
             self.cause = ""
             self.witness = None
+            self.id = None
+
+    def clone(self,source):
+        self.place = source.place
+        self.date = Date(source.date)
+        self.description = source.description
+        self.name = source.name
+        self.cause = source.cause
+        self.id = source.id
+        try:
+            if source.witness:
+                self.witness = source.witness[:]
+            else:
+                self.witness = None
+        except:
+            self.witness = None
+
+    def set_id(self,id):
+        """Sets the gramps ID for the place object"""
+        self.id = id
+
+    def get_id(self):
+        """Returns the gramps ID for the place object"""
+        return self.id
 
     def get_witness_list(self):
         return self.witness
@@ -1845,12 +1869,12 @@ class Family(SourceNote):
         """sets the list of children"""
         self.child_list = list[:]
 
-    def get_marriage(self):
-        """returns the marriage event of the Family. Obsolete"""
-        for e in self.event_list:
-            if e.get_name() == "Marriage":
-                return e
-        return None
+#     def get_marriage(self):
+#         """returns the marriage event of the Family. Obsolete"""
+#         for e in self.event_list:
+#             if e.get_name() == "Marriage":
+#                 return e
+#         return None
 
     def get_divorce(self):
         """returns the divorce event of the Family. Obsolete"""
@@ -1859,9 +1883,9 @@ class Family(SourceNote):
                 return e
         return None
 
-    def add_event(self,event):
+    def add_event_id(self,event_id):
         """adds an Event to the event list"""
-        self.event_list.append(event)
+        self.event_list.append(event_id)
 
     def get_event_list(self) :
         """returns the list of Event instances"""
@@ -2159,12 +2183,14 @@ class GrampsDB:
         self.place_map = {}
         self.source_table = {}
         self.source_map = {}
+        self.event_map = {}
         self.family_map = {}
-        self.iprefix = "I%d"
-        self.sprefix = "S%d"
-        self.oprefix = "O%d"
-        self.pprefix = "P%d"
-        self.fprefix = "F%d"
+        self.iprefix = "I%04d"
+        self.sprefix = "S%04d"
+        self.oprefix = "O%04d"
+        self.pprefix = "P%04d"
+        self.fprefix = "F%04d"
+        self.eprefix = "E%04d"
         self.new()
         self.added_files = []
         self.genderStats = GenderStats ()
@@ -2226,7 +2252,7 @@ class GrampsDB:
             else:
                 self.iprefix = val + "%d"
         else:
-            self.iprefix = "I%d"
+            self.iprefix = "I%04d"
             
     def set_sprefix(self,val):
         if val:
@@ -2235,7 +2261,7 @@ class GrampsDB:
             else:
                 self.sprefix = val + "%d"
         else:
-            self.sprefix = "S%d"
+            self.sprefix = "S%04d"
             
     def set_oprefix(self,val):
         if val:
@@ -2244,7 +2270,7 @@ class GrampsDB:
             else:
                 self.oprefix = val + "%d"
         else:
-            self.oprefix = "O%d"
+            self.oprefix = "O%04d"
 
     def set_pprefix(self,val):
         if val:
@@ -2253,7 +2279,7 @@ class GrampsDB:
             else:
                 self.pprefix = val + "%d"
         else:
-            self.pprefix = "P%d"
+            self.pprefix = "P%04d"
 
     def set_fprefix(self,val):
         if val:
@@ -2262,7 +2288,16 @@ class GrampsDB:
             else:
                 self.fprefix = val + "%d"
         else:
-            self.fprefix = "F%d"
+            self.fprefix = "F%04d"
+
+    def set_eprefix(self,val):
+        if val:
+            if _id_reg.search(val):
+                self.eprefix = val
+            else:
+                self.eprefix = val + "%d"
+        else:
+            self.eprefix = "E%04d"
             
     def new(self):
         """initializes the GrampsDB to empty values"""
@@ -2281,11 +2316,13 @@ class GrampsDB:
         self.surnames = []
         self.person_map = {}
         self.source_map = {}
+        self.event_map = {}
         self.source_table = {}
         self.place_map  = {}
         self.place_table = {}
         self.object_map = {}
         self.smap_index = 0
+        self.emap_index = 0
         self.pmap_index = 0
         self.fmap_index = 0
         self.lmap_index = 0
@@ -2376,6 +2413,10 @@ class GrampsDB:
         """returns a map of gramps's IDs to Source instances"""
         return self.source_map
 
+    def get_event_map(self):
+        """returns a map of gramps's IDs to Source instances"""
+        return self.event_map
+
     def get_object_map(self):
         """returns a map of gramps's IDs to Object instances"""
         return self.object_map
@@ -2393,7 +2434,8 @@ class GrampsDB:
         instances in the database"""
         map = {}
         for person in self.person_map.values():
-            for event in person.get_event_list():
+            for event_id in person.get_event_list():
+                event = self.event_map[event_id]
                 map[event.get_name()] = 1
         return map.keys()
 
@@ -2421,8 +2463,9 @@ class GrampsDB:
         instances in the database"""
         map = {}
         for family in self.family_map.values():
-            for attr in family.get_event_list():
-                map[attr.get_name()] = 1
+            for event_id in family.get_event_list():
+                event = self.event_map[event_id]
+                map[event.get_name()] = 1
         return map.keys()
 
     def get_place_ids(self):
@@ -2444,6 +2487,9 @@ class GrampsDB:
     def remove_source_id(self,id):
         del self.source_map[id]
         del self.source_table[id]
+
+    def remove_event_id(self,id):
+        del self.event_map[id]
 
     def add_person_as(self,person):
         self.person_map[person.get_id()] = person
@@ -2517,12 +2563,32 @@ class GrampsDB:
         self.smap_index = self.smap_index + 1
         return index
 
+    def add_event(self,event):
+        """adds a Event instance to the database, assigning it a gramps'
+        ID number"""
+        
+        index = self.eprefix % self.emap_index
+        while self.event_map.has_key(index):
+            self.emap_index += 1
+            index = self.eprefix % self.emap_index
+        event.set_id(index)
+        self.event_map[index] = event
+        self.emap_index += 1
+        return index
+
     def add_source_no_map(self,source,index):
         """adds a Source to the database if the gramps' ID is known"""
         source.set_id(index)
         self.source_map[index] = source
         self.smap_index = self.smap_index + 1
         self.source_table[index] = source.get_display_info()
+        return index
+
+    def add_event_no_map(self,event,index):
+        """adds a Source to the database if the gramps' ID is known"""
+        event.set_id(index)
+        self.event_map[index] = event
+        self.emap_index += 1
         return index
 
     def find_source(self,idVal,map):
@@ -2542,6 +2608,22 @@ class GrampsDB:
             self.source_table[map[idVal]] = source.get_display_info()
         return source
 
+    def find_event(self,idVal,map):
+        """finds a Event in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Event exists, a new Event instance
+        is created.
+
+        idVal - external ID number
+        map - map build by find_source of external to gramp's IDs"""
+        
+        if map.has_key(idVal):
+            event = self.event_map[map[idVal]]
+        else:
+            event = Event()
+            map[idVal] = self.add_event(event)
+        return event
+
     def find_source_from_id(self,val):
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
@@ -2553,6 +2635,12 @@ class GrampsDB:
             self.add_source_no_map(source,val)
             self.source_table[val] = source.get_display_info()
         return source
+
+    def find_event_from_id(self,val):
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, a new Family is added to the database."""
+
+        return self.event_map.get(val)
 
     def add_object(self,object):
         """adds an Object instance to the database, assigning it a gramps'
