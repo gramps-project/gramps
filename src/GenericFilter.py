@@ -170,7 +170,7 @@ class RelationshipPathBetween(Rule):
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
             if fam_id:
-                fam = self.db.find_family_from_handle(fam_id)
+                fam = self.db.get_family_from_handle(fam_id)
                 for child_handle in fam.get_child_handle_list():
                     if child_handle:
                         self.desc_list(child_handle,map,0)
@@ -352,7 +352,7 @@ class IsDescendantOf(Rule):
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
             if fam_id:
-                fam = self.db.find_family_from_handle(fam_id)
+                fam = self.db.get_family_from_handle(fam_id)
                 for child_handle in fam.get_child_handle_list():
                     self.init_list(child_handle,0)
 
@@ -442,7 +442,7 @@ class IsLessThanNthGenerationDescendantOf(Rule):
 
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
                 self.init_list(child_handle,gen+1)
 
@@ -488,7 +488,7 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
 
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
                 self.init_list(child_handle,gen+1)
 
@@ -532,7 +532,7 @@ class IsChildOfFilterMatch(Rule):
     def init_list(self,p_id):
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             for child_handle in fam.get_child_handle_list():
                 self.map[child_handle] = 1
 
@@ -570,14 +570,14 @@ class IsDescendantFamilyOf(Rule):
         
         p = self.db.get_person_from_handle(p_id)
         for (f,r1,r2) in p.get_parent_family_handle_list():
-            family = self.db.find_family_from_handle(f)
+            family = self.db.get_family_from_handle(f)
             for person_handle in [family.get_mother_handle(),family.get_father_handle()]:
                 if person_handle:
                     if self.search(person_handle,0):
                         return 1
         if val:
             for family_handle in p.get_family_handle_list():
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 if p_id == family.get_father_handle():
                     spouse_id = family.get_mother_handle()
                 else:
@@ -636,7 +636,7 @@ class IsAncestorOf(Rule):
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
         if fam_id:
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
@@ -733,7 +733,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
         if fam_id:
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
@@ -786,7 +786,7 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
         if fam_id:
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
@@ -835,7 +835,7 @@ class IsParentOfFilterMatch(Rule):
     def init_list(self,p_id):
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_main_parents_family_handle():
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             for parent_id in [fam.get_father_handle (), fam.get_mother_handle ()]:
                 if parent_id:
                     self.map[parent_id] = 1
@@ -1023,7 +1023,7 @@ class HasFamilyEvent(Rule):
     def apply(self,db,p_id):
         p = db.get_person_from_handle(p_id)
         for f_id in p.get_family_handle_list():
-            f = db.find_family_from_handle(f_id)
+            f = db.get_family_from_handle(f_id)
             for event_handle in f.get_event_list():
                 if not event_handle:
                     continue
@@ -1076,7 +1076,7 @@ class HasRelationship(Rule):
 
         # count children and look for a relationship type match
         for f_id in p.get_family_handle_list():
-            f = db.find_family_from_handle(f_id)
+            f = db.get_family_from_handle(f_id)
             cnt = cnt + len(f.get_child_handle_list())
             if self.list[1] and f.get_relationship() == self.list[1]:
                 rel_type = 1
@@ -1238,7 +1238,7 @@ class HasFamilyAttribute(Rule):
     def apply(self,db,p_id):
         p = db.get_person_from_handle(p_id)
         for f_id in p.get_family_handle_list():
-            f = db.find_family_from_handle(f_id)
+            f = db.get_family_from_handle(f_id)
             for event in f.getAttributes():
                 val = 1
                 if self.list[0] and event.get_type() != self.list[0]:
@@ -1359,7 +1359,7 @@ class IsSpouseOfFilterMatch(Rule):
         filter = MatchesFilter (self.list)
         p = db.get_person_from_handle(p_id)
         for family_handle in p.get_family_handle_list ():
-            family = db.find_family_from_handle(family_handle)
+            family = db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle (), family.get_mother_handle ()]:
                 if not spouse_id:
                     continue

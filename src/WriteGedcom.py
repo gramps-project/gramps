@@ -111,7 +111,7 @@ _get_int = re.compile('([0-9]+)')
 #
 #-------------------------------------------------------------------------
 def add_familys_sources(db,family_handle,slist,private):
-    family = db.find_family_from_handle(family_handle)
+    family = db.get_family_from_handle(family_handle)
     for event_handle in family.get_event_list():
         if event_handle:
             event = db.find_event_from_handle(event_handle)
@@ -742,7 +742,7 @@ class GedcomWriter:
         nump = float(len(self.flist))
         index = 0.0
         for family_handle in self.flist.keys():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             father_alive = mother_alive = 0
             self.writeln("0 @%s@ FAM" % self.fid(family_handle))
             self.frefn(family_handle)
