@@ -1,3 +1,8 @@
+2003-09-17  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Makefile.am: Install grampslib under $pkglibdir/$PACKAGE
+	* src/Makefile.in: Likewise. 
+	* gramps.sh.in: Add $pkglibdir/$PACKAGE to the $PYTHONPATH. 
+
 2003-09-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/ReadGedcom.py: Handle Legacy's method of
 	handling separations and divorces
