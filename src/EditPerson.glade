@@ -2465,7 +2465,7 @@
 	    <signal>
 	      <name>clicked</name>
 	      <handler>on_showsource_clicked</handler>
-	      <object>eventList</object>
+	      <object>address_list</object>
 	      <last_modification_time>Thu, 11 Jan 2001 04:08:33 GMT</last_modification_time>
 	    </signal>
 	    <label>Source</label>
@@ -2493,7 +2493,7 @@
 	    <signal>
 	      <name>clicked</name>
 	      <handler>on_event_note_clicked</handler>
-	      <object>addr_list</object>
+	      <object>address_list</object>
 	      <last_modification_time>Tue, 29 May 2001 15:27:27 GMT</last_modification_time>
 	    </signal>
 	    <label>Note</label>
