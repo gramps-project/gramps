@@ -118,7 +118,7 @@ class IndivSummary(Report.Report):
         self.d.add_cell_style("IVS-NormalCell",cell)
 
         cell = BaseDoc.TableCellStyle()
-	cell.set_longlist(1)
+        cell.set_longlist(1)
         self.d.add_cell_style("IVS-ListCell",cell)
 
     def end(self):

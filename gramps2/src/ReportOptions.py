@@ -753,25 +753,65 @@ class ReportOptions:
         pass
     
     def get_document(self):
+        """
+        Return document instance.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         return self.handler.doc
 
     def set_document(self,val):
+        """
+        Set document to a given instance.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         self.handler.doc = val
 
     def get_output(self):
+        """
+        Return document output destination.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         return self.handler.output
 
     def set_output(self,val):
+        """
+        Set output destination to a given string.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         self.handler.output = val
 
     def get_newpage(self):
+        """
+        Return value of whether or not insert new page before the report.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         return self.handler.newpage
 
     def set_newpage(self,val):
+        """
+        Set newpage to a given value.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         self.handler.newpage = val
 
     def get_report_generations(self):
+        """
+        Return (max_generations,page_breaks) tuple.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         return self.handler.get_report_generations()
 
     def get_filter_number(self):
+        """
+        Return number of a filter to use.
+        
+        This method MUST NOT be overridden by subclasses.
+        """
         return self.handler.get_filter_number()
