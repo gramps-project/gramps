@@ -11,6 +11,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="Family Origins">
     <dest val="FamilyOrigins"/>
@@ -23,6 +24,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="Family Tree Maker">
     <dest val="FTW"/>
@@ -38,6 +40,7 @@
       <event tag="_MILT" value="Military Service"/>
     </extended_events>
     <object_support val="no"/>
+    <source_refs val="yes"/>
     <residence val="place"/>
   </target>
   <target name="Ftree">
@@ -51,6 +54,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="GeneWeb">
     <dest val=""/>
@@ -63,6 +67,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="no"/>
   </target>
   <target name="Legacy">
     <dest val="Legacy"/>
@@ -75,6 +80,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="Personal Ancestral File">
     <dest val="PAF"/>
@@ -87,6 +93,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="Reunion">
     <dest val="REUNION"/>
@@ -99,6 +106,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="Pro-Gen">
     <dest val="PRO-GEN"/>
@@ -111,6 +119,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
   <target name="Visual Genealogie">
     <dest val=""/>
@@ -123,6 +132,7 @@
     </extended_events>
     <object_support val="no"/>
     <residence val="address"/>
+    <source_refs val="yes"/>
   </target>
 </targets>
 
