@@ -20,8 +20,12 @@
 
 """
 Adds autocompletion to a GtkEntry box, using the passed list of
-strings as the possible completions.
+strings as the possible completions. This work was adapted from code
+written by David Hampton.
 """
+
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
@@ -37,14 +41,19 @@ import string
 #-------------------------------------------------------------------------
 import gtk
 
-#-------------------------------------------------------------------------
-#
-# AutoCompBase
-#
-#-------------------------------------------------------------------------
 class AutoCompBase:
 
     def __init__(self,widget,plist,source=None):
+        """
+        Creates a autocompleter for the specified GNOME/GTK widget, using the
+        list of strings as the completion values. The AutoCompBase class
+        should never be instantiated on its own. Instead, classes should be
+        derived from it.
+
+        widget - widget instance the completer is assocated with
+        plist - List of completion strings
+        source - If not None, uses the completion values of an already existing AutoCompBase instance
+        """
         if source:
             self.nlist = source.nlist
         else:
@@ -92,19 +101,28 @@ class AutoCompBase:
         entry.select_region(0, 0)
 
     def timer_callback(self,entry):
+        """
+        Perfroms the actual task of completion. This method should be
+        overridden in all subclasses
+        """
         pass
 
-#-------------------------------------------------------------------------
-#
-# AutoCombo
-#
-#-------------------------------------------------------------------------
 class AutoCombo(AutoCompBase):
     """
-    Allows allow completion of the GtkEntry widget with the entries
-    in the passed string list.
+    Allows allow completion of the GtkCombo widget with the entries
+    in the passed string list. This class updates the drop down window
+    with the values that currently match the substring in the text box.
     """
+
     def __init__(self,widget,plist,source=None):
+        """
+        Creates a autocompleter for the a GtkCombo widget, using the
+        list of strings as the completion values. The
+
+        widget - GtkCombo instance the completer is assocated with
+        plist - List of completion strings
+        source - If not None, uses the completion values of an already existing AutoCompBase instance
+        """
         AutoCompBase.__init__(self,widget,plist,source)
         self.entry = widget
         widget.entry.connect("insert-text",self.insert_text)
@@ -114,6 +132,8 @@ class AutoCombo(AutoCompBase):
         self.inb = 0
 
     def setval(self,widget,event):
+        """Callback task called on the button release"""
+        
         self.inb = 0
         text = self.entry.entry.get_text()
         if self.nl == string.lower(text):
@@ -121,6 +141,10 @@ class AutoCombo(AutoCompBase):
             self.entry.entry.select_region(self.l, -1)
             
     def build_list(self,widget,event):
+        """Internal task that builds the popdown strings. This task is called when the
+        combo button that activates the dropdown menu is pressed
+        """
+        
         self.inb = 1
         if self.vals[0] == "":
             self.entry.set_popdown_strings([self.entry.entry.get_text()])
@@ -175,11 +199,6 @@ class AutoCombo(AutoCompBase):
         else:
             self.vals = [""]
 
-#-------------------------------------------------------------------------
-#
-# AutoEntry
-#
-#-------------------------------------------------------------------------
 class AutoEntry(AutoCompBase):
     """
     Allows allow completion of the GtkEntry widget with the entries
