@@ -188,13 +188,13 @@ class TimeLine:
             if b_id:
                 b = self.db.get_event_from_handle(b_id).get_date_object().get_year()
             else:
-                b = Date.UNDEF
+                b = None
 
             d_id = p.get_death_handle()
             if d_id:
                 d = self.db.get_event_from_handle(d_id).get_date_object().get_year()
             else:
-                d = Date.UNDEF
+                d = None
 
             n = p.get_primary_name().get_name()
             self.d.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
@@ -204,19 +204,19 @@ class TimeLine:
             y3 = (y1+y2)/2.0
             w = 0.05
             
-            if b != Date.UNDEF:
+            if b:
                 start_offset = ((float(b-low)/float(high-low)) * (size))
                 x1 = start+start_offset
                 path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
                 self.d.draw_path('TLG-line',path)
 
-            if d != Date.UNDEF:
+            if d:
                 start_offset = ((float(d-low)/float(high-low)) * (size))
                 x1 = start+start_offset
                 path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
                 self.d.draw_path('TLG-solid',path)
 
-            if b != Date.UNDEF and d != Date.UNDEF:
+            if b and d:
                 start_offset = ((float(b-low)/float(high-low)) * size) + w
                 stop_offset = ((float(d-low)/float(high-low)) * size) - w
 
@@ -286,28 +286,28 @@ class TimeLine:
             if b_id:
                 b = self.db.get_event_from_handle(b_id).get_date_object().get_year()
             else:
-                b = Date.UNDEF
+                b = None
 
             d_id = p.get_death_handle()
             if d_id:
                 d = self.db.get_event_from_handle(d_id).get_date_object().get_year()
             else:
-                d = Date.UNDEF
+                d = None
 
-            if b != Date.UNDEF:
+            if b:
                 low = min(low,b)
                 high = max(high,b)
 
-            if d != Date.UNDEF:
+            if d:
                 low = min(low,d)
                 high = max(high,d)
                
         low = (low/10)*10
         high = ((high+9)/10)*10
         
-        if low == Date.UNDEF:
+        if low == None:
             low = high
-        if high == Date.UNDEF:
+        if high == None:
             high = low
         
         return (low,high)

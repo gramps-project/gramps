@@ -1,3 +1,6 @@
+2004-10-22 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/TimeLine.py: Remove old Date.UNDEF usage.
+
 2004-10-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsCfg.py: eliminate unused options
 	* src/gramps.glade: eliminate unused options
