@@ -423,8 +423,9 @@ class Marriage:
                 family.setId(idval)
                 Utils.modified()
             else:
-                msg1 = _("GRAMPS ID value was not changed.")
-                WarningDialog("%s" % msg1)
+                WarningDialog(_("GRAMPS ID value was not changed."),
+                              _('The GRAMPS ID that you chose for this '
+                                'relationship is already being used.'))
 
         relation = self.type_field.entry.get_text()
         father = self.family.getFather()
