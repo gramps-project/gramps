@@ -721,7 +721,7 @@ class GlobalMediaProperties:
         self.db = db
         self.update = update
         self.refs = 0
-
+    
         self.path = self.db.getSavePath()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global")
 
