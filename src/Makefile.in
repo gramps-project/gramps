@@ -17,13 +17,6 @@ PYSRCS := ${wildcard *.py}
 
 PYOBJS = ${PYSRCS:.py=.pyo}
 
-# List only those modules that need the executable bit set
-EXE1 = AddMedia.py EditSource.py gramps.py gramps_main.py
-
-# Add their byte-compiled counterparts to the list...
-EXE2 = ${EXE1:.py=.pyo}
-EXES = ${EXE1} ${EXE2}
-
 all:    ${intl_libs} ${PYOBJS}
 
 intl15.so: intl.c
@@ -42,9 +35,6 @@ install:
 	${INSTALL} -d ${datadir}
 	(cd ${datadir} ;rm -f *.py *.pyo *.pyc *.glade *.xpm *.so)
 	${INSTALL} -m 644 *.py *.jpg *.pyo *.png *.glade *.xpm *.so ${datadir}
-	for i in ${EXES}; do \
-	   chmod 755 ${datadir}/$$i; \
-	   done
 	${INSTALL} -d ${prefix}/share/pixmaps
 	${INSTALL} -m 644 gramps.png ${prefix}/share/pixmaps
 	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
