@@ -34,6 +34,7 @@ class QuestionDialog:
         self.task1 = task1
         self.top.button_connect(0,self.my_task1)
         self.top.button_connect(1,self.my_task2)
+        self.top.set_modal(1)
         self.top.show()
 
     def my_task1(self,obj):

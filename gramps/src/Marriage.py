@@ -40,6 +40,7 @@ import const
 import GrampsCfg
 import Utils
 import AutoComp
+from QuestionDialog import QuestionDialog
 from RelLib import *
 import ImageSelect
 from intl import gettext
@@ -339,13 +340,19 @@ class Marriage:
 
         return changed
 
+    def cancel_callback(self):
+        Utils.destroy_passed_object(self.quit)
+
     def on_cancel_edit(self,obj):
 
         if self.did_data_change():
             global quit
-            q = _("Data was modified. Are you sure you want to abandon your changes?")
-            quit = obj
-            GnomeQuestionDialog(q,cancel_callback)
+            self.quit = obj
+            QuestionDialog(_('Abandon Changes'),
+                           _("Data was modified. Are you sure you "
+                             "want to abandon your changes?"),
+                           _('Abandon Changes'),self.cancel_callback,
+                           _('Continue Editing'))
         else:
             Utils.destroy_passed_object(obj)
 
@@ -520,15 +527,6 @@ def disp_attr(attr):
 def disp_event(event):
     return [const.display_fevent(event.getName()), event.getQuoteDate(),
             event.getPlaceName(), Utils.get_detail_flags(event)]
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def cancel_callback(a):
-    if a==0:
-        Utils.destroy_passed_object(quit)
 
 def src_changed(parent):
     parent.lists_changed = 1

@@ -774,9 +774,7 @@ class DeleteMediaQuery:
         self.media = media
         self.update = update
         
-    def query_response(self,ans):
-        if ans == 1:
-            return
+    def query_response(self):
         del self.db.getObjectMap()[self.media.getId()]
         Utils.modified()
 

@@ -75,7 +75,6 @@ OBJECT  = "o"
 #-------------------------------------------------------------------------
 def modified():
     global _modifiedFlag, _autosave_tim
-
     if _autosave_fun and not _autosave_tim:
         _autosave_tim = gtk.timeout_add(60000*_autotime_val,_autosave_fun)
     _modifiedFlag = 1

@@ -44,6 +44,8 @@ import string
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+from QuestionDialog import QuestionDialog
+
 import EditPlace
 import Utils
 import GrampsCfg
@@ -252,8 +254,10 @@ class PlaceView:
 
         if used == 1:
             ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
-            msg = _("This place is currently being used. Delete anyway?")
-            gnome.ui.GnomeQuestionDialog(msg,ans.query_response)
+            QuestionDialog(_('Delete Place'),
+                           _("This place is currently being used. Delete anyway?"),
+                           _('Delete Place'),ans.query_response,
+                           _('Keep Place'))
         else:
             obj.remove(index)
             map = self.db.getPlaceMap()

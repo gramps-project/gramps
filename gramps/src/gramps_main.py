@@ -58,6 +58,8 @@ from PlaceView import PlaceView
 from SourceView import SourceView
 from MediaView import MediaView
 
+from QuestionDialog import QuestionDialog
+
 import ReadXML
 import Filter
 import const
@@ -108,7 +110,8 @@ class Gramps:
         gtk.rc_parse(const.gtkrcFile)
 
         if os.getuid() == 0:
-            msg = _("You are running GRAMPS as the 'root' user.\nThis account is not meant for normal application use.")
+            msg = _("You are running GRAMPS as the 'root' user.\n"
+                    "This account is not meant for normal application use.")
             gnome.ui.GnomeWarningDialog(msg)
 
         self.database = GrampsDB()
@@ -133,14 +136,14 @@ class Gramps:
         
         if arg != None:
             self.read_file(arg)
-        elif GrampsCfg.lastfile != None and GrampsCfg.lastfile != "" and GrampsCfg.autoload:
+        elif GrampsCfg.lastfile and GrampsCfg.autoload:
             self.auto_save_load(GrampsCfg.lastfile)
         else:
             import DbPrompter
             DbPrompter.DbPrompter(self,0)
 
-            if GrampsCfg.autosave_int != 0:
-                Utils.enable_autosave(self.autosave_database,GrampsCfg.autosave_int)
+        if GrampsCfg.autosave_int != 0:
+            Utils.enable_autosave(self.autosave_database,GrampsCfg.autosave_int)
 
         self.database.setResearcher(GrampsCfg.get_researcher())
 
@@ -400,18 +403,24 @@ class Gramps:
     def on_exit_activate(self,obj):
         """Prompt to save on exit if needed"""
         if Utils.wasModified():
-            question = _("Unsaved changes exist in the current database\n") + \
-                       _("Do you wish to save the changes?")
-            gnome.ui.GnomeQuestionDialog(question,self.save_query)
+            self.delobj = obj
+            QuestionDialog(_('Abandon Changes'),
+                           _("Unsaved changes exist in the current database\n"
+                             "Do you wish to save the changes?"),
+                           _("Save Changes"), self.save_query,
+                           _("Abandon Changes"), self.quit)
         else:    
-            gtk.mainquit(obj)
+            gtk.mainquit()
 
-    def save_query(self,value):
+    def save_query(self):
         """Catch the reponse to the save on exit question"""
-        if value == 0:
-            self.on_save_activate_quit()
-        gtk.mainquit(self.gtop)
+        self.on_save_activate_quit()
+        gtk.mainquit()
 
+    def quit(self):
+        """Catch the reponse to the save on exit question"""
+        gtk.mainquit()
+        
     def on_about_activate(self,obj):
         """Displays the about box.  Called from Help menu"""
         gnome.ui.GnomeAbout(const.progName,const.version,const.copyright,
@@ -573,13 +582,14 @@ class Gramps:
     
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
+        
         msg = _("Do you want to close the current database and create a new one?")
-        gnome.ui.GnomeQuestionDialog(msg,self.new_database_response)
-
-    def new_database_response(self,val):
+        QuestionDialog(_('New Database'),msg,
+                       _('Close Current Database'),self.new_database_response,
+                       _('Return to Current Database'))
+                       
+    def new_database_response(self):
         import DbPrompter
-        if val == 1:
-            return
         self.clear_database()
         DbPrompter.DbPrompter(self,1)
     
@@ -648,7 +658,7 @@ class Gramps:
         elif page == 3:
             self.source_view.load_sources()
         elif page == 4:
-            pass
+            self.place_view.load_places()
         else:
             self.media_view.load_media()
 
@@ -693,16 +703,19 @@ class Gramps:
                   "be loaded instead of the last saved version?") % dirname
             self.yname = autosave
             self.nname = filename
-            gnome.ui.GnomeQuestionDialog(q,self.autosave_query)
+
+            QuestionDialog(_('Autosave File'),q,
+                           _('Load Autosave File'),self.autosave_query,
+                           _('Load Last Saved File'),self.loadsaved_file)
         else:
             self.read_file(filename)
 
-    def autosave_query(self,value):
-        if value == 0:
-            self.read_file(self.yname)
-        else:
-            self.read_file(self.nname)
-        
+    def autosave_query(self):
+        self.read_file(self.yname)
+
+    def loadsaved_file(self):
+        self.read_file(self.nname)
+
     def read_file(self,filename):
         base = os.path.basename(filename)
         if base == const.indexFile:
@@ -841,15 +854,15 @@ class Gramps:
         if len(self.person_list.selection) == 1:
             name = GrampsCfg.nameof(self.active_person) 
             msg = _("Do you really wish to delete %s?") % name
-            gnome.ui.GnomeQuestionDialog(msg, self.delete_person_response)
+
+            QuestionDialog(_('Delete Person'), msg,
+                           _('Delete Person'),self.delete_person_response,
+                           _('Keep Person'))
         elif len(self.person_list.selection) > 1:
             msg = _("Currently, you can only delete one person at a time")
             gnome.ui.GnomeErrorDialog(msg)
 
-    def delete_person_response(self,val):
-        if val == 1:
-            return
-    
+    def delete_person_response(self):
         personmap = self.database.getPersonMap()
         familymap = self.database.getPersonMap()
 
@@ -1191,34 +1204,36 @@ class Gramps:
         if self.database.getSavePath() != "":
             msg = _("Do you wish to abandon your changes and "
                     "revert to the last saved database?")
-            gnome.ui.GnomeQuestionDialog(msg,self.revert_query)
+
+            QuestionDialog(_('Abandon Changes'),msg,
+                           _('Revert to Last Database'),self.revert_query,
+                           _('Continue with Current Database'))
         else:
             msg = _("Cannot revert to a previous database, since "
                     "one does not exist")
             gnome.ui.GnomeWarningDialog(msg)
 
-    def revert_query(self,value):
-        if value == 0:
-            const.personalEvents = const.init_personal_event_list()
-            const.personalAttributes = const.init_personal_attribute_list()
-            const.marriageEvents = const.init_marriage_event_list()
-            const.familyAttributes = const.init_family_attribute_list()
-            const.familyRelations = const.init_family_relation_list()
-
-            file = self.database.getSavePath()
-            self.database.new()
-            self.active_person = None
-            self.active_father = None
-            self.active_family = None
-            self.active_mother = None
-            self.active_child  = None
-            self.active_spouse = None
-            self.id2col        = {}
-            self.alt2col       = {}
-            self.read_file(file)
-            Utils.clearModified()
-            Utils.clear_timer()
-
+    def revert_query(self):
+        const.personalEvents = const.init_personal_event_list()
+        const.personalAttributes = const.init_personal_attribute_list()
+        const.marriageEvents = const.init_marriage_event_list()
+        const.familyAttributes = const.init_family_attribute_list()
+        const.familyRelations = const.init_family_relation_list()
+        
+        file = self.database.getSavePath()
+        self.database.new()
+        self.active_person = None
+        self.active_father = None
+        self.active_family = None
+        self.active_mother = None
+        self.active_child  = None
+        self.active_spouse = None
+        self.id2col        = {}
+        self.alt2col       = {}
+        self.read_file(file)
+        Utils.clearModified()
+        Utils.clear_timer()
+        
     def on_save_as_activate(self,obj):
         wFs = libglade.GladeXML (const.gladeFile, "fileselection")
         wFs.signal_autoconnect({
@@ -1882,12 +1897,14 @@ class Gramps:
         if self.active_person:
             name = self.active_person.getPrimaryName().getRegularName()
             msg = _("Do you wish to set %s as the home person?") % name
-            gnome.ui.GnomeQuestionDialog(msg,self.set_person)
 
-    def set_person(self,value):
-        if not value:
-            self.database.setDefaultPerson(self.active_person)
-            Utils.modified()
+            QuestionDialog(_('Set Home Person'),msg,
+                           _('Set as Home Person'),self.set_person,
+                           _('Do not change Home Person'))
+            
+    def set_person(self):
+        self.database.setDefaultPerson(self.active_person)
+        Utils.modified()
 
     def family_up_clicked(self,obj):
         if self.active_parents == None:
