@@ -823,11 +823,9 @@ class BookReportDialog(Report.ReportDialog):
         self.book = book
         self.database = database 
         self.person = person
-        
         self.default_style = TextDoc.StyleSheet()
+
         for item in self.book.get_item_list():
-            name = item.get_name()
-            item = BookItem(name)
             style_file = item.get_style_file()
             make_default_style = item.get_make_default_style()
             make_default_style(self.default_style)

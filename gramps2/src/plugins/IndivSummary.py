@@ -76,6 +76,7 @@ class IndivSummary(Report.Report):
         self.database = database
         self.person = person
         self.output = output
+        self.setup()
         if output:
             self.standalone = 1
             self.d.open(output)

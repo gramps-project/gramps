@@ -76,6 +76,7 @@ class IndivComplete(Report.Report):
         self.database = database
         self.person = person
         self.output = output
+        self.setup()
         self.newpage = newpage
         if output:
             self.standalone = 1
