@@ -53,17 +53,13 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/gnome/apps/Applications/gramps.desktop
 %{prefix}/share/pixmaps/gramps.png
 %{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
-%{prefix}/share/gramps/example/gedcom/*
-%{prefix}/share/gramps/example/gramps/*
 %{prefix}/share/gramps/*.pyo
 %{prefix}/share/gramps/*.so
-%{prefix}/share/gramps/*.py
+%{prefix}/share/gramps/gramps.py
 %{prefix}/share/gramps/*.glade
 %{prefix}/share/gramps/*.xpm
 %{prefix}/share/gramps/*.jpg
-%{prefix}/share/gramps/filters/*.py
 %{prefix}/share/gramps/filters/*.pyo
-%{prefix}/share/gramps/plugins/*.py
 %{prefix}/share/gramps/plugins/*.glade
 %{prefix}/share/gramps/plugins/*.pyo
 
