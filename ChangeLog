@@ -9,9 +9,9 @@
 	* src/EditPlace.py: Revert photos on Cancel.
 	* src/EditPerson.py: Revert photos on Cancel.
 	* src/Marriage.py: Revert photos on Cancel.
-	* doc/gramps-manual/ru/*.xml: Replace &app; with gramps inside
+	* doc/gramps-manual/ru/*.xml: Replace &app; with GRAMPS inside
 	the title tag.
-	* doc/gramps-manual/C/*.xml: Replace &app; with gramps inside
+	* doc/gramps-manual/C/*.xml: Replace &app; with GRAMPS inside
 	the title tag.
 
 2004-02-05  Alex Roitman  <shura@alex.neuro.umn.edu>
