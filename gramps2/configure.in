@@ -77,6 +77,8 @@ try:
         out("No")
 except ImportError:
     out("No")
+except AttributeError:
+    out("No")
 EOF
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
