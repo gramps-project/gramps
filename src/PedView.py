@@ -20,17 +20,6 @@
 
 # $Id$
 
-_PAD       = 3
-_CANVASPAD = 3
-_PERSON    = "p"
-
-#-------------------------------------------------------------------------
-#
-# Python modules
-#
-#-------------------------------------------------------------------------
-from math import log
-
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -48,7 +37,11 @@ import pango
 #-------------------------------------------------------------------------
 import GrampsCfg
 from gettext import gettext as _
+from Relationship import apply_filter
 
+_PAD       = 3
+_CANVASPAD = 3
+_PERSON    = "p"
 _BORN = _('b.')
 _DIED = _('d.')
 
@@ -263,14 +256,11 @@ class PedigreeView:
 
         gen_no = 1
         if self.anchor:
-            anchor_list = [None]*31
-            self.find_tree(self.anchor,0,1,anchor_list)
-            for item in anchor_list:
-                if item:
-                    if item[0] == self.active_person:
-                        idx = anchor_list.index(item)
-                        gen_no = int(log(idx + 1,2)) + 1
-                        break
+            gn = get_distance(self.anchor,self.active_person)
+            if gn == None:
+                self.remove_anchor()
+            else:
+                gen_no = gn
 
         for i in range(int(xdiv)):
             item = self.root.add(gnome.canvas.CanvasText, x=(cw*i/xdiv + cpad), y=h,
@@ -311,16 +301,24 @@ class PedigreeView:
         button.show()
         return (button, arrow)
 
-    def on_anchor_set(self,junk):
+    def set_anchor(self):
         if self.active_person:
             self.anchor = self.active_person
         else:
             self.anchor = None
         self.anchor_txt.set(text=self.make_anchor_label())
-        
-    def on_anchor_removed(self,junk):
+
+    def remove_anchor(self):
         self.anchor = None
         self.anchor_txt.set(text=self.make_anchor_label())
+
+    def on_anchor_set(self,junk):
+        self.set_anchor()
+        self.load_canvas(self.active_person)
+        
+    def on_anchor_removed(self,junk):
+        self.remove_anchor()
+        self.load_canvas(self.active_person)
 
     def make_anchor_label(self):
         """Make a label containing the name of the anchored person"""
@@ -505,3 +503,61 @@ class PedigreeView:
             item.show()
             menu.append(item)
         menu.popup(None,None,None,event.button,event.time)
+
+#-------------------------------------------------------------------------
+#
+# Function to determine distance between people
+#
+#-------------------------------------------------------------------------
+def get_distance(orig_person,other_person):
+    """
+    Returns a number of generations representing distance between two people.
+    
+    If the two people don't have common ancestors, None is returned.
+    Otherwise, the returned number is the distance from the orig_person 
+    to the closest common ancestor minus the distance from the other_person
+    to the closest common ancestor. 
+    """
+    
+    firstMap = {}
+    firstList = []
+    secondMap = {}
+    secondList = []
+    common = []
+    rank = 9999999
+
+    if orig_person == None or other_person == None:
+        return None
+
+    if orig_person == other_person:
+        return 0
+
+    try:
+        apply_filter(orig_person,0,firstList,firstMap)
+        apply_filter(other_person,0,secondList,secondMap)
+    except RuntimeError,msg:
+        return None
+    
+    for person in firstList:
+        if person in secondList:
+            new_rank = firstMap[person.getId()]
+            if new_rank < rank:
+                rank = new_rank
+                common = [ person ]
+            elif new_rank == rank:
+                common.append(person)
+
+    if not common:
+        return None
+
+    firstRel = None
+    secondRel = None
+
+    length = len(common)
+    
+    person = common[0]
+    secondRel = secondMap[person.getId()]
+    firstRel = firstMap[person.getId()]
+    if firstRel == None or secondRel == None:
+        return None
+    return firstRel-secondRel
