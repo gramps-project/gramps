@@ -216,7 +216,7 @@ in both speed and memory usage.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>I want to rerun the Startup dialog. 
+      <varlistentry><term>I want to rerun the Startup dialog (druid). 
       How do I do this?</term>
       <listitem><para> 
       &app; keeps a flag in the GNOME configuration database to indicate 
