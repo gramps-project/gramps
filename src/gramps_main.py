@@ -2008,17 +2008,18 @@ def redisplay_person_list(person):
 
         person_list.set_row_data(0,pos)
 
-        for name in person.getAlternateNames():
-            pos2 = (person,1)
-            alt2col[person].append(pos2)
-            person_list.insert(0,[gname(name,1),person.getId(),
-                                  gender,bday.getQuoteDate(),
-                                  dday.getQuoteDate(),
-                                  sort.build_sort_name(name),
-                                  sort.build_sort_birth(bday),
-                                  sort.build_sort_death(dday)])
+        if Config.hide_altnames == 0:
+            for name in person.getAlternateNames():
+                pos2 = (person,1)
+                alt2col[person].append(pos2)
+                person_list.insert(0,[gname(name,1),person.getId(),
+                                      gender,bday.getQuoteDate(),
+                                      dday.getQuoteDate(),
+                                      sort.build_sort_name(name),
+                                      sort.build_sort_birth(bday),
+                                      sort.build_sort_death(dday)])
 
-            person_list.set_row_data(0,pos2)
+                person_list.set_row_data(0,pos2)
 
         sort_person_list()
 
