@@ -142,7 +142,7 @@ class Exporter:
                     'your data, or convert it to a format that will allow '
                     'you to trasnfer it to a different program.\n\n'
                     'If you change your mind during this process, you '
-                    'can safely press Cancel button at any time and your '
+                    'can safely press the Cancel button at any time and your '
                     'present database will still be intact.'))
         return p
 
@@ -222,8 +222,8 @@ class Exporter:
             self.last_page.set_title(_('Saving failed'))
             self.last_page.set_text(_('There was an error '
                     'while saving your data. Please go back and try again.\n\n'
-                    'Your currently opened database is safe, it is a copy '
-                    'of your data that failed to save.'))
+                    'Note: your currently opened database is safe. It was only '
+                    'a copy of your data that failed to save.'))
 
     def build_format_page(self):
         """
