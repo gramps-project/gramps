@@ -248,6 +248,17 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         Returns 1 if the database has been opened.
         """
         return self.person_map != None
+
+    def request_rebuild(self):
+        """
+        Notifies clients that the data has change significantly, and that all
+        internal data dependent on the database should be rebuilt.
+        """
+        self.emit('person-rebuild')
+        self.emit('family-rebuild')
+        self.emit('place-rebuild')
+        self.emit('source-rebuild')
+        self.emit('media-rebuild')
     
     def commit_person(self,person,transaction,change_time=None):
         """
@@ -957,11 +968,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             self.undo_callback(_("_Undo %s") % transaction.get_description())
 
         if transaction and transaction.batch:
-            self.emit('person-rebuild')
-            self.emit('family-rebuild')
-            self.emit('place-rebuild')
-            self.emit('source-rebuild')
-            self.emit('media-rebuild')
+            self.request_rebuild()
 
     def undo(self):
         """
