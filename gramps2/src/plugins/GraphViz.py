@@ -726,7 +726,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['marglr'] = self.lr_margin_sb.get_value()
         self.options_dict['dashedl'] = int(self.adoptionsdashed_cb.get_active())
         self.options_dict['pagesh'] = self.hpages_sb.get_value_as_int()
-        self.options_dict['pagesv'] = self.hpages_sb.get_value_as_int()
+        self.options_dict['pagesv'] = self.vpages_sb.get_value_as_int()
         self.options_dict['showfamily'] = int(self.show_families_cb.get_active())
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
         self.options_dict['placecause'] = int(self.place_cause_cb.get_active())
