@@ -51,7 +51,7 @@ class Date:
 
     def __init__(self):
 	self.start = SingleDate()
-	self.stop = SingleDate()
+	self.stop = None
         self.range = 0
         self.text = ""
 
@@ -59,6 +59,8 @@ class Date:
         return self.start
 
     def get_stop_date(self):
+        if self.stop == None:
+            self.stop = SingleDate()
         return self.stop
 
     def getYear(self):
@@ -71,12 +73,18 @@ class Date:
         return self.get_start_date().getDay()
 
     def getStopYear(self):
+        if self.stop == None:
+            self.stop = SingleDate()
         return self.get_stop_date().getYear()
 
     def getStopMonth(self):
+        if self.stop == None:
+            self.stop = SingleDate()
         return self.get_stop_date().getMonth()
 
     def getStopDay(self):
+        if self.stop == None:
+            self.stop = SingleDate()
         return self.get_stop_date().getDay()
 
     #--------------------------------------------------------------------
@@ -90,6 +98,8 @@ class Date:
             if match:
                 matches = match.groups()
                 self.start.set(matches[1])
+                if self.stop == None:
+                    self.stop = SingleDate()
                 self.stop.set(matches[3])
                 self.range = 1
             else:
@@ -169,6 +179,8 @@ class Date:
             if match:
                 matches = match.groups()
                 self.start.set(matches[1])
+                if self.stop == None:
+                    self.stop = SingleDate()
                 self.stop.set(matches[3])
                 self.range = 1
             else:
@@ -242,6 +254,9 @@ class SingleDate:
               string.lower(mname[10][0:3]) : 10,
               string.lower(mname[11][0:3]) : 11 }
 
+    em2num ={ "jan" : 0, "feb" : 1, "mar" : 2, "apr" : 3,
+              "may" : 4, "jun" : 5, "jul" : 6, "aug" : 7,
+              "sep" : 8, "oct" : 9, "nov" : 10,"dec" : 11 }
 
     m2v = { _("abt")    : about ,
             _("about")  : about,
@@ -510,11 +525,11 @@ class SingleDate:
             retval =  str(self.year)
 
         if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
+            retval = "%s %s" % (_("abt"),retval)
         if self.mode == SingleDate.before:
-            retval = "%s %s" % (_("BEFORE"),retval)
+            retval = "%s %s" % (_("before"),retval)
         elif self.mode == SingleDate.after:
-            retval = "%s %s" % (_("AFTER"),retval)
+            retval = "%s %s" % (_("after"),retval)
 
         return retval
 

@@ -195,6 +195,11 @@ class TableStyle:
     def get_columns(self):
         return self.columns 
 
+    def set_column_widths(self, list):
+        self.columns = len(list)
+        for i in range(self.columns):
+            self.colwid[i] = list[i]
+
     def set_column_width(self,index,width):
 	self.colwid[index] = width
 
@@ -577,6 +582,7 @@ class TextDoc:
         self.bmargin = 2.54
         self.lmargin = 2.54
         self.rmargin = 2.54
+        self.title = ""
                 
         self.font = FontStyle()
         self.style_list = styles.get_styles()
@@ -596,6 +602,9 @@ class TextDoc:
 
     def creator(self,name):
         self.name = name
+
+    def set_title(self,name):
+        self.title = name
 
     def add_table_style(self,name,style):
         self.table_styles[name] = TableStyle(style)
