@@ -18,10 +18,20 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# GNOME
+#
+#-------------------------------------------------------------------------
 from gobject import TYPE_STRING, TYPE_PYOBJECT, TYPE_INT
 import gtk
 import pango
 
+#-------------------------------------------------------------------------
+#
+# constants
+#
+#-------------------------------------------------------------------------
 _BCOL = 8
 _IDCOL = 1
 
@@ -31,7 +41,8 @@ _IDCOL = 1
 #
 #-------------------------------------------------------------------------
 class PeopleStore:
-    def __init__(self,tree,parent,select_func=None,event_func=None,mode=gtk.SELECTION_SINGLE):
+    def __init__(self,tree,parent,select_func=None,event_func=None,
+                 mode=gtk.SELECTION_SINGLE):
 
         self.titles  = [
             (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
