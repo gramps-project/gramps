@@ -1,3 +1,6 @@
+2003-07-11  Donald Peterson  <dpeterson@sigmaxi.org>
+	* src/docgen/LaTeXDoc.py: Added UNICODE support and '&' replacement
+
 2003-07-11  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/SimpleBookTitle.py: Define self.style_name before
         calling Report.BareReportDialog.__init__().
@@ -27,6 +30,7 @@
 	* src/plugins/FamilyGroup.py: Likewise. 
 	* src/plugins/DetAncestralReport.py: Likewise. 
 	* src/po/ru.po: Updated Russian translation for 0.9.3.
+>>>>>>> 1.150
 
 2003-07-10  Tim Waugh  <twaugh@redhat.com>
 	* src/Relationship.py: Fix '[...]teenth' relationship name typos.
