@@ -163,6 +163,7 @@ class MediaView:
         
         mobj = self.db.get_object_from_handle(handle)
         mtype = mobj.get_mime_type()
+        path = mobj.get_path()
         type_name = Utils.get_mime_description(mtype)
         image = self.db.get_thumbnail_image(mobj.get_handle())
         if image != None:
