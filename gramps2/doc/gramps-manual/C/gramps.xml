@@ -1,0 +1,1329 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY legal SYSTEM "legal.xml">
+  <!ENTITY appversion "0.9.1">
+  <!ENTITY manrevision "2.0">
+  <!ENTITY date "March 2003">
+  <!ENTITY app "<application>GRAMPS</application>">
+  <!-- Information about the entities
+       The legal.xml file contains legal information, there is no need to edit the file. 
+       Use the appversion entity to specify the version of the application.
+       Use the manrevision entity to specify the revision number of this manual.
+       Use the date entity to specify the release date of this manual.
+       Use the app entity to specify the name of the application. -->
+]>
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 2.0 beta
+  Template last modified Apr 11, 2002
+-->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="en">
+<!-- please do not change the id; for translations, change lang to -->
+<!-- appropriate code -->
+  <articleinfo> 
+    <title>&app; Manual V&manrevision;</title>       
+
+    <copyright> 
+      <year>2003</year> 
+      <holder>Alex Roitman</holder> 
+    </copyright> 
+    <copyright> 
+      <year>2001</year> 
+      <holder>Donald N. Allingham</holder> 
+    </copyright>
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+<!-- An address can be added to the publisher information.  If a role is 
+     not specified, the publisher/author is the same for all versions of the 
+     document.  -->
+    <publisher> 
+      <publishername> GRAMPS Project </publishername> 
+    </publisher> 
+
+   &legal;
+   <!-- This file  contains link to license for the documentation (GNU FDL), and 
+        other legal stuff such as "NO WARRANTY" statement. Please do not change 
+	any of this. -->
+
+    <authorgroup> 
+      <author> 
+		<firstname>Alex</firstname> 
+		<surname>Roitman</surname> 
+		<affiliation> 
+	  		<orgname>GRAMPS Project</orgname> 
+	  		<address> <email>shura@alex.neuro.umn.edu</email> </address> 
+		</affiliation> 
+      </author> 
+      <author> 
+		<firstname>Donald N.</firstname> 
+		<surname>Allingham</surname> 
+		<affiliation> 
+	  		<orgname>GRAMPS Project</orgname> 
+	  		<address> <email>dallingham@users.sourceforge.net</email> </address> 
+		</affiliation> 
+      </author> 
+      
+<!-- This is appropriate place for other contributors: translators,
+     maintainers,  etc. Commented out by default.
+     
+      <othercredit role="translator">
+		<firstname>Latin</firstname> 
+		<surname>Translator 1</surname> 
+		<affiliation> 
+	  		<orgname>Latin Translation Team</orgname> 
+	  		<address> <email>translator@gnome.org</email> </address> 
+		</affiliation>
+		<contrib>Latin translation</contrib>
+      </othercredit>
+-->
+    </authorgroup>
+
+
+<!-- According to GNU FDL, revision history is mandatory if you are -->
+<!-- modifying/reusing someone else's document.  If not, you can omit it. -->
+<!-- Remember to remove the &manrevision; entity from the revision entries other
+-->
+<!-- than the current revision. -->
+<!-- The revision numbering system for GNOME manuals is as follows: -->
+<!-- * the revision number consists of two components -->
+<!-- * the first component of the revision number reflects the release version of the GNOME desktop. -->
+<!-- * the second component of the revision number is a decimal unit that is incremented with each revision of the manual. -->
+<!-- For example, if the GNOME desktop release is V2.x, the first version of the manual that -->
+<!-- is written in that desktop timeframe is V2.0, the second version of the manual is V2.1, etc. -->
+<!-- When the desktop release version changes to V3.x, the revision number of the manual changes -->
+<!-- to V3.0, and so on. -->  
+    <revhistory>
+      <revision> 
+		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
+		<date>&date;</date> 
+		<revdescription> 
+	  		<para role="author">Alex Roitman
+	    	<email>shura@alex.neuro.umn.edu</email>
+	  		</para>
+	  		<para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS User Manual V1.1</revnumber> 
+		<date>2001</date> 
+		<revdescription> 
+	  		<para role="author">Donald N. Allingham 
+	    	<email>dallingham@users.sourceforge.net</email>
+	  		</para>
+	  		<para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+    </revhistory> 
+
+    <releaseinfo>This manual describes version &appversion; of GRAMPS.
+    </releaseinfo> 
+    <legalnotice> 
+      <title>Feedback</title> 
+      <para>To report a bug or make a suggestion regarding the &app; application or
+      this manual, follow the directions in the <ulink url="ghelp:gnome-feedback"
+	  type="help">GNOME Feedback Page</ulink>. 
+      </para>
+<!-- Translators may also add here feedback address for translations -->
+    </legalnotice> 
+  </articleinfo> 
+
+  <indexterm zone="index"> 
+    <primary>MY-GNOME-APP</primary> 
+  </indexterm> 
+  <indexterm zone="index"> 
+    <primary>mygnomeapp</primary> 
+  </indexterm>
+
+<!-- ============= Document Body ============================= -->
+<!-- ============= Introduction ============================== -->
+  <sect1 id="gramps-intro"> 
+    <title>Introduction</title> 
+    <para> The <application>&app;</application> is a genealogical 
+    application. <application>&app;</application> is an acronym for the 
+    Genealogical Research and Analysis Management Programming System. To put 
+    it shortly, it allows you to store, edit, and research genealogical data 
+    using your computer. Its functionality is somewhat common to other 
+    genealogical programs. However, <application>&app;</application> offers 
+    some unique features. </para> 
+
+    <sect2 id="why-gramps">
+      <title>Why &app;?</title>
+      <para> <application>&app;</application> was conceived under the concept
+      that most genealogy programs were designed to provide the researcher the 
+      capability to input information related to a particular family tree.  
+      Most of these programs have allowed for the arranging and storing of
+      information consistent with the GEDCOM standards. They usually provide
+      means for displaying descendant or ancestral relationships by means of
+      graphical displays, charts, or reports.  These may be augmented with 
+      pictures or other media to enhance the data.  Most provide for inputting 
+      data on unconnected individuals/families that may or may not have a 
+      relationship to the primary surname being researched.  Various other 
+      enhancements may also be provided in the genealogical program that 
+      allows for different degrees of importing and exporting data from other 
+      programs and printing the data contained in the various reports. </para>
+      
+      <para> <application>&app;</application>, on the other hand, attempts to
+      provide all of the common capabilities of these programs, but, more
+      importantly, to provide an additional capability of integration not common
+      to these programs.  This is the ability to input any bits and pieces of
+      information directly into <application>&app;</application> and
+      rearrange/manipulate any/all data events in the entire data base (in any
+      order or sequence) to assist the user in doing research, analysis and
+      correlation with the potential of filling relationship gaps.  In short, a
+      tool that provides a way to input all your research into one place and do
+      your analysis and correlation using the speed, power, and accuracy of your
+      computer instead of pencils and unmanageable reams of paper. </para>
+    </sect2>
+  </sect1> 
+	
+<!-- =========== Getting Started ============================== -->
+
+  <sect1 id="gramps-getting-started"> 
+    <title>Getting Started</title> 
+
+    <!-- ================ Getting Started Subsection ====== -->
+    <sect2 id="gramps-start">
+    <title>To Start &app;</title>
+    <para>You can start <application>&app;</application> in the 
+    following ways:</para> 
+    <variablelist>
+    <varlistentry>
+	<term><guimenu>Applications</guimenu> menu</term>
+	<listitem><para>Choose <menuchoice><guisubmenu>Other</guisubmenu>
+	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
+    </varlistentry>
+    <varlistentry>
+	<term>Command line</term>
+    	<listitem><para>To start <application>&app;</application> 
+	from a command line, type <command>gramps</command>, then 
+	press <keycap>Return</keycap>.</para>
+	
+	<para>If you would like <application>&app;</application> to open 
+	a specific database or to import a specific file on startup, you can 
+	supply the filename as a command line argument:</para>
+
+	<para>
+	<command>gramps</command> <replaceable>filename.ged</replaceable>
+    	</para> 
+
+    	<para>where <replaceable>filename.ged</replaceable> is the name 
+	of the file you	want to open/import. </para></listitem>
+    </varlistentry>
+    </variablelist>
+    </sect2>
+
+    <!-- ================ Getting Started Subsection ==== -->
+    <sect2 id="run-1st-time">
+      <title>Running &app; for the first time</title>
+    <para>[ FIXME: RE-WORK THIS WITH SCREENSHOTS BEGIN ]
+    The first time you run the program, GRAMPS will display its 
+    Getting Started screens.
+    
+	<!-- ==== Figure: Getting Started Druid Window ==== -->
+	<figure id="druid-fig"> 
+	<title>&app; Gettin Started Window</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/druid.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Getting Started Window.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+    <para>[ FIXME: RE-WORK THIS WITH SCREENSHOTS END ]</para>
+
+    <!-- ================ Getting Started Sub-subsection  -->
+      <sect3 id="choose-db-start">
+      <title>Choosing a database on startup</title> 
+      <para>If <application>&app;</application> is started without any
+      database  to open, the following window will appear prompting you to 
+      choose what database to open. </para>
+      
+	<!-- ==== Figure: Open existing/new database window ==== -->
+	<figure id="first-open"> 
+	<title>Open Database Window</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/first-open.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Open Database Window.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+      
+      <para>If you would like to open an existing database, check the top radio
+      button and click <guibutton>OK</guibutton>. You will then be asked to 
+      specify the name of your existing database. If you would like to start
+      creating your brand new database from scratch right away, choose new XML
+      database. </para> 
+      </sect3>
+      
+    <!-- ================ Getting Started Sub-subsection  -->
+      <sect3 id="zodb-support">
+        <title>Optional ZODB support</title> 
+
+      <para>If either StandaloneZODB or Zope is installed on your system, 
+      <application>&app;</application> will give you the third option of 
+      creating a new ZODB database. You can choose to start your new database 
+      in either XML or ZODB format. Both formats have their strong and weak 
+      points.</para>
+
+      <para>XML stands for eXtensible Markup Language, and is a human readable
+      sctructured description of data. It could be easily parsed by other 
+      programs should the need occur. It stores only the data itself. Its weak 
+      point is the relatively low speed of processing large data files. </para>
+
+      <para>ZODB stands for Zope Object Database and provides the full-fledged
+      database support. ZODB files are not human readable. They contain a
+      certain overhead to assist working with large data structures. However,
+      ZODB provides a significant speed-up when the database size is large (over
+      few thousand people). </para>
+
+      <para>Its is hard to tell which format is better, since this is a typical
+      tradeoff situation. If you are starting your research then you are likely
+      to be fine with the regular XML database. If you have tons of data to
+      import describing thousands upon thousands of people, then you are
+      probably better of with ZODB. </para>
+
+      </sect3>
+    </sect2>
+  </sect1>
+  
+<!-- ================ Main Window ================================ -->
+  <sect1 id="gramps-mainwin"> 
+    <title>Main Window</title> 
+    <para>When you open a database (either existing or brand new), 
+    the following window is displayed.</para>
+ 
+	<!-- ==== Figure: Tabbed Notebook Mode ==== -->
+	<figure id="mainwin-fig"> 
+	<title>&app; Main Window</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/mainwin.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows &app; main window. Contains titlebar, menubar, 
+	      toolbar, sidebar, display area, statusbar, progress bar, and
+	      scrollbars. Menubar contains File, Edit, View, Bookmarks, 
+	      Reports, Tools, Settings, and Help menus.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+    <!-- Include any descriptions of the GUI immediately after the screenshot of the main UI, -->
+    <!-- for example, the items on the menubar and on the toolbar. This section is optional. -->
+    <para>The &app; window contains the following elements: </para>
+      <variablelist>
+      <varlistentry><term>Menubar. </term>
+	<listitem><para>The menubar provides access to all features of
+	<application>&app;</application> through its menus.</para></listitem>
+      </varlistentry>
+      <varlistentry><term>Toolbar. </term>
+	<listitem><para> The toolbar provides access to the most frequently 
+	used functions of <application>&app;</application>. The appearance of 
+	the toolbar can be adjusted in <<guilabel>Preferences</guilabel> 
+	dialog. </para></listitem>
+      </varlistentry>
+      <varlistentry><term>Progress bar. </term>
+	<listitem><para>The progress bar is located in the lower left corner 
+	of the <application>&app;</application> window. It displays the 
+	progress of time consuming operations, such as opening and saving 
+	large data bases, importing and exporting to other formats, generating 
+	web-sites, etc. </para></listitem>
+      </varlistentry>
+      <varlistentry><term>Statusbar. </term>
+	<listitem><para>The statusbar is located to the right of the progress
+	bar, on the very bottom of the <application>&app;</application> window. 
+	It displays information about current <application>&app;</application> 
+	activity and contextual information about the menu items. 
+	The behavior of the Status line can be adjusted in 
+	<guilabel>Preferences</guilabel> dialog. </para></listitem>
+      </varlistentry>
+      <varlistentry><term>Display area. </term>
+	<listitem><para>The largest are in the center of the
+	<application>&app;</application> window is the display area.  
+	It shows certain aspects of genealogical information, depending on the 
+	currently selected View. There are six Views available 
+	in <application>&app;</application>: <xref linkend="people-view"/>, 
+	<xref linkend="family-view"/>, <xref linkend="pedigree-view"/>, 
+	<xref linkend="sources-view"/>, <xref linkend="places-view"/>, 
+	and <xref linkend="media-view"/>. </para></listitem>
+      </varlistentry>
+      </variablelist>
+
+    <!-- ================ Main Window Subsection  -->
+    <sect2 id="gramps-views">
+      <title>Views</title>
+      <para>Views are the various ways to display different aspects of 
+      genealogical information, as described below. Since the relevant 
+      information is very broad and non-uniform in both context and modality, 
+      it is best to split it's display into smaller categories, uniform in 
+      context and modality. Each View represents such a split and displays a 
+      certain portion of overall available information. Before the detailed 
+      description of available Views, let us  guide you through the ways of 
+      switching between the Views.</para> 
+
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="view-modes">
+        <title>Viewing Modes: Sidebar versus Tabs</title>
+	<para>Depending on the state of the <menuchoice> 
+	<guimenu>View</guimenu> <guimenuitem>Sidebar</guimenuitem> 
+	</menuchoice> menu item, the View could be switched either in the 
+	sidebar or in the notebook tabs in the top part of the window. 
+	To switch the View, click on the desired sidebar icon or the notebook 
+	tab. To switch between sidebar and notebook viewing modes, 
+	choose <menuchoice> <guimenu>View</guimenu> 
+	<guimenuitem>Sidebar</guimenuitem> 
+	</menuchoice> from the <application>&app;</application> menu.</para>
+
+	<!-- ==== Figure: Sidebar Notebook Mode ==== -->
+	<figure id="side-nofilt-fig"> 
+	<title>Sidebar Viewing Mode</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/side-nofilt.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows sidebar viewing mode.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+
+	<!-- ==== Figure: Tabbed Notebook Mode ==== -->
+	<figure id="noside-nofilt-fig"> 
+	<title>Tabbed Viewing Mode</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/noside-nofilt.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows tabbed viewing mode.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+    
+      </sect3>
+
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="people-view">
+        <title>People View</title>
+	<para>When <application>&app;</application> opens a database, 
+	the View is set to the People View. People View lists individuals 
+	whose data is stored in the database. People View displays people's 
+	<guilabel>Names</guilabel>, <application>&app;</application>
+	<guilabel>ID</guilabel> numbers, <guilabel>Gender</guilabel>, and 
+	their <guilabel>Birth</guilabel> and <guilabel>Death dates</guilabel>. 
+	The list can be ordered by any field.</para> 
+
+	<para>Example: to order list by the Birth date, click on the
+	<guilabel>Birth date</guilabel> column heading. To order list in 
+	reverse	(descending) order, click one more time on the desired column
+	heading. </para> 
+
+    <!-- ================ Main Window Sub-sub-subsection  -->
+        <sect4 id="filters">
+          <title>Filters</title>
+	  <para>Genealogical databases may contain huge numbers of people. 
+	  Since the long lists are hard for humans to handle,
+	  <application>&app;</application> provides a convenient way to limit 
+	  the scope of browsing by using the Filter. To save screen space, 
+	  Filter controls may be hidden, depending on the state of 
+	  <menuchoice> <guimenu>View</guimenu> 
+	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item.</para> 
+	  
+	<!-- ==== Figure: Enabled Filter ==== -->
+	<figure id="side-filt-fig"> 
+	<title>Filter Controls Displayed</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/side-filt.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows filter controls.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	  <para>When <application>&app;</application> opens a database, the 
+	  Filter is set to the trivial filter called <guilabel>All
+	  people</guilabel>, i.e. no filtering is in effect. To choose a 
+	  filter, use a pop-up <guilabel>Filter</guilabel> menu above the 
+	  people's list. Once the Filter is chosen, click
+	  <guibutton>Apply</guibutton> in the upper right corner of the 
+	  window. The filtering will take effect upon clicking
+	  <guibutton>Apply</guibutton>. To invert the filtering rule, check 
+	  the <guilabel>Invert</guilabel> box on the left 
+	  of <guibutton>Apply</guibutton> button. </para>
+	  
+	  <para>Example: To show people without children, choose 
+	  <guilabel>People with children</guilabel> filter, then check 
+	  <guilabel>Invert</guilabel> box, and then click
+	  <guibutton>Apply</guibutton>. To cancel any filtering, set 
+	  the filter to <guilabel>All people</guilabel>  
+	  and then click <guibutton>Apply</guibutton>. </para>
+	  
+	  <para>Note: even if the Filter controls are not displayed 
+	  (<menuchoice> <guimenu>View</guimenu> 
+	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item is
+	  unchecked), the filtering might still be in place. In other words, 
+	  the visibility of the Filter controls is not related to the actual 
+	  filtering imposed on the list. This may be a cause of confusion, when
+	  you enable the filtering and then remove the controls from the
+	  display. If in doubt, enable the display of Filter controls by 
+	  checking <menuchoice> <guimenu>View</guimenu> 
+	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item and check 
+	  what kind of filtering is currently set.</para> 
+        </sect4>
+
+    <!-- ================ Main Window Sub-sub-subsection  -->
+        <sect4 id="alpha-tabs">
+          <title>Alphabetical Tabs</title>
+	  <para><application>&app;</application> offers another way of 
+	  managing long lists of people -- alphabetical tabs. Upon loading a 
+	  database, <application>&app;</application> checks for the stored 
+	  Family names and breaks the people list into sublists based on the 
+	  first letter of their name. The alphabetical tabs are displayed in 
+	  the bottom part of the <application>&app;</application> window. 
+	  The last tab, "Other," stands for unidentified characters -- all 
+	  the entries not assigned to any other tab end up in "Others."</para> 
+        </sect4>
+
+      </sect3>
+      
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="family-view">
+        <title>Family View</title>
+	<para>Family View displays the Family information of a currently 
+	selected (or Active) person. Specifically, this view shows the 
+	relationships (e.g marriages, partnerships, etc.) of the active 
+	person, his/her parents (or step parents, or guardians, etc), and 
+	his/her children (could be step children, adopted children, etc.).
+	</para>
+	
+	<!-- ==== Figure: Family View ==== -->
+	<figure id="family-fig"> 
+	<title>Family View</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/family.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Family View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>The Active person's data is in the list-box in the upper left 
+	corner of the window. Directly below it, another box lists the Spouse's
+	data, for each relationship of Active person (can be more than one). 
+	The double-arrow button to the right of the Active person list-box 
+	allows to exchange the currently selected spouse (Current spouse) 
+	with the Active person. Double-clicking on the Active person allows 
+	to edit Active person's data. Double-clicking on the Current spouse 
+	allows to edit their relationship information. To add a spouse, 
+	click <guibutton>+</guibutton> to the right of the spouse box. 
+	To remove Current spouse, click <guibutton>-</guibutton> to the 
+	right of the spouse box. </para>
+	
+	<para>The parents of both the Active person and the Current spouse 
+	are listed in the corresponding list-boxes in the right-hand part of 
+	the window (Active person's parents on top, Current spouse parents 
+	on the bottom). Both list-boxes have a set of three buttons on their 
+	right side. The <guibutton>+</guibutton> and <guibutton>-</guibutton>
+	buttons allow to add and remove parents of the Active person and the 
+	Current spouse, respectively. Clicking <guibutton>-></guibutton> 
+	makes the family in the corresponding list-box and active family. 
+	That is, it makes the selected Father the Active person, and the 
+	selected Mother the Current spouse. </para>
+	
+	<para>The bottom list-box displays children of the Active person and 
+	the Current  Spouse. Children's list can be order by the Birth date, 
+	by usual way of clicking on the <guilabel>Birth date</guilabel> column 
+	header. In addition to the <guilabel>Name</guilabel>,
+	<guilabel>ID</guilabel>, <guilabel>Gender</guilabel>, and
+	<guilabel>Birth date</guilabel> columns, the list includes  
+	<guilabel>Status</guilabel> column. The pair of status words reflect the
+	relationship between the child and his Father/Mother (such as Birth, Adoption, 
+	etc.) The three buttons are available on the right side of the 
+	children list-box. The <guibutton>+</guibutton> 
+	and <guibutton>+</guibutton> buttons allow to add and remove 
+	children, respectively. Pressing <guibutton><-</guibutton> makes 
+	the selected child the Active person.</para> 
+      </sect3>
+
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="pedigree-view">
+        <title>Pedigree View</title>
+	<para>Pedigree View helps to visualize the place of the Active 
+	person in the tree of its ancestors. Pedigree View shows four 
+	generations, going back in time from the Active person
+	<guilabel>1</guilabel> to his/her parents <guilabel>1</guilabel>, 
+	to grandparents <guilabel>1</guilabel>, to great-grandparents 
+	<guilabel>1</guilabel>. 
+	Each person is denoted by a white box bearing the person's name. 
+	The two lines that converge on the box represent ties with the 
+	person's Father (top line) and mother (bottom line). Solid lines 
+	represent birth relations, while dashed lines represent non-birth 
+	relations (such as adoption, step-parentship, guardianship, etc.). 
+	When the mouse moves over the white box, it expands to display the 
+	corresponding person's dates of birth and death. When the mouse is 
+	placed over the family line, the line changes color to indicate an 
+	active link: double-clicking on the line makes the corresponding 
+	ancestor the Active person. The display in that case is re-adjusted 
+	to show four generations, starting from a newly selected Active 
+	person. </para>
+	
+	<para>The left-hand side of the window shows the left arrow button. 
+	Upon clicking, the button expands to the menu listing the children 
+	of the Active person. Selecting the menu item makes the corresponding 
+	child the Active person. </para>
+
+	<para>The right-hand side of the window shows two right arrow buttons. 
+	When the top button is clicked, the Father of the Active person 
+	becomes Active person. Clicking the bottom button makes the Mother of 
+	the Active person the Active person. Again, the display is re-adjusted 
+	to show four generations, starting from a newly selected Active 
+	person.</para> 
+      </sect3>
+
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="sources-view">
+        <title>Sources View</title>
+	<para>Sources View lists the sources of information stored in the 
+	database. This can include various documents (birth, death, and 
+	marriage certificates, etc.), books, films, journals, private diaries, 
+	i.e. virtually anything that can be classified as a source of 
+	information. The sources can be used as the reference for any event 
+	stored in the database. The Source View lists the 
+	<guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the 
+	<guilabel>Author</guilabel> of the source. All the columns can be 
+	used for sorting the list. The usual rules apply: one click for 
+	ascending order, another click for descending order.</para> 
+      </sect3>
+
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="places-view">
+        <title>Places View</title>
+	<para>Places View lists the geographical places in which the events 
+	of the database took place. These could be places of birth, death, 
+	marriages of people, as well as their home, employment, education 
+	addresses, or any other conceivable reference to the geographical 
+	location. The Places View lists places' <guilabel>Name</guilabel>,
+	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
+	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
+	<guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of
+	these can be used for sorting by the usual sorting rules. </para> 
+      </sect3>
+
+    <!-- ================ Main Window Sub-subsection  -->
+      <sect3 id="media-view">
+        <title>Media View</title>
+	<para>Media View is a list of Media Objects used in the database. 
+	Media Objects are any files that relate somehow to the stored 
+	genealogical data. Technically, any file can be stored as a Media 
+	Object. Most frequently, these are images, audio files, animation 
+	files, etc. The list-box on the bottom lists the Name, ID, Type, and 
+	Path to the Media Object. The top part of the GRAMPS window shows 
+	the preview (if available) and the information about the Media 
+	Object. </para> 
+      </sect3>
+
+    </sect2>
+  </sect1> 
+
+
+<!-- ================ Usage ================================ -->
+  <sect1 id="gramps-usage"> 
+    <title>Usage</title> 
+    <para>As commonly encountered in everyday life, in
+    <application>&app;</application> there is usually more than one way to
+    accomplish something. The alternatives to some actions will therefore be
+    listed as appropriate.</para> 
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="open-db"> 
+      <title>To Open a Database</title> 
+      <para>To open a database, either choose <menuchoice>
+      <guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>
+      or click <guibutton>Open</guibutton> button on the Toolbar. 
+      The <guilabel>Open Database</guilabel> dialog will appear. 
+      Either type the full path into the <guilabel>Database</guilabel> text 
+      entry field, or press <guibutton>Browse...</guibutton> to get the 
+      <guilabel>Open File</guilabel> dialog in which you can select the file
+      that you want to open. After you have selected the file, click
+      <guibutton>OK</guibutton> to open it. </para>
+      
+      <para>If you have previously opened files with
+      <application>&app;</application> you can retreive your past selections 
+      from the drop-down menu by clicking the down arrow button. Finally, if 
+      the Revision Control System (RCS) is enabled in the 
+      <guilabel>Preferences</guilabel> dialog, the check-box 
+      <guilabel>Revert to an older version from RCS</guilabel> 
+      will be available. Check it to revert your database to an older RCS 
+      version. </para>
+      
+      <para>Note: the name you type or select should be the directory
+      (folder) which has your data (data.gramps or data.zodb files) as well as
+      any possible copies of Media Objects. </para> 
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="new-db"> 
+      <title>To Start a New Database</title> 
+      <para>To start a new database, choose <guimenu>File</guimenu>
+      <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
+      prompted with the <guilabel>Save Database</guilabel> dialog asking 
+      to specify the name under which the new database will be stored. 
+      Choose an empty directory for your new database (create one if
+      necessary). </para> 
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="save-db"> 
+      <title>To Save a Database</title> 
+      <para>To save changes made to your database, choose <guimenu>File</guimenu>
+      <guimenuitem>Save</guimenuitem></menuchoice> or click
+      <guibutton>Save</guibutton> on the Toolbar. The Status line will then 
+      display <guilabel>Saving <replaceable>filename</replaceable>...</guilabel> 
+      message, and the progress bar will advance as the saving progresses.</para>
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="import-gedcom"> 
+      <title>To Import GEDCOM Data</title> 
+      <para>Importing GEDCOM data allows you to incorporate the data created in 
+      other genealogical programs into your currently 
+      open <application>&app;</application> database. 
+      <application>&app;</application> can import GEDCOM data files from a 
+      number of software packages, as long as they comply with GEDCOM 
+      standards. To import GEDCOM file, choose <guimenu>File</guimenu>
+      <guimenuitem>Import</guimenuitem><guimenuitem>Import from 
+      GEDCOM</guimenuitem></menuchoice>. You will then be prompted with the
+      <guilabel>Open File</guilabel> dialog asking to specify the GEDCOM file
+      name. </para> 
+      
+      <para>Upon starting the import, <application>&app;</application> will 
+      display the following GEDCOM import dialog with the summary of the 
+      information about the data. The information is updated as the import
+      progresses. </para>
+
+	<!-- ==== Figure: GEDCOM Import ==== -->
+	<figure id="gedcom-import-fig"> 
+	<title>GEDCOM Import</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/gedcom-import.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows GEDCOM Import Window. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+      
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="export-gedcom"> 
+      <title>To Export GEDCOM Data</title> 
+      <para>Exporting GEDCOM data allows you to share any portion of you 
+      <application>&app;</application> database with other researchers 
+      by way of standard GEDCOM files. To export into GEDCOM file, 
+      choose <guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
+      <guimenuitem>Export to GEDCOM</guimenuitem></menuchoice>. The following 
+      <guilabel>Export GEDCOM file</guilabel> dialog will appear.</para>
+
+	<!-- ==== Figure: GEDCOM Export ==== -->
+	<figure id="gedcom-export-fig"> 
+	<title>Export GEDCOM File dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/gedcom-export.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Export GEDCOM File dialog</phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Export ==== -->
+
+      <para>Type the desired GEDCOM filename into the text entry box or
+      click <guibutton>Browse...</guibutton> to evoke 
+      <guilabel>Save File</guilabel> dialog. Use <guilabel>Filter</guilabel>
+      popup menu to limit the scope of export according to the stated rule. 
+      Choose the desired <guilabel>Encoding</guilabel> of the exported file. 
+      Use <guilabel>Target</guilabel> to select the desired GEDCOM 
+      dialect. Select you copyright statement from the 
+      <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
+      records marked private</guilabel> to disable the output of private
+      records. Check <guilabel>Restrict data on living people</guilabel>
+      to [ FIXME : do what exactly? ] </para>
+
+      <para>Upon starting the export, <application>&app;</application> will 
+      display the following GEDCOM export progress window with the progress 
+      bars reflecting the current state of exporting. </para>
+
+	<!-- ==== Figure: GEDCOM Export ==== -->
+	<figure id="gedcom-export-progress-fig"> 
+	<title>Export GEDCOM progress dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/gedcom-export-progress.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Export GEDCOM progress dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Export ==== -->
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="gramps-package-impex"> 
+      <title>Importing and Exporting &app; Packages</title> 
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="gramps-edit"> 
+      <title>Editing</title> 
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="gramps-nav"> 
+       <title>Nevigation</title> 
+   </sect2>
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="gen-reports"> 
+        <title>Generating Reports</title> 
+   </sect2>
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="gramps-tools"> 
+        <title>Running Tools</title> 
+    </sect2>
+
+
+[ FIXME: STOPPED HERE ] 
+
+
+
+
+
+
+
+
+
+
+
+
+      , then click 
+	<guibutton>OK</guibutton>. To open another image in a new window,
+	choose 
+	<menuchoice> 
+	  <guimenu>File</guimenu> 
+	  <guimenuitem>Create New Window</guimenuitem> 
+	</menuchoice>. Choose 
+	<menuchoice> 
+	  <guimenu>File</guimenu> 
+	  <guimenuitem>Open Image</guimenuitem> 
+	</menuchoice> 
+	to select the file that you want to open. You can also drag an image
+	from another application such as a file manager to the &app;
+	window. If the &app; window is empty, the application displays
+	the image in the window. If the window is not empty, the
+	application starts a new window to display the file. The
+	application displays the name of the image file and the size
+	of the image in pixels in the titlebar of the window. </para>
+      <para>
+	If you try to open an image file format that &app; does
+	not recognize, the application displays an error
+	message.
+      </para>
+      <caution>
+      <para>This is a caution.</para>
+      </caution>
+    </sect2> 
+    <!-- ================ Usage Subsection ================================ -->
+	 <sect2 id="myapp-manipulate-view"> 
+      <title>To Manipulate the View of an Image</title> 
+      <para>You can use the following methods to resize the view of an image in
+	the &app; window:</para> 
+      <itemizedlist> 
+	<listitem> 
+	  <para>To enlarge the view of an image, choose 
+	    <menuchoice> 
+	      <guimenu>View</guimenu> 
+	      <guimenuitem>Zoom In</guimenuitem> 
+	    </menuchoice>.</para> 
+	</listitem> 
+	<listitem> 
+	  <para>To shrink the view of an image, choose 
+	    <menuchoice> 
+	      <guimenu>View</guimenu> 
+	      <guimenuitem>Zoom Out</guimenuitem> 
+	    </menuchoice>.</para> 
+	</listitem> 
+	<listitem> 
+	  <para>To view the image at its actual size, choose 
+	    <menuchoice> 
+	      <guimenu>View</guimenu> 
+	      <guimenuitem>Zoom 1:1</guimenuitem> 
+	    </menuchoice>. </para> 
+	</listitem> 
+	<listitem> 
+	  <para>To enlarge or shrink the view of an image so that the image
+	    fits the &app; window, choose 
+	    <menuchoice> 
+	      <guimenu>View</guimenu> 
+	      <guimenuitem>Fit to Window</guimenuitem> 
+	    </menuchoice>.</para> 
+	</listitem> 
+	<listitem> 
+	  <para>To enlarge or shrink the image to a specific zoom factor,
+	    choose 
+	    <menuchoice> 
+	      <guimenu>View</guimenu> 
+	      <guimenuitem>Zoom factor</guimenuitem> 
+	    </menuchoice>, then choose the appropriate zoom factor from the
+	    drop-down list.</para> 
+	</listitem> 
+	<listitem> 
+	  <para>To display the image in full screen mode, choose 
+	    <menuchoice> 
+	      <guimenu>View</guimenu> 
+	      <guimenuitem>Full Screen</guimenuitem> 
+	    </menuchoice>. Full screen mode displays the image in a window that
+	    fills the full screen. The window does not contain a
+	    window frame, titlebar, 
+	    menubar, or toolbar. To exit from this mode, press the 
+	    <keycap>Esc</keycap> key or 
+	    <keycombo>
+              <keycap>Ctrl</keycap>
+	      <keycap>W</keycap>
+	    </keycombo>.
+	  </para> 
+	</listitem> 
+      </itemizedlist> 
+      <tip>
+      <para>This is a tip.</para>
+      </tip>
+    </sect2> 
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="myapp-scroll-image"> 
+      <title>To Scroll an Image</title> 
+      <para>To scroll around an image that is larger than the image window or
+	full screen window, you can use the following methods:</para> 
+      <itemizedlist> 
+	<listitem> 
+	  <para>Use the arrow keys on the keyboard.</para> 
+	</listitem> 
+	<listitem> 
+	  <para>Drag the image in the opposite direction to the direction in
+	    which you want to scroll. For example, if you want to
+	      scroll down the image, 
+	    drag the image upwards in the window.</para> 
+	</listitem> 
+	<listitem> 
+	  <para>Use the scrollbars on the window.</para> 
+	</listitem> 
+      </itemizedlist> 
+    </sect2>
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="myapp-close-image"> 
+      <title>To Close an Image</title> 
+      <para>To close an image, choose 
+	<menuchoice> 
+	  <guimenu>File</guimenu> 
+	  <guimenuitem>Close This Window</guimenuitem> 
+	</menuchoice>. If the window is the last
+	&app; window open, the application exits. </para> 
+      <para>To quit &app; and close all of the
+	windows that you opened in the current session, choose 
+	<menuchoice> 
+	  <guimenu>File</guimenu> 
+	  <guimenuitem>Exit</guimenuitem> 
+	</menuchoice>. </para> 
+      <warning>
+      <para>This is a warning.</para>
+      </warning>
+    </sect2> 
+  </sect1>
+  <!-- ============= Customization ============================= -->
+  <!-- Use this section to describe how to customize the application. -->
+  <sect1 id="myapp-prefs"> 
+    <title>Settings</title> 
+    <para>To configure &app;, choose 
+      <menuchoice> 
+	<guimenu>Settings</guimenu> 
+	<guimenuitem>Preferences</guimenuitem> 
+      </menuchoice>. The 
+      <guilabel>Preferences</guilabel> dialog contains the following tabbed
+      sections:</para> 
+    <itemizedlist> 
+      <listitem> 
+	<para> 
+	  <xref linkend="myapp-prefs-display"/></para> 
+      </listitem> 
+      <listitem> 
+	<para> 
+	  <xref linkend="myapp-prefs-viewers"/></para> 
+      </listitem> 
+    </itemizedlist>
+<!-- =============== Customization Subsection ================ -->
+<!-- Use a new section to describe different tabbed sections on the Settings or Preferences
+	     dialog. -->
+    <sect2 id="myapp-prefs-display"> 
+      <title>Display</title> 
+      <variablelist> 
+	<varlistentry> 
+	  <term> 
+	    <guilabel>Interpolation type</guilabel> </term> 
+	  <listitem> 
+	    <para>Use this drop-down list box to specify the
+	      interpolation method that
+	      &app; uses when the
+	      application resizes images. Select one of the following
+	      options:</para>
+	    <itemizedlist> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Nearest neighbor</guilabel> </para> 
+		<para>This method of interpolation takes a location in the
+		  original image and replicates the pixel that is
+		  nearest to this location. When 
+		  you zoom in on an image, the pixels are
+		  replicated. When you zoom out of an 
+		  image, the image loses some of its detail. </para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Bilinear</guilabel> </para> 
+		<para>This is a simple and fast method of interpolation. When
+		  you zoom in on an image, &app; uses up to four
+		  adjacent pixels to compute the colors of the new
+		  pixels. When you zoom out of 
+		  an image, &app; averages regions of color in the
+		  existing image to compute the colors of the pixels. </para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Hyperbolic</guilabel> </para> 
+		<para>This is a high-quality, slow method of interpolation. The
+		  application performs interpolation on the image in
+		  the manner described in 
+		  Digital Image Warping by George Wolberg.</para> 
+	      </listitem> 
+	    </itemizedlist> 
+	    <para>Default: 
+	      <guilabel>Nearest neighbor</guilabel>.</para> 
+	  </listitem> 
+	</varlistentry> 
+	<varlistentry> 
+	  <term> 
+	    <guilabel>Transparency type</guilabel> </term> 
+	  <listitem> 
+	    <para>Use this drop-down list box to specify how
+	      &app; displays transparent or partially opaque
+	      backgrounds in images. Select one of the following options:</para> 
+	    <itemizedlist> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Dark checks</guilabel> </para> 
+		<para>This option displays black and dark gray checks.</para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Midtone checks</guilabel> </para> 
+		<para>This option displays dark gray and light gray
+		  checks.</para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Light checks</guilabel> </para> 
+		<para>This option displays light gray and white checks.</para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Black only</guilabel> </para> 
+		<para>This option displays solid black.</para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Gray only</guilabel> </para> 
+		<para>This option displays solid gray.</para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>White only</guilabel> </para> 
+		<para>This option displays solid white.</para> 
+	      </listitem> 
+	    </itemizedlist> 
+	    <para>Default: 
+	      <guilabel>Dark checks</guilabel>.</para> 
+	  </listitem> 
+	</varlistentry> 
+	<varlistentry> 
+	  <term> 
+	    <guilabel>Check size</guilabel> </term> 
+	  <listitem> 
+	    <para>Use this drop-down list box to specify the size of the checks
+	      to use to display transparent or partially opaque
+	      backgrounds in images. This 
+	      option is only relevant if you choose 
+	      <guilabel>Dark checks</guilabel>, 
+	      <guilabel>Midtone checks</guilabel>, or 
+	      <guilabel>Light checks</guilabel> from the 
+	      <guilabel>Transparency type</guilabel> drop-down list box.
+	      Select one of the following options:</para> 
+	    <itemizedlist> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Small</guilabel></para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Medium</guilabel></para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Large</guilabel></para> 
+	      </listitem> 
+	    </itemizedlist> 
+	    <para>Default: 
+	      <guilabel>Small</guilabel>.</para> 
+	  </listitem> 
+	</varlistentry> 
+	<varlistentry> 
+	  <term> 
+	    <guilabel>Dither type</guilabel> </term> 
+	  <listitem> 
+	    <para>Use this drop-down list box to specify the dithering method
+	      to use to display images. Dithering is a technique that
+	      is used to simulate 
+	      colors in the original image file but that your system
+	      can not display. Select 
+	      one of the following options:</para> 
+	    <itemizedlist> 
+	      <listitem> 
+		<para> 
+		  <guilabel>None</guilabel> </para> 
+		<para>This option does not use dithering. </para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Normal (pseudocolor)</guilabel> </para> 
+		<para>This option performs dithering on pseudocolor displays,
+		  which use a limited palette of colors. </para> 
+	      </listitem> 
+	      <listitem> 
+		<para> 
+		  <guilabel>Maximum (high color)</guilabel> </para> 
+		<para>This option performs dithering on pseudocolor and high
+		  color displays. </para> 
+	      </listitem> 
+	    </itemizedlist> 
+	    <para>Default: 
+	      <guilabel>None</guilabel>.</para> 
+	  </listitem> 
+	</varlistentry> 
+	<varlistentry> 
+	  <term> 
+	    <guilabel>Two-pass scrolling</guilabel> </term> 
+	  <listitem> 
+	    <para>Select this option to render an image in two passes
+	      when you scroll the image quickly. The first pass
+	      renders a low quality version of the image. The second
+	      pass renders a full quality version of the image over
+	      the low quality version. Two-pass scrolling enables you
+	      to view at least a low quality version of the image at
+	      all times regardless of how quickly you scroll the
+	      image. 
+	    </para>
+	    <para>Default: unselected.</para> 
+	  </listitem> 
+	</varlistentry> 
+      </variablelist> 
+    </sect2>
+    <!-- ============= Customization Subsection ===================== -->
+    <!-- Another tabbed section on the Preferences dialog. -->
+    <sect2 id="myapp-prefs-viewers"> 
+      <title>Viewers</title> 
+      <para>You can set the following viewer preferences: 
+	<itemizedlist> 
+	  <listitem> 
+	    <para> 
+	      <xref linkend="myapp-viewer-prefs-image-window"/></para> 
+	  </listitem> 
+	  <listitem> 
+	    <para> 
+	      <xref linkend="myapp-viewer-prefs-full-screen"/></para> 
+	  </listitem> 
+	</itemizedlist> </para> 
+      <sect3 id="myapp-viewer-prefs-image-window"> 
+	<title>Image Windows</title> 
+	<para>The 
+	  <guilabel>Image Windows</guilabel> group contains the preferences
+	  that you can set to view images in image windows.</para> 
+	<variablelist> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Use scrollbars</guilabel> </term> 
+	    <listitem> 
+	      <para>Use this drop-down list box to specify when to use
+		scrollbars to scroll through an image. Select one of
+		the following options:</para> 
+	      <itemizedlist> 
+		<listitem> 
+		  <para> 
+		    <guilabel>Never</guilabel> </para> 
+		  <para>This option never displays scrollbars. You can use the
+		    arrow keys on the keyboard or the mouse to scroll
+		    through the image. </para>  
+		</listitem> 
+		<listitem> 
+		  <para> 
+		    <guilabel>Only if image does not fit</guilabel> </para> 
+		  <para>This option displays scrollbars when the image is
+		    larger than the image window.</para> 
+		</listitem> 
+	      </itemizedlist> 
+	      <para>Default: 
+		<guilabel>Never</guilabel>.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Pick window size and zoom factor
+		automatically</guilabel> </term> 
+	    <listitem> 
+	      <para>Select this option to resize the image window to fit the
+		image or to resize the image to fit the image
+		window. If the image is small, 
+		&app; resizes the image window to fit the image. If
+		the image is large, &app; resizes the image to fit
+		the image window. </para> 
+	      <para>Default: unselected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Open images in a new window</guilabel> </term> 
+	    <listitem> 
+	      <para>Select this option to open a new
+		&app; window each time you open an image. If you do
+		not select this option, &app; replaces the existing
+		image with the new image when you open an image. </para> 
+	      <para>Default: unselected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	</variablelist> 
+      </sect3> 
+      <sect3 id="myapp-viewer-prefs-full-screen"> 
+	<title>Full Screen</title> 
+	<para>The 
+	  <guilabel>Full Screen</guilabel> group contains the preferences that
+	  you can set to view images in full screen mode.</para> 
+	<variablelist> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Use scrollbars</guilabel> </term> 
+	    <listitem> 
+	      <para>Use this drop-down list box to specify when to use
+		scrollbars to scroll through an image. Select one of the following
+		options:</para> 
+	      <itemizedlist> 
+		<listitem> 
+		  <para> 
+		    <guilabel>Never</guilabel> </para> 
+		  <para>This option never displays scrollbars. You can use the
+		    arrow keys on the keyboard or the mouse to scroll
+		    through the image. </para>  
+		</listitem> 
+		<listitem> 
+		  <para> 
+		    <guilabel>Only if image does not fit</guilabel> </para> 
+		  <para>This option displays scrollbars when the image is
+		    larger than the full screen. </para> 
+		</listitem> 
+	      </itemizedlist> 
+	      <para>Default: 
+		<guilabel>Never</guilabel>.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Use 1:1 zoom factor</guilabel> </term> 
+	    <listitem> 
+	      <para>Select this option to use the 1:1 zoom factor when you open
+		an image. The 1:1 zoom factor displays the image at
+		its actual size. </para>  
+	      <para>Default: selected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Use same zoom factor as image window</guilabel> </term>
+	    
+	    <listitem> 
+	      <para>Select this option to use the same zoom factor that the
+		application uses to display the image in an image
+	      window. </para>  
+	      <para>Default: unselected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Fit all images to screen</guilabel> </term> 
+	    <listitem> 
+	      <para>Select this option to resize images to fill the full screen
+		when you open the images in full screen mode. </para> 
+	      <para>Default: unselected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Fit standard-sized images to screen</guilabel> </term> 
+	    <listitem> 
+	      <para>Select this option to automatically resize images
+		that are the same size as standard screens so that the
+		images fill the full screen when you open them in full
+		screen mode. If you select this option, &app; ignores
+		the settings for the previous three options when you
+		open an image that is the same size as a standard
+		screen.  Examples of standard screen sizes are 640 x
+		480 pixels, 1024 x 768 pixels, and so on. </para>
+	      <para>Default: unselected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	  <varlistentry> 
+	    <term> 
+	      <guilabel>Put a bevel around the edge of the screen</guilabel>
+	    </term> 
+	    <listitem> 
+	      <para>Select this option to display a 3D beveled border around
+		the full screen view of an image. </para> 
+	      <para>Default: unselected.</para> 
+	    </listitem> 
+	  </varlistentry> 
+	</variablelist> 
+      </sect3> 
+    </sect2> 
+  </sect1>
+<!-- ============= Bugs ================================== -->
+<!-- This section is optional and is commented out by default. 
+     You can use it to describe known bugs and limitations of the 
+	  program if there are any - please be frank and list all
+     problems you know of. 
+  
+  <sect1 id="mayapp-bugs">
+  <title>Known Bugs and Limitations</title>
+  <para> </para>
+ </sect1>
+-->
+<!-- ============= About ================================== -->
+<!-- This section contains info about the program (not docs), such as
+      author's name(s), web page, license, feedback address. This
+      section is optional: primary place for this info is "About.." box of
+      the program. However, if you do wish to include this info in the
+      manual, this is the place to put it. Alternatively, you can put this information in the title page.-->
+  <sect1 id="myapp-about"> 
+    <title>About &app;</title> 
+    <para> &app; was written by GNOME-HACKER
+      (<email>hacker@gnome.org</email>). To find more information about
+      &app;, please visit the 
+      <ulink url="http://www.my-gnome-app.org" type="http">MY-GNOME-APP Web
+	page</ulink>. </para>
+    <para>
+      To report a bug or make a suggestion regarding this application or
+      this manual, follow the directions in this 
+      <ulink url="ghelp:gnome-feedback"   type="help">document</ulink>.
+    </para>
+
+    <para> This program is distributed under the terms of the GNU
+      General Public license as published by the Free Software
+      Foundation; either version 2 of the License, or (at your option)
+      any later version. A copy of this license can be found at this
+      <ulink url="ghelp:gpl" type="help">link</ulink>, or in the file
+      COPYING included with the source code of this program. </para>
+
+  </sect1> 
+</article>
