@@ -30,8 +30,10 @@ import shutil
 import const
 import Utils
 import ListModel
+import cStringIO
 
 from re import compile
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -112,14 +114,18 @@ class RevisionSelect:
         self.revlist = dialog.get_widget("revlist")
         l = self.vc.revision_list()
 
-        titles = [(_('Revision'),0,100),(_('Date'),1,100), (_('Changed by'),2,100),
-                  ('Comment',3,100)]
+        titles = [(_('Revision'),4,100),(_('Date'),1,100), (_('Changed by'),2,100),
+                  (_('Comment'),3,100), ('',0,0)]
         
         self.model = ListModel.ListModel(self.revlist,titles)
         
         index = 0
         for f in l:
-            self.model.add([f[0],f[1],f[3],f[2]],f[0])
+            a = f[0].split('.')
+            revsort = ''
+            for v in a:
+                revsort = "%s.%06d" % (revsort,int(a[0]))
+            self.model.add([f[0],f[1],f[3],f[2],revsort],f[0])
 
     def on_cancel_clicked(self,obj):
         Utils.destroy_passed_object(obj)
@@ -166,7 +172,7 @@ class VersionControl:
 
         version - string representing the version to extract
         target - file to extract to"""
-        pass
+        return None
 
 class RcsVersionControl(VersionControl):
     """RCS (Revision Control System) based version control interface"""
@@ -191,9 +197,14 @@ class RcsVersionControl(VersionControl):
         l = []
         o = None
         d = None
-        r,w = popen2.popen2("rlog %s" % self.vfile)
+        proc = popen2.Popen3("rlog %s" % self.tfile,1)
+        proc.tochild.close()
+        status = proc.wait()
+        if status:
+            ErrorDialog("Error acessing revision control",proc.childerr.read())
+            return rlist
 
-        for line in r.readlines():
+        for line in proc.fromchild.readlines():
             line = string.rstrip(line)
             
             if sname == 1:
@@ -267,8 +278,20 @@ class RcsVersionControl(VersionControl):
         """Extracts the requested version from the RCS database
         version_id - string containing the version to be extracted
         target - file to extract the file to."""
-        r,w,e = popen2.popen3("co -p%s %s" % (version_id,self.vfile))
-        return r
+
+        process = popen2.Popen3("co -p%s %s" % (version_id,self.vfile),1)
+        output = cStringIO.StringIO()
+        output.write(process.fromchild.read())
+        output.seek(0)
+        data = process.childerr.read()
+        status = process.wait()
+        process.tochild.close()
+        process.fromchild.close()
+        process.childerr.close()
+
+        if status != 0:
+            ErrorDialog(_("Could not retrieve version"),data)
+        return output
 
 _version_control_list = [(RcsVersionControl, _("RCS"))]
 
