@@ -3,7 +3,6 @@
 	* src/plugins/DetDescendantReport.py 
 	(DetDescendantReport.write_marriage):
 	Missing value for the format line parameter 
-
 	* src/plugins/FtmStyleDescendants.py 
 	(FtmDescendantReport.print_more_about): Print regular name in the
 	header of the "More About" dialog. Also add missing endnotes value.
@@ -12,10 +11,8 @@
 2003-06-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 
 	* ChangeLog: trying out clcommit
-
 	* ChangeLog 1.3, ChangeLog.gz 1.2:
 	Switching back to uncompressed ChangeLog
-
 	* ChangeLog 1.2: Removing placeholder -- replaced by gzipped ChangeLog
 
 2003-05-31  Alex Roitman  <shura@alex.neuro.umn.edu>
