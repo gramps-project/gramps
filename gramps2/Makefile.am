@@ -11,3 +11,10 @@ gramps: gramps.sh
 
 dist-hook: gramps.spec
 	cp gramps.spec $(distdir)
+
+.PHONY: pycheck trans
+	
+pycheck:
+	(cd src; make pycheck) 
+trans:
+	(cd src; make trans) 

@@ -1,7 +1,7 @@
 # This is the src/plugins level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
+# We could use GNU make's ':=' syntax for nice wildcard use,
+# but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
-
 pkgpython_PYTHON = \
 	AncestorChart.py\
 	AncestorReport.py\
@@ -51,8 +51,12 @@ GLADEFILES = \
 	summary.glade\
 	verify.glade
 
-pkgdatadir = ${datadir}/@PACKAGE@/plugins
+pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
-pkgdata_DATA = ${GLADEFILES}
-dist_pkgdata_DATA = ${pkgdata_DATA} 
+dist_pkgdata_DATA = $(GLADEFILES)
 
+GRAMPS_PY_MODPATH = "../:../docgen"
+
+pycheck: 
+	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
+	pychecker $(pkgpython_PYTHON));

@@ -23,3 +23,9 @@ pkgpython_PYTHON = \
 
 pkgpyexecdir = @pkgpyexecdir@/filters
 pkgpythondir = @pkgpythondir@/filters
+
+GRAMPS_PY_MODPATH = "../"
+
+pycheck: 
+	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
+	pychecker $(pkgpython_PYTHON));
