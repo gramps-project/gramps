@@ -662,7 +662,21 @@ class GedcomParser:
                     self.person.addAttribute(attr)
                 else:
                     self.person.addEvent(event)
-	    elif matches[1] in ["AFN","CHAN","REFN","SOUR","ASSO"]:
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                if matches[2] and matches[2][0] != "@":
+                    self.localref = self.localref + 1
+                    ref = "gsr%d" % self.localref
+                    s = self.db.findSource(ref,self.smap)
+                    source_ref.setBase(s)
+                    s.setTitle('Imported Source #%d' % self.localref)
+                    s.setNote(matches[2] + self.parse_continue_data(2))
+                    self.ignore_sub_junk(2)
+                else:
+                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                    self.parse_source_reference(source_ref,2)
+                self.person.getPrimaryName().addSourceRef(source_ref)
+	    elif matches[1] in ["AFN","CHAN","REFN","ASSO"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:
                 pass

@@ -114,7 +114,12 @@ class Find:
         last = self.clist.rows
         person = None
         while row != orow:
-            person,alt = self.clist.get_row_data(row)
+            value = self.clist.get_row_data(row)
+            if value == None:
+                row = row - 1
+                continue
+            person = value[0]
+            alt = value[1]
             if alt == 0:
                 name = person.getPrimaryName().getName()
                 if string.find(string.upper(name),string.upper(text)) >= 0:

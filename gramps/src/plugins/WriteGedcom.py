@@ -207,6 +207,7 @@ def add_persons_sources(person,slist,private):
             sbase = source_ref.getBase()
             if sbase != None and sbase not in slist:
                 slist.append(sbase)
+
     for event in person.getAddressList():
         if private and event.getPrivacy():
             continue
@@ -214,14 +215,16 @@ def add_persons_sources(person,slist,private):
             sbase = source_ref.getBase()
             if sbase != None and sbase not in slist:
                 slist.append(sbase)
-    for event in person.getAttibuteList:
+
+    for event in person.getAttibuteList():
         if private and event.getPrivacy():
             continue
         for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
             if sbase != None and sbase not in slist:
                 slist.append(sbase)
-    for name in person.getNameList + [person.getPrimaryName()]:
+
+    for name in person.getNameList() + [person.getPrimaryName()]:
         if private and name.getPrivacy():
             continue
         for source_ref in name.getSourceRefList():
