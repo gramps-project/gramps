@@ -39,7 +39,7 @@ import GTK
 import gtk
 import gnome.ui
 import libglade
-from gnome.config import get_string, get_bool, get_int, set_string, sync, set_bool, set_int
+from gnome.config import *
 
 #-------------------------------------------------------------------------
 #
@@ -591,6 +591,7 @@ class GrampsPreferences:
             node = self.tree.insert_node(None,prev,[name],is_leaf=0,expanded=1)
             self.tree.node_set_row_data(node,0)
             next = None
+            list.reverse()
             for (subname,tab) in list:
                 next = self.tree.insert_node(node,next,[subname],is_leaf=1,expanded=1)
                 self.tree.node_set_row_data(next,tab)

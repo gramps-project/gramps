@@ -41,14 +41,6 @@ _ = gettext
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-_TOPINST  = "top"
-_NAMEINST = "namelist"
-
-#-------------------------------------------------------------------------
-#
 # Interface to gramps' bookmarks. Handles building the bookmarks menu
 # for the main window, and provides the bookmark editor.
 #
