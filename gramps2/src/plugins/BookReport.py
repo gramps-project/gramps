@@ -84,6 +84,8 @@ class BookReportSelector:
             "on_down_clicked"       : self.on_down_clicked,
             "on_setup_clicked"      : self.on_setup_clicked,
             "on_clear_clicked"      : self.on_clear_clicked,
+            "on_save_clicked"       : self.on_save_clicked,
+            "on_open_clicked"       : self.on_open_clicked,
             "on_book_ok_clicked"    : self.on_book_ok_clicked,
             "destroy_passed_object" : self.close
             })
@@ -106,9 +108,9 @@ class BookReportSelector:
         self.item_storage = {}
         self.max_key = 0
 
-        av_titles = [(_('Name'),2,150),(_('Type'),1,50)]
-        bk_titles = [(_('Item name'),-1,150),(_('Type'),1,50),
-            (_('Center person'),1,50),('',-1,0)] 
+        av_titles = [(_('Name'),0,150),(_('Type'),1,50)]
+        bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),
+            (_('Center person'),-1,50),('',-1,0)] 
 	
 	self.av_ncols = len(av_titles)
 	self.bk_ncols = len(bk_titles)
@@ -222,6 +224,12 @@ class BookReportSelector:
             BookReportDialog(self.db,self.person,item_list)
         self.top.destroy()
 
+    def on_save_clicked(self,obj):
+        pass
+
+    def on_open_clicked(self,obj):
+        pass
+
 #------------------------------------------------------------------------
 #
 # The final dialog - paper, format, target, etc. 
@@ -263,7 +271,7 @@ class BookReportDialog(Report.ReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,
-                               self.template_name,self.orien)
+            self.template_name,self.orien)
         self.doc.open(self.target_path)
 
     def make_report(self):

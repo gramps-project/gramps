@@ -1,4 +1,10 @@
 2003-06-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py, src/plugins/FtmStyleDescendants.py: 
+	Minor fixes.
+	* src/plugins/book.glade: Add Open and Save buttons.
+	* src/plugins/FtmStyleAncestors.py: Enable book item functionality. 
+
+2003-06-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: De-uglify center_person frame.
 	* src/plugins/BookReport.py: Add a center person column to a book
 	selector dialog.

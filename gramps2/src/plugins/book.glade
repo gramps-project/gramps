@@ -2,10 +2,11 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
+<requires lib="gnome"/>
 
 <widget class="GtkWindow" id="top">
   <property name="width_request">800</property>
-  <property name="height_request">600</property>
+  <property name="height_request">650</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Book</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -102,7 +103,7 @@
 	    <widget class="GtkVButtonBox" id="vbuttonbox">
 	      <property name="visible">True</property>
 	      <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
-	      <property name="spacing">24</property>
+	      <property name="spacing">12</property>
 
 	      <child>
 		<widget class="GtkVButtonBox" id="vbuttonbox2">
@@ -175,7 +176,7 @@
 	      <child>
 		<widget class="GtkVButtonBox" id="vbuttonbox3">
 		  <property name="visible">True</property>
-		  <property name="layout_style">GTK_BUTTONBOX_END</property>
+		  <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
 		  <property name="spacing">0</property>
 
 		  <child>
@@ -221,7 +222,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label3">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">_Setup</property>
+				  <property name="label" translatable="yes">Se_tup</property>
 				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -250,7 +251,7 @@
 	      <child>
 		<widget class="GtkVButtonBox" id="vbuttonbox5">
 		  <property name="visible">True</property>
-		  <property name="layout_style">GTK_BUTTONBOX_START</property>
+		  <property name="layout_style">GTK_BUTTONBOX_END</property>
 		  <property name="spacing">0</property>
 
 		  <child>
@@ -263,6 +264,48 @@
 		      <property name="use_stock">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <signal name="clicked" handler="on_clear_clicked" last_modification_time="Sat, 24 May 2003 05:37:52 GMT"/>
+		    </widget>
+		  </child>
+		</widget>
+	      </child>
+
+	      <child>
+		<widget class="GtkVButtonBox" id="vbuttonbox6">
+		  <property name="visible">True</property>
+		  <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkButton" id="button29">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Save current set of configured selections</property>
+		      <property name="can_default">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label">gtk-save</property>
+		      <property name="use_stock">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <signal name="clicked" handler="on_save_clicked" last_modification_time="Sun, 08 Jun 2003 23:49:42 GMT"/>
+		    </widget>
+		  </child>
+		</widget>
+	      </child>
+
+	      <child>
+		<widget class="GtkVButtonBox" id="vbuttonbox7">
+		  <property name="visible">True</property>
+		  <property name="layout_style">GTK_BUTTONBOX_START</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkButton" id="button30">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Open previously created book</property>
+		      <property name="can_default">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label">gtk-open</property>
+		      <property name="use_stock">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <signal name="clicked" handler="on_open_clicked" last_modification_time="Sun, 08 Jun 2003 23:59:36 GMT"/>
 		    </widget>
 		  </child>
 		</widget>
