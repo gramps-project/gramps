@@ -365,7 +365,7 @@ class BookList:
         Saves the current BookList to the associated file.
         """
         f = open(self.file,"w")
-        f.write("<?xml version=\"1.0\"?>\n")
+        f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<booklist>\n')
 
         for name in self.bookmap.keys():

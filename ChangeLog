@@ -1,3 +1,10 @@
+2003-09-04  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py (BookList.save): Write encoding. 
+	* src/plugins/FilterEditor.py (MyBoolean): Add class. 
+	(FilterEditor.edit_rule): Implement Inclusive option.
+	* src/GenericFilter.py: Add categories and descriptions. Implement
+	Inclusive option. 
+
 2003-09-04  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: backout yesterday's change
 
