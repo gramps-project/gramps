@@ -65,8 +65,8 @@ class CheckIntegrity:
 
     def check_for_broken_family_links(self):
         self.broken_links = []
-        family_list = self.db.getFamilyMap().values()[:]
-        for family in family_list:
+        for key in self.db.getFamilyMap().keys():
+            family = self.db.getFamily(key)
             father = family.getFather()
             mother = family.getMother()
 
@@ -95,20 +95,22 @@ class CheckIntegrity:
                 self.bad_photo.append(photo)
 
     def cleanup_empty_families(self,automatic):
-        family_list = self.db.getFamilyMap().values()[:]
-        for family in family_list:
+        for key in self.db.getFamilyMap().keys():
+            family = self.db.getFamily(key)
             if family.getFather() == None and family.getMother() == None:
                 Utils.modified()
                 self.empty_family.append(family)
                 self.delete_empty_family(family)
 
     def delete_empty_family(self,family):
-        for child in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            child = self.db.getPerson(key)
             child.removeAltFamily(family)
         self.db.deleteFamily(family)
 
     def check_parent_relationships(self):
-        for family in self.db.getFamilyMap().values():
+        for key in self.db.getFamilyMap().keys():
+            family = self.db.getFamily(key)
             father = family.getFather()
             mother = family.getMother()
             type = family.getRelationship()

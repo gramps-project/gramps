@@ -28,6 +28,9 @@ class GrampsXML(GrampsDB):
     def get_base(self):
         return const.xmlFile
 
+    def get_type(self):
+        return 'GrampsXML'
+
     def new(self):
         GrampsDB.new(self)
         
