@@ -5,6 +5,11 @@
 	(on_sourceok_clicked): Properly parse date for sourceref 
 	(closes # 1031156).
 
+	* src/gramps.glade: Add LED button widgets to the sourceref editor.
+	* src/Sources.py (SourceEditor.__init__): Use DateEdit to support
+	LED functionality; (SourceEditor.on_sourceok_clicked): Set date using
+	date object, instead of parsing text.
+
 2004-09-19 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Date.py (is_equal): Add method -- needed to compare dates
 	for being identical, since __cmp__ only compares the sorting value

@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -38,8 +45,9 @@ import gnome
 import const
 import Utils
 import RelLib
+import Date
+import DateEdit
 import DateHandler
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -335,13 +343,23 @@ class SourceEditor:
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
+        self.dd = DateHandler.create_display()
+
+        self.date_entry_field = self.get_widget("sdate")
+
         if self.source_ref:
             self.active_source = self.db.get_source_from_handle(self.source_ref.get_base_handle())
+            self.date_obj = self.source_ref.get_date()
+            self.date_entry_field.set_text(self.dd.display(self.date_obj))
         else:
+            self.date_obj = Date.Date()
             self.active_source = None
 
-        self.dd = DateHandler.create_display()
-        self.dp = DateHandler.create_parser()
+        date_stat = self.get_widget("date_stat")
+        self.date_check = DateEdit.DateEdit(self.date_obj,
+                                                    self.date_entry_field,
+                                                    date_stat,
+                                                    self.sourceDisplay)
 
         self.draw(self.active_source)
         self.set_button()
@@ -411,9 +429,6 @@ class SourceEditor:
         if self.source_ref:
             spage = self.get_widget("spage")
             spage.get_buffer().set_text(self.source_ref.get_page())
-            date = self.source_ref.get_date()
-            if date:
-                self.get_widget("sdate").set_text(self.dd.display(date))
 
             text = self.get_widget("stext")
             text.get_buffer().set_text(self.source_ref.get_text())
@@ -461,7 +476,6 @@ class SourceEditor:
         if self.active_source != self.db.get_source_from_handle(self.source_ref.get_base_handle()):
             self.source_ref.set_base_handle(self.active_source.get_handle())
         
-        date = unicode(self.get_widget("sdate").get_text())
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
 
         buf = self.get_widget("scomment").get_buffer()
@@ -477,7 +491,7 @@ class SourceEditor:
                                     buf.get_end_iter(),gtk.FALSE))
 
         self.source_ref.set_page(page)
-        self.source_ref.get_date().copy(self.dp.parse(date))
+        self.source_ref.set_date(self.date_obj)
         self.source_ref.set_text(text)
         self.source_ref.set_comments(comments)
         self.source_ref.set_confidence_level(conf)
