@@ -310,6 +310,12 @@ class Gramps:
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
         self.gomenuitem = self.gtop.get_widget("go1")
 
+        # FIXME: Horrible and ugly hack that works around a bug in
+        # either gtk or libglade: button-press-event does not propagate
+        # from ToolButton to the child.
+        self.backbtn.get_children()[0].connect("button-press-event",self.back_pressed)
+        self.fwdbtn.get_children()[0].connect("button-press-event",self.fwd_pressed)
+
         self.wins = self.gtop.get_widget("windows1")
         self.wins.set_submenu(gtk.Menu())
         self.winsmenu = self.wins.get_submenu()
@@ -320,9 +326,11 @@ class Gramps:
             "on_abandon_activate" : self.exit_and_undo,
             "on_column_order_activate": self.column_order,
             "on_back_clicked" : self.back_clicked,
-            "on_back_pressed" : self.back_pressed,
+            # FIXME: uncomment when fixed
+            #"on_back_pressed" : self.back_pressed,
             "on_fwd_clicked" : self.fwd_clicked,
-            "on_fwd_pressed" : self.fwd_pressed,
+            # FIXME: uncomment when fixed
+            #"on_fwd_pressed" : self.fwd_pressed,
             "on_editbtn_clicked" : self.edit_button_clicked,
             "on_addbtn_clicked" : self.add_button_clicked,
             "on_removebtn_clicked" : self.remove_button_clicked,
@@ -621,7 +629,7 @@ class Gramps:
                     break
                 person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,person.get_primary_name().get_name(),pid))
+                    (hotkey,person.get_primary_name().get_name(),person.get_gramps_id()))
                 item.connect("activate",self.back_clicked,num)
                 item.show()
                 backhistmenu.append(item)
@@ -649,7 +657,7 @@ class Gramps:
                     break
                 person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,person.get_primary_name().get_name(),pid))
+                    (hotkey,person.get_primary_name().get_name(),person.get_gramps_id()))
                 item.connect("activate",self.fwd_clicked,num)
                 item.show()
                 fwdhistmenu.append(item)
