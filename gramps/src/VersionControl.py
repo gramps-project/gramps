@@ -41,6 +41,24 @@ _date_re = re.compile("date:\s+([^;]+);")
 _sep = '-' * 10
 _end = "=" * 10
 
+class RevisionComment:
+
+    def __init__(self,filename,save_file):
+        self.filename = filename
+        self.save = save_file
+        self.top = libglade.GladeXML(const.gladeFile, "revcom")
+        self.top.signal_autoconnect({
+            "on_savecomment_clicked" : self.on_savecomment_clicked,
+            })
+        self.text = self.top.get_widget("text")
+        self.win = self.top.get_widget("revcom")
+        self.win.show()
+
+    def on_savecomment_clicked(self,obj):
+        comment = self.text.get_text()
+        utils.destroy_passed_object(self.win)
+        self.save(self.filename,comment)
+        
 
 class RevisionSelect:
 
