@@ -58,15 +58,20 @@ class AncestorsReport (Report.Report):
         table.set_width (100)
         doc.add_table_style ("ChildNoSpouse", table)
 
-        table = TextDoc.TableStyle ()
-        table.set_column_widths ([15, 70, 15])
-        table.set_width (100)
-        doc.add_table_style ("PersonWithSpouse", table)
+        for nspouse in range (1, 3):
+            table = TextDoc.TableStyle ()
+            table.set_width (100)
+            widths = [15, 100 - 15 * (nspouse + 1)]
+            widths.extend ([15] * nspouse)
+            table.set_column_widths (widths)
+            doc.add_table_style ("PersonWithSpouse%d" % nspouse, table)
 
-        table = TextDoc.TableStyle ()
-        table.set_column_widths ([10, 15, 60, 15])
-        table.set_width (100)
-        doc.add_table_style ("ChildWithSpouse", table)
+            table = TextDoc.TableStyle ()
+            table.set_width (100)
+            widths = [10, 15, 90 - 15 * (nspouse + 1)]
+            widths.extend ([15] * nspouse)
+            table.set_column_widths (widths)
+            doc.add_table_style ("ChildWithSpouse%d"% nspouse, table)
 
         cell = TextDoc.TableCellStyle ()
         cell.set_padding (1) # each side makes 2cm, the size of the photo
@@ -218,7 +223,7 @@ class AncestorsReport (Report.Report):
                 bits += self.parents_of (person)
             else:
                 bits += '.'
-            bits += self.married_whom (person, suppress_children)
+            bits += self.married_whom (person, from_family, suppress_children)
             bits += self.inline_notes (person)
 
             longnotes = self.long_notes (person, suppress_children,
@@ -254,7 +259,7 @@ class AncestorsReport (Report.Report):
                 else:
                     style = "Person"
                 if len (spouse):
-                    style += "WithSpouse"
+                    style += "WithSpouse%d" % len (spouse)
                 else:
                     style += "NoSpouse"
 
@@ -287,9 +292,9 @@ class AncestorsReport (Report.Report):
                 ret.append ((self.doc.end_paragraph, []))
                 ret.append ((self.doc.end_cell, []))
 
-                if len (spouse):
+                for s in spouse:
                     ret.append ((self.doc.start_cell, ["Photo"]))
-                    ret.extend (spouse)
+                    ret.append (s)
                     ret.append ((self.doc.end_cell, []))
 
                 ret.append ((self.doc.end_row, []))
@@ -453,7 +458,7 @@ class AncestorsReport (Report.Report):
 
         return name
 
-    def married_whom (self, person, suppress_children = 0):
+    def married_whom (self, person, from_family, listing_children = 0):
         pronoun = '  ' + self.Pronoun (person)
         first_marriage = 1
         ret = ''
@@ -466,7 +471,8 @@ class AncestorsReport (Report.Report):
                 children = ''
                 childlist = family.getChildList ()
                 child_count = len (childlist)
-                if suppress_children and child_count > 0:
+                if ((listing_children or family != from_family) and
+                    child_count > 0):
                     children = ', and they had '
                     if child_count == 1:
                         children += 'a child named '
@@ -490,8 +496,9 @@ class AncestorsReport (Report.Report):
                     if marriage:
                         ret += self.event_info (marriage)
                     ret += children + '.'
-                elif (suppress_children or
-                      spouse == mother):
+                elif (listing_children or
+                      spouse == mother or
+                      family != from_family):
                     ret += pronoun + ' married '
                     ret += self.person_name (spouse)
                     if marriage:
