@@ -1,3 +1,12 @@
+2004-08-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: cleanup dialogs
+	* src/EditPerson.py: update screen properly
+	* src/PeopleModel.py: handle stored maps correctly
+	* src/PeopleView.py: handle stored maps correctly
+	* src/gramps_main.py: eliminate unnecessary rebuilds, display
+	loading dialog
+	* src/gramp.glade: loading dialog
+	
 2004-08-25  Jim Smart  <jim@jimsmart.org>
 	* src/RelLib.py: guess_gender fix
 

@@ -115,8 +115,12 @@ class PeopleView:
             index += 1
 
     def build_tree(self):
+        import time
+        t = time.time()
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        self.sort_model = self.person_model.filter_new()
+        print "new",time.time() - t
+        #self.sort_model = self.person_model.filter_new()
+        self.sort_model = self.person_model
         self.person_tree.set_model(self.sort_model)
 
     def blist(self, store, path, iter, id_list):
@@ -145,9 +149,8 @@ class PeopleView:
         self.build_columns()
         maps = db.get_people_view_maps()
         self.person_model = PeopleModel.PeopleModel(db)
-        if not maps[0]:
-            self.build_tree()
-        self.sort_model = self.person_model.filter_new()
+        #self.sort_model = self.person_model.filter_new()
+        self.sort_model = self.person_model
         self.person_tree.set_model(self.sort_model)
 
     def remove_from_person_list(self,person):
@@ -174,6 +177,7 @@ class PeopleView:
             self.parent.mhistory.remove(del_id)
 
     def apply_filter_clicked(self):
+        print "Applying Filter"
         mi = self.parent.filter_list.get_menu().get_active()
         self.DataFilter = mi.get_data("filter")
         if self.DataFilter.need_param:
@@ -181,6 +185,7 @@ class PeopleView:
             self.DataFilter.set_parameter(qual)
         self.apply_filter()
         self.goto_active_person()
+        print "Done"
 
     def add_to_person_list(self,person,change=0):
         self.apply_filter_clicked()
@@ -207,7 +212,7 @@ class PeopleView:
         for person_handle in keys:
             self.person_model.set_visible(person_handle,1)
 
-        self.sort_model.refilter()
+        #self.sort_model.refilter()
         self.parent.modify_statusbar()
         
     def on_plist_button_press(self,obj,event):
@@ -255,7 +260,5 @@ class PeopleView:
         menu.popup(None,None,None,event.button,event.time)
         
     def redisplay_person_list(self,person):
-        self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        self.sort_model = self.person_model.filter_new()
-        self.person_tree.set_model(self.sort_model)
+        self.build_tree()
         
