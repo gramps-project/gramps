@@ -935,7 +935,7 @@ def runTool(database,active_person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return _("Searches the entire database, looking for individual entries that may represent the same person")
+    return _("Searches the entire database, looking for individual entries that may represent the same person.")
 
 def get_name():
     return _("Database Processing/Merge people")
