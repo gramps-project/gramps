@@ -686,12 +686,14 @@ class FamilyView:
             self.family = self.parent.db.new_family()
             self.person.add_family_id(self.family.get_id())
             if self.person.get_gender() == RelLib.Person.male:
-                self.family.set_father_id(self.person)
+                self.family.set_father_id(self.person.get_id())
             else:
-                self.family.set_mother_id(self.person)
+                self.family.set_mother_id(self.person.get_id())
 
-        self.family.add_child_id(epo.person)
+        self.family.add_child_id(epo.person.get_id())
         epo.person.add_parent_family_id(self.family.get_id(),"Birth","Birth")
+        self.parent.db.commit_person(epo.person)
+        self.parent.db.commit_family(self.family)
         self.display_marriage(self.family)
 
     def select_child_clicked(self,obj):
@@ -715,7 +717,7 @@ class FamilyView:
         id = self.child_model.get_value(iter,2)
         child = self.parent.db.get_person(id)
 
-        self.family.remove_child_id(child)
+        self.family.remove_child_id(child.get_id())
         child.remove_parent_family_id(self.family)
         
         if len(self.family.get_child_id_list()) == 0:
@@ -995,8 +997,15 @@ class FamilyView:
                 fiter = self.child_model.get_path(iter)
             val = self.parent.db.get_person_display(child.get_id())
             i += 1
+            
+            event = self.parent.db.find_event_from_id(val[3])
+            if event:
+                dval = event.get_date()
+            else:
+                dval = u''
+            
             self.child_model.set(iter,0,i,1,val[0],2,val[1],3,val[2],
-                                 4,val[3],5,status,6,val[6])
+                                 4,dval,5,status,6,val[6])
 
     def build_parents_menu(self,family,event):
         """Builds the menu that allows editing operations on the child list"""

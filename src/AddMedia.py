@@ -135,7 +135,7 @@ class AddMediaObject:
         if self.update:
             self.update()
         self.object = mobj
-        self.db.commit_media_object(self.object)
+        self.db.commit_media_object(mobj)
         
     def on_name_changed(self,obj):
         """
