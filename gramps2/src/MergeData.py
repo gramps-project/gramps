@@ -231,9 +231,9 @@ class MergePeople:
                 one.add_source_reference(xsrc)
 
     def on_merge_clicked(self,obj):
-        list = self.p1.get_alternate_names()[:]
+        lst = self.p1.get_alternate_names()[:]
         for xdata in self.p2.get_alternate_names():
-            for data in list:
+            for data in lst:
                 if data.are_equal(xdata):
                     self.copy_note(xdata,data)
                     self.copy_sources(xdata,data)
@@ -241,9 +241,9 @@ class MergePeople:
             else:
                 self.p1.add_alternate_name(xdata)
 
-        list = self.p1.get_attribute_list()[:]
+        lst = self.p1.get_attribute_list()[:]
         for xdata in self.p2.get_attribute_list():
-            for data in list:
+            for data in lst:
                 if data.get_type() == xdata.get_type() and \
                    data.getValue() == xdata.get_value():
                     self.copy_note(xdata,data)
@@ -252,9 +252,9 @@ class MergePeople:
             else:
                 self.p1.add_attribute(xdata)
 
-        list = self.p1.get_event_list()[:]
+        lst = self.p1.get_event_list()[:]
         for xdata in self.p2.get_event_list():
-            for data in list:
+            for data in lst:
                 if data.are_equal(xdata):
                     self.copy_note(xdata,data)
                     self.copy_sources(xdata,data)
@@ -262,9 +262,9 @@ class MergePeople:
             else:
                 self.p1.add_event(xdata)
 
-        list = self.p1.get_url_list()[:]
+        lst = self.p1.get_url_list()[:]
         for xdata in self.p2.get_url_list():
-            for data in list:
+            for data in lst:
                 if data.are_equal(xdata):
                     break
             else:
@@ -785,14 +785,14 @@ def is_initial(name):
 #
 #
 #---------------------------------------------------------------------
-def ancestors_of(p1,list):
+def ancestors_of(p1,lst):
     if p1 == None:
         return
-    list.append(p1)
+    lst.append(p1)
     f1 = p1.get_main_parents_family_handle()
     if f1 != None:
-        ancestors_of(f1.get_father_handle(),list)
-        ancestors_of(f1.get_mother_handle(),list)
+        ancestors_of(f1.get_father_handle(),lst)
+        ancestors_of(f1.get_mother_handle(),lst)
 
 #---------------------------------------------------------------------
 #
@@ -875,14 +875,14 @@ class MergePlaces:
                 self.p1.set_note("%s\n\n%s" % (self.p1.get_note(),note))
 
         if t2active:
-            list = [self.p1.get_main_location()] + self.p1.get_alternate_locations()
+            lst = [self.p1.get_main_location()] + self.p1.get_alternate_locations()
             self.p1.set_main_location(self.p2.get_main_location())
-            for l in list:
+            for l in lst:
                 if not l.is_empty():
                     self.p1.add_alternate_locations(l)
         else:
-            list = [self.p2.get_main_location()] + self.p2.get_alternate_locations()
-            for l in list:
+            lst = [self.p2.get_main_location()] + self.p2.get_alternate_locations()
+            for l in lst:
                 if not l.is_empty():
                     self.p1.add_alternate_locations(l)
 

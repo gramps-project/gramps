@@ -99,7 +99,7 @@ class RelCalc:
                 continue
             val = self.db.get_person_from_handle(key).get_display_info()
             event = self.db.find_event_from_handle(val[3])
-            event_date = None
+            event_date = ""
             if event:
                 event_date = event.get_date ()
             self.clist.add([val[0],val[1],event_date,val[5],val[6]],p.get_handle())

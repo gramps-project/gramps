@@ -273,7 +273,7 @@ class RelationshipCalculator:
         try:
             self.apply_filter(orig_person,0,firstList,firstMap)
             self.apply_filter(other_person,0,secondList,secondMap)
-        except RuntimeError,msg:
+        except RuntimeError:
             return (firstRel,secondRel,_("Relationship loop detected"))
 
         for person_handle in firstList:

@@ -392,9 +392,9 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
 
         if not self.init:
             self.init = 1
-            filter = MatchesFilter(self.list)
+            filt = MatchesFilter(self.list)
             for person_handle in db.get_person_handles(sort_handles=False):
-                if filter.apply (db, person_handle):
+                if filt.apply (db, person_handle):
                     self.init_list (person_handle, first)
         return self.map.has_key(p_id)
 
@@ -523,9 +523,9 @@ class IsChildOfFilterMatch(Rule):
 
         if not self.init:
             self.init = 1
-            filter = MatchesFilter(self.list)
+            filt = MatchesFilter(self.list)
             for person_handle in db.get_person_handles(sort_handles=False):
-                if filter.apply (db, person_handle):
+                if filt.apply (db, person_handle):
                     self.init_list (person_handle)
         return self.map.has_key(p_id)
 
@@ -681,9 +681,9 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
             
         if not self.init:
             self.init = 1
-            filter = MatchesFilter(self.list[0])
+            filt = MatchesFilter(self.list[0])
             for person_handle in db.get_person_handles(sort_handles=False):
-                if filter.apply (db, person_handle):
+                if filt.apply (db, person_handle):
                     self.init_ancestor_list (person_handle,first)
         return self.map.has_key(p_id)
 
@@ -826,9 +826,9 @@ class IsParentOfFilterMatch(Rule):
 
         if not self.init:
             self.init = 1
-            filter = MatchesFilter(self.list)
+            filt = MatchesFilter(self.list)
             for person_handle in db.get_person_handles(sort_handles=False):
-                if filter.apply (db, person_handle):
+                if filt.apply (db, person_handle):
                     self.init_list (person_handle)
         return self.map.has_key(p_id)
 
@@ -910,11 +910,11 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         HasCommonAncestorWith.__init__(self,list)
 
     def init_ancestor_cache(self,db):
-        filter = MatchesFilter(self.list)
+        filt = MatchesFilter(self.list)
         def init(self,pid): self.ancestor_cache[pid] = 1
         for p_id in db.get_person_handles(sort_handles=False):
             if (not self.ancestor_cache.has_key (p_id)
-                and filter.apply (db, p_id)):
+                and filt.apply (db, p_id)):
                 for_each_ancestor([p_id],init,self)
 
 #-------------------------------------------------------------------------
@@ -1327,12 +1327,12 @@ class MatchesFilter(Rule):
         return 'Matches the filter named'
 
     def apply(self,db,p_id):
-        for filter in SystemFilters.get_filters():
-            if filter.get_name() == self.list[0]:
-                return filter.check(p_id)
-        for filter in CustomFilters.get_filters():
-            if filter.get_name() == self.list[0]:
-                return filter.check(db,p_id)
+        for filt in SystemFilters.get_filters():
+            if filt.get_name() == self.list[0]:
+                return filt.check(p_id)
+        for filt in CustomFilters.get_filters():
+            if filt.get_name() == self.list[0]:
+                return filt.check(db,p_id)
         return 0
 
 #-------------------------------------------------------------------------
@@ -1356,7 +1356,7 @@ class IsSpouseOfFilterMatch(Rule):
         return _('Family filters')
 
     def apply(self,db,p_id):
-        filter = MatchesFilter (self.list)
+        filt = MatchesFilter (self.list)
         p = db.get_person_from_handle(p_id)
         for family_handle in p.get_family_handle_list ():
             family = db.get_family_from_handle(family_handle)
@@ -1365,7 +1365,7 @@ class IsSpouseOfFilterMatch(Rule):
                     continue
                 if spouse_id == p_id:
                     continue
-                if filter.apply (db, spouse_id):
+                if filt.apply (db, spouse_id):
                     return 1
         return 0
 
@@ -1553,8 +1553,8 @@ class GenericFilterList:
     def get_filters(self):
         return self.filter_list
     
-    def add(self,filter):
-        self.filter_list.append(filter)
+    def add(self,filt):
+        self.filter_list.append(filt)
         
     def load(self):
        try:
@@ -1704,30 +1704,30 @@ def build_filter_menu(local_filters = [], default=""):
 
     active = 0
     cnt = 0
-    for filter in local_filters:
-        menuitem = gtk.MenuItem(filter.get_name())
+    for filt in local_filters:
+        menuitem = gtk.MenuItem(filt.get_name())
         menuitem.show()
         menu.append(menuitem)
-        menuitem.set_data("filter", filter)
-        if default != "" and default == filter.get_name():
+        menuitem.set_data("filter", filt)
+        if default != "" and default == filt.get_name():
             active = cnt
         cnt += 1
         
-    for filter in SystemFilters.get_filters():
-        menuitem = gtk.MenuItem(_(filter.get_name()))
+    for filt in SystemFilters.get_filters():
+        menuitem = gtk.MenuItem(_(filt.get_name()))
         menuitem.show()
         menu.append(menuitem)
-        menuitem.set_data("filter", filter)
-        if default != "" and default == filter.get_name():
+        menuitem.set_data("filter", filt)
+        if default != "" and default == filt.get_name():
             active = cnt
         cnt += 1
 
-    for filter in CustomFilters.get_filters():
-        menuitem = gtk.MenuItem(_(filter.get_name()))
+    for filt in CustomFilters.get_filters():
+        menuitem = gtk.MenuItem(_(filt.get_name()))
         menuitem.show()
         menu.append(menuitem)
-        menuitem.set_data("filter", filter)
-        if default != "" and default == filter.get_name():
+        menuitem.set_data("filter", filt)
+        if default != "" and default == filt.get_name():
             active = cnt
         cnt += 1
 

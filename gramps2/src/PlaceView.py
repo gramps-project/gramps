@@ -237,8 +237,8 @@ class PlaceView:
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
-        id = self.parent.db.get_place_from_handle(store.get_value(iter,_HANDLE_COL))
-        list.append(id)
+        handle = self.parent.db.get_place_from_handle(store.get_value(iter,_HANDLE_COL))
+        list.append(handle)
 
     def merge(self):
         mlist = []

@@ -1719,9 +1719,9 @@ class EditPerson:
         elif page == 9 and self.lds_not_loaded:
             self.lds_not_loaded = 0
             self.draw_lds()
-        buffer = self.notes_buffer
-        text = unicode(buffer.get_text(buffer.get_start_iter(),
-                                       buffer.get_end_iter(),gtk.FALSE))
+        note_buf = self.notes_buffer
+        text = unicode(note_buf.get_text(note_buf.get_start_iter(),
+                                       note_buf.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:

@@ -181,7 +181,6 @@ class PeopleView:
         self.goto_active_person()
 
     def add_to_person_list(self,person,change=0):
-        path = self.person_model.add_person(person)
         self.apply_filter_clicked()
 
     def goto_active_person(self,first=0):
