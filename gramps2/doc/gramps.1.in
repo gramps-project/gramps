@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "December 2003" "@VERSION@"
+.TH gramps 1 "@VERSION@" "January 2004" "@VERSION@"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -142,6 +142,11 @@ memory usage.
 .LP 
 Direct printing is not currently supported. This is planned to be fixed after
 the stable 1.0 release by using gnome-print architechture. 
+.LP 
+PS and PDF reports output garbage in place of unicode characters.
+This should also be solved when we move to gnome-print. In the meantime, a
+decent workaround is to produce reports in OpenOffice.org format and then 
+export into PDF from withing OpenOffice.org application.
 
 .SH FILES
 .LP 

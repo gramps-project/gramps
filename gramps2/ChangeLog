@@ -1,3 +1,7 @@
+2004-01-20  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps.1.in, doc/gramps.1: Update.
+	* doc/gramps-manual/C/gramps-manual.xml: Update.
+
 2004-01-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FilterEditor.py: handle unicode characters
 	* src/PeopleStore.py: handle corrupt iter
