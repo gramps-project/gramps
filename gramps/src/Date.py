@@ -224,7 +224,8 @@ class Date:
                 self.start.set(text)
                 self.range = 0
         except Date.Error:
-            self.range = -1
+            if text != "":
+                self.range = -1
             self.text = text
 
     def set_range(self,val):

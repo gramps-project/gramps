@@ -689,7 +689,7 @@ class GrampsPreferences:
         menu.set_active(lastnamegen)
         lastnamegen_obj.set_menu(menu)
 
-        menu = gtk.GtkMenu()
+        self.osubmenu = gtk.GtkMenu()
         choice = 0
         index = 0
         for name in Plugins.get_text_doc_list():
@@ -699,12 +699,12 @@ class GrampsPreferences:
             item.set_data(DATA,name)
             item.connect("activate", self.on_format_toggled)
             item.show()
-            menu.append(item)
+            self.osubmenu.append(item)
             index = index + 1
-        menu.set_active(choice)
-        self.ofmt.set_menu(menu)
+        self.osubmenu.set_active(choice)
+        self.ofmt.set_menu(self.osubmenu)
 
-        menu = gtk.GtkMenu()
+        self.gsubmenu = gtk.GtkMenu()
         choice = 0
         index = 0
         for name in Plugins.get_draw_doc_list():
@@ -714,10 +714,10 @@ class GrampsPreferences:
             item.set_data(DATA,name)
             item.connect("activate", self.on_format_toggled)
             item.show()
-            menu.append(item)
+            self.gsubmenu.append(item)
             index = index + 1
-        menu.set_active(choice)
-        self.gfmt.set_menu(menu)
+        self.gsubmenu.set_active(choice)
+        self.gfmt.set_menu(self.gsubmenu)
 
         date_option = self.top.get_widget("date_format")
         date_menu = gtk.GtkMenu()
@@ -928,9 +928,15 @@ class GrampsPreferences:
         index_visible = self.top.get_widget("show_child_id").get_active()
         hide_altnames = self.top.get_widget("display_altnames").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
-        output_obj = self.ofmt.get_menu().get_active()
-        goutput_obj = self.gfmt.get_menu().get_active()
-        
+
+        if self.osubmenu == None:
+            print "Warning! osubmenu is None"
+        if self.gsubmenu == None:
+            print "Warning! gsubmenu is None"
+
+        output_obj = self.osubmenu.get_active()
+        goutput_obj = self.gsubmenu.get_active()
+
         if self.top.get_widget("stat1").get_active():
             status_bar = 0
         elif self.top.get_widget("stat2").get_active():
