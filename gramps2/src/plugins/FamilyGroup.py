@@ -166,7 +166,7 @@ class FamilyGroup(Report.Report):
         else:
             the_id = _("Wife")
         
-        self.doc.start_table(id,'FGR-ParentTable')
+        self.doc.start_table(the_id,'FGR-ParentTable')
         self.doc.start_row()
         self.doc.start_cell('FGR-ParentHead',3)
         self.doc.start_paragraph('FGR-ParentName')
