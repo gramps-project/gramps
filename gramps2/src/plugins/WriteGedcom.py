@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -334,7 +334,7 @@ def writeData(database,person):
 class GedcomWriter:
     """Writes a GEDCOM file from the passed database"""
     
-    def __init__(self,db,person):
+    def __init__(self,db,person,cl=0,name=""):
         self.db = db
         self.person = person
         self.restrict = 1
@@ -350,66 +350,71 @@ class GedcomWriter:
         self.pidmap = {}
         self.sidval = 0
         self.sidmap = {}
+	self.cl = cl
+        self.name = name
 
-        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
+        if self.cl:
+            self.cl_setup()
+        else:
+            glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
+            
+            self.topDialog = gtk.glade.XML(glade_file,"gedcomExport")
+            self.topDialog.signal_autoconnect({
+                "destroy_passed_object" : Utils.destroy_passed_object,
+                "gnu_free" : self.gnu_free,
+                "standard_copyright" : self.standard_copyright,
+                "no_copyright" : self.no_copyright,
+                "on_ok_clicked" : self.on_ok_clicked
+                })
+
+            Utils.set_titles(self.topDialog.get_widget('gedcomExport'),
+                             self.topDialog.get_widget('title'),
+                             _('GEDCOM export'))
         
-        self.topDialog = gtk.glade.XML(glade_file,"gedcomExport")
-        self.topDialog.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "gnu_free" : self.gnu_free,
-            "standard_copyright" : self.standard_copyright,
-            "no_copyright" : self.no_copyright,
-            "on_ok_clicked" : self.on_ok_clicked
-            })
+            filter_obj = self.topDialog.get_widget("filter")
+            self.copy = 0
 
-        Utils.set_titles(self.topDialog.get_widget('gedcomExport'),
-                         self.topDialog.get_widget('title'),
-                         _('GEDCOM export'))
+            all = GenericFilter.GenericFilter()
+            all.set_name(_("Entire Database"))
+            all.add_rule(GenericFilter.Everyone([]))
+
+            des = GenericFilter.GenericFilter()
+            des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
+            des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+
+            ans = GenericFilter.GenericFilter()
+            ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
+            ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+
+            com = GenericFilter.GenericFilter()
+            com.set_name(_("People with common ancestor with %s") %
+                         person.getPrimaryName().getName())
+            com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+
+            self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+            filter_obj.set_menu(self.filter_menu)
+
+            gedmap = GedcomInfo.GedcomInfoDB()
+
+            target_obj = self.topDialog.get_widget("target")
+            myMenu = gtk.Menu()
+            for name in gedmap.get_name_list():
+                menuitem = gtk.MenuItem(name)
+                myMenu.append(menuitem)
+                data = gedmap.get_description(name)
+                menuitem.set_data("data",data)
+                menuitem.show()
+
+            target_obj.set_menu(myMenu)
+            self.target_menu = myMenu
+
+            pathname = "%s.ged" % os.path.dirname(db.getSavePath())
         
-        filter_obj = self.topDialog.get_widget("filter")
-        self.copy = 0
-
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
-        des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
-
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
-        ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
-
-        com = GenericFilter.GenericFilter()
-        com.set_name(_("People with common ancestor with %s") %
-                     person.getPrimaryName().getName())
-        com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
-
-        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
-        filter_obj.set_menu(self.filter_menu)
-
-        gedmap = GedcomInfo.GedcomInfoDB()
-
-        target_obj = self.topDialog.get_widget("target")
-        myMenu = gtk.Menu()
-        for name in gedmap.get_name_list():
-            menuitem = gtk.MenuItem(name)
-            myMenu.append(menuitem)
-            data = gedmap.get_description(name)
-            menuitem.set_data("data",data)
-            menuitem.show()
-
-        target_obj.set_menu(myMenu)
-        self.target_menu = myMenu
-
-        pathname = "%s.ged" % os.path.dirname(db.getSavePath())
+            filetgt = self.topDialog.get_widget('fileentry1')
+            filetgt.set_filename(pathname)
         
-        filetgt = self.topDialog.get_widget('fileentry1')
-        filetgt.set_filename(pathname)
-        
-        self.topDialog.get_widget("gedcomExport").show()
-        
+            self.topDialog.get_widget("gedcomExport").show()
+
     def gnu_free(self,obj):
         self.copy = 1
         
@@ -487,6 +492,41 @@ class GedcomWriter:
         self.export_data(name)
         closebtn.set_sensitive(1)
 
+    def cl_setup(self):
+        self.restrict = 0
+        self.private = 0
+        self.copy = 0
+
+        for p in self.db.getPersonKeys():
+            self.plist[p] = 1
+
+        gedmap = GedcomInfo.GedcomInfoDB()
+        self.target_ged = gedmap.standard
+
+        self.dest = self.target_ged.get_dest()
+        self.adopt = self.target_ged.get_adopt()
+        self.conc = self.target_ged.get_conc()
+        self.altname = self.target_ged.get_alt_name()
+        self.cal = self.target_ged.get_alt_calendar()
+        self.obje = self.target_ged.get_obje()
+        self.resi = self.target_ged.get_resi()
+        self.prefix = self.target_ged.get_prefix()
+        self.source_refs = self.target_ged.get_source_refs()
+        
+        self.cnvtxt = keep_utf8
+        
+        self.flist = {}
+        self.slist = {}
+
+        for key in self.plist.keys():
+            p = self.db.getPerson(key)
+            add_persons_sources(p,self.slist,self.private)
+            for family in p.getFamilyList():
+                add_familys_sources(family,self.slist,self.private)
+                self.flist[family.getId()] = 1
+
+        self.export_data(self.name)
+
     def export_data(self,filename):
         try:
             self.g = open(filename,"w")
@@ -558,17 +598,19 @@ class GedcomWriter:
         for key in pkeys:
             self.write_person(self.db.getPerson(key))
             index = index + 1
-            if index%100 == 0:
+            if index%100 == 0 and not self.cl:
                 self.pbar.set_fraction(index/nump)
                 while(gtk.events_pending()):
                     gtk.mainiteration()
-        self.pbar.set_fraction(1.0)
+        if not self.cl:
+            self.pbar.set_fraction(1.0)
 
         self.write_families()
         if self.source_refs:
             self.write_sources()
         else:
-            self.sbar.set_fraction(1.0)
+            if not self.cl:
+                self.sbar.set_fraction(1.0)
 
         self.g.write("0 TRLR\n")
         self.g.close()
@@ -666,11 +708,12 @@ class GedcomWriter:
                             break
                 
             index = index + 1
-            if index % 100 == 0:
+            if index % 100 == 0 and not self.cl:
                 self.fbar.set_fraction(index/nump)
                 while(gtk.events_pending()):
                     gtk.mainiteration()
-        self.fbar.set_fraction(1.0)
+        if not self.cl:
+            self.fbar.set_fraction(1.0)
 
     def write_sources(self):
         nump = float(len(self.slist))
@@ -691,11 +734,12 @@ class GedcomWriter:
             if source.getNote():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.getNote()))
             index = index + 1
-            if index % 100 == 0:
+            if index % 100 == 0 and not self.cl:
                 self.sbar.set_fraction(index/nump)
                 while(gtk.events_pending()):
                     gtk.mainiteration()
-        self.sbar.set_fraction(1.0)
+        if not self.cl:
+            self.sbar.set_fraction(1.0)
 
     def write_person(self,person):
         self.g.write("0 @%s@ INDI\n" % self.pid(person.getId()))
