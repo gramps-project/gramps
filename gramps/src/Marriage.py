@@ -211,7 +211,7 @@ class Marriage:
         if ord == None:
             ord = LdsOrd()
             self.family.setLdsSeal(ord)
-        Sources.SourceSelector(ord.getSourceRefList(),self,src_changed)
+        Sources.SourceSelector(ord.getSourceRefList(),self)
 
     def lds_note_clicked(self,obj):
         import NoteEdit
@@ -544,5 +544,3 @@ def disp_event(event):
     return [const.display_fevent(event.getName()), event.getQuoteDate(),
             event.getPlaceName(), Utils.get_detail_flags(event)]
 
-def src_changed(parent):
-    parent.lists_changed = 1

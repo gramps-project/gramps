@@ -84,8 +84,7 @@ class NameEditor:
         self.window.editable_enters(self.title_field)
         self.window.editable_enters(self.type_field.entry)
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
-                                           self.slist,src_changed)
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,self.slist)
         
         if name != None:
             self.given_field.set_text(name.getFirstName())
@@ -162,6 +161,4 @@ class NameEditor:
             self.name.setPrivacy(priv)
             self.parent.lists_changed = 1
         
-def src_changed(parent):
-    parent.lists_changed = 1
     

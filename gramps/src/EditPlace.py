@@ -298,7 +298,7 @@ class EditPlace:
         LocEdit.LocationEditor(self,None)
 
     def on_source_clicked(self,obj):
-        Sources.SourceSelector(self.srcreflist,self,src_changed)
+        Sources.SourceSelector(self.srcreflist,self)
 
     def on_web_list_select_row(self,obj,row,b,c):
         url = obj.get_row_data(row)
@@ -379,14 +379,6 @@ def disp_url(url):
 #-------------------------------------------------------------------------
 def disp_loc(loc):
     return [loc.get_city(),loc.get_county(),loc.get_state(),loc.get_country()]
-
-#-------------------------------------------------------------------------
-#
-# src_changed
-#
-#-------------------------------------------------------------------------
-def src_changed(parent):
-    parent.lists_changed = 1
 
 #-------------------------------------------------------------------------
 #

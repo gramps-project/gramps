@@ -96,8 +96,7 @@ class EventEditor(Sources.SourceTab):
             self.event_menu.set_sensitive(0)
             self.date_field.grab_focus()
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
-                                           self.slist,src_changed)
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,self.slist)
 
         # Typing CR selects OK button
         self.window.editable_enters(self.name_field);
@@ -224,6 +223,4 @@ class EventEditor(Sources.SourceTab):
             self.event.setPrivacy(priv)
             self.parent.lists_changed = 1
 
-def src_changed(parent):
-    parent.lists_changed = 1
             

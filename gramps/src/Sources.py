@@ -110,11 +110,10 @@ class SourceSelector:
 #
 #-------------------------------------------------------------------------
 class SourceTab:
-    def __init__(self,srclist,parent,top,clist,update=None):
+    def __init__(self,srclist,parent,top,clist):
         self.db = parent.db
         self.parent = parent
         self.list = srclist
-        self.update=update
         self.top = top
         self.slist = clist
         self.top.signal_autoconnect({
