@@ -1,4 +1,29 @@
-Version 0.6.2pre
+Version 0.7.0
+* LD_PRELOAD set to handle Mandrake 8.1 shared library problems.
+* Drag and drop copying of events, address, attributes, and URLs.
+* Improved GEDCOM. GRAMPS now understands many more of the "quirks"
+  of the GEDCOM produced by other programs. In addition, GRAMPS can
+  now tailor its GEDCOM output several other programs. An XML data
+  file is used to describe to GRAMPS the types of quirks each 
+  format uses.
+* Support for French Republican, Hebrew, and Julian calendars.
+* LDS ordinance support.
+* Cleaned up report dialog code.
+* Bug fixes in GEDCOM reading and relationship calculator.
+* Toolbar may display Icons and Text, Text only, or Icons only. This
+  helps in some of the translations, where the long text forced the
+  toolbar to be unusually large.
+* Dragging and dropping media objects can optionally display property
+  dialogs.
+* All toolbar icons have tooltips.
+* Keyboard shortcuts for bookmark saving.
+* Find dialog supports autocompletion, and has the more standard shortcut
+  of C-F.
+* Change in XML database format to provides better support for dates.
+* Added entries to the Help menu to jump to the GRAMPS home page and the
+  GRAMPS mailing list page.
+
+Version 0.6.2
 * Fixed SuSE 7.3/lib-imlib problem.
 * Improved GEDCOM import/export. Gramps now passes the GEDCHK program
   and can now properly handle the quirks in names, notes, and parent/child

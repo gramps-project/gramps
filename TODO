@@ -1,9 +1,6 @@
 * Allow for multiple notes. A tabbed interface would be really useful,
   since there are no titles for notes. Not all objects would necessarily
   need multiple notes. Determine which ones should and shouldn't.
-* Drag and drop inside a gallery to allow for reordering of media objects.
-  This would allow for the elimination of the rather lame "Make Primary" 
-  option.
 * Drag and drop should display the icon we are dragging instead of just
   the default icon.  Nautilus does this very effectively, and GTK has
   support for this.
@@ -25,7 +22,6 @@
   to do an incremental update. Having the GEDCOM ID and the gramps ID
   match up would be a good indication that these are the same people.
   For example, @F001@ would become F001.
-* Completely revamp the merge utility.
 * Finish the generic load of revision control interfaces to allow a
   revision control plugin system. Most of the work is already done.
 * Extend the gramps package exporting to export to a ISO-9660 CD-ROM
