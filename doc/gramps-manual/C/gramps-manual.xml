@@ -2724,17 +2724,20 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> Type the name for your 
-	new filter into the <guilabel>Name</guilabel> field. Enter any 
-	comment that would help you identify this filter in the future
-	into the <guilabel>Comment</guilabel> field. Add as many rules as you
+	<para> Type the name for your new filter into the 
+	<guilabel>Name</guilabel> field. Enter any comment that would help you
+	identify this filter in the future into the <guilabel>Comment</guilabel>
+	field. Add as many rules to the <guilabel>Rule list</guilabel> as you
 	would like to your filter using <guibutton>Add...</guibutton> button. 
-	Check <guilabel>Invert box</guilabel> to negate the filter rule 
-	(e.g. inverting "has a common ancestor with I1" rule will match 
-	everyone who does not have a common ancestor with that person). 
-	If the filter has more than one rule, choose whether all of them 
-	must apply, only one (either) rule must apply, or exactly one (either) 
-	rule must apply, in order for the filter to generate a match. </para>
+	Check <guilabel>Return values that do not match the filter rules
+	(invert)</guilabel> to negate the filter rule (e.g. inverting "has a
+	common ancestor with I1" rule will match everyone who does not have a
+	common ancestor with that person). If the filter has more than one rule, 
+	select one of the <guilabel>Rule operations</guilabel>. This allows you
+	to choose whether all rules must apply, only one (either) rule must 
+	apply, or exactly one (either) rule must apply, in order for the filter 
+	to generate a match. If your filter has only one rule, this selection 
+	has no effect. </para>
 	
 	<para> Note that the filters you already designed may be used as a rule
 	for another filter. This gives you nearly infinite flexibility in
