@@ -158,6 +158,8 @@ class ImageSelect:
                     name = RelImage.import_media_object(filename,self.path,
                                                         mobj.getId())
                     mobj.setLocal(1)
+                else:
+                    name = filename
             else:
                 if self.external.get_active() == 1:
                     name = filename
