@@ -1,5 +1,6 @@
 2003-12-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Sources.py: Unicode conversion from gtk.TextView.
+	* src/NoteEdit.py: Unicode conversion from gtk.TextView.
 	* src/Witness.py: Unicode conversion from gtk.TextView.
 	* src/Report.py: Unicode conversion from gtk.TextView.
 	* src/NameEdit.py: Unicode conversion from gtk.TextView.

@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -85,8 +87,8 @@ class NoteEditor:
     def on_save_note_clicked(self):
         """Saves the note and closes the window"""
         buffer = self.entry.get_buffer()
-        text = buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(buffer.get_text(buffer.get_start_iter(),
+                               buffer.get_end_iter(),gtk.FALSE))
         if text != self.data.getNote():
             self.data.setNote(text)
             Utils.modified()
