@@ -134,11 +134,7 @@ def importData(database, filename):
         GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return
 
-    import time
-    t1 = time.time()
     g.parse_gedcom_file()
-    t2 = time.time()
-    print t2-t1
 
     statusTop.get_widget("close").set_sensitive(1)
 

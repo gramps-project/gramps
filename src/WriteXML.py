@@ -64,7 +64,7 @@ def fix(line):
 #
 #
 #-------------------------------------------------------------------------
-def writeNote(g,val,note,indent=0):
+def write_note(g,val,note,indent=0):
     if not note:
         return
     if indent != 0:
@@ -118,7 +118,7 @@ def dump_my_event(g,name,event,index=1):
     write_line(g,"cause",cause,index+1)
     write_line(g,"description",description,index+1)
     if event.getNote() != "":
-        writeNote(g,"note",event.getNote(),index+1)
+        write_note(g,"note",event.getNote(),index+1)
 
     for s in event.getSourceRefList():
         dump_source_ref(g,s,index+1)
@@ -146,8 +146,8 @@ def dump_source_ref(g,source_ref,index=1):
             else:
                 g.write('<sourceref ref="%s" conf="%d">\n' % (source.getId(),q))
             write_line(g,"spage",p,index+1)
-            writeNote(g,"scomments",c,index+1)
-            writeNote(g,"stext",t,index+1)
+            write_note(g,"scomments",c,index+1)
+            write_note(g,"stext",t,index+1)
             write_line(g,"sdate",d,index+1)
             g.write("%s</sourceref>\n" % ("  " * index))
 
@@ -214,7 +214,7 @@ def dump_name(g,label,name,index=1):
     write_line(g,"suffix",name.getSuffix(),index+1)
     write_line(g,"title",name.getTitle(),index+1)
     if name.getNote() != "":
-        writeNote(g,"note",name.getNote(),index+1)
+        write_note(g,"note",name.getNote(),index+1)
     for s in name.getSourceRefList():
         dump_source_ref(g,s,index+1)
     
@@ -277,7 +277,7 @@ def write_attribute_list(g, list, indent=3):
             write_line(g,"attr_value",attr.getValue(),4)
             for s in attr.getSourceRefList():
                 dump_source_ref(g,s,index+1)
-            writeNote(g,"note",attr.getNote(),4)
+            write_note(g,"note",attr.getNote(),4)
             g.write('%s</attribute>\n' % sp)
         else:
             g.write('%s<attribute type="%s">' % (sp,attr.getType()))
@@ -285,7 +285,8 @@ def write_attribute_list(g, list, indent=3):
             g.write('</attribute>\n')
 
 
-def write_photo_list(g,list):
+def write_photo_list(g,list,indent=3):
+    sp = '  '*indent
     for photo in list:
         path = photo.getPath()
         if strip_photo:
@@ -295,15 +296,19 @@ def write_photo_list(g,list):
             if len(path) >= l:
                 if fileroot == path[0:l]:
                     path = path[l+1:]
-        g.write('      <img src="%s"' % fix(path) )
+        g.write('%s<img src="%s"' % (sp,fix(path)) )
         g.write(' description="%s"' % fix(photo.getDescription()))
         proplist = photo.getAttributeList()
-        if len(proplist) == 0:
+        srclist = photo.getSourceRefList()
+        if len(proplist) == 0 and photo.getNote() == "" and len(srclist) == 0:
             g.write("/>\n")
         else:
             g.write(">\n")
-            write_attribute_list(g,proplist,4)
-            g.write('      </img>\n')
+            write_attribute_list(g,proplist,indent+1)
+            write_note(g,"note",photo.getNote(),indent+1)
+            for s in photo.getSourceRefList():
+                dump_source_ref(g,s,indent+1)
+            g.write('%s</img>\n' % sp)
 
 
 def write_url_list(g, list):
@@ -332,7 +337,7 @@ def write_place_obj(g,place):
     write_photo_list(g,place.getPhotoList())
     write_url_list(g, place.getUrlList())
     if place.getNote() != "":
-        writeNote(g,"note",place.getNote(),3)
+        write_note(g,"note",place.getNote(),3)
     for s in place.getSourceRefList():
         dump_source_ref(g,s,index+1)
     g.write("    </placeobj>\n")
@@ -448,7 +453,7 @@ def write_xml_data(database, g, callback, sp):
                     write_line(g,"country",address.getCountry(),4)
                     write_line(g,"postal",address.getPostal(),4)
                     if address.getNote() != "":
-                        writeNote(g,"note",address.getNote(),4)
+                        write_note(g,"note",address.getNote(),4)
                     for s in address.getSourceRefList():
                         dump_source_ref(g,s,index+1)
                     g.write('      </address>\n')
@@ -472,7 +477,7 @@ def write_xml_data(database, g, callback, sp):
             for family in person.getFamilyList():
                 write_ref(g,"parentin",family,3)
 
-            writeNote(g,"note",person.getNote(),3)
+            write_note(g,"note",person.getNote(),3)
 
             g.write("    </person>\n")
         g.write("  </people>\n")
@@ -501,7 +506,7 @@ def write_xml_data(database, g, callback, sp):
                 for person in family.getChildList():
                     write_ref(g,"child",person,3)
             write_attribute_list(g,family.getAttributeList())
-            writeNote(g,"note",family.getNote(),3)
+            write_note(g,"note",family.getNote(),3)
             g.write("    </family>\n")
         g.write("  </families>\n")
 
@@ -514,7 +519,7 @@ def write_xml_data(database, g, callback, sp):
             write_line(g,"spubinfo",source.getPubInfo(),3)
             write_line(g,"scallno",source.getCallNumber(),3)
             if source.getNote() != "":
-                writeNote(g,"note",source.getNote(),3)
+                write_note(g,"note",source.getNote(),3)
             write_photo_list(g,source.getPhotoList())
             g.write("    </source>\n")
         g.write("  </sources>\n")

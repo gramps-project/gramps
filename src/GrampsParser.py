@@ -416,7 +416,9 @@ class GrampsParser(handler.ContentHandler):
         else:
             self.source_ref.confidence = self.conf
         self.source_ref.setBase(source)
-        if self.event:
+        if self.photo:
+            self.photo.addSourceRef(self.source_ref)
+        elif self.event:
             self.event.addSourceRef(self.source_ref)
         elif self.address:
             self.address.addSourceRef(self.source_ref)
@@ -426,8 +428,6 @@ class GrampsParser(handler.ContentHandler):
             self.attribute.addSourceRef(self.source_ref)
         elif self.placeobj:
             self.placeobj.addSourceRef(self.source_ref)
-        else: 
-            print "Sorry, I'm lost"
 
     #---------------------------------------------------------------------
     #
@@ -808,6 +808,8 @@ class GrampsParser(handler.ContentHandler):
 
         if self.address:
             self.address.setNote(note)
+        elif self.photo:
+            self.photo.setNote(note)
         elif self.attribute:
             self.attribute.setNote(note)
         elif self.name:
