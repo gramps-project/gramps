@@ -751,3 +751,27 @@ class ReportOptions:
                 in the add_user_options() method above.
         """
         pass
+    
+    def get_document(self):
+        return self.handler.doc
+
+    def set_document(self,val):
+        self.handler.doc = val
+
+    def get_output(self):
+        return self.handler.output
+
+    def set_output(self,val):
+        self.handler.output = val
+
+    def get_newpage(self):
+        return self.handler.newpage
+
+    def set_newpage(self,val):
+        self.handler.newpage = val
+
+    def get_report_generations(self):
+        return self.handler.get_report_generations()
+
+    def get_filter_number(self):
+        return self.handler.get_filter_number()
