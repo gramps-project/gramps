@@ -1,3 +1,8 @@
+2005-04-04  Alex Roitman  <shura@gramps-project.org>
+	* src/ImageSelect.py (on_savephoto_clicked): Pass transaction to
+	savephoto; (savephoto): take transaction argument);
+	(on_photolist_drag_data_received): Pass transaction.
+
 2005-04-03  Don Allingham  <don@gramps-project.org>
 	* src/FamilyView.py: commit family properly
 	* src/PedView.py: change_active_person typo

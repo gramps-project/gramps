@@ -198,15 +198,14 @@ class ImageSelect:
             mobj.set_description(description)
             mobj.set_mime_type(mtype)
             mobj.set_path(filename)
-            self.savephoto(mobj)
-            self.db.commit_media_object(mobj,trans)
+            self.savephoto(mobj,trans)
 
         self.db.transaction_commit(trans,'Edit Media Objects')
             
         self.parent.lists_changed = 1
         self.load_images()
 
-    def savephoto(self, photo):
+    def savephoto(self, photo, transaction):
         """Save the photo in the dataobj object - must be overridden"""
         pass
 
@@ -359,9 +358,9 @@ class Gallery(ImageSelect):
         self.in_event = 0
         return False
 
-    def savephoto(self, photo):
+    def savephoto(self,photo,transaction):
         """Save the photo in the dataobj object.  (Required function)"""
-        self.db.add_object(photo,None)
+        self.db.add_object(photo,transaction)
         oref = RelLib.MediaRef()
         oref.set_reference_handle(photo.get_handle())
         self.dataobj.add_media_reference(oref)
@@ -479,9 +478,11 @@ class Gallery(ImageSelect):
                 basename = os.path.basename(name)
                 (root,ext) = os.path.splitext(basename)
                 photo.set_description(root)
-                self.savephoto(photo)
+                trans = self.db.transaction_begin()
+                self.savephoto(photo,trans)
                 if GrampsKeys.get_media_reference() == 0:
                     photo.set_path(name)
+                self.db.transaction_commit(trans,_("Drag Media Object"))
                 self.parent.lists_changed = 1
                 if GrampsKeys.get_media_global():
                     GlobalMediaProperties(self.db,photo,
@@ -500,15 +501,18 @@ class Gallery(ImageSelect):
                 photo.set_mime_type(mime)
                 photo.set_description(d)
                 photo.set_path(tfile)
-                self.db.add_object(photo,None)
+                trans = self.db.transaction_begin()
+                self.db.add_object(photo,trans)
+                self.db.transaction_commit(trans,_("Drag Media Object"))
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
                 self.dataobj.add_media_reference(oref)
-                try:
-                    photo.set_path(name)
-                except:
-                    photo.set_path(tfile)
-                    return
+# This code seems to be reproducing what is already done.
+#                try:
+#                    photo.set_path(name)
+#                except:
+#                    photo.set_path(tfile)
+#                    return
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
                 if GrampsKeys.get_media_global():
