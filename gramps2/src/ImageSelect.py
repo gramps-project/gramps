@@ -234,6 +234,7 @@ class Gallery(ImageSelect):
         self.photo = None
 
     def close(self):
+        pass
 #        self.iconlist.hide()
 #        print self.canvas_list
 #        print self.p_map
@@ -371,7 +372,6 @@ class Gallery(ImageSelect):
         Imlibs.  Then add each photo in the place's list of photos to the 
         photolist window."""
 
-        print "load images"
         self.pos = 0
         self.cx = _PAD
         self.cy = _PAD
