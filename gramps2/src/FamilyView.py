@@ -162,8 +162,8 @@ class FamilyView:
             return
         try:
             SelectChild.SelectChild(self.parent.db, self.family,
-                                    self.person,
-                                    self.load_family)
+                                    self.person, self.load_family,
+                                    self.parent.update_person_list)
         except:
             DisplayTrace.DisplayTrace()
 

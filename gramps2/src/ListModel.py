@@ -67,6 +67,9 @@ class ListModel:
     def clear(self):
         self.model.clear()
 
+    def remove(self,iter):
+        self.model.remove(iter)
+        
     def get_object(self,iter):
         return self.model.get_value(iter,self.data_index)
         
@@ -77,6 +80,15 @@ class ListModel:
             self.model.set_value(iter,col,object)
             col = col + 1
         self.model.set_value(iter,col,info)
+
+    def add_and_select(self,data,info=None):
+        iter = self.model.append()
+        col = 0
+        for object in data:
+            self.model.set_value(iter,col,object)
+            col = col + 1
+        self.model.set_value(iter,col,info)
+        self.selection.select_iter(iter)
         
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

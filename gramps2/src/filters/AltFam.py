@@ -22,14 +22,16 @@
 
 import Filter
 from RelLib import Person
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class HaveAltFamilies(Filter.Filter):
     "People who were adopted"
 
     def match(self,person):
-        return len(person.getParentList()) > 1
+        for vals in person.getParentList():
+            if vals[1] == "Adopted" or vals[2] == "Adopted":
+                return 1
+        return 0
 
 
 Filter.register_filter(HaveAltFamilies,

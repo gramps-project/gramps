@@ -48,13 +48,12 @@ class QuickAdd:
         name = person.getPrimaryName()
         name.setSurname(surname)
         name.setFirstName(given)
-        self.db.addPerson(person)
+        
         if self.xml.get_widget("male").get_active():
             person.setGender(RelLib.Person.male)
-            self.father = person
         else:
             person.setGender(RelLib.Person.female)
-            self.mother = person
+        self.db.addPerson(person)
         Utils.modified()
         Utils.destroy_passed_object(self.window)
         self.callback(person)

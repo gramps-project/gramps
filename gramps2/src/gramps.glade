@@ -1140,7 +1140,6 @@
 			      <property name="rules_hint">True</property>
 			      <property name="reorderable">False</property>
 			      <property name="enable_search">True</property>
-			      <signal name="event" handler="on_person_list_button_press" last_modification_time="Thu, 12 Sep 2002 01:52:15 GMT"/>
 			    </widget>
 			  </child>
 			</widget>
@@ -6074,6 +6073,7 @@
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
   <property name="default_width">300</property>
+  <property name="default_height">200</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="has_separator">True</property>
