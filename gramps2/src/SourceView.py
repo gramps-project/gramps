@@ -70,6 +70,7 @@ class SourceView:
 
         for title in self.column_headers:
             renderer = gtk.CellRendererText ()
+            renderer.set_fixed_height_from_font(1)
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
             colno = colno + 1
             column.set_clickable (gtk.TRUE)
