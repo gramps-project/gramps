@@ -17,8 +17,11 @@ install:
 	(cd src/plugins; ${MAKE} install)
 	(cd src/filters; ${MAKE} install)
 	(cd src/data; ${MAKE} install)
-	-${INSTALL} -d ${bindir}
 	${INSTALL} -c gramps.sh ${bindir}/gramps
+	-${INSTALL} -d ${prefix}/share/example/gramps
+	-${INSTALL} -d ${prefix}/share/example/gedcom
+	-${INSTALL} -c example/gramps/* ${prefix}/example/gramps
+	-${INSTALL} -c example/gedcom/* ${prefix}/example/gedcom
 	chmod +x ${bindir}/gramps
 
 uninstall:
