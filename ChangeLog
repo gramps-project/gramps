@@ -1,12 +1,21 @@
+2005-01-18 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* NEWS: Correct attribution of ini-backend.
+	* configure.in: bump up the version number.
+
 2005-01-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ReportUtils.py: Added
 	* src/BaseDoc.py: support for graphs
 	* src/docgen/OpenOfficeDoc.py: write_at support
 	* src/Makefile.am: added ReportUtils.py
 
+2005-01-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* Release: Version 1.1.3 Splunge: this is a greate idea, but 
+	possibly lousy, and I'm not being indecisive" released.
+
 2005-01-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/ReadGedcom.py: Handle missing TRLR record.
 
+2005-01-17 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py: Remove bogus UI labels.
 
 2005-01-16 Alex Roitman  <shura@alex.neuro.umn.edu>
