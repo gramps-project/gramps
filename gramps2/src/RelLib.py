@@ -309,9 +309,26 @@ class DataObj(SourceNote):
 
 class Person(PrimaryObject,SourceNote):
     """
-    GRAMPS Person record. This object represents an individual person.
-    It contains all the information about the person, including names,
-    events, attributes, and other information.
+    Introduction
+    ============
+    The Person record is the GRAMPS in-memory representation of an
+    individual person. It contains all the information related to
+    an individual.
+    
+    Usage
+    =====
+    Person objects are usually created in one of two ways.
+
+      1. Creating a new person object, which is then initialized and
+         added to the database.
+      2. Retrieving an object from the database using the records
+         handle.
+
+    Once a Person object has been modified, it must be committed
+    to the database using the database object's commit_person function,
+    or the changes will be lost.
+
+    @sort: serialize, unserialize, get_*, set_*, add_*, remove_*
     """
     
     unknown = 2

@@ -145,7 +145,5 @@ class DateDisplayFR(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-from DateHandler import _lang_to_parser, _lang_to_display
-for lang_str in ('fr_FR','fr_FR.iso88591','fr_FR.utf8','french'):
-    _lang_to_parser[lang_str] = DateParserFR
-    _lang_to_display[lang_str] = DateDisplayFR
+from DateHandler import add_format
+register_datehandler(('fr_FR','french'),DateParserFR, DateDisplayFR)
