@@ -207,9 +207,8 @@ class Gramps:
                         os._exit(1)
                     actions.append(action)
             
-            self.cl = bool(exports or actions)
-
             if imports:
+                self.cl = bool(exports or actions)
                 # Create dir for imported database(s)
                 self.impdir_path = os.path.expanduser("~/.gramps/import" )
                 if not os.path.isdir(self.impdir_path):
@@ -234,16 +233,20 @@ class Gramps:
                 for imp in imports:
                     print "Importing: file %s, format %s." % (imp[0],imp[1])
                     self.cl_import(imp[0],imp[1])
+            else:
+                print "No data was given. Launching interactive session."
+                print "To use in the command-line mode,", \
+                    "supply at least one input file to process."
 
-            for expt in exports:
-                print "Exporting: file %s, format %s." % (expt[0],expt[1])
-                self.cl_export(expt[0],expt[1])
-
-            for action in actions:
-                print "Performing action: %s." % action
-                self.cl_action(action)
-            
             if self.cl:
+                for expt in exports:
+                    print "Exporting: file %s, format %s." % (expt[0],expt[1])
+                    self.cl_export(expt[0],expt[1])
+
+                for action in actions:
+                    print "Performing action: %s." % action
+                    self.cl_action(action)
+            
                 print "Cleaning up."
                 # clean import dir up after use
                 files = os.listdir(self.impdir_path) ;

@@ -33,12 +33,19 @@ wide by almost all other geneology software.
 .SH OPTIONS
 .TP 
 .BI \-f " FORMAT"
-Explicitly specify format of the filename given by preceding \fB\-i\fR or 
-\fB\-o\fR options. If the \fB\-f\fR option is not given, the format of each 
-file is guessed according to its extension. Formats available 
-for import are \fBgramps\fR, \fBgedcom\fR, and \fBgramps\-pkg\fR. Formats 
-available for export are \fBgramps\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, 
-and \fBiso\fR.
+Explicitly specify format of \fIFILENAME\fR given by preceding \fB\-i\fR or 
+\fB\-o\fR option. If the \fB\-f\fR option is not given for any \fIFILENAME\fR, 
+the format of that file is guessed according to its extension. 
+.br
+
+Formats 
+available for import are \fBgramps\fR (guessed if \fIFILENAME\fR is a 
+directory), \fBgedcom\fR (guessed if \fIFILENAME\fR ends with \fB.ged\fR), and 
+\fBgramps\-pkg\fR (guessed if \fIFILENAME\fR ends with \fB.tgz\fR). 
+.br
+
+Formats available for export are \fBgramps\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, 
+and \fBiso\fR (never guessed, always specify with \fB\-f\fR option).
 
 .TP 
 .BI \-i " FILENAME"
@@ -47,8 +54,9 @@ is actually the name of directory under which the gramps database resides.
 For \fBgedcom\fR and \fBgramps\-pkg\fR, the \fIFILENAME\fR is the name of 
 the corresponding file. 
 .br
-When more than one file is given, each has to be preceded by \fB\-i\fR flag. 
-The files are imported in the specified order, 
+
+When more than one input file is given, each has to be preceded by \fB\-i\fR 
+flag. The files are imported in the specified order, 
 i.e. \fB\-i\fR \fIFILE1\fR \fB\-i\fR \fIFILE2\fR  
 and \fB\-i\fR \fIFILE2\fR \fB\-i\fR \fIFILE1\fR might produce different 
 gramps IDs in the resulting database. 
@@ -59,13 +67,31 @@ Export data into \fIFILENAME\fR. For \fBgramps\fR and \fBiso\fR formats, the
 \fIFILENAME\fR is actually the name of directory the gramps database will be 
 written into. For \fBgedcom\fR and \fBgramps\-pkg\fR, the \fIFILENAME\fR 
 is the name of the resulting file. 
+.br
+
+When more than one output file is given, each has to be preceded 
+by \fB\-o\fR flag. The files are written one by one, in the specified order.
 
 .TP 
 .BI \-a " ACTION"
 Perform \fIACTION\fR on the imported data. This is done after all imports
-are succesfully completed. Available actions are \fBsummary\fR (same as 
-Reports->View->Summary menu item) and \fBcheck\fR (same 
-as Tools->Database Processing->Check and repair).
+are succesfully completed. Currently available actions are \fBsummary\fR 
+(same as Reports->View->Summary) and \fBcheck\fR (same as Tools->Database 
+Processing->Check and Repair).
+.br
+
+When more than one output action is given, each has to be preceded 
+by \fB\-a\fR flag. The actions are performed one by one, in the specified order.
+
+.LP
+The order of \fB\-i\fR, \fB\-o\fR, or \fB\-a\fR options does not matter. The
+actual order always is: all imports (if any) -> all exports (if any) -> 
+all actions (if any). 
+
+.LP
+If no \fB\-i\fR option is given, gramps will launch its main 
+window and start the usual interactive session with the empty database
+(since there is no data to process, anyway).
 
 .LP
 If no \fB\-o\fR or \fB\-a\fR options are given, gramps will launch its main 
