@@ -72,13 +72,50 @@ class EditPerson:
         self.path = db.getSavePath()
         self.not_loaded = 1
         self.lists_changed = 0
-        
+        pid = "i%s" % person.getId()
+
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
+        self.gallery_widget = self.top.get_widget("photolist")
+        self.gallery = PersonGallery(self, self.path, pid, self.gallery_widget, self.db)
+        self.top.signal_autoconnect({
+            "destroy_passed_object"     : self.on_cancel_edit,
+            "on_add_address_clicked"    : self.on_add_addr_clicked,
+            "on_add_aka_clicked"        : self.on_add_aka_clicked,
+            "on_add_attr_clicked"       : self.on_add_attr_clicked,
+            "on_add_url_clicked"        : self.on_add_url_clicked,
+            "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
+            "on_address_list_select_row": self.on_addr_list_select_row,
+            "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
+            "on_aka_update_clicked"     : self.on_aka_update_clicked,
+            "on_apply_person_clicked"   : self.on_apply_person_clicked,
+            "on_attr_list_select_row"   : self.on_attr_list_select_row,
+            "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
+            "on_edit_death_clicked"     : self.on_edit_death_clicked,
+            "on_delete_address_clicked" : self.on_delete_addr_clicked,
+            "on_delete_attr_clicked"    : self.on_delete_attr_clicked,
+            "on_delete_event"           : self.on_delete_event,
+            "on_delete_url_clicked"     : self.on_delete_url_clicked,
+            "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
+            "on_edit_properties_clicked": self.gallery.popup_change_description,
+            "on_editperson_switch_page" : self.on_switch_page,
+            "on_event_add_clicked"      : self.on_event_add_clicked,
+            "on_event_delete_clicked"   : self.on_event_delete_clicked,
+            "on_event_select_row"       : self.on_event_select_row,
+            "on_event_update_clicked"   : self.on_event_update_clicked,
+            "on_makeprimary_clicked"    : self.gallery.on_primary_photo_clicked,
+            "on_name_list_select_row"   : self.on_name_list_select_row,
+            "on_name_note_clicked"      : self.on_name_note_clicked,
+            "on_name_source_clicked"    : self.on_primary_name_source_clicked,
+            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
+            "on_photolist_select_icon"  : self.gallery.on_photo_select_icon,
+            "on_update_address_clicked" : self.on_update_addr_clicked,
+            "on_update_attr_clicked"    : self.on_update_attr_clicked,
+            "on_update_url_clicked"     : self.on_update_url_clicked,
+            "on_web_go_clicked"         : self.on_web_go_clicked,
+            "on_web_list_select_row"    : self.on_web_list_select_row,
+            })
 
         self.window = self.get_widget("editPerson")
-        self.gallery_widget = self.top.get_widget("photolist")
-        pid = "i%s" % person.getId()
-        self.gallery = PersonGallery(self, self.path, pid, self.gallery_widget, self.db)
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
@@ -155,44 +192,6 @@ class EditPerson:
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
-        id = self.top.signal_autoconnect({
-            "destroy_passed_object"     : self.on_cancel_edit,
-            "on_add_address_clicked"    : self.on_add_addr_clicked,
-            "on_add_aka_clicked"        : self.on_add_aka_clicked,
-            "on_add_attr_clicked"       : self.on_add_attr_clicked,
-            "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
-            "on_address_list_select_row": self.on_addr_list_select_row,
-            "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
-            "on_aka_update_clicked"     : self.on_aka_update_clicked,
-            "on_apply_person_clicked"   : self.on_apply_person_clicked,
-            "on_attr_list_select_row"   : self.on_attr_list_select_row,
-            "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
-            "on_edit_death_clicked"     : self.on_edit_death_clicked,
-            "on_delete_address_clicked" : self.on_delete_addr_clicked,
-            "on_delete_attr_clicked"    : self.on_delete_attr_clicked,
-            "on_delete_event"           : self.on_delete_event,
-            "on_delete_url_clicked"     : self.on_delete_url_clicked,
-            "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
-            "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_editperson_switch_page" : self.on_switch_page,
-            "on_event_add_clicked"      : self.on_event_add_clicked,
-            "on_event_delete_clicked"   : self.on_event_delete_clicked,
-            "on_event_select_row"       : self.on_event_select_row,
-            "on_event_update_clicked"   : self.on_event_update_clicked,
-            "on_makeprimary_clicked"    : self.gallery.on_primary_photo_clicked,
-            "on_name_list_select_row"   : self.on_name_list_select_row,
-            "on_name_note_clicked"      : self.on_name_note_clicked,
-            "on_name_source_clicked"    : self.on_primary_name_source_clicked,
-            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
-            "on_photolist_select_icon"  : self.gallery.on_photo_select_icon,
-            "on_update_address_clicked" : self.on_update_addr_clicked,
-            "on_update_attr_clicked"    : self.on_update_attr_clicked,
-            "on_update_url_clicked"     : self.on_update_url_clicked,
-            "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_web_list_select_row"    : self.on_web_list_select_row,
-            })
-
         if len(const.surnames) > 0:
             const.surnames.sort()
             self.get_widget("lastNameList").set_popdown_strings(const.surnames)
@@ -313,16 +312,19 @@ class EditPerson:
         UrlEdit.UrlEditor(self,pname,None)
 
     def on_add_attr_clicked(self,obj):
+        """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
         pname = self.person.getPrimaryName().getName()
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes)
 
     def on_event_add_clicked(self,obj):
+        """Brings up the EventEditor for a new event"""
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,None,0)
 
     def on_edit_birth_clicked(self,obj):
+        """Brings up the EventEditor for the birth record, event name cannot be changed"""
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         event = self.birth
@@ -334,6 +336,7 @@ class EditPerson:
                               const.save_fevent,event,1)
 
     def on_edit_death_clicked(self,obj):
+        """Brings up the EventEditor for the death record, event name cannot be changed"""
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         event = self.death
@@ -344,26 +347,31 @@ class EditPerson:
         EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,1)
 
     def on_aka_delete_clicked(self,obj):
+        """Deletes the selected name from the name list"""
         if utils.delete_selected(obj,self.nlist):
             self.lists_changed = 1
             self.redraw_name_list()
 
     def on_delete_url_clicked(self,obj):
+        """Deletes the selected URL from the URL list"""
         if utils.delete_selected(obj,self.ulist):
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_attr_clicked(self,obj):
+        """Deletes the selected attribute from the attribute list"""
         if utils.delete_selected(obj,self.alist):
             self.lists_changed = 1
             self.redraw_attr_list()
 
     def on_delete_addr_clicked(self,obj):
+        """Deletes the selected address from the address list"""
         if utils.delete_selected(obj,self.plist):
             self.lists_changed = 1
             self.redraw_addr_list()
 
     def on_web_go_clicked(self,obj):
+        """Attempts to display the selected URL in a web browser"""
         import gnome.url
 
         text = obj.get()
@@ -371,6 +379,7 @@ class EditPerson:
             gnome.url.show(text)
         
     def on_cancel_edit(self,obj):
+        """If the data has changed, give the user a chance to cancel the close window"""
         if self.did_data_change():
             q = _("Are you sure you want to abandon your changes?")
             GnomeQuestionDialog(q,self.cancel_callback)
@@ -378,6 +387,7 @@ class EditPerson:
             utils.destroy_passed_object(obj)
 
     def on_delete_event(self,obj,b):
+        """If the data has changed, give the user a chance to cancel the close window"""
         if self.did_data_change():
             q = _("Are you sure you want to abandon your changes?")
             GnomeQuestionDialog(q,self.cancel_callback)
@@ -387,11 +397,12 @@ class EditPerson:
             return FALSE
     
     def cancel_callback(self,a):
+        """If the user answered yes to abandoning changes, close the window"""
         if a==0:
             utils.destroy_passed_object(self.window)
 
     def did_data_change(self):
-    
+        """Check to see if any of the data has changed from the original record"""
         surname = self.surname_field.get_text()
         suffix = self.suffix.get_text()
         given = self.given.get_text()
@@ -448,6 +459,7 @@ class EditPerson:
         return changed
 
     def on_event_delete_clicked(self,obj):
+        """Delete the selected event"""
         if utils.delete_selected(obj,self.elist):
             self.lists_changed = 1
             self.redraw_event_list()
@@ -703,7 +715,6 @@ class EditPerson:
 
         self.update_lists()
         self.callback(self)
-        self.window.hide()
         utils.destroy_passed_object(obj)
 
     def on_primary_name_source_clicked(self,obj):
