@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -190,6 +190,51 @@ class SourceNote:
         @rtype: list
         """
         return self.source_list
+
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return []
+
+    def has_source_reference(self,src_handle) :
+        """
+        Returns True if the object or any of it's child objects has reference
+        to this source handle.
+
+        @param src_handle: The source handle to be checked.
+        @type src_ref: str
+        @return: Returns whether the object or any of it's child objects has reference to this source handle.
+        @rtype: bool
+        """
+        for src_ref in self.source_list:
+            # Using direct access here, not the getter method -- efficiency!
+            if src_ref.ref == src_handle:
+                return True
+
+        for item in self.get_sourcref_child_list():
+            if item.has_source_reference(src_handle):
+                return True
+
+        return False
+
+    def remove_source_references(self,src_handle_list):
+        """
+        Removes references to all source handles in the list
+        in this object and all child objects.
+
+        @param src_handle_list: The list of source handles to be removed.
+        @type src_handle_list: list
+        """
+        new_source_list = [ src_ref for src_ref in self.source_list \
+                                    if src_ref.ref not in src_handle_list ]
+        self.source_list = new_source_list
+
+        for item in self.get_sourcref_child_list():
+            item.remove_source_references(src_handle_list)
 
     def set_source_reference_list(self,src_ref_list) :
         """
@@ -420,6 +465,19 @@ class Person(PrimaryObject,DataObj):
          self.lds_seal, self.complete, self.source_list, self.note,
          self.change,self.private) = (data + (False,))[0:23]
             
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        lds_list = [self.lds_bapt,self.lds_endow,self.lds_seal]
+        lds_check_list = [item for item in lds_list if item]
+        return [self.primary_name] + self.media_list + \
+                    self.alternate_names + self.address_list + \
+                    self.attribute_list + lds_check_list
+
     def set_complete_flag(self,val):
         """
         Sets or clears the complete flag, which is used to indicate that the
@@ -1130,6 +1188,18 @@ class Family(PrimaryObject,SourceNote):
          self.media_list, self.attribute_list, self.lds_seal,
          self.complete, self.source_list, self.note, self.change) = data
 
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        check_list = self.media_list + self.attribute_list
+        if self.lds_seal:
+            check_list.append(self.lds_seal)
+        return check_list
+
     def set_complete_flag(self,val):
         """
         Sets or clears the complete flag, which is used to indicate that the
@@ -1478,6 +1548,15 @@ class Event(PrimaryObject,DataObj):
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness, self.media_list, self.change) = data
 
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.media_list
+
     def add_media_reference(self,media_ref):
         """
         Adds a L{MediaRef} instance to the object's media list.
@@ -1808,6 +1887,15 @@ class Place(PrimaryObject,SourceNote):
          self.main_loc, self.alt_loc, self.urls, self.media_list,
          self.source_list, self.note, self.change) = data
             
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.media_list
+
     def get_url_list(self):
         """
         Returns the list of L{Url} instances associated with the Place
@@ -2061,6 +2149,15 @@ class MediaObject(PrimaryObject,SourceNote):
          self.attrlist, self.source_list, self.note, self.change,
          self.date, self.place) = data
     
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.attrlist
+
     def set_place_handle(self,place_handle):
         """
         Sets the handle of the L{Place} instance associated with the MediaRef
@@ -2200,6 +2297,42 @@ class Source(PrimaryObject):
          self.pubinfo, self.note, self.media_list,
          self.abbrev, self.change, self.datamap) = data
         
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.media_list
+
+    def has_source_reference(self,src_handle) :
+        """
+        Returns True if any of the child objects has reference
+        to this source handle.
+
+        @param src_handle: The source handle to be checked.
+        @type src_ref: str
+        @return: Returns whether any of it's child objects has reference to this source handle.
+        @rtype: bool
+        """
+        for item in self.get_sourcref_child_list():
+            if item.has_source_reference(src_handle):
+                return True
+
+        return False
+
+    def remove_source_references(self,src_handle_list):
+        """
+        Removes references to all source handles in the list
+        in all child objects.
+
+        @param src_handle_list: The list of source handles to be removed.
+        @type src_handle_list: list
+        """
+        for item in self.get_sourcref_child_list():
+            item.remove_source_references(src_handle_list)
+
     def add_media_reference(self,media_ref):
         """
         Adds a L{MediaRef} instance to the object's media list.
@@ -2679,6 +2812,15 @@ class MediaRef(SourceNote):
             self.ref = None
             self.note = None
             self.rect = None
+
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.attrlist
 
     def set_privacy(self,val):
         """

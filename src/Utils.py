@@ -109,7 +109,9 @@ def family_name(family,db):
     if father and mother:
         fname = NameDisplay.displayer.display(father)
         mname = NameDisplay.displayer.display(mother)
-        name = _("%s and %s") % (fname,mname)
+        name = _("%(father)s and %(mother)s") % {
+                    "father" : fname,
+                    "mother" : mname}
     elif father:
         name = NameDisplay.displayer.display(father)
     else:
@@ -490,6 +492,53 @@ def not_too_old(date):
     current_year = time_struct[0]
     year = date.get_year()
     return not( year != 0 and current_year - year > 110)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def get_source_referents(source_handle,db):
+    """
+    Find objects that refer the source.
+
+    This function finds all primary objects that refer (directly or through
+    secondary child-objects) to a given source handle in a given database.
+    """
+
+    # Persons
+    person_list = [ handle \
+            for handle in db.get_person_handles(sort_handles=False) \
+            if db.get_person_from_handle(handle).has_source_reference(source_handle)
+    ]
+
+    # Families
+    family_list = [ handle for handle in db.get_family_handles() \
+            if db.get_family_from_handle(handle).has_source_reference(source_handle)
+    ]
+
+    # Events
+    event_list = [ handle for handle in db.get_event_handles() \
+            if db.get_event_from_handle(handle).has_source_reference(source_handle)
+    ]
+
+    # Places
+    place_list = [ handle for handle in db.get_place_handles() \
+            if db.get_place_from_handle(handle).has_source_reference(source_handle)
+    ]
+
+    # Sources
+    source_list = [ handle for handle in db.get_source_handles() \
+            if db.get_source_from_handle(handle).has_source_reference(source_handle)
+    ]
+
+    # Media Objects
+    media_list = [ handle for handle in db.get_media_object_handles() \
+            if db.get_object_from_handle(handle).has_source_reference(source_handle)
+    ]
+
+    return (person_list,family_list,event_list,
+                place_list,source_list,media_list)
 
 #-------------------------------------------------------------------------
 #

@@ -1,7 +1,6 @@
-
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2004  Donald N. Allingham
+# Copyright (C) 2001-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +36,7 @@ import RelLib
 import EditSource
 import DisplayModels
 import const
-
+import Utils
 from QuestionDialog import QuestionDialog
 
 #-------------------------------------------------------------------------
@@ -130,11 +129,11 @@ class SourceView:
         return False
 
     def key_press(self,obj,event):
-    	if event.keyval == gtk.gdk.keyval_from_name("Return") \
-    	    	    	    	    	and not event.state:
-    	    self.on_edit_clicked(obj)
-    	    return True
-    	return False
+        if event.keyval == gtk.gdk.keyval_from_name("Return") \
+                                        and not event.state:
+            self.on_edit_clicked(obj)
+            return True
+        return False
 
     def build_context_menu(self,event):
         """Builds the menu with editing operations on the source's list"""
@@ -165,14 +164,6 @@ class SourceView:
         EditSource.EditSource(RelLib.Source(),self.parent.db,self.parent,
                               self.topWindow,self.new_after_edit)
 
-    def delete_source(self,source):
-        trans = self.parent.db.transaction_begin()
-        source_handle = source.get_handle()
-        self.parent.db.remove_source(source_handle,trans)
-        title_msg = _("Delete Source (%s)") % source.get_title()
-        self.parent.db.transaction_commit(trans,title_msg)
-        self.model.delete_row_by_handle(source_handle)
-
     def on_delete_clicked(self,obj):
         store,node = self.selection.get_selected()
         if not node:
@@ -181,63 +172,31 @@ class SourceView:
         handle = store.get_value(node,_HANDLE_COL)
         source = self.parent.db.get_source_from_handle(handle)
 
-        if self.is_used(source):
-            ans = EditSource.DelSrcQuery(source,self.parent.db,
+        the_lists = Utils.get_source_referents(handle,self.parent.db)
+
+        used = the_lists[0] or the_lists[1] or the_lists[2] \
+                or the_lists[3] or the_lists[4] or the_lists[5]
+
+        ans = EditSource.DelSrcQuery(source,self.parent.db,the_lists,
                                          self.model.delete_row_by_handle)
 
+        if used:
             QuestionDialog(_('Delete %s?') % source.get_title(),
                            _('This source is currently being used. Deleting it '
                              'will remove it from the database and from all '
-                             'records that reference it.'),
+                             'records that reference it. The data can only '
+                             'be recovered by Undo operation or by quitting '
+                             'with abandoning changes.'),
                            _('_Delete Source'),
                            ans.query_response,self.topWindow)
         else:
-            self.delete_source(source)
-
-    def is_used(self,source):
-        for key in self.parent.db.get_place_handles():
-            p = self.parent.db.get_place_from_handle(key)
-            for sref in p.get_source_references():
-                if sref.get_base_handle() == source.get_handle():
-                    return True
-        for key in self.parent.db.get_person_handles(sort_handles=False):
-            p = self.parent.db.get_person_from_handle(key)
-            for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
-                v = self.parent.db.get_event_from_handle(v_id)
-                if v:
-                    for sref in v.get_source_references():
-                        if sref.get_base_handle() == source.get_handle():
-                            return True
-            for v in p.get_attribute_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == source.get_handle():
-                        return True
-            for v in p.get_alternate_names() + [p.get_primary_name()]:
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == source.get_handle():
-                        return True
-            for v in p.get_address_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == source.get_handle():
-                        return True
-        for p_id in self.parent.db.get_media_object_handles():
-            p = self.parent.db.get_object_from_handle(p_id)
-            for sref in p.get_source_references():
-                if sref.get_base_handle() == source.get_handle():
-                    return True
-        for p_id in self.parent.db.get_family_handles():
-            p = self.parent.db.get_family_from_handle(p_id)
-            for v_id in p.get_event_list():
-                v = self.parent.db.get_event_from_handle(v_id)
-                if v:
-                    for sref in v.get_source_references():
-                        if sref.get_base_handle() == source.get_handle():
-                            return True
-            for v in p.get_attribute_list():
-                for sref in v.get_source_references():
-                    if sref.get_base_handle() == source.get_handle():
-                        return True
-        return False
+            QuestionDialog(_('Delete %s?') % source.get_title(),
+                           _('Deleting source will remove it from the '
+                           'database. The data can only be recovered by '
+                           'Undo operation or by quitting with abandoning '
+                           'changes.'),
+                           _('_Delete Source'),
+                           ans.query_response,self.topWindow)
 
     def on_edit_clicked(self,obj):
         list_store, node = self.selection.get_selected()
