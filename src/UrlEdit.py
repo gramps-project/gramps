@@ -42,9 +42,10 @@ from intl import gettext as _
 #-------------------------------------------------------------------------
 class UrlEditor:
 
-    def __init__(self,parent,name,url):
+    def __init__(self,parent,name,url,callback):
         self.parent = parent
         self.url = url
+        self.callback = callback
         self.top = gtk.glade.XML(const.dialogFile, "url_edit")
         self.window = self.top.get_widget("url_edit")
         self.des  = self.top.get_widget("url_des")
@@ -80,7 +81,7 @@ class UrlEditor:
             self.parent.ulist.append(self.url)
         
         self.update_url(des,addr,priv)
-        self.parent.redraw_url_list()
+        self.callback(self.url)
         Utils.destroy_passed_object(obj)
 
     def update_url(self,des,addr,priv):

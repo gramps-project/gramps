@@ -45,9 +45,10 @@ from intl import gettext as _
 #-------------------------------------------------------------------------
 class NameEditor:
 
-    def __init__(self,parent,name):
+    def __init__(self,parent,name,callback):
         self.parent = parent
         self.name = name
+        self.callback = callback
         self.top = gtk.glade.XML(const.dialogFile, "name_edit")
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
@@ -129,7 +130,7 @@ class NameEditor:
         self.update_name(first,last,suffix,title,type,note,priv)
         self.parent.lists_changed = 1
 
-        self.parent.redraw_name_list()
+        self.callback(self.name)
         Utils.destroy_passed_object(obj)
 
     def update_name(self,first,last,suffix,title,type,note,priv):

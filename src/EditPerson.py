@@ -624,8 +624,10 @@ class EditPerson:
     def redraw_name_list(self):
         """redraws the name list"""
         self.ntree.clear()
+        self.nmap = {}
         for name in self.nlist:
-            self.ntree.add([name.getName(),_(name.getType())],name)
+            iter = self.ntree.add([name.getName(),_(name.getType())],name)
+            self.nmap[str(name)] = iter
         if self.ntree:
             self.ntree.select_row(0)
 
@@ -633,9 +635,11 @@ class EditPerson:
         """redraws the url list, disabling the go button if no url
         is selected"""
         self.wtree.clear()
+        self.wmap = {}
         for url in self.ulist:
-            self.wtree.add([url.get_path(),url.get_description()],url)
-
+            iter = self.wtree.add([url.get_path(),url.get_description()],url)
+            self.wmap[str(url)] = iter
+            
         if len(self.ulist) > 0:
             self.web_go.set_sensitive(0)
             self.wtree.select_row(0)
@@ -647,10 +651,12 @@ class EditPerson:
     def redraw_addr_list(self):
         """Redraws the address list"""
         self.ptree.clear()
+        self.pmap = {}
         for addr in self.plist:
             location = "%s %s %s %s" % (addr.getStreet(),addr.getCity(),
                                         addr.getState(),addr.getCountry())
-            self.ptree.add([addr.getDate(),location],addr)
+            iter = self.ptree.add([addr.getDate(),location],addr)
+            self.pmap[str(addr)] = iter
         if self.plist:
             self.ptree.select_row(0)
 
@@ -663,6 +669,18 @@ class EditPerson:
             self.amap[str(attr)] = iter
         if self.alist:
             self.atree.select_row(0)
+
+    def name_edit_callback(self,name):
+        self.redraw_name_list()
+        self.ntree.select_iter(self.nmap[str(name)])
+
+    def addr_edit_callback(self,addr):
+        self.redraw_addr_list()
+        self.ptree.select_iter(self.pmap[str(addr)])
+
+    def url_edit_callback(self,url):
+        self.redraw_url_list()
+        self.wtree.select_iter(self.wmap[str(url)])
 
     def event_edit_callback(self,event):
         """Birth and death events may not be in the map"""
@@ -721,18 +739,18 @@ class EditPerson:
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
         import AddrEdit
-        AddrEdit.AddressEditor(self,None)
+        AddrEdit.AddressEditor(self,None,self.addr_edit_callback)
 
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
         import NameEdit
-        NameEdit.NameEditor(self,None)
+        NameEdit.NameEditor(self,None,self.name_edit_callback)
 
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
         import UrlEdit
         pname = self.person.getPrimaryName().getName()
-        UrlEdit.UrlEditor(self,pname,None)
+        UrlEdit.UrlEditor(self,pname,None,self.url_edit_callback)
 
     def on_add_attr_clicked(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
@@ -1023,15 +1041,15 @@ class EditPerson:
         import AddrEdit
         store,iter = self.ptree.get_selected()
         if iter:
-            AddrEdit.AddressEditor(self,self.ptree.get_object(iter))
+            AddrEdit.AddressEditor(self,self.ptree.get_object(iter),self.addr_edit_callback)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
         store,iter = self.wtree.get_selected()
         if iter:
             pname = self.person.getPrimaryName().getName()
-            url = obj.get_row_data(obj.selection[0])
-            UrlEdit.UrlEditor(self,pname,url)
+            url = self.wtree.get_object(iter)
+            UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -1194,7 +1212,7 @@ class EditPerson:
         import NameEdit
         store,iter = self.ntree.get_selected()
         if iter:
-            NameEdit.NameEditor(self,self.ntree.get_object(iter))
+            NameEdit.NameEditor(self,self.ntree.get_object(iter),self.name_edit_callback)
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
