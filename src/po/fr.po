@@ -1,14 +1,13 @@
+# translation of fr_new.po to Français
 # Gramps French translation
 # Copyright (C) 2001,2003, 2004 Free Software Foundation, Inc.
-#
 # translation of fr.po to Français
-# Laurent Protois <laurent.protois@free.fr>, 2001,2003, 2004.
-#
+# Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-01-05 20:13+0100\n"
-"PO-Revision-Date: 2004-01-05 20:16+0100\n"
+"Project-Id-Version: fr_new\n"
+"POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
+"PO-Revision-Date: 2004-01-08 11:38+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -736,8 +735,8 @@ msgid ""
 "Matches the ancestors of two people back to a common ancestor, producing the "
 "relationship path between two people."
 msgstr ""
-"Assortir les ancêtres de deux individus à un ancêtre commun, de façon à relier "
-"ces deux personnes."
+"Assortir les ancêtres de deux individus à un ancêtre commun, de façon à "
+"relier ces deux personnes."
 
 #: GenericFilter.py:261
 msgid "Matches the person with a specified GRAMPS ID"
@@ -1304,11 +1303,9 @@ msgid ""
 "available at http://www.imagemagick.org/"
 msgstr ""
 "Il n'est pas d'outils adapté pour générer une galerie pour ces images.Si "
-"vous voulez pouvoir jouir de cette capacité,veuillez installer "
-"Python Imaging Library (PIL), "
-"disponible à:http://www.pythonware.com/products/pil/ "
-"ou ImageMagick, "
-"à:http://www.imagemagick.org/"
+"vous voulez pouvoir jouir de cette capacité,veuillez installer Python "
+"Imaging Library (PIL), disponible à:http://www.pythonware.com/products/pil/ "
+"ou ImageMagick, à:http://www.imagemagick.org/"
 
 #: MediaView.py:169 SelectObject.py:140
 msgid "The file no longer exists"
@@ -1961,9 +1958,9 @@ msgid ""
 "entered. If you do not plan to generate GEDCOM files, you may leave this "
 "empty."
 msgstr ""
-"Afin de constituer des fichiers GEDCOM valides, les informations "
-"suivantes sont nécessaires. Si vous ne projeter pas de générer de fichier "
-"GEDCOMVous pouvez ne pas remplir."
+"Afin de constituer des fichiers GEDCOM valides, les informations suivantes "
+"sont nécessaires. Si vous ne projeter pas de générer de fichier GEDCOMVous "
+"pouvez ne pas remplir."
 
 #: StartupDialog.py:161 edit_person.glade:1249 edit_person.glade:2029
 #: edit_person.glade:2513 edit_person.glade:2919 gramps.glade:6681
@@ -3650,7 +3647,9 @@ msgstr "<b>Préférence</b>"
 msgid ""
 "Indicates that the parents should be used as the preferred parents for "
 "reporting and display purposes"
-msgstr "Indiquer si les parents doivent apparaître sur les listes et autres affichages"
+msgstr ""
+"Indiquer si les parents doivent apparaître sur les listes et autres "
+"affichages"
 
 #: gramps.glade:7291
 msgid "Use as preferred parents"
@@ -3866,7 +3865,9 @@ msgstr "Accès à un individu impossible"
 
 #: gramps_main.py:1783
 msgid "Either stale bookmark or broken history caused by IDs reorder."
-msgstr "L'annuaire ou l'historique est endommagé par le réordonnancement des identifiants"
+msgstr ""
+"L'annuaire ou l'historique est endommagé par le réordonnancement des "
+"identifiants"
 
 #: gramps_main.py:1791
 msgid "Set %s as the Home Person"
@@ -4511,8 +4512,8 @@ msgstr ""
 "\n"
 "Il fait références à la personne retenue lors de l'édition \n"
 "\n"
-"De ce fait, cette personne est devenue pour chaque articles "
-"la personne principale de la base en cours."
+"De ce fait, cette personne est devenue pour chaque articles la personne "
+"principale de la base en cours."
 
 #: plugins/BookReport.py:683 plugins/BookReport.py:700
 msgid "Not Applicable"
@@ -5877,8 +5878,8 @@ msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
-"Imprimer juste les années des dates, ni le mois ni le jour, pas plus que les dates "
-"approximatives ou les intervalles."
+"Imprimer juste les années des dates, ni le mois ni le jour, pas plus que les "
+"dates approximatives ou les intervalles."
 
 #: plugins/GraphViz.py:193 plugins/RelGraph.py:255
 msgid "Include URLs"
@@ -7094,11 +7095,11 @@ msgstr "<b>Fenêtre d'erreur</b>"
 
 #: plugins/eval.py:53
 msgid "Python Evaluation Window"
-msgstr "Python Évaluation Window"
+msgstr "Terminal d'évaluation Python"
 
 #: plugins/eval.py:90
 msgid "Python evaluation window"
-msgstr "Python evaluation window"
+msgstr "Terminal d'évaluation Python"
 
 #: plugins/eval.py:91 plugins/leak.py:79
 msgid "Debug"
@@ -7273,7 +7274,7 @@ msgstr "<b>Uncollected Objects</b>"
 
 #: plugins/leak.py:78
 msgid "Show uncollected objects"
-msgstr "Afficher les objets non retenus"
+msgstr "Afficher les objets sans objet"
 
 #: plugins/leak.py:80
 msgid "Provide a window listing all uncollected objects"
