@@ -2,6 +2,7 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
+<requires lib="gnome"/>
 
 <widget class="GtkDialog" id="event_edit">
   <property name="visible">True</property>
@@ -100,8 +101,6 @@
 	      <property name="show_border">False</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">2</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 
 	      <child>
@@ -978,8 +977,6 @@
 	      <property name="show_border">True</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">2</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 
 	      <child>
@@ -1846,8 +1843,6 @@
 	      <property name="show_border">True</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">2</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 
 	      <child>
@@ -2830,8 +2825,6 @@
 	      <property name="show_border">True</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">2</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 
 	      <child>
@@ -3615,8 +3608,8 @@
 	    <widget class="GtkTable" id="table28">
 	      <property name="border_width">12</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">4</property>
-	      <property name="n_columns">2</property>
+	      <property name="n_rows">3</property>
+	      <property name="n_columns">3</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
 	      <property name="column_spacing">12</property>
@@ -3670,8 +3663,8 @@
 		<packing>
 		  <property name="left_attach">0</property>
 		  <property name="right_attach">1</property>
-		  <property name="top_attach">3</property>
-		  <property name="bottom_attach">4</property>
+		  <property name="top_attach">2</property>
+		  <property name="bottom_attach">3</property>
 		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
 		</packing>
@@ -3696,6 +3689,30 @@
 		  <property name="bottom_attach">2</property>
 		  <property name="x_padding">3</property>
 		  <property name="y_padding">3</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkCheckButton" id="in_db">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">Person is in the _database</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="active">False</property>
+		  <property name="inconsistent">False</property>
+		  <property name="draw_indicator">True</property>
+		  <signal name="toggled" handler="on_toggled" last_modification_time="Thu, 20 Feb 2003 03:30:27 GMT"/>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">3</property>
+		  <property name="top_attach">0</property>
+		  <property name="bottom_attach">1</property>
+		  <property name="x_padding">3</property>
+		  <property name="y_padding">3</property>
+		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
@@ -3732,9 +3749,9 @@
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">3</property>
-		  <property name="bottom_attach">4</property>
+		  <property name="right_attach">3</property>
+		  <property name="top_attach">2</property>
+		  <property name="bottom_attach">3</property>
 		  <property name="x_padding">3</property>
 		  <property name="y_padding">3</property>
 		  <property name="x_options">fill</property>
@@ -3742,77 +3759,21 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkCheckButton" id="in_db">
+		<widget class="GtkButton" id="select">
 		  <property name="visible">True</property>
+		  <property name="sensitive">False</property>
+		  <property name="tooltip" translatable="yes">Choose a person from the database</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Person is in the _database</property>
+		  <property name="label" translatable="yes">_Select</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="active">False</property>
-		  <property name="inconsistent">False</property>
-		  <property name="draw_indicator">True</property>
-		  <signal name="toggled" handler="on_toggled" last_modification_time="Thu, 20 Feb 2003 03:30:27 GMT"/>
 		</widget>
 		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">0</property>
-		  <property name="bottom_attach">1</property>
-		  <property name="x_padding">3</property>
-		  <property name="y_padding">3</property>
+		  <property name="left_attach">2</property>
+		  <property name="right_attach">3</property>
+		  <property name="top_attach">1</property>
+		  <property name="bottom_attach">2</property>
 		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkLabel" id="label297">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_ID:</property>
-		  <property name="use_underline">True</property>
-		  <property name="use_markup">False</property>
-		  <property name="justify">GTK_JUSTIFY_LEFT</property>
-		  <property name="wrap">False</property>
-		  <property name="selectable">False</property>
-		  <property name="xalign">0</property>
-		  <property name="yalign">0.5</property>
-		  <property name="xpad">0</property>
-		  <property name="ypad">0</property>
-		  <property name="mnemonic_widget">id</property>
-		  <accessibility>
-		    <atkrelation target="id" type="label-for"/>
-		  </accessibility>
-		</widget>
-		<packing>
-		  <property name="left_attach">0</property>
-		  <property name="right_attach">1</property>
-		  <property name="top_attach">2</property>
-		  <property name="bottom_attach">3</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkEntry" id="id">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="editable">True</property>
-		  <property name="visibility">True</property>
-		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes"></property>
-		  <property name="has_frame">True</property>
-		  <property name="invisible_char" translatable="yes">*</property>
-		  <property name="activates_default">False</property>
-		  <signal name="changed" handler="on_id_changed" last_modification_time="Thu, 20 Feb 2003 03:44:43 GMT"/>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">2</property>
-		  <property name="bottom_attach">3</property>
-		  <property name="x_padding">3</property>
-		  <property name="y_padding">3</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
