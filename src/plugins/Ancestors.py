@@ -73,6 +73,14 @@ class AncestorsReport (Report.Report):
         doc.add_cell_style ("PaddedCell", cell)
 
         cell = TextDoc.TableCellStyle ()
+        cell.set_padding (1) # each side makes 2cm, the size of the photo
+        cell.set_left_border (1)
+        cell.set_top_border (1)
+        cell.set_right_border (1)
+        cell.set_bottom_border (1)
+        doc.add_cell_style ("NoPhoto", cell)
+
+        cell = TextDoc.TableCellStyle ()
         doc.add_cell_style ("Photo", cell)
 
         cell = TextDoc.TableCellStyle ()
@@ -257,7 +265,7 @@ class AncestorsReport (Report.Report):
                     ret.append ((self.doc.end_cell, []))
 
                 if len (photos) == 0:
-                    ret.append ((self.doc.start_cell, ["PaddedCell"]))
+                    ret.append ((self.doc.start_cell, ["NoPhoto"]))
                     ret.append ((self.doc.end_cell, []))
                 else:
                     ret.append ((self.doc.start_cell, ["Photo"]))
