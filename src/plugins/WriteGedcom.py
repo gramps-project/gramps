@@ -850,12 +850,12 @@ class GedcomWriter:
                 while ll > 0:
                     brkpt = 70
                     if ll > brkpt:
-                        while (ll > brkpt and \
-                               (line[brkpt] in string.whitespace or line[brkpt+1] in string.whitespace)):
+                        while (ll > brkpt and line[brkpt] in string.whitespace):
                             brkpt = brkpt+1
                             if ll == brkpt:
                                 self.g.write("%s %s\n" % (prefix,line))
                                 line = ''
+                                break
                         else:
                             self.g.write("%s %s\n" % (prefix,line[0:brkpt+1]))
                             line = line[brkpt+1:]
@@ -884,6 +884,7 @@ class GedcomWriter:
                             if ll == brkpt:
                                 self.g.write("%s %s\n" % (prefix,line))
                                 line = ''
+                                break
                         else:
                             self.g.write("%s %s\n" % (prefix,line[0:brkpt+1]))
                             line = line[brkpt+1:]
@@ -999,7 +1000,6 @@ class GedcomWriter:
             if ref_text != "":
                 self.write_long_text("TEXT",level+2,ref_text)
             pfx = "%d DATE" % (level+2)
-            print pfx,ref.getDate()
             self.print_date(pfx,ref.getDate())
         if ref.getComments() != "":
             self.write_long_text("NOTE",level+1,ref.getComments())
