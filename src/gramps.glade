@@ -937,7 +937,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkNotebook" id="notebook1">
+	    <widget class="GtkNotebook" id="views">
 	      <property name="border_width">3</property>
 	      <property name="width_request">750</property>
 	      <property name="visible">True</property>
@@ -972,7 +972,7 @@
 			  <child>
 			    <widget class="GtkLabel" id="label184">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Filter</property>
+			      <property name="label" translatable="yes">Filter:</property>
 			      <property name="use_underline">False</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1025,7 +1025,7 @@
 
 			  <child>
 			    <widget class="GtkLabel" id="qual">
-			      <property name="label" translatable="yes">Qualifier</property>
+			      <property name="label" translatable="yes">Qualifier:</property>
 			      <property name="use_underline">False</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1126,10 +1126,11 @@
 
 		  <child>
 		    <widget class="GtkNotebook" id="ptabs">
+		      <property name="border_width">3</property>
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="show_tabs">True</property>
-		      <property name="show_border">True</property>
+		      <property name="show_border">False</property>
 		      <property name="tab_pos">GTK_POS_BOTTOM</property>
 		      <property name="scrollable">False</property>
 		      <property name="tab_hborder">4</property>

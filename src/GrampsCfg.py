@@ -986,11 +986,14 @@ class GrampsPreferences:
 def display_preferences_box(db):
     GrampsPreferences(db)
 
+_view_str = "/apps/gramps/view"
+
 def save_view(val):
-    set_bool("/apps/gramps/view",val)
+    set_bool(_view_str, not val)
+    sync()
 
 def get_view():
-    return get_bool("/apps/gramps/view",1)
+    return not client.get_bool(_view_str)
 
 def save_filter(val):
     set_bool("/apps/gramps/filter",val)
