@@ -75,134 +75,155 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however
-	all the GEDCOM files you export will not be valid. 
+	<para>
+	Geben Sie Ihre persönlichen Informationen in die entsprechenden
+	Felder ein. Obwohl &app; Information über Sie erfragt, werden diese
+	Informationen nur so benutzt, dass &app; gültige GEDCOM-Dateien
+	erzeugen kann. Eine gültige GEDCOM-Datei benötigt Information über
+	die Person, die die Datei erstellt hat. Wenn Sie wollen, können Sie
+	die Felder leer lassen, aber dann werden alle GEDCOM-Dateien, die Sie
+	exportieren ungültig sein.
 	</para>
 	
-	<para>This information can be entered at any time in the 
-	<guilabel>Preferences</guilabel> dialog, under the 
-	<guilabel>Usage</guilabel> category. 
+	<para>Diese Information können auch jeder Zeit im
+	<guilabel>Einstellungen</guilabel> Dialog, in der <guilabel>Verwendung</guilabel>
+        Kategorie verändert werden. 
 	</para>
 
     </sect2>
 
     <!-- ================ Getting Started Subsection  -->
       <sect2 id="choose-db-start">
-      <title>Choosing a database on startup</title> 
-      <para>If &app; is started without any
-      database  to open, the following window will appear prompting you to 
-      choose what database to open. </para>
+      <title>Eine Datenbank bei Programmstart wählen</title> 
+      <para>Wenn &app; gestarten wurde ohne eine Datenbank zu öffnen,
+      erscheint das folgende Fenster und fragt Sie nach einer Datenbank,
+      die Sie öffnen möchten.</para>
       
 	<!-- ==== Figure: Open existing/new database window ==== -->
 	<figure id="first-open"> 
-	<title>Open Database Window</title> 
+	<title>Datenbank öffnen Fenster</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/first-open.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Open Database Window.  </phrase>
+	<phrase>Zeigt Datenbank öffnen Fenster.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
       
-      <para>If you would like to open an existing database, check the top radio
-      button and click the <guibutton>OK</guibutton> button. You will then be asked to 
-      specify the name of your existing database. If you would like to start
-      creating your brand new database from scratch right away, choose new XML
-      database. </para> 
+      <para>
+      Wenn Sie eine existierende Datenbank öffnen wollen, wählen Sie
+      "Existierende Datenbank öffnen" und klicken Sie auf <guibutton>OK</guibutton>.
+      Sie werden dann nach dem Namen Ihrer Datenbank gefragt. Wenn Sie mit
+      einer ganz neuen Datenbank beginnen wollen, wählen Sie "Neue XML Datenbank
+      erstellen".
+      </para> 
 
-      <para>NOTE: when starting new database, you should 
-      select an empty <replaceable>DIRECTORY</replaceable> 
-      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
-      needed. The directory you specify will be used by &app; to store 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies of media objects. This directory will be updated by &app; 
-      each time the database is saved. </para> 
+      <para>
+      BEMERKUNG: Wenn Sie eine neue Datenbank beginnen, sollten Sie ein
+      leeres <replaceable>VERZEICHNIS</replaceable> und <replaceable>
+      KEINE DATEI</replaceable> auswählen. Erstellen Sie ein leeres
+      Verzeichnis, wenn nötig. Das Verzeichnis, das sie angeben wird von
+      &app; benutzt um die Datenbankdatei <replaceable>data.gramps
+      </replaceable> so wie mögliche Kopien von Medien zu speichern.
+      Dieses Verzeichnis wird jedesmal von &app; aktualisiert, wenn die
+      Datenbank gespeichert wird.
+      </para>
       
-      <para>NOTE: when opening an existing database, you should 
-      open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
-      should contain the  database file <replaceable>data.gramps</replaceable> 
-      as well as any possible copies of media objects. Such a directory is 
-      created by &app; when you start a new database and is updated each time 
-      the database is saved. </para> 
+      <para>
+      BEMERKUNG: Wenn Sie eine Datenbank öffnen, sollten Sie ein
+      <replaceable>VERZEICHNIS</replaceable> und <replaceable> KEINE
+      DATEI</replaceable> öffnen. Das Verzeichnis, das Sie öffnen müssen,
+      sollte die Datenbankdatei <replaceable>data.gramps</replaceable>
+      enthalten so wie mögliche Kopien von Medien. So ein Verzeichnis wird
+      von &app; erstelltm, wenn Sie eine neue Datenbank beginnen und wird
+      jedesmal aktualisiert, wenn die Datenbank gespeichert wird.
+      </para>
 
       </sect2>
       
 <!-- ================ Getting Started Sub-subsection  
       <sect3 id="zodb-support">
-        <title>Optional ZODB support</title> 
-
-      <para>If either StandaloneZODB or Zope is installed on your system, 
-      &app; will give you the third option of 
-      creating a new ZODB database. You can choose to start your new database 
-      in either XML or ZODB format. Both formats have their strong and weak 
-      points.</para>
-
-      <para>XML stands for eXtensible Markup Language, and is a human readable
-      structured description of data. It could be easily parsed by other 
-      programs should the need occur. It stores only the data itself. Its weak 
-      point is the relatively low speed of processing large data files. </para>
-
-      <para>ZODB stands for Zope Object Database and provides the full-fledged
-      database support. ZODB files are not human readable. They contain a
-      certain overhead to assist working with large data structures. However,
-      ZODB provides a significant speed-up when the database size is large (over
-      a few thousand people). </para>
-
-      <para>Its is hard to tell which format is better, since this is a typical
-      trade-off situation. If you are starting your research then you are likely
-      to be fine with the regular XML database. If you have tons of data to
-      import describing thousands upon thousands of people, then you are
-      probably better off with ZODB. </para>
+        <title>Optionale ZODB-Unterstützung</title> 
+      <para>
+      Wenn entweder StandaloneZODB oder Zope auf Ihrem System installiert
+      ist, erlaubt Ihnen &app; als dritte Option eine neue ZODB-Datenbank
+      zu erstellen. Sie können wählen, ob Sie Ihre neue Datenbank im XML-
+      oder im ZODB-Format beginnen wollen. Beide Formate haben ihre Stärken
+      und Schwächen.
+      </para>
+      
+      <para>
+      XML steht für "eXtensible Markup Language" und ist eine menschenlesbar
+      strukturierte Beschreibung von Daten. Es kann leicht von anderen
+      Programmen eingelesen werden, falls erwünscht. Es speichert noch die
+      Daten an sich. Der Schwachpunkt ist die relativ langsame Geschwindigkeit
+      bei der Verarbeitung von großen Datendateien.
+      </para>
+      
+      <para>
+      ZODB steht für "Zope Object Database" und bietet voll entwickelte
+      Datenbankunterstützung. ZODB-Dateien sind nicht menschenlesbar. Sie
+      enthalten gewissen Strukturen um die Arbeit großen Datenstrukturen
+      Sie unterstützen. Jedenfalls, bietet ZODB eine deutliche Beschleunigung,
+      wenn die Datenbankgröße groß ist (mehr als ein paar Tausend Personen).
+      </para>
+      
+      <para>
+      Es ist schwer zu sagen, welches Format besser ist, denn dies ist eine
+      typische Situation, bei der man abwiegen muss. Wenn Sie Ihre Forschung
+      beginnen, dann benutzen Sie besser eine gewöhnliche XML-Datenbank.
+      Wenn Sie Berge von Daten, die Tausende über Tausende von Personen
+      beschreiben, zu importieren haben, dann ist wahrscheinlich ZODB von
+      Vorteil.
+      </para>
 
       </sect3>
 -->
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
-      <title>Obtaining Help</title>
-    <para> At any time, the following items are available for immediate aid
-    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
+      <title>Hilfe bekommen</title>
+    <para>
+    Die folgenden Beiträge zur Soforthilfe stehen Ihnen jederzeit im
+    <menuchoice><guimenu>Hilfe</guimenu></menuchoice>-Menü zur Verfügung:
+    </para>
     
 	<variablelist>
 
-	<varlistentry><term>User manual</term>
-	<listitem><para> Choose this item to read the text of this manual 
-	in the help browser.  </para></listitem>
+	<varlistentry><term>Handbuch</term>
+	<listitem><para>Wählen Sie diesen Eintrag um dieses Handbuch im 
+	Hilfebrowser zu lesen.  </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>FAQ</term>
-	<listitem><para> Use this item to read Frequently Asked Questions
-	about &app; in the browser. </para></listitem>
+	<listitem><para> Benutzen Sie diesen Eintrag um häufig gestellte Fragen
+	über &app; im Browser zu lesen. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS home page</term>
-	<listitem><para> Select this item to open home page of &app; in your
-	default web browser. </para></listitem>
+	<varlistentry><term>GRAMPS Home Page</term>
+	<listitem><para>Wählen Sie diesen Eintrag um die Webseite von &app; im
+        Standard-Webbrowser aufzurufen.</para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS mailing lists</term>
-	<listitem><para> Choose this item to direct your web browser 
-	to the &app; mailing list archives. </para></listitem>
+	<varlistentry><term>GRAMPS Mailinglisten</term>
+	<listitem><para>Wählen Sie diesen Eintrag um die Archive der &app;
+        Mailinglisten in Ihrem Webbrowser aufzurufen.</para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Report a bug</term>
-	<listitem><para> Use this item to file a bug report against &app; 
-	with the bug tracking system.  </para></listitem>
+	<varlistentry><term>Programmfehler melden</term>
+	<listitem><para>Benutzen Sie diesen Eintrag um ein Fehler in &app; 
+	mit dem "bug tracking"-System zu melden.  </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Show plugin status</term>
-	<listitem><para> Use this item to display the status of loaded 
-	plugins. </para></listitem>
+	<varlistentry><term>Plugin-Status zeigen</term>
+	<listitem><para>Benutzen Sie diesem Eintrag den Status der geladenen
+        Plugins anzuzeigen.</para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Open example database</term>
-	<listitem><para> Select this item to load the example database shipped
-	with &app;. This database is composed of fictitious people and serves as
-	a useful example for learning how to work with &app;. </para></listitem>
+	<varlistentry><term>Beispieldatenbank öffnen</term>
+	<listitem><para>Wählen Sie diesen Eintrag um die mit &app;
+        mitgelieferte Beispieldatenbank zu laden. Diese Datenbank besteht
+        aus fiktiven Personen und dient als nützliches Beispiel um zu
+        lernen, wie man mit &app; arbeitet. </para></listitem>
 	</varlistentry>
     
 	</variablelist>
