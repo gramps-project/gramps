@@ -1,3 +1,6 @@
+2004-11-30 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* NEWS: Update.
+
 2004-11-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: simpler way of handling patronymic names
 	based of LANG

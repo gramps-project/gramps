@@ -1,3 +1,19 @@
+Version 1.1.2 -- the "" release
+* Recent files support (both GNOME- and Gramps-wide).
+* Key/value pairs for the Source objects.
+* New plugin to fix capitalization of surnames.
+* Plugin load/reload/status fixes.
+* DnD reordering for spouses.
+* Multiple GEDCOM parsing improvements.
+* Date and Place available for Media objects.
+* Proper thumbnail handling.
+* Handling of BC/BCE in dates.
+* Correct use of language variables in OOo (Julio Sanchez).
+* Collection of Tips of the Day (Frederick Noronha).
+* Name handling enhancements: patronymic and grouping.
+* Localized Date parsing/display for Russian and French.
+* Numerous bug fixes.
+
 Version 1.1.1 -- the "Rat cake, rat sorbet, rat pudding, or strawberry tart" release
 * GeneWeb Import/Export filters (Martin Hawlisch), GeneWeb mime type.
 * Rework of the Date support. Separate classes for parsing and display,
