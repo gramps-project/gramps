@@ -1,4 +1,3 @@
-
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003  Donald N. Allingham
@@ -39,19 +38,23 @@ import Errors
 from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
+import gtk
+import gnome
+import gnome.ui
+
 #------------------------------------------------------------------------
 #
-# AncestorReport
+# SimpleBookTitle
 #
 #------------------------------------------------------------------------
 class SimpleBookTitle(Report.Report):
 
-    def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
+    def __init__(self,database,person,title_string,copyright_string,doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
-        self.max_generations = max
-        self.pgbrk = pgbrk
+        self.title_string = title_string
+        self.copyright_string = copyright_string
         self.doc = doc
         self.newpage = newpage
         if output:
@@ -71,16 +74,11 @@ class SimpleBookTitle(Report.Report):
             self.doc.page_break()
 
         self.doc.start_paragraph('SBT-Title')
-        self.doc.write_text('Title of the book')
+        self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
-
-        import time
-
-        dateinfo = time.localtime(time.time())
-        name = self.database.getResearcher().getName()
         self.doc.start_paragraph('SBT-Subtitle')
-        self.doc.write_text(_('Copyright %d %s') % (dateinfo[0], name))
+        self.doc.write_text(self.copyright_string)
         self.doc.end_paragraph()
 
         if self.standalone:
@@ -118,9 +116,11 @@ _style_file = "simple_book_title.xml"
 _style_name = "default" 
 
 _person_id = ""
-_max_gen = 10
-_pg_brk = 0
-_options = [ _person_id, _max_gen, _pg_brk ]
+_cpr_str = ""
+_ttl_str = ""
+
+_options = [ _person_id, _cpr_str, _ttl_str ]
+
 
 #------------------------------------------------------------------------
 #
@@ -142,14 +142,25 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         def make_default_style(self):
             _make_default_style(self.default_style)
 
-        self.max_gen = int(self.options[1]) 
-        self.pg_brk = int(self.options[2])
+        if self.options[1]:
+            self.title_string = self.options[1]
+        else:
+            self.title_string = _('Title of the Book')
+        
+        if self.options[2]:
+            self.copyright_string = self.options[2]
+        else:
+            import time
+            dateinfo = time.localtime(time.time())
+            name = self.db.getResearcher().getName()
+            self.copyright_string = _('Copyright %d %s') % (dateinfo[0], name)
+
+        self.title_entry.set_text(self.title_string)
+        self.copyright_entry.set_text(self.copyright_string)
+
         self.style_name = stl
         self.new_person = None
 
-        self.generations_spinbox.set_value(self.max_gen)
-        self.pagebreak_checkbox.set_active(self.pg_brk)
-        
         self.window.run()
 
     #------------------------------------------------------------------------
@@ -163,12 +174,37 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
-        return _("FTM Style Ancestor Report for GRAMPS Book") 
+        return _("Title Page for GRAMPS Book") 
 
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
         return _style_file
     
+    def setup_center_person(self): 
+        pass
+
+    def setup_report_options_frame(self):
+        self.notebook = gtk.Notebook()
+        self.notebook.set_border_width(6)
+        self.window.vbox.add(self.notebook)
+
+    def add_user_options(self):
+        self.title_entry = gtk.Entry()
+        self.copyright_entry = gtk.Entry()
+
+        self.add_frame_option(_('Contents'),_('Title String'),self.title_entry)
+        self.add_frame_option(_('Contents'),_('Copyright String'),self.copyright_entry)
+
+    def parse_report_options_frame(self):
+        """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
+
+        # call the parent task to handle normal options
+        Report.BareReportDialog.parse_report_options_frame(self)
+
+        # get values from the widgets
+        self.title_string = self.title_entry.get_text()
+        self.copyright_string = self.copyright_entry.get_text()
+
     def on_cancel(self, obj):
         pass
 
@@ -182,7 +218,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.options = [ self.person.getId() , self.title_string, self.copyright_string ]
         self.style_name = self.selected_style.get_name() 
    
 
@@ -197,9 +233,9 @@ def write_book_item(database,person,doc,options,newpage=0):
     try:
         if options[0]:
             person = database.getPerson(options[0])
-        max_gen = int(options[1])
-        pg_brk = int(options[2])
-        return SimpleBookTitle(database, person, max_gen, pg_brk, doc, None, newpage )
+        title_string = options[1]
+        copyright_string = options[2]
+        return SimpleBookTitle(database, person, title_string, copyright_string, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
