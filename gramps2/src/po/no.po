@@ -7,7 +7,6 @@
 # Copyright (C) YEAR ORGANIZATION.
 # Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
-# Axel Bojer <axelb@skolelinux.no.no>, 2003.
 #
 msgid ""
 msgstr ""
