@@ -76,7 +76,7 @@ class EditPerson:
 
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
         self.gallery_widget = self.top.get_widget("photolist")
-        self.gallery = PersonGallery(self, self.path, pid, self.gallery_widget, self.db)
+        self.gallery = ImageSelect.Gallery(person, self.path, pid, self.gallery_widget, self.db)
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
             "on_add_address_clicked"    : self.on_add_addr_clicked,
@@ -102,7 +102,6 @@ class EditPerson:
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
             "on_event_select_row"       : self.on_event_select_row,
             "on_event_update_clicked"   : self.on_event_update_clicked,
-            "on_makeprimary_clicked"    : self.gallery.on_primary_photo_clicked,
             "on_name_list_select_row"   : self.on_name_list_select_row,
             "on_name_note_clicked"      : self.on_name_note_clicked,
             "on_name_source_clicked"    : self.on_primary_name_source_clicked,
@@ -729,46 +728,6 @@ class EditPerson:
         if page == 6 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
-
-#-------------------------------------------------------------------------
-#
-# PersonGallery class
-#
-#-------------------------------------------------------------------------
-class PersonGallery(ImageSelect.Gallery):
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Sub-class an ImageSelect.Gallery window.  This is
-    # necessary to add support for the 'Make Primary Image' button.
-    #
-    #---------------------------------------------------------------------
-    def __init__(self, epo, path, prefix, icon_list, db):
-        ImageSelect.Gallery.__init__(self, epo.person, path, prefix, icon_list, db)
-        self.epo = epo
-        
-    #---------------------------------------------------------------------
-    #
-    # on_primary_photo_clicked - Make the currently selected photo the
-    # primary (literally the first) photo for this person.  This is the
-    # photo that shows up in the General tab of the "Edit Person" window.
-    #
-    #---------------------------------------------------------------------
-    def on_primary_photo_clicked(self, obj):
-        if self.selectedIcon == None or self.selectedIcon == 0:
-            return
-    
-        photolist = self.dataobj.getPhotoList()
-        selected_icon = self.selectedIcon
-        savePhoto = photolist[selected_icon]
-        for i in range(0,selected_icon):
-            photolist[selected_icon-i] = photolist[selected_icon-i-1]
-        photolist[0] = savePhoto
-
-        ref = savePhoto.getReference()
-        if ref.getMimeType() == "image":
-            self.epo.load_photo(savePhoto.getReference().getPath())
-        self.load_images()
-        utils.modified()
 
 #-------------------------------------------------------------------------
 #
