@@ -668,6 +668,7 @@
 		  <property name="label" translatable="yes">Reports</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-dnd-multiple</property>
+		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_reports_clicked"/>
 		</widget>
 		<packing>
@@ -693,6 +694,7 @@
 		  <property name="label" translatable="yes">Add</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-add</property>
+		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_addbtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:19 GMT"/>
 		</widget>
 		<packing>
@@ -4156,7 +4158,7 @@
 		  <property name="enable_arrows_always">False</property>
 
 		  <child internal-child="entry">
-		    <widget class="GtkEntry" id="mrel">
+		    <widget class="GtkEntry" id="frel">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
@@ -4336,7 +4338,7 @@
 	      <property name="enable_arrows_always">False</property>
 
 	      <child internal-child="entry">
-		<widget class="GtkEntry" id="frel">
+		<widget class="GtkEntry" id="mrel">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
 		  <property name="editable">True</property>
