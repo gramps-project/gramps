@@ -633,9 +633,8 @@
 		<widget class="button" id="button2">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Open file</property>
-		  <property name="label" translatable="yes">Open</property>
-		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-open</property>
+		  <property name="label">gtk-open</property>
+		  <property name="use_stock">True</property>
 		  <signal name="clicked" handler="on_open_activate"/>
 		</widget>
 	      </child>
@@ -644,10 +643,31 @@
 		<widget class="button" id="button3">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Save file</property>
-		  <property name="label" translatable="yes">Save</property>
-		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-save</property>
+		  <property name="label">gtk-save</property>
+		  <property name="use_stock">True</property>
 		  <signal name="clicked" handler="on_save_activate"/>
+		</widget>
+	      </child>
+
+	      <child>
+		<widget class="button" id="back_btn">
+		  <property name="visible">True</property>
+		  <property name="label">gtk-go-back</property>
+		  <property name="use_stock">True</property>
+		  <property name="new_group">True</property>
+		  <signal name="clicked" handler="on_back_clicked" last_modification_time="Thu, 14 Aug 2003 02:19:55 GMT"/>
+		</widget>
+		<packing>
+		  <property name="new_group">True</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="button" id="fwd_btn">
+		  <property name="visible">True</property>
+		  <property name="label">gtk-go-forward</property>
+		  <property name="use_stock">True</property>
+		  <signal name="clicked" handler="on_fwd_clicked" last_modification_time="Thu, 14 Aug 2003 02:20:17 GMT"/>
 		</widget>
 	      </child>
 
@@ -655,9 +675,8 @@
 		<widget class="button" id="button97">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Make the Home Person the active person</property>
-		  <property name="label" translatable="yes">Home</property>
-		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-home</property>
+		  <property name="label">gtk-home</property>
+		  <property name="use_stock">True</property>
 		  <signal name="clicked" handler="on_home_clicked"/>
 		</widget>
 	      </child>
@@ -692,9 +711,8 @@
 		<widget class="button" id="addbtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Add a new item</property>
-		  <property name="label" translatable="yes">Add</property>
-		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-add</property>
+		  <property name="label">gtk-add</property>
+		  <property name="use_stock">True</property>
 		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_addbtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:19 GMT"/>
 		</widget>
@@ -707,9 +725,8 @@
 		<widget class="button" id="removebtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Remove the currently selected item</property>
-		  <property name="label" translatable="yes">Remove</property>
-		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-remove</property>
+		  <property name="label">gtk-remove</property>
+		  <property name="use_stock">True</property>
 		  <signal name="clicked" handler="on_removebtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:33 GMT"/>
 		</widget>
 	      </child>
