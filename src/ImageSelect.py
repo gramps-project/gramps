@@ -277,6 +277,7 @@ class Gallery(ImageSelect):
         """
         Handle resize events over the canvas, redrawing if the size changes
         """
+        pass
 
     def on_drag_begin(self,obj,context):
         if const.dnd_images:
@@ -562,7 +563,7 @@ class Gallery(ImageSelect):
         selection_data.set(selection_data.target, 8, id[4])
         self.drag_item = None
         
-    def on_add_media_object_clicked(self, obj):
+    def on_add_photo_clicked(self, obj):
         """User wants to add a new photo.  Create a dialog to find out
         which photo they want."""
         self.create_add_dialog()

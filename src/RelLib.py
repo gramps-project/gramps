@@ -2736,7 +2736,7 @@ class GrampsDB:
     def find_event_from_id(self,val):
         """finds a Family in the database from the passed gramps' ID.
         If no such Family exists, a new Family is added to the database."""
-#        data = self.event_map.get(str(val))
+        data = self.event_map.get(str(val))
         if data:
             event = Event()
             event.unserialize(data)

@@ -49,7 +49,7 @@ from gettext import gettext as _
 class Bookmarks :
     "Handle the bookmarks interface for Gramps"
     
-    def __init__(self,bookmarks,menu,callback):
+    def __init__(self,db,bookmarks,menu,callback):
         """
         Creates a the bookmark editor
 
@@ -57,6 +57,7 @@ class Bookmarks :
         menu - parent menu to attach users
         callback - task to connect to the menu item as a callback
         """
+        self.db = db
         self.menu = menu
         self.bookmarks = bookmarks
         self.callback = callback
@@ -81,8 +82,9 @@ class Bookmarks :
             self.bookmarks.append(person)
             self.redraw()
 
-    def add_to_menu(self,person):
+    def add_to_menu(self,person_id):
         """adds a person's name to the drop down menu"""
+        person = self.db.find_person_from_id(person_id)
         item = gtk.MenuItem(person.get_primary_name().get_name())
         item.connect("activate", self.callback, person)
         item.show()

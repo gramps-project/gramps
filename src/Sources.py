@@ -331,7 +331,6 @@ class SourceEditor:
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
-        self.win_parent.child_windows.remove(self)
         self.remove_itself_from_menu()
 
     def close(self,obj):
@@ -407,7 +406,7 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
-        values = self.db.get_source_map().values()
+        values = self.db.source_map.values()
         values.sort(by_title)
         
         sel_child = None

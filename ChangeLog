@@ -1,3 +1,10 @@
+2004-02-21  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ImageSelect.py: Corrections.
+	* src/RelLib.py: Corrections. 
+	* src/Sources.py: Corrections.
+	* src/gramps_main.py: Corrections.
+	* src/Bookmarks.py: Corrections.
+
 2004-02-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPerson.py: Corrections.
 	* src/EditSource.py: Use parent class. Use windows menu.
