@@ -197,7 +197,7 @@ def get_relationship(orig_person,other_person):
     rank = 9999999
 
     if orig_person == None:
-        return "undefined"
+        return ("undefined",[])
 
     firstName = orig_person.getPrimaryName().getRegularName()
     secondName = other_person.getPrimaryName().getRegularName()
