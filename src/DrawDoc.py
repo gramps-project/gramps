@@ -179,6 +179,9 @@ class DrawDoc:
     def draw_text(self,style,text,x1,y1):
         pass
 
+    def center_text(self,style,text,x1,y1):
+        pass
+
     def draw_line(self,style,x1,y1,x2,y2):
 	pass
 
