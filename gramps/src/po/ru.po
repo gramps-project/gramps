@@ -1,5 +1,4 @@
-# Russian translation for GRAMPS; 
-# Русский перевод GRAMPS. 
+# Russian translation for GRAMPS; Русский перевод GRAMPS. 
 # Copyright (C) 2002 Free Software Foundation, Inc. 
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002. 
 # 
@@ -7,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3\n"
 "POT-Creation-Date: Fri Jun 21 17:07:47 2002\n"
-"PO-Revision-Date: 2002-06-24 17:56-0500\n"
+"PO-Revision-Date: 2002-07-06 08:52-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -652,11 +651,11 @@ msgstr "Web Адрес"
 
 #: EditPerson.glade:4688
 msgid "Go to this web page"
-msgstr "Иди на данную web-страницу"
+msgstr "Пойти на данную web-страницу"
 
 #: EditPerson.glade:4696 places.glade:1544
 msgid "Go"
-msgstr "Иди"
+msgstr "Пойти"
 
 #: EditPerson.glade:4911
 msgid "Add an internet reference about this person"
@@ -1085,7 +1084,7 @@ msgstr "Информация об Исследователе"
 
 #: GrampsCfg.py:108
 msgid "Data Guessing"
-msgstr "Угадывание Дат"
+msgstr "Угадывание Данных"
 
 #: GrampsCfg.py:697 GrampsCfg.py:712
 msgid "No default format"
@@ -2265,7 +2264,7 @@ msgstr "Правка Закладок"
 
 #: gramps.glade:370
 msgid "Go to Bookmark"
-msgstr "Иди к Закладке"
+msgstr "Пойти к Закладке"
 
 #: gramps.glade:379
 msgid "_Reports"
