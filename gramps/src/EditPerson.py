@@ -321,7 +321,7 @@ class EditPerson:
         """Brings up the EventEditor for a new event"""
         import EventEdit
         pname = self.person.getPrimaryName().getName()
-        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,None,0)
+        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,None,None,0)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event name cannot be changed"""
@@ -332,8 +332,11 @@ class EditPerson:
         p = utils.get_place_from_list(self.bpcombo)
         if p != None:
             event.setPlace(p)
+            def_placename = None
+        else:
+            def_placename = self.bpcombo.entry.get_text()
         EventEdit.EventEditor(self,pname,const.personalEvents,\
-                              const.save_fevent,event,1)
+                              const.save_fevent,event,def_placename,1)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event name cannot be changed"""
@@ -344,7 +347,11 @@ class EditPerson:
         p = utils.get_place_from_list(self.dpcombo)
         if p != None:
             event.setPlace(p)
-        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,1)
+            def_placename = None
+        else:
+            def_placename = self.dpcombo.entry.get_text()
+        EventEdit.EventEditor(self,pname,const.personalEvents,\
+                              const.save_fevent,event,def_placename,1)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -502,7 +509,7 @@ class EditPerson:
             return
         pname = self.person.getPrimaryName().getName()
         event = obj.get_row_data(obj.selection[0])
-        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,0)
+        EventEdit.EventEditor(self,pname,const.personalEvents,const.save_fevent,event,None,0)
 
     def on_event_select_row(self,obj,row,b,c):
         event = obj.get_row_data(row)
