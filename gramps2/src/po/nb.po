@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
-"PO-Revision-Date: 2004-03-16 16:44+0100\n"
+"PO-Revision-Date: 2004-03-23 11:04+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -2228,16 +2228,18 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"Databasen kan ikke lagres fordi du ikke har rettigheter til å skrivet til katalogen. "
-"Vennligst kontroller at du har skrivetilgang til katalogen, og prøv på nytt."
+"Databasen kan ikke lagres fordi du ikke har rettigheter til å skrivet til "
+"katalogen. Vennligst kontroller at du har skrivetilgang til katalogen, og "
+"prøv på nytt."
 
 #: WriteXML.py:145
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"Databasen kan ikke lagres fordi du ikke har rettigheter til å skrivet til filen. "
-"Vennligst kontroller at du har skrivetilgang til filen, og prøv på nytt."
+"Databasen kan ikke lagres fordi du ikke har rettigheter til å skrivet til "
+"filen. Vennligst kontroller at du har skrivetilgang til filen, og prøv på "
+"nytt."
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -2627,8 +2629,9 @@ msgid "DNS/CAN"
 msgstr "DNS/CAN"
 
 #: const.py:881
+#, fuzzy
 msgid "Flowed"
-msgstr ""
+msgstr "Flyt"
 
 #: const.py:882
 msgid "Preformatted"
@@ -2741,8 +2744,9 @@ msgstr ""
 #: dialog.glade:760 dialog.glade:1527 dialog.glade:2884 dialog.glade:4048
 #: edit_person.glade:3585 gramps.glade:5946 imagesel.glade:842
 #: imagesel.glade:2075 marriage.glade:1342 places.glade:1276
+#, fuzzy
 msgid "_Flowed"
-msgstr ""
+msgstr "_Flyt"
 
 #: dialog.glade:780 dialog.glade:1547 dialog.glade:2904 dialog.glade:4068
 #: edit_person.glade:3605 gramps.glade:5966 imagesel.glade:862
@@ -2751,8 +2755,8 @@ msgid ""
 "Formatting is preserved, except for the leading whitespace. Multiple spaces, "
 "tabs, and all line breaks are respected."
 msgstr ""
-"Formateringer bevares, bortsett fra innledende blanketegn. Gjentakende mellemrom, "
-"tabulatorer og alle linjeskift forblir likt."
+"Formateringer bevares, bortsett fra innledende blanketegn. Gjentakende "
+"mellemrom, tabulatorer og alle linjeskift forblir likt."
 
 #: dialog.glade:782 dialog.glade:1549 dialog.glade:2906 dialog.glade:4070
 #: edit_person.glade:3607 gramps.glade:5968 imagesel.glade:864
@@ -3342,8 +3346,8 @@ msgid ""
 "be presented for any missing medial files."
 msgstr ""
 "Hvis du trykker på denne knappen vil alle manglende media filer automatisk "
-"bli behandlet etter den valgte instillingen. Ingen flere dialoger vil bli vist for "
-"manglende media filer."
+"bli behandlet etter den valgte instillingen. Ingen flere dialoger vil bli "
+"vist for manglende media filer."
 
 #: errdialogs.glade:1088
 msgid "_Use this selection for all missing media files"
