@@ -69,9 +69,6 @@ class DescendantReport:
         else:
             self.standalone = 0
         
-    def setup(self):
-        pass
-
     def dump_dates(self, person):
         birth = person.getBirth().getDateObj().get_start_date()
         death = person.getDeath().getDateObj().get_start_date()

@@ -105,9 +105,6 @@ class AncestorsReport (Report.Report):
         else:
             self.standalone = 0
 
-    def setup(self):
-        pass
-
     def write_report(self):
         if self.newpage:
             self.doc.page_break()

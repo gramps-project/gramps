@@ -119,9 +119,6 @@ class FamilyGroup:
         table.set_column_width(3,40)
         self.doc.add_table_style('ChildTable',table)
 
-    def setup(self):
-        pass
-
     def end(self):
         if self.standalone:
             self.doc.close()

@@ -62,9 +62,6 @@ class FtmAncestorReport(Report.Report):
         self.sref_map = {}
         self.sref_index = 1
         
-    def setup(self):
-        pass
-
     def apply_filter(self,person,index,generation=1):
         if person == None or generation > self.max_generations:
             return
