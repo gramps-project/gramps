@@ -74,12 +74,6 @@ import VersionControl
 import ReadXML
 import GrampsXML
 
-try:
-    import GrampsZODB
-    zodb_ok = 1
-except:
-    zodb_ok = 0
-
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -121,7 +115,6 @@ class Gramps:
         self.place_loaded = 0
         self.bookmarks = None
         self.c_details = 6
-        self.id2col = {}
         self.cl = 0
 
         gtk.rc_parse(const.gtkrcFile)
@@ -134,7 +127,7 @@ class Gramps:
                            "security risks."))
 
         # This will never contain data - It will be replaced by either
-        # a GrampsXML or GrampsZODB
+        # a GrampsXML
 
         self.history = []
         self.mhistory = []
@@ -685,7 +678,8 @@ class Gramps:
             if self.find_person:
                 self.find_person.show()
             else:
-                self.find_person = Find.FindPerson(self.find_goto_person,self.db,self.id2col)
+                self.find_person = Find.FindPerson(self.find_goto_person,self.db,
+                                                   self.people_view.id2col)
 
     def on_findname_activate(self,obj):
         """Display the find box"""
@@ -849,7 +843,7 @@ class Gramps:
         import DbPrompter
         DbPrompter.DbPrompter(self,1,self.topWindow)
 
-    def clear_database(self,zodb=1):
+    def clear_database(self):
         """Clear out the database if permission was granted"""
         const.personalEvents = const.init_personal_event_list()
         const.personalAttributes = const.init_personal_attribute_list()
@@ -864,12 +858,7 @@ class Gramps:
 
         self.people_view.clear_person_tabs()
         
-        if zodb == 1:
-            self.db = GrampsZODB.GrampsZODB()
-        elif zodb == 2:
-            self.db = RelLib.GrampsDB()
-        else:
-            self.db = GrampsXML.GrampsXML()
+        self.db = GrampsXML.GrampsXML()
         self.db.set_iprefix(GrampsCfg.iprefix)
         self.db.set_oprefix(GrampsCfg.oprefix)
         self.db.set_fprefix(GrampsCfg.fprefix)
@@ -958,7 +947,7 @@ class Gramps:
             return
         filename = os.path.normpath(os.path.abspath(filename))
         
-        self.clear_database(0)
+        self.clear_database()
     
         if getoldrev.get_active():
             vc = VersionControl.RcsVersionControl(filename)
@@ -1028,10 +1017,10 @@ class Gramps:
             self.displayError(_("Database could not be opened"),
                               _("%s is not a directory.") % filename + ' ' + \
                               _("You should select a directory that contains a "
-                                "data.gramps file or a gramps.zodb file."))
+                                "data.gramps file."))
             return
 
-        self.clear_database(2)
+        self.clear_database()
         if self.load_database(filename) == 1:
             if filename[-1] == '/':
                 filename = filename[:-1]
@@ -1153,7 +1142,7 @@ class Gramps:
                 self.displayError(_("Database could not be opened"),
                                   _("%s is not a directory.") % filename + ' ' + \
                                   _("You should select a directory that contains a "
-                                "data.gramps file or a gramps.zodb file."))
+                                "data.gramps file."))
                 return
         else:
             try:
@@ -1432,7 +1421,6 @@ class Gramps:
         self.db.new()
         self.active_person = None
         self.place_loaded = 0
-        self.id2col = {}
         self.read_file(file)
         Utils.clearModified()
         Utils.clear_timer()
@@ -1700,11 +1688,7 @@ class Gramps:
     def load_database(self,name):
 
         filename = "%s/%s" % (name,const.xmlFile)
-        if not os.path.isfile(filename) and zodb_ok:
-            filename = "%s/%s" % (name,const.zodbFile)
-            self.clear_database(1)
-        else:
-            self.clear_database(0)
+        self.clear_database()
 
         self.status_text(_("Loading %s...") % name)
         if self.db.load(filename,self.load_progress) == 0:

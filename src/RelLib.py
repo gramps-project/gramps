@@ -44,18 +44,6 @@ import const
 
 #-------------------------------------------------------------------------
 #
-# Attempt to load the ZODB libraries, otherwise provide alternates
-#
-#-------------------------------------------------------------------------
-try:
-    from ZODB import Persistent
-except ImportError:
-    class Persistent:
-        """Dummy class used if ZODB is not installed on the system"""
-        pass
-
-#-------------------------------------------------------------------------
-#
 # Confidence levels
 #
 #-------------------------------------------------------------------------
@@ -74,16 +62,7 @@ CONF_VERY_LOW  = 0
 _id_reg = compile("%\d+d")
 
 
-def extlist(lst):
-    """Returns a copy of the passed list"""
-    return lst[:]  # Make a copy.
-
-def extmap(map):
-    """Returns a map"""
-    return map
-
-
-class SourceNote(Persistent):
+class SourceNote:
     """Base class for storing source references and notes"""
     
     def __init__(self,source=None):
@@ -105,11 +84,10 @@ class SourceNote(Persistent):
     def addSourceRef(self,id) :
         """Set the source reference"""
         self.source_list.append(id)
-        self._p_changed = 1
 
     def getSourceRefList(self) :
         """Return the source reference"""
-        return extlist(self.source_list)
+        return self.source_list
 
     def setSourceRefList(self,list) :
         """Replaces the source reference"""
@@ -310,7 +288,7 @@ class Place(SourceNote):
             
     def getUrlList(self):
         """Return the list of URLs"""
-        return extlist(self.urls)
+        return self.urls
 
     def setUrlList(self,list):
         """Replace the current URL list with the new one"""
@@ -319,7 +297,6 @@ class Place(SourceNote):
     def addUrl(self,url):
         """Add a URL to the URL list"""
         self.urls.append(url)
-        self._p_changed = 1
     
     def setId(self,id):
         """Sets the gramps ID for the place object"""
@@ -365,7 +342,7 @@ class Place(SourceNote):
 
     def get_alternate_locations(self):
         """Returns a list of alternate location information objects"""
-        return extlist(self.alt_loc)
+        return self.alt_loc
 
     def set_alternate_locations(self,list):
         """Replaces the current alternate location list with the new one"""
@@ -375,16 +352,14 @@ class Place(SourceNote):
         """Adds a Location to the alternate location list"""
         if loc not in self.alt_loc:
             self.alt_loc.append(loc)
-            self._p_changed = 1
 
     def addPhoto(self,photo):
         """Adds a Photo object to the place object's image list"""
         self.photoList.append(photo)
-        self._p_changed = 1
 
     def getPhotoList(self):
         """Returns the list of Photo objects"""
-        return extlist(self.photoList)
+        return self.photoList
 
     def setPhotoList(self,list):
         """Sets the list of Photo objects"""
@@ -407,7 +382,7 @@ class Place(SourceNote):
         else:
             return [self.title,self.id,'','','','','',self.title.upper(), '','','','','']
         
-class Researcher(Persistent):
+class Researcher:
     """Contains the information about the owner of the database"""
     
     def __init__(self):
@@ -472,7 +447,7 @@ class Researcher(Persistent):
         if email:
             self.email = strip(email)
 
-class Location(Persistent):
+class Location:
     """Provides information about a place, including city, county, state,
     and country. Multiple Location objects can represent the same place,
     since names of citys, countys, states, and even countries can change
@@ -536,7 +511,7 @@ class Location(Persistent):
         """returns the country name of the Location object"""
         return self.country
 
-class Note(Persistent):
+class Note:
     """Provides general text information"""
     
     def __init__(self,text = ""):
@@ -623,17 +598,16 @@ class Photo(SourceNote):
         but provides a means for XML users to attach other properties to
         the image"""
         self.attrlist.append(attr)
-        self._p_changed = 1
 
     def getAttributeList(self):
         """returns the property list associated with the image"""
-        return extlist(self.attrlist)
+        return self.attrlist
 
     def setAttributeList(self,list):
         self.attrlist = list
 
 
-class ObjectRef(Persistent):
+class ObjectRef:
     """Object reference class"""
     def __init__(self,source=None):
         self.attrlist = []
@@ -692,16 +666,14 @@ class ObjectRef(Persistent):
         but provides a means for XML users to attach other properties to
         the image"""
         self.attrlist.append(attr)
-        self._p_changed = 1
 
     def getAttributeList(self):
         """returns the property list associated with the image"""
-        return extlist(self.attrlist)
+        return self.attrlist
 
     def setAttributeList(self,list):
         """sets the property list associated with the image"""
         self.attrlist = list
-
 
 class Attribute(DataObj):
     """Provides a simple key/value pair for describing properties. Used
@@ -982,7 +954,7 @@ class Name(DataObj):
             index = index + 1
         return 1
 
-class Url(Persistent):
+class Url:
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
@@ -1111,7 +1083,7 @@ class Person(SourceNote):
 
     def getAlternateNames(self):
         """returns the list of alternate Names"""
-        return extlist(self.alternateNames)
+        return self.alternateNames
 
     def setAlternateNames(self,list):
         """changes the list of alternate names to the passed list"""
@@ -1120,11 +1092,10 @@ class Person(SourceNote):
     def addAlternateName(self,name):
         """adds an alternate Name instance to the list"""
         self.alternateNames.append(name)
-        self._p_changed = 1
 
     def getUrlList(self):
         """returns the list of URL instances"""
-        return extlist(self.urls)
+        return self.urls
 
     def setUrlList(self,list):
         """sets the list of URL instances to list"""
@@ -1133,7 +1104,6 @@ class Person(SourceNote):
     def addUrl(self,url):
         """adds a URL instance to the list"""
         self.urls.append(url)
-        self._p_changed = 1
     
     def setId(self,id):
         """sets the gramps ID for the Person"""
@@ -1211,11 +1181,10 @@ class Person(SourceNote):
     def addPhoto(self,photo):
         """adds a Photo instance to the image list"""
         self.photoList.append(photo)
-        self._p_changed = 1
 
     def getPhotoList(self):
         """returns the list of Photos"""
-        return extlist(self.photoList)
+        return self.photoList
 
     def setPhotoList(self,list):
         """Sets the list of Photo objects"""
@@ -1224,11 +1193,10 @@ class Person(SourceNote):
     def addEvent(self,event):
         """adds an Event to the event list"""
         self.EventList.append(event)
-        self._p_changed = 1
 
     def getEventList(self):
         """returns the list of Event instances"""
-        return extlist(self.EventList)
+        return self.EventList
 
     def setEventList(self,list):
         """sets the event list to the passed list"""
@@ -1239,7 +1207,6 @@ class Person(SourceNote):
         families/marriages/partnerships in which the person is a
         parent or spouse"""
         self.FamilyList.append(family)
-        self._p_changed = 1
 
     def setPreferred(self,family):
         if family in self.FamilyList:
@@ -1249,7 +1216,7 @@ class Person(SourceNote):
     def getFamilyList(self) :
         """returns the list of Family instances in which the
         person is a parent or spouse"""
-        return extlist(self.FamilyList)
+        return self.FamilyList
 
     def clearFamilyList(self) :
         self.FamilyList = []
@@ -1259,22 +1226,19 @@ class Person(SourceNote):
         of marriages/partnerships"""
         if family in self.FamilyList:
             self.FamilyList.remove(family)
-            self._p_changed = 1
 
     def addAddress(self,address):
         """adds the Address instance to the list of addresses"""
         self.addressList.append(address)
-        self._p_changed = 1
 
     def removeAddress(self,address):
         """removes the Address instance from the list of addresses"""
         if address in self.addressList:
             self.addressList.remove(address)
-            self._p_changed = 1
 
     def getAddressList(self):
         """returns the list of addresses"""
-        return extlist(self.addressList)
+        return self.addressList
 
     def setAddressList(self,list):
         """sets the address list to the specified list"""
@@ -1283,17 +1247,15 @@ class Person(SourceNote):
     def addAttribute(self,attribute):
         """adds an Attribute instance to the attribute list"""
         self.attributeList.append(attribute)
-        self._p_changed = 1
 
     def removeAttribute(self,attribute):
         """removes the specified Attribute instance from the attribute list"""
         if attribute in self.attributeList:
             self.attributeList.remove(attribute)
-            self._p_changed = 1
 
     def getAttributeList(self):
         """returns the attribute list"""
-        return extlist(self.attributeList)
+        return self.attributeList
 
     def setAttributeList(self,list):
         """sets the attribute list to the specified list"""
@@ -1302,13 +1264,12 @@ class Person(SourceNote):
     def getParentList(self):
         """returns the list of alternate Family instances, in which the Person
         is a child of the family, but not a natural child of both parents"""
-        return extlist(self.AltFamilyList)
+        return self.AltFamilyList
 
     def addAltFamily(self,family,mrel,frel):
         """adds a Family to the alternate family list, indicating the
         relationship to the mother (mrel) and the father (frel)"""
         self.AltFamilyList.append((family,mrel,frel))
-        self._p_changed = 1
 
     def clearAltFamilyList(self):
         self.AltFamilyList = []
@@ -1318,7 +1279,6 @@ class Person(SourceNote):
         for f in self.AltFamilyList[:]:
             if f[0] == family:
                 self.AltFamilyList.remove(f)
-                self._p_changed = 1
                 return f
         else:
             return None
@@ -1329,7 +1289,6 @@ class Person(SourceNote):
         for f in self.AltFamilyList[:]:
             if f[0] == family:
                 self.AltFamilyList[index] = (family,mrel,frel)
-                self._p_changed = 1
             index += 1
 
     def has_family(self,family):
@@ -1510,7 +1469,6 @@ class Event(DataObj):
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
-            # old ZODB database may not have this element
             try:
                 if source.witness:
                     self.witness = source.witness[:]
@@ -1654,7 +1612,7 @@ class Event(DataObj):
         """sets the Date object associated with the Event"""
         self.date = date
 
-class Witness(Persistent):
+class Witness:
     def __init__(self,type=Event.NAME,val="",comment=""):
         self.set_type(type)
         self.set_value(val)
@@ -1721,17 +1679,15 @@ class Family(SourceNote):
     def addAttribute(self,attribute) :
         """adds an Attribute instance to the attribute list"""
         self.attributeList.append(attribute)
-        self._p_changed = 1
 
     def removeAttribute(self,attribute):
         """removes the specified Attribute instance from the attribute list"""
         if attribute in self.attributeList:
             self.attributeList.remove(attribute)
-            self._p_changed = 1
 
     def getAttributeList(self) :
         """returns the attribute list"""
-        return extlist(self.attributeList)
+        return self.attributeList
 
     def setAttributeList(self,list) :
         """sets the attribute list to the specified list"""
@@ -1786,7 +1742,6 @@ class Family(SourceNote):
         to the child list"""
         if person not in self.Children:
             self.Children.append(person)
-            self._p_changed = 1
         if person.getAncestor():
             if self.Father:
                 self.Father.setAncestor(1)
@@ -1797,7 +1752,6 @@ class Family(SourceNote):
         """removes the specified Person from the child list"""
         if person in self.Children:
             self.Children.remove(person)
-            self._p_changed = 1
         if person.getAncestor():
             if self.Father:
                 self.Father.setAncestor(0)
@@ -1806,7 +1760,7 @@ class Family(SourceNote):
 
     def getChildList(self):
         """returns the list of children"""
-        return extlist(self.Children)
+        return self.Children
 
     def setChildList(self, list):
         """sets the list of children"""
@@ -1829,11 +1783,10 @@ class Family(SourceNote):
     def addEvent(self,event):
         """adds an Event to the event list"""
         self.EventList.append(event)
-        self._p_changed = 1
 
     def getEventList(self) :
         """returns the list of Event instances"""
-        return extlist(self.EventList)
+        return self.EventList
 
     def setEventList(self,list) :
         """sets the event list to the passed list"""
@@ -1842,11 +1795,10 @@ class Family(SourceNote):
     def addPhoto(self,photo):
         """Adds a Photo object to the Family instance's image list"""
         self.photoList.append(photo)
-        self._p_changed = 1
 
     def getPhotoList(self):
         """Returns the list of Photo objects"""
-        return extlist(self.photoList)
+        return self.photoList
 
     def setPhotoList(self,list):
         """Sets the list of Photo objects"""
@@ -1858,7 +1810,7 @@ class Family(SourceNote):
                 return 1
         return None
 
-class Source(Persistent):
+class Source:
     """A record of a source of information"""
     
     def __init__(self):
@@ -1886,11 +1838,10 @@ class Source(Persistent):
     def addPhoto(self,photo):
         """Adds a Photo object to the Source instance's image list"""
         self.photoList.append(photo)
-        self._p_changed = 1
 
     def getPhotoList(self):
         """Returns the list of Photo objects"""
-        return extlist(self.photoList)
+        return self.photoList
 
     def setPhotoList(self,list):
         """Sets the list of Photo objects"""
@@ -1950,7 +1901,7 @@ class Source(Persistent):
         of the Source"""
         return self.callno
 
-class SourceRef(Persistent):
+class SourceRef:
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
@@ -2110,7 +2061,7 @@ class GenderStats:
 
         return Person.unknown
 
-class GrampsDB(Persistent):
+class GrampsDB:
     """GRAMPS database object. This object is a base class for other
     objects."""
 
@@ -2307,7 +2258,7 @@ class GrampsDB(Persistent):
 
     def getPersonMap(self):
         """returns a map of gramps's IDs to Person instances"""
-        return extmap(self.personMap)
+        return self.personMap
 
     def setPersonMap(self,map):
         """sets the map of gramps's IDs to Person instances"""
@@ -2316,7 +2267,7 @@ class GrampsDB(Persistent):
 
     def getPlaceMap(self):
         """returns a map of gramps's IDs to Place instances"""
-        return extmap(self.placeMap)
+        return self.placeMap
 
     def setPlaceMap(self,map):
         """sets the map of gramps's IDs to Place instances"""
@@ -2324,7 +2275,7 @@ class GrampsDB(Persistent):
 
     def getFamilyMap(self):
         """returns a map of gramps's IDs to Family instances"""
-        return extmap(self.familyMap)
+        return self.familyMap
 
     def getFamily(self,id):
         """returns a map of gramps's IDs to Family instances"""
@@ -2336,8 +2287,7 @@ class GrampsDB(Persistent):
 
     def getSourceMap(self):
         """returns a map of gramps's IDs to Source instances"""
-        return extmap(self.sourceMap)
-
+        return self.sourceMap
 
     def getObjectMap(self):
         """returns a map of gramps's IDs to Object instances"""

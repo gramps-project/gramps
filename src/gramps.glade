@@ -6357,7 +6357,7 @@
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">True</property>
   <property name="default_width">300</property>
-  <property name="default_height">200</property>
+  <property name="default_height">150</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
@@ -6463,25 +6463,6 @@
 	      <property name="visible">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="label" translatable="yes">Create a new _XML database</property>
-	      <property name="use_underline">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="active">False</property>
-	      <property name="inconsistent">False</property>
-	      <property name="draw_indicator">True</property>
-	      <property name="group">existing</property>
-	    </widget>
-	    <packing>
-	      <property name="padding">0</property>
-	      <property name="expand">False</property>
-	      <property name="fill">False</property>
-	    </packing>
-	  </child>
-
-	  <child>
-	    <widget class="GtkRadioButton" id="zodb">
-	      <property name="border_width">5</property>
-	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">Create a new _ZODB database</property>
 	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="active">False</property>

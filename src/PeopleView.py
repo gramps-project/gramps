@@ -184,7 +184,9 @@ class PeopleView:
         self.DataFilter = class_init(qualifer)
         self.DataFilter.set_invert(invert_filter)
         self.model_used = {}
+        self.clear_person_tabs()
         self.apply_filter(self.person_tree)
+        self.goto_active_person()
 
     def add_to_person_list(self,person,change):
         key = person.getId()

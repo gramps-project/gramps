@@ -37,12 +37,6 @@ import GrampsCfg
 import VersionControl
 from gettext import gettext as _
 
-try:
-    import ZODB
-    _zodb = 1
-except:
-    _zodb = 0
-    
 #-------------------------------------------------------------------------
 #
 # DbPrompter
@@ -73,18 +67,12 @@ class DbPrompter:
             })
         
         self.new = opendb.get_widget("new")
-        self.zodb = opendb.get_widget("zodb")
         if self.want_new:
             self.new.set_active(1)
-        if _zodb:
-            self.zodb.show()
 
     def open_ok_clicked(self,obj):
         if self.new.get_active():
             self.db.clear_database(0)
-            self.save_as_activate()
-        elif self.zodb.get_active():
-            self.db.clear_database(1)
             self.save_as_activate()
         else:
             self.open_activate()
