@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -293,8 +293,8 @@ class FilterEditor:
         store,iter = self.clist.get_selected()
         if iter:
             filt = self.clist.get_object(iter)
-            list = filt.apply(self.db,self.db.get_person_id_map().values())
-            ShowResults(list)
+            id_list = filt.apply(self.db,self.db.get_person_keys())
+            ShowResults(self.db,id_list)
 
     def delete_filter(self,obj):
         store,iter = self.clist.get_selected()
@@ -404,8 +404,9 @@ class FilterEditor:
         self.pmap = {}
         self.add_places = []
 
-        for p in self.db.get_place_ids():
-            self.pmap[p.get_title()] = p
+        for p_id in self.db.get_place_ids():
+            p = self.db.find_place_from_id(p_id)
+            self.pmap[p.get_title()] = p_id
 
         self.active_rule = val
         self.rule = gtk.glade.XML(const.filterFile,'rule_editor',"gramps")
@@ -588,7 +589,7 @@ class FilterEditor:
         self.rule_top.destroy()
 
 class ShowResults:
-    def __init__(self,plist):
+    def __init__(self,db,id_list):
         self.glade = gtk.glade.XML(const.filterFile,'test',"gramps")
         self.top = self.glade.get_widget('test')
         text = self.glade.get_widget('text')
@@ -599,7 +600,8 @@ class ShowResults:
         self.glade.signal_autoconnect({'on_close_clicked' : self.close})
 
         n = []
-        for p in plist:
+        for p_id in id_list:
+            p = db.find_person_from_id(p_id)
             n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_id()))
 
         n.sort ()
