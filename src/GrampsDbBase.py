@@ -350,6 +350,7 @@ class GrampsDbBase:
             source.unserialize(self.source_map.get(str(val)))
         else:
             source.set_handle(val)
+            source.set_gramps_id(val)
             if transaction != None:
                 transaction.add(SOURCE_KEY,val,None)
             self.source_map[str(val)] = source.serialize()
