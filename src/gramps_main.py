@@ -350,7 +350,7 @@ class Gramps:
         self.accel_group = gtk.AccelGroup()
         self.topWindow.add_accel_group(self.accel_group)
         self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
-        self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
+        self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
 
         self.topWindow.show()
         self.enable_toolbar(self.use_toolbar)
@@ -395,7 +395,12 @@ class Gramps:
         item.show()
         gomenu.append(item)
 
-        item = gtk.ImageMenuItem(gtk.STOCK_HOME)
+        #FIXME: revert to stock item when German gtk translation is fixed
+        #item = gtk.ImageMenuItem(gtk.STOCK_HOME)
+        item = gtk.ImageMenuItem(_("Home"))
+	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+	im.show()
+	item.set_image(im)
         item.connect("activate",self.on_home_clicked)
         item.add_accelerator("activate", self.accel_group, 
                     gtk.gdk.keyval_from_name("Home"), 
