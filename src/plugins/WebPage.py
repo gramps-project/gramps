@@ -728,7 +728,7 @@ class WebReport(Report.Report):
             doc.write_text(name)
             doc.end_link()
             if col_len <= 0 and end_col == 0:
-                doc.write_text('</td><td valign="top">')
+                doc.write_raw('</td><td valign="top">')
                 doc.start_paragraph('IndexLabel')
                 doc.write_text(_("%s (continued)") % name[0])
                 doc.end_paragraph()
