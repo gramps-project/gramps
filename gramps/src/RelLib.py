@@ -90,7 +90,7 @@ class Attribute:
             else:
                 self.source_ref = None
             if source.note:
-                self.note = Note(source.note)
+                self.note = Note(source.note.get())
             else:
                 self.note = None
             self.confidence = 2
@@ -166,7 +166,7 @@ class Address:
             else:
                 self.source_ref = None
             if source.note:
-                self.note = Note(source.note)
+                self.note = Note(source.note.get())
             else:
                 self.note = None
             self.confidence = source.confidence
@@ -277,7 +277,7 @@ class Name:
             else:
                 self.source_ref = None
             if source.note:
-                self.note = Note(source.note)
+                self.note = Note(source.note.get())
             else:
                 self.note = None
             self.private = 0
@@ -371,6 +371,25 @@ class Name:
         if not self.source_ref:
             self.source_ref = SourceRef()
         return self.source_ref
+
+    def are_equal(self,other):
+        if self.FirstName != other.FirstName:
+            return 0
+        if self.Surname != other.Surname:
+            return 0
+        if self.Suffix != other.Suffix:
+            return 0
+        if self.Title != other.Title:
+            return 0
+        if self.private != other.private:
+            return 0
+        if self.confidence != other.confidence:
+            return 0
+        if self.getNote() != other.getNote():
+            return 0
+        if not self.getSourceRef().are_equal(other.getSourceRef()):
+            return 0
+        return 1
 
 #-------------------------------------------------------------------------
 #
@@ -627,7 +646,7 @@ class Event:
             else:
                 self.source_ref = None
             if source.note:
-                self.note = Note(source.note)
+                self.note = Note(source.note.get())
             else:
                 self.note = None
             self.confidence = source.confidence
@@ -660,17 +679,24 @@ class Event:
         self.description = description
         self.setDate(date)
         
-    def compare(self,other):
+    def are_equal(self,other):
         if other == None:
-            return 1
-        c = cmp(self.name,other.name)
-        if c == 0:
-            c = cmp(self.place,other.place)
-            if c == 0:
-                c = compare_dates(self.date,other.date)
-                if c == 0:
-                    return cmp(self.description,other.description)
-        return c
+            return 0
+        if self.name != other.name:
+            return 0
+        if self.place != other.place:
+            return 0
+        if compare_dates(self.date,other.date):
+            return 0
+        if self.description != other.description:
+            return 0
+        if self.confidence != other.confidence:
+            return 0
+        if self.private != other.private:
+            return 0
+        if not self.getSourceRef().are_equal(other.getSourceRef()):
+            return 0
+        return 1
         
     def setName(self,name) :
         self.name = name
@@ -745,7 +771,7 @@ class Family:
         self.Children = []
         self.Marriage = None
         self.Divorce = None
-        self.type = ""
+        self.type = "Married"
         self.EventList = []
         self.id = ""
         self.photoList = []
@@ -965,6 +991,21 @@ class SourceRef:
 
     def getComments(self):
         return self.comments.get()
+
+    def are_equal(self,other):
+        if self.ref and other.ref:
+            if self.page != other.page:
+                return 0
+            if compare_dates(self.date,other.date) != 0:
+                return 0
+            if self.getText() != other.getText():
+                return 0
+            if self.getComments() != other.getComments():
+                return 0
+        elif not self.ref and not other.ref:
+            return 1
+        else:
+            return 0
 
 #-------------------------------------------------------------------------
 #

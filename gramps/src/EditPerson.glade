@@ -2512,8 +2512,8 @@
 	      <wrap>False</wrap>
 	      <xalign>0</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>3</xpad>
-	      <ypad>3</ypad>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
 	      <child>
 		<left_attach>1</left_attach>
 		<right_attach>4</right_attach>
@@ -2538,8 +2538,8 @@
 	      <wrap>False</wrap>
 	      <xalign>0</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>3</xpad>
-	      <ypad>3</ypad>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
 	      <child>
 		<left_attach>1</left_attach>
 		<right_attach>2</right_attach>
