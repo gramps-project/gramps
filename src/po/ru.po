@@ -43,7 +43,7 @@ msgstr "Указанный файл не найден."
 #: plugins/IndivComplete.py:394
 #: plugins/IndivSummary.py:232
 #: plugins/PatchNames.py:145
-#: plugins/RelCalc.py:86
+#: plugins/RelCalc.py:87
 #: plugins/TimeLine.py:378
 #: plugins/WebPage.py:322
 msgid "Name"
@@ -65,7 +65,7 @@ msgstr "Имя"
 #: Witness.py:57
 #: gramps_main.py:103
 #: plugins/PatchNames.py:136
-#: plugins/RelCalc.py:86
+#: plugins/RelCalc.py:87
 msgid "ID"
 msgstr "ID"
 
@@ -90,8 +90,8 @@ msgstr "Выбрать супруга/партнёра"
 #: AddSpouse.py:116
 #: const.py:424
 #: const.py:432
-#: plugins/FamilyGroup.py:304
 #: plugins/FamilyGroup.py:306
+#: plugins/FamilyGroup.py:308
 msgid "Married"
 msgstr "Женаты"
 
@@ -288,7 +288,7 @@ msgstr "Выбрать родителей"
 #: gramps.glade:7811
 #: gramps.glade:7982
 #: plugins/EventCmp.py:308
-#: plugins/FamilyGroup.py:153
+#: plugins/FamilyGroup.py:155
 #: plugins/GraphViz.py:398
 #: plugins/GraphViz.py:399
 msgid "Birth"
@@ -325,7 +325,7 @@ msgstr "Родитель"
 
 #: ChooseParents.py:540
 #: FamilyView.py:882
-#: plugins/FamilyGroup.py:212
+#: plugins/FamilyGroup.py:214
 #: plugins/IndivComplete.py:213
 #: plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:434
@@ -337,7 +337,7 @@ msgstr "Мать"
 
 #: ChooseParents.py:541
 #: FamilyView.py:881
-#: plugins/FamilyGroup.py:199
+#: plugins/FamilyGroup.py:201
 #: plugins/IndivComplete.py:205
 #: plugins/IndivComplete.py:207
 #: plugins/IndivComplete.py:429
@@ -500,7 +500,7 @@ msgstr "%(father)s и %(mother)s"
 #: choose.glade:218
 #: const.py:141
 #: plugins/Check.py:294
-#: plugins/FamilyGroup.py:657
+#: plugins/FamilyGroup.py:659
 #: plugins/IndivComplete.py:275
 #: plugins/IndivSummary.py:172
 #: plugins/WebPage.py:591
@@ -713,15 +713,15 @@ msgstr "Статус"
 #: FamilyView.py:1014
 #: PedView.py:493
 #: PedView.py:503
-#: PeopleView.py:378
-#: PeopleView.py:391
+#: PeopleView.py:380
+#: PeopleView.py:393
 #: gramps.glade:781
 #: gramps_main.py:399
 msgid "Home"
 msgstr "Домой"
 
 #: FamilyView.py:303
-#: PeopleView.py:379
+#: PeopleView.py:381
 msgid "Add Bookmark"
 msgstr "Добавить закладку"
 
@@ -730,7 +730,7 @@ msgstr "Добавить закладку"
 #: FamilyView.py:364
 #: FamilyView.py:394
 #: PedView.py:499
-#: PeopleView.py:387
+#: PeopleView.py:389
 msgid "People Menu"
 msgstr "Люди"
 
@@ -1523,7 +1523,7 @@ msgstr "Документ"
 #: ImageSelect.py:614
 #: docgen/HtmlDoc.py:480
 #: docgen/KwordDoc.py:495
-#: docgen/PdfDoc.py:583
+#: docgen/PdfDoc.py:590
 #: docgen/RTFDoc.py:427
 msgid "Open in %s"
 msgstr "Открыть в %s"
@@ -1726,16 +1726,16 @@ msgid "Death date"
 msgstr "Дата смерти"
 
 #: PeopleStore.py:250
-#: PeopleView.py:250
-#: PeopleView.py:269
+#: PeopleView.py:252
+#: PeopleView.py:271
 #: gramps_main.py:946
 #: gramps_main.py:1546
 msgid "Updating display..."
 msgstr "Обновляю экран..."
 
-#: PeopleView.py:383
-#: PlaceView.py:177
-#: SourceView.py:143
+#: PeopleView.py:385
+#: PlaceView.py:185
+#: SourceView.py:149
 #: gramps.glade:844
 #: plugins/BookReport.py:814
 msgid "Edit"
@@ -1749,30 +1749,30 @@ msgstr "Церковный приход"
 msgid "Place Name"
 msgstr "Название места"
 
-#: PlaceView.py:144
+#: PlaceView.py:152
 msgid "Cannot merge places."
 msgstr "Не могу слить места."
 
-#: PlaceView.py:145
+#: PlaceView.py:153
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Ровно два места должны быть выделены для осуществления слияния. Второе место может быть выбрано нажатием и удерживанием клавиши Control в момент щелчка по названию желаемого места."
 
-#: PlaceView.py:181
-#: SourceView.py:147
+#: PlaceView.py:189
+#: SourceView.py:153
 msgid "Source Menu"
 msgstr "Источники"
 
-#: PlaceView.py:232
-#: SourceView.py:172
+#: PlaceView.py:240
+#: SourceView.py:178
 #: gramps_main.py:1283
 msgid "Delete %s?"
 msgstr "Удалить %s?"
 
-#: PlaceView.py:233
+#: PlaceView.py:241
 msgid "This place is currently being used by at least one record in the database. Deleting it will remove it from the database and remove it from all records that reference it."
 msgstr "Это место в настоящий момент используется по крайней мере в одной записи. Стирание удалит его из базы данных и изо всех записей, которые на него ссылаются."
 
-#: PlaceView.py:237
+#: PlaceView.py:245
 msgid "_Delete Place"
 msgstr "У_далить место"
 
@@ -1919,7 +1919,7 @@ msgstr "Файл был перемещён или удалён"
 #: docgen/OpenSpreadSheet.py:436
 #: docgen/PSDrawDoc.py:103
 #: docgen/PSDrawDoc.py:106
-#: docgen/PdfDoc.py:175
+#: docgen/PdfDoc.py:182
 #: docgen/RTFDoc.py:81
 #: docgen/RTFDoc.py:84
 #: docgen/SvgDrawDoc.py:74
@@ -1964,7 +1964,7 @@ msgstr "Ошибка создания пиктограммы для %s"
 msgid "The file has been moved or deleted."
 msgstr "Файл был перемещён или удалён."
 
-#: Relationship.py:226
+#: Relationship.py:258
 #: plugins/rel_de.py:345
 msgid "Relationship loop detected"
 msgstr "Обнаружена петля в отношениях"
@@ -1987,7 +1987,7 @@ msgstr "Второе"
 
 #: Report.py:120
 msgid "Fourth"
-msgstr "Четвертое"
+msgstr "Четвёртое"
 
 #: Report.py:120
 msgid "Third"
@@ -2142,6 +2142,14 @@ msgstr "Поколения"
 msgid "Page break between generations"
 msgstr "Новая страница между поколениями"
 
+#: Report.py:736
+#: Witness.py:160
+#: plugins/AncestorChart2.py:623
+#: plugins/FamilyGroup.py:506
+#: plugins/FilterEditor.py:173
+msgid "Select Person"
+msgstr "Выбрать персону"
+
 #: Report.py:808
 msgid "Save Report As"
 msgstr "Сохранить отчёт как"
@@ -2263,7 +2271,7 @@ msgid "Relationship to %(mother)s"
 msgstr "Отношение к %(mother)s"
 
 #: SelectChild.py:105
-#: plugins/RelCalc.py:81
+#: plugins/RelCalc.py:82
 msgid "Relationship to %s"
 msgstr "Отношение к %s"
 
@@ -2283,11 +2291,11 @@ msgstr "Отношение к матери"
 msgid "Author"
 msgstr "Автор"
 
-#: SourceView.py:173
+#: SourceView.py:179
 msgid "This source is currently being used. Deleting it will remove it from the database and from all records that reference it."
 msgstr "Этот источник в настоящий момент используется. Стирание удалит его из базы данных и изо всех записей, которые на него ссылаются."
 
-#: SourceView.py:176
+#: SourceView.py:182
 msgid "_Delete Source"
 msgstr "У_далить источник"
 
@@ -2534,13 +2542,26 @@ msgstr "Свидетель"
 msgid "Witness Editor"
 msgstr "Редактор свидетелей"
 
-#: WriteXML.py:86
+#: WriteXML.py:88
+#: WriteXML.py:137
+#: WriteXML.py:146
+#: WriteXML.py:163
 msgid "Failure writing %s"
 msgstr "Ошибка при записи %s"
 
-#: WriteXML.py:87
+#: WriteXML.py:89
 msgid "An attempt is being made to recover the original file"
 msgstr "Производится попытка восстановить оригинальный файл"
+
+# !!!FIXME!!!
+#: WriteXML.py:138
+msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
+msgstr "База данных не может быть сохранна так как у Вас нет права на запись в данном каталоге. Убедитесь, что у Вас есть право на запись в каталоге и попробуйте ещё раз."
+
+# !!!FIXME!!!
+#: WriteXML.py:147
+msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
+msgstr "База данных не может быть записана так как у Вас нет права на запись файла. Убедитесь, что у Вас есть право на запись файла и попробуйте ещё раз."
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -2959,7 +2980,7 @@ msgstr "Мертворождённый"
 #: const.py:868
 #: const.py:874
 msgid "Pre-1970"
-msgstr "Пре-1970"
+msgstr "До 1970"
 
 # LDS, An ordinance request was qualified by authorized crteria 
 #: const.py:862
@@ -3454,9 +3475,9 @@ msgstr "PostScript"
 msgid "The ReportLab modules are not installed"
 msgstr "Модули ReportLab не установлены"
 
-#: docgen/PdfDoc.py:588
-#: docgen/PdfDoc.py:597
-#: docgen/PdfDoc.py:607
+#: docgen/PdfDoc.py:595
+#: docgen/PdfDoc.py:604
+#: docgen/PdfDoc.py:614
 msgid "PDF"
 msgstr "PDF"
 
@@ -4008,7 +4029,7 @@ msgstr "Лица с именами, удовлетворяющими регул�
 #: plugins/DescendReport.py:415
 #: plugins/DetAncestralReport.py:1221
 #: plugins/DetDescendantReport.py:1230
-#: plugins/FamilyGroup.py:770
+#: plugins/FamilyGroup.py:772
 #: plugins/FtmStyleAncestors.py:1263
 #: plugins/FtmStyleDescendants.py:1672
 #: plugins/IndivComplete.py:828
@@ -4619,7 +4640,6 @@ msgid "An error was detected while attempting to create the file. The operating 
 msgstr "Ошибка при попытке создать файл. Операционная система вернула \"%s\""
 
 #: gramps_main.py:1193
-#: gramps_main.py:1203
 msgid "An error was detected while trying to create the file"
 msgstr "Ошибка при попытке создать файл."
 
@@ -4788,7 +4808,7 @@ msgstr "Добавить новый атрибут для этого брака"
 
 #: marriage.glade:1616
 msgid "Edit the properties of the selected objects"
-msgstr "Редактировать свойства выленных объектов"
+msgstr "Редактировать свойства выделенных объектов"
 
 #: marriage.glade:1699
 msgid "<b>Sealed to spouse</b>"
@@ -4920,7 +4940,7 @@ msgstr "Эл. почта автора:"
 #: plugins/Ancestors.py:807
 #: plugins/Ancestors.py:813
 #: plugins/DesGraph.py:315
-#: plugins/FamilyGroup.py:621
+#: plugins/FamilyGroup.py:623
 #: plugins/FanChart.py:283
 #: plugins/FtmStyleAncestors.py:968
 #: plugins/FtmStyleAncestors.py:973
@@ -4947,7 +4967,7 @@ msgstr "Карта предков"
 #: plugins/AncestorChart.py:242
 #: plugins/AncestorChart.py:560
 #: plugins/AncestorChart2.py:462
-#: plugins/AncestorChart2.py:818
+#: plugins/AncestorChart2.py:836
 #: plugins/DesGraph.py:329
 #: plugins/DesGraph.py:586
 #: plugins/FanChart.py:310
@@ -4997,13 +5017,13 @@ msgid "Ancestor Chart for GRAMPS Book"
 msgstr "Карта предков для Книги GRAMPS"
 
 #: plugins/AncestorChart.py:561
-#: plugins/AncestorChart2.py:819
+#: plugins/AncestorChart2.py:837
 #: plugins/AncestorReport.py:515
 #: plugins/Ancestors.py:1120
 #: plugins/DescendReport.py:405
 #: plugins/DetAncestralReport.py:1210
 #: plugins/DetDescendantReport.py:1219
-#: plugins/FamilyGroup.py:762
+#: plugins/FamilyGroup.py:764
 #: plugins/FtmStyleAncestors.py:1253
 #: plugins/FtmStyleDescendants.py:1662
 #: plugins/GraphViz.py:530
@@ -5017,13 +5037,13 @@ msgid "Beta"
 msgstr "Бета"
 
 #: plugins/AncestorChart.py:562
-#: plugins/AncestorChart2.py:820
+#: plugins/AncestorChart2.py:838
 msgid "Produces a graphical ancestral tree graph"
-msgstr "Создаёт граф дерева предков"
+msgstr "Строит дерево предков."
 
 # !!!FIXME!!!
 #: plugins/AncestorChart.py:571
-#: plugins/AncestorChart2.py:829
+#: plugins/AncestorChart2.py:847
 #: plugins/DesGraph.py:597
 #: plugins/FanChart.py:470
 #: plugins/TimeLine.py:667
@@ -5045,8 +5065,8 @@ msgstr "Сжатый граф"
 msgid "Sc_ale to fit on a single page"
 msgstr "Масштабировать до размера одной страницы"
 
-#: plugins/AncestorChart2.py:817
-#: plugins/AncestorChart2.py:828
+#: plugins/AncestorChart2.py:835
+#: plugins/AncestorChart2.py:846
 msgid "Ancestor Chart (Wall Chart)"
 msgstr "Карта предков (настенная)"
 
@@ -5129,6 +5149,7 @@ msgstr "и был(а) похоронен(а) в %s году."
 msgid " and was buried in %s."
 msgstr "и был(а) похоронен(а) в %s."
 
+# !!!FIXME!!!
 #: plugins/AncestorReport.py:238
 #: plugins/AncestorReport.py:334
 #: plugins/AncestorReport.py:513
@@ -5144,8 +5165,8 @@ msgstr "Таблица предков"
 #: plugins/DescendReport.py:404
 #: plugins/DetAncestralReport.py:1211
 #: plugins/DetDescendantReport.py:1220
-#: plugins/FamilyGroup.py:361
-#: plugins/FamilyGroup.py:761
+#: plugins/FamilyGroup.py:363
+#: plugins/FamilyGroup.py:763
 #: plugins/FtmStyleAncestors.py:1006
 #: plugins/FtmStyleAncestors.py:1252
 #: plugins/FtmStyleDescendants.py:1415
@@ -5168,7 +5189,7 @@ msgstr "Таблица предков для Книги GRAMPS"
 #: plugins/AncestorReport.py:397
 #: plugins/Ancestors.py:776
 #: plugins/DescendReport.py:293
-#: plugins/FamilyGroup.py:612
+#: plugins/FamilyGroup.py:614
 #: plugins/FtmStyleAncestors.py:953
 #: plugins/FtmStyleDescendants.py:1362
 #: plugins/IndivComplete.py:662
@@ -5510,7 +5531,7 @@ msgstr "Обработка базы данных"
 
 #: plugins/ChangeTypes.py:107
 msgid "Allows all the events of a certain name to be renamed to a new name"
-msgstr "Разрешить переименование событий"
+msgstr "Помогает выполнить глобальную замену определённого события на другое"
 
 #: plugins/Check.py:272
 msgid "No errors were found"
@@ -5588,7 +5609,7 @@ msgstr "Сохранена 1 ссылка на утерянный докумен
 # !!!FIXME!!!
 #: plugins/Check.py:332
 msgid "References to %d media objects were kept\n"
-msgstr "Cохранено %d cсылок на утерянные документы\n"
+msgstr "Сохранено %d ссылок на утерянные документы\n"
 
 # !!!FIXME!!!
 #: plugins/Check.py:334
@@ -5676,7 +5697,7 @@ msgstr "Граф потомков для Книги GRAMPS"
 
 #: plugins/DesGraph.py:587
 msgid "Generates a graph of descendants of the active person"
-msgstr "Генерирует граф потомков активного лица"
+msgstr "Генерирует граф потомков активного лица."
 
 #: plugins/DesGraph.py:588
 #: plugins/FanChart.py:463
@@ -5743,7 +5764,7 @@ msgstr "Генерирует список потомков активного л
 #: plugins/DetAncestralReport.py:123
 #: plugins/DetDescendantReport.py:128
 msgid "Child of %s and %s is:"
-msgstr "Ребенок %s и %s:"
+msgstr "Ребёнок %s и %s:"
 
 #: plugins/DetAncestralReport.py:124
 #: plugins/DetDescendantReport.py:129
@@ -6246,9 +6267,9 @@ msgid "Event Comparison"
 msgstr "Сравнение событий"
 
 #: plugins/EventCmp.py:308
-#: plugins/FamilyGroup.py:171
-#: plugins/FamilyGroup.py:274
+#: plugins/FamilyGroup.py:173
 #: plugins/FamilyGroup.py:276
+#: plugins/FamilyGroup.py:278
 msgid "Death"
 msgstr "Смерть"
 
@@ -6258,58 +6279,58 @@ msgstr "Сравнить индивидуальные события"
 
 #: plugins/EventCmp.py:355
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
-msgstr "Помогает в анализе, позволяя создавать собственные фильтры, которые могут быть использованы для поиска сходных событий"
+msgstr "Позволяет создавать собственные фильтры, которые могут быть использованы для поиска сходных событий"
 
-#: plugins/FamilyGroup.py:133
+#: plugins/FamilyGroup.py:135
 msgid "Husband"
 msgstr "Муж"
 
-#: plugins/FamilyGroup.py:135
+#: plugins/FamilyGroup.py:137
 msgid "Wife"
 msgstr "Жена"
 
-#: plugins/FamilyGroup.py:292
-#: plugins/FamilyGroup.py:386
-#: plugins/FamilyGroup.py:500
+#: plugins/FamilyGroup.py:294
+#: plugins/FamilyGroup.py:388
+#: plugins/FamilyGroup.py:502
 msgid "Spouse"
 msgstr "Супруг(а)"
 
-#: plugins/FamilyGroup.py:318
-#: plugins/FamilyGroup.py:361
-#: plugins/FamilyGroup.py:480
-#: plugins/FamilyGroup.py:760
-#: plugins/FamilyGroup.py:769
+#: plugins/FamilyGroup.py:320
+#: plugins/FamilyGroup.py:363
+#: plugins/FamilyGroup.py:482
+#: plugins/FamilyGroup.py:762
+#: plugins/FamilyGroup.py:771
 msgid "Family Group Report"
 msgstr "Отчёт о семейной группе"
 
-#: plugins/FamilyGroup.py:335
+#: plugins/FamilyGroup.py:337
 #: plugins/IndivComplete.py:287
 #: plugins/IndivSummary.py:185
 #: plugins/WebPage.py:607
 msgid "Children"
 msgstr "Дети"
 
-#: plugins/FamilyGroup.py:365
+#: plugins/FamilyGroup.py:367
 msgid "Family Group Report for %s"
 msgstr "Отчёт о семейной группе для %s"
 
-#: plugins/FamilyGroup.py:370
+#: plugins/FamilyGroup.py:372
 msgid "Save Family Group Report"
 msgstr "Сохранить отчёт о семейной группе"
 
-#: plugins/FamilyGroup.py:484
+#: plugins/FamilyGroup.py:486
 msgid "Family Group Report for GRAMPS Book"
 msgstr "Отчёт о семейной группе для Книги GRAMPS"
 
-#: plugins/FamilyGroup.py:630
+#: plugins/FamilyGroup.py:632
 msgid "The style used for the text related to the children."
 msgstr "Стиль текста, относящегося к детям."
 
-#: plugins/FamilyGroup.py:639
+#: plugins/FamilyGroup.py:641
 msgid "The style used for the parent's name"
 msgstr "Стиль имён родителей."
 
-#: plugins/FamilyGroup.py:763
+#: plugins/FamilyGroup.py:765
 msgid "Creates a family group report, showing information on a set of parents and their children."
 msgstr "Создаёт отчёт о семейной группе. Включает информацию о родителях и их детях."
 
@@ -6342,7 +6363,7 @@ msgstr "Веерная карта для Книги GRAMPS"
 
 #: plugins/FanChart.py:464
 msgid "Produces a five generation fan chart"
-msgstr "Создаёт веерную карту для пяти поколений"
+msgstr "Создаёт веерную карту пяти поколений."
 
 #: plugins/FilterEditor.py:161
 msgid "Select..."
@@ -6351,10 +6372,6 @@ msgstr "Выбрать..."
 #: plugins/FilterEditor.py:167
 msgid "Select person from a list"
 msgstr "Выбрать человека из списка"
-
-#: plugins/FilterEditor.py:173
-msgid "Select Person"
-msgstr "Выбрать персону"
 
 #: plugins/FilterEditor.py:189
 msgid "Not a valid person"
@@ -6399,7 +6416,7 @@ msgstr "Редактор фильтров пользователя"
 
 #: plugins/FilterEditor.py:637
 #: plugins/FilterEditor.py:650
-#: plugins/RelCalc.py:160
+#: plugins/RelCalc.py:161
 #: plugins/Verify.py:418
 #: plugins/soundgen.py:97
 msgid "Utilities"
@@ -6858,7 +6875,7 @@ msgstr "FTM отчёт о потомках для %s"
 
 #: plugins/FtmStyleDescendants.py:1424
 msgid "Save FTM Style Descendant Report"
-msgstr "Сохраниить FTM отчёт о потомках"
+msgstr "Сохранить FTM отчёт о потомках"
 
 #: plugins/FtmStyleDescendants.py:1511
 msgid "FTM Style Descendant Report for GRAMPS Book"
@@ -7231,7 +7248,7 @@ msgid ""
 "This program partitions individuals in a database into disjoint partitions.\n"
 "A partition is composed of people related by one or more multiple relations.\n"
 "There should be no known relationship between people in different partitions."
-msgstr "Эта программа разбивает базу данных на сегменты. Сегмент состоит из людей, объеденённых одной или более родственной связью. Наличие известных родственных отношений между людьми в двух разных сегментах не допускается."
+msgstr "Эта программа разбивает базу данных на сегменты. Сегмент состоит из людей, объединённых одной или более родственной связью. Наличие известных родственных отношений между людьми в двух разных сегментах не допускается."
 
 #: plugins/PatchNames.py:103
 msgid "No modifications made"
@@ -7350,37 +7367,37 @@ msgstr "Временный каталог %s недоступен для зап�
 msgid "Error extracting into %s"
 msgstr "Ошибка при распаковке в %s"
 
-#: plugins/RelCalc.py:82
-#: plugins/RelCalc.py:159
+#: plugins/RelCalc.py:83
+#: plugins/RelCalc.py:160
 msgid "Relationship calculator"
 msgstr "Определить родственные отношения"
 
-#: plugins/RelCalc.py:87
+#: plugins/RelCalc.py:88
 #: plugins/TimeLine.py:377
 msgid "Birth Date"
 msgstr "Дата рождения"
 
-#: plugins/RelCalc.py:119
+#: plugins/RelCalc.py:120
 msgid "Their common ancestor is %s."
 msgstr "Их общий предок - %s."
 
-#: plugins/RelCalc.py:123
+#: plugins/RelCalc.py:124
 msgid "Their common ancestors are %s and %s."
 msgstr "Их общие предки - %s и %s."
 
-#: plugins/RelCalc.py:128
+#: plugins/RelCalc.py:129
 msgid "Their common ancestors are : "
 msgstr "Их общие предки: "
 
-#: plugins/RelCalc.py:143
+#: plugins/RelCalc.py:144
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s и %(active_person)s - не родственники."
 
-#: plugins/RelCalc.py:146
+#: plugins/RelCalc.py:147
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s - %(relationship)s %(active_person)s."
 
-#: plugins/RelCalc.py:161
+#: plugins/RelCalc.py:162
 msgid "Calculates the relationship between two people"
 msgstr "Определяет родственные отношения между двумя лицами"
 
@@ -7457,8 +7474,9 @@ msgid "Copyright %d %s"
 msgstr "© %d %s"
 
 #: plugins/SimpleBookTitle.py:278
-msgid "Simple Book Title"
-msgstr "Название книги"
+#: plugins/SimpleBookTitle.py:563
+msgid "Title Page"
+msgstr "Титульный лист"
 
 #: plugins/SimpleBookTitle.py:282
 msgid "Title Page for GRAMPS Book"
@@ -7490,10 +7508,6 @@ msgstr "Предварительный просмотр"
 #: plugins/SimpleBookTitle.py:336
 msgid "Image"
 msgstr "Изображение"
-
-#: plugins/SimpleBookTitle.py:563
-msgid "Title Page"
-msgstr "Титульный лист"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
@@ -7673,11 +7687,11 @@ msgstr "Крещение посмертно: %(female_name)s крестилас�
 
 #: plugins/Verify.py:193
 msgid "Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n"
-msgstr "Большой возраст: %(male_name)s родился в %(byear)d, умер в %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
+msgstr "Долгожитель: %(male_name)s родился в %(byear)d, умер в %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
 
 #: plugins/Verify.py:196
 msgid "Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n"
-msgstr "Большой возраст: %(female_name)s родилась в %(byear)d, умерла в %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
+msgstr "Долгожитель: %(female_name)s родилась в %(byear)d, умерла в %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
 
 #: plugins/Verify.py:208
 msgid "Unknown gender for %s.\n"
@@ -8335,12 +8349,12 @@ msgstr "<b>Неуничтоженные объекты</b>"
 # !!!FIXME!!!
 #: plugins/leak.py:78
 msgid "Show uncollected objects"
-msgstr "Показать неуничтоженные объекты"
+msgstr "Неуничтоженные объекты"
 
 # !!!FIXME!!!
 #: plugins/leak.py:80
 msgid "Provide a window listing all uncollected objects"
-msgstr "Предоставить окно со списком всех неуничтоженных объектов"
+msgstr "Открыть окно со списком всех неуничтоженных объектов"
 
 #: plugins/merge.glade:46
 msgid "Please be patient. This may take a while."
@@ -8418,7 +8432,7 @@ msgstr "Вычислить код SoundEx"
 
 #: plugins/soundgen.py:98
 msgid "Generates SoundEx codes for names"
-msgstr "Вычисляет коды SoundEx для имён"
+msgstr "Вычисляет код SoundEx для имён"
 
 #: plugins/verify.glade:186
 msgid "Maximum age"
@@ -8426,7 +8440,7 @@ msgstr "Максимальный возраст"
 
 #: plugins/verify.glade:210
 msgid "Maximum husband-wife age difference"
-msgstr "Максимальная разница в возрасте между мужем и женой"
+msgstr "Максимальная разница в возрасте супругов"
 
 #: plugins/verify.glade:234
 msgid "Minimum age to marry"
@@ -8446,11 +8460,11 @@ msgstr "Максимальное число лет подряд во вдовс�
 
 #: plugins/verify.glade:330
 msgid "Maximum number of years between children"
-msgstr "Максимальная разница в возрасте двух детей, родившихся подряд"
+msgstr "Максимальная разница в возрасте двух родившихся подряд детей"
 
 #: plugins/verify.glade:354
 msgid "Maximum span of years for all children"
-msgstr "Максимальная разница в возрасте между младшим и старшим ребёнком"
+msgstr "Максимальная разница в возрасте детей"
 
 #: plugins/verify.glade:578
 msgid "<b>Women</b>"
@@ -8458,11 +8472,11 @@ msgstr "<b>Женщины</b>"
 
 #: plugins/verify.glade:602
 msgid "Minimum age to bear a child"
-msgstr "Минимальный возраст для рождения ребёнка"
+msgstr "Минимальный возраст рождения ребёнка"
 
 #: plugins/verify.glade:648
 msgid "Maximum age to bear a child"
-msgstr "Максимальный возраст для рождения ребёнка"
+msgstr "Максимальный возраст рождения ребёнка"
 
 #: plugins/verify.glade:672
 #: plugins/verify.glade:834
@@ -9039,4 +9053,3 @@ msgstr "<b>Выравнивание</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
-
