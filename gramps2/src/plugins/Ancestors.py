@@ -47,6 +47,7 @@ class AncestorsReport (Report.Report):
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
+        self.sources = []
 
         table = TextDoc.TableStyle ()
         table.set_column_widths ([15, 85])
@@ -98,17 +99,16 @@ class AncestorsReport (Report.Report):
             self.standalone = 0
             if newpage:
                 self.doc.page_break()
-        self.sref_map = {}
-        self.sref_index = 1
-        
+
     def write_report(self):
+        self.sources = []
         name = self.person_name (self.start)
         self.doc.start_paragraph("Title")
         title = _("Ancestors of %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph ("Generation")
+        self.doc.start_paragraph ("Heading")
         self.doc.write_text ("Generation 1")
         self.doc.end_paragraph ()
 
@@ -117,6 +117,19 @@ class AncestorsReport (Report.Report):
         families = [self.start.getMainParents ()]
         if len (families) > 0:
             self.generation (self.max_generations, families, [self.start])
+
+        if len (self.sources) > 0:
+            self.doc.start_paragraph ("Heading")
+            self.doc.write_text ("Sources")
+            self.doc.end_paragraph ()
+
+            self.doc.start_paragraph ("Entry")
+            i = 1
+            for source in self.sources:
+                self.doc.write_text ("[%d] %s\n" % (i, source.getTitle ()))
+                i += 1
+
+            self.doc.end_paragraph ()
 
         if self.standalone:
             self.doc.close()
@@ -181,7 +194,7 @@ class AncestorsReport (Report.Report):
             if len (people):
                 if self.pgbrk:
                     self.doc.page_break()
-                self.doc.start_paragraph ("Generation")
+                self.doc.start_paragraph ("Heading")
                 self.doc.write_text ("Generation %d" % thisgen)
                 self.doc.end_paragraph ()
                 self.write_paragraphs (people)
@@ -350,6 +363,7 @@ class AncestorsReport (Report.Report):
         if note:
             info += ' (' + note + ')'
 
+        info += self.cite_sources (event.getSourceRefList ())
         return info
 
     def long_born_died (self, person):
@@ -427,6 +441,19 @@ class AncestorsReport (Report.Report):
 
         return 'Mr.'
 
+    def cite_sources (self, sourcereflist):
+        citation = ""
+        for ref in sourcereflist:
+            source = ref.getBase ()
+            if source in self.sources:
+                citation += "[%d]" % (self.sources.index (source) + 1)
+                continue
+
+            self.sources.append (source)
+            citation += "[%d]" % len (self.sources)
+
+        return citation
+
     def person_name (self, person):
         primary = person.getPrimaryName ()
 
@@ -456,6 +483,7 @@ class AncestorsReport (Report.Report):
         if type != 'Birth Name':
             name += ' (%s)' % type
 
+        name += self.cite_sources (primary.getSourceRefList ())
         return name
 
     def married_whom (self, person, from_family, listing_children = 0):
@@ -482,6 +510,8 @@ class AncestorsReport (Report.Report):
                     count = 1
                     for child in childlist:
                         children += self.first_name_or_nick (child)
+                        children += self.cite_sources (child.getPrimaryName ().
+                                                       getSourceRefList ())
                         if child_count - count > 1:
                             children += ', '
                         elif child_count - count == 1:
@@ -575,7 +605,7 @@ def _make_default_style(self):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
-    self.default_style.add_style("Generation",para)
+    self.default_style.add_style("Heading",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
