@@ -826,16 +826,16 @@ class DetAncestorReportDialog(Report.TextReportDialog):
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 
-        self.add_frame_option('Content','',self.first_name_option)
-        self.add_frame_option('Content','',self.full_date_option)
-        self.add_frame_option('Content','',self.list_children_option)
-        self.add_frame_option('Content','',self.include_notes_option)
-        self.add_frame_option('Content','',self.place_option)
-        self.add_frame_option('Content','',self.date_option)
-        self.add_frame_option('Content','',self.age_option)
-        self.add_frame_option('Content','',self.dupPersons_option)
-        self.add_frame_option('Content','',self.childRef_option)
-        self.add_frame_option('Content','',self.image_option)
+        self.add_frame_option(_('Content'),'',self.first_name_option)
+        self.add_frame_option(_('Content'),'',self.full_date_option)
+        self.add_frame_option(_('Content'),'',self.list_children_option)
+        self.add_frame_option(_('Content'),'',self.include_notes_option)
+        self.add_frame_option(_('Content'),'',self.place_option)
+        self.add_frame_option(_('Content'),'',self.date_option)
+        self.add_frame_option(_('Content'),'',self.age_option)
+        self.add_frame_option(_('Content'),'',self.dupPersons_option)
+        self.add_frame_option(_('Content'),'',self.childRef_option)
+        self.add_frame_option(_('Content'),'',self.image_option)
 
 
     def parse_report_options_frame(self):
@@ -1046,16 +1046,16 @@ class DetAncestorBareReportDialog(Report.BareReportDialog):
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 
-        self.add_frame_option('Content','',self.first_name_option)
-        self.add_frame_option('Content','',self.full_date_option)
-        self.add_frame_option('Content','',self.list_children_option)
-        self.add_frame_option('Content','',self.include_notes_option)
-        self.add_frame_option('Content','',self.place_option)
-        self.add_frame_option('Content','',self.date_option)
-        self.add_frame_option('Content','',self.age_option)
-        self.add_frame_option('Content','',self.dupPersons_option)
-        self.add_frame_option('Content','',self.childRef_option)
-        self.add_frame_option('Content','',self.image_option)
+        self.add_frame_option(_('Content'),'',self.first_name_option)
+        self.add_frame_option(_('Content'),'',self.full_date_option)
+        self.add_frame_option(_('Content'),'',self.list_children_option)
+        self.add_frame_option(_('Content'),'',self.include_notes_option)
+        self.add_frame_option(_('Content'),'',self.place_option)
+        self.add_frame_option(_('Content'),'',self.date_option)
+        self.add_frame_option(_('Content'),'',self.age_option)
+        self.add_frame_option(_('Content'),'',self.dupPersons_option)
+        self.add_frame_option(_('Content'),'',self.childRef_option)
+        self.add_frame_option(_('Content'),'',self.image_option)
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
