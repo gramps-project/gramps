@@ -67,12 +67,9 @@ _FONT_BOLD_ITALIC   = "Bold Italic"
 _FONT_REGULAR       = "Regular"
 
 # Formatting directive constants
-_LINE_BREAK         = "Line Break"
-_PAGE_BREAK         = "Page Break"
-_START_BOLD         = "Start Bold"
-_END_BOLD           = "End Bold"
-_START_SUPER        = "Start Super"
-_END_SUPER          = "End Super"
+_LINE_BREAK = "Break"
+_BOLD       = "Bold"
+_SUPER      = "Super"
 
 #------------------------------------------------------------------------
 #
@@ -99,7 +96,7 @@ def cm2u(cm):
 def find_font_from_fontstyle(fontstyle):
     """
     This function returns the gnomeprint.Font() object instance
-    corresponding to the parameters of BaseDoc.FontStyle()
+    corresponding to the parameters of BaseDoc.FontStyle() object.
     
     fontstyle       - a BaseDoc.FontStyle() instance
     """
@@ -124,14 +121,31 @@ def find_font_from_fontstyle(fontstyle):
     
     return gnomeprint.font_find_closest("%s %s" % (face, modifier),size)
 
-#function to determine the width of text
+#------------------------------------------------------------------------
+#
+# basic font-specific text formatting functions
+#
+#------------------------------------------------------------------------
 def get_text_width(text,fontstyle):
+    """
+    This function returns the width of text using given fontstyle 
+    when not formatted.
+    
+    text            - a text whose width to find
+    fontstyle       - a BaseDoc.FontStyle() instance
+    """
     font = find_font_from_fontstyle(fontstyle)
     return font.get_width_utf8(text)
 
-#function to fund out the height of the text between left_margin 
-# and right_margin -- kinda like __print_text, but without printing.
 def get_text_height(text, width, fontstyle):
+    """
+    This function returns the height of text using given fontstyle 
+    when formatted to specified width.
+    
+    text            - a text whose height to find
+    width           - formatting width
+    fontstyle       - a BaseDoc.FontStyle() instance
+    """
 
     nlines = 0
 
@@ -151,9 +165,14 @@ def get_text_height(text, width, fontstyle):
 
     return nlines * _LINE_SPACING
 
-#this function tells us the minimum size that a column can be
-#by returning the width of the largest word in the text
 def get_min_width(text,fontstyle):
+    """
+    This function returns the minimal width of text using given fontstyle. 
+    This is actually determined by the width of the longest word.
+    
+    text            - a text whose width to find
+    fontstyle       - a BaseDoc.FontStyle() instance
+    """
     max_word_size = 0
     for word in text.split():
         length = get_text_width(word,fontstyle)
@@ -161,6 +180,26 @@ def get_min_width(text,fontstyle):
            max_word_size = length
 
     return max_word_size
+
+#------------------------------------------------------------------------
+#
+# add to paragraph taking care of the newline characters
+#
+#------------------------------------------------------------------------
+def append_to_paragraph(paragraph,directive,text):
+    """
+    Add a piece to the paragraph while 
+    taking care of the newline characters.
+
+    paragraph       - a GnomePrintParagraph() instance
+    directive       - what to do with this piece
+    text            - the text of the corresponding piece
+    """
+    text_list = text.split('\n')
+    for the_text in text_list[:-1]:
+        paragraph.add_piece(directive,the_text)
+        paragraph.add_piece(_LINE_BREAK,"")
+    paragraph.add_piece(directive,text_list[-1:][0])
 
 #------------------------------------------------------------------------
 #
@@ -187,8 +226,8 @@ class GnomePrintParagraph:
         """
         Add a piece to the paragraph.
         
-        text        - the text of the corresponding piece
         directive   - what to do with this piece
+        text        - the text of the corresponding piece
         """
         self.piece_list.append((directive,text))
     
@@ -212,15 +251,13 @@ class GnomePrintParagraph:
         
         for (directive,text) in self.piece_list:
             fontstyle = BaseDoc.FontStyle(self.fontstyle)
-            if directive == _START_BOLD:
+            if directive == _BOLD:
                 fontstyle.set_bold(1)
-            elif directive == _END_BOLD:
-                fontstyle.set_bold(0)
-            elif directive == _START_SUPER:
+            elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
             
-            font = find_font_from_fontstyle(self.style.get_font())
+            font = find_font_from_fontstyle(fontstyle)
             width += font.get_width_utf8(text)
         
         return width
@@ -233,11 +270,9 @@ class GnomePrintParagraph:
         
         for (directive,text) in self.piece_list:
             fontstyle = BaseDoc.FontStyle(self.fontstyle)
-            if directive == _START_BOLD:
+            if directive == _BOLD:
                 fontstyle.set_bold(1)
-            elif directive == _END_BOLD:
-                fontstyle.set_bold(0)
-            elif directive == _START_SUPER:
+            elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
 
@@ -260,11 +295,9 @@ class GnomePrintParagraph:
         
         for (directive,text) in self.piece_list:
             fontstyle = BaseDoc.FontStyle(self.fontstyle)
-            if directive == _START_BOLD:
+            if directive == _BOLD:
                 fontstyle.set_bold(1)
-            elif directive == _END_BOLD:
-                fontstyle.set_bold(0)
-            elif directive == _START_SUPER:
+            elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
             
@@ -330,7 +363,6 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def close(self):
         """Clean up and close the document"""
-        #print "close doc"
         #gracefully end page before we close the doc if a page is open
         if self.__page_open:
            self.end_page()
@@ -340,19 +372,25 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def line_break(self):
         "Forces a line break within a paragraph"
-        self.__advance_line(self.__y)
+        # Add previously held text to the paragraph, 
+        # then add line break directive, 
+        # then start accumulating further text 
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
+        self.paragraph.add_piece(_LINE_BREAK,"")
+        self.__paragraph_text = ""
 
     def page_break(self):
         "Forces a page break, creating a new page"
-        self.end_page()
-        self.start_page()
+        # If we're already at the very top, relax and do nothing
+        if self.__y != self.top_margin:
+            self.end_page()
+            self.start_page()
                                                                                 
     def start_page(self,orientation=None):
         """Create a new page"""
-        #print "begin page"
         #reset variables dealing with opening a page
         if (self.__page_open):
-           self.end_page()
+            self.end_page()
 
         self.__page_open = 1
         self.__page_count += 1
@@ -364,27 +402,27 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def end_page(self):
         """Close the current page"""
-        #print "end page"
         if (self.__page_open):
-           self.__page_open = 0
-           self.__pc.showpage()
+            self.__page_open = 0
+            self.__pc.showpage()
 
     def start_paragraph(self,style_name,leader=None):
         """Paragraphs handling - A Gramps paragraph is any 
         single body of text, from a single word, to several sentences.
         We assume a linebreak at the end of each paragraph."""
-        #print "start paragraph"
-        #set paragraph variables so we know that we are in a paragraph
+        # Instantiate paragraph object and initialize buffers
         self.paragraph = GnomePrintParagraph(self.style_list[style_name])
+        self.__paragraph_directive = ""
         self.__paragraph_text = ""
         if leader:
             self.__paragraph_text += leader + " "
-        self.__paragraph_directive = ""
     
     def end_paragraph(self):
         """End the current paragraph"""
-
-        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        # Add current text/directive to paragraoh,
+        # then either add paragrah to the list of cell's paragraphs
+        # or print it right away if not in cell
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         if self.__in_cell:
             # We're inside cell. Add paragrah to celldata
             self.__cell_data.append(self.paragraph)
@@ -398,23 +436,23 @@ class LPRDoc(BaseDoc.BaseDoc):
             
     def start_bold(self):
         """Bold face"""
-        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
-        self.__paragraph_directive = _START_BOLD
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
+        self.__paragraph_directive = _BOLD
         self.__paragraph_text = ""
         
     def end_bold(self):
         """End bold face"""
-        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = ""
         self.__paragraph_text = ""
 
     def start_superscript(self):
-        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
-        self.__paragraph_directive = _START_SUPER
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
+        self.__paragraph_directive = _SUPER
         self.__paragraph_text = ""
                                                                                 
     def end_superscript(self):
-        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = ""
         self.__paragraph_text = ""
                                                                                 
@@ -431,8 +469,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
     def start_table(self,name,style_name):
         """Begin new table"""
-        #print "start table"
-        #reset variables for this state 
+        # initialize table, compute its width, find number of columns
         self.__table_data = []
         self.__in_table = 1
         self.__tbl_style = self.table_styles[style_name]
@@ -444,17 +481,14 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def end_table(self):
         """Close the table environment"""
-        #print "end table"
-        #output table contents
+        # output table contents
         self.__output_table()
         self.__in_table = 0
         self.__y = self.__advance_line(self.__y)
 
     def start_row(self):
         """Begin a new row"""
-        # doline/skipfirst are flags for adding hor. rules
-        #print "start row"
-        #reset this state, so we can get data from user
+        # Initialize row, compute cell widths
         self.__row_data = []
         self.rownum = self.rownum + 1
         self.cellnum = -1
@@ -466,16 +500,12 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def end_row(self):
         """End the row (new line)"""
-        #print "end row"
-        #add row data to the data we have for the current table
+        # add row data to the data we have for the current table
         self.__table_data.append(self.__row_data)
             
     def start_cell(self,style_name,span=1):
-        """Add an entry to the table.
-           We always place our data inside braces 
-           for safety of formatting."""
-        #print "start cell"
-        #reset this state
+        """Add an entry to the table."""
+        # Initialize a cell, take care of span>1 cases
         self.__in_cell = 1
         self.__cell_data = []
         self.cellnum = self.cellnum + self.__span
@@ -487,14 +517,12 @@ class LPRDoc(BaseDoc.BaseDoc):
  
     def end_cell(self):
         """Prepares for next cell"""
-        #print "end cell"
-        #append the cell text to the row data
+        # append the cell text to the row data
         self.__in_cell = 0
         self.__row_data.append(self.__cell_data)
 
     def add_photo(self,name,pos,x,y):
         """Add photo to report"""
-        #print "add photo"
         pass
 
     def horizontal_line(self):
@@ -583,17 +611,18 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
     def write_text(self,text):
         """Add the text to the paragraph"""
+        # Take care of superscript tags
         super_count = text.count('<super>')
         for num in range(super_count):
             start = text.find('<super>')
             self.__paragraph_text = self.__paragraph_text + text[:start]
-            self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+            append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
             self.__paragraph_text = ""
             text = text[start+7:]
 
             start = text.find('</super>')
             self.__paragraph_text = self.__paragraph_text + text[:start]
-            self.paragraph.add_piece(_START_SUPER,self.__paragraph_text)
+            append_to_paragraph(self.paragraph,_SUPER,self.__paragraph_text)
             self.__paragraph_text = ""
             text = text[start+8:]
 
@@ -645,22 +674,21 @@ class LPRDoc(BaseDoc.BaseDoc):
         
         for (directive,text) in paragraph.get_piece_list():
             fontstyle = BaseDoc.FontStyle(paragraph.get_fontstyle())
-            if directive == _START_BOLD:
+            if directive == _BOLD:
                 fontstyle.set_bold(1)
-            elif directive == _END_BOLD:
-                fontstyle.set_bold(0)
-            elif directive == _START_SUPER:
+            elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
                 y = y + 0.25 * _LINE_SPACING
             elif directive == _LINE_BREAK:
-                y = self.__advance_line()
-                x = self.__x
-                return
+                y = self.__advance_line(y)
+                x = left_margin
+                avail_width = width
+                continue
 
             #all text will fit within the width provided
             if not text:
-                if directive == _START_SUPER:
+                if directive == _SUPER:
                     y = y - 0.25 * _LINE_SPACING
                 continue
             if avail_width >= get_text_width(text,fontstyle):
@@ -671,7 +699,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.__pc.show(text)
             else:
                 #divide up text and print
-                if x == left_margin or directive == _START_SUPER \
+                if x == left_margin or directive == _SUPER \
                         or text[0] == '.':
                     the_text = ""
                 else:
@@ -703,7 +731,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                     self.__pc.show(the_text)
                     x = x + get_text_width(the_text,fontstyle)
                     avail_width = width - get_text_width(the_text,fontstyle)
-            if directive == _START_SUPER:
+            if directive == _SUPER:
                 y = y - 0.25 * _LINE_SPACING
         y = self.__advance_line(y)
         return (x,y)
