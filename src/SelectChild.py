@@ -382,13 +382,13 @@ class NewChild:
         
         # must do an apply filter here to make sure the main window gets updated
     
-        self.update(self.family,person)
+        self.update(self.family,person,[])
         utils.modified()
         utils.destroy_passed_object(obj)
         self.new_child = person
 
-    def other_update(self,arg1,arg2):
-        self.update(None,self.new_child)
+    def other_update(self,arg1,plist):
+        self.update(None,self.new_child,plist)
 
     def on_edit_new_child(self,obj):
         import EditPerson

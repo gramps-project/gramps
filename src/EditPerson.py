@@ -751,6 +751,10 @@ class EditPerson:
         text = self.notes_field.get_chars(0,-1)
         idval = self.gid.get_text()
 
+        self.pmap = {}
+        for p in self.db.getPlaces():
+            self.pmap[p.get_title()] = p
+
         changed = 0
         name = self.person.getPrimaryName()
 
@@ -1079,6 +1083,10 @@ class EditPerson:
         if nick != self.person.getNickName():
             self.person.setNickName(nick)
             utils.modified()
+
+        self.pmap = {}
+        for p in self.db.getPlaces():
+            self.pmap[p.get_title()] = p
 
         self.birth.setDate(self.bdate.get_text())
         bplace = string.strip(self.bplace.get_text())

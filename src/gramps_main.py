@@ -1356,9 +1356,11 @@ def new_after_edit(epo,plist):
 #
 #
 #-------------------------------------------------------------------------
-def update_after_newchild(family,person):
+def update_after_newchild(family,person,plist):
     load_family(family)
     redisplay_person_list(person)
+    for p in plist:
+        place_view.new_place_after_edit(p)
 
 #-------------------------------------------------------------------------
 #

@@ -39,6 +39,7 @@ import libglade
 import const
 import Config
 import utils
+import AutoComp
 from RelLib import *
 import ImageSelect
 from intl import gettext
@@ -65,6 +66,9 @@ class Marriage:
         self.db = db
         self.path = db.getSavePath()
         self.cb = callback
+        self.pmap = {}
+        for p in db.getPlaces():
+            self.pmap[p.get_title()] = p
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")
@@ -142,7 +146,8 @@ class Marriage:
         plist = self.db.getPlaceMap().values()
         ord = self.family.getLdsSeal()
         if ord:
-            utils.attach_places(plist,self.lds_place,ord.getPlace())
+            if ord.getPlace():
+                self.lds_place.entry.set_text(ord.getPlace().get_title())
             self.lds_date.set_text(ord.getDate())
             if ord.getTemple() != "":
                 name = const.lds_temple_to_abrev[ord.getTemple()]
@@ -151,9 +156,9 @@ class Marriage:
             self.lds_temple.entry.set_text(name)
             self.seal_stat = ord.getStatus()
         else:
-            utils.attach_places(plist,self.lds_place,None)
             self.lds_temple.entry.set_text("")
             self.seal_stat = 0
+        self.autoplace = AutoComp.AutoCombo(self.lds_place,self.pmap.keys())
 
         self.build_seal_menu()
         
