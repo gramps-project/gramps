@@ -262,8 +262,10 @@ class IndividualPage:
             
         if self.person.getGender() == Person.male:
             self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
-        else:
+        elif self.person.getGender() == Person.female:
             self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
+	else:
+            self.write_normal_row("%s:" % _("Gender"), _("Unknown"), None)
 
         family = self.person.getMainParents()
         if family:
