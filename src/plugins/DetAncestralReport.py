@@ -22,18 +22,34 @@
 
 "Generate files/Detailed Ancestral Report"
 
-import RelLib
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
-import Errors
-
 from gettext import gettext as _
-from QuestionDialog import ErrorDialog
 
+#------------------------------------------------------------------------
+#
+# Gnome/GTK modules
+#
+#------------------------------------------------------------------------
+import gtk
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import RelLib
+import Errors
+from QuestionDialog import ErrorDialog
 import Report
 import BaseDoc
-
-import gtk
-import gnome.ui
+import ReportOptions
+import const
+from DateHandler import displayer as _dd
 
 #------------------------------------------------------------------------
 #
@@ -42,39 +58,59 @@ import gnome.ui
 #------------------------------------------------------------------------
 class DetAncestorReport(Report.Report):
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
-    def __init__(self,database,person,max,pgbrk,rptOpt,doc,output,newpage=0):
+    def __init__(self,database,person,options_class):
+        """
+        Creates the DetAncestorReport object that produces the report.
+        
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        gen           - Maximum number of generations to include.
+        pagebgg       - Whether to include page breaks between generations.
+        firstName     - Whether to use first names instead of pronouns.
+        fullDate      - Whether to use full dates instead of just year.
+        listChildren  - Whether to list children.
+        includeNotes  - Whether to include notes.
+        blankPlace    - Whether to replace missing Places with ___________.
+        blankDate     - Whether to replace missing Dates with ___________.
+        calcAgeFlag   - Whether to compute age.
+        dupPerson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
+        childRef      - Whether to add descendant references in child list.
+        addImages     - Whether to include images.
+        """
+        Report.Report.__init__(self,database,person,options_class)
+
         self.map = {}
-        self.database = database
-        self.start = person
-        self.max_generations = max
-        self.pgbrk = pgbrk
-        self.rptOpt = rptOpt
-        self.doc = doc
-        self.newpage = newpage
+
+        (self.max_generations,self.pgbrk) \
+                        = options_class.get_report_generations()
+
+        self.firstName     = options_class.handler.options_dict['firstnameiop']
+        self.fullDate      = options_class.handler.options_dict['fulldates']
+        self.listChildren  = options_class.handler.options_dict['listc']
+        self.includeNotes  = options_class.handler.options_dict['incnotes']
+        self.blankPlace    = options_class.handler.options_dict['repplace']
+        self.blankDate     = options_class.handler.options_dict['repdate']
+        self.calcAgeFlag   = options_class.handler.options_dict['computeage']
+        self.dupPerson     = options_class.handler.options_dict['omitda']
+        self.childRef      = options_class.handler.options_dict['desref']
+        self.addImages     = options_class.handler.options_dict['incphotos']
+
         self.genIDs = {}
         self.prevGenIDs= {}
 
-        if output:
-            self.standalone = 1
-            try:
-                self.doc.open(output)
-                self.doc.init()
-            except IOError,msg:
-                ErrorDialog(_("Could not open %s") % output + "\n" + msg)
-        else:
-            self.standalone = 0
-
     #--------------------------------------------------------------------
     #
     #
     #
     #--------------------------------------------------------------------
-    def filter(self,person_handle,index):
+    def apply_filter(self,person_handle,index):
         if (not person_handle) or (index >= 2**self.max_generations):
             return
         self.map[index] = person_handle
@@ -83,11 +119,65 @@ class DetAncestorReport(Report.Report):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
-            self.filter(family.get_father_handle(),index*2)
-            self.filter(family.get_mother_handle(),(index*2)+1)
+            self.apply_filter(family.get_father_handle(),index*2)
+            self.apply_filter(family.get_mother_handle(),(index*2)+1)
 
+    def calcAge(self, ind):
+        """ Calulate age
+        APHRASE=
+            at the age of NUMBER UNIT(S)
+        UNIT= year | month | day
+        UNITS= years | months | days
+        null
+        """
 
-    def write_children(self, family, rptOptions):
+        birth_handle = ind.get_birth_handle()
+        if birth_handle:
+            birth = self.database.get_event_from_handle(birth_handle).get_date_object()
+            birth_year_valid = birth.get_year_valid()
+        else:
+            birth_year_valid = None
+        death_handle = ind.get_death_handle()
+        if death_handle:
+            death = self.database.get_event_from_handle(death_handle).get_date_object()
+            death_year_valid = death.get_year_valid()
+        else:
+            death_year_valid = None
+        the_text = ""
+        if birth_year_valid and death_year_valid:
+            age = death.get_year() - birth.get_year()
+            units = 3                          # year
+            if birth.get_month_valid() and death.get_month_valid():
+                if birth.get_month() > death.get_month():
+                    age = age -1
+                if birth.get_day_valid() and death.get_day_valid():
+                    if birth.get_month() == death.get_month() and birth.get_day() > death.get_day():
+                        age = age -1
+                    if age == 0:
+                        age = death.get_month() - birth.get_month()   # calc age in months
+                        if birth.get_day() > death.get_day():
+                            age = age - 1
+                            units = 2                        # month
+                        if age == 0:
+                            age = death.get-day() + 31 - birth.get_day() # calc age in days
+                            units  = 1            # day
+            if age > 1:
+                if units == 1:
+                    the_text = _(" at the age of %d days") % age
+                elif units == 2:
+                    the_text = _(" at the age of %d months") % age
+                else:
+                    the_text = _(" at the age of %d years") % age
+            else:
+                if units == 1:
+                    the_text = _(" at the age of %d day") % age
+                elif units == 2:
+                    the_text = _(" at the age of %d month") % age
+                else:
+                    the_text = _(" at the age of %d year") % age
+        return the_text 
+
+    def write_children(self, family):
         """ List children
             Statement formats:
                 Child of MOTHER and FATHER is:
@@ -141,7 +231,8 @@ class DetAncestorReport(Report.Report):
                 name = child.get_primary_name().get_regular_name()
                 birth_handle = child.get_birth_handle()
                 death_handle = child.get_death_handle()
-                if rptOptions.childRef == reportOptions.Yes:
+
+                if self.childRef:
                     if self.prevGenIDs.get(child_handle) != None:
                         name= "[" + str(self.prevGenIDs.get(child_handle)) + "] "+ name
 
@@ -230,20 +321,20 @@ class DetAncestorReport(Report.Report):
 
                 self.doc.end_paragraph()
 
-    def write_person(self, key, rptOptions):
+    def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
 
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
-        if rptOptions.addImages == reportOptions.Yes:
+        if self.addImages:
             self.insert_images(person)
 
         self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
         name = person.get_primary_name().get_regular_name()
 
-        if rptOptions.firstName == reportOptions.Yes:
-            firstName= person.get_primary_name().get_first_name()
+        if self.firstName:
+            firstName = person.get_primary_name().get_first_name()
         elif person.get_gender() == RelLib.Person.male:
             firstName = _("He")
         else:
@@ -253,7 +344,7 @@ class DetAncestorReport(Report.Report):
         self.doc.write_text(name)
         self.doc.end_bold()
 
-        if rptOptions.dupPersons == reportOptions.Yes:
+        if self.dupPerson:
             # Check for duplicate record (result of distant cousins marrying)
             keys = self.map.keys()
             keys.sort()
@@ -268,16 +359,16 @@ class DetAncestorReport(Report.Report):
         # Check birth record
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            self.write_birth(person, rptOptions)
+            self.write_birth(person)
         if person.get_death_handle():
-            self.write_death(person, firstName, rptOptions)
+            self.write_death(person, firstName)
         self.write_parents(person, firstName)
-        self.write_marriage(person, rptOptions)
+        self.write_marriage(person)
         self.doc.end_paragraph()
 
-        if key == 1:  self.write_mate(person, rptOptions)
+        if key == 1:  self.write_mate(person)
 
-        if person.get_note() != "" and rptOptions.includeNotes == reportOptions.Yes:
+        if person.get_note() != "" and self.includeNotes:
             self.doc.start_paragraph("DAR-NoteHeader")
             self.doc.start_bold()
             self.doc.write_text(_("Notes for %s" % name))
@@ -287,7 +378,7 @@ class DetAncestorReport(Report.Report):
 
         return 0		# Not duplicate person
 
-    def write_birth(self, person, rptOptions):
+    def write_birth(self, person):
         """ Check birth record
             Statement formats name precedes this
                was born on DATE.
@@ -303,22 +394,22 @@ class DetAncestorReport(Report.Report):
         birth_handle = person.get_birth_handle()
         if birth_handle:
             birth = self.database.get_event_from_handle(birth_handle)
-            date = birth.get_date_object().get_start_date()
+            date = birth.get_date_object()
             if birth.get_place_handle():
                 place = self.database.get_place_from_handle(birth.get_place_handle()).get_title()
                 if place[-1:] == '.':
                     place = place[:-1]
-            elif rptOptions.blankDate == reportOptions.Yes:
+            elif self.blankDate:
                 place= "______________"
             else: place= ""
 
-            if date.get_date() != "":
+            if _dd.display(date) != "":
                 if date.get_day_valid() and date.get_month_valid() and \
-                        rptOptions.fullDate == reportOptions.Yes:
+                        self.fullDate:
                     if place:
-                        self.doc.write_text(_(" was born on %s in %s.") % (date.get_date(), place))
+                        self.doc.write_text(_(" was born on %s in %s.") % (_dd.display(date), place))
                     else:
-                        self.doc.write_text(_(" was born on %s.") % date.get_date())
+                        self.doc.write_text(_(" was born on %s.") % _dd.display(date))
                 elif place:
                     self.doc.write_text(_(" was born in the year %s in %s.") % \
                               (date.get_year(), place))
@@ -333,7 +424,7 @@ class DetAncestorReport(Report.Report):
         self.doc.write_text(_("."))
         return
 
-    def write_death(self, person, firstName, rptOptions):
+    def write_death(self, person, firstName):
         """ Write obit sentence
         Statement format: DPHRASE APHRASE BPHRASE
         DPHRASE=
@@ -362,24 +453,23 @@ class DetAncestorReport(Report.Report):
         death_handle = person.get_death_handle()
         if death_handle:
             death = self.database.get_event_from_handle(death_handle)
-            date = death.get_date_object().get_start_date()
+            date = death.get_date_object()
             if death.get_place_handle():
                 place = self.database.get_place_from_handle(death.get_place_handle()).get_title()
                 if place[-1:] == '.':
                     place = place[:-1]
-            elif rptOptions.blankPlace == reportOptions.Yes:
+            elif self.blankPlace:
                 place= "_____________"
             else:
                 place = ""
 
-            if date.get_date():
-                if date.get_day() and date.get_month() and \
-                            rptOptions.fullDate == reportOptions.Yes:
-                    fulldate= date.get_date()
-                elif date.get_month() and rptOptions.fullDate == reportOptions.Yes:
+            if _dd.display(date):
+                if date.get_day() and date.get_month() and self.fullDate:
+                    fulldate = _dd.display(date)
+                elif date.get_month() and self.fullDate:
                     fulldate= "%s %s" % (date.get_month(), date.get_year())
                 else: fulldate= ""
-            elif rptOptions.blankDate == reportOptions.Yes:
+            elif self.blankDate:
                 fulldate= "_____________"
             else: fulldate= ""
 
@@ -394,8 +484,8 @@ class DetAncestorReport(Report.Report):
             elif place:
                 t= _("  %s died in %s") % (firstName, place)
 
-            if rptOptions.calcAgeFlag == reportOptions.Yes:
-                t= t + rptOptions.calcAge(person)
+            if self.calcAgeFlag:
+                t= t + self.calcAge(person)
 
             if t != "":
                 self.doc.write_text(t)
@@ -409,16 +499,16 @@ class DetAncestorReport(Report.Report):
                 fam = self.database.get_family_from_handle(fam_id)
                 buried = None
                 if buried:
-                    date = buried.get_date_object().get_start_date()
+                    date = buried.get_date_object()
                     place = buried.get_place_name()
                     if place[-1:] == '.':
                         place = place[:-1]
                     fulldate= ""
                     if date.get_date() != "":
                         if date.getDayValid() and date.getMonthValid() and \
-                                        rptOptions.fullDate == reportOptions.Yes:
+                                        self.fullDate:
                             fulldate= date.get_date()
-                    elif rptOptions.blankDate == reportOptions.Yes:
+                    elif self.blankDate:
                             fulldate= "___________"
 
                     if fulldate != "" and place != "":
@@ -482,7 +572,7 @@ class DetAncestorReport(Report.Report):
                                 (firstName, mother))
 
 
-    def write_marriage(self, person, rptOptions):
+    def write_marriage(self, person):
         """ Output marriage sentence
         HE/SHE married SPOUSE on FULLDATE in PLACE.
         HE/SHE married SPOUSE on FULLDATE.
@@ -535,16 +625,16 @@ class DetAncestorReport(Report.Report):
                 if marriage:
                     if marriage.get_place_handle():
                         place = self.database.get_place_from_handle(marriage.get_place_handle()).get_title()
-                    elif rptOptions.blankPlace == reportOptions.Yes:
+                    elif self.blankPlace:
                         place= "____________"
 
                     date = marriage.get_date_object()
                     if date:
                         if date.get_year_valid():
                             if date.get_day_valid() and date.get_month_valid() and \
-                                    rptOptions.fullDate == reportOptions.Yes:
-                                fulldate= date.get_date()
-                            elif rptOptions.blankDate == reportOptions.Yes:
+                                    self.fullDate:
+                                fulldate = _dd.display(date)
+                            elif self.blankDate:
                                 fulldate= "__________"
 
                 if spouse:
@@ -573,7 +663,7 @@ class DetAncestorReport(Report.Report):
                     endOfSent= "."
                 if fam_num == len(famList): self.doc.write_text(endOfSent)
 
-    def write_mate(self, mate, rptOptions):
+    def write_mate(self, mate):
         """Output birth, death, parentage, marriage and notes information """
 
         famList = mate.get_family_handle_list()
@@ -597,27 +687,27 @@ class DetAncestorReport(Report.Report):
                         firstName = ind.get_primary_name().get_first_name()
 
                 if person:
-                    if rptOptions.addImages == reportOptions.Yes:
+                    if self.addImages:
                         self.insert_images(ind)
 
                     self.doc.start_paragraph("DAR-Entry")
 
-                    if rptOptions.firstName == reportOptions.No:
-                        firstName= heshe
+                    if self.firstName:
+                        firstName = heshe
 
                     self.doc.write_text(person)
 
-                    self.write_birth(ind, rptOptions)
+                    self.write_birth(ind)
 
-                    self.write_death(ind, firstName, rptOptions)
+                    self.write_death(ind, firstName)
 
                     self.write_parents(ind, firstName)
 
                     self.doc.end_paragraph()
 
-                    if rptOptions.listChildren == reportOptions.Yes \
+                    if self.listChildren \
                                and mate.get_gender() == RelLib.Person.male:
-                        self.write_children(fam, rptOptions)
+                        self.write_children(fam)
 
     #--------------------------------------------------------------------
     #
@@ -640,14 +730,9 @@ class DetAncestorReport(Report.Report):
     #
     #--------------------------------------------------------------------
     def write_report(self):
-        if self.newpage:
-            self.doc.page_break()
+        self.apply_filter(self.start_person.get_handle(),1)
 
-        self.filter(self.start.get_handle(),1)
-        #rptOpt= reportOptions()
-        rptOpt = self.rptOpt
-
-        name = self.start.get_primary_name().get_regular_name()
+        name = self.start_person.get_primary_name().get_regular_name()
         self.doc.start_paragraph("DAR-Title")
         title = _("Detailed Ancestral Report for %s") % name
         self.doc.write_text(title)
@@ -667,692 +752,236 @@ class DetAncestorReport(Report.Report):
                 self.doc.write_text(t)
                 self.doc.end_paragraph()
                 generation = generation + 1
-                if rptOpt.childRef == reportOptions.Yes:
+                if self.childRef:
                     self.prevGenIDs= self.genIDs.copy()
                     self.genIDs.clear()
 
             person_handle = self.map[key]
             person = self.database.get_person_from_handle(person_handle)
             self.genIDs[person_handle]= key
-            dupPerson= self.write_person(key, rptOpt)
+            dupPerson= self.write_person(key)
             if dupPerson == 0:		# Is this a duplicate ind record
                 if person.get_gender() == RelLib.Person.female and  \
-                         rptOpt.listChildren == reportOptions.Yes and  \
+                         self.listChildren and  \
                          len(person.get_family_handle_list()) > 0:
                     family_handle = person.get_family_handle_list()[0]
                     family = self.database.get_family_from_handle(family_handle)
-                    self.write_children(family, rptOpt)
-
-                #if rptOpt.addImages == reportOptions.Yes:
-                #    self.append_images(person)
-
-        if self.standalone:
-            self.doc.close()
+                    self.write_children(family)
 
 #------------------------------------------------------------------------
 #
 #
 #
 #------------------------------------------------------------------------
-def _make_default_style(default_style):
-    """Make the default output style for the Detailed Ancestral Report"""
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    para.set_header_level(1)
-    para.set(pad=0.5)
-    para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("DAR-Title",para)
+class DetAncestorOptions(ReportOptions.ReportOptions):
 
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    para.set_header_level(2)
-    para.set(pad=0.5)
-    para.set_description(_('The style used for the generation header.'))
-    default_style.add_style("DAR-Generation",para)
+    """
+    Defines options and provides handling interface.
+    """
 
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    #para.set_header_level(3)
-    para.set_left_margin(1.0)   # in centimeters
-    para.set(pad=0.5)
-    para.set_description(_('The style used for the children list title.'))
-    default_style.add_style("DAR-ChildTitle",para)
+    def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
 
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
-    para.set_description(_('The style used for the children list.'))
-    default_style.add_style("DAR-ChildList",para)
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'firstnameiop'  : 0,
+            'fulldates'     : 1,
+            'listc'         : 1,
+            'incnotes'      : 1,
+            'repplace'      : 0,
+            'repdate'       : 0,
+            'computeage'    : 1,
+            'omitda'        : 1,
+            'desref'        : 1,
+            'incphotos'     : 0,
+        }
+        self.options_help = {
+            'firstnameiop'  : ("=0/1","Whether to use first names instead of pronouns",
+                            ["Do not use first names","Use first names"],
+                            True),
+            'fulldates'     : ("=0/1","Whether to use full dates instead of just year.",
+                            ["Do not use full dates","Use full dates"],
+                            True),
+            'listc'         : ("=0/1","Whether to list children.",
+                            ["Do not list children","List children"],
+                            True),
+            'incnotes'      : ("=0/1","Whether to include notes.",
+                            ["Do not include notes","Include notes"],
+                            True),
+            'repplace'      : ("=0/1","Whether to replace missing Places with blanks.",
+                            ["Do not replace missing Places","Replace missing Places"],
+                            True),
+            'repdate'       : ("=0/1","Whether to replace missing Dates with blanks.",
+                            ["Do not replace missing Dates","Replace missing Dates"],
+                            True),
+            'computeage'    : ("=0/1","Whether to compute age.",
+                            ["Do not compute age","Compute age"],
+                            True),
+            'omitda'        : ("=0/1","Whether to omit duplicate ancestors.",
+                            ["Do not omit duplicates","Omit duplicates"],
+                            True),
+            'desref'        : ("=0/1","Whether to add descendant references in child list.",
+                            ["Do not add references","Add references"],
+                            True),
+            'incphotos'     : ("=0/1","Whether to include images.",
+                            ["Do not include images","Include images"],
+                            True),
+        }
 
-    para = BaseDoc.ParagraphStyle()
-    para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-    default_style.add_style("DAR-NoteHeader",para)
+    def enable_options(self):
+        # Semi-common options that should be enabled for this report
+        self.enable_dict = {
+            'gen'       : 10,
+            'pagebbg'   : 0,
+        }
 
-    para = BaseDoc.ParagraphStyle()
-    para.set(first_indent=0.5,lmargin=1.0,pad=0.25)
-    para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("DAR-Entry",para)
+    def make_default_style(self,default_style):
+        """Make the default output style for the Detailed Ancestral Report"""
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(1)
+        para.set(pad=0.5)
+        para.set_description(_('The style used for the title of the page.'))
+        default_style.add_style("DAR-Title",para)
 
-    para = BaseDoc.ParagraphStyle()
-    para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
-    para.set_description(_('The style used for the first personal entry.'))
-    default_style.add_style("DAR-First-Entry",para)
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(2)
+        para.set(pad=0.5)
+        para.set_description(_('The style used for the generation header.'))
+        default_style.add_style("DAR-Generation",para)
 
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-class DetAncestorReportDialog(Report.TextReportDialog):
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        #para.set_header_level(3)
+        para.set_left_margin(1.0)   # in centimeters
+        para.set(pad=0.5)
+        para.set_description(_('The style used for the children list title.'))
+        default_style.add_style("DAR-ChildTitle",para)
 
-    report_options = {}
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+        para.set_description(_('The style used for the children list.'))
+        default_style.add_style("DAR-ChildList",para)
 
-    def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person,self.report_options)
-        self.database = database
+        para = BaseDoc.ParagraphStyle()
+        para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+        default_style.add_style("DAR-NoteHeader",para)
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def get_title(self):
-        """The window title for this dialog"""
-        return _("Gramps - Ahnentafel Report")
+        para = BaseDoc.ParagraphStyle()
+        para.set(first_indent=0.5,lmargin=1.0,pad=0.25)
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_style("DAR-Entry",para)
 
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Detailed Ancestral Report for %s") % name
+        para = BaseDoc.ParagraphStyle()
+        para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+        para.set_description(_('The style used for the first personal entry.'))
+        default_style.add_style("DAR-First-Entry",para)
 
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Save Ancestor Report")
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return "det_ancestor_report.xml"
-
-    #------------------------------------------------------------------------
-    #
-    # Create output styles appropriate to this report.
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    #------------------------------------------------------------------------
-    #
-    # Create the contents of the report.
-    #
-    #------------------------------------------------------------------------
-    def make_report(self):
-        """Create the object that will produce the Detailed Ancestral
-        Report.  All user dialog has already been handled and the
-        output file opened."""
-        try:
-            MyReport = DetAncestorReport(self.db, self.person, 
-                self.max_gen, self.pg_brk, self.rptOpt, self.doc, self.target_path )
-            MyReport.write_report()
-        except Errors.ReportError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-
-#*** Begin change
-    def add_user_options(self):
-        # Create a GTK Checkbox widgets
+    def add_user_options(self,dialog):
+        """
+        Override the base class add_user_options task to add a menu that allows
+        the user to select the sort method.
+        """
 
         # Pronoun instead of first name
         self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
-        self.first_name_option.set_active(0)
+        self.first_name_option.set_active(self.options_dict['firstnameiop'])
 
         # Full date usage
         self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
-        self.full_date_option.set_active(1)
+        self.full_date_option.set_active(self.options_dict['fulldates'])
 
         # Children List
         self.list_children_option = gtk.CheckButton(_("List children"))
-        self.list_children_option.set_active(1)
+        self.list_children_option.set_active(self.options_dict['listc'])
 
         # Print notes
         self.include_notes_option = gtk.CheckButton(_("Include notes"))
-        self.include_notes_option.set_active(1)
+        self.include_notes_option.set_active(self.options_dict['incnotes'])
 
         # Replace missing Place with ___________
         self.place_option = gtk.CheckButton(_("Replace Place with ______"))
-        self.place_option.set_active(0)
+        self.place_option.set_active(self.options_dict['repplace'])
 
         # Replace missing dates with __________
         self.date_option = gtk.CheckButton(_("Replace Dates with ______"))
-        self.date_option.set_active(0)
+        self.date_option.set_active(self.options_dict['repdate'])
 
         # Add "Died at the age of NN" in text
         self.age_option = gtk.CheckButton(_("Compute age"))
-        self.age_option.set_active(1)
+        self.age_option.set_active(self.options_dict['computeage'])
 
         # Omit duplicate persons, occurs when distant cousins marry
         self.dupPersons_option = gtk.CheckButton(_("Omit duplicate ancestors"))
-        self.dupPersons_option.set_active(1)
+        self.dupPersons_option.set_active(self.options_dict['omitda'])
 
         #Add descendant reference in child list
         self.childRef_option = gtk.CheckButton(_("Add descendant reference in child list"))
-        self.childRef_option.set_active(1)
+        self.childRef_option.set_active(self.options_dict['desref'])
 
         #Add photo/image reference
         self.image_option = gtk.CheckButton(_("Include Photo/Images from Gallery"))
-        self.image_option.set_active(0)
+        self.image_option.set_active(self.options_dict['incphotos'])
 
         # Add new options. The first argument is the tab name for grouping options.
         # if you want to put everyting in the generic "Options" category, use
         # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 
-        self.add_frame_option(_('Content'),'',self.first_name_option)
-        self.add_frame_option(_('Content'),'',self.full_date_option)
-        self.add_frame_option(_('Content'),'',self.list_children_option)
-        self.add_frame_option(_('Content'),'',self.include_notes_option)
-        self.add_frame_option(_('Content'),'',self.place_option)
-        self.add_frame_option(_('Content'),'',self.date_option)
-        self.add_frame_option(_('Content'),'',self.age_option)
-        self.add_frame_option(_('Content'),'',self.dupPersons_option)
-        self.add_frame_option(_('Content'),'',self.childRef_option)
-        self.add_frame_option(_('Content'),'',self.image_option)
+        dialog.add_frame_option(_('Content'),'',self.first_name_option)
+        dialog.add_frame_option(_('Content'),'',self.full_date_option)
+        dialog.add_frame_option(_('Content'),'',self.list_children_option)
+        dialog.add_frame_option(_('Content'),'',self.include_notes_option)
+        dialog.add_frame_option(_('Content'),'',self.place_option)
+        dialog.add_frame_option(_('Content'),'',self.date_option)
+        dialog.add_frame_option(_('Content'),'',self.age_option)
+        dialog.add_frame_option(_('Content'),'',self.dupPersons_option)
+        dialog.add_frame_option(_('Content'),'',self.childRef_option)
+        dialog.add_frame_option(_('Content'),'',self.image_option)
 
+    def parse_user_options(self,dialog):
+        """
+        Parses the custom options that we have added.
+        """
 
-    def parse_report_options_frame(self):
-        """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
-
-        # call the parent task to handle normal options
-        Report.ReportDialog.parse_report_options_frame(self)
-
-        # get values from the widgets
-        if self.first_name_option.get_active():
-            self.firstName = reportOptions.Yes
-        else:
-            self.firstName = reportOptions.No
-
-        if self.full_date_option.get_active():
-            self.fullDate = reportOptions.Yes
-        else:
-            self.fullDate = reportOptions.No
-
-        if self.list_children_option.get_active():
-            self.listChildren = reportOptions.Yes
-        else:
-            self.listChildren = reportOptions.No
-
-        if self.include_notes_option.get_active():
-            self.includeNotes = reportOptions.Yes
-        else:
-            self.includeNotes = reportOptions.No
-
-        if self.place_option.get_active():
-            self.blankPlace = reportOptions.Yes
-        else:
-            self.blankPlace = reportOptions.No
-
-        if self.date_option.get_active():
-            self.blankDate = reportOptions.Yes
-        else:
-            self.blankDate = reportOptions.No
-
-        if self.age_option.get_active():
-            self.calcAgeFlag = reportOptions.Yes
-        else:
-            self.calcAgeFlag = reportOptions.No
-
-        if self.dupPersons_option.get_active():
-            self.dupPersons = reportOptions.Yes
-        else:
-            self.dupPersons = reportOptions.No
-
-        if self.childRef_option.get_active():
-            self.childRef = reportOptions.Yes
-        else:
-            self.childRef = reportOptions.No
-
-        if self.image_option.get_active():
-            self.addImages = reportOptions.Yes
-        else:
-            self.addImages = reportOptions.No
-
-        rptOpt = reportOptions(self.database)
-        rptOpt.firstName= self.firstName
-        rptOpt.fullDate= self.fullDate
-        rptOpt.listChildren= self.listChildren
-        rptOpt.includeNotes= self.includeNotes
-        rptOpt.blankPlace= self.blankPlace
-        rptOpt.blankDate= self.blankDate
-        rptOpt.calcAgeFlag= self.calcAgeFlag
-        rptOpt.dupPersons= self.dupPersons
-        rptOpt.childRef= self.childRef
-        rptOpt.addImages= self.addImages
-        self.rptOpt = rptOpt
-    
-#*** End of change
-
-#------------------------------------------------------------------------
-#
-# Standalone report function
-#
-#------------------------------------------------------------------------
-def report(database,person):
-    DetAncestorReportDialog(database,person)
-
-
-#------------------------------------------------------------------------
-#
-# Set up sane defaults for the book_item
-#
-#------------------------------------------------------------------------
-_style_file = "det_ancestor_report.xml"
-_style_name = "default" 
-
-_person_handle = ""
-_max_gen = 10
-_pg_brk = 0
-_first_name = 0
-_full_date = 1
-_list_children = 1
-_include_notes = 1
-_place = 0
-_date = 1
-_age = 1
-_dup_persons = 1
-_child_ref = 1
-_images = 0
-
-_options = ( _person_handle, _max_gen, _pg_brk, 
-   _first_name, _full_date, _list_children, _include_notes, 
-   _place, _date, _age, _dup_persons, _child_ref, _images )
-
-#------------------------------------------------------------------------
-#
-# Book Item Options dialog
-#
-#------------------------------------------------------------------------
-class DetAncestorBareReportDialog(Report.BareReportDialog):
-    def __init__(self,database,person,opt,stl):
-        self.options = opt
-        self.db = database
-        if self.options[0]:
-            self.person = self.db.get_person_from_handle(self.options[0])
-        else:
-            self.person = person
-        self.style_name = stl
-
-        self.max_gen = int(self.options[1]) 
-        self.pg_brk = int(self.options[2])
-        self.first_name = int(self.options[3]) 
-        self.full_date = int(self.options[4])
-        self.list_children = int(self.options[5]) 
-        self.include_notes = int(self.options[6])
-        self.place = int(self.options[7]) 
-        self.date = int(self.options[8]) 
-        self.age = int(self.options[9])
-        self.dup_persons = int(self.options[10]) 
-        self.child_ref = int(self.options[11])
-        self.images = int(self.options[12])
-
-        Report.BareReportDialog.__init__(self,database,self.person)
-
-        self.new_person = None
-
-        self.window.run()
-
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Detailed Ancestral Report"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Detailed Ancestral Report for GRAMPS Book") 
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return _style_file
-
-    def add_user_options(self):
-        # Create a GTK Checkbox widgets
-
-        # Pronoun instead of first name
-        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
-        self.first_name_option.set_active(self.first_name)
-
-        # Full date usage
-        self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
-        self.full_date_option.set_active(self.full_date)
-
-        # Children List
-        self.list_children_option = gtk.CheckButton(_("List children"))
-        self.list_children_option.set_active(self.list_children)
-
-        # Print notes
-        self.include_notes_option = gtk.CheckButton(_("Include notes"))
-        self.include_notes_option.set_active(self.include_notes)
-
-        # Replace missing Place with ___________
-        self.place_option = gtk.CheckButton(_("Replace Place with ______"))
-        self.place_option.set_active(self.place)
-
-        # Replace missing dates with __________
-        self.date_option = gtk.CheckButton(_("Replace Dates with ______"))
-        self.date_option.set_active(self.date)
-
-        # Add "Died at the age of NN" in text
-        self.age_option = gtk.CheckButton(_("Compute age"))
-        self.age_option.set_active(self.age)
-
-        # Omit duplicate persons, occurs when distant cousins marry
-        self.dupPersons_option = gtk.CheckButton(_("Omit duplicate ancestors"))
-        self.dupPersons_option.set_active(self.dup_persons)
-
-        #Add descendant reference in child list
-        self.childRef_option = gtk.CheckButton(_("Add descendant reference in child list"))
-        self.childRef_option.set_active(self.child_ref)
-
-        #Add photo/image reference
-        self.image_option = gtk.CheckButton(_("Include Photo/Images from Gallery"))
-        self.image_option.set_active(self.images)
-
-        # Add new options. The first argument is the tab name for grouping options.
-        # if you want to put everyting in the generic "Options" category, use
-        # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
-
-        self.add_frame_option(_('Content'),'',self.first_name_option)
-        self.add_frame_option(_('Content'),'',self.full_date_option)
-        self.add_frame_option(_('Content'),'',self.list_children_option)
-        self.add_frame_option(_('Content'),'',self.include_notes_option)
-        self.add_frame_option(_('Content'),'',self.place_option)
-        self.add_frame_option(_('Content'),'',self.date_option)
-        self.add_frame_option(_('Content'),'',self.age_option)
-        self.add_frame_option(_('Content'),'',self.dupPersons_option)
-        self.add_frame_option(_('Content'),'',self.childRef_option)
-        self.add_frame_option(_('Content'),'',self.image_option)
-
-    def parse_report_options_frame(self):
-        """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
-
-        # call the parent task to handle normal options
-        Report.BareReportDialog.parse_report_options_frame(self)
-
-        # get values from the widgets
-        if self.first_name_option.get_active():
-            self.first_name = reportOptions.Yes
-        else:
-            self.first_name = reportOptions.No
-
-        if self.full_date_option.get_active():
-            self.full_date = reportOptions.Yes
-        else:
-            self.full_date = reportOptions.No
-
-        if self.list_children_option.get_active():
-            self.list_children = reportOptions.Yes
-        else:
-            self.list_children = reportOptions.No
-
-        if self.include_notes_option.get_active():
-            self.include_notes = reportOptions.Yes
-        else:
-            self.include_notes = reportOptions.No
-
-        if self.place_option.get_active():
-            self.place = reportOptions.Yes
-        else:
-            self.place = reportOptions.No
-
-        if self.date_option.get_active():
-            self.date = reportOptions.Yes
-        else:
-            self.date = reportOptions.No
-
-        if self.age_option.get_active():
-            self.age = reportOptions.Yes
-        else:
-            self.age = reportOptions.No
-
-        if self.dupPersons_option.get_active():
-            self.dup_persons = reportOptions.Yes
-        else:
-            self.dup_persons = reportOptions.No
-
-        if self.childRef_option.get_active():
-            self.child_ref = reportOptions.Yes
-        else:
-            self.child_ref = reportOptions.No
-
-        if self.image_option.get_active():
-            self.images = reportOptions.Yes
-        else:
-            self.images = reportOptions.No
-
-    def on_cancel(self, obj):
-        pass
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
-
-        # Preparation
-        self.parse_style_frame()
-        self.parse_report_options_frame()
-        
-        if self.new_person:
-            self.person = self.new_person
-        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk, 
-            self.first_name, self.full_date, self.list_children, 
-            self.include_notes, self.place, self.date, self.age, 
-            self.dup_persons, self.child_ref, self.images )
-        self.style_name = self.selected_style.get_name() 
-
-
-#------------------------------------------------------------------------
-#
-# Function to write Book Item 
-#
-#------------------------------------------------------------------------
-def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Detailed Ancestral Report using options set.
-    All user dialog has already been handled and the output file opened."""
-    try:
-        if options[0]:
-            person = database.get_person_from_handle(options[0])
-        max_gen = int(options[1])
-        pg_brk = int(options[2])
-        rptOpt = reportOptions(database)
-        rptOpt.firstName = int(options[3]) 
-        rptOpt.fullDate = int(options[4])
-        rptOpt.listChildren = int(options[5]) 
-        rptOpt.includeNotes = int(options[6])
-        rptOpt.blankPlace = int(options[7]) 
-        rptOpt.blankDate = int(options[8]) 
-        rptOpt.calcAgeFlag = int(options[9])
-        rptOpt.dupPersons = int(options[10]) 
-        rptOpt.childRef = int(options[11])
-        rptOpt.addImages = int(options[12])
-        return DetAncestorReport(database, person,
-            max_gen, pg_brk, rptOpt, doc, None, newpage)
-    except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+        self.options_dict['firstnameiop'] = int(self.first_name_option.get_active())
+        self.options_dict['fulldates'] = int(self.full_date_option.get_active())
+        self.options_dict['listc'] = int(self.list_children_option.get_active())
+        self.options_dict['incnotes'] = int(self.include_notes_option.get_active())
+        self.options_dict['repplace'] = int(self.place_option.get_active())
+        self.options_dict['repdate'] = int(self.date_option.get_active())
+        self.options_dict['computeage'] = int(self.age_option.get_active())
+        self.options_dict['omitda'] = int(self.dupPersons_option.get_active())
+        self.options_dict['desref'] = int(self.childRef_option.get_active())
+        self.options_dict['incphotos'] = int(self.image_option.get_active())
 
 #------------------------------------------------------------------------
 #
 #
 #
 #------------------------------------------------------------------------
-from Plugins import register_report, register_book_item
-
+from Plugins import register_report
 register_report(
-    report,
-    _("Detailed Ancestral Report"),
+    name = 'det_ancestor_report',
+    category = const.CATEGORY_TEXT,
+    report_class = DetAncestorReport,
+    options_class = DetAncestorOptions,
+    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    translated_name = _("Detailed Ancestral Report"),
     status=(_("Beta")),
-    category=_("Text Reports"),
     description= _("Produces a detailed ancestral report"),
     author_name="Bruce DeGrasse",
     author_email="bdegrasse1@attbi.com"
     )
 
-# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
-register_book_item( 
-    _("Detailed Ancestral Report"), 
-    _("Text"),
-    DetAncestorBareReportDialog,
-    write_book_item,
-    _options,
-    _style_name,
-    _style_file,
-    _make_default_style
-   )
 
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-class reportOptions:
-    Yes = 1
-    No = 0
-
-    def __init__(self,database):
-        self.database = database
-        ### Initialize report options###
-
-        #Use first name in place of he or she in text
-        self.firstName= reportOptions.Yes
-
-        #Use year only, not full date/month
-        self.fullDate= reportOptions.Yes
-
-        #Do not list children
-        self.listChildren= reportOptions.Yes
-
-        #Add stepchildren to the list of children
-        #self.addStepChildren= reportOptions.Yes
-
-        #Print notes
-        self.includeNotes= reportOptions.Yes
-
-        #Selectively print notes (omit private information)
-        #self.omitPrivInfo= reportOptions.No
-
-        #generate header for each page, specify text
-        #self.noHeader= reportOptions.Yes
-
-        #Inculde reference notes
-        #self.noRefNotes= reportOptions.Yes
-
-        #Include source notes
-        #self.noSourceNotes= reportOptions.Yes
-
-        #Replace missing Place with ___________
-        self.blankPlace= reportOptions.No
-
-        #Replace missing dates with __________
-        self.blankDate= reportOptions.No
-
-        #Omit country code
-        #self.noCountryInfo= reportOptions.No
-
-        #Put title before or after name (Dr., Lt., etc.)
-        #self.titleAfter= reportOptions.Yes
-
-        #Add "Died at the age of NN" in text
-        self.calcAgeFlag= reportOptions.Yes
-
-        #Add Photos and Images to report
-        self.addImages= reportOptions.Yes
-        #self.imageAttrTag= "DetAncestralReport-H"
-        #self.imageAttrTag= "DetAncestralReport-L"
-
-        #Omit sensitive information such as birth, christening, marriage
-        #   for living after XXXXX date.
-
-        #Omit duplicate persons, occurs when distant cousins marry
-        self.dupPersons= reportOptions.Yes
-
-        #Add descendant reference in child list
-        self.childRef= reportOptions.Yes
-
-    def calcAge(self, ind):
-        """ Calulate age
-        APHRASE=
-            at the age of NUMBER UNIT(S)
-        UNIT= year | month | day
-        UNITS= years | months | days
-        null
-        """
-
-        birth_handle = ind.get_birth_handle()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle).get_date_object().get_start_date()
-            birth_year_valid = birth.get_year_valid()
-        else:
-            birth_year_valid = None
-        death_handle = ind.get_death_handle()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle).get_date_object().get_start_date()
-            death_year_valid = death.get_year_valid()
-        else:
-            death_year_valid = None
-        self.t= ""
-        if birth_year_valid and death_year_valid:
-            self.age = death.get_year() - birth.get_year()
-            self.units= 3                          # year
-            if birth.get_month_valid() and death.get_month_valid():
-                if birth.get_month() > death.get_month():
-                    self.age = self.age -1
-                if birth.get_day_valid() and death.get_day_valid():
-                    if birth.get_month() == death.get_month() and birth.get_day() > death.get_day():
-                        self.age = self.age -1
-                    if self.age == 0:
-                        self.age = death.get_month() - birth.get_month()   # calc age in months
-                        if birth.get_day() > death.get_day():
-                            self.age = self.age - 1
-                            self.units= 2                        # month
-                        if self.age == 0:
-                            self.age = death.get-day() + 31 - birth.get_day() # calc age in days
-                            self.units = 1            # day
-            if self.age > 1:
-                if self.units == 1:
-                    self.t= _(" at the age of %d days") % self.age
-                elif self.units == 2:
-                    self.t= _(" at the age of %d months") % self.age
-                else:
-                    self.t= _(" at the age of %d years") % self.age
-            else:
-                if self.units == 1:
-                    self.t= _(" at the age of %d day") % self.age
-                elif self.units == 2:
-                    self.t= _(" at the age of %d month") % self.age
-                else:
-                    self.t= _(" at the age of %d year") % self.age
-        return self.t

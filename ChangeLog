@@ -1,3 +1,16 @@
+2004-12-31 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/RelLib.py (Family.set_mother_handle): Typo.
+	* src/Report.py: Use gen and pagebbg.
+	* src/ReportOptions.py: Use gen and pagebbg.
+	* src/plugins/Ancestors.py: Use gen and pagebbg.
+	* src/plugins/AncestorReport.py: Use gen and pagebbg.
+	* src/plugins/DescendReport.py: Use gen and pagebbg.
+	* src/plugins/FtmStyleDescendants.py: Use gen and pagebbg.
+	* src/plugins/FtmStyleAncestors.py: Use gen and pagebbg.
+	* src/plugins/IndivComplete.py: Convert to new scheme.
+	* src/plugins/TimeLine.py: Add custom filters to the pool.
+	* src/plugins/DetAncestralReport.py: Convert to new scheme.
+
 2004-12-30 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Change finish_report to end_report.
 	* src/plugins/BookReport.py (cl_report):
