@@ -46,6 +46,7 @@ db = None
 people_list = []
 family_list = []
 source_list = []
+adopt_mode = 1
 
 #-------------------------------------------------------------------------
 #
@@ -276,10 +277,18 @@ def write_long_text(g,tag,level,note):
         g.write("%s\n" % prefix)
     else:
         for line in textlines:
-            while len(line) > 0:
-                if len(line) > 70:
-                    g.write("%s %s\n" % (prefix,line[0:70]))
-                    line = line[70:]
+            ll = len(line)
+            while ll > 0:
+                brkpt = 70
+                if ll > brkpt:
+                    while (ll > brkpt and line[brkpt] in string.whitespace):
+                        brkpt = brkpt+1
+                    if ll == brkpt:
+                        g.write("%s %s\n" % (prefix,line))
+                        line = ''
+                    else:
+                        g.write("%s %s\n" % (prefix,line[0:brkpt+1]))
+                        line = line[brkpt+1:]
                 else:
                     g.write("%s %s\n" % (prefix,line))
                     line = ""
@@ -287,6 +296,7 @@ def write_long_text(g,tag,level,note):
                     prefix = "%d CONC" % (level + 1)
                 else:
                     prefix = "%d CONT" % (level + 1)
+                ll = len(line)
     
 #-------------------------------------------------------------------------
 #
@@ -364,7 +374,7 @@ def write_person_name(g,name,nick):
     if name.getSuffix() != "":
         g.write("2 NSFX %s\n" % suffix)
     if name.getTitle() != "":
-        g.write("2 TITL %s\n" % title)
+        g.write("2 NPFX %s\n" % title)
     if nick != "":
         g.write('2 NICK %s\n' % nick)
     if name.getNote() != "":
@@ -388,9 +398,9 @@ def write_source_ref(g,level,ref):
     if ref_text != "" or ref.getDate().getDate() != "":
         g.write('%d DATA\n' % (level+1))
         if ref_text != "":
-            write_long_text(g,"TEXT",level+1,ref_text)
+            write_long_text(g,"TEXT",level+2,ref_text)
         if ref.getDate().getDate():
-            g.write("%d DATE %s\n" % (level+1,ref.getDate().getSaveDate()))
+            g.write("%d DATE %s\n" % (level+2,ref.getDate().getSaveDate()))
     if ref.getComments() != "":
         write_long_text(g,"NOTE",level+1,ref.getComments())
         
@@ -429,6 +439,7 @@ def write_person(g,person):
         if uid != "":
             g.write("1 _UID %s\n" % uid)
             
+        ad = 0
         for event in person.getEventList():
             if private and event.getPrivacy():
                 continue
@@ -437,12 +448,48 @@ def write_person(g,person):
                 val = const.personalConstantEvents[name]
             else:
                 val = ""
-            if val != "" :
+            if adopt_mode == 1 and val == "ADOP":
+                ad = 1
+                g.write('1 ADOP\n')
+                fam = None
+                for f in person.getAltFamilyList():
+                    mrel = string.lower(f[1])
+                    frel = string.lower(f[2])
+                    if mrel=="adopted" or mrel=="adopted":
+                        fam = f[0]
+                        break
+                if fam:
+                    g.write('2 FAMC @F%s@\n' % fam.getId())
+                    if mrel == frel:
+                        g.write('3 ADOP BOTH\n')
+                    elif mrel == "adopted":
+                        g.write('3 ADOP WIFE\n')
+                    else:
+                        g.write('3 ADOP HUSB\n')
+            elif val != "" :
                 g.write("1 %s %s\n" % (cnvtxt(val),cnvtxt(event.getDescription())))
             else:
                 g.write("1 EVEN %s\n" % cnvtxt(event.getDescription()))
                 g.write("2 TYPE %s\n" % cnvtxt(event.getName()))
             dump_event_stats(g,event)
+
+        if adopt_mode == 1 and ad == 0 and len(person.getAltFamilyList()) != 0:
+            g.write('1 ADOP\n')
+            fam = None
+            for f in person.getAltFamilyList():
+                mrel = string.lower(f[1])
+                frel = string.lower(f[2])
+                if mrel=="adopted" or mrel=="adopted":
+                    fam = f[0]
+                    break
+            if fam:
+                g.write('2 FAMC @F%s@\n' % fam.getId())
+                if mrel == frel:
+                    g.write('3 ADOP BOTH\n')
+                elif mrel == "adopted":
+                    g.write('3 ADOP WIFE\n')
+                else:
+                    g.write('3 ADOP HUSB\n')
 
         for attr in person.getAttributeList():
             if private and attr.getPrivacy():
@@ -487,12 +534,12 @@ def write_person(g,person):
     family = person.getMainFamily()
     if family != None and family in family_list:
         g.write("1 FAMC @F%s@\n" % family.getId())
-        g.write("2 PEDI birth\n")
 
     for family in person.getAltFamilyList():
         g.write("1 FAMC @F%s@\n" % family[0].getId())
-        if string.lower(family[1]) == "adopted":
-            g.write("2 PEDI adopted\n")
+        if adopt_mode == 0:
+            if string.lower(family[1]) == "adopted":
+                g.write("2 PEDI Adopted\n")
         
     for family in person.getFamilyList():
         if family != None and family in family_list:
@@ -515,9 +562,19 @@ def write_person(g,person):
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, pbar, fbar, sbar):
+def exportData(database, filename, progress, pbar, fbar, sbar):
 
-    g = open(filename,"w")
+    try:
+        g = open(filename,"w")
+    except IOError,msg:
+        msg = "%s\n%s" % (_("Could not open %s") % filename,str(msg))
+        GnomeErrorDialog(msg)
+        progress.destroy()
+        return
+    except:
+        GnomeErrorDialog(_("Could not open %s") % filename)
+        progress.destroy()
+        return
 
     date = string.split(time.ctime(time.time()))
 
@@ -535,23 +592,36 @@ def exportData(database, filename, pbar, fbar, sbar):
     g.write("1 FILE %s\n" % filename)
     g.write("1 GEDC\n")
     g.write("2 VERS 5.5\n")
+    g.write('2 FORM LINEAGE-LINKED\n')
     g.write("0 @SUBM@ SUBM\n")
     owner = database.getResearcher()
     if owner.getName() != "":
         g.write("1 NAME " + cnvtxt(owner.getName()) +"\n")
-        if owner.getAddress() != "":
-            g.write("1 ADDR " + cnvtxt(owner.getAddress()) + "\n")
+    else:
+        g.write('1 NAME Not Provided\n')
+    if owner.getAddress() != "":
+        cnt = 0
+        g.write("1 ADDR " + cnvtxt(owner.getAddress()) + "\n")
         if owner.getCity() != "":
-            g.write("2 CITY " + cnvtxt(owner.getCity()) + "\n")
+            g.write("2 CONT " + cnvtxt(owner.getCity()) + "\n")
+            cnt = 1
         if owner.getState() != "":
-            g.write("2 STAE " + cnvtxt(owner.getState()) + "\n")
+            g.write("2 CONT " + cnvtxt(owner.getState()) + "\n")
+            cnt = 1
         if owner.getPostalCode() != "":
-            g.write("2 POST " + cnvtxt(owner.getPostalCode()) + "\n")
+            g.write("2 CONT " + cnvtxt(owner.getPostalCode()) + "\n")
+            cnt = 1
         if owner.getCountry() != "":
-            g.write("2 CTRY " + cnvtxt(owner.getCountry()) + "\n")
+            g.write("2 CONT " + cnvtxt(owner.getCountry()) + "\n")
+            cnt = 1
         if owner.getPhone() != "":
-            g.write("1 PHON " + cnvtxt(owner.getPhone()) + "\n")
-
+            g.write("2 PHON " + cnvtxt(owner.getPhone()) + "\n")
+            cnt = 1
+        if cnt == 0:
+            g.write('2 CONT Not Provided\n')
+    else:
+        g.write('1 ADDR Not Provided\n')
+        g.write('2 CONT Not Provided\n')
     people_list.sort(sortById)
     nump = float(len(people_list))
     index = 0.0
@@ -597,6 +667,22 @@ def exportData(database, filename, pbar, fbar, sbar):
 
         for person in family.getChildList():
             g.write("1 CHIL @I%s@\n" % person.getId())
+            if adopt_mode == 2:
+                if person.getMainFamily() == family:
+                    g.write('2 _FREL Natural\n')
+                    g.write('2 _MREL Natural\n')
+                else:
+                    for f in person.getAltFamilyList():
+                        if f[0] == family:
+                            g.write('2 _FREL %s\n' % f[2])
+                            g.write('2 _MREL %s\n' % f[1])
+                            break
+            if adopt_mode == 3:
+                for f in person.getAltFamilyList():
+                    if f[0] == family:
+                        g.write('2 _STAT %s\n' % f[2])
+                        break
+                
         index = index + 1
         fbar.set_value((100*index)/nump)
         while(events_pending()):
@@ -716,7 +802,7 @@ def on_ok_clicked(obj):
     closebtn = progress.get_widget("close")
     closebtn.connect("clicked",utils.destroy_passed_object)
     closebtn.set_sensitive(0)
-    exportData(db,name,pbar,fbar,sbar)
+    exportData(db,name,progress.get_widget('exportprogress'),pbar,fbar,sbar)
     closebtn.set_sensitive(1)
     
 #-------------------------------------------------------------------------
