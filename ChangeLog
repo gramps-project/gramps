@@ -1,3 +1,63 @@
+2003-12-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/ru: Add directory with russian manual 
+	translation to CVS.
+	* doc/gramps-manual/ru/Makefile.am, 
+	doc/gramps-manual/ru/Makefile.am,
+	doc/gramps-manual/ru/cmdline.xml,
+	doc/gramps-manual/ru/custom.xml,
+	doc/gramps-manual/ru/faq.xml,
+	doc/gramps-manual/ru/filtref.xml,
+	doc/gramps-manual/ru/getstart.xml,
+	doc/gramps-manual/ru/gramps-manual.xml,
+	doc/gramps-manual/ru/keybind.xml,
+	doc/gramps-manual/ru/legal.xml,
+	doc/gramps-manual/ru/mainwin.xml,
+	doc/gramps-manual/ru/usage.xml,
+	doc/gramps-manual/ru/gramps-manual-ru.omf
+	doc/gramps-manual/ru/figures,
+	doc/gramps-manual/ru/figures/bookreport.png
+	doc/gramps-manual/ru/figures/cfe-ar.png
+	doc/gramps-manual/ru/figures/cfe-df.png
+	doc/gramps-manual/ru/figures/edit-ad.png
+	doc/gramps-manual/ru/figures/edit-an.png
+	doc/gramps-manual/ru/figures/edit-at.png
+	doc/gramps-manual/ru/figures/edit-bm.png
+	doc/gramps-manual/ru/figures/edit-ev.png
+	doc/gramps-manual/ru/figures/edit-media.png
+	doc/gramps-manual/ru/figures/edit-person-addresses.png
+	doc/gramps-manual/ru/figures/edit-person-attributes.png
+	doc/gramps-manual/ru/figures/edit-person-events.png
+	doc/gramps-manual/ru/figures/edit-person-gallery.png
+	doc/gramps-manual/ru/figures/edit-person-internet.png
+	doc/gramps-manual/ru/figures/edit-person-lds.png
+	doc/gramps-manual/ru/figures/edit-person-names.png
+	doc/gramps-manual/ru/figures/edit-person-notes.png
+	doc/gramps-manual/ru/figures/edit-person-sources.png
+	doc/gramps-manual/ru/figures/edit-person.png
+	doc/gramps-manual/ru/figures/edit-plc.png
+	doc/gramps-manual/ru/figures/edit-rel.png
+	doc/gramps-manual/ru/figures/edit-si.png
+	doc/gramps-manual/ru/figures/edit-src.png
+	doc/gramps-manual/ru/figures/edit-wi.png
+	doc/gramps-manual/ru/figures/family-alt.png
+	doc/gramps-manual/ru/figures/family.png
+	doc/gramps-manual/ru/figures/first-open.png
+	doc/gramps-manual/ru/figures/gedcom-export-progress.png
+	doc/gramps-manual/ru/figures/gedcom-export.png
+	doc/gramps-manual/ru/figures/gedcom-import.png
+	doc/gramps-manual/ru/figures/mainwin.png
+	doc/gramps-manual/ru/figures/media.png
+	doc/gramps-manual/ru/figures/missing-media.png
+	doc/gramps-manual/ru/figures/noside-nofilt.png
+	doc/gramps-manual/ru/figures/pedigree-child-cut.png
+	doc/gramps-manual/ru/figures/pedigree.png
+	doc/gramps-manual/ru/figures/places.png
+	doc/gramps-manual/ru/figures/researcher.png
+	doc/gramps-manual/ru/figures/side-filt.png
+	doc/gramps-manual/ru/figures/sources.png: Add to CVS.
+	* doc/gramps-manual/Makefile.am: Add ru to the SUBDIR list.
+	* configure.in: Add doc/gramps-manual/ru/Makefile to AC_CONFIG_FILES.
+
 2003-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/filters/Complete.py: Add filter matching people with the 
 	complete flag.
