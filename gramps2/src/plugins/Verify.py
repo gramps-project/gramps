@@ -105,7 +105,7 @@ def on_apply_clicked(obj):
     warn  = ""
 
     for person in personList:
-        idstr = person.getId() + " " +person.getPrimaryName().getName()
+        idstr = person.getPrimaryName().getName() + " (" + person.getId() + ")"
 	
 	# individual checks
 	byear = get_year( person.getBirth() )
@@ -114,22 +114,22 @@ def on_apply_clicked(obj):
 	buryear = 0
 	if byear>0 and bapyear>0:
 	    if byear > bapyear:
-	        error = error + _("Baptized before birth %s born %d baptized %d.\n") % (idstr, byear, bapyear) 
+	        error = error + _("Baptized before birth: %s born %d, baptized %d.\n") % (idstr, byear, bapyear) 
 	    if byear < bapyear:
-	        warn = warn + _("Baptized late %s born %d baptized %d.\n") % (idstr, byear, bapyear) 
+	        warn = warn + _("Baptized late: %s born %d, baptized %d.\n") % (idstr, byear, bapyear) 
         if dyear>0 and buryear>0:
 	    if dyear > buryear:
-	        error = error + _("Buried before death %s died %d buried %d.\n") % (idstr, dyear, buryear) 
+	        error = error + _("Buried before death: %s died %d, buried %d.\n") % (idstr, dyear, buryear) 
 	    if dyear < buryear:
-	        warn = warn + _("Buried late %s died %d buried %d.\n") % (idstr, dyear, buryear) 
+	        warn = warn + _("Buried late: %s died %d, buried %d.\n") % (idstr, dyear, buryear) 
 	if dyear>0 and (byear>dyear):
-	    error = error + _("Died before birth %s born %d died %d.\n") % (idstr, byear, dyear) 
+	    error = error + _("Died before birth: %s born %d, died %d.\n") % (idstr, byear, dyear) 
 	if dyear>0 and (bapyear>dyear):
-	    error = error + _("Died before birth %s baptized %d died %d.\n") % (idstr, bapyear, dyear) 
+	    error = error + _("Died before birth: %s baptized %d, died %d.\n") % (idstr, bapyear, dyear) 
 	if buryear>0 and (byear>buryear):
-	    error = error + _("Buried before birth %s born %d died %d.\n") % (idstr, byear, buryear) 
+	    error = error + _("Buried before birth: %s born %d, died %d.\n") % (idstr, byear, buryear) 
 	if buryear>0 and (bapyear>buryear):
-	    error = error + _("Buried before birth %s baptized %d died %d.\n") % (idstr, bapyear, buryear) 
+	    error = error + _("Buried before birth: %s baptized %d, died %d.\n") % (idstr, bapyear, buryear) 
 	if byear == 0:
 	    byear = bapyear  # guess baptism = birth
 	if dyear == 0:
@@ -139,7 +139,7 @@ def on_apply_clicked(obj):
 	else:
 	    ageatdeath = 0
         if ageatdeath > oldage:
-	    warn = warn + _("Old age %s born %d died %d age %d.\n") % (idstr, byear, dyear, ageatdeath)
+	    warn = warn + _("Old age: %s born %d, died %d, at the age of %d.\n") % (idstr, byear, dyear, ageatdeath)
 	    
 	# gender checks
 	if person.getGender() == RelLib.Person.female:
@@ -153,13 +153,13 @@ def on_apply_clicked(obj):
 	    yngpar = yngdad
 	    waswidstr = _(" was a widower ")
 	if (person.getGender() != RelLib.Person.female) and (person.getGender() != RelLib.Person.male):
-	    warn = warn + _("Unknown gender %s.\n") % idstr
+	    warn = warn + _("Unknown gender for %s.\n") % idstr
 	    parstr = _("parent ")
 	    oldpar = olddad
 	    yngpar = yngdad
 	    waswidstr = _(" was a widow ")
 	if (person.getGender() == RelLib.Person.female) and (person.getGender() == RelLib.Person.male):
-	    error = error + _("Ambigous gender %s.\n") % idstr
+	    error = error + _("Ambigous gender for %s.\n") % idstr
 	    parstr = _("parent ")
 	    oldpar = olddad
 	    yngpar = yngdad
@@ -167,15 +167,15 @@ def on_apply_clicked(obj):
 	    
 	# multiple parentage check
 	if( len(person.getParentList()) > 1 ):
-	    warn = warn + _("Multiple parentage %s.\n") % idstr
+	    warn = warn + _("Multiple parentage for %s.\n") % idstr
 
         # marriage checks
 	nkids = 0
 	nfam  = len( person.getFamilyList() )
 	if nfam > wedder:
-	    warn = warn + _("Married often %s married %d times.\n") % (idstr, nfam)
+	    warn = warn + _("Married often: %s married %d times.\n") % (idstr, nfam)
 	if ageatdeath>oldunm and nfam == 0:
-	    warn = warn + _("Old and unmarried %s died unmarried aged %d years.\n") % (idstr, ageatdeath)
+	    warn = warn + _("Old and unmarried: %s died unmarried, at the age of %d years.\n") % (idstr, ageatdeath)
 	first_cbyear = 99999
 	last_cbyear=0
 	prev_cbyear=0
@@ -188,11 +188,11 @@ def on_apply_clicked(obj):
 	    father = family.getFather()
 	    if mother!=None and father!=None:
 	        if mother.getGender() == father.getGender():
-		    warn = warn + _("Homosexual marriage %s family %s.\n") % (idstr, family.getId())
+		    warn = warn + _("Homosexual marriage: %s in family %s.\n") % (idstr, family.getId())
 	    if family.getFather() == person and person.getGender() == RelLib.Person.female:
-	        error = error + _("Female husband %s family %s.\n") % (idstr, family.getId())
+	        error = error + _("Female husband: %s in family %s.\n") % (idstr, family.getId())
 	    if family.getMother() == person and person.getGender() == RelLib.Person.male:
-	        error = error + _("Male wife %s family %s.\n") % (idstr, family.getId())
+	        error = error + _("Male wife: %s in family %s.\n") % (idstr, family.getId())
 	    if family.getFather() == person:
 	       spouse = family.getMother()
 	    else:
@@ -200,7 +200,7 @@ def on_apply_clicked(obj):
 	    if spouse != None:
 	        if person.getGender() == RelLib.Person.male and \
 		   person.getPrimaryName().getSurname() == spouse.getPrimaryName().getSurname():
-		    warn = warn + _("Husband and wife with same surname %s family %s %s.\n") % ( idstr,family.getId(), spouse.getPrimaryName().getName())
+		    warn = warn + _("Husband and wife with the same surname: %s in family %s, and %s.\n") % ( idstr,family.getId(), spouse.getPrimaryName().getName())
 	        sdyear = get_year( spouse.getDeath() )
 		if sdyear == 0:
 		    sdyear = 0  # burial year
@@ -218,16 +218,16 @@ def on_apply_clicked(obj):
 		    if byear > 0:
 		        marage = maryear - byear
 			if marage < 0:
-			    error = error + _("Married before birth %s born %d married %d to %s.\n") % (idstr, byear, maryear, spouse.getPrimaryName().getName())
+			    error = error + _("Married before birth: %s born %d, married %d to %s.\n") % (idstr, byear, maryear, spouse.getPrimaryName().getName())
 			else:
 			    if marage < yngmar:
-			       warn = warn + _("Young marriage %s married at age %d to %s.\n") % (idstr, marage, spouse.getPrimaryName().getName())
+			       warn = warn + _("Young marriage: %s married at age %d to %s.\n") % (idstr, marage, spouse.getPrimaryName().getName())
 			    if marage > oldmar:
-			       warn = warn + _("Old marriage %s married at age %d to %s.\n") % (idstr, marage, spouse.getPrimaryName().getName())
+			       warn = warn + _("Old marriage: %s married at age %d to %s.\n") % (idstr, marage, spouse.getPrimaryName().getName())
 		    if dyear>0 and maryear > dyear:
-		        error = error + _("Married after death %s died %d married %d to %s.\n") % (idstr, dyear, maryear, spouse.getPrimaryName().getName())
+		        error = error + _("Married after death: %s died %d, married %d to %s.\n") % (idstr, dyear, maryear, spouse.getPrimaryName().getName())
 		    if prev_cbyear > maryear:
-		        warn = warn + _("Marriage before birth from previous family %s married %d to %s previous birth %d.\n") % (idstr, maryear, spouse.getPrimaryName().getName(), prev_cbyear)
+		        warn = warn + _("Marriage before birth from previous family: %s married %d to %s, previous birth %d.\n") % (idstr, maryear, spouse.getPrimaryName().getName(), prev_cbyear)
 		    prev_maryear = maryear
 		else:
 		    maryear = prev_maryear
@@ -235,12 +235,12 @@ def on_apply_clicked(obj):
 		if maryear>0 and prev_sdyear > 0:
 		    wdwyear = maryear-prev_sdyear
 		    if wdwyear > lngwdw:
-		        warn = warn + _("Long widowhood %s %s %d years before family %s.\n") % (idstr, waswidstr, wdwyear,family.getId() ) 
+		        warn = warn + _("Long widowhood: %s %s %d years before, family %s.\n") % (idstr, waswidstr, wdwyear,family.getId() ) 
 		
 		if fnum==nfam and dyear>0 and sdyear>0:
 		    wdwyear = dyear - sdyear
 		    if wdwyear > lngwdw:
-		        warn =  warn + _("Long widowhood %s %s %d years.\n") % (idstr, waswidstr, wdwyear) 
+		        warn =  warn + _("Long widowhood: %s %s %d years.\n") % (idstr, waswidstr, wdwyear) 
 
 		nkids = 0
 		for child in family.getChildList():
@@ -254,20 +254,20 @@ def on_apply_clicked(obj):
 		    if byear>0 and cbyear>0:
 		        bage = cbyear - byear
 			if bage > oldpar:
-			    warn = warn + _("Old %s %s age %d family %s child %s.\n") % (parstr, idstr, bage, family.getId(), child.getPrimaryName().getName())
+			    warn = warn + _("Old %s: %s at age of %d in family %s had a child %s.\n") % (parstr, idstr, bage, family.getId(), child.getPrimaryName().getName())
 			if bage < 0:
-			    error = error + _("Unborn %s %s born %d family %s child %s born %d.\n") % (parstr, idstr, byear, family.getId(), child.getPrimaryName().getName(), cbyear)
+			    error = error + _("Unborn %s: %s born %d, in family %s had a child %s born %d.\n") % (parstr, idstr, byear, family.getId(), child.getPrimaryName().getName(), cbyear)
 			else:
 			    if bage < yngpar:
-			        warn = warn + _("Young %s %s age %d family %s child %s.\n") % (parstr, idstr, bage, family.getId(), child.getPrimaryName().getName())
+			        warn = warn + _("Young %s: %s at the age of %d in family %s had a child %s.\n") % (parstr, idstr, bage, family.getId(), child.getPrimaryName().getName())
 		    if dyear>0 and cbyear>dyear:
 		        if person.getGender() == RelLib.Person.male:
 			    if cbyear-1>dyear:
-			        error = error + _("Dead %s %s died %d family %s child %s born %d.\n") % (parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
+			        error = error + _("Dead %s: %s died %d, but in family %s had a child %s born %d.\n") % (parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
 			    else:
-			        warn = warn + _("Dead %s %s died %d family %s child %s born %d.\n") % (parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
+			        warn = warn + _("Dead %s: %s died %d, but in family %s had a child %s born %d.\n") % (parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
 			else:
-			    error = error + _("Dead %s %s died %d family %s child %s born %d.\n") % (parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
+			    error = error + _("Dead %s: %s died %d, but in family %s had a child %s born %d.\n") % (parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
 		    	    
 	
     text = ""
