@@ -111,30 +111,22 @@ class DispBox:
 
         
         self.group = self.root.add(CanvasGroup,x=x,y=y)
-        self.shadow = self.group.add(CanvasRect,
-                                     x1=shadow,
-                                     y1=shadow,
-                                     x2=w+shadow,
-                                     y2=h+shadow,
-                                     outline_color_gdk=style.dark[gtk.STATE_NORMAL],
-                                     fill_color_gdk=style.dark[gtk.STATE_NORMAL])
+        self.shadow = self.group.add(
+            CanvasRect, x1=shadow, y1=shadow, x2=w+shadow, y2=h+shadow,
+            outline_color_gdk=style.dark[gtk.STATE_NORMAL],
+            fill_color_gdk=style.dark[gtk.STATE_NORMAL])
 
         # draw the real box
-        self.bkgnd = self.group.add(CanvasRect,
-                                    x1=0,
-                                    y1=0,
-                                    x2=w,
-                                    y2=h,
-                                    outline_color_gdk=style.fg[gtk.STATE_NORMAL],
-                                    fill_color_gdk=style.base[gtk.STATE_NORMAL])
+        self.bkgnd = self.group.add(
+            CanvasRect, x1=0, y1=0, x2=w, y2=h,
+            outline_color_gdk=style.fg[gtk.STATE_NORMAL],
+            fill_color_gdk=style.base[gtk.STATE_NORMAL])
 
         font = gtk.gdk.font_from_description(style.font_desc)
-        self.textbox = self.group.add(CanvasText,
-                                      x=xpad,
-                                      y=h/2.0,
-                                      text=self.name,
-                                      fill_color_gdk=style.text[gtk.STATE_NORMAL],
-                                      font=font, anchor=gtk.ANCHOR_WEST)
+        self.textbox = self.group.add(
+            CanvasText, x=xpad, y=h/2.0, text=self.name,
+            fill_color_gdk=style.text[gtk.STATE_NORMAL],
+            font=font, anchor=gtk.ANCHOR_WEST)
         self.group.connect('event',self.group_event)
         self.group.set_data(_PERSON,person.get_handle())
 
@@ -276,13 +268,10 @@ class PedigreeView:
         xpts = self.build_x_coords(cw/xdiv,_CANVASPAD+h)
         ypts = self.build_y_coords((ch-h)/32.0, h)
 
-        self.anchor_txt = self.root.add(CanvasText,
-                                        x=0,
-                                        y=y2-12, 
-                                        font=font,
-                                        text=self.make_anchor_label(),
-                                        fill_color_gdk=style.fg[gtk.STATE_NORMAL],
-                                        anchor=gtk.ANCHOR_WEST)
+        self.anchor_txt = self.root.add(
+            CanvasText, x=0, y=y2-12, font=font, text=self.make_anchor_label(),
+            fill_color_gdk=style.fg[gtk.STATE_NORMAL],
+            anchor=gtk.ANCHOR_WEST)
         self.canvas_items.append(self.anchor_txt)
 
         for family_handle in self.active_person.get_family_handle_list():
@@ -309,7 +298,8 @@ class PedigreeView:
 
         gen_no = 1
         if self.anchor:
-            (firstRel,secondRel,common) = self.distance(self.active_person,self.anchor)
+            (firstRel,secondRel,common) = self.distance(self.active_person,
+                                                        self.anchor)
             if not common or type(common) in [type(''),type(u'')]:
                 self.remove_anchor()
             else:
@@ -331,17 +321,20 @@ class PedigreeView:
                     if lst[findex]:
                         p = lst[findex]
                         self.draw_canvas_line(xpts[i], ypts[i], xpts[findex],
-                                              ypts[findex], h, w, p[0], style, p[1])
+                                              ypts[findex], h, w, p[0], style,
+                                              p[1])
                     if lst[mindex]:
                         p = lst[mindex]
                         self.draw_canvas_line(xpts[i],ypts[i], xpts[mindex],
-                                              ypts[mindex], h, w, p[0], style, p[1])
+                                              ypts[mindex], h, w, p[0], style,
+                                              p[1])
                 p = lst[i]
-                box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],self.parent.db,
+                box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],
+                              self.parent.db,
                               self.parent.change_active_person, 
                               self.load_person, self.build_full_nav_menu)
                 self.boxes.append(box)
-        self.change_active_person(person)
+        self.parent.change_active_person(person)
 
     def make_arrow_button(self,direction,function):
         """Make a button containing an arrow with the attached callback"""
@@ -430,7 +423,8 @@ class PedigreeView:
            the specified location. Attach the passed parent and the callback
            to the button."""
 
-        button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,self.change_to_parent)
+        button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,
+                                              self.change_to_parent)
         button.set_data(_PERSON,parent.get_handle())
 
         item = self.root.add(CanvasWidget, widget=button, x=x, y=y+(h/2),

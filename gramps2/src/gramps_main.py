@@ -1608,10 +1608,12 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
             self.filter_text.set_sensitive(0)
 
     def new_after_edit(self,epo,val):
-        self.active_person = epo.person
+        self.change_active_person(epo.person)
+        self.family_view.load_family()
         self.goto_active_person()
         
     def update_after_edit(self,epo,change=1):
+        self.change_active_person(epo.person)
         self.goto_active_person()
         
     def load_person(self,person):

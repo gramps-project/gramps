@@ -1,4 +1,9 @@
 2005-04-03  Don Allingham  <don@gramps-project.org>
+	* src/FamilyView.py: commit family properly
+	* src/PedView.py: change_active_person typo
+	* src/PeopleView.py: don't change active person with updated
+	* src/SelectChild.py: Fix callbacks
+	* src/gramps_main.py: load active family on change
 	* src/ArgHandler.py: Make sure all databases are closed before
 	creating a new one.
 	* src/DisplayModels.py: Calculate new nodes properly after a 
