@@ -93,6 +93,7 @@ class CheckIntegrity:
 
     def check_for_broken_family_links(self):
         self.broken_links = []
+        # Check persons referenced by the family objects
         for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
@@ -100,6 +101,7 @@ class CheckIntegrity:
             if father_handle:
                 father = self.db.get_person_from_handle(father_handle)
                 if not father:
+                    # The person referenced by the father handle does not exist in the database
                     family.set_father_handle(None)
                     self.db.commit_family(family,self.trans)
                     self.broken_parent_links.append((father_handle,family_handle))
@@ -107,16 +109,19 @@ class CheckIntegrity:
             if mother_handle:
                 mother = self.db.get_person_from_handle(mother_handle)
                 if not mother:
+                    # The person referenced by the mother handle does not exist in the database
                     family.set_father_handle(None)
                     self.db.commit_family(family,self.trans)
                     self.broken_parent_links.append((mother_handle,family_handle))
                     mother_handle = None
 
             if father_handle and father and family_handle not in father.get_family_handle_list():
+                # The referenced father has no reference back to the family
                 self.broken_parent_links.append((father_handle,family_handle))
                 father.add_family_handle(family_handle)
                 self.db.commit_person(father,self.trans)
             if mother_handle and mother and family_handle not in mother.get_family_handle_list():
+                # The referenced mother has no reference back to the family
                 self.broken_parent_links.append((mother_handle,family_handle))
                 mother.add_family_handle(family_handle)
                 self.db.commit_person(mother,self.trans)
@@ -129,14 +134,45 @@ class CheckIntegrity:
                         if family_type[0] == family_handle:
                             break
                     else:
+                        # The referenced child has no reference back to the family
                         family.remove_child_handle(child_handle)
                         self.db.commit_family(family,self.trans)
                         self.broken_links.append((child_handle,family_handle))
                 else:
+                    # The person referenced by the child handle does not exist in the database
                     family.remove_child_handle(child_handle)
                     self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_handle,family_handle))
-                    
+
+        # Check persons membership in referenced families
+        for person_handle in self.db.get_person_handles():
+            person = self.db.get_person_from_handle(person_handle)
+            for family_type in person.get_parent_family_handle_list():
+                family = self.db.get_family_from_handle(family_type[0])
+                for child_handle in family.get_child_handle_list():
+                    if child_handle == person_handle:
+                        break
+                else:
+                    # Person is not a child in the referenced parent family
+                    person.remove_parent_family_handle(family_type[0])
+                    self.db.commit_person(person,self.trans)
+                    self.broken_links.append((person_handle,family_handle))
+            for family_handle in person.get_family_handle_list():
+                family = self.db.get_family_from_handle(family_handle)
+                if not family:
+                    # The referenced family does not exist in database
+                    person.remove_family_handle(family_handle)
+                    self.db.commit_person(person,self.trans)
+                    self.broken_links.append((person_handle,family_handle))
+                    continue
+                if family.get_father_handle() == person_handle:
+                    continue
+                if family.get_mother_handle() == person_handle:
+                    continue
+                # The person is not a member of the referenced family
+                person.remove_family_handle(family_handle)
+                self.db.commit_person(person,self.trans)
+                self.broken_links.append((person_handle,family_handle))
 
     def cleanup_missing_photos(self,cl=0):
         missmedia_action = 0
@@ -260,11 +296,13 @@ class CheckIntegrity:
                 continue
             elif not father_handle:
                 if mother and mother.get_gender() == RelLib.Person.MALE:
+                    # No father set and mother is male
                     family.set_father_handle(mother_handle)
                     family.set_mother_handle(None)
                     self.db.commit_family(family,self.trans)
             elif not mother_handle:
                 if father and father.get_gender() == RelLib.Person.FEMALE:
+                    # No mother set and father is female
                     family.set_mother_handle(father_handle)
                     family.set_father_handle(None)
                     self.db.commit_family(family,self.trans)
@@ -323,17 +361,20 @@ class CheckIntegrity:
                     cn = person.get_primary_name().get_name()
                 else:
                     cn = _("Non existing child")
-                f = self.db.get_person_from_handle(family.get_father_handle())
-                m = self.db.get_person_from_handle(family.get_mother_handle())
-                if f and m:
-                    pn = _("%s and %s") % (f.get_primary_name().get_name(),\
+                if family:
+                    f = self.db.get_person_from_handle(family.get_father_handle())
+                    m = self.db.get_person_from_handle(family.get_mother_handle())
+                    if f and m:
+                        pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())
-                elif f:
-                    pn = f.get_primary_name().get_name()
-                elif m:
-                    pn = m.get_primary_name().get_name()
+                    elif f:
+                        pn = f.get_primary_name().get_name()
+                    elif m:
+                        pn = m.get_primary_name().get_name()
+                    else:
+                        pn = _("unknown")
                 else:
-                    pn = _("unknown")
+                    pn = _("Non existing family")
                 self.text.write('\t')
                 self.text.write(_("%s was removed from the family of %s\n") % (cn,pn))
 
