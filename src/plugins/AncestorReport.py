@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Generate files/Ahnentafel Chart"
+"Generate files/Ahnentafel Report"
 
 import RelLib
 import const
@@ -163,7 +163,7 @@ class AncestorReport:
         
         name = self.start.getPrimaryName().getRegularName()
         self.doc.start_paragraph("Title")
-        title = _("Ahnentafel Chart for %s") % name
+        title = _("Ahnentafel Report for %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
     
@@ -214,10 +214,10 @@ class AncestorReport:
                                     (name,date.getDate())
                         else:
                             if place != "":
-                                t = _("%s was born in %s in %s. ") % \
+                                t = _("%s was born in the year %s in %s. ") % \
                                     (name,date.getDate(),place)
                             else:
-                                t = _("%s was born in %s. ") % \
+                                t = _("%s was born in the year %s. ") % \
                                     (name,date.getDate())
                         self.doc.write_text(t)
 
@@ -255,16 +255,16 @@ class AncestorReport:
                         else:
                             if male:
                                 if place != "":
-                                    t = _("He died in %s in %s") % \
+                                    t = _("He died in the year %s in %s") % \
                                         (date.getDate(),place)
                                 else:
-                                    t = _("He died in %s") % date.getDate()
+                                    t = _("He died in the year %s") % date.getDate()
                             else:
                                 if place != "":
-                                    t = _("She died in %s in %s") % \
+                                    t = _("She died in the year %s in %s") % \
                                         (date.getDate(),place)
                                 else:
-                                    t = _("She died in %s") % date.getDate()
+                                    t = _("She died in the year %s") % date.getDate()
 
                         self.doc.write_text(t)
 
@@ -284,10 +284,10 @@ class AncestorReport:
                                             date.getDate()
                                 else:
                                     if place != "":
-                                        t = _(", and was buried in %s in %s.") % \
+                                        t = _(", and was buried in the year %s in %s.") % \
                                             (date.getDate(),place)
                                     else:
-                                        t = _(", and was buried in %s.") % \
+                                        t = _(", and was buried in the year %s.") % \
                                             date.getDate()
                             else:
                                 t = _(" and was buried in %s." % place)
@@ -397,7 +397,7 @@ def get_description():
     return _("Produces a textual ancestral report")
 
 def get_name():
-    return _("Generate files/Ahnentafel Chart")
+    return _("Generate files/Ahnentafel Report")
 
 #------------------------------------------------------------------------
 #

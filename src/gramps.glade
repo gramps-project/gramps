@@ -3686,7 +3686,7 @@ Other
 <widget>
   <class>GtkWindow</class>
   <name>sourceDisplay</name>
-  <title>Reletivity - Source Information</title>
+  <title>Gramps - Source Information</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>True</modal>

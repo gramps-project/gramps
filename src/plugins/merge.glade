@@ -1535,7 +1535,7 @@
 <widget>
   <class>GtkWindow</class>
   <name>message</name>
-  <title>GRAMPS - Merge People</title>
+  <title>Gramps - Merge People</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -1638,7 +1638,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>dialog</name>
-  <title>GRAMPS - Merge People</title>
+  <title>Gramps - Merge People</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

@@ -910,7 +910,7 @@ def on_delete_person_clicked(obj):
     if not active_person:
         return
 
-    topWindow.question(_("Do you really wish to delete ") + \
+    topWindow.question(_("Do you really wish to delete %s") % \
                        Config.nameof(active_person), delete_person_response)
 
 #-------------------------------------------------------------------------

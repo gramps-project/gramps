@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>dialog1</name>
-  <title>GRAMPS - Ancestor Chart</title>
+  <title>Gramps - Ancestor Chart</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

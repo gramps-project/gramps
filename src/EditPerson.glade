@@ -1829,7 +1829,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label140</name>
-	      <label>From : </label>
+	      <label>Date : </label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1977,38 +1977,6 @@
 	      <widget>
 		<class>GtkEntry</class>
 		<name>address_start</name>
-		<can_focus>True</can_focus>
-		<editable>True</editable>
-		<text_visible>True</text_visible>
-		<text_max_length>0</text_max_length>
-		<text></text>
-		<child>
-		  <padding>0</padding>
-		  <expand>True</expand>
-		  <fill>True</fill>
-		</child>
-	      </widget>
-
-	      <widget>
-		<class>GtkLabel</class>
-		<name>label147</name>
-		<label>To : </label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-		<child>
-		  <padding>5</padding>
-		  <expand>False</expand>
-		  <fill>True</fill>
-		</child>
-	      </widget>
-
-	      <widget>
-		<class>GtkEntry</class>
-		<name>address_stop</name>
 		<can_focus>True</can_focus>
 		<editable>True</editable>
 		<text_visible>True</text_visible>
@@ -2196,15 +2164,14 @@
 	    <widget>
 	      <class>GtkCList</class>
 	      <name>address_list</name>
-	      <height>120</height>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>select_row</name>
 		<handler>on_address_list_select_row</handler>
-		<last_modification_time>Tue, 01 May 2001 14:07:12 GMT</last_modification_time>
+		<last_modification_time>Wed, 23 May 2001 18:42:16 GMT</last_modification_time>
 	      </signal>
-	      <columns>3</columns>
-	      <column_widths>138,119,80</column_widths>
+	      <columns>2</columns>
+	      <column_widths>165,80</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -2212,8 +2179,8 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<child_name>CList:title</child_name>
-		<name>label144</name>
-		<label>From</label>
+		<name>label150</name>
+		<label>Date</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
@@ -2225,20 +2192,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<child_name>CList:title</child_name>
-		<name>label145</name>
-		<label>To</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-	      </widget>
-
-	      <widget>
-		<class>GtkLabel</class>
-		<child_name>CList:title</child_name>
-		<name>label146</name>
+		<name>label151</name>
 		<label>Location</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>

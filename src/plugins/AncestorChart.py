@@ -57,7 +57,7 @@ db = None
 # 
 #
 #------------------------------------------------------------------------
-class AncestorChart:
+class AncestorReport:
 
     def __init__(self,database,person,output,doc, max):
         self.doc = doc
@@ -211,7 +211,7 @@ def report(database,person):
     if no_pdf == 1:
         topDialog.get_widget("pdf").set_sensitive(0)
 
-    title = _("Ancestor chart for %s") % name
+    title = _("Ancestor Chart for %s") % name
     topDialog.get_widget("labelTitle").set_text(title)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
@@ -243,7 +243,7 @@ def on_save_clicked(obj):
     else:
         document = PdfDrawDoc(paper,orien)
 
-    MyReport = AncestorChart(db,active_person,outputName,document,max_gen)
+    MyReport = AncestorReport(db,active_person,outputName,document,max_gen)
 
     MyReport.setup()
     MyReport.write_report()

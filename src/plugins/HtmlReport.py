@@ -483,11 +483,11 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
                            name_or_link(sp_mother,prefix))
                     html.write("<LI>%s</LI>\n" % txt)
                 elif sp_father:
-                    txt = _("Spouse's father: %s and %s") % \
+                    txt = _("Spouse's father: %s") % \
                           name_or_link(sp_father,prefix)
                     html.write("<LI>%s</LI>\n" % txt)
                 elif sp_mother:
-                    txt = _("Spouse's father: %s and %s") % \
+                    txt = _("Spouse's mother: %s") % \
                           name_or_link(sp_mother,prefix)
                     html.write("<LI>%s</LI>\n" % txt)
             

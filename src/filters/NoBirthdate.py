@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"People no listed birth date"
+"People without a birth date"
 
 import Filter
 import string
@@ -27,7 +27,7 @@ import intl
 _ = intl.gettext
 
 class NoBirthdate(Filter.Filter):
-    "People no listed birth date"
+    "People without a birth date"
 
     def match(self,person):
         return person.getBirth().getDate() == ""
@@ -39,6 +39,6 @@ def need_qualifier():
     return 0
 
 def get_name():
-    return _("People no listed birth date")
+    return _("People without a birth date")
 
 
