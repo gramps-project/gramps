@@ -445,6 +445,10 @@ class Gramps:
         self.db.set_person_column_order(list)
         self.people_view.build_columns()
 
+    def set_child_column_order(self,list):
+        self.db.set_child_column_order(list)
+        self.family_view.build_columns()
+
     def set_place_column_order(self,list):
         self.db.set_place_column_order(list)
         self.place_view.build_columns()
@@ -465,6 +469,10 @@ class Gramps:
             ColumnOrder.ColumnOrder(self.db.get_person_column_order(),
                                     PeopleView.column_names,
                                     self.set_person_column_order)
+        elif cpage == FAMILY_VIEW1 or cpage == FAMILY_VIEW2:
+            ColumnOrder.ColumnOrder(self.db.get_child_column_order(),
+                                    map(lambda x: x[0], FamilyView.column_names),
+                                    self.set_child_column_order)
         elif cpage == SOURCE_VIEW:
             ColumnOrder.ColumnOrder(self.db.get_source_column_order(),
                                     SourceView.column_names,

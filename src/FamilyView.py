@@ -47,6 +47,7 @@ import ChooseParents
 import RelLib
 import EditPerson
 import DateHandler
+import DisplayModels
 
 from gettext import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
@@ -55,6 +56,19 @@ _BORN = _('b.')
 _DIED = _('d.')
 
 pycode_tgts = [('child', 0, 0)]
+
+column_names = [
+    (_('#'),0) ,
+    (_('ID'),1) ,
+    (_('Name'),9),
+    (_('Gender'),3),
+    (_('Birth Date'),10),
+    (_('Death Date'),11),
+    (_('Birth Place'),6),
+    (_('Death Place'),7),
+    ]
+
+_HANDLE_COL = 8
 
 #-------------------------------------------------------------------------
 #
@@ -72,6 +86,8 @@ class FamilyView:
 
     def set_widgets(self,val):
         already_init = self.cadded[val]
+
+        self.columns = []
         if (val):
             self.ap_data = self.top.get_widget('ap_data2')
             self.swap_btn = self.top.get_widget('swap_btn2')
@@ -203,13 +219,6 @@ class FamilyView:
         self.child_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.child_list.connect('drag_data_get', self.drag_data_get)
         self.child_list.connect('drag_data_received',self.drag_data_received)
-        
-        self.child_model = gtk.ListStore(TYPE_INT,   TYPE_STRING,
-                                         TYPE_STRING,TYPE_STRING,
-                                         TYPE_STRING,TYPE_STRING, 
-                                         TYPE_STRING,TYPE_STRING)
-
-        self.child_selection = self.child_list.get_selection()
 
         if not already_init:
             self.child_list.connect('button-press-event',
@@ -221,16 +230,32 @@ class FamilyView:
             self.add_spouse_btn.connect('clicked',self.add_spouse)
             self.select_spouse_btn.connect('clicked',self.select_spouse)
 
+        if not already_init:
+            self.build_columns()
+
+        self.child_model = DisplayModels.ChildModel([],self.parent.db)
         self.child_list.set_model(self.child_model)
-        self.child_list.set_search_column(0)
+        #self.child_list.set_search_column(2)
         self.child_selection = self.child_list.get_selection()
 
-        if not already_init:
-            Utils.build_columns(self.child_list,
-                                [ (' ',30,0), (_('Name'),250,-1), (_('ID'),50,-1),
-                                  (_('Gender'),75,-1), (_('Birth date'),150,6),
-                                  (_('Status'),100,-1), ('',0,-1) ])
         self.cadded[fv] = 1
+
+    def build_columns(self):
+        for column in self.columns:
+            self.child_list.remove_column(column)
+        self.columns = []
+
+        for pair in self.parent.db.get_child_column_order():
+            if not pair[0]:
+                continue
+            name = column_names[pair[1]][0]
+            column = gtk.TreeViewColumn(name, gtk.CellRendererText(),
+                                        text=pair[1])
+            column.set_resizable(gtk.TRUE)
+            column.set_min_width(40)
+            column.set_sort_column_id(column_names[pair[1]][1])
+            self.columns.append(column)
+            self.child_list.append_column(column)
         
     def ap_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -294,7 +319,7 @@ class FamilyView:
         model, node = self.child_selection.get_selected()
         if not node:
             return
-        handle = self.child_model.get_value(node,7)
+        handle = self.child_model.get_value(node,_HANDLE_COL)
         if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
             self.child_rel_by_id(handle)
         elif event.keyval == gtk.gdk.keyval_from_name("Return") \
@@ -434,7 +459,7 @@ class FamilyView:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
                 self.build_nav_menu(event)
             return
-        handle = self.child_model.get_value(node,7)
+        handle = self.child_model.get_value(node,_HANDLE_COL)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.child_rel_by_id(handle)
         elif event.state == gtk.gdk.SHIFT_MASK and \
@@ -487,7 +512,7 @@ class FamilyView:
         model, node = self.child_selection.get_selected()
         if not node:
             return
-        handle = self.child_model.get_value(node,7)
+        handle = self.child_model.get_value(node,_HANDLE_COL)
         child = self.parent.db.get_person_from_handle(handle)
         try:
             EditPerson.EditPerson(self.parent, child, self.parent.db,
@@ -747,7 +772,7 @@ class FamilyView:
         if not node:
             return
 
-        handle = self.child_model.get_value(node,7)
+        handle = self.child_model.get_value(node,_HANDLE_COL)
         child = self.parent.db.get_person_from_handle(handle)
 
         trans = self.parent.db.transaction_begin()
@@ -858,13 +883,15 @@ class FamilyView:
 
     def clear(self):
         self.spouse_model.clear()
-        self.child_model.clear()
         self.sp_parents_model.clear()
         self.ap_parents_model.clear()
         self.ap_model.clear()
-
+        self.child_model = DisplayModels.ChildModel([],self.parent.db)
+        self.child_list.set_model(self.child_model)
+        
     def load_family(self,family=None):
 
+        self.build_columns()
         if self.parent.active_person:
             handle = self.parent.active_person.get_handle()
             self.person = self.parent.db.get_person_from_handle(handle)
@@ -900,7 +927,6 @@ class FamilyView:
 
         self.selected_spouse = None
         self.spouse_model.clear()
-        self.child_model.clear()
         self.sp_parents_model.clear()
 
         splist = self.person.get_family_handle_list()
@@ -1008,7 +1034,9 @@ class FamilyView:
         self.parent.db.transaction_commit(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):
-        self.child_model.clear()
+        hlist = family.get_child_handle_list()
+        self.child_model = DisplayModels.ChildModel(hlist,self.parent.db)
+        self.child_list.set_model(self.child_model)
 
         if not family:
             self.family = None
@@ -1031,39 +1059,6 @@ class FamilyView:
         if self.selected_spouse:
             self.update_list(self.sp_parents_model,self.sp_parents,
                              self.selected_spouse)
-
-        i = 0
-        fiter = None
-        child_list = list(self.family.get_child_handle_list())
-
-        self.child_map = {}
-
-        for child_handle in child_list:
-            status = _("Unknown")
-
-            child = self.parent.db.get_person_from_handle(child_handle)
-            for fam in child.get_parent_family_handle_list():
-                if fam[0] == self.family.get_handle():
-                    if self.person == self.family.get_father_handle():
-                        status = "%s/%s" % (_(fam[2]),_(fam[1]))
-                    else:
-                        status = "%s/%s" % (_(fam[1]),_(fam[2]))
-
-            node = self.child_model.append()
-            self.child_map[node] = child.get_handle()
-            
-            if fiter == None:
-                fiter = self.child_model.get_path(node)
-            val = child.get_display_info()
-            i += 1
-            
-            event = self.parent.db.get_event_from_handle(val[3])
-            if event:
-                dval = self.dd.display(event.get_date_object())
-            else:
-                dval = u''
-            self.child_model.set(node,0,i,1,val[0],2,val[1],3,val[2],
-                                 4,dval,5,status,6,val[6],7,child.get_handle())
 
     def build_parents_menu(self,family,event):
         """Builds the menu that allows editing operations on the child list"""
