@@ -301,8 +301,6 @@ class RTFDoc(TextDoc):
 	for cell in range(self.cell,self.cell+span):
 	    self.cell_percent = self.cell_percent + float(self.tbl_style.get_column_width(cell))
 	cell_width = twips((table_width * self.cell_percent)/100.0)
-#	self.prev = self.prev + cell_width
-        print cell_width,twips(self.get_usable_width())
 	self.f.write('\\cellx%d\\pard\intbl\n' % cell_width)
 	self.cell = self.cell+1
 
