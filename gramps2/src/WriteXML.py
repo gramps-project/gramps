@@ -203,7 +203,9 @@ class XmlWriter:
                 self.g.write(' default="%s"' % person.getId())
             self.g.write(">\n")
 
-            for key in self.db.sortPersonKeys():
+            keys = self.db.getPersonKeys()
+            keys.sort ()
+            for key in keys:
                 try:
                     person = self.db.getPerson(key)
                 except:
