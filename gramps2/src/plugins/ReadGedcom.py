@@ -75,6 +75,14 @@ def nocnv(s):
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "jpg", "tiff", "pcx" ]
 
+file_systems = {
+    'VFAT'    : _('Windows 9x file system'),
+    'FAT'     : _('Windows 9x file system'),
+    "NTFS"    : _('Windows NT file system'),
+    "ISO9660" : _('CD ROM'),
+    "SMBFS"   : _('Networked Windows file system')
+    }
+
 #-------------------------------------------------------------------------
 #
 # GEDCOM events to GRAMPS events conversion
@@ -215,6 +223,8 @@ class GedcomParser:
         self.backoff = 0
         self.cnv = nocnv
 
+        self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(file)))
+    
         self.trans = string.maketrans('','')
         self.delc = self.trans[0:31]
 
@@ -231,6 +241,7 @@ class GedcomParser:
             self.errors_obj = window.get_widget("errors")
             self.close_done = window.get_widget('close_done')
             self.error_text_obj = window.get_widget("error_text")
+            self.info_text_obj = window.get_widget("info_text")
             
         self.error_count = 0
 
@@ -241,24 +252,34 @@ class GedcomParser:
             self.gedattr[map[val]] = val
 
         if self.window:
-            self.update(self.file_obj,file)
+            self.update(self.file_obj,os.path.basename(file))
             
         self.code = 0
         self.search_paths = []
 
         try:
-            f = open("/etc/fstab","r")
+            mypaths = []
+            f = open("/proc/mounts","r")
 
             for line in f.readlines():
                 paths = string.split(line)
-                if len(paths) < 3:
-                    continue
-                first = string.strip(paths[0])
-                if first[0] == '#':
-                    continue
-                if paths[2].upper() in ["VFAT","FAT","NTFS"]:
+                ftype = paths[2].upper()
+                if ftype in file_systems.keys():
+                    mypaths.append((paths[1],file_systems[ftype]))
                     self.search_paths.append(paths[1])
             f.close()
+
+            if len(mypaths):
+                self.infomsg(_("Windows style path names for images will use the following mount "
+                               "points to try to find the images. These paths are based on Windows "
+                               "compatible file systems available on this system:\n\n"))
+                for p in mypaths:
+                    self.infomsg("\t%s : %s\n" % p)
+                    
+                self.infomsg('\n')
+            self.infomsg(_("Images that cannot be found in the specfied path in the GEDCOM file "
+                           "will be searched for in the same directory in which the GEDCOM file "
+                           "exists (%s).\n") % self.geddir)
         except:
             pass
 
@@ -268,23 +289,34 @@ class GedcomParser:
         except TypeError:
             self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
 
+    def infomsg(self,msg):
+        try:
+            self.info_text_obj.get_buffer().insert_at_cursor(msg)
+        except TypeError:
+            self.info_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+
     def find_file(self,fullname,altpath):
+        tries = []
         fullname = string.replace(fullname,'\\','/')
+        tries.append(fullname)
+        
         if os.path.isfile(fullname):
-            return fullname
+            return (1,fullname)
         other = os.path.join(altpath,os.path.basename(fullname))
+        tries.append(other)
         if os.path.isfile(other):
-            return other
+            return (1,other)
         if len(fullname) > 3:
             if fullname[1] == ':':
                 fullname = fullname[2:]
                 for path in self.search_paths:
-                    other = os.path.join(path,os.path.basename(fullname))
+                    other = os.path.normpath("%s/%s" % (path,fullname))
+                    tries.append(other)
                     if os.path.isfile(other):
-                        return other
-            return ""
+                        return (1,other)
+            return (0,tries)
         else:
-            return ""
+            return (0,tries)
 
     def update(self,field,text):
         field.set_text(text)
@@ -317,8 +349,6 @@ class GedcomParser:
                 msg = "%s\n\t%s\n" % (msg,self.text)
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
-                if self.window:
-                    self.update(self.errors_obj,str(self.error_count))
                 self.groups = (999, "XXX", "XXX")
         self.backoff = 0
         return self.groups
@@ -334,7 +364,6 @@ class GedcomParser:
         if self.window:
             self.errmsg(msg)
             self.error_count = self.error_count + 1
-            self.update(self.errors_obj,str(self.error_count))
         else:
             print msg
         self.ignore_sub_junk(level)
@@ -343,7 +372,6 @@ class GedcomParser:
         if self.window:
             self.errmsg(msg)
             self.error_count = self.error_count + 1
-            self.update(self.errors_obj,str(self.error_count))
         else:
             print msg
 
@@ -371,8 +399,7 @@ class GedcomParser:
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
         if self.window:
-            self.errmsg(msg)
-            return self.close_done.get_active()
+            self.infomsg("\n%s" % msg)
         else:
             print msg
             return None
@@ -901,9 +928,12 @@ class GedcomParser:
             url.set_description(title)
             self.person.addUrl(url)
         else:
-            path = self.find_file(file,self.dir_path)
-            if path == "":
-                self.warn(_("Could not import %s") % file + "\n")
+            (ok,path) = self.find_file(file,self.dir_path)
+            if not ok:
+                self.warn(_("Warning: could not import %s") % file + "\n")
+                self.warn(_("\tThe following paths were tried:\n\t\t"))
+                self.warn(string.join(path,"\n\t\t"))
+                self.warn('\n')
             else:
                 photo = RelLib.Photo()
                 photo.setPath(path)
@@ -936,9 +966,12 @@ class GedcomParser:
 	        self.barf(level+1)
 
         if form:
-            path = self.find_file(file,self.dir_path)
-            if path == "":
-                self.warn(_("Could not import %s") % file + "\n")
+            (ok,path) = self.find_file(file,self.dir_path)
+            if not ok:
+                self.warn(_("Warning: could not import %s") % file + "\n")
+                self.warn(_("\tThe following paths were tried:\n\t\t"))
+                self.warn(string.join(path,"\n\t\t"))
+                self.warn('\n')
             else:
                 photo = RelLib.Photo()
                 photo.setPath(path)
@@ -971,9 +1004,12 @@ class GedcomParser:
 	        self.barf(level+1)
                 
         if form:
-            path = self.find_file(file,self.dir_path)
-            if path == "":
-                self.warn(_("Could not import %s") % file)
+            (ok,path) = self.find_file(file,self.dir_path)
+            if not ok:
+                self.warn(_("Warning: could not import %s") % file + "\n")
+                self.warn(_("\tThe following paths were tried:\n\t\t"))
+                self.warn(string.join(path,"\n\t\t"))
+                self.warn('\n')
             else:
                 photo = RelLib.Photo()
                 photo.setPath(path)

@@ -44,6 +44,8 @@ convert = "convert"
 pixdir = "/usr/share/pixmaps"
 nautdir = "/usr/share/pixmaps/nautilus"
 
+prefixdir = "@GPREFIX@"
+
 #-------------------------------------------------------------------------
 #
 # Paths to files - assumes that files reside in the same directory as

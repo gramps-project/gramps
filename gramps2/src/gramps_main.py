@@ -105,8 +105,12 @@ class Gramps:
                             (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
                             ('',6,0), ('',7,0) ]
 
-        self.program = gnome.program_init("gramps",const.version)
-        
+        self.program = gnome.program_init('gramps',const.version)
+        self.program.set_property('app-libdir','%s/lib' % const.prefixdir)
+        self.program.set_property('app-datadir','%s/share/gramps' % const.prefixdir)
+        self.program.set_property('app-sysconfdir','%s/etc' % const.prefixdir)
+        self.program.set_property('app-prefix', const.prefixdir)
+
         self.DataFilter = Filter.Filter("")
         self.parents_index = 0
         self.active_person = None
@@ -263,58 +267,58 @@ class Gramps:
             "on_removebtn_clicked" : self.remove_button_clicked,
             "on_alpha_switch_page" : self.change_alpha_page,
             "delete_event" : self.delete_event,
-             "destroy_passed_object" : Utils.destroy_passed_object,
-             "on_about_activate" : self.on_about_activate,
-             "on_add_bookmark_activate" : self.on_add_bookmark_activate,
-             "on_add_place_clicked" : self.place_view.on_add_place_clicked,
-             "on_add_source_clicked" : self.source_view.on_add_clicked,
-             "on_addperson_clicked" : self.load_new_person,
-             "on_apply_filter_clicked" : self.on_apply_filter_clicked,
-             "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
-             "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
-             "on_contents_activate" : self.on_contents_activate,
-             "on_default_person_activate" : self.on_default_person_activate,
-             "on_delete_person_clicked" : self.delete_person_clicked,
-             "on_delete_place_clicked" : self.place_view.on_delete_clicked,
-             "on_delete_source_clicked" : self.source_view.on_delete_clicked,
-             "on_delete_media_clicked" : self.media_view.on_delete_clicked,
-             "on_edit_active_person" : self.load_active_person,
-             "on_edit_selected_people" : self.load_selected_people,
-             "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
-             "on_exit_activate" : self.on_exit_activate,
-             "on_family1_activate" : self.on_family1_activate,
-             "on_find_activate" : self.on_find_activate,
-             "on_findname_activate" : self.on_findname_activate,
-             "on_home_clicked" : self.on_home_clicked,
-             "on_new_clicked" : self.on_new_clicked,
-             "on_notebook1_switch_page" : self.on_views_switch_page,
-             "on_ok_button1_clicked" : self.on_ok_button1_clicked,
-             "on_open_activate" : self.on_open_activate,
-             "on_pedigree1_activate" : self.on_pedigree1_activate,
-             "on_person_list1_activate" : self.on_person_list1_activate,
-             "on_main_key_release_event" : self.on_main_key_release_event,
-             "on_media_activate" : self.on_media_activate,
-             "on_media_list_select_row" : self.media_view.on_select_row,
-             "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
-             "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
-             "on_merge_activate" : self.on_merge_activate,
-             "on_sidebar1_activate" : self.on_sidebar_activate,
-             "on_filter1_activate" : self.on_filter_activate,
-             "on_places_activate" : self.on_places_activate,
-             "on_preferences1_activate" : self.on_preferences_activate,
-             "on_reload_plugins_activate" : Plugins.reload_plugins,
-             "on_reports_clicked" : self.on_reports_clicked,
-             "on_revert_activate" : self.on_revert_activate,
-             "on_save_activate" : self.on_save_activate,
-             "on_save_as_activate" : self.on_save_as_activate,
-             "on_show_plugin_status" : self.on_show_plugin_status,
-             "on_source_list_button_press" : self.source_view.button_press,
-             "on_sources_activate" : self.on_sources_activate,
-             "on_tools_clicked" : self.on_tools_clicked,
-             "on_gramps_home_page_activate" : self.home_page_activate,
-             "on_gramps_report_bug_activate" : self.report_bug_activate,
-             "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
-             "on_writing_extensions_activate" : self.on_writing_extensions_activate,
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "on_about_activate" : self.on_about_activate,
+            "on_add_bookmark_activate" : self.on_add_bookmark_activate,
+            "on_add_place_clicked" : self.place_view.on_add_place_clicked,
+            "on_add_source_clicked" : self.source_view.on_add_clicked,
+            "on_addperson_clicked" : self.load_new_person,
+            "on_apply_filter_clicked" : self.on_apply_filter_clicked,
+            "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
+            "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
+            "on_contents_activate" : self.on_contents_activate,
+            "on_default_person_activate" : self.on_default_person_activate,
+            "on_delete_person_clicked" : self.delete_person_clicked,
+            "on_delete_place_clicked" : self.place_view.on_delete_clicked,
+            "on_delete_source_clicked" : self.source_view.on_delete_clicked,
+            "on_delete_media_clicked" : self.media_view.on_delete_clicked,
+            "on_edit_active_person" : self.load_active_person,
+            "on_edit_selected_people" : self.load_selected_people,
+            "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
+            "on_exit_activate" : self.on_exit_activate,
+            "on_family1_activate" : self.on_family1_activate,
+            "on_find_activate" : self.on_find_activate,
+            "on_findname_activate" : self.on_findname_activate,
+            "on_home_clicked" : self.on_home_clicked,
+            "on_new_clicked" : self.on_new_clicked,
+            "on_notebook1_switch_page" : self.on_views_switch_page,
+            "on_ok_button1_clicked" : self.on_ok_button1_clicked,
+            "on_open_activate" : self.on_open_activate,
+            "on_pedigree1_activate" : self.on_pedigree1_activate,
+            "on_person_list1_activate" : self.on_person_list1_activate,
+            "on_main_key_release_event" : self.on_main_key_release_event,
+            "on_media_activate" : self.on_media_activate,
+            "on_media_list_select_row" : self.media_view.on_select_row,
+            "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
+            "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
+            "on_merge_activate" : self.on_merge_activate,
+            "on_sidebar1_activate" : self.on_sidebar_activate,
+            "on_filter1_activate" : self.on_filter_activate,
+            "on_places_activate" : self.on_places_activate,
+            "on_preferences1_activate" : self.on_preferences_activate,
+            "on_reload_plugins_activate" : Plugins.reload_plugins,
+            "on_reports_clicked" : self.on_reports_clicked,
+            "on_revert_activate" : self.on_revert_activate,
+            "on_save_activate" : self.on_save_activate,
+            "on_save_as_activate" : self.on_save_as_activate,
+            "on_show_plugin_status" : self.on_show_plugin_status,
+            "on_source_list_button_press" : self.source_view.button_press,
+            "on_sources_activate" : self.on_sources_activate,
+            "on_tools_clicked" : self.on_tools_clicked,
+            "on_gramps_home_page_activate" : self.home_page_activate,
+            "on_gramps_report_bug_activate" : self.report_bug_activate,
+            "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
+            "on_open_example" : self.open_example,
             })	
 
         self.enable_filter(self.use_filter)
@@ -538,31 +542,7 @@ class Gramps:
     
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
-
-        WarningDialog(_('HELP is currently not available'),
-                      _('Documentation for GRAMPS is currently being '
-                        'developed, but is not yet available for this '
-                        'version.'))
-        
-#	url = gnome.help_display_with_doc_id(self.program,
-#                                             "",
-#                                             "gramps-manual.sgml",
-#                                             "")
-#         if url:
-#             url = "gnome-help:"+url
-#             gnome.help.goto(url)
-
-    def on_writing_extensions_activate(self,obj):
-        """Display the Extending GRAMPS manual"""
-        WarningDialog(_('HELP is currently not available'),
-                      _('Documentation for GRAMPS is currently being '
-                        'developed, but is not yet available for this '
-                        'version.'))
-#        import gnome.help
-#         url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
-#         if url:
-#             url = "gnome-help:"+url
-#             gnome.help.goto(url)
+        gnome.help_display('gramps-manual','index')
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
@@ -1539,10 +1519,41 @@ class Gramps:
     
     def on_main_key_release_event(self,obj,event):
         """Respond to the insert and delete buttons in the person list"""
+        pass
         #if event.keyval == GDK.Delete:
         #    self.on_delete_person_clicked(obj)
         #elif event.keyval == GDK.Insert:
         #    self.load_new_person(obj)
+
+    def open_example(self,obj):
+        import shutil
+        dest = os.path.expanduser("~/.gramps/example")
+        if not os.path.isdir(dest):
+            try:
+                os.mkdir(dest)
+            except IOError,msg:
+                ErrorDialog(_('Could not create database'),
+                            _('The directgory ~/.gramps/example could not '
+                              'be created.' + '\n' + str(msg) ))
+            except OSError,msg:
+                ErrorDialog(_('Could not create database'),
+                            _('The directgory ~/.gramps/example could not '
+                              'be created.' + '\n' + str(msg) ))
+            except:
+                ErrorDialog(_('Could not create database'),
+                            _('The directgory ~/.gramps/example could not '
+                              'be created.'))
+
+            try:
+                dir = "%s/share/gramps/example" % const.prefixdir
+                for file in os.listdir(dir):
+                    shutil.copy("%s/%s" % (dir,file), dest)
+            except IOError,msg:
+                ErrorDialog(_('Example database not created'),str(msg))
+            except OSError,msg:
+                ErrorDialog(_('Example database not created'),str(msg))
+            
+        self.read_file(dir)
 
 DARKEN = 1.4
 
