@@ -563,12 +563,12 @@ class Gallery(ImageSelect):
         selection_data.set(selection_data.target, 8, id[4])
         self.drag_item = None
         
-    def on_add_photo_clicked(self, obj):
+    def on_add_media_clicked(self, obj):
         """User wants to add a new photo.  Create a dialog to find out
         which photo they want."""
         self.create_add_dialog()
 
-    def on_select_photo_clicked(self,obj):
+    def on_select_media_clicked(self,obj):
         """User wants to add a new object that is already in a database.  
         Create a dialog to find out which object they want."""
 
@@ -584,7 +584,7 @@ class Gallery(ImageSelect):
         self.parent.lists_changed = 1
         self.load_images()
 
-    def on_delete_photo_clicked(self, obj):
+    def on_delete_media_clicked(self, obj):
         """User wants to delete a new photo. Remove it from the displayed
         thumbnails, and remove it from the dataobj photo list."""
 
@@ -601,7 +601,7 @@ class Gallery(ImageSelect):
             self.parent.lists_changed = 1
             self.load_images()
 
-    def on_edit_photo_clicked(self, obj):
+    def on_edit_media_clicked(self, obj):
         """User wants to delete a new photo. Remove it from the displayed
         thumbnails, and remove it from the dataobj photo list."""
 
