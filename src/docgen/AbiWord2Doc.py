@@ -161,9 +161,9 @@ class AbiWordDoc(BaseDoc.BaseDoc):
     def close(self):
         """Write the trailing information and closes the file"""
         self.f.write('</section>\n')
-        if len(self.photo_list) > 0:
+        if len(self.media_list) > 0:
             self.f.write('<data>\n')
-            for file_tuple in self.photo_list:
+            for file_tuple in self.media_list:
                 tag = self.imap[file_tuple[0]]
 
                 img = ImgManip.ImgManip(file_tuple[0])
@@ -183,7 +183,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app)
 
-    def add_photo(self,name,pos,x_cm,y_cm):
+    def add_media_object(self,name,pos,x_cm,y_cm):
 
         try:
             image = ImgManip.ImgManip(name)
@@ -200,7 +200,7 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             act_height = y_cm
             act_width = x_cm*aspect_ratio
 
-        self.photo_list.append((name,act_width,act_height))
+        self.media_list.append((name,act_width,act_height))
 
         tag = "image%d" % self.icount
 

@@ -163,7 +163,7 @@ class EditPlace:
             else:
                 self.flowed.set_active(1)
 
-        if self.place.get_photo_list():
+        if self.place.get_media_list():
             Utils.bold_label(self.gallery_label)
 
         self.top_window.signal_autoconnect({

@@ -356,7 +356,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
                 except:
                     raise Errors.ReportError(_("Could not create %s") % fname)
             
-    def add_photo(self,name,pos,x,y):
+    def add_media_object(self,name,pos,x,y):
         self.empty = 0
         size = int(max(x,y) * float(150.0/2.54))
         refname = "is%s" % os.path.basename(name)

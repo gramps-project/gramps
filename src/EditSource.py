@@ -94,12 +94,12 @@ class EditSource:
             else:
                 self.flowed.set_active(1)
 
-        if self.source.get_photo_list():
+        if self.source.get_media_list():
             Utils.bold_label(self.gallery_label)
 
         self.top_window.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
-            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
+            "on_addphoto_clicked" : self.gallery.on_add_media_object_clicked,
             "on_selectphoto_clicked"    : self.gallery.on_select_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_editphoto_clicked"     : self.gallery.on_edit_photo_clicked,

@@ -142,7 +142,7 @@ class GrampsParser:
             "note"       : (self.start_note, self.stop_note),
             "p"          : (None, self.stop_ptag),
             "parentin"   : (self.start_parentin,None),
-            "people"     : (self.start_people, None),
+            "people"     : (self.start_people, self.stop_people),
             "person"     : (self.start_person, self.stop_person),
             "img"        : (self.start_photo, self.stop_photo),
             "objref"     : (self.start_objref, self.stop_objref),
@@ -199,9 +199,8 @@ class GrampsParser:
         self.db.set_researcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
-            if self.db.person_map.has_key(id) and self.db.get_default_person() == None:
-                person = self.db.person_map[id]
-                self.db.set_default_person(person)
+            if self.db.has_person_id(id) and self.db.get_default_person() == None:
+                self.db.set_default_person(id)
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -291,6 +290,7 @@ class GrampsParser:
 
     def start_event(self,attrs):
         self.event = RelLib.Event()
+        self.db.add_event(self.event)
         self.event_type = const.save_event(attrs["type"])
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
@@ -333,8 +333,7 @@ class GrampsParser:
             self.address.private = int(attrs["priv"])
 
     def start_bmark(self,attrs):
-        person = self.db.find_person_from_id(attrs["ref"])
-        self.db.bookmarks.append(person)
+        self.db.bookmarks.append(attrs["ref"])
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
@@ -469,18 +468,18 @@ class GrampsParser:
         self.source = self.db.find_source_from_id(attrs["id"])
 
     def start_objref(self,attrs):
-        self.objref = RelLib.ObjectRef()
+        self.objref = RelLib.MediaRef()
         self.objref.set_reference(self.db.find_object_from_id(attrs['ref']))
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.family:
-            self.family.add_photo(self.objref)
+            self.family.add_media_object(self.objref)
         elif self.source:
-            self.source.add_photo(self.objref)
+            self.source.add_media_object(self.objref)
         elif self.person:
-            self.person.add_photo(self.objref)
+            self.person.add_media_object(self.objref)
         elif self.placeobj:
-            self.placeobj.add_photo(self.objref)
+            self.placeobj.add_media_object(self.objref)
 
     def start_object(self,attrs):
         self.object = self.db.find_object_from_id(attrs['id'])
@@ -495,15 +494,19 @@ class GrampsParser:
                 self.object.set_path(src)
                 self.object.set_local(0)
 
+    def stop_people(self,tag):
+        pass
+
     def stop_object(self,tag):
+        self.db.commit_media_object(self.object)
         self.object = None
 
     def stop_objref(self,tag):
         self.objref = None
         
     def start_photo(self,attrs):
-        self.photo = RelLib.Photo()
-        self.pref = RelLib.ObjectRef()
+        self.photo = RelLib.MediaObject()
+        self.pref = RelLib.MediaRef()
         self.pref.set_reference(self.photo)
         
         for key in attrs.keys():
@@ -527,13 +530,13 @@ class GrampsParser:
         self.photo.set_mime_type(Utils.get_mime_type(self.photo.get_path()))
         self.db.add_object(self.photo)
         if self.family:
-            self.family.add_photo(self.pref)
+            self.family.add_media_object(self.pref)
         elif self.source:
-            self.source.add_photo(self.pref)
+            self.source.add_media_object(self.pref)
         elif self.person:
-            self.person.add_photo(self.pref)
+            self.person.add_media_object(self.pref)
         elif self.placeobj:
-            self.placeobj.add_photo(self.pref)
+            self.placeobj.add_media_object(self.pref)
 
     def start_daterange(self,attrs):
         if self.source_ref:
@@ -643,16 +646,16 @@ class GrampsParser:
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
-        self.db.build_place_display(self.placeobj.get_id())
+        self.db.commit_place(self.placeobj)
         self.placeobj = None
 
     def stop_family(self,tag):
+        self.db.commit_family(self.family)
         self.family = None
         
     def stop_event(self,tag):
         self.event.name = self.event_type
 
-        self.db.add_event(self.event)
         if self.family:
             self.family.add_event_id(self.event.get_id())
         else:
@@ -662,6 +665,7 @@ class GrampsParser:
                 self.person.set_death_id(self.event.get_id())
             else:
                 self.person.add_event_id(self.event.get_id())
+        self.db.commit_event(self.event)
         self.event = None
 
     def stop_name(self,tag):
@@ -684,12 +688,11 @@ class GrampsParser:
             else:
                 self.placeobj = RelLib.Place()
                 self.placeobj.set_title(tag)
-                self.db.add_place(self.placeobj)
-                self.place_map[tag] = self.placeobj
         if self.ord:
-            self.ord.set_place_id(self.placeobj)
+            self.ord.set_place_id(self.placeobj.get_id())
         else:
-            self.event.place = self.placeobj.get_id()
+            self.event.set_place_id(self.placeobj.get_id())
+        self.db.commit_place(self.placeobj)
         self.placeobj = None
         
     def stop_date(self,tag):
@@ -707,6 +710,7 @@ class GrampsParser:
 
     def stop_person(self,tag):
         self.db.build_person_display(self.person.get_id())
+        self.db.commit_person(self.person)
         self.person = None
 
     def stop_description(self,tag):
@@ -731,7 +735,7 @@ class GrampsParser:
         self.source_ref = None
 
     def stop_source(self,tag):
-        self.db.build_source_display(self.source.get_id())
+        self.db.commit_source(self.source)
         self.source = None
 
     def stop_sauthor(self,tag):
@@ -1028,18 +1032,18 @@ class GrampsImportParser(GrampsParser):
             self.count = self.count + 1
 
     def start_objref(self,attrs):
-        self.objref = RelLib.ObjectRef()
+        self.objref = RelLib.MediaRef()
         self.objref.set_reference(self.db.find_object_no_conflicts(attrs['ref'],self.MediaFileMap))
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.family:
-            self.family.add_photo(self.objref)
+            self.family.add_media_object(self.objref)
         elif self.source:
-            self.source.add_photo(self.objref)
+            self.source.add_media_object(self.objref)
         elif self.person:
-            self.person.add_photo(self.objref)
+            self.person.add_media_object(self.objref)
         elif self.placeobj:
-            self.placeobj.add_photo(self.objref)
+            self.placeobj.add_media_object(self.objref)
 
     def start_object(self,attrs):
         self.object = self.db.find_object_no_conflicts(attrs['id'],self.MediaFileMap)

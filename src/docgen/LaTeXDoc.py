@@ -378,7 +378,7 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 	if self.curcol < self.numcols:
 	    self.f.write('& ')
 
-    def add_photo(self,name,pos,x,y):
+    def add_media_object(self,name,pos,x,y):
         """Add photo to report"""
 
         try:

@@ -562,7 +562,7 @@ class DetAncestorReport(Report.Report):
     #--------------------------------------------------------------------
     def insert_images(self, person):
 
-        photos = person.get_photo_list()
+        photos = person.get_media_list()
         paragraph_started = 0
         for photo in photos :
             object = photo.get_reference()
@@ -571,7 +571,7 @@ class DetAncestorReport(Report.Report):
                 if not paragraph_started:
                     self.doc.start_paragraph("DAR-Entry")
                     paragraph_started = 1
-                self.doc.add_photo(file,"row",4.0,4.0)
+                self.doc.add_media_object(file,"row",4.0,4.0)
             self.doc.end_paragraph()
 
     #--------------------------------------------------------------------

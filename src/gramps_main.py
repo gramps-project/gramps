@@ -924,10 +924,10 @@ class Gramps:
         if Utils.wasHistory_broken():
             self.clear_history()
 	    Utils.clearHistory_broken()
+        self.full_update()
+        self.goto_active_person()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
-        self.goto_active_person()
-        self.full_update()
             
     def full_update(self):
         """Brute force display update, updating all the pages"""
@@ -1066,8 +1066,6 @@ class Gramps:
             GrampsCfg.save_last_file("")
         self.topWindow.set_resizable(gtk.TRUE)
         self.people_view.apply_filter()
-        self.goto_active_person(1)
-        
 
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
@@ -1088,32 +1086,32 @@ class Gramps:
             # File is lost => remove all references and the object itself
             mobj = ObjectMap[ObjectId]
             for p in self.db.get_family_id_map().values():
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             for key in self.db.get_person_keys():
                 p = self.db.get_person(key)
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             for key in self.db.get_source_keys():
                 p = self.db.get_source(key)
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
                 p = self.db.get_place_id(key)
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             self.db.remove_object(ObjectId) 
     
         def leave_clicked():
@@ -1728,16 +1726,17 @@ class Gramps:
     
         self.statusbar.set_progress_percentage(1.0)
 
-        self.change_active_person(self.find_initial_person())
-
         self.full_update()
+
+        self.change_active_person(self.find_initial_person())
+        self.goto_active_person()
         self.statusbar.set_progress_percentage(0.0)
         return 1
 
     def find_initial_person(self):
         person = self.db.get_default_person()
         if not person:
-            the_ids = self.db.get_person_id_map().keys()
+            the_ids = self.db.get_person_keys()
             if the_ids:
                 the_ids.sort()
                 person = self.db.get_person(the_ids[0])

@@ -118,7 +118,7 @@ class AddMediaObject:
         if description == "":
             description = os.path.basename(filename)
 
-        mobj = RelLib.Photo()
+        mobj = RelLib.MediaObject()
         mobj.set_description(description)
         mobj.set_mime_type(type)
         self.db.add_object(mobj)
@@ -135,6 +135,7 @@ class AddMediaObject:
         if self.update:
             self.update()
         self.object = mobj
+        self.db.commit_media_object(self.object)
         
     def on_name_changed(self,obj):
         """

@@ -183,32 +183,32 @@ class PackageWriter:
             # File is lost => remove all references and the object itself
             mobj = self.db.get_object(self.object_id)
             for p in self.db.get_family_id_map().values():
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             for key in self.db.get_person_keys():
                 p = self.db.get_person(key)
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             for key in self.db.get_source_keys():
                 p = self.db.get_source(key)
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
                 p = self.db.get_place_id(key)
-                nl = p.get_photo_list()
+                nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.set_photo_list(nl)
+                p.set_media_list(nl)
             self.db.remove_object(self.object_id) 
             Utils.modified() 
     

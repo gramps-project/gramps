@@ -250,9 +250,10 @@ class MediaView:
         self.model.clear()
         self.id2col = {}
 
-        objects = self.db.get_object_map().values()
+        object_keys = self.db.get_object_keys()
 
-        for src in objects:
+        for src_key in object_keys:
+            src = self.db.get_object(src_key)
             title = src.get_description()
             id = src.get_id()
             type = Utils.get_mime_description(src.get_mime_type())
@@ -305,22 +306,22 @@ class MediaView:
 
     def is_object_used(self,mobj):
         for p in self.db.get_family_id_map().values():
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == mobj:
                     return 1
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == mobj:
                     return 1
         for key in self.db.get_source_keys():
             p = self.db.get_source(key)
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == mobj:
                     return 1
         for key in self.db.get_place_id_keys():
             p = self.db.get_place_id(key)
-            for o in p.get_photo_list():
+            for o in p.get_media_list():
                 if o.get_reference() == mobj:
                     return 1
         return 0
@@ -354,7 +355,7 @@ class MediaView:
             if protocol == "file":
                 name = file
                 mime = Utils.get_mime_type(name)
-                photo = RelLib.Photo()
+                photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
                 description = os.path.basename(name)
@@ -369,7 +370,7 @@ class MediaView:
                     if name:
                         photo.set_path(name)
                         photo.setLocal(1)
-                Utils.modified()
+                self.db.commit_media_object(photo)
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media)
             elif protocol != "":
@@ -381,13 +382,13 @@ class MediaView:
                     ErrorDialog(_('Image import failed'),str(msg))
                     return
                 mime = Utils.get_mime_type(tfile)
-                photo = RelLib.Photo()
+                photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
                 photo.set_description(d)
                 photo.setLocal(1)
                 photo.set_path(tfile)
                 self.db.add_object(photo)
-                oref = RelLib.ObjectRef()
+                oref = RelLib.MediaRef()
                 oref.set_reference(photo)
                 try:
                     id = photo.get_id()
@@ -400,6 +401,7 @@ class MediaView:
                     photo.set_path(tfile)
                     return
                 Utils.modified()
+                self.db.commit_media_object(photo)
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,None)
 

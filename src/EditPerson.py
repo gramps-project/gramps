@@ -231,7 +231,7 @@ class EditPerson:
             Utils.bold_label(self.inet_label)
         if self.plist:
             Utils.bold_label(self.addr_label)
-        if self.person.get_photo_list():
+        if self.person.get_media_list():
             Utils.bold_label(self.gallery_label)
 
         # event display
@@ -1398,7 +1398,6 @@ class EditPerson:
             self.person.set_address_list(self.plist)
             self.person.set_birth_id(self.birth.get_id())
             self.person.set_death_id(self.death.get_id())
-            Utils.modified()
 
     def on_apply_person_clicked(self,obj):
         surname = unicode(self.surname_field.get_text())
@@ -1422,7 +1421,6 @@ class EditPerson:
                     del m[self.person.get_id()]
                     m[idval] = self.person
                 self.person.set_id(idval)
-                Utils.modified()
             else:
                 n = GrampsCfg.nameof(m[idval])
                 msg1 = _("GRAMPS ID value was not changed.")
@@ -1460,27 +1458,20 @@ class EditPerson:
 
         if not name.are_equal(self.person.get_primary_name()):
             self.person.set_primary_name(name)
-            Utils.modified()
 
         if nick != self.person.get_nick_name():
             self.person.set_nick_name(nick)
-            Utils.modified()
 
         self.pdmap.clear()
         for key in self.db.get_place_id_keys():
             p = self.db.get_place_display(key)
             self.pdmap[p[0]] = key
 
-        if not self.orig_birth.are_equal(self.birth):
-            if self.orig_birth == None:
-                self.db.add_event(self.birth)
-                self.set_birth_id(self.birth_id)
-            else:
-                self.orig_birth.clone(self.death)
-                # commit change
-                
-            self.orig_birth.clone(self.birth)
-            Utils.modified()
+        if self.orig_birth == None:
+            self.db.add_event(self.birth)
+            self.person.set_birth_id(self.birth_id)
+        elif not self.orig_birth.are_equal(self.birth):
+            self.db.commit_event(self.birth)
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
@@ -1497,15 +1488,11 @@ class EditPerson:
         self.death.set_date(unicode(self.ddate.get_text()))
         self.death.set_place_id(self.get_place(self.dplace,1))
 
-        if not self.orig_death.are_equal(self.death):
-            if self.orig_death == None:
-                self.db.add_event(self.death)
-                self.set_death_id(self.death.get_id())
-            else:
-                self.orig_death.clone(self.death)
-                # commit change
-                
-            Utils.modified()
+        if self.orig_death == None:
+            self.db.add_event(self.death)
+            self.person.set_death_id(self.death.get_id())
+        elif not self.orig_death.are_equal(self.death):
+            self.db.commit_event(self.death)
 
         male = self.is_male.get_active()
         female = self.is_female.get_active()
@@ -1520,7 +1507,6 @@ class EditPerson:
                     else:
                         temp_family.set_mother_id(None)
                         temp_family.set_father_id(self.person)
-            Utils.modified()
         elif female and self.person.get_gender() != RelLib.Person.female:
             self.person.set_gender(RelLib.Person.female)
             for temp_family in self.person.get_family_id_list():
@@ -1530,7 +1516,6 @@ class EditPerson:
                     else:
                         temp_family.set_father_id(None)
                         temp_family.set_mother_id(self.person)
-            Utils.modified()
         elif unknown and self.person.get_gender() != RelLib.Person.unknown:
             self.person.set_gender(RelLib.Person.unknown)
             for temp_family in self.person.get_family_id_list():
@@ -1546,7 +1531,6 @@ class EditPerson:
                     else:
                         temp_family.set_mother_id(None)
                         temp_family.set_father_id(self.person)
-            Utils.modified()
 
         if error == 1:
             msg2 = _("Problem changing the gender")
@@ -1560,42 +1544,36 @@ class EditPerson:
 
         if text != self.person.get_note():
             self.person.set_note(text)
-            Utils.modified()
 
         format = self.preform.get_active()
         if format != self.person.get_note_format():
             self.person.set_note_format(format)
-            Utils.modified()
 
         if self.complete.get_active() != self.person.get_complete():
             self.person.set_complete(self.complete.get_active())
-            Utils.modified()
 
         if self.lds_not_loaded == 0:
             self.check_lds()
             ord = RelLib.LdsOrd(self.person.get_lds_baptism())
             if not self.lds_baptism.are_equal(ord):
                 self.person.set_lds_baptism(self.lds_baptism)
-                Utils.modified()
 
             ord = RelLib.LdsOrd(self.person.get_lds_endowment())
             if not self.lds_endowment.are_equal(ord):
                 self.person.set_lds_endowment(self.lds_endowment)
-                Utils.modified()
 
             ord = RelLib.LdsOrd(self.person.get_lds_sealing())
             if not self.lds_sealing.are_equal(ord):
                 self.person.set_lds_sealing(self.lds_sealing)
-                Utils.modified()
 
         if self.lists_changed:
             self.person.set_source_reference_list(self.srcreflist)
-            Utils.modified()
 
         self.update_lists()
         if self.callback:
             self.callback(self)
 
+        self.db.commit_person(self.person)
         self.close(1)
 
     def get_place(self,field,makenew=0):
@@ -1665,9 +1643,9 @@ class EditPerson:
         NoteEdit.NoteEditor(self.lds_sealing,self,self.window)
 
     def load_person_image(self):
-        photo_list = self.person.get_photo_list()
-        if photo_list:
-            ph = photo_list[0]
+        media_list = self.person.get_media_list()
+        if media_list:
+            ph = media_list[0]
             object = ph.get_reference()
             if self.load_obj != object.get_path():
                 if object.get_mime_type()[0:5] == "image":
