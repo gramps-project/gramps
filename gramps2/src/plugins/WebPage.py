@@ -443,13 +443,9 @@ class IndividualPage:
                     self.doc.write_text(description)
                     self.doc.end_paragraph()
                 if obj.getNote() != "":
-                    self.doc.start_paragraph("PhotoNote")
-                    self.doc.write_text(obj.getNote())
-                    self.doc.end_paragraph()
+                    self.doc.write_note(obj.getNote(),obj.getNoteFormat(),"PhotoNote")
                 elif obj.getReference().getNote() != "":
-                    self.doc.start_paragraph("PhotoNote")
-                    self.doc.write_text(obj.getReference().getNote())
-                    self.doc.end_paragraph()
+                    self.doc.write_note(obj.getReference().getNote(),obj.getReference().getNoteFormat(),"PhotoNote")
                 self.doc.end_cell()
                 self.doc.end_row()
             except IOError:
@@ -521,9 +517,7 @@ class IndividualPage:
         self.doc.write_text(_("Notes"))
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph("NotesParagraph")
-        self.doc.write_text(self.person.getNote())
-        self.doc.end_paragraph()
+        self.doc.write_note(self.person.getNote(),self.person.getNoteFormat(),"NotesParagraph")
 
     def write_fam_fact(self,event):
 

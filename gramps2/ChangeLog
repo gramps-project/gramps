@@ -2,6 +2,12 @@
 	* src/dialog.glade: Add format controls for notes.
 	* src/marriage.glade: Add format controls for notes.
 	* src/gramps.glade: Add format controls for notes.
+	* src/docgen/Makefile.am: Remove AbiWordDoc.py from the list.
+	* src/plugins/DetAncestralReport.py (write_person): Call write_note().
+	* src/plugins/DetDescendantReport.py (write_person): Call write_note().
+	* src/plugins/FtmStyleAncestors.py (print_notes): Call write_note().
+	* src/plugins/IndivComplete.py (write_note): Call doc.write_note().
+	* src/plugins/WebPage.py (write_gallery,write_notes): Call write_note().
 
 2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_note): Implement function.

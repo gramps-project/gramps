@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Generate files/Detailed Descendant Report"
 
 import RelLib
@@ -252,9 +254,7 @@ class DetDescendantReport(Report.Report):
             self.doc.write_text(_("Notes for %s" % name))
             self.doc.end_bold()
             self.doc.end_paragraph()
-            self.doc.start_paragraph("DDR-Entry")
-            self.doc.write_text(person.getNote())
-            self.doc.end_paragraph()
+            self.doc.write_note(person.getNote(),person.getNoteFormat(),"DDR-Entry")
 
         return 0		# Not duplicate person
 

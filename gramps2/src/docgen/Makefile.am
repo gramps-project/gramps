@@ -4,7 +4,6 @@
 
 pkgpython_PYTHON = \
 	AbiWord2Doc.py\
-	AbiWordDoc.py\
 	HtmlDoc.py\
 	KwordDoc.py\
 	LaTeXDoc.py\
