@@ -3603,7 +3603,7 @@ kjhkjhk</property>
 		  <child>
 		    <widget class="GtkRadioButton" id="preform">
 		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Formatting is preserved, except for the leading whitespace. Multiple spaces, tabs, and all line breaks are honored.</property>
+		      <property name="tooltip" translatable="yes">Formatting is preserved, except for the leading whitespace. Multiple spaces, tabs, and all line breaks are respected.</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">_Preformatted</property>
 		      <property name="use_underline">True</property>
