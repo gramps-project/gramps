@@ -1,3 +1,17 @@
+2004-03-21  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddMedia.py: GenericTreeModel changes
+	* src/AddSpouse.py: GenericTreeModel changes
+	* src/ChooseParents.py: GenericTreeModel changes
+	* src/ColumnOrder.py: GenericTreeModel changes
+	* src/DateEdit.py: GenericTreeModel changes
+	* src/EditPerson.py: GenericTreeModel changes
+	* src/FamilyView.py: GenericTreeModel changes
+	* src/MediaView.py: GenericTreeModel changes
+	* src/RelLib.py: GenericTreeModel changes
+	* src/SourceView.py: GenericTreeModel changes
+	* src/gramps_main.py: GenericTreeModel changes
+	* src/plugins/FilterEditor.py: GenericTreeModel changes
+
 2004-03-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Typo.
 	* src/po/da_DK.po: Remove in favor of da.po file.
