@@ -85,12 +85,16 @@ class SelectChild:
 
             if father != None:
                 fname = father.getPrimaryName().getName()
-                label = _("Relationship to %s") % fname
+                label = _("Relationship to %(father)s") % {
+                    'father' : fname
+                    }
                 self.xml.get_widget("flabel").set_text(label)
 
             if mother != None:
                 mname = mother.getPrimaryName().getName()
-                label = _("Relationship to %s") % mname
+                label = _("Relationship to %(mother)s") % {
+                    'mother' : mname
+                    }
                 self.xml.get_widget("mlabel").set_text(label)
         else:
             fname = self.person.getPrimaryName().getName()
@@ -304,3 +308,83 @@ class SelectChild:
             return "%sdóttir" % fname
         else:
             return ""
+
+class EditRel:
+
+    def __init__(self,child,family,update):
+        self.update = update
+        self.child = child
+        self.family = family
+
+        self.xml = gtk.glade.XML(const.gladeFile,"editrel")
+        self.top = self.xml.get_widget('editrel')
+        self.mdesc = self.xml.get_widget('mrel_desc')
+        self.fdesc = self.xml.get_widget('frel_desc')
+        self.mentry = self.xml.get_widget('mrel')
+        self.fentry = self.xml.get_widget('frel')
+        self.mcombo = self.xml.get_widget('mrel_combo')
+        self.fcombo = self.xml.get_widget('frel_combo')
+
+        name = child.getPrimaryName().getName()
+        Utils.set_titles(self.top,self.xml.get_widget('title'),
+                         _('Relationships of %s') % name)
+
+        father = self.family.getFather()
+        mother = self.family.getMother()
+
+        if father:
+            fname = father.getPrimaryName().getName()
+            val = _("Relationship to %(father)s" % {
+                'father' : fname
+                })
+            self.fdesc.set_text('<b>%s</b>' % val)
+            self.fcombo.set_sensitive(1)
+        else:
+            val = _("Relationship to father")
+            self.fdesc.set_text('<b>%s</b>' % val)
+            self.fcombo.set_sensitive(0)
+
+        if mother:
+            mname = mother.getPrimaryName().getName()
+            val = _("Relationship to %(mother)s" % {
+                'mother' : mname
+                })
+            self.mdesc.set_text('<b>%s</b>' % val)
+            self.mcombo.set_sensitive(1)
+        else:
+            val = _("Relationship to mother")
+            self.mdesc.set_text('<b>%s</b>' % val)
+            self.mcombo.set_sensitive(0)
+
+        self.xml.signal_autoconnect({
+            "on_ok_clicked"    : self.on_ok_clicked,
+            "destroy_passed_object"    : self.close
+            })
+
+        f = self.child.has_family(self.family)
+        self.fentry.set_text(_(f[2]))
+        self.mentry.set_text(_(f[1]))
+        
+        self.fdesc.set_use_markup(gtk.TRUE)
+        self.mdesc.set_use_markup(gtk.TRUE)
+        self.top.show()
+
+    def close(self,obj):
+        self.top.destroy()
+
+    def on_ok_clicked(self,obj):
+        mrel = const.childRelations[self.mentry.get_text()]
+        mother = self.family.getMother()
+        if mother and mother.getGender() != RelLib.Person.female:
+            if mrel == "Birth":
+                mrel = "Unknown"
+                
+        frel = const.childRelations[self.fentry.get_text()]
+        father = self.family.getFather()
+        if father and father.getGender() !=RelLib. Person.male:
+            if frel == "Birth":
+                frel = "Unknown"
+
+        self.child.changeAltFamily(self.family,mrel,frel)
+        self.update()
+        self.top.destroy()

@@ -1256,6 +1256,15 @@ class Person(Persistent):
         else:
             return None
 
+    def changeAltFamily(self,family,mrel,frel):
+        """removes a Family instance from the alternate family list"""
+        index = 0
+        for f in self.AltFamilyList[:]:
+            if f[0] == family:
+                self.AltFamilyList[index] = (family,mrel,frel)
+                self._p_changed = 1
+            index += 1
+
     def has_family(self,family):
         for f in self.AltFamilyList:
             if f[0] == family:
