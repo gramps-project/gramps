@@ -254,7 +254,7 @@ class Date:
                 return ''
         else:
             d1 = self.start.display_calendar(month_map)
-            d2 = self.stop.display_calenar(month_map)
+            d2 = self.stop.display_calendar(month_map)
             return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,cal_str)
 
     def getSaveDate(self):
@@ -330,19 +330,15 @@ class SingleDate:
             _("aft")    : after }
 
     modifiers = "(" + \
-                _("abt") + '|' + \
-                _("abt\.") + '|' + \
+                _("abt\.?") + '|' + \
                 _("about") + '|' + \
-                _("est") + '|' + \
-                _("est\.") + '|' + \
+                _("est\.?") + '|' + \
                 _("circa") + '|' + \
                 _("around") + '|' + \
                 _("before") + '|' + \
                 _("after") + '|' + \
-                _("aft") + '|' + \
-                _("aft\.") + '|' + \
-                _("bef\.") + '|' + \
-                _("bef") + '|' + \
+                _("aft\.?") + '|' + \
+                _("bef\.?") + '|' + \
                 "abt" + '|' + \
                 "aft" + '|' + \
                 "bef" + ')'
