@@ -64,7 +64,7 @@ class NoteEditor:
         
         scroll = gtk.ScrolledWindow()
         scroll.add(self.entry)
-        scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        scroll.set_policy (gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.show()
         vbox.pack_start(scroll, gtk.TRUE, gtk.TRUE, 0)
