@@ -10,6 +10,11 @@
 	* src/plugins/ReadGedcom.py: Add an "Unknown" address when
 	parsing an incorrect PHON field. 
 
+	* src/BaseDoc.py (write_note): Add function.
+	* src/docgen/HtmlDoc.py (write_note): Implement function. 
+	* src/plugins/FtmStyleDescendants.py (print_notes): Call write_note()
+	with the note's format. 
+
 2003-12-10  Tim Waugh  <twaugh@redhat.com>
 	* doc/omf.make: Fixed DESTDIR support.
 

@@ -49,13 +49,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 Provides base interface to text based documents. Specific document
 interfaces should be derived from the core classes.
 """
 
 __author__ = "Donald N. Allingham"
-__version__ = "Revision:$"
+__version__ = "Revision:$Id$"
 
 #-------------------------------------------------------------------------
 #
@@ -1277,6 +1279,18 @@ class BaseDoc:
 
     def horizontal_line(self):
         "Creates a horizontal line"
+        pass
+
+    def write_note(self,text,format,style_name):
+        """
+        Writes the note's text and take care of paragraphs, 
+        depending on the format. 
+
+        text - text to write.
+        format - format to use for writing: 
+            0 for flowed text, 
+            1 for preformatted text.
+        """
         pass
 
     def write_text(self,text):
