@@ -42,6 +42,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 
+import RelLib
 import Utils
 import GrampsCfg
 import ListModel
@@ -88,21 +89,31 @@ class RelCalc:
     
         self.people = self.glade.get_widget("peopleList")
 
-        self.clist = ListModel.ListModel(self.people, [(_('Name'),3,150),(_('ID'),1,50),
-                                                       (_('Birth Date'),4,150),
-                                                       ('',-1,0),('',-1,0)],
+        self.clist = ListModel.ListModel(self.people,
+                                         [(_('Name'),3,150),(_('ID'),1,50),
+                                          (_('Birth Date'),4,150),
+                                          ('',-1,0),('',-1,0)],
                                          self.on_apply_clicked)
         self.clist.new_model()
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             if p == self.person:
                 continue
-            val = self.db.get_person_from_handle(key).get_display_info()
-            event = self.db.get_event_from_handle(val[3])
-            event_date = ""
-            if event:
-                event_date = event.get_date ()
-            self.clist.add([val[0],val[1],event_date,val[5],val[6]],p.get_handle())
+            bh = p.get_birth_handle()
+            if bh:
+                bdate = self.db.get_event_from_handle(bh).get_date()
+            else:
+                bdate = ""
+            name = p.get_primary_name()
+            if p.get_gender() == RelLib.Person.male:
+                gender = _("male")
+            elif p.get_gender() == RelLib.Person.female:
+                gender = _("female")
+            else:
+                gender = _("unknown")
+            self.clist.add([name.get_name(), gender, bdate,
+                            name.get_sort_name(), bdate],
+                           p.get_handle())
 
         self.clist.connect_model()
             

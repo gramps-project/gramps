@@ -53,8 +53,6 @@ from TransTable import TransTable
 from gettext import gettext as _
 from Utils import for_each_ancestor
 
-_date_parser = DateHandler.create_parser()
-
 #-------------------------------------------------------------------------
 #
 # date_cmp
@@ -977,7 +975,7 @@ class HasEvent(Rule):
     def __init__(self,list):
         Rule.__init__(self,list)
         if self.list and self.list[0]:
-            self.date = _date_parser.parse(self.list[0])
+            self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
 
@@ -1030,7 +1028,7 @@ class HasFamilyEvent(Rule):
     def __init__(self,list):
         Rule.__init__(self,list)
         if self.list and self.list[0]:
-            self.date = _date_parser.parse(self.list[0])
+            self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
 
@@ -1141,7 +1139,7 @@ class HasBirth(Rule):
     def __init__(self,list):
         Rule.__init__(self,list)
         if self.list and self.list[0]:
-            self.date = _date_parser.parse(self.list[0])
+            self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
         
@@ -1187,7 +1185,7 @@ class HasDeath(Rule):
     def __init__(self,list):
         Rule.__init__(self,list)
         if self.list and self.list[0]:
-            self.date = _date_parser.parse(self.list[0])
+            self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
 

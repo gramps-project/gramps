@@ -84,16 +84,13 @@ QUAL_TEXT = (
     (Date.QUAL_ESTIMATED, _('Estimated')), 
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
-dd = DateHandler.create_display()
-dp = DateHandler.create_parser()
-
 CAL_TO_MONTHS_NAMES = { 
-    Date.CAL_GREGORIAN  : dd._MONS,
-    Date.CAL_JULIAN     : dd._MONS,
-    Date.CAL_HEBREW     : dd._hebrew,
-    Date.CAL_FRENCH     : dd._french,
-    Date.CAL_PERSIAN    : dd._persian,
-    Date.CAL_ISLAMIC    : dd._islamic }
+    Date.CAL_GREGORIAN  : DateHandler.displayer._MONS,
+    Date.CAL_JULIAN     : DateHandler.displayer._MONS,
+    Date.CAL_HEBREW     : DateHandler.displayer._hebrew,
+    Date.CAL_FRENCH     : DateHandler.displayer._french,
+    Date.CAL_PERSIAN    : DateHandler.displayer._persian,
+    Date.CAL_ISLAMIC    : DateHandler.displayer._islamic }
 
 #-------------------------------------------------------------------------
 #
@@ -148,7 +145,7 @@ class DateEdit:
         text = unicode(self.text_obj.get_text())
         if text != self.text:
             self.text = text
-            self.date_obj.copy(dp.parse(text))
+            self.date_obj.copy(DateHandler.parser.parse(text))
             self.check()
 
     def invoke_date_editor(self,obj):
@@ -161,7 +158,7 @@ class DateEdit:
         the_date = date_dialog.return_date
         if the_date:
             self.date_obj.copy(the_date)
-            self.text_obj.set_text(dd.display(self.date_obj))
+            self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
             self.check()
         
 #-------------------------------------------------------------------------

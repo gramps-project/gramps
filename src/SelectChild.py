@@ -242,8 +242,27 @@ class SelectChild:
 
         node = None
         for idval in person_list:
-            dinfo = self.db.get_person_from_handle(idval).get_display_info()
-            rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
+            person = self.db.get_person_from_handle(idval)
+            name = person.get_primary_name().get_name()
+            if person.gender == RelLib.Person.male:
+                gender = _("male")
+            elif person.gender == RelLib.Person.female:
+                gender = _("female")
+            else:
+                gender = _("unknown")
+
+            bh = person.get_birth_handle()
+            dh = person.get_death_handle()
+            if bh:
+                bdate = self.db.get_event_from_handle(bh).get_date()
+            else:
+                bdate = ""
+            if dh:
+                ddate = self.db.get_event_from_handle(bh).get_date()
+            else:
+                ddate = ""
+                
+            rdata = [name,person.get_gramps_id(),gender,bdate,ddate]
             new_node = self.refmodel.add(rdata)
             names = dinfo[0].split(',')
             if len(names):

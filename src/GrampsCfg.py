@@ -112,7 +112,6 @@ def get_toolbar_style():
 def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
     DateHandler.set_format(GrampsGconfKeys.get_date_format(format_list))
-    RelLib.display.set_format(GrampsGconfKeys.get_date_format(format_list))
 
 #-------------------------------------------------------------------------
 #
@@ -279,7 +278,6 @@ class GrampsPreferences:
 
         lastnamegen_obj = self.top.get_widget("lastnamegen")
         menu = gtk.Menu()
-        choice = 0
         for index in range(0,len(_surname_styles)):
             name = _surname_styles[index]
             item = gtk.MenuItem(name)

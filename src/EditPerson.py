@@ -100,8 +100,8 @@ class EditPerson:
     def __init__(self,parent,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
-        self.dp = DateHandler.create_parser()
-        self.dd = DateHandler.create_display()
+        self.dp = DateHandler.parser
+        self.dd = DateHandler.displayer
         self.person = person
         self.orig_surname = person.get_primary_name().get_group_name()
         self.parent = parent

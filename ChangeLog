@@ -1,3 +1,22 @@
+2004-12-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateEdit.py: use global date displayer/parser
+	* src/DateHandler.py: provide global date displayer/parser 
+	instead of having a bunch of different classes have their
+	own handler that needs to be updated with the handlers change.
+	* src/EditPerson.py: use global date displayer/parser
+	* src/EventEdit.py: use global date displayer/parser
+	* src/FamilyView.py: use global date displayer/parser
+	* src/GenericFilter.py: use global date displayer/parser
+	* src/GrampsCfg.py: remove unused statements
+	* src/ImageSelect.py: use global date displayer/parser
+	* src/Marriage.py: use global date displayer/parser
+	* src/ReadXML.py: use global date displayer/parser
+	* src/RelLib.py: don't require get_display_info, eliminate
+	needed for importing const and GrampsCfg
+	* src/SelectChild.py: don't require get_display_info
+	* src/Sources.py: use global date displayer/parser
+	* src/plugins/RelCalc.py: don't require get_display_info
+
 2004-12-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ChooseParents.py: remove TreeModelFilter stuff.
 	* src/GenericFilter.py: Add a combobox that handles filter
