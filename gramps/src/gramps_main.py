@@ -1075,7 +1075,10 @@ def change_family_type(family,mrel,frel):
                     utils.modified()
                     break
         else:
-            active_person.addAltFamily(family,mrel,frel)
+            if is_main:
+                active_person.setMainFamily(family)
+            else:
+                active_person.addAltFamily(family,mrel,frel)
         utils.modified()
                 
 #-------------------------------------------------------------------------
@@ -1107,6 +1110,10 @@ def on_save_parents_clicked(obj):
             x = select_father
             select_father = select_mother
             select_mother = x
+        elif select_mother and not select_father:
+            family = find_family(None,select_mother)
+        elif select_father and not select_mother: 
+            family = find_family(select_father)
         elif select_mother.getGender() != select_father.getGender():
             if type == "Partners":
                 type = "Unknown"
