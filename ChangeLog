@@ -12,6 +12,8 @@
 
 	* src/EventEdit.py (get_place): Typo.
 
+	* src/DisplayTrace.py (__init__): Mark debian distros.
+
 2005-03-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (Rule,GenericFilter): New methods prepare() and
 	reset(), that are called before/after a filter is applied, to properly
