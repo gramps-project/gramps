@@ -229,6 +229,8 @@ class PeopleStore:
         self.parent.parent.modify_statusbar()
 
     def fill_row(self,name,iter=None):
+        name = unicode(name)
+        
         if not iter:
             iter = self.tree_roots[name]
         child = self.model.iter_children(iter)
