@@ -1,3 +1,7 @@
+Version 1.1.95 -- the "" release
+* Explicit format selection in Save As, Open, and Import dialogs.
+* Bug fixes.
+
 Version 1.1.90 -- the "Successful encyclopedia salesman" release
 * Command line support for all imports and exports is back.
 * Exports to CD, package, and WFT are restored.
