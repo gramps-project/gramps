@@ -19,13 +19,14 @@ can generate HTML documents on-the-fly from these.  To generate distinct
 HTML documentation follow these steps:
 
 1) Ensure the following packages are installed:
-db2html >= 0.6.9  (jw >= 1.1)  to convert the SGML -> HTML
-gnome-doc-tools-2-1            for the GNOME documentation style sheets
-The /etc/sgml/catalog file should contain an entry pointing to PNG support.
-If configured properly, your db2html should automatically look up and use
-the /etc/sgml/catalog file.  If it doesn't you can try editing the DB2HTML
-line in Makefile.comm to explicitly use that file,
-DB2HTML = db2html -c /etc/sgml/catalog
+* db2html >= 0.6.9  (jw >= 1.1)  to convert the SGML -> HTML
+* gnome-doc-tools-2-1            for the GNOME documentation style sheets
+The former is part of the docbook-utils package, the latter can be found at
+http://people.redhat.com/dcm/software.html. The /etc/sgml/catalog file
+should contain an entry pointing to PNG support. If configured properly,
+your db2html should automatically look up and use the /etc/sgml/catalog
+file.  If it doesn't you can try editing the DB2HTML line in Makefile.comm
+to explicitly use that file, DB2HTML = db2html -c /etc/sgml/catalog
 
 2) Invoke configure with the --enable-html option: 
    ./configure --enable-html

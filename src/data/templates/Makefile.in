@@ -33,10 +33,9 @@ infodir = @infodir@
 mandir = @mandir@
 includedir = @includedir@
 oldincludedir = /usr/include
-pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
-top_builddir = ../..
+top_builddir = ../../..
 
 ACLOCAL = @ACLOCAL@
 AUTOCONF = @AUTOCONF@
@@ -62,6 +61,8 @@ POST_UNINSTALL = :
 EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+
+pkgdatadir = ${datadir}/@PACKAGE@/data/templates
 AMTAR = @AMTAR@
 AWK = @AWK@
 BINSH = @BINSH@
@@ -103,58 +104,54 @@ ZIP = @ZIP@
 am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
-pkgpyexecdir = @pkgpyexecdir@/filters
-pkgpythondir = @pkgpythondir@/filters
+pkgpyexecdir = @pkgpyexecdir@
+pkgpythondir = @pkgpythondir@
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-# This is the src/filters level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all .py files individually
-pkgpython_PYTHON := ${wildcard *.py}
-subdir = src/filters
+# This is the src/data/templates level Makefile
+pkgdata_DATA := ${wildcard *.tpkg} templates.xml
+EXTRA_DIST = ${pkgdata_DATA}
+subdir = src/data/templates
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 DIST_SOURCES =
-py_compile = $(top_srcdir)/py-compile
-DIST_COMMON = $(pkgpython_PYTHON) Makefile.am Makefile.in
+DATA = $(pkgdata_DATA)
+
+DIST_COMMON = Makefile.am Makefile.in
 all: all-am
 
 .SUFFIXES:
 $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  src/filters/Makefile
+	  $(AUTOMAKE) --gnu  src/data/templates/Makefile
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 uninstall-info-am:
-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
+pkgdataDATA_INSTALL = $(INSTALL_DATA)
+install-pkgdataDATA: $(pkgdata_DATA)
 	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir)
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
-	  if test -f $(srcdir)/$$p; then \
-	    d=`echo "$$p" | sed -e 's,^.*/,,'`; \
-	    dlist="$$dlist $$d"; \
-	    echo " $(pkgpythonPYTHON_INSTALL) $(srcdir)/$$p $(DESTDIR)$(pkgpythondir)/$$d"; \
-	    $(pkgpythonPYTHON_INSTALL) $(srcdir)/$$p $(DESTDIR)$(pkgpythondir)/$$d; \
-	  else :; fi; \
-	done; \
-	PYTHON=$(PYTHON) $(py_compile) --basedir $(DESTDIR)$(pkgpythondir) $$dlist
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
+	@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
+	  $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
+	done
 
-uninstall-pkgpythonPYTHON:
+uninstall-pkgdataDATA:
 	@$(NORMAL_UNINSTALL)
-	list='$(pkgpython_PYTHON)'; for p in $$list; do \
-	  d=`echo "$$p" | sed -e 's,^.*/,,'`; \
-	  rm -f $(DESTDIR)$(pkgpythondir)/$$d; \
-	  rm -f $(DESTDIR)$(pkgpythondir)/$${d}c; \
-	  rm -f $(DESTDIR)$(pkgpythondir)/$${d}o; \
+	@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
+	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
 	done
 tags: TAGS
 TAGS:
 
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
-top_distdir = ../..
+top_distdir = ../../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
 
 distdir: $(DISTFILES)
@@ -180,10 +177,10 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile
+all-am: Makefile $(DATA)
 
 installdirs:
-	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
 
 install: install-am
 install-exec: install-exec-am
@@ -225,7 +222,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-pkgpythonPYTHON
+install-data-am: install-pkgdataDATA
 
 install-exec-am:
 
@@ -243,17 +240,16 @@ mostlyclean: mostlyclean-am
 
 mostlyclean-am: mostlyclean-generic
 
-uninstall-am: uninstall-info-am uninstall-pkgpythonPYTHON
+uninstall-am: uninstall-info-am uninstall-pkgdataDATA
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am info info-am install \
 	install-am install-data install-data-am install-exec \
 	install-exec-am install-info install-info-am install-man \
-	install-pkgpythonPYTHON install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	uninstall uninstall-am uninstall-info-am \
-	uninstall-pkgpythonPYTHON
+	install-pkgdataDATA install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic uninstall uninstall-am \
+	uninstall-info-am uninstall-pkgdataDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
