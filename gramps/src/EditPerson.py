@@ -49,6 +49,7 @@ import utils
 import Config
 from RelLib import *
 import RelImage
+import Sources
 
 _ = intl.gettext
 
@@ -126,6 +127,10 @@ class EditPerson:
         self.selectedIcon = -1
         
         self.top_window.signal_autoconnect({
+            "on_death_note_clicked" : on_death_note_clicked,
+            "on_death_source_clicked" : on_death_source_clicked,
+            "on_birth_note_clicked" : on_birth_note_clicked,
+            "on_birth_source_clicked" : on_birth_source_clicked,
             "on_eventAddBtn_clicked" : on_event_add_clicked,
             "on_eventDeleteBtn_clicked" : on_event_delete_clicked,
             "on_nameList_select_row" : on_name_list_select_row,
@@ -1132,9 +1137,71 @@ def on_event_note_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_showsource_clicked(obj):
-    import Sources
+def on_birth_note_clicked(obj):
+    edit_person_obj = obj.get_data(EDITPERSON)
+    editnote = libglade.GladeXML(const.editnoteFile,"editnote")
+    data = edit_person_obj.person.getBirth()
+    textobj = editnote.get_widget("notetext")
+    en_obj = editnote.get_widget("editnote")
+    en_obj.set_data("n",data)
+    en_obj.set_data("w",textobj)
 
+    textobj.set_point(0)
+    textobj.insert_defaults(data.getNote())
+    textobj.set_word_wrap(1)
+        
+    editnote.signal_autoconnect({
+        "on_save_note_clicked" : on_save_note_clicked,
+        "destroy_passed_object" : utils.destroy_passed_object
+    })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_death_note_clicked(obj):
+    edit_person_obj = obj.get_data(EDITPERSON)
+    editnote = libglade.GladeXML(const.editnoteFile,"editnote")
+    textobj = editnote.get_widget("notetext")
+    data = edit_person_obj.person.getDeath()
+    en_obj = editnote.get_widget("editnote")
+    en_obj.set_data("n",data)
+    en_obj.set_data("w",textobj)
+
+    textobj.set_point(0)
+    textobj.insert_defaults(data.getNote())
+    textobj.set_word_wrap(1)
+        
+    editnote.signal_autoconnect({
+        "on_save_note_clicked" : on_save_note_clicked,
+        "destroy_passed_object" : utils.destroy_passed_object
+    })
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_death_source_clicked(obj):
+    edit_person_obj = obj.get_data(EDITPERSON)
+    Sources.SourceEditor(edit_person_obj.person.getDeath(),edit_person_obj.db)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_birth_source_clicked(obj):
+    edit_person_obj = obj.get_data(EDITPERSON)
+    Sources.SourceEditor(edit_person_obj.person.getBirth(),edit_person_obj.db)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_showsource_clicked(obj):
     row = obj.get_data(INDEX)
     edit_person_obj = obj.get_data(EDITPERSON)
     if row >= 0:

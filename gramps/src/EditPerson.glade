@@ -115,7 +115,7 @@
 	    <widget>
 	      <class>GtkTable</class>
 	      <name>table16</name>
-	      <rows>2</rows>
+	      <rows>3</rows>
 	      <columns>2</columns>
 	      <homogeneous>False</homogeneous>
 	      <row_spacing>0</row_spacing>
@@ -221,6 +221,65 @@
 		  <yfill>False</yfill>
 		</child>
 	      </widget>
+
+	      <widget>
+		<class>GtkHBox</class>
+		<name>hbox19</name>
+		<homogeneous>False</homogeneous>
+		<spacing>0</spacing>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>True</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>True</yfill>
+		</child>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>button99</name>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_birth_source_clicked</handler>
+		    <object>editPerson</object>
+		    <last_modification_time>Sun, 03 Jun 2001 20:10:22 GMT</last_modification_time>
+		  </signal>
+		  <label>Source</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		  <child>
+		    <padding>0</padding>
+		    <expand>True</expand>
+		    <fill>False</fill>
+		  </child>
+		</widget>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>button100</name>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_birth_note_clicked</handler>
+		    <object>editPerson</object>
+		    <last_modification_time>Sun, 03 Jun 2001 20:10:35 GMT</last_modification_time>
+		  </signal>
+		  <label>Note</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		  <child>
+		    <padding>0</padding>
+		    <expand>True</expand>
+		    <fill>False</fill>
+		  </child>
+		</widget>
+	      </widget>
 	    </widget>
 	  </widget>
 
@@ -248,7 +307,7 @@
 	    <widget>
 	      <class>GtkTable</class>
 	      <name>table17</name>
-	      <rows>2</rows>
+	      <rows>3</rows>
 	      <columns>2</columns>
 	      <homogeneous>False</homogeneous>
 	      <row_spacing>0</row_spacing>
@@ -354,6 +413,65 @@
 		  <xfill>True</xfill>
 		  <yfill>False</yfill>
 		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkHBox</class>
+		<name>hbox20</name>
+		<homogeneous>False</homogeneous>
+		<spacing>0</spacing>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>2</top_attach>
+		  <bottom_attach>3</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>True</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>True</yfill>
+		</child>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>button101</name>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_death_source_clicked</handler>
+		    <object>editPerson</object>
+		    <last_modification_time>Sun, 03 Jun 2001 20:10:45 GMT</last_modification_time>
+		  </signal>
+		  <label>Source</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		  <child>
+		    <padding>0</padding>
+		    <expand>True</expand>
+		    <fill>False</fill>
+		  </child>
+		</widget>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>button102</name>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_death_note_clicked</handler>
+		    <object>editPerson</object>
+		    <last_modification_time>Sun, 03 Jun 2001 20:10:54 GMT</last_modification_time>
+		  </signal>
+		  <label>Note</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		  <child>
+		    <padding>0</padding>
+		    <expand>True</expand>
+		    <fill>False</fill>
+		  </child>
+		</widget>
 	      </widget>
 	    </widget>
 	  </widget>

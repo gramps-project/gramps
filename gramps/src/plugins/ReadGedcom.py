@@ -71,7 +71,6 @@ nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
 #
 #-------------------------------------------------------------------------
 def find_file(fullname,altpath):
-    print "trying",fullname
     if os.path.isfile(fullname):
         type = gnome.mime.type(fullname)
         if type[0:6] != "image/":
@@ -483,7 +482,6 @@ class GedcomParser:
         while 1:
 	    matches = self.get_next()
 
-            print matches[0],matches[1],matches[2]
 	    if int(matches[0]) == 0:
                 self.backup()
                 return
@@ -540,7 +538,6 @@ class GedcomParser:
                 pass
 	    elif matches[1] == "FAMS":
                 family = self.db.findFamily(matches[2],self.fmap)
-                print self.person.getPrimaryName().getName(),matches[2]
                 self.person.addFamily(family)
                 note = self.parse_optional_note(2)
 	    elif matches[1] == "FAMC":
