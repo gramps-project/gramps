@@ -154,7 +154,7 @@ class StartupDialog:
         box.show_all()
 
         name = GrampsCfg.get_researcher_name()
-        if name.strip() == "":
+        if not name or name.strip() == "":
             import pwd
             import os
 

@@ -32,6 +32,7 @@ from this class.
 #-------------------------------------------------------------------------
 from RelLib import *
 import cPickle
+import time
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -79,7 +80,11 @@ class GrampsDbBase:
         self.open = 0
         self.genderStats = GenderStats()
 
-        self.id_trans = None
+        self.id_trans  = None
+        self.fid_trans = None
+        self.pid_trans = None
+        self.sid_trans = None
+        self.oid_trans = None
         self.env = None
         self.person_map = None
         self.family_map = None
@@ -121,66 +126,91 @@ class GrampsDbBase:
         """
         return self.person_map != None
 
-    def commit_person(self,person,transaction):
+    def commit_person(self,person,transaction,change_time=None):
         """
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
+
+        if change_time:
+            person.change = int(change_time)
+        else:
+            person.change = int(time.time())
         handle = str(person.get_handle())
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
         self.person_map[handle] = person.serialize()
           
-    def commit_media_object(self,obj,transaction):
+    def commit_media_object(self,obj,transaction,change_time=None):
         """
         Commits the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
+        if change_time:
+            obj.change = int(change_time)
+        else:
+            obj.change = int(time.time())
         handle = str(obj.get_handle())
         if transaction != None:
             old_data = self.media_map.get(handle)
             transaction.add(MEDIA_KEY,handle,old_data)
         self.media_map[handle] = obj.serialize()
 
-    def commit_source(self,source,transaction):
+    def commit_source(self,source,transaction,change_time=None):
         """
         Commits the specified Source to the database, storing the changes
         as part of the transaction.
         """
+        if change_time:
+            source.change = int(change_time)
+        else:
+            source.change = int(time.time())
         handle = str(source.get_handle())
         if transaction != None:
             old_data = self.source_map.get(handle)
             transaction.add(SOURCE_KEY,handle,old_data)
         self.source_map[handle] =  source.serialize()
 
-    def commit_place(self,place,transaction):
+    def commit_place(self,place,transaction,change_time=None):
         """
         Commits the specified Place to the database, storing the changes
         as part of the transaction.
         """
+        if change_time:
+            place.change = int(change_time)
+        else:
+            place.change = int(time.time())
         handle = str(place.get_handle())
         if transaction != None:
             old_data = self.place_map.get(handle)
             transaction.add(PLACE_KEY,handle,old_data)
         self.place_map[handle] = place.serialize()
 
-    def commit_event(self,event,transaction):
+    def commit_event(self,event,transaction,change_time=None):
         """
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
+        if change_time:
+            event.change = int(change_time)
+        else:
+            event.change = int(time.time())
         handle = str(event.get_handle())
         if transaction != None:
             old_data = self.event_map.get(handle)
             transaction.add(EVENT_KEY,handle,old_data)
         self.event_map[handle] = event.serialize()
 
-    def commit_family(self,family,transaction):
+    def commit_family(self,family,transaction,change_time=None):
         """
         Commits the specified Family to the database, storing the changes
         as part of the transaction.
         """
+        if change_time:
+            family.change = int(change_time)
+        else:
+            family.change = int(time.time())
         handle = str(family.get_handle())
         if transaction != None:
             old_data = self.family_map.get(handle)
@@ -205,7 +235,7 @@ class GrampsDbBase:
         off the person ID prefix.
         """
         index = self.pprefix % self.lmap_index
-        while self.id_trans.get(str(index)):
+        while self.pid_trans.get(str(index)):
             self.lmap_index += 1
             index = self.pprefix % self.lmap_index
         self.lmap_index += 1
@@ -217,9 +247,6 @@ class GrampsDbBase:
         off the person ID prefix.
         """
         index = self.eprefix % self.emap_index
-        while self.id_trans.get(str(index)):
-            self.emap_index += 1
-            index = self.eprefix % self.emap_index
         self.emap_index += 1
         return index
 
@@ -229,7 +256,7 @@ class GrampsDbBase:
         off the person ID prefix.
         """
         index = self.oprefix % self.omap_index
-        while self.id_trans.get(str(index)):
+        while self.oid_trans.get(str(index)):
             self.omap_index += 1
             index = self.oprefix % self.omap_index
         self.omap_index += 1
@@ -241,10 +268,10 @@ class GrampsDbBase:
         off the person ID prefix.
         """
         index = self.sprefix % self.smap_index
-        while self.source_map.get(str(index)):
+        while self.sid_trans.get(str(index)):
             self.smap_index += 1
             index = self.sprefix % self.smap_index
-        self.fmap_index += 1
+        self.smap_index += 1
         return index
 
     def find_next_family_gramps_id(self):
@@ -253,7 +280,7 @@ class GrampsDbBase:
         off the person ID prefix.
         """
         index = self.fprefix % self.fmap_index
-        while self.family_map.get(str(index)):
+        while self.fid_trans.get(str(index)):
             self.fmap_index += 1
             index = self.fprefix % self.fmap_index
         self.fmap_index += 1
@@ -350,11 +377,7 @@ class GrampsDbBase:
             source.unserialize(self.source_map.get(str(val)))
         else:
             source.set_handle(val)
-            source.set_gramps_id(val)
-            if transaction != None:
-                transaction.add(SOURCE_KEY,val,None)
-            self.source_map[str(val)] = source.serialize()
-            self.smap_index = self.smap_index + 1
+            self.add_source(source,transaction)
         return source
 
     def find_event_from_handle(self,val,transaction):
@@ -368,10 +391,7 @@ class GrampsDbBase:
             event.unserialize(data)
         else:
             event.set_handle(val)
-            if transaction:
-                transaction.add(EVENT_KEY,val,None)
-            self.event_map[str(val)] = event.serialize()
-            self.emap_index = self.emap_index + 1
+            self.add_event(event,transaction)
         return event
 
     def find_object_from_handle(self,handle,transaction):
@@ -392,16 +412,12 @@ class GrampsDbBase:
         Finds a Place in the database from the passed GRAMPS ID.
         If no such Place exists, a new Place is added to the database.
         """
-        data = self.place_map.get(str(handle))
         place = Place()
-        if not data:
-            place.set_handle(handle)
-            if transaction != None:
-                transaction.add(PLACE_KEY,handle,None)
-            self.place_map[str(handle)] = place.serialize()
-            self.lmap_index = self.lmap_index + 1
+        if self.place_map.get(str(handle)):
+            place.unserialize(self.place_map.get(str(handle)))
         else:
-            place.unserialize(data)
+            place.set_handle(handle)
+            self.add_place(place,transaction)
         return place
 
     def find_family_from_handle(self,val,transaction):
@@ -409,15 +425,11 @@ class GrampsDbBase:
         If no such Family exists, a new Family is added to the database."""
 
         family = Family()
-        data = self.family_map.get(str(val))
-        if data:
-            family.unserialize(data)
+        if self.family_map.get(str(val)):
+            family.unserialize(self.family_map.get(str(val)))
         else:
             family.set_handle(val)
-            if transaction:
-                transaction.add(FAMILY_KEY,val,None)
-            self.family_map[str(val)] = family.serialize()
-            self.fmap_index = self.fmap_index + 1
+            self.add_family(family,transaction)
         return family
 
     def get_person_from_gramps_id(self,val):
@@ -427,13 +439,7 @@ class GrampsDbBase:
 
         Needs to be overridden by the derrived class.
         """
-        data = self.id_trans.get(str(val))
-        if data:
-            person = Person()
-            person.unserialize(cPickle.loads(data))
-            return person
-        else:
-            return None
+        assert(False,"Needs to be overridden in the derived class")
 
     def get_family_from_gramps_id(self,val):
         """
@@ -991,7 +997,7 @@ class GrampsDbBase:
         Returns the Person display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7)]
+        default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7),(0,8)]
         if self.metadata == None:
             return default
         else:
@@ -1006,7 +1012,7 @@ class GrampsDbBase:
         Returns the Place display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(0,3),(1,4),(0,5),(1,6),(0,7),(0,8)]
+        default = [(1,1),(1,2),(0,3),(1,4),(0,5),(1,6),(0,7),(0,8),(0,9)]
         if self.metadata == None:
             return default
         else:
@@ -1021,7 +1027,7 @@ class GrampsDbBase:
         Returns the Source display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(0,4)]
+        default = [(1,1),(1,2),(1,3),(0,4),(0,5)]
         if self.metadata == None:
             return default
         else:
@@ -1036,11 +1042,11 @@ class GrampsDbBase:
         Returns the MediaObject display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3)]
+        default = [(1,1),(1,2),(1,3),(0,4)]
         if self.metadata == None:
             return default
         else:
-            cols = self.metadata.get('meda_columns',default)
+            cols = self.metadata.get('media_columns',default)
             if len(cols) != len(default):
                 return cols + default[len(cols):]
             else:

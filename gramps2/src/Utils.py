@@ -542,8 +542,12 @@ def create_id():
                  rand.randint(0,0x7fffffff),
                  rand.randint(0,0x7fffffff)]:
         while val != 0:
-            s += chr(val%57+65)
-            val = int(val/57)
+            rem = val % 36
+            if rem <= 9:
+                s += chr(48+rem)
+            else:
+                s += chr(rem+55)
+            val = int(val/36)
     return s
 
 #-------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-#
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2004  Donald N. Allingham
@@ -58,6 +58,7 @@ column_names = [
     _('Author'),
     _('Abbreviation'),
     _('Publication Information'),
+    _('Last Changed'),
     ]
 
 #-------------------------------------------------------------------------

@@ -114,6 +114,8 @@ class EditPlace:
         self.web_edit = self.top_window.get_widget("web_edit")
         self.web_description = self.top_window.get_widget("url_des")
 
+        self.top_window.get_widget('changed').set_text(place.get_change_display())
+
         # event display
         self.web_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
         self.build_columns(self.web_list, [(_('Path'),150), (_('Description'),150)])

@@ -33,6 +33,7 @@ __version__ = "$Revision$"
 from re import compile
 import os
 import os.path
+import time
 import types
 import accent
 from gettext import gettext as _
@@ -82,9 +83,20 @@ class PrimaryObject:
         if source:
             self.gramps_id = source.gramps_id
             self.handle = source.handle
+            self.change = source.change
         else:
             self.gramps_id = None
             self.handle = None
+            self.change = 0
+
+    def get_change_time(self):
+        return self.change
+
+    def get_change_display(self):
+        if self.change:
+            return time.asctime(time.localtime(self.change))
+        else:
+            return ''
 
     def set_handle(self,handle):
         """Sets the database handle for the primary object"""
@@ -242,7 +254,7 @@ class Person(PrimaryObject,SourceNote):
                 self.family_list, self.parent_family_list,
                 self.media_list, self.address_list, self.attribute_list,
                 self.urls, self.lds_bapt, self.lds_endow, self.lds_seal,
-                self.complete, self.source_list, self.note)
+                self.complete, self.source_list, self.note, self.change)
 
     def unserialize(self,data):
         """
@@ -254,7 +266,8 @@ class Person(PrimaryObject,SourceNote):
          self.birth_handle, self.event_list, self.family_list,
          self.parent_family_list, self.media_list, self.address_list,
          self.attribute_list, self.urls, self.lds_bapt, self.lds_endow,
-         self.lds_seal, self.complete, self.source_list, self.note) = data
+         self.lds_seal, self.complete, self.source_list, self.note,
+         self.change) = data
             
     def set_complete_flag(self,val):
         """
@@ -666,7 +679,8 @@ class Family(PrimaryObject,SourceNote):
         return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
                 self.child_list, self.type, self.event_list,
                 self.media_list, self.attribute_list, self.lds_seal,
-                self.complete, self.source_list, self.note)
+                self.complete, self.source_list, self.note,
+                self.change)
 
     def unserialize(self, data):
         """
@@ -676,7 +690,7 @@ class Family(PrimaryObject,SourceNote):
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          self.child_list, self.type, self.event_list,
          self.media_list, self.attribute_list, self.lds_seal,
-         self.complete, self.source_list, self.note) = data
+         self.complete, self.source_list, self.note, self.change) = data
 
     def set_complete_flag(self,val):
         self.complete = val
@@ -826,7 +840,8 @@ class Event(PrimaryObject,DataObj):
         """
         return (self.handle, self.gramps_id, self.name, self.date,
                 self.description, self.place, self.cause, self.private,
-                self.source_list, self.note, self.witness, self.media_list)
+                self.source_list, self.note, self.witness, self.media_list,
+                self.change)
 
     def unserialize(self,data):
         """
@@ -835,7 +850,7 @@ class Event(PrimaryObject,DataObj):
         """
         (self.handle, self.gramps_id, self.name, self.date, self.description,
          self.place, self.cause, self.private, self.source_list,
-         self.note, self.witness, self.media_list) = data
+         self.note, self.witness, self.media_list, self.change) = data
 
     def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Event object's image list"""
@@ -1037,16 +1052,16 @@ class Place(PrimaryObject,SourceNote):
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 self.main_loc, self.alt_loc, self.urls, self.media_list,
-                self.source_list, self.note)
+                self.source_list, self.note, self.change)
 
     def unserialize(self,data):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Event structure.
         """
-        (self.handle, self.gramps_id, self.title, self.long, self.lat, self.main_loc,
-         self.alt_loc, self.urls, self.media_list, self.source_list,
-         self.note) = data
+        (self.handle, self.gramps_id, self.title, self.long, self.lat,
+         self.main_loc, self.alt_loc, self.urls, self.media_list,
+         self.source_list, self.note, self.change) = data
             
     def get_url_list(self):
         """Return the list of URLs"""
@@ -1173,7 +1188,8 @@ class MediaObject(PrimaryObject,SourceNote):
         a form that it can use.
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
-                self.desc, self.attrlist, self.source_list, self.note)
+                self.desc, self.attrlist, self.source_list, self.note,
+                self.change)
 
     def unserialize(self,data):
         """
@@ -1181,7 +1197,7 @@ class MediaObject(PrimaryObject,SourceNote):
         back into the data in an Event structure.
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.attrlist, self.source_list, self.note) = data
+         self.attrlist, self.source_list, self.note, self.change) = data
     
     def set_mime_type(self,type):
         self.mime = type
@@ -1233,7 +1249,8 @@ class Source(PrimaryObject):
 
     def serialize(self):
         return (self.handle, self.gramps_id, self.title, self.author,
-                self.pubinfo, self.note, self.media_list, self.abbrev)
+                self.pubinfo, self.note, self.media_list, self.abbrev,
+                self.change)
 
     def unserialize(self,data):
         """
@@ -1241,10 +1258,12 @@ class Source(PrimaryObject):
         back into the data in an Event structure.
         """
         (self.handle, self.gramps_id, self.title, self.author,
-         self.pubinfo, self.note, self.media_list, self.abbrev) = data
+         self.pubinfo, self.note, self.media_list, self.abbrev,
+         self.change) = data
         
     def get_display_info(self):
-        return [self.title,self.gramps_id,self.author,self.title.upper(),self.author.upper()]
+        return [self.title,self.gramps_id,self.author,
+                self.title.upper(),self.author.upper()]
 
     def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Source instance's image list"""

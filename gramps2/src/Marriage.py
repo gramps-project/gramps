@@ -186,6 +186,8 @@ class Marriage:
         self.alist = family.get_attribute_list()[:]
         self.lists_changed = 0
 
+        self.get_widget('changed').set_text(family.get_change_display())
+
         # set initial data
         self.gallery.load_images()
 

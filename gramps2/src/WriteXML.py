@@ -236,7 +236,7 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s"' % person.get_gramps_id())
+                self.g.write(' home="%s"' % person.get_handle())
             self.g.write(">\n")
 
             keys = self.db.get_person_handles(sort_handles=False)
@@ -307,12 +307,12 @@ class XmlWriter:
                     else:
                         frel=''
                     parent_family = self.db.get_family_from_handle (alt[0])
-                    self.g.write("      <childof ref=\"%s\"%s%s/>\n" % \
-                            (parent_family.get_gramps_id (), mrel, frel))
+                    self.g.write("      <childof hlink=\"%s\"%s%s/>\n" % \
+                            (parent_family.get_handle(), mrel, frel))
 
                 for family_handle in person.get_family_handle_list():
                     family = self.db.get_family_from_handle (family_handle)
-                    self.write_ref("parentin",family.get_gramps_id (),3)
+                    self.write_ref("parentin",family.get_handle(),3)
 
                 self.write_note("note",person.get_note_object(),3)
                 for s in person.get_source_references():
@@ -341,10 +341,10 @@ class XmlWriter:
                 fhandle = family.get_father_handle()
                 mhandle = family.get_mother_handle()
                 if fhandle:
-                    fid = self.db.get_person_from_handle (fhandle).get_gramps_id ()
+                    fid = self.db.get_person_from_handle (fhandle).get_handle()
                     self.write_ref("father",fid,3)
                 if mhandle:
-                    mid = self.db.get_person_from_handle (mhandle).get_gramps_id ()
+                    mid = self.db.get_person_from_handle (mhandle).get_handle()
                     self.write_ref("mother",mid,3)
                 for event_handle in family.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
@@ -356,7 +356,7 @@ class XmlWriter:
                 if len(family.get_child_handle_list()) > 0:
                     for person_handle in family.get_child_handle_list():
                         person = self.db.get_person_from_handle (person_handle)
-                        self.write_ref("child",person.get_gramps_id (),3)
+                        self.write_ref("child",person.get_handle(),3)
                 self.write_attribute_list(family.get_attribute_list())
                 self.write_note("note",family.get_note_object(),3)
                 for s in family.get_source_references():
@@ -373,7 +373,8 @@ class XmlWriter:
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
-                self.g.write("    <source id=\"" + source.get_gramps_id() + "\">\n")
+                self.g.write("    <source id=\"%s\" handle=\"%s\" change=\"%d\">\n" %
+                             (source.get_gramps_id(), source.get_handle(), source.get_change_time()))
                 self.write_force_line("stitle",source.get_title(),3)
                 self.write_line("sauthor",source.get_author(),3)
                 self.write_line("spubinfo",source.get_publication_info(),3)
@@ -417,7 +418,7 @@ class XmlWriter:
         if len(self.db.get_bookmarks()) > 0:
             self.g.write("  <bookmarks>\n")
             for person_handle in self.db.get_bookmarks():
-                self.g.write('    <bookmark ref="%s"/>\n' % person_handle)
+                self.g.write('    <bookmark hlink="%s"/>\n' % person_handle)
             self.g.write("  </bookmarks>\n")
 
         self.g.write("</database>\n")
@@ -517,8 +518,8 @@ class XmlWriter:
         if ord.get_status() != 0:
             self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
         if ord.get_family_handle():
-            self.g.write('%s<sealed_to ref="%s"/>\n' % \
-                         (sp2,self.fix(ord.get_family_handle().get_gramps_id())))
+            self.g.write('%s<sealed_to hlink="%s"/>\n' % \
+                         (sp2,self.fix(ord.get_family_handle().get_handle())))
         if ord.get_note() != "":
             self.write_note("note",ord.get_note_object(),index+1)
         for s in ord.get_source_references():
@@ -535,12 +536,12 @@ class XmlWriter:
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
             if p == "" and c == "" and t == "" and d.is_empty() and q == 2:
-                self.g.write('<sourceref ref="%s"/>\n' % source.get_gramps_id())
+                self.g.write('<sourceref hlink="%s"/>\n' % source.get_handle())
             else:
                 if q == 2:
-                    self.g.write('<sourceref ref="%s">\n' % source.get_gramps_id())
+                    self.g.write('<sourceref hlink="%s">\n' % source.get_handle())
                 else:
-                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.get_gramps_id(),q))
+                    self.g.write('<sourceref hlink="%s" conf="%d">\n' % (source.get_handle(),q))
                 self.write_line("spage",p,index+1)
                 self.write_text("scomments",c,index+1)
                 self.write_text("stext",t,index+1)
@@ -549,11 +550,13 @@ class XmlWriter:
 
     def write_ref(self,label,gid,index=1):
         if gid:
-            self.g.write('%s<%s ref="%s"/>\n' % ("  "*index,label,gid))
+            self.g.write('%s<%s hlink="%s"/>\n' % ("  "*index,label,gid))
 
     def write_id(self,label,person,index=1):
         if person:
-            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_gramps_id()))
+            self.g.write('%s<%s id="%s" handle="%s" change="%d"' %
+                         ("  "*index,label,person.get_gramps_id(),person.get_handle(),
+                          person.get_change_time()))
             comp = person.get_complete_flag()
             if comp:
                 self.g.write(' complete="1"')
@@ -564,7 +567,8 @@ class XmlWriter:
             rel = family.get_relationship()
             comp = family.get_complete_flag()
             sp = "  " * index
-            self.g.write('%s<family id="%s"' % (sp,family.get_gramps_id()))
+            self.g.write('%s<family id="%s" handle="%s" change="%d"' %
+                         (sp,family.get_gramps_id(),family.get_handle(),family.get_change_time()))
             if comp:
                 self.g.write(' complete="1"')
             if rel != "":
@@ -715,7 +719,7 @@ class XmlWriter:
         sp = '  '*indent
         for photo in list:
             mobj_id = photo.get_reference_handle()
-            self.g.write('%s<objref ref="%s"' % (sp,mobj_id))
+            self.g.write('%s<objref hlink="%s"' % (sp,mobj_id))
             if photo.get_privacy():
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()
@@ -743,7 +747,7 @@ class XmlWriter:
         title = self.fix(place.get_title())
         long = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
-        id = place.get_handle()
+        id = place.get_gramps_id()
         main_loc = place.get_main_location()
         llen = len(place.get_alternate_locations()) + len(place.get_url_list()) + \
                len(place.get_media_list()) + len(place.get_source_references())
@@ -754,7 +758,8 @@ class XmlWriter:
         if title == "":
             title = self.fix(self.build_place_title(place.get_main_location()))
     
-        self.g.write('    <placeobj id="%s" title="%s"' % (id,title))
+        self.g.write('    <placeobj id="%s" handle="%s" change="%d" title="%s"' %
+                     (id,place.get_handle(),place.get_change_time(),title))
 
         if long or lat or not ml_empty or llen > 0 or note:
             self.g.write('>\n')
@@ -777,7 +782,7 @@ class XmlWriter:
         self.g.write("    </placeobj>\n")
 
     def write_object(self,obj):
-        handle = obj.get_gramps_id()
+        id = obj.get_gramps_id()
         mime_type = obj.get_mime_type()
         path = obj.get_path()
         if self.strip_photos:
@@ -787,7 +792,8 @@ class XmlWriter:
             if len(path) >= l:
                 if self.fileroot == path[0:l]:
                     path = path[l+1:]
-        self.g.write('    <object id="%s" src="%s" mime="%s"' % (handle,path,mime_type))
+        self.g.write('    <object id="%s" handle="%s" change="%d" src="%s" mime="%s"' %
+                     (id,obj.get_handle(),obj.get_change_time(),path,mime_type))
         self.g.write(' description="%s"' % self.fix(obj.get_description()))
         alist = obj.get_attribute_list()
         note = obj.get_note()

@@ -21,6 +21,7 @@
 # $Id$
 
 import os
+import time
 
 from RelLib import *
 from GrampsDbBase import *
@@ -83,12 +84,27 @@ class GrampsBSDDB(GrampsDbBase):
         self.fid_trans.set_flags(db.DB_DUP)
         self.fid_trans.open(name, "fidtrans", db.DB_HASH, flags=db.DB_CREATE)
 
+        self.pid_trans = db.DB(self.env)
+        self.pid_trans.set_flags(db.DB_DUP)
+        self.pid_trans.open(name, "pidtrans", db.DB_HASH, flags=db.DB_CREATE)
+
+        self.sid_trans = db.DB(self.env)
+        self.sid_trans.set_flags(db.DB_DUP)
+        self.sid_trans.open(name, "sidtrans", db.DB_HASH, flags=db.DB_CREATE)
+
+        self.oid_trans = db.DB(self.env)
+        self.oid_trans.set_flags(db.DB_DUP)
+        self.oid_trans.open(name, "oidtrans", db.DB_HASH, flags=db.DB_CREATE)
+
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(name, "eventnames", db.DB_HASH, flags=db.DB_CREATE)
-        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
-        self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
-        self.person_map.associate(self.fid_trans, find_fidmap, db.DB_CREATE)
+        self.person_map.associate(self.surnames,  find_surname, db.DB_CREATE)
+        self.person_map.associate(self.id_trans,  find_idmap, db.DB_CREATE)
+        self.family_map.associate(self.fid_trans, find_idmap, db.DB_CREATE)
+        self.place_map.associate(self.pid_trans,  find_idmap, db.DB_CREATE)
+        self.media_map.associate(self.oid_trans, find_idmap, db.DB_CREATE)
+        self.source_map.associate(self.sid_trans, find_idmap, db.DB_CREATE)
         self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
 
         self.undodb = db.DB()
@@ -115,6 +131,9 @@ class GrampsBSDDB(GrampsDbBase):
         self.eventnames.close()
         self.id_trans.close()
         self.fid_trans.close()
+        self.oid_trans.close()
+        self.sid_trans.close()
+        self.pid_trans.close()
         self.env.close()
         self.undodb.close()
 
@@ -189,13 +208,49 @@ class GrampsBSDDB(GrampsDbBase):
             return None
 
     def get_family_from_gramps_id(self,val):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, a new Person is added to the database."""
 
         data = self.fid_trans.get(str(val))
         if data:
             family = Family()
             family.unserialize(cPickle.loads(data))
             return family
+        else:
+            return None
+
+    def get_place_from_gramps_id(self,val):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, a new Person is added to the database."""
+
+        data = self.pid_trans.get(str(val))
+        if data:
+            place = Place()
+            place.unserialize(cPickle.loads(data))
+            return place
+        else:
+            return None
+
+    def get_source_from_gramps_id(self,val):
+        """finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, a new Person is added to the database."""
+
+        data = self.sid_trans.get(str(val))
+        if data:
+            source = Source()
+            source.unserialize(cPickle.loads(data))
+            return source
+        else:
+            return None
+
+    def get_object_from_gramps_id(self,val):
+        """finds a MediaObject in the database from the passed gramps' ID.
+        If no such MediaObject exists, a new Person is added to the database."""
+
+        data = self.oid_trans.get(str(val))
+        if data:
+            obj = MediaObject()
+            obj.unserialize(cPickle.loads(data))
+            return obj
         else:
             return None

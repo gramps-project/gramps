@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import time
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -130,15 +132,12 @@ class SourceModel(BaseModel):
             self.column_author,
             self.column_abbrev,
             self.column_pubinfo,
-            self.column_handle,
+            self.column_change,
             ]
         BaseModel.__init__(self,db)
 
     def column_title(self,data):
         return unicode(data[2])
-
-    def column_handle(self,data):
-        return unicode(data[0])
 
     def column_author(self,data):
         return unicode(data[3])
@@ -151,6 +150,9 @@ class SourceModel(BaseModel):
 
     def column_pubinfo(self,data):
         return unicode(data[5])
+
+    def column_change(self,data):
+        return unicode(time.asctime(time.localtime(data[8])))
 
 #-------------------------------------------------------------------------
 #
@@ -172,15 +174,16 @@ class PlaceModel(BaseModel):
             self.column_country,
             self.column_longitude,
             self.column_latitude,
+            self.column_change,
             self.column_handle,
             ]
         BaseModel.__init__(self,db)
 
-    def column_name(self,data):
-        return unicode(data[2])
-
     def column_handle(self,data):
         return unicode(data[0])
+
+    def column_name(self,data):
+        return unicode(data[2])
 
     def column_longitude(self,data):
         return unicode(data[3])
@@ -221,6 +224,9 @@ class PlaceModel(BaseModel):
         except:
             return u''
 
+    def column_change(self,data):
+        return unicode(time.asctime(time.localtime(data[11])))
+
 #-------------------------------------------------------------------------
 #
 # MediaModel
@@ -237,6 +243,8 @@ class MediaModel(BaseModel):
             self.column_id,
             self.column_mime,
             self.column_path,
+            self.column_change,
+            self.column_handle,
             ]
         BaseModel.__init__(self,db)
 
@@ -251,3 +259,9 @@ class MediaModel(BaseModel):
 
     def column_id(self,data):
         return unicode(data[1])
+
+    def column_handle(self,data):
+        return unicode(data[0])
+
+    def column_change(self,data):
+        return unicode(time.asctime(time.localtime(data[8])))

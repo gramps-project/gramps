@@ -30,8 +30,8 @@ import os
 import gtk
 import shutil
 import xml.parsers.expat
-import Utils
 from gettext import gettext as _
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +44,7 @@ import Date
 import GrampsMime
 import RelLib
 import const
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +76,8 @@ def importData(database, filename, callback=None,cl=0):
     database.pmap = {}
     database.fmap = {}
 
-    parser = GrampsParser(database,callback,basefile)
+    change = os.path.getmtime(filename)
+    parser = GrampsParser(database,callback,basefile,change)
 
     if gzip_ok:
         use_gzip = 1
@@ -168,7 +170,7 @@ def importData(database, filename, callback=None,cl=0):
                 except:
                     pass
                 mobject.set_path(newfile)
-                database.commit_media_object(mobject,None)
+                database.commit_media_object(mobject,None,self.change)
             except:
                 pass
 
@@ -271,7 +273,7 @@ def fix_spaces(text_list):
 #-------------------------------------------------------------------------
 class GrampsParser:
 
-    def __init__(self,database,callback,base):
+    def __init__(self,database,callback,base,change):
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -279,6 +281,10 @@ class GrampsParser:
         self.conf = 2
         self.gid2id = {}
         self.gid2fid = {}
+        self.gid2pid = {}
+        self.gid2oid = {}
+        self.gid2sid = {}
+        self.change = change
         
         self.ord = None
         self.objref = None
@@ -324,6 +330,7 @@ class GrampsParser:
         self.event = None
         self.name = None
         self.tempDefault = None
+        self.home = None
         self.owner = RelLib.Researcher()
         self.func_list = [None]*50
         self.func_index = 0
@@ -331,6 +338,10 @@ class GrampsParser:
         self.witness_comment = ""
         self.idswap = {}
         self.fidswap = {}
+        self.sidswap = {}
+        self.pidswap = {}
+        self.oidswap = {}
+        self.eidswap = {}
 
         self.func_map = {
             "address"    : (self.start_address, self.stop_address),
@@ -441,6 +452,45 @@ class GrampsParser:
             self.gid2fid[gramps_id] = intid
         return family
 
+    def find_place_by_gramps_id(self,gramps_id):
+        intid = self.gid2pid.get(gramps_id)
+        if intid:
+            place = self.db.get_place_from_handle(intid)
+        else:
+            intid = Utils.create_id()
+            place = RelLib.Place()
+            place.set_handle(intid)
+            place.set_gramps_id(gramps_id)
+            self.db.add_place(place,self.trans)
+            self.gid2pid[gramps_id] = intid
+        return place
+
+    def find_source_by_gramps_id(self,gramps_id):
+        intid = self.gid2sid.get(gramps_id)
+        if intid:
+            source = self.db.get_source_from_handle(intid)
+        else:
+            intid = Utils.create_id()
+            source = RelLib.Source()
+            source.set_handle(intid)
+            source.set_gramps_id(gramps_id)
+            self.db.add_source(source,self.trans)
+            self.gid2sid[gramps_id] = intid
+        return source
+
+    def find_object_by_gramps_id(self,gramps_id):
+        intid = self.gid2oid.get(gramps_id)
+        if intid:
+            obj = self.db.get_object_from_handle(intid)
+        else:
+            intid = Utils.create_id()
+            obj = RelLib.MediaObject()
+            obj.set_handle(intid)
+            obj.set_gramps_id(gramps_id)
+            self.db.add_object(obj,self.trans)
+            self.gid2oid[gramps_id] = intid
+        return obj
+
     def map_gid(self,id):
         if not self.idswap.get(id):
             if self.db.get_person_from_gramps_id(id):
@@ -457,6 +507,30 @@ class GrampsParser:
                 self.fidswap[id] = id
         return self.fidswap[id]
 
+    def map_pid(self,id):
+        if not self.pidswap.get(id):
+            if self.db.get_place_from_gramps_id(id):
+                self.pidswap[id] = self.db.find_next_place_gramps_id()
+            else:
+                self.pidswap[id] = id
+        return self.pidswap[id]
+
+    def map_sid(self,id):
+        if not self.sidswap.get(id):
+            if self.db.get_source_from_gramps_id(id):
+                self.sidswap[id] = self.db.find_next_source_gramps_id()
+            else:
+                self.sidswap[id] = id
+        return self.sidswap[id]
+
+    def map_oid(self,id):
+        if not self.oidswap.get(id):
+            if self.db.get_object_from_gramps_id(id):
+                self.oidswap[id] = self.db.find_next_object_gramps_id()
+            else:
+                self.oidswap[id] = id
+        return self.oidswap[id]
+
     def parse(self,file):
         self.trans = self.db.transaction_begin()
         p = xml.parsers.expat.ParserCreate()
@@ -466,6 +540,9 @@ class GrampsParser:
         p.ParseFile(file)
             
         self.db.set_researcher(self.owner)
+        if self.home != None:
+            person = self.db.find_person_from_handle(self.home,self.trans)
+            self.db.set_default_person_handle(person.get_handle())
         if self.tempDefault != None:
             id = self.map_gid(self.tempDefault)
             person = self.find_person_by_gramps_id(id)
@@ -500,14 +577,27 @@ class GrampsParser:
         self.ord.set_status(int(attrs['val']))
 
     def start_sealed_to(self,attrs):
-        id = self.map_fid(attrs['ref'])
-        self.ord.set_family_handle(self.find_family_by_gramps_id(id))
+        try:
+            family = self.db.find_family_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            id = self.map_fid(attrs['ref'])
+            family = self.find_family_by_gramps_id(id)
+        self.ord.set_family_handle(family.get_handle())
         
     def start_place(self,attrs):
-        self.placeobj = self.db.find_place_from_handle(attrs['ref'],self.trans)
+        try:
+            self.placeobj = self.db.find_place_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            id = self.map_pid(attrs['ref'])
+            self.placeobj = self.find_place_by_gramps_id(id)
         
     def start_placeobj(self,attrs):
-        self.placeobj = self.db.find_place_from_handle(attrs['id'],self.trans)
+        id = self.map_pid(attrs['id'])
+        try:
+            self.placeobj = self.db.find_place_from_handle(attrs['handle'],self.trans)
+            self.placeobj.set_gramps_id(id)
+        except KeyError:
+            self.placeobj = self.find_place_by_gramps_id(id)
         title = attrs['title']
         if title == "":
             title = attrs['id']
@@ -601,8 +691,11 @@ class GrampsParser:
             self.address.private = int(attrs["priv"])
 
     def start_bmark(self,attrs):
-        id = self.map_gid(attrs["ref"])
-        person = self.find_person_by_gramps_id(id)
+        try:
+            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            id = self.map_gid(attrs["ref"])
+            person = self.find_person_by_gramps_id(id)
         self.db.bookmarks.append(person.get_handle())
 
     def start_person(self,attrs):
@@ -611,27 +704,42 @@ class GrampsParser:
         self.count = self.count + 1
 
         new_id = self.map_gid(attrs['id'])
-        self.person = self.find_person_by_gramps_id(new_id)
+        try:
+            self.person = self.db.find_person_from_handle(attrs['handle'],self.trans)
+            self.person.set_gramps_id(new_id)
+        except KeyError:
+            self.person = self.find_person_by_gramps_id(new_id)
         
-        if attrs.has_key("complete"):
+        try:
             self.person.set_complete_flag(int(attrs['complete']))
-        else:
+        except KeyError:
             self.person.set_complete_flag(0)
 
     def start_people(self,attrs):
+        if attrs.has_key('home'):
+            self.home = attrs['home']
         if attrs.has_key("default"):
             self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
-        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+        try:
+            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.set_father_handle(person.get_handle())
 
     def start_mother(self,attrs):
-        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+        try:
+            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.set_mother_handle(person.get_handle())
     
     def start_child(self,attrs):
-        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+        try:
+            person = self.db.find_person_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.family.add_child_handle(person.get_handle())
 
     def start_url(self,attrs):
@@ -659,7 +767,12 @@ class GrampsParser:
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.find_family_by_gramps_id(self.map_fid(attrs["id"]))
+        id = self.map_fid(attrs["id"])
+        try:
+            self.family = self.db.find_family_from_handle(attrs["handle"],self.trans)
+            self.family.set_gramps_id(id)
+        except KeyError:
+            self.family = self.find_family_by_gramps_id(id)
         
         if attrs.has_key("type"):
             self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
@@ -670,7 +783,11 @@ class GrampsParser:
             self.family.set_complete_flag(0)
 
     def start_childof(self,attrs):
-        family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
+        try:
+            family = self.db.find_family_from_handle(attrs["hlink"],self.trans)
+        except KeyError:
+            family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
+            
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -682,7 +799,10 @@ class GrampsParser:
         self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):
-        family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
+        try:
+            family = self.db.find_family_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
         self.person.add_family_handle(family.get_handle())
 
     def start_name(self,attrs):
@@ -709,7 +829,11 @@ class GrampsParser:
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
-        source = self.db.find_source_from_handle(attrs["ref"],self.trans)
+        try:
+            source = self.db.find_source_from_handle(attrs["hlink"],self.trans)
+        except KeyError:
+            source = self.find_source_by_gramps_id(self.map_sid(attrs["ref"]))
+            
         if attrs.has_key("conf"):
             self.source_ref.confidence = int(attrs["conf"])
         else:
@@ -739,11 +863,20 @@ class GrampsParser:
             self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
-        self.source = self.db.find_source_from_handle(attrs["id"],self.trans)
+        id = self.map_sid(attrs["id"])
+        try:
+            self.source = self.db.find_source_from_handle(attrs["handle"],self.trans)
+            self.source.set_gramps_id(id)
+        except KeyError:
+            self.source = self.find_source_by_gramps_id(id)
 
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
-        obj = self.db.find_object_from_handle(attrs['ref'],self.trans)
+        try:
+            obj = self.db.find_object_from_handle(attrs['hlink'],self.trans)
+        except KeyError:
+            obj = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
+            
         id = obj.get_handle()
         
         self.objref.set_reference_handle(id)
@@ -761,8 +894,12 @@ class GrampsParser:
             self.placeobj.add_media_reference(self.objref)
 
     def start_object(self,attrs):
-        self.object = self.db.find_object_from_handle(attrs['id'],self.trans)
-        self.object.set_gramps_id(attrs['id'])
+        id = self.map_oid(attrs['id'])
+        try:
+            self.object = self.db.find_object_from_handle(attrs['handle'],self.trans)
+            self.object.set_gramps_id(id)
+        except KeyError:
+            self.object = self.find_object_by_gramps_id(id)
         self.object.set_mime_type(attrs['mime'])
         self.object.set_description(attrs['description'])
         src = attrs["src"]
@@ -773,7 +910,7 @@ class GrampsParser:
         pass
 
     def stop_object(self,*tag):
-        self.db.commit_media_object(self.object,self.trans)
+        self.db.commit_media_object(self.object,self.trans,self.change)
         self.object = None
 
     def stop_objref(self,*tag):
@@ -919,11 +1056,11 @@ class GrampsParser:
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
-        self.db.commit_place(self.placeobj,self.trans)
+        self.db.commit_place(self.placeobj,self.trans,self.change)
         self.placeobj = None
 
     def stop_family(self,*tag):
-        self.db.commit_family(self.family,self.trans)
+        self.db.commit_family(self.family,self.trans,self.change)
         self.family = None
         
     def stop_event(self,*tag):
@@ -938,7 +1075,7 @@ class GrampsParser:
                 self.person.set_death_handle(self.event.get_handle())
             else:
                 self.person.add_event_handle(self.event.get_handle())
-        self.db.commit_event(self.event,self.trans)
+        self.db.commit_event(self.event,self.trans,self.change)
         self.event = None
 
     def stop_name(self,tag):
@@ -965,7 +1102,7 @@ class GrampsParser:
             self.ord.set_place_handle(self.placeobj.get_handle())
         else:
             self.event.set_place_handle(self.placeobj.get_handle())
-        self.db.commit_place(self.placeobj,self.trans)
+        self.db.commit_place(self.placeobj,self.trans,self.change)
         self.placeobj = None
         
     def stop_date(self,tag):
@@ -982,7 +1119,7 @@ class GrampsParser:
         self.family = None
 
     def stop_person(self,*tag):
-        self.db.commit_person(self.person,self.trans)
+        self.db.commit_person(self.person,self.trans,self.change)
         self.person = None
 
     def stop_description(self,tag):
@@ -1007,7 +1144,7 @@ class GrampsParser:
         self.source_ref = None
 
     def stop_source(self,*tag):
-        self.db.commit_source(self.source,self.trans)
+        self.db.commit_source(self.source,self.trans,self.change)
         self.source = None
 
     def stop_sauthor(self,tag):
