@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -193,7 +194,8 @@ class MediaView:
             icon_image = Utils.find_mime_type_pixbuf('text/plain')
             self.preview.set_from_pixbuf(icon_image)
             type_name = _('Note')
-        
+        gc.collect()
+
         self.mid.set_text(mobj.get_gramps_id())
         self.mtype.set_text(type_name)
         self.mdesc.set_text(mobj.get_description())
@@ -381,7 +383,7 @@ class MediaView:
         if not node:
             return
         handle = store.get_value(node,1)
-        selection_data.set(selection_data.target, 8, handle)	
+        selection_data.set(selection_data.target, 8, handle)
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
         import urlparse
