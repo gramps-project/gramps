@@ -1093,7 +1093,7 @@ class GedcomParser:
                 info = matches[2] + self.parse_continue_data(level+1)
                 event.setCause(info)
                 self.parse_cause(event,level+1)
-            elif matches[1] == "NOTE":
+            elif matches[1] == "NOTE" or matches[1] == 'OFFI':
                 info = matches[2] + self.parse_continue_data(level+1)
                 if note == "":
                     note = info
@@ -1236,6 +1236,8 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
+                if note:
+                    event.setNote(note)
                 self.backup()
                 break
             elif matches[1] == "TYPE":
@@ -1265,6 +1267,11 @@ class GedcomParser:
                     self.placemap[val] = place
                 event.setPlace(place)
                 self.ignore_sub_junk(level+1)
+            elif matches[1] == 'OFFI':
+                if note == "":
+                    note = matches[2]
+                else:
+                    note = note + "\n" + matches[2]
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(level+1)
