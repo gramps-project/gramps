@@ -70,12 +70,15 @@ class FindBase:
             'on_close_clicked' : self.on_close_clicked,
             })
         self.top = self.glade.get_widget('find')
+        self.top.connect('delete_event',self.on_destroy)
+
         self.entry = self.glade.get_widget('entry')
         self.forward_button = self.glade.get_widget('forward')
         self.back_button = self.glade.get_widget('back')
         Utils.set_titles(self.top, self.glade.get_widget('title'), name)
         self.list = None
         self.index = 0
+        self.visible = 1
 
     def get_value(self,id):
         return id
@@ -114,8 +117,16 @@ class FindBase:
 
     def on_close_clicked(self,obj):
         """Destroys the window in response to a close window button press"""
-        self.top.destroy()
+        self.visible = 0
+        self.top.hide()
 
+    def on_destroy(self,obj,event):
+        self.on_close_clicked(obj)
+        return 1
+
+    def show(self):
+        self.top.show()
+        
     def on_next_clicked(self,obj):
         """Advances to the next person that matches the dialog text"""
         self.advance(self.forward)
