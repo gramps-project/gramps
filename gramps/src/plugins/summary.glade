@@ -90,7 +90,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>summaryTitle</name>
-	<width>400</width>
+	<width>500</width>
 	<height>16</height>
 	<label>Database Summary</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>

@@ -85,6 +85,7 @@ class CheckIntegrity:
                     if family_type[0] == family:
                         break
                 else:
+                    family.removeChild(child)
                     self.broken_links.append((child,family))
 
     #-------------------------------------------------------------------------
@@ -140,6 +141,8 @@ class CheckIntegrity:
             mother = family.getMother()
             type = family.getRelationship()
 
+            if not father or not mother:
+                continue
             if type != "Partners":
                 if father.getGender() == mother.getGender():
                     family.setRelationship("Partners")
@@ -176,10 +179,24 @@ class CheckIntegrity:
             return
 
         text = ""
-        if blink == 1:
-            text = text + _("1 broken family link was found\n")
-        elif blink > 1:
-            text = text + _("%d broken family links were found\n") % blink
+        if blink > 0:
+            if blink == 1:
+                text = text + _("1 broken family link was fixed\n")
+            else:
+                text = text + _("%d broken family links were found\n") % blink
+            for c in self.broken_links:
+                cn = c[0].getPrimaryName().getName()
+                f = c[1].getFather()
+                m = c[1].getMother()
+                if f and m:
+                    pn = _("%s and %s") % (f.getPrimaryName().getName(),\
+                                           m.getPrimaryName().getName())
+                elif f:
+                    pn = f.getPrimaryName().getName()
+                else:
+                    pn = m.getPrimaryName().getName()
+                text = text + '\t' + \
+                       _("%s was removed from the family of %s\n") % (cn,pn)
         if efam == 1:
             text = text + _("1 empty family was found\n")
         elif efam > 1:
@@ -197,7 +214,18 @@ class CheckIntegrity:
         elif pphotos > 1:
             text = text + _("%d broken personal images were found\n") % pphotos
                 
-        GnomeWarningDialog(string.strip(text))
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "summary.glade"
+        topDialog = GladeXML(glade_file,"summary")
+        topDialog.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            })
+        title = _("Check Integrity")
+        top = topDialog.get_widget("summary")
+        textwindow = topDialog.get_widget("textwindow")
+        topDialog.get_widget("summaryTitle").set_text(title)
+        textwindow.show_string(text)
+        top.show()
     
 #-------------------------------------------------------------------------
 #

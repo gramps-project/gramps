@@ -589,8 +589,8 @@ def on_choose_parents_clicked(obj):
                 family_window.get_widget("frel").set_text(_(f[2]))
                 break
         else:
-            family_window.get_widget("mrel").set_text(_("Unknown"))
-            family_window.get_widget("frel").set_text(_("Unknown"))
+            family_window.get_widget("mrel").set_text(_("Birth"))
+            family_window.get_widget("frel").set_text(_("Birth"))
 
     fcombo = family_window.get_widget("prel_combo")
     prel = family_window.get_widget("prel")
@@ -610,6 +610,8 @@ def on_choose_parents_clicked(obj):
     family_window.get_widget("chooseTitle").set_text(text)
     if active_parents:
         prel.set_text(active_parents.getRelationship())
+    else:
+        on_prel_changed(prel)
     familyDialog.show()
     
 #-------------------------------------------------------------------------
