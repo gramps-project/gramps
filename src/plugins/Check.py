@@ -58,6 +58,7 @@ def runTool(database,active_person,callback,parent=None):
 
     try:
         trans = database.transaction_begin()
+        self.trans.set_batch(True)
         checker = CheckIntegrity(database,parent,trans)
         checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
@@ -356,25 +357,12 @@ class CheckIntegrity:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
             for (person_handle,family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
-                family = self.db.get_family_from_handle(family_handle)
                 if person:
                     cn = person.get_primary_name().get_name()
                 else:
                     cn = _("Non existing child")
-                if family:
-                    f = self.db.get_person_from_handle(family.get_father_handle())
-                    m = self.db.get_person_from_handle(family.get_mother_handle())
-                    if f and m:
-                        pn = _("%s and %s") % (f.get_primary_name().get_name(),\
-                                           m.get_primary_name().get_name())
-                    elif f:
-                        pn = f.get_primary_name().get_name()
-                    elif m:
-                        pn = m.get_primary_name().get_name()
-                    else:
-                        pn = _("unknown")
-                else:
-                    pn = _("Non existing family")
+                family = self.db.get_family_from_handle(family_handle)
+                pn = Utils.family_name(family,self.db)
                 self.text.write('\t')
                 self.text.write(_("%s was removed from the family of %s\n") % (cn,pn))
 
@@ -385,22 +373,12 @@ class CheckIntegrity:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for (person_handle,family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
-                family = self.db.get_family_from_handle(family_handle)
                 if person:
                     cn = person.get_primary_name().get_name()
                 else:
                     cn = _("Non existing person")
-                f = self.db.get_person_from_handle(family.get_father_handle())
-                m = self.db.get_person_from_handle(family.get_mother_handle())
-                if f and m:
-                    pn = _("%s and %s") % (f.get_primary_name().get_name(),\
-                                           m.get_primary_name().get_name())
-                elif f:
-                    pn = f.get_primary_name().get_name()
-                elif m:
-                    pn = m.get_primary_name().get_name()
-                else:
-                    pn = "Non existing person"
+                family = self.db.get_family_from_handle(family_handle)
+                pn = Utils.family_name(family,self.db)
                 self.text.write('\t')
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
