@@ -62,13 +62,15 @@ class AncestorReport(Report.Report):
         else:
             self.standalone = 0
         
-    def filter(self,person,index,generation=1):
-        if person == None or generation >= self.max_generations:
+    def filter(self,person_id,index,generation=1):
+        if not person_id or generation >= self.max_generations:
             return
-        self.map[index] = person
-    
-        family = person.get_main_parents_family_id()
-        if family != None:
+        self.map[index] = person_id
+
+        person = self.database.find_person_from_id(person_id)
+        family_id = person.get_main_parents_family_id()
+        if family_id:
+            family = self.database.find_family_from_id(family_id)
             self.filter(family.get_father_id(),index*2,generation+1)
             self.filter(family.get_mother_id(),(index*2)+1,generation+1)
 
@@ -77,7 +79,9 @@ class AncestorReport(Report.Report):
         if self.newpage:
             self.doc.page_break()
 
-        self.filter(self.start,1)
+        self.filter(self.start.get_id(),1)
+
+        print self.map
         
         name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("AHN-Title")
@@ -100,7 +104,8 @@ class AncestorReport(Report.Report):
                 generation = generation + 1
 
             self.doc.start_paragraph("AHN-Entry","%s." % str(key))
-            person = self.map[key]
+            person_id = self.map[key]
+            person = self.database.find_person_from_id(person_id)
             name = person.get_primary_name().get_regular_name()
         
             self.doc.start_bold()
@@ -113,13 +118,18 @@ class AncestorReport(Report.Report):
 
             # Check birth record
         
-            birth = person.get_birth()
-            if birth:
+            birth_id = person.get_birth_id()
+            if birth_id:
+                birth = self.database.find_event_from_id(birth_id)
                 date = birth.get_date_object().get_start_date()
-                place = birth.get_place_name()
+                place_id = birth.get_place_id()
+                if place_id:
+                    place = self.database.find_place_from_id(place_id).get_title()
+                else:
+                    place = u''
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.get_date() != "" or place != "":
+                if date.get_date() != "" or place_id:
                     if date.get_date() != "":
                         if date.getDayValid() and date.getMonthValid():
                             if place != "":
@@ -137,18 +147,24 @@ class AncestorReport(Report.Report):
                                     (name,date.get_date())
                         self.doc.write_text(t)
 
-            death = person.get_death()
             buried = None
-            for event in person.get_event_list():
+            for event_id in person.get_event_list():
+                event = self.database.find_event_from_id(event_id)
                 if string.lower(event.get_name()) == "burial":
                     buried = event
         
-            if death:
+            death_id = person.get_death_id()
+            if death_id:
+                death = self.database.find_event_from_id(death_id)
                 date = death.get_date_object().get_start_date()
-                place = death.get_place_name()
+                place_id = death.get_place_id()
+                if place_id:
+                    place = self.database.find_place_from_id(place_id).get_title()
+                else:
+                    place = u''
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.get_date() != "" or place != "":
+                if date.get_date() != "" or place_id:
                     if person.get_gender() == RelLib.Person.male:
                         male = 1
                     else:
@@ -186,10 +202,14 @@ class AncestorReport(Report.Report):
 
                     if buried:
                         date = buried.get_date_object().get_start_date()
-                        place = buried.get_place_name()
+                        place_id = buried.get_place_id()
+                        if place_id:
+                            place = self.database.find_place_from_id(place_id).get_title()
+                        else:
+                            place = u''
                         if place[-1:] == '.':
                             place = place[:-1]
-                        if date.get_date() != "" or place != "":
+                        if date.get_date() != "" or place_id:
                             if date.get_date() != "":
                                 if date.getDayValid() and date.getMonthValid():
                                     if place != "":

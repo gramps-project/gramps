@@ -64,13 +64,15 @@ class FtmAncestorReport(Report.Report):
         self.sref_map = {}
         self.sref_index = 0
         
-    def apply_filter(self,person,index,generation=1):
-        if person == None or generation > self.max_generations:
+    def apply_filter(self,person_id,index,generation=1):
+        if not person_id or generation >= self.max_generations:
             return
-        self.map[index] = (person,generation)
-    
-        family = person.get_main_parents_family_id()
-        if family != None:
+        self.map[index] = (person_id,generation)
+
+        person = self.database.find_person_from_id(person_id)
+        family_id = person.get_main_parents_family_id()
+        if family_id:
+            family = self.database.find_family_from_id(family_id)
             self.apply_filter(family.get_father_id(),index*2,generation+1)
             self.apply_filter(family.get_mother_id(),(index*2)+1,generation+1)
 
@@ -79,7 +81,7 @@ class FtmAncestorReport(Report.Report):
         if self.newpage:
             self.doc.page_break()
 
-        self.apply_filter(self.start,1)
+        self.apply_filter(self.start.get_id(),1)
         
         name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("FTA-Title")
@@ -91,7 +93,7 @@ class FtmAncestorReport(Report.Report):
         keys.sort()
         old_gen = 0
         for key in keys :
-            (person,generation) = self.map[key]
+            (person_id,generation) = self.map[key]
             if old_gen != generation:
                 if self.pgbrk and generation > 1:
                     self.doc.page_break()
@@ -101,6 +103,7 @@ class FtmAncestorReport(Report.Report):
                 self.doc.end_paragraph()
                 old_gen = generation
 
+            person = self.database.find_person_from_id(person_id)
             pri_name = person.get_primary_name()
             self.doc.start_paragraph("FTA-Entry","%d." % key)
             name = pri_name.get_regular_name()
@@ -110,16 +113,35 @@ class FtmAncestorReport(Report.Report):
 
             # Check birth record
         
-            birth = person.get_birth()
-            bplace = birth.get_place_name()
-            bdate = birth.get_date()
+            birth_id = person.get_birth_id()
+            if birth_id:
+                birth_valid = 1
+                birth = self.database.find_event_from_id(birth_id)
+                place_id = birth.get_place_id()
+                if place_id:
+                    bplace = self.database.find_place_from_id(place_id).get_title()
+                else:
+                    bplace = u''
+                bdate = birth.get_date()
+            else:
+                birth_valid = 0
+                bplace = u''
+                bdate = u''
 
-            death = person.get_death()
-            dplace = death.get_place_name()
-            ddate = death.get_date()
-
-            birth_valid = bdate != "" or bplace != ""
-            death_valid = ddate != "" or dplace != ""
+            death_id = person.get_death_id()
+            if death_id:
+                death_valid = 1
+                death = self.database.find_event_from_id(death_id)
+                place_id = death.get_place_id()
+                if place_id:
+                    dplace = self.database.find_place_from_id(place_id).get_title()
+                else:
+                    dplace = u''
+                ddate = death.get_date()
+            else:
+                death_valid = 0
+                dplace = u''
+                ddate = u''
 
             if birth_valid or death_valid:
                 if person.get_gender() == RelLib.Person.male:
@@ -426,12 +448,12 @@ class FtmAncestorReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            base = srcref.get_base_id()
+            base = self.database.find_source_from_id(srcref.get_base_id())
             
             self.doc.start_paragraph('FTA-Endnotes',"%d." % key)
             self.doc.write_text(base.get_title())
 
-            for item in [ base.get_author(), base.get_publication_info(), base.getAbbrev(),
+            for item in [ base.get_author(), base.get_publication_info(), base.get_abbreviation(),
                           srcref.get_date().get_date(),]:
                 if item:
                     self.doc.write_text('; %s' % item)
@@ -510,11 +532,16 @@ class FtmAncestorReport(Report.Report):
             self.doc.end_paragraph()
             ncount += 1
             
-        for event in person.get_event_list():
+        for event_id in person.get_event_list():
+            event = self.database.find_event_from_id(event_id)
             date = event.get_date()
-            place = event.get_place_id()
-
-            if not date and not place:
+            place_id = event.get_place_id()
+            if place_id:
+                place = self.database.find_place_from_id(place_id).get_title()
+            else:
+                place = u''
+                
+            if not date and not place_id:
                 continue
             if first:
                 self.doc.start_paragraph('FTA-SubEntry')
@@ -528,19 +555,19 @@ class FtmAncestorReport(Report.Report):
             if date and place:
                 self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
                     'event_name' : _(event.get_name()),
-                    'date' : event.get_date(),
+                    'date' : date,
                     'endnotes' : self.endnotes(event),
-                    'place' : event.get_place_name() })
+                    'place' : place })
             elif date:
                 self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s. ') % {
                     'event_name' : _(event.get_name()),
                     'endnotes' : self.endnotes(event),
-                    'date' : event.get_date()})
+                    'date' : date})
             else:
                 self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s. ') % {
                     'event_name' : _(event.get_name()),
                     'endnotes' : self.endnotes(event),
-                    'place' : event.get_place_name() })
+                    'place' : place })
             if event.get_description():
                 self.doc.write_text(event.get_description())
             self.doc.end_paragraph()
@@ -549,78 +576,110 @@ class FtmAncestorReport(Report.Report):
         family_list = person.get_family_id_list()
         if not family_list:
             return
-        family = family_list[0]
-        if family.get_father_id() == person:
-            spouse = family.get_mother_id()
+        family_id = family_list[0]
+        family = self.database.find_family_from_id(family_id)
+        if family.get_father_id() == person.get_id():
+            spouse_id = family.get_mother_id()
         else:
-            spouse = family.get_father_id()
-        if not spouse:
+            spouse_id = family.get_father_id()
+        if not spouse_id:
             return
-        event = family.get_marriage()
-        if not event:
+        spouse = self.database.find_person_from_id(spouse_id)
+        spouse_name = spouse.get_primary_name().get_regular_name()
+
+        for event_id in family.get_event_list():
+            if event_id:
+                event = self.database.find_event_from_id(event_id)
+                if event.get_name() == "Marriage":
+                    break
+        else:
             return
+
         date = event.get_date()
-        place = event.get_place_name()
+        place_id = event.get_place_id()
+        if place_id:
+            place = self.database.find_place_from_id(place_id).get_title()
+        else:
+            place = u''
 
         if date and place:
             if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     'date' : date,
                     'place' : place})
             else:
                 self.doc.write_text(_('She married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'date' : date,
                     'endnotes' : self.endnotes(event),
                     'place' : place})
         elif date:
             if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s %(date)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     'date' : date,})
             else:
                 self.doc.write_text(_('She married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     'place' : place,})
         elif place:
             if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     'place' : place})
             else:
                 self.doc.write_text(_('She married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     'place' : place})
         else:
             if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     })
             else:
                 self.doc.write_text(_('She married %(spouse)s%(endnotes)s.') % {
-                    'spouse' : spouse.get_primary_name().get_regular_name(),
+                    'spouse' : spouse_name,
                     'endnotes' : self.endnotes(event),
                     })
         self.doc.write_text(' ')
 
-        death = spouse.get_death()
-        dplace = death.get_place_name()
-        ddate = death.get_date()
-        
-        birth = spouse.get_birth()
-        bplace = birth.get_place_name()
-        bdate = birth.get_date()
-        
-        death_valid = ddate != "" or dplace != ""
-        birth_valid = bdate != "" or bplace != ""
+        death_id = spouse.get_death_id()
+        if death_id:
+            death_valid = 1
+            death = self.database.find_event_from_id(death_id)
+            ddate = death.get_date()
+            place_id = death.get_place_id()
+            if place_id:
+                dplace = self.database.find_place_from_id(place_id).get_title()
+            else:
+                dplace = u''
+        else:
+            death_valid = 0
+            dplace = u''
+            ddate = u''
 
+        birth_id = spouse.get_birth_id()
+        if birth_id:
+            birth_valid = 1
+            birth = self.database.find_event_from_id(birth_id)
+            bdate = birth.get_date()
+            place_id = birth.get_place_id()
+            if place_id:
+                bplace = self.database.find_place_from_id(place_id).get_title()
+            else:
+                bplace = u''
+        else:
+            birth_valid = 0
+            bplace = u''
+            bdate = u''
+        
         if birth_valid or death_valid:
             if spouse.get_gender() == RelLib.Person.male:
                 if bdate:
@@ -897,58 +956,66 @@ class FtmAncestorReport(Report.Report):
 
 
     def print_parents(self,person,dead):
-        family = person.get_main_parents_family_id()
-        if family:
-            mother = family.get_mother_id()
-            father = family.get_father_id()
+        family_id = person.get_main_parents_family_id()
+        if family_id:
+            family = self.database.find_family_from_id(family_id)
+            mother_id = family.get_mother_id()
+            father_id = family.get_father_id()
+            if mother_id:
+                mother = self.database.find_person_from_id(mother_id)
+                mother_name = mother.get_primary_name().get_regular_name()
+            if father_id:
+                father = self.database.find_person_from_id(father_id)
+                father_name = father.get_primary_name().get_regular_name()
+                
             if person.get_gender() == RelLib.Person.male:
-                if mother and father:
+                if mother_id and father_id:
                     if dead:
                         self.doc.write_text(_("He was the son of %(father)s and %(mother)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(),
-                            'mother' : mother.get_primary_name().get_regular_name(), })
+                            'father' : father_name,
+                            'mother' : mother_name, })
                     else:
                         self.doc.write_text(_("He is the son of %(father)s and %(mother)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(),
-                            'mother' : mother.get_primary_name().get_regular_name(), })
-                elif mother:
+                            'father' : father_name,
+                            'mother' : mother_name, })
+                elif mother_id:
                     if dead:
                         self.doc.write_text(_("He was the son of %(mother)s.") % {
-                            'mother' : mother.get_primary_name().get_regular_name(), })
+                            'mother' : mother_name, })
                     else:
                         self.doc.write_text(_("He is the son of %(mother)s.") % {
-                            'mother' : mother.get_primary_name().get_regular_name(), })
-                elif father:
+                            'mother' : mother_name, })
+                elif father_id:
                     if dead:
                         self.doc.write_text(_("He was the son of %(father)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(), })
+                            'father' : father_name, })
                     else:
                         self.doc.write_text(_("He is the son of %(father)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(), })
+                            'father' : father_name, })
             else:
-                if mother and father:
+                if mother_id and father_id:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(father)s and %(mother)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(),
-                            'mother' : mother.get_primary_name().get_regular_name(), })
+                            'father' : father_name,
+                            'mother' : mother_name, })
                     else:
                         self.doc.write_text(_("She is the daughter of %(father)s and %(mother)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(),
-                            'mother' : mother.get_primary_name().get_regular_name(), })
-                elif mother:
+                            'father' : father_name,
+                            'mother' : mother_name, })
+                elif mother_id:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(mother)s.") % {
-                            'mother' : mother.get_primary_name().get_regular_name(), })
+                            'mother' : mother_name, })
                     else:
                         self.doc.write_text(_("She is the daughter of %(mother)s.") % {
-                            'mother' : mother.get_primary_name().get_regular_name(), })
-                elif father:
+                            'mother' : mother_name, })
+                elif father_id:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(father)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(), })
+                            'father' : father_name, })
                     else:
                         self.doc.write_text(_("She is the daughter of %(father)s.") % {
-                            'father' : father.get_primary_name().get_regular_name(), })
+                            'father' : father_name, })
             self.doc.write_text(' ');
 
 
