@@ -312,51 +312,20 @@ class MediaView:
             return
 
         handle = store.get_value(node,_HANDLE_COL)
-        mobj = self.db.get_object_from_handle(handle)
-        if self.is_object_used(mobj):
-            ans = ImageSelect.DeleteMediaQuery(mobj,self.db,
-                                               self.model.delete_row_by_handle)
-            QuestionDialog(_('Delete Media Object?'),
-                           _('This media object is currently being used. '
-                             'If you delete this object, it will be removed '
-                             'from the database and from all records that '
-                             'reference it.'),
-                           _('_Delete Media Object'),
-                           ans.query_response)
+        the_lists = Utils.get_media_referents(handle,self.db)
+
+        ans = ImageSelect.DeleteMediaQuery(handle,self.db,the_lists,
+                                           self.model.delete_row_by_handle)
+        if filter(None,the_lists): # quick test for non-emptiness
+            msg = _('This media object is currently being used. '
+                    'If you delete this object, it will be removed from '
+                    'the database and from all records that reference it.')
         else:
-            self.delete_object(mobj)
+            msg = _('Deleting media object will remove it from the database.')
 
-    def delete_object(self,media_obj):
-        trans = self.parent.db.transaction_begin()
-        mobj_handle = media_obj.get_handle()
-        self.parent.db.remove_object(mobj_handle,trans)
-        title_msg = _("Delete Media Object?")
-        self.parent.db.transaction_commit(trans,title_msg)
-        self.model.delete_row_by_handle(mobj_handle)
-
-    def is_object_used(self,mobj):
-        mhandle = mobj.get_handle()
-        for family_handle in self.db.get_family_handles():
-            p = self.db.get_family_from_handle(family_handle)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == mhandle:
-                    return True
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == mhandle:
-                    return True
-        for key in self.db.get_source_handles(sort_handles=False):
-            p = self.db.get_source_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == mhandle:
-                    return True
-        for key in self.db.get_place_handles(sort_handles=False):
-            p = self.db.get_place_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == mhandle:
-                    return True
-        return False
+        msg = "%s %s" % (msg,Utils.data_recover_msg)
+        QuestionDialog(_('Delete Media Object?'),msg,
+                      _('_Delete Media Object'),ans.query_response)
 
     def on_drag_drop(self, tree, context, x, y, time):
         self.list.emit_stop_by_name('drag-drop')

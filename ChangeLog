@@ -10,6 +10,20 @@
 	* src/SourceView.py (on_delete_clicked): Use new sourceref detection;
 	(delete_source,is_used): Remove functions.
 
+	* src/Utils.py (get_media_referents): Add function;
+	Add generic data recovery message.
+	* src/gramps_main.py (delete_person_clicked): Use generic data recovery
+	message.
+	* src/SourceView.py (on_delete_clicked): Use generic data recovery
+	message.
+	* src/EditSource.py (display_references): Change list headings.
+	* src/MediaView.py (on_delete_clicked): Use new mediaref detector;
+	Use generic data recovery message; (delete_objectmis-object_used):
+	Remove functions.
+	* src/ImageSelect.py (GlobalMediaProperties.display_ref): Use new
+	sourceref detection; (DeleteMediaQuery__init__): Accept object handle
+	and lists; (DeleteMediaQuery.query_response): Use new mediaref removal.
+	
 2005-03-11  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (PersonWithIncompleteEvent, 
 	FamilyWithIncompleteEvent, ProbablyAlive,PeoplePrivate):

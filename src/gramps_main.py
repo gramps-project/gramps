@@ -1316,12 +1316,10 @@ class Gramps:
             self.active_person = p
             name = NameDisplay.displayer.display(p) 
 
-            QuestionDialog(_('Delete %s?') % name,
-                           _('Deleting the person will remove the person '
-                             'from the database. The data can only be '
-                             'recovered by closing the database without saving '
-                             'changes. This change will become permanent '
-                             'after you save the database.'),
+            msg = _('Deleting the person will remove the person '
+                             'from the database.')
+            msg = "%s %s" % (msg,Utils.data_recover_msg)
+            QuestionDialog(_('Delete %s?') % name,msg,
                            _('_Delete Person'),
                            self.delete_person_response)
 

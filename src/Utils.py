@@ -69,6 +69,9 @@ def history_broken():
     global _history_brokenFlag
     _history_brokenFlag = 1
 
+data_recover_msg = _('The data can only be recovered by Undo operation '
+            'or by quitting with abandoning changes.')
+
 #-------------------------------------------------------------------------
 #
 # force_unicode
@@ -539,6 +542,52 @@ def get_source_referents(source_handle,db):
 
     return (person_list,family_list,event_list,
                 place_list,source_list,media_list)
+
+def get_media_referents(media_handle,db):
+    """
+    Find objects that refer the media object.
+
+    This function finds all primary objects that refer
+    to a given media handle in a given database.
+    """
+
+    # Persons
+    person_list = [ handle \
+            for handle in db.get_person_handles(sort_handles=False) \
+            if media_handle in \
+                    [photo.get_reference_handle() for photo \
+                    in db.get_person_from_handle(handle).get_media_list()]
+    ]
+
+    # Families
+    family_list = [ handle for handle in db.get_family_handles() \
+            if media_handle in \
+                    [photo.get_reference_handle() for photo \
+                    in db.get_family_from_handle(handle).get_media_list()]
+    ]
+
+    # Events
+    event_list = [ handle for handle in db.get_event_handles() \
+            if media_handle in \
+                    [photo.get_reference_handle() for photo \
+                    in db.get_event_from_handle(handle).get_media_list()]
+    ]
+
+    # Places
+    place_list = [ handle for handle in db.get_place_handles() \
+            if media_handle in \
+                    [photo.get_reference_handle() for photo \
+                    in db.get_place_from_handle(handle).get_media_list()]
+    ]
+
+    # Sources
+    source_list = [ handle for handle in db.get_source_handles() \
+            if media_handle in \
+                    [photo.get_reference_handle() for photo \
+                    in db.get_source_from_handle(handle).get_media_list()]
+    ]
+
+    return (person_list,family_list,event_list,place_list,source_list)
 
 #-------------------------------------------------------------------------
 #
