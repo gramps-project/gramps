@@ -642,7 +642,7 @@ class Gramps:
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
 
-            mlist = self.person_tree.get_selected_objects()
+            mlist = self.people_view.person_tree.get_selected_objects()
 
             if len(mlist) != 2:
                 msg = _("Cannot merge people.")
@@ -1423,7 +1423,7 @@ class Gramps:
 
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
-        mlist = self.person_tree.get_selected_objects()
+        mlist = self.people_view.person_tree.get_selected_objects()
         if mlist and self.active_person == self.db.getPerson(mlist[0]):
             self.load_person(self.active_person)
 
@@ -1442,7 +1442,7 @@ class Gramps:
             DisplayTrace.DisplayTrace()
 
     def delete_person_clicked(self,obj):
-        mlist = self.person_tree.get_selected_objects()
+        mlist = self.people_view.person_tree.get_selected_objects()
 
         for sel in mlist:
             p = self.db.getPerson(sel)
@@ -1481,8 +1481,8 @@ class Gramps:
             family.removeChild(self.active_person)
             
         self.db.removePerson(self.active_person.getId())
-        self.remove_from_person_list(self.active_person)
-        self.person_model.sort_column_changed()
+        self.people_view.remove_from_person_list(self.active_person)
+        self.people_view.person_model.sort_column_changed()
         try:
             self.mhistory = self.mhistory[:-2]
             self.change_active_person(self.mhistory[-2])
@@ -1493,9 +1493,9 @@ class Gramps:
         Utils.modified()
 
     def merge_update(self,p1,p2,old_id):
-        self.remove_from_person_list(p1,old_id)
-        self.remove_from_person_list(p2)
-        self.redisplay_person_list(p1)
+        self.people_view.remove_from_person_list(p1,old_id)
+        self.people_view.remove_from_person_list(p2)
+        self.people_view.redisplay_person_list(p1)
         self.update_display(0)
     
     def goto_active_person(self,first=0):
@@ -1783,10 +1783,6 @@ class Gramps:
             self.people_view.remove_from_person_list(person,old_id)
             self.people_view.redisplay_person_list(person)
         self.update_display(0)
-
-        
-    def redisplay_person_list(self,person):
-        self.people_view.add_to_person_list(person,1)
 
     def load_person(self,person):
         if person:
