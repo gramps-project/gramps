@@ -171,7 +171,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.copyright_entry.set_text(self.copyright_string)
         if self.object_id:
             object = self.db.getObject(self.object_id)
-            self.title_label.set_text(object.getDescription())
+            self.obj_title.set_text(object.getDescription())
             the_type = Utils.get_mime_description(object.getMimeType())
             path = object.getPath()
             thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
@@ -217,24 +217,36 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
     def add_user_options(self):
         self.title_entry = gtk.Entry()
         self.copyright_entry = gtk.Entry()
+        self.add_frame_option(_('Text'),_('Title String'),self.title_entry)
+        self.add_frame_option(_('Text'),_('Subtitle String'),self.copyright_entry)
         
-        self.frame = gtk.Frame()
+        frame = gtk.Frame()
+        frame.set_size_request(96,96)
         self.preview = gtk.Image()
-        self.preview.set_size_request(96,96)
-        self.title_label = gtk.Label('')
-        self.select_obj_button = gtk.Button(_('Select...'))
-        self.select_obj_button.connect('clicked',self.select_obj)
+        frame.add(self.preview)
+        self.obj_title = gtk.Label('')
+        self.remove_obj_button = gtk.Button(None,gtk.STOCK_REMOVE)
+        self.remove_obj_button.connect('clicked',self.remove_obj)
+        self.remove_obj_button.set_sensitive(gtk.FALSE)
+        preview_table = gtk.Table(2,1)
+        preview_table.set_row_spacings(10)
+        preview_table.attach(frame,0,1,1,2,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+        preview_table.attach(self.obj_title,0,1,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
 
-        table = gtk.Table(2,2)
-        table.set_row_spacings(6)
-        table.set_col_spacings(6)
-        table.attach(self.preview,0,1,0,1)
-        table.attach(self.title_label,0,1,1,2)
-        table.attach(self.select_obj_button,1,2,1,2,gtk.SHRINK|gtk.FILL)
-
-        self.add_frame_option(_('Contents'),_('Title String'),self.title_entry)
-        self.add_frame_option(_('Contents'),_('Image'),table)
-        self.add_frame_option(_('Contents'),_('Subtitle String'),self.copyright_entry)
+        select_obj_button = gtk.Button(_('From gallery...'))
+        select_obj_button.connect('clicked',self.select_obj)
+        select_file_button = gtk.Button(_('From file...'))
+        select_file_button.connect('clicked',self.select_file)
+        select_table = gtk.Table(1,3)
+        select_table.set_col_spacings(10)
+        select_table.attach(select_obj_button,
+                0,1,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+        select_table.attach(select_file_button,
+                1,2,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+        select_table.attach(self.remove_obj_button,
+                2,3,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+        self.add_frame_option(_('Image'),_('Preview'),preview_table)
+        self.add_frame_option(_('Image'),_('Select'),select_table)
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
@@ -249,12 +261,20 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
     def on_cancel(self, obj):
         pass
 
+    def remove_obj(self, obj):
+        self.object_id = None
+        self.obj_title.set_text('')
+        self.preview.set_from_pixbuf(None)
+        self.remove_obj_button.set_sensitive(gtk.FALSE)
+        
     def select_obj(self, obj):
         s_o = SelectObject.SelectObject(self.db,_("Select an Object"))
         object = s_o.run()
-        self.object_id = object.getId()
-
-        self.title_label.set_text(object.getDescription())
+        if object:
+            self.object_id = object.getId()
+        else:
+            return
+        self.obj_title.set_text(object.getDescription())
         the_type = Utils.get_mime_description(object.getMimeType())
         path = object.getPath()
         thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
@@ -264,7 +284,10 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         else:
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
             self.preview.set_from_pixbuf(icon_image)
-        
+        self.remove_obj_button.set_sensitive(gtk.TRUE)
+
+    def select_file(self, obj):
+        pass
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
