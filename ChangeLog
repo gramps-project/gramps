@@ -5,6 +5,7 @@
 	* src/plugins/BookReport.py: Add context menus to the dialog. 
 	* src/FamilyView.py: Properly refer to gtk stock items. 
 	* src/gramps_main.py: Likewise. 
+	* src/plugins/DesGraph.py: Enable Book item functionality.
 
 2003-08-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: don't add columns to family view items
