@@ -1104,6 +1104,12 @@ class GrampsDbBase:
                 return cols + default[len(cols):]
             else:
                 return cols
+
+    def get_thumbnail_image(self,handle):
+        return None
+
+    def set_thumbnail_image(self,handle,path):
+        pass
             
 class Transaction:
     """

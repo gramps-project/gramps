@@ -331,27 +331,6 @@ def get_mime_description(mime_type):
             return ''
     except:
         return ''
-    
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def thumb_path(dir,mobj):
-    mime_type = mobj.get_mime_type()
-
-    if mime_type[0:5] == "image":
-        thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_gramps_id())
-        try:
-            if RelImage.check_thumb(mobj.get_path(),thumb,const.thumbScale):
-                return thumb
-            else:
-                return find_icon(mime_type)
-        except:
-            return find_icon(mime_type)
-    else:
-        return find_icon(mime_type)
 
 #-------------------------------------------------------------------------
 #

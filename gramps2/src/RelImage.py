@@ -40,10 +40,6 @@ from QuestionDialog import ErrorDialog, WarningDialog
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
-import ImgManip
-import GrampsMime
-
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -59,51 +55,7 @@ def import_media_object(filename,path,base):
                     _("The file has been moved or deleted"))
         return ""
 
-    ext = os.path.splitext(filename)[1]
-    
-    mtype = GrampsMime.get_type(filename)
-    if mtype[0:5] == "image":
-        name = "%s/%s%s" % (os.path.dirname(path),base,ext)
-        thumb = "%s/.thumb" % (os.path.dirname(path))
-
-        try:
-            if not os.path.exists(thumb):
-                os.mkdir(thumb)
-        except IOError,msg:
-            ErrorDialog(_("Could not create %s") % thumb,str(msg))
-            return ""
-        except:
-            ErrorDialog(_("Could not create %s") % thumb)
-            return ""
-        
-        try:
-            path = "%s/%s.jpg" % (thumb,base)
-            mk_thumb(filename,path,const.thumbScale)
-        except:
-            ErrorDialog(_("Error creating the thumbnail: %s"))
-            return ""
-
-        try:
-            shutil.copyfile(filename,name)
-            try:
-                shutil.copystat(filename,name)
-            except:
-                pass
-        except IOError,msg:
-            ErrorDialog(_("Error copying %s") % filename,str(msg))
-            return ""
-
-    else:
-        bname = os.path.basename(filename)
-        l = string.split(bname,'.')
-        name = "%s/%s.%s" % (path,base,l[-1])
-        shutil.copyfile(filename,name)
-        try:
-            shutil.copystat(filename,name)
-        except:
-            pass
-
-    return name
+    return filename
 
 #-------------------------------------------------------------------------
 #
@@ -124,75 +76,12 @@ def scale_image(path,size):
 
     scale = size / float(max(width,height))
     try:
-        return image1.scale_simple(int(scale*width), int(scale*height), gtk.gdk.INTERP_BILINEAR)
+        return image1.scale_simple(int(scale*width), int(scale*height),
+                                   gtk.gdk.INTERP_BILINEAR)
     except:
         WarningDialog(_("Cannot display %s") % path,
                       _('GRAMPS is not able to display the image file. '
                         'This may be caused by a corrupt file.'))
         return gtk.gdk.pixbuf_new_from_file(const.icon)
 
-#-------------------------------------------------------------------------
-#
-# scale_image
-#
-#-------------------------------------------------------------------------
-def mk_thumb(source,dest,size):
-    directory = os.path.dirname(dest)
-
-    source = os.path.normpath(source)
-    dest = os.path.normpath(dest)
-
-    try:
-        if not os.path.exists(directory):
-            os.mkdir(directory)
-    except IOError,msg:
-        ErrorDialog(_("Could not create %s") % directory, str(msg))
-        return
-    except:
-        ErrorDialog(_("Could not create %s") % directory)
-        return
-
-    if os.path.exists(dest):
-        try:
-            os.remove(dest)
-        except IOError,msg:
-            errmsg = _("Could not replace %s") % directory
-            ErrorDialog(errmsg,msg)
-            return
-
-    if not os.path.exists(source):
-        ErrorDialog(_("Could not create a thumbnail for %s") % source,
-                    _("The file has been moved or deleted."))
-        
-    try:
-        img = ImgManip.ImgManip(source)
-        img.jpg_thumbnail(dest,size,size)
-    except:
-        import sys
-        ErrorDialog(_("Could not create a thumbnail for %s") % source,
-                    "%s %s" % (sys.exc_type,sys.exc_value))
-        return
-
-#-------------------------------------------------------------------------
-#
-# scale_image
-#
-#-------------------------------------------------------------------------
-def check_thumb(source,dest,size):
-    if not os.path.isfile(source):
-        return 0
-    if not os.path.isfile(dest):
-        mk_thumb(source,dest,size)
-    elif os.path.getmtime(source) > os.path.getmtime(dest):
-        mk_thumb(source,dest,size)
-    return 1
-
-
-#-------------------------------------------------------------------------
-#
-# Test if there's convert available
-#
-#-------------------------------------------------------------------------
-def is_cnv():
-    return Utils.search_for('convert')
 

@@ -155,7 +155,7 @@ class ImageSelect:
     def on_savephoto_clicked(self):
         """Save the photo in the dataobj object.  (Required function)"""
         global _last_path
-        
+
         filename = self.fname.get_filename()
         _last_path = os.path.dirname(filename)
         
@@ -176,9 +176,6 @@ class ImageSelect:
                 already_imported = o
                 break
 
-        # fix referenes here
-        # dna
-        
         if (already_imported):
             oref = RelLib.MediaRef()
             oref.set_reference_handle(already_imported.get_handle())
@@ -191,8 +188,8 @@ class ImageSelect:
                 description = os.path.basename(filename)
             mobj.set_description(description)
             mobj.set_mime_type(mtype)
-            self.savephoto(mobj)
             mobj.set_path(filename)
+            self.savephoto(mobj)
             self.db.commit_media_object(mobj,trans)
 
         self.db.transaction_commit(trans,'Edit Media Objects')
@@ -270,9 +267,7 @@ class Gallery(ImageSelect):
     def on_drag_begin(self,obj,context):
         if const.dnd_images:
             handle = self.sel_obj.get_reference_handle()
-            obj = self.db.get_object_from_handle(handle)
-            name = Utils.thumb_path(self.db.get_save_path(),obj)
-            pix = gtk.gdk.pixbuf_new_from_file(name)
+            pix = self.db.get_thumbnail_image(handle)
             context.set_icon_pixbuf(pix,0,0)
 
     def item_event(self, widget, event=None):
@@ -355,9 +350,12 @@ class Gallery(ImageSelect):
 
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
+        print "In save photo"
         self.db.add_object(photo,None)
         oref = RelLib.MediaRef()
         oref.set_reference_handle(photo.get_handle())
+        print photo.get_handle(), photo.get_path()
+        self.db.set_thumbnail_image(photo.get_handle(),photo.get_path())
         self.dataobj.add_media_reference(oref)
 
     def add_thumbnail(self, photo):
@@ -371,19 +369,18 @@ class Gallery(ImageSelect):
         else:
             import gobject
             
-            name = Utils.thumb_path(self.db.get_save_path(),obj)
-
             description = obj.get_description()
             if len(description) > 20:
                 description = "%s..." % description[0:20]
 
             try:
-                image = gtk.gdk.pixbuf_new_from_file(name)
+                image = self.db.get_thumbnail_image(oid)
+                if not image:
+                    image = gtk.gdk.pixbuf_new_from_file(const.icon)
             except gobject.GError,msg:
                 ErrorDialog(str(msg))
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
             except:
-                ErrorDialog(_("Thumbnail %s could not be found") % name)
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
             
             x = image.get_width()
@@ -473,7 +470,8 @@ class Gallery(ImageSelect):
                 photo.set_description(root)
                 self.savephoto(photo)
                 if GrampsGconfKeys.get_media_reference() == 0:
-                    name = RelImage.import_media_object(name,self.path,photo.get_handle())
+                    self.db.set_thumbnail_image(photo.get_handle(),
+                                                self.path)
                     photo.set_path(name)
                 self.parent.lists_changed = 1
                 if GrampsGconfKeys.get_media_global():
@@ -499,7 +497,7 @@ class Gallery(ImageSelect):
                 self.dataobj.add_media_reference(oref)
                 try:
                     handle = photo.get_handle()
-                    name = RelImage.import_media_object(tfile,self.path,handle)
+                    self.db.set_thumbnail_image(handle,self.path)
                     photo.set_path(name)
                 except:
                     photo.set_path(tfile)
@@ -629,9 +627,7 @@ class Gallery(ImageSelect):
         leaving it as an external data object."""
         photo = obj.get_data('o')
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
-        name = RelImage.import_media_object(obj.get_path(),self.path,
-                                            obj.get_handle())
-        obj.set_path(name)
+        self.db.set_thumbnail_image(obj.get_handle(),obj.get_path())
 
     def popup_change_description(self, obj):
         """Bring up a window allowing the user to edit the description
@@ -706,10 +702,8 @@ class LocalMediaProperties:
         descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
 
-        thumb = Utils.thumb_path(path,self.obj)
-        if os.path.isfile(thumb):
-            self.pix = gtk.gdk.pixbuf_new_from_file(thumb)
-            self.pixmap.set_from_pixbuf(self.pix)
+        self.pix = self.db.get_thumbnail_image(self.obj.get_handle())
+        self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
@@ -938,7 +932,7 @@ class GlobalMediaProperties:
 
         self.descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
-        pb = gtk.gdk.pixbuf_new_from_file(Utils.thumb_path(self.path,self.obj))
+        pb = self.db.get_thumbnail_image(self.obj.get_handle())
         self.pixmap.set_from_pixbuf(pb)
 
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())

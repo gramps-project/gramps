@@ -23,6 +23,7 @@
 import os
 import time
 import locale
+import gtk
 
 from RelLib import *
 from GrampsDbBase import *
@@ -55,6 +56,7 @@ class GrampsBSDDB(GrampsDbBase):
 
     def dbopen(self,name,dbname):
         dbmap = dbshelve.DBShelf(self.env)
+        dbmap.db.set_pagesize(16384)
         dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
         return dbmap
     
@@ -78,6 +80,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.event_map  = self.dbopen(name, "events")
         self.metadata   = self.dbopen(name, "meta")
         self.person_map = self.dbopen(name, "person")
+        self.thumb_db   = self.dbopen(name, "thumb")
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
@@ -151,6 +154,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.oid_trans.close()
         self.sid_trans.close()
         self.pid_trans.close()
+        self.thumb_db.close()
         self.env.close()
         self.undodb.close()
 
@@ -284,3 +288,36 @@ class GrampsBSDDB(GrampsDbBase):
             return obj
         else:
             return None
+
+    def get_thumbnail_image(self,handle):
+        data = self.thumb_db.get(handle)
+        if data:
+            val = gtk.gdk.pixbuf_new_from_data(data[0],gtk.gdk.COLORSPACE_RGB,
+                                               data[1],data[2],data[3],data[4],
+                                               data[5])
+            return val
+        else:
+            return None
+
+    def set_thumbnail_image(self,handle,path):
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            w = pixbuf.get_width()
+            h = pixbuf.get_height()
+            scale = const.thumbScale / (float(max(w,h)))
+            
+            pw = int(w*scale)
+            ph = int(h*scale)
+            
+            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
+            self.thumb_db[handle] = (
+                pixbuf.get_pixels(),
+                pixbuf.get_has_alpha(),
+                pixbuf.get_bits_per_sample(),
+                pw,
+                ph,
+                pixbuf.get_rowstride()
+                )
+        except:
+            self.thumb_db[handle] = None
+

@@ -1,5 +1,23 @@
+2004-10-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsBSDDB.py: thumbnail handing in the database 
+	* src/GrampsDbBase.py: add set_thumbnail_image and 
+	get_thumbnail_image in base class
+	* src/GrampsInMemDB.py: saving thumbnail image
+	* src/GrampsCfg.py: create thumbnail image directory
+	* src/ImageSelect.py: use new thumbnail scheme
+	* src/MediaView.py: use new thumbnail scheme
+	* src/ReadGedcom.py: use new thumbnail scheme
+	* src/ReadXML.py: use new thumbnail scheme
+	* src/SelectObject.py: use new thumbnail scheme
+	* src/gramps_main.py: use new thumbnail scheme
+	* src/Utils.py: remove unused tasks
+	* src/RelImage.py: remove unused tasks
+	
 2004-10-22 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/TimeLine.py: Remove old Date.UNDEF usage.
+
+2004-10-21  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateParser.py: fix dates of the format of JAN 2000
 
 2004-10-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsCfg.py: eliminate unused options
