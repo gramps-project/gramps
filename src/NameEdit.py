@@ -131,10 +131,12 @@ class NameEditor:
 
     def on_delete_event(self,obj,b):
     	self.close_child_windows()
+        self.parent.child_windows.remove(self)
 	self.remove_itself_from_menu()
 
     def close(self,obj):
 	self.close_child_windows()
+        self.parent.child_windows.remove(self)
 	self.remove_itself_from_menu()
 	Utils.destroy_passed_object(self.window)
 
@@ -143,13 +145,27 @@ class NameEditor:
 	    child_window.close()
 
     def add_itself_to_menu(self):
+	if not self.name:
+	    label = _("New Name")
+	else:
+	    label = self.name.get_name()
+	if not label.strip():
+	    label = _("New Name")
+	label = "%s: %s" % (_('Alternate Name'),label)
+	self.parent_menu_item = gtk.MenuItem(label)
+	self.parent_menu_item.set_submenu(gtk.Menu())
+	self.parent_menu_item.show()
+	self.parent.menu.append(self.parent_menu_item)
+	self.menu = self.parent_menu_item.get_submenu()
 	self.menu_item = gtk.MenuItem(_('Name Editor'))
         self.menu_item.connect("activate",self.present)
         self.menu_item.show()
-        self.parent.menu.append(self.menu_item)
+        self.menu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
         self.menu_item.destroy()
+	self.menu.destroy()
+	self.parent_menu_item.destroy()
 
     def present(self,obj):
         self.window.present()
