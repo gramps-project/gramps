@@ -43,7 +43,7 @@ xml_files = $(entities) $(docname).xml
 omf_dir=$(top_srcdir)/omf-install
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp $(xml_files)
+CLEANFILES = omf_timestamp
 
 include $(top_srcdir)/doc/omf.make
 
@@ -53,6 +53,14 @@ $(docname).xml: $(entities)
 	-ourdir=`pwd`;  \
 	cd $(srcdir);   \
 	cp $(entities) $$ourdir
+
+.PHONY: distclean-hook
+distclean: distclean-hook
+distclean-hook:
+	if [ $(top_srcdir) != $(top_builddir) ]; \
+	then \
+	  rm -f $(entities); \
+	fi
 
 app-dist-hook:
 	if test "$(figdir)"; then \
