@@ -127,6 +127,8 @@ class EditPerson:
         for key in db.get_place_handles():
             p = db.get_place_from_handle(key).get_display_info()
             self.pdmap[p[0]] = key
+
+        mod = not self.db.readonly
             
         self.load_obj = None
         self.top = gtk.glade.XML(const.editPersonFile, "editPerson","gramps")
@@ -139,6 +141,7 @@ class EditPerson:
                                            self.db, self, self.window)
 
         self.complete = self.get_widget('complete')
+        self.complete.set_sensitive(mod)
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
         self.web_delete_btn = self.top.get_widget('delete_url')
@@ -151,8 +154,11 @@ class EditPerson:
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.notes_field = self.get_widget("personNotes")
+        self.notes_field.set_editable(mod)
         self.flowed = self.get_widget("flowed")
+        self.flowed.set_sensitive(mod)
         self.preform = self.get_widget("preform")
+        self.preform.set_sensitive(mod)
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
         self.event_cause_field = self.get_widget("eventCause")
@@ -191,19 +197,33 @@ class EditPerson:
         self.alt_prefix_field = self.get_widget("alt_prefix")
         self.name_type_field = self.get_widget("name_type")
         self.ntype_field = self.get_widget("ntype")
+        self.ntype_field.set_sensitive(mod)
         self.suffix = self.get_widget("suffix")
+        self.suffix.set_editable(mod)
         self.prefix = self.get_widget("prefix")
+        self.prefix.set_editable(mod)
         self.given = self.get_widget("givenName")
+        self.given.set_editable(mod)
         self.nick = self.get_widget("nickname")
+        self.nick.set_editable(mod)
         self.title = self.get_widget("title")
+        self.title.set_editable(mod)
         self.bdate  = self.get_widget("birthDate")
+        self.bdate.set_editable(mod)
         self.bplace = self.get_widget("birth_place")
+        self.bplace.set_editable(mod)
         self.surname = self.get_widget("surname")
+        self.surname.set_editable(mod)
         self.ddate  = self.get_widget("deathDate")
+        self.ddate.set_editable(mod)
         self.dplace = self.get_widget("death_place")
+        self.dplace.set_editable(mod)
         self.is_male = self.get_widget("genderMale")
+        self.is_male.set_sensitive(mod)
         self.is_female = self.get_widget("genderFemale")
+        self.is_female.set_sensitive(mod)
         self.is_unknown = self.get_widget("genderUnknown")
+        self.is_unknown.set_sensitive(mod)
         self.addr_note = self.get_widget("addr_note")
         self.addr_source = self.get_widget("addr_source")
         self.attr_note = self.get_widget("attr_note")
@@ -211,6 +231,7 @@ class EditPerson:
         self.name_note = self.get_widget("name_note")
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
+        self.gid.set_editable(mod)
         self.slist = self.get_widget("slist")
         self.general_label = self.get_widget("general_label")
         self.names_label = self.get_widget("names_label")
@@ -621,18 +642,37 @@ class EditPerson:
         may cases is hidden."""
 
         self.ldsbap_date = self.get_widget("ldsbapdate")
+        self.ldsbap_date.set_editable(not self.db.readonly)
         self.ldsbap_temple = self.get_widget("ldsbaptemple")
+        self.ldsbap_temple.set_sensitive(not self.db.readonly)
+        self.ldsbapplace = self.get_widget("lds_bap_place")
+        self.ldsbapplace.set_editable(not self.db.readonly)
+
         self.ldsend_date = self.get_widget("endowdate")
+        self.ldsend_date.set_editable(not self.db.readonly)
         self.ldsend_temple = self.get_widget("endowtemple")
+        self.ldsend_temple.set_sensitive(not self.db.readonly)
+        self.ldsendowplace = self.get_widget("lds_end_place")
+        self.ldsendowplace.set_editable(not self.db.readonly)
+        self.ldsendowstat = self.get_widget("endowstat")
+        self.ldsendowstat.set_sensitive(not self.db.readonly)
+
         self.ldsseal_date = self.get_widget("sealdate")
         self.ldsseal_temple = self.get_widget("sealtemple")
-        self.ldsseal_fam = self.get_widget("sealparents")
-        self.ldsbapstat = self.get_widget("ldsbapstat")
-        self.ldssealstat = self.get_widget("sealstat")
-        self.ldsendowstat = self.get_widget("endowstat")
-        self.ldsbapplace = self.get_widget("lds_bap_place")
         self.ldssealplace = self.get_widget("lds_seal_place")
-        self.ldsendowplace = self.get_widget("lds_end_place")
+        self.ldsseal_date.set_editable(not self.db.readonly)
+        self.ldsseal_temple.set_sensitive(not self.db.readonly)
+        self.ldssealplace.set_editable(not self.db.readonly)
+        
+        self.ldsseal_fam = self.get_widget("sealparents")
+        self.ldsseal_fam.set_sensitive(not self.db.readonly)
+        
+        self.ldsbapstat = self.get_widget("ldsbapstat")
+        self.ldsbapstat.set_sensitive(not self.db.readonly)
+
+        self.ldssealstat = self.get_widget("sealstat")
+        self.ldssealstat.set_sensitive(not self.db.readonly)
+
 
         self.bstat = self.lds_field(self.lds_baptism,
                                     self.ldsbap_temple,
@@ -1789,7 +1829,8 @@ class EditPerson:
         
     def on_ldsbap_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_baptism,self,self.window)
+        NoteEdit.NoteEditor(self.lds_baptism,self,self.window,
+                            readonly=self.db.readonly)
 
     def on_ldsendow_source_clicked(self,obj):
         Sources.SourceSelector(self.lds_endowment.get_source_references(),
@@ -1801,7 +1842,8 @@ class EditPerson:
 
     def on_ldsendow_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_endowment,self,self.window)
+        NoteEdit.NoteEditor(self.lds_endowment,self,self.window,
+                            readonly=self.db.readonly)
 
     def on_ldsseal_source_clicked(self,obj):
         Sources.SourceSelector(self.lds_sealing.get_source_references(),
@@ -1813,7 +1855,8 @@ class EditPerson:
 
     def on_ldsseal_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_sealing,self,self.window)
+        NoteEdit.NoteEditor(self.lds_sealing,self,self.window,
+                            readonly=self.db.readonly)
 
     def load_person_image(self):
         media_list = self.person.get_media_list()

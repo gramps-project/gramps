@@ -1096,36 +1096,38 @@ class Gramps:
                               _('You do not have write access to the selected '
                                 'file.'))
 
-#         try:
-#             if self.load_database(filename,callback,mode=mode) == 1:
-#                 if filename[-1] == '/':
-#                     filename = filename[:-1]
-#                 name = os.path.basename(filename)
-#                 self.topWindow.set_title("%s - GRAMPS" % name)
-#             else:
-#                 GrampsKeys.save_last_file("")
-#                 ErrorDialog(_('Cannot open database'),
-#                             _('The database file specified could not be opened.'))
-#                 return 0
-#         except db.DBAccessError, msg:
-#             ErrorDialog(_('Cannot open database'),
-#                         _('%s could not be opened.' % filename) + '\n' + msg[1])
-#             return 0
-
-
-        if self.load_database(filename,callback,mode=mode) == 1:
-            if filename[-1] == '/':
-                filename = filename[:-1]
-            name = os.path.basename(filename)
-            self.topWindow.set_title("%s - GRAMPS" % name)
-        else:
-            GrampsKeys.save_last_file("")
+        try:
+            if self.load_database(filename,callback,mode=mode) == 1:
+                if filename[-1] == '/':
+                    filename = filename[:-1]
+                name = os.path.basename(filename)
+                if self.db.readonly:
+                    self.topWindow.set_title("%s (%s) - GRAMPS" % (name,_('Read Only')))
+                else:
+                    self.topWindow.set_title("%s - GRAMPS" % name)
+            else:
+                GrampsKeys.save_last_file("")
+                ErrorDialog(_('Cannot open database'),
+                            _('The database file specified could not be opened.'))
+                return 0
+        except db.DBAccessError, msg:
             ErrorDialog(_('Cannot open database'),
-                        _('The database file specified could not be opened.'))
+                        _('%s could not be opened.' % filename) + '\n' + msg[1])
             return 0
-        
+
+
         self.topWindow.set_resizable(gtk.TRUE)
-        #self.people_view.apply_filter()
+        self.gtop.get_widget('import1').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('abandon').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('undolabel').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('redolabel').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('add_item').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('remove_item').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('merge').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('default_person1').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('edit_bookmarks').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('tools_menu').set_sensitive(not self.db.readonly)
+        self.gtop.get_widget('tools').set_sensitive(not self.db.readonly)
         self.goto_active_person()
         return 1
 
