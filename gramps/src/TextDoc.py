@@ -293,7 +293,9 @@ class ParagraphStyle:
 
     def set(self,rmargin=None,lmargin=None,first_indent=None,align=None,\
             tborder=None,bborder=None,rborder=None,lborder=None,pad=None,
-            bgcolor=None):
+            bgcolor=None,font=None):
+        if font != None:
+            self.font = FontStyle(font)
         if pad != None:
             self.set_padding(pad)
         if tborder != None:
