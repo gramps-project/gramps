@@ -142,17 +142,12 @@ class PlaceView:
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            store,iter = self.selection.get_selected()
-            id = store.get_value(iter,1)
-        
-            place = self.db.getPlace(id)
-            EditPlace.EditPlace(self,place,self.update_display)
+            mlist = []
+            self.selection.selected_foreach(self.blist,mlist)
+            if mlist:
+                EditPlace.EditPlace(self,mlist[0],self.update_display)
             return 1
 
-#    def insert_place(self,place):
-#        self.place_list.append(place.getDisplayInfo())
-#        self.place_list.set_row_data(self.place_list.rows-1,place.getId())
-        
     def new_place_after_edit(self,place):
         self.db.addPlace(place)
         self.update(0)
@@ -165,57 +160,48 @@ class PlaceView:
     def on_add_place_clicked(self,obj):
         EditPlace.EditPlace(self,Place(),self.new_place_after_edit)
 
-#    def moveto(self,row):
-#        self.place_list.unselect_all()
-#        self.place_list.select_row(row,0)
-#        self.place_list.moveto(row)
-        
     def on_delete_clicked(self,obj):
-        store,iter = self.selection.get_selected()
-        if not iter:
-            return
-        
-        id = store.get_value(iter,1)
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
 
-        used = 0
-        place = self.db.getPlace(id)
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
-            event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
-            if p.getLdsBaptism():
-                event_list.append(p.getLdsBaptism())
-            if p.getLdsEndowment():
-                event_list.append(p.getLdsEndowment())
-            if p.getLdsSeal():
-                event_list.append(p.getLdsSeal())
-            for event in event_list:
-                if event.getPlace() == place:
-                    used = 1
+        for place in mlist:
+            for key in self.db.getPersonKeys():
+                p = self.db.getPerson(key)
+                event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
+                if p.getLdsBaptism():
+                    event_list.append(p.getLdsBaptism())
+                if p.getLdsEndowment():
+                    event_list.append(p.getLdsEndowment())
+                if p.getLdsSeal():
+                    event_list.append(p.getLdsSeal())
+                for event in event_list:
+                    if event.getPlace() == place:
+                        used = 1
 
-        for f in self.db.getFamilyMap().values():
-            event_list = f.getEventList()
-            if f.getLdsSeal():
-                event_list.append(f.getLdsSeal())
-            for event in event_list:
-                if event.getPlace() == place:
-                    used = 1
+            for f in self.db.getFamilyMap().values():
+                event_list = f.getEventList()
+                if f.getLdsSeal():
+                    event_list.append(f.getLdsSeal())
+                for event in event_list:
+                    if event.getPlace() == place:
+                        used = 1
 
-        if used == 1:
-            ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
-            QuestionDialog(_('Delete Place'),
-                           _("This place is currently being used. Delete anyway?"),
-                           ans.query_response)
-        else:
-            self.db.removePlace(place.getId())
-            self.update(0)
-            Utils.modified()
+            if used == 1:
+                ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
+                QuestionDialog(_('Delete Place'),
+                               _("%s is currently being used.\nDelete anyway?" % place.get_title()),
+                               ans.query_response)
+            else:
+                self.db.removePlace(place.getId())
+                self.update(0)
+                Utils.modified()
 
     def on_edit_clicked(self,obj):
         """Display the selected places in the EditPlace display"""
-        list_store, iter = self.selection.get_selected()
-        if iter:
-            id = list_store.get_value(iter,1)
-            place = self.db.getPlace(id)
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+
+        for place in mlist:
             EditPlace.EditPlace(self, place, self.update_display)
 
     def blist(self,store,path,iter,list):
