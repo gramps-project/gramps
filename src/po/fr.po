@@ -2779,7 +2779,7 @@ msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
-"Une sauvegarde automatique de %s existe \n"
+"Une sauvegarde automatique de %s existe.\n"
 "Doit-elle être chargée à la place de la dernière version ?"
 
 #: gramps_main.py:738
@@ -3435,13 +3435,13 @@ msgstr "Les enfants de %s et %s sont :"
 
 #: plugins/DetAncestralReport.py:133 plugins/DetDescendantReport.py:144
 msgid "- %s Born: %s %s Died: %s %s"
-msgstr "- %s Né(e): %s Décédé(e): %s. "
+msgstr "- %s Né(e): %s %s Décédé(e): %s %s"
 
 #: plugins/DetAncestralReport.py:137 plugins/DetAncestralReport.py:141
 #: plugins/DetDescendantReport.py:148 plugins/DetDescendantReport.py:152
 #: plugins/DetDescendantReport.py:182
 msgid "- %s Born: %s %s Died: %s"
-msgstr "- %s Né(e): %s %s Décédé(e): %s. "
+msgstr "- %s Né(e): %s %s Décédé(e): %s %s"
 
 #: plugins/DetAncestralReport.py:144 plugins/DetDescendantReport.py:155
 msgid "- %s Born: %s %s"
@@ -3515,7 +3515,7 @@ msgstr " est né(e) en l'an %s. "
 
 #: plugins/DetAncestralReport.py:283 plugins/DetDescendantReport.py:294
 msgid " in %s."
-msgstr "le %s"
+msgstr "le %s."
 
 #: plugins/DetAncestralReport.py:285 plugins/DetAncestralReport.py:288
 #: plugins/DetDescendantReport.py:296 plugins/DetDescendantReport.py:299
@@ -3553,7 +3553,7 @@ msgstr "  et %s fût inhumé le %s."
 
 #: plugins/DetAncestralReport.py:408 plugins/DetDescendantReport.py:419
 msgid " %s was the son of %s and %s."
-msgstr "%s est le fils de %s.et %s."
+msgstr "%s est le fils de %s et %s."
 
 #: plugins/DetAncestralReport.py:411 plugins/DetAncestralReport.py:414
 #: plugins/DetDescendantReport.py:422 plugins/DetDescendantReport.py:425
@@ -3562,7 +3562,7 @@ msgstr "%s est le fils de %s."
 
 #: plugins/DetAncestralReport.py:419 plugins/DetDescendantReport.py:430
 msgid " %s was the daughter of %s and %s."
-msgstr "%s est la fille de %s. et %s"
+msgstr "%s est la fille de %s et %s."
 
 #: plugins/DetAncestralReport.py:422 plugins/DetAncestralReport.py:425
 #: plugins/DetDescendantReport.py:433 plugins/DetDescendantReport.py:436
@@ -3784,7 +3784,7 @@ msgstr "Ancêtres de %s"
 #: plugins/GraphViz.py:97 plugins/IndivComplete.py:484 plugins/WebPage.py:929
 #: plugins/WriteGedcom.py:344
 msgid "People with common ancestor with %s"
-msgstr "Personnes dont l'ancêtre commun est %s."
+msgstr "Personnes dont l'ancêtre commun est %s"
 
 #: plugins/GraphViz.py:106
 msgid "Descendants <- Ancestors"
@@ -4321,7 +4321,7 @@ msgstr "Leur ancêtre commun est %s."
 
 #: plugins/RelCalc.py:369
 msgid "Their common ancestors are %s and %s."
-msgstr "Leurs ancêtres communs est %s et %s"
+msgstr "Leurs ancêtres communs est %s et %s."
 
 #: plugins/RelCalc.py:374
 msgid "Their common ancestors are : "
@@ -4333,7 +4333,7 @@ msgstr "Il n'y a pas de relation entre %s et %s."
 
 #: plugins/RelCalc.py:391
 msgid "%s and %s are the same person."
-msgstr "%s et %s sont une seule et même personne"
+msgstr "%s et %s sont une seule et même personne."
 
 #: plugins/RelCalc.py:436
 msgid "Relationship calculator"
