@@ -69,11 +69,11 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
             self.filename = filename
 
         try:
-            self.content_xml = tempfile.TemporaryFile()
+            self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
         except:
             raise Errors.ReportError("Could not create %s" % self.filename)
-            
+
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -160,7 +160,7 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-        self.styles_xml = tempfile.TemporaryFile()
+        self.styles_xml = tempfile.mktemp()
 	self.f = open(self.styles_xml,"wb")
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
@@ -351,7 +351,7 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	self.f.write(text)
 
     def _write_manifest(self):
-        self.manifest_xml = tempfile.TemporaryFile()
+        self.manifest_xml = tempfile.mktemp()
 	self.f = open(self.manifest_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
@@ -374,7 +374,7 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 
     def _write_meta_file(self):
         name = self.name
-        self.meta_xml = tempfile.TemporaryFile()
+        self.meta_xml = tempfile.mktemp()
 	self.f = open(self.meta_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
@@ -413,7 +413,7 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 
     def start_page(self,orientation=None):
 	self.page = self.page + 1
-	self.f.write('<draw:page draw:name="page' + str(self.page) + '" ')
+	self.f.write('<draw:page draw:name="page%d" ' % self.page)
 	self.f.write('draw:master-page-name="Home">\n')
 
     def end_page(self):
