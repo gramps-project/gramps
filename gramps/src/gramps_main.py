@@ -504,6 +504,9 @@ def on_reports_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_ok_button1_clicked(obj):
+    global yname
+    global nname
+    
     dbname = obj.get_data("dbname")
     getoldrev = obj.get_data("getoldrev")
     filename = dbname.get_full_path(0)
@@ -518,8 +521,31 @@ def on_ok_button1_clicked(obj):
         vc = VersionControl.RcsVersionControl(filename)
         VersionControl.RevisionSelect(database,filename,vc,load_revision)
     else:
+        auto_save_load(filename)
+
+def auto_save_load(filename):
+    global yname, nname
+    
+    if os.path.isdir(filename):
+        dirname = filename
+    else:
+        dirname = os.path.dirname(filename)
+    autosave = "%s/autosave.gramps" % dirname
+
+    if os.path.isfile(autosave):
+        q = _("An autosave file exists. Should this be loaded instead of the last saved version?")
+        yname = autosave
+        nname = filename
+        gnome.ui.GnomeQuestionDialog(q,autosave_query)
+    else:
         read_file(filename)
 
+def autosave_query(value):
+    if value == 0:
+        read_file(yname)
+    else:
+        read_file(nname)
+        
 #-------------------------------------------------------------------------
 #
 #
@@ -528,6 +554,8 @@ def on_ok_button1_clicked(obj):
 def read_file(filename):
     base = os.path.basename(filename)
     if base == const.indexFile:
+        filename = os.path.dirname(filename)
+    elif base == "autosave.gramps":
         filename = os.path.dirname(filename)
     elif not os.path.isdir(filename):
         displayError(_("%s is not a directory") % filename)
@@ -628,7 +656,7 @@ def autosave_database():
 
     path = database.getSavePath()
     filename = os.path.normpath(path)
-    utils.clearModified()
+    utils.clear_timer()
 
     filename = "%s/autosave.gramps" % (database.getSavePath())
     
@@ -2111,11 +2139,11 @@ def main(arg):
     if arg != None:
         read_file(arg)
     elif Config.lastfile != None and Config.lastfile != "" and Config.autoload:
-        read_file(Config.lastfile)
+        auto_save_load(Config.lastfile)
     else:
         DbPrompter(database,0)
 
-    if Config.autosave and Config.autosave_int != 0:
+    if Config.autosave_int != 0:
         utils.enable_autosave(autosave_database,Config.autosave_int)
 
     database.setResearcher(Config.owner)

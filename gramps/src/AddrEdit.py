@@ -151,10 +151,10 @@ class AddressEditor:
             self.addr.setDate(date)
             self.parent.lists_changed = 1
         
-        self.check(self.addr.getDate,self.addr.setDate,state)
         self.check(self.addr.getStreet,self.addr.setStreet,street)
         self.check(self.addr.getCountry,self.addr.setCountry,country)
         self.check(self.addr.getCity,self.addr.setCity,city)
+        self.check(self.addr.getState,self.addr.setState,state)
         self.check(self.addr.getPostal,self.addr.setPostal,postal)
         self.check(self.addr.getNote,self.addr.setNote,note)
         self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)

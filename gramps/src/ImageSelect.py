@@ -34,6 +34,7 @@ import string
 import GDK
 import GTK
 import gtk
+import GdkImlib
 import gnome.ui
 import libglade
 
@@ -73,11 +74,16 @@ class ImageSelect:
         self.path        = path;
         self.db          = db
         self.dataobj     = None
+        self.icon_cache  = []
 
     def add_thumbnail(self, photo):
         "should be overrridden"
         pass
-    
+
+    def load_images(self):
+        "should be overrridden"
+        pass
+
     #-------------------------------------------------------------------------
     #
     # create_add_dialog - Create the gnome dialog for selecting a new
@@ -156,7 +162,7 @@ class ImageSelect:
             mobj = Photo()
             if description == "":
                 description = os.path.basename(filename)
-                mobj.setDescription(description)
+            mobj.setDescription(description)
             mobj.setMimeType(type)
             self.savephoto(mobj)
 
@@ -166,14 +172,13 @@ class ImageSelect:
             else:
                 if self.external.get_active() == 1:
                     name = filename
-                    RelImage.mk_thumb(filename,self.path,mobj.getId())
                 else:
                     name = RelImage.import_media_object(filename,self.path,mobj.getId())
-
             mobj.setPath(name)
-
+            
         utils.modified()
         utils.destroy_passed_object(obj)
+        self.load_images()
 
     #-------------------------------------------------------------------------
     #
@@ -241,8 +246,10 @@ class Gallery(ImageSelect):
     #-------------------------------------------------------------------------
     def add_thumbnail(self, photo):
         object = photo.getReference()
-        thumb = utils.thumb_path(self.db.getSavePath(),object)
-        self.icon_list.append(thumb,object.getDescription())
+        name = utils.thumb_path(self.db.getSavePath(),object)
+        thumb = GdkImlib.Image(name)
+        self.icon_cache.append(thumb)
+        self.icon_list.append_imlib(thumb,object.getDescription())
         
     #-------------------------------------------------------------------------
     #
@@ -254,6 +261,7 @@ class Gallery(ImageSelect):
     def load_images(self):
         self.icon_list.freeze()
         self.icon_list.clear()
+        self.icon_cache = []
         for photo in self.dataobj.getPhotoList():
             self.add_thumbnail(photo)
         self.icon_list.thaw()
