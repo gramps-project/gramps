@@ -185,7 +185,7 @@ class FamilyView:
     def add_child_clicked(self,obj):
         if not self.person:
             return
-        try:x
+        try:
             SelectChild.SelectChild(self.parent.db, self.family,
                                     self.person, self.load_family,
                                     self.parent.update_person_list)
