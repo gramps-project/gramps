@@ -542,6 +542,6 @@ def find_calendar(name):
         return None
 
 def calendar_names():
-    dlist = _calendars.values():
+    dlist = _calendars.values()
     dlist.sort()
     return dlist
