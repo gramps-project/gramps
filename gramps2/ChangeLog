@@ -1,3 +1,19 @@
+2005-02-18 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LPRDoc.py (draw_path,draw_bar): Fill, then stroke.
+	* src/DbPrompter.py: Change file filter name.
+
+	* src/Report.py (doc_type_changed): Deal with empty extensions.
+	* src/docgen/AsciiDoc.py (add_photo): Add method;
+	(end_row): Inlcude last cell into proper formatting.
+	* src/GedcomInfo.py: Properly import expat.ParserCreate class.
+	* src/TipOfDay.py: Properly import expat.ParserCreate class.
+	* src/RecentFiles.py: Properly import expat.ParserCreate class.
+	* src/ReadXML.py: Properly import expat.* classes.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/xmldocs.make: Switch Makefile from CLEANFILES to DISTCLEANFILES.
+	* src/Makefile.am: Add const.pyc and const.pyo to CLEANFILES.
+
 2005-02-18  Eero Tamminen <eerot@sf>
 	* src/plugins/StatisticsChart.py: fix date object checking
 

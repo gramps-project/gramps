@@ -25,7 +25,7 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import xml.parsers.expat
+from xml.parsers.expat import ParserCreate
 from random import Random
 
 #-------------------------------------------------------------------------
@@ -100,7 +100,7 @@ class TipParser:
         self.mylist = []
         xml_file = open(const.tipdata)
         self.tlist = []
-        p = xml.parsers.expat.ParserCreate()
+        p = ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
         p.CharacterDataHandler = self.characters

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ import string
 import os
 import gtk
 import shutil
-import xml.parsers.expat
+from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -125,7 +125,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
             import traceback
             traceback.print_exc()
             return
-    except xml.parsers.expat.ExpatError, msg:
+    except ExpatError, msg:
         if cl:
             print "Error reading %s" % filename
             print "The file is probably either corrupt or not a valid GRAMPS database."
@@ -538,7 +538,7 @@ class GrampsParser:
             self.trans = self.db.transaction_begin()
         else:
             self.trans = None
-        p = xml.parsers.expat.ParserCreate()
+        p = ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
         p.CharacterDataHandler = self.characters

@@ -1,3 +1,4 @@
+# $Id$
 #
 # No modifications of this Makefile should be necessary.
 #
@@ -43,7 +44,8 @@ xml_files = $(entities) $(docname).xml
 omf_dir=$(top_srcdir)/omf-install
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp Makefile
+CLEANFILES = omf_timestamp 
+DISTCLEANFILES = Makefile 
 
 include $(top_srcdir)/doc/omf.make
 
@@ -61,6 +63,7 @@ distclean-hook:
 	then \
 	  rm -f $(entities); \
 	fi
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 app-dist-hook:
