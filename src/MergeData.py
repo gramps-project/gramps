@@ -292,7 +292,7 @@ class MergePeople:
                 orig_family.removeChild(self.p1)
             
             source_family = self.p2.getMainParents()
-            self.p1.setMainFamily(source_family)
+            self.p1.setMainParents(source_family)
 
             if source_family:
                 if self.p2 in source_family.getChildList():
