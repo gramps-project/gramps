@@ -355,8 +355,8 @@ class FilterEditor:
         store,iter = self.clist.get_selected()
         if iter:
             filt = self.clist.get_object(iter)
-            id_list = filt.apply(self.db,self.db.get_person_handles(sort_handles=False))
-            ShowResults(self,self.db,id_list,filt.get_name())
+            handle_list = filt.apply(self.db,self.db.get_person_handles(sort_handles=False))
+            ShowResults(self,self.db,handle_list,filt.get_name())
 
     def delete_filter(self,obj):
         store,iter = self.clist.get_selected()
@@ -769,7 +769,7 @@ class EditRule:
 #
 #-------------------------------------------------------------------------
 class ShowResults:
-    def __init__(self,parent,db,id_list,filtname):
+    def __init__(self,parent,db,handle_list,filtname):
         self.parent = parent
         self.win_key = self
         self.filtname = filtname
@@ -786,9 +786,10 @@ class ShowResults:
             })
 
         n = []
-        for p_id in id_list:
-            p = db.get_person_from_handle(p_id)
-            n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_handle()))
+        for p_handle in handle_list:
+            p = db.get_person_from_handle(p_handle)
+            n.append ("%s [%s]\n" % 
+                        (p.get_primary_name().get_name(),p.get_gramps_id()))
 
         n.sort ()
         text.get_buffer().set_text(string.join (n, ''))
