@@ -19,7 +19,7 @@
 <!-- =========== Getting Started ============================== -->
 
   <sect1 id="gramps-getting-started"> 
-    <title>Getting Started</title> 
+    <title>Erste Schritte</title> 
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
@@ -55,23 +55,23 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>Running &app; for the first time</title>
-    <para> 
-    The first time you run the program, GRAMPS will display its 
-    Getting Started dialogs. Follow the directions guiding you through
-    <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
-    formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
-    and <guilabel>LDS extensions</guilabel> sections. Most of the dialogs
-    are self-explanatory and will not be covered here.
+      <title>&app; zum ersten Mal ausführen</title>
+    <para>
+    Beim ersten Start, &app; zeigt ein paar Dialoge für die ersten Schritte.
+    Folgen Sie den Anweisungen, die sie durch die <guilabel>Informationen
+    zum Forscher</guilabel>, <guilabel>Numerische Datumsformate</guilabel>,
+    <guilabel>Unterstützung alternativer Kalender</guilabel> und <guilabel>
+    LDS-Bräuche</guilabel> Dialoge. Diese Dialog sind selbsterklärend und
+    werden hier nicht weiter erklärt.
     </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Getting Started Window: Researcher Information</title> 
+	<title>&app; Erste Schritte Fenster: Informationen zum Forscher</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Researcher Information Window. </phrase>
+	<phrase>Zeigt das Information zum Forscher Fenster.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
