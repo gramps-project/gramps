@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Utilities/Generate SoundEx codes"
 
@@ -80,7 +82,7 @@ class SoundGen:
         self.glade.get_widget("soundEx").show()    
 
     def on_apply_clicked(self,obj):
-        self.value.set_text(soundex.soundex(obj.get_text()))
+        self.value.set_text(soundex.soundex(unicode(obj.get_text())))
 
 #-------------------------------------------------------------------------
 #
@@ -95,5 +97,3 @@ register_tool(
     category=_("Utilities"),
     description=_("Generates SoundEx codes for names")
     )
-
-

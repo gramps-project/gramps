@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Analysis and Exploration/Compare individual events"
 
 #------------------------------------------------------------------------
@@ -321,7 +323,7 @@ class DisplayChart:
 
     def on_save_clicked(self,obj):
         
-        name = self.form.get_widget("filename").get_text()
+        name = unicode(self.form.get_widget("filename").get_text())
 
         pstyle = BaseDoc.PaperStyle("junk",10,10)
         doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,BaseDoc.PAPER_PORTRAIT)

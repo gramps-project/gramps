@@ -136,8 +136,8 @@ class NameEditor:
         last = unicode(self.surname_field.get_text())
         title = unicode(self.title_field.get_text())
         suffix = unicode(self.suffix_field.get_text())
-        note = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                         self.note_buffer.get_end_iter(),gtk.FALSE)
+        note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
+                                 self.note_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
@@ -195,8 +195,8 @@ class NameEditor:
             self.parent.lists_changed = 1
         
     def on_switch_page(self,obj,a,page):
-        text = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                self.note_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
+                                self.note_buffer.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:

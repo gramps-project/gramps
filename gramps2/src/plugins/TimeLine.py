@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 Timeline report
 """
@@ -446,7 +448,7 @@ class TimeLineDialog(Report.DrawReportDialog):
 
     def make_report(self):
 
-        title = self.title_box.get_text()
+        title = unicode(self.title_box.get_text())
         sort_func = self.sort_menu.get_active().get_data('sort')
 
         try:
@@ -600,7 +602,7 @@ class TimeLineBareDialog(Report.BareReportDialog):
             self.person = self.new_person
         self.filter_num = self.filter_combo.get_history()
         self.sort_func_num = self.sort_style.get_history()
-        self.title_str = self.title_box.get_text()
+        self.title_str = unicode(self.title_box.get_text())
 
         self.options = ( self.person.getId(), self.filter_num, 
             self.sort_func_num, self.title_str )

@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """Generic Filtering Routines"""
 
 __author__ = "Don Allingham"
@@ -121,7 +123,7 @@ class MyFilters(gtk.Combo):
         
     def get_text(self):
         if self.ok:
-            return self.entry.get_text()
+            return unicode(self.entry.get_text())
         else:
             return ""
 
@@ -176,7 +178,7 @@ class MyID(gtk.HBox):
             self.set_text(val.getId())
         
     def get_text(self):
-        return self.entry.get_text()
+        return unicode(self.entry.get_text())
 
     def set_text(self,val):
         try:
@@ -203,7 +205,7 @@ class MySelect(gtk.Combo):
         self.show()
         
     def get_text(self):
-        return self.entry.get_text()
+        return unicode(self.entry.get_text())
 
     def set_text(self,val):
         self.entry.set_text(val)
@@ -346,7 +348,7 @@ class FilterEditor:
         self.draw_rules()
 
     def filter_name_changed(self,obj):
-        name = self.fname.get_text()
+        name = unicode(self.fname.get_text())
         self.ok.set_sensitive(len(name) != 0)
     
     def select_row(self,obj):
@@ -367,11 +369,11 @@ class FilterEditor:
         self.top.destroy()
 
     def on_ok_clicked(self,obj):
-        n = self.fname.get_text().strip()
+        n = unicode(self.fname.get_text()).strip()
         if n == '':
             return
         self.filter.set_name(n)
-        self.filter.set_comment(self.comment.get_text().strip())
+        self.filter.set_comment(unicode(self.comment.get_text()).strip())
         for f in self.filterdb.get_filters()[:]:
             if n == f.get_name():
                 self.filterdb.get_filters().remove(f)
@@ -556,13 +558,13 @@ class FilterEditor:
             self.draw_rules()
 
     def rule_ok(self,obj):
-        name = self.rule_name.get_text()
+        name = unicode(self.rule_name.get_text())
         try:
             page = self.name2page[name]
             (n,c,v,t) = self.page[page]
             value_list = []
             for x in t:
-                value_list.append(x.get_text())
+                value_list.append(unicode(x.get_text()))
             store,iter = self.rlist.get_selected()
             new_rule = c(value_list)
             if self.active_rule:

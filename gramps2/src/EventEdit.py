@@ -218,7 +218,7 @@ class EventEditor:
         self.date_check.set_calendar(cobj())
         
     def get_place(self,field,makenew=0):
-        text = unicode(strip(field.get_text()))
+        text = strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
                 return self.parent.db.getPlaceMap()[self.pmap[text]]
@@ -243,7 +243,7 @@ class EventEditor:
         eplace_obj = self.get_place(self.place_field,1)
         buf = self.note_field.get_buffer()
 
-        enote = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        enote = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
         eformat = self.preform.get_active()
         edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()
@@ -305,7 +305,7 @@ class EventEditor:
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
-        text = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:

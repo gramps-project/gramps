@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 Adds autocompletion to a GtkEntry box, using the passed list of
 strings as the possible completions. This work was adapted from code
@@ -193,7 +195,7 @@ class AutoCombo(AutoCompBase):
             return
         
         # Get the user's text
-        typed = entry.get_text()
+        typed = unicode(entry.get_text())
         if (not typed):
             return
         if type(typed) != self.t:
@@ -259,7 +261,7 @@ class AutoEntry(AutoCompBase):
             gtk.timeout_remove(timer)
 
         # Get the user's text
-        typed = entry.get_text()
+        typed = unicode(entry.get_text())
 
         if type(typed) != self.t:
             typed = unicode(typed)

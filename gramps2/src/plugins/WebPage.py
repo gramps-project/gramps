@@ -1170,14 +1170,14 @@ class WebReportDialog(Report.ReportDialog):
         user selected choices for later use."""
         self.restrict = self.restrict_living.get_active()
         self.private = self.no_private.get_active()
-        self.img_dir_text = self.imgdir.get_text()
+        self.img_dir_text = unicode(self.imgdir.get_text())
 
-        self.html_ext = string.strip(self.ext.entry.get_text())
+        self.html_ext = string.strip(unicode(self.ext.entry.get_text()))
         if self.html_ext[0] == '.':
             self.html_ext = self.html_ext[1:]
         self.use_id = self.include_id.get_active()
         self.use_gendex = self.gendex.get_active()
-        self.id_link = string.strip(self.linkpath.get_text())
+        self.id_link = string.strip(unicode(self.linkpath.get_text()))
         self.srccomments = self.no_comments.get_active()
         if self.no_images.get_active() == 1:
             self.photos = 0
