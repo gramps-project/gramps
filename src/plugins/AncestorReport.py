@@ -303,7 +303,7 @@ def report(database,person):
     para = ParagraphStyle()
     para.set_font(font)
     para.set_header_level(1)
-    para.set(tborder=0.2,bborder=0.2,pad=1)
+    para.set(pad=0.5)
     styles.add_style("Title",para)
 
     font = FontStyle()
@@ -311,12 +311,11 @@ def report(database,person):
     para = ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
-    para.set_top_border(0.15)
-    para.set(tborder=0.15,pad=1)
+    para.set(pad=0.5)
     styles.add_style("Generation",para)
 
     para = ParagraphStyle()
-    para.set(first_indent=-2.0,lmargin=2.0,pad=1)
+    para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     styles.add_style("Entry",para)
 
     style_sheet_list = StyleSheetList("ancestor_report.xml",styles)
