@@ -59,6 +59,7 @@ import NameDisplay
 from TransTable import TransTable
 from Utils import for_each_ancestor
 from Utils import probably_alive
+from Utils import get_source_referents
 
 #-------------------------------------------------------------------------
 #
@@ -1825,7 +1826,110 @@ class IsWitness(Rule):
                     for w in wlist:
                         if w.get_type() == RelLib.Event.ID:
                             self.map.append(w.get_value())
+
+#-------------------------------------------------------------------------
+# "FullTextSearch"
+#-------------------------------------------------------------------------
+
+
+class FullTextSearch(Rule):
+    """Full-text serach for ..."""
+
+    labels = [_('Substring:')]
+
+    def prepare(self,db):
+        self.db = db
+        self.event_map = {}
+        self.source_map = {}
+        self.family_map = {}
+        self.place_map = {}
+        self.cache_sources()
+
+    def reset(self):
+        self.event_map = {}
+        self.family_map = {}
+
+    def name(self):
+        return 'Full-text serach for ...'
     
+    def description(self):
+        return _("Does a full-text search in all text values of the verson and all linked events and families")
+
+    def category(self):
+        return _('General filters')
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        if p.matches_string(self.list[0]):	# first match the person itself
+            return 1
+        for event_handle in p.get_event_list()+[p.get_birth_handle(), p.get_death_handle()]:
+            if self.search_event(event_handle):	# match referenced events
+                return 1
+        for family_handle in p.get_family_handle_list(): # match families
+            if self.search_family(family_handle):
+                return 1
+        return 0
+    
+    def search_family(self,family_handle):
+        if not family_handle:
+            return 0
+        # search inside the family and cache the result to not search a family twice
+        if not family_handle in self.family_map:
+            match = 0
+            family = self.db.get_family_from_handle(family_handle)
+            if family.matches_string(self.list[0]):
+                match = 1
+            else:
+                for event_handle in family.get_event_list():
+                    if self.search_event(event_handle):
+                        match = 1
+                        break
+            self.family_map[family_handle] = match
+        return self.family_map[family_handle]
+
+    def search_event(self,event_handle):
+        if not event_handle:
+            return 0
+        # search inside the event and cache the result (event sharing)
+        if not event_handle in self.event_map:
+            match = 0
+            event = self.db.get_event_from_handle(event_handle)
+            if event.matches_string(self.list[0]):
+                match = 1
+            else:
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    if self.search_place(place_handle):
+                        match = 1
+            self.event_map[event_handle] = match
+        return self.event_map[event_handle]
+
+    def search_place(self,place_handle):
+        if not place_handle:
+            return 0
+        # search inside the place and cache the result
+        if not place_handle in self.place_map:
+            place = self.db.get_place_from_handle(place_handle)
+            self.place_map[place_handle] = place.matches_string(self.list[0])
+        return self.place_map[place_handle]
+
+    def cache_sources(self):
+        # search all sources and match all referents of a matching source
+        for source_handle in self.db.get_source_handles():
+            source = self.db.get_source_from_handle(source_handle)
+            if source.matches_string(self.list[0]):
+                (person_list,family_list,event_list,
+                    place_list,source_list,media_list
+                    ) = get_source_referents(source_handle,self.db)
+                for handle in person_list:
+                    self.person_map[handle] = 1
+                for handle in family_list:
+                    self.family_map[handle] = 1
+                for handle in event_list:
+                    self.event_map[handle] = 1
+                for handle in place_list:
+                    self.place_map[handle] = 1
+
 #-------------------------------------------------------------------------
 #
 # GenericFilter
@@ -2014,7 +2118,9 @@ tasks = {
     unicode(_("People probably alive"))                : ProbablyAlive,
     unicode(_("People marked private"))                : PeoplePrivate,
     unicode(_("Witnesses"))                            : IsWitness,
-    }
+
+    unicode(_("Full-text search ..."))                 : FullTextSearch,
+}
 
 #-------------------------------------------------------------------------
 #
