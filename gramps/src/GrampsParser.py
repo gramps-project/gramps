@@ -510,6 +510,12 @@ class GrampsParser(handler.ContentHandler):
     def stop_places(self,tag):
         self.placeobj = None
 
+    def stop_placeobj(self,tag):
+        if self.placeobj.get_title() == "":
+            loc = self.placeobj.get_main_location()
+            self.placeobj.set_title(build_place_title(loc))
+        self.palceobj = None
+        
     #---------------------------------------------------------------------
     #
     #
@@ -553,7 +559,7 @@ class GrampsParser(handler.ContentHandler):
                 self.db.addPlace(self.placeobj)
                 self.place_map[u2l(tag)] = self.placeobj
         self.event.place = self.placeobj
-
+            
     #---------------------------------------------------------------------
     #
     #
@@ -921,7 +927,7 @@ class GrampsParser(handler.ContentHandler):
         "img"        : (start_photo, None),
         "place"      : (start_place, stop_place),
         "places"     : (None, stop_places),
-        "placeobj"   : (start_placeobj,None),
+        "placeobj"   : (start_placeobj,stop_placeobj),
         "location"   : (start_location,None),
         "coord"      : (start_coord,None),
         "pos"        : (start_pos, None),
@@ -1099,4 +1105,30 @@ class GrampsImportParser(GrampsParser):
     #---------------------------------------------------------------------
     def start_source(self,attrs):
         self.source = self.db.findSource(u2l(attrs["id"]),self.smap)
+
+
+def append_value(orig,val):
+    if orig:
+        return "%s, %s" % (orig,val)
+    else:
+        return val
+
+def build_place_title(loc):
+    "Builds a title from a location"
+    city = loc.get_city()
+    state = loc.get_state()
+    country = loc.get_country()
+    county = loc.get_county()
+
+    value = ""
+
+    if city:
+        value = city
+    if county:
+        value = append_value(value,county)
+    if state:
+        value = append_value(value,state)
+    if country:
+        value = append_value(value,country)
+    return value
 
