@@ -80,12 +80,12 @@ class AncestorChart:
         self.lines = 0
         self.display = display
         self.newpage = newpage
-	self.calc()
         if output:
             self.standalone = 1
             self.doc.open(output)
         else:
             self.standalone = 0
+	self.calc()
         
     def filter(self,person,index):
         """traverse the ancestors recursively until either the end
