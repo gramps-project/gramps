@@ -17,3 +17,6 @@ uninstall:
 	-rmdir ${GNOMEHELP}/${EG}/C/
 
 clean:
+	-rm -rf ${MANDIR}/*.html
+	-rm -rf ${MANDIR}/stylesheet-images/
+	-rm -rf ${MANDIR}.junk/
