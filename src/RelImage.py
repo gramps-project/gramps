@@ -82,6 +82,7 @@ def import_media_object(filename,path,base):
         
         try:
             path = "%s/%s" % (thumb,base)
+            print "Making",path,"from",filename
             mk_thumb(filename,path,const.thumbScale)
             shutil.copy(filename,name)
         except:
@@ -122,6 +123,8 @@ def scale_image(path,size):
 #-------------------------------------------------------------------------
 def mk_thumb(source,dest,size):
 
+    print "making a thumbnail",source,dest
+    
     dir = os.path.dirname(dest)
     try:
         if not os.path.exists(dir):
@@ -133,8 +136,12 @@ def mk_thumb(source,dest,size):
         GnomeErrorDialog(_("Could not create %s") % dir)
         return
 
+    if os.path.exists(dest):
+        os.remove(dest)
+        
     if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
+        print cmd
         os.system(cmd)
     else:
         try:
@@ -144,7 +151,9 @@ def mk_thumb(source,dest,size):
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
             im.save(dest,"JPEG")
+            print "saving",dest
         except:
+            print "save failed"
             pass
 
 #-------------------------------------------------------------------------

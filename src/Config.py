@@ -94,8 +94,7 @@ sprefix       = "S"
 pprefix       = "P"
 fprefix       = "F"
 autoload      = 0
-autosave      = 0
-autosave_int  = 5
+autosave_int  = 0
 usetabs       = 0
 uselds        = 0
 autocomp      = 1
@@ -164,7 +163,6 @@ def make_path(path):
 #-------------------------------------------------------------------------
 def loadConfig(call):
     global autoload
-    global autosave
     global autosave_int
     global owner
     global usetabs
@@ -225,7 +223,6 @@ def loadConfig(call):
     
     hide_altnames = get_bool("/gramps/config/DisplayAltNames")
     autoload = get_bool("/gramps/config/autoLoad")
-    autosave = get_bool("/gramps/config/autoSave")
     autosave_int = get_int("/gramps/config/autoSaveInterval")
     dateFormat = get_int("/gramps/config/dateFormat")
     dateEntry = get_int("/gramps/config/dateEntry")
@@ -304,10 +301,8 @@ def loadConfig(call):
 
     if autoload == None:
         autoload = 1
-    if autosave == None:
-        autosave = 0
     if autosave_int == None:
-        autosave = 5
+        autosave_int = 0
     if mediaref == None:
         mediaref = 1
     if globalprop == None:
@@ -469,10 +464,9 @@ def on_propertybox_apply(obj,page):
 
     if page != -1:
         return
-    
+
     show_detail = prefsTop.get_widget("showdetail").get_active()
     autoload = prefsTop.get_widget("autoload").get_active()
-    autosave = prefsTop.get_widget("save_enable").get_active()
     autosave_int = prefsTop.get_widget("save_interval").get_value_as_int()
     display_attr = prefsTop.get_widget("attr_display").get_active()
     attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
@@ -559,9 +553,9 @@ def on_propertybox_apply(obj,page):
     set_string("/gramps/config/paperPreference",paper_preference)
     set_string("/gramps/config/outputPreference",output_preference)
     set_bool("/gramps/config/autoLoad",autoload)
-    set_bool("/gramps/config/autoSave",autosave)
     set_int("/gramps/config/autoSaveInterval",autosave_int)
-    if autosave and autosave_int != 0:
+
+    if autosave_int != 0:
         utils.enable_autosave(None,autosave_int)
     else:
         utils.disable_autosave()
@@ -711,7 +705,6 @@ def display_preferences_box(db):
     pbox = prefsTop.get_widget("propertybox")
     pbox.set_data("db",db)
     auto = prefsTop.get_widget("autoload")
-    asave = prefsTop.get_widget("save_enable")
     asave_int = prefsTop.get_widget("save_interval")
     vis = prefsTop.get_widget("gid_visible")
     idedit = prefsTop.get_widget("gid_edit")
@@ -731,7 +724,6 @@ def display_preferences_box(db):
     display_attr_obj = prefsTop.get_widget("attr_display")
     display_altnames = prefsTop.get_widget("display_altnames")
     auto.set_active(autoload)
-    asave.set_active(autosave)
     asave_int.set_value(autosave_int)
     detail.set_active(show_detail)
     tabs.set_active(usetabs)
