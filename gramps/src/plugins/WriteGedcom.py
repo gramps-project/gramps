@@ -921,7 +921,7 @@ class GedcomWriter:
         if ord.getPlaceName() != "":
             self.g.write("2 PLAC %s\n" % self.cnvtxt(ord.getPlaceName()))
         if ord.getStatus() != 0:
-            self.g.write("2 STAT %S\n" % self.cnvtxt(statlist[ord.getStatus()]))
+            self.g.write("2 STAT %s\n" % self.cnvtxt(statlist[ord.getStatus()]))
         if ord.getNote() != "":
             self.write_long_text("NOTE",index+1,ord.getNote())
         for srcref in ord.getSourceRefList():
