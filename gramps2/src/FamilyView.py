@@ -531,12 +531,14 @@ class FamilyView:
     def set_preferred_spouse(self,obj):
         if self.selected_spouse:
             self.person.set_preferred_family_id(self.family)
+            self.parent.db.commit_person(self.person)
             self.load_family()
             
     def edit_spouse_callback(self,obj):
         if self.selected_spouse:
             try:
-                EditPerson.EditPerson(self.parent, self.selected_spouse, self.parent.db, self.spouse_after_edit)
+                EditPerson.EditPerson(self.parent, self.selected_spouse,
+                                      self.parent.db, self.spouse_after_edit)
             except:
                 DisplayTrace.DisplayTrace()
 
@@ -588,7 +590,8 @@ class FamilyView:
         else:
             person.set_gender(RelLib.Person.male)
         try:
-            EditPerson.EditPerson(self.parent, person, self.parent.db, self.new_spouse_after_edit)
+            EditPerson.EditPerson(self.parent, person, self.parent.db,
+                                  self.new_spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -596,6 +599,7 @@ class FamilyView:
         ap = self.parent.active_person
         if epo:
             self.parent.db.build_person_display(epo.person.get_id(),epo.original_id)
+            self.parent.db.commit_person(epo.person)
             self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.parent.people_view.redisplay_person_list(epo.person)
 
@@ -609,12 +613,13 @@ class FamilyView:
         else:
             self.parent.db.add_person_no_map(epo.person,epo.person.get_id())
 
-        self.parent.db.build_person_display(epo.person.get_id())
         self.parent.people_view.add_to_person_list(epo.person,0)
-
         self.family = self.parent.db.new_family()
         self.person.add_family_id(self.family.get_id())
         epo.person.add_family_id(self.family.get_id())
+
+        self.parent.db.commit_person(epo.person)
+        self.parent.db.commit_person(self.person)
 
         if self.person.get_gender() == RelLib.Person.male:
             self.family.set_mother_id(epo.person.get_id())
@@ -622,7 +627,8 @@ class FamilyView:
         else:	
             self.family.set_father_id(epo.person.get_id())
             self.family.set_mother_id(self.person.get_id())
-        
+
+        self.parent.db.commit_family(self.family)
         self.load_family(self.family)
         
         Marriage.Marriage(self.parent,self.family,self.parent.db,
@@ -718,6 +724,8 @@ class FamilyView:
             elif self.family.get_mother_id() == None:
                 self.delete_family_from(self.family.get_father_id())
 
+        self.parent.db.commit_person(child)
+        self.parent.db.commit_family(self.family)
         Utils.modified()
         self.load_family()
 
@@ -738,23 +746,29 @@ class FamilyView:
         """Delete the currently selected spouse from the family"""
         if self.person == None:
             return
-        if self.selected_spouse == self.family.get_father_id():
+
+        if self.selected_spouse.get_id() == self.family.get_father_id():
             self.family.set_father_id(None)
         else:
             self.family.set_mother_id(None)
 
         if self.selected_spouse:
             self.selected_spouse.remove_family_id(self.family.get_id())
+            self.parent.db.commit_person(self.selected_spouse)
+
+        self.parent.db.commit_family(self.family)
 
         if len(self.family.get_child_id_list()) == 0:
             self.person.remove_family_id(self.family.get_id())
+            self.parent.db.commit_person(self.person)
             self.parent.db.delete_family(self.family.get_id())
             if len(self.person.get_family_id_list()) > 0:
-                self.load_family(self.person.get_family_id_list()[0])
+                family_id = self.person.get_family_id_list()[0]
+                self.load_family(self.parent.db.find_family_from_id(family_id))
             else:
-                self.load_family()
+                self.load_family(self.family)
         else:
-            self.load_family()
+            self.load_family(self.family)
 
         if len(self.person.get_family_id_list()) <= 1:
             self.spouse_selection.set_mode(gtk.SELECTION_NONE)
@@ -793,6 +807,8 @@ class FamilyView:
             person_id = family.get_mother_id()
         person = self.parent.db.find_person_from_id(person_id)
         self.parent.change_active_person(person)
+
+        self.parent.db.commit_family(family)
         self.load_family(family)
 
     def clear(self):
@@ -849,12 +865,12 @@ class FamilyView:
                 sp_id = fm.get_mother_id()
             else:
                 sp_id = fm.get_father_id()
-            sp = self.parent.db.find_person_from_id(sp_id)
 
             iter = self.spouse_model.append()
             flist[f] = iter
                 
-            if sp:
+            if sp_id:
+                sp = self.parent.db.find_person_from_id(sp_id)
                 event = self.find_marriage(fm)
                 if event:
                     mdate = " - %s" % event.get_date()
@@ -939,9 +955,17 @@ class FamilyView:
             return
 
         if family.get_father_id() == self.person.get_id():
-            self.selected_spouse = self.parent.db.find_person_from_id(family.get_mother_id())
+            sp_id = family.get_mother_id()
+            if sp_id:
+                self.selected_spouse = self.parent.db.find_person_from_id(sp_id)
+            else:
+                self.selected_spouse = None
         else:
-            self.selected_spouse = self.parent.db.find_person_from_id(family.get_father_id())
+            sp_id = family.get_father_id()
+            if sp_id:
+                self.selected_spouse = self.parent.db.find_person_from_id(sp_id)
+            else:
+                self.selected_spouse = None
 
         if self.selected_spouse:
             self.update_list(self.sp_parents_model,self.sp_parents,
@@ -1197,6 +1221,8 @@ class FamilyView:
             row = model.get_path(iter)
             fam = person.get_parent_family_id_list()[row[0]]
             person.remove_parent_family_id(fam[0])
+
+        self.parent.db.commit_person(person)
         Utils.modified()
         self.load_family()
 

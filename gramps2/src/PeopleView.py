@@ -194,7 +194,7 @@ class PeopleView:
 
     def add_to_person_list(self,person,change):
         key = person.get_id()
-        val = self.parent.db.get_person_display(person.get_id())
+        val = self.parent.db.get_person_display(key)
         pg = unicode(val[5])
         pg = pg[0]
         model = None
@@ -224,7 +224,12 @@ class PeopleView:
 
         if change:
             self.parent.change_active_person(person)
-        self.goto_active_person()
+
+        try:
+            self.goto_active_person()
+        except:
+            print "goto failed"
+        
         if model:
             model.enable_sort()
 
@@ -242,10 +247,10 @@ class PeopleView:
             return
         
         id = self.parent.active_person.get_id()
+        val = self.parent.db.get_person_display(id)
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
         else:
-            val = self.parent.db.get_person_display(id)
             pg = val[5]
             if pg and pg != '@':
                 pg = pg[0]
@@ -268,10 +273,10 @@ class PeopleView:
 
         if not iter:
             self.parent.status_text(_('Updating display...'))
-            model.expand_row(val[-1])
+            model.fill_row(val[-1])
             (m,iter) = self.id2col[id]
             self.parent.modify_statusbar()
-
+            
         try:
             model.selection.unselect_all()
             model.selection.select_iter(iter)
