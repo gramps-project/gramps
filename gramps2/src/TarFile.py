@@ -85,7 +85,7 @@ class TarFile:
 #
 #------------------------------------------------------------------------
 class ReadTarFile:
-    def __init__(self,name,wd):
+    def __init__(self,name,wd="/tmp"):
         self.name = name
 	self.wd = wd
         self.f = gzip.open(name,"rb")
