@@ -119,14 +119,14 @@ class DetAncestorReport(Report.Report):
                 mother_obj = self.database.find_person_from_id(mother_id)
                 mother = mother_obj.get_primary_name().get_regular_name()
             else:
-                mother = "unknown"
+                mother = _("unknown")
 
             father_id = family.get_father_id()
             if father_id:
                 father_obj = self.database.find_person_from_id(father_id)
                 father = father_obj.get_primary_name().get_regular_name()
             else:
-                father = "unknown"
+                father = _("unknown")
 
             self.doc.start_bold()
             if num_children == 1:
@@ -245,9 +245,9 @@ class DetAncestorReport(Report.Report):
         if rptOptions.firstName == reportOptions.Yes:
             firstName= person.get_primary_name().get_first_name()
         elif person.get_gender() == RelLib.Person.male:
-            firstName= _("He")
+            firstName = _("He")
         else:
-            firstName= _("She")
+            firstName = _("She")
 
         self.doc.start_bold()
         self.doc.write_text(name)
