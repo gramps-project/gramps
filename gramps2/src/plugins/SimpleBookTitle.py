@@ -43,7 +43,6 @@ import gtk
 import Report
 import BaseDoc
 import SelectObject
-import Utils
 import AddMedia
 import const
 import ReportOptions
