@@ -258,7 +258,7 @@ class Gallery(ImageSelect):
                 self.dataobj.set_media_list(self.old_media_list)
                 trans = self.db.start_transaction()
                 self.commit(self.dataobj,trans)
-                self.db.add_transaction(trans)
+                self.db.add_transaction(trans,_("Edit Media Object"))
         
     def on_canvas1_event(self,obj,event):
         """
@@ -802,7 +802,7 @@ class LocalMediaProperties:
 
         trans = self.db.start_transaction()
         self.db.commit_media_object(self.object,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Edit Media Object"))
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1027,7 +1027,7 @@ class GlobalMediaProperties:
             self.update()
         trans = self.db.start_transaction()
         self.db.commit_media_object(self.object,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Edit Media Object"))
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1136,6 +1136,6 @@ class DeleteMediaQuery:
                 self.db.commit_place(p,trans)
 
         self.db.remove_object(self.media.get_id(),trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Remove Media Object"))
         if self.update:
             self.update()
