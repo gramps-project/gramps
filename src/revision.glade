@@ -35,7 +35,7 @@
 	      <property name="label">gtk-cancel</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
+	      <property name="response_id">-6</property>
 	      <signal name="clicked" handler="destroy_passed_object" object="dbopen"/>
 	    </widget>
 	  </child>
@@ -48,7 +48,7 @@
 	      <property name="label">gtk-ok</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
+	      <property name="response_id">-5</property>
 	      <signal name="clicked" handler="on_ok_button1_clicked" object="dbopen"/>
 	    </widget>
 	  </child>
@@ -130,7 +130,7 @@
 		  <property name="max_saved">10</property>
 		  <property name="browse_dialog_title" translatable="yes">Open a database</property>
 		  <property name="directory_entry">True</property>
-		  <property name="modal">False</property>
+		  <property name="modal">True</property>
 
 		  <child internal-child="entry">
 		    <widget class="GtkEntry" id="combo-entry2">

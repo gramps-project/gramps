@@ -16,6 +16,12 @@
 	* src/plugins/Makefile.am: Ship writefree.glade.
 	* src/plugins/Makefile.in: Likewise.
 
+	* src/gramps_main.py (on_save_as_activate): Make dialog modal and 
+	transient; (on_open_activate): likewise; (on_new_clicked): pass 
+	main window to set the transient. 
+	* src/gramps.glade (fileselection dialog): Remove auto_estroy and modal.
+	* src/revision.glade (dbopen dialog): Add modal and set responses.
+
 2003-09-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SourceView.py (button_press,on_add_clicked,on_delete_clicked,
 	on_edit_clicked): Pass parent window to the child dialog. 

@@ -850,7 +850,7 @@ class Gramps:
                          'discarding any unsaved changes. You will then be prompted '
                          'to create a new database'),
                        _('_Create New Database'),
-                       self.new_database_response)
+                       self.new_database_response,self.topWindow)
                        
     def new_database_response(self):
         import DbPrompter
@@ -989,7 +989,6 @@ class Gramps:
         dbname = obj.get_data("dbname")
         getoldrev = obj.get_data("getoldrev")
         filename = dbname.get_full_path(0)
-        Utils.destroy_passed_object(obj)
 
         if filename == "" or filename == None:
             return
@@ -1740,10 +1739,6 @@ class Gramps:
 
         if not Utils.wasModified():
             wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
-            wFs.signal_autoconnect({
-                "on_ok_button1_clicked": self.on_ok_button1_clicked,
-                "destroy_passed_object": Utils.destroy_passed_object
-                })
 
             fileSelector = wFs.get_widget("dbopen")
 
@@ -1759,7 +1754,12 @@ class Gramps:
             
             fileSelector.set_data("getoldrev",getoldrev)
             getoldrev.set_sensitive(GrampsCfg.usevc)
+            fileSelector.set_transient_for(self.topWindow)
             fileSelector.show()
+            button = fileSelector.run()
+            if button == gtk.RESPONSE_OK:
+                self.on_ok_button1_clicked(fileSelector)
+            fileSelector.destroy()
 
     def on_revert_activate(self,obj):
         
@@ -1793,14 +1793,14 @@ class Gramps:
         
     def on_save_as_activate(self,obj):
         wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.on_ok_button2_clicked,
-            "destroy_passed_object": Utils.destroy_passed_object
-            })
-
         fileSelector = wFs.get_widget("fileselection")
         fileSelector.set_title('%s - GRAMPS' % _('Save database'))
+        fileSelector.set_transient_for(self.topWindow)
         fileSelector.show()
+        button = fileSelector.run()
+        if button == gtk.RESPONSE_OK:
+            self.on_ok_button2_clicked(fileSelector)
+        fileSelector.destroy()
 
     def on_save_activate(self,obj):
         """Saves the file, first prompting for a comment if revision
