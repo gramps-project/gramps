@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Generate files/Relationship graph"
 
 #------------------------------------------------------------------------
@@ -208,7 +210,7 @@ class RelGraphDialog(Report.ReportDialog):
         self.add_frame_option(_("GraphViz Options"), '',
                               self.show_as_stack_cb,
                               _("The main individual is shown along with "
-                                "their spuses in a stack."))
+                                "their spouses in a stack."))
 
         self.show_families_cb = gtk.CheckButton(_("Show family nodes"))
         self.show_families_cb.set_active(self.ShowFamilies)
