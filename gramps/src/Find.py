@@ -56,9 +56,17 @@ class Find:
     def find_next(self):
         """Advances to the next person that matches the dialog text"""
         text = self.entry.get_text()
-        row = self.clist.selection[0]
-        if row == None or text == "":
+
+        try:
+            row = self.clist.selection[0]
+        except IndexError:
+            gtk.gdk_beep()
             return
+
+        if row == None or text == "":
+            gtk.gdk_beep()
+            return
+
         row = row + 1
         last = self.clist.rows
         person = None
@@ -75,9 +83,17 @@ class Find:
     def find_prev(self):
         """Advances to the previous person that matches the dialog text"""
         text = self.entry.get_text()
-        row = self.clist.selection[0]
-        if row == None or text == "":
+
+        try:
+            row = self.clist.selection[0]
+        except IndexError:
+            gtk.gdk_beep()
             return
+
+        if row == None or text == "":
+            gtk.gdk_beep()
+            return
+
         row = row - 1
         person = None
         while row >= 0:

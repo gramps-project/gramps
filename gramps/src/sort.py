@@ -28,7 +28,8 @@ import string
 #
 #-------------------------------------------------------------------------
 def build_sort_name(n):
-    return "%-25s%-30s%s" % (n.Surname,n.FirstName,n.Suffix)
+    return "%-25s%-30s%s" % \
+           (string.upper(n.Surname),string.upper(n.FirstName),string.upper(n.Suffix))
 
 #-------------------------------------------------------------------------
 #
