@@ -31,13 +31,6 @@ import os
 from gnome.ui import *
 
 import sys
-try:
-    import _xmlplus.sax
-    import _xmlplus.sax.saxutils
-except:
-    import xml.sax
-    import xml.sax.saxutils
-    
 
 #-------------------------------------------------------------------------
 #
@@ -45,21 +38,10 @@ except:
 #
 #-------------------------------------------------------------------------
 
-if sys.version[0] != '1':
-    sax = 2
-    try:
-        from _xmlplus.sax import make_parser, SAXParseException
-    except:
-        from xml.sax import make_parser, SAXParseException
-else:
-    try:
-        from xml.sax.saxexts import make_parser
-        from xml.sax import SAXParseException
-        from xml.sax.saxutils import ErrorRaiser
-        sax = 1
-    except:
-        from xml.sax import make_parser, SAXParseException
-        sax = 2
+try:
+    from xml.sax import make_parser, SAXParseException
+except:
+    from _xmlplus.sax import make_parser, SAXParseException
 
 #-------------------------------------------------------------------------
 #
@@ -74,14 +56,8 @@ def importData(database, filename, callback):
     database.pmap = {}
     database.fmap = {}
 
-    if sax == 1:
-        parser = make_parser()
-        parser.setDocumentHandler(GrampsImportParser(database,callback,basefile))
-        parser.setErrorHandler(ErrorRaiser())
-         
-    else:
-        parser = make_parser()
-        parser.setContentHandler(GrampsImportParser(database,callback,basefile))
+    parser = make_parser()
+    parser.setContentHandler(GrampsImportParser(database,callback,basefile))
          
     try:
         xml_file = gzip.open(filename,"rb")
@@ -93,11 +69,8 @@ def importData(database, filename, callback):
         return 0
         
     try:
-        if sax == 1:
-            parser.parseFile(xml_file)
-        else:
-            parser.parse(xml_file)
-    except xml.sax.SAXParseException:
+        parser.parse(xml_file)
+    except SAXParseException:
         GnomeErrorDialog(_("%s is a corrupt file") % filename)
         import traceback
         traceback.print_exc()
@@ -130,13 +103,8 @@ def loadData(database, filename, callback):
 
     filename = os.path.normpath(filename)
 
-    if sax == 1:
-        parser = make_parser()
-        parser.setDocumentHandler(GrampsParser(database,callback,basefile))
-        parser.setErrorHandler(ErrorRaiser())
-    else:
-        parser = make_parser()
-        parser.setContentHandler(GrampsParser(database,callback,basefile))
+    parser = make_parser()
+    parser.setContentHandler(GrampsParser(database,callback,basefile))
 
     try:
         xml_file = gzip.open(filename,"rb")
@@ -148,11 +116,8 @@ def loadData(database, filename, callback):
         return 0
         
     try:
-        if sax == 1:
-            parser.parseFile(xml_file)
-        else:
-            parser.parse(xml_file)
-    except xml.sax.SAXParseException:
+        parser.parse(xml_file)
+    except SAXParseException:
         GnomeErrorDialog(_("%s is a corrupt file") % filename)
         import traceback
         traceback.print_exc()
