@@ -1558,6 +1558,7 @@ class Gramps:
         if temp:
             self.change_active_person(temp)
             self.update_display(0)
+            self.goto_active_person()
         else:
             ErrorDialog(_("No Home Person has been set."),
                         _("The Home Person may be set from the Settings menu."))

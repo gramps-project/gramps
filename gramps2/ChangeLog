@@ -1,3 +1,6 @@
+2004-10-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: fixed home person button
+
 2004-10-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/WriteGedcom.py (GedcomWriter.write_person): handle
 	empty event handles
