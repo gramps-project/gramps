@@ -369,21 +369,22 @@ class Marriage:
                 GnomeWarningDialog("%s" % msg1)
 
         relation = self.type_field.entry.get_text()
-        if const.save_frel(relation) != self.family.getRelationship():
-            father = self.family.getFather()
-            mother = self.family.getMother()
-            if father.getGender() == mother.getGender():
-                self.family.setRelationship("Partners")
-            else:
-                val = const.save_frel(relation)
-                if val == "Partners":
-                    val = "Unknown"
-                if father.getGender() == Person.female or \
-                   mother.getGender() == Person.male:
-                    self.family.setFather(mother)
-                    self.family.setMother(father)
-                self.family.setRelationship(val)
-            Utils.modified()
+        father = self.family.getFather()
+        mother = self.family.getMother()
+        if father and mother:
+            if const.save_frel(relation) != self.family.getRelationship():
+                if father.getGender() == mother.getGender():
+                    self.family.setRelationship("Partners")
+                else:
+                    val = const.save_frel(relation)
+                    if val == "Partners":
+                        val = "Unknown"
+                    if father.getGender() == Person.female or \
+                       mother.getGender() == Person.male:
+                        self.family.setFather(mother)
+                        self.family.setMother(father)
+                    self.family.setRelationship(val)
+                Utils.modified()
 
         text = self.notes_field.get_chars(0,-1)
         if text != self.family.getNote():
