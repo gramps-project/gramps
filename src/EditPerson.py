@@ -49,7 +49,6 @@ import const
 import Utils
 import GrampsCfg
 import ImageSelect
-import Sort
 import AutoComp
 import ListModel
 import RelLib
@@ -1777,14 +1776,13 @@ class EditPerson:
         """Check any *valid* birthdates in the list to insure that they are in
         numerically increasing order."""
         inorder = True
-        prev_date = "00000000"
+        prev_date = 0
         for i in range(len(list)):
             child_handle = list[i]
             child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_handle():
                 event = self.db.get_event_from_handle(child.get_birth_handle())
-                bday = event.get_date_object()
-                child_date = Sort.build_sort_date(bday)
+                child_date = event.get_date_object().get_sort_value()
             else:
                 continue
             if (prev_date <= child_date):   # <= allows for twins
@@ -1805,9 +1803,9 @@ class EditPerson:
         event_handle = person.get_birth_handle()
         if event_handle:
             event = self.db.get_event_from_handle(event_handle)
-            person_bday = Sort.build_sort_date(event.get_date_object())
+            person_bday = event.get_date_object().get_sort_value()
         else:
-            person_bday = "99999999"
+            person_bday = 0
 
         # First, see if the person needs to be moved forward in the list
 
@@ -1818,10 +1816,10 @@ class EditPerson:
             event_handle = other.get_birth_handle()
             if event_handle:
                 event = self.db.get_event_from_handle(event_handle)
-                other_bday = Sort.build_sort_date(event.get_date_object())
-                if (other_bday == "99999999"):
+                other_bday = event.get_date_object().get_sort_value()
+                if other_bday == 0:
                     continue;
-                if (person_bday < other_bday):
+                if person_bday < other_bday:
                     target = i
             else:
                 continue
@@ -1833,10 +1831,10 @@ class EditPerson:
                 event_handle = other.get_birth_handle()
                 if event_handle:
                     event = self.db.get_event_from_handle(event_handle)
-                    other_bday = Sort.build_sort_date(event.get_date_object())
-                    if (other_bday == "99999999"):
+                    other_bday = event.get_date_object().get_sort_value()
+                    if other_bday == "99999999":
                         continue;
-                    if (person_bday > other_bday):
+                    if person_bday > other_bday:
                         target = i
                 else:
                     continue

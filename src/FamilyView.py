@@ -36,7 +36,6 @@ from gobject import TYPE_STRING, TYPE_INT
 #
 #-------------------------------------------------------------------------
 import const
-import Sort
 import Utils
 import GrampsCfg
 import AddSpouse
@@ -1410,8 +1409,8 @@ class FamilyView:
     def birth_dates_in_order(self,list):
         """Check any *valid* birthdates in the list to insure that they are in
         numerically increasing order."""
-        inorder = 1
-        prev_date = "00000000"
+        inorder = True
+        prev_date = 0
         for i in range(len(list)):
             child_handle = list[i]
             child = self.parent.db.get_person_from_handle(child_handle)
@@ -1419,12 +1418,11 @@ class FamilyView:
             birth = self.parent.db.get_event_from_handle(birth_handle)
             if not birth:
                 continue
-            bday = birth.get_date_object()
-            child_date = Sort.build_sort_date(bday)
-            if (child_date == "99999999"):
+            child_date = birth.get_date_object().get_sort_value()
+            if child_date == 0:
                 continue
-            if (prev_date <= child_date):	# <= allows for twins
+            if prev_date <= child_date:	# <= allows for twins
                 prev_date = child_date
             else:
-                inorder = 0
+                inorder = False
         return inorder
