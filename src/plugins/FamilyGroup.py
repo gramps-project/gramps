@@ -112,6 +112,9 @@ class FamilyGroup:
     
     def dump_parent(self,person):
 
+        if not person:
+            return
+        
         if person.getGender() == RelLib.Person.male:
             id = _("Husband")
         else:
