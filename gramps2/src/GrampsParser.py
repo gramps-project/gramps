@@ -195,8 +195,12 @@ class GrampsParser:
             if self.db.personMap.has_key(id) and self.db.getDefaultPerson() == None:
                 person = self.db.personMap[id]
                 self.db.setDefaultPerson(person)
+
         for key in self.func_map.keys():
             del self.func_map[key]
+        del self.func_map
+        del self.func_list
+        del p
 
     def start_lds_ord(self,attrs):
         type = attrs['type']
