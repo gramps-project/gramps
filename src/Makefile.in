@@ -20,7 +20,7 @@ intl.so: intl.c
 
 install:
 	${INSTALL} -d ${datadir}
-	${INSTALL} *.py *.jpg *.pyo *.glade *.xpm *.so ${datadir}
+	${INSTALL} *.py *.jpg *.pyo *.png *.glade *.xpm *.so ${datadir}
 	${INSTALL} -d ${prefix}/share/pixmaps
 	${INSTALL} gramps.png ${prefix}/share/pixmaps
 	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
