@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from gtk import GdkColor
-
 _enable   = 0
 oddbg    = (0xffff,0xffff,0xffff)
 evenbg   = (0xffff,0xffff,0xffff)
@@ -35,10 +33,11 @@ class ColorList:
         self.clist = clist
         self.color_ok = 1
         try:
-            self.oddbg = GdkColor(oddbg[0],oddbg[1],oddbg[2])
-            self.oddfg = GdkColor(oddfg[0],oddfg[1],oddfg[2])
-            self.evenbg = GdkColor(evenbg[0],evenbg[1],evenbg[2])
-            self.evenfg = GdkColor(evenfg[0],evenfg[1],evenfg[2])
+            cmap = clist.get_colormap()
+            self.oddbg = cmap.alloc(oddbg[0],oddbg[1],oddbg[2])
+            self.oddfg = cmap.alloc(oddfg[0],oddfg[1],oddfg[2])
+            self.evenbg = cmap.alloc(evenbg[0],evenbg[1],evenbg[2])
+            self.evenfg = cmap.alloc(evenfg[0],evenfg[1],evenfg[2])
         except OverflowError:
             self.color_ok = 0
         
