@@ -20,27 +20,27 @@
 
 2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
 
-	* src/EditPerson.py
+	* src/EditPerson.py:
 	Don't reset date value after a page switch
 
 2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/ImageSelect.py
+	* src/ImageSelect.py:
 	Fixed typo in on_drag_begin
-	* src/RelLib.py
+	* src/RelLib.py:
 	Check for the existance of the witness member of an Event. ZODB
 	stores an object, so elements read in from old databases may not 
 	have the element, which can cause a traceback.
 
 2003-06-06  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/AutoComp.py
+	* src/AutoComp.py:
 	Don't build popdown lists if the number of elements exceeds 250.
 	Otherwise, the menus will become unusable, and just consume
 	tons of memory.
 
 2003-06-04  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/VersionControl.py
+	* src/VersionControl.py:
 	Sort revision numbers based on numerical value instead of ASCII value.
-	* src/VersionControl.py
+	* src/VersionControl.py:
 	Check return values of all subprocesses
 
 2003-06-04  Alex Roitman  <shura@alex.neuro.umn.edu>
