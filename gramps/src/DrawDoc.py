@@ -136,6 +136,9 @@ class DrawDoc:
     def draw_box(self,style,text,x,y):
 	pass
 
+    def write_at(self,style,text,x,y):
+	pass
+
     def draw_line(self,style,x1,y1,x2,y2):
 	pass
 

@@ -426,6 +426,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Individual Summary"),
+    status=(_("Beta")),
     category=_("Text Reports"),
     description=_("Produces a detailed report on the selected person.")
     )

@@ -130,6 +130,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Summary of the database"),
+    status=(_("Beta")),
     category=_("View"),
     description=_("Provides a summary of the current database")
     )

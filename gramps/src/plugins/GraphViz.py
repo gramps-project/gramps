@@ -284,6 +284,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Relationship graph"),
+    status=(_("Beta")),
     category=_("Graphical Reports"),
     description=get_description()
     )

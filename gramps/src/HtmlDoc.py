@@ -40,7 +40,7 @@ try:
 except:
     no_pil = 1
 
-t_header_line_re = re.compile(r"(.*)<TITLE>.*</TITLE>(.*)", re.DOTALL)
+t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)", re.DOTALL|re.IGNORECASE|re.MULTILINE)
 
 #------------------------------------------------------------------------
 #
@@ -48,10 +48,10 @@ t_header_line_re = re.compile(r"(.*)<TITLE>.*</TITLE>(.*)", re.DOTALL)
 #
 #------------------------------------------------------------------------
 _top = [
-    '<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">\n',
+    '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">\n',
     '<HTML>\n',
     '<HEAD>\n',
-    '  <META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n',
+    '  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">\n',
     '  <TITLE>\n',
     '  </TITLE>\n',
     '  <STYLE type="text/css">\n',
@@ -155,7 +155,7 @@ class HtmlDoc(TextDoc):
         self.base = os.path.dirname(self.filename)
 
         self.f = open(self.filename,"w")
-        self.f.write(self.file_header % self.title)
+        self.f.write(self.file_header)
         self.f.write(self.style_declaration)
 
     def build_header(self):
@@ -163,9 +163,9 @@ class HtmlDoc(TextDoc):
         match = t_header_line_re.match(top)
         if match:
             m = match.groups()
-            self.file_header = '%s<TITLE>%%s</TITLE>%s\n' % (m[0],m[1])
+            self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],m[1],m[2])
         else:
-            self.file_header = None
+            self.file_header = top
 
     def build_style_declaration(self):
         fl2txt = utils.fl2txt

@@ -455,10 +455,10 @@ class StyleSheetList:
                 rm = float(p.get_right_margin())
                 lm = float(p.get_left_margin())
                 fi = float(p.get_first_indent())
-                f.write('rmargin="%s" ' % utils.fl2txt("%.3f",rm))
-                f.write('lmargin="%s" ' % utils.fl2txt("%.3f",lm))
-                f.write('first="%s" ' % utils.fl2txt("%.3f",fi))
-                f.write('pad="%s" ' % utils.fl2txt("%.3f",p.get_padding()))
+                f.write('rmargin="%.3f" ' % rm)
+                f.write('lmargin="%.3f" ' % lm)
+                f.write('first="%.3f" ' % fi)
+                f.write('pad="%.3f" ' % p.get_padding())
                 f.write('bgcolor="#%02x%02x%02x" ' % p.get_background_color())
                 f.write('level="%d" ' % p.get_header_level())
                 f.write('align="%d" ' % p.get_alignment())
@@ -479,8 +479,8 @@ class StyleSheetList:
             parser.parse(self.file)
         except IOError:
             pass
-        except:
-            print "could not parse file"
+#        except:
+#            print "could not parse file"
         
 #------------------------------------------------------------------------
 #
@@ -541,10 +541,10 @@ class SheetParser(handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
-            self.p.set_right_margin(utils.txt2fl(attrs['rmargin']))
-            self.p.set_left_margin(utils.txt2fl(attrs['lmargin']))
-            self.p.set_first_indent(utils.txt2fl(attrs['first']))
-            self.p.set_padding(utils.txt2fl(attrs['pad']))
+            self.p.set_right_margin(float(attrs['rmargin']))
+            self.p.set_left_margin(float(attrs['lmargin']))
+            self.p.set_first_indent(float(attrs['first']))
+            self.p.set_padding(float(attrs['pad']))
             self.p.set_alignment(int(attrs['align']))
             self.p.set_right_border(int(attrs['rborder']))
             self.p.set_header_level(int(attrs['level']))

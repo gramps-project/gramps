@@ -1031,6 +1031,7 @@ register_report(
     report,
     _("Generate Web Site"),
     category=_("Web Page"),
+    status=(_("Beta")),
     description=_("Generates web (HTML) pages for individuals, or a set of individuals.")
     )
 

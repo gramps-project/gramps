@@ -388,6 +388,7 @@ register_report(
     report,
     _("Ancestor Chart"),
     category=_("Graphical Reports"),
+    status=(_("Beta")),
     description=_("Produces a graphical ancestral tree graph"),
     xpm=get_xpm_image()
     )
