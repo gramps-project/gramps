@@ -6,6 +6,8 @@
 	* src/gramps.glade: Add date/place property to media objects
 	* src/SelectObject.py: display gramps id instead of internal handle
 
+	* src/gramps_main.py: fix setting of active person on history change
+
 2004-11-05 Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Include non-marriage relationships.
 
