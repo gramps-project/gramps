@@ -232,7 +232,7 @@ class Merge:
         (p1,p2) = self.mlist.get_row_data(row)
         MergeData.MergePeople(self.db,p1,p2,self.on_update)
 
-    def on_update(self,p1,p2):
+    def on_update(self,p1,p2,old_id):
         self.dellist[p2] = p1
         for key in self.dellist.keys():
             if self.dellist[key] == p2:

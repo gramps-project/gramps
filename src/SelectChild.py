@@ -323,7 +323,10 @@ class NewChild:
             msn = mother.getPrimaryName().getSurname()
             if not father or not mother:
                 return ""
-            return "%s %s" % (string.split(fsn)[0],string.split(msn)[0])
+            try:
+                return "%s %s" % (string.split(fsn)[0],string.split(msn)[0])
+            except:
+                return ""
         else:
             return ""
 

@@ -448,7 +448,7 @@ class Gramps:
             return
 
         self.active_family.removeChild(self.active_child)
-        self.active_child.removeAltFamily(self.active_child)
+        self.active_child.removeAltFamily(self.active_family)
         
         if len(self.active_family.getChildList()) == 0:
             if self.active_family.getFather() == None:
