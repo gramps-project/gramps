@@ -402,9 +402,9 @@ class GrampsParser:
         d.get_start_date().setIsoDate(attrs['val'])
         
         if attrs.has_key("type"):
-            d.get_start_date().getMode(attrs['type'])
+            d.get_start_date().setMode(attrs['type'])
         else:
-            d.get_start_date().getMode(None)
+            d.get_start_date().setMode(None)
             
 
     def start_datestr(self,attrs):
