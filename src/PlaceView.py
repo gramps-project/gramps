@@ -184,7 +184,7 @@ class PlaceView:
         used = 0
         place = self.db.getPlace(obj.get_row_data(index))
         for key in self.db.getPersonKeys():
-            p = self.db.getPerson[key]
+            p = self.db.getPerson(key)
             event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
             if p.getLdsBaptism():
                 event_list.append(p.getLdsBaptism())
