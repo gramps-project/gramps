@@ -20,6 +20,7 @@ pkgpython_PYTHON = \
 	ansel_utf8.py\
 	AttrEdit.py\
 	AutoComp.py\
+	BaseDoc.py\
 	Bookmarks.py\
 	Calendar.py\
 	ChooseParents.py\
