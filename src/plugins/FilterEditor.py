@@ -153,7 +153,7 @@ class MySource(gtk.ComboBox):
         for src_handle in self.db.get_source_handles(sort_handles=True):
             src = self.db.get_source_from_handle(src_handle)
             self.slist.append(src.get_gramps_id())
-            store.append(row=[src.get_title()])
+            store.append(row=["%s [%s]" % (src.get_title(),src.get_gramps_id())])
 
         self.set_active(0)
         self.show()
