@@ -25,6 +25,12 @@ oddfg    = (0,0,0)
 evenfg   = (0,0,0)
 ancestorfg = (0,0,0)
 
+def to_signed(a):
+    if a & 0x8000:
+        return a - 0x10000
+    else:
+        return a
+    
 class ColorList:
     def __init__(self,clist,increment):
         self.index = 0
@@ -34,10 +40,10 @@ class ColorList:
         self.color_ok = 1
         try:
             cmap = clist.get_colormap()
-            self.oddbg = cmap.alloc(oddbg[0],oddbg[1],oddbg[2])
-            self.oddfg = cmap.alloc(oddfg[0],oddfg[1],oddfg[2])
-            self.evenbg = cmap.alloc(evenbg[0],evenbg[1],evenbg[2])
-            self.evenfg = cmap.alloc(evenfg[0],evenfg[1],evenfg[2])
+            self.oddbg = cmap.alloc(to_signed(oddbg[0]),to_signed(oddbg[1]),to_signed(oddbg[2]))
+            self.oddfg = cmap.alloc(to_signed(oddfg[0]),to_signed(oddfg[1]),to_signed(oddfg[2]))
+            self.evenbg = cmap.alloc(to_signed(evenbg[0]),to_signed(evenbg[1]),to_signed(evenbg[2]))
+            self.evenfg = cmap.alloc(to_signed(evenfg[0]),to_signed(evenfg[1]),to_signed(evenfg[2]))
         except OverflowError:
             self.color_ok = 0
         
