@@ -1584,8 +1584,9 @@ class Gramps:
             self.db.set_researcher(owner)
 
         self.setup_bookmarks()
-        if callback and self.db.need_upgrade():
-            callback(_('Upgrading database...'))
+        if self.db.need_upgrade():
+            if callback:
+                callback(_('Upgrading database...'))
             self.db.upgrade()
 
         GrampsKeys.save_last_file(name)
