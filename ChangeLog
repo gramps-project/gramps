@@ -1,4 +1,10 @@
 2004-11-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsDbBase.py: always use external thumbnails
+	* src/GrampsBSDDB.py: always use external thumbnails
+	* src/ImgManip.py: centralize thumbnail handling
+	* src/ReadXML.py: handle thumbnail changes
+	* src/ReadGedcom.py: combine common files into the same 
+	media object
 	* src/EditSource.py: handle add/delete data item buttons. Make
 	sure that data items with empty keys are not saved.
 	* src/gramps.glade: added add/delete buttons for Source Editor

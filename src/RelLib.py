@@ -1197,7 +1197,7 @@ class Source(PrimaryObject):
     def serialize(self):
         return (self.handle, self.gramps_id, unicode(self.title),
                 unicode(self.author), unicode(self.pubinfo),
-                unicode(self.note), self.media_list, unicode(self.abbrev),
+                self.note, self.media_list, unicode(self.abbrev),
                 self.change,self.datamap)
 
     def unserialize(self,data):

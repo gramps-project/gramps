@@ -1129,10 +1129,12 @@ class GrampsDbBase:
                 return cols
 
     def get_thumbnail_image(self,handle):
-        return None
-
-    def set_thumbnail_image(self,handle,path):
-        pass
+        data = self.media_map.get(handle)
+        if data:
+            import ImgManip
+            return ImgManip.get_thumbnail_image(data[2])
+        else:
+            return None
             
 class Transaction:
     """

@@ -922,7 +922,6 @@ class GrampsParser:
                 fullpath = os.path.abspath(self.filename)
                 src = os.path.dirname(fullpath) + '/' + src
             self.object.set_path(src)
-            self.db.set_thumbnail_image(self.object.get_handle(),src)
 
     def stop_people(self,*tag):
         pass
