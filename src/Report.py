@@ -675,8 +675,8 @@ class BareReportDialog:
         else:
             self.max_gen = 0
             
-        if self.pagebreak_checkbox:
-            self.pg_brk = self.pagebreak_checkbox.get_active()
+        if self.pagebreak_checkbox and self.pagebreak_checkbox.get_active():
+            self.pg_brk = 1
         else:
             self.pg_brk = 0
 

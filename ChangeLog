@@ -8,6 +8,9 @@
 	* src/Makefile.am: Ship Exporter.py.
 	* src/Plugins.py (register_export): Change to the new scheme.
 
+	* src/Report.py (parse_report_options_frame): Use integer 1 and 0
+	instead of True and False for the pagebreak option. 
+
 2004-07-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ChooseParents.py: build an exclusion list of those
 	obviously not the parents
