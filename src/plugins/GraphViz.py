@@ -137,13 +137,13 @@ class GraphViz:
             self.fontname = _PS_FONT
         arrow_str = self.options_class.handler.options_dict['arrow']
         if arrow_str.find('a') + 1:
-        	self.arrowheadstyle = 'normal'
+            self.arrowheadstyle = 'normal'
         else:
-        	self.arrowheadstyle = 'none'
+            self.arrowheadstyle = 'none'
         if arrow_str.find('d') + 1:
-        	self.arrowtailstyle = 'normal'
+            self.arrowtailstyle = 'normal'
         else:
-        	self.arrowtailstyle = 'none'
+            self.arrowtailstyle = 'none'
 
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
@@ -186,7 +186,7 @@ class GraphViz:
     def dump_person(self):
         # Hash people in a dictionary for faster inclusion checking.
         person_dict = {}
-    	for p_id in self.ind_list:
+        for p_id in self.ind_list:
             person_dict[p_id] = 1
 
         for person_handle in self.ind_list:
