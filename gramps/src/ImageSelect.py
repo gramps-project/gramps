@@ -259,6 +259,7 @@ class Gallery(ImageSelect):
                 photo = Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
+                photo.setLocal(1)
                 self.savephoto(photo)
                 try:
                     name = RelImage.import_media_object(tfile,self.path,photo.getId())
@@ -266,6 +267,7 @@ class Gallery(ImageSelect):
                 except:
                     GnomeErrorDialog(_("Could not import %s") % d)
                     return
+                utils.modified()
             else:
                 if self.db.getObjectMap().has_key(data.data):
                     index = 0
