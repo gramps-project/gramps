@@ -1626,7 +1626,7 @@ class EditPerson:
 
     def on_name_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.pname,self.window)
+        NoteEdit.NoteEditor(self.pname,self,self.window)
 
     def on_ldsbap_source_clicked(self,obj):
         Sources.SourceSelector(self.lds_baptism.get_source_references(),
@@ -1638,7 +1638,7 @@ class EditPerson:
         
     def on_ldsbap_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_baptism,self.window)
+        NoteEdit.NoteEditor(self.lds_baptism,self,self.window)
 
     def on_ldsendow_source_clicked(self,obj):
         Sources.SourceSelector(self.lds_endowment.get_source_references(),
@@ -1650,7 +1650,7 @@ class EditPerson:
 
     def on_ldsendow_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_endowment,self.window)
+        NoteEdit.NoteEditor(self.lds_endowment,self,self.window)
 
     def on_ldsseal_source_clicked(self,obj):
         Sources.SourceSelector(self.lds_sealing.get_source_references(),
@@ -1662,7 +1662,7 @@ class EditPerson:
 
     def on_ldsseal_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_sealing,self.window)
+        NoteEdit.NoteEditor(self.lds_sealing,self,self.window)
 
     def load_person_image(self):
         photo_list = self.person.get_photo_list()
