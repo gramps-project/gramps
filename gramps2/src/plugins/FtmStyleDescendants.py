@@ -692,7 +692,8 @@ class FtmDescendantReport(Report.Report):
                 self.doc.end_cell()
                 self.doc.end_row()
 
-            self.doc.end_table()
+            if not first: 
+            	self.doc.end_table()
             first = 1
 
     
