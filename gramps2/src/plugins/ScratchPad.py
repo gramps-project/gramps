@@ -50,47 +50,8 @@ import Utils
 import ListModel
 import TreeTips
 
-#-------------------------------------------------------------------------
-#
-# Globals
-#
-#-------------------------------------------------------------------------
-
 from DdTargets import DdTargets
 
-##text_targets =  ['text/plain',
-##                 'TEXT',
-##                 'STRING',
-##                 'COMPOUND_TEXT',
-##                 'UTF8_STRING']
-
-##text_tgts = [('text/plain',0,0),
-##             ('TEXT', 0, 1),
-##             ('STRING', 0, 2),
-##             ('COMPOUND_TEXT', 0, 3),
-##             ('UTF8_STRING', 0, 4)]
-
-##gramps_targets = ['url',
-##                  'pevent',
-##                  'pattr',
-##                  'paddr',
-##                  'srcref']
-
-##pycode_tgts = [('url', 0, 0),
-##               ('pevent', 0, 1),
-##               ('pattr', 0, 2),
-##               ('paddr', 0, 3),
-##               ('srcref', 0, 4)] + text_tgts
-               
-
-##TEXT_TARGET = 'TEXT'
-
-##target_map = {'url':[('url', 0, 0)],
-##              'pevent': [('pevent', 0, 1)],
-##              'pattr': [('pattr', 0, 2)],
-##              'paddr': [('paddr', 0, 3)],
-##              'srcref': [('srcref', 0, 4)],
-##              TEXT_TARGET: text_tgts}
 
 #-------------------------------------------------------------------------
 #
@@ -115,6 +76,13 @@ class ScratchPadWindow:
         references of objects before attempting to use them.
         """
     
+    # Class attribute used to hold the content of the
+    # ScratchPad. A class attribute is used so that the content
+    # it preserved even when the ScratchPad window is closed.
+    # As there is only ever one ScratchPad we do not need to
+    # maintain a list of these.
+    olist = [] 
+    
     def __init__(self,database,parent):
         """Initializes the ScratchPad class, and displays the window"""
 
@@ -125,7 +93,6 @@ class ScratchPadWindow:
             return
         self.win_key = self.__class__
 
-        self.olist = []
         self.otitles = [(_('Type'),-1,150),
                         (_('Title'),-1,150),
                         (_('Value'),-1,150),
@@ -167,6 +134,8 @@ class ScratchPadWindow:
         self.add_itself_to_menu()
         self.window.show()
 
+        self.redraw_object_list()
+
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
         
@@ -175,66 +144,6 @@ class ScratchPadWindow:
         main GRAMPS interface. If this is the first instance to be
         created a submenu is created, if it is not the first instance
         then an entry is created in the existing sub menu."""
-##ALEX        
-##        sub_menu_label = _("Scratch Pad Tool")
-##        instance_number_key = "scratch_pad_instance_number"
-##        
-##        self.parent.child_windows[self.win_key] = self
-##
-##        # First check to see if the Scratch Pad sub menu already exists.
-##        # The MenuItems contain a list of child widgets, the first one
-##        # should be the AccelLabel so we can check the label text on
-##        # that one.        
-##        sub_menu_list  = [ menu for menu in self.parent.winsmenu.get_children() if \
-##                           menu.get_children()[0].get_label() == sub_menu_label ]
-##
-##        if len(sub_menu_list) > 0:
-##            # This list should always be of length 0 or 1 but in the unlikely
-##            # situation that it is greater than 1 it will still be safe to use
-##            # the first.
-##            self.parent_menu_item = sub_menu_list[0]
-##        else:
-##            # There is no existing instances so we must create the submenu. 
-##            self.parent_menu_item = gtk.MenuItem(sub_menu_label)            
-##            self.parent_menu_item.set_submenu(gtk.Menu())
-##            self.parent_menu_item.show()
-##            self.parent.winsmenu.append(self.parent_menu_item)
-##
-##        # Get a handle to the submenu and remember it so that
-##        # remove_itself_from_menu can delete it later.
-##        self.winsmenu = self.parent_menu_item.get_submenu()
-##
-##        # Get the first available instance number. The instance number
-##        # is stored in the data item store of the menu item so we can
-##        # read it with get_data.
-##        num = 1
-##        existing_instances = [ menu_item.get_data(instance_number_key) \
-##                               for menu_item in self.winsmenu.get_children() ]
-##        
-##        if len(existing_instances) > 0:
-##            # Calculate the first available instance number. 
-##            existing_instances.sort()
-##            for instance_num in existing_instances:
-##                if instance_num != num:
-##                    break
-##                else:
-##                    num += 1
-##
-##        # Create the instance menuitem with the instance number in the
-##        # label.
-##        instance_title = _('Scratch Pad - %d') % (num,)
-##        self.menu_item = gtk.MenuItem(instance_title)
-##        self.menu_item.set_data(instance_number_key,num)
-##        self.menu_item.connect("activate",self.present)
-##        self.menu_item.show()
-##
-##        # Set the window title to the same as the menu label.
-##        self.window.set_title(instance_title)
-##
-##        # Add the item to the submenu.
-##        self.winsmenu.append(self.menu_item)
-##
-##ALEX  This code remporarily replaces the commented above
         self.parent.child_windows[self.win_key] = self
         self.parent_menu_item = gtk.MenuItem(_('Scratch Pad'))
         self.parent_menu_item.connect("activate",self.present)
@@ -247,12 +156,6 @@ class ScratchPadWindow:
         ScratchPad sub menu as well."""
         
         del self.parent.child_windows[self.win_key]
-##ALEX
-##        self.menu_item.destroy()
-##        if len(self.winsmenu.get_children()) == 0:            
-##            self.winsmenu.destroy()
-##            self.parent_menu_item.destroy()
-##ALEX  This code remporarily replaces the commented above
         self.parent_menu_item.destroy()
 
     def present(self,obj):
@@ -270,11 +173,11 @@ class ScratchPadWindow:
         """Deletes the selected object from the object list"""
         store,node = self.otree.get_selected()
         if node:
-            self.olist.remove(self.otree.get_object(node))
+            ScratchPadWindow.olist.remove(self.otree.get_object(node))
             self.redraw_object_list()
 
     def on_clear_all_clicked(self,obj):
-        self.olist = []
+        ScratchPadWindow.olist = []
         self.redraw_object_list()
 
     def on_object_select_row(self,obj):
@@ -341,8 +244,8 @@ class ScratchPadWindow:
         row = self.otree.get_row_at(x,y)
             
         if sel_data and sel_data.data:
-            self.olist.insert(row,{'targets':context.targets,
-                                   'data':sel_data.data})
+            ScratchPadWindow.olist.insert(row,{'targets':context.targets,
+                                               'data':sel_data.data})
             self.redraw_object_list()
             
 
@@ -351,7 +254,7 @@ class ScratchPadWindow:
 
         self.otree.clear()
         
-        for obj in self.olist:
+        for obj in ScratchPadWindow.olist:
             obj_targets = obj['targets']
 
             # union with gramps_types
@@ -407,7 +310,7 @@ class ScratchPadWindow:
                 
 
                 
-        if self.olist:
+        if ScratchPadWindow.olist:
             self.otree.select_row(0)
             
 

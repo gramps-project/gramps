@@ -1,4 +1,10 @@
 2005-03-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ScratchPad.py (ScratchPadWindow): moved content of pad to a 
+	class attribute so that it is preserved when the pad is closed.
+	* src/ScratchPad.py (add_itself_to_menu, remove_itself_from_menu):
+	removed large section of commented code.
+
+2005-03-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Sources.py: converted to use DdTargets.py
 	* src/FamilyView.py: converted to use DdTargets.py
 	* src/EditPerson.py: converted to use DdTargets.py
