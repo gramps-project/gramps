@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000 Bruce J. DeGrasse
+# Copyright (C) 2000-2003 Bruce J. DeGrasse
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Generate files/Detailed Ancestral Report"
+"Generate files/Detailed Descendant Report"
 
 import RelLib
 import os
@@ -510,49 +510,42 @@ class DetDescendantReport(Report):
                 if t != "": self.doc.write_text(t)
                 if fam_num == len(famList): self.doc.write_text(".")
 
-    def write_mate(self, mate, rptOptions):
+    def write_mate(self, person, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        famList= mate.getFamilyList()
+        for fam in person.getFamilyList():
+            mate = ""
+            if person.getGender() == RelLib.Person.male:
+                heshe = _("He")
+                if fam.getMother():
+                    mate = fam.getMother()
+                    mateName = mate.getPrimaryName().getRegularName()
+                    mateFirstName = mate.getPrimaryName().getFirstName()
+            else:
+                heshe = _("She")
+                if fam.getFather():
+                    mate = fam.getFather()
+                    mateName = mate.getPrimaryName().getRegularName()
+                    mateFirstName = mate.getPrimaryName().getFirstName()
 
-        if len(famList) > 0:
-            for fam in famList:
-                person= ""
-                if mate.getGender() == RelLib.Person.male:
-                    if fam.getMother() != None:
-                        ind= fam.getMother()
-                        person= fam.getMother().getPrimaryName().getRegularName()
-                        firstName= fam.getMother().getPrimaryName().getFirstName()
-                        heshe= _("He")
-                else:
-                    heshe= _("She")
-                    if fam.getFather() != None:
-                        ind= fam.getFather()
-                        person= fam.getFather().getPrimaryName().getRegularName()
-                        firstName= fam.getFather().getPrimaryName().getFirstName()
+            if mate:
+                self.doc.start_paragraph("Entry")
 
-                if person != "":
-                    self.doc.start_paragraph("Entry")
+                if rptOptions.addImages == reportOptions.Yes:
+                    self.insert_images(mate, rptOptions.imageAttrTag)
 
-                    if rptOptions.addImages == reportOptions.Yes:
-						self.insert_images(ind,  rptOptions.imageAttrTag)
+                if rptOptions.firstName == reportOptions.No:
+                    mateFirstName = heshe
 
-                    if rptOptions.firstName == reportOptions.No:
-                        firstName= heshe
+                self.doc.write_text(mateName)
+                self.write_birth(mate, rptOptions)
+                self.write_death(mate, mateFirstName, rptOptions)
+                self.write_parents(mate, mateFirstName)
+                self.doc.end_paragraph()
 
-                    self.doc.write_text(person)
-
-                    self.write_birth(ind, rptOptions)
-
-                    self.write_death(ind, firstName, rptOptions)
-
-                    self.write_parents(ind, firstName)
-
-                    self.doc.end_paragraph()
-
-                    #if rptOptions.listChildren == reportOptions.Yes \
-                    #           and mate.getGender() == RelLib.Person.male:
-                    #    self.write_children(fam, rptOptions)
+                #if rptOptions.listChildren == reportOptions.Yes \
+                #           and mate.getGender() == RelLib.Person.male:
+                #    self.write_children(fam, rptOptions)
 
     #--------------------------------------------------------------------
     #
@@ -561,15 +554,15 @@ class DetDescendantReport(Report):
     #--------------------------------------------------------------------
     def insert_images(self, person, tag):
 
-		photos= person.getPhotoList()
-		for photo in photos :
-			attribs= photo.getAttributeList()
-			for attrib in attribs :
-				if attrib.getType() == tag:
-					vlist= string.split(attrib.getValue())
-					if vlist[0] == 'left' or vlist[0] == 'right':
-						self.doc.add_photo(photo.ref.getPath(), vlist[0], \
-                                    float(vlist[1]), float(vlist[2]))
+        photos= person.getPhotoList()
+        for photo in photos :
+            attribs= photo.getAttributeList()
+            for attrib in attribs :
+                if attrib.getType() == tag:
+                    vlist= string.split(attrib.getValue())
+                    if vlist[0] == 'left' or vlist[0] == 'right':
+                        self.doc.add_photo(photo.ref.getPath(), vlist[0], \
+                            float(vlist[1]), float(vlist[2]))
 
     #--------------------------------------------------------------------
     #
@@ -612,11 +605,11 @@ class DetDescendantReport(Report):
     #
     #
     #--------------------------------------------------------------------
-    def write_report(self):
+    def write_report(self, rptOpt):
 
         self.cur_gen= 1
         self.filter(self.start,1, 1)
-        rptOpt= reportOptions()
+        #rptOpt= reportOptions()
 
         name = self.start.getPrimaryName().getRegularName()
 
@@ -635,7 +628,7 @@ class DetDescendantReport(Report):
         if spouseName != "":
             name = spouseName + " and " + name
 
-        title = _("Descendant Report for %s") % name
+        title = _("Detailed Descendant Report for %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
@@ -761,12 +754,155 @@ class DetDescendantReportDialog(TextReportDialog):
     #
     #------------------------------------------------------------------------
     def make_report(self):
-        """Create the object that will produce the Detailed Ancestral
+        """Create the object that will produce the Detailed Descendant
         Report.  All user dialog has already been handled and the
         output file opened."""
-        MyReport = DetDescendantReport(self.db, self.person, self.target_path,
-                                     self.max_gen, self.pg_brk, self.doc)
-        MyReport.write_report()
+
+        try:
+            MyReport = DetDescendantReport(self.db, self.person, 
+                self.target_path, self.max_gen, self.pg_brk, self.doc)
+
+            rptOpt= reportOptions()
+            rptOpt.firstName= self.firstName
+            rptOpt.fullDate= self.fullDate
+            rptOpt.listChildren= self.listChildren
+            rptOpt.includeNotes= self.includeNotes
+            rptOpt.blankPlace= self.blankPlace
+            rptOpt.blankDate= self.blankDate
+            rptOpt.calcAgeFlag= self.calcAgeFlag
+            rptOpt.dupPersons= self.dupPersons
+            rptOpt.childRef= self.childRef
+            rptOpt.addImages= self.addImages
+            
+            MyReport.write_report(rptOpt)
+        except Errors.ReportError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+
+#*** Begin change
+    def add_user_options(self):
+        # Create a GTK Checkbox widgets
+
+        # Pronoun instead of first name
+        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
+        self.first_name_option.set_active(0)
+
+        # Full date usage
+        self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
+        self.full_date_option.set_active(1)
+
+        # Children List
+        self.list_children_option = gtk.CheckButton(_("List children"))
+        self.list_children_option.set_active(1)
+
+        # Print notes
+        self.include_notes_option = gtk.CheckButton(_("Include notes"))
+        self.include_notes_option.set_active(1)
+
+        # Replace missing Place with ___________
+        self.place_option = gtk.CheckButton(_("Replace Place with ______"))
+        self.place_option.set_active(0)
+
+        # Replace missing dates with __________
+        self.date_option = gtk.CheckButton(_("Replace Dates with ______"))
+        self.date_option.set_active(0)
+
+        # Add "Died at the age of NN" in text
+        self.age_option = gtk.CheckButton(_("Compute age"))
+        self.age_option.set_active(1)
+
+        # Omit duplicate persons, occurs when distant cousins marry
+        self.dupPersons_option = gtk.CheckButton(_("Omit duplicate people"))
+        self.dupPersons_option.set_active(1)
+
+        #Add descendant reference in child list
+        self.childRef_option = gtk.CheckButton(_("Add descendant reference in child list"))
+        self.childRef_option.set_active(1)
+
+        #Add photo/image reference
+        self.image_option = gtk.CheckButton(_("Include Photo/Images from Gallery"))
+        self.image_option.set_active(0)
+
+        # Add new options. The first argument is the tab name for grouping options.
+        # if you want to put everyting in the generic "Options" category, use
+        # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
+
+        self.add_frame_option('Content','',self.first_name_option)
+        self.add_frame_option('Content','',self.full_date_option)
+        self.add_frame_option('Content','',self.list_children_option)
+        self.add_frame_option('Content','',self.include_notes_option)
+        self.add_frame_option('Content','',self.place_option)
+        self.add_frame_option('Content','',self.date_option)
+        self.add_frame_option('Content','',self.age_option)
+        self.add_frame_option('Content','',self.dupPersons_option)
+        self.add_frame_option('Content','',self.childRef_option)
+        self.add_frame_option('Content','',self.image_option)
+
+
+    def parse_report_options_frame(self):
+        """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
+
+        # call the parent task to handle normal options
+        ReportDialog.parse_report_options_frame(self)
+
+        # get values from the widgets
+        if self.first_name_option.get_active():
+            self.firstName = reportOptions.Yes
+        else:
+            self.firstName = reportOptions.No
+
+        if self.full_date_option.get_active():
+            self.fullDate = reportOptions.Yes
+        else:
+            self.fullDate = reportOptions.No
+
+        if self.list_children_option.get_active():
+            self.listChildren = reportOptions.Yes
+        else:
+            self.listChildren = reportOptions.No
+
+        if self.include_notes_option.get_active():
+            self.includeNotes = reportOptions.Yes
+        else:
+            self.includeNotes = reportOptions.No
+
+        if self.place_option.get_active():
+            self.blankPlace = reportOptions.Yes
+        else:
+            self.blankPlace = reportOptions.No
+
+        if self.date_option.get_active():
+            self.blankDate = reportOptions.Yes
+        else:
+            self.blankDate = reportOptions.No
+
+        if self.age_option.get_active():
+            self.calcAgeFlag = reportOptions.Yes
+        else:
+            self.calcAgeFlag = reportOptions.No
+
+        if self.dupPersons_option.get_active():
+            self.dupPersons = reportOptions.Yes
+        else:
+            self.dupPersons = reportOptions.No
+
+        if self.childRef_option.get_active():
+            self.childRef = reportOptions.Yes
+        else:
+            self.childRef = reportOptions.No
+
+        if self.image_option.get_active():
+            self.addImages = reportOptions.Yes
+        else:
+            self.addImages = reportOptions.No
+
+#*** End of change
 
 
 #------------------------------------------------------------------------
