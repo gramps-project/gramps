@@ -561,7 +561,7 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(1)
+                    note = matches[2] + self.parse_continue_data(2)
                     self.family.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -1024,7 +1024,6 @@ class GedcomParser:
                 ord.setPlace(place)
                 self.ignore_sub_junk(level+1)
               except NameError:
-                print 'please fix the val NameError'
             elif matches[1] == "SOUR":
                 ord.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "NOTE":
@@ -1233,6 +1232,7 @@ class GedcomParser:
             attr.setNote(note)
 
     def parse_family_event(self,event,level):
+        note = ""
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
