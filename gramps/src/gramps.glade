@@ -199,12 +199,19 @@
 	    <widget>
 	      <class>GtkPixmapMenuItem</class>
 	      <name>find</name>
+	      <accelerator>
+		<modifiers>GDK_CONTROL_MASK</modifiers>
+		<key>GDK_f</key>
+		<signal>activate</signal>
+	      </accelerator>
 	      <signal>
 		<name>activate</name>
 		<handler>on_find_activate</handler>
 		<last_modification_time>Wed, 05 Sep 2001 02:48:31 GMT</last_modification_time>
 	      </signal>
-	      <stock_item>GNOMEUIINFO_MENU_FIND_ITEM</stock_item>
+	      <label>_Find...</label>
+	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_SEARCH</stock_icon>
 	    </widget>
 
 	    <widget>
@@ -591,6 +598,7 @@
 	  <class>GtkButton</class>
 	  <child_name>Toolbar:button</child_name>
 	  <name>button111</name>
+	  <tooltip>Display the list of places</tooltip>
 	  <signal>
 	    <name>clicked</name>
 	    <handler>on_places_activate</handler>
@@ -604,6 +612,7 @@
 	  <class>GtkButton</class>
 	  <child_name>Toolbar:button</child_name>
 	  <name>button145</name>
+	  <tooltip>Display the list of media objects</tooltip>
 	  <signal>
 	    <name>clicked</name>
 	    <handler>on_media_activate</handler>

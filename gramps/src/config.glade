@@ -429,7 +429,7 @@
     <widget>
       <class>GtkTable</class>
       <name>table21</name>
-      <rows>2</rows>
+      <rows>3</rows>
       <columns>2</columns>
       <homogeneous>False</homogeneous>
       <row_spacing>0</row_spacing>
@@ -444,8 +444,8 @@
 	<child>
 	  <left_attach>1</left_attach>
 	  <right_attach>2</right_attach>
-	  <top_attach>1</top_attach>
-	  <bottom_attach>2</bottom_attach>
+	  <top_attach>2</top_attach>
+	  <bottom_attach>3</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>
@@ -646,7 +646,7 @@
 	  <left_attach>0</left_attach>
 	  <right_attach>1</right_attach>
 	  <top_attach>0</top_attach>
-	  <bottom_attach>2</bottom_attach>
+	  <bottom_attach>3</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>True</xexpand>
@@ -967,6 +967,99 @@
 	      <yshrink>False</yshrink>
 	      <xfill>True</xfill>
 	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame17</name>
+	<border_width>5</border_width>
+	<label>Toolbar</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>0</xpad>
+	  <ypad>0</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>True</yfill>
+	</child>
+
+	<widget>
+	  <class>GtkVBox</class>
+	  <name>vbox35</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>tool1</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:01 GMT</last_modification_time>
+	    </signal>
+	    <label>Display only icons</label>
+	    <active>True</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>toolbar</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>tool2</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
+	    </signal>
+	    <label>Display only text</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>toolbar</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>tool3</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:29 GMT</last_modification_time>
+	    </signal>
+	    <label>Display both icons and text</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>toolbar</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
 	    </child>
 	  </widget>
 	</widget>

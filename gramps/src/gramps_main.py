@@ -96,6 +96,7 @@ pedigree_view = None
 place_view    = None
 media_view    = None
 source_view   = None
+toolbar       = None
 
 bookmarks     = None
 topWindow     = None
@@ -141,7 +142,11 @@ FILTERNAME  = "filter_list"
 #-------------------------------------------------------------------------
 def on_find_activate(obj):
     """Display the find box"""
-    Find.Find(person_list,find_goto_to)
+    Find.Find(person_list,find_goto_to,database.getPersonMap().values())
+
+def on_findname_activate(obj):
+    """Display the find box"""
+    pass
 
 def find_goto_to(person):
     """Find callback to jump to the selected person"""
@@ -436,6 +441,7 @@ def full_update():
     place_view.load_places()
     pedigree_view.load_canvas(active_person)
     media_view.load_media()
+    toolbar.set_style(Config.toolbar)
 
 def update_display(changed):
     """Incremental display update, update only the displayed page"""
@@ -1876,7 +1882,7 @@ def main(arg):
     global person_list
     global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow, idArrow, genderArrow
-    global cNameArrow, cDateArrow
+    global cNameArrow, cDateArrow, toolbar
     global sort_column, sort_direct
     
     gtk.rc_parse(const.gtkrcFile)
@@ -1889,13 +1895,12 @@ def main(arg):
 
     (sort_column,sort_direct) = Config.get_sort_cols("person",sort_column,sort_direct)
 
-    gtop = libglade.GladeXML(const.gladeFile, "gramps")
+    Config.loadConfig(full_update)
 
-    Plugins.build_report_menu(gtop.get_widget("reports_menu"),menu_report)
-    Plugins.build_tools_menu(gtop.get_widget("tools_menu"),menu_tools)
-    Plugins.build_export_menu(gtop.get_widget("export1"),export_callback)
-    Plugins.build_import_menu(gtop.get_widget("import1"),import_callback)
-    
+    gtop = libglade.GladeXML(const.gladeFile, "gramps")
+    toolbar     = gtop.get_widget("toolbar1")
+    toolbar.set_style(Config.toolbar)
+
     statusbar   = gtop.get_widget("statusbar")
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
@@ -1908,6 +1913,11 @@ def main(arg):
     deathArrow  = gtop.get_widget("deathSort")
     merge_button= gtop.get_widget("merge")
 
+    Plugins.build_report_menu(gtop.get_widget("reports_menu"),menu_report)
+    Plugins.build_tools_menu(gtop.get_widget("tools_menu"),menu_tools)
+    Plugins.build_export_menu(gtop.get_widget("export1"),export_callback)
+    Plugins.build_import_menu(gtop.get_widget("import1"),import_callback)
+    
     canvas = gtop.get_widget("canvas1")
     pedigree_view = PedigreeView(canvas,modify_statusbar,\
                                  statusbar,change_active_person,\
@@ -1932,7 +1942,6 @@ def main(arg):
     person_list.column_titles_active()
     set_sort_arrow(sort_column,sort_direct)
 
-    Config.loadConfig(full_update)
 
     gtop.signal_autoconnect({
         "delete_event"                      : delete_event,
@@ -1975,6 +1984,7 @@ def main(arg):
         "on_family1_activate"               : on_family1_activate,
         "on_father_next_clicked"            : on_father_next_clicked,
         "on_find_activate"                  : on_find_activate,
+        "on_findname_activate"              : on_findname_activate,
         "on_fv_prev_clicked"                : on_fv_prev_clicked,
         "on_home_clicked"                   : on_home_clicked,
         "on_mother_next_clicked"            : on_mother_next_clicked,
