@@ -297,7 +297,7 @@ class EditPlace:
                 name = _("Internet Address Editor for %s") % self.place.get_title()
             else:
                 name = _("Internet Address Editor")
-            UrlEdit.UrlEditor(self,name,url)
+            UrlEdit.UrlEditor(self,name,url,self.url_edit_callback)
 
     def on_update_loc_clicked(self,obj):
         import LocEdit
@@ -324,7 +324,10 @@ class EditPlace:
             name = _("Internet Address Editor for %s") % self.place.get_title()
         else:
             name = _("Internet Address Editor")
-        UrlEdit.UrlEditor(self,name,None)
+        UrlEdit.UrlEditor(self,name,None,self.url_edit_callback)
+
+    def url_edit_callback(self,url):
+        self.redraw_url_list()
 
     def on_add_loc_clicked(self,obj):
         import LocEdit
