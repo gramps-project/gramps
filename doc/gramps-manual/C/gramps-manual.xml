@@ -91,7 +91,7 @@
 <!-- * the first component of the revision number reflects the release version of the GNOME desktop. -->
 <!-- * the second component of the revision number is a decimal unit that is incremented with each revision of the manual. -->
 <!-- For example, if the GNOME desktop release is V2.x, the first version of the manual that -->
-<!-- is written in that desktop timeframe is V2.0, the second version of the manual is V2.1, etc. -->
+<!-- is written in that desktop time frame is V2.0, the second version of the manual is V2.1, etc. -->
 <!-- When the desktop release version changes to V3.x, the revision number of the manual changes -->
 <!-- to V3.0, and so on. -->  
     <revhistory>
@@ -286,7 +286,7 @@
       a few thousand people). </para>
 
       <para>Its is hard to tell which format is better, since this is a typical
-      tradeoff situation. If you are starting your research then you are likely
+      trade-off situation. If you are starting your research then you are likely
       to be fine with the regular XML database. If you have tons of data to
       import describing thousands upon thousands of people, then you are
       probably better off with ZODB. </para>
@@ -328,7 +328,7 @@
     
 	<varlistentry><term>Open example database</term>
 	<listitem><para> Select this item to load an example database shipped
-	with &app;. This database is composed of fictious people and serves as
+	with &app;. This database is composed of fictitious people and serves as
 	a useful example when learning how to work with &app;. </para></listitem>
 	</varlistentry>
     
@@ -572,7 +572,7 @@
 	The double-arrow button to the right of the Active person list-box 
 	allows you to exchange the currently selected spouse (Current spouse) 
 	with the Active person. Double-clicking on the Active person allows the 
-	editting of Active person's data. Double-clicking on the Current spouse 
+	editing of Active person's data. Double-clicking on the Current spouse 
 	allows you to edit their relationship information. To add a spouse, 
 	click <guibutton>+</guibutton> to the right of the spouse box. 
 	To remove Current spouse, click <guibutton>-</guibutton> to the 
