@@ -262,13 +262,14 @@ class PeopleView:
     def add_person(self,person):
         node = person.get_handle()
         top = person.get_primary_name().get_group_name()
-        if len(self.person_model.sname_sub[top]) == 1:
+        if not self.person_model.sname_sub.has_key(top) or \
+               len(self.person_model.sname_sub[top]) == 1:
             path = self.person_model.on_get_path(top)
-            node = self.person_model.get_iter(path)
-            self.person_model.row_inserted(path,node)
+            pnode = self.person_model.get_iter(path)
+            self.person_model.row_inserted(path,pnode)
         path = self.person_model.on_get_path(node)
-        node = self.person_model.get_iter(path)
-        self.person_model.row_inserted(path,node)
+        pnode = self.person_model.get_iter(path)
+        self.person_model.row_inserted(path,pnode)
 
     def delete_person(self,person):
         node = person.get_handle()

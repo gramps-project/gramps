@@ -816,6 +816,10 @@ class GrampsParser:
             self.name = RelLib.Name()
             if attrs.has_key("type"):
                 self.name.set_type(attrs["type"])
+            if attrs.has_key("sort"):
+                self.name.set_sort_as(int(attrs["sort"]))
+            if attrs.has_key("display"):
+                self.name.set_display_as(int(attrs["display"]))
             if attrs.has_key("conf"):
                 self.name.set_confidence(int(attrs["conf"]))
             else:
@@ -826,6 +830,8 @@ class GrampsParser:
     def start_last(self,attrs):
         if attrs.has_key('prefix'):
             self.name.set_surname_prefix(attrs['prefix'])
+        if attrs.has_key('group'):
+            self.name.set_group_as(attrs['group'])
         
     def start_note(self,attrs):
         self.in_note = 1
