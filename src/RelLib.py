@@ -434,7 +434,7 @@ class Photo(SourceNote):
         self.attrlist = list
 
 class ObjectRef:
-
+    """Object reference class"""
     def __init__(self,source=None):
         self.attrlist = []
         if source:

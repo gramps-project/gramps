@@ -43,10 +43,8 @@ else:
             for c in s:
                 try:
                     cv = code_to_utf8(1,c)
-                except Exception,e:
-                    from traceback import print_exc
-                    print_exc()
-                    cv = ''
+                except Exception:
+                    cv = '?'
                 buff.write(cv)
             ans = buff.getvalue()
             buff.close()

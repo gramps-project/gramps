@@ -33,9 +33,9 @@ import string
 import const
 import utils
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import gtk
+import gnome.ui
+import libglade
 import gnome.mime
 
 ANSEL = 1
@@ -104,14 +104,13 @@ def importData(database, filename):
     global callback
     global topDialog
     global glade_file
-    global statusWindow
 
     # add some checking here
 
     if clear_data == 1:
         database.new()
 
-    statusTop = GladeXML(glade_file,"status")
+    statusTop = libglade.GladeXML(glade_file,"status")
     statusWindow = statusTop.get_widget("status")
     statusTop.get_widget("close").set_sensitive(0)
     statusTop.signal_autoconnect({
@@ -122,11 +121,11 @@ def importData(database, filename):
         g = GedcomParser(database,filename,statusTop)
     except IOError,msg:
         utils.destroy_passed_object(statusWindow)
-        GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return
     except:
         utils.destroy_passed_object(statusWindow)
-        GnomeErrorDialog(_("%s could not be opened\n") % filename)
+        gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return
 
     g.parse_gedcom_file()
@@ -199,8 +198,8 @@ class GedcomParser:
 
     def update(self,field,text):
         field.set_text(text)
-        while events_pending():
-            mainiteration()
+        while gtk.events_pending():
+            gtk.mainiteration()
 
     def get_next(self):
         if self.backoff == 0:
@@ -283,18 +282,18 @@ class GedcomParser:
             elif matches[1] == "DATA" or matches[1] == "TEXT":
                 self.ignore_sub_junk(2)
             elif matches[1] == "TITL":
-                title = matches[2] + self.parse_continue_data(2)
+                title = matches[2] + self.parse_continue_data()
                 title = string.replace(title,'\n',' ')
                 self.source.setTitle(title)
             elif matches[1] == "AUTH":
-                self.source.setAuthor(matches[2] + self.parse_continue_data(2))
+                self.source.setAuthor(matches[2] + self.parse_continue_data())
             elif matches[1] == "PUBL":
-                self.source.setPubInfo(matches[2] + self.parse_continue_data(2))
+                self.source.setPubInfo(matches[2] + self.parse_continue_data())
             elif matches[1] == "OBJE":
                 self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
-                    note = matches[1] + self.parse_continue_data(1)
+                    note = matches[1] + self.parse_continue_data()
                     self.source.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -346,9 +345,9 @@ class GedcomParser:
                     self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
                 if text == "":
-                    noteobj.set(self.parse_continue_data(1))
+                    noteobj.set(self.parse_continue_data())
                 else:
-                    noteobj.set(text + self.parse_continue_data(1))
+                    noteobj.set(text + self.parse_continue_data())
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
                 self.ignore_sub_junk(2)
@@ -417,7 +416,7 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "ADDR":
                 self.addr = Address()
-                self.addr.setStreet(matches[2] + self.parse_continue_data(2))
+                self.addr.setStreet(matches[2] + self.parse_continue_data())
                 self.parse_address(self.addr,2)
 	    elif matches[1] == "CHIL":
                 mrel,frel = self.parse_ftw_relations(2)
@@ -448,7 +447,7 @@ class GedcomParser:
                     self.parse_family_object(2)
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
-                    note = matches[1] + self.parse_continue_data(1)
+                    note = matches[1] + self.parse_continue_data()
                     self.family.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -514,7 +513,7 @@ class GedcomParser:
                     self.parse_person_object(2)
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(1)
+                    note = matches[2] + self.parse_continue_data()
                     self.person.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -558,7 +557,7 @@ class GedcomParser:
                 self.parse_residence(addr,2)
 	    elif matches[1] == "ADDR":
                 addr = Address()
-                addr.setStreet(matches[2] + self.parse_continue_data(2))
+                addr.setStreet(matches[2] + self.parse_continue_data())
                 self.parse_address(addr,2)
                 self.person.addAddress(addr)
 	    elif matches[1] == "BIRT":
@@ -631,7 +630,7 @@ class GedcomParser:
                 return note
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
+                    note = matches[2] + self.parse_continue_data()
                     self.parse_note_data(level+1)
                 else:
                     self.ignore_sub_junk(level+1)
@@ -653,7 +652,7 @@ class GedcomParser:
                 type = matches[1]
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
+                    note = matches[2] + self.parse_continue_data()
                     self.parse_note_data(level+1)
                 else:
                     self.ignore_sub_junk(level+1)
@@ -674,7 +673,7 @@ class GedcomParser:
             elif matches[1] == "FILE":
                 file = matches[2]
             elif matches[1] == "NOTE":
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2] + self.parse_continue_data()
             elif matches[1][0] == "_":
                 self.ignore_sub_junk(level+1)
 	    elif int(matches[0]) < level:
@@ -720,7 +719,7 @@ class GedcomParser:
             elif matches[1] == "FILE":
                 file = matches[2]
             elif matches[1] == "NOTE":
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2] + self.parse_continue_data()
 	    elif int(matches[0]) < level:
                 self.backup()
                 break
@@ -759,7 +758,7 @@ class GedcomParser:
             elif matches[1] == "FILE":
                 file = matches[2]
             elif matches[1] == "NOTE":
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2] + self.parse_continue_data()
 	    elif int(matches[0]) < level:
                 self.backup()
                 break
@@ -792,7 +791,7 @@ class GedcomParser:
             elif matches[1] == "DATE":
                 address.setDateObj(self.extract_date(matches[2]))
 	    elif matches[1] == "ADDR":
-                address.setStreet(matches[2] + self.parse_continue_data(2))
+                address.setStreet(matches[2] + self.parse_continue_data())
                 self.parse_address(address,level+1)
             elif matches[1] in ["AGE","AGNC","CAUS","STAT","TEMP","OBJE","TYPE"]:
                 self.ignore_sub_junk(level+1)
@@ -808,7 +807,7 @@ class GedcomParser:
                 pass
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[1] + self.parse_continue_data(1)
+                    note = matches[1] + self.parse_continue_data()
                     address.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -830,7 +829,7 @@ class GedcomParser:
                 return
             elif matches[1] in [ "ADDR", "ADR1", "ADR2" ]:
                 val = address.getStreet()
-                data = self.parse_continue_data(level+1)
+                data = self.parse_continue_data()
                 if first == 0:
                     val = "%s %s" % (matches[2],data)
                     first = 1
@@ -877,7 +876,7 @@ class GedcomParser:
                     s = self.db.findSource(ref,self.smap)
                     source_ref.setBase(s)
                     s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(1))
+                    s.setNote(matches[2] + self.parse_continue_data())
                     self.ignore_sub_junk(2)
                 else:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
@@ -900,10 +899,10 @@ class GedcomParser:
                     event.setPlace(place)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2] + self.parse_continue_data()
                 event.setCause(info)
             elif matches[1] == "NOTE":
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2] + self.parse_continue_data()
                 if note == "":
                     note = info
                 else:
@@ -940,7 +939,7 @@ class GedcomParser:
                     s = self.db.findSource(ref,self.smap)
                     source_ref.setBase(s)
                     s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(1))
+                    s.setNote(matches[2] + self.parse_continue_data())
                     self.ignore_sub_junk(2)
                 else:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
@@ -969,10 +968,10 @@ class GedcomParser:
                     event.setPlace(place)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2] + self.parse_continue_data()
                 event.setCause(info)
             elif matches[1] == "NOTE":
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2] + self.parse_continue_data()
                 if note == "":
                     note = info
                 else:
@@ -1029,7 +1028,7 @@ class GedcomParser:
                     s = self.db.findSource(ref,self.smap)
                     source_ref.setBase(s)
                     s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(matches[2] + self.parse_continue_data(1))
+                    s.setNote(matches[2] + self.parse_continue_data())
                     self.ignore_sub_junk(2)
                 else:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
@@ -1041,7 +1040,7 @@ class GedcomParser:
                     attr.setValue(val)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
-                info = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2] + self.parse_continue_data()
                 if note == "":
                     note = info
                 else:
@@ -1082,7 +1081,7 @@ class GedcomParser:
                     ref = "gsr%d" % self.localref
                     s = self.db.findSource(ref,self.smap)
                     source_ref.setBase(s)
-                    note = matches[2] + self.parse_continue_data(1)
+                    note = matches[2] + self.parse_continue_data()
                     s.setTitle('Imported Source #%d' % self.localref)
                     s.setNote(note)
                     self.ignore_sub_junk(2)
@@ -1103,7 +1102,7 @@ class GedcomParser:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[1] + self.parse_continue_data(1)
+                    note = matches[1] + self.parse_continue_data()
                     event.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -1125,7 +1124,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == "PAGE":
-                source.setPage(matches[2] + self.parse_continue_data(level+1))
+                source.setPage(matches[2] + self.parse_continue_data())
             elif matches[1] == "DATA":
                 date,text = self.parse_source_data(level+1)
                 d = Date.Date()
@@ -1142,7 +1141,7 @@ class GedcomParser:
                     source.setConfidence(val)
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[1] + self.parse_continue_data(1)
+                    note = matches[1] + self.parse_continue_data()
                     source.setComments(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -1169,7 +1168,7 @@ class GedcomParser:
                 date = matches[2]
 
             elif matches[1] == "TEXT":
-                note = matches[2] + self.parse_continue_data(level+1)
+                note = matches[2] + self.parse_continue_data()
             else:
 	        self.barf(level+1)
         
@@ -1223,7 +1222,7 @@ class GedcomParser:
                 self.parse_source_reference(source_ref,level+1)
             elif matches[1][0:4] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(1)
+                    note = matches[2] + self.parse_continue_data()
                     name.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
@@ -1301,7 +1300,7 @@ class GedcomParser:
                 date = self.parse_date(2)
                 date.date = matches[2]
    	    elif matches[1] == "NOTE":
-                note = matches[2] + self.parse_continue_data(2)
+                note = matches[2] + self.parse_continue_data()
             elif matches[1][0] == "_":
                 self.ignore_sub_junk(2)
             else:
@@ -1381,7 +1380,7 @@ class GedcomParser:
             elif matches[1] != "FORM":
 	        self.barf(level+1)
 
-    def parse_continue_data(self,level):
+    def parse_continue_data(self):
 	data = ""
         while 1:
             matches = self.get_next()
@@ -1484,7 +1483,7 @@ def readData(database,active_person,cb):
         "on_ok_clicked" : on_ok_clicked
         }
 
-    topDialog = GladeXML(glade_file,"gedcomImport")
+    topDialog = libglade.GladeXML(glade_file,"gedcomImport")
     topDialog.signal_autoconnect(dic)
     topDialog.get_widget("gedcomImport").show()
 
