@@ -138,7 +138,6 @@ AC_OUTPUT(Makefile \
 	src/plugins/Makefile\
 	src/filters/Makefile\
 	src/data/Makefile\
-	doc/gramps-manual/C/Makefile\
 	gramps.sh)
 
 
