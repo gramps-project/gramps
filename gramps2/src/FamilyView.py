@@ -654,9 +654,10 @@ class FamilyView:
         self.parent.db.commit_family(self.family,trans)
         self.load_family(self.family)
         
-        Marriage.Marriage(self.parent,self.family,self.parent.db,
-                          self.parent.new_after_edit,
-                          self.load_family)
+        m = Marriage.Marriage(self.parent,self.family,self.parent.db,
+                              self.parent.new_after_edit,
+                              self.load_family)
+        m.on_add_clicked()
 
     def add_child_clicked(self,obj):
         if not self.person:
@@ -849,9 +850,12 @@ class FamilyView:
         self.ap_model.clear()
 
     def load_family(self,family=None):
-        
-        self.person = self.parent.active_person
-        if not self.person:
+
+        if self.parent.active_person:
+            id = self.parent.active_person.get_id()
+            self.person = self.parent.db.find_person_from_id(id)
+        else:
+            self.person = None
             self.clear()
             return
 
@@ -877,6 +881,7 @@ class FamilyView:
         self.spouse_model.clear()
         self.child_model.clear()
         self.sp_parents_model.clear()
+
         splist = self.person.get_family_id_list()
 
         if len(splist) > 1:
@@ -983,18 +988,19 @@ class FamilyView:
     def display_marriage(self,family):
         self.child_model.clear()
 
-        self.family = family
         if not family:
+            self.family = None
             return
+        self.family = self.parent.db.find_family_from_id(family.get_id())
 
-        if family.get_father_id() == self.person.get_id():
-            sp_id = family.get_mother_id()
+        if self.family.get_father_id() == self.person.get_id():
+            sp_id = self.family.get_mother_id()
             if sp_id:
                 self.selected_spouse = self.parent.db.find_person_from_id(sp_id)
             else:
                 self.selected_spouse = None
         else:
-            sp_id = family.get_father_id()
+            sp_id = self.family.get_father_id()
             if sp_id:
                 self.selected_spouse = self.parent.db.find_person_from_id(sp_id)
             else:
@@ -1006,7 +1012,7 @@ class FamilyView:
 
         i = 0
         fiter = None
-        child_list = list(family.get_child_id_list())
+        child_list = list(self.family.get_child_id_list())
 
         self.child_map = {}
 
@@ -1015,8 +1021,8 @@ class FamilyView:
 
             child = self.parent.db.find_person_from_id(child_id)
             for fam in child.get_parent_family_id_list():
-                if fam[0] == family.get_id():
-                    if self.person == family.get_father_id():
+                if fam[0] == self.family.get_id():
+                    if self.person == self.family.get_father_id():
                         status = "%s/%s" % (_(fam[2]),_(fam[1]))
                     else:
                         status = "%s/%s" % (_(fam[1]),_(fam[2]))
@@ -1239,7 +1245,10 @@ class FamilyView:
         if not person:
             return
         try:
-            ChooseParents.ChooseParents(self.parent, self.parent.db,person,None,
+            ChooseParents.ChooseParents(self.parent,
+                                        self.parent.db,
+                                        person,
+                                        None,
                                         self.load_family,
                                         self.parent.full_update)
         except:

@@ -1970,7 +1970,7 @@ class Family(SourceNote):
 
     def get_id(self) :
         """returns the gramps ID for the Family"""
-       	return self.id
+       	return unicode(self.id)
 
     def set_relationship(self,type):
         """assigns a string indicating the relationship between the
@@ -2638,14 +2638,12 @@ class GrampsDB:
         return Transaction(msg)
 
     def add_transaction(self,transaction):
-        transaction.display()
         self.translist.append(transaction)
 
     def undo(self):
         if len(self.translist) == 0:
             return
         transaction = self.translist.pop()
-        transaction.display()
 
         subitems = transaction.get_data()
         subitems.reverse()
@@ -3297,7 +3295,7 @@ class GrampsDB:
             index = self.fprefix % self.fmap_index
         self.fmap_index = self.fmap_index + 1
         family = Family()
-        family.set_id(index)
+        family.set_id(unicode(index))
         if trans != None:
             trans.add(FAMILY_KEY, index, None)
         self.family_map.put(str(index),family.serialize())

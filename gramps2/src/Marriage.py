@@ -646,7 +646,7 @@ class Marriage:
         except:
             pass
 
-    def on_add_clicked(self,obj):
+    def on_add_clicked(self,*obj):
         import EventEdit
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,

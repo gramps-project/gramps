@@ -262,6 +262,10 @@ class AddSpouse:
         self.db.add_transaction(trans)
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
+        m = Marriage.Marriage(self.parent, self.active_family,
+                              self.parent.db, self.parent.new_after_edit,
+                              self.parent.family_view.load_family)
+        m.on_add_clicked()
 
     def relation_type_changed(self,obj):
         self.update_data()
