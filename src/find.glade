@@ -17,7 +17,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>find</name>
-  <title>Gramps - Find person</title>
+  <title>Gramps - Find Person</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -116,7 +116,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label238</name>
-	<label>Find Person by Name</label>
+	<label>Find Person</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
@@ -156,20 +156,37 @@
 	</widget>
 
 	<widget>
-	  <class>GtkEntry</class>
-	  <name>entry1</name>
-	  <width>250</width>
-	  <can_focus>True</can_focus>
-	  <has_focus>True</has_focus>
-	  <editable>True</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
+	  <class>GtkCombo</class>
+	  <name>combo</name>
+	  <value_in_list>False</value_in_list>
+	  <ok_if_empty>True</ok_if_empty>
+	  <case_sensitive>False</case_sensitive>
+	  <use_arrows>True</use_arrows>
+	  <use_arrows_always>False</use_arrows_always>
+	  <items></items>
 	  <child>
 	    <padding>10</padding>
 	    <expand>True</expand>
 	    <fill>True</fill>
 	  </child>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <child_name>GtkCombo:entry</child_name>
+	    <name>entry1</name>
+	    <can_focus>True</can_focus>
+	    <has_focus>True</has_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>combo</object>
+	      <last_modification_time>Wed, 12 Dec 2001 01:27:32 GMT</last_modification_time>
+	    </signal>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text></text>
+	  </widget>
 	</widget>
 
 	<widget>

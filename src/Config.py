@@ -105,6 +105,7 @@ nameof        = utils.normal_name
 display_attr  = 0
 attr_name     = ""
 status_bar    = 0
+toolbar       = 2
 calendar      = 0
 paper_preference = None
 output_preference = None
@@ -184,6 +185,7 @@ def loadConfig(call):
     global web_dir
     global db_dir
     global status_bar
+    global toolbar
     global mediaref
     global globalprop
     global localprop
@@ -203,6 +205,11 @@ def loadConfig(call):
     index_visible = get_bool("/gramps/config/IndexVisible")
     show_detail = get_bool("/gramps/config/ShowDetail")
     status_bar = get_int("/gramps/config/StatusBar")
+    t = get_int("/gramps/config/ToolBar")
+    if t == 0:
+        toolbar = 2
+    else:
+        toolbar = t-1
     display_attr = get_bool("/gramps/config/DisplayAttr")
     attr_name = get_string("/gramps/config/DisplayAttrName")
     
@@ -311,6 +318,8 @@ def loadConfig(call):
         show_detail = 0
     if status_bar == None:
         status_bar = 0
+    if toolbar == None:
+        toolbar = 2
     if hide_altnames == None:
         hide_altnames = 0
     if dateFormat == None:
@@ -422,6 +431,7 @@ def on_propertybox_apply(obj,page):
     global id_edit
     global index_visible
     global status_bar
+    global toolbar
     global display_attr
     global attr_name
     global hide_altnames
@@ -460,6 +470,13 @@ def on_propertybox_apply(obj,page):
         status_bar = 1
     else:
         status_bar = 2
+
+    if prefsTop.get_widget("tool1").get_active():
+        toolbar = 0
+    elif prefsTop.get_widget("tool2").get_active():
+        toolbar = 1
+    else:
+        toolbar = 2
 
     iprefix = prefsTop.get_widget("iprefix").get_text()
     if iprefix == "":
@@ -505,6 +522,7 @@ def on_propertybox_apply(obj,page):
     set_bool("/gramps/config/IndexVisible",index_visible)
     set_bool("/gramps/config/ShowDetail",show_detail)
     set_int("/gramps/config/StatusBar",status_bar)
+    set_int("/gramps/config/ToolBar",toolbar+1)
     set_bool("/gramps/config/DisplayAttr",display_attr)
     set_string("/gramps/config/DisplayAttrName",attr_name)
     set_string("/gramps/config/paperPreference",paper_preference)
@@ -699,6 +717,13 @@ def display_preferences_box(db):
         prefsTop.get_widget("stat2").set_active(1)
     else:
         prefsTop.get_widget("stat3").set_active(1)
+
+    if toolbar == 0:
+        prefsTop.get_widget("tool1").set_active(1)
+    elif toolbar == 1:
+        prefsTop.get_widget("tool2").set_active(1)
+    else:
+        prefsTop.get_widget("tool3").set_active(1)
 
     display_attr_obj.set_active(display_attr)
     prefsTop.get_widget("attr_name").set_text(attr_name)

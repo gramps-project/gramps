@@ -32,7 +32,7 @@ import gtk
 class Find:
     """Opens find person dialog for gramps"""
     
-    def __init__(self,clist,task):
+    def __init__(self,clist,task,plist):
         """Opens a dialog box instance that allows users to
         search for a person.
 
@@ -45,10 +45,19 @@ class Find:
         self.xml.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_next_clicked"       : self.on_next_clicked,
+            "on_combo_insert_text"  : utils.combo_insert_text,
             "on_prev_clicked"       : self.on_prev_clicked,
             })
         self.top = self.xml.get_widget("find")
         self.entry = self.xml.get_widget("entry1")
+        self.combo = self.xml.get_widget("combo")
+        self.combo.disable_activate()
+        self.next = self.xml.get_widget("next")
+        nlist = [""]
+        for n in plist:
+            nlist.append(n.getPrimaryName().getName())
+        nlist.sort()
+        self.combo.set_popdown_strings(nlist)
         self.top.editable_enters(self.entry)
 
     def find_next(self):
@@ -65,10 +74,12 @@ class Find:
             gtk.gdk_beep()
             return
 
+        orow = row
+        
         row = row + 1
         last = self.clist.rows
         person = None
-        while row < last:
+        while row != orow:
             person,alt = self.clist.get_row_data(row)
             if alt == 0:
                 name = person.getPrimaryName().getName()
@@ -76,6 +87,9 @@ class Find:
                     self.task(person)
                     return
             row = row + 1
+            if row == last:
+                row = 0
+                
         gtk.gdk_beep()
 
     def find_prev(self):
@@ -92,9 +106,11 @@ class Find:
             gtk.gdk_beep()
             return
 
+        orow = row
         row = row - 1
+        last = self.clist.rows
         person = None
-        while row >= 0:
+        while row != orow:
             person,alt = self.clist.get_row_data(row)
             if alt == 0:
                 name = person.getPrimaryName().getName()
@@ -102,6 +118,8 @@ class Find:
                     self.task(person)
                     return
             row = row - 1
+            if row < 0:
+                row = last
         gtk.gdk_beep()
 
 
