@@ -56,6 +56,8 @@ else:
 
 try:
     locale.setlocale(locale.LC_ALL,'')
+except locale.Error:
+    pass
 except ValueError:
     pass
 

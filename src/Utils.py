@@ -586,6 +586,13 @@ def gformat(val):
     decimal_point = locale.localeconv()['decimal_point']
     return_val = "%.3f" % val
     return return_val.replace(decimal_point,'.')
+
+def search_for(name):
+    for i in os.environ['PATH'].split(':'):
+        fname = os.path.join(i,name)
+        if os.access(fname,os.X_OK):
+            return 1
+    return 0
                   
 #-------------------------------------------------------------------------
 #

@@ -269,6 +269,7 @@ class PeopleStore:
             self.tree_open[name] = 0
             self.tree_list[name] = []
             self.model.set_value(top,0,name)
+            self.model.set_value(top,5,name.upper())
             self.model.set_value(top,_BCOL,pango.WEIGHT_BOLD)
             self.tree_roots[name] = top
 

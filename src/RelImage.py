@@ -204,5 +204,5 @@ def is_pil():
 #
 #-------------------------------------------------------------------------
 def is_cnv():
-    return not os.system('which convert>/dev/null')
+    return Utils.search_for('convert')
 
