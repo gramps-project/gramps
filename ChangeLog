@@ -1,4 +1,6 @@
 2003-07-24  Tim Waugh  <twaugh@redhat.com>
+	* src/GenericFilter.py: Several more filters which iterate over
+	other filters.
 	* src/plugins/FilterEditor.py: Fix 'edit' to do so in place.
 
 2003-07-23  Tim Waugh  <twaugh@redhat.com>
