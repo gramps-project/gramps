@@ -88,7 +88,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.7.2pre-snap20020226"
+version      = "0.7.2pre-snap20020305"
 copyright    = "© 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton"]
 comments     = _("GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")
@@ -859,5 +859,7 @@ lds_ssealing = [
     
 NameTypesMap = {
     _("Also Known As") : "Also Known As",
-    _("Married Name") : "Married Name",
+    _("Birth Name")    : "Birth Name",
+    _("Married Name")  : "Married Name",
+    _("Other Name")    : "Other Name",
     }
