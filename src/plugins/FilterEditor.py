@@ -28,6 +28,7 @@ __author__ = "Don Allingham"
 #
 #-------------------------------------------------------------------------
 import os
+import string
 
 #-------------------------------------------------------------------------
 #
@@ -591,11 +592,12 @@ class ShowResults:
         
         self.glade.signal_autoconnect({'on_close_clicked' : self.close})
 
-        n = ""
+        n = []
         for p in plist:
-            n = n + "%s [%s]\n" % (p.getPrimaryName().getName(),p.getId())
+            n.append ("%s [%s]\n" % (p.getPrimaryName().getName(),p.getId()))
 
-        text.get_buffer().set_text(n)
+        n.sort ()
+        text.get_buffer().set_text(string.join (n, ''))
             
     def close(self,obj):
         self.top.destroy()
