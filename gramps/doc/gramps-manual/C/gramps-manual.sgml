@@ -1,5 +1,5 @@
 <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
-<!ENTITY version "0.7.2"> <!-- replace with application version -->
+<!ENTITY version "0.7.3"> <!-- replace with application version -->
 ]>
 
 <!-- =============Document Header ============================= -->
@@ -149,7 +149,7 @@
       <title>Getting Started screen, page 1</title>
       <screenshot>
 	<screeninfo>Getting Started screen, page 1</screeninfo>
-	<graphic fileref="druidpg1" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/druidpg1" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -180,7 +180,7 @@
       <title>GRAMPS Main Window</title>
       <screenshot>
 	<screeninfo>GRAMPS Main Window</screeninfo>
-	<graphic fileref="mainwin" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/mainwin" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -255,7 +255,7 @@
       <title>People View</title>
       <screenshot>
 	<screeninfo>People View</screeninfo>
-	<graphic fileref="peoplelist" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/peoplelist" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -318,7 +318,7 @@
       <title>Filter that requires an argument</title>
       <screenshot>
 	<screeninfo>Filter that requires an argument</screeninfo>
-	<graphic fileref="filter" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/filter" format="png" srccredit="Don Allingham">
 	</graphic>
       </screenshot>
       </figure>
@@ -359,7 +359,7 @@
         <title>General Information Tab</title>
         <screenshot>
 	  <screeninfo>General Information Tab</screeninfo>
-	  <graphic fileref="ep-general" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-general" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -379,7 +379,7 @@
         <title>Alternate Names Tab</title>
         <screenshot>
 	  <screeninfo>Alternate Names Tab</screeninfo>
-	  <graphic fileref="ep-altname" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-altname" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -418,7 +418,7 @@
         <title>Events Tab</title>
         <screenshot>
 	  <screeninfo>Events Tab</screeninfo>
-	  <graphic fileref="ep-event" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-event" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -457,7 +457,7 @@
         <title>Attributes Tab</title>
         <screenshot>
 	  <screeninfo>Attributes Tab</screeninfo>
-	  <graphic fileref="ep-attributes" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-attributes" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -498,7 +498,7 @@
         <title>Addresses Tab</title>
         <screenshot>
 	  <screeninfo>Addresses Tab</screeninfo>
-	  <graphic fileref="ep-address" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-address" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -531,7 +531,7 @@
         <title>Notes Tab</title>
         <screenshot>
 	  <screeninfo>Notes Tab</screeninfo>
-	  <graphic fileref="ep-notes" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-notes" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -553,7 +553,7 @@
         <title>Gallery Tab</title>
         <screenshot>
 	  <screeninfo>Gallery Tab</screeninfo>
-	  <graphic fileref="ep-gallery" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-gallery" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -581,7 +581,7 @@
         <title>Local Media Properties</title>
         <screenshot>
 	  <screeninfo>Local Media Properties</screeninfo>
-	  <graphic fileref="localmedia" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/localmedia" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -680,7 +680,7 @@
         <title>Internet Tab</title>
         <screenshot>
 	  <screeninfo>Internet Tab</screeninfo>
-	  <graphic fileref="ep-internet" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-internet" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -721,7 +721,7 @@
         <title>LDS Tab</title>
         <screenshot>
 	  <screeninfo>LDS Tab</screeninfo>
-	  <graphic fileref="ep-lds" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/ep-lds" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -744,7 +744,7 @@
       <title>Family View</title>
       <screenshot>
 	<screeninfo>Family View</screeninfo>
-	<graphic fileref="familyview" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/familyview" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -886,7 +886,7 @@
       <title>Pedigree View</title>
       <screenshot>
 	<screeninfo>Pedigree View</screeninfo>
-	<graphic fileref="pedegreeview" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/pedegreeview" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -918,7 +918,7 @@
       <title>Navigation</title>
       <screenshot>
 	<screeninfo>Navigation</screeninfo>
-	<graphic fileref="pedegreesel" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/pedegreesel" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -950,7 +950,7 @@
       <title>Source list</title>
       <screenshot>
 	<screeninfo>Source View</screeninfo>
-	<graphic fileref="sourcelist" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/sourcelist" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -978,7 +978,7 @@
       <title>Place View</title>
       <screenshot>
 	<screeninfo>Place View</screeninfo>
-	<graphic fileref="placelist" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/placelist" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -1007,7 +1007,7 @@
       <title>Media View</title>
       <screenshot>
 	<screeninfo>Media View</screeninfo>
-	<graphic fileref="mediaview" format="png" srccredit="Don Allingham">
+	<graphic fileref="figures/mediaview" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -1053,7 +1053,7 @@
         <title>Add Media Object Dialog Box</title>
         <screenshot>
 	  <screeninfo>Add Media Object Dialog Box</screeninfo>
-	  <graphic fileref="addmedia" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/addmedia" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1112,7 +1112,7 @@
         <title>Edit a Media Object's Global Properties</title>
         <screenshot>
 	  <screeninfo>Edit a Media Object's Global Properties</screeninfo>
-	  <graphic fileref="globalmedia" format="png" srccredit="Don Allingham">
+	  <graphic fileref="figures/globalmedia" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1155,7 +1155,7 @@
         <title>Using Bookmarks</title>
         <screenshot>
 	  <screeninfo>Using Bookmarks</screeninfo>
-  	  <graphic fileref="gotobookmark" format="png" srccredit="Don Allingham">
+  	  <graphic fileref="figures/gotobookmark" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1192,7 +1192,7 @@
         <title>Editing Bookmarks</title>
         <screenshot>
 	  <screeninfo>Editing Bookmarks</screeninfo>
-  	  <graphic fileref="editbookmarks" format="png" srccredit="Don Allingham">
+  	  <graphic fileref="figures/editbookmarks" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1222,7 +1222,7 @@
         <title>Providing a revision control comment</title>
         <screenshot>
 	  <screeninfo>Providing a revision control comment</screeninfo>
-  	  <graphic fileref="savecomment" format="png" srccredit="Don Allingham">
+  	  <graphic fileref="figures/savecomment" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1237,7 +1237,7 @@
         <title>Opening a database</title>
         <screenshot>
 	  <screeninfo>Opening a database</screeninfo>
-  	  <graphic fileref="opendb" format="png" srccredit="Don Allingham">
+  	  <graphic fileref="figures/opendb" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1252,7 +1252,7 @@
         <title>Choosing a revision</title>
         <screenshot>
 	  <screeninfo>Choosing a revision</screeninfo>
-  	  <graphic fileref="revcontrol" format="png" srccredit="Don Allingham">
+  	  <graphic fileref="figures/revcontrol" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1292,7 +1292,7 @@
         <title>Preferences Dialog</title>
         <screenshot>
           <screeninfo>Preferences Dialog</screeninfo>
-          <graphic fileref="prefs-main" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-main" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1309,7 +1309,7 @@
         <title>General Database options</title>
         <screenshot>
           <screeninfo>General Database Options</screeninfo>
-          <graphic fileref="prefs-gen" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-gen" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1369,7 +1369,7 @@
         <title>Dates and Calendars</title>
         <screenshot>
           <screeninfo>Dates and Calendars</screeninfo>
-          <graphic fileref="prefs-dates" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-dates" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1427,7 +1427,7 @@
         <title>Media Options</title>
         <screenshot>
           <screeninfo>Media Options</screeninfo>
-          <graphic fileref="prefs-media" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-media" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1438,7 +1438,7 @@
         <title>GRAMPS ID Options</title>
         <screenshot>
           <screeninfo>GRAMPS ID Options</screeninfo>
-          <graphic fileref="prefs-ids" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-ids" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1449,7 +1449,7 @@
         <title>Revision Control Options</title>
         <screenshot>
           <screeninfo>Revision Control Options</screeninfo>
-          <graphic fileref="prefs-revision" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-revision" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1460,7 +1460,7 @@
         <title>General Display Options</title>
         <screenshot>
           <screeninfo>General Display Options</screeninfo>
-          <graphic fileref="prefs-disp" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-disp" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1471,7 +1471,7 @@
         <title>Tool and Status Bar Options</title>
         <screenshot>
           <screeninfo>Tools and Status Bar Options</screeninfo>
-          <graphic fileref="prefs-bars" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-bars" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1482,7 +1482,7 @@
         <title>List Color Options</title>
         <screenshot>
           <screeninfo>List Color Options</screeninfo>
-          <graphic fileref="prefs-colors" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-colors" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1493,7 +1493,7 @@
         <title>Find Options</title>
         <screenshot>
           <screeninfo>Find Options</screeninfo>
-          <graphic fileref="prefs-find" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-find" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1504,7 +1504,7 @@
         <title>Report Options</title>
         <screenshot>
           <screeninfo>Report Options</screeninfo>
-          <graphic fileref="prefs-report" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-report" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1524,7 +1524,7 @@
         <title>Researcher Information</title>
         <screenshot>
           <screeninfo>Researcher Information</screeninfo>
-          <graphic fileref="prefs-research" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-research" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1541,7 +1541,7 @@
         <title>Data Guessing Options</title>
         <screenshot>
           <screeninfo>Data Guessing Options</screeninfo>
-          <graphic fileref="prefs-guess" format="png" srccredit="Don Allingham">
+          <graphic fileref="figures/prefs-guess" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
@@ -1564,7 +1564,7 @@
       <title>Report Generation Dialog</title>
       <screenshot>
         <screeninfo>Report Generation Dialog</screeninfo>
-        <graphic fileref="reportsel" format="png" srccredit="Don Allingham">
+        <graphic fileref="figures/reportsel" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
@@ -1693,7 +1693,7 @@ appear in every GRAMPS generated file.
       <title>Tool Selection Dialog</title>
       <screenshot>
         <screeninfo>Tool Selection Dialog</screeninfo>
-        <graphic fileref="toolsel" format="png" srccredit="Don Allingham">
+        <graphic fileref="figures/toolsel" format="png" srccredit="Don Allingham">
         </graphic>
       </screenshot>
     </figure>
