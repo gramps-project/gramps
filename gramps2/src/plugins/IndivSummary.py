@@ -67,7 +67,7 @@ _options = ( _person_id, _max_gen, _pg_brk )
 #------------------------------------------------------------------------
 class IndivSummary(Report.Report):
 
-    def __init__(self,database,person,output,document,newpage):
+    def __init__(self,database,person,output,document,newpage=0):
         self.d = document
         
         c = database.getResearcher().getName()
@@ -367,7 +367,8 @@ class IndivSummaryDialog(Report.TextReportDialog):
         All user dialog has already been handled and the output file
         opened."""
         try:
-            MyReport = IndivSummary(self.db, self.person, self.target_path, self.doc)
+            MyReport = IndivSummary(self.db, self.person, 
+                self.target_path, self.doc)
             MyReport.setup()
             MyReport.write_report()
         except Errors.FilterError, msg:
