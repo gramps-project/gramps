@@ -27,6 +27,7 @@ import os
 import tempfile
 import string
 import zipfile
+from math import sin, cos, pi, fabs
 
 #-------------------------------------------------------------------------
 #
@@ -438,6 +439,35 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
     def end_page(self):
 	self.f.write('</draw:page>\n')
 
+    def rotate_text(self,style,text,x,y,angle):
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+        size = font.get_size()
+
+        height = size*(len(text))
+        width = 0
+        for line in text:
+            width = max(width,FontScale.string_width(font,line))
+        wcm = (width/72.0)*2.54
+        hcm = (height/72.0)*2.54
+
+        rangle = -((pi/180.0) * angle)
+
+        self.f.write('<draw:text-box draw:style-name="%s" ' % style)
+        self.f.write('draw:layer="layout" svg:width="%.3fcm" ' % wcm)
+        self.f.write('svg:height="%.3fpt" ' % hcm)
+        self.f.write('draw:transform="rotate (%.8f) ' % rangle)
+        xloc = x-((wcm/2.0)*cos(-rangle)) + self.lmargin
+        yloc = y-((hcm)*sin(-rangle)) + self.tmargin
+        self.f.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
+        self.f.write('>')
+        self.f.write('<text:p><text:span text:style-name="T%s">' % pname)
+        self.write_text(string.join(text,'\n'))
+        self.f.write('</text:span></text:p></draw:text-box>\n')
+
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
 
@@ -560,4 +590,4 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-Plugins.register_draw_doc(_("OpenOffice.org/StarOffice 6"),OpenDrawDoc,1,1,".sxd");
+Plugins.register_draw_doc(_("OpenOffice.org Draw"),OpenDrawDoc,1,1,".sxd");

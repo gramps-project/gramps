@@ -202,8 +202,6 @@ class PSDrawDoc(DrawDoc.DrawDoc):
 
         return ( (centerx + cos(sangle+delta) * rad),
                  (centery + sin(sangle+delta) * rad))
-#        return ( (centerx + cos(sangle+delta) * rad)-self.lmargin,
-#                 (centery + sin(sangle+delta) * rad)-self.tmargin)
 
     def rotate_text(self,style,text,x,y,angle):
 
