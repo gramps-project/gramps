@@ -28,7 +28,7 @@ web site at http://www.scottlee.com
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
-from intl import gettext as _
+from gettext import gettext as _
 import re
 import Errors
 

@@ -37,7 +37,7 @@ from xml.parsers.expat import ExpatError
 import RelLib
 from GrampsParser import GrampsParser, GrampsImportParser
 from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
-from intl import gettext as _
+from gettext import gettext as _
 import Utils
 
 #-------------------------------------------------------------------------

@@ -27,7 +27,7 @@ import gtk.glade
 
 import const
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import OkDialog
 import AutoComp
 
@@ -55,7 +55,7 @@ class ChangeTypes:
 
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
-        self.glade = gtk.glade.XML(glade_file,"top")
+        self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
         self.auto1 = AutoComp.AutoCombo(self.glade.get_widget("original"),
                                         const.personalEvents)

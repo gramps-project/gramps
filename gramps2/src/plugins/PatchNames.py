@@ -44,7 +44,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Utils
 from QuestionDialog import OkDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -114,7 +114,7 @@ class PatchNames:
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "patchnames.glade"
         
-        self.top = gtk.glade.XML(glade_file,"top")
+        self.top = gtk.glade.XML(glade_file,"top","gramps")
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_ok_clicked" : self.on_ok_clicked

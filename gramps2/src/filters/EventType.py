@@ -21,7 +21,7 @@
 "People who have an event type of ..."
 
 import Filter
-from intl import gettext as _
+from gettext import gettext as _
 
 class EventType(Filter.Filter):
 

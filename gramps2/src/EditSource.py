@@ -36,7 +36,7 @@ import GrampsCfg
 import ImageSelect
 import ListModel
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -54,7 +54,7 @@ class EditSource:
         self.not_loaded = 1
         self.ref_not_loaded = 1
 
-        self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor")
+        self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
         self.top = self.top_window.get_widget("sourceEditor")
 
         Utils.set_titles(self.top,self.top_window.get_widget('title'),

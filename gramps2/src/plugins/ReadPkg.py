@@ -26,7 +26,7 @@
 
 from ReadXML import *
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 import gtk
 import const
 import os

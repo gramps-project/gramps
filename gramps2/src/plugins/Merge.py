@@ -31,7 +31,7 @@ import soundex
 import GrampsCfg
 import ListModel
 import MergeData
-from intl import gettext as _ 
+from gettext import gettext as _ 
 
 #-------------------------------------------------------------------------
 #
@@ -101,7 +101,7 @@ class Merge:
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
-        top = gtk.glade.XML(self.glade_file,"dialog")
+        top = gtk.glade.XML(self.glade_file,"dialog","gramps")
         
         my_menu = gtk.Menu()
         item = gtk.MenuItem(_("Low"))
@@ -142,7 +142,7 @@ class Merge:
             gtk.mainiteration()
 
     def find_potentials(self,thresh):
-        top = gtk.glade.XML(self.glade_file,"message")
+        top = gtk.glade.XML(self.glade_file,"message","gramps")
         self.topWin = top.get_widget("message")
         self.progress = top.get_widget("progressbar1")
 
@@ -208,7 +208,7 @@ class Merge:
         self.dellist = {}
 
     def show(self):
-        top = gtk.glade.XML(self.glade_file,"mergelist")
+        top = gtk.glade.XML(self.glade_file,"mergelist","gramps")
         self.window = top.get_widget("mergelist")
 
         Utils.set_titles(self.window, top.get_widget('title'),

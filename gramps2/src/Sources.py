@@ -35,7 +35,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,7 @@ class SourceSelector:
         for s in self.orig:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
-        self.top = gtk.glade.XML(const.srcselFile,"sourcesel")
+        self.top = gtk.glade.XML(const.srcselFile,"sourcesel","gramps")
         self.sourcesel = self.top.get_widget("sourcesel")
 
         Utils.set_titles(self.sourcesel, self.top.get_widget('title'),
@@ -227,7 +227,7 @@ class SourceEditor:
         self.parent = parent
         self.update = update
         self.source_ref = srcref
-        self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay")
+        self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay","gramps")
         self.sourceDisplay = self.get_widget("sourceDisplay")
 
         Utils.set_titles(self.sourceDisplay, self.showSource.get_widget('title'),

@@ -23,7 +23,7 @@
 import Filter
 import re
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 
 class RegExMatch(Filter.Filter):
     "Names that match a regular expression"

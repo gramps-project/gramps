@@ -44,7 +44,7 @@ import RelLib
 import Date
 
 from DateEdit import DateEdit
-from intl import gettext as _
+from gettext import gettext as _
 
 from QuestionDialog import WarningDialog
 #-------------------------------------------------------------------------
@@ -78,7 +78,7 @@ class EventEditor:
             self.witnesslist = []
             self.date = Date.Date(None)
 
-        self.top = gtk.glade.XML(const.dialogFile, "event_edit")
+        self.top = gtk.glade.XML(const.dialogFile, "event_edit","gramps")
 
         self.window = self.top.get_widget("event_edit")
         title_label = self.top.get_widget('title')

@@ -55,7 +55,7 @@ import latin_utf8
 import Utils
 from GedcomInfo import *
 from QuestionDialog import ErrorDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -128,7 +128,7 @@ def importData(database, filename, cb=None):
 
     glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
 
-    statusTop = gtk.glade.XML(glade_file,"status")
+    statusTop = gtk.glade.XML(glade_file,"status","gramps")
     statusWindow = statusTop.get_widget("status")
 
     Utils.set_titles(statusWindow,statusTop.get_widget('title'),

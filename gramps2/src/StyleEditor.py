@@ -43,7 +43,7 @@ import const
 import TextDoc
 import ListModel
 import locale
-from intl import gettext as _
+from gettext import gettext as _
 
 class StyleListDisplay:
     """
@@ -62,7 +62,7 @@ class StyleListDisplay:
         self.callback = callback
         
         self.sheetlist = stylesheetlist
-        self.top = gtk.glade.XML(const.stylesFile,"styles")
+        self.top = gtk.glade.XML(const.stylesFile,"styles","gramps")
 
         Utils.set_titles(self.top.get_widget('styles'),
                          self.top.get_widget('title'),
@@ -162,7 +162,7 @@ class StyleEditor:
         self.original_style = style
         self.style = TextDoc.StyleSheet(style)
         self.parent = parent
-        self.top = gtk.glade.XML(const.stylesFile,"editor")
+        self.top = gtk.glade.XML(const.stylesFile,"editor","gramps")
         
         self.top.signal_autoconnect({
             "on_save_style_clicked" : self.on_save_style_clicked,

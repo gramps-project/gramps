@@ -47,7 +47,7 @@ import TextDoc
 import Errors
 
 from SubstKeywords import SubstKeywords
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 _BORN = _('b.')

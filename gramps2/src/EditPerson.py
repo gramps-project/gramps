@@ -54,7 +54,7 @@ import RelLib
 from DateEdit import DateEdit
 from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
 
-from intl import gettext as _
+from gettext import gettext as _
 
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
@@ -95,7 +95,7 @@ class EditPerson:
             self.pdmap[p[0]] = key
             
         self.load_obj = None
-        self.top = gtk.glade.XML(const.editPersonFile, "editPerson")
+        self.top = gtk.glade.XML(const.editPersonFile, "editPerson","gramps")
         self.icon_list = self.top.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,self.db,self)
 

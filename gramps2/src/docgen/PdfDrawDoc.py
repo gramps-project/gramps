@@ -36,7 +36,7 @@ import Errors
 import TextDoc 
 import DrawDoc
 from Report import run_print_dialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

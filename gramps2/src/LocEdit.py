@@ -35,7 +35,7 @@ import const
 import Utils
 import RelLib
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +47,7 @@ class LocationEditor:
     def __init__(self,parent,location):
         self.parent = parent
         self.location = location
-        self.top = gtk.glade.XML(const.dialogFile, "loc_edit")
+        self.top = gtk.glade.XML(const.dialogFile, "loc_edit","gramps")
         self.window = self.top.get_widget("loc_edit")
         self.city   = self.top.get_widget("city")
         self.state  = self.top.get_widget("state")

@@ -41,7 +41,7 @@ import DrawDoc
 import const
 import FontScale
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

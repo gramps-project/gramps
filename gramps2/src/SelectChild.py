@@ -24,7 +24,7 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ class SelectChild:
         self.family = family
         self.redraw = redraw
         self.add_person = add_person
-        self.xml = gtk.glade.XML(const.gladeFile,"select_child")
+        self.xml = gtk.glade.XML(const.gladeFile,"select_child","gramps")
     
         if person:
             self.default_name = person.getPrimaryName().getSurname().upper()
@@ -317,7 +317,7 @@ class EditRel:
         self.child = child
         self.family = family
 
-        self.xml = gtk.glade.XML(const.gladeFile,"editrel")
+        self.xml = gtk.glade.XML(const.gladeFile,"editrel","gramps")
         self.top = self.xml.get_widget('editrel')
         self.mdesc = self.xml.get_widget('mrel_desc')
         self.fdesc = self.xml.get_widget('frel_desc')

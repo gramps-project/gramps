@@ -34,7 +34,7 @@ import Utils
 import AutoComp
 import const
 import RelLib
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +46,7 @@ class QuickAdd:
         self.db = db
         self.callback = callback
         
-        self.xml = gtk.glade.XML(const.gladeFile,"addperson")
+        self.xml = gtk.glade.XML(const.gladeFile,"addperson","gramps")
         self.xml.get_widget(sex).set_active(1)
         self.xml.signal_autoconnect({
             "on_addfather_close": self.close,

@@ -21,7 +21,7 @@
 "People with no marriage records"
 
 import Filter
-from intl import gettext as _
+from gettext import gettext as _
 
 class NeverMarried(Filter.Filter):
     "People with no marriage records"

@@ -27,7 +27,7 @@ import Errors
 import string
 
 from QuestionDialog import ErrorDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 import Report
 import TextDoc

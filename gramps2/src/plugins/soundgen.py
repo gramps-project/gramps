@@ -29,7 +29,7 @@ import soundex
 import Utils
 import AutoComp
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +46,7 @@ class SoundGen:
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
 
-        self.glade = gtk.glade.XML(glade_file,"soundEx")
+        self.glade = gtk.glade.XML(glade_file,"soundEx","gramps")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
         })

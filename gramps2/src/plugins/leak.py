@@ -27,13 +27,13 @@ import gtk.glade
 import gc
 import string
 
-from intl import gettext as _
+from gettext import gettext as _
 
 class EvalWindow:
 
     def __init__(self):
         glade_file = "%s/%s" % (os.path.dirname(__file__),"leak.glade")
-        self.glade = gtk.glade.XML(glade_file,"top")
+        self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
         self.top = self.glade.get_widget("top")
         self.eval = self.glade.get_widget("eval")

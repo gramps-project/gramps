@@ -57,9 +57,9 @@ import Utils
 import GrampsCfg
 import Errors
 
-import intl
+import gettext
 
-_ = intl.gettext
+_ = gettext.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -126,7 +126,7 @@ class PluginDialog:
         self.update = None
         self.imap = {}
         
-        self.dialog = gtk.glade.XML(const.pluginsFile,"report")
+        self.dialog = gtk.glade.XML(const.pluginsFile,"report","gramps")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "on_report_ok_clicked"    : self.on_ok_clicked,
@@ -289,7 +289,7 @@ class PluginStatus:
     def __init__(self):
         import cStringIO
         
-        self.glade = gtk.glade.XML(const.pluginsFile,"plugstat")
+        self.glade = gtk.glade.XML(const.pluginsFile,"plugstat","gramps")
         self.top = self.glade.get_widget("plugstat")
         self.top.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")
@@ -298,9 +298,6 @@ class PluginStatus:
             })
 
         info = cStringIO.StringIO()
-
-        if intl.status:
-            _expect.append(('intl:py','GRAMPS was built without internationalization support'))
 
         if len(_expect) + len(_failmsg) == 0:
             window.get_buffer().set_text(_('All modules were successfully loaded.'))

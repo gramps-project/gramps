@@ -42,7 +42,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
-from intl import gettext as _
+from gettext import gettext as _
 
 _release_files = [
     "/etc/mandrake-release",
@@ -91,7 +91,7 @@ class DisplayTrace:
         
         traceback.print_exception(data[0],data[1],data[2],None,msg)
 
-        self.glade = gtk.glade.XML(const.pluginsFile,"plugstat")
+        self.glade = gtk.glade.XML(const.pluginsFile,"plugstat","gramps")
         self.top = self.glade.get_widget("plugstat")
         window = self.glade.get_widget("text")
         self.top.set_title("%s - GRAMPS" % _('Internal Error'))

@@ -46,7 +46,7 @@ import ChooseParents
 import RelLib
 import EditPerson
 
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
 
 _BORN = _('b.')

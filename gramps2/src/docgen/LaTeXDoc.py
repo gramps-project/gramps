@@ -40,7 +40,7 @@ import Plugins
 import ImgManip
 import Errors
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

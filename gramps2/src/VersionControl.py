@@ -47,7 +47,7 @@ import gtk.glade
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -76,7 +76,7 @@ class RevisionComment:
     def __init__(self,filename,save_file):
         self.filename = filename
         self.save = save_file
-        self.top = gtk.glade.XML(const.revisionFile, "revcom")
+        self.top = gtk.glade.XML(const.revisionFile, "revcom","gramps")
         self.win = self.top.get_widget("revcom")
         self.top.signal_autoconnect({
             "on_savecomment_clicked" : self.on_savecomment_clicked,
@@ -101,7 +101,7 @@ class RevisionSelect:
         self.load = load
         self.callback = callback
 
-        dialog = gtk.glade.XML(const.revisionFile, "revselect")
+        dialog = gtk.glade.XML(const.revisionFile, "revselect","gramps")
         dialog.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_clicked,
             "on_loadrev_clicked"    : self.on_loadrev_clicked,

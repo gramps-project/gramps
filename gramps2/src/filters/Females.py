@@ -22,7 +22,7 @@
 
 import Filter
 import RelLib
-from intl import gettext as _
+from gettext import gettext as _
 
 class Females(Filter.Filter):
     "Females"

@@ -22,7 +22,7 @@
 
 import Filter
 import soundex
-from intl import gettext as _
+from gettext import gettext as _
 
 class MatchSndEx(Filter.Filter):
     "Names with same SoundEx code as ..."

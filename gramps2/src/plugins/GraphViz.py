@@ -46,7 +46,7 @@ import TextDoc
 import GenericFilter
 import Errors
 
-from intl import gettext as _
+from gettext import gettext as _
 from latin_utf8 import utf8_to_latin
 
 #------------------------------------------------------------------------

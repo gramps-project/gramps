@@ -41,7 +41,7 @@ import math
 #
 #-------------------------------------------------------------------------
 import Calendar
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

@@ -22,7 +22,7 @@
 
 import os
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 
 from gnome.ui import *
 import gtk
@@ -41,7 +41,7 @@ class CountAncestors:
         
         text = ""
         glade_file = "%s/summary.glade" % os.path.dirname(__file__)
-        topDialog = gtk.glade.XML(glade_file,"summary")
+        topDialog = gtk.glade.XML(glade_file,"summary","gramps")
         topDialog.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             })

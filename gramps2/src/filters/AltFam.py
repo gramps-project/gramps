@@ -21,7 +21,7 @@
 "People who were adopted"
 
 import Filter
-from intl import gettext as _
+from gettext import gettext as _
 
 class HaveAltFamilies(Filter.Filter):
     "People who were adopted"

@@ -47,7 +47,7 @@ except:
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -471,7 +471,7 @@ class BookListDisplay:
         self.booklist = booklist
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
-        self.xml = gtk.glade.XML(glade_file,"booklist")
+        self.xml = gtk.glade.XML(glade_file,"booklist","gramps")
         self.top = self.xml.get_widget('booklist')
 
         Utils.set_titles(self.top,
@@ -556,7 +556,7 @@ class BookReportSelector:
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
 
-        self.xml = gtk.glade.XML(glade_file,"top")
+        self.xml = gtk.glade.XML(glade_file,"top","gramps")
         self.top = self.xml.get_widget("top")
     
         self.xml.signal_autoconnect({

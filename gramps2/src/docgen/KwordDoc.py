@@ -29,7 +29,7 @@ import Errors
 from TarFile import TarFile
 import Plugins
 import ImgManip
-from intl import gettext as _
+from gettext import gettext as _
 
 def points(val):
     inch = float(val)/2.54

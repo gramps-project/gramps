@@ -43,7 +43,7 @@ import GrampsCfg
 import Calendar
 import Gregorian
 import RelLib 
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------

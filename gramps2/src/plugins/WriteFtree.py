@@ -50,7 +50,7 @@ import Errors
 
 from QuestionDialog import MissingMediaDialog
 
-from intl import gettext as _
+from gettext import gettext as _
 
 _title_string = _("Export to Web Family Tree")
 
@@ -86,7 +86,7 @@ class FtreeWriter:
             }
 
         self.plist = {}
-        self.top = gtk.glade.XML(glade_file,"top")
+        self.top = gtk.glade.XML(glade_file,"top","gramps")
 
         Utils.set_titles(self.top.get_widget('top'),
                          self.top.get_widget('title'),

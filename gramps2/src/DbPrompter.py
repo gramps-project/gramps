@@ -35,7 +35,7 @@ import Utils
 import const
 import GrampsCfg
 import VersionControl
-from intl import gettext as _
+from gettext import gettext as _
 
 try:
     import ZODB
@@ -57,7 +57,7 @@ class DbPrompter:
         self.show()
 
     def show(self):
-        opendb = gtk.glade.XML(const.gladeFile, "opendb")
+        opendb = gtk.glade.XML(const.gladeFile, "opendb","gramps")
         top = opendb.get_widget('opendb')
         title = opendb.get_widget('title')
 
@@ -88,7 +88,7 @@ class DbPrompter:
         Utils.destroy_passed_object(obj)
 
     def save_as_activate(self):
-        wFs = gtk.glade.XML (const.gladeFile, "fileselection")
+        wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
         wFs.signal_autoconnect({
             "on_ok_button1_clicked": self.save_ok_button_clicked,
             "destroy_passed_object": self.cancel_button_clicked,
@@ -105,7 +105,7 @@ class DbPrompter:
                 self.db.save_file(filename,_("No Comment Provided"))
 
     def open_activate(self):
-        wFs = gtk.glade.XML(const.revisionFile, "dbopen")
+        wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
         wFs.signal_autoconnect({
             "on_ok_button1_clicked": self.ok_button_clicked,
             "destroy_passed_object": self.cancel_button_clicked,

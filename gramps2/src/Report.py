@@ -54,7 +54,7 @@ import StyleEditor
 import GrampsCfg
 import PaperMenu
 
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import  ErrorDialog, OptionDialog
 
 #-------------------------------------------------------------------------

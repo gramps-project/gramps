@@ -41,7 +41,7 @@ import RelLib
 import Sources
 
 from DateEdit import DateEdit
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -60,7 +60,7 @@ class AddressEditor:
         addr - The address that is to be edited
         """
         # Get the important widgets from the glade description
-        self.top = gtk.glade.XML(const.dialogFile, "addr_edit")
+        self.top = gtk.glade.XML(const.dialogFile, "addr_edit","gramps")
         self.window = self.top.get_widget("addr_edit")
         self.addr_start = self.top.get_widget("address_start")
         self.street = self.top.get_widget("street")

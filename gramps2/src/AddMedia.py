@@ -35,7 +35,7 @@ import os
 #
 #-------------------------------------------------------------------------
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +74,7 @@ class AddMediaObject:
         update - a function to call to update the display
         """
         self.db = db
-        self.glade = gtk.glade.XML(const.imageselFile,"imageSelect")
+        self.glade = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
         self.window = self.glade.get_widget("imageSelect")
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")

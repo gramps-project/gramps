@@ -49,7 +49,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import RelLib
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 
 db = None
 glade_file = None
@@ -74,7 +74,7 @@ def runTool(database,active_person,callback):
     base = os.path.dirname(__file__)
     glade_file = base + os.sep + "verify.glade"
 
-    verifySettings = gtk.glade.XML(glade_file,"verify_settings")
+    verifySettings = gtk.glade.XML(glade_file,"verify_settings","gramps")
     verifySettings.signal_autoconnect({
         "destroy_passed_object" : Utils.destroy_passed_object,
         "on_verify_ok_clicked" : on_apply_clicked
@@ -391,7 +391,7 @@ def on_apply_clicked(obj):
     error.close()
     warn.close()
     
-    verifyResult = gtk.glade.XML(glade_file,"verify_result")
+    verifyResult = gtk.glade.XML(glade_file,"verify_result","gramps")
     Utils.set_titles(verifyResult.get_widget('verify_result'),
                      verifyResult.get_widget('title'),
                      _('Database Verify'))

@@ -44,7 +44,7 @@ import ImageSelect
 import Date
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -77,7 +77,7 @@ class Marriage:
             p = db.getPlaceDisplay(key)
             self.pmap[p[0]] = key
 
-        self.top = gtk.glade.XML(const.marriageFile,"marriageEditor")
+        self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
         top_window = self.get_widget("marriageEditor")
 
         Utils.set_titles(top_window, self.top.get_widget('title'),
