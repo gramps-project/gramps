@@ -122,6 +122,9 @@ class MediaView:
         fexists = 1
 
         store,iter = self.selection.get_selected()
+        if not iter:
+            return
+        
         id = store.get_value(iter,1)
         
         mobj = self.db.findObjectNoMap(id)

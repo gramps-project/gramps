@@ -1825,7 +1825,7 @@
 			      <child>
 				<widget class="GtkVBox" id="vbox65">
 				  <property name="visible">True</property>
-				  <property name="homogeneous">True</property>
+				  <property name="homogeneous">False</property>
 				  <property name="spacing">0</property>
 
 				  <child>
@@ -1833,28 +1833,93 @@
 				  </child>
 
 				  <child>
-				    <widget class="GtkButton" id="fam_back">
+				    <widget class="GtkVBox" id="vbox65">
 				      <property name="visible">True</property>
-				      <property name="tooltip" translatable="yes">Make the selected child the active family</property>
-				      <property name="can_focus">True</property>
-				      <property name="relief">GTK_RELIEF_NORMAL</property>
+				      <property name="homogeneous">False</property>
+				      <property name="spacing">0</property>
 
 				      <child>
-					<widget class="GtkImage" id="image93">
+					<widget class="GtkButton" id="fam_back">
 					  <property name="visible">True</property>
-					  <property name="stock">gtk-go-back</property>
-					  <property name="icon_size">4</property>
-					  <property name="xalign">0.5</property>
-					  <property name="yalign">0.5</property>
-					  <property name="xpad">0</property>
-					  <property name="ypad">0</property>
+					  <property name="tooltip" translatable="yes">Make the selected child the active family</property>
+					  <property name="can_focus">True</property>
+					  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+					  <child>
+					    <widget class="GtkImage" id="image93">
+					      <property name="visible">True</property>
+					      <property name="stock">gtk-go-back</property>
+					      <property name="icon_size">4</property>
+					      <property name="xalign">0.5</property>
+					      <property name="yalign">0.5</property>
+					      <property name="xpad">0</property>
+					      <property name="ypad">0</property>
+					    </widget>
+					  </child>
 					</widget>
+					<packing>
+					  <property name="padding">10</property>
+					  <property name="expand">False</property>
+					  <property name="fill">False</property>
+					</packing>
+				      </child>
+
+				      <child>
+					<widget class="GtkButton" id="button155">
+					  <property name="visible">True</property>
+					  <property name="tooltip" translatable="yes">Adds a new child to the selected family</property>
+					  <property name="can_focus">True</property>
+					  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+					  <child>
+					    <widget class="GtkImage" id="image94">
+					      <property name="visible">True</property>
+					      <property name="stock">gtk-add</property>
+					      <property name="icon_size">4</property>
+					      <property name="xalign">0.5</property>
+					      <property name="yalign">0.5</property>
+					      <property name="xpad">0</property>
+					      <property name="ypad">0</property>
+					    </widget>
+					  </child>
+					</widget>
+					<packing>
+					  <property name="padding">0</property>
+					  <property name="expand">False</property>
+					  <property name="fill">False</property>
+					</packing>
+				      </child>
+
+				      <child>
+					<widget class="GtkButton" id="button156">
+					  <property name="visible">True</property>
+					  <property name="tooltip" translatable="yes">Deletes the selected child from the selected family</property>
+					  <property name="can_focus">True</property>
+					  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+					  <child>
+					    <widget class="GtkImage" id="image95">
+					      <property name="visible">True</property>
+					      <property name="stock">gtk-remove</property>
+					      <property name="icon_size">4</property>
+					      <property name="xalign">0.5</property>
+					      <property name="yalign">0.5</property>
+					      <property name="xpad">0</property>
+					      <property name="ypad">0</property>
+					    </widget>
+					  </child>
+					</widget>
+					<packing>
+					  <property name="padding">0</property>
+					  <property name="expand">False</property>
+					  <property name="fill">False</property>
+					</packing>
 				      </child>
 				    </widget>
 				    <packing>
-				      <property name="padding">0</property>
+				      <property name="padding">30</property>
 				      <property name="expand">False</property>
-				      <property name="fill">False</property>
+				      <property name="fill">True</property>
 				    </packing>
 				  </child>
 
@@ -1865,7 +1930,7 @@
 				<packing>
 				  <property name="padding">0</property>
 				  <property name="expand">False</property>
-				  <property name="fill">True</property>
+				  <property name="fill">False</property>
 				</packing>
 			      </child>
 			    </widget>

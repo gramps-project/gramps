@@ -550,7 +550,9 @@ class LocalMediaProperties:
         
     def on_apply_clicked(self, obj):
         priv = self.change_dialog.get_widget("private").get_active()
-        text = self.change_dialog.get_widget("notes").get_chars(0,-1)
+
+        t = self.change_dialog.get_widget("notes").get_buffer()
+        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
         note = self.photo.getNote()
         if text != note or priv != self.photo.getPrivacy():
             self.photo.setNote(text)
@@ -730,7 +732,8 @@ class GlobalMediaProperties:
             self.display_refs()
             
     def on_apply_clicked(self, obj):
-        text = self.notes.get_chars(0,-1)
+        t = self.notes.get_buffer()
+        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
         desc = self.descr_window.get_text()
         note = self.object.getNote()
         if text != note or desc != self.object.getDescription():
