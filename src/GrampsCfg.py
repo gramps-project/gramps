@@ -89,6 +89,8 @@ _date_entry_list = [
 _name_format_list = [
     (_("Firstname Surname"), Utils.normal_name),
     (_("Surname, Firstname"), Utils.phonebook_name),
+    (_("Firstname SURNAME"), Utils.upper_name),
+    (_("SURNAME, Firstname"), Utils.phonebook_upper_name),
     ]
 
 panellist = [
@@ -129,6 +131,8 @@ vc_comment    = 0
 uncompress    = 0
 lastfile      = None
 nameof        = Utils.normal_name
+display_name  = Utils.normal_name
+display_surname = lambda x : x.getSurname()
 status_bar    = 1
 toolbar       = 2
 calendar      = 0
@@ -144,7 +148,6 @@ index_visible = 0
 mediaref      = 1
 globalprop    = 1
 localprop     = 1
-capitalize    = 0
 defaultview   = 0
 familyview    = 0
 
@@ -199,6 +202,8 @@ def loadConfig(call):
     global index_visible
     global lastfile
     global nameof
+    global display_name
+    global display_surname
     global _name_format
     global _callback
     global paper_preference
@@ -213,7 +218,7 @@ def loadConfig(call):
     global mediaref
     global globalprop
     global localprop
-    global capitalize
+#    global capitalize
     global defaultview
     global familyview
     
@@ -229,7 +234,7 @@ def loadConfig(call):
     vc_comment = get_bool("/apps/gramps/use-comment")
     uncompress = get_bool("/apps/gramps/dont-compress-xml")
     id_edit = get_bool("/apps/gramps/id-edit")
-    capitalize = get_bool("/apps/gramps/capitalize")
+#    capitalize = get_bool("/apps/gramps/capitalize")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
     toolbar = get_int("/apps/gramps/toolbar",2)
@@ -296,11 +301,15 @@ def loadConfig(call):
     Calendar.set_format_code(dateFormat)
     Calendar.Calendar.ENTRYCODE = dateEntry
 
-    if _name_format == 0:
-        nameof = Utils.normal_name
+    nameof = _name_format_list[_name_format][1]
+
+    if _name_format%2:
+        display_name = Utils.phonebook_name
+        display_surname = lambda x : x.getSurname()
     else:
-        nameof = Utils.phonebook_name
-        
+        display_name = Utils.phonebook_upper_name
+        display_surname = lambda x : x.getUpperSurname()
+
     make_path(os.path.expanduser("~/.gramps"))
     make_path(os.path.expanduser("~/.gramps/filters"))
     make_path(os.path.expanduser("~/.gramps/plugins"))
@@ -554,7 +563,7 @@ class GrampsPreferences:
         auto = self.top.get_widget("autoload")
         asave_int = self.top.get_widget("autosave_interval")
         idedit = self.top.get_widget("gid_edit")
-        cap = self.top.get_widget('capitalize')
+#        cap = self.top.get_widget('capitalize')
         index_vis = self.top.get_widget("show_child_id")
         lds = self.top.get_widget("uselds")
         ac = self.top.get_widget("autocomp")
@@ -582,7 +591,7 @@ class GrampsPreferences:
         vcom.set_active(vc_comment)
         compress.set_active(uncompress)
         idedit.set_active(id_edit)
-        cap.set_active(capitalize)
+#        cap.set_active(capitalize)
         index_vis.set_active(index_visible)
 
         self.top.get_widget("iprefix").set_text(iprefix)
@@ -813,7 +822,7 @@ class GrampsPreferences:
         global vc_comment
         global uncompress
         global id_edit
-        global capitalize
+#        global capitalize
         global index_visible
         global status_bar
         global toolbar
@@ -840,7 +849,7 @@ class GrampsPreferences:
         vc_comment = self.top.get_widget("vc_comment").get_active()
         uncompress = self.top.get_widget("uncompress").get_active()
         id_edit = self.top.get_widget("gid_edit").get_active()
-        capitalize = self.top.get_widget('capitalize').get_active()
+#        capitalize = self.top.get_widget('capitalize').get_active()
         
         index_visible = self.top.get_widget("show_child_id").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
@@ -912,7 +921,7 @@ class GrampsPreferences:
         set_bool("/apps/gramps/use-comment",vc_comment)
         set_bool("/apps/gramps/dont-compress-xml",uncompress)
         set_bool("/apps/gramps/id-edit",id_edit)
-        set_bool("/apps/gramps/capitalize",capitalize)
+#        set_bool("/apps/gramps/capitalize",capitalize)
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
         set_int("/apps/gramps/toolbar",toolbar)

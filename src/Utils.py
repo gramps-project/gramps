@@ -136,6 +136,24 @@ def phonebook_name(person):
     else:
         return u''
 
+def phonebook_upper_name(person):
+    if person:
+        return person.getPrimaryName().getUpperName()
+    else:
+        return u''
+
+def normal_name(person):
+    if person:
+        return person.getPrimaryName().getRegularName()
+    else:
+        return u''
+
+def upper_name(person):
+    if person:
+        return person.getPrimaryName().getRegularUpperName()
+    else:
+        return u''
+
 def family_name(family):
     """Builds a name for the family from the parents names"""
     father = family.getFather()
@@ -149,18 +167,21 @@ def family_name(family):
     else:
         name = mother.getPrimaryName().getName()
     return name
-        
-def phonebook_from_name(name,alt):
-    if alt:
-        return "%s *" % name.getName()
-    else:
-        return name.getName()
 
-def normal_name(person):
-    if person:
-        return person.getPrimaryName().getRegularName()
+def family_upper_name(family):
+    """Builds a name for the family from the parents names"""
+    father = family.getFather()
+    mother = family.getMother()
+    if father and mother:
+        fname = father.getPrimaryName().getUpperName()
+        mname = mother.getPrimaryName().getUpperName()
+        name = _("%s and %s") % (fname,mname)
+    elif father:
+        name = father.getPrimaryName().getUpperName()
     else:
-        return u''
+        name = mother.getPrimaryName().getUpperName()
+    return name
+        
 
 #-------------------------------------------------------------------------
 #
