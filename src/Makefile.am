@@ -5,7 +5,7 @@ SUBDIRS = docgen filters plugins data po calendars
 GVFSINC = @GPREF@
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
-CLEANFILES = ${INTLLIBS}
+CLEANFILES = ${INTLLIBS} grampslib.so
 MOSTLYCLEANFILES = 
 INTLLIBS= intl22.so
 
