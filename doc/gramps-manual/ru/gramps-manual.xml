@@ -27,9 +27,9 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "0.98.0">
-  <!ENTITY manrevision "2.4">
-  <!ENTITY date "Декабрь 2003">
+  <!ENTITY appversion "1.0.0">
+  <!ENTITY manrevision "2.5">
+  <!ENTITY date "Февраль 2004">
   <!ENTITY app "<application>GRAMPS</application>" >
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -52,13 +52,13 @@
   <articleinfo> 
     <title>Руководство пользователя &app;, версия &manrevision;</title>       
 
-    <copyright> <year>2003</year> <holder>Alex Roitman</holder> </copyright> 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
+    <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
 
 <!-- translators: uncomment this:-->
 
   <copyright>
-   <year>2003</year>
+   <year>2003-2004</year>
    <holder>Александр Ройтман (Русский перевод)</holder>
   </copyright>
 
@@ -123,6 +123,15 @@
       <revision> 
 		<revnumber>Руководство пользователя &app;, версия &manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">Проект GRAMPS</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>Руководство пользователя &app;, версия 2.4</revnumber> 
+		<date>Декабрь 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
 		    	<email>shura@alex.neuro.umn.edu</email></para>
@@ -256,13 +265,25 @@
      You can use it to describe known bugs and limitations of the 
 	  program if there are any - please be frank and list all
      problems you know of. 
-  
-  <sect1 id="mayapp-bugs">
-  <title>Known Bugs and Limitations</title>
-  <para> </para>
- </sect1>
 -->
-<!-- ============= About ================================== -->
+  <sect1 id="mayapp-bugs">
+  <title>Известные ошибки и ограничения</title>
+  <para>В настоящий момент, &app; загружает все данные в память. Это 
+  приводит к медленной работе в случае больших баз данных (более 15000
+  лиц для типичной системы). Эта проблема будет решена с выпуском версии
+  1.2, путём включения полноценной базы данных. Это должно разительно
+  улучшить как скорость, так и использование памяти. </para>
+  
+  <para>Прямой вывод на печать в настоящий момент не поддерживается. 
+  Это должно быть решено после выпуска стабильной версии 1.0 путём 
+  использования архитектуры gnome-print.</para>
+  
+  <para>Отчёты в форматах PS и PDF выводят мусор вместо знаков Unicode. 
+  Эта проблема тоже должна быть решена переходом к gnome-print. 
+  Пока разумным решением является создание отчётов в формате OpenOffice.org 
+  с последующим экспортом в PDF из приложения OpenOffice.org.</para>
+ </sect1>
+ <!-- ============= About ================================== -->
 <!-- This section contains info about the program (not docs), such as
       author's name(s), web page, license, feedback address. This
       section is optional: primary place for this info is "About.." box of
