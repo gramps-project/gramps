@@ -165,6 +165,7 @@ class DateStruct:
 class GedcomParser:
 
     SyntaxError = "Syntax Error"
+    BadFile = "Not a GEDCOM file"
 
     #---------------------------------------------------------------------
     #
@@ -1120,12 +1121,10 @@ class GedcomParser:
     #---------------------------------------------------------------------
     def parse_header_head(self):
         line = string.replace(self.lines[self.index],'\r','')
-	match = headRE.match(line)
+	match = headRE.search(line)
         if not match:
-	    raise GedcomParser.SyntaxError, self.lines[self.index]
+	    raise GedcomParser.BadFile, self.lines[self.index]
         self.index = self.index + 1
-        if matches[1] != "HEAD":
-	    self.barf(0)
 
     #---------------------------------------------------------------------
     #
