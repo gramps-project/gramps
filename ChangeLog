@@ -1,3 +1,6 @@
+2004-10-27  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py: Fixed typo spotted by Eero Tamminen.
+
 2004-10-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/OpenOfficeDoc.py: fix asian font, file extension
 	* src/plugins/DescendReport.py: fix get_valid_year

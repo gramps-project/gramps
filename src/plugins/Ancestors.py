@@ -506,7 +506,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             death = self.database.get_event_from_handle(death_handle)
             date = death.get_date ()
             if date:
-                ret += _(" d. %(date)s)") % {'date': date}
+                ret += _(" d. %(date)s") % {'date': date}
                 ret += self.cite_sources (death.get_source_references ())
 
         return ret
