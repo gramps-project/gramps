@@ -1,3 +1,7 @@
+2003-07-16  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Add "..." after Merge, Edit Bookmarks, Preferences, 
+	and "Show plugin status" menu items. 
+
 2003-07-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/CustomBookText.py: Add to CVS. 
 	* src/plugins/ReadPkg.py: Enable "..." in the menu item.
