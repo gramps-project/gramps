@@ -397,9 +397,9 @@ class GedcomParser:
                     self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
                 if text == "":
-                    noteobj.set(self.parse_note_continue(1))
+                    noteobj.append(self.parse_note_continue(1))
                 else:
-                    noteobj.set(text + self.parse_note_continue(1))
+                    noteobj.append(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
                 self.ignore_sub_junk(1)

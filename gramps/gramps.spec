@@ -15,7 +15,7 @@ URL: http://gramps.sourceforge.net
 
 Requires: python >= 1.5.2
 Requires: pygnome >= 1.0.53
-Requires: pygnome-libglade
+Requires: _gladegnomemodule.so
 Requires: pyexpat.so
 
 %description
