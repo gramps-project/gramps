@@ -46,6 +46,17 @@ _removed_level = [ "", " once removed", " twice removed", " three times removed"
                    " sixteen times removed", " seventeen times removed", " eighteen times removed",
                    " nineteen times removed", " twenty times removed" ]
 
+_parents_level = [ "", "parents", "grandparents", "great grandparents", "second great grandparents",
+                  "third great grandparents",  "fourth great grandparents",
+                  "fifth great grandparents",  "sixth great grandparents",
+                  "seventh great grandparents", "eighth great grandparents",
+                  "ninth great grandparents", "tenth great grandparents",
+                  "eleventh great grandparents",  "twelefth great grandparents",
+                  "thirteenth great grandparents", "fourteenth great grandparents",
+                  "fifteenth great grandparents", "sixteenth great grandparents",
+                  "seventeenth great grandparents", "eighteenth great grandparents",
+                  "nineteenth great grandparents", "twentieth great grandparents", ]
+
 _father_level = [ "", "father", "grandfather", "great grandfather", "second great grandfather",
                   "third great grandfather",  "fourth great grandfather",
                   "fifth great grandfather",  "sixth great grandfather",
@@ -153,6 +164,9 @@ def apply_filter(person,index,plist,pmap):
 
 def get_cousin(level,removed):
     return "%s cousin%s" % (_level_name[level],_removed_level[removed])
+
+def get_parents(level):
+    return _parents_level[level]
 
 def get_father(level):
     return _father_level[level]
@@ -264,3 +278,58 @@ def get_relationship(orig_person,other_person):
         else:
             return (get_cousin(secondRel-1,firstRel-secondRel),common)
 
+def get_grandparents_string(orig_person,other_person):
+    """
+    returns a string representing the relationshp between the two people,
+    along with a list of common ancestors (typically father,mother) 
+    """
+    firstMap = {}
+    firstList = []
+    secondMap = {}
+    secondList = []
+    common = []
+    rank = 9999999
+
+    if orig_person == None:
+        return ("undefined",[])
+
+    if orig_person == other_person:
+        return ('', [])
+
+    apply_filter(orig_person,0,firstList,firstMap)
+    apply_filter(other_person,0,secondList,secondMap)
+    
+    for person in firstList:
+        if person in secondList:
+            new_rank = firstMap[person.getId()]
+            if new_rank < rank:
+                rank = new_rank
+                common = [ person ]
+            elif new_rank == rank:
+                common.append(person)
+
+    firstRel = -1
+    secondRel = -1
+
+    length = len(common)
+    
+    if length == 1:
+        person = common[0]
+        secondRel = firstMap[person.getId()]
+        firstRel = secondMap[person.getId()]
+    elif length == 2:
+        p1 = common[0]
+        secondRel = firstMap[p1.getId()]
+        firstRel = secondMap[p1.getId()]
+    elif length > 2:
+        person = common[0]
+        secondRel = firstMap[person.getId()]
+        firstRel = secondMap[person.getId()]
+
+    if firstRel == 0:
+        if secondRel == 0:
+            return ('',common)
+        else:
+            return (get_parents(secondRel),common)
+    else:
+        return None
