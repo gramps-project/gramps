@@ -279,7 +279,8 @@ class PdfDoc(TextDoc.TextDoc):
     def write_text(self,text):
         text = text.replace('&','&amp;');       # Must be first
         text = text.replace('<','&lt;');
-        self.text =  self.text + text.replace('>','&gt;');
+        text = text.replace('>','&gt;');
+        self.text =  self.text + text.replace('\n','<br>');
 
 #------------------------------------------------------------------------
 #
@@ -301,5 +302,5 @@ Plugins.register_text_doc(
     table=1,
     paper=1,
     style=1,
-    ext="pdf"
+    ext=".pdf"
     )

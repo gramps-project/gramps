@@ -1,3 +1,6 @@
+Version 0.9.2
+* Fixed duplicate place problem.
+
 Version 0.9.1
 * Custom paper sizes may be set for reports
 * Witnesses may be added to an event. The witnesses do not have to be in
