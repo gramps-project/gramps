@@ -53,8 +53,6 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/gnome/apps/Applications/gramps.desktop
 %{prefix}/share/pixmaps/gramps.png
 %{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
-%{prefix}/share/gramps/example/gedcom/*
-%{prefix}/share/gramps/example/gramps/*
 %{prefix}/share/gramps/*.py
 %{prefix}/share/gramps/*.pyo
 %{prefix}/share/gramps/*.so
