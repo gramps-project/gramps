@@ -24,6 +24,8 @@ import Filter
 import string
 import re
 import RelLib
+import intl
+_ = intl.gettext
 
 class EventPlace(Filter.Filter):
     "People with an event location of ..."
@@ -52,3 +54,6 @@ def create(text):
 
 def need_qualifier():
     return 1
+
+def get_name():
+    return _("People with an event location of ...")

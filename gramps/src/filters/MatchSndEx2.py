@@ -23,6 +23,8 @@
 import Filter
 import soundex
 import RelLib
+import intl
+_ = intl.gettext
 
 class MatchSndEx2(Filter.Filter):
     "Names with the specified SoundEx code"
@@ -35,3 +37,6 @@ def create(text):
 
 def need_qualifier():
     return 1
+
+def get_name():
+    return _("Names with the specified SoundEx code")

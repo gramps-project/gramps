@@ -36,6 +36,9 @@ from gtk import *
 from gnome.ui import *
 from libglade import *
 
+import intl
+_ = intl.gettext
+
 #------------------------------------------------------------------------
 #
 # 
@@ -198,7 +201,8 @@ def report(database,person):
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
 
-    topDialog.get_widget("labelTitle").set_text("Ancestor chart for " + name)
+    title = _("Ancestor chart for %s") % name
+    topDialog.get_widget("labelTitle").set_text(title)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_save_clicked" : on_save_clicked
@@ -213,7 +217,7 @@ def on_save_clicked(obj):
     global active_person
     global db
 
-    outputName = topDialog.get_widget("filename").get_text()
+    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
     if outputName == "":
         return
     
@@ -240,7 +244,16 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Produces a graphical ancestral tree graph"
+    return _("Produces a graphical ancestral tree graph")
+
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def get_name():
+    return _("Generate files/Ancestor Chart")
         
 #------------------------------------------------------------------------
 #

@@ -785,7 +785,6 @@ class GrampsParser(handler.ContentHandler):
                 f(self,attrs)
         except:
             GrampsParser.func_map[tag] = (None,None)
-            print tag
             self.func = None
 
     #---------------------------------------------------------------------

@@ -29,6 +29,9 @@ from gtk import *
 from gnome.ui import *
 from libglade import *
 
+import intl
+_ = intl.gettext
+
 col2person = {}
 reportPerson = None
 zoom = 1.0
@@ -377,7 +380,10 @@ def mysort(first, second) :
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Produces a graphical ancestral tree graph"
+    return _("Produces a graphical ancestral tree graph")
+
+def get_name():
+    return _("View/View an ancestor graph")
 
 #------------------------------------------------------------------------
 #

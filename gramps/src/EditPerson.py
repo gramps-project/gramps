@@ -1023,7 +1023,7 @@ def on_apply_person_clicked(obj):
 
     if error == 1:
         msg = _("Changing the gender caused problems with marriage information.")
-        msg2 = _("Please check the person's marriage relationships")
+        msg2 = _("Please check the person's marriage relationships.")
         GnomeErrorDialog(msg + msg2)
         
     text = edit_person_obj.notes_field.get_chars(0,-1)

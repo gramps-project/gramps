@@ -23,6 +23,8 @@
 import Filter
 import string
 import utils
+import intl
+_ = intl.gettext
 
 class HavePhotos(Filter.Filter):
     "People who have photos"
@@ -35,3 +37,6 @@ def create(text):
 
 def need_qualifier():
     return 0
+
+def get_name():
+    return _("People who have photos")

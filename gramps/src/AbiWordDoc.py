@@ -32,11 +32,12 @@ class AbiWordDoc(TextDoc):
         TextDoc.__init__(self,type,orientation)
         self.f = None
         self.level = 0
+        self.new_page = 0
 
     def open(self,filename):
 
         if filename[-4:] != ".abw":
-            self.filename = filename + ".abw"
+            self.filename = "%s.abw" % filename
         else:
             self.filename = filename
 
@@ -104,6 +105,7 @@ class AbiWordDoc(TextDoc):
 
     def start_paragraph(self,style_name):
         style = self.style_list[style_name]
+        self.current_style = style
         self.f.write('<p props="')
         if style.get_alignment() == PARA_ALIGN_RIGHT:
             self.f.write('text-align:right;')
@@ -118,6 +120,7 @@ class AbiWordDoc(TextDoc):
         indent = float(style.get_first_indent())/2.54
         self.f.write(' margin-right:%.4fin;' % rmargin)
         self.f.write(' margin-left:%.4fin;' % lmargin)
+        self.f.write(' tabstops:%.4fin/L;' % lmargin)
         self.f.write(' text-indent:%.4fin' % indent)
         self.f.write('">')
         font = style.get_font()
@@ -126,7 +129,7 @@ class AbiWordDoc(TextDoc):
             self.f.write('Arial;')
         else:
             self.f.write('Times New Roman;')
-        self.f.write('font-size:' + str(font.get_size()) + 'pt')
+        self.f.write('font-size:%dpt' % font.get_size())
         if font.get_bold():
             self.f.write('; font-weight:bold')
         if font.get_italic():
@@ -135,14 +138,57 @@ class AbiWordDoc(TextDoc):
         if color != (0,0,0):
             self.f.write('; color:%2x%2x%2x' % color)
         if font.get_underline():
-            self.f.write('; text-decoration:underline' % color)
+            self.f.write('; text-decoration:underline')
         self.f.write('">')
+        if self.new_page == 1:
+            self.new_page = 0
+            self.f.write('<pbr/>')
                      
+    def page_break(self,orientation=None):
+        self.new_page = 1
+
     def end_paragraph(self):
         self.f.write('</c></p>\n')
 
     def write_text(self,text):
 	self.f.write(text)
+
+    def start_bold(self):
+        font = self.current_style.get_font()
+        self.f.write('</c><c props="font-family:')
+        if font.get_type_face() == FONT_SANS_SERIF:
+            self.f.write('Arial;')
+        else:
+            self.f.write('Times New Roman;')
+        self.f.write('font-size:%dpt' % font.get_size())
+        self.f.write('; font-weight:bold')
+        if font.get_italic():
+            self.f.write('; font-style:italic')
+        color = font.get_color()
+        if color != (0,0,0):
+            self.f.write('; color:%2x%2x%2x' % color)
+        if font.get_underline():
+            self.f.write('; text-decoration:underline')
+        self.f.write('">')
+
+    def end_bold(self):
+        font = self.current_style.get_font()
+        self.f.write('</c><c props="font-family:')
+        if font.get_type_face() == FONT_SANS_SERIF:
+            self.f.write('Arial;')
+        else:
+            self.f.write('Times New Roman;')
+        self.f.write('font-size:%dpt' % font.get_size())
+        if font.get_bold():
+            self.f.write('; font-weight:bold')
+        if font.get_italic():
+            self.f.write('; font-style:italic')
+        color = font.get_color()
+        if color != (0,0,0):
+            self.f.write('; color:%2x%2x%2x' % color)
+        if font.get_underline():
+            self.f.write('; text-decoration:underline')
+        self.f.write('">')
 
  
 if __name__ == "__main__":

@@ -435,7 +435,7 @@ def on_save_clicked(obj):
     global active_person
     global db
 
-    outputName = topDialog.get_widget("filename").get_text()
+    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
     if outputName == "":
         return
 

@@ -22,6 +22,8 @@
 
 import Filter
 import string
+import intl
+_ = intl.gettext
 
 class EventType(Filter.Filter):
     "People who have photos"
@@ -37,3 +39,6 @@ def create(text):
 
 def need_qualifier():
     return 1
+
+def get_name():
+    return _("People who have an event type of ...")

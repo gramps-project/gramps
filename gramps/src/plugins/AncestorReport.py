@@ -27,6 +27,9 @@ import re
 import sort
 import string
 import utils
+import intl
+
+_ = intl.gettext
 
 from TextDoc import *
 from OpenOfficeDoc import *
@@ -53,35 +56,35 @@ db = None
 class AncestorReport:
 
     gen = {
-        1 : "First",
-        2 : "Second",
-        3 : "Third",
-        4 : "Fourth",
-        5 : "Fifth",
-        6 : "Sixth",
-        7 : "Seventh",
-        8 : "Eighth",
-        9 : "Ninth",
-        10: "Tenth",
-        11: "Eleventh",
-        12: "Twelfth",
-        13: "Thirteenth",
-        14: "Fourteenth",
-        15: "Fifteenth",
-        16: "Sixteenth",
-        17: "Seventeenth",
-        18: "Eigthteenth",
-        19: "Nineteenth",
-        20: "Twentieth",
-        21: "Twenty-first",
-        22: "Twenty-second",
-        23: "Twenty-third",
-        24: "Twenty-fourth",
-        25: "Twenty-fifth",
-        26: "Twenty-sixth",
-        27: "Twenty-seventh",
-        28: "Twenty-eighth",
-        29: "Twenty-ninth"
+        1 : _("First"),
+        2 : _("Second"),
+        3 : _("Third"),
+        4 : _("Fourth"),
+        5 : _("Fifth"),
+        6 : _("Sixth"),
+        7 : _("Seventh"),
+        8 : _("Eighth"),
+        9 : _("Ninth"),
+        10: _("Tenth"),
+        11: _("Eleventh"),
+        12: _("Twelfth"),
+        13: _("Thirteenth"),
+        14: _("Fourteenth"),
+        15: _("Fifteenth"),
+        16: _("Sixteenth"),
+        17: _("Seventeenth"),
+        18: _("Eigthteenth"),
+        19: _("Nineteenth"),
+        20: _("Twentieth"),
+        21: _("Twenty-first"),
+        22: _("Twenty-second"),
+        23: _("Twenty-third"),
+        24: _("Twenty-fourth"),
+        25: _("Twenty-fifth"),
+        26: _("Twenty-sixth"),
+        27: _("Twenty-seventh"),
+        28: _("Twenty-eighth"),
+        29: _("Twenty-ninth")
         }
 
     #--------------------------------------------------------------------
@@ -103,6 +106,8 @@ class AncestorReport:
         para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
+        para.set_top_border(0.2)
+        para.set_bottom_border(0.2)
         self.doc.add_style("Title",para)
 
         font = FontStyle()
@@ -113,6 +118,8 @@ class AncestorReport:
         para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
+        para.set_top_border(0.15)
+        para.set_bottom_border(0.15)
         self.doc.add_style("Header",para)
 
         para = ParagraphStyle()
@@ -122,7 +129,7 @@ class AncestorReport:
         try:
             self.doc.open(output)
         except IOError,msg:
-            GnomeErrorDialog("Could not open %s\n%s",msg)
+            GnomeErrorDialog(_("Could not open %s\n%s"),msg)
         
     #--------------------------------------------------------------------
     #
@@ -150,7 +157,8 @@ class AncestorReport:
         
         name = self.start.getPrimaryName().getRegularName()
         self.doc.start_paragraph("Title")
-        self.doc.write_text("Ahnentafel Chart for " + name)
+        title = _("Ahnentafel Chart for %s") % name
+        self.doc.write_text(title)
         self.doc.end_paragraph()
     
         keys = self.map.keys()
@@ -160,8 +168,11 @@ class AncestorReport:
 
         for key in keys :
             if generation == 0 or key >= 2**generation:
+                if self.pgbrk and generation > 0:
+                    self.doc.page_break()
                 self.doc.start_paragraph("Header")
-                self.doc.write_text(AncestorReport.gen[generation+1 ]+ " Generation")
+                t = _("%s Generation") % AncestorReport.gen[generation+1]
+                self.doc.write_text(t)
                 self.doc.end_paragraph()
                 generation = generation + 1
 
@@ -169,7 +180,14 @@ class AncestorReport:
             person = self.map[key]
             name = person.getPrimaryName().getRegularName()
         
-            self.doc.write_text(str(key) + ".\t" + name )
+            self.doc.write_text(str(key) + ".\t")
+            self.doc.start_bold()
+            self.doc.write_text(name)
+            self.doc.end_bold()
+            if name[-1:] == '.':
+                self.doc.write_text(" ")
+            else:
+                self.doc.write_text(". ")
 
             # Check birth record
         
@@ -177,21 +195,25 @@ class AncestorReport:
             if birth:
                 date = birth.getDateObj().get_start_date()
                 place = birth.getPlace()
+                if place[-1:] == '.':
+                    place = place[:-1]
                 if date.getDate() != "" or place != "":
-                    self.doc.write_text(" was born")
                     if date.getDate() != "":
                         if date.getDay() != -1 and date.getMonth() != -1:
-                            self.doc.write_text(" on ")
+                            if place != "":
+                                t = _("%s was born on %s in %s. ") % \
+                                    (name,date.getDate(),place)
+                            else:
+                                t = _("%s was born on %s. ") % \
+                                    (name,date.getDate())
                         else:
-                            self.doc.write_text(" in ")
-                        self.doc.write_text(date.getDate())
-                if place != "":
-                    self.doc.write_text(" in " + place)
-                if place == "" or place[-1] != '.':
-                    self.doc.write_text(".")
-                self.doc.write_text("\n")
-            else:
-                self.doc.write_text(".\n")
+                            if place != "":
+                                t = _("%s was born in %s in %s. ") % \
+                                    (name,date.getDate(),place)
+                            else:
+                                t = _("%s was born in %s. ") % \
+                                    (name,date.getDate())
+                        self.doc.write_text(t)
 
             death = person.getDeath()
             buried = None
@@ -202,42 +224,71 @@ class AncestorReport:
             if death:
                 date = death.getDateObj().get_start_date()
                 place = death.getPlace()
+                if place[-1:] == '.':
+                    place = place[:-1]
                 if date.getDate() != "" or place != "":
                     if person.getGender() == RelLib.Person.male:
-                        self.doc.write_text("He")
+                        male = 1
                     else:
-                        self.doc.write_text("She")
-                    self.doc.write_text(" died")
+                        male = 0
 
                     if date.getDate() != "":
                         if date.getDay() != -1 and date.getMonth() != -1:
-                            self.doc.write_text(" on ")
+                            if male:
+                                if place != "":
+                                    t = _("He died on %s in %s") % \
+                                        (date.getDate(),place)
+                                else:
+                                    t = _("He died on %s") % date.getDate()
+                            else:
+                                if place != "":
+                                    t = _("She died on %s in %s") % \
+                                        (date.getDate(),place)
+                                else:
+                                    t = _("She died on %s") % date.getDate()
                         else:
-                            self.doc.write_text(" in ")
-                        self.doc.write_text(date.getDate())
-                    if place != "":
-                        self.doc.write_text(" in " + place)
+                            if male:
+                                if place != "":
+                                    t = _("He died in %s in %s") % \
+                                        (date.getDate(),place)
+                                else:
+                                    t = _("He died in %s") % date.getDate()
+                            else:
+                                if place != "":
+                                    t = _("She died in %s in %s") % \
+                                        (date.getDate(),place)
+                                else:
+                                    t = _("She died in %s") % date.getDate()
+
+                        self.doc.write_text(t)
+
                     if buried:
                         date = buried.getDateObj().get_start_date()
                         place = buried.getPlace()
+                        if place[-1:] == '.':
+                            place = place[:-1]
                         if date.getDate() != "" or place != "":
-                            self.doc.write_text(", and was buried")
-
                             if date.getDate() != "":
                                 if date.getDay() != -1 and date.getMonth() != -1:
-                                    self.doc.write_text(" on ")
+                                    if place != "":
+                                        t = _(", and was buried on %s in %s.") % \
+                                            (date.getDate(),place)
+                                    else:
+                                        t = _(", and was buried on %s.") % \
+                                            date.getDate()
                                 else:
-                                    self.doc.write_text(" in ")
-                                self.doc.write_text(date.getDate())
-                            if place != "":
-                                self.doc.write_text(" in " + place)
-                    
-                    if place == "" or place[-1] != '.':
+                                    if place != "":
+                                        t = _(", and was buried in %s in %s.") % \
+                                            (date.getDate(),place)
+                                    else:
+                                        t = _(", and was buried in %s.") % \
+                                            date.getDate()
+                            else:
+                                t = _(" and was buried in %s." % place)
+                        self.doc.write_text(t)
+                    else:
                         self.doc.write_text(".")
-                    self.doc.write_text("\n")
-            else:
-                self.doc.write_text(".\n")
-
+                        
             self.doc.end_paragraph()
 
         self.doc.close()
@@ -301,7 +352,10 @@ def on_save_clicked(obj):
     global active_person
     global db
 
-    outputName = topDialog.get_widget("filename").get_text()
+    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
+    if outputName == "":
+        return
+
     max_gen = topDialog.get_widget("generations").get_value_as_int()
     pgbrk = topDialog.get_widget("pagebreak").get_active()
     template = topDialog.get_widget("htmltemplate").get_full_path(0)
@@ -310,9 +364,6 @@ def on_save_clicked(obj):
     orien_obj = topDialog.get_widget("orientation").get_menu().get_active()
     orien = orien_obj.get_data("i")
     
-    if outputName == "":
-        return
-
     if topDialog.get_widget("openoffice").get_active():
         document = OpenOfficeDoc(paper,orien)
     elif topDialog.get_widget("abiword").get_active():
@@ -332,7 +383,10 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Produces a textual ancestral report"
+    return _("Produces a textual ancestral report")
+
+def get_name():
+    return _("Generate files/Ahnentafel Chart")
 
 #------------------------------------------------------------------------
 #

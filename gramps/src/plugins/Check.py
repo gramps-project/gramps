@@ -24,6 +24,8 @@ import RelLib
 import utils
 import soundex
 import Config
+import intl
+_ = intl.gettext
 
 import string
 import os
@@ -136,26 +138,26 @@ class CheckIntegrity:
         errors = blink + efam + pphotos + fphotos
         
         if errors == 0:
-            GnomeOkDialog("No errors were found")
+            GnomeOkDialog(_("No errors were found"))
             return
 
         text = ""
         if blink == 1:
-            text = text + "1 broken family link was found\n"
+            text = text + _("1 broken family link was found\n")
         elif blink > 1:
-            text = text + "%d broken family links were found\n" % blink
+            text = text + _("%d broken family links were found\n") % blink
         if efam == 1:
-            text = text + "1 empty family was found\n"
+            text = text + _("1 empty family was found\n")
         elif efam > 1:
-            text = text + "%d empty families were found\n" % efam
+            text = text + _("%d empty families were found\n") % efam
         if fphotos == 1:
-            text = text + "1 broken family photo was found\n"
+            text = text + _("1 broken family photo was found\n")
         elif fphotos > 1:
-            text = text + "%d broken family photos were found\n" % fphotos
+            text = text + _("%d broken family photos were found\n") % fphotos
         if pphotos == 1:
-            text = text + "1 broken personal photo was found\n"
+            text = text + _("1 broken personal photo was found\n")
         elif pphotos > 1:
-            text = text + "%d broken personal photos were found\n" % pphotos
+            text = text + _("%d broken personal photos were found\n") % pphotos
                 
         GnomeWarningDialog(string.strip(text))
     
@@ -165,5 +167,7 @@ class CheckIntegrity:
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Checks the database for any relationship errors"
+    return _("Checks the database for any relationship errors")
 
+def get_name():
+    return _("Database Processing/Check database integrity")

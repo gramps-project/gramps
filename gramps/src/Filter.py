@@ -20,19 +20,15 @@
 
 #-------------------------------------------------------------------------
 #
-# Documentation String - used to describe the filter
-#
-#-------------------------------------------------------------------------
-"All people"
-
-#-------------------------------------------------------------------------
-#
 # Standard python modules
 #
 #-------------------------------------------------------------------------
 import re
 import os
 import sys
+import intl
+
+_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -40,7 +36,6 @@ import sys
 #
 #-------------------------------------------------------------------------
 class Filter:
-    "All people"
     
     #-------------------------------------------------------------------------
     #
@@ -106,9 +101,9 @@ def create(text):
 def need_qualifier():
     return 0
 
-filterList = [ "All people" ]
-filterMap  = { "All people" : create }
-filterEnb  = { "All people" : need_qualifier }
+filterList = [ _("All people") ]
+filterMap  = { _("All people") : create }
+filterEnb  = { _("All people") : need_qualifier }
 
 #-------------------------------------------------------------------------
 #
@@ -135,9 +130,16 @@ def load_filters(dir):
             plugin = __import__(groups[0])
         except:
             continue
+
+        if "get_name" in plugin.__dict__.keys():
+            name = plugin.get_name()
+        else:
+            name = plugin.__doc__
+            
         for task in plugin.__dict__.keys():
             if task == "create":
-                filterMap[plugin.__doc__] = plugin.__dict__[task]
+                filterMap[name] = plugin.__dict__[task]
                 filterList.append(plugin.__doc__)
             if task == "need_qualifier" :
-                filterEnb[plugin.__doc__] = plugin.__dict__[task]
+                filterEnb[name] = plugin.__dict__[task]
+

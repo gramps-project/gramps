@@ -67,7 +67,7 @@ gtkrcFile      = rootDir + os.sep + "gtkrc"
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.1.4"
+version      = "0.1.5pre"
 copyright    = "(C) 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham"]
 comments     = _("Gramps (Genealogical Research and Analysis Management ") +\

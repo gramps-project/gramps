@@ -242,8 +242,8 @@ def on_ok_clicked(obj):
     global restrict
     global no_photos
 
-    start = re.compile(r"<!-- START -->")
-    stop = re.compile(r"<!-- STOP -->")
+    start = re.compile(r"<!--\s*START\s*-->")
+    stop = re.compile(r"<!--\s*STOP\s*-->")
     top = []
     bottom = []
     

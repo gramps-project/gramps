@@ -23,6 +23,8 @@
 import Filter
 import string
 import utils
+import intl
+_ = intl.gettext
 
 class HaveChildren(Filter.Filter):
     "People with children"
@@ -41,3 +43,6 @@ def create(text):
 
 def need_qualifier():
     return 0
+
+def get_name():
+    return _("People with children")
