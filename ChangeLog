@@ -1,4 +1,10 @@
 2004-11-18  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ColumnOrder.py: pychecker fixes
+	* src/DateParser.py: pychecker fixes
+	* src/DisplayModels.py: pychecker fixes
+	* src/gramps_main.py: pychecker fixes
+	* src/dates/Date_fr.py: pychecker fixes
+	* src/dates/Date_ru.py: pychecker fixes
 	* src/FamilyView.py: Handle reordering of spouses by drag
 	and drop
 	* src/RelLib.py: Allow the family list to be set externally

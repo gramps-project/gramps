@@ -28,6 +28,8 @@ import time
 import gobject
 import gtk
 
+from gettext import gettext as _
+
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------

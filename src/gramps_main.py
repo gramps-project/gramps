@@ -72,6 +72,7 @@ import DbPrompter
 import TipOfDay
 import ArgHandler
 import Exporter
+import RelImage
 
 from QuestionDialog import *
 
@@ -1075,12 +1076,10 @@ class Gramps:
         return 1
 
     def save_media(self,filename):
-        import RelImage
         missmedia_action = 0
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.get_object_from_handle(ObjectId)
             for p in self.db.get_family_handle_map().values():
                 nl = p.get_media_list()
                 for o in nl:
