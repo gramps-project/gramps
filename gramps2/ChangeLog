@@ -1,4 +1,6 @@
 2003-07-23  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/WriteGedcom.py, src/plugins/gedcomexport.glade: New
+        options for excluding sources and notes for living people.
 	* src/plugins/Ancestors.py: More translation bits.  Include
 	source author and publication information.
 
