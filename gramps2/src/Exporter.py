@@ -315,6 +315,11 @@ class Exporter:
 
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
         p.append_item("",self.chooser,"")
+        # Dirty hack to enable proper EXPAND and FILL properties of the chooser
+        parent = self.chooser.get_parent()
+        parent.set_child_packing(self.chooser,1,1,0,gtk.PACK_START)
+        gradnparent = parent.get_parent()
+        gradnparent.set_child_packing(parent,1,1,0,gtk.PACK_START)
         p.connect('prepare',self.suggest_filename)
         return p
 
