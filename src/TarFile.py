@@ -20,6 +20,7 @@
 import gzip
 import cStringIO
 import string
+import os
 
 _BLKSIZE=512
 nul = '\0'
@@ -130,14 +131,19 @@ class ReadTarFile:
 	    filename = buf[0:index]
 	    self.f.read(24) # modes
             l = self.f.read(12)
-            length = int(l,8) 
+            # length = int(l,8) 
+            length_string = "";
+            for char in l:
+                if ord(char) != 0:
+                    length_string = length_string + char
+            length = string.atoi(length_string,8) 
 	    self.f.read(12)
 	    self.f.read(6)
 	    self.f.read(111)
 
 	    self.f.read(64)
 	    self.f.read(183)
-            foo = open(filename,"wb")
+            foo = open(self.wd + os.sep + filename,"wb")
 	    foo.write(self.f.read(length))
 	    foo.close()
 	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
