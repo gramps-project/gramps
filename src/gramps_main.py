@@ -2310,7 +2310,8 @@ def load_canvas():
     
     h = 0
     w = 0
-
+    xpad = 10
+    
     style = canvas['style']
     font = style.font
 
@@ -2324,10 +2325,10 @@ def load_canvas():
             w = max(w,font.width("d. %s" % t.getDeath().getDate())+2*PAD)
             w = max(w,font.width("b. %s" % t.getBirth().getDate())+2*PAD)
 
-    if 5*w < cx2 and 24*h < cy2:
+    if 5*w < (cx2-xpad) and 24*h < cy2:
         gen = 31
         xdiv = 5.0
-    elif 4*w < cx2 and 12*h < cy2:
+    elif 4*w < (cx2-xpad) and 12*h < cy2:
         gen = 15
         xdiv = 4.0
     else:
@@ -2336,13 +2337,12 @@ def load_canvas():
 
     for c in canvas_items:
         c.destroy()
-    canvas_items = []
     canvas.set_scroll_region(cx1,cy1,cx2,cy2)
 
-    xincr = cx2/xdiv
+    xincr = (cx2-xpad)/xdiv
     yincr = cy2/32
-    
-    xfactor = [0] + [xincr]*2 + [xincr*2]*4 + [xincr*3]*8 + [xincr*4]*16
+
+    xfactor = [xpad] + [xincr+xpad]*2 + [xincr*2+xpad]*4 + [xincr*3+xpad]*8 + [xincr*4+xpad]*16
     yfactor = [ yincr*16, yincr*8,yincr*24,yincr*4,yincr*12,yincr*20, yincr*28,
                 yincr*2, yincr*6,yincr*10,yincr*14,yincr*18,yincr*22,yincr*26,
                 yincr*30, yincr, yincr*3, yincr*5, yincr*7, yincr*9, yincr*11,
