@@ -1,3 +1,8 @@
+2004-04-25  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/IndivComplete.py: Convert to db interface.
+	* src/plugins/DescendReport.py: Convert to db interface.
+	* src/plugins/DetAncestralReport.py: Convert to db interface.
+
 2004-04-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/RTFDoc.py: Typo.
 	* src/Utils.py (get_xpm_image): Add function.
