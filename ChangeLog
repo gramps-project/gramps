@@ -1,6 +1,9 @@
 2004-08-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EdirPerson.py (__init__): Typos.
 	* src/ArgHandler.py (auto_save_load): Remove new db creation for BSDDB.
+	* src/GrampsDbBase.py (get_object_from_gramps_id, 
+	get_source_from_gramps_id, get_place_from_gramps_id): Add placeholder
+	functions with assertions.
 
 2004-08-23  Jim Smart  <jim@jimsmart.org>
 	* src/PeopleModel.py: enhanced column_spouse

@@ -450,6 +450,30 @@ class GrampsDbBase:
         """
         assert(False,"Needs to be overridden in the derived class")
 
+    def get_place_from_gramps_id(self,val):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, a new Person is added to the database.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert(False,"Needs to be overridden in the derived class")
+
+    def get_source_from_gramps_id(self,val):
+        """finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, a new Person is added to the database.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert(False,"Needs to be overridden in the derived class")
+
+    def get_object_from_gramps_id(self,val):
+        """finds a MediaObject in the database from the passed gramps' ID.
+        If no such MediaObject exists, a new Person is added to the database.
+
+        Needs to be overridden by the derrived class.
+        """
+        assert(False,"Needs to be overridden in the derived class")
+
     def add_person(self,person,transaction):
         """
         Adds a Person to the database, assigning internal IDs if they have
