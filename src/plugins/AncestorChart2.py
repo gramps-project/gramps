@@ -168,7 +168,8 @@ class AncestorChart:
         else:
             self.standalone = 0
         self.font = self.doc.style_list["AC-Normal"].get_font()
-	self.calc()
+
+        self.filter(self.start,1)
 
         keys = self.map.keys()
         keys.sort()
@@ -177,6 +178,7 @@ class AncestorChart:
         self.genchart = GenChart(max_key+1)
         for key in self.map.keys():
             self.genchart.set(key,self.map[key])
+	self.calc()
 
     def filter(self,person,index):
         """traverse the ancestors recursively until either the end
@@ -233,15 +235,28 @@ class AncestorChart:
         the elements on a page.
         """
 
-        self.filter(self.start,1)
+        self.genchart.compress()
 
         self.box_pad_pts = 5
         uh = self.doc.get_usable_height()
         uw = self.doc.get_usable_width() - pt2cm(2*self.box_pad_pts)
 
+	self.box_width = pt2cm(self.box_width)
 	self.height = self.lines*pt2cm(1.25*self.font.get_size())
 
-	self.box_width = pt2cm(self.box_width)
+        force_fit = 1
+        self.scale = 1
+        
+        if force_fit:
+            (maxy,maxx) = self.genchart.dimensions()
+
+            bw = (self.box_width+pt2cm(10))/(uw/maxx)
+            bh = self.height/(uh/maxy)
+            
+            self.scale = max(bw,bh)
+            self.box_width = self.box_width/self.scale
+            self.height = self.height/self.scale
+            self.box_pad_pts = 5/self.scale
 
         maxh = int(uh/self.height)
         maxw = int(uw/self.box_width) 
@@ -257,10 +272,11 @@ class AncestorChart:
         xstart = pt2cm(2)
         ystart = -self.height/2.0
         self.delta = pt2cm(10) + self.box_width
-#	delta = pt2cm(10)+ uw/self.generations_per_page
         
         self.x = [ xstart ]
         self.y = [ ystart + uh/2.0 ]
+
+        self.font.set_size(self.font.get_size()/self.scale)
         
         for val in range(1,self.generations_per_page):
             xstart += self.delta
@@ -274,7 +290,7 @@ class AncestorChart:
         g.set_height(self.height)
         g.set_width(self.box_width)
         g.set_paragraph_style("AC-Normal")
-        g.set_shadow(1)
+        g.set_shadow(1,0.2/self.scale)
         g.set_fill_color((255,255,255))
         self.doc.add_draw_style("box",g)
 
@@ -292,8 +308,6 @@ class AncestorChart:
         self.get_numbers((start*2)+1,index+1,vals)
 
     def print_page(self,start,generation, page):
-        self.genchart.compress()
-#        self.genchart.display()
         (maxy,maxx) = self.genchart.dimensions()
         self.doc.start_page()
         for y in range(0,maxy):

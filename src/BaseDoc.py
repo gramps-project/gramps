@@ -979,6 +979,7 @@ class GraphicsStyle:
             self.width = obj.width
             self.para_name = obj.para_name
             self.shadow = obj.shadow
+            self.shadow_space = obj.shadow_space
 	    self.color = obj.color
             self.fill_color = obj.fill_color
             self.lwidth = obj.lwidth
@@ -988,6 +989,7 @@ class GraphicsStyle:
             self.width = 0
             self.para_name = ""
             self.shadow = 0
+            self.shadow_space = 0.2
             self.lwidth = 0.5
             self.color = (0,0,0)
             self.fill_color = (255,255,255)
@@ -1014,8 +1016,12 @@ class GraphicsStyle:
     def set_paragraph_style(self,val):
         self.para_name = val
 
-    def set_shadow(self,val):
+    def set_shadow(self,val,space=0.2):
         self.shadow = val
+        self.shadow_space = space
+
+    def get_shadow_space(self):
+        return self.shadow_space
 
     def set_color(self,val):
         self.color = val
