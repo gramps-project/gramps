@@ -174,6 +174,8 @@ class AncestorsReport (Report.Report):
                 people.extend (self.family (family, already_described))
 
             if len (people):
+                if self.pgbrk:
+                    self.doc.page_break()
                 self.doc.start_paragraph ("Generation")
                 self.doc.write_text ("Generation %d" % thisgen)
                 self.doc.end_paragraph ()
@@ -326,7 +328,9 @@ class AncestorsReport (Report.Report):
             if text:
                 info += ' ' + text[0].lower() + text[1:]
             elif dateobj.getValid ():
-                if (dateobj.getDayValid () and
+                if dateobj.isRange ():
+                    info += ' '
+                elif (dateobj.getDayValid () and
                     dateobj.getMonthValid () and
                     dateobj.getYearValid ()):
                     info += ' on '
