@@ -287,48 +287,6 @@
 	      </widget>
 
 	      <widget>
-		<class>GtkCombo</class>
-		<name>bpcombo</name>
-		<value_in_list>False</value_in_list>
-		<ok_if_empty>True</ok_if_empty>
-		<case_sensitive>False</case_sensitive>
-		<use_arrows>True</use_arrows>
-		<use_arrows_always>False</use_arrows_always>
-		<items></items>
-		<child>
-		  <left_attach>2</left_attach>
-		  <right_attach>3</right_attach>
-		  <top_attach>1</top_attach>
-		  <bottom_attach>2</bottom_attach>
-		  <xpad>3</xpad>
-		  <ypad>3</ypad>
-		  <xexpand>True</xexpand>
-		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
-		  <yshrink>False</yshrink>
-		  <xfill>True</xfill>
-		  <yfill>False</yfill>
-		</child>
-
-		<widget>
-		  <class>GtkEntry</class>
-		  <child_name>GtkCombo:entry</child_name>
-		  <name>birthPlace</name>
-		  <can_focus>True</can_focus>
-		  <signal>
-		    <name>insert_text</name>
-		    <handler>on_combo_insert_text</handler>
-		    <object>bpcombo</object>
-		    <last_modification_time>Thu, 18 Oct 2001 01:13:13 GMT</last_modification_time>
-		  </signal>
-		  <editable>True</editable>
-		  <text_visible>True</text_visible>
-		  <text_max_length>0</text_max_length>
-		  <text></text>
-		</widget>
-	      </widget>
-
-	      <widget>
 		<class>GtkEntry</class>
 		<name>birthDate</name>
 		<width>250</width>
@@ -379,6 +337,30 @@
 		  <xshrink>False</xshrink>
 		  <yshrink>False</yshrink>
 		  <xfill>False</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkEntry</class>
+		<name>birthPlace</name>
+		<can_focus>True</can_focus>
+		<editable>True</editable>
+		<text_visible>True</text_visible>
+		<text_max_length>0</text_max_length>
+		<text></text>
+		<child>
+		  <left_attach>2</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
 		  <yfill>False</yfill>
 		</child>
 	      </widget>
@@ -545,48 +527,6 @@
 	      </widget>
 
 	      <widget>
-		<class>GtkCombo</class>
-		<name>dpcombo</name>
-		<value_in_list>False</value_in_list>
-		<ok_if_empty>True</ok_if_empty>
-		<case_sensitive>False</case_sensitive>
-		<use_arrows>True</use_arrows>
-		<use_arrows_always>False</use_arrows_always>
-		<items></items>
-		<child>
-		  <left_attach>2</left_attach>
-		  <right_attach>3</right_attach>
-		  <top_attach>1</top_attach>
-		  <bottom_attach>2</bottom_attach>
-		  <xpad>3</xpad>
-		  <ypad>3</ypad>
-		  <xexpand>True</xexpand>
-		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
-		  <yshrink>False</yshrink>
-		  <xfill>True</xfill>
-		  <yfill>False</yfill>
-		</child>
-
-		<widget>
-		  <class>GtkEntry</class>
-		  <child_name>GtkCombo:entry</child_name>
-		  <name>deathPlace</name>
-		  <can_focus>True</can_focus>
-		  <signal>
-		    <name>insert_text</name>
-		    <handler>on_combo_insert_text</handler>
-		    <object>dpcombo</object>
-		    <last_modification_time>Thu, 18 Oct 2001 01:14:20 GMT</last_modification_time>
-		  </signal>
-		  <editable>True</editable>
-		  <text_visible>True</text_visible>
-		  <text_max_length>0</text_max_length>
-		  <text></text>
-		</widget>
-	      </widget>
-
-	      <widget>
 		<class>GtkButton</class>
 		<name>button126</name>
 		<border_width>1</border_width>
@@ -612,6 +552,30 @@
 		  <xshrink>False</xshrink>
 		  <yshrink>False</yshrink>
 		  <xfill>False</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkEntry</class>
+		<name>deathPlace</name>
+		<can_focus>True</can_focus>
+		<editable>True</editable>
+		<text_visible>True</text_visible>
+		<text_max_length>0</text_max_length>
+		<text></text>
+		<child>
+		  <left_attach>2</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
 		  <yfill>False</yfill>
 		</child>
 	      </widget>

@@ -26,18 +26,20 @@ strings as the possible completions.
 import string
 import gtk
 
+cnv = string.lower
+
 class AutoComp:
     """
     Allows allow completion of the GtkEntry widget with the entries
     in the passed string list.
     """
-    def __init__(self,widget,plist):
+    def __init__(self,widget,plist,source=None):
         self.entry = widget
-        self.nlist = [("","")]
-        for n in plist:
-            n2 = string.lower(n)
-            self.nlist.append((n2,n))
-        self.nlist.sort()
+        if source:
+            self.nlist = source.nlist
+        else:
+            self.nlist = map((lambda n: (cnv(n),n)),plist)
+            self.nlist.sort()
         self.entry.connect("insert-text",self.insert_text)
 
     def insert_text(self,entry,new_text,new_text_len,i_dont_care):
