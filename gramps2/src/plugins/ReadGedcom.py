@@ -254,7 +254,6 @@ class GedcomParser:
         if self.window:
             self.update(self.file_obj,os.path.basename(file))
             
-        self.code = 0
         self.search_paths = []
 
         try:
@@ -1488,10 +1487,8 @@ class GedcomParser:
                     self.broken_conc = self.gedsource.get_conc()
    	    elif matches[1] == "CHAR":
                 if matches[2] == "UNICODE" or matches[2] == "UTF-8" or matches[2] == "UTF8":
-                    self.code = UNICODE
                     self.cnv = nocnv
                 elif matches[2] == "ANSEL":
-                    self.code = ANSEL
                     self.cnv = ansel_to_utf8
                 else:
                     self.cnv = latin_utf8.latin_to_utf8

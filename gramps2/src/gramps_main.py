@@ -136,6 +136,7 @@ class Gramps:
         self.db.set_fprefix(GrampsCfg.fprefix)
         self.db.set_sprefix(GrampsCfg.sprefix)
         self.db.set_pprefix(GrampsCfg.pprefix)
+        self.clearing_tabs = 0
 
         GrampsCfg.loadConfig(self.update_display)
         self.relationship = Plugins.relationship_function()
@@ -440,6 +441,11 @@ class Gramps:
         self.topWindow.show()
         
     def change_alpha_page(self,obj,junk,page):
+        """Change the page. Be careful not to take action while the pages
+        are begin removed. If clearing_tabs is set, then we don't do anything"""
+        
+        if self.clearing_tabs:
+            return
 	self.person_tree = self.pl_page[page]
         self.person_list = self.pl_page[page].tree
         self.person_model = self.pl_page[page].model
@@ -737,11 +743,13 @@ class Gramps:
 
     def clear_person_tabs(self):
 
+        self.clearing_tabs = 1
         self.ptabs.hide()
         for i in range(0,len(self.tab_list)):
             self.ptabs.remove_page(0)
         self.ptabs.set_show_tabs(0)
         self.ptabs.show()
+        self.clearing_tabs = 0
         self.id2col = {}
         self.tab_list = []
         self.alpha_page = {}
@@ -803,9 +811,12 @@ class Gramps:
     
     def tool_callback(self,val):
         if val:
-            Utils.modified()
-            self.clear_person_tabs()
-            self.full_update()
+            import_tool_callback()
+
+    def import_tool_callback(self,val):
+        Utils.modified()
+        self.clear_person_tabs()
+        self.full_update()
             
     def full_update(self):
         """Brute force display update, updating all the pages"""
@@ -1812,11 +1823,9 @@ class Gramps:
         self.status_text("")
 
     def complete_rebuild(self):
-        self.topWindow.set_resizable(gtk.FALSE)
         self.apply_filter()
         self.goto_active_person()
         self.modify_statusbar()
-        self.topWindow.set_resizable(gtk.TRUE)
 
     def apply_filter(self,current_model=None):
         self.status_text(_('Updating display...'))
@@ -1860,6 +1869,7 @@ class Gramps:
         self.modify_statusbar()
 
     def create_new_panel(self,pg):
+        
         display = gtk.ScrolledWindow()
         display.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         tree = gtk.TreeView()
@@ -1952,7 +1962,7 @@ class Gramps:
 
     def import_callback(self,obj,plugin_function):
         """Call the import plugin"""
-        plugin_function(self.db,self.active_person,self.tool_callback)
+        plugin_function(self.db,self.active_person,self.import_tool_callback)
         self.topWindow.set_title("%s - GRAMPS" % self.db.getSavePath())
 
     def on_preferences_activate(self,obj):
