@@ -172,37 +172,11 @@ class Gramps:
         self.topWindow   = self.gtop.get_widget("gramps")
 
         self.ptabs       = self.gtop.get_widget("ptabs")
-        self.pl_ab       = self.gtop.get_widget("pl_ab")
-        self.pl_cd       = self.gtop.get_widget("pl_cd")
-        self.pl_ef       = self.gtop.get_widget("pl_ef")
-        self.pl_gh       = self.gtop.get_widget("pl_gh")
-        self.pl_ij       = self.gtop.get_widget("pl_ij")
-        self.pl_kl       = self.gtop.get_widget("pl_kl")
-        self.pl_mn       = self.gtop.get_widget("pl_mn")
-        self.pl_op       = self.gtop.get_widget("pl_op")
-        self.pl_qr       = self.gtop.get_widget("pl_qr")
-        self.pl_st       = self.gtop.get_widget("pl_st")
-        self.pl_uv       = self.gtop.get_widget("pl_uv")
-        self.pl_wx       = self.gtop.get_widget("pl_wx")
-        self.pl_yz       = self.gtop.get_widget("pl_yz")
         self.pl_other    = self.gtop.get_widget("pl_other")
 
-        m = gtk.SELECTION_MULTIPLE
         self.pl_page = [
-            ListModel.ListModel(self.pl_ab, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_cd, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_ef, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_gh, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_ij, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_kl, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_mn, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_op, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_qr, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_st, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_uv, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_wx, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_yz, pl_titles, self.row_changed, self.alpha_event,m),
-            ListModel.ListModel(self.pl_other, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_other, pl_titles, self.row_changed,
+                                self.alpha_event, gtk.SELECTION_MULTIPLE),
             ]
 
         self.person_list = self.pl_page[0].tree
@@ -211,31 +185,10 @@ class Gramps:
         
         self.default_list = self.pl_page[-1]
 
-        self.alpha_page = {
-            'A' : self.pl_page[0],  'B' : self.pl_page[0],
-            'C' : self.pl_page[1],  'D' : self.pl_page[1],
-            'E' : self.pl_page[2],  'F' : self.pl_page[2],
-            'G' : self.pl_page[3],  'H' : self.pl_page[3],
-            'I' : self.pl_page[4],  'J' : self.pl_page[4],
-            'K' : self.pl_page[5],  'L' : self.pl_page[5],
-            'M' : self.pl_page[6],  'N' : self.pl_page[6],
-            'O' : self.pl_page[7],  'P' : self.pl_page[7],
-            'Q' : self.pl_page[8],  'R' : self.pl_page[8],
-            'S' : self.pl_page[9],  'T' : self.pl_page[9],
-            'U' : self.pl_page[10], 'V' : self.pl_page[10],
-            'W' : self.pl_page[11], 'X' : self.pl_page[11],
-            'Y' : self.pl_page[12], 'Z' : self.pl_page[12],
-            }
+        self.alpha_page = {}
+        self.model2page = {}
+        self.tab_list = []
 
-        self.model2page = {
-            self.pl_page[0] : 0,     self.pl_page[1] : 1,
-            self.pl_page[2] : 2,     self.pl_page[3] : 3,
-            self.pl_page[4] : 4,     self.pl_page[5] : 5,
-            self.pl_page[6] : 6,     self.pl_page[7] : 7,
-            self.pl_page[8] : 8,     self.pl_page[9] : 9,
-            self.pl_page[10] : 10,   self.pl_page[11] : 11,
-            self.pl_page[12] : 12,   self.pl_page[13] : 13,
-            }
         
         self.filter_list = self.gtop.get_widget("filter_list")
         self.notebook    = self.gtop.get_widget("notebook1")
@@ -605,6 +558,10 @@ class Gramps:
         const.marriageEvents = const.init_marriage_event_list()
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
+
+        for i in range(0,len(self.tab_list)):
+            self.ptabs.remove_page(0)
+        self.tab_list = []
     
         if zodb == 1:
             self.db = GrampsZODB()
@@ -624,7 +581,7 @@ class Gramps:
 
         self.topWindow.set_title("GRAMPS")
         self.active_person = None
-        self.id2col        = {}
+        self.id2col = {}
 
         Utils.clearModified()
         Utils.clear_timer()
@@ -921,8 +878,8 @@ class Gramps:
             return
         id = self.active_person.getId()
         if self.id2col.has_key(id):
-            (model,iter,page) = self.id2col[id]
-            self.ptabs.set_current_page(page)
+            (model,iter) = self.id2col[id]
+            self.ptabs.set_current_page(self.model2page[model])
             model.selection.select_iter(iter);
             itpath = model.model.get_path(iter)
             col = model.tree.get_column(0)
@@ -1057,7 +1014,7 @@ class Gramps:
         file = self.db.getSavePath()
         self.db.new()
         self.active_person = None
-        self.id2col        = {}
+        self.id2col = {}
         self.read_file(file)
         Utils.clearModified()
         Utils.clear_timer()
@@ -1211,13 +1168,17 @@ class Gramps:
         pg = val[5]
         pg = pg[0]
         if self.DataFilter.compare(person):
-            if pg and self.alpha_page.has_key(pg):
+
+            if pg != '@':
+                if not self.alpha_page.has_key(pg):
+                    self.create_new_panel(pg)
                 model = self.alpha_page[pg]
             else:
                 model = self.default_list
+            
             iter = model.model.append()
             page = self.model2page[model]
-            self.id2col[key] = (model,iter,page)
+            self.id2col[key] = (model,iter)
 
             model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                             3, val[3], 4, val[4], 5, val[5],
@@ -1358,8 +1319,6 @@ class Gramps:
         self.status_text("")
 
     def complete_rebuild(self):
-        import time
-        t = time.time()
         keys = self.alpha_page.keys()
 
         for key in keys:
@@ -1370,7 +1329,6 @@ class Gramps:
             self.alpha_page[key].connect_model()
         
         self.modify_statusbar()
-        self.status_text(_("Updating display... %d") % (time.time()-t))
 
     def apply_filter(self):
         datacomp = self.DataFilter.compare
@@ -1384,24 +1342,51 @@ class Gramps:
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
-                if pg and self.alpha_page.has_key(pg):
+                if pg != '@':
+                    if not self.alpha_page.has_key(pg):
+                        self.create_new_panel(pg)
                     model = self.alpha_page[pg]
                 else:
                     model = self.default_list
 
                 iter = model.model.append()
                 page = self.model2page[model]
-                self.id2col[key] = (model,iter,page)
+                self.id2col[key] = (model,iter)
 
                 model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                                 3, val[3], 4, val[4], 5, val[5],
                                 6, val[6], 7, val[7])
             else:
                 if self.id2col.has_key(key):
-                    (model,iter,page) = self.id2col[key]
+                    (model,iter) = self.id2col[key]
                     model.remove(iter)
         for i in self.pl_page:
             i.sort()
+
+    def create_new_panel(self,pg):
+        display = gtk.ScrolledWindow()
+        display.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        tree = gtk.TreeView()
+        tree.show()
+        display.add_with_viewport(tree)
+        display.show()
+        model = ListModel.ListModel(tree,pl_titles,self.row_changed,
+                                    self.alpha_event,gtk.SELECTION_MULTIPLE)
+        self.pl_page.append(model)
+        self.alpha_page[pg] = model
+        for index in range(0,len(self.tab_list)):
+            if pg < self.tab_list[index]:
+                self.ptabs.insert_page(display,gtk.Label(pg),index)
+                self.tab_list.insert(index,pg)
+                break
+        else:
+            self.ptabs.insert_page(display,gtk.Label(pg),len(self.tab_list))
+            self.tab_list.append(pg)
+
+        for index in range(0,len(self.tab_list)):
+            model = self.alpha_page[self.tab_list[index]]
+            self.model2page[model] = index
+        self.model2page[self.default_list] = len(self.tab_list)
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()
