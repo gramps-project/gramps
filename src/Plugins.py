@@ -46,7 +46,6 @@ import gnome
 import traceback
 import os
 import sys
-import string
 import re
 from gettext import gettext as _
 
