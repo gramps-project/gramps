@@ -76,9 +76,9 @@ def get_date_formats():
     except:
         return DateDisplay.DateDisplay.formats
 
-def set_format(val):
+def set_format(value):
     try:
-        _lang_to_display[_lang].set_format(val)
+        _lang_to_display[_lang].set_format(value)
     except:
         pass
 

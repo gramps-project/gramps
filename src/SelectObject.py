@@ -57,6 +57,7 @@ import gtk.gdk
 import const
 import Utils
 import ListModel
+import ImgManip
 
 #-------------------------------------------------------------------------
 #
@@ -106,8 +107,6 @@ class SelectObject:
         self.object_model.connect_model()
         
     def on_select_row(self,obj):
-        fexists = 1
-
         store,node = self.object_model.get_selected()
         if not node:
             return
@@ -117,19 +116,17 @@ class SelectObject:
         the_type = Utils.get_mime_description(obj.get_mime_type())
         path = obj.get_path()
 
-        image = self.db.get_thumbnail_image(obj.get_handle())
+        image = ImgManip.get_thumbnail_image(obj.get_path())
         if image:
             self.preview.set_from_pixbuf(image)
         else:
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
             self.preview.set_from_pixbuf(icon_image)
-            if not pexists:
-                fexists = 0
         
         self.object_handle.set_text(obj.get_gramps_id())
         self.object_type.set_text(the_type)
         self.object_desc.set_text(obj.get_description())
-        if len(path) == 0 or fexists == 0:
+        if len(path) == 0:
             self.object_path.set_text(_("The file no longer exists"))
         elif path[0] == "/":
             self.object_path.set_text(path)

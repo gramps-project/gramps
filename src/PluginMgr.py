@@ -36,7 +36,7 @@ importers, exporters, and document generators.
 import os
 import sys
 import string
-from re import compile
+import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -45,7 +45,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsKeys
 import Errors
 
 #-------------------------------------------------------------------------
@@ -111,7 +110,7 @@ def load_plugins(direct):
     # add the directory to the python search path
     sys.path.append(direct)
 
-    pymod = compile(r"^(.*)\.py$")
+    pymod = re.compile(r"^(.*)\.py$")
 
     # loop through each file in the directory, looking for files that
     # have a .py extention, and attempt to load the file. If it succeeds,
@@ -133,8 +132,10 @@ def load_plugins(direct):
         except:
             failmsg_list.append((filename,sys.exc_info()))
 
-    if GrampsKeys.get_pop_plugin_status() and len(expect_list)+len(failmsg_list):
-        PluginStatus()
+    if len(expect_list)+len(failmsg_list):
+        return False
+    else:
+        return True
 
 #-------------------------------------------------------------------------
 #
@@ -199,13 +200,10 @@ def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
             except:
                 failmsg_list.append((filename,sys.exc_info()))
 
-    if GrampsKeys.get_pop_plugin_status():
-        global status_up
-        if len(failmsg_list):
-            PluginStatus()
-        elif status_up:
-            status_up.close(None)
-            status_up = None
+    global status_up
+    if not len(failmsg_list):
+        status_up.close(None)
+        status_up = None
 
 #-------------------------------------------------------------------------
 #

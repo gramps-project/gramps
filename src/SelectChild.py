@@ -265,12 +265,7 @@ class SelectChild:
                 ddate = ""
                 
             rdata = [name,person.get_gramps_id(),gender,bdate,ddate]
-            new_node = self.refmodel.add(rdata)
-            names = dinfo[0].split(',')
-            if len(names):
-                ln = names[0].upper()
-                if self.default_name and ln == self.default_name and not node:
-                    node = new_node
+            node = self.refmodel.add(rdata)
 
         self.refmodel.connect_model()
 

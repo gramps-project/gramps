@@ -50,6 +50,7 @@ import Errors
 import RelLib
 import Date
 import DateParser
+import DisplayTrace
 from ansel_utf8 import ansel_to_utf8
 import latin_utf8 
 import Utils
@@ -1935,14 +1936,6 @@ class GedcomParser:
     def invert_year(self,subdate):
         return (subdate[0],subdate[1],-subdate[2],subdate[3])
     
-    def parse(self,text):
-        """
-        Parses the text, returning a Date object.
-        """
-        new_date = Date.Date()
-        self.set_date(new_date,text)
-        return new_date
-
 def extract_temple(matches):
     try:
         if const.lds_temple_to_abrev.has_key(matches[2]):

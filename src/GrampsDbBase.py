@@ -30,19 +30,20 @@ from this class.
 # libraries
 #
 #-------------------------------------------------------------------------
-from RelLib import *
 import cPickle
-
 import time
+import random
 import locale
 import re
 from gettext import gettext as _
-import os
-import md5
-import gtk
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS libraries
+#
+#-------------------------------------------------------------------------
+from RelLib import *
 import GrampsKeys
-import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -116,6 +117,7 @@ class GrampsDbBase:
         be created.
         """
 
+        self.rand = random.Random(time.time())
         self.smap_index = 0
         self.emap_index = 0
         self.pmap_index = 0
@@ -161,6 +163,20 @@ class GrampsDbBase:
         self.path = ""
         self.place2title = {}
         self.name_groups = {}
+
+    def create_id(self):
+        s = ""
+        for val in [ int(time.time()*10000) & 0x7fffffff,
+                     self.rand.randint(0,0x7fffffff),
+                     self.rand.randint(0,0x7fffffff)]:
+            while val != 0:
+                rem = val % 36
+                if rem <= 9:
+                    s += chr(48+rem)
+                else:
+                    s += chr(rem+55)
+                val = int(val/36)
+        return s
 
     def get_person_cursor(self):
         assert False, "Needs to be overridden in the derived class"
@@ -556,7 +572,7 @@ class GrampsDbBase:
         if not person.get_gramps_id():
             person.set_gramps_id(self.find_next_person_gramps_id())
         if not person.get_handle():
-            person.set_handle(Utils.create_id())
+            person.set_handle(self.create_id())
         self.commit_person(person,transaction)
         self.genderStats.count_person (person, self)
         return person.get_handle()
@@ -569,7 +585,7 @@ class GrampsDbBase:
         if family.get_gramps_id() == None:
             family.set_gramps_id(self.find_next_family_gramps_id())
         if family.get_handle() == None:
-            family.set_handle(Utils.create_id())
+            family.set_handle(self.create_id())
         self.commit_family(family,transaction)
         return family.get_handle()
 
@@ -579,7 +595,7 @@ class GrampsDbBase:
         not already been defined.
         """
         if source.get_handle() == None:
-            source.set_handle(Utils.create_id())
+            source.set_handle(self.create_id())
         if source.get_gramps_id() == None:
             source.set_gramps_id(self.find_next_source_gramps_id())
         self.commit_source(source,transaction)
@@ -591,7 +607,7 @@ class GrampsDbBase:
         not already been defined.
         """
         if event.get_handle() == None:
-            event.set_handle(Utils.create_id())
+            event.set_handle(self.create_id())
         if event.get_gramps_id() == None:
             event.set_gramps_id(self.find_next_event_gramps_id())
         self.commit_event(event,transaction)
@@ -603,7 +619,7 @@ class GrampsDbBase:
         not already been defined.
         """
         if place.get_handle() == None:
-            index = Utils.create_id()
+            index = self.create_id()
             place.set_handle(index)
         if place.get_gramps_id() == None:
             place.set_gramps_id(self.find_next_place_gramps_id())
@@ -617,7 +633,7 @@ class GrampsDbBase:
         """
         index = obj.get_handle()
         if index == None:
-            index = Utils.create_id()
+            index = self.create_id()
             obj.set_handle(index)
         if obj.get_gramps_id() == None:
             obj.set_gramps_id(self.find_next_object_gramps_id())
@@ -1220,36 +1236,6 @@ class GrampsDbBase:
             else:
                 return cols
 
-    def _build_thumb_path(self,path):
-        base = os.path.expanduser('~/.gramps/thumb')
-        m = md5.md5(path)
-        return os.path.join(base,m.hexdigest()+'.jpg')
-
-    def get_thumbnail_image(self,handle):
-        data = self.media_map.get(handle)
-        if data:
-            filename = self._build_thumb_path(data[2])
-            if not os.path.isfile(filename):
-                self.set_thumbnail_image(handle,data[2])
-            return gtk.gdk.pixbuf_new_from_file(filename)
-        else:
-            return None
-
-    def set_thumbnail_image(self,handle,path):
-        try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-            w = pixbuf.get_width()
-            h = pixbuf.get_height()
-            scale = 96.0 / (float(max(w,h)))
-            
-            pw = int(w*scale)
-            ph = int(h*scale)
-            
-            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
-            pixbuf.save(self._build_thumb_path(path),"jpeg")
-        except:
-            print "Could not create thumbnail for",path
-            
 class Transaction:
     """
     Defines a group of database commits that define a single logical

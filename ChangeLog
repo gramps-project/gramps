@@ -1,3 +1,10 @@
+2005-01-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsDbBase.py: remove thumbnailing routines, add
+	id creation. Removes gtk and Utils dependencies, making the
+	database routines independent of gtk and gnome.
+	* src/ImgManip.py: add thumbnailing routines.
+	* various: thumbnailing changes and pychecker fixes
+
 2005-01-08 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py (CommandLineReport.parse_option_str):
 	Fix PluginMgr lists.

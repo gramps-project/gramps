@@ -37,7 +37,6 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 import const
 import Utils
 import GrampsKeys
-import GrampsCfg
 import AddSpouse
 import SelectChild
 import DisplayTrace
@@ -842,9 +841,9 @@ class FamilyView:
             mother_id = self.family.get_mother_handle()
             father_id = self.family.get_father_handle()
 
-            for id in [father_id, mother_id]:
-                if id:
-                    p = self.db.find_person_from_handle(id)
+            for handle in [father_id, mother_id]:
+                if handle:
+                    p = self.parent.db.find_person_from_handle(handle)
                     p.remove_family_handle(self.family.get_handle())
                     self.parent.db.commit_person(p,trans)
 
@@ -1059,7 +1058,7 @@ class FamilyView:
             self.family = self.parent.db.get_family_from_handle(flist[0])
         else:
             self.family = None
-        n = NameDisplay.display.displayer(person)
+        n = NameDisplay.displayer.display(person)
         self.parent.db.transaction_commit(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):

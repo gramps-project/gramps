@@ -163,7 +163,7 @@ class PeopleView:
         hc = self.parent.history.count(del_id)
         for c in range(hc):
             self.parent.history.remove(del_id)
-            self.parent.hindex = self.parent.hindex - 1
+            self.parent.hindex -= 1
         
         mhc = self.parent.mhistory.count(del_id)
         for c in range(mhc):

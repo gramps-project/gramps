@@ -51,7 +51,6 @@ import Date
 import RelLib
 import Sources
 import DateEdit
-import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -83,11 +82,6 @@ class AddressEditor:
         self.addr = addr
         self.callback = callback
         self.child_windows = {}
-        name = NameDisplay.displayer.display(person)
-        if name == ", ":
-            text = _("Address Editor")
-        else:
-            text = _("Address Editor for %s") % name
 
         # Get the important widgets from the glade description
         self.top = gtk.glade.XML(const.dialogFile, "addr_edit","gramps")

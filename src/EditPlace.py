@@ -44,7 +44,6 @@ import gnome
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsCfg
 import Sources
 import ImageSelect
 import NameDisplay

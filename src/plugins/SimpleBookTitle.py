@@ -47,6 +47,7 @@ import Utils
 import AddMedia
 import const
 import ReportOptions
+import ImgManip
 
 #------------------------------------------------------------------------
 #
@@ -248,7 +249,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
             return
         self.options_dict['imgid'] = the_object.get_gramps_id()
         self.obj_title.set_text(the_object.get_description())
-        icon_image = database.get_thumbnail_image(the_object.get_handle())
+        icon_image = ImgManip.get_thumbnail_image(the_object.get_path())
         self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(gtk.TRUE)
         self.size.set_sensitive(gtk.TRUE)

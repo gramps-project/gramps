@@ -35,7 +35,6 @@ import gnome
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsCfg
 import ImageSelect
 import ListModel
 import RelLib
@@ -183,8 +182,8 @@ class EditSource:
             model.remove(node)
 
     def edit_cb(self, cell, path, new_text, data):
-        iter = self.data_model.get_iter(path)
-        self.data_model.set_value(iter,data,new_text)
+        node = self.data_model.get_iter(path)
+        self.data_model.set_value(node,data,new_text)
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()

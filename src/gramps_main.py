@@ -832,12 +832,14 @@ class Gramps:
 
         self.report_menu.set_sensitive(0)
         self.tools_menu.set_sensitive(0)
-        
-        PluginMgr.load_plugins(const.docgenDir)
-        PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
-        PluginMgr.load_plugins(const.pluginsDir)
-        PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
 
+        error  = PluginMgr.load_plugins(const.docgenDir)
+        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        error |= PluginMgr.load_plugins(const.pluginsDir)
+        error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
+
+        if GrampsKeys.get_pop_plugin_status() and error:
+            Plugins.PluginStatus()
         Plugins.build_report_menu(self.report_menu,self.menu_report)
         Plugins.build_tools_menu(self.tools_menu,self.menu_tools)
 
@@ -1191,7 +1193,6 @@ class Gramps:
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)
-                    self.db.set_thumbnail_image(ObjectId,name)
             choose.destroy()
 
         #-------------------------------------------------------------------------
