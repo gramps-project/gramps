@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
-"PO-Revision-Date: 2004-08-19 21:37+0200\n"
+"PO-Revision-Date: 2004-08-25 22:27+0200\n"
 "Last-Translator: Matthieu Pupat <tieum.tieum@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -71,19 +71,19 @@ msgstr "Partenaires"
 
 #: AddrEdit.py:90 AddrEdit.py:97
 msgid "Address Editor"
-msgstr "Affichage de l'adresse"
+msgstr "Editeur d''adresse"
 
 #: AddrEdit.py:92
 msgid "Address Editor for %s"
-msgstr "Affichage de l'adresse de %s"
+msgstr "Editeur d'adresse de %s"
 
 #: AttrEdit.py:104 AttrEdit.py:108
 msgid "Attribute Editor"
-msgstr "Affichage des Attributs"
+msgstr "Editeur d'attribut"
 
 #: AttrEdit.py:106
 msgid "Attribute Editor for %s"
-msgstr "Affichage des Attributs de %s"
+msgstr "Editeur d'attributs de %s"
 
 #: AttrEdit.py:164
 msgid "New attribute type created"
@@ -452,11 +452,11 @@ msgstr "Pays"
 
 #: EditPlace.py:348 EditPlace.py:375 UrlEdit.py:62
 msgid "Internet Address Editor for %s"
-msgstr "Affichage de l'adresse Internet de %s"
+msgstr "Editeur d'adresse Internet de %s"
 
 #: EditPlace.py:350 EditPlace.py:377 UrlEdit.py:60 UrlEdit.py:66
 msgid "Internet Address Editor"
-msgstr "Affichage de l'adresse Internet"
+msgstr "Editeur d'adresse Internet"
 
 #: EditPlace.py:440 gramps.glade:907
 msgid "People"
@@ -472,7 +472,7 @@ msgstr "Familles"
 
 #: EditSource.py:64
 msgid "Source Editor"
-msgstr "Affichage des sources"
+msgstr "Editeur des sources"
 
 #: EditSource.py:191
 msgid "Object"
@@ -512,11 +512,11 @@ msgstr "Lieux"
 
 #: EventEdit.py:98 EventEdit.py:103
 msgid "Event Editor"
-msgstr "Affichage d'un événement"
+msgstr "Editeur d'événement"
 
 #: EventEdit.py:100
 msgid "Event Editor for %s"
-msgstr "Affichage de l'événement de %s"
+msgstr "Editeur d'événement de %s"
 
 #: EventEdit.py:252
 msgid "New event type created"
@@ -1314,7 +1314,7 @@ msgstr "Éditeur de Lieu"
 
 #: Marriage.py:95
 msgid "Marriage/Relationship Editor"
-msgstr "Affichage Mariage/Relation"
+msgstr "Editeur de Mariage/Relation"
 
 #: Marriage.py:125 Marriage.py:666 Marriage.py:685 Utils.py:178 Utils.py:192
 #: plugins/Check.py:287 plugins/Check.py:308
@@ -1408,11 +1408,11 @@ msgstr "Fusionner des individus"
 
 #: NameEdit.py:88 NameEdit.py:92
 msgid "Alternate Name Editor"
-msgstr "Afficher les autres Noms"
+msgstr "Editeur des autres noms"
 
 #: NameEdit.py:90
 msgid "Alternate Name Editor for %s"
-msgstr "Affichage des autres Noms pour %s"
+msgstr "Editeur des autres noms pour %s"
 
 #: NoteEdit.py:53 NoteEdit.py:60
 msgid "Edit Note"
@@ -2207,7 +2207,7 @@ msgstr "Témoins"
 
 #: Witness.py:149
 msgid "Witness Editor"
-msgstr "Affichage des Témoins"
+msgstr "Editeur des témoins"
 
 #: WriteXML.py:86 WriteXML.py:135 WriteXML.py:144 WriteXML.py:161
 msgid "Failure writing %s"
@@ -2959,7 +2959,7 @@ msgstr "Sur_nom :"
 
 #: edit_person.glade:384
 msgid "Invoke birth event editor"
-msgstr "Afficher l'événement de naissance"
+msgstr "Editer l'événement de naissance"
 
 #: edit_person.glade:386 edit_person.glade:1128
 msgid "Edit..."
@@ -3060,7 +3060,7 @@ msgstr "Lie_u :"
 
 #: edit_person.glade:1126
 msgid "Invoke death event editor"
-msgstr "Afficher l'événement de décès"
+msgstr "Editer l'événement de décès"
 
 #: edit_person.glade:1197 marriage.glade:218
 msgid "Information i_s complete"
@@ -7425,7 +7425,7 @@ msgid ""
 "Editor."
 msgstr ""
 "L'utilitaire de comparaison d'événements utilise les filtres définis dans "
-"les Filtres Personnalisés."
+"l'éditeur de filtres personnalisés."
 
 #: plugins/eventcmp.glade:532
 msgid "_Custom filter editor"
@@ -7950,11 +7950,11 @@ msgstr "Faire une _copie locale lorsque l'objet est détruit"
 
 #: preferences.glade:2297
 msgid "Display _global properties editor when object is dropped"
-msgstr "Afficher les propriétés _globales de l'objet détruit"
+msgstr "Editer les propriétés _globales de l'objet détruit"
 
 #: preferences.glade:2319
 msgid "Display _local properties editor when object is dropped"
-msgstr "Afficher les propriétés _locales des objets détruits"
+msgstr "Editer les propriétés _locales des objets détruits"
 
 #: preferences.glade:2339
 msgid "<b>Drag and drop from an external source</b>"
