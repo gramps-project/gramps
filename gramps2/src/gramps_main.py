@@ -438,6 +438,11 @@ class Gramps:
         self.find_person = None
         self.find_source = None
         self.find_media = None
+        if GrampsCfg.defaultview == 0:
+            self.views.set_current_page(0)
+        else:
+            self.views.set_current_page(1)
+            
         self.topWindow.show()
         
     def change_alpha_page(self,obj,junk,page):
@@ -959,6 +964,7 @@ class Gramps:
         else:
             GrampsCfg.save_last_file("")
         self.topWindow.set_resizable(gtk.TRUE)
+        self.apply_filter()
         self.goto_active_person(1)
         
     def cl_import(self,filename,format):

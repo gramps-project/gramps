@@ -145,6 +145,7 @@ mediaref      = 1
 globalprop    = 1
 localprop     = 1
 capitalize    = 0
+defaultview   = 0
 
 #-------------------------------------------------------------------------
 #
@@ -212,6 +213,7 @@ def loadConfig(call):
     global globalprop
     global localprop
     global capitalize
+    global defaultview
     
     _callback = call
     lastfile = get_string("/apps/gramps/last-file")
@@ -229,6 +231,7 @@ def loadConfig(call):
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
     toolbar = get_int("/apps/gramps/toolbar",2)
+    defaultview = get_int("/apps/gramps/defaultview")
     
     autoload = get_bool("/apps/gramps/autoload",0)
     autosave_int = get_int("/apps/gramps/auto-save-interval")
@@ -599,6 +602,11 @@ class GrampsPreferences:
         else:
             self.top.get_widget("tool3").set_active(1)
 
+        if defaultview == 0:
+            self.top.get_widget('pvbutton').set_active(1)
+        else:
+            self.top.get_widget('fvbutton').set_active(1)
+
         paper_obj = self.top.get_widget("paper_size")
         menu = gtk.Menu()
         choice = 0
@@ -803,6 +811,7 @@ class GrampsPreferences:
         global index_visible
         global status_bar
         global toolbar
+        global defaultview
         global paper_preference
         global output_preference
         global goutput_preference
@@ -845,6 +854,11 @@ class GrampsPreferences:
             toolbar = 1
         else:
             toolbar = 2
+
+        if self.top.get_widget("pvbutton").get_active():
+            defaultview = 0
+        else:
+            defaultview = 1
 
         iprefix = self.top.get_widget("iprefix").get_text()
         if iprefix == "":
@@ -892,6 +906,7 @@ class GrampsPreferences:
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
         set_int("/apps/gramps/toolbar",toolbar+1)
+        set_int("/apps/gramps/defaultview",defaultview)
         set_string("/apps/gramps/paper-preference",paper_preference)
         set_string("/apps/gramps/output-preference",output_preference)
         set_string("/apps/gramps/goutput-preference",goutput_preference)
