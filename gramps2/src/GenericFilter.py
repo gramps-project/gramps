@@ -85,7 +85,7 @@ class Rule:
     labels = []
     
     def __init__(self,list):
-        assert type(list) == type([]), "Argument is not a list"
+        assert type(list) == type([]) or list == None, "Argument is not a list"
         self.list = list
 
     def values(self):
@@ -113,7 +113,7 @@ class Rule:
         v = []
         for i in range(0,len(self.list)):
             if self.list[i]:
-                v.append('%s="%s"' % (_(self.labels[i]),self.list[i]))
+                v.append('%s="%s"' % (_(self.labels[i]),_(self.list[i])))
         return join(v,'; ')
 
 #-------------------------------------------------------------------------
@@ -917,7 +917,7 @@ class HasEvent(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list[0]:
+        if self.list and self.list[0]:
             self.date = Date.Date()
             self.date.set(self.list[0])
         else:
@@ -964,7 +964,7 @@ class HasFamilyEvent(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list[0]:
+        if self.list and self.list[0]:
             self.date = Date.Date()
             self.date.set(self.list[0])
         else:
@@ -1066,7 +1066,7 @@ class HasBirth(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list[0]:
+        if self.list and self.list[0]:
             self.date = Date.Date()
             self.date.set(self.list[0])
         else:
@@ -1106,7 +1106,7 @@ class HasDeath(Rule):
     
     def __init__(self,list):
         Rule.__init__(self,list)
-        if self.list[0]:
+        if self.list and self.list[0]:
             self.date = Date.Date()
             self.date.set(self.list[0])
         else:
