@@ -379,7 +379,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.drawing = reportlab.graphics.shapes.Drawing(x,y)
 
     def end_page(self):
-       self.story.append(self.drawing)
+        self.story.append(self.drawing)
 
     def draw_line(self,style,x1,y1,x2,y2):
         y1 = self.get_usable_height() - y1
@@ -397,8 +397,31 @@ class PdfDoc(BaseDoc.BaseDoc):
                                            strokeDashArray=line_array)
         self.drawing.add(l)
 
-    def draw_bar(self,style,x1,y1,x2,y2):
-        pass
+    def write_at(self, style, text, x, y):
+        para_style = self.style_list[style]
+        font_style = para_style.get_font()
+        size = font_style.get_size()
+        y = self.get_usable_height() - y
+
+        if text != "":
+            lines = text.split('\n')
+            self.left_print(lines,font_style,x*cm,y*cm - size)
+
+    def draw_bar(self, style, x1, y1, x2, y2):
+        style = self.draw_styles[style]
+        fill_color = make_color(style.get_fill_color())
+        color = make_color(style.get_color())
+        line_width = style.get_line_width()
+        w = (x2-x1)*cm
+        h = (y2-y1)*cm
+
+        y1 = self.get_usable_height() - y1
+
+        r = reportlab.graphics.shapes.Rect((x1)*cm,(y1*cm)-h,w,h,
+                                           strokeWidth=line_width,
+                                           fillColor=fill_color,
+                                           strokeColor=color)
+        self.drawing.add(r)
 
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
