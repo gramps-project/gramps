@@ -355,22 +355,14 @@ class XmlWriter:
             self.dump_my_event(event.getName(),event,index)
 
     def dump_my_event(self,name,event,index=1):
-        if not event:
+        if not event or event.is_empty():
             return
-    
-        date = event.getDateObj()
-        place = event.getPlace()
-        description = event.getDescription()
-        cause = event.getCause()
-        if (not name or name == "Birth" or name == "Death") and \
-           date.isEmpty() and not place and not description:
-            return
-        
+
         sp = "  " * index
         self.g.write('%s<event type="%s"%s>\n' % (sp,self.fix(name),conf_priv(event)))
         self.write_date(event.getDateObj(),index+1)
         self.write_ref("place",place,index+1)
-        self.write_line("cause",cause,index+1)
+        self.write_line("cause",event.getCause(),index+1)
         self.write_line("description",description,index+1)
         if event.getNote():
             self.write_note("note",event.getNote(),index+1)

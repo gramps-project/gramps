@@ -209,6 +209,8 @@ class EventEditor:
 
         dobj = self.event.getDateObj()
 
+        self.event.setSourceRefList(self.srcreflist)
+        
         if compare_dates(dobj,date) != 0:
             self.event.setDateObj(date)
             self.parent.lists_changed = 1
