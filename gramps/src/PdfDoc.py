@@ -22,12 +22,12 @@ from TextDoc import *
 
 import reportlab.platypus.tables
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
-from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import cm
 from reportlab.lib.colors import Color
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
-
 import reportlab.lib.styles
+
+from latin_utf8 import latin_to_utf8
 
 try:
     import PIL.Image
@@ -35,10 +35,20 @@ try:
 except:
     no_pil = 1
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def page_def(canvas,doc):
     canvas.saveState()
     canvas.restoreState()
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def make_color(color):
     return Color(float(color[0])/255.0, float(color[1])/255.0,
                  float(color[2])/255.0)
@@ -112,6 +122,7 @@ class PdfDoc(TextDoc):
 
     def end_paragraph(self):
         if self.in_table == 0 and self.image == 0:
+            print self.text
 	    self.story.append(Paragraph(self.text,self.current_para))
 	    self.story.append(Spacer(1,0.25*cm))
         else:
@@ -220,5 +231,5 @@ class PdfDoc(TextDoc):
         pass
 
     def write_text(self,text):
-        self.text = self.text + text
+	self.text = self.text + text
 

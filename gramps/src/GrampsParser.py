@@ -269,6 +269,8 @@ class GrampsParser(handler.ContentHandler):
             self.family = self.db.findFamily(attrs["id"],self.fmap)
         else:
             self.family = self.db.findFamilyNoMap(attrs["id"])
+        if attrs.has_key("type"):
+            self.family.setRelationship(attrs["type"])
 
     #---------------------------------------------------------------------
     #

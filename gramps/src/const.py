@@ -86,7 +86,7 @@ useExceptions= 0
 # Constants
 #
 #-------------------------------------------------------------------------
-picWidth     = 200.0
+picWidth     = 275.0
 thumbScale   = 100.0
 indexFile    = "data.gramps"
 male         = _("male")
@@ -151,6 +151,13 @@ personalConstantAttributes = {
     "Social Security Number": "SSN"
     }
 
+familyConstantRelations = [
+    "Married",
+    "Common Law",
+    "Partners",
+    "Unknown"
+]
+
 personalEvents = personalConstantEvents.keys()
 personalEvents.sort()
 
@@ -159,3 +166,5 @@ personalAttributes.sort()
 
 marriageEvents = familyConstantEvents.keys()
 marriageEvents.sort()
+
+familyRelations = familyConstantRelations

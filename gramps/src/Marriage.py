@@ -84,6 +84,7 @@ class Marriage:
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_addphoto_clicked" : on_add_photo_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_close_marriage_editor" : on_close_marriage_editor,
             "destroy_passed_object" : utils.destroy_passed_object
             })
 
@@ -100,17 +101,27 @@ class Marriage:
         self.place_field = self.get_widget("marriagePlace")
         self.name_field  = self.get_widget("marriageEventName")
         self.descr_field = self.get_widget("marriageDescription")
+        self.type_field  = self.get_widget("marriage_type")
+        self.notes_field = self.get_widget("marriageNotes")
 
         # set initial data
         mevent_list = self.get_widget("marriageEvent")
         mevent_list.set_popdown_strings(const.marriageEvents)
         self.name_field.set_text("")
         self.load_images()
+
+        self.type_field.set_popdown_strings(const.familyRelations)
+        self.type_field.entry.set_text(family.getRelationship())
         
         # stored object data
         top_window.set_data(MARRIAGE,self)
         self.event_list.set_data(MARRIAGE,self)
         self.event_list.set_data(INDEX,-1)
+
+        # set notes data
+        self.notes_field.set_point(0)
+        self.notes_field.insert_defaults(family.getNote())
+        self.notes_field.set_word_wrap(1)
 
         self.redraw_events()
         top_window.show()
@@ -200,6 +211,26 @@ class Marriage:
     #-------------------------------------------------------------------------
     def get_widget(self,name):
         return self.top.get_widget(name)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_close_marriage_editor(obj):
+    family_obj = obj.get_data(MARRIAGE)
+
+    relation = family_obj.type_field.entry.get_text()
+    if relation != family_obj.family.getRelationship():
+        family_obj.family.setRelationship(relation)
+        utils.modified()
+
+    text = family_obj.notes_field.get_chars(0,-1)
+    if text != family_obj.family.getNote():
+        family_obj.family.setNote(text)
+        utils.modified()
+
+    utils.destroy_passed_object(family_obj.get_widget("marriageEditor"))
 
 #-------------------------------------------------------------------------
 #

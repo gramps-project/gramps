@@ -80,7 +80,7 @@
 	<widget>
 	  <class>GtkTable</class>
 	  <name>table14</name>
-	  <rows>3</rows>
+	  <rows>4</rows>
 	  <columns>2</columns>
 	  <homogeneous>False</homogeneous>
 	  <row_spacing>0</row_spacing>
@@ -100,8 +100,8 @@
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
@@ -176,6 +176,7 @@
 	      <widget>
 		<class>GtkEntry</class>
 		<name>birthDate</name>
+		<width>250</width>
 		<can_focus>True</can_focus>
 		<editable>True</editable>
 		<text_visible>True</text_visible>
@@ -232,8 +233,8 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>2</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>True</xexpand>
@@ -308,6 +309,7 @@
 	      <widget>
 		<class>GtkEntry</class>
 		<name>deathDate</name>
+		<width>250</width>
 		<can_focus>True</can_focus>
 		<editable>True</editable>
 		<text_visible>True</text_visible>
@@ -353,35 +355,6 @@
 		  <yfill>False</yfill>
 		</child>
 	      </widget>
-	    </widget>
-	  </widget>
-
-	  <widget>
-	    <class>GtkFrame</class>
-	    <name>frame5</name>
-	    <label>Photo</label>
-	    <label_xalign>0</label_xalign>
-	    <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
-	    <child>
-	      <left_attach>1</left_attach>
-	      <right_attach>2</right_attach>
-	      <top_attach>0</top_attach>
-	      <bottom_attach>2</bottom_attach>
-	      <xpad>5</xpad>
-	      <ypad>5</ypad>
-	      <xexpand>False</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>True</yfill>
-	    </child>
-
-	    <widget>
-	      <class>GnomePixmap</class>
-	      <name>personPix</name>
-	      <width>200</width>
-	      <height>200</height>
 	    </widget>
 	  </widget>
 
@@ -728,6 +701,169 @@
 		  <xpad>5</xpad>
 		  <ypad>5</ypad>
 		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkFrame</class>
+	    <name>frame5</name>
+	    <label>Photo</label>
+	    <label_xalign>0</label_xalign>
+	    <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	    <child>
+	      <left_attach>1</left_attach>
+	      <right_attach>2</right_attach>
+	      <top_attach>0</top_attach>
+	      <bottom_attach>3</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>True</yfill>
+	    </child>
+
+	    <widget>
+	      <class>GnomePixmap</class>
+	      <name>personPix</name>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkFrame</class>
+	    <name>frame6</name>
+	    <label>Indentification</label>
+	    <label_xalign>0</label_xalign>
+	    <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>2</top_attach>
+	      <bottom_attach>3</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>True</yfill>
+	    </child>
+
+	    <widget>
+	      <class>GtkTable</class>
+	      <name>table18</name>
+	      <rows>2</rows>
+	      <columns>2</columns>
+	      <homogeneous>False</homogeneous>
+	      <row_spacing>0</row_spacing>
+	      <column_spacing>0</column_spacing>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>gid</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>0</top_attach>
+		  <bottom_attach>1</bottom_attach>
+		  <xpad>5</xpad>
+		  <ypad>5</ypad>
+		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>user_data</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>5</xpad>
+		  <ypad>5</ypad>
+		  <xexpand>True</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label152</name>
+		<label>gramps ID : </label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>0</top_attach>
+		  <bottom_attach>1</bottom_attach>
+		  <xpad>5</xpad>
+		  <ypad>5</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>user_label</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>1</top_attach>
+		  <bottom_attach>2</bottom_attach>
+		  <xpad>5</xpad>
+		  <ypad>5</ypad>
+		  <xexpand>False</xexpand>
 		  <yexpand>False</yexpand>
 		  <xshrink>False</xshrink>
 		  <yshrink>False</yshrink>

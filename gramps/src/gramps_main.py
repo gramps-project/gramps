@@ -547,6 +547,7 @@ def new_database_response(val):
     const.personalEvents.sort()
     const.personalAttributes = const.personalConstantAttributes.keys()
     const.personalAttributes.sort()
+    const.familyRelations = const.familyConstantRelations
     database.new()
     topWindow.set_title("Gramps")
     active_person = None
@@ -645,14 +646,11 @@ def read_file(filename):
 
     statusbar.set_status(_("Loading %s ...") % filename)
 
-    try:
-        if load_database(filename) == 1:
-            topWindow.set_title("%s - %s" % (_("Gramps"),filename))
-        else:
-            statusbar.set_status("")
-            Config.save_last_file("")
-    except:
-        displayError(_("Failure reading %s") % filename)
+    if load_database(filename) == 1:
+        topWindow.set_title("%s - %s" % (_("Gramps"),filename))
+    else:
+        statusbar.set_status("")
+        Config.save_last_file("")
 
     statusbar.set_progress(0.0)
 
@@ -910,7 +908,7 @@ def on_delete_person_clicked(obj):
     if not active_person:
         return
 
-    topWindow.question(_("Do you really wish to delete %s") % \
+    topWindow.question(_("Do you really wish to delete %s?") % \
                        Config.nameof(active_person), delete_person_response)
 
 #-------------------------------------------------------------------------
@@ -1223,6 +1221,9 @@ def revert_query(value):
 
         const.marriageEvents = const.familyConstantEvents.keys()
         const.marriageEvents.sort()
+
+        const.familyRelations = const.familyConstantRelations
+
         file = database.getSavePath()
         database.new()
         read_file(file)
@@ -1764,6 +1765,11 @@ def load_database(name):
         if type not in const.personalAttributes:
             const.personalAttributes.append(type)
 
+    mylist = database.getFamilyRelationTypes()
+    for type in mylist:
+        if type not in const.familyRelations:
+            const.familyRelations.append(type)
+
     Config.save_last_file(name)
     Main.get_widget("filter").set_text("")
     active_person = database.getDefaultPerson()
@@ -1895,7 +1901,7 @@ def on_edit_bookmarks_activate(obj):
 def on_default_person_activate(obj):
     if active_person:
         name = active_person.getPrimaryName().getRegularName()
-        topWindow.question(_("Do you wish to set %s as the home person") % name, \
+        topWindow.question(_("Do you wish to set %s as the home person?") % name, \
                            set_person)
 
 #-------------------------------------------------------------------------

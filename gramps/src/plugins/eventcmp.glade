@@ -15,7 +15,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>filters</name>
-  <title>Gramps - Event Correlation</title>
+  <title>Gramps - Event Comparison</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
