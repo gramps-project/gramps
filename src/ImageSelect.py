@@ -940,7 +940,7 @@ class GlobalMediaProperties:
         pb = gtk.gdk.pixbuf_new_from_file(Utils.thumb_path(self.path,self.obj))
         self.pixmap.set_from_pixbuf(pb)
 
-        self.change_dialog.get_widget("gid").set_text(self.obj.get_handle())
+        self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
         self.makelocal = self.change_dialog.get_widget("makelocal")
 
         self.update_info()
