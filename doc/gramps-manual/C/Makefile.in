@@ -7,6 +7,11 @@ all: ${MANDIR}/index.html
 
 ${MANDIR}/index.html: ${MANSRC}
 	${DB2HTML} ${MANSRC} -o ${MANDIR}
+	mv ./tmp/*.html ./${MANDIR}.junk
+	rmdir ./tmp
+	mv ${MANDIR}/stylesheet-images ./${MANDIR}.junk/
+	rm -rf ${MANDIR}
+	mv ./${MANDIR}.junk ${MANDIR}
 	
 install:
 	-${INSTALL} -d ${GNOMEHELP}/${GM}/C
@@ -19,3 +24,5 @@ uninstall:
 	-rmdir ${GNOMEHELP}/${GM}/C
 
 clean:
+	-rm -f ${MANDIR}/*.html
+	-rm -rf ${MANDIR}.junk/
