@@ -1850,6 +1850,11 @@ class GrampsDB(Persistent):
         if nkey != okey and okey != None:
             del self.personTable[okey]
         self.personTable[nkey] = self.personMap[nkey].getDisplayInfo()
+
+    def buildPlaceDisplay(self,nkey,okey=None):
+        if nkey != okey and okey != None:
+            del self.placeTable[okey]
+        self.placeTable[nkey] = self.placeMap[nkey].getDisplayInfo()
         
     def set_iprefix(self,val):
         if _id_reg.search(val):
