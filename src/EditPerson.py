@@ -1031,6 +1031,10 @@ def update_address(addr,date,street,city,state,country,postal,note,priv,conf):
         addr.setState(state)
         changed = 1
 
+    if addr.getStreet() != street:
+        addr.setStreet(street)
+        changed = 1
+
     if addr.getCountry() != country:
         addr.setCountry(country)
         changed = 1
@@ -1644,6 +1648,10 @@ class EventEditor:
     def __init__(self,parent,event):
         self.parent = parent
         self.event = event
+        if self.event:
+            self.srcref = SourceRef(self.event.getSourceRef())
+        else:
+            self.srcref = SourceRef()
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
@@ -1707,7 +1715,7 @@ class EventEditor:
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.event,ee.parent.db,ee.source_field)
+    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
@@ -1733,6 +1741,10 @@ def on_event_edit_ok_clicked(obj):
     if update_event(event,ename,edate,eplace,edesc,enote,epriv,econf):
         ee.parent.events_changed = 1
         
+    if not source_refs_equal(event.getSourceRef(),ee.srcref):
+        event.setSourceRef(ee.srcref)
+        ee.parent.events_changed = 1
+        
     ee.parent.redraw_event_list()
     utils.destroy_passed_object(obj)
 
@@ -1756,6 +1768,10 @@ class AttributeEditor:
         self.source_field = self.top.get_widget("attr_source")
         self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
+        if self.attrib:
+            self.srcref = SourceRef(self.attrib.getSourceRef())
+        else:
+            self.srcref = SourceRef()
 
         name = parent.person.getPrimaryName().getName()
         
@@ -1805,7 +1821,7 @@ class AttributeEditor:
 #-------------------------------------------------------------------------
 def on_attrib_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.attrib,ee.parent.db,ee.source_field)
+    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
@@ -1829,6 +1845,10 @@ def on_attrib_edit_ok_clicked(obj):
     if update_attrib(attrib,type,value,note,priv,conf):
         ee.parent.attr_changed = 1
         
+    if not source_refs_equal(attrib.getSourceRef(),ee.srcref):
+        attrib.setSourceRef(ee.srcref)
+        ee.parent.events_changed = 1
+
     ee.parent.redraw_attr_list()
     utils.destroy_passed_object(obj)
 
@@ -1852,6 +1872,10 @@ class NameEditor:
         self.top.get_widget("alt_surname_list").set_popdown_strings(const.surnames)
         self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
+        if self.name:
+            self.srcref = SourceRef(self.name.getSourceRef())
+        else:
+            self.srcref = SourceRef()
 
         full_name = parent.person.getPrimaryName().getName()
         
@@ -1903,7 +1927,7 @@ class NameEditor:
 #-------------------------------------------------------------------------
 def on_name_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.name,ee.parent.db,ee.source_field)
+    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
@@ -1927,7 +1951,11 @@ def on_name_edit_ok_clicked(obj):
         
     if update_name(name,first,last,suffix,note,priv,conf):
         ee.parent.name_changed = 1
-        
+
+    if not source_refs_equal(name.getSourceRef(),ee.srcref):
+        name.setSourceRef(ee.srcref)
+        ee.parent.name_changed = 1
+
     ee.parent.redraw_name_list()
     utils.destroy_passed_object(obj)
 
@@ -1954,6 +1982,10 @@ class AddressEditor:
         self.source_field = self.top.get_widget("addr_source")
         self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
+        if self.addr:
+            self.srcref = SourceRef(self.addr.getSourceRef())
+        else:
+            self.srcref = SourceRef()
 
         name = parent.person.getPrimaryName().getName()
         text = _("Address Editor for %s") % name
@@ -1971,9 +2003,11 @@ class AddressEditor:
         self.conf_menu.set_menu(myMenu)
 
         if addr != None:
-            self.street.set_text(addr.getFirstAddr())
-            self.suraddr_field.set_text(addr.getSuraddr())
-            self.suffix_field.set_text(addr.getSuffix())
+            self.street.set_text(addr.getStreet())
+            self.city.set_text(addr.getCity())
+            self.state.set_text(addr.getState())
+            self.country.set_text(addr.getCountry())
+            self.postal.set_text(addr.getPostal())
             srcref_base = self.addr.getSourceRef().getBase()
             if srcref_base:
                 self.source_field.set_text(srcref_base.getTitle())
@@ -2004,7 +2038,7 @@ class AddressEditor:
 #-------------------------------------------------------------------------
 def on_addr_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.addr,ee.parent.db,ee.source_field)
+    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
@@ -2032,6 +2066,10 @@ def on_addr_edit_ok_clicked(obj):
     if update_address(addr,date,street,city,state,country,postal,note,priv,conf):
         ee.parent.addr_changed = 1
         
+    if not source_refs_equal(addr.getSourceRef(),ee.srcref):
+        addr.setSourceRef(ee.srcref)
+        ee.parent.addr_changed = 1
+
     ee.parent.redraw_address_list()
     utils.destroy_passed_object(obj)
 
@@ -2127,3 +2165,23 @@ def get_detail_text(obj):
         else:
             details = "%s, %s" % (details,_("Private"))
     return details
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def source_refs_equal(one,two):
+    if not one or not two:
+        return 0
+    if one.ref != two.ref:
+        return 0
+    if one.page != two.page:
+        return 0
+    if one.date != two.date:
+        return 0
+    if one.comments != two.comments:
+        return 0
+    if one.text != two.text:
+        return 0
+    return 1
