@@ -1,6 +1,9 @@
 2003-08-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/preferences.glade: Provide hotkeys for the new default view 
 	options. 
+	* src/gramps_main.py: Enable context menus with back and forward
+	portions of history upon right-clicking on Back and Forward buttons.
+	* src/gramps.glade: Add handlers for the context menus. 
 
 2003-08-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py: Better behavior for the history menu.
