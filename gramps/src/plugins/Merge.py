@@ -51,7 +51,7 @@ def is_initial(name):
         return name[0] in string.uppercase
 
 def ancestors_of(p1,list):
-    if p1 == None:
+    if p1 == None or p1 in list:
         return
     list.append(p1)
     f1 = p1.getMainFamily()
