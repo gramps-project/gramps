@@ -1,6 +1,8 @@
 [Desktop Entry]
 Name=Gramps
+Name[sv]=Gramps
 Comment=Genealogy Program
+Comment[sv]=Ett släktforskningsprogram
 Exec=gramps
 Icon=gramps.png
 Terminal=0
