@@ -76,12 +76,12 @@ class IndivComplete(Report.Report):
         self.database = database
         self.person = person
         self.output = output
+        self.newpage = newpage
         if output:
             self.standalone = 1
             self.d.open(output)
         else:
             self.standalone = 0
-        self.newpage = newpage
         
     def setup(self):
         tbl = TextDoc.TableStyle()
@@ -351,6 +351,9 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
 
     def write_report(self):
+        if self.newpage:
+            self.d.page_break()
+
         plist = self.database.getPersonMap().values()
         if self.filter:
             ind_list = self.filter.apply(self.database,plist)
