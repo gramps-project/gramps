@@ -9,6 +9,7 @@
 	* src/plugins/FtmStyleDescendants.py: handle book improvements
 	* src/plugins/IndivSummary.py: handle book improvements, rename
 	document styles
+	* src/plugins/SimpleBookTitle.py: new page title for book
 	
 2003-06-24  Tim Waugh  <twaugh@redhat.com>
 	* src/GrampsParser.py: Use access methods rather than poking directly.
