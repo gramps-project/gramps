@@ -1,3 +1,9 @@
+2004-07-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DbPrompter.py (SaveAsDbPrompter.change_suggested_name): 
+	Add method; (SaveAsDbPrompter.chooser): Make dialog a class attribute.
+	Connect handler to the filter change event; (get_new_filename): Make
+	a module function (outside any class). 
+
 2004-07-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: disable find old "find" function
 	* src/gramps.glade: enable TreeView find function

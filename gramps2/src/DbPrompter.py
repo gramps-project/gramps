@@ -293,7 +293,7 @@ class NewNativeDbPrompter:
         filter.add_mime_type('application/x-gramps')
         choose.add_filter(filter)
 
-        new_filename = self.get_new_filename()
+        new_filename = get_new_filename()
         
         choose.set_filename(new_filename)
         choose.set_current_name(os.path.split(new_filename)[1])
@@ -309,12 +309,6 @@ class NewNativeDbPrompter:
         else:
             choose.destroy()
             return 0
-
-    def get_new_filename(self):
-        ix = 1
-        while os.path.isfile(os.path.expanduser('~/Untitled_%d.grdb' % ix ) ):
-            ix = ix + 1
-        return os.path.expanduser('~/Untitled_%d.grdb' % ix )
 
 #-------------------------------------------------------------------------
 #
@@ -341,53 +335,57 @@ class SaveAsDbPrompter:
         Select the new file. 
         Return 1 when selection is made and 0 otherwise.
         """
-        choose = gtk.FileChooserDialog(_('GRAMPS: Export database'),
+        self.choose = gtk.FileChooserDialog(_('GRAMPS: Export database'),
                                            self.parent_window,
                                            gtk.FILE_CHOOSER_ACTION_SAVE,
                                            (gtk.STOCK_CANCEL,
                                             gtk.RESPONSE_CANCEL,
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
-        choose.set_local_only(gtk.FALSE)
+        self.choose.set_local_only(gtk.FALSE)
         # Always add automatic (macth all files) filter
         filter = gtk.FileFilter()
         filter.set_name(_('By extension'))
         filter.add_pattern('*')
-        choose.add_filter(filter)
+        self.choose.add_filter(filter)
         
         # Always add native format filter
         filter = gtk.FileFilter()
         filter.set_name(_('GRAMPS databases'))
         filter.add_mime_type('application/x-gramps')
-        choose.add_filter(filter)
+        self.choose.add_filter(filter)
+
+    	chooser_default = self.choose.get_children()[0].get_children()[0].get_children()[0]
+	chooser_default.connect('notify::filter',self.change_suggested_name)
 
         # Add more data type selections if opening existing db
         for (exportData,filter,pattern_list) in Plugins._exports:
-            choose.add_filter(filter)
+            self.choose.add_filter(filter)
         
-        if GrampsCfg.lastfile:
-            choose.set_filename(GrampsCfg.lastfile)
+        new_filename = get_new_filename()
+        self.choose.set_filename(new_filename)
+        self.choose.set_current_name(os.path.split(new_filename)[1])
 
-        response = choose.run()
+        response = self.choose.run()
         if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
+            filename = self.choose.get_filename()
             filename = os.path.normpath(os.path.abspath(filename))
             (junk,the_file) = os.path.split(filename)
             the_ext = os.path.splitext(filename)[1]
 
             if the_ext in ('.grdb', '.GRDB'):
-                choose.destroy()
+                self.choose.destroy()
                 try:
                     shutil.copyfile(self.parent.db.get_save_path(),filename)
                     return 1
-                except shutil.Error, msg:
+                except IOError, msg:
                     QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,
                         _('System message was: %s') % msg )
                     return 0
 
             for (exportData,filter,pattern_list) in Plugins._exports:
                 if the_ext in pattern_list:
-                    choose.destroy()
+                    self.choose.destroy()
                     exportData(self.parent.db,filename)
                     return 1
             else:
@@ -395,5 +393,30 @@ class SaveAsDbPrompter:
                         _('The type is not in the list of known file types') )
                 return 0
         else:
-            choose.destroy()
+            self.choose.destroy()
             return 0
+
+    def change_suggested_name(self,*args):
+        """
+        This is the callback of the filter change handler. The suggested
+        file name is set according to the selected filter.
+        """
+        the_filter = self.choose.get_filter()
+        if the_filter.get_name().find('XML') + 1:
+            self.choose.set_current_name('data.gramps')
+        else:
+            new_filename = get_new_filename()
+            self.choose.set_current_name(os.path.split(new_filename)[1])
+
+    
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def get_new_filename():
+    ix = 1
+    while os.path.isfile(os.path.expanduser('~/Untitled_%d.grdb' % ix ) ):
+        ix = ix + 1
+    return os.path.expanduser('~/Untitled_%d.grdb' % ix )
+
