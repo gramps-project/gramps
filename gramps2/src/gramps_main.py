@@ -541,8 +541,10 @@ class Gramps:
 
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
-        if cpage == PERSON_VIEW or cpage == FAMILY_VIEW2 or cpage == FAMILY_VIEW1:
+        if cpage == PERSON_VIEW:
             self.load_selected_people(obj)
+        elif cpage == FAMILY_VIEW2 or cpage == FAMILY_VIEW1:
+            self.load_person(self.active_person)
         elif cpage == SOURCE_VIEW:
             self.source_view.on_edit_clicked(obj)
         elif cpage == PLACE_VIEW:
@@ -1221,7 +1223,11 @@ class Gramps:
             DisplayTrace.DisplayTrace()
 
     def delete_person_clicked(self,obj):
-        mlist = self.people_view.person_tree.get_selected_objects()
+        cpage = self.views.get_current_page()
+        if cpage == PERSON_VIEW:
+            mlist = self.people_view.person_tree.get_selected_objects()
+        else:
+            mlist = [ self.active_person.getId() ]
 
         for sel in mlist:
             p = self.db.getPerson(sel)
@@ -1264,11 +1270,11 @@ class Gramps:
         self.people_view.remove_from_person_list(self.active_person)
         self.people_view.person_model.sort_column_changed()
 
-        if self.hindex > 0:
-            self.back_clicked(None)
+        if self.hindex >= 0:
+            self.active_person = self.db.getPerson(self.history[self.hindex])
         else:
             self.change_active_person(None)
-            self.redraw_histmenu()
+        self.redraw_histmenu()
         self.update_display(0)
         Utils.modified()
 
