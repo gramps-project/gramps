@@ -355,6 +355,7 @@ class Gramps:
             self.change_active_person(p)
         self.place_view.change_db(self.db)
         self.people_view.change_db(self.db)
+        self.people_view.apply_filter()
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
         self.family_view.load_family()

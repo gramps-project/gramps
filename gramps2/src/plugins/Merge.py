@@ -48,7 +48,6 @@ import os
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-from gnome.ui import *
 import gtk 
 import gtk.glade
 

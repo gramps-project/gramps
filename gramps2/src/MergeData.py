@@ -68,7 +68,6 @@ class MergePeople:
         self.altname = self.glade.get_widget("altname")
         self.altbirth = self.glade.get_widget("altbirth")
         self.altdeath = self.glade.get_widget("altdeath")
-        self.family_list = db.get_family_id_map().values()
 
         self.glade.signal_autoconnect({
             "on_merge_clicked" : self.on_merge_clicked,
@@ -355,12 +354,13 @@ class MergePeople:
     def find_family(self,family):
         if self.p1.get_gender() == RelLib.Person.male:
             mother = family.get_mother_id()
-            father = self.p1
+            father = self.p1.get_id()
         else:
             father = family.get_father_id()
-            mother = self.p1
+            mother = self.p1.get_id()
 
-        for myfamily in self.family_list:
+        for myfamily_id in self.db.get_family_keys():
+            myfamily = self.db.find_family_from_id(myfamily_id)
             if myfamily.get_father_id() == father and myfamily.get_mother_id() == mother:
                 return myfamily
         return None
@@ -389,7 +389,7 @@ class MergePeople:
             #
             if tgt_family in self.p1.get_family_id_list():
                 if tgt_family.get_father_id() != None and \
-                   src_family in tgt_family.get_father_id().get_family_id_list():
+                   src_family in tgt_father.get_family_id_list():
                     tgt_family.get_father_id().remove_family_id(src_family)
                 if tgt_family.get_mother_id() != None and \
                    src_family in tgt_family.get_mother_id().get_family_id_list():
