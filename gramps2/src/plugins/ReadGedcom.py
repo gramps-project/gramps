@@ -977,6 +977,7 @@ class GedcomParser:
                 oref = RelLib.MediaRef()
                 oref.set_reference_id(photo.get_id())
                 self.person.add_media_reference(oref)
+                self.db.commit_person(self.person)
 
     def parse_family_object(self,level):
         form = ""
