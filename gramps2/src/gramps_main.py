@@ -71,6 +71,7 @@ import Find
 import DbPrompter
 import TipOfDay
 import ArgHandler
+import Exporter
 
 from QuestionDialog import *
 
@@ -1367,8 +1368,7 @@ class Gramps:
         prompter.chooser()
 
     def on_export_activate(self,obj):
-        prompter = DbPrompter.SaveAsDbPrompter(self,self.topWindow)
-        prompter.chooser()
+        Exporter.Exporter(self,self.topWindow)
 
     def on_revert_activate(self,obj):
         pass

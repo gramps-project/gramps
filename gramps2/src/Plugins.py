@@ -460,13 +460,13 @@ def reload_plugins(obj):
 # Plugin registering
 #
 #-------------------------------------------------------------------------
-def register_export(task, ffilter, pattern_list=None):
+def register_export(exportData,_title,_description='',_config=None,_filename=''):
     """
     Register an export filter, taking the task, file filter, 
     and the list of patterns for the filename matching.
     """
-    if pattern_list:
-        _exports.append((task, ffilter, pattern_list))
+    if _description and _filename:
+        _exports.append((exportData,_title,_description,_config,_filename))
 
 def register_import(task, ffilter, mime=None):
     """Register an import filter, taking the task and file filter"""

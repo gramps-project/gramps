@@ -74,6 +74,7 @@ except:
 #
 #-------------------------------------------------------------------------
 def exportData(database, filename, callback=None):
+    ret = 0
     if os.path.isfile(filename):
         try:
             shutil.copyfile(filename, filename + ".bak")
@@ -85,7 +86,7 @@ def exportData(database, filename, callback=None):
 
     try:
         g = XmlWriter(database,callback,0,compress)
-        g.write(filename)
+        ret = g.write(filename)
     except:
         import DisplayTrace
 
@@ -97,6 +98,8 @@ def exportData(database, filename, callback=None):
             shutil.copystat(filename + ".bak", filename)
         except:
             pass
+    
+    return ret
 
 #-------------------------------------------------------------------------
 #
@@ -144,7 +147,7 @@ class XmlWriter:
                               "have permission to write to the directory. "
                               "Please make sure you have write access to the "
                               "directory and try again."))
-                return
+                return 0
             
         if os.path.exists(filename):
             if not os.access(filename,os.W_OK):
@@ -153,7 +156,7 @@ class XmlWriter:
                               "have permission to write to the file. "
                               "Please make sure you have write access to the "
                               "file and try again."))
-                return
+                return 0
         
         self.fileroot = os.path.dirname(filename)
         try:
@@ -166,12 +169,13 @@ class XmlWriter:
                 g = open(filename,"w")
         except IOError,msg:
             ErrorDialog(_('Failure writing %s') % filename,msg)
-            return
+            return 0
 
         self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()
         g.close()
+        return 1
 
     def write_handle(self,handle):
         """
@@ -189,7 +193,7 @@ class XmlWriter:
         self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()
-	g.close()
+        g.close()
             
     def write_xml_data(self):
 
@@ -421,7 +425,7 @@ class XmlWriter:
             self.g.write('<%s>' % val)
         self.g.write(self.fix(string.rstrip(text)))
         self.g.write("</%s>\n" % val)
-			
+
     def write_text(self,val,text,indent=0):
         if not text:
             return
@@ -431,7 +435,7 @@ class XmlWriter:
         self.g.write('<%s>' % val)
         self.g.write(self.fix(string.rstrip(text)))
         self.g.write("</%s>\n" % val)
-			
+
     def dump_event(self,event,index=1):
         if event:
             self.dump_my_event(event.get_name(),event,index)
@@ -811,11 +815,12 @@ def conf_priv(obj):
 #
 #
 #-------------------------------------------------------------------------
-_mime_type = 'data.gramps'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS XML databases'))
-_filter.add_pattern(_mime_type)
-_ext_list = ('.gramps',)
+_title = _('GRAMPS _XML database')
+_description = _('The GRAMPS XML database is a format used by older '
+                'versions of GRAMPS. It is read-write compatible with '
+                'the present GRAMPS database format.')
+_config = None
+_filename = 'gramps'
 
 from Plugins import register_export
-register_export(exportData,_filter,_ext_list)
+register_export(exportData,_title,_description,_config,_filename)

@@ -545,3 +545,16 @@ def create_id():
             s += chr(val%57+65)
             val = int(val/57)
     return s
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+_NEW_NAME_PATTERN = '~/Untitled_%d.%s'
+
+def get_new_filename(ext):
+    ix = 1
+    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext) )):
+        ix = ix + 1
+    return os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext))
