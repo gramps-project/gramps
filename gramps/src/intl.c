@@ -130,6 +130,8 @@ initintl15()
 initintl20()
 #elif VER21
 initintl21()
+#elif VER22
+initintl22()
 #endif
 {
   PyObject *m,*d;
@@ -139,6 +141,8 @@ initintl21()
   m=Py_InitModule("intl20",PyIntl_Methods);
 #elif VER21
   m=Py_InitModule("intl21",PyIntl_Methods);
+#elif VER22
+  m=Py_InitModule("intl22",PyIntl_Methods);
 #endif
   d = PyModule_GetDict(m);
   PyDict_SetItemString(d,"LC_CTYPE",PyInt_FromLong(LC_CTYPE));
