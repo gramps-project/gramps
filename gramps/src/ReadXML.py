@@ -162,7 +162,7 @@ def loadData(database, filename, callback=None):
     except:
         GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return 0
-        
+
     try:
         parser.parse(xml_file)
     except SAXParseException,msg:

@@ -129,7 +129,7 @@ class Place(SourceNote):
                 self.urls.append(Url(u))
             self.photoList = []
             for photo in source.photoList:
-                self.photoList.append(Photo(photo))
+                self.photoList.append(ObjectRef(photo))
         else:
             self.long = ""
             self.lat = ""
@@ -346,15 +346,41 @@ class Photo(SourceNote):
         self.attrlist = []
         if source:
             self.path = source.path
+            self.mime = source.mime
+            self.local = source.local
             self.desc = source.desc
-            self.private = source.private
+            self.id = source.id
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
         else:
+            self.id = ""
+            self.local = 0
             self.path = ""
+            self.mime = ""
             self.desc = ""
-            self.private = 0
 
+    def setLocal(self,val):
+        """set or clear the local flag"""
+        self.local = val
+
+    def getLocal(self):
+        """return the local flag"""
+        return self.local
+
+    def setId(self,id):
+        """Sets the gramps ID for the place object"""
+        self.id = id
+
+    def getId(self):
+        """Returns the gramps ID for the place object"""
+        return self.id
+
+    def setMimeType(self,type):
+        self.mime = type
+
+    def getMimeType(self):
+        return self.mime
+    
     def setPath(self,path):
         """set the file path to the passed path"""
         self.path = path
@@ -362,14 +388,6 @@ class Photo(SourceNote):
     def getPath(self):
         """return the file path"""
         return self.path
-
-    def setPrivate(self,val):
-        """set or clear the privacy flag"""
-        self.private = val
-
-    def getPrivate(self):
-        """return the privacy flag"""
-        return self.private
 
     def setDescription(self,text):
         """sets the description of the image"""
@@ -379,6 +397,66 @@ class Photo(SourceNote):
         """returns the description of the image"""
         return self.desc
 
+    def addAttribute(self,attr):
+        """Adds a propery to the Photo object. This is not used by gramps,
+        but provides a means for XML users to attach other properties to
+        the image"""
+        self.attrlist.append(attr)
+
+    def getAttributeList(self):
+        """returns the property list associated with the image"""
+        return self.attrlist
+
+class ObjectRef:
+
+    def __init__(self,source=None):
+        self.attrlist = []
+        if source:
+            self.private = source.private
+            self.ref = source.ref
+            self.note = Note(source.note)
+            for attr in source.attrlist:
+                self.attrlist.append(Attribute(attr))
+        else:
+            self.private = 0
+            self.ref = None
+            self.note = None
+
+    def setPrivacy(self,val):
+        """Sets or clears the privacy flag of the data"""
+        self.private = val
+
+    def getPrivacy(self):
+        """Returns the privacy level of the data"""
+        return self.private
+
+    def setReference(self,obj):
+        self.ref = obj
+
+    def getReference(self):
+        return self.ref
+
+    def setNote(self,text):
+        """Set the note to the given text"""
+        if self.note == None:
+            self.note = Note()
+        self.note.set(text)
+
+    def getNote(self):
+        """Return the current note"""
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
+
+    def setNoteObj(self,obj):
+        """Change the note object instance to obj"""
+        self.note = obj
+
+    def getNoteObj(self):
+        """Return in note instance, not just the text"""
+        return self.note
+    
     def addAttribute(self,attr):
         """Adds a propery to the Photo object. This is not used by gramps,
         but provides a means for XML users to attach other properties to
@@ -1345,10 +1423,12 @@ class RelDataBase:
         self.familyMap = {}
         self.sourceMap = {}
         self.placeMap  = {}
+        self.objectMap = {}
         self.smapIndex = 0
         self.pmapIndex = 0
         self.fmapIndex = 0
         self.lmapIndex = 0
+        self.omapIndex = 0
         self.default = None
         self.owner = Researcher()
         self.bookmarks = []
@@ -1412,6 +1492,10 @@ class RelDataBase:
     def getSourceMap(self):
         """returns a map of gramps's IDs to Source instances"""
         return self.sourceMap
+
+    def getObjectMap(self):
+        """returns a map of gramps's IDs to Object instances"""
+        return self.objectMap
 
     def getSavePath(self):
         """returns the save path of the file, or "" if one does not exist"""
@@ -1567,6 +1651,56 @@ class RelDataBase:
             source = Source()
             self.addSourceNoMap(source,val)
         return source
+
+    def addObject(self,object):
+        """adds an Object instance to the database, assigning it a gramps'
+        ID number"""
+        
+        index = "O%d" % self.omapIndex
+        while self.objectMap.has_key(index):
+            self.omapIndex = self.omapIndex + 1
+            index = "O%d" % self.omapIndex
+        object.setId(index)
+        self.objectMap[index] = object
+        self.omapIndex = self.omapIndex + 1
+        return index
+
+    def findObject(self,idVal,map):
+        """finds an Object in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Object exists, a new Object instance
+        is created.
+
+        idVal - external ID number
+        map - map build by findObject of external to gramp's IDs"""
+        
+        idVal = str(idVal)
+        if map.has_key(idVal):
+            object = self.objectMap[map[idVal]]
+        else:
+            object = Photo()
+            map[idVal] = self.addObject(object)
+        return object
+
+    def addObjectNoMap(self,object,index):
+        """adds an Object to the database if the gramps' ID is known"""
+        index = str(index)
+        object.setId(index)
+        self.objectMap[index] = object
+        self.omapIndex = self.omapIndex + 1
+        return index
+
+    def findObjectNoMap(self,idVal):
+        """finds an Object in the database from the passed gramps' ID.
+        If no such Source exists, a new Source is added to the database."""
+
+        val = str(idVal)
+        if self.objectMap.has_key(val):
+            object = self.objectMap[val]
+        else:
+            object = Photo()
+            self.addObjectNoMap(object,val)
+        return object
 
     def addPlace(self,place):
         """adds a Place instance to the database, assigning it a gramps'

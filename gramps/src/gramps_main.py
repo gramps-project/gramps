@@ -69,6 +69,8 @@ import EditPlace
 import Marriage
 import Find
 import VersionControl
+import RelImage
+
 #-------------------------------------------------------------------------
 #
 # Global variables.
@@ -106,6 +108,13 @@ notebook      = None
 person_list   = None
 source_list   = None
 place_list    = None
+media_list    = None
+mid           = None
+mtype         = None
+mdesc         = None
+mpath         = None
+mdetails      = None
+preview       = None
 database      = None
 family_window = None
 nameArrow     = None
@@ -805,6 +814,7 @@ def new_database_response(val):
     load_family()
     load_sources()
     load_places()
+    load_media()
     
 #-------------------------------------------------------------------------
 #
@@ -837,6 +847,7 @@ def full_update():
     load_sources()
     load_places()
     load_canvas()
+    load_media()
 
 #-------------------------------------------------------------------------
 #
@@ -856,8 +867,10 @@ def update_display(changed):
         load_canvas()
     elif page == 3:
         load_sources()
-    else:
+    elif page == 4:
         load_places()
+    else:
+        load_media()
 
 #-------------------------------------------------------------------------
 #
@@ -2031,6 +2044,10 @@ def on_places_activate(obj):
     """Switches to the places view"""
     notebook.set_page(4)
 
+def on_media_activate(obj):
+    """Switches to the media view"""
+    notebook.set_page(5)
+
 #-------------------------------------------------------------------------
 #
 # Load the appropriate page after a notebook switch
@@ -2049,6 +2066,8 @@ def on_notebook1_switch_page(obj,junk,page):
         load_sources()
     elif page == 4:
         load_places()
+    elif page == 5:
+        load_media()
 
 #-------------------------------------------------------------------------
 #
@@ -2090,6 +2109,69 @@ def load_places():
         place_list.moveto(current_row)
 
     place_list.thaw()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_media_list_select_row(obj,row,b,c):
+    mobj = obj.get_row_data(row)
+    type = mobj.getMimeType()
+    path = mobj.getPath()
+    if type[0:5] == "image":
+        dir = os.path.dirname(path)
+        src = os.path.basename(path)
+        thumb = "%s%s.thumb%s%s.jpg" % (dir,os.sep,os.sep,src)
+        RelImage.check_thumb(path,thumb,const.thumbScale)
+        preview.load_file(thumb)
+    else:
+        pass
+    mid.set_text(mobj.getId())
+    mtype.set_text(type)
+    mdesc.set_text(mobj.getDescription())
+    if path[0] == "/":
+        mpath.set_text(path)
+    else:
+        mpath.set_text("<local>")
+    mdetails.set_text("")
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def load_media():
+    media_list.freeze()
+    media_list.clear()
+
+    if len(media_list.selection) == 0:
+        current_row = 0
+    else:
+        current_row = media_list.selection[0]
+
+    index = 0
+    objects = database.getObjectMap().values()
+
+    for src in objects:
+        title = src.getDescription()
+        id = src.getId()
+        type = src.getMimeType()
+        if src.getLocal():
+            path = "<local copy>"
+        else:
+            path = src.getPath()
+        media_list.append([id,title,type,path,""])
+        media_list.set_row_data(index,src)
+        index = index + 1
+
+    media_list.sort()
+
+    if index > 0:
+        media_list.select_row(current_row,0)
+        media_list.moveto(current_row)
+
+    media_list.thaw()
 
 #-------------------------------------------------------------------------
 #
@@ -3187,9 +3269,10 @@ def on_main_key_release_event(obj,event):
 def main(arg):
     global database, gtop
     global statusbar,notebook
-    global person_list, source_list, place_list, canvas
-    global topWindow
+    global person_list, source_list, place_list, canvas, media_list
+    global topWindow, preview
     global nameArrow, dateArrow, deathArrow
+    global mid, mtype, mdesc, mpath, mdetails
     
     rc_parse(const.gtkrcFile)
 
@@ -3211,6 +3294,13 @@ def main(arg):
     canvas      = gtop.get_widget("canvas1")
     source_list = gtop.get_widget("source_list")
     place_list  = gtop.get_widget("place_list")
+    media_list  = gtop.get_widget("media_list")
+    mid         = gtop.get_widget("mid")
+    mtype       = gtop.get_widget("mtype")
+    mdesc       = gtop.get_widget("mdesc")
+    mpath       = gtop.get_widget("mpath")
+    mdetails    = gtop.get_widget("mdetails")
+    preview     = gtop.get_widget("preview")
     filter_list = gtop.get_widget("filter_list")
     notebook    = gtop.get_widget(NOTEBOOK)
     nameArrow   = gtop.get_widget("nameSort")
@@ -3283,6 +3373,8 @@ def main(arg):
         "on_person_list_select_row"         : on_person_list_select_row,
         "on_place_list_button_press_event"  : on_place_list_button_press_event,
         "on_main_key_release_event"         : on_main_key_release_event,
+        "on_media_activate"                 : on_media_activate,
+        "on_media_list_select_row"          : on_media_list_select_row,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
         "on_remove_child_clicked"           : on_remove_child_clicked,

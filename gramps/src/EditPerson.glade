@@ -3584,7 +3584,7 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sat, 09 Dec 2000 22:09:54 GMT</last_modification_time>
 	    </signal>
-	    <label>Add Image</label>
+	    <label>Add Object</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -3599,7 +3599,7 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sun, 10 Dec 2000 03:48:08 GMT</last_modification_time>
 	    </signal>
-	    <label>Delete Image</label>
+	    <label>Delete Object</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 

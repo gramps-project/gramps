@@ -74,9 +74,10 @@ class EditPlace:
         else:
             self.srcreflist = []
             
-        self.selectedIcon = -1
-        self.currentImages = []
         self.top_window = libglade.GladeXML(const.placesFile,"placeEditor")
+        idval = "p%s" % place.getId()
+        plwidget = self.top_window.get_widget("photolist")
+        self.gallery = ImageSelect.Gallery(place, self.path, idval, plwidget, db)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
         self.county = self.top_window.get_widget("county")
@@ -114,16 +115,14 @@ class EditPlace:
         self.note.insert_defaults(place.getNote())
         self.note.set_word_wrap(1)
 
-        self.photo_list = self.top_window.get_widget("photolist")
-
         self.top_window.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_source_clicked" : on_source_clicked,
-            "on_photolist_select_icon" : on_photo_select_icon,
-            "on_photolist_button_press_event" : on_photolist_button_press_event,
+            "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
+            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
             "on_switch_page" : on_switch_page,
-            "on_addphoto_clicked" : on_add_photo_clicked,
-            "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
+            "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_add_url_clicked" : on_add_url_clicked,
             "on_delete_url_clicked" : on_delete_url_clicked,
             "on_update_url_clicked" : on_update_url_clicked,
@@ -190,62 +189,6 @@ class EditPlace:
     #---------------------------------------------------------------------
     def redraw_location_list(self):
         utils.redraw_list(self.llist,self.loc_list,disp_loc)
-
-    #-------------------------------------------------------------------------
-    #
-    # add_thumbnail - Scale the image and add it to the IconList. 
-    #
-    #-------------------------------------------------------------------------
-    def add_thumbnail(self,photo):
-        src = os.path.basename(photo.getPath())
-        if photo.getPrivate():
-            thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
-        else:
-            thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
-        RelImage.check_thumb(photo.getPath(),thumb,const.thumbScale)
-        self.photo_list.append(thumb,photo.getDescription())
-        
-    #-------------------------------------------------------------------------
-    #
-    # load_images - clears the currentImages list to free up any cached 
-    # Imlibs.  Then add each photo in the place's list of photos to the 
-    # photolist window.
-    #
-    #-------------------------------------------------------------------------
-    def load_images(self):
-        self.photo_list.freeze()
-        self.photo_list.clear()
-        for photo in self.place.getPhotoList():
-            self.add_thumbnail(photo)
-        self.photo_list.thaw()
-
-
-#-------------------------------------------------------------------------
-#
-# PlaceImageSelect class
-#
-#-------------------------------------------------------------------------
-class PlaceImageSelect(ImageSelect.ImageSelect):
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Sub-class an ImageSelect window.  The only differences
-    # between the various subclasses are the initializer arguments, and
-    # the type of object for which an image is being selected.
-    #
-    #---------------------------------------------------------------------
-    def __init__(self, epo):
-        ImageSelect.ImageSelect.__init__(self, epo.path, "p%s" % epo.place.getId())
-        self.epo = epo;
-        
-    #---------------------------------------------------------------------
-    #
-    # savephoto - Override the savephoto method to store the selected
-    # photo in a place object
-    #
-    #---------------------------------------------------------------------
-    def savephoto(self, photo):
-        self.epo.place.addPhoto(photo)
-        self.epo.add_thumbnail(photo)
 
 
 def on_web_go_clicked(obj):
@@ -323,148 +266,7 @@ def on_switch_page(obj,a,page):
     src = obj.get_data(_PLACE)
     if page == 3 and src.not_loaded:
         src.not_loaded = 0
-        src.load_images()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_photo_select_icon(obj,iconNumber,event):
-    obj.get_data(_PLACE).selectedIcon = iconNumber
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_delete_photo_clicked(obj):
-    epo = obj.get_data(_PLACE)
-    icon = epo.selectedIcon
-
-    if icon != -1:
-        epo.photo_list.remove(icon)
-        del epo.place.getPhotoList()[icon]
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_photo_clicked(obj):
-    PlaceImageSelect(obj.get_data(_PLACE))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_photolist_button_press_event(obj,event):
-
-    myobj = obj.get_data(_PLACE)
-    icon = myobj.selectedIcon
-    if icon == -1:
-        return
-    
-    if event.button == 3:
-        photo = myobj.place.getPhotoList()[icon]
-        menu = GtkMenu()
-        item = GtkTearoffMenuItem()
-        item.show()
-        menu.append(item)
-        utils.add_menuitem(menu,_("View Image"),myobj,on_view_photo)
-        utils.add_menuitem(menu,_("Edit Image"),myobj,on_edit_photo)
-        utils.add_menuitem(menu,_("Edit Description"),myobj,
-                           on_change_description)
-        if photo.getPrivate() == 0:
-            utils.add_menuitem(menu,_("Convert to private copy"),myobj,
-                         on_convert_to_private)
-        menu.popup(None,None,None,0,0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_convert_to_private(obj):
-    edit_place_obj = obj.get_data("m")
-    photo = edit_place_obj.place.getPhotoList()[edit_place_obj.selectedIcon]
-
-    prefix = "p%s" % edit_place_obj.place.getId()
-    name = RelImage.import_photo(photo.getPath(),edit_place_obj.path,prefix)
-
-    photo.setPath(name)
-    photo.setPrivate(1)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_view_photo(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.place.getPhotoList()[myobj.selectedIcon]
-
-    utils.view_photo(photo)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_edit_photo(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.place.getPhotoList()[myobj.selectedIcon]
-    if os.fork() == 0:
-        os.execvp(const.editor,[const.editor, photo.getPath()])
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_change_description(obj):
-    myobj = obj.get_data("m")
-    photo = myobj.place.getPhotoList()[myobj.selectedIcon]
-    window = libglade.GladeXML(const.imageselFile,"dialog1")
-
-    text = window.get_widget("text")
-    text.set_text(photo.getDescription())
-
-    image2 = RelImage.scale_image(photo.getPath(),200.0)
-    window.get_widget("photo").load_imlib(image2)
-    window.get_widget("dialog1").set_data("p",photo)
-    window.get_widget("dialog1").set_data("t",text)
-    window.get_widget("dialog1").set_data("m",obj.get_data("m"))
-    window.get_widget("dialog1").editable_enters(text)
-    window.signal_autoconnect({
-        "on_cancel_clicked" : utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked,
-        "on_apply_clicked" : on_apply_clicked
-        })
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    on_apply_clicked(obj)
-    utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    photo = obj.get_data("p")
-    text = obj.get_data("t").get_text()
-    if text != photo.getDescription():
-        photo.setDescription(text)
-        edit_window = obj.get_data("m")
-        edit_window.load_images()
-        utils.modified()
+        src.gallery.load_images()
 
 #-------------------------------------------------------------------------
 #

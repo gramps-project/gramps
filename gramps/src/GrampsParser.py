@@ -23,6 +23,7 @@ from RelLib import *
 import string
 import os
 import sys
+import gnome.mime
 
 #-------------------------------------------------------------------------
 #
@@ -79,6 +80,9 @@ class GrampsParser(handler.ContentHandler):
         self.tlist = []
         self.conf = 2
         
+        self.objref = None
+        self.object = None
+        self.pref = None
         self.use_p = 0
         self.in_note = 0
         self.in_old_attr = 0
@@ -233,6 +237,10 @@ class GrampsParser(handler.ContentHandler):
             self.in_old_attr = 0
         if self.photo:
             self.photo.addAttribute(self.attribute)
+        elif self.object:
+            self.object.addAttribute(self.attribute)
+        elif self.objref:
+            self.objref.addAttribute(self.attribute)
         elif self.person:
             self.person.addAttribute(self.attribute)
         elif self.family:
@@ -418,6 +426,8 @@ class GrampsParser(handler.ContentHandler):
         self.source_ref.setBase(source)
         if self.photo:
             self.photo.addSourceRef(self.source_ref)
+        elif self.object:
+            self.object.addSourceRef(self.source_ref)
         elif self.event:
             self.event.addSourceRef(self.source_ref)
         elif self.address:
@@ -437,6 +447,36 @@ class GrampsParser(handler.ContentHandler):
     def start_source(self,attrs):
         self.source = self.db.findSourceNoMap(u2l(attrs["id"]))
 
+    def start_objref(self,attrs):
+        self.objref = ObjectRef()
+        self.objref.setReference(self.db.findObjectNoMap(u2l(attrs['ref'])))
+        if self.family:
+            self.family.addPhoto(self.objref)
+        elif self.source:
+            self.source.addPhoto(self.objref)
+        elif self.person:
+            self.person.addPhoto(self.objref)
+        elif self.placeobj:
+            self.placeobj.addPhoto(self.objref)
+
+    def start_object(self,attrs):
+        self.object = self.db.findObjectNoMap(u2l(attrs['id']))
+        self.object.setMimeType(u2l(attrs['mime']))
+        self.object.setDescription(u2l(attrs['description']))
+        src = u2l(attrs["src"])
+        if src[0] != os.sep:
+            self.object.setPath("%s%s%s" % (self.base,os.sep,src))
+            self.object.setLocal(1)
+        else:
+            self.object.setPath(src)
+            self.object.setLocal(0)
+
+    def stop_object(self,tag):
+        self.object = None
+
+    def stop_objref(self,tage):
+        self.objref = None
+        
     #---------------------------------------------------------------------
     #
     #
@@ -444,30 +484,37 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_photo(self,attrs):
         self.photo = Photo()
+        self.pref = ObjectRef()
+        self.pref.setReference(self.photo)
+        
         for key in attrs.keys():
             if key == "descrip" or key == "description":
                 self.photo.setDescription(u2l(attrs[key]))
+            elif key == "priv":
+                self.pref.setPrivacy(int(attrs[key]))
             elif key == "src":
                 src = u2l(attrs["src"])
                 if src[0] != os.sep:
                     self.photo.setPath("%s%s%s" % (self.base,os.sep,src))
-                    self.photo.setPrivate(1)
+                    self.photo.setLocal(1)
                 else:
                     self.photo.setPath(src)
-                    self.photo.setPrivate(0)
-                if self.family:
-                    self.family.addPhoto(self.photo)
-                elif self.source:
-                    self.source.addPhoto(self.photo)
-                elif self.person:
-                    self.person.addPhoto(self.photo)
-                elif self.placeobj:
-                    self.placeobj.addPhoto(self.photo)
+                    self.photo.setLocal(0)
             else:
                 a = Attribute()
                 a.setType(key)
                 a.setValue(u2l(attrs[key]))
                 self.photo.addAttribute(a)
+        self.photo.setMimeType(gnome.mime.type_or_default(self.photo.getPath(),"unknown"))
+        self.db.addObject(self.photo)
+        if self.family:
+            self.family.addPhoto(self.pref)
+        elif self.source:
+            self.source.addPhoto(self.pref)
+        elif self.person:
+            self.person.addPhoto(self.pref)
+        elif self.placeobj:
+            self.placeobj.addPhoto(self.pref)
 
     #---------------------------------------------------------------------
     #
@@ -808,6 +855,10 @@ class GrampsParser(handler.ContentHandler):
 
         if self.address:
             self.address.setNote(note)
+        elif self.object:
+            self.object.setNote(note)
+        elif self.objref:
+            self.objref.setNote(note)
         elif self.photo:
             self.photo.setNote(note)
         elif self.attribute:
@@ -958,6 +1009,8 @@ class GrampsParser(handler.ContentHandler):
         "people"     : (start_people, stop_people),
         "person"     : (start_person, None),
         "img"        : (start_photo, stop_photo),
+        "objref"     : (start_objref, stop_objref),
+        "object"     : (start_object, stop_object),
         "place"      : (start_place, stop_place),
         "places"     : (None, stop_places),
         "placeobj"   : (start_placeobj,stop_placeobj),
