@@ -23,7 +23,7 @@ GRAPHICS := ${wildcard *.xpm} ${wildcard *.png} ${wildcard *.jpg}
 # Other stuff that we need to install
 pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop
 
-#EXTRA_DIST =@DISTLANGS@
+EXTRA_DIST = grampslib.i
 
 
 all: ${INTLLIBS} grampslib.so
@@ -37,7 +37,7 @@ intl22.so: intl.c
 	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ intl.c
 
 grampslib.so: grampslib.i
-	swig -python grampslib.i 
+	$(SWIG) -python grampslib.i 
 	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 

@@ -32,7 +32,7 @@ filters, importer, exporters, and document generators.
 # GTK libraries
 #
 #-------------------------------------------------------------------------
-#import GdkImlib
+import gobject
 import gtk
 import gtk.glade
 
@@ -44,6 +44,7 @@ import gtk.glade
 import traceback
 import os
 import sys
+import string
 from re import compile
 
 #-------------------------------------------------------------------------
@@ -54,8 +55,7 @@ from re import compile
 import const
 import Utils
 import GrampsCfg
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -76,6 +76,7 @@ _drawdoc = []
 _failmsg = []
 
 _unavailable = _("No description was provided"),
+
 #-------------------------------------------------------------------------
 #
 # Exception Strings
@@ -111,16 +112,23 @@ class PluginDialog:
         self.db = db
         self.active = active
         self.update = None
+        self.imap = {}
         
         self.dialog = gtk.glade.XML(const.pluginsFile,"report")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "on_report_ok_clicked"    : self.on_apply_clicked,
-            "on_tree_select_row"      : self.on_node_selected,
             "destroy_passed_object"   : Utils.destroy_passed_object
             })
 
         self.tree = self.dialog.get_widget("tree")
+        self.store = gtk.TreeStore(gobject.TYPE_STRING)
+        self.selection = self.tree.get_selection()
+        self.selection.connect('changed', self.on_node_selected)
+        col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+        self.tree.append_column(col)
+        self.tree.set_model(self.store)
+        
         self.top = self.dialog.get_widget("report")
         self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
@@ -143,24 +151,28 @@ class PluginDialog:
             else:
                 self.run_tool(self.db,self.active)
 
-    def on_node_selected(self,obj,node,other):
+    def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
         the dialog box with the description of the selected report"""
 
-        data = self.tree.node_get_row_data(node)
-        if not data:
-            return
-        task = data[1]
+        store,iter = self.selection.get_selected()
+        path = store.get_path(iter)
+        if not iter or not self.imap.has_key(path):
+            return 
+        data = self.imap[path]
+
         title = data[0]
+        task = data[1]
         doc = data[2]
         xpm = data[3]
         status = data[4]
 
-        #image = GdkImlib.create_image_from_xpm(xpm)
+        st = string.join(xpm,'\n')
+        # image = gtk.gdk.pixbuf_new_from_inline(len(st),st,0)
         self.description.set_text(doc)
         self.status.set_text(": %s" % status)
         self.label.show()
-        #self.img.load_imlib(image)
+        # self.img.set_from_pixbuf(image)
         self.title.set_text(title)
 
         self.dialog.get_widget("title").set_text(title)
@@ -175,6 +187,8 @@ class PluginDialog:
         
         Items in the same category are grouped under the same submen. The
         task_to_call is bound to the 'select' callback of the menu entry."""
+
+        ilist = []
         
         # build the tree items and group together based on the category name
         item_hash = {}
@@ -189,17 +203,24 @@ class PluginDialog:
         # GtkTreeItems that are associated with it.
         key_list = item_hash.keys()
         key_list.sort()
+        key_list.reverse()
+        
         prev = None
+        self.ilist = []
         for key in key_list:
             data = item_hash[key]
-            node = self.tree.insert_node(None,prev,[key],is_leaf=0,expanded=1)
-            self.tree.node_set_row_data(node,0)
+            node = self.store.insert_after(None,prev)
+            self.store.set(node,0,key)
             next = None
             data.sort()
             data.reverse()
             for item in data:
-                next = self.tree.insert_node(node,next,[item[0]],is_leaf=1,expanded=1)
-                self.tree.node_set_row_data(next,item)
+                next = self.store.insert_after(node,next)
+                ilist.append((next,item))
+                self.store.set(next,0,item[0])
+        for next,tab in ilist:
+            path = self.store.get_path(next)
+            self.imap[path] = tab
 
 #-------------------------------------------------------------------------
 #
