@@ -738,9 +738,9 @@ class BareReportDialog:
         if new_person:
             self.new_person = new_person
             new_name = new_person.get_primary_name().get_regular_name()
-        if new_name:
-            self.person_label.set_text( "<i>%s</i>" % new_name )
-            self.person_label.set_use_markup(gtk.TRUE)
+            if new_name:
+                self.person_label.set_text( "<i>%s</i>" % new_name )
+                self.person_label.set_use_markup(gtk.TRUE)
 
     #------------------------------------------------------------------------
     #

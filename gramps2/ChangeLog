@@ -1,3 +1,6 @@
+2004-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py (on_center_person_change_clicked): Typo.
+
 2004-12-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GenericFilter.py: use DateParser to parse dates.
 
