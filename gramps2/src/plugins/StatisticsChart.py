@@ -719,7 +719,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 from PluginMgr import register_report
 
 register_report(
-    name = 'statisticschart',
+    name = 'statistics_chart',
     category = const.CATEGORY_DRAW,
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
