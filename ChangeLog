@@ -2,6 +2,7 @@
 	* src/TipOfDay.py: Be tolerant to whitespace; allow markup in
 	the tips, enable random sequence of tips on each startup.
 	* src/data/tips.xml: Merge with old tips.
+	* src/gramps.glade: Left-justify the tips.
 
 2004-09-29  Leonid Mamtchenkov  <leonid@leonid.maks.net>
 	* src/data/tips.xml: Format the tips collection.
