@@ -1,3 +1,12 @@
+2003-08-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/FrenchRepublic.py: Insert encoding line because non-ascii
+	charatcers are used. This behavior is deprecated and causes warnings 
+	in python 2.3.
+	* src/const.py.in: Likewise. 
+	* src/FamilyView.py: Likewise. 
+	* src/SelectChild.py: Likewise.
+	* src/plugins/rel_ru.py: Likewise.
+
 2003-08-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: removed #! at top of file
 	* src/gramps.py: removed #! at top of file
