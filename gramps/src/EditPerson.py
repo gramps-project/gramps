@@ -511,8 +511,8 @@ class EditPerson:
         utils.redraw_list(self.elist,self.event_list,disp_event)
 
         # Remember old combo list input
-        prev_btext = self.bpcombo.entry.get_text()
-        prev_dtext = self.dpcombo.entry.get_text()
+        prev_btext = utils.strip_id(self.bpcombo.entry.get_text())
+        prev_dtext = utils.strip_id(self.dpcombo.entry.get_text())
 
         # Update combo lists to add in any new places
         plist = self.db.getPlaceMap().values()
