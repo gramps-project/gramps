@@ -21,9 +21,8 @@
 
 #
 # Written by Egyeki Gergely <egeri@elte.hu>, 2004
-# Valószínüleg vannak hibák...
-# TODO: após, anyós, meny, vő
-
+# TODO: sógor, sógornő
+#
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -53,10 +52,6 @@ _level =\
 #-------------------------------------------------------------------------
 #
 # Specific relationship functions
-#
-# To be honest, I doubt that this relationship naming method is widely
-# spread... If you know of a rigorous, italian naming convention,
-# please, drop me an email.
 #
 #-------------------------------------------------------------------------
 
@@ -141,9 +136,11 @@ def get_male_cousin (level):
 def get_female_cousin (level):
     return get_male_cousin(level)
 
-
-
+#----------------------------------------------
+#
 # brother and sister age differences
+#
+#----------------------------------------------
 
 def get_age_comp(orig_person,other_person):
     # 0=nothing, -1=other is younger 1=other is older
@@ -164,6 +161,33 @@ def get_age_sister (level):
     if   level == 0  : return "testvére"
     elif level == 1  : return "húga"
     else             : return "nővére"
+
+#---------------------------------------------
+#
+# en: father-in-law, mother-in-law, son-in-law, daughter-in-law  
+# hu: após, anyós, vő, meny
+#
+#---------------------------------------------
+
+
+def is_fathermother_in_law(orig,other):
+#    sp = []
+    for f in other.getFamilyList():
+	if other == f.getFather(): sp = f.getMother
+	elif other == f.getMother() : sp = f.getFather
+        for g in orig.getFamilyList():
+           if sp in g.getChildList(): return 1
+    return 0
+
+def get_fathermother_in_law_child(orig,other):
+#    sp = []
+    for f in other.getFamilyList():
+	if other == f.getFather(): sp = f.getMother
+	elif other == f.getMother() : sp = f.getFather
+        for g in orig.getFamilyList():
+            if sp in g.getChildList(): return [sp]
+    return []
+
 
 
 #-------------------------------------------------------------------------
@@ -190,8 +214,27 @@ def get_relationship(orig_person,other_person):
 
     if orig_person == other_person:
         return ('', [])
+
     if is_spouse(orig_person,other_person):
         return ("házastársa",[])
+
+
+    if is_fathermother_in_law(orig_person,other_person):
+	if orig_person.getGender() == RelLib.Person.male:
+	   return ("apósa",get_fathermother_in_law_child(orig_person,other_person))
+	elif orig_person.getGender() == RelLib.Person.female:
+ 	   return ("anyósa",get_fathermother_in_law_child(orig_person,other_person))
+	elif orig_person.getGender() == 2 :
+ 	   return ("apósa vagy anyósa",get_fathermother_in_law_child(orig_person,other_person))
+
+    if is_fathermother_in_law(other_person,orig_person):
+	if other_person.getGender() == RelLib.Person.male:
+	   return ("veje",get_fathermother_in_law_child(other_person,orig_person))
+	elif other_person.getGender() == RelLib.Person.female:
+	   return ("menye",get_fathermother_in_law_child(other_person,orig_person))
+	elif other_person.getGender() == 2 :
+	   return ("veje vagy menye",get_fathermother_in_law_child(other_person,orig_person))
+
 
     apply_filter(orig_person,0,firstList,firstMap)
     apply_filter(other_person,0,secondList,secondMap)
