@@ -366,6 +366,7 @@ class IndividualPage:
         self.doc.start_paragraph("Data")
         self.doc.end_paragraph()
         
+        self.write_urls()
         self.write_facts()
         self.write_notes()
         self.write_families()
@@ -480,6 +481,29 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
+    def write_urls(self):
+
+        first = 1
+
+        for url in self.person.get_url_list():
+            if url.get_privacy() and self.private:
+                continue
+
+            if first:
+                first = 0    
+                self.doc.start_paragraph("UrlTitle")
+                self.doc.write_text(_("Links"))
+                self.doc.end_paragraph()
+                self.doc.start_paragraph("UrlList")
+
+            self.doc.start_link(url.get_path())
+            self.doc.write_text(url.get_description())
+            self.doc.end_link()
+            self.doc.newline()
+
+        if not first:
+            self.doc.end_paragraph()
+
     def write_facts(self):
 
         if self.alive:
@@ -1336,6 +1360,20 @@ class WebReportDialog(Report.ReportDialog):
         p.set_font(font)
         p.set_description(_("The style used for the note information."))
         self.default_style.add_style("NotesParagraph",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,bborder=1)
+        p.set_description(_("The style used for the header for the URL section."))
+        self.default_style.add_style("UrlTitle",p)
+
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the URL information."))
+        self.default_style.add_style("UrlList",p)
 
     #------------------------------------------------------------------------
     #
