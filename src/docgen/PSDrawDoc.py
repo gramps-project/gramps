@@ -71,7 +71,10 @@ class PSDrawDoc(DrawDoc.DrawDoc):
             self.filename = filename + ".ps"
         else:
             self.filename = filename
-        self.f = open(self.filename,"w")
+
+        try:
+            self.f = open(self.filename,"w")
+        
         self.f.write('%!PS-Adobe-3.0\n')
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')

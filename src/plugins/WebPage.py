@@ -794,6 +794,8 @@ class WebReport(Report.Report):
         for person in ind_list:
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)
+            tdoc.set_keywords([person.getPrimaryName().getSurname(),
+                               person.getPrimaryName().getRegularName()])
             idoc = IndividualPage(person, self.photos, self.restrict,
                                   self.private, self.srccomments,
                                   self.include_link, my_map, dir_name,
