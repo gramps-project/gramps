@@ -267,6 +267,46 @@ def dump_location(g,loc):
     g.write('/>\n')
 
 
+def write_attribute_list(g, list):
+    for attr in list:
+        if attr.getSourceRef() or attr.getNote():
+            g.write('      <attribute%s>\n' % conf_priv(attr))
+            write_line(g,"attr_type",attr.getType(),4)
+            write_line(g,"attr_value",attr.getValue(),4)
+            dump_source_ref(g,attr.getSourceRef(),4)
+            writeNote(g,"note",attr.getNote(),4)
+            g.write('      </attribute>\n')
+        else:
+            g.write('      <attribute type="%s">' % attr.getType())
+            g.write(fix(attr.getValue()))
+            g.write('</attribute>\n')
+
+
+def write_photo_list(g,list):
+    for photo in list:
+        path = photo.getPath()
+        l = len(fileroot)
+        if len(path) >= l:
+            if fileroot == path[0:l]:
+                path = path[l+1:]
+        g.write('      <img src="%s"' % fix(path) )
+        g.write(' description="%s"' % fix(photo.getDescription()))
+        proplist = photo.getPropertyList()
+        if proplist:
+            for key in proplist.keys():
+                g.write(' %s="%s"' % (key,fix(proplist[key])))
+        g.write("/>\n")
+
+
+def write_url_list(g, list):
+    for url in list:
+        g.write('      <url priv="%d" href="%s"' % \
+                (url.getPrivacy(),fix(url.get_path())))
+        if url.get_description() != "":
+            g.write(' description="%s"' % fix(url.get_description()))
+        g.write('/>\n')
+
+
 def write_place_obj(g,place):
     title = place.get_title()
 
@@ -281,26 +321,8 @@ def write_place_obj(g,place):
     dump_location(g,place.get_main_location())
     for loc in place.get_alternate_locations():
         dump_location(g,loc)
-    for photo in place.getPhotoList():
-        path = photo.getPath()
-        l = len(fileroot)
-        if len(path) >= l:
-            if fileroot == path[0:l]:
-                path = path[l+1:]
-        g.write("      <img src=\"" + fix(path) + "\"")
-        g.write(" description=\""  + fix(photo.getDescription()) + "\"")
-        proplist = photo.getPropertyList()
-        if proplist:
-            for key in proplist.keys():
-                g.write(' %s="%s"' % (key,fix(proplist[key])))
-            g.write("/>\n")
-    for url in place.getUrlList():
-        g.write('      <url href="%s"' % fix(url.get_path()))
-        if url.getPrivacy() == 1:
-            g.write(' priv="1"')
-        if url.get_description() != "":
-            g.write(' description="%s"' % fix(url.get_description()))
-        g.write('/>\n')
+    write_photo_list(g,place.getPhotoList())
+    write_url_list(g, place.getUrlList())
     if place.getNote() != "":
         writeNote(g,"note",place.getNote(),3)
     dump_source_ref(g,place.getSourceRef(),3)
@@ -314,6 +336,7 @@ def write_place_obj(g,place):
 
 def exportData(database, filename, callback):
     
+    global fileroot
     date = string.split(time.ctime(time.time()))
     fileroot = os.path.dirname(filename)
     owner = database.getResearcher()
@@ -393,19 +416,7 @@ def exportData(database, filename, callback):
             for event in person.getEventList():
                 dump_event(g,event,3)
 
-            for photo in person.getPhotoList():
-                path = photo.getPath()
-                l = len(fileroot)
-                if len(path) >= l:
-                    if fileroot == path[0:l]:
-                        path = path[l+1:]
-                g.write('      <img src="%s"' % fix(path) )
-                g.write(' description="%s"' % fix(photo.getDescription()))
-                proplist = photo.getPropertyList()
-                if proplist:
-                    for key in proplist.keys():
-                        g.write(' %s="%s"' % (key,proplist[key]))
-                g.write("/>\n")
+            write_photo_list(g,person.getPhotoList())
 
             if len(person.getAddressList()) > 0:
                 for address in person.getAddressList():
@@ -421,27 +432,8 @@ def exportData(database, filename, callback):
                     dump_source_ref(g,address.getSourceRef(),4)
                     g.write('      </address>\n')
 
-            if len(person.getAttributeList()) > 0:
-                for attr in person.getAttributeList():
-                    if attr.getSourceRef() or attr.getNote():
-                        g.write('      <attribute%s>\n' % conf_priv(attr))
-                        write_line(g,"attr_type",attr.getType(),4)
-                        write_line(g,"attr_value",attr.getValue(),4)
-                        dump_source_ref(g,attr.getSourceRef(),4)
-                        writeNote(g,"note",attr.getNote(),4)
-                        g.write('      </attribute>\n')
-                    else:
-                        g.write('      <attribute type="%s">' % attr.getType())
-                        g.write(fix(attr.getValue()))
-                        g.write('</attribute>\n')
-
-            if len(person.getUrlList()) > 0:
-                for url in person.getUrlList():
-                    g.write('      <url priv="%d" href="%s"' % \
-                            (url.getPrivacy(),url.get_path()))
-                    if url.get_description() != "":
-                        g.write(' description="' + url.get_description() + '"')
-                    g.write('/>\n')
+            write_attribute_list(g,person.getAttributeList())
+            write_url_list(g,person.getUrlList())
 
             write_ref(g,"childof",person.getMainFamily(),3)
             for alt in person.getAltFamilyList():
@@ -482,31 +474,12 @@ def exportData(database, filename, callback):
             for event in family.getEventList():
                 dump_event(g,event,3)
 
-            for photo in family.getPhotoList():
-                path = photo.getPath()
-                l = len(fileroot)
-                if len(path) >= l:
-                    if fileroot == path[0:l]:
-                        path = path[l+1:]
-                g.write("      <img src=\"" + fix(path) + "\"")
-                g.write(" description=\""  + fix(photo.getDescription()) + "\"")
-                proplist = photo.getPropertyList()
-                if proplist:
-                    for key in proplist.keys():
-                        g.write(' %s="%s"' % (key,proplist[key]))
-                g.write("/>\n")
+            write_photo_list(g,family.getPhotoList())
 
             if len(family.getChildList()) > 0:
                 for person in family.getChildList():
                     write_ref(g,"child",person,3)
-            if len(family.getAttributeList()) > 0:
-                for attr in family.getAttributeList():
-                    g.write('      <attribute>\n')
-                    write_line(g,"attr_type",attr.getType(),4)
-                    write_line(g,"attr_value",attr.getValue(),4)
-                    dump_source_ref(g,attr.getSourceRef(),4)
-                    writeNote(g,"note",attr.getNote(),4)
-                    g.write('      </attribute>\n')
+            write_attribute_list(g,family.getAttributeList())
             writeNote(g,"note",family.getNote(),3)
             g.write("    </family>\n")
         g.write("  </families>\n")
@@ -521,19 +494,7 @@ def exportData(database, filename, callback):
             write_line(g,"scallno",source.getCallNumber(),3)
             if source.getNote() != "":
                 writeNote(g,"note",source.getNote(),3)
-            for photo in source.getPhotoList():
-                path = photo.getPath()
-                l = len(fileroot)
-                if len(path) >= l:
-                    if fileroot == path[0:l]:
-                        path = path[l+1:]
-                g.write("      <img src=\"" + fix(path) + "\"")
-                g.write(" description=\""  + fix(photo.getDescription()) + "\"")
-                proplist = photo.getPropertyList()
-                if proplist:
-                    for key in proplist.keys():
-                        g.write(' %s="%s"' % (key,proplist[key]))
-                g.write("/>\n")
+            write_photo_list(g,source.getPhotoList())
             g.write("    </source>\n")
         g.write("  </sources>\n")
 

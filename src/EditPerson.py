@@ -48,6 +48,7 @@ import Config
 from RelLib import *
 import RelImage
 import Sources
+import ImageSelect
 
 _ = intl.gettext
 
@@ -397,6 +398,35 @@ class EditPerson:
             self.person.setAttributeList(self.alist)
             self.person.setAddressList(self.plist)
             utils.modified()
+
+
+#-------------------------------------------------------------------------
+#
+# PersonImageSelect class
+#
+#-------------------------------------------------------------------------
+class PersonImageSelect(ImageSelect.ImageSelect):
+    #---------------------------------------------------------------------
+    #
+    # __init__ - Sub-class an ImageSelect window.  The only differences
+    # between the various subclasses are the initializer arguments, and
+    # the type of object for which an image is being selected.
+    #
+    #---------------------------------------------------------------------
+    def __init__(self, epo):
+        ImageSelect.ImageSelect.__init__(self, epo.path, "i%s" % epo.person.getId())
+        self.epo = epo;
+        
+    #---------------------------------------------------------------------
+    #
+    # savephoto - Override the savephoto method to store the selected
+    # photo in a person object
+    #
+    #---------------------------------------------------------------------
+    def savephoto(self, photo):
+        self.epo.person.addPhoto(photo)
+        self.epo.add_thumbnail(photo)
+
 
 #-------------------------------------------------------------------------
 #
@@ -1053,36 +1083,7 @@ def update_name(name,first,last,suffix,note,priv):
 #
 #-------------------------------------------------------------------------
 def on_add_photo_clicked(obj):
-
-    edit_person = obj.get_data(EDITPERSON)
-    image_select = libglade.GladeXML(const.imageselFile,"imageSelect")
-    edit_person.isel = image_select
-    window = image_select.get_widget("imageSelect")
-
-    image_select.signal_autoconnect({
-        "on_savephoto_clicked" : on_savephoto_clicked,
-        "on_name_changed" : on_name_changed,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
-    edit_person.fname = image_select.get_widget("fname")
-    edit_person.add_image = image_select.get_widget("image")
-    edit_person.external = image_select.get_widget("private")
-    window.editable_enters(image_select.get_widget("photoDescription"))
-    window.set_data(EDITPERSON,edit_person)
-    window.show()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_name_changed(obj):
-    edit_person = obj.get_data(EDITPERSON)
-    file = edit_person.fname.get_text()
-    if os.path.isfile(file):
-        image = RelImage.scale_image(file,const.thumbScale)
-        edit_person.add_image.load_imlib(image)
+    PersonImageSelect(obj.get_data(EDITPERSON))
 
 #-------------------------------------------------------------------------
 #
@@ -1196,44 +1197,6 @@ def save_person(obj):
 
     epo.update_lists()
     epo.callback(epo)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_savephoto_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    image_select = epo.isel
-
-    filename = image_select.get_widget("photosel").get_full_path(0)
-    description = image_select.get_widget("photoDescription").get_text()
-
-    if os.path.exists(filename) == 0:
-        return
-
-    prefix = "i%s" % epo.person.getId()
-    if epo.external.get_active() == 1:
-        if os.path.isfile(filename):
-            name = filename
-            thumb = "%s%s.thumb.jpg" % (path,os.sep,os.path.basename(filename))
-            RelImage.mk_thumb(filename,thumb,const.thumbScale)
-        else:
-            return
-    else:
-        name = RelImage.import_photo(filename,epo.path,prefix)
-        if name == None:
-            return
-        
-    photo = Photo()
-    photo.setPath(name)
-    photo.setDescription(description)
-    
-    epo.person.addPhoto(photo)
-    epo.add_thumbnail(photo)
-
-    utils.modified()
-    utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
 #

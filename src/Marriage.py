@@ -44,6 +44,7 @@ import Config
 import utils
 from RelLib import *
 import RelImage
+import ImageSelect
 
 #-------------------------------------------------------------------------
 #
@@ -215,6 +216,35 @@ class Marriage:
     #-------------------------------------------------------------------------
     def get_widget(self,name):
         return self.top.get_widget(name)
+
+
+#-------------------------------------------------------------------------
+#
+# MarriageImageSelect class
+#
+#-------------------------------------------------------------------------
+class MarriageImageSelect(ImageSelect.ImageSelect):
+    #---------------------------------------------------------------------
+    #
+    # __init__ - Sub-class an ImageSelect window.  The only differences
+    # between the various subclasses are the initializer arguments, and
+    # the type of object for which an image is being selected.
+    #
+    #---------------------------------------------------------------------
+    def __init__(self, efo):
+        ImageSelect.ImageSelect.__init__(self, efo.path, "f%s" % efo.family.getId())
+        self.efo = efo;
+        
+    #---------------------------------------------------------------------
+    #
+    # savephoto - Override the savephoto method to store the selected
+    # photo in a family object
+    #
+    #---------------------------------------------------------------------
+    def savephoto(self, photo):
+        self.efo.family.addPhoto(photo)
+        self.efo.add_thumbnail(photo)
+
 
 #-------------------------------------------------------------------------
 #
@@ -545,79 +575,7 @@ def on_delete_photo_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_photo_clicked(obj):
-
-    marriage_obj = obj.get_data(MARRIAGE)
-    imageSelect = libglade.GladeXML(const.imageselFile,"imageSelect")
-    marriage_obj.imageSelect = imageSelect
-    
-    imageSelect.signal_autoconnect({
-        "on_savephoto_clicked" : on_savephoto_clicked,
-        "on_name_changed" : on_name_changed,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
-    marriage_obj.fname = image_select.get_widget("fname")
-    marriage_obj.add_image = image_select.get_widget("image")
-    marriage_obj.external = image_select.get_widget("private")
-    window = imageSelect.get_widget("imageSelect")
-    window.editable_enters(image_select.get_widget("photoDescription"))
-    window.set_data(MARRIAGE,marriage_obj)
-    window.show()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_name_changed(obj):
-    edit_person = obj.get_data(MARRIAGE_OBJ)
-    file = edit_person.fname.get_text()
-    if os.path.isfile(file):
-        image = RelImage.scale_image(file,const.thumbScale)
-        edit_person.add_image.load_imlib(image)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_savephoto_clicked(obj):
-    marriage_obj = obj.get_data(MARRIAGE)
-
-    photo_name_obj = marriage_obj.imageSelect.get_widget("photosel")
-    description_obj = marriage_obj.imageSelect.get_widget("photoDescription")
-    filename = photo_name_obj.get_full_path(0)
-    description = description_obj.get_text()
-
-    if os.path.exists(filename) == 0:
-        return
-
-    prefix = "f%s" % marriage_obj.family.getId()
-    name = RelImage.import_photo(filename,marriage_obj.path,prefix)
-    if name == None:
-        return
-
-    if marriage_obj.external.get_active() == 1:
-        if os.path.isfile(filename):
-            name = filename
-            thumb = "%s%s.thumb.jpg" % (path,os.sep,os.path.basename(filename))
-            RelImage.mk_thumb(filename,thumb,const.thumbScale)
-        else:
-            return
-    else:
-        name = RelImage.import_photo(filename,marriage_obj.path,prefix)
-        if name == None:
-            return
-        
-    photo = Photo()
-    photo.setPath(name)
-    photo.setDescription(description)
-    
-    marriage_obj.family.addPhoto(photo)
-    marriage_obj.add_thumbnail(photo)
-
-    utils.modified()
-    utils.destroy_passed_object(obj)
+    MarriageImageSelect(obj.get_data(MARRIAGE))
 
 #-------------------------------------------------------------------------
 #
