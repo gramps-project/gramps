@@ -120,3 +120,11 @@ class Sort:
         if val == 0:
             return self.by_last_name(first_id,second_id)
         return val
+
+    def by_date(self,a_id,b_id):
+        """Sort routine for comparing two events by their dates. """
+        if not (a_id and b_id):
+            return 0
+        a = self.database.find_event_from_id(a_id)
+        b = self.database.find_event_from_id(b_id)
+        return Date.compare_dates(a.get_date_object(),b.get_date_object())
