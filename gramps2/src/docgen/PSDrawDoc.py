@@ -19,6 +19,7 @@
 #
 
 import string
+import cStringIO
 import Plugins
 from intl import gettext as _
 
@@ -33,7 +34,6 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f = None
         self.filename = None
         self.level = 0
-        self.time = "0000-00-00T00:00:00"
 	self.page = 0
 
     def translate(self,x,y):
@@ -72,8 +72,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         else:
             self.filename = filename
 
-        try:
-            self.f = open(self.filename,"w")
+        self.f = open(self.filename,"w")
         
         self.f.write('%!PS-Adobe-3.0\n')
         self.f.write('%%LanguageLevel: 2\n')
@@ -111,24 +110,67 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('showpage\n')
         self.f.write('%%PageTrailer\n')
 
+    def draw_text(self,style,text,x1,y1):
+        x1 = x1 + self.lmargin
+        y1 = y1 + self.tmargin
+
+        stype = self.draw_styles[style]
+	para_name = stype.get_paragraph_style()
+	p = self.style_list[para_name]
+        self.f.write('gsave\n')
+        self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
+        self.f.write(self.fontdef(p))
+        self.f.write('(%s) show\n' % text)
+        self.f.write('grestore\n')
+
     def draw_line(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+        stype = self.draw_styles[style]
         self.f.write('gsave\n')
         self.f.write('newpath\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write('%f cm %f cm lineto\n' % self.translate(x2,y2))
-        self.f.write('1 setlinewidth\n')
+        self.f.write('%d setlinewidth\n' % stype.get_line_width())
         self.f.write('2 setlinecap\n')
         self.f.write('stroke\n')
         self.f.write('grestore\n')
+
+    def patch_text(self,text):
+        return text.encode('iso-8859-1')
+
+    def draw_bar(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+
+        box_type = self.draw_styles[style]
+        self.f.write('gsave\n')
+        self.f.write("%f cm %f cm moveto\n" % self.translate(x1,y1))
+        self.f.write("0 %f cm rlineto\n" % (y2-y1)) 
+        self.f.write("%f cm 0 rlineto\n" % (x2-x1)) 
+        self.f.write("0  %f cm rlineto\n" % (y1-y2))
+        self.f.write('closepath\n')
+        self.f.write("%d setlinewidth\n" % box_type.get_line_width())
+        self.f.write("stroke\n")
+        self.f.write('grestore\n')
     
     def draw_box(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 	p = self.style_list[para_name]
+        text = self.patch_text(text)
         
         bh = box_style.get_height()
         bw = box_style.get_width()
         self.f.write('gsave\n')
+#        if box_style.get_shadow():
         self.f.write('newpath\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x+0.15,y+0.15))
         self.f.write('0 -%f cm rlineto\n' % bh)

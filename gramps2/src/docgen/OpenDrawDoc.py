@@ -203,7 +203,6 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	self.f.write('</style:default-style>\n')
 
 	self.f.write('<style:style style:name="standard" style:family="graphics">\n')
-	self.f.write('<style:properties draw:stroke="solid" ')
 	self.f.write('svg:stroke-width="0cm" ')
 	self.f.write('svg:stroke-color="#000000" ')
 	self.f.write('draw:marker-start-width="0.3cm" ')
@@ -246,6 +245,10 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	    self.f.write('style:parent-style-name="standard">\n')
 	    self.f.write('<style:properties ')
             self.f.write('draw:fill-color="#%02x%02x%02x" ' % style.get_color())
+            if style.get_line_width():
+                self.f.write('draw:stroke="solid" ')
+            else:
+                self.f.write('draw:stroke="none" ')
             if style.get_shadow():
 		self.f.write('draw:shadow="visible" ')
             else:
@@ -420,6 +423,10 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	self.f.write('</draw:page>\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
         self.f.write('<draw:line draw:style="')
         self.f.write(style)
         self.f.write('" svg:x1="%.3fcm" ' % x1)
@@ -427,7 +434,48 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         self.f.write('svg:x2="%.3fcm" ' % x2)
         self.f.write('svg:y2="%.3fcm"/>\n' % y2)
 
+    def draw_text(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+
+	self.f.write('<draw:text-box draw:style-name="')
+	self.f.write(style)
+	self.f.write('" draw:layer="layout" ')
+        # fix this
+	self.f.write('svg:width="%.3fcm" ' % 5.0)
+	self.f.write('svg:height="%.3fcm" ' % 1.0)
+
+	self.f.write('svg:x="%.3fcm" ' % float(x))
+        self.f.write('svg:y="%.3fcm">' % float(y))
+        self.f.write('<text:p text:style-name="P1">')
+        self.f.write('<text:span text:style-name="T%s">' % para_name)
+        self.f.write(text)
+        self.f.write('</text:span></text:p>')
+        self.f.write('</draw:text-box>\n')
+
+    def draw_bar(self,style,x,y,x2,y2):
+        x = x + self.lmargin
+        x2 = x2 + self.lmargin
+        y = y + self.tmargin
+        y2 = y2 + self.tmargin
+
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+
+	self.f.write('<draw:rect draw:style-name="')
+	self.f.write(style)
+	self.f.write('" draw:layer="layout" ')
+	self.f.write('svg:width="%.3fcm" ' % float(x2-x))
+	self.f.write('svg:height="%.3fcm" ' % float(y2-y))
+	self.f.write('svg:x="%.3fcm" ' % float(x))
+        self.f.write('svg:y="%.3fcm">' % float(y))
+        self.f.write('</draw:rect>\n')
+
     def draw_box(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 
