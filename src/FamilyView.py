@@ -18,6 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -619,7 +620,7 @@ class FamilyView:
 
     def spouse_swap(self,obj):
         if self.selected_spouse:
-            self.parent.active_person = self.selected_spouse
+            self.parent.change_active_person(self.selected_spouse)
             self.load_family(self.family)
 
     def ap_parents_clicked(self,obj):

@@ -1,3 +1,13 @@
+2003-10-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (edit_button_clicked): Modify edit person call 
+	to always handle currently active person in family view;
+	(delete_person_clicked): Use single person mlist for family views;
+	(delete_person_response): Replace Back with just setting active 
+	person to current history index (remove_from_history already places
+	hindex in the correct place). Always call redraw_histmenu().
+	* src/FamilyView.py (spouse_swap): Use change_active_person() call
+	in order to correctly build history.
+
 2003-10-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: enabled Add/Edit/Remove buttons for family view,
 	perform a "back button" operation when a person is deleted. Instead of
