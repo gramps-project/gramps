@@ -147,7 +147,7 @@ def importData(database, filename, cb=None):
     except Errors.GedcomError, val:
         msg = str(val)
         Utils.destroy_passed_object(statusWindow)
-        gnome.ui.GnomeErrorDialog(msg)
+        ErrorDialog(msg)
         return
     except:
         import DisplayTrace

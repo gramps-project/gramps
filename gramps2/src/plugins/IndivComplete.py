@@ -525,7 +525,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
         font.set_size(12)
         p = TextDoc.ParagraphStyle()
         p.set_font(font)
-        para.set_description(_('The basic style used for the text display.'))
+        p.set_description(_('The basic style used for the text display.'))
         self.default_style.add_style("Normal",p)
     
     def setup_report_options(self):
