@@ -1,3 +1,13 @@
+2003-06-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: Make the select spouse dialog not modal. 
+
+2003-06-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/TextDoc.py: Added name property to style sheets
+	* src/StyleEditor.py: Add name property to edited style sheets
+	* src/RelLib.py: Fix for witness event under ZODB
+	* src/docgen/OpenDrawDoc.py: change name to OpenOffice.org
+	* src/docgen/OpenOfficeDoc.py: change name to OpenOffice.org
+
 2003-06-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py, src/plugins/FtmStyleDescendants.py,
 	src/plugins/FtmStyleAncestors.py: Further work on option handling. 
