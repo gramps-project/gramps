@@ -337,13 +337,13 @@ class Gallery(ImageSelect):
                 return gtk.TRUE
         elif event.type == gtk.gdk.BUTTON_RELEASE:
             self.button = 0
-        elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            item = widget.get_item_at(event.x,event.y)
-            if item:
-                (i,t,b,self.photo,oid) = self.p_map[item]
-                LocalMediaProperties(self.photo,self.path,self,self.parent_window)
-            self.in_event = 0
-            return gtk.TRUE
+#         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+#             item = widget.get_item_at(event.x,event.y)
+#             if item:
+#                 (i,t,b,self.photo,oid) = self.p_map[item]
+#                 LocalMediaProperties(self.photo,self.path,self,self.parent_window)
+#             self.in_event = 0
+#             return gtk.TRUE
         elif event.type == gtk.gdk.MOTION_NOTIFY:
             if event.state & gtk.gdk.BUTTON1_MASK:
                 # Get the new position and move by the difference
