@@ -1340,7 +1340,6 @@ A4
       <widget>
 	<class>GtkOptionMenu</class>
 	<name>output_format</name>
-	<sensitive>False</sensitive>
 	<can_focus>True</can_focus>
 	<items>OpenOffice
 HTML
