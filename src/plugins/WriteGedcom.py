@@ -567,12 +567,12 @@ def exportData(database, filename, progress, pbar, fbar, sbar):
     try:
         g = open(filename,"w")
     except IOError,msg:
-        msg = "%s\n%s" % (_("%s could not be opened\n") % filename,str(msg))
+        msg = "%s\n%s" % (_("Could not create %s") % filename,str(msg))
         GnomeErrorDialog(msg)
         progress.destroy()
         return
     except:
-        GnomeErrorDialog(_("%s could not be opened\n") % filename)
+        GnomeErrorDialog(_("Could not create %s") % filename)
         progress.destroy()
         return
 

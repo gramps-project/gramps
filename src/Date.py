@@ -314,7 +314,10 @@ class SingleDate:
                 _("aft") + '|' + \
                 _("aft\.") + '|' + \
                 _("bef\.") + '|' + \
-                _("bef") + ')'
+                _("bef") + '|' + \
+                "abt" + '|' + \
+                "aft" + '|' + \
+                "bef" + ')'
     
     start = "^\s*" + modifiers + "?\s*"
     
