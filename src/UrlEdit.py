@@ -89,10 +89,10 @@ class UrlEditor:
         self.add_itself_to_menu()
         self.window.show()
 
-    def on_delete_event(self,obj,b):
+    def on_delete_event(self,*obj):
         self.remove_itself_from_menu()
 
-    def close(self,obj):
+    def close(self,*obj):
         self.remove_itself_from_menu()
         self.window.destroy()
 
@@ -108,10 +108,10 @@ class UrlEditor:
         del self.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
-    def present(self,obj):
+    def present(self,*obj):
         self.window.present()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
 

@@ -32,7 +32,6 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Utils
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -95,10 +94,10 @@ class NoteEditor:
         self.add_itself_to_menu()
         self.top.show()
         
-    def on_delete_event(self,obj,b):
+    def on_delete_event(self,*obj):
         self.remove_itself_from_menu()
 
-    def close(self,obj):
+    def close(self,*obj):
         self.remove_itself_from_menu()
         self.top.destroy()
 
@@ -113,14 +112,14 @@ class NoteEditor:
         del self.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
-    def present(self,obj):
+    def present(self,*obj):
         self.top.present()
 
     def on_save_note_clicked(self,obj):
         """Saves the note and closes the window"""
-        buffer = self.entry.get_buffer()
-        text = unicode(buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE))
+        tbuffer = self.entry.get_buffer()
+        text = unicode(tbuffer.get_text(tbuffer.get_start_iter(),
+                                        tbuffer.get_end_iter(),gtk.FALSE))
         if text != self.data.get_note():
             self.data.set_note(text)
         self.close(obj)

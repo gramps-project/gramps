@@ -1377,9 +1377,9 @@ class Person(SourceNote):
         """returns the list of Event instances"""
         return self.event_list
 
-    def set_event_list(self,list):
+    def set_event_list(self,elist):
         """sets the event list to the passed list"""
-        self.event_list = list
+        self.event_list = elist
 
     def add_family_id(self,family_id):
         """adds the specified Family instance to the list of
@@ -1401,7 +1401,7 @@ class Person(SourceNote):
     def clear_family_id_list(self) :
         self.family_list = []
 
-    def remove_family_id(self,family,trans=None):
+    def remove_family_id(self,family):
         """removes the specified Family instance from the list
         of marriages/partnerships"""
         assert(type(family) == types.StringType or type(family) == types.UnicodeType)
@@ -1421,9 +1421,9 @@ class Person(SourceNote):
         """returns the list of addresses"""
         return self.address_list
 
-    def set_address_list(self,list):
+    def set_address_list(self,alist):
         """sets the address list to the specified list"""
-        self.address_list = list
+        self.address_list = alist
 
     def add_attribute(self,attribute):
         """adds an Attribute instance to the attribute list"""

@@ -228,8 +228,8 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         self.f.write('</STYLES>\n')
         self.f.write('<PIXMAPS>\n')
-        for file in self.media_list:
-            self.f.write('<KEY name="%s" filename="%s" ' % (file[1],file[1]))
+        for filedata in self.media_list:
+            self.f.write('<KEY name="%s" filename="%s" ' % (filedata[1],filedata[1]))
             a = time.localtime(self.mtime)
             self.f.write('msec="%d" ' % a[6])
             self.f.write('second="%d" ' % a[5])
@@ -253,9 +253,9 @@ class KwordDoc(BaseDoc.BaseDoc):
             
         tar.add_file("documentinfo.xml",self.mtime,self.m)
         tar.add_file("maindoc.xml",self.mtime,self.f)
-        for file in self.media_list:
-            f = open(file[0],"r")
-            tar.add_file(file[1],self.mtime,f)
+        for filedata in self.media_list:
+            f = open(filedata[0],"r")
+            tar.add_file(filedata[1],self.mtime,f)
             f.close()
         tar.close()
 
@@ -489,13 +489,13 @@ try:
     import Utils
     
     prog = GrampsMime.get_application("application/x-kword")
-    type = GrampsMime.get_description("application/x-kword")
+    mtype = GrampsMime.get_description("application/x-kword")
     
     if prog and Utils.search_for(prog[0]):
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(type, KwordDoc, 1, 0, 1, ".kwd", print_label)
+    Plugins.register_text_doc(mtype, KwordDoc, 1, 0, 1, ".kwd", print_label)
 except:
     Plugins.register_text_doc('KWord', KwordDoc, 1, 0, 1, ".kwd", print_label)
 

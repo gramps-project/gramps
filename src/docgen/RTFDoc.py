@@ -422,11 +422,11 @@ class RTFDoc(BaseDoc.BaseDoc):
 try:
     import Utils
     
-    prog = GrampsMime.get_application("application/rtf")
-    type = GrampsMime.description("application/rtf")
+    mprog = GrampsMime.get_application("application/rtf")
+    mtype = GrampsMime.get_description("application/rtf")
 
-    if Utils.search_for(prog[0]):
-        print_label=_("Open in %s") % prog[1]
+    if Utils.search_for(mprog[0]):
+        print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
     Plugins.register_text_doc(type, RTFDoc, 1, 0, 1, ".rtf", print_label)

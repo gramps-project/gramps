@@ -76,7 +76,8 @@ class EditSource:
                          _('Source Editor'))
         
         plwidget = self.top_window.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self, self.top)
+        self.gallery = ImageSelect.Gallery(source, db.commit_place, self.path,
+                                           plwidget, db, self, self.top)
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.abbrev = self.top_window.get_widget("abbrev")

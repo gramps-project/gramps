@@ -193,8 +193,11 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             (x,y) = image.size()
         except:
             return
-        
-        aspect_ratio = float(x)/float(y)
+
+        if y:
+            aspect_ratio = float(x)/float(y)
+        else:
+            aspect_ratio = 1
 
         if aspect_ratio > x_cm/y_cm:
             act_width = x_cm
@@ -318,12 +321,12 @@ import Utils
 
 try:
     prog = GrampsMime.get_application("application/x-abiword")
-    type = GrampsMime.get_description('application/x-abiword')
+    mtype = GrampsMime.get_description('application/x-abiword')
     
     if Utils.search_for(prog[0]):
         print_label=_("Open in %s" % prog[1])
     else:
         print_label=None
-    Plugins.register_text_doc(type,AbiWordDoc,1,1,1,".abw", print_label)
+    Plugins.register_text_doc(mtype,AbiWordDoc,1,1,1,".abw", print_label)
 except:
     Plugins.register_text_doc('AbiWord document',AbiWordDoc,1,1,1,".abw", None)

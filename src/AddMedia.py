@@ -107,7 +107,6 @@ class AddMediaObject:
         """
         filename = self.glade.get_widget("photosel").get_full_path(0)
         description = unicode(self.description.get_text())
-        external = self.glade.get_widget("private")
         
         if os.path.exists(filename) == 0:
             msgstr = _("Cannot import %s")
@@ -115,13 +114,13 @@ class AddMediaObject:
             ErrorDialog(msgstr % filename, msgstr2)
             return
 
-        type = GrampsMime.get_type(filename)
+        mtype = GrampsMime.get_type(filename)
         if description == "":
             description = os.path.basename(filename)
 
         mobj = RelLib.MediaObject()
         mobj.set_description(description)
-        mobj.set_mime_type(type)
+        mobj.set_mime_type(mtype)
         self.db.add_object(mobj)
         
         name = filename
@@ -134,7 +133,7 @@ class AddMediaObject:
         self.db.commit_media_object(mobj,trans)
         self.db.add_transaction(trans)
         
-    def on_name_changed(self,obj):
+    def on_name_changed(self,*obj):
         """
         Called anytime the filename text window changes. Checks to
         see if the file exists. If it does, the imgae is loaded into
@@ -150,9 +149,9 @@ class AddMediaObject:
         self.temp_name = root
 
         if os.path.isfile(filename):
-            type = GrampsMime.get_type(filename)
+            mtype = GrampsMime.get_type(filename)
             
-            if type[0:5] == "image":
+            if mtype[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
             else:
                 image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
@@ -171,3 +170,4 @@ class AddMediaObject:
             else:
                 self.window.destroy()
                 return None
+        return None

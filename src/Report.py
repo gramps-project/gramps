@@ -439,7 +439,7 @@ class BareReportDialog:
         
         change_button = gtk.Button("%s..." % _('C_hange') )
         change_button.connect('clicked',self.on_center_person_change_clicked)
-        self.tbl.attach(change_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.SHRINK)
+        self.tbl.attach(change_button,3,4,self.col,self.col+1,gtk.SHRINK)
         self.col += 1
 
     def setup_style_frame(self):
@@ -605,8 +605,8 @@ class BareReportDialog:
 
     def setup_other_frames(self):
         for key in self.frame_names:
-            list = self.frames[key]
-            table = gtk.Table(3,len(list))
+            flist = self.frames[key]
+            table = gtk.Table(3,len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)
@@ -615,7 +615,7 @@ class BareReportDialog:
             self.notebook.append_page(table,l)
 
             row = 0
-            for (text,widget) in list:
+            for (text,widget) in flist:
                 if text:
                     text_widget = gtk.Label('%s:' % text)
                     text_widget.set_alignment(0.0,0.5)
@@ -709,7 +709,7 @@ class BareReportDialog:
     # Callback functions from the dialog
     #
     #------------------------------------------------------------------------
-    def on_cancel(self,obj):
+    def on_cancel(self,*obj):
         self.window.destroy()
 
     def on_ok_clicked(self, obj):
@@ -724,14 +724,14 @@ class BareReportDialog:
         # Clean up the dialog object
         self.window.destroy()
 
-    def on_style_edit_clicked(self, obj):
+    def on_style_edit_clicked(self, *obj):
         """The user has clicked on the 'Edit Styles' button.  Create a
         style sheet editor object and let them play.  When they are
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
         StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
 
-    def on_center_person_change_clicked(self,obj):
+    def on_center_person_change_clicked(self,*obj):
         import SelectPerson
         sel_person = SelectPerson.SelectPerson(self.db,_('Select Person'))
         new_person = sel_person.run()
@@ -970,11 +970,11 @@ class ReportDialog(BareReportDialog):
         self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
         self.col += 1
 
-        type = self.format_menu.get_menu().get_active()
-        ext = type.get_data('ext')
+        mtype = self.format_menu.get_menu().get_active()
+        ext = mtype.get_data('ext')
         if ext == None:
             ext = ""
-        if type:
+        if mtype:
             spath = self.get_default_directory()
             if self.get_target_is_directory():
                 self.target_fileentry.set_filename(spath)

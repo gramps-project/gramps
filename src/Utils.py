@@ -35,6 +35,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 import gtk
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -58,9 +59,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 _history_brokenFlag = 0
-
-LISTOBJ = "s"
-OBJECT  = "o"
 
 def history_broken():
     global _history_brokenFlag
@@ -240,7 +238,7 @@ def delete_selected(obj,list):
 #-------------------------------------------------------------------------
 def add_menuitem(menu,msg,obj,func):
     item = gtk.MenuItem(msg)
-    item.set_data(OBJECT,obj)
+    item.set_data('o',obj)
     item.connect("activate",func)
     item.show()
     menu.append(item)

@@ -37,7 +37,6 @@ import os
 import Report
 import BaseDoc
 import Errors
-import Date
 import Sort
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _

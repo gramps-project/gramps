@@ -58,9 +58,9 @@ class TarFile:
         temp = buf % (blank)
         for c in temp:
             chksum = chksum + ord(c)
-        sum = "%06o " % chksum
-        sum = sum + nul
-        buf = buf % sum
+        vsum = "%06o " % chksum
+        vsum = vsum + nul
+        buf = buf % vsum
 
         self.pos = self.pos + len(buf)
         self.f.write(buf)

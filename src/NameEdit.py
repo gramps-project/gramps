@@ -136,11 +136,11 @@ class NameEditor:
         self.add_itself_to_menu()
         self.window.show()
 
-    def on_delete_event(self,obj,b):
+    def on_delete_event(self,*obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
 
-    def close(self,obj):
+    def close(self,*obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
@@ -175,10 +175,10 @@ class NameEditor:
         self.winsmenu.destroy()
         self.parent_menu_item.destroy()
 
-    def present(self,obj):
+    def present(self,*obj):
         self.window.present()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self,*obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
@@ -192,12 +192,12 @@ class NameEditor:
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
-        type = unicode(self.type_field.entry.get_text())
+        mtype = unicode(self.type_field.entry.get_text())
 
-        if const.NameTypesMap.has_value(type):
-            type = const.NameTypesMap.find_key(type)
+        if const.NameTypesMap.has_value(mtype):
+            mtype = const.NameTypesMap.find_key(mtype)
         else:
-            type = "Also Known As"
+            mtype = "Also Known As"
         
         if self.name == None:
             self.name = RelLib.Name()
@@ -205,7 +205,7 @@ class NameEditor:
         
         self.name.set_source_reference_list(self.srcreflist)
         
-        self.update_name(first,last,suffix,title,type,note,format,priv)
+        self.update_name(first,last,suffix,title,mtype,note,format,priv)
         self.parent.lists_changed = 1
 
         self.callback(self.name)

@@ -49,7 +49,6 @@ import gnome
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import Date
 import RelLib
 import const
 import Utils

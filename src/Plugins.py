@@ -471,7 +471,6 @@ def register_import(task, name):
 def register_report(task, name,
                     category=_("Uncategorized"),
                     description=_unavailable,
-                    xpm=None,
                     status=_("Unknown"),
                     author_name=_("Unknown"),
                     author_email=_("Unknown")

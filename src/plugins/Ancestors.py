@@ -227,7 +227,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
             if thisgen > 2 and len (mfamily_ids):
                 for self.gp in [self.database.find_family_from_id(mfamily_ids[0]).get_father_id (),
-                                self.database.find_family_from_id(mfamilies[0]).get_mother_id ()]:
+                                self.database.find_family_from_id(mfamily_ids[0]).get_mother_id ()]:
                     if self.gp:
                         break
 
@@ -1090,9 +1090,7 @@ def write_book_item(database,person,doc,options,newpage=0):
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report, register_book_item
-
-register_report(
+Plugins.register_report(
     report,
     _("Comprehensive Ancestors Report"),
     category=_("Text Reports"),
@@ -1103,7 +1101,7 @@ register_report(
     )
 
 # (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
-register_book_item( 
+Plugins.register_book_item( 
     _("Comprehensive Ancestors Report"), 
     _("Text"),
     ComprehensiveAncestorsBareReportDialog,

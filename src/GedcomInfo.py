@@ -150,8 +150,8 @@ class GedcomInfoDB:
         self.standard.set_dest("GEDCOM 5.5")
 
         try:
-            file = "%s/gedcom.xml" % const.dataDir
-            f = open(file.encode('iso8859-1'),"r")
+            filepath = "%s/gedcom.xml" % const.dataDir
+            f = open(filepath.encode('iso8859-1'),"r")
         except:
             return
 
