@@ -54,6 +54,8 @@ import DateHandler
 import Sources
 import GrampsKeys
 import NameDisplay
+import Date
+import DateEdit
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 
@@ -184,6 +186,8 @@ class Marriage:
         self.attr_conf_field = self.get_widget("attr_conf")
         self.lds_date = self.get_widget("lds_date")
         self.lds_date.set_editable(mode)
+        self.lds_date_led = self.get_widget("lds_date_stat")
+        self.lds_date_led.set_sensitive(mode)
         self.lds_temple = self.get_widget("lds_temple")
         self.lds_temple.set_sensitive(mode)
         self.lds_status = self.get_widget("lds_status")
@@ -243,9 +247,15 @@ class Marriage:
                 self.lds_place.child.set_text(lds_ord.get_place_handle().get_title())
             self.lds_date.set_text(lds_ord.get_date())
             self.seal_stat = lds_ord.get_status()
+            self.lds_date_object = lds_ord.get_date_object()
         else:
             self.lds_place.child.set_text("")
             self.seal_stat = 0
+            self.lds_date_object = Date.Date()
+
+        self.lds_date_check = DateEdit.DateEdit(
+            self.lds_date_object, self.lds_date,
+            self.lds_date_led, self.window)
 
         if self.family.get_complete_flag():
             self.complete.set_active(1)
