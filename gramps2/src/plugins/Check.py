@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,9 @@ def runTool(database,active_person,callback):
         checker.cleanup_missing_photos()
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
-        checker.report()
+        errs = checker.build_report(0)
+        if errs:
+            checker.report(0)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -206,7 +208,7 @@ class CheckIntegrity:
                         family.setFather(mother)
                         family.setMother(father)
 
-    def report(self):
+    def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
         removed_photos = len(self.removed_photo)
@@ -219,16 +221,19 @@ class CheckIntegrity:
         errors = blink + efam + photos + rel
         
         if errors == 0:
-            OkDialog(_("No errors were found"),
-                     _('The database has passed internal checks'))
-            return
+            if cl:
+                print "No errors were found: the database has passed internal checks."
+            else:
+                OkDialog(_("No errors were found"),
+                         _('The database has passed internal checks'))
+            return 0
 
-        text = cStringIO.StringIO()
+        self.text = cStringIO.StringIO()
         if blink > 0:
             if blink == 1:
-                text.write(_("1 broken child/family link was fixed\n"))
+                self.text.write(_("1 broken child/family link was fixed\n"))
             else:
-                text.write(_("%d broken child/family links were found\n") % blink)
+                self.text.write(_("%d broken child/family links were found\n") % blink)
             for c in self.broken_links:
                 cn = c[0].getPrimaryName().getName()
                 f = c[1].getFather()
@@ -240,14 +245,14 @@ class CheckIntegrity:
                     pn = f.getPrimaryName().getName()
                 else:
                     pn = m.getPrimaryName().getName()
-                text.write('\t')
-                text.write('_("%s was removed from the family of %s\n") % (cn,pn)')
+                self.text.write('\t')
+                self.text.write('_("%s was removed from the family of %s\n") % (cn,pn)')
 
         if plink > 0:
             if plink == 1:
-                text.write(_("1 broken spouse/family link was fixed\n"))
+                self.text.write(_("1 broken spouse/family link was fixed\n"))
             else:
-                text.write(_("%d broken spouse/family links were found\n") % plink)
+                self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for c in self.broken_parent_links:
                 cn = c[0].getPrimaryName().getName()
                 f = c[1].getFather()
@@ -259,48 +264,54 @@ class CheckIntegrity:
                     pn = f.getPrimaryName().getName()
                 else:
                     pn = m.getPrimaryName().getName()
-                    text.write('\t')
-                    text.write(_("%s was restored to the family of %s\n") % (cn,pn))
+                    self.text.write('\t')
+                    self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
-            text.write(_("1 empty family was found\n"))
+            self.text.write(_("1 empty family was found\n"))
         elif efam > 1:
-            text.write(_("%d empty families were found\n") % efam)
+            self.text.write(_("%d empty families were found\n") % efam)
         if rel == 1:
-            text.write(_("1 corrupted family relationship fixed\n"))
+            self.text.write(_("1 corrupted family relationship fixed\n"))
         elif rel > 1:
-            text.write(_("%d corrupted family relationship fixed\n") % rel)
+            self.text.write(_("%d corrupted family relationship fixed\n") % rel)
         if photos == 1:
-            text.write(_("1 media object was referenced, but not found\n"))
+            self.text.write(_("1 media object was referenced, but not found\n"))
         elif photos > 1:
-            text.write(_("%d media objects were referenced, but not found\n") % photos)
+            self.text.write(_("%d media objects were referenced, but not found\n") % photos)
         if bad_photos == 1:
-            text.write(_("Reference to 1 missing media object was kept\n"))
+            self.text.write(_("Reference to 1 missing media object was kept\n"))
         elif bad_photos > 1:
-            text.write(_("References to %d media objects were kept\n") % bad_photos)
+            self.text.write(_("References to %d media objects were kept\n") % bad_photos)
         if replaced_photos == 1:
-            text.write(_("1 missing media object was replaced\n"))
+            self.text.write(_("1 missing media object was replaced\n"))
         elif replaced_photos > 1:
-            text.write(_("%d missing media objects were replaced\n") % replaced_photos)
+            self.text.write(_("%d missing media objects were replaced\n") % replaced_photos)
         if removed_photos == 1:
-            text.write(_("1 missing media object was removed\n"))
+            self.text.write(_("1 missing media object was removed\n"))
         elif removed_photos > 1:
-            text.write(_("%d missing media objects were removed\n") % removed_photos)
+            self.text.write(_("%d missing media objects were removed\n") % removed_photos)
 
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "summary.glade"
-        topDialog = gtk.glade.XML(glade_file,"summary")
-        topDialog.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            })
-        title = _("Check Integrity")
-        top = topDialog.get_widget("summary")
-        textwindow = topDialog.get_widget("textwindow")
+        return errors
 
-        Utils.set_titles(top,topDialog.get_widget("title"),title)
-	textwindow.get_buffer().set_text(text.getvalue())
-	text.close()
-        top.show()
+    def report(self,cl=0):
+	if cl:
+            print self.text.getvalue()
+	else:
+            base = os.path.dirname(__file__)
+            glade_file = base + os.sep + "summary.glade"
+            topDialog = gtk.glade.XML(glade_file,"summary")
+            topDialog.signal_autoconnect({
+                "destroy_passed_object" : Utils.destroy_passed_object,
+                })
+            title = _("Check Integrity")
+            top = topDialog.get_widget("summary")
+            textwindow = topDialog.get_widget("textwindow")
+
+            Utils.set_titles(top,topDialog.get_widget("title"),title)
+	    textwindow.get_buffer().set_text(self.text.getvalue())
+            self.text.close()
+            top.show()
 
 #------------------------------------------------------------------------
 #
