@@ -1,8 +1,289 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Tip of the day collection -->
+<!-- $Id$ -->
+
 <tips>
-  <tip>You can represent a range of dates by using the format of &quot;between January 4, 2000 and March 20, 2003&quot;</tip>
-  <tip>You can drag and drop an image from either the Media View or any gallery into another gallery</tip>
-  <tip>You can add an image to any gallery or the Media View by dragging and dropping from a file manager or a web browser.</tip>
-  <tip>You can set the birth order of children in a family even if you do not have birth dates by using drag and drop.</tip>
-  <tip>You can convert an alternate name to the person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting from the menu.</tip>
+
+<tip>You can represent a range of dates by using the format 
+of &quot;between January 4, 2000 and March 20, 2003&quot;</tip>
+
+
+<tip>You can drag and drop an image from either the Media View or any 
+gallery into another gallery</tip>
+
+<tip>You can add an image to any gallery or the Media View by dragging and
+dropping from a file manager or a web browser.</tip>
+
+<tip>You can set the birth order of children in a family even if you do not 
+have birth dates by using drag and drop.</tip>
+
+<tip>You can convert an alternate name to the person's preferred name by 
+selecting the desired name in the person's name list, bringing up the context
+menu by clicking the right mouse button, and selecting from the menu.</tip>
+
+<tip>
+<b>ASKING RELATIVES BEFORE IT IS TO LATE</b>: 
+Your oldest relatives could be your
+most important source of information. They usually know things about the
+family that hasn't been writen down. They might tell you nuggest about
+people, the information about whom might one day be reduced to numbers. We
+often wonder why we didn't write down pieces of information that grandfather
+told us while we were young. Don't wait till it's too late... 
+</tip>
+
+<tip>
+EXAMPLES OF A FAMILY TREE: To see how a Gramps family tree database looks,
+check Help &gt; Open example database. You'll find the elaborate Smith family
+database, It includes 42 individuals and 15 families, with fairly complete
+basic data about many of these individuals.
+</tip>
+
+<tip>
+THE PEOPLE VIEW: The People view throws up a list of all individuals in the
+database. You can sort the listing simply by clicking on numerous headings
+such as name, gender, birth date or death date.  Clicking heading the second
+time will reverse the sort.
+</tip>
+
+<tip>
+FILTERING PEOPLE OUT: In the People view, you can 'filter' out individuals
+based on certain criteria. Go to the Filter (just to the right of the People
+icon) and choose one of the dozen different presets. For instance, all
+adopted people in the family tree can be located. People without a birth
+date mentioned can also be filtered. To get the results, click on Apply.
+</tip>
+
+<tip>
+INVERTED FILTERING: You can get another set of results by using the 'invert'
+option. For instance, if you choose to filter the 'People with children'
+preset filter, and then invert it, you'll find all the people without
+children in the family tree.
+</tip>
+
+<tip>
+LOCATING PEOPLE: In the People view, you can locate any individual by
+navigating through the alphabetic tabs of surnames. Then, click on the names
+themselves to unfold display of all the individuals with the same last name.
+</tip>
+
+<tip>
+TO ADD INFORMATION TO SELECTED PEOPLE: First, locate them in the People
+view. (Use the alphabetic tabs of surnames, and click on the names to unfold
+the display of all individuals sharing the name). Then, go to the Family
+view, and add the relevant information.
+</tip>
+
+<tip>
+THE FAMILY VIEW: The Family view display a family of parents, grandparents
+and children along with the birth and death dates (if relevant) and
+relationships. You can navigate to nearby relatives with a single click.
+</tip>
+
+<tip>
+IMPROVING GRAMPS: Users are entitled to request enhancements to GRAMPS. 
+Requesting an enhancement can be done either through the gramps-users or
+gramps-devel mailing lists, or by creating a Request for Enhancement (RFE) at 
+http://sourceforge.net/tracker/?group_id=25770&amp;atid=385140
+The last is preferred.
+</tip>
+
+<tip>
+WHO WAS BORN WHEN: The 'Compare individual events' tool allows you to
+compare data of all (or some of) the individuals in your database. This is
+useful, say, if you wish to list the birth-dates of everyone in your
+database. For best results, your data needs to be complete.
+</tip>
+
+<tip>
+WHO'S THE OLDEST OF US ALL? You can find out a lot of statistical
+information about your entire family, using the Tools &gt; Utilities &gt; Verify
+the database facility. For instance, what was the maximum age of any
+individual in the family? Or the largest husband-wife age difference. Or the
+minimum age at which anyone in your family ever married. Or even the minimum
+age at which a woman bore a child.
+</tip>
+
+<tip>
+CALCULATING RELATIONSHIPS: This allows you to check if someone else in the
+entire family is related (by blood, not marriage) to you. Precise
+relationships as well as the common ancestors are reported. See Tools &gt;
+Utilities &gt; Relationship calculator.
+</tip>
+
+<tip>
+USEFUL CODES FOR SURNAMES: SoundEx is a utility that will allow you to type
+in a surname, then give you the SoundEx Code for that name.  Knowing the
+SoundEx Code for a surname is very helpful for researching Census Data files
+(microfiche) at a library or other research facility. To get your Soundex
+codes for surnames in your database, go to Tools &gt; Utilities &gt; Generate
+SoundEx codes.
+</tip>
+
+<tip>
+SETTING YOUR PREFERENCES: Edit &gt; Preferences will allow you to choose a
+number of settings, determining how your GRAMPS program should work.
+Particularly useful are the report preferences (set the format in which you
+would like your reports to appear, and in which directory these should be
+stored).
+</tip>
+
+<tip>
+GRAMPS REPORTS: GRAMPS offers a wide number of reports that can be
+generated. The Text Reports are particularly useful if you want to send out
+the results of your family tree to members of the family, via e-mail.
+</tip>
+
+<tip>
+STARTING A NEW FAMILY TREE: The best way to start a new family tree is
+probably to add-in all the members of the family into the database (use Edit
+&gt; Add or click on the Add button under the People menu). Then go about
+tracing the relationships among them all under the Family menu.
+</tip>
+
+<tip>
+TRACING RELATIONSHIPS: People from an existing database can easily be all
+linked into the family. Go to Family, and choose the second button to the
+right of the Relationship window. (The first button to the right of the
+relationship window adds a new person to the database, and adds to a new
+relationship.)
+</tip>
+
+<tip>
+ASKING RELATIONS FOR DETAILS: To get inputs for building your family tree,
+ask key members of your extended family (including other families connected
+to yours via marriage) to send in information. Most important is the full
+name, date and places of birth and death (if expired), relationship within
+the family.
+</tip>
+
+<tip>
+UNSURE ABOUT BIRTH-DATES? If you're unsure about the birth-dates about
+individuals in your family, GRAMS allows you to enter a wide range, based on
+a guestimate. For instance, &quot;about 1908&quot; is also a valid entry.  for a
+birthdate in GRAMPS. Subsequently, the precise dates could be included once
+it is available.
+</tip>
+
+<tip>
+DUPLICATE ENTRIES: Tools &gt; Database Processing &gt; Find possible duplicate
+people allows you to located (and merge) entries of the same person entered
+more than once in the database.
+</tip>
+
+<tip>
+INTERNAL ERROR: Encountered an 'internal error' while launching GRAMPS? It
+could be the known bug in the 1.0.6 release. The 1.0.7 release
+(http://sf.net/projects/gramps) fixes this bug.
+
+FIXING 1.0.6: To fix your 1.0.6 install by
+    '$ gconftool-2 -s /apps/gramps/show-calendar -t bool 0'
+    '$ gconftool-2 -s /apps/gramps/use-lds -t bool 0'
+as the user running gramps (not root!!!)
+</tip>
+
+<tip>
+ADDING A SIBLING: To add siblings in Gramps, make yourself or your spouse an
+active person (i.e. navigate to yourself or your spouse). Then switch to the
+Family View and add a new child by clicking the buton second from the top on
+the right of the Children list (the &quot;New&quot; button). Enter the data for the
+new person and click OK.
+</tip>
+
+<tip>
+EDITING THE RELATIONSHIP OF A CHILD: You can edit the relationship of the
+child to each parent by selecting the child, right-clicking, and choosing
+&quot;Edit the child-parent relationship&quot; item. If this is not your child but
+your wife's child, you would select &quot;Birth&quot; in relationship to her and
+&quot;Stepchild&quot; in relationship to you.
+</tip>
+
+<tip>
+ADDING A CHILD: If the child is already in the database, then you don't need
+to add him to the database. Just add the child to the family, which can be
+done by pressing the third button from the top (the &quot;Select&quot; button). Then,
+select the person from the list.
+</tip>
+
+<tip>
+SHOW-ALL CHECKBUTTON: The list of people you can add into a family is
+filtered to display only people who could possibly be the child (based on he
+birth-dates). In case GRAMPS is wrong in making this choice, you can always
+over-ride that filtering by checking &quot;Show all&quot; checkbutton.
+</tip>
+
+<tip>
+KEYBINDINGS: GRAMP's manual is quite elaborate and well written; it also is
+detailed about keybindings (in a separate appendix) and other matters. Check
+it out.
+</tip>
+
+<tip>
+GRAMPS-USERS: Want to answer your queries about GRAMPS? Check out the
+gramps-users list. Many users are on the list, so you're likely to get an
+answer faster. If you need to ask questions -- use either gramps-devel or
+gramps-users at lists.sf.net, as appropriate for your questions.
+</tip>
+
+<tip>
+TIPS OF THE DAY: GRAMPS's development version has the option of popping up a
+window with the tip of the day about the use of GRAMPS. The tip is chosen
+randomly from the pool of tips. To add your own tip, send it in to
+gramps-users@lists.sf.net
+</tip>
+
+<tip>
+GRAMPS (Genealogical Research and Analysis Management Programming System)
+offers you a well-designed user interface to make entering data easy, and
+browser-like controls to allow you to navigate your family tree with ease.
+</tip>
+
+<tip>
+DIFFERENT VIEWS: There are six different views for navigating your family:
+People, Family, Pedigree, Sources, Places, Media. Each helps you to achieve
+one or more specific tasks.
+</tip>
+
+<tip>
+CHANGING A CHILD/PARENT RELATIONSHIP: In the Family view, a right-click on
+the Children allows you to edit the child/parent relationship. This is used
+to mark out children as adopted or step-children.
+</tip>
+
+<tip>
+BOOKMARKING INDIVIDUALS: To 'bookmark' individuals in your database,
+navigate to them using the Family view, then right-click and 'add bookmark'.
+You can visit these bookmarks much like in your browser, simply via Bookmark
+&gt; Go to bookmark.
+</tip>
+
+<tip>
+DATES: Incorrect date formats will show up with the red button alongside the
+date. Green means okay, and amber signifies acceptable.
+</tip>
+
+<tip>
+LISTING EVENTS: Events in the life of any individual in the database may be
+added via the Person &gt; Edit Person &gt; Events option. This space can be used
+to include a wide range of options ranging from adoptions, to baptisms (and
+other religious ceremonies), burials, causes of death, Census listings,
+degrees earned in education, divorce filings, elections, emigration,
+military service, nobility titles, number of marriages, occupations,
+ordination, property, religion, retirement, wills, etc.
+</tip>
+
+<tip>
+GRAMPS' People view gives you a list of all individuals in the database. You
+can sort the listing by differing priorities simply by clicking on headings
+like name, gender, bate date or death date.
+</tip>
+
+<tip>
+CHANGING PREFERRED NAME: If a person has several names, it is very easy
+to manage these names in Gramps.  Find the person in the Family view,
+double-click on the record, and open Names tab.  You can add different
+types of names here, like Married Name, Birth Name, etc.  Selecting a
+preferred name is just a matter of right-clicking on the name and
+choosing the only item in the menu.
+</tip>
+
 </tips>

@@ -18,13 +18,37 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 import xml.parsers.expat
-import string
+from random import Random
+
+#-------------------------------------------------------------------------
+#
+# GTK/GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import const
 import GrampsGconfKeys
 
+#-------------------------------------------------------------------------
+#
+# Tip Display class
+#
+#-------------------------------------------------------------------------
 class TipOfDay:
     def __init__(self):
         xml = gtk.glade.XML(const.gladeFile, "tod", "gramps")
@@ -36,10 +60,14 @@ class TipOfDay:
         tip_list = tp.get()
         use.set_active(GrampsGconfKeys.get_usetips())
 
+        new_index = range(len(tip_list))
+        Random().shuffle(new_index)
+
         index = 0
         rval = 0
         while rval == 0:
-            tip.set_text(tip_list[index])
+            tip.set_text(tip_list[new_index[index]])
+            tip.set_use_markup(1)
             rval = top.run()
             if index >= len(tip_list)-1:
                 index = 0
@@ -49,6 +77,11 @@ class TipOfDay:
         GrampsGconfKeys.save_usetips(use.get_active())
         top.destroy()
 
+#-------------------------------------------------------------------------
+#
+# Tip parser class
+#
+#-------------------------------------------------------------------------
 class TipParser:
     """
     Interface to the document template file
@@ -84,11 +117,19 @@ class TipParser:
         Loads the dictionary when an XML tag of 'template' is found. The format
         XML tag is <template title=\"name\" file=\"path\">
         """
-        self.tlist = []
+        if tag == "tip":
+            self.tlist = []
+        elif tag != "tips":
+            # let all the other tags through, except for the "tips" tag
+            self.tlist.append("<%s>" % tag)
 
     def endElement(self,tag):
         if tag == "tip":
-            self.mylist.append(string.join(self.tlist,''))
+            text = ''.join(self.tlist)
+            self.mylist.append(' '.join(text.split()))
+        elif tag != "tips":
+            # let all the other tags through, except for the "tips" tag
+            self.tlist.append("</%s>" % tag)
 
     def characters(self, data):
         self.tlist.append(data)
