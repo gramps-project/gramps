@@ -1558,7 +1558,7 @@ more of these alternate calendars, enable alternate calendar support.</property>
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard8">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">LDS extenstions</property>
+	  <property name="title" translatable="yes">LDS extensions</property>
 	  <property name="title_foreground">#53e00817a71b</property>
 	  <property name="background">#53e00817d488</property>
 	  <property name="contents_background">#e1e0dbdac5c5</property>

@@ -725,7 +725,7 @@ class GlobalMediaProperties:
         self.path = self.db.getSavePath()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global")
 
-        title = _('Change global media object properites')
+        title = _('Change global media object properties')
 
         Utils.set_titles(self.change_dialog.get_widget('change_global'),
                          self.change_dialog.get_widget('title'),title)
