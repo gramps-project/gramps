@@ -94,6 +94,7 @@ class AttributeEditor:
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_attr_edit_ok_clicked" : self.on_attrib_edit_ok_clicked,
+            "on_combo_insert_text"    : utils.combo_insert_text,
             "on_source_clicked" : self.on_attrib_source_clicked
             })
 

@@ -107,6 +107,7 @@ class ChooseParents:
             "on_addmother_clicked"     : self.on_addmother_clicked,
             "on_addfather_clicked"     : self.on_addfather_clicked,
             "on_prel_changed"          : self.on_prel_changed,
+            "on_combo_insert_text"     : utils.combo_insert_text,
             "destroy_passed_object"    : utils.destroy_passed_object
             })
 

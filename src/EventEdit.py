@@ -99,6 +99,7 @@ class EventEditor:
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
+            "on_combo_insert_text"     : utils.combo_insert_text,
             "on_event_edit_ok_clicked" : self.on_event_edit_ok_clicked,
             "on_source_clicked" : self.on_edit_source_clicked
             })

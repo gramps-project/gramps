@@ -265,6 +265,12 @@
 	    <child_name>GnomeEntry:entry</child_name>
 	    <name>eventDescription</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>eDescBox</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:38:54 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -301,6 +307,12 @@
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>eventPlace</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>eventPlace_combo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:17:09 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -338,6 +350,12 @@
 	    <name>eventName</name>
 	    <can_focus>True</can_focus>
 	    <has_focus>True</has_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>personalEvents</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:38:28 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -744,6 +762,12 @@
 	    <name>attr_type</name>
 	    <can_focus>True</can_focus>
 	    <has_focus>True</has_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>attr_menu</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:44:15 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
