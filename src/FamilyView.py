@@ -268,13 +268,37 @@ class FamilyView:
         except:
             DisplayTrace.DisplayTrace()
 
+    def update_person_list(self,person):
+        if not self.family:
+            self.family = self.parent.db.newFamily()
+            person.addFamily(self.family)
+            if person.getGender() == RelLib.Person.male:
+                self.family.setFather(person)
+            else:
+                self.family.setMother(person)
+
+        self.family.addChild(person)
+        person.addAltFamily(self.family,"Birth","Birth")
+        self.parent.update_person_list(person)
+        self.load_family(self.family)
+            
     def child_after_edit(self,epo,plist):
+        
         if epo.person.getId() == "":
             self.parent.db.addPerson(epo.person)
         else:
             self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
+            
         self.parent.db.buildPersonDisplay(epo.person.getId())
         self.parent.add_to_person_list(epo.person,0)
+
+        if not self.family:
+            self.family = self.parent.db.newFamily()
+            self.person.addFamily(self.family)
+            if self.person.getGender() == RelLib.Person.male:
+                self.family.setFather(self.person)
+            else:
+                self.family.setMother(self.person)
 
         self.family.addChild(epo.person)
         epo.person.addAltFamily(self.family,"Birth","Birth")
@@ -286,7 +310,7 @@ class FamilyView:
         try:
             SelectChild.SelectChild(self.parent.db, self.family,
                                     self.person, self.load_family,
-                                    self.parent.update_person_list)
+                                    self.update_person_list)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -506,10 +530,9 @@ class FamilyView:
     def display_marriage(self,family):
 
         self.child_model.clear()
+        self.family = family
         if not family:
             return
-        else:
-            self.family = family
 
         if family.getFather() == self.person:
             self.selected_spouse = family.getMother()
