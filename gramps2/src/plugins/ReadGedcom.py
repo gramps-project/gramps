@@ -470,6 +470,8 @@ class GedcomParser:
                 title = matches[2] + d
                 title = string.replace(title,'\n',' ')
                 self.source.setTitle(title)
+            elif matches[1] == "ABBR":
+                pass
             else:
                 if note:
                     note = "%s\n%s %s" % (note,matches[1],matches[2])
