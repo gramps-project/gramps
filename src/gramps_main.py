@@ -922,7 +922,7 @@ class Gramps:
                 if family.getFather() == None:
                     for child in family.getChildList():
                         child.removeAltFamily(family)
-                    self.db.removeFamily(family)
+                    self.db.deleteFamily(family)
                 else:
                     family.setMother(None)
 

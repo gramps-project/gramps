@@ -72,14 +72,14 @@
 from TextDoc import *
 import ImgManip
 
-try:
-    import Plugins
-    import intl
-    _ = intl.gettext
-except:
-    withGramps = 0
-else:
-    withGramps = 1
+#try:
+#    import Plugins
+#    import intl
+#    _ = intl.gettext
+#except:
+#    withGramps = 0
+#else:
+#    withGramps = 1
 
 #------------------------------------------------------------------------
 #
@@ -129,9 +129,11 @@ class RTFDoc(TextDoc):
         self.f.write('{\\f2\\fmodern\\fcharset0\\fprq0 Courier New;}}\n')
         self.f.write('{\colortbl\n')
         self.color_map = {}
-        index = 1
+        index = 2
         self.color_map[(0,0,0)] = 0
         self.f.write('\\red0\\green0\\blue0;')
+        self.color_map[(0,0,255)] = 1
+        self.f.write('\\red0\\green0\\blue255;')
         for style_name in self.style_list.keys():
             style = self.style_list[style_name]
             fgcolor = style.get_font().get_color()
@@ -587,22 +589,23 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def show_link(self, text, href):
-        self.write_text("%s (" % text)
-	self.start_italic()
-	self.write_text(href)
-	self.end_italic()
-	self.write_text(") ")
+        #self.write_text("%s (" % text)
+	#self.start_italic()
+	#self.write_text(href)
+	#self.end_italic()
+	#self.write_text(") ")
+	self.text = self.text + '{\\field{\\*\\fldinst{\ul\cf1  HYPERLINK "%s" }} {\\fldrslt{\ul\cf1 %s}}}' % (href, text)
 
 #------------------------------------------------------------------------
 #
 # Register the document generator with the system if in Gramps
 #
 #------------------------------------------------------------------------
-if withGramps:
-    Plugins.register_text_doc(
-        name=_("Rich Text Format (RTF)"),
-        classref=RTFDoc,
-        table=1,
-        paper=1,
-        style=1
-        )
+#if withGramps:
+#    Plugins.register_text_doc(
+#        name=_("Rich Text Format (RTF)"),
+#        classref=RTFDoc,
+#        table=1,
+#        paper=1,
+#        style=1
+#        )
