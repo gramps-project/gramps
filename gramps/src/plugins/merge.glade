@@ -129,7 +129,7 @@
 	<xpad>0</xpad>
 	<ypad>0</ypad>
 	<child>
-	  <padding>0</padding>
+	  <padding>10</padding>
 	  <expand>False</expand>
 	  <fill>False</fill>
 	</child>
@@ -159,6 +159,7 @@
 	<widget>
 	  <class>GtkFrame</class>
 	  <name>PersonFrame1</name>
+	  <width>300</width>
 	  <label>First Person</label>
 	  <label_xalign>0</label_xalign>
 	  <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -787,6 +788,7 @@
 	<widget>
 	  <class>GtkFrame</class>
 	  <name>PersonFrame2</name>
+	  <width>300</width>
 	  <label>Second Person</label>
 	  <label_xalign>0</label_xalign>
 	  <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -1420,7 +1422,7 @@
 	<spacing>0</spacing>
 	<child>
 	  <padding>10</padding>
-	  <expand>True</expand>
+	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
 
@@ -1478,7 +1480,7 @@
 	<name>hseparator8</name>
 	<child>
 	  <padding>0</padding>
-	  <expand>True</expand>
+	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
       </widget>
@@ -1490,7 +1492,7 @@
 	<spacing>0</spacing>
 	<child>
 	  <padding>0</padding>
-	  <expand>True</expand>
+	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
 

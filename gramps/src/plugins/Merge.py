@@ -79,20 +79,6 @@ def get_name_obj(p1):
 #
 #
 #-------------------------------------------------------------------------
-def on_merge_ok_clicked(obj):
-    
-    myobj = obj.get_data("t")
-    active = myobj.menu.get_menu().get_active().get_data("v")
-    myobj.use_soundex = myobj.soundex_obj.get_active()
-    utils.destroy_passed_object(obj)
-    myobj.find_potentials(active)
-    myobj.show()
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 class Merge:
 
     #---------------------------------------------------------------------
@@ -118,7 +104,6 @@ class Merge:
         self.glade_file = base + os.sep + "merge.glade"
         top = GladeXML(self.glade_file,"dialog")
         topWin = top.get_widget("dialog")
-        topWin.set_data("t",self)
         
         my_menu = GtkMenu()
         item = GtkMenuItem(_("Low"))
@@ -139,9 +124,18 @@ class Merge:
         self.menu.set_menu(my_menu)
 
         top.signal_autoconnect({
-            "on_merge_ok_clicked" : on_merge_ok_clicked,
+            "on_merge_ok_clicked" : self.on_merge_ok_clicked,
             "destroy_passed_object" : utils.destroy_passed_object
             })
+
+    def on_merge_ok_clicked(self,obj):
+    
+        active = self.menu.get_menu().get_active().get_data("v")
+        self.use_soundex = self.soundex_obj.get_active()
+        utils.destroy_passed_object(obj)
+        self.find_potentials(active)
+        self.show()
+    
     
     #---------------------------------------------------------------------
     #
@@ -227,17 +221,25 @@ class Merge:
         self.altname = self.topDialog.get_widget("altname")
         
         self.topDialog.signal_autoconnect({
-            "on_next_clicked" : on_next_clicked,
-            "on_merge_clicked" : on_merge_clicked,
-            "destroy_passed_object" : update_and_destroy
+            "on_next_clicked" : self.on_next_clicked,
+            "on_merge_clicked" : self.on_merge_clicked,
+            "destroy_passed_object" : self.update_and_destroy
             })
 
         if len(self.map) > 0:
             top = self.topDialog.get_widget("merge")
-            top.set_data("MergeObject",self)
             top.show()
-            top.set_data("t",self)
             self.load_next()
+        
+    def on_merge_clicked(self,obj):
+        self.merge()
+
+    def on_next_clicked(self,obj):
+        self.load_next()
+
+    def update_and_destroy(self,obj):
+        self.update(1)
+        utils.destroy_passed_object(obj)
         
     #---------------------------------------------------------------------
     #
@@ -913,33 +915,6 @@ class Merge:
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
     mergeObj = Merge(database,callback)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def update_and_destroy(obj):
-    obj.get_data("t").update(1)
-    utils.destroy_passed_object(obj)
-        
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_next_clicked(obj):
-    myObject = obj.get_data("MergeObject")
-    myObject.load_next()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_merge_clicked(obj):
-    myObject = obj.get_data("MergeObject")
-    myObject.merge()
 
 #-------------------------------------------------------------------------
 #
