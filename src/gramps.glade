@@ -499,6 +499,19 @@
 	    </widget>
 
 	    <widget>
+	      <class>GtkMenuItem</class>
+	      <name>show_plugin_status</name>
+	      <tooltip>Shows the status of plugins that failed to load</tooltip>
+	      <signal>
+		<name>activate</name>
+		<handler>on_show_plugin_status</handler>
+		<last_modification_time>Sun, 24 Feb 2002 15:33:38 GMT</last_modification_time>
+	      </signal>
+	      <label>_Show Plugin Status</label>
+	      <right_justify>False</right_justify>
+	    </widget>
+
+	    <widget>
 	      <class>GtkPixmapMenuItem</class>
 	      <name>about1</name>
 	      <signal>

@@ -70,6 +70,7 @@ _attempt = []
 _loaddir = []
 _textdoc = []
 _drawdoc = []
+_failmsg = []
 
 #-------------------------------------------------------------------------
 #
@@ -184,6 +185,29 @@ class ToolPlugins:
         self.dialog.get_widget("pluginTitle").set_text(title)
         self.run_tool = obj.get_data(TASK)
 
+
+class PluginStatus:
+    def __init__(self):
+        import cStringIO
+        
+        self.glade = libglade.GladeXML(const.plugfile,"plugstat")
+        self.top = self.glade.get_widget("plugstat")
+        window = self.glade.get_widget("text")
+
+        info = cStringIO.StringIO()
+        for (file,msgs) in _failmsg:
+            error = str(msgs[0])
+            if error[0:11] == "exceptions.":
+                error = error[11:]
+            msg = msgs[1]
+            trc = msgs[2]
+            info.write("%s\n\t%s: %s\n\n" % (file,error,msg) )
+
+        info.seek(0)
+        window.show_string(info.read())
+        self.top.run_and_close()
+        
+
 #-------------------------------------------------------------------------
 #
 # build_tree
@@ -276,7 +300,7 @@ def load_plugins(dir):
             a = __import__(plugin)
             _success.append(a)
         except:
-            print _("Note: %s support could not be loaded") % plugin
+            _failmsg.append((file,sys.exc_info()))
 
 #-------------------------------------------------------------------------
 #
@@ -295,7 +319,7 @@ def reload_plugins(obj):
         try: 
             reload(plugin)
         except:
-            print _("Note: failed to load the plugin module: %s") % plugin
+            _failmsg.append((file,sys.exc_info()))
             
     # attempt to load the plugins that have failed in the past
     
@@ -303,7 +327,7 @@ def reload_plugins(obj):
         try: 
             __import__(plugin)
         except:
-            print _("Note: failed to load the plugin module: %s") % plugin
+            _failmsg.append((file,sys.exc_info()))
 
     # attempt to load any new files found
     for dir in _loaddir:
@@ -320,7 +344,7 @@ def reload_plugins(obj):
                 a = __import__(plugin)
                 _success.append(a)
             except:
-                print _("Note: failed to load the plugin module: %s") % plugin
+                _failmsg.append((file,sys.exc_info()))
 
 #-------------------------------------------------------------------------
 #

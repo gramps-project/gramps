@@ -274,6 +274,7 @@ class Gramps:
             "on_revert_activate"                : self.on_revert_activate,
             "on_save_activate"                  : self.on_save_activate,
             "on_save_as_activate"               : self.on_save_as_activate,
+            "on_show_plugin_status"             : self.on_show_plugin_status,
             "on_source_list_button_press_event" : self.source_view.on_button_press_event,
             "on_sources_activate"               : self.on_sources_activate,
             "on_spouselist_changed"             : self.on_spouselist_changed,
@@ -284,7 +285,10 @@ class Gramps:
             "on_gramps_mailing_lists_activate"  : self.on_gramps_mailing_lists_activate,
             "on_writing_extensions_activate"    : self.on_writing_extensions_activate,
             })	
-        
+
+    def on_show_plugin_status(self,obj):
+        Plugins.PluginStatus()
+
     def build_plugin_menus(self):
         export_menu = self.gtop.get_widget("export1")
         import_menu = self.gtop.get_widget("import1")
