@@ -723,7 +723,6 @@ class GedcomParser:
                     name.set_first_name(names[0].strip())
                 if names[2]:
                     name.set_surname(names[2].strip())
-                    self.db.add_surname(names[2].strip())
                 if names[4]:
                     name.set_suffix(names[4].strip())
                 if name_cnt == 0:
@@ -742,7 +741,6 @@ class GedcomParser:
                     aka.set_first_name(names[0])
                 if names[2]:
                     aka.set_surname(names[2])
-                    self.db.add_surname(names[2])
                 if names[4]:
                     aka.set_suffix(names[4])
                 self.person.add_alternate_name(aka)
@@ -1411,7 +1409,6 @@ class GedcomParser:
                     aka.set_first_name(names[0])
                 if names[2]:
                     aka.set_surname(names[2])
-                    self.db.add_surname(names[2])
                 if names[4]:
                     aka.set_suffix(names[4])
                 self.person.add_alternate_name(aka)
@@ -1423,7 +1420,6 @@ class GedcomParser:
                 name.set_surname_prefix(matches[2])
             elif matches[1] == "SURN":
                 name.set_surname(matches[2])
-                self.db.add_surname(matches[2])
             elif matches[1] == "_MARNM":
                 self.parse_marnm(self.person,matches[2].strip())
             elif matches[1] == "TITL":
@@ -1441,7 +1437,6 @@ class GedcomParser:
                 else:
                     name = RelLib.Name()
                     name.set_surname(lname[-1])
-                    self.db.add_surname(lname[-1])
                     name.set_first_name(string.join(lname[0:l-1]))
                     self.person.add_alternate_name(name)
             elif matches[1] == "SOUR":

@@ -1,3 +1,7 @@
+2004-04-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: add_source takes an transaction
+	* src/ReadGedcom.py: drop add_surname
+
 2004-04-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: remove VersionControl reference
 	* src/Marriage.py: fix transaction handling
