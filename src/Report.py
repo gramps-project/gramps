@@ -562,11 +562,11 @@ class ReportDialog:
         PaperMenu.make_paper_menu(self.papersize_menu)
         PaperMenu.make_orientation_menu(self.orientation_menu)
 
-        l = GtkLabel(_("Quality"))
-        l.set_alignment(1.0,0.5)
-        table.attach(l,0,1,2,3,FILL,FILL,pad,pad)
-        l = GtkOptionMenu()
-        table.attach(l,1,2,2,3,xpadding=pad,ypadding=pad)
+//        l = GtkLabel(_("Quality"))
+//        l.set_alignment(1.0,0.5)
+//        table.attach(l,0,1,2,3,FILL,FILL,pad,pad)
+//        l = GtkOptionMenu()
+//        table.attach(l,1,2,2,3,xpadding=pad,ypadding=pad)
         # The optional pagecount stuff.
         if pagecount_map:
             self.pagecount_menu = GtkOptionMenu()
