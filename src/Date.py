@@ -174,6 +174,12 @@ class Date:
             pref = "abt "
         else:
             pref = ""
+
+        if self.calendar != CAL_GREGORIAN:
+            cal = " (%s)" % self.calendar_names[self.calendar]
+        else:
+            cal = ""
+        
             
         if self.modifier == MOD_TEXTONLY:
             val = self.text
@@ -184,7 +190,7 @@ class Date:
         else:
             val = "%04d-%02d-%02d" % (
                 self.dateval[_POS_YR],self.dateval[_POS_MON],self.dateval[_POS_DAY])
-        return "%s%s%s" % (qual,pref,val)
+        return "%s%s%s%s" % (qual,pref,val,cal)
 
     def get_sort_value(self):
         """

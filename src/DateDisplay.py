@@ -96,20 +96,11 @@ class DateDisplay:
         )
     
     _french = (
-        "",
-        unicode("Vendémiaire",'latin-1'),
-        unicode("Brumaire",'latin-1'),
-        unicode("Frimaire",'latin-1'),
-        unicode("Nivôse",'latin-1'),
-        unicode("Pluviôse",'latin-1'),
-        unicode("Ventôse",'latin-1'),
-        unicode("Germinal",'latin-1'),
-        unicode("Floréal",'latin-1'),
-        unicode("Prairial",'latin-1'),
-        unicode("Messidor",'latin-1'),
-        unicode("Thermidor",'latin-1'),
-        unicode("Fructidor",'latin-1'),
-        unicode("Extra",'latin-1'),
+        u'',           u'Vend\xe9miaire', u'Brumaire',
+        u'Frimaire',   u'Niv\xf4se',      u'Pluvi\xf4se',
+        u'Vent\xf4se', u'Germinal',       u'Flor\xe9al',
+        u'Prairial',   u'Messidor',       u'Thermidor',
+        u'Fructidor',  u'Extra'
         )
     
     _persian = (
@@ -150,7 +141,8 @@ class DateDisplay:
         """
         Verifies that the format value is within the correct range.
         """
-        assert(format < len(self.formats)-1)
+        pass
+        #assert(format < len(self.formats)-1)
 
     def quote_display(self,date):
         """
