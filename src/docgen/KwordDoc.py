@@ -409,7 +409,11 @@ class KwordDoc(BaseDoc.BaseDoc):
 
     def add_photo(self,name,pos,x_cm,y_cm):
 
-        im = ImgManip.ImgManip(name)
+        try:
+            im = ImgManip.ImgManip(name)
+        except:
+            return
+        
         (x,y)= im.size()
         ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
 

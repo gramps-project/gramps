@@ -324,7 +324,11 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def add_photo(self,name,pos,x_cm,y_cm):
-	im = ImgManip.ImgManip(name)
+        try:
+            im = ImgManip.ImgManip(name)
+        except:
+            return
+        
         nx,ny = im.size()
 
         ratio = float(x_cm)*float(ny)/(float(y_cm)*float(nx))

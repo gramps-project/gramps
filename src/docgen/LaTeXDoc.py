@@ -380,8 +380,13 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 
     def add_photo(self,name,pos,x,y):
         """Add photo to report"""
+
+        try:
+            pic = ImgManip.ImgManip(name)
+        except:
+            return
+
 	self.imagenum = self.imagenum + 1
-        pic = ImgManip.ImgManip(name)
 	picf = self.filename[:-4] + '_img' + str(self.imagenum) + '.eps'
 	pic.eps_convert(picf)
 	

@@ -559,6 +559,8 @@ class DetDescendantReport(Report.Report):
 
         photos= person.getPhotoList()
         for photo in photos :
+            if photo.getMimeType()[0:5] != "image":
+                continue
             attribs= photo.getAttributeList()
             for attrib in attribs :
                 if attrib.getType() == tag:
@@ -577,6 +579,8 @@ class DetDescendantReport(Report.Report):
         photos= person.getPhotoList()
         numPhotos= 0                      # Number of photos
         for photo in photos :
+            if photo.getMimeType()[0:5] != "image":
+                continue
             attribs= photo.getAttributeList()
             for attrib in attribs :
                 if attrib.getType() == tag:
