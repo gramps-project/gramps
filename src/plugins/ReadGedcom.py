@@ -470,11 +470,7 @@ class GedcomParser:
                 else:
                     note = "%s %s%s" % (matches[1],matches[2],d)
             elif matches[1] == "ABBR":
-                d = self.parse_continue_data(level+1)
-                if note:
-                    note = "%s\n%s %s%s" % (note,matches[1],matches[2],d)
-                else:
-                    note = "%s %s%s" % (matches[1],matches[2],d)
+                self.source.setAbbrev(matches[2] + self.parse_continue_data(level+1))
             else:
                 if note:
                     note = "%s\n%s %s" % (note,matches[1],matches[2])
