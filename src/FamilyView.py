@@ -622,9 +622,9 @@ class FamilyView:
                 DisplayTrace.DisplayTrace()
 
     def edit_marriage_callback(self,obj):
-        Marriage.Marriage(self.parent, self.family,self.parent.db,
-                          self.parent.new_after_edit,
-                          self.load_family)
+        Marriage.Marriage(
+            self.parent, self.family,self.parent.db, self.parent.new_after_edit,
+            self.load_family, self.parent.source_view.build_tree)
 
     def sp_button_press(self,obj,event):
         if event.state & gtk.gdk.SHIFT_MASK and \
@@ -641,9 +641,10 @@ class FamilyView:
            if self.person:
                try:
                    if self.selected_spouse:
-                       Marriage.Marriage(self.parent,self.family,self.parent.db,
-                                         self.parent.new_after_edit,
-                                         self.load_family)
+                       Marriage.Marriage(
+                           self.parent,self.family,self.parent.db,
+                           self.parent.new_after_edit, self.load_family,
+                           self.parent.source_view.build_tree)
                    else:
                        AddSpouse.AddSpouse(self.parent,self.parent.db,self.person,
                                            self.load_family,
@@ -712,9 +713,10 @@ class FamilyView:
         self.load_family(self.family)
 
         self.parent.db.transaction_commit(trans,_("Add Spouse"))
-        m = Marriage.Marriage(self.parent,self.family,self.parent.db,
-                              self.parent.new_after_edit,
-                              self.load_family)
+        m = Marriage.Marriage(
+            self.parent,self.family,self.parent.db, self.parent.new_after_edit,
+            self.load_family, self.parent.source_view.build_tree)
+
         m.on_add_clicked()
 
     def add_child_clicked(self,obj):

@@ -1242,7 +1242,7 @@ class Gramps:
     def load_new_person(self,obj):
         person = RelLib.Person()
         try:
-            EditPerson.EditPerson(self,person,self.db,
+            EditPerson.EditPerson(self, person, self.db,
                                   self.update_after_edit)
         except:
             DisplayTrace.DisplayTrace()

@@ -1,3 +1,17 @@
+2005-02-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddrEdit.py: update main source list after source addition
+	* src/AttrEdit.py: update main source list after source addition
+	* src/EditPerson.py: update main source list after source addition
+	and place addition
+	* src/EventEdit.py: update main source list after source addition
+	and place addition
+	* src/FamilyView.py: update main source list after source addition
+	* src/Marriage.py: update main source list after source addition
+	* src/NameEdit.py: update main source list after source addition
+	* src/Sources.py: update main source list after source addition
+	* src/gramps_main.py: update main source list after source addition
+	* src/const.py.in: new constants
+
 2005-02-25  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: update places and sources after edit
 
