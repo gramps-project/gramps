@@ -413,10 +413,11 @@ class PdfDoc(BaseDoc.BaseDoc):
 	w = box_style.get_width()*cm
         h = box_style.get_height()*cm
 
+        sspace = box_style.get_shadow_space()
  	if box_style.get_shadow():
             col = make_color((0xc0,0xc0,0xc0))
-            r = reportlab.graphics.shapes.Rect((x+0.2)*cm,
-                                               (y-0.2)*cm-h,
+            r = reportlab.graphics.shapes.Rect((x+sspace)*cm,
+                                               (y-sspace)*cm-h,
                                                w,h,
                                                fillColor=col,
                                                strokeColor=col)
@@ -433,7 +434,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
         size = p.get_font().get_size()
 
-        x = x + 0.2
+        x = x + sspace
 	if text != "":
             lines = text.split('\n')
             self.left_print(lines,p.get_font(),x*cm,y*cm - size)
