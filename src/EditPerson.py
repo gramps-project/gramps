@@ -91,7 +91,7 @@ class EditPerson:
         self.person = person
         self.orig_surname = person.get_primary_name().get_surname()
         self.parent = parent
-        self.orig_id = self.person.get_gramps_id()
+        self.orig_id = self.person.get_handle()
         if self.parent.child_windows.has_key(self.orig_id):
             self.parent.child_windows[self.person.get_handle()].present(None)
             return
