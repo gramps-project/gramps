@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"People who have photos"
+"People who have images"
 
 import Filter
 import string
@@ -27,7 +27,7 @@ import intl
 _ = intl.gettext
 
 class HavePhotos(Filter.Filter):
-    "People who have photos"
+    "People who have images"
 
     def match(self,person):
         return len(person.getPhotoList()) > 0
@@ -39,4 +39,4 @@ def need_qualifier():
     return 0
 
 def get_name():
-    return _("People who have photos")
+    return _("People who have images")

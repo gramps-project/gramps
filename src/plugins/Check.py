@@ -151,13 +151,13 @@ class CheckIntegrity:
         elif efam > 1:
             text = text + _("%d empty families were found\n") % efam
         if fphotos == 1:
-            text = text + _("1 broken family photo was found\n")
+            text = text + _("1 broken family image was found\n")
         elif fphotos > 1:
-            text = text + _("%d broken family photos were found\n") % fphotos
+            text = text + _("%d broken family images were found\n") % fphotos
         if pphotos == 1:
-            text = text + _("1 broken personal photo was found\n")
+            text = text + _("1 broken personal image was found\n")
         elif pphotos > 1:
-            text = text + _("%d broken personal photos were found\n") % pphotos
+            text = text + _("%d broken personal images were found\n") % pphotos
                 
         GnomeWarningDialog(string.strip(text))
     

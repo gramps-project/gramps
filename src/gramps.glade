@@ -419,7 +419,7 @@
 	  <class>GtkButton</class>
 	  <child_name>Toolbar:button</child_name>
 	  <name>button24</name>
-	  <tooltip>Display list of people</tooltip>
+	  <tooltip>Display the list of people</tooltip>
 	  <signal>
 	    <name>clicked</name>
 	    <handler>on_person_list1_activate</handler>
@@ -3840,7 +3840,7 @@ Other
 		    <object>sourceEditor</object>
 		    <last_modification_time>Thu, 31 May 2001 14:39:32 GMT</last_modification_time>
 		  </signal>
-		  <label>Add Photo</label>
+		  <label>Add Image</label>
 		  <relief>GTK_RELIEF_NORMAL</relief>
 		</widget>
 
@@ -3855,7 +3855,7 @@ Other
 		    <object>sourceEditor</object>
 		    <last_modification_time>Thu, 31 May 2001 14:39:16 GMT</last_modification_time>
 		  </signal>
-		  <label>Delete Photo</label>
+		  <label>Delete Image</label>
 		  <relief>GTK_RELIEF_NORMAL</relief>
 		</widget>
 	      </widget>

@@ -112,6 +112,11 @@ childRelations = [
     "Other"
     ]
 
+#-------------------------------------------------------------------------
+#
+# Family event string mappings
+#
+#-------------------------------------------------------------------------
 familyConstantEvents = {
     "Annulment"             : "ANUL",
     "Divorce Filing"        : "DIVF",
@@ -123,6 +128,48 @@ familyConstantEvents = {
     "Marriage"              : "MARR"
     }
 
+_fe_e2l = {
+    "Annulment"             : _("Annulment"),
+    "Divorce Filing"        : _("Divorce Filing"),
+    "Divorce"               : _("Divorce"),
+    "Engagement"            : _("Engagement"),
+    "Marriage Contract"     : _("Marriage Contract"),
+    "Marriage License"      : _("Marriage License"),
+    "Marriage Settlement"   : _("Marriage Settlement"),
+    "Marriage"              : _("Marriage")
+    }
+
+_fe_l2e = {}
+for a in _fe_e2l.keys():
+    _fe_l2e[_fe_e2l[a]] = a
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def display_fevent(st):
+    if _fe_e2l.has_key(st):
+        return _fe_e2l[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def save_fevent(st):
+    if _fe_l2e.has_key(st):
+        return _fe_l2e[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 personalConstantEvents = {
     "Adopted"               : "ADOP",
     "Alternate Birth"       : "BIRT",
@@ -153,6 +200,39 @@ personalConstantEvents = {
     "Retirement"            : "RETI"
     }
 
+_pe_e2l = {
+    "Adopted"               : _("Adopted"),
+    "Alternate Birth"       : _("Alternate Birth"),
+    "Alternate Death"       : _("Alternate Death"),
+    "Baptism (LDS)"         : _("Baptism (LDS)"),
+    "Baptism"               : _("Baptism"),
+    "Bar Mitzvah"           : _("Bar Mitzvah"),
+    "Bas Mitzvah"           : _("Bas Mitzvah"),
+    "Burial"                : _("Burial"),
+    "Cause Of Death"        : _("Cause Of Death"),
+    "Census"                : _("Census"),
+    "Christening"           : _("Christening"),
+    "Confirmation"          : _("Confirmation"),
+    "Cremation"             : _("Cremation"),
+    "Degree"                : _("Degree"),
+    "Divorce Filing"        : _("Divorce Filing"),
+    "Education"             : _("Education"),
+    "Elected"               : _("Elected"),
+    "Emigration"            : _("Emigration"),
+    "Graduation"            : _("Graduation"),
+    "Military Service"      : _("_MILT"), 
+    "Naturalization"        : _("Naturalization"),
+    "Occupation"            : _("Occupation"),
+    "Probate"               : _("Probate"),
+    "Religion"              : _("Religion"),
+    "Residence"             : _("Residence"),
+    "Retirement"            : _("Retirement"),
+    }
+
+_pe_l2e = {}
+for a in _pe_e2l.keys():
+    _pe_l2e[_pe_e2l[a]] = a
+
 personalConstantAttributes = {
     "Description"           : "DSCR",
     "Identification Number": "IDNO",
@@ -168,6 +248,28 @@ familyConstantRelations = [
     "Partners",
     "Unknown"
 ]
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def display_pevent(st):
+    if _pe_e2l.has_key(st):
+        return _pe_e2l[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def save_pevent(st):
+    if _pe_l2e.has_key(st):
+        return _pe_l2e[st]
+    else:
+        return st
 
 personalEvents = personalConstantEvents.keys()
 personalEvents.sort()

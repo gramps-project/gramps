@@ -93,11 +93,11 @@ def report(database,person):
     text = text + "%s : %d\n" % (_("Individuals with incomplete names"),incomp_names)
     text = text + "%s : %d\n" % (_("Individuals missing birth dates"),missing_bday)
     text = text + "%s : %d\n" % (_("Disconnected individuals"),disconnected)
-    text = text + "\n%s\n" % _("Photos and files")
+    text = text + "\n%s\n" % _("Images and files")
     text = text + "----------------------------\n"
-    text = text + "%s : %d\n" % (_("Individuals with photos"),with_photos)
-    text = text + "%s : %d\n" % (_("Total number of photos"),total_photos)
-    text = text + "%s : %d %s\n" % (_("Total size of photos"),bytes,_("bytes"))
+    text = text + "%s : %d\n" % (_("Individuals with images"),with_photos)
+    text = text + "%s : %d\n" % (_("Total number of images"),total_photos)
+    text = text + "%s : %d %s\n" % (_("Total size of images"),bytes,_("bytes"))
     text = text + "\n%s\n" % _("Family Information")
     text = text + "----------------------------\n"
     text = text + "%s : %d\n" % (_("Number of families"),len(familyList))

@@ -407,8 +407,8 @@ class EditPerson:
                     attr = "N"
                 if event.getSourceRef().getBase():
                     attr = attr + "S"
-            self.event_list.append([event.getName(),event.getQuoteDate(),\
-                                    event.getPlace(),attr])
+            self.event_list.append([const.display_pevent(event.getName()),\
+                                    event.getQuoteDate(), event.getPlace(),attr])
             self.event_list.set_row_data(self.event_index,event)
             self.event_index = self.event_index + 1
 
@@ -864,7 +864,7 @@ def on_event_select_row(obj,row,b,c):
     edit_person_obj = obj.get_data(EDITPERSON)
     edit_person_obj.event_date_field.set_text(event.getDate())
     edit_person_obj.event_place_field.set_text(event.getPlace())
-    edit_person_obj.event_name_field.set_text(event.getName())
+    edit_person_obj.event_name_field.set_text(const.display_pevent(event.getName()))
     edit_person_obj.event_descr_field.set_text(event.getDescription())
 
 #-------------------------------------------------------------------------
@@ -942,8 +942,8 @@ def update_event(event,name,date,place,desc):
         event.setPlace(place)
         utils.modified()
         
-    if event.getName() != name:
-        event.setName(name)
+    if event.getName() != const.save_pevent(name):
+        event.setName(const.save_pevent(name))
         utils.modified()
         
     if event.getDescription() != desc:
@@ -1289,11 +1289,11 @@ def on_photolist_button_press_event(obj,event):
         menu = GtkMenu()
         item = GtkTearoffMenuItem()
         item.show()
-        view = GtkMenuItem(_("View Photo"))
+        view = GtkMenuItem(_("View Image"))
         view.set_data("m",myobj)
         view.connect("activate",on_view_photo)
         view.show()
-        edit = GtkMenuItem(_("Edit Photo"))
+        edit = GtkMenuItem(_("Edit Image"))
         edit.set_data("m",myobj)
         edit.connect("activate",on_edit_photo)
         edit.show()

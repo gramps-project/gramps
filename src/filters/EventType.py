@@ -26,7 +26,6 @@ import intl
 _ = intl.gettext
 
 class EventType(Filter.Filter):
-    "People who have photos"
 
     def match(self,person):
         for event in person.getEventList():

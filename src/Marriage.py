@@ -240,10 +240,10 @@ class Marriage:
         self.event_list.freeze()
         self.event_list.clear()
 
-        self.add_event("Marriage",self.family.getMarriage())
-        self.add_event("Divorce",self.family.getDivorce())
+        self.add_event(const.display_fevent("Marriage"),self.family.getMarriage())
+        self.add_event(const.display_fevent("Divorce"),self.family.getDivorce())
         for event in self.family.getEventList():
-            self.add_event(event.getName(),event)
+            self.add_event(const.display_fevent(event.getName()),event)
 
         current_row = self.event_list.get_data(INDEX)
         if current_row == None:
@@ -395,7 +395,7 @@ def on_select_row(obj,row,b,c):
     
     family_obj.date_field.set_text(event.getDate())
     family_obj.place_field.set_text(event.getPlace())
-    family_obj.name_field.set_text(event.getName())
+    family_obj.name_field.set_text(const.display_fevent(event.getName()))
     family_obj.descr_field.set_text(event.getDescription())
 
 #-------------------------------------------------------------------------
@@ -412,8 +412,8 @@ def update_event(event,name,date,place,desc):
         event.setPlace(place)
         utils.modified()
         
-    if event.getName() != name:
-        event.setName(name)
+    if event.getName() != const.save_fevent(name):
+        event.setName(const.save_fevent(name))
         utils.modified()
         
     if event.getDescription() != desc:
@@ -447,11 +447,11 @@ def on_photolist_button_press_event(obj,event):
         menu = GtkMenu()
         item = GtkTearoffMenuItem()
         item.show()
-        view = GtkMenuItem(_("View Photo"))
+        view = GtkMenuItem(_("View Image"))
         view.set_data("m",myobj)
         view.connect("activate",on_view_photo)
         view.show()
-        edit = GtkMenuItem(_("Edit Photo"))
+        edit = GtkMenuItem(_("Edit Image"))
         edit.set_data("m",myobj)
         edit.connect("activate",on_edit_photo)
         edit.show()
