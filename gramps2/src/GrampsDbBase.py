@@ -1004,8 +1004,8 @@ class GrampsDbBase:
                               self.place_map.get(str(s))[2])
 
     def _sortbysource(self,f,s):
-        fp = self.source_map[str(f)][2]
-        sp = self.source_map[str(s)][2]
+        fp = unicode(self.source_map[str(f)][2])
+        sp = unicode(self.source_map[str(s)][2])
         return locale.strcoll(fp,sp)
 
     def _sortbymedia(self,f,s):

@@ -354,7 +354,6 @@ class Gramps:
             "on_export_activate" : self.on_export_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
-            "on_main_key_release_event" : self.on_main_key_release_event,
             "on_media_activate" : self.on_media_activate,
             "on_media_list_select_row" : self.media_view.on_select_row,
             "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
@@ -1646,14 +1645,6 @@ class Gramps:
         if self.active_person:
             task(self.db,self.active_person,self.tool_callback,self)
     
-    def on_main_key_release_event(self,obj,event):
-        """Respond to the insert and delete buttons in the person list"""
-        pass
-        #if event.keyval == GDK.Delete:
-        #    self.on_delete_person_clicked(obj)
-        #elif event.keyval == GDK.Insert:
-        #    self.load_new_person(obj)
-
     def open_example(self,obj):
         pass
 
