@@ -75,13 +75,18 @@ class PeopleModel(gtk.GenericTreeModel):
         self.top_visible = {}
         self.rebuild_data(data_filter)
     
-    def rebuild_data(self,data_filter=None):
+    def rebuild_data(self,data_filter=None,skip=None):
+        self.calculate_data(data_filter,skip)
+        self.assign_data()
+        
+    def calculate_data(self,data_filter=None,skip=None):
+
         if data_filter:
             self.data_filter = data_filter
-        temp_top_path2iter = []
-        temp_iter2path = {}
-        temp_path2iter = {}
-        self.sname_sub = {}
+        self.temp_top_path2iter = []
+        self.temp_iter2path = {}
+        self.temp_path2iter = {}
+        self.temp_sname_sub = {}
 
         if not self.db.is_open():
             return
@@ -92,8 +97,10 @@ class PeopleModel(gtk.GenericTreeModel):
             del handle_list
         else:
             keys = self.db.get_person_handles(sort_handles=False)
-            
+
         for person_handle in keys:
+            if person_handle == skip:
+                continue
             person = self.db.get_person_from_handle(person_handle)
             grp_as = person.get_primary_name().get_group_as()
             sn = person.get_primary_name().get_surname()
@@ -102,17 +109,17 @@ class PeopleModel(gtk.GenericTreeModel):
             else:
                 surname = self.db.get_name_group_mapping(sn)
 
-            if self.sname_sub.has_key(surname):
-                self.sname_sub[surname].append(person_handle)
+            if self.temp_sname_sub.has_key(surname):
+                self.temp_sname_sub[surname].append(person_handle)
             else:
-                self.sname_sub[surname] = [person_handle]
+                self.temp_sname_sub[surname] = [person_handle]
         
-        temp_top_path2iter = self.sname_sub.keys()
-        temp_top_path2iter.sort(locale.strcoll)
-        for name in temp_top_path2iter:
+        self.temp_top_path2iter = self.temp_sname_sub.keys()
+        self.temp_top_path2iter.sort(locale.strcoll)
+        for name in self.temp_top_path2iter:
 
             slist = []
-            for handle in self.sname_sub[name]:
+            for handle in self.temp_sname_sub[name]:
                 n = self.db.person_map.get(handle)[_NAME_COL].get_sort_name()
                 slist.append((n,handle))
             slist.sort(self.byname)
@@ -120,13 +127,15 @@ class PeopleModel(gtk.GenericTreeModel):
             val = 0
             for person_handle in entries:
                 tpl = (name,val)
-                temp_iter2path[person_handle] = tpl
-                temp_path2iter[tpl] = person_handle
+                self.temp_iter2path[person_handle] = tpl
+                self.temp_path2iter[tpl] = person_handle
                 val += 1
 
-        self.top_path2iter = temp_top_path2iter
-        self.iter2path = temp_iter2path
-        self.path2iter = temp_path2iter
+    def assign_data(self):
+        self.top_path2iter = self.temp_top_path2iter
+        self.iter2path = self.temp_iter2path
+        self.path2iter = self.temp_path2iter
+        self.sname_sub = self.temp_sname_sub
 
     def byname(self,f,s):
         return locale.strcoll(f[0],s[0])
@@ -146,6 +155,9 @@ class PeopleModel(gtk.GenericTreeModel):
         except:
             (surname,index) = self.iter2path[node]
             return (self.top_path2iter.index(surname),index)
+
+    def is_visable(self,handle):
+        return self.iter2path.has_key(handle)
 
     def on_get_column_type(self,index):
          # return column data-type, from table

@@ -265,6 +265,7 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 transaction.add(PERSON_KEY,handle,person.serialize())
             self.person_map.delete(str(handle))
+            self.run_person_delete_callbacks(str(handle))
 
     def remove_source(self,handle,transaction):
         if not self.readonly:

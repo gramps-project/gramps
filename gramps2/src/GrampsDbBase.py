@@ -165,6 +165,38 @@ class GrampsDbBase:
         self.place2title = {}
         self.name_groups = {}
 
+        self.person_add_callback = {}
+        self.person_update_callback = {}
+        self.person_delete_callback = {}
+
+    def add_person_callbacks(self, key, add, update, delete):
+        if add:
+            self.person_add_callback[key] = add
+        if update:
+            self.person_update_callback[key] = update
+        if delete:
+            self.person_delete_callback[key] = delete
+
+    def remove_person_callbacks(self, key):
+        if self.person_add_callback.has_key(key):
+            del self.person_add_callback[key]
+        if self.person_update_callback.has_key(key):
+            del self.person_update_callback[key]
+        if self.person_delete_callback.has_key(key):
+            del self.person_delete_callback[key]
+
+    def run_person_add_callbacks(self,handle):
+        for func in self.person_add_callback.values():
+            func(handle)
+
+    def run_person_update_callbacks(self,handle):
+        for func in self.person_update_callback.values():
+            func(handle)
+
+    def run_person_delete_callbacks(self,handle):
+        for func in self.person_delete_callback.values():
+            func(handle)
+
     def need_upgrade(self):
         return False
 
@@ -240,6 +272,7 @@ class GrampsDbBase:
             transaction.add(PERSON_KEY,handle,old_data)
 
         self.person_map[handle] = person.serialize()
+        self.run_person_update_callbacks(handle)
           
     def commit_media_object(self,obj,transaction,change_time=None):
         """
@@ -474,6 +507,7 @@ class GrampsDbBase:
                 if transaction != None:
                     transaction.add(PERSON_KEY, val, None)
                 self.person_map[str(val)] = person.serialize()
+                self.run_person_add_callbacks(str(val))
             self.genderStats.count_person (person, self)
         return person
 
@@ -919,8 +953,10 @@ class GrampsDbBase:
             if key == PERSON_KEY:
                 if data == None:
                     del self.person_map[str(handle)]
+                    self.run_person_delete_callbacks(str(handle))
                 else:
                     self.person_map[str(handle)] = data
+                    self.run_person_update_callbacks(str(handle))
             elif key == FAMILY_KEY:
                 if data == None:
                     del self.family_map[str(handle)]
