@@ -1,3 +1,6 @@
+2003-11-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Utils.py (search_for): check for directory
+
 2003-11-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* FAQ: Add a question about adding custom columns.
 
