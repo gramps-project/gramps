@@ -1731,7 +1731,6 @@ class ProbablyAlive(Rule):
             self.current_year = int(self.list[0])
         except:
             self.current_year = None
-        print self.current_year
 
     def name(self):
         return 'People probably alive'
