@@ -807,7 +807,9 @@ class MergePlaces:
         self.top.show()
 
     def on_merge_places_clicked(self,obj):
-        if self.glade.get_widget("title2").get_active():
+        t2active = self.glade.get_widget("title2").get_active()
+
+        if t2active:
             self.p1.set_title(self.p2.get_title())
         elif self.glade.get_widget("title3").get_active():
             self.p1.set_title(self.t3.get_text())
@@ -827,9 +829,20 @@ class MergePlaces:
                 self.p1.setNote(note)
             elif self.p1.getNote() != note:
                 self.p1.setNote("%s\n\n%s" % (self.p1.getNote(),note))
-        for l in [self.p2.get_main_location()] + self.p2.get_alternate_locations():
-            if not l.is_empty():
-                self.p1.add_alternate_locations(l)
+
+        if t2active:
+            list = [self.p1.get_main_location()] + self.p1.get_alternate_locations()
+            self.p1.set_main_location(self.p2.get_main_location())
+            for l in list:
+                if not l.is_empty():
+                    self.p1.add_alternate_locations(l)
+        else:
+            list = [self.p2.get_main_location()] + self.p2.get_alternate_locations()
+            for l in list:
+                if not l.is_empty():
+                    self.p1.add_alternate_locations(l)
+
+
         for p in self.db.getPersonMap().values():
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():
                 if event.getPlace() == self.p2:
