@@ -185,7 +185,7 @@ def on_merge_activate(obj):
             import MergeData
             (p1,x) = person_list.get_row_data(person_list.selection[0])
             (p2,x) = person_list.get_row_data(person_list.selection[1])
-            MergeData.MergePeople(database,p1,p2,merge_update)
+            MergeData.MergePeople(database,p1,p2,merge_update,update_after_edit)
     elif page == 4:
         place_view.merge()
 

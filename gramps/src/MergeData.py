@@ -36,11 +36,12 @@ import libglade
 #-------------------------------------------------------------------------
 class MergePeople:
 
-    def __init__(self,db,person1,person2,update):
+    def __init__(self,db,person1,person2,update,ep_update=None):
         self.db = db
         self.p1 = person1
         self.p2 = person2
         self.update = update
+        self.ep_update = ep_update
 
         self.glade = libglade.GladeXML(const.mergeFile,"merge")
         self.top = self.glade.get_widget("merge")
@@ -91,11 +92,8 @@ class MergePeople:
             father2 = ""
             mother2 = ""
 
-        label1 = "%s (%s)" % (_("First Person"),person1.getId())
-        label2 = "%s (%s)" % (_("Second Person"),person2.getId())
-        
-        self.glade.get_widget("PersonFrame1").set_label(label1)
-        self.glade.get_widget("PersonFrame2").set_label(label2)
+        self.glade.get_widget("id1_text").set_text(person1.getId())
+        self.glade.get_widget("id2_text").set_text(person2.getId())
         self.glade.get_widget("name1_text").set_text(name1)
         self.glade.get_widget("name1_text").set_position(0)
         self.glade.get_widget("name2_text").set_text(name2)
@@ -211,7 +209,8 @@ class MergePeople:
     def on_merge_edit_clicked(self,obj):
         import EditPerson
         self.on_merge_clicked(obj)
-        EditPerson.EditPerson(self.p1,self.db,self.empty)
+        # This needs to be fixed to provide an update call
+        EditPerson.EditPerson(self.p1,self.db,self.ep_update)
 
     def copy_note(self,one,two):
         if one.getNote() != two.getNote():
@@ -273,6 +272,10 @@ class MergePeople:
             else:
                 self.p1.addUrl(xdata)
 
+        self.id2 = self.glade.get_widget("id2")
+        if self.id2.get_active():
+            self.p1.setId(self.p2.getId())
+            
         if self.bname1.get_active():
             if self.altname.get_active():
                 self.p1.addAlternateName(self.p2.getPrimaryName())
