@@ -25,12 +25,21 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 
+  <!-- Information about the entities
+       The legal.xml file contains legal information, there is no need to edit the file. 
+       Use the appversion entity to specify the version of the application.
+       Use the manrevision entity to specify the revision number of this manual.
+       Use the date entity to specify the release date of this manual.
+       Use the app entity to specify the name of the application. -->
+
   <!ENTITY legal SYSTEM "legal.xml">
 
   <!ENTITY appversion "1.2.0">
   <!ENTITY manrevision "2.6">
   <!ENTITY date "February 2005">
   <!ENTITY app "GRAMPS">
+
+  <!-- The rest of the entities is simply the chapters of the manual.. -->
 
   <!ENTITY preface SYSTEM "preface.xml">
   <!ENTITY getstart SYSTEM "getstart.xml">
@@ -43,13 +52,6 @@
   <!ENTITY cmdline SYSTEM "cmdline.xml">
   <!ENTITY bugs SYSTEM "bugs.xml">
   <!ENTITY authors SYSTEM "authors.xml">
-
-  <!-- Information about the entities
-       The legal.xml file contains legal information, there is no need to edit the file. 
-       Use the appversion entity to specify the version of the application.
-       Use the manrevision entity to specify the revision number of this manual.
-       Use the date entity to specify the release date of this manual.
-       Use the app entity to specify the name of the application. -->
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -223,12 +225,15 @@
 
     <releaseinfo>This manual describes version &appversion; of GRAMPS.
     </releaseinfo> 
+
     <legalnotice> 
       <title>Feedback</title> 
-      <para>To report a bug or make a suggestion regarding the &app; application or
-      this manual, follow the directions in the <ulink url="ghelp:gnome-feedback"
-	  type="help">GNOME Feedback Page</ulink>. 
-      </para>
+    <para>
+      To report a bug or make a suggestion regarding this application or
+      this manual, use the help menu in &app;, or follow the directions 
+      on <ulink url="http://gramps.sourceforce.net/contact.html"  type="http">this site.</ulink>
+    </para>
+
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice> 
   </bookinfo> 
