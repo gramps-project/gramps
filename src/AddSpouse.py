@@ -88,9 +88,9 @@ class AddSpouse:
         arrow_map = [(2,self.glade.get_widget('NameArrow')),
                      (3,self.glade.get_widget('DateArrow'))]
                      
+        self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse')
         self.spouse_list.set_column_visibility(2,0)
         self.spouse_list.set_column_visibility(3,0)
-        self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse')
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
@@ -254,6 +254,14 @@ class SetSpouse:
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouseList")
+
+        arrow_map = [(2,self.glade.get_widget('NameArrow')),
+                     (3,self.glade.get_widget('DateArrow'))]
+                     
+        self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse')
+        self.spouse_list.set_column_visibility(2,0)
+        self.spouse_list.set_column_visibility(3,0)
+
         self.relation_def = self.glade.get_widget("reldef")
 
         self.rel_combo.set_popdown_strings(const.familyRelations)
@@ -292,6 +300,10 @@ class SetSpouse:
     def update_list(self,person):
         self.addperson(person)
         self.relation_type_changed(self.relation_type)
+        self.sorter.sort_list()
+        row = self.spouse_list.find_row_from_data(person.getId())
+        self.spouse_list.select_row(row,0)
+        self.spouse_list.moveto(row,0)
 
     def select_spouse_clicked(self,obj):
         """
