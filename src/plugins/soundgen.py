@@ -24,9 +24,7 @@ import os
 
 import gtk
 import gtk.glade
-from gnome.ui import *
 
-import RelLib
 import soundex
 import Utils
 from intl import gettext as _

@@ -23,13 +23,11 @@
 __author__ = "Don Allingham"
 
 import gtk
-import gnome.ui
 import gtk.glade
 import string
 import os
 
 import const
-from RelLib import *
 import GenericFilter
 import AutoComp
 import ListModel

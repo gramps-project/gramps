@@ -32,7 +32,6 @@ import os
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from RelLib import *
 import Utils
 from intl import gettext as _
 import GrampsCfg

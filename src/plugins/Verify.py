@@ -41,8 +41,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from RelLib import *
-
+import RelLib
 import Utils
 from intl import gettext as _
 
@@ -81,21 +80,15 @@ def on_apply_clicked(obj):
     global verifySettings
 
     personList = db.getPersonMap().values()
-    familyList = db.getFamilyMap().values()
 
     oldage = int(verifySettings.get_widget("oldage").get_text())
-    hwdif = int(verifySettings.get_widget("hwdif").get_text())
     yngmar = int(verifySettings.get_widget("yngmar").get_text())
     oldmar = int(verifySettings.get_widget("oldmar").get_text())
-    fecmom = int(verifySettings.get_widget("fecmom").get_text())
     oldmom = int(verifySettings.get_widget("oldmom").get_text())
     yngmom = int(verifySettings.get_widget("yngmom").get_text())
-    fecdad = int(verifySettings.get_widget("fecdad").get_text())
     olddad = int(verifySettings.get_widget("olddad").get_text())
     yngdad = int(verifySettings.get_widget("yngdad").get_text())
     wedder = int(verifySettings.get_widget("wedder").get_text())
-    cspace = int(verifySettings.get_widget("cspace").get_text())
-    cbspan = int(verifySettings.get_widget("cbspan").get_text())
     lngwdw = int(verifySettings.get_widget("lngwdw").get_text())
    
     oldunm = 99  # maximum age at death for unmarried person 
@@ -141,31 +134,27 @@ def on_apply_clicked(obj):
 	    warn = "%sOld age %s born %d died %d age %d.\n" % (warn, idstr, byear, dyear, ageatdeath)
 	    
 	# gender checks
-	if person.getGender() == Person.female:
+	if person.getGender() == RelLib.Person.female:
 	    parstr = "mother "
 	    oldpar = oldmom
 	    yngpar = yngmom
-	    fecpar = fecmom
 	    waswidstr = " was a widow "
-	if person.getGender() == Person.male:
+	if person.getGender() == RelLib.Person.male:
 	    parstr = "father "
 	    oldpar = olddad
 	    yngpar = yngdad
-	    fecpar = fecdad
 	    waswidstr = " was a widower "
-	if (person.getGender() != Person.female) and (person.getGender() != Person.male):
+	if (person.getGender() != RelLib.Person.female) and (person.getGender() != RelLib.Person.male):
 	    warn ="%sUnknown gender %s.\n" % (warn, idstr)
 	    parstr = "parent "
 	    oldpar = olddad
 	    yngpar = yngdad
-	    fecpar = fecdad
 	    waswidstr = " was a widow "
-	if (person.getGender() == Person.female) and (person.getGender() == Person.male):
+	if (person.getGender() == RelLib.Person.female) and (person.getGender() == RelLib.Person.male):
 	    error ="%sAmbigous gender %s.\n" % (error, idstr)
 	    parstr = "parent "
 	    oldpar = olddad
 	    yngpar = yngdad
-	    fecpar = fecdad
 	    waswidstr = " was a widow "
 	    
 	# multiple parentage check
@@ -182,8 +171,6 @@ def on_apply_clicked(obj):
 	first_cbyear = 99999
 	last_cbyear=0
 	prev_cbyear=0
-	prev_cbyfnum=0
-	prev_cbyind=0
 	prev_maryear=0
 	prev_sdyear=0
 	fnum = 0
@@ -194,16 +181,16 @@ def on_apply_clicked(obj):
 	    if mother!=None and father!=None:
 	        if mother.getGender() == father.getGender():
 		    warn = "%sHomosexual marriage %s family %s.\n" % (error, idstr, family.getId())
-	    if family.getFather() == person and person.getGender() == Person.female:
+	    if family.getFather() == person and person.getGender() == RelLib.Person.female:
 	        error = "%sFemale husband %s family %s.\n" % (error, idstr, family.getId())
-	    if family.getMother() == person and person.getGender() == Person.male:
+	    if family.getMother() == person and person.getGender() == RelLib.Person.male:
 	        error = "%sMale wife %s family %s.\n" % (error, idstr, family.getId())
 	    if family.getFather() == person:
 	       spouse = family.getMother()
 	    else:
 	       spouse = family.getFather()
 	    if spouse != None:
-	        if person.getGender() == Person.male and \
+	        if person.getGender() == RelLib.Person.male and \
 		   person.getPrimaryName().getSurname() == spouse.getPrimaryName().getSurname():
 		    warn = "%sHusband and wife with same surname %s family %s %s.\n" % ( warn, idstr,family.getId(), spouse.getPrimaryName().getName())
 	        sdyear = get_year( spouse.getDeath() )
@@ -266,7 +253,7 @@ def on_apply_clicked(obj):
 			    if bage < yngpar:
 			        warn = "%sYoung %s %s age %d family %s child %s.\n" % (warn, parstr, idstr, bage, family.getId(), child.getPrimaryName().getName())
 		    if dyear>0 and cbyear>dyear:
-		        if person.getGender() == Person.male:
+		        if person.getGender() == RelLib.Person.male:
 			    if cbyear-1>dyear:
 			        error = "%sDead %s %s died %d family %s child %s born %d.\n" % (error, parstr, idstr, dyear, family.getId(), child.getPrimaryName().getName(), cbyear)
 			    else:

@@ -43,7 +43,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 
 import RelLib
-import sort
 import Utils
 import ListModel
 from intl import gettext as _

@@ -86,6 +86,10 @@ except:
 # Constants
 #
 #-------------------------------------------------------------------------
+_HOMEPAGE = "http://gramps.sourceforge.net"
+_MAILLIST = "http://sourceforge.net/mail/?group_id=25770"
+_BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
+
 pl_titles = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
               (_('Birth Date'),6,150),(_('Death Date'),7,150), ('',5,0),
               ('',6,0), ('',7,0) ]
@@ -455,16 +459,13 @@ class Gramps:
         self.media_view.moveto(row)
 
     def on_gramps_home_page_activate(self,obj):
-        import gnome.url
-        gnome.url.show("http://gramps.sourceforge.net")
+        gnome.url_show(_HOMEPAGE)
 
     def on_gramps_mailing_lists_activate(self,obj):
-        import gnome.url
-        gnome.url.show("http://sourceforge.net/mail/?group_id=25770")
+        gnome.url_show(_MAILLIST)
 
     def on_gramps_report_bug_activate(self,obj):
-        import gnome.url
-        gnome.url.show("http://sourceforge.net/tracker/?group_id=25770&atid=385137")
+        gnome.url_show(_BUGREPORT)
 
     def on_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""

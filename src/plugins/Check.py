@@ -26,7 +26,6 @@ from intl import gettext as _
 
 import os
 
-import gnome.ui
 import gtk
 import gtk.glade
 from QuestionDialog import OkDialog

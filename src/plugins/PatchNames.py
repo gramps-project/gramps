@@ -28,8 +28,6 @@ from intl import gettext as _
 
 import gtk
 import gtk.glade
-import gnome.ui
-from QuestionDialog import OkDialog
 
 _title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
 _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
