@@ -56,17 +56,22 @@ _reports = []
 _tools   = []
 _imports = []
 _exports = []
+_success = []
+_failed  = []
+_attempt = []
+_loaddir = []
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-OBJECT    = "o"
 DOCSTRING = "d"
 IMAGE     = "i"
 TASK      = "f"
 TITLE     = "t"
+
+pymod = re.compile(r"^(.*)\.py$")
 
 #-------------------------------------------------------------------------
 #
@@ -81,17 +86,35 @@ class ReportPlugins:
         
         self.dialog = libglade.GladeXML(const.pluginsFile,"report")
         self.dialog.signal_autoconnect({
-            "on_report_apply_clicked" : on_report_apply_clicked,
-            "on_report_ok_clicked"    : on_report_apply_clicked,
+            "on_report_apply_clicked" : self.on_report_apply_clicked,
+            "on_report_ok_clicked"    : self.on_report_apply_clicked,
             "destroy_passed_object"   : utils.destroy_passed_object
             })
 
         top = self.dialog.get_widget("report")
-        top.set_data(OBJECT,self)
         tree = self.dialog.get_widget("tree1")
         self.run_tool = None
-        build_tree(tree,_reports,on_report_node_selected,self)
-                   
+        build_tree(tree,_reports,self.on_report_node_selected)
+
+    def on_report_apply_clicked(self,obj):
+        utils.destroy_passed_object(obj)
+        if self.run_tool:
+            self.run_tool(self.db,self.active)
+
+    def on_report_node_selected(self,obj):
+        doc = obj.get_data(DOCSTRING)
+        xpm = obj.get_data(IMAGE)
+        title = obj.get_data(TITLE)
+        img = self.dialog.get_widget("image")
+    
+        self.dialog.get_widget("description").set_text(doc)
+
+        i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm)
+        img.set(i,m)
+    
+        self.dialog.get_widget("report_title").set_text(title)
+        self.run_tool = obj.get_data(TASK)
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -105,28 +128,39 @@ class ToolPlugins:
         
         self.dialog = libglade.GladeXML(const.pluginsFile,"pluginsel")
         self.dialog.signal_autoconnect({
-            "on_apply_clicked"      : on_apply_clicked,
-            "on_ok_clicked"         : on_ok_clicked,
+            "on_apply_clicked"      : self.on_apply_clicked,
+            "on_ok_clicked"         : self.on_apply_clicked,
             "destroy_passed_object" : utils.destroy_passed_object
             })
 
         top = self.dialog.get_widget("pluginsel")
-        top.set_data(OBJECT,self)
         tree = self.dialog.get_widget("tree")
         self.run_tool = None
-        build_tree(tree,_tools,on_node_selected,self)
+        build_tree(tree,_tools,self.on_node_selected)
+
+    def on_apply_clicked(self,obj):
+        utils.destroy_passed_object(obj)
+        if self.run_tool:
+            self.run_tool(self.db,self.active,self.update)
+
+    def on_node_selected(self,obj):
+        doc = obj.get_data(DOCSTRING)
+        title = obj.get_data(TITLE)
+    
+        self.dialog.get_widget("description").set_text(doc)
+        self.dialog.get_widget("pluginTitle").set_text(title)
+        self.run_tool = obj.get_data(TASK)
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def build_tree(tree,list,task,obj):
+def build_tree(tree,list,task):
     item_hash = {}
     for report in list:
         item = GtkTreeItem(report[2])
         item.connect("select",task)
-        item.set_data(OBJECT,obj)
         item.set_data(TASK,report[0])
         item.set_data(TITLE,report[2])
         item.set_data(DOCSTRING,report[3])
@@ -156,75 +190,14 @@ def build_tree(tree,list,task,obj):
 # 
 #
 #-------------------------------------------------------------------------
-def on_node_selected(obj):
-    myobj = obj.get_data(OBJECT)
-    doc = obj.get_data(DOCSTRING)
-    title = obj.get_data(TITLE)
-    
-    myobj.dialog.get_widget("description").set_text(doc)
-    myobj.dialog.get_widget("pluginTitle").set_text(title)
-    myobj.run_tool = obj.get_data(TASK)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def on_report_node_selected(obj):
-    myobj = obj.get_data(OBJECT)
-    doc = obj.get_data(DOCSTRING)
-    xpm = obj.get_data(IMAGE)
-    title = obj.get_data(TITLE)
-    img = myobj.dialog.get_widget("image")
-    
-    myobj.dialog.get_widget("description").set_text(doc)
-
-    i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm)
-    img.set(i,m)
-    
-    myobj.dialog.get_widget("report_title").set_text(title)
-    myobj.run_tool = obj.get_data(TASK)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    myobj = obj.get_data(OBJECT)
-    utils.destroy_passed_object(obj)
-    if myobj.run_tool:
-        myobj.run_tool(myobj.db,myobj.active,myobj.update)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_report_apply_clicked(obj):
-    myobj = obj.get_data(OBJECT)
-    utils.destroy_passed_object(obj)
-    if myobj.run_tool:
-        myobj.run_tool(myobj.db,myobj.active)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    on_apply_clicked(obj)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def load_plugins(dir):
-    pymod = re.compile(r"^(.*)\.py$")
-
+    global _success,_failed,_attempt,_loaddir
+    
     if not os.path.isdir(dir):
         return
+
+    if dir not in _loaddir:
+	_loaddir.append(dir)
 
     sys.path.append(dir)
     for file in os.listdir(dir):
@@ -232,65 +205,64 @@ def load_plugins(dir):
         match = pymod.match(name[1])
         if not match:
             continue
+	_attempt.append(file)
         plugin = match.groups()[0]
         try: 
-            __import__(plugin)
+            a = __import__(plugin)
+            _success.append(a)
         except:
             print _("Failed to load the module: %s") % plugin
             import traceback
             traceback.print_exc()
+            _failed.append(plugin)
+
+def reload_plugins(obj):
+    for plugin in _success:
+        try: 
+            reload(plugin)
+        except:
+            print _("Failed to load the module: %s") % plugin
+            import traceback
+            traceback.print_exc()
+            _failed.append(plugin)
+    for plugin in _failed:
+        try: 
+            __import__(plugin)
+            print plugin
+        except:
+            print _("Failed to load the module: %s") % plugin
+            import traceback
+            traceback.print_exc()
+            _failed.append(plugin)
+
+    for dir in _loaddir:
+ 	for file in os.listdir(dir):
+            name = os.path.split(file)
+	    match = pymod.match(name[1])
+            if not match:
+                continue
+            _attempt.append(file)
+            plugin = match.groups()[0]
+            try: 
+                a = __import__(plugin)
+                _success.append(a)
+            except:
+                print _("Failed to load the module: %s") % plugin
+                import traceback
+                traceback.print_exc()
+                _failed.append(plugin)
 
 #-------------------------------------------------------------------------
 #
-# 
-#
-#-------------------------------------------------------------------------
-def build_export_menu(top_menu,callback):
-    myMenu = GtkMenu()
-
-    for report in _exports:
-        item = GtkMenuItem(report[1])
-        item.connect("activate", callback ,report[0])
-        item.show()
-        myMenu.append(item)
-    top_menu.set_submenu(myMenu)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def build_import_menu(top_menu,callback):
-    myMenu = GtkMenu()
-
-    for report in _imports:
-        item = GtkMenuItem(report[1])
-        item.connect("activate", callback ,report[0])
-        item.show()
-        myMenu.append(item)
-    top_menu.set_submenu(myMenu)
-
-#-------------------------------------------------------------------------
-#
-# 
+# Plugin registering
 #
 #-------------------------------------------------------------------------
 def register_export(task, name):
     _exports.append((task, name))
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def register_import(task, name):
     _imports.append((task, name))
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def register_report(task, name, category=None, description=None, xpm=None):
     if xpm == None:
         xpm_data = no_image()
@@ -306,11 +278,6 @@ def register_report(task, name, category=None, description=None, xpm=None):
         
     _reports.append((task, category, name, description, xpm_data))
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def register_tool(task, name, category=None, description=None, xpm=None):
     if xpm == None:
         xpm_data = no_image()
@@ -328,7 +295,7 @@ def register_tool(task, name, category=None, description=None, xpm=None):
 
 #-------------------------------------------------------------------------
 #
-#
+# Building pulldown menus
 #
 #-------------------------------------------------------------------------
 def build_menu(top_menu,list,callback):
@@ -360,21 +327,32 @@ def build_menu(top_menu,list,callback):
             submenu.append(subentry)
     top_menu.set_submenu(report_menu)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def build_report_menu(top_menu,callback):
     build_menu(top_menu,_reports,callback)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def build_tools_menu(top_menu,callback):
     build_menu(top_menu,_tools,callback)
+
+def build_export_menu(top_menu,callback):
+    myMenu = GtkMenu()
+
+    for report in _exports:
+        item = GtkMenuItem(report[1])
+        item.connect("activate", callback ,report[0])
+        item.show()
+        myMenu.append(item)
+    top_menu.set_submenu(myMenu)
+
+def build_import_menu(top_menu,callback):
+    myMenu = GtkMenu()
+
+    for report in _imports:
+        item = GtkMenuItem(report[1])
+        item.connect("activate", callback ,report[0])
+        item.show()
+        myMenu.append(item)
+    top_menu.set_submenu(myMenu)
+
 
 #-------------------------------------------------------------------------
 #

@@ -126,7 +126,7 @@
 	      </signal>
 	      <label>_Revert</label>
 	      <right_justify>False</right_justify>
-	      <stock_icon>GNOME_STOCK_MENU_UNDO</stock_icon>
+	      <stock_icon>GNOME_STOCK_MENU_REVERT</stock_icon>
 	    </widget>
 
 	    <widget>
@@ -152,6 +152,19 @@
 	      <name>export1</name>
 	      <label>_Export</label>
 	      <right_justify>False</right_justify>
+	    </widget>
+
+	    <widget>
+	      <class>GtkPixmapMenuItem</class>
+	      <name>reload_plugins</name>
+	      <signal>
+		<name>activate</name>
+		<handler>on_reload_plugins_activate</handler>
+		<last_modification_time>Sat, 27 Oct 2001 03:56:20 GMT</last_modification_time>
+	      </signal>
+	      <label>Reload Plugins</label>
+	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_REFRESH</stock_icon>
 	    </widget>
 
 	    <widget>

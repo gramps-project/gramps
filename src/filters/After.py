@@ -21,7 +21,6 @@
 "People with an event after ..."
 
 import Filter
-import string
 import Date
 import RelLib
 import intl
@@ -35,33 +34,23 @@ _ = intl.gettext
 class EventAfter(Filter.Filter):
     "People with an event after ..."
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,text):
         self.date = Date.Date()
         self.date.set(text)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def match(self,person):
-        val = 0
-        list = person.getEventList()[:]
-        list.append(person.getBirth())
-        list.append(person.getDeath())
-        for event in list:
+    def match(self,p):
+        for event in p.getEventList() + [p.getBirth(), p.getDeath()]:
             if self.date.getDate() == "" or event.getDate() == "":
                 continue
-            if self.date < event.getDateObj():
-                val = 1
-                break
-        return val
+            if event.getDateObj().greater_than(self.date):
+                return 1
+        return 0
 
+#--------------------------------------------------------------------
+#
+# 
+#
+#--------------------------------------------------------------------
 Filter.register_filter(EventAfter,
                        description=_("People with an event after ..."),
                        qualifier=1)
