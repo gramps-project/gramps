@@ -45,14 +45,10 @@ import intl
 import const
 import utils
 from RelLib import *
-import RelImage
 import Sources
 import ImageSelect
-import UrlEdit
 
 _ = intl.gettext
-
-_DEFHTTP = "http://gramps.sourceforge.net"
 
 #-------------------------------------------------------------------------
 #
@@ -276,6 +272,7 @@ def on_switch_page(obj,a,page):
 #
 #-------------------------------------------------------------------------
 def on_update_url_clicked(obj):
+    import UrlEdit
     if len(obj.selection) > 0:
         row = obj.selection[0]
         mobj = obj.get_data(_PLACE)
@@ -323,6 +320,7 @@ def on_delete_loc_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_url_clicked(obj):
+    import UrlEdit
     mobj = obj.get_data(_PLACE)
     if mobj.place:
         name = _("Internet Address Editor for %s") % mobj.place.get_title()

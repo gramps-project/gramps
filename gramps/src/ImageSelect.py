@@ -35,7 +35,6 @@ from gtk import *
 from gnome.ui import *
 import GDK
 import libglade
-import GdkImlib
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +47,6 @@ import utils
 import Config
 from RelLib import *
 import RelImage
-import Sources
-import AttrEdit
 
 _ = intl.gettext
 
@@ -393,8 +390,6 @@ class LocalMediaProperties:
         self.lists_changed = 0
         
         fname = self.object.getPath()
-        src = os.path.basename(fname)
-    
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_description")
         window = self.change_dialog.get_widget("change_description")
         descr_window = self.change_dialog.get_widget("description")
@@ -462,6 +457,7 @@ class LocalMediaProperties:
         self.attr_details.set_text(utils.get_detail_text(attr))
 
     def on_update_attr_clicked(self,obj):
+        import AttrEdit
         if len(obj.selection) > 0:
             row = obj.selection[0]
             attr = obj.get_row_data(row)
@@ -473,6 +469,7 @@ class LocalMediaProperties:
             self.redraw_attr_list()
 
     def on_add_attr_clicked(self,obj):
+        import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",[])
 
 #-------------------------------------------------------------------------

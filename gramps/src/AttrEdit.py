@@ -33,7 +33,6 @@ import string
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
-import GDK
 import libglade
 
 #-------------------------------------------------------------------------
@@ -44,7 +43,6 @@ import libglade
 import intl
 import const
 import utils
-import Config
 from RelLib import *
 import Sources
 

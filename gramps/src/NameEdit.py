@@ -23,7 +23,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import string
 
 #-------------------------------------------------------------------------
@@ -34,7 +33,6 @@ import string
 from gtk import *
 from gnome.ui import *
 import libglade
-import GdkImlib
 
 #-------------------------------------------------------------------------
 #
@@ -44,10 +42,7 @@ import GdkImlib
 import intl
 import const
 import utils
-import Config
 from RelLib import *
-import RelImage
-import Sources
 
 _ = intl.gettext
 
@@ -101,6 +96,7 @@ class NameEditor:
             })
 
     def on_name_source_clicked(self,obj):
+        import Sources
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
             
     def on_name_edit_ok_clicked(self,obj):
