@@ -44,6 +44,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from RelLib import *
 import GrampsKeys
+import GrampsDBCallback
 
 #-------------------------------------------------------------------------
 #
@@ -104,12 +105,31 @@ class GrampsCursor:
         """
         pass
 
-class GrampsDbBase:
+class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
     """
     GRAMPS database object. This object is a base class for all
     database interfaces.
     """
 
+    __signals__ = {
+        'person-add'     : (list,),
+        'person-update'  : (list,),
+        'person-delete'  : (list,),
+        'person-rebuild' : None,
+        'family-add'     : (list,),
+        'family-update'  : (list,),
+        'family-delete'  : (list,),
+        'family-rebuild' : None,
+        'source-add'     : (list,),
+        'source-update'  : (list,),
+        'source-delete'  : (list,),
+        'source-rebuild' : None,
+        'place-add'      : (list,),
+        'place-update'   : (list,),
+        'place-delete'   : (list,),
+        'place-rebuild'  : None
+        }
+    
     def __init__(self):
         """
         Creates a new GrampsDbBase instance. A new GrampDbBase class should
@@ -117,6 +137,8 @@ class GrampsDbBase:
         be created.
         """
 
+        GrampsDBCallback.GrampsDBCallback.__init__(self)
+        
         self.readonly = False
         self.rand = random.Random(time.time())
         self.smap_index = 0
@@ -165,169 +187,6 @@ class GrampsDbBase:
         self.place2title = {}
         self.name_groups = {}
 
-        self.person_add_callback = {}
-        self.person_update_callback = {}
-        self.person_delete_callback = {}
-        self.person_rebuild_callback = {}
-
-        self.family_add_callback = {}
-        self.family_update_callback = {}
-        self.family_delete_callback = {}
-        self.family_rebuild_callback = {}
-
-        self.place_add_callback = {}
-        self.place_update_callback = {}
-        self.place_delete_callback = {}
-        self.place_rebuild_callback = {}
-
-        self.source_add_callback = {}
-        self.source_update_callback = {}
-        self.source_delete_callback = {}
-        self.source_rebuild_callback = {}
-
-    def add_person_callbacks(self, key, add, update, delete, rebuild):
-        if add:
-            self.person_add_callback[key] = add
-        if update:
-            self.person_update_callback[key] = update
-        if delete:
-            self.person_delete_callback[key] = delete
-        if rebuild:
-            self.person_rebuild_callback[key] = rebuild
-
-    def add_place_callbacks(self, key, add, update, delete, rebuild):
-        if add:
-            self.place_add_callback[key] = add
-        if update:
-            self.place_update_callback[key] = update
-        if delete:
-            self.place_delete_callback[key] = delete
-        if rebuild:
-            self.place_rebuild_callback[key] = rebuild
-
-    def add_source_callbacks(self, key, add, update, delete, rebuild):
-        if add:
-            self.source_add_callback[key] = add
-        if update:
-            self.source_update_callback[key] = update
-        if delete:
-            self.source_delete_callback[key] = delete
-        if rebuild:
-            self.source_rebuild_callback[key] = rebuild
-
-    def add_family_callbacks(self, key, add, update, delete, rebuild):
-        if add:
-            self.family_add_callback[key] = add
-        if update:
-            self.family_update_callback[key] = update
-        if delete:
-            self.family_delete_callback[key] = delete
-        if rebuild:
-            self.family_rebuild_callback[key] = rebuild
-
-    def remove_person_callbacks(self, key):
-        if self.person_add_callback.has_key(key):
-            del self.person_add_callback[key]
-        if self.person_update_callback.has_key(key):
-            del self.person_update_callback[key]
-        if self.person_delete_callback.has_key(key):
-            del self.person_delete_callback[key]
-        if self.person_rebuild_callback.has_key(key):
-            del self.person_rebuild_callback[key]
-
-    def remove_place_callbacks(self, key):
-        if self.place_add_callback.has_key(key):
-            del self.place_add_callback[key]
-        if self.place_update_callback.has_key(key):
-            del self.place_update_callback[key]
-        if self.place_delete_callback.has_key(key):
-            del self.place_delete_callback[key]
-        if self.place_rebuild_callback.has_key(key):
-            del self.place_rebuild_callback[key]
-
-    def remove_family_callbacks(self, key):
-        if self.family_add_callback.has_key(key):
-            del self.family_add_callback[key]
-        if self.family_update_callback.has_key(key):
-            del self.family_update_callback[key]
-        if self.family_delete_callback.has_key(key):
-            del self.family_delete_callback[key]
-        if self.family_rebuild_callback.has_key(key):
-            del self.family_rebuild_callback[key]
-
-    def remove_source_callbacks(self, key):
-        if self.source_add_callback.has_key(key):
-            del self.source_add_callback[key]
-        if self.source_update_callback.has_key(key):
-            del self.source_update_callback[key]
-        if self.source_delete_callback.has_key(key):
-            del self.source_delete_callback[key]
-        if self.source_rebuild_callback.has_key(key):
-            del self.source_rebuild_callback[key]
-
-    def run_person_add_callbacks(self,handle_list):
-        for func in self.person_add_callback.values():
-            func(handle_list)
-
-    def run_person_update_callbacks(self,handle_list):
-        for func in self.person_update_callback.values():
-            func(handle_list)
-
-    def run_person_delete_callbacks(self,handle_list):
-        for func in self.person_delete_callback.values():
-            func(handle_list)
-
-    def run_person_rebuild_callbacks(self):
-        for func in self.person_rebuild_callback.values():
-            func()
-
-    def run_family_add_callbacks(self,handle_list):
-        for func in self.family_add_callback.values():
-            func(handle_list)
-
-    def run_family_update_callbacks(self,handle_list):
-        for func in self.family_update_callback.values():
-            func(handle_list)
-
-    def run_family_delete_callbacks(self,handle_list):
-        for func in self.family_delete_callback.values():
-            func(handle_list)
-
-    def run_family_rebuild_callbacks(self):
-        for func in self.family_rebuild_callback.values():
-            func()
-
-    def run_source_add_callbacks(self,handle_list):
-        for func in self.source_add_callback.values():
-            func(handle_list)
-
-    def run_source_update_callbacks(self,handle_list):
-        for func in self.source_update_callback.values():
-            func(handle_list)
-
-    def run_source_delete_callbacks(self,handle_list):
-        for func in self.source_delete_callback.values():
-            func(handle_list)
-
-    def run_source_rebuild_callbacks(self):
-        for func in self.source_rebuild_callback.values():
-            func()
-
-    def run_place_add_callbacks(self,handle_list):
-        for func in self.place_add_callback.values():
-            func(handle_list)
-
-    def run_place_update_callbacks(self,handle_list):
-        for func in self.place_update_callback.values():
-            func(handle_list)
-
-    def run_place_delete_callbacks(self,handle_list):
-        for func in self.place_delete_callback.values():
-            func(handle_list)
-
-    def run_place_rebuild_callbacks(self):
-        for func in self.place_rebuild_callback.values():
-            func()
 
     def need_upgrade(self):
         return False
@@ -406,9 +265,9 @@ class GrampsDbBase:
         self.person_map[handle] = person.serialize()
         if transaction and not transaction.batch:
             if old_data:
-                self.run_person_update_callbacks([handle])
+                self.emit('person-update',([handle],))
             else:
-                self.run_person_add_callbacks([handle])
+                self.emit('person-add',([handle],))
           
     def commit_media_object(self,obj,transaction,change_time=None):
         """
@@ -445,9 +304,9 @@ class GrampsDbBase:
         self.source_map[handle] =  source.serialize()
         if transaction and not transaction.batch:
             if old_data:
-                self.run_source_update_callbacks([handle])
+                self.emit('source-update',([handle],))
             else:
-                self.run_source_add_callbacks([handle])
+                self.emit('source-add',([handle],))
 
     def commit_place(self,place,transaction,change_time=None):
         """
@@ -467,9 +326,9 @@ class GrampsDbBase:
         self.place_map[handle] = place.serialize()
         if transaction and not transaction.batch:
             if old_data:
-                self.run_place_update_callbacks([handle])
+                self.emit('place-update',([handle],))
             else:
-                self.run_place_add_callbacks([handle])
+                self.emit('place-add',([handle],))
 
     def commit_event(self,event,transaction,change_time=None):
         """
@@ -507,9 +366,9 @@ class GrampsDbBase:
 
         if transaction and not transaction.batch:
             if old_data:
-                self.run_family_update_callbacks([handle])
+                self.emit('family-update',([handle],))
             else:
-                self.run_family_add_callbacks([handle])
+                self.emit('family-add',([handle],))
 
     def find_next_person_gramps_id(self):
         """
@@ -660,7 +519,7 @@ class GrampsDbBase:
                     transaction.add(PERSON_KEY, val, None)
                 self.person_map[str(val)] = person.serialize()
                 if transaction and not transaction.batch:
-                    self.run_person_add_callbacks([str(val)])
+                    self.emit('person-add', ([str(val)],))
             self.genderStats.count_person (person, self)
         return person
 
@@ -795,7 +654,7 @@ class GrampsDbBase:
             family.set_handle(self.create_id())
         self.commit_family(family,transaction)
         if transaction and not transaction.batch:
-            self.run_family_add_callbacks(str(family.handle))
+            self.emit('family-add',([str(family.handle),]))
         return family.get_handle()
 
     def add_source(self,source,transaction):
@@ -809,7 +668,7 @@ class GrampsDbBase:
             source.set_gramps_id(self.find_next_source_gramps_id())
         self.commit_source(source,transaction)
         if transaction and not transaction.batch:
-            self.run_source_add_callbacks([source.handle])
+            self.emit('source-add',([source.handle],))
         return source.get_handle()
 
     def add_event(self,event,transaction):
@@ -836,7 +695,7 @@ class GrampsDbBase:
             place.set_gramps_id(self.find_next_place_gramps_id())
         self.commit_place(place,transaction)
         if transaction and not transaction.batch:
-            self.run_place_add_callbacks([source.handle])
+            self.emit('place-add',([place.handle],))
         return place.get_handle()
 
     def add_object(self,obj,transaction):
@@ -1096,10 +955,10 @@ class GrampsDbBase:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
 
         if transaction and transaction.batch:
-            self.run_person_rebuild_callbacks()
-            self.run_family_rebuild_callbacks()
-            self.run_place_rebuild_callbacks()
-            self.run_source_rebuild_callbacks()
+            self.emit('person-rebuild')
+            self.emit('family-rebuild')
+            self.emit('place-rebuild')
+            self.emit('source-rebuild')
 
     def undo(self):
         """
@@ -1117,25 +976,25 @@ class GrampsDbBase:
             (key, handle, data) = transaction.get_record(record_id)
             if key == PERSON_KEY:
                 if data == None:
-                    self.run_person_delete_callbacks([str(handle)])
+                    self.emit('person-delete',([str(handle),]))
                     del self.person_map[str(handle)]
                 else:
                     self.person_map[str(handle)] = data
-                    self.run_person_update_callbacks([str(handle)])
+                    self.emit('person-update',([str(handle),]))
             elif key == FAMILY_KEY:
                 if data == None:
-                    self.run_family_delete_callbacks([str(handle)])
+                    self.emit('family-delete',([str(handle),]))
                     del self.family_map[str(handle)]
                 else:
                     self.family_map[str(handle)] = data
-                    self.run_family_update_callbacks([str(handle)])
+                    self.emit('family-update',([str(handle),]))
             elif key == SOURCE_KEY:
                 if data == None:
-                    self.run_source_delete_callbacks([str(handle)])
+                    self.emit('source-delete',([str(handle),]))
                     del self.source_map[str(handle)]
                 else:
                     self.source_map[str(handle)] = data
-                    self.run_source_update_callbacks([str(handle)])
+                    self.emit('source-update',([str(handle),]))
             elif key == EVENT_KEY:
                 if data == None:
                     del self.event_map[str(handle)]
@@ -1143,11 +1002,11 @@ class GrampsDbBase:
                     self.event_map[str(handle)] = data
             elif key == PLACE_KEY:
                 if data == None:
-                    self.run_place_delete_callbacks([str(handle)])
+                    self.emit('place-delete',([str(handle),]))
                     del self.place_map[str(handle)]
                 else:
                     self.place_map[str(handle)] = data
-                    self.run_place_update_callbacks([str(handle)])
+                    self.emit('place-update',([str(handle),]))
             elif key == MEDIA_KEY:
                 if data == None:
                     del self.media_map[str(handle)]

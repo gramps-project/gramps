@@ -55,6 +55,7 @@ gdir_PYTHON = \
 	GrampsCfg.py\
 	GrampsBSDDB.py\
 	GrampsDbBase.py\
+	GrampsDBCallback.py\
 	GrampsInMemDB.py\
 	GrampsXMLDB.py\
 	GrampsGEDDB.py\

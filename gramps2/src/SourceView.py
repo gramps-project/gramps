@@ -106,9 +106,10 @@ class SourceView:
         self.click_col = column
 
     def change_db(self,db):
-        db.add_source_callbacks(
-            'source_view', self.source_add, self.source_update,
-            self.source_delete, self.build_tree)
+        db.connect('source-add',    self.source_add)
+        db.connect('source-update', self.source_update)
+        db.connect('source-delete', self.source_delete)
+        db.connect('source-rebuild',self.build_tree)
         self.build_columns()
         self.build_tree()
 

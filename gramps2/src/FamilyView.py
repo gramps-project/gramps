@@ -98,13 +98,15 @@ class FamilyView:
         self.change_db()
 
     def change_db(self):
-        self.parent.db.add_family_callbacks(
-            'family_view', self.update_callback, self.update_callback,
-            self.update_callback, self.load_family)
+        self.parent.db.connect('family-add', self.update_callback)
+        self.parent.db.connect('family-update', self.update_callback)
+        self.parent.db.connect('family-delete', self.update_callback)
+        self.parent.db.connect('family-rebuild', self.load_family)
 
-        self.parent.db.add_person_callbacks(
-            'family_view', self.update_callback, self.update_callback,
-            self.update_callback, self.load_family)
+        self.parent.db.connect('person-add', self.update_callback)
+        self.parent.db.connect('person-update', self.update_callback)
+        self.parent.db.connect('person-delete', self.update_callback)
+        self.parent.db.connect('person-rebuild', self.load_family)
 
     def update_callback(self,handle):
         self.load_family()
