@@ -62,6 +62,7 @@ else:
 #------------------------------------------------------------------------
 import BaseDoc
 import PluginMgr
+from ReportUtils import rgb_color
 
 #------------------------------------------------------------------------
 #
@@ -991,8 +992,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.brand_new_page = 0
         stype = self.draw_styles[style]
         self.gpc.setlinewidth(stype.get_line_width())
-        fill_color = [ val/255.0 for val in stype.get_fill_color()]
-        color = [ val/255.0 for val in stype.get_color()]
+        fill_color = rgb_color(stype.get_fill_color())
+        color = rgb_color(stype.get_color())
 
         point = path[0]
         x = cm2u(point[0]) + self.left_margin
@@ -1040,7 +1041,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         if box_style.get_shadow():
             ss = cm2u(box_style.get_shadow_space())
-            color = [ val/255.0 for val in _SHADOW_COLOR ]
+            color = rgb_color(_SHADOW_COLOR)
             path = (
                 (x+ss,y-bh), (x+ss,y-bh-ss), (x+bw+ss,y-bh-ss),
                 (x+bw+ss,y-ss), (x+bw,y-ss), (x+bw,y-bh), (x+ss,y-bh),
@@ -1085,8 +1086,8 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         stype = self.draw_styles[style]
         self.gpc.setlinewidth(stype.get_line_width())
-        fill_color = [ val/255.0 for val in stype.get_fill_color() ]
-        color = [ val/255.0 for val in stype.get_color() ]
+        fill_color = rgb_color(stype.get_fill_color())
+        color = rgb_color(stype.get_color())
 
         x = self.left_margin + cm2u(x1)
         y = self.top_margin - cm2u(y1)

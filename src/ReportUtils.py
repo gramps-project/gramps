@@ -62,6 +62,12 @@ def cm2pt(cm):
     """
     return cm*182.88
 
+def rgb_color(color):
+    r = float(color[0])/255.0
+    g = float(color[1])/255.0
+    b = float(color[2])/255.0
+    return (r,g,b)
+        
 def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
     """
     Draws a pie chart in the specified document. The data passed is plotted as

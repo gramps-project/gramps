@@ -22,6 +22,13 @@
 
 #------------------------------------------------------------------------
 #
+# Python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
 # gramps modules
 #
 #------------------------------------------------------------------------
@@ -30,7 +37,7 @@ import PluginMgr
 import Errors
 import ImgManip
 import GrampsMime
-from gettext import gettext as _
+from ReportUtils import rgb_color
 
 _H   = 'Helvetica'
 _HB  = 'Helvetica-Bold'
@@ -611,7 +618,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 #
 #------------------------------------------------------------------------
 def make_color(c):
-    return Color(float(c[0])/255.0, float(c[1])/255.0, float(c[2])/255.0)
+    return Color(rgb_color(c))
 
 #------------------------------------------------------------------------
 #
