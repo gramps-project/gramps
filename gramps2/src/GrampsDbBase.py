@@ -206,7 +206,7 @@ class GrampsDbBase:
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned."""
 
-        data = self.source_map.get(val)
+        data = self.source_map.get(str(val))
         if data:
             source = Source()
             source.unserialize(data)
@@ -216,7 +216,7 @@ class GrampsDbBase:
     def get_object_from_handle(self,handle):
         """finds an Object in the database from the passed gramps' ID.
         If no such Object exists, None is returned."""
-        data = self.media_map.get(handle)
+        data = self.media_map.get(str(handle))
         if data:
             mobject = MediaObject()
             mobject.unserialize(data)
@@ -226,7 +226,7 @@ class GrampsDbBase:
     def get_place_from_handle(self,handle):
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned."""
-        data = self.place_map.get(handle)
+        data = self.place_map.get(str(handle))
         if data:
             place = Place()
             place.unserialize(data)
@@ -237,7 +237,7 @@ class GrampsDbBase:
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned."""
 
-        data = self.event_map.get(handle)
+        data = self.event_map.get(str(handle))
         if data:
             event = Event()
             event.unserialize(data)
@@ -260,7 +260,7 @@ class GrampsDbBase:
         If no such Person exists, a new Person is added to the database."""
 
         person = Person()
-        data = self.person_map.get(val)
+        data = self.person_map.get(str(val))
         if data:
             person.unserialize(data)
         else:

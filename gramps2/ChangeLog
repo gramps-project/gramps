@@ -1,4 +1,7 @@
-2004-08-1  Alex Roitman  <shura@alex.neuro.umn.edu>
+2004-08-11  Tim Waugh  <twaugh@redhat.com>
+	* src/GrampsDbBase.py: Fixed some missed str()s.
+
+2004-08-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Makefile.am: Ship new files: GrampsDbBase.py, GrampsXMLDB.py,
 	and GrampsGEDDB.py. 
 
