@@ -6,6 +6,11 @@
 	* src/plugins/AncestorChart.py: Add prefix (AC-) to styles.
 	* src/plugins/AncestorChart2.py: Add prefix (AC2-) to styles.
 
+	* src/MediaView.py (on_select_row): Mark translatable string;
+	(popup_convert_to_private): Call self.load before returning.
+	* src/ImageSelect.py (LocalMediaProperties.__init__, 
+	GlobalMediaProperties.update_info): Mark translatable string.
+
 2004-03-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: TreeView enhancements
 	* src/PeopleModel.py: TreeView enhancements
