@@ -77,6 +77,6 @@ register_tool(
     runtool,
     _("Show uncollected objects"),
     category=_("Debug"),
-    description=_(""),
+    description=_("Provide a window listing all uncollected objects"),
     )
         
