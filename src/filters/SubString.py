@@ -23,6 +23,8 @@
 import Filter
 import string
 import utils
+import intl
+_ = intl.gettext
 
 class SubString(Filter.Filter):
     "Names that contain a substring"
@@ -35,3 +37,6 @@ def create(text):
 
 def need_qualifier():
     return 1
+
+def get_name():
+    return _("Names that contain a substring")

@@ -40,6 +40,7 @@ class OpenOfficeDoc(TextDoc):
         self.filename = None
         self.level = 0
         self.time = "0000-00-00T00:00:00"
+        self.new_page = 0
 
     def open(self,filename):
         import time
@@ -91,6 +92,15 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('style:font-pitch="variable"/>\n')
         self.f.write('</office:font-decls>\n')
         self.f.write('<office:automatic-styles>\n')
+        for style_name in self.style_list.keys():
+	    style = self.style_list[style_name]
+            self.f.write('<style:style style:name="NL')
+            self.f.write(style_name)
+            self.f.write('" style:family="paragraph" ')
+            self.f.write('style:parent-style-name="')
+            self.f.write(style_name)
+            self.f.write('">\n<style:properties fo:break-before="page"/>\n')
+            self.f.write('</style:style>\n')
 	for style_name in self.table_styles.keys():
 	    style = self.table_styles[style_name]
             self.f.write('<style:style style:name="' + style_name + '" ')
@@ -132,7 +142,7 @@ class OpenOfficeDoc(TextDoc):
             self.f.write('/>\n')
             self.f.write('</style:style>\n')
             
-        self.f.write('<style:style style:name="T1" style:family="text">\n')
+        self.f.write('<style:style style:name="Tbold" style:family="text">\n')
         self.f.write('<style:properties fo:font-weight="bold"/>\n')
         self.f.write('</style:style>\n')
         self.f.write('</office:automatic-styles>\n')
@@ -205,6 +215,12 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('</table:table-cell>\n')
         for col in range(1,self.span):
             self.f.write('<table:covered-table-cell/>\n')
+
+    def start_bold(self):
+        self.f.write('<text:span text:style-name="Tbold">')
+
+    def end_bold(self):
+        self.f.write('</text:span>')
 
     def _write_zip(self):
         
@@ -364,14 +380,23 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('</office:master-styles>\n')
         self.f.write('</office:document-styles>\n')
 	self.f.close()
+
+    def page_break(self):
+        self.new_page = 1
         
     def start_paragraph(self,style_name):
 	style = self.style_list[style_name]
 	self.level = style.get_header_level()
+        if self.new_page == 1:
+            self.new_page = 0
+            name = "NL%s" % style_name
+        else:
+            name = style_name
 	if self.level == 0:
-	    self.f.write('<text:p text:style-name="' + style_name + '">')
+	    self.f.write('<text:p text:style-name="%s">' % name)
 	else:
-	    self.f.write('<text:h text:style-name="' + style_name)
+	    self.f.write('<text:h text:style-name="')
+            self.f.write(name)
 	    self.f.write('" text:level="' + str(self.level) + '">')
 
     def end_paragraph(self):

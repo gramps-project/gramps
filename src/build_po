@@ -4,7 +4,6 @@ mv template.po template.po.bak
 echo "Working on the glade files"
 libglade-xgettext -c -o glade.c *.glade
 echo "Working on python files"
-./get_strings *.py >> glade.c
+./get_strings *.py filters/*.py >> glade.c
 echo "Building template.po"
 xgettext -C -s -a -o template.po glade.c
-#rm glade.c

@@ -23,6 +23,8 @@
 import Filter
 import string
 import utils
+import intl
+_ = intl.gettext
 
 class NeverMarried(Filter.Filter):
     "People with no marriage records"
@@ -35,3 +37,6 @@ def create(text):
 
 def need_qualifier():
     return 0
+
+def get_name():
+    return _("People with no marriage records")

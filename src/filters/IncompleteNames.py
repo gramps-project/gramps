@@ -22,6 +22,8 @@
 
 import Filter
 from RelLib import Person
+import intl
+_ = intl.gettext
 
 class IncompleteNames(Filter.Filter):
     "People with incomplete names"
@@ -36,3 +38,5 @@ def create(text):
 def need_qualifier():
     return 0
 
+def get_name():
+    return _("People with incomplete names")

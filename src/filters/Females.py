@@ -24,6 +24,8 @@ import Filter
 import string
 import utils
 from RelLib import Person
+import intl
+_ = intl.gettext
 
 class Females(Filter.Filter):
     "Females"
@@ -37,3 +39,5 @@ def create(text):
 def need_qualifier():
     return 0
 
+def get_name():
+    return _("Females")

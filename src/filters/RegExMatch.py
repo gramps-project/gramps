@@ -23,6 +23,8 @@
 import Filter
 import re
 import utils
+import intl
+_ = intl.gettext
 
 class RegExMatch(Filter.Filter):
     "Names that match a regular expression"
@@ -46,3 +48,6 @@ def create(text):
 
 def need_qualifier():
     return 1
+
+def get_name():
+    return _("Names that match a regular expression")

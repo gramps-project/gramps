@@ -29,6 +29,9 @@ from libglade import *
 import RelLib
 import const
 import utils
+import intl
+
+_ = intl.gettext
 
 topDialog = None
 
@@ -90,5 +93,7 @@ def runTool(database,person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Allows all the events of a certain name to be renamed to a new name"
+    return _("Allows all the events of a certain name to be renamed to a new name")
 
+def get_name():
+    return _("Database Processing/Rename personal event types")

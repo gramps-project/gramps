@@ -23,6 +23,8 @@
 import Filter
 import soundex
 import RelLib
+import intl
+_ = intl.gettext
 
 class MatchSndEx(Filter.Filter):
     "Names with same SoundEx code as ..."
@@ -39,3 +41,6 @@ def create(text):
 
 def need_qualifier():
     return 1
+
+def get_name():
+    return _("Names with same SoundEx code as ...")

@@ -377,10 +377,13 @@ class TextDoc:
     def close(self):
         pass
 
-    def start_page(self,orientation=None):
+    def page_break(self):
         pass
 
-    def end_page(self):
+    def start_bold(self):
+        pass
+
+    def end_bold(self):
         pass
 
     def start_paragraph(self,style_name):

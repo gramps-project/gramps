@@ -172,7 +172,7 @@ def on_save_clicked(obj):
     myobj = obj.get_data("o")
     db = obj.get_data("d")
 
-    file = myobj.top.get_widget("filename").get_text()
+    file = myobj.top.get_widget("fileentry1").get_full_path(0)
     if file == "":
         return
 

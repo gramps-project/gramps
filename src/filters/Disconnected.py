@@ -22,6 +22,8 @@
 
 import Filter
 import RelLib
+import intl
+_ = intl.gettext
 
 class Disconnected(Filter.Filter):
     "Disconnected individuals"
@@ -34,3 +36,6 @@ def create(text):
 
 def need_qualifier():
     return 0
+
+def get_name():
+    return _("Disconnected individuals")
