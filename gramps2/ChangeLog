@@ -1,6 +1,8 @@
 2003-06-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/SubstKeywords.py: Fixed typo on getName
-
+	* src/plugins/WriteGedcom.py: Allow iso-8859-1 (ANSI) encoding
+	* src/plugins/gedcomexport.glade: Allow iso-8859-1 (ANSI) encoding
+	
 2003-06-24  Tim Waugh  <twaugh@redhat.com>
 	* src/GrampsParser.py: Use access methods rather than poking directly.
 	* src/RelLib.py: Keep statistics on gender distribution among first
