@@ -38,7 +38,7 @@ class GrampsXML(RelLib.GrampsDB):
         WriteXML.exportData(self,name,callback)
 
     def load(self,name,callback):
-        ReadXML.importData(self,name,callback)
+        ReadXML.loadData(self,name,callback)
         self.personTable = {}
         for key in self.personMap.keys():
             person = self.personMap[key]

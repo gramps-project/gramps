@@ -85,6 +85,8 @@ class GrampsParser:
         self.pmap = {}
         self.fmap = {}
         self.smap = {}
+        self.lmap = {}
+        self.MediaFileMap = {}
         
         self.callback = callback
         self.entries = 0
@@ -98,6 +100,87 @@ class GrampsParser:
 	self.func_index = 0
 	self.func = None
 
+        self.func_map = {
+            "address"    : (self.start_address, self.stop_address),
+            "addresses"  : (None,None),
+            "childlist"  : (None,None),
+            "aka"        : (self.start_name, self.stop_aka),
+            "attribute"  : (self.start_attribute, self.stop_attribute),
+            "attr_type"  : (None,self.stop_attr_type),
+            "attr_value" : (None,self.stop_attr_value),
+            "bookmark"   : (self.start_bmark, None),
+            "witness"    : (self.start_witness,self.stop_witness),
+            "bookmarks"  : (None, None),
+            "child"      : (self.start_child,None),
+            "childof"    : (self.start_childof,None),
+            "city"       : (None, self.stop_city),
+            "country"    : (None, self.stop_country),
+            "created"    : (self.start_created, None),
+            "database"   : (None, None),
+            "date"       : (None, self.stop_date),
+            "cause"      : (None, self.stop_cause),
+            "description": (None, self.stop_description),
+            "event"      : (self.start_event, self.stop_event),
+            "families"   : (None, self.stop_families),
+            "family"     : (self.start_family, None),
+            "father"     : (self.start_father, None),
+            "first"      : (None, self.stop_first),
+            "gender"     : (None, self.stop_gender),
+            "header"     : (None, None),
+            "last"       : (self.start_last, self.stop_last),
+            "mother"     : (self.start_mother,None),
+            "name"       : (self.start_name, self.stop_name),
+            "nick"       : (None, self.stop_nick),
+            "note"       : (self.start_note, self.stop_note),
+            "p"          : (None, self.stop_ptag),
+            "parentin"   : (self.start_parentin,None),
+            "people"     : (self.start_people, self.stop_people),
+            "person"     : (self.start_person, self.stop_person),
+            "img"        : (self.start_photo, self.stop_photo),
+            "objref"     : (self.start_objref, self.stop_objref),
+            "object"     : (self.start_object, self.stop_object),
+            "place"      : (self.start_place, self.stop_place),
+            "dateval"    : (self.start_dateval, None),
+            "daterange"  : (self.start_daterange, None),
+            "datestr"    : (self.start_datestr, None),
+            "places"     : (None, self.stop_places),
+            "placeobj"   : (self.start_placeobj,self.stop_placeobj),
+            "location"   : (self.start_location,None),
+            "lds_ord"    : (self.start_lds_ord, self.stop_lds_ord),
+            "temple"     : (self.start_temple, None),
+            "status"     : (self.start_status, None),
+            "sealed_to"  : (self.start_sealed_to, None),
+            "coord"      : (self.start_coord,None),
+            "pos"        : (self.start_pos, None),
+            "postal"     : (None, self.stop_postal),
+            "researcher" : (None, self.stop_research),
+            "resname"    : (None, self.stop_resname ),
+            "resaddr"    : (None, self.stop_resaddr ),
+            "rescity"    : (None, self.stop_rescity ),
+            "resstate"   : (None, self.stop_resstate ),
+            "rescountry" : (None, self.stop_rescountry),
+            "respostal"  : (None, self.stop_respostal),
+            "resphone"   : (None, self.stop_resphone),
+            "resemail"   : (None, self.stop_resemail),
+            "sauthor"    : (None, self.stop_sauthor),
+            "scallno"    : (None, self.stop_scallno),
+            "scomments"  : (None, self.stop_scomments),
+            "sdate"      : (None,self.stop_sdate),
+            "source"     : (self.start_source, self.stop_source),
+            "sourceref"  : (self.start_sourceref, self.stop_sourceref),
+            "sources"    : (None, None),
+            "spage"      : (None, self.stop_spage),
+            "spubinfo"   : (None, self.stop_spubinfo),
+            "state"      : (None, self.stop_state),
+            "stext"      : (None, self.stop_stext),
+            "stitle"     : (None, self.stop_stitle),
+            "street"     : (None, self.stop_street),
+            "suffix"     : (None, self.stop_suffix),
+            "title"      : (None, self.stop_title),
+            "uid"        : (None, self.stop_uid),
+            "url"        : (self.start_url, None)
+            }
+
     def parse(self,file):
         p = xml.parsers.expat.ParserCreate()
         p.StartElementHandler = self.startElement
@@ -108,7 +191,7 @@ class GrampsParser:
         self.db.setResearcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
-            if self.db.personMap.has_key(id):
+            if self.db.personMap.has_key(id) and self.db.getDefaultPerson() == None:
                 person = self.db.personMap[id]
                 self.db.setDefaultPerson(person)
 
@@ -741,86 +824,6 @@ class GrampsParser:
             self.name.setType("Also Known As")
         self.name = None
 
-    func_map = {
-        "address"    : (start_address, stop_address),
-        "addresses"  : (None,None),
-        "childlist"  : (None,None),
-        "aka"        : (start_name, stop_aka),
-        "attribute"  : (start_attribute, stop_attribute),
-        "attr_type"  : (None,stop_attr_type),
-        "attr_value" : (None,stop_attr_value),
-        "bookmark"   : (start_bmark, None),
-        "witness"    : (start_witness,stop_witness),
-        "bookmarks"  : (None, None),
-        "child"      : (start_child,None),
-        "childof"    : (start_childof,None),
-        "city"       : (None, stop_city),
-        "country"    : (None, stop_country),
-        "created"    : (start_created, None),
-        "database"   : (None, None),
-        "date"       : (None, stop_date),
-        "cause"      : (None, stop_cause),
-        "description": (None, stop_description),
-        "event"      : (start_event, stop_event),
-        "families"   : (None, stop_families),
-        "family"     : (start_family, None),
-        "father"     : (start_father, None),
-        "first"      : (None, stop_first),
-        "gender"     : (None, stop_gender),
-        "header"     : (None, None),
-        "last"       : (start_last, stop_last),
-        "mother"     : (start_mother,None),
-        "name"       : (start_name, stop_name),
-        "nick"       : (None, stop_nick),
-        "note"       : (start_note, stop_note),
-        "p"          : (None, stop_ptag),
-        "parentin"   : (start_parentin,None),
-        "people"     : (start_people, stop_people),
-        "person"     : (start_person, stop_person),
-        "img"        : (start_photo, stop_photo),
-        "objref"     : (start_objref, stop_objref),
-        "object"     : (start_object, stop_object),
-        "place"      : (start_place, stop_place),
-        "dateval"    : (start_dateval, None),
-        "daterange"  : (start_daterange, None),
-        "datestr"    : (start_datestr, None),
-        "places"     : (None, stop_places),
-        "placeobj"   : (start_placeobj,stop_placeobj),
-        "location"   : (start_location,None),
-        "lds_ord"    : (start_lds_ord, stop_lds_ord),
-        "temple"     : (start_temple, None),
-        "status"     : (start_status, None),
-        "sealed_to"  : (start_sealed_to, None),
-        "coord"      : (start_coord,None),
-        "pos"        : (start_pos, None),
-        "postal"     : (None, stop_postal),
-        "researcher" : (None, stop_research),
-    	"resname"    : (None, stop_resname ),
-    	"resaddr"    : (None, stop_resaddr ),
-	"rescity"    : (None, stop_rescity ),
-    	"resstate"   : (None, stop_resstate ),
-    	"rescountry" : (None, stop_rescountry),
-    	"respostal"  : (None, stop_respostal),
-    	"resphone"   : (None, stop_resphone),
-    	"resemail"   : (None, stop_resemail),
-        "sauthor"    : (None, stop_sauthor),
-        "scallno"    : (None, stop_scallno),
-        "scomments"  : (None, stop_scomments),
-        "sdate"      : (None,stop_sdate),
-        "source"     : (start_source, stop_source),
-        "sourceref"  : (start_sourceref, stop_sourceref),
-        "sources"    : (None, None),
-        "spage"      : (None, stop_spage),
-        "spubinfo"   : (None, stop_spubinfo),
-        "state"      : (None, stop_state),
-        "stext"      : (None, stop_stext),
-        "stitle"     : (None, stop_stitle),
-        "street"     : (None, stop_street),
-        "suffix"     : (None, stop_suffix),
-        "title"      : (None, stop_title),
-        "uid"        : (None, stop_uid),
-        "url"        : (start_url, None)
-        }
 
     def startElement(self,tag,attrs):
 
@@ -829,17 +832,17 @@ class GrampsParser:
         self.tlist = []
 
         try:
-	    f,self.func = GrampsParser.func_map[tag]
+	    f,self.func = self.func_map[tag]
             if f:
-                f(self,attrs)
+                f(attrs)
         except KeyError:
-            GrampsParser.func_map[tag] = (None,None)
+            self.func_map[tag] = (None,None)
             self.func = None
 
     def endElement(self,tag):
 
         if self.func:
-            self.func(self,string.join(self.tlist,''))
+            self.func(string.join(self.tlist,''))
         self.func_index = self.func_index - 1    
         self.func,self.tlist = self.func_list[self.func_index]
 
@@ -854,39 +857,56 @@ class GrampsParser:
 #-------------------------------------------------------------------------
 class GrampsImportParser(GrampsParser):
 
+    def __init__(self,database,callback,base):
+        GrampsParser.__init__(self,database,callback,base)
+
+        self.func_map["bookmark"] = (self.start_bmark, None)
+        self.func_map["child"]    =  (self.start_child,None)
+        self.func_map["family"]   = (self.start_family, None)
+        self.func_map["father"]   = (self.start_father, None)
+        self.func_map["mother"]   = (self.start_mother,None)
+        self.func_map["people"]   = (self.start_people, self.stop_people)
+        self.func_map["person"]   = (self.start_person, self.stop_person)
+        self.func_map["objref"]   = (self.start_objref, self.stop_objref)
+        self.func_map["object"]   = (self.start_object, self.stop_object)
+        self.func_map["place"]    = (self.start_place, self.stop_place)
+        self.func_map["placeobj"] = (self.start_placeobj,self.stop_placeobj)
+        self.func_map["source"]   = (self.start_source, self.stop_source)
+        self.func_map["sourceref"]= (self.start_sourceref, self.stop_sourceref)
+
     def start_bmark(self,attrs):
-        person = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        person = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
         self.db.bookmarks.append(person)
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.findPerson("x%s" % attrs["id"],self.pmap)
+        self.person = self.db.findPersonNoConflicts(attrs["id"],self.pmap)
 
     def start_father(self,attrs):
-        father = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        father = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
         self.family.setFather(father)
 
     def start_mother(self,attrs):
-        mother = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        mother = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
         self.family.setMother(mother)
     
     def start_child(self,attrs):
-        child = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        child = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
         self.family.addChild(child)
 
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.findFamily(attrs["id"],self.fmap)
+        self.family = self.db.findFamilyNoConflicts(attrs["id"],self.fmap)
         if attrs.has_key("type"):
             self.family.setRelationship(attrs["type"])
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
-        self.source = self.db.findSource(attrs["ref"],self.smap)
+        self.source = self.db.findSourceNoConflicts(attrs["ref"],self.smap)
         self.source_ref.setBase(self.source)
         if self.address:
             self.address.addSourceRef(self.source_ref)
@@ -902,7 +922,77 @@ class GrampsImportParser(GrampsParser):
             print "Sorry, I'm lost"
 
     def start_source(self,attrs):
-        self.source = self.db.findSource(attrs["id"],self.smap)
+        self.source = self.db.findSourceNoConflicts(attrs["id"],self.smap)
+
+    def start_sourceref(self,attrs):
+        self.source_ref = RelLib.SourceRef()
+        source = self.db.findSourceNoConflicts(attrs["ref"],self.smap)
+        if attrs.has_key("conf"):
+            self.source_ref.confidence = int(attrs["conf"])
+        else:
+            self.source_ref.confidence = self.conf
+        self.source_ref.setBase(source)
+        if self.photo:
+            self.photo.addSourceRef(self.source_ref)
+        elif self.ord:
+            self.ord.addSourceRef(self.source_ref)
+        elif self.object:
+            self.object.addSourceRef(self.source_ref)
+        elif self.event:
+            self.event.addSourceRef(self.source_ref)
+        elif self.address:
+            self.address.addSourceRef(self.source_ref)
+        elif self.name:
+            self.name.addSourceRef(self.source_ref)
+        elif self.attribute:
+            self.attribute.addSourceRef(self.source_ref)
+        elif self.placeobj:
+            self.placeobj.addSourceRef(self.source_ref)
+
+    def start_place(self,attrs):
+        if attrs.has_key('ref'):
+            self.placeobj = self.db.findPlaceNoConflicts(attrs['ref'],self.lmap)
+        else:
+            self.placeobj = None
+
+    def start_placeobj(self,attrs):
+        self.placeobj = self.db.findPlaceNoConflicts(attrs['id'],self.lmap)
+        title = attrs['title']
+        if title == "":
+            title = attrs['id']
+        self.placeobj.set_title(title)
+        self.locations = 0
+        if self.num_places > 0:
+            if self.callback != None and self.count % self.increment == 0:
+                self.callback(float(self.count)/float(self.entries))
+            self.count = self.count + 1
+
+    def start_objref(self,attrs):
+        self.objref = RelLib.ObjectRef()
+        self.objref.setReference(self.db.findObjectNoConflicts(attrs['ref'],self.MediaFileMap))
+        if attrs.has_key('priv'):
+            self.objref.setPrivacy(int(attrs['priv']))
+        if self.family:
+            self.family.addPhoto(self.objref)
+        elif self.source:
+            self.source.addPhoto(self.objref)
+        elif self.person:
+            self.person.addPhoto(self.objref)
+        elif self.placeobj:
+            self.placeobj.addPhoto(self.objref)
+
+    def start_object(self,attrs):
+        self.object = self.db.findObjectNoConflicts(attrs['id'],self.MediaFileMap)
+        self.object.setMimeType(attrs['mime'])
+        self.object.setDescription(attrs['description'])
+        src = attrs["src"]
+        if src:
+            if src[0] != '/':
+                self.object.setPath("%s/%s" % (self.base,src))
+                self.object.setLocal(1)
+            else:
+                self.object.setPath(src)
+                self.object.setLocal(0)
 
 
 def append_value(orig,val):
