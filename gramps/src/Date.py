@@ -50,7 +50,7 @@ _fmonth = [
 _fmonth2num = {
     "vend" : 0, "brum" : 1, "frim" : 2, "nivo" : 3, "pluv" : 4,
     "vent" : 5, "germ" : 6, "flor" : 7, "prai" : 8, "mess" : 9,
-    "ther" :10, "fruc" :11, "extr" : 12,"nivô" : 3 }
+    "ther" :10, "fruc" :11, "extr" : 12,"comp" :12, "nivô" : 3 }
 
 _hmonth = [
     "Tishri", "Heshvan", "Kislev", "Tevet",  "Shevat", "AdarI",
@@ -341,7 +341,7 @@ class SingleDate:
             "after"	: after,
             "before"	: before }
 
-    modifiers = "(" + \
+    modifiers = '(' + \
                 _("abt\.?") + '|' + \
                 _("about") + '|' + \
                 _("est\.?") + '|' + \
@@ -350,12 +350,8 @@ class SingleDate:
                 _("before") + '|' + \
                 _("after") + '|' + \
                 _("aft\.?") + '|' + \
-                _("bef\.?") + '|' + \
-                "abt" + '|' + \
-                "aft" + '|' + \
-                "after" + '|' + \
-                "before" + '|' + \
-                "bef" + ')'
+                _("bef\.?") + \
+                '|abt|aft|after|before|bef)'
     
     start = "^\s*" + modifiers + "?\s*"
     
@@ -487,7 +483,7 @@ class SingleDate:
                 retval = "%d %s %d" % (self.day,month,self.year)
 
         if self.mode == SingleDate.about:
-            retval = "ABT %s"  % retval
+            retval = "ABOUT %s"  % retval
         elif self.mode == SingleDate.before:
             retval = "BEFORE" + " " + retval
         elif self.mode == SingleDate.after:
@@ -573,7 +569,7 @@ class SingleDate:
                 retval = "%d %s %d" % (self.day,string.upper(month[0:3]),self.year)
 
         if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
+            retval = "%s %s" % (_("ABOUT"),retval)
         elif self.mode == SingleDate.before:
             retval = "%s %s" % (_("BEFORE"),retval)
         elif self.mode == SingleDate.after:
@@ -601,7 +597,7 @@ class SingleDate:
                 retval = "%d. %s %d" % (self.day,month,self.year)
 
         if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
+            retval = "%s %s" % (_("ABOUT"),retval)
         elif self.mode == SingleDate.before:
             retval = "%s %s" % (_("BEFORE"),retval)
         elif self.mode == SingleDate.after:
@@ -628,7 +624,7 @@ class SingleDate:
                 retval = "%02d%s%02d%s%04d" % (self.month+1,sep,self.day,sep,self.year)
 
         if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
+            retval = "%s %s" % (_("ABOUT"),retval)
         elif self.mode == SingleDate.before:
             retval = "%s %s" % (_("BEFORE"),retval)
         elif self.mode == SingleDate.after:
@@ -657,7 +653,7 @@ class SingleDate:
                 retval = "%02d%s%02d%s%02d" % (self.year,sep,self.month+1,sep,self.day)
 
         if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
+            retval = "%s %s" % (_("ABOUT"),retval)
 
         if self.mode == SingleDate.before:
             retval = "%s %s" % (_("BEFORE"),retval)
@@ -696,7 +692,7 @@ class SingleDate:
                 retval = "%02d%s%02d%s%04d" % (self.day,sep,self.month+1,sep,self.year)
 
         if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
+            retval = "%s %s" % (_("ABOUT"),retval)
         if self.mode == SingleDate.before:
             retval = "%s %s" % (_("BEFORE"),retval)
         elif self.mode == SingleDate.after:

@@ -18,11 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import pickle
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gtk
+import GDK
 from gnome.ui import *
 import libglade
 
@@ -44,6 +48,9 @@ _ = gettext
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
+
+pycode_tgts = [('fevent', 0, 0),
+               ('fattr', 0, 1)]
 
 #-------------------------------------------------------------------------
 #
@@ -135,6 +142,16 @@ class Marriage:
         else:
             self.lds_temple.entry.set_text("")
         
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.event_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.event_list.connect('drag_data_get', self.ev_source_drag_data_get)
+        self.event_list.connect('drag_data_received', self.ev_dest_drag_data_received)
+
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.attr_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.attr_list.connect('drag_data_get', self.at_source_drag_data_get)
+        self.attr_list.connect('drag_data_received', self.at_dest_drag_data_received)
+
         # set notes data
         self.notes_field.set_point(0)
         self.notes_field.insert_defaults(family.getNote())
@@ -147,6 +164,63 @@ class Marriage:
         self.redraw_event_list()
         self.redraw_attr_list()
         top_window.show()
+
+    def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'family = "%s"' % data[1]
+            if family == self.family.getId() or mytype != 'fevent':
+                return
+            foo = pickle.loads(data[2]);
+            for src in foo.getSourceRefList():
+                base = src.getBase()
+                newbase = self.db.findSourceNoMap(base.getId())
+                src.setBase(newbase)
+            place = foo.getPlace()
+            if place:
+                foo.setPlace(self.db.findPlaceNoMap(place.getId()))
+            self.elist.append(foo)
+            self.lists_changed = 1
+            self.redraw_event_list()
+
+    def ev_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('fevent',self.family.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
+
+    def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'family = "%s"' % data[1]
+            if family == self.family.getId() or mytype != 'fattr':
+                return
+            foo = pickle.loads(data[2]);
+            for src in foo.getSourceRefList():
+                base = src.getBase()
+                newbase = self.db.findSourceNoMap(base.getId())
+                src.setBase(newbase)
+            self.alist.append(foo)
+            self.lists_changed = 1
+            self.redraw_attr_list()
+
+    def at_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('fattr',self.family.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
 
     #-------------------------------------------------------------------------
     #

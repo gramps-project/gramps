@@ -18,11 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import pickle
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gtk
+import GDK
 import libglade
 
 #-------------------------------------------------------------------------
@@ -39,6 +43,8 @@ import ImageSelect
 
 from intl import gettext
 _ = gettext
+
+pycode_tgts = [('url', 0, 0)]
 
 #-------------------------------------------------------------------------
 #
@@ -142,9 +148,37 @@ class EditPlace:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
+        self.web_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
+        self.web_list.connect('drag_data_get', self.url_source_drag_data_get)
+        self.web_list.connect('drag_data_received', self.url_dest_drag_data_received)
+
         self.redraw_url_list()
         self.redraw_location_list()
         
+    def url_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
+        if selection_data and selection_data.data:
+            exec 'data = %s' % selection_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'place = "%s"' % data[1]
+            if place == self.place.getId() or mytype != 'url':
+                return
+            foo = pickle.loads(data[2]);
+            self.ulist.append(foo)
+            self.lists_changed = 1
+            self.redraw_url_list()
+
+    def url_source_drag_data_get(self,widget, context, selection_data, info, time):
+        if len(widget.selection) != 1:
+            return
+        row = widget.selection[0]
+        ev = widget.get_row_data(row)
+        
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('url',self.place.getId(),pickled));
+        selection_data.set(selection_data.target, bits_per, data)
+
     def update_lists(self):
         self.place.setUrlList(self.ulist)
         self.place.set_alternate_locations(self.llist)

@@ -40,7 +40,17 @@ import gtk
 import gnome.ui
 import libglade
 
+import xml.parsers.expat
+
 _ = intl.gettext
+
+#-------------------------------------------------------------------------
+#
+# Unicode to latin conversion
+#
+#-------------------------------------------------------------------------
+from latin_utf8 import utf8_to_latin
+u2l = utf8_to_latin
 
 #------------------------------------------------------------------------
 #
@@ -264,8 +274,7 @@ class ComplexFilterFile:
         self.fname = name
         try:
             f = open(self.fname)
-            parser = make_parser()
-            parser.setContentHandler(ComplexFilterParser(self))
+            parser = ComplexFilterParser(self)
             parser.parse(f)
             f.close()
         except IOError:
@@ -295,25 +304,32 @@ class ComplexFilterFile:
         f.write('</filterlist>\n')
         f.close()
 
-class ComplexFilterParser(handler.ContentHandler):
+class ComplexFilterParser:
     def __init__(self,parent):
         self.parent = parent
         self.curfilter = []
         self.curname = ""
 
+    def parse(self,f):
+        p = xml.parsers.expat.ParserCreate()
+        p.StartElementHandler = self.startElement
+        p.EndElementHandler = self.endElement
+        p.ParseFile(f)
+
     def startElement(self,tag,attrs):
+        tag = u2l(tag)
         if tag == "complex_filter":
-            self.curname = attrs['name']
+            self.curname = u2l(attrs['name'])
             self.curfilter = []
         elif tag == "filter":
-            name = attrs['name']
-            qual = attrs['text']
+            name = u2l(attrs['name'])
+            qual = u2l(attrs['text'])
             invert = int(attrs['invert'])
             f = Filter.make_filter_from_name(name,qual,invert)
             self.curfilter.append(f)
 
     def endElement(self,tag):
-        if tag == "complex_filter":
+        if u2l(tag) == "complex_filter":
             self.parent.filters[self.curname] = self.curfilter
 
 #------------------------------------------------------------------------

@@ -218,7 +218,6 @@ fi
 AC_SUBST(P21_INCLUDES)
 
 if test "$PYTHON22" != ""; then
-  INTLLIBS="${INTLLIBS}intl22.so "
   py_prefix=`$PYTHON22 -c "import sys; print sys.prefix"`
   py_exec_prefix=`$PYTHON22 -c "import sys; print sys.exec_prefix"`
   P22_INCLUDES="-I${py_prefix}/include/python2.2"
