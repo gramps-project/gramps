@@ -1,0 +1,2967 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>GRAMPS Manual V2.0</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.77+"></HEAD
+><BODY
+CLASS="article"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+><A
+NAME="AEN2"
+></A
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> Manual V2.0</H1
+><DIV
+CLASS="authorgroup"
+><A
+NAME="AEN24"
+></A
+><H3
+CLASS="author"
+><A
+NAME="AEN25"
+>Alex Roitman</A
+></H3
+><DIV
+CLASS="affiliation"
+><SPAN
+CLASS="orgname"
+>GRAMPS Project<BR></SPAN
+><DIV
+CLASS="address"
+><P
+CLASS="address"
+>&nbsp;<TT
+CLASS="email"
+>&#60;<A
+HREF="mailto:shura@alex.neuro.umn.edu"
+>shura@alex.neuro.umn.edu</A
+>&#62;</TT
+>&nbsp;</P
+></DIV
+></DIV
+><H3
+CLASS="author"
+><A
+NAME="AEN32"
+>Donald N. Allingham</A
+></H3
+><DIV
+CLASS="affiliation"
+><SPAN
+CLASS="orgname"
+>GRAMPS Project<BR></SPAN
+><DIV
+CLASS="address"
+><P
+CLASS="address"
+>&nbsp;<TT
+CLASS="email"
+>&#60;<A
+HREF="mailto:dallingham@users.sourceforge.net"
+>dallingham@users.sourceforge.net</A
+>&#62;</TT
+>&nbsp;</P
+></DIV
+></DIV
+></DIV
+><SPAN
+CLASS="releaseinfo"
+>This manual describes version 0.9.1 of GRAMPS.
+    <BR></SPAN
+><P
+CLASS="copyright"
+>Copyright &copy; 2003 Alex Roitman</P
+><P
+CLASS="copyright"
+>Copyright &copy; 2001 Donald N. Allingham</P
+><DIV
+CLASS="revhistory"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+COLSPAN="3"
+><B
+>Revision History</B
+></TH
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+>Revision GRAMPS Manual V2.0</TD
+><TD
+ALIGN="LEFT"
+>March 2003</TD
+><TD
+ALIGN="LEFT"
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+COLSPAN="3"
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+>Revision GRAMPS User Manual V1.1</TD
+><TD
+ALIGN="LEFT"
+>2001</TD
+><TD
+ALIGN="LEFT"
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+COLSPAN="3"
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+>Revision gramps User Manual V1.0</TD
+><TD
+ALIGN="LEFT"
+>2001</TD
+><TD
+ALIGN="LEFT"
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+COLSPAN="3"
+></TD
+></TR
+></TABLE
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="#gramps-intro"
+>Introduction</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="#why-gramps"
+>Why <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>?</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="#gramps-getting-started"
+>Getting Started</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="#gramps-start"
+>To Start <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></A
+></DT
+><DT
+>2.2. <A
+HREF="#run-1st-time"
+>Running <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> for the first time</A
+></DT
+><DD
+><DL
+><DT
+>2.2.1. <A
+HREF="#choose-db-start"
+>Choosing a database on startup</A
+></DT
+><DT
+>2.2.2. <A
+HREF="#zodb-support"
+>Optional ZODB support</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>3. <A
+HREF="#gramps-mainwin"
+>Main Window</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="#gramps-views"
+>Views</A
+></DT
+><DD
+><DL
+><DT
+>3.1.1. <A
+HREF="#view-modes"
+>Viewing Modes: Sidebar versus Tabs</A
+></DT
+><DT
+>3.1.2. <A
+HREF="#people-view"
+>People View</A
+></DT
+><DT
+>3.1.3. <A
+HREF="#family-view"
+>Family View</A
+></DT
+><DT
+>3.1.4. <A
+HREF="#pedigree-view"
+>Pedigree View</A
+></DT
+><DT
+>3.1.5. <A
+HREF="#sources-view"
+>Sources View</A
+></DT
+><DT
+>3.1.6. <A
+HREF="#places-view"
+>Places View</A
+></DT
+><DT
+>3.1.7. <A
+HREF="#media-view"
+>Media View</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>4. <A
+HREF="#gramps-usage"
+>Usage</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="#open-db"
+>Opening Database</A
+></DT
+><DT
+>4.2. <A
+HREF="#new-db"
+>Starting New Database</A
+></DT
+><DT
+>4.3. <A
+HREF="#save-db"
+>Saving Database</A
+></DT
+><DT
+>4.4. <A
+HREF="#import-gedcom"
+>Importing GEDCOM Data</A
+></DT
+><DT
+>4.5. <A
+HREF="#export-gedcom"
+>Exporting GEDCOM Data</A
+></DT
+><DT
+>4.6. <A
+HREF="#gramps-package-impex"
+>Importing and Exporting <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> Packages</A
+></DT
+><DT
+>4.7. <A
+HREF="#gramps-edit"
+>Editing</A
+></DT
+><DD
+><DL
+><DT
+>4.7.1. <A
+HREF="#gramps-edit-pers"
+>Edit Personal Data</A
+></DT
+><DT
+>4.7.2. <A
+HREF="#gramps-edit-rel"
+>Edit Relationship Data</A
+></DT
+><DT
+>4.7.3. <A
+HREF="#gramps-edit-child"
+>Edit Children Data</A
+></DT
+><DT
+>4.7.4. <A
+HREF="#gramps-edit-parent"
+>Edit Parental Data</A
+></DT
+><DT
+>4.7.5. <A
+HREF="#gramps-edit-sources"
+>Edit Sources</A
+></DT
+><DT
+>4.7.6. <A
+HREF="#gramps-edit-places"
+>Edit Places</A
+></DT
+><DT
+>4.7.7. <A
+HREF="#gramps-edit-media"
+>Edit Media Objects</A
+></DT
+></DL
+></DD
+><DT
+>4.8. <A
+HREF="#gramps-nav"
+>Nevigation</A
+></DT
+><DD
+><DL
+><DT
+>4.8.1. <A
+HREF="#gramps-nav-default"
+>Setting Default Person</A
+></DT
+><DT
+>4.8.2. <A
+HREF="#gramps-nav-bookmk"
+>Bookmarking People</A
+></DT
+><DT
+>4.8.3. <A
+HREF="#gramps-nav-family"
+>Using Family View</A
+></DT
+><DT
+>4.8.4. <A
+HREF="#gramps-nav-pedigree"
+>Using Pedigree View</A
+></DT
+></DL
+></DD
+><DT
+>4.9. <A
+HREF="#gen-reports"
+>Generating Reports</A
+></DT
+><DT
+>4.10. <A
+HREF="#gramps-tools"
+>Running Tools</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="#gramps-prefs"
+>Settings</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="#gramps-prefs-usage"
+>Usage</A
+></DT
+><DD
+><DL
+><DT
+>5.1.1. <A
+HREF="#prefs-usage-find"
+>Find</A
+></DT
+><DT
+>5.1.2. <A
+HREF="#prefs-usage-report"
+>Report Preferences</A
+></DT
+><DT
+>5.1.3. <A
+HREF="#prefs-usage-res"
+>Researcher Information</A
+></DT
+><DT
+>5.1.4. <A
+HREF="#prefs-usage-guess"
+>Data Guessing</A
+></DT
+></DL
+></DD
+><DT
+>5.2. <A
+HREF="#gramps-prefs-display"
+>Display</A
+></DT
+><DD
+><DL
+><DT
+>5.2.1. <A
+HREF="#prefs-display-gen"
+>General</A
+></DT
+><DT
+>5.2.2. <A
+HREF="#prefs-display-date"
+>Dates and Calendar</A
+></DT
+><DT
+>5.2.3. <A
+HREF="#prefs-display-bars"
+>Tool and Status Bars</A
+></DT
+></DL
+></DD
+><DT
+>5.3. <A
+HREF="#gramps-prefs-db"
+>Database</A
+></DT
+><DD
+><DL
+><DT
+>5.3.1. <A
+HREF="#prefs-db-gen"
+>General</A
+></DT
+><DT
+>5.3.2. <A
+HREF="#prefs-db-media"
+>Media Objects</A
+></DT
+><DT
+>5.3.3. <A
+HREF="#prefs-db-id"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> internal IDs</A
+></DT
+><DT
+>5.3.4. <A
+HREF="#prefs-db-rcs"
+>Revision Control</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>6. <A
+HREF="#gramps-about"
+>About <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><HR><H2
+CLASS="sect1"
+><A
+NAME="gramps-intro"
+></A
+>1. Introduction</H2
+><P
+> The <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> is a genealogical 
+    application. <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> is an acronym for the 
+    Genealogical Research and Analysis Management Programming System. To put 
+    it shortly, it allows you to store, edit, and research genealogical data 
+    using your computer. Its functionality is somewhat common to other 
+    genealogical programs. However, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> offers 
+    some unique features. </P
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="why-gramps"
+></A
+>1.1. Why <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>?</H3
+><P
+> <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> was conceived under the concept
+      that most genealogy programs were designed to provide the researcher the 
+      capability to input information related to a particular family tree.  
+      Most of these programs have allowed for the arranging and storing of
+      information consistent with the GEDCOM standards. They usually provide
+      means for displaying descendant or ancestral relationships by means of
+      graphical displays, charts, or reports.  These may be augmented with 
+      pictures or other media to enhance the data.  Most provide for inputting 
+      data on unconnected individuals/families that may or may not have a 
+      relationship to the primary surname being researched.  Various other 
+      enhancements may also be provided in the genealogical program that 
+      allows for different degrees of importing and exporting data from other 
+      programs and printing the data contained in the various reports. </P
+><P
+> <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>, on the other hand, attempts to
+      provide all of the common capabilities of these programs, but, more
+      importantly, to provide an additional capability of integration not common
+      to these programs.  This is the ability to input any bits and pieces of
+      information directly into <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> and
+      rearrange/manipulate any/all data events in the entire data base (in any
+      order or sequence) to assist the user in doing research, analysis and
+      correlation with the potential of filling relationship gaps.  In short, a
+      tool that provides a way to input all your research into one place and do
+      your analysis and correlation using the speed, power, and accuracy of your
+      computer instead of pencils and unmanageable reams of paper. </P
+></DIV
+></DIV
+><DIV
+CLASS="sect1"
+><HR><H2
+CLASS="sect1"
+><A
+NAME="gramps-getting-started"
+></A
+>2. Getting Started</H2
+><DIV
+CLASS="sect2"
+><H3
+CLASS="sect2"
+><A
+NAME="gramps-start"
+></A
+>2.1. To Start <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></H3
+><P
+>You can start <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> in the 
+    following ways:</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guimenu"
+>Applications</SPAN
+> menu</DT
+><DD
+><P
+>Choose <SPAN
+CLASS="guisubmenu"
+>Other</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Gramps</SPAN
+>. </P
+></DD
+><DT
+>Command line</DT
+><DD
+><P
+>To start <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> 
+	from a command line, type <B
+CLASS="command"
+>gramps</B
+>, then 
+	press <B
+CLASS="keycap"
+>Return</B
+>.</P
+><P
+>If you would like <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> to open 
+	a specific database or to import a specific file on startup, you can 
+	supply the filename as a command line argument:</P
+><P
+>&#13;	<B
+CLASS="command"
+>gramps</B
+> <TT
+CLASS="replaceable"
+><I
+>filename.ged</I
+></TT
+>
+    	</P
+><P
+>where <TT
+CLASS="replaceable"
+><I
+>filename.ged</I
+></TT
+> is the name 
+	of the file you	want to open/import. </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="run-1st-time"
+></A
+>2.2. Running <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> for the first time</H3
+><P
+> 
+ 
+    The first time you run the program, GRAMPS will display its 
+    Getting Started screens. </P
+><DIV
+CLASS="figure"
+><A
+NAME="druid-fig"
+></A
+><P
+><B
+>Figure 1. <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> Gettin Started Window</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/druid.png"></P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="choose-db-start"
+></A
+>2.2.1. Choosing a database on startup</H4
+><P
+>If <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> is started without any
+      database  to open, the following window will appear prompting you to 
+      choose what database to open. </P
+><DIV
+CLASS="figure"
+><A
+NAME="first-open"
+></A
+><P
+><B
+>Figure 2. Open Database Window</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/first-open.png"></P
+></DIV
+></DIV
+><P
+>If you would like to open an existing database, check the top radio
+      button and click <SPAN
+CLASS="guibutton"
+>OK</SPAN
+>. You will then be asked to 
+      specify the name of your existing database. If you would like to start
+      creating your brand new database from scratch right away, choose new XML
+      database. </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="zodb-support"
+></A
+>2.2.2. Optional ZODB support</H4
+><P
+>If either StandaloneZODB or Zope is installed on your system, 
+      <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> will give you the third option of 
+      creating a new ZODB database. You can choose to start your new database 
+      in either XML or ZODB format. Both formats have their strong and weak 
+      points.</P
+><P
+>XML stands for eXtensible Markup Language, and is a human readable
+      sctructured description of data. It could be easily parsed by other 
+      programs should the need occur. It stores only the data itself. Its weak 
+      point is the relatively low speed of processing large data files. </P
+><P
+>ZODB stands for Zope Object Database and provides the full-fledged
+      database support. ZODB files are not human readable. They contain a
+      certain overhead to assist working with large data structures. However,
+      ZODB provides a significant speed-up when the database size is large (over
+      few thousand people). </P
+><P
+>Its is hard to tell which format is better, since this is a typical
+      tradeoff situation. If you are starting your research then you are likely
+      to be fine with the regular XML database. If you have tons of data to
+      import describing thousands upon thousands of people, then you are
+      probably better of with ZODB. </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect1"
+><HR><H2
+CLASS="sect1"
+><A
+NAME="gramps-mainwin"
+></A
+>3. Main Window</H2
+><P
+>When you open a database (either existing or brand new), 
+    the following window is displayed.</P
+><DIV
+CLASS="figure"
+><A
+NAME="mainwin-fig"
+></A
+><P
+><B
+>Figure 3. <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> Main Window</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/mainwin.png"></P
+></DIV
+></DIV
+><P
+>The <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> window contains the following elements: </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>Menubar.</DT
+><DD
+><P
+>The menubar provides access to all features of
+	<SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> through its menus.</P
+></DD
+><DT
+>Toolbar.</DT
+><DD
+><P
+> The toolbar provides access to the most frequently 
+	used functions of <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>. The appearance of 
+	the toolbar can be adjusted in <SPAN
+CLASS="guilabel"
+>Preferences</SPAN
+> 
+	dialog. </P
+></DD
+><DT
+>Progress bar.</DT
+><DD
+><P
+>The progress bar is located in the lower left corner 
+	of the <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> window. It displays the 
+	progress of time consuming operations, such as opening and saving 
+	large data bases, importing and exporting to other formats, generating 
+	web-sites, etc. </P
+></DD
+><DT
+>Statusbar.</DT
+><DD
+><P
+>The statusbar is located to the right of the progress
+	bar, on the very bottom of the <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> window. 
+	It displays information about current <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> 
+	activity and contextual information about the menu items. 
+	The behavior of the Status line can be adjusted in 
+	<SPAN
+CLASS="guilabel"
+>Preferences</SPAN
+> dialog. </P
+></DD
+><DT
+>Display area.</DT
+><DD
+><P
+>The largest are in the center of the
+	<SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> window is the display area.  
+	It shows certain aspects of genealogical information, depending on the 
+	currently selected View. There are six Views available 
+	in <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>: <A
+HREF="#people-view"
+>Section 3.1.2</A
+>, 
+	<A
+HREF="#family-view"
+>Section 3.1.3</A
+>, <A
+HREF="#pedigree-view"
+>Section 3.1.4</A
+>, 
+	<A
+HREF="#sources-view"
+>Section 3.1.5</A
+>, <A
+HREF="#places-view"
+>Section 3.1.6</A
+>, 
+	and <A
+HREF="#media-view"
+>Section 3.1.7</A
+>. </P
+></DD
+></DL
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-views"
+></A
+>3.1. Views</H3
+><P
+>Views are the various ways to display different aspects of 
+      genealogical information, as described below. Since the relevant 
+      information is very broad and non-uniform in both context and modality, 
+      it is best to split it's display into smaller categories, uniform in 
+      context and modality. Each View represents such a split and displays a 
+      certain portion of overall available information. Before the detailed 
+      description of available Views, let us  guide you through the ways of 
+      switching between the Views.</P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="view-modes"
+></A
+>3.1.1. Viewing Modes: Sidebar versus Tabs</H4
+><P
+>Depending on the state of the <SPAN
+CLASS="guimenu"
+>View</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Sidebar</SPAN
+> menu item, the View could be switched either in the 
+	sidebar or in the notebook tabs in the top part of the window. 
+	To switch the View, click on the desired sidebar icon or the notebook 
+	tab. To switch between sidebar and notebook viewing modes, 
+	choose <SPAN
+CLASS="guimenu"
+>View</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Sidebar</SPAN
+> from the <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> menu.</P
+><DIV
+CLASS="figure"
+><A
+NAME="side-nofilt-fig"
+></A
+><P
+><B
+>Figure 4. Sidebar Viewing Mode</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/side-nofilt.png"></P
+></DIV
+></DIV
+><DIV
+CLASS="figure"
+><A
+NAME="noside-nofilt-fig"
+></A
+><P
+><B
+>Figure 5. Tabbed Viewing Mode</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/noside-nofilt.png"></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="people-view"
+></A
+>3.1.2. People View</H4
+><P
+>When <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> opens a database, 
+	the View is set to the People View. People View lists individuals 
+	whose data is stored in the database. People View displays people's 
+	<SPAN
+CLASS="guilabel"
+>Names</SPAN
+>, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>
+	<SPAN
+CLASS="guilabel"
+>ID</SPAN
+> numbers, <SPAN
+CLASS="guilabel"
+>Gender</SPAN
+>, and 
+	their <SPAN
+CLASS="guilabel"
+>Birth</SPAN
+> and <SPAN
+CLASS="guilabel"
+>Death dates</SPAN
+>. 
+	The list can be ordered by any field.</P
+><P
+>Example: to order list by the Birth date, click on the
+	<SPAN
+CLASS="guilabel"
+>Birth date</SPAN
+> column heading. To order list in 
+	reverse	(descending) order, click one more time on the desired column
+	heading. </P
+><DIV
+CLASS="sect4"
+><HR><H5
+CLASS="sect4"
+><A
+NAME="filters"
+></A
+>3.1.2.1. Filters</H5
+><P
+>Genealogical databases may contain huge numbers of people. 
+	  Since the long lists are hard for humans to handle,
+	  <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> provides a convenient way to limit 
+	  the scope of browsing by using the Filter. To save screen space, 
+	  Filter controls may be hidden, depending on the state of 
+	  <SPAN
+CLASS="guimenu"
+>View</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Filter</SPAN
+> menu item.</P
+><DIV
+CLASS="figure"
+><A
+NAME="side-filt-fig"
+></A
+><P
+><B
+>Figure 6. Filter Controls Displayed</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/side-filt.png"></P
+></DIV
+></DIV
+><P
+>When <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> opens a database, the 
+	  Filter is set to the trivial filter called <SPAN
+CLASS="guilabel"
+>All
+	  people</SPAN
+>, i.e. no filtering is in effect. To choose a 
+	  filter, use a pop-up <SPAN
+CLASS="guilabel"
+>Filter</SPAN
+> menu above the 
+	  people's list. Once the Filter is chosen, click
+	  <SPAN
+CLASS="guibutton"
+>Apply</SPAN
+> in the upper right corner of the 
+	  window. The filtering will take effect upon clicking
+	  <SPAN
+CLASS="guibutton"
+>Apply</SPAN
+>. To invert the filtering rule, check 
+	  the <SPAN
+CLASS="guilabel"
+>Invert</SPAN
+> box on the left 
+	  of <SPAN
+CLASS="guibutton"
+>Apply</SPAN
+> button. </P
+><P
+>Example: To show people without children, choose 
+	  <SPAN
+CLASS="guilabel"
+>People with children</SPAN
+> filter, then check 
+	  <SPAN
+CLASS="guilabel"
+>Invert</SPAN
+> box, and then click
+	  <SPAN
+CLASS="guibutton"
+>Apply</SPAN
+>. To cancel any filtering, set 
+	  the filter to <SPAN
+CLASS="guilabel"
+>All people</SPAN
+>  
+	  and then click <SPAN
+CLASS="guibutton"
+>Apply</SPAN
+>. </P
+><P
+>Note: even if the Filter controls are not displayed 
+	  (<SPAN
+CLASS="guimenu"
+>View</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Filter</SPAN
+> menu item is
+	  unchecked), the filtering might still be in place. In other words, 
+	  the visibility of the Filter controls is not related to the actual 
+	  filtering imposed on the list. This may be a cause of confusion, when
+	  you enable the filtering and then remove the controls from the
+	  display. If in doubt, enable the display of Filter controls by 
+	  checking <SPAN
+CLASS="guimenu"
+>View</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Filter</SPAN
+> menu item and check 
+	  what kind of filtering is currently set.</P
+></DIV
+><DIV
+CLASS="sect4"
+><HR><H5
+CLASS="sect4"
+><A
+NAME="alpha-tabs"
+></A
+>3.1.2.2. Alphabetical Tabs</H5
+><P
+><SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> offers another way of 
+	  managing long lists of people -- alphabetical tabs. Upon loading a 
+	  database, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> checks for the stored 
+	  Family names and breaks the people list into sublists based on the 
+	  first letter of their name. The alphabetical tabs are displayed in 
+	  the bottom part of the <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> window. 
+	  The last tab, "Other," stands for unidentified characters -- all 
+	  the entries not assigned to any other tab end up in "Others."</P
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="family-view"
+></A
+>3.1.3. Family View</H4
+><P
+>Family View displays the Family information of a currently 
+	selected (or Active) person. Specifically, this view shows the 
+	relationships (e.g marriages, partnerships, etc.) of the active 
+	person, his/her parents (or step parents, or guardians, etc), and 
+	his/her children (could be step children, adopted children, etc.).
+	</P
+><DIV
+CLASS="figure"
+><A
+NAME="family-fig"
+></A
+><P
+><B
+>Figure 7. Family View</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/family.png"></P
+></DIV
+></DIV
+><P
+>The Active person's data is in the list-box in the upper left 
+	corner of the window. Directly below it, another box lists the Spouse's
+	data, for each relationship of Active person (can be more than one). 
+	The double-arrow button to the right of the Active person list-box 
+	allows to exchange the currently selected spouse (Current spouse) 
+	with the Active person. Double-clicking on the Active person allows 
+	to edit Active person's data. Double-clicking on the Current spouse 
+	allows to edit their relationship information. To add a spouse, 
+	click <SPAN
+CLASS="guibutton"
+>+</SPAN
+> to the right of the spouse box. 
+	To remove Current spouse, click <SPAN
+CLASS="guibutton"
+>-</SPAN
+> to the 
+	right of the spouse box. </P
+><P
+>The parents of both the Active person and the Current spouse 
+	are listed in the corresponding list-boxes in the right-hand part of 
+	the window (Active person's parents on top, Current spouse parents 
+	on the bottom). Both list-boxes have a set of three buttons on their 
+	right side. The <SPAN
+CLASS="guibutton"
+>+</SPAN
+> and <SPAN
+CLASS="guibutton"
+>-</SPAN
+>
+	buttons allow to add and remove parents of the Active person and the 
+	Current spouse, respectively. Clicking <SPAN
+CLASS="guibutton"
+>-&#62;</SPAN
+> 
+	makes the family in the corresponding list-box and active family. 
+	That is, it makes the selected Father the Active person, and the 
+	selected Mother the Current spouse. </P
+><P
+>The bottom list-box displays children of the Active person and 
+	the Current  Spouse. Children's list can be order by the Birth date, 
+	by usual way of clicking on the <SPAN
+CLASS="guilabel"
+>Birth date</SPAN
+> column 
+	header. In addition to the <SPAN
+CLASS="guilabel"
+>Name</SPAN
+>,
+	<SPAN
+CLASS="guilabel"
+>ID</SPAN
+>, <SPAN
+CLASS="guilabel"
+>Gender</SPAN
+>, and
+	<SPAN
+CLASS="guilabel"
+>Birth date</SPAN
+> columns, the list includes  
+	<SPAN
+CLASS="guilabel"
+>Status</SPAN
+> column. The pair of status words reflect the
+	relationship between the child and his Father/Mother (such as Birth, Adoption, 
+	etc.) The three buttons are available on the right side of the 
+	children list-box. The <SPAN
+CLASS="guibutton"
+>+</SPAN
+> 
+	and <SPAN
+CLASS="guibutton"
+>+</SPAN
+> buttons allow to add and remove 
+	children, respectively. Pressing <SPAN
+CLASS="guibutton"
+>&#60;-</SPAN
+> makes 
+	the selected child the Active person.</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="pedigree-view"
+></A
+>3.1.4. Pedigree View</H4
+><P
+>Pedigree View helps to visualize the place of the Active 
+	person in the tree of its ancestors. Pedigree View shows four 
+	generations, going back in time from the Active person
+	<SPAN
+CLASS="guilabel"
+>1</SPAN
+> to his/her parents <SPAN
+CLASS="guilabel"
+>1</SPAN
+>, 
+	to grandparents <SPAN
+CLASS="guilabel"
+>1</SPAN
+>, to great-grandparents 
+	<SPAN
+CLASS="guilabel"
+>1</SPAN
+>. 
+	Each person is denoted by a white box bearing the person's name. 
+	The two lines that converge on the box represent ties with the 
+	person's Father (top line) and mother (bottom line). Solid lines 
+	represent birth relations, while dashed lines represent non-birth 
+	relations (such as adoption, step-parentship, guardianship, etc.). 
+	When the mouse moves over the white box, it expands to display the 
+	corresponding person's dates of birth and death. When the mouse is 
+	placed over the family line, the line changes color to indicate an 
+	active link: double-clicking on the line makes the corresponding 
+	ancestor the Active person. The display in that case is re-adjusted 
+	to show four generations, starting from a newly selected Active 
+	person. </P
+><P
+>The left-hand side of the window shows the left arrow button. 
+	Upon clicking, the button expands to the menu listing the children 
+	of the Active person. Selecting the menu item makes the corresponding 
+	child the Active person. </P
+><P
+>The right-hand side of the window shows two right arrow buttons. 
+	When the top button is clicked, the Father of the Active person 
+	becomes Active person. Clicking the bottom button makes the Mother of 
+	the Active person the Active person. Again, the display is re-adjusted 
+	to show four generations, starting from a newly selected Active 
+	person.</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="sources-view"
+></A
+>3.1.5. Sources View</H4
+><P
+>Sources View lists the sources of information stored in the 
+	database. This can include various documents (birth, death, and 
+	marriage certificates, etc.), books, films, journals, private diaries, 
+	i.e. virtually anything that can be classified as a source of 
+	information. The sources can be used as the reference for any event 
+	stored in the database. The Source View lists the 
+	<SPAN
+CLASS="guilabel"
+>Title</SPAN
+>, <SPAN
+CLASS="guilabel"
+>ID</SPAN
+>, and the 
+	<SPAN
+CLASS="guilabel"
+>Author</SPAN
+> of the source. All the columns can be 
+	used for sorting the list. The usual rules apply: one click for 
+	ascending order, another click for descending order.</P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="places-view"
+></A
+>3.1.6. Places View</H4
+><P
+>Places View lists the geographical places in which the events 
+	of the database took place. These could be places of birth, death, 
+	marriages of people, as well as their home, employment, education 
+	addresses, or any other conceivable reference to the geographical 
+	location. The Places View lists places' <SPAN
+CLASS="guilabel"
+>Name</SPAN
+>,
+	<SPAN
+CLASS="guilabel"
+>ID</SPAN
+>, <SPAN
+CLASS="guilabel"
+>Church Parish</SPAN
+>,
+	<SPAN
+CLASS="guilabel"
+>City</SPAN
+>, <SPAN
+CLASS="guilabel"
+>County</SPAN
+>,
+	<SPAN
+CLASS="guilabel"
+>State</SPAN
+>, and <SPAN
+CLASS="guilabel"
+>Country</SPAN
+>. All of
+	these can be used for sorting by the usual sorting rules. </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="media-view"
+></A
+>3.1.7. Media View</H4
+><P
+>Media View is a list of Media Objects used in the database. 
+	Media Objects are any files that relate somehow to the stored 
+	genealogical data. Technically, any file can be stored as a Media 
+	Object. Most frequently, these are images, audio files, animation 
+	files, etc. The list-box on the bottom lists the Name, ID, Type, and 
+	Path to the Media Object. The top part of the GRAMPS window shows 
+	the preview (if available) and the information about the Media 
+	Object. </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect1"
+><HR><H2
+CLASS="sect1"
+><A
+NAME="gramps-usage"
+></A
+>4. Usage</H2
+><P
+>As commonly encountered in everyday life, in
+    <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> there is usually more than one way to
+    accomplish something. The alternatives to some actions will therefore 
+    be listed as appropriate.</P
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="open-db"
+></A
+>4.1. Opening Database</H3
+><P
+>To open a database, either choose <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Open</SPAN
+>
+      or click <SPAN
+CLASS="guibutton"
+>Open</SPAN
+> button on the Toolbar. 
+      The <SPAN
+CLASS="guilabel"
+>Open Database</SPAN
+> dialog will appear. 
+      Either type the full path into the <SPAN
+CLASS="guilabel"
+>Database</SPAN
+> text 
+      entry field, or press <SPAN
+CLASS="guibutton"
+>Browse...</SPAN
+> to get the 
+      <SPAN
+CLASS="guilabel"
+>Open File</SPAN
+> dialog in which you can select the file
+      that you want to open. After you have selected the file, click
+      <SPAN
+CLASS="guibutton"
+>OK</SPAN
+> to open it. </P
+><P
+>If you have previously opened files with
+      <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> you can retreive your past selections 
+      from the drop-down menu by clicking the down arrow button. Finally, if 
+      the Revision Control System (RCS) is enabled in the 
+      <SPAN
+CLASS="guilabel"
+>Preferences</SPAN
+> dialog, the check-box 
+      <SPAN
+CLASS="guilabel"
+>Revert to an older version from RCS</SPAN
+> 
+      will be available. Check it to revert your database to an older RCS 
+      version. </P
+><P
+>Note: the name you type or select should be the directory
+      (folder) which has your data (data.gramps or data.zodb files) as well as
+      any possible copies of Media Objects. </P
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="new-db"
+></A
+>4.2. Starting New Database</H3
+><P
+>To start a new database, choose <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>New</SPAN
+>. You will then be 
+      prompted with the <SPAN
+CLASS="guilabel"
+>Save Database</SPAN
+> dialog asking 
+      to specify the name under which the new database will be stored. 
+      Choose an empty directory for your new database (create one if
+      necessary). </P
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="save-db"
+></A
+>4.3. Saving Database</H3
+><P
+>To save changes made to your database, choose <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Save</SPAN
+> or click
+      <SPAN
+CLASS="guibutton"
+>Save</SPAN
+> on the Toolbar. The Status line will then 
+      display <SPAN
+CLASS="guilabel"
+>Saving <TT
+CLASS="replaceable"
+><I
+>filename</I
+></TT
+>...</SPAN
+> 
+      message, and the progress bar will advance as the saving progresses.</P
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="import-gedcom"
+></A
+>4.4. Importing GEDCOM Data</H3
+><P
+>Importing GEDCOM data allows you to incorporate the data created in 
+      other genealogical programs into your currently 
+      open <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> database. 
+      <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> can import GEDCOM data files from a 
+      number of software packages, as long as they comply with GEDCOM 
+      standards. To import GEDCOM file, choose <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Import</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Import from 
+      GEDCOM</SPAN
+>. You will then be prompted with the
+      <SPAN
+CLASS="guilabel"
+>Open File</SPAN
+> dialog asking to specify the GEDCOM file
+      name. </P
+><P
+>Upon starting the import, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> will 
+      display the following GEDCOM import dialog with the summary of the 
+      information about the data. The information is updated as the import
+      progresses. </P
+><DIV
+CLASS="figure"
+><A
+NAME="gedcom-import-fig"
+></A
+><P
+><B
+>Figure 8. GEDCOM Import</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/gedcom-import.png"></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="export-gedcom"
+></A
+>4.5. Exporting GEDCOM Data</H3
+><P
+>Exporting GEDCOM data allows you to share any portion of you 
+      <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> database with other researchers 
+      by way of standard GEDCOM files. To export into GEDCOM file, 
+      choose <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Export</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Export to GEDCOM</SPAN
+>. The following 
+      <SPAN
+CLASS="guilabel"
+>Export GEDCOM file</SPAN
+> dialog will appear.</P
+><DIV
+CLASS="figure"
+><A
+NAME="gedcom-export-fig"
+></A
+><P
+><B
+>Figure 9. Export GEDCOM File dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/gedcom-export.png"></P
+></DIV
+></DIV
+><P
+>Type the desired GEDCOM filename into the text entry box or
+      click <SPAN
+CLASS="guibutton"
+>Browse...</SPAN
+> to evoke 
+      <SPAN
+CLASS="guilabel"
+>Save File</SPAN
+> dialog. Use <SPAN
+CLASS="guilabel"
+>Filter</SPAN
+>
+      popup menu to limit the scope of export according to the stated rule. 
+      Choose the desired <SPAN
+CLASS="guilabel"
+>Encoding</SPAN
+> of the exported file. 
+      Use <SPAN
+CLASS="guilabel"
+>Target</SPAN
+> to select the desired GEDCOM 
+      dialect. Select you copyright statement from the 
+      <SPAN
+CLASS="guilabel"
+>Copyright</SPAN
+> menu. Check <SPAN
+CLASS="guilabel"
+>Do not include
+      records marked private</SPAN
+> to disable the output of private
+      records. Check <SPAN
+CLASS="guilabel"
+>Restrict data on living people</SPAN
+>
+      to limit living people's data to family ties. With this option, 
+      information concerning birth, death, addresses, various events, 
+      etc. will be omitted in the exported GEDCOM file.
+      </P
+><P
+>Upon starting the export, <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> will 
+      display the following GEDCOM export progress window with the progress 
+      bars reflecting the current state of exporting. </P
+><DIV
+CLASS="figure"
+><A
+NAME="gedcom-export-progress-fig"
+></A
+><P
+><B
+>Figure 10. Export GEDCOM progress dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/gedcom-export-progress.png"></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-package-impex"
+></A
+>4.6. Importing and Exporting <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> Packages</H3
+><P
+> <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> provides a way to make your 
+      <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> database completely portable. This might 
+      prove useful, for instance, when you need to move your database to 
+      another machine or to share it with somebody, while retaining all the 
+      features provided by <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>. To accomplish 
+      this, choose <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Export</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Export to GRAMPS Package</SPAN
+>. The
+      <SPAN
+CLASS="guilabel"
+>GRAMPS Package Export</SPAN
+> window will appear. Type
+      the desired package name into the text entry area or click 
+      <SPAN
+CLASS="guibutton"
+>Browse...</SPAN
+> to select the file using the 
+      <SPAN
+CLASS="guilabel"
+>Save File</SPAN
+> dialog. The resulting package is
+      gzip-compressed tar archive (also known as tarball) which contains 
+      gramps database, all local media objects, and copies of all external 
+      media objects. </P
+><P
+>To import data from such a package into your
+      <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> database, choose 
+      <SPAN
+CLASS="guimenu"
+>File</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Import</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Import from GRAMPS</SPAN
+>, then select 
+      a package to be imported from the <SPAN
+CLASS="guilabel"
+>Import from GRAMPS</SPAN
+> 
+      dialog. </P
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-edit"
+></A
+>4.7. Editing</H3
+><P
+> Editing of any portion of data allows you to amend and 
+	modify information stored in the database. The available editing 
+	options include editing personal data, relationship data, data about
+	children and parents, information about sources, places, and media
+	objects used in the database. In short, any data stored in the 
+	database can be edited! Adding new pieces of information is in fact
+	creating an appropriate empty data structure and subsequent 
+	editing of that empty structure. </P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-pers"
+></A
+>4.7.1. Edit Personal Data</H4
+><P
+> Editing of personal data can be performed in the 
+	following ways. </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>From People View:</DT
+><DD
+><P
+> 
+	  Double-click the name of the person whose data you would like 
+	  to edit, or select the name by single click and then click
+	  <SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar.
+	  </P
+></DD
+><DT
+>From Family View:</DT
+><DD
+><P
+>&#13;	  Move the mouse into the <SPAN
+CLASS="guilabel"
+>Active person</SPAN
+> box, 
+	  then double-click.
+	  </P
+></DD
+></DL
+></DIV
+><P
+> With either method, the following <SPAN
+CLASS="guilabel"
+>Edit 
+	Person</SPAN
+> dialog will appear: </P
+><DIV
+CLASS="figure"
+><A
+NAME="edit-pers-fig"
+></A
+><P
+><B
+>Figure 11. Edit Person dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/edit-person.png"></P
+></DIV
+></DIV
+><P
+> The top of the window shows the name of the person whose 
+	data is being edited. The main part of the window displays nine 
+	notebook tabs containing different categories of available 
+	information. You can bring any tab to the top for viewing
+	or editing by clicking on the appropriate tab heading. 
+	The bottom part has <SPAN
+CLASS="guilabel"
+>OK</SPAN
+> and
+	<SPAN
+CLASS="guibutton"
+>Cance</SPAN
+> buttons. Clicking <SPAN
+CLASS="guibutton"
+>OK</SPAN
+> 
+	at any time will apply all the changes made in all tabs and close the
+	dialog window. Clicking <SPAN
+CLASS="guilabel"
+>Cancel</SPAN
+> at any time will 
+	close the window without applying any changes. If any of the data
+	in any tab was modified, the alert window will appear with the 
+	choices of closing the dialog without saving changes, cancelling the
+	initial cancel request, or saving the changes. 
+	</P
+><P
+>&#13;	The tabs provide the following information categories of 
+	personal data:
+	</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>General</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>General</SPAN
+> tab allows editing of 
+	the most general information about the person. This includes text 
+	entry fields of <SPAN
+CLASS="guilabel"
+>Given name</SPAN
+>, 
+	<SPAN
+CLASS="guilabel"
+>Family name</SPAN
+>, <SPAN
+CLASS="guilabel"
+>Family prefix</SPAN
+> 
+	(such as de or van), <SPAN
+CLASS="guilabel"
+>Suffix</SPAN
+> (e.g. Jr. or III), 
+	<SPAN
+CLASS="guilabel"
+>Title</SPAN
+> (e.g. Dr. or Rev.), 
+	<SPAN
+CLASS="guilabel"
+>Nickname</SPAN
+> (Bob for Robert), 
+	<SPAN
+CLASS="guilabel"
+>Type</SPAN
+> of the name (birth name, married name, etc.)
+	and <SPAN
+CLASS="guilabel"
+>Date</SPAN
+> and <SPAN
+CLASS="guilabel"
+>Place</SPAN
+> of birth 
+	and death. Some of these (<SPAN
+CLASS="guilabel"
+>Family name</SPAN
+>,
+	<SPAN
+CLASS="guilabel"
+>Type</SPAN
+>, and both <SPAN
+CLASS="guilabel"
+>Place</SPAN
+> fileds), 
+	in addition to typing the data in, allow to choose the corresponding
+	contents from the drop-down menus by clicking on a down-arrow button
+	located immediately to the right of the text entry field. The 
+	available menu choices are formed from the information already stored 
+	in the database. Also, when you start to type within these fields, 
+	<SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> will try to guess the remainder of 
+	the text by using the same choices that are available from the
+	corresponding menu. To accept the highlighted guess and move to 
+	the next field, press <B
+CLASS="keycap"
+>Tab</B
+>. </P
+><P
+>&#13;	The <SPAN
+CLASS="guilabel"
+>Gender</SPAN
+> radio buttons offers
+	the choice of person's gender between <SPAN
+CLASS="guilabel"
+>male</SPAN
+>,
+	<SPAN
+CLASS="guilabel"
+>female</SPAN
+>, and <SPAN
+CLASS="guilabel"
+>unknown</SPAN
+>. 
+	The buttons <SPAN
+CLASS="guibutton"
+>Source...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Note...</SPAN
+> allow to add or modify the data about 
+	the sources of the name information and any notes relevant to it. 
+	Similarly, clicking <SPAN
+CLASS="guibutton"
+>Edit..</SPAN
+> buttons located by the
+	birth and death <SPAN
+CLASS="guilabel"
+>Date</SPAN
+> fields allows to edit the
+	corresponding events of birth and death. 
+	The field <SPAN
+CLASS="guilabel"
+>ID</SPAN
+> displays internal 
+	<SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+> ID number which identifies user in the
+	databse. Finally, the <SPAN
+CLASS="guilabel"
+>Image</SPAN
+> area shows the first
+	image available in the <SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+> of this person.
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Names</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Names</SPAN
+> tab displays information concerning 
+	alternate names of the person and the controls allowing its
+	modification. The bottom part displays the list of all alternate names
+	of the person stored in the database. The top part shows the details 
+	of the currently selected name in the list (if any). The buttons
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> allow to correspondingly add, 
+	modify, and remove an alternate name record from the database. 
+	Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	an alternate name is selected from the list.  
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Events</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Events</SPAN
+> tab displays information about 
+	the events relevant to the person and the controls allowing its
+	modification. The bottom part displays the list of all such events 
+	stored in the database. The top part shows the details 
+	of the currently selected event in the list (if any). The buttons
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> allow to correspondingly add, 
+	modify, and remove an event record from the database. 
+	Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	an event is selected from the list.  
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Attributes</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Attributes</SPAN
+> tab displays information about 
+	the attributes of the person and the controls allowing its
+	modification. These could be any personal attributes of a person whose
+	description naturally fits into Parameter-Value pairs (e.g. enormous
+	generousity can be stored as the parameter "Generousity" with the 
+	value "Enormous", etc.). The bottom part displays the list of all  
+	attributes stored in the database. The top part shows the details 
+	of the currently selected attribute in the list (if any). The buttons
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> allow to correspondingly add, 
+	modify, and remove an attribute record from the database. 
+	Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	an attribute is selected from the list.  
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Addresses</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Addresses</SPAN
+> tab displays information about 
+	the addresses of the person and the controls allowing its
+	modification. The bottom part displays the list of all 
+	addresses stored in the database. The top part shows the details 
+	of the currently selected address in the list (if any). The buttons
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> allow to correspondingly add, 
+	modify, and remove an address record from the database. 
+	Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	an address is selected from the list.  
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Notes</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Notes</SPAN
+> tab displays information about 
+	the notes conerning the person. These could be any notes which do not
+	naturally fit into the Parameter-Value pairs available to Attributes. 
+	To add a note or modify existing notes simply edit the text in the 
+	text entry field.
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+> tab displays information about 
+	media objects associated with the person and the controls allowing its
+	modification. The central part shows the list of all such meda objects. 
+	For media object which are valid image files previews of images are 
+	displayed. For other objects such as audio files, movie files, etc. 
+	generic <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> icon is displayed instead. Note that the first available
+	image in the gallery will be also displayed in the
+	<SPAN
+CLASS="guilabel"
+>Image</SPAN
+> area in the <SPAN
+CLASS="guilabel"
+>General</SPAN
+> 
+	tab. The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>,
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Remove</SPAN
+> allow
+	to correspondingly add,  modify, and remove a media object record from
+	the database. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Remove</SPAN
+> buttons become available only when 
+	a media object is selected from the list. 
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Internet</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Internet</SPAN
+> tab displays information about 
+	Internet addresses relevant of the person and the controls
+	allowing its modification. The bottom part displays the list of all 
+	such Internet addresses stored in the database. The top part shows the
+	details of the currently selected addresses in the list (if any). 
+	The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>,
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>,  and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> 
+	allow to correspondingly add, modify, and remove an Internet address 
+	record from the database. The button <SPAN
+CLASS="guibutton"
+>Go</SPAN
+> allows
+	to open a web-page with the corresponding address with your default 
+	browser. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Go</SPAN
+> buttons 
+	become available only when an address is selected from the list.  
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>LDS</SPAN
+></DT
+><DD
+><P
+> Finally, <SPAN
+CLASS="guilabel"
+>LDS</SPAN
+> tab displays information 
+	about LDS ordinances of the person and the controls allowing its
+	modification. These are <SPAN
+CLASS="guilabel"
+>LDS baptims</SPAN
+>, 
+	<SPAN
+CLASS="guilabel"
+>Endowment</SPAN
+>, and <SPAN
+CLASS="guilabel"
+>Sealed to 
+	parents</SPAN
+> ordinances, as labeled inside the tab. 
+	Each ordinance is described by its date, LDS temple, and Place where 
+	it happened. An additional pop-up menu <SPAN
+CLASS="guilabel"
+>Parents</SPAN
+> is
+	available for the <SPAN
+CLASS="guilabel"
+>Sealed to parents</SPAN
+> ordinance.
+	Each ordinance can further be described by its status through the 
+	selections available in the <SPAN
+CLASS="guilabel"
+>Status</SPAN
+> pop-up menu 
+	menu and can also be referenced by sources and notes via corresponding 
+	<SPAN
+CLASS="guibutton"
+>Sources...</SPAN
+> and <SPAN
+CLASS="guibutton"
+>Note</SPAN
+>
+	buttons. 
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-rel"
+></A
+>4.7.2. Edit Relationship Data</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-child"
+></A
+>4.7.3. Edit Children Data</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-parent"
+></A
+>4.7.4. Edit Parental Data</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-sources"
+></A
+>4.7.5. Edit Sources</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-places"
+></A
+>4.7.6. Edit Places</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-edit-media"
+></A
+>4.7.7. Edit Media Objects</H4
+><P
+> </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-nav"
+></A
+>4.8. Nevigation</H3
+><P
+> </P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-nav-default"
+></A
+>4.8.1. Setting Default Person</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-nav-bookmk"
+></A
+>4.8.2. Bookmarking People</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-nav-family"
+></A
+>4.8.3. Using Family View</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="gramps-nav-pedigree"
+></A
+>4.8.4. Using Pedigree View</H4
+><P
+> </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gen-reports"
+></A
+>4.9. Generating Reports</H3
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-tools"
+></A
+>4.10. Running Tools</H3
+><P
+> </P
+></DIV
+></DIV
+><DIV
+CLASS="sect1"
+><HR><H2
+CLASS="sect1"
+><A
+NAME="gramps-prefs"
+></A
+>5. Settings</H2
+><P
+>To configure <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>, choose 
+      <SPAN
+CLASS="guimenu"
+>Settings</SPAN
+>-&gt;<SPAN
+CLASS="guimenuitem"
+>Preferences</SPAN
+>. 
+      The <SPAN
+CLASS="guilabel"
+>Preferences</SPAN
+> dialog contains the 
+      following sections seen as the corresponding tree elements:</P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="#gramps-prefs-usage"
+>Section 5.1</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="#gramps-prefs-display"
+>Section 5.2</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="#gramps-prefs-db"
+>Section 5.3</A
+></P
+></LI
+></UL
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-prefs-usage"
+></A
+>5.1. Usage</H3
+><P
+> </P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-usage-find"
+></A
+>5.1.1. Find</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-usage-report"
+></A
+>5.1.2. Report Preferences</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-usage-res"
+></A
+>5.1.3. Researcher Information</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-usage-guess"
+></A
+>5.1.4. Data Guessing</H4
+><P
+> </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-prefs-display"
+></A
+>5.2. Display</H3
+><P
+> </P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-display-gen"
+></A
+>5.2.1. General</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-display-date"
+></A
+>5.2.2. Dates and Calendar</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-display-bars"
+></A
+>5.2.3. Tool and Status Bars</H4
+><P
+> </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><HR><H3
+CLASS="sect2"
+><A
+NAME="gramps-prefs-db"
+></A
+>5.3. Database</H3
+><P
+> </P
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-db-gen"
+></A
+>5.3.1. General</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-db-media"
+></A
+>5.3.2. Media Objects</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-db-id"
+></A
+>5.3.3. <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> internal IDs</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="prefs-db-rcs"
+></A
+>5.3.4. Revision Control</H4
+><P
+> </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect1"
+><HR><H2
+CLASS="sect1"
+><A
+NAME="gramps-about"
+></A
+>6. About <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></H2
+><P
+> <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> was written by Donald N. Allingham
+      (<TT
+CLASS="email"
+>&#60;<A
+HREF="mailto:dallingham@users.sourceforge.net"
+>dallingham@users.sourceforge.net</A
+>&#62;</TT
+>). 
+      To find more information about <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>, please visit the 
+      <A
+HREF="http://gramps.sourceforge.net"
+TARGET="_top"
+>GRAMPS Project 
+      Web page</A
+>. </P
+><P
+>&#13;      To report a bug or make a suggestion regarding this application or
+      this manual, follow the directions in this 
+      <A
+HREF="ghelp:gnome-feedback"
+TARGET="_top"
+>document</A
+>.
+    </P
+><P
+> This program is distributed under the terms of the GNU
+      General Public license as published by the Free Software
+      Foundation; either version 2 of the License, or (at your option)
+      any later version. A copy of this license can be found at this
+      <A
+HREF="ghelp:gpl"
+TARGET="_top"
+>link</A
+>, or in the file
+      COPYING included with the source code of this program. </P
+></DIV
+></DIV
+></BODY
+></HTML
+>
