@@ -1290,6 +1290,7 @@ class EditPerson:
 
         if not self.person.getBirth().are_equal(self.birth):
             self.person.setBirth(self.birth)
+            Utils.modified()
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
@@ -1306,6 +1307,7 @@ class EditPerson:
 
         if not self.person.getDeath().are_equal(self.death):
             self.person.setDeath(self.death)
+            Utils.modified()
 
         male = self.is_male.get_active()
         female = self.is_female.get_active()
@@ -1382,6 +1384,7 @@ class EditPerson:
         self.update_lists()
         if self.callback:
             self.callback(self,self.add_places)
+
         self.gallery.close()
         self.window.destroy()
 

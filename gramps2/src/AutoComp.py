@@ -143,12 +143,12 @@ class AutoCombo(AutoCompBase):
         AutoCompBase.__init__(self,widget,plist,source)
         self.entry = widget
         widget.entry.connect("insert-text",self.insert_text)
-#        button1 = widget.get_children()[1]
-#        button1.connect("pressed",self.build_list)
-#        button1.connect("released",self.setval)
         self.vals = [""]
         self.inb = 0
-        widget.set_popdown_strings(plist)
+        if len(plist) > 0:
+            widget.set_popdown_strings(plist)
+        else:
+            widget.set_popdown_strings([""])
         
     def setval(self,widget):
         """Callback task called on the button release"""
@@ -164,11 +164,15 @@ class AutoCombo(AutoCompBase):
         combo button that activates the dropdown menu is pressed
         """
         self.inb = 1
-        
-        if self.vals[0] == "":
-            self.entry.set_popdown_strings([self.entry.entry.get_text()])
+
+        if len(self.vals) > 0:
+            if self.vals[0] == "":
+                self.entry.set_popdown_strings([self.entry.entry.get_text()])
+            else:
+                self.entry.set_popdown_strings(self.vals)
         else:
-            self.entry.set_popdown_strings(self.vals)
+            self.entry.set_popdown_strings([""])
+            
         return 1
 
     def timer_callback(self,entry):

@@ -72,6 +72,8 @@ def importData(database, filename, callback):
             f.close()
         except IOError,msg:
             use_gzip = 0
+        except ValueError, msg:
+            use_gzip = 1
     else:
         use_gzip = 0
 
@@ -99,18 +101,7 @@ def importData(database, filename, callback):
                     _("The file is probably either corrupt or not a valid GRAMPS database."))
         return 0
     except ValueError, msg:
-        if str(msg)[0:16] == "Incorrect length":
-            WarningDialog(_("A Data Compression Problem Was Encountered"),
-                          _("Your database has encountered an error in the library "
-                            "that compresses the data. Your data should be okay, but "
-                            "you may want to consider disabling compression. "
-                            "This can be disabled in the Properties dialog. Once you "
-                            "have disabled compression, this error will go away after "
-                            "the next time you save the database."))
-        else:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-            return 0
+        pass
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()

@@ -184,7 +184,6 @@ class PedigreeView:
                 for n in [GrampsCfg.nameof(t[0]),
                           u'b. %s' % t[0].getBirth().getDate(),
                           u'd. %s' % t[0].getDeath().getDate()]:
-                    print n, type(n)
                     try:
                         a.set_text(n,len(n))
                     except TypeError:
