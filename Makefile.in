@@ -17,9 +17,10 @@ install:
 	(cd src/plugins; ${MAKE} install)
 	(cd src/filters; ${MAKE} install)
 	(cd src/data; ${MAKE} install)
-	${INSTALL} gramps.sh ${bindir}/gramps
+	-${INSTALL} -d ${bindir}
 	-${INSTALL} -d ${prefix}/share/example/gramps
 	-${INSTALL} -d ${prefix}/share/example/gedcom
+	${INSTALL} gramps.sh ${bindir}/gramps
 	-${INSTALL} example/gramps/*.jpg ${prefix}/share/example/gramps
 	-${INSTALL} example/gramps/data.gramps ${prefix}/share/example/gramps
 	-${INSTALL} example/gedcom/*.ged ${prefix}/share/example/gedcom
