@@ -81,7 +81,7 @@
 	<widget>
 	  <class>GnomeFileEntry</class>
 	  <name>htmlTemplate</name>
-	  <history_id>2</history_id>
+	  <history_id>HtmlHistory</history_id>
 	  <max_saved>10</max_saved>
 	  <title>HTML Template</title>
 	  <directory>False</directory>
