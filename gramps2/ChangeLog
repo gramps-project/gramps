@@ -1,11 +1,19 @@
+2003-09-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py: Really fix start-up view when family 
+	view style is the default. Clean up the use of views. 
+	(post_load): Select the person with the alphabetically lowest ID
+	to be active if no home person is set. Fixes 793127.
+	(goto_active_person): Create alpha page if it does not exist. 
+	* src/FamilyView.py (init_interface): Do not connect handlers to 
+	events if they already exist; 
+	(set_widgets): Set correct page before hiding the old one. Fixes
+	resizing issue on applying preferences after changing Family View
+	layout. 
+
 2003-09-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/po/Makefile.am: convert .po files to unicode before
 	running through msgfmt
 	* src/revision.glade: make the open dialog box a bit bigger
-
-2003-09-02  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/gramps_main.py: Really fix start-up view when family 
-	view style is the default. Clean up the use of views. 
 
 2003-09-02  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/GraphViz.py: Fixed typo.
