@@ -2903,7 +2903,7 @@ def export_callback(obj,plugin_function):
 #
 #-------------------------------------------------------------------------
 def import_callback(obj,plugin_function):
-    plugin_function(database,active_person,update_display)
+    plugin_function(database,active_person,tool_callback)
     topWindow.set_title("Gramps - " + database.getSavePath())
 
 #-------------------------------------------------------------------------
