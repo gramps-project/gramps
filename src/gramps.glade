@@ -467,6 +467,7 @@
 	  <class>GtkButton</class>
 	  <child_name>Toolbar:button</child_name>
 	  <name>button105</name>
+	  <tooltip>Display the list of sources</tooltip>
 	  <signal>
 	    <name>clicked</name>
 	    <handler>on_sources_activate</handler>
@@ -641,6 +642,7 @@
 	  <widget>
 	    <class>GtkCheckButton</class>
 	    <name>invert</name>
+	    <tooltip>Show persons that do not match the filtering rule</tooltip>
 	    <can_focus>True</can_focus>
 	    <label>Invert</label>
 	    <active>False</active>
