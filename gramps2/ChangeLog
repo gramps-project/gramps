@@ -1,3 +1,9 @@
+2004-12-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: destroy filechooser if open cancelled.
+	* src/Report.py: Use markup in dialog
+	* src/Utils.py: fix year handling
+	* src/plugins/Webpage.py: use markup
+
 2004-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Replace dist_data_DATA with EXTRA_DIST.
 

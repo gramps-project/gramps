@@ -538,7 +538,7 @@ def probably_alive(person,db):
     # These are fairly good indications that someone's not alive.
     for ev_handle in person.event_list:
         ev = db.get_event_from_handle(ev_handle)
-        if ev.name in ["Cause Of Death", "Burial", "Cremation"]:
+        if ev and ev.name in ["Cause Of Death", "Burial", "Cremation"]:
             return False
 
     if person.birth_handle:
@@ -564,7 +564,7 @@ def probably_alive(person,db):
                     if dobj.get_start_date() != Date.EMPTY:
                         d = Date.Date(dobj)
                         val = d.get_start_date()
-                        val = (val[0],val[1],d.get_year() - years,val[3])
+                        val = d.get_year() - years
                         d.set_year(val)
                         if not not_too_old (d):
                             return True

@@ -202,7 +202,7 @@ class ExistingDbPrompter:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename,
                 _('The type "%s" is not in the list of known file types') % filetype )
-        #choose.destroy()
+        choose.destroy()
         return False
 
 #-------------------------------------------------------------------------
@@ -365,6 +365,7 @@ class NewNativeDbPrompter:
             else:
                 choose.destroy()
                 return False
+        choose.destroy()
         return False
 
 #-------------------------------------------------------------------------

@@ -770,7 +770,9 @@ class WebReport(Report.Report):
         self.sort = Sort.Sort(self.db)
 
     def get_progressbar_data(self):
-        return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
+        return (_("Generate HTML reports - GRAMPS"),
+                '<span size="larger" weight="bold">%s</span>' %
+                _("Creating Web Pages"))
     
     def dump_gendex(self,person_handle_list,html_dir):
         fname = "%s/gendex.txt" % html_dir
