@@ -34,7 +34,7 @@ import time
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from Calendar import *
+import Calendar
 from intl import gettext
 _ = gettext
 
@@ -948,24 +948,24 @@ class SingleDate:
             day = self.day
             
         if self.calendar == GREGORIAN:
-            sdn = gregorian_to_sdn(self.year,month,day)
+            sdn = Calendar.gregorian_to_sdn(self.year,month,day)
         elif self.calendar == FRENCH:
-            sdn = french_to_sdn(self.year,month,day)
+            sdn = Calendar.french_to_sdn(self.year,month,day)
         if self.calendar == HEBREW:
-            sdn = jewish_to_sdn(self.year,month,day)
+            sdn = Calendar.jewish_to_sdn(self.year,month,day)
         if self.calendar == JULIAN:
-            sdn = julian_to_sdn(self.year,month,day)
+            sdn = Calendar.julian_to_sdn(self.year,month,day)
         return sdn
 
     def convert_to(self,val):
         if val == GREGORIAN:
-            self.convert_calendar(sdn_to_gregorian,val)
+            self.convert_calendar(Calendar.sdn_to_gregorian,val)
         elif val == JULIAN:
-            self.convert_calendar(sdn_to_julian,val)
+            self.convert_calendar(Calendar.sdn_to_julian,val)
         elif val == HEBREW:
-            self.convert_calendar(sdn_to_jewish,val)
+            self.convert_calendar(Calendar.sdn_to_jewish,val)
         else:
-            self.convert_calendar(sdn_to_french,val)
+            self.convert_calendar(Calendar.sdn_to_french,val)
 
     def convert_calendar(self,func,mode):
         sdn = self.get_sdn()
