@@ -618,6 +618,8 @@ class Gramps:
         entries = [
             ('gtk-go-back',self.back_clicked,back_sensitivity),
             ('gtk-go-forward',self.fwd_clicked,fwd_sensitivity),
+            ('gtk-home',self.on_home_clicked,1),
+            (_("Add Bookmark"),self.on_add_bookmark_activate,1),
             (None,None,0),
             ('gtk-add', self.add_button_clicked,1),
             ('gtk-remove', self.remove_button_clicked,1),
@@ -643,11 +645,11 @@ class Gramps:
             return
 	self.person_tree = self.pl_page[page]
         self.person_list = self.pl_page[page].tree
-        self.person_list.connect('button-press-event',self.on_plist_button_press)
         self.person_model = self.pl_page[page].model
         if not self.model_used.has_key(self.person_tree) or self.model_used[self.person_tree] == 0:
             self.model_used[self.person_tree] = 1
             self.apply_filter(self.person_tree)
+            self.person_list.connect('button-press-event',self.on_plist_button_press)
    
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
@@ -1587,7 +1589,6 @@ class Gramps:
                 page = self.ptabs.get_current_page()
             self.person_tree = self.pl_page[page]
             self.person_list = self.pl_page[page].tree
-            self.person_list.connect('button-press-event',self.on_plist_button_press)
             self.person_model = self.pl_page[page].model
             self.ptabs.set_current_page(page)
             return
@@ -1625,15 +1626,18 @@ class Gramps:
             if person:
                 if self.hindex+1 < len(self.history):
                     self.history = self.history[0:self.hindex+1]
+
+                self.history.append(person.getId())
+                self.mhistory.append(person.getId())
+                self.hindex += 1
+                self.redraw_histmenu()
+
+                if self.hindex+1 < len(self.history):
                     self.fwdbtn.set_sensitive(1)
                     self.forward.set_sensitive(1)
                 else:
                     self.fwdbtn.set_sensitive(0)
                     self.forward.set_sensitive(0)
-                self.history.append(person.getId())
-                self.mhistory.append(person.getId())
-                self.hindex += 1
-                self.redraw_histmenu()
 
                 if self.hindex > 0:
                     self.backbtn.set_sensitive(1)

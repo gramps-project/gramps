@@ -1,7 +1,11 @@
 2003-08-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (build_backhistmenu,build_fwdhistmenu): 
-	Limit of 20 for the Back/Forward history menus. 
-	Add hotkeys for these menus.
+	Add a limit of 20 for the Back/Forward history popup menus. 
+	Add hotkeys for these menus; 
+	(change_active_person): Fix sensitivity of Back/Forward buttons; 
+	(build_people_context_menu): Add new items to the People View's context 
+	menu (Home and Add Bookmark);
+	(change_alpha_page): Fix context menu upon changing pages. 
 
 2003-08-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/preferences.glade: Provide hotkeys for the new default view 
