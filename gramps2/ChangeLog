@@ -17,6 +17,9 @@
 	* src/Sources.py (SourceEditor.draw): Do not discard reference
 	data when adding new source.
 
+	* src/DbPrompter.py: Factory functions for file filters; 
+	Support for explicit format selection for open and import dialogs.
+
 2005-02-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (on_select_row): Add garbage collection call.
 
