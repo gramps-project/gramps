@@ -172,7 +172,7 @@ class GrampsParser(handler.ContentHandler):
     def start_location(self,attrs):
         loc = Location()
         if attrs.has_key('city'):
-            loc.set_city(ul2(attrs['city']))
+            loc.set_city(u2l(attrs['city']))
         if attrs.has_key('state'):
             loc.set_state(u2l(attrs['state']))
         if attrs.has_key('county'):
