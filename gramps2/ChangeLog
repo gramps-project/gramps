@@ -1,6 +1,12 @@
 2003-08-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/PdfDoc.py (page_break): Minor cleanup; 
 	(end_page): Was defined twice -- remove the first occurence. 
+	* src/gramps_main.py (load_selected_people): Only invoke Edit person 
+	dialog if the active person is selection in the current alpha- page; 
+	(change_alpha_page): Enable person-centered buttons only if the 
+	selection is visible in the current page; 
+	(build_people_context_menu): Enable Add bookmark and Edit/Remove only 
+	if the selection is visible in the current page. 
 
 2003-08-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: Support drawing functions.
