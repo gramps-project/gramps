@@ -307,7 +307,7 @@
 	  <name>photosel</name>
 	  <history_id>photoselect</history_id>
 	  <max_saved>10</max_saved>
-	  <title>Select a photo</title>
+	  <title>Select an image</title>
 	  <directory>False</directory>
 	  <modal>False</modal>
 	  <child>
@@ -445,7 +445,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label119</name>
-	<label>Change Photo Description</label>
+	<label>Change Image Description</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>

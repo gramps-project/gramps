@@ -538,7 +538,7 @@ def on_choose_parents_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_new_clicked(obj):
-    msg = _("Do you want to close the current database and create a new database?")
+    msg = _("Do you want to close the current database and create a new one?")
     topWindow.question(msg,new_database_response)
 
 #-------------------------------------------------------------------------

@@ -888,7 +888,7 @@
 	  <widget>
 	    <class>GtkFrame</class>
 	    <name>frame5</name>
-	    <label>Photo</label>
+	    <label>Image</label>
 	    <label_xalign>0</label_xalign>
 	    <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	    <child>
@@ -2887,7 +2887,7 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sat, 09 Dec 2000 22:09:54 GMT</last_modification_time>
 	    </signal>
-	    <label>Add Photo</label>
+	    <label>Add Image</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -2902,7 +2902,7 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sun, 10 Dec 2000 03:48:08 GMT</last_modification_time>
 	    </signal>
-	    <label>Delete Photo</label>
+	    <label>Delete Image</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
