@@ -1,3 +1,16 @@
+2004-02-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/WebPage.py: media reference fixes
+	* src/plugins/ReadGedcom.py: media reference fixes
+	* src/plugins/IndivSummary.py: media reference fixes
+	* src/plugins/IndivComplete.py: media reference fixes
+	* src/plugins/DetAncestralReport.py: media reference fixes
+	* src/plugins/DetDescendantReport.py: media reference fixes
+	* src/plugins/Check.py: media reference fixes	
+	* src/gramps_main.py: media reference fixes	
+	* src/Utils.py: gnome.vfs vs. grampslib
+	* src/RelLib.py: single db file, media reference fixes
+	* src/MediaView.py: media reference fixes	
+	
 2004-02-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py (sortbysource): Low-level implementation;
 	(sortbyplace): Typo.

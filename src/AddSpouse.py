@@ -53,6 +53,7 @@ import const
 import Utils
 import GrampsCfg
 import ListModel
+import Date
 
 #-------------------------------------------------------------------------
 #
@@ -195,7 +196,9 @@ class AddSpouse:
         if not self.active_family:
             self.active_family = self.db.new_family()
             self.person.add_family_id(self.active_family.get_id())
+            self.db.commit_person(self.person)
         spouse.add_family_id(self.active_family.get_id())
+        self.db.commit_person(spouse)
 
         if self.person.get_gender() == RelLib.Person.male:
             self.active_family.set_mother_id(spouse.get_id())
@@ -205,6 +208,7 @@ class AddSpouse:
             self.active_family.set_mother_id(self.person.get_id())
 
         self.active_family.set_relationship(const.save_frel(unicode(self.relation_type.get_text())))
+        self.db.commit_family(self.active_family)
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
 
@@ -224,8 +228,21 @@ class AddSpouse:
         # the potential spouse list. If Partners is selected, use
         # the same gender as the current person.
         gender = self.person.get_gender()
-        bday = self.person.get_birth().get_date_object()
-        dday = self.person.get_death().get_date_object()
+
+        birth_id = self.person.get_birth_id()
+        death_id = self.person.get_death_id()
+        
+        bday = self.db.find_event_from_id(birth_id)
+        dday = self.db.find_event_from_id(death_id)
+        if birth_id:
+            bday = self.db.find_event_from_id(birth_id).get_date_object()
+        else:
+            bday = Date.Date()
+            
+        if death_id:
+            dday = self.db.find_event_from_id(death_id).get_date_object()
+        else:
+            dday = Date.Date()
 
         if text == _("Partners"):
             if gender == RelLib.Person.male:
@@ -247,9 +264,18 @@ class AddSpouse:
                 continue
 
             if not self.showall.get_active():
-                pdday = self.db.get_person(key).get_death().get_date_object()
-                pbday = self.db.get_person(key).get_birth().get_date_object()
-
+                pd_id = self.db.get_person(key).get_death_id()
+                pb_id = self.db.get_person(key).get_birth_id()
+                
+                if pd_id:
+                    pdday = self.db.find_event_from_id(pd_id).get_date_object()
+                else:
+                    pdday = Date.Date()
+                if pb_id:
+                    pbday = self.db.find_event_from_id(pb_id).get_date_object()
+                else:
+                    pbday = Date.Date()
+                    
                 if bday.getYearValid():
                     if pbday.getYearValid():
                         # reject if person birthdate differs more than

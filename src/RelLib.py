@@ -2385,8 +2385,6 @@ class GrampsDB:
 
     def build_person_display(self,nkey,okey=None):
         pass
-#        name = self.person_map.get(str(nkey))[2]
-#        self.add_surname(name.get_surname())
 
     def rebuild_person_table(self):
         pass

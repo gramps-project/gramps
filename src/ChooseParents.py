@@ -48,6 +48,7 @@ import gnome
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import Date
 import RelLib
 import const
 import Utils
@@ -305,12 +306,12 @@ class ChooseParents:
         if birth_event:
             bday = birth_event.get_date_object()
         else:
-            bday = None
+            bday = Date.Date()
         death_event = self.db.find_event_from_id(self.person.get_death_id())
         if death_event:
             dday = death_event.get_date_object()
         else:
-            dday = None
+            dday = Date.Date()
 
         person_list = []
         for key in self.db.sort_person_keys():
@@ -329,13 +330,13 @@ class ChooseParents:
                 if birth_event:
                     pbday = birth_event.get_date_object()
                 else:
-                    pbday = None
+                    pbday = Date.Date()
                 
                 death_event = self.db.find_event_from_id(person.get_death_id())
                 if death_event:
                     pdday = death_event.get_date_object()
                 else:
-                    pdday = None
+                    pdday = Date.Date()
 
                 if bday and bday.getYearValid():
                     if pbday and pbday.getYearValid():
@@ -401,8 +402,8 @@ class ChooseParents:
         if not father_id and not mother_id:
             return None
 	
-        families = self.db.get_family_id_map().values()
-        for family in families:
+        for family_id in self.db.get_family_keys():
+            family = self.db.find_family_from_id(family_id)
             if family.get_father_id() == father_id and family.get_mother_id() == mother_id:
                 return family
             elif family.get_father_id() == mother_id and family.get_mother_id() == father_id:
@@ -416,10 +417,13 @@ class ChooseParents:
         if father_id:
             father = self.db.find_person_from_id(father_id)
             father.add_family_id(family.get_id())
-        if mother:
+            self.db.commit_person(father)
+        if mother_id:
             mother = self.db.find_person_from_id(mother_id)
             mother.add_family_id(family.get_id())
+            self.db.commit_person(mother)
 
+        self.db.commit_family(family)
         return family
 
     def mother_list_select_row(self,obj):

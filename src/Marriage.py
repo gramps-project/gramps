@@ -128,8 +128,18 @@ class Marriage:
             })
 
 
-        father = self.db.find_person_from_id(family.get_father_id())
-        mother = self.db.find_person_from_id(family.get_mother_id())
+        fid = family.get_father_id()
+        mid = family.get_mother_id()
+
+        if fid:
+            father = self.db.find_person_from_id(family.get_father_id())
+        else:
+            father = None
+
+        if mid:
+            mother = self.db.find_person_from_id(family.get_mother_id())
+        else:
+            mother = None
         
         self.title = _("%s and %s") % (GrampsCfg.nameof(father),
                                   GrampsCfg.nameof(mother))
