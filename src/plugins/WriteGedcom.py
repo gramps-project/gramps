@@ -538,6 +538,7 @@ class GedcomWriter:
         self.restrict = 0
         self.private = 0
         self.copy = 0
+        self.images = 0
 
         for p in self.db.get_person_keys():
             self.plist[p] = 1
@@ -1230,6 +1231,26 @@ class GedcomWriter:
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_export
+def exportData(database,filename):
+    ret = 0
+    try:
+        GedcomWriter(database,None,1,filename)
+        ret = 1
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+    return ret
 
-register_export(writeData,_title_string)
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+_title = _('GE_DCOM 5.5')
+_description = _('GEDCOM is used to transfer data between genealogy programs. '
+        'Nearly all genealogy software will accept a GEDCOM file as input. ')
+_config = None
+_filename = 'ged'
+
+from Plugins import register_export
+register_export(exportData,_title,_description,_config,_filename)
