@@ -68,12 +68,15 @@ class WitnessTab:
         self.model.clear()
         for s in self.list:
             if s.get_type() == RelLib.Event.ID:
-                id = s.get_value()
-                if self.db.has_person_handle(id):
-                    n = self.db.get_person_from_handle(id).get_primary_name().get_name()
+                handle = s.get_value()
+                if self.db.has_person_handle(handle):
+                    person = self.db.get_person_from_handle(handle)
+                    n = person.get_primary_name().get_name()
+                    the_id = person.get_gramps_id()
                 else:
                     n = _('Unknown')
-                self.model.add([n,s.get_value()],s)
+                    the_id = ''
+                self.model.add([n,the_id],s)
             else:
                 self.model.add([s.get_value(),''],s)
         if self.list:
@@ -181,7 +184,7 @@ class WitnessEditor:
         self.parent.parent.winsmenu.append(self.parent_menu_item)
 
     def remove_itself_from_menu(self):
-        self.parent.parent.child_windows[self.win_key]
+        del self.parent.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
     def present(self,obj):
@@ -221,8 +224,18 @@ class WitnessEditor:
             self.parent.list.append(self.ref)
 
         if self.in_db.get_active():
-            self.ref.set_value(self.idval)
-            self.ref.set_type(RelLib.Event.ID)
+            try:
+                self.ref.set_value(self.idval)
+                self.ref.set_type(RelLib.Event.ID)
+            except AttributeError:
+                import QuestionDialog
+                QuestionDialog.ErrorDialog(
+                            _("Witness selection error"),
+                            _("Since you have indicated that the person is "
+                            "in the database, you need to actually select "
+                            "the person by pressing the Select button.\n\n"
+                            "Please try again. The witness has not been changed."),
+                            self.window)
         else:
             self.ref.set_value(unicode(self.name.get_text()))
             self.ref.set_type(RelLib.Event.NAME)

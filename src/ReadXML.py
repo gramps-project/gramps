@@ -637,9 +637,12 @@ class GrampsParser:
 
     def start_witness(self,attrs):
         self.in_witness = 1
-        if attrs.has_key('ref'):
-            self.witness = RelLib.Witness(RelLib.Event.ID,self.map_gid(attrs['ref']))
-        if attrs.has_key('name'):
+        if attrs.has_key('hlink'):
+            self.witness = RelLib.Witness(RelLib.Event.ID,attrs['hlink'])
+        elif attrs.has_key('ref'):
+            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+            self.witness = RelLib.Witness(RelLib.Event.ID,person.get_handle())
+        elif attrs.has_key('name'):
             self.witness = RelLib.Witness(RelLib.Event.NAME,attrs['name'])
         
     def start_coord(self,attrs):
