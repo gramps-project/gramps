@@ -343,90 +343,71 @@ def writeData(database,person):
 #
 #
 #-------------------------------------------------------------------------
-class GedcomWriter:
-    """Writes a GEDCOM file from the passed database"""
-    def __init__(self,db,person,cl=0,name=""):
-        self.db = db
+class GedcomWriterOptionBox:
+    """
+    Create a VBox with the option widgets and define methods to retrieve
+    the options. 
+    """
+    def __init__(self,person):
         self.person = person
+
+    def get_option_box(self):
         self.restrict = 1
         self.private = 1
         self.cnvtxt = ansel_utf8.utf8_to_ansel
-        self.plist = {}
-        self.slist = {}
-        self.flist = {}
         self.adopt = GedcomInfo.ADOPT_EVENT
-        self.fidval = 0
-        self.fidmap = {}
-        self.pidval = 0
-        self.pidmap = {}
-        self.sidval = 0
-        self.sidmap = {}
-        self.cl = cl
-        self.name = name
 
-        if self.cl:
-            self.cl_setup()
-        else:
-            glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
-            self.topDialog = gtk.glade.XML(glade_file,"gedcomExport","gramps")
-            self.topDialog.signal_autoconnect({
-                "destroy_passed_object" : Utils.destroy_passed_object,
+        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
+        self.topDialog = gtk.glade.XML(glade_file,"gedcomExport","gramps")
+        self.topDialog.signal_autoconnect({
                 "gnu_free" : self.gnu_free,
                 "standard_copyright" : self.standard_copyright,
                 "no_copyright" : self.no_copyright,
                 "on_restrict_toggled": self.on_restrict_toggled,
-                "on_ok_clicked" : self.on_ok_clicked,
-                "on_help_clicked" : self.on_help_clicked
                 })
 
-            Utils.set_titles(self.topDialog.get_widget('gedcomExport'),
-                             self.topDialog.get_widget('title'),
-                             _('GEDCOM export'))
+        filter_obj = self.topDialog.get_widget("filter")
+        self.copy = 0
 
-            filter_obj = self.topDialog.get_widget("filter")
-            self.copy = 0
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
 
-            all = GenericFilter.GenericFilter()
-            all.set_name(_("Entire Database"))
-            all.add_rule(GenericFilter.Everyone([]))
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % self.person.get_primary_name().get_name())
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_id()]))
 
-            des = GenericFilter.GenericFilter()
-            des.set_name(_("Descendants of %s") % person.get_primary_name().get_name())
-            des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % self.person.get_primary_name().get_name())
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_id()]))
 
-            ans = GenericFilter.GenericFilter()
-            ans.set_name(_("Ancestors of %s") % person.get_primary_name().get_name())
-            ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") %
+                         self.person.get_primary_name().get_name())
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_id()]))
 
-            com = GenericFilter.GenericFilter()
-            com.set_name(_("People with common ancestor with %s") %
-                         person.get_primary_name().get_name())
-            com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_id()]))
+        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+        filter_obj.set_menu(self.filter_menu)
 
-            self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
-            filter_obj.set_menu(self.filter_menu)
+        gedmap = GedcomInfo.GedcomInfoDB()
 
-            gedmap = GedcomInfo.GedcomInfoDB()
+        target_obj = self.topDialog.get_widget("target")
+        myMenu = gtk.Menu()
+        for name in gedmap.get_name_list():
+            menuitem = gtk.MenuItem(name)
+            myMenu.append(menuitem)
+            data = gedmap.get_description(name)
+            menuitem.set_data("data",data)
+            menuitem.show()
 
-            target_obj = self.topDialog.get_widget("target")
-            myMenu = gtk.Menu()
-            for name in gedmap.get_name_list():
-                menuitem = gtk.MenuItem(name)
-                myMenu.append(menuitem)
-                data = gedmap.get_description(name)
-                menuitem.set_data("data",data)
-                menuitem.show()
-
-            target_obj.set_menu(myMenu)
-            self.target_menu = myMenu
-
-            pathname = os.path.join (os.path.dirname(db.get_save_path()),
-                                     "export.ged")
-
-            filetgt = self.topDialog.get_widget('fileentry1')
-            filetgt.set_filename(pathname)
-
-            self.topDialog.get_widget("gedcomExport").show()
+        target_obj.set_menu(myMenu)
+        self.target_menu = myMenu
+        
+        the_box = self.topDialog.get_widget('vbox1')
+        the_parent = self.topDialog.get_widget('dialog-vbox1')
+        the_parent.remove(the_box)
+        self.topDialog.get_widget("gedcomExport").destroy()
+        return the_box
 
     def gnu_free(self,obj):
         self.copy = 1
@@ -444,7 +425,7 @@ class GedcomWriter:
               self.topDialog.get_widget("notes"),
               self.topDialog.get_widget("sources")])
 
-    def on_ok_clicked(self,obj):
+    def parse_options(self):
 
         self.restrict = self.topDialog.get_widget("restrict").get_active()
         self.living = (self.restrict and
@@ -455,7 +436,7 @@ class GedcomWriter:
                          self.topDialog.get_widget("sources").get_active())
         self.private = self.topDialog.get_widget("private").get_active()
 
-        cfilter = self.filter_menu.get_active().get_data("filter")
+        self.cfilter = self.filter_menu.get_active().get_data("filter")
         act_tgt = self.target_menu.get_active()
 
         self.target_ged =  act_tgt.get_data("data")
@@ -482,58 +463,94 @@ class GedcomWriter:
             self.cnvtxt = keep_utf8
 
         self.nl = self.cnvtxt(self.target_ged.get_endl())
-        name = unicode(self.topDialog.get_widget("filename").get_text())
 
-        if cfilter == None:
-            for p in self.db.get_person_keys():
-                self.plist[p] = 1
-        else:
-            try:
-                for p in cfilter.apply(self.db, self.db.get_person_keys()):
-                    self.plist[p] = 1
-            except Errors.FilterError, msg:
-                (m1,m2) = msg.messages()
-                ErrorDialog(m1,m2)
-                return
+#        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
+#
+#        self.exprogress = gtk.glade.XML(glade_file,"exportprogress","gramps")
+#        self.exprogress.signal_autoconnect({
+#            "on_close_clicked" : Utils.destroy_passed_object
+#            })
+#
+#        Utils.set_titles(self.exprogress.get_widget('exportprogress'),
+#                         self.exprogress.get_widget('title'),
+#                         _('GEDCOM export'))
+#
+#        self.fbar = self.exprogress.get_widget("fbar")
+#        self.pbar = self.exprogress.get_widget("pbar")
+#        self.sbar = self.exprogress.get_widget("sbar")
+#        self.progress = self.exprogress.get_widget('exportprogress')
+#
+#        closebtn = self.exprogress.get_widget("close")
+#        closebtn.connect("clicked",Utils.destroy_passed_object)
+#        closebtn.set_sensitive(0)
+#
+#        self.export_data(name)
+#        closebtn.set_sensitive(1)
 
-        self.flist = {}
+class GedcomWriter:
+    def __init__(self,database,person,cl=0,filename="",option_box=None):
+        self.db = database
+        self.person = person
+        self.option_box = option_box
+        self.cl = cl
+        self.filename = filename
+
+        self.plist = {}
         self.slist = {}
-        for key in self.plist.keys():
-            p = self.db.get_person(key)
-            add_persons_sources(self.db,p,self.slist,self.private)
-            for family_id in p.get_family_id_list():
-                add_familys_sources(self.db,family_id,self.slist,self.private)
-                self.flist[family_id] = 1
+        self.flist = {}
+        self.fidval = 0
+        self.fidmap = {}
+        self.pidval = 0
+        self.pidmap = {}
+        self.sidval = 0
+        self.sidmap = {}
+        
+        if not option_box:
+            self.cl_setup()
+        else:
+            self.option_box.parse_options()
 
-        Utils.destroy_passed_object(obj)
+            self.restrict = self.option_box.restrict
+            self.living = self.option_box.living
+            self.exclnotes = self.option_box.exclnotes
+            self.exclsrcs = self.option_box.exclsrcs
+            self.private = self.option_box.private
+            self.copy = self.option_box.copy
+            self.images = self.option_box.images
+            self.target_ged = self.option_box.target_ged
+            self.dest = self.option_box.dest
+            self.adopt = self.option_box.adopt
+            self.conc = self.option_box.conc
+            self.altname = self.option_box.altname
+            self.cal = self.option_box.cal
+            self.obje = self.option_box.obje
+            self.resi = self.option_box.resi
+            self.prefix = self.option_box.prefix
+            self.source_refs = self.option_box.source_refs
+            self.cnvtxt = self.option_box.cnvtxt
+            self.nl = self.option_box.nl
+            
+            if self.option_box.cfilter == None:
+                for p in self.db.get_person_keys():
+                    self.plist[p] = 1
+            else:
+                try:
+                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_keys()):
+                        self.plist[p] = 1
+                except Errors.FilterError, msg:
+                    (m1,m2) = msg.messages()
+                    ErrorDialog(m1,m2)
+                    return
 
-        glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
-
-        self.exprogress = gtk.glade.XML(glade_file,"exportprogress","gramps")
-        self.exprogress.signal_autoconnect({
-            "on_close_clicked" : Utils.destroy_passed_object
-            })
-
-        Utils.set_titles(self.exprogress.get_widget('exportprogress'),
-                         self.exprogress.get_widget('title'),
-                         _('GEDCOM export'))
-
-        self.fbar = self.exprogress.get_widget("fbar")
-        self.pbar = self.exprogress.get_widget("pbar")
-        self.sbar = self.exprogress.get_widget("sbar")
-        self.progress = self.exprogress.get_widget('exportprogress')
-
-        closebtn = self.exprogress.get_widget("close")
-        closebtn.connect("clicked",Utils.destroy_passed_object)
-        closebtn.set_sensitive(0)
-
-        self.export_data(name)
-        closebtn.set_sensitive(1)
-
-    def on_help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','export-data')
-
+            self.flist = {}
+            self.slist = {}
+            for key in self.plist.keys():
+                p = self.db.get_person(key)
+                add_persons_sources(self.db,p,self.slist,self.option_box.private)
+                for family_id in p.get_family_id_list():
+                    add_familys_sources(self.db,family_id,self.slist,self.option_box.private)
+                    self.flist[family_id] = 1
+    
     def cl_setup(self):
         self.restrict = 0
         self.private = 0
@@ -569,23 +586,22 @@ class GedcomWriter:
                 add_familys_sources(self.db,family_id,self.slist,self.private)
                 self.flist[family_id] = 1
 
-        self.export_data(self.name)
-
     def writeln(self,text):
         self.g.write('%s%s' % (text,self.nl))
 
     def export_data(self,filename):
+
         self.dirname = os.path.dirname (filename)
         try:
             self.g = open(filename,"w")
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
             ErrorDialog(msg2,str(msg))
-            self.progress.destroy()
+#            self.progress.destroy()
             return
         except:
             ErrorDialog(_("Could not create %s") % filename)
-            self.progress.destroy()
+#            self.progress.destroy()
             return
 
         date = time.ctime(time.time()).split()
@@ -647,19 +663,19 @@ class GedcomWriter:
         for key in pkeys:
             self.write_person(self.db.get_person(key))
             index = index + 1
-            if index%100 == 0 and not self.cl:
-                self.pbar.set_fraction(index/nump)
-                while(gtk.events_pending()):
-                    gtk.mainiteration()
-        if not self.cl:
-            self.pbar.set_fraction(1.0)
+            #if index%100 == 0 and not self.cl:
+            #    self.pbar.set_fraction(index/nump)
+            #    while(gtk.events_pending()):
+            #        gtk.mainiteration()
+#        if not self.cl:
+#            self.pbar.set_fraction(1.0)
 
         self.write_families()
         if self.source_refs:
             self.write_sources()
-        else:
-            if not self.cl:
-                self.sbar.set_fraction(1.0)
+        #else:
+        #    if not self.cl:
+        #        self.sbar.set_fraction(1.0)
 
         self.writeln("0 TRLR")
         self.g.close()
@@ -760,13 +776,13 @@ class GedcomWriter:
                            self.writeln('2 _STAT %s' % f[2])
                            break
 
-            index = index + 1
-            if index % 100 == 0 and not self.cl:
-                self.fbar.set_fraction(index/nump)
-                while(gtk.events_pending()):
-                    gtk.mainiteration()
-        if not self.cl:
-            self.fbar.set_fraction(1.0)
+#            index = index + 1
+#            if index % 100 == 0 and not self.cl:
+#                self.fbar.set_fraction(index/nump)
+#                while(gtk.events_pending()):
+#                    gtk.mainiteration()
+        #if not self.cl:
+        #    self.fbar.set_fraction(1.0)
 
     def write_sources(self):
         nump = float(len(self.slist))
@@ -785,12 +801,12 @@ class GedcomWriter:
             if source.get_note():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
             index = index + 1
-            if index % 100 == 0 and not self.cl:
-                self.sbar.set_fraction(index/nump)
-                while(gtk.events_pending()):
-                    gtk.mainiteration()
-        if not self.cl:
-            self.sbar.set_fraction(1.0)
+#            if index % 100 == 0 and not self.cl:
+#                self.sbar.set_fraction(index/nump)
+#                while(gtk.events_pending()):
+#                    gtk.mainiteration()
+#        if not self.cl:
+#            self.sbar.set_fraction(1.0)
 
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % self.pid(person.get_id()))
@@ -1231,10 +1247,11 @@ class GedcomWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename):
+def exportData(database,filename,person,option_box):
     ret = 0
     try:
-        GedcomWriter(database,None,1,filename)
+        gw = GedcomWriter(database,person,0,filename,option_box)
+        gw.export_data(filename)
         ret = 1
     except:
         import DisplayTrace
@@ -1249,7 +1266,8 @@ def exportData(database,filename):
 _title = _('GE_DCOM 5.5')
 _description = _('GEDCOM is used to transfer data between genealogy programs. '
         'Nearly all genealogy software will accept a GEDCOM file as input. ')
-_config = None
+#option_box = GedcomWriterOptionBox()
+_config = (_('GEDCOM export options'),GedcomWriterOptionBox)
 _filename = 'ged'
 
 from Plugins import register_export

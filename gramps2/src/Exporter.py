@@ -76,9 +76,9 @@ class Exporter:
         self.parent = parent
         self.parent_window = parent_window
         if self.parent.active_person:
-            self.active_person = self.parent.active_person
+            self.person = self.parent.active_person
         else:
-            self.active_person = self.parent.find_initial_person()
+            self.person = self.parent.find_initial_person()
 
         self.build_exports()
         self.confirm_label = gtk.Label()
@@ -90,18 +90,19 @@ class Exporter:
         self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
         self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
 
-        d = gnome.ui.Druid()
-        self.w.add(d)
-        d.add(self.build_info_page())
-        d.add(self.build_format_page())
-        d.add(self.build_file_sel_page())
-        d.add(self.build_confirm_page())
+        self.d = gnome.ui.Druid()
+        self.w.add(self.d)
+        self.d.add(self.build_info_page())
+        self.d.add(self.build_format_page())
+        self.file_sel_page = self.build_file_sel_page()
+        self.d.add(self.file_sel_page)
+        self.d.add(self.build_confirm_page())
         self.last_page = self.build_last_page()
-        d.add(self.last_page)
+        self.d.add(self.last_page)
 
-        d.set_show_help(gtk.TRUE)
-        d.connect('cancel',self.close)
-        d.connect('help',self.help)
+        self.d.set_show_help(gtk.TRUE)
+        self.d.connect('cancel',self.close)
+        self.d.connect('help',self.help)
         self.w.connect("destroy_event",self.close)
         self.w.set_transient_for(self.parent_window)
         
@@ -202,7 +203,11 @@ class Exporter:
         """
         filename = self.chooser.get_filename()
         ix = self.get_selected_format_index()
-        success = self.exports[ix][0](self.parent.db,filename)
+        if self.exports[ix][3]:
+            success = self.exports[ix][0](self.parent.db,filename,self.person,
+                    self.option_box_instance)
+        else:
+            success = self.exports[ix][0](self.parent.db,filename,self.person)
         if success:
             self.last_page.set_title(_('Your data has been saved'))
             self.last_page.set_text(_('The copy of your data has been '
@@ -256,7 +261,24 @@ class Exporter:
         
         box.add(table)
         box.show_all()
+        p.connect('next',self.build_options)
         return p
+
+    def build_options(self,obj,obj2):
+        ix = self.get_selected_format_index()
+        if self.exports[ix][3]:
+            title = self.exports[ix][3][0]
+            option_box_class = self.exports[ix][3][1]
+            self.option_box_instance = option_box_class(self.person)
+
+            p = gnome.ui.DruidPageStandard()
+            p.set_title(title)
+            p.set_title_foreground(self.fg_color)
+            p.set_background(self.bg_color)
+            p.set_logo(self.logo)
+            p.append_item("",self.option_box_instance.get_option_box(),"")
+            self.d.insert_page(self.file_sel_page,p)
+            p.show_all()
 
     def build_file_sel_page(self):
         """
@@ -298,7 +320,7 @@ class Exporter:
         else:
             return 0
     
-    def native_export(self,database,filename):
+    def native_export(self,database,filename,person):
         """
         Native database export. For now, just stupid copying of the present
         grdb file under another name. In the future, filter and other
