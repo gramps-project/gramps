@@ -31,10 +31,10 @@ import AutoComp
 from intl import gettext
 _ = gettext
 
-class Find:
+class FindBase:
     """Opens find person dialog for gramps"""
     
-    def __init__(self,clist,task,plist):
+    def __init__(self,clist,task,name):
         """Opens a dialog box instance that allows users to
         search for a person.
 
@@ -42,13 +42,14 @@ class Find:
         task - function to call to change the active person"""
         
         self.clist = clist
+        self.nlist = []
         self.task = task
-        title = "%s - GRAMPS" % _("Find Person")
+        title = "%s - GRAMPS" % name
         self.top = GnomeDialog(title,STOCK_BUTTON_PREV,
                                STOCK_BUTTON_NEXT,STOCK_BUTTON_CLOSE)
         self.top.set_policy(0,1,0)
         self.top.vbox.set_spacing(5)
-        self.top.vbox.pack_start(gtk.GtkLabel(_("Find Person")),0,0,5)
+        self.top.vbox.pack_start(gtk.GtkLabel(name),0,0,5)
         self.top.vbox.pack_start(gtk.GtkHSeparator(),0,0,0)
         self.entry = gtk.GtkEntry()
         self.top.vbox.pack_start(self.entry,0,0,25)
@@ -60,14 +61,52 @@ class Find:
         self.top.show_all()
         self.top.editable_enters(self.entry)
         self.entry.grab_focus()
-        
-        self.nlist = []
-        for n in plist:
-            self.nlist.append(n.getPrimaryName().getName())
-            
+
+    def enable_autocomp(self):
         if GrampsCfg.autocomp:
             self.comp = AutoComp.AutoEntry(self.entry,self.nlist)
+        
+    def advance(self,func):
+        pass
 
+    def forward(self):
+        self.row = self.row + 1
+        if self.row == self.clist.rows:
+            self.row = 0
+
+    def backward(self):
+        self.row = self.row - 1
+        if self.row < 0:
+            self.row =  self.clist.rows
+
+    def on_close_clicked(self,obj):
+        self.top.destroy()
+
+    def on_next_clicked(self,obj):
+        """Advances to the next person that matches the dialog text"""
+        self.advance(self.forward)
+
+    def on_prev_clicked(self,obj):
+        """Advances to the previous person that matches the dialog text"""
+        self.advance(self.backward)
+
+
+
+class FindPerson(FindBase):
+    """Opens a Find Person dialog for GRAMPS"""
+    
+    def __init__(self,clist,task,plist):
+        """Opens a dialog box instance that allows users to
+        search for a person.
+
+        clist - GtkCList containing the people information
+        task - function to call to change the active person"""
+        
+        FindBase.__init__(self,clist,task,_("Find Person"))
+        for n in plist:
+            self.nlist.append(n.getPrimaryName().getName())
+        self.enable_autocomp()
+        
     def advance(self,func):
         try:
             self.row = self.clist.selection[0]
@@ -96,25 +135,135 @@ class Find:
             func()
         gtk.gdk_beep()
 
-    def forward(self):
-        self.row = self.row + 1
-        if self.row == self.clist.rows:
-            self.row = 0
+class FindPlace(FindBase):
+    """Opens a Find Place dialog for GRAMPS"""
+    
+    def __init__(self,clist,task,plist):
+        """Opens a dialog box instance that allows users to
+        search for a place.
 
-    def backward(self):
-        self.row = self.row - 1
-        if self.row < 0:
-            self.row =  self.clist.rows
+        clist - GtkCList containing the people information
+        task - function to call to change the active person"""
+        
+        FindBase.__init__(self,clist,task,_("Find Place"))
+        for n in plist:
+            self.nlist.append(n.get_title())
+        self.enable_autocomp()
+        
+    def advance(self,func):
+        try:
+            self.row = self.clist.selection[0]
+        except IndexError:
+            gtk.gdk_beep()
+            return
 
-    def on_close_clicked(self,obj):
-        self.top.destroy()
+        text = self.entry.get_text()
+        if self.row == None or text == "":
+            gtk.gdk_beep()
+            return
+        orow = self.row
+        func()
+        place = None
+        while self.row != orow:
+            value = self.clist.get_row_data(self.row)
+            if value == None:
+                func()
+                continue
+            name = value.get_title()
+            if string.find(string.upper(name),string.upper(text)) >= 0:
+                self.task(self.row)
+                return
+            func()
+        gtk.gdk_beep()
 
-    def on_next_clicked(self,obj):
-        """Advances to the next person that matches the dialog text"""
-        self.advance(self.forward)
+class FindSource(FindBase):
+    """Opens a Find Place dialog for GRAMPS"""
+    
+    def __init__(self,clist,task,plist):
+        """Opens a dialog box instance that allows users to
+        search for a place.
 
-    def on_prev_clicked(self,obj):
-        """Advances to the previous person that matches the dialog text"""
-        self.advance(self.backward)
+        clist - GtkCList containing the people information
+        task - function to call to change the active person"""
+        
+        FindBase.__init__(self,clist,task,_("Find Source"))
+        for n in plist:
+            self.nlist.append(n.getTitle())
+        self.enable_autocomp()
+        
+    def advance(self,func):
+        try:
+            self.row = self.clist.selection[0]
+        except IndexError:
+            gtk.gdk_beep()
+            return
+
+        text = self.entry.get_text()
+        if self.row == None or text == "":
+            gtk.gdk_beep()
+            return
+        orow = self.row
+        func()
+        place = None
+        while self.row != orow:
+            value = self.clist.get_row_data(self.row)
+            if value == None:
+                func()
+                continue
+            name = value.getTitle()
+            if string.find(string.upper(name),string.upper(text)) >= 0:
+                self.task(self.row)
+                return
+            func()
+        gtk.gdk_beep()
+
+class FindMedia(FindBase):
+    """Opens a Find Media Object dialog for GRAMPS"""
+    
+    def __init__(self,clist,task,plist):
+        """Opens a dialog box instance that allows users to
+        search for a place.
+
+        clist - GtkCList containing the people information
+        task - function to call to change the active person"""
+        
+        FindBase.__init__(self,clist,task,_("Find Media Object"))
+        for n in plist:
+            self.nlist.append(n.getDescription())
+        self.enable_autocomp()
+        
+    def advance(self,func):
+        try:
+            self.row = self.clist.selection[0]
+        except IndexError:
+            gtk.gdk_beep()
+            return
+
+        text = self.entry.get_text()
+        if self.row == None or text == "":
+            gtk.gdk_beep()
+            return
+        orow = self.row
+        func()
+        place = None
+        while self.row != orow:
+            value = self.clist.get_row_data(self.row)
+            if value == None:
+                func()
+                continue
+            name = value.getDescription()
+            if string.find(string.upper(name),string.upper(text)) >= 0:
+                self.task(self.row)
+                return
+            func()
+        gtk.gdk_beep()
+
+
+
+
+
+
+
+
 
 

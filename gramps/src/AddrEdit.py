@@ -39,6 +39,7 @@ import Utils
 import Date
 import RelLib
 
+from DateEdit import DateEdit
 from intl import gettext
 _ = gettext
 
@@ -100,6 +101,8 @@ class AddressEditor:
             self.note_field.set_word_wrap(1)
         else:
             self.srcreflist = []
+
+        self.date_check = DateEdit(self.addr_start,self.top.get_widget("date_stat"))
 
         self.top.signal_autoconnect({
             "destroy_passed_object"   : Utils.destroy_passed_object,

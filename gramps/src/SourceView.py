@@ -77,6 +77,11 @@ class SourceView:
         self.source_list.set_sort_column(self.sort_map[self.sort_col])
         self.set_arrow(self.sort_col)
 
+    def moveto(self,row):
+        self.source_list.unselect_all()
+        self.source_list.select_row(row,0)
+        self.source_list.moveto(row)
+
     def set_arrow(self,column):
 
         for a in self.sort_arrow:

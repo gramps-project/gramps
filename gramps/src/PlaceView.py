@@ -224,6 +224,11 @@ class PlaceView:
     def on_add_place_clicked(self,obj):
         EditPlace.EditPlace(Place(),self.db,self.new_place_after_edit)
 
+    def moveto(self,row):
+        self.place_list.unselect_all()
+        self.place_list.select_row(row,0)
+        self.place_list.moveto(row)
+        
     def on_delete_place_clicked(self,obj):
         if len(obj.selection) == 0:
             return

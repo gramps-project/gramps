@@ -607,6 +607,7 @@ class EditPerson:
             self.ddate.set_text(self.death.getDate())
             self.dplace.set_text(self.death.getPlaceName())
             self.bplace.set_text(prev_btext)
+        self.ddate_check = DateEdit(self.ddate,self.get_widget("death_stat"))
 
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
