@@ -646,7 +646,7 @@ class Marriage:
         import EventEdit
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.display_fevent,None,None,
+                              const.family_events,None,None,
                               0,self.event_edit_callback,
                               const.defaultMarriageEvent)
 
@@ -658,7 +658,7 @@ class Marriage:
         event = self.etree.get_object(iter)
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.display_fevent,event,
+                              const.family_events,event,
                               None,0,self.event_edit_callback)
 
     def on_delete_clicked(self,obj):

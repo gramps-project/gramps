@@ -38,7 +38,6 @@ import Errors
 import Calendar
 
 from QuestionDialog import ErrorDialog
-from FontScale import string_width
 from SubstKeywords import SubstKeywords
 from gettext import gettext as _
 
@@ -160,7 +159,7 @@ class FanChart:
 
         self.font = self.doc.style_list["FC-Normal"].get_font()
         for line in self.text[index-1]:
-            self.box_width = max(self.box_width,string_width(self.font,line))
+            self.box_width = max(self.box_width,self.doc.string_width(self.font,line))
 
         self.lines = max(self.lines,len(self.text[index-1]))    
 

@@ -16,6 +16,37 @@
 	* src/plugins/rel_ru.py (is_spouse): Remove function;
 	(get_relationship): Correctly use apply_filter.
 
+	* src/WriteGedcom.py (get_option_box): Make filters inclusive.
+	* src/plugins/merge.glade: Switch button order to comply with HIG.
+	* src/mergedata.glade: Switch button order to comply with HIG.
+	* src/plugins/RelGraph.py (get_default_basename): Add function.
+	* src/plugins/AncestorReport.py (write_report): Translate
+	string properly.
+	* src/EventEdit.py (update_event): Use transtable.
+	* src/EditPerson.py (on_event_add_clicked, on_edit_birth_clicked,
+	on_edit_death_clicked, on_event_update_clicked): 
+	Pass TransTable to the event editor. 
+	* src/Marriage.py (on_add_clicked, on_event_update_clicked): 
+	Pass TransTable to the event editor. 
+	* src/plugins/FtmStyleAncestors.py,
+	src/plugins/FtmStyleDescendants.py:
+	Remove extra space between vars in "%(.*_place)s %(.*_notes)s"
+	* src/plugins/verify.glade: Translate button label.
+	* src/plugins/IndivSummary.py: Proper handling of translation.
+	* src/docgen/OpenOfficeDoc.py (pt2cm): Add function; 
+	(draw_text): Convert points to cm for the box width;
+	 Use self.string_width() method.
+	* src/BaseDoc.py (string_width): Add a method to compute width.
+	* src/docgen/LPRDoc.py (string_width): Override method. 
+	* src/docgen/PdfDoc.py: Use self.string_width() method.
+	* src/docgen/SvgDrawDoc.py: Use self.string_width() method.
+	* src/plugins/AncestorChart2.py: Use self.doc.string_width() method.
+	* src/plugins/AncestorChart.py: Use self.doc.string_width() method.
+	* src/plugins/DesGraph.py: Use self.doc.string_width() method.
+	* src/plugins/FanChart.py: Use self.doc.string_width() method.
+	* src/plugins/TimeLine.py: Use self.doc.string_width() method.
+	* src/plugins/eval.glade: HIG compliance. 
+
 2004-08-20  Tim Waugh  <twaugh@redhat.com>
 	* src/RelLib.py (Event.are_equal): Fixed comparison with None.
 

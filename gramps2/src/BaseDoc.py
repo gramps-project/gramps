@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # Modified September 2002 by Gary Shao
 #
@@ -73,6 +73,7 @@ from math import pi, cos, sin
 #
 #-------------------------------------------------------------------------
 import Utils
+import FontScale
 
 #-------------------------------------------------------------------------
 #
@@ -1204,6 +1205,10 @@ class BaseDoc:
     def close(self):
         "Closes the document"
         pass
+
+    def string_width(self,fontstyle,text):
+        "Determine the width need for text in given font"
+        return FontScale.string_width(fontstyle,text)
 
     def line_break(self):
         "Forces a line break within a paragraph"

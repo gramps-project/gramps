@@ -550,6 +550,10 @@ class LPRDoc(BaseDoc.BaseDoc):
     #
     #------------------------------------------------------------------------
 
+    def string_width(self,fontstyle,text):
+        "Override generic Fontscale-based width."
+        return get_text_width(text,fontstyle)
+
     def line_break(self):
         "Forces a line break within a paragraph."
         # Add previously held text to the paragraph, 

@@ -172,7 +172,7 @@ class FtmAncestorReport(Report.Report):
                             else:
                                 if dplace:
                                     self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s "
-                                            "in %(birth_place)s %(birth_endnotes)s, "
+                                            "in %(birth_place)s%(birth_endnotes)s, "
                                             "and died in %(death_place)s%(death_endnotes)s.") % {
                                         'male_name' : '', 'endnotes' : self.endnotes(pri_name),
                                         'birth_date' : bdate, 'birth_place' : bplace,
@@ -321,7 +321,7 @@ class FtmAncestorReport(Report.Report):
                                         })
                                 else:
                                     self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s "
-                                                    "in %(birth_place)s %(birth_endnotes)s.") % {
+                                                    "in %(birth_place)s%(birth_endnotes)s.") % {
                                         'female_name' : '', 'endnotes' : self.endnotes(pri_name),
                                         'birth_endnotes' : self.endnotes(birth),
                                         'birth_date' : bdate, 'birth_place' : bplace,
