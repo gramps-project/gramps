@@ -939,8 +939,10 @@ class ReportDialog(BareReportDialog):
         self.col += 1
         
         spath = self.get_default_directory()
-        self.target_fileentry.set_default_path(spath)
 
+        self.target_fileentry.set_default_path(spath)
+        self.target_fileentry.set_filename(spath)
+        self.target_fileentry.gtk_entry().set_position(len(spath))
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog.  This function

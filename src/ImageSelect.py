@@ -57,7 +57,7 @@ _IMAGEX = 140
 _IMAGEY = 150
 _PAD = 5
 
-
+_last_path = ""
 _iconlist_refs = []
 
 #-------------------------------------------------------------------------
@@ -66,8 +66,6 @@ _iconlist_refs = []
 #
 #-------------------------------------------------------------------------
 class ImageSelect:
-
-    last_path = ""
 
     def __init__(self, path, db, parent):
         """Creates an edit window.  Associates a person with the window."""
@@ -101,6 +99,7 @@ class ImageSelect:
         self.image       = self.glade.get_widget("image")
         self.description = self.glade.get_widget("photoDescription")
         self.external    = self.glade.get_widget("private")
+        self.photosel    = self.glade.get_widget("photosel")
         self.temp_name   = ""
 
         Utils.set_titles(window,self.glade.get_widget('title'),
@@ -112,8 +111,10 @@ class ImageSelect:
             "destroy_passed_object" : Utils.destroy_passed_object
             })
 
-        if ImageSelect.last_path != "":
-            self.glade.get_widget("photosel").set_default_path(ImageSelect.last_path)
+        if os.path.isdir(_last_path):
+            self.photosel.set_default_path(_last_path)
+            self.photosel.set_filename(_last_path)
+            self.photosel.gtk_entry().set_position(len(_last_path))
         window.show()
 
     def on_name_changed(self, obj):
@@ -139,8 +140,10 @@ class ImageSelect:
 
     def on_savephoto_clicked(self, obj):
         """Save the photo in the dataobj object.  (Required function)"""
-        filename = self.glade.get_widget("photosel").get_full_path(0)
-        ImageSelect.last_path = os.path.dirname(filename)
+        global _last_path
+        
+        filename = self.photosel.get_full_path(0)
+        _last_path = os.path.dirname(filename)
         
         description = self.description.get_text()
 

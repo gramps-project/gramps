@@ -733,6 +733,11 @@ class FamilyView:
             id = self.child_model.get_value(iter,2)
             self.parent.change_active_person(self.parent.db.getPerson(id))
             self.load_family()
+        else:
+            list = self.family.getChildList()
+            if len(list) == 1:
+                self.parent.change_active_person(list[0])
+                self.load_family()
 
     def parent_editor(self,person,selection):
         if not person:
