@@ -1,3 +1,7 @@
+2004-09-11 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReadGedcom.py (parse_person_event): Use TYPE field as
+	the description of the event, if the event already has a name.
+
 2004-09-10 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsDbBase.py: Fix assert statements. 
 

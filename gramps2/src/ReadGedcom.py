@@ -1203,6 +1203,8 @@ class GedcomParser:
                         else:
                             name = matches[2]
                     event.set_name(name)
+                else:
+                    event.set_description(matches[2])
             elif matches[1] == "DATE":
                 event.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "SOUR":
