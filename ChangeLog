@@ -1,5 +1,5 @@
 2003-10-08  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/po/sv.po: Typo.
+	* src/po/sv.po: Typo in keyword. Fixes 820054.
 
 2003-10-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/Verify.py: handle different calendars properly
