@@ -41,6 +41,10 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 
+_parents_level = [ "", "родители", 
+"дедушки/бабушки", "прадедушки/прабабушки", "прапрадедушки/прапрабабушки",
+]
+
 _male_cousin_level = [ 
   "", "двоюродный", "троюродный", "четвероюродный",
   "пятиюродный", "шестиюродный", "семиюродный", "восьмиюродный",
@@ -111,6 +115,12 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def __init__(self,db):
         Relationship.RelationshipCalculator.__init__(self,db)
+
+    def get_parents(self,level):
+        if level>len(_parents_level)-1:
+            return _("remote ancestors")
+        else:
+            return _parents_level[level]
 
     def get_junior_male_cousin(self,level,removed):
         if removed > len(_junior_male_removed_level)-1 or level>len(_male_cousin_level)-1:
@@ -278,6 +288,56 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 return (self.get_junior_female_cousin(secondRel-1,firstRel-secondRel),common)
     
+
+    def get_grandparents_string(self,orig_person,other_person):
+        """
+        returns a string representing the relationshp between the two people,
+        along with a list of common ancestors (typically father,mother) 
+        """
+        firstMap = {}
+        firstList = []
+        secondMap = {}
+        secondList = []
+        common = []
+        rank = 9999999
+        
+        if orig_person == None:
+            return ("undefined",[])
+
+        if orig_person == other_person:
+            return ('', [])
+        
+        try:
+            self.apply_filter(orig_person,0,firstList,firstMap)
+            self.apply_filter(other_person,0,secondList,secondMap)
+        except RuntimeError,msg:
+            return (_("Relationship loop detected"),None)
+    
+        for person_id in firstList:
+            if person_id in secondList:
+                new_rank = firstMap[person_id]
+                if new_rank < rank:
+                    rank = new_rank
+                    common = [ person_id ]
+                elif new_rank == rank:
+                    common.append(person_id)
+
+        firstRel = -1
+        secondRel = -1
+
+        if common:
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
+            
+        if firstRel == 0:
+            if secondRel == 0:
+                return ('',common)
+            else:
+                return (self.get_parents(secondRel),common)
+        else:
+            return None
+
 
 #-------------------------------------------------------------------------
 #
