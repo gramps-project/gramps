@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 import os
 
+import gtk
 #------------------------------------------------------------------------
 #
 # GRAMPS 
@@ -36,6 +37,7 @@ import RelLib
 import Report
 import TextDoc
 import Errors
+import Utils
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -46,11 +48,17 @@ from QuestionDialog import ErrorDialog
 #------------------------------------------------------------------------
 class FamilyGroup:
 
-    def __init__(self,database,family,output,doc):
+    def __init__(self,database,family,doc,output,newpage=0):
         self.db = database
         self.family = family
         self.output = output
         self.doc = doc
+        self.newpage = newpage
+        if output:
+            self.standalone = 1
+            self.doc.open(output)
+        else:
+            self.standalone = 0
 
         cell = TextDoc.TableCellStyle()
         cell.set_padding(0.2)
@@ -112,13 +120,11 @@ class FamilyGroup:
         self.doc.add_table_style('ChildTable',table)
 
     def setup(self):
-        self.doc.open(self.output)
-        self.doc.start_paragraph('Title')
-        self.doc.write_text(_("Family Group Report"))
-        self.doc.end_paragraph()
-    
+        pass
+
     def end(self):
-        self.doc.close()
+        if self.standalone:
+            self.doc.close()
     
     def dump_parent(self,person):
 
@@ -306,29 +312,38 @@ class FamilyGroup:
     #
     #--------------------------------------------------------------------
     def write_report(self):
-        self.dump_parent(self.family.getFather())
-        self.doc.start_paragraph("blank")
-        self.doc.end_paragraph()
-        self.dump_parent(self.family.getMother())
+        if self.newpage:
+            self.doc.page_break()
 
-        length = len(self.family.getChildList())
-        if length > 0:
+        self.doc.start_paragraph('Title')
+        self.doc.write_text(_("Family Group Report"))
+        self.doc.end_paragraph()
+
+        if self.family:
+            self.dump_parent(self.family.getFather())
             self.doc.start_paragraph("blank")
             self.doc.end_paragraph()
-            self.doc.start_table('Children','ChildTable')
-            self.doc.start_row()
-            self.doc.start_cell('ParentHead',4)
-            self.doc.start_paragraph('ParentName')
-            self.doc.write_text(_("Children"))
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            self.doc.end_row()
-            index = 1
-            for child in self.family.getChildList():
-                self.dump_child(index,child)
-                index = index + 1
-            self.doc.end_table()
+            self.dump_parent(self.family.getMother())
+
+            length = len(self.family.getChildList())
+            if length > 0:
+                self.doc.start_paragraph("blank")
+                self.doc.end_paragraph()
+                self.doc.start_table('Children','ChildTable')
+                self.doc.start_row()
+                self.doc.start_cell('ParentHead',4)
+                self.doc.start_paragraph('ParentName')
+                self.doc.write_text(_("Children"))
+                self.doc.end_paragraph()
+                self.doc.end_cell()
+                self.doc.end_row()
+                index = 1
+                for child in self.family.getChildList():
+                    self.dump_child(index,child)
+                    index = index + 1
+                self.doc.end_table()
         self.end()
+
 
 #------------------------------------------------------------------------
 #
@@ -365,26 +380,8 @@ class FamilyGroupDialog(Report.TextReportDialog):
         return (0, 0)
     
     def get_report_extra_menu_info(self):
-        """Create a mapping of all spouse names:families to be put
-        into the 'extra' option menu in the report options box.  If
-        the selected person has never been married then this routine
-        will return a placebo label and disable the OK button."""
-        mapping = {}
-        family_list = self.person.getFamilyList()
-#        if not family_list:
-#            mapping[_("No known marriages")] = None
-#            self.topDialog.get_widget("OK").set_sensitive(0)
-        for family in family_list:
-            if self.person == family.getFather():
-                spouse = family.getMother()
-            else:
-                spouse = family.getFather()
-            if spouse:
-                name = spouse.getPrimaryName().getName()
-            else:
-                name= _("unknown")
-            mapping[name] = family
-        return (_("Spouse"), mapping, None, None)
+        spouse_map = _build_spouse_map(self.person)
+        return (_("Spouse"), spouse_map, None, None)
 
     #------------------------------------------------------------------------
     #
@@ -392,48 +389,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
     #
     #------------------------------------------------------------------------
     def make_default_style(self):
-        """Make default output style for the Family Group Report."""
-        para = TextDoc.ParagraphStyle()
-        font = TextDoc.FontStyle()
-        font.set_size(4)
-        para.set_font(font)
-        self.default_style.add_style('blank',para)
-            
-        font = TextDoc.FontStyle()
-        font.set_type_face(TextDoc.FONT_SANS_SERIF)
-        font.set_size(16)
-        font.set_bold(1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_description(_("The style used for the title of the page."))
-        self.default_style.add_style('Title',para)
-    
-        font = TextDoc.FontStyle()
-        font.set_type_face(TextDoc.FONT_SERIF)
-        font.set_size(10)
-        font.set_bold(0)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style('Normal',para)
-    
-        font = TextDoc.FontStyle()
-        font.set_type_face(TextDoc.FONT_SANS_SERIF)
-        font.set_size(10)
-        font.set_bold(1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_description(_('The style used for the text related to the children.'))
-        self.default_style.add_style('ChildText',para)
-    
-        font = TextDoc.FontStyle()
-        font.set_type_face(TextDoc.FONT_SANS_SERIF)
-        font.set_size(12)
-        font.set_bold(1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_description(_("The style used for the parent's name"))
-        self.default_style.add_style('ParentName',para)
+        _make_default_style(self.default_style)
 
     #------------------------------------------------------------------------
     #
@@ -445,7 +401,8 @@ class FamilyGroupDialog(Report.TextReportDialog):
         All user dialog has already been handled and the output file
         opened."""
         try:
-            MyReport = FamilyGroup(self.db, self.report_menu, self.target_path, self.doc)
+            MyReport = FamilyGroup(self.db, self.report_menu, 
+                self.doc, self.target_path)
             MyReport.setup()
             MyReport.write_report()
         except Errors.ReportError, msg:
@@ -460,12 +417,245 @@ class FamilyGroupDialog(Report.TextReportDialog):
 
 #------------------------------------------------------------------------
 #
-# 
+# Standalone report function
 #
 #------------------------------------------------------------------------
 def report(database,person):
     FamilyGroupDialog(database,person)
     
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "family_group.xml"
+_style_name = "default" 
+
+_person_id = ""
+_spouse_name = ""
+_options = ( _person_id, _spouse_name )
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class FamilyGroupBareDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        def make_default_style(self):
+            _make_default_style(self.default_style)
+
+        self.spouse_name = self.options[1]
+
+        self.style_name = stl
+        self.new_person = None
+
+        self.spouse_map = _build_spouse_map(self.person)
+        if self.extra_menu:
+            myMenu = Utils.build_string_optmenu(self.spouse_map,self.spouse_name)
+            self.extra_menu.set_menu(myMenu)
+            self.extra_menu.set_sensitive(len(self.spouse_map) > 1)
+        
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Family Group Report"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Family Group Report for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+    
+    def get_report_generations(self):
+        """No generation options."""
+        return (0, 0)
+
+    def doc_uses_tables(self):
+        """This report requires table support."""
+        return 1
+
+    def get_report_extra_menu_info(self):
+        self.spouse_map = _build_spouse_map(self.person)
+        return (_("Spouse"), self.spouse_map, None, None)
+
+    def on_center_person_change_clicked(self,obj):
+        import SelectPerson
+        sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
+        new_person = sel_person.run()
+        if new_person:
+            self.new_person = new_person
+            self.new_spouse_map = _build_spouse_map(self.new_person)
+
+            if self.new_spouse_map:
+                if not self.extra_menu:
+                    old_person = self.person
+                    self.person = self.new_person
+                    self.setup_report_options_frame()
+                    self.window.show_all()
+                    self.person = old_person
+                myMenu = Utils.build_string_optmenu(self.new_spouse_map,None)
+                self.extra_menu.set_menu(myMenu)
+                self.extra_menu.set_sensitive(len(self.new_spouse_map) > 1)
+            else:
+                if self.extra_menu:
+                    myMenu = Utils.build_string_optmenu(self.new_spouse_map,None)
+                    self.extra_menu.set_menu(myMenu)
+                    self.extra_menu.set_sensitive(gtk.FALSE)
+                    self.window.show_all()
+                    self.extra_menu = None
+
+            new_name = new_person.getPrimaryName().getRegularName()
+	    if new_name:
+                self.person_label.set_text( "<i>%s</i>" % new_name )
+                self.person_label.set_use_markup(gtk.TRUE)
+
+            
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        if self.new_person:
+            self.person = self.new_person
+            self.spouse_map = self.new_spouse_map
+
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.spouse_map:
+            spouse_number = self.extra_menu.get_history()
+            spouse_names = self.spouse_map.keys()
+            spouse_names.sort()
+            self.spouse_name = spouse_names[spouse_number]
+        else:
+            self.spouse_name = ""
+            
+        self.options = [ self.person.getId(), self.spouse_name ]
+        self.style_name = self.selected_style.get_name()
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Family Group Report using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        spouse_name = options[1]
+        spouse_map = _build_spouse_map(person)
+        if spouse_map:
+            if spouse_map.has_key(spouse_name):
+                family = spouse_map[spouse_name]
+            else:
+                spouse_names = spouse_map.keys()
+                spouse_names.sort()
+                family = spouse_map[spouse_names[0]]
+        else:
+            family = None
+        return FamilyGroup(database, family, doc, None, newpage )
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+
+
+#------------------------------------------------------------------------
+#
+# Functions shared between the dialogs
+#
+#------------------------------------------------------------------------
+def _make_default_style(default_style):
+    """Make default output style for the Family Group Report."""
+    para = TextDoc.ParagraphStyle()
+    font = TextDoc.FontStyle()
+    font.set_size(4)
+    para.set_font(font)
+    default_style.add_style('blank',para)
+            
+    font = TextDoc.FontStyle()
+    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_size(16)
+    font.set_bold(1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_description(_("The style used for the title of the page."))
+    default_style.add_style('Title',para)
+    
+    font = TextDoc.FontStyle()
+    font.set_type_face(TextDoc.FONT_SERIF)
+    font.set_size(10)
+    font.set_bold(0)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_description(_('The basic style used for the text display.'))
+    default_style.add_style('Normal',para)
+    
+    font = TextDoc.FontStyle()
+    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_size(10)
+    font.set_bold(1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_description(_('The style used for the text related to the children.'))
+    default_style.add_style('ChildText',para)
+    
+    font = TextDoc.FontStyle()
+    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_size(12)
+    font.set_bold(1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_description(_("The style used for the parent's name"))
+    default_style.add_style('ParentName',para)
+
+def _build_spouse_map(person):
+    """Create a mapping of all spouse names:families to be put
+    into the 'extra' option menu in the report options box.  If
+    the selected person has never been married then this routine
+    will return a placebo label and disable the OK button."""
+    spouse_map = {}
+    family_list = person.getFamilyList()
+    for family in family_list:
+        if person == family.getFather():
+            spouse = family.getMother()
+        else:
+            spouse = family.getFather()
+        if spouse:
+            name = spouse.getPrimaryName().getName()
+        else:
+            name= _("unknown")
+        spouse_map[name] = family
+    return spouse_map
+
 #------------------------------------------------------------------------
 #
 # 
@@ -561,7 +751,7 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -572,3 +762,14 @@ register_report(
     xpm=get_xpm_image()
     )
 
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Family Group Report"), 
+    _("Text"),
+    FamilyGroupBareDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
+    )
