@@ -1,3 +1,6 @@
+2004-09-28 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/NameEdit.py: Typo.
+
 2004-09-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Enhanced Name, adding patronymic name 
 	support and display and sorting formats
