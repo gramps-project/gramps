@@ -211,6 +211,7 @@ class LaTeXDoc(TextDoc):
 	if self.in_list:
 	    self.in_list = 0
 	    self.f.write('\n\\end{enumerate}\n')
+	    newline = _('')
 
 	elif self.in_table:
 	    newline = _('')
@@ -232,55 +233,74 @@ class LaTeXDoc(TextDoc):
         """Begin new table"""
 	self.in_table = 1
 	self.currow = 0
+
 	# We need to know a priori how many columns are in this table
 	self.tblstyle = self.table_styles[style_name]
 	self.numcols = self.tblstyle.get_columns()
 
 	tblfmt = _('*{%d}{l}' % self.numcols)
-	self.f.write('\n\n\\begin{longtable}{%s}\n' % tblfmt)
+	self.f.write('\n\n\\begin{longtable}[l]{%s}\n' % tblfmt)
 
     def end_table(self):
         """Close the table environment"""
 	self.in_table = 0
-	# Using \hfill immediately after the tabular should left-justify
-	# the entire table, then create a paragraph separation below it.
-	self.f.write('\\end{longtable}\n\\hfill\\par\n')
+	# Create a paragraph separation below the table.
+	self.f.write('\\end{longtable}\n\\par\n')
 
     def start_row(self):
         """Begin a new row"""
-	# doline is a flag for adding "\hline" at the end
-	# (doesn't quite work yet)
-#	self.doline = 0
-        self.curcol = 1
+	# doline/skipfirst are flags for adding hor. rules
+	self.doline = 0
+	self.skipfirst = 0
+        self.curcol = 0
 	self.currow = self.currow + 1
 	
     def end_row(self):
         """End the row (new line)"""
-	if self.currow == 1:
-	    self.f.write('\\\\ \\hline\n')
+	self.f.write('\\\\ ')
+	if self.doline == 1:
+	    if self.skipfirst == 1:
+		self.f.write('\\cline{2-%d}\n' % self.numcols)
+	    else:
+		self.f.write('\\hline\n')
 	else:
-	    self.f.write('\\\\ \n')
+	    self.f.write('\n')
 	    
     def start_cell(self,style_name,span=1):
         """Add an entry to the table.
 	   We always place our data inside braces 
 	   for safety of formatting."""
 	self.colspan = span
-	cellfmt = ""
-	if span != 1:
-	    cellfmt = ('\\multicolumn{%d}{l}{' % span)
-#	    self.doline = 1 
+	self.curcol = self.curcol + self.colspan
+
+	self.cstyle = self.cell_styles[style_name]
+	self.lborder = self.cstyle.get_left_border()
+	self.rborder = self.cstyle.get_right_border()
+	self.bborder = self.cstyle.get_bottom_border()
+	self.tborder = self.cstyle.get_top_border()
+
+	cellfmt = "l"
+	# Account for vertical rules
+	if self.lborder == 1:
+	    cellfmt = '|' + cellfmt
+	if self.rborder == 1:
+	    cellfmt = cellfmt + '|'
+
+	# and Horizontal rules
+	if self.bborder == 1:
+	    self.doline = 1 
+	elif self.curcol == 1: 
+	    self.skipfirst = 1
 	    
-	self.f.write('%s' % cellfmt)
-	self.curcol = self.curcol + span
+	if self.tborder != 0:
+	    self.f.write('\\hline\n')
+	self.f.write ('\\multicolumn{%d}{%s}{' % (span,cellfmt))
 	
     def end_cell(self):
         """Prepares for next cell"""
-	if self.colspan > 1:
-	    self.f.write('}')
+	self.f.write('} ')
 	if self.curcol < self.numcols:
-	    self.f.write(' & ')
-	self.f.write(' ')
+	    self.f.write('& ')
 
     def add_photo(self,name,pos,x,y):
         """Currently no photo support"""
