@@ -609,10 +609,17 @@
 	allows you to exchange the currently selected spouse (Current spouse) 
 	with the Active person. Double-clicking on the Active person allows the 
 	editing of Active person's data. Double-clicking on the Current spouse 
-	allows you to edit their relationship information. To add a spouse, 
-	click <guibutton>+</guibutton> to the right of the spouse box. 
-	To remove Current spouse, click <guibutton>-</guibutton> to the 
-	right of the spouse box. </para>
+	allows you to edit their relationship information. Shift-clicking on 
+        the Current spouse allows the editing of the Current spouse's data.</para>
+
+        <para> To add a new relationship use one of the two upper buttons to the
+        right of the spouse box. Click the top one to add a new person to a
+        database and to the new relationship. Click the middle one to add a
+        person already existing in the database to the new relationship. 
+	To remove Current spouse, click the lowest button 
+        (<guibutton>-</guibutton>) to the 
+	right of the spouse box. Note that removing a spouse from the
+        relationship does not remove the person from the database. </para>
 	
 	<para>The parents of both the Active person and the Current spouse 
 	are listed in the corresponding list-boxes in the right-hand part of 
@@ -633,11 +640,14 @@
 	<guilabel>Birth date</guilabel> columns, the list includes a  
 	<guilabel>Status</guilabel> column. The pair of status words reflect the
 	relationship between the child and his Father/Mother (such as Birth, Adoption, 
-	etc.) Three buttons are available on the right side of the 
-	children list-box. The <guibutton>+</guibutton> 
-	and <guibutton>+</guibutton> buttons allow the adding and removing of 
-	children, respectively. Clicking the left arrow button makes 
-	the selected child the Active person.</para> 
+	etc.) Four buttons are available on the right side of the 
+	children list-box. The top (left arrow) button makes 
+	the selected child the Active person. The next two buttons add a new
+        child to the family: the upper one adds a new person to the database 
+        and to the family, the lower one just adds a person existing in the
+        database to the family. Finally, the lowest <guibutton>-</guibutton> 
+        button removes of the selected child from the family. Note that removing 
+        a child from the family does not remove the person from the database.</para> 
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
@@ -2449,12 +2459,14 @@
 		<varlistentry><term>Person from the database</term>
 		<listitem><para> 
 	If the person's data are stored in a database, check <guilabel>Person 
-	is in the database</guilabel> box. Then enter GRAMPS ID into 
-	<guilabel>ID</guilabel> text entry field. If the ID you entered is
-	found in the database, the <guilabel>Person</guilabel> field will 
-	display the name of that person. Note: even though the 
-	person's name might be displayed in the <guilabel>Person</guilabel> 
-	field, it is not available for direct editing. 
+	is in the database</guilabel> box. Then click
+        <guibutton>Select</guibutton> button to evoke <guilabel>Select
+        Person</guilabel> dialog. Choose the person from that dialog and 
+        click <guibutton>OK</guibutton>. The <guilabel>Person</guilabel> 
+        text field will display the name of the person you selected. 
+        Note: even though the person's name is displayed in the 
+        <guilabel>Person</guilabel> field, it is not available for direct
+        editing. 
 	</para></listitem></varlistentry>
 	</variablelist>
 	
@@ -2716,6 +2728,70 @@
 	Selection</guilabel> dialog evoked by clicking 
 	<guibutton>Reports</guibutton> on the toolbar. 
 	</para>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-books"> 
+	<title>Books</title> 
+	<para> Currently, the only available report under this category
+        is the Book Report. </para>
+
+	<para> The Book Report creates a single document (i.e. a Book) 
+        containing several separate reports. The plan is to enable all existing
+        reports to be available book items. However, as of version &appversion;,
+        only text reports are available for inclusion in books. Nevertheless,
+        this allows for a very reach set of documents that &app; can produce. 
+        </para>
+
+	<para> When Book Report is selected, the following book configuration
+        dialog appears: </para>
+
+ 	<!-- ==== Figure: Book Report dialog ==== -->
+	<figure id="rep-book-fig"> 
+	<title>Book Report dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/bookreport.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Book Report dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para> The <guilabel>Book name</guilabel> text entry field is used to
+        save the book (a set of configured selections) for future use.
+        The pane on the left side lists the items avilable for inclusion in the 
+        book. The pane on the right side lists the currently selected items in
+        the order they will appear in the book. </para>
+        
+	<para> The top set of buttons between the panes operates on the 
+        selected book item. Click <guibutton>Add</guibutton> to add selected 
+        item from the available list to the current book. Click
+        <guibutton>Remove</guibutton> to remove an item from the current book.
+        Use <guibutton>Up</guibutton> and <guibutton>Down</guibutton> to change
+        the items order in the current book. Click <guibutton>Setup</guibutton>
+        to configure the options of the selected item of the current book. 
+        </para>
+        
+	<para> The bottom set of buttons between the panes operates on the 
+        whole book. Click <guibutton>Clear</guibutton> to clear all items from
+        the current book. Click <guibutton>Save</guibutton> to save the current
+        book (under the name typed in the <guilabel>Book name</guilabel> text
+        entry field) for future use. Note that saving the book also saves the 
+        configuration for each item. Click <guibutton>Open</guibutton> to load
+        the book from the list of previously saved books. Finally, click
+        <guibutton>Edit books</guibutton> to evoke the editable list of
+        available books.  
+        </para>
+
+	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
+        are item-specific. If you choose not to configure the item, sane
+        defaults will be used for all needed options. The common option for 
+        almost all book items is the center person: the person on whom the
+        item is centered. Thanks to this option, you can create a book with
+        items centered on different people (e.g. your mom's and dad's 
+        ancestors as separate chapters). By default, the center person is set to
+        the active person. </para> 
+
+      </sect3>
+
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-graph"> 
