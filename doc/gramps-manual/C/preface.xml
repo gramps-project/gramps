@@ -122,7 +122,7 @@
 	saved upon exit, to mimic the functionality of the real database.
 
            <warning id="gedcom-inmem1-warn">
-               <title>GEDCOM EDITING</title>
+               <title>GEDCOM Editing</title>
 	      <para>
 		Please keep in mind that some information in GEDCOM file may be lost
 		during import into &app;. Simply opening and viewing the file will not change it.

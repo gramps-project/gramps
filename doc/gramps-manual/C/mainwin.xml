@@ -161,17 +161,42 @@
         However, all the data is still intact, it is just not being displayed.
         </para>
         
-        <para>The People View 
+        <para>The People View in its default state
         displays people's <guilabel>Names</guilabel>, 
         &app; <guilabel>ID</guilabel> numbers, 
         <guilabel>Gender</guilabel>, and 
 	their <guilabel>Birth</guilabel> and <guilabel>Death dates</guilabel>. 
-	The list can be ordered by any field.</para> 
-
-	<para>Example: to order list by the Birth date, click on the
+	The list can be ordered by any field. </para> 
+	
+	<tip id="columns-tip"><title>Order list by selected column</title>
+	<para>To order list by the Birth date, click on the
 	<guilabel>Birth date</guilabel> column heading. To order list in 
 	reverse	(descending) order, click one more time on the desired column
-	heading. </para> 
+	heading. </para> </tip>
+
+	<para>The columns of the view may be
+	added, removed, or reordered in a <guilabel>Column Editor Dialog</guilabel>,
+	see <xref linkend="column-editor-fig"/>. Only checked columns will be shown
+	in the view. To change their order, drag any column to its desired place inside
+	the editor. Clicking <guibutton>OK</guibutton> will reflect the changes
+	in the People View. To incoke <guilabel>Column Editor Dialog</guilabel>,
+	choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Column
+	Editor</guimenuitem></menuchoice>.
+	</para>
+
+	<tip id="columns-tip2"><title>Other Views</title>
+	<para>The <guilabel>Column Editor</guilabel> is available
+	and works in the same way for all list views, not only People View.</para> </tip>
+
+	<!-- ==== Figure: Enabled Filter ==== -->
+	<figure id="column-editor-fig"> 
+	<title>Column Editor Dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/column-editor.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows column editor dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	
 
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect3 id="filters">
@@ -201,43 +226,32 @@
 	  people's list. Once the filter is chosen, click the 
 	  <guibutton>Apply</guibutton> button in the upper right corner of the 
 	  window. The filtering will take effect upon clicking the 
-	  <guibutton>Apply</guibutton> button. To invert the filtering rule, 
-          check the <guilabel>Invert</guilabel> box on the left 
-	  of <guibutton>Apply</guibutton> button. </para>
+	  <guibutton>Apply</guibutton> button. </para>
 	  
-	  <para>Example: To show people without children, choose 
-	  <guilabel>People with children</guilabel> filter, then check 
-	  <guilabel>Invert</guilabel> box, and then click the 
+	  <tip id="filt-tip"><title>Example filter use</title>
+	  <para>To show males only, choose 
+	  <guilabel>Males</guilabel> filter, then click the 
 	  <guibutton>Apply</guibutton> button. To cancel any filtering, set 
-	  the filter to <guilabel>All people</guilabel>  
-	  and then click the <guibutton>Apply</guibutton> button. </para>
+	  the filter to <guilabel>Entire Database</guilabel>  
+	  and then click the <guibutton>Apply</guibutton> button.</para>
+	  </tip>
 	  
-	  <para>Note: even if the filter controls are not displayed 
+	  <note id="filt-note">
+	  <title>Filtering is persistent</title>
+	  <para> Even if the filter controls are not displayed 
 	  (<menuchoice> <guimenu>View</guimenu> 
 	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item is
 	  unchecked), the filtering might still be in place. In other words, 
 	  the visibility of the filter controls is not related to the actual 
-	  filtering imposed on the list. This may be a cause of confusion, when
+	  filtering imposed on the list.</para>
+	  
+	  <para>This may be a cause of confusion, when
 	  you enable the filtering and then remove the controls from the
 	  display. If in doubt, enable the display of filter controls by 
 	  checking <menuchoice> <guimenu>View</guimenu> 
 	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item and check 
 	  what kind of filtering is currently set.</para> 
-        </sect3>
-
-    <!-- ================ Main Window Sub-sub-subsection  -->
-        <sect3 id="alpha-tabs">
-          <title>Alphabetical Tabs</title>
-	  <para>&app; offers another way of 
-	  managing long lists of people -- alphabetical tabs. Upon loading a 
-	  database, &app; checks for the stored 
-	  family names and breaks the people list into sublists based on the 
-	  first letter of their name. The alphabetical tabs are displayed in 
-	  the bottom part of the &app; window. 
-	  The last tab, <guilabel>Other</guilabel>, stands for unidentified 
-	  characters -- all the entries not assigned to any other tab end up 
-	  in <guilabel>Other</guilabel>. In particular, people with no family 
-	  name will appear under this category.</para> 
+	  </note>
         </sect3>
 
       </sect2>
@@ -304,7 +318,9 @@
 	<guilabel>Birth date</guilabel> columns, the list includes a  
 	<guilabel>Status</guilabel> column. The pair of status words reflect the
 	relationship between the child and his Father/Mother (such as Birth, Adoption, 
-	etc.) Four buttons are available on the right side of the 
+	etc.). <guilabel>Column Editor Dialog</guilabel> can be used to change
+	column arrangement.
+	Four buttons are available on the right side of the 
 	children list box. The top (left arrow) button makes 
 	the selected child the Active person. The next two buttons add a new
         child to the family: the upper one adds a new person to the database 
@@ -398,6 +414,27 @@
 	person.</para> 
 
 	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-siblings-cut-fig"> 
+	<title>Personal Context Menu</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/pedigree-siblings-cut.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Context Menu in Pedigree View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+	
+	<para>
+	Right-clicking on any person's box in the Pedigree View will bring up the
+	context menu. Among other useful items, the context menu has submenus
+	listing <guilabel>Spouses</guilabel>, <guilabel>Siblings</guilabel>,
+	<guilabel>Children</guilabel>, and <guilabel>Parents</guilabel>
+	of that person. Insensitive (greyed out) submenus indicate the absense
+	of the data in the appropriate category. Similarly to the children menu above,
+	children's and parents' menus distinguish continuing lines from dead ends.
+	</para>
+
+
+	<!-- ==== Figure: Pedigree View ==== -->
 	<figure id="pedigree-anchor-fig"> 
 	<title>Pedigree View with the Anchor</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
@@ -459,7 +496,9 @@
 	<guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the 
 	<guilabel>Author</guilabel> of the source. Any column can be 
 	used for sorting the list. The usual rules apply: one click for 
-	ascending order, another click for descending order.</para> 
+	ascending order, another click for descending order.
+	<guilabel>Column Editor Dialog</guilabel> may be used to rearrange
+	the displayed columns.</para> 
       </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
@@ -484,7 +523,9 @@
 	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
 	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
 	<guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of
-	these columns can be used for sorting by the usual sorting rules. </para> 
+	these columns can be used for sorting by the usual sorting rules. 
+	<guilabel>Column Editor Dialog</guilabel> may be used to rearrange
+	the displayed columns.</para> 
       </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
@@ -506,7 +547,9 @@
 	genealogical data. Technically, any file can be stored as a Media 
 	Object. Most frequently, these are images, audio files, animation 
 	files, etc. The list box on the bottom lists the Name, ID, Type, and 
-	Path to the Media Object. The top part of the GRAMPS window shows 
+	Path to the Media Object. 	<guilabel>Column Editor Dialog</guilabel>
+	may be used to rearrange the displayed columns, which obey usual
+	sorting rules. The top part of the GRAMPS window shows 
 	a preview (if available) and information about the Media 
 	Object. </para> 
       </sect2>
