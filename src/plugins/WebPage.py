@@ -228,7 +228,7 @@ class IndividualPage:
             person = self.db.find_person_from_id(person_id)
             if self.list.has_key(person.get_id()):
                 self.doc.start_link("%s.%s" % (person.get_id(),self.ext))
-                self.doc.write_text(person.getPrimaryName().getRegularName())
+                self.doc.write_text(person.get_primary_name().get_regular_name())
                 self.doc.end_link()
             else:
                 self.doc.write_text(person.get_primary_name().get_regular_name())
@@ -829,7 +829,7 @@ class WebReport(Report.Report):
                 col_len = n_rows
 
                 for person in p_list:
-                    name = person.get_primary_name().get_surname()
+                    name = person.get_primary_name().get_name()
 
                     doc.start_link("%s.%s" % (person.get_id(),self.ext))
                     doc.write_text(name)
@@ -859,11 +859,11 @@ class WebReport(Report.Report):
                 if self.include_alpha_links:
                     doc.write_linktarget("%03d" % a[n])
                 doc.write_text(n)
-               doc.end_paragraph()
+                doc.end_paragraph()
                 col_len = col_len - 1
 
                 for person in p_list:
-                    name = person.get_primary_name().get_surname()
+                    name = person.get_primary_name().get_name()
 
                     doc.start_link("%s.%s" % (person.get_id(),self.ext))
                     doc.write_text(name)

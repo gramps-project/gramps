@@ -71,17 +71,17 @@ def build_sort_date(n):
 def by_last_name(first, second):
     """Sort routine for comparing two last names. If last names are equal,
     uses the given name and suffix"""
-    name1 = first.PrimaryName
-    name2 = second.PrimaryName
+    name1 = first.get_primary_name()
+    name2 = second.get_primary_name()
 
-    fsn = name1.Surname.upper()
-    ssn = name2.Surname.upper()
+    fsn = name1.get_surname().upper()
+    ssn = name2.get_surname().upper()
 
     if fsn == ssn :
-        ffn = name1.FirstName.upper()
-        sfn = name2.FirstName.upper()
+        ffn = name1.get_first_name().upper()
+        sfn = name2.get_first_name().upper()
         if ffn == sfn :
-            return cmp(name1.Suffix.upper(), name2.Suffix.upper())
+            return cmp(name1.get_suffix().upper(), name2.get_suffix().upper())
         else :
             return cmp(ffn, sfn)
     else :
