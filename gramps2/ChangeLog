@@ -1,3 +1,6 @@
+2005-03-21  Julio Sanchez  <jsanchez@users.sourceforge.net>
+	* src/MergeData.py: further changes to adapt to new API
+
 2005-03-19  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDbBase.py: handle new column
 	* src/PeopleModel.py: add cause of death field
