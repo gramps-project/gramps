@@ -77,6 +77,8 @@ class PSDrawDoc(DrawDoc):
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')
         self.f.write('%%PageOrder: Ascend\n')
+        if self.orientation != PAPER_PORTRAIT:
+            self.f.write('%%Orientation: Landscape\n')
         self.f.write('%%EndComments\n')
         self.f.write('/cm { 28.34 mul } def\n')
 
@@ -100,6 +102,8 @@ class PSDrawDoc(DrawDoc):
 	self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
+        if self.orientation != PAPER_PORTRAIT:
+            self.f.write('90 rotate %5.2f cm %5.2f cm translate\n' % (0,-1*self.height))
 
     def end_page(self):
         self.f.write('showpage\n')

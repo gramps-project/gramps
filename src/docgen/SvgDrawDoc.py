@@ -63,19 +63,25 @@ class SvgDrawDoc(DrawDoc):
             name = "%s.svg" % self.root
         self.f = open(name,"w")
             
-        self.f.write('<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>\n')
-        self.f.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20000303 Stylable//EN" ')
-        self.f.write('"http://www.w3.org/TR/2000/03/WD-SVG-20000303/DTD/svg-20000303-stylable.dtd">\n')
-        self.f.write('<svg xml:space="preserve" width="8.5in" height="11in">\n')
-
+        self.f.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+        self.f.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ')
+        self.f.write('"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
+        self.f.write('<svg width="%5.2fcm" height="%5.2fcm" ' % (self.width,self.height))
+        self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
+        if self.orientation != PAPER_PORTRAIT:
+            self.f.write('<g transform="rotate(-90); ')
+            self.f.write(' translate(-%5.2fcm,0)">\n' % self.height)
+            
     def end_page(self):
+        if self.orientation != PAPER_PORTRAIT:
+            self.f.write('</g>\n')
         self.f.write('</svg>\n')
         self.f.close()
     
     def draw_line(self,style,x1,y1,x2,y2):
-        self.f.write('<line x1="%4.2f" y1="%4.2f" ' % (x1*28.35,y1*28.35))
+        self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1*28.35,y1*28.35))
         self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2*28.35,y2*28.35))
-        self.f.write('style="stroke:#000000;stroke-width:1"/>\n')
+        self.f.write(' style="stroke:#000000;stroke-width=1"/>\n')
     
     def draw_box(self,style,text,x,y):
 	box_style = self.draw_styles[style]

@@ -45,4 +45,4 @@ if [ "$preload" != "" ]; then
     export LD_PRELOAD="$preload"
 fi
 
-@PYTHON@ $GRAMPSDIR/gramps.py $*
+exec @PYTHON@ $GRAMPSDIR/gramps.py $*

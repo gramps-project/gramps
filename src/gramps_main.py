@@ -211,19 +211,19 @@ class Gramps:
         self.default_list = self.pl_page[-1]
 
         self.alpha_page = {
-            'a' : self.pl_page[0],  'b' : self.pl_page[0],
-            'c' : self.pl_page[1],  'd' : self.pl_page[1],
-            'e' : self.pl_page[2],  'f' : self.pl_page[2],
-            'g' : self.pl_page[3],  'h' : self.pl_page[3],
-            'i' : self.pl_page[4],  'j' : self.pl_page[4],
-            'k' : self.pl_page[5],  'l' : self.pl_page[5],
-            'm' : self.pl_page[6],  'n' : self.pl_page[6],
-            'o' : self.pl_page[7],  'p' : self.pl_page[7],
-            'q' : self.pl_page[8],  'r' : self.pl_page[8],
-            's' : self.pl_page[9],  't' : self.pl_page[9],
-            'u' : self.pl_page[10], 'v' : self.pl_page[10],
-            'w' : self.pl_page[11], 'x' : self.pl_page[11],
-            'y' : self.pl_page[12], 'z' : self.pl_page[12],
+            'A' : self.pl_page[0],  'B' : self.pl_page[0],
+            'C' : self.pl_page[1],  'D' : self.pl_page[1],
+            'E' : self.pl_page[2],  'F' : self.pl_page[2],
+            'G' : self.pl_page[3],  'H' : self.pl_page[3],
+            'I' : self.pl_page[4],  'J' : self.pl_page[4],
+            'K' : self.pl_page[5],  'L' : self.pl_page[5],
+            'M' : self.pl_page[6],  'N' : self.pl_page[6],
+            'O' : self.pl_page[7],  'P' : self.pl_page[7],
+            'Q' : self.pl_page[8],  'R' : self.pl_page[8],
+            'S' : self.pl_page[9],  'T' : self.pl_page[9],
+            'U' : self.pl_page[10], 'V' : self.pl_page[10],
+            'W' : self.pl_page[11], 'X' : self.pl_page[11],
+            'Y' : self.pl_page[12], 'Z' : self.pl_page[12],
             }
 
         self.model2page = {
@@ -1200,8 +1200,8 @@ class Gramps:
     def add_to_person_list(self,person,change):
         key = person.getId()
         val = self.db.getPersonDisplay(person.getId())
-        pg = val[0]
-        pg = pg[0].lower()
+        pg = val[5]
+        pg = pg[0]
         if self.DataFilter.compare(person):
             if pg and self.alpha_page.has_key(pg):
                 model = self.alpha_page[pg]
@@ -1364,9 +1364,9 @@ class Gramps:
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
             val = self.db.getPersonDisplay(key)
-            pg = val[0]
+            pg = val[5]
             if pg:
-                pg = pg[0].lower()
+                pg = pg[0]
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
