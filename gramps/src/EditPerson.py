@@ -1028,6 +1028,8 @@ class EditPerson:
             self.person.setUrlList(self.ulist)
             self.person.setAttributeList(self.alist)
             self.person.setAddressList(self.plist)
+            self.person.setBirth(self.birth)
+            self.person.setDeath(self.death)
             Utils.modified()
 
     def on_apply_person_clicked(self,obj):
@@ -1177,7 +1179,6 @@ class EditPerson:
                 temple = ""
             ord = self.person.getLdsEndowment()
             place = self.get_place(self.ldsendowplace,1)
-            print place
             update_ord(self.person.setLdsEndowment,ord,date,temple,self.end_stat,place)
 
             date = self.ldsseal_date.get_text()
