@@ -7,6 +7,7 @@
 	* src/gramps_main.py (init_interface): Call PedView with self as parent;
 	(set_buttons,change_active_person): Fix enabling the buttons. 
 	* src/PlaceView.py (merge): Change error message from people to places.
+	* src/docgen/OpenOfficeDoc.py (open): Typos.
 
 2003-08-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FanChart.py: remove print statement

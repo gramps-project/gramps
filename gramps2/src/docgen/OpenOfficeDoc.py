@@ -164,7 +164,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.f.write('<style:style style:name="NL%s" ' % style_name)
             self.f.write('style:family="paragraph" ')
             self.f.write('style:parent-style-name="%s">\n' % style_name)
-            self.f.write('"<style:properties fo:break-before="page"/>\n')
+            self.f.write('<style:properties fo:break-before="page"/>\n')
             self.f.write('</style:style>\n')
             self.f.write('<style:style style:name="F%s" ' % style_name)
             self.f.write('style:family="text">\n')
@@ -184,7 +184,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             table_width = float(self.get_usable_width())
             table_width_str = "%.4f" % table_width
 	    self.f.write('<style:properties style:width="%scm" '%table_width_str)
-            vself.f.write('/>\n')
+            self.f.write('/>\n')
             self.f.write('</style:style>\n')
 	    for col in range(0,style.get_columns()):
 	        self.f.write('<style:style style:name="')
