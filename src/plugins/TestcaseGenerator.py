@@ -210,7 +210,7 @@ class TestcaseGenerator:
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
         child = self.db.get_person_from_handle(child_h)
-        person2.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
         self.db.commit_person(child,self.trans)
 
         # Creates a person with an event having a witness reference to a nonexisting person
