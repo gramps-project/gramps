@@ -21,7 +21,7 @@ AC_PATH_PROG(MSGFMT, msgfmt)
 AC_PATH_PROG(MSGCONV, msgconv)
 AC_PATH_PROG(ICONV, iconv)
 
-LANGUAGES="hu zh_CN cs da_DK de es fr it nb nl no pl pt_BR ro ru sv eo" 
+LANGUAGES="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo" 
 AC_SUBST(LANGUAGES)
 
 DISTLANGS=
