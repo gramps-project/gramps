@@ -384,6 +384,7 @@ def loadConfig(call):
     make_path(os.path.expanduser("~/.gramps"))
     make_path(os.path.expanduser("~/.gramps/filters"))
     make_path(os.path.expanduser("~/.gramps/plugins"))
+    make_path(os.path.expanduser("~/.gramps/templates"))
 
 #-------------------------------------------------------------------------
 #

@@ -44,6 +44,7 @@ import gtk
 import gnome.ui
 import GDK
 import GTK
+import GdkImlib
 import libglade
 
 #-------------------------------------------------------------------------

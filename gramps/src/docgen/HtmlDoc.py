@@ -45,7 +45,7 @@ _top = [
     '  <TITLE>\n',
     '  </TITLE>\n',
     '  <STYLE type="text/css">\n',
-    '  <!--\n',
+   '  <!--\n',
     '    BODY { background-color: #ffffff }\n',
     '    .parent_name { font-family: Arial; font-style: bold }\n',
     '    .child_name { font-family: Arial; font-style: bold }\n',

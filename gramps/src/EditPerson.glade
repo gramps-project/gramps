@@ -177,7 +177,7 @@
 	      <class>GtkTable</class>
 	      <name>table16</name>
 	      <rows>2</rows>
-	      <columns>4</columns>
+	      <columns>5</columns>
 	      <homogeneous>False</homogeneous>
 	      <row_spacing>0</row_spacing>
 	      <column_spacing>0</column_spacing>
@@ -311,6 +311,36 @@
 	      </widget>
 
 	      <widget>
+		<class>GtkButton</class>
+		<name>button99</name>
+		<border_width>1</border_width>
+		<tooltip>Invoke birth event editor</tooltip>
+		<can_focus>True</can_focus>
+		<signal>
+		  <name>clicked</name>
+		  <handler>on_edit_birth_clicked</handler>
+		  <object>editPerson</object>
+		  <last_modification_time>Tue, 02 Oct 2001 22:28:32 GMT</last_modification_time>
+		</signal>
+		<label>Edit</label>
+		<relief>GTK_RELIEF_NORMAL</relief>
+		<child>
+		  <left_attach>4</left_attach>
+		  <right_attach>5</right_attach>
+		  <top_attach>0</top_attach>
+		  <bottom_attach>1</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
 		<class>GtkCombo</class>
 		<name>bpcombo</name>
 		<width>250</width>
@@ -322,7 +352,7 @@
 		<items></items>
 		<child>
 		  <left_attach>2</left_attach>
-		  <right_attach>4</right_attach>
+		  <right_attach>5</right_attach>
 		  <top_attach>1</top_attach>
 		  <bottom_attach>2</bottom_attach>
 		  <xpad>3</xpad>
@@ -348,32 +378,21 @@
 	      </widget>
 
 	      <widget>
-		<class>GtkButton</class>
-		<name>button99</name>
-		<border_width>1</border_width>
-		<tooltip>Invoke birth event editor</tooltip>
-		<can_focus>True</can_focus>
-		<signal>
-		  <name>clicked</name>
-		  <handler>on_edit_birth_clicked</handler>
-		  <object>editPerson</object>
-		  <last_modification_time>Tue, 02 Oct 2001 22:28:32 GMT</last_modification_time>
-		</signal>
-		<label>Edit</label>
-		<relief>GTK_RELIEF_NORMAL</relief>
+		<class>GnomePixmap</class>
+		<name>birth_stat</name>
 		<child>
 		  <left_attach>3</left_attach>
 		  <right_attach>4</right_attach>
 		  <top_attach>0</top_attach>
 		  <bottom_attach>1</bottom_attach>
-		  <xpad>3</xpad>
-		  <ypad>3</ypad>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
 		  <yexpand>False</yexpand>
-		  <xshrink>False</xshrink>
+		  <xshrink>True</xshrink>
 		  <yshrink>False</yshrink>
 		  <xfill>True</xfill>
-		  <yfill>False</yfill>
+		  <yfill>True</yfill>
 		</child>
 	      </widget>
 	    </widget>

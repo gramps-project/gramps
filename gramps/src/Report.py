@@ -30,6 +30,16 @@ import Plugins
 
 _ = intl.gettext
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+try:
+    from xml.sax import make_parser,handler,SAXParseException
+except:
+    from _xmlplus.sax import make_parser,handler,SAXParseException
+
 from TextDoc import *
 from StyleEditor import *
 
@@ -39,6 +49,13 @@ import PaperMenu
 from gtk import *
 from gnome.ui import *
 import libglade
+
+_default_template = _("Default Template")
+_user_template = _("User Defined Template")
+
+_template_map = {
+    _user_template : None
+    }
 
 #------------------------------------------------------------------------
 #
@@ -567,17 +584,48 @@ class ReportDialog:
             table.attach(GtkLabel(_("Page Count")),2,1,3,2,FILL,FILL,pad,pad)
             table.attach(self.pagecount_menu,3,2,4,2,xpadding=pad,ypadding=pad)
 
+    def html_file_enable(self,obj):
+        text = obj.get_text()
+        if _template_map.has_key(text):
+            if _template_map[text]:
+                self.html_fileentry.set_sensitive(0)
+            else:
+                self.html_fileentry.set_sensitive(1)
+        else:
+            self.html_fileentry.set_sensitive(0)
+            
     def setup_html_frame(self):
         """Set up the html frame of the dialog.  This sole purpose of
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        hbox = GtkHBox()
-        hbox.set_border_width(ReportDialog.border_pad)
-        hbox.pack_start(GtkLabel(_("Template")),0,0,5)
+        table = GtkTable(2,2)
+        self.html_frame.add(table)
+        l = GtkLabel(_("Template"))
+        pad = ReportDialog.border_pad
+        l.set_alignment(1.0,0.5)
+        table.attach(l,0,1,0,1,FILL,FILL,pad,pad)
+        self.template_combo = GtkCombo()
+
+        template_list = [ _default_template ]
+        tlist = _template_map.keys()
+        tlist.sort()
+        
+        for template in tlist:
+            if template != _user_template:
+                template_list.append(template)
+        template_list.append(_user_template)
+        
+        self.template_combo.set_popdown_strings(template_list)
+        self.template_combo.entry.set_editable(0)
+        self.template_combo.entry.connect('changed',self.html_file_enable)
+        
+        table.attach(self.template_combo,1,2,0,1,FILL|EXPAND,FILL|EXPAND,pad,pad)
+
+        table.attach(GtkLabel(_("User Template")),0,1,1,2,FILL,FILL,pad,pad)
         self.html_fileentry = GnomeFileEntry(_("HTML Template"),_("Choose File"))
-        hbox.add(self.html_fileentry)
-        self.html_frame.add(hbox)
+        self.html_fileentry.set_sensitive(0)
+        table.attach(self.html_fileentry,1,2,1,2,FILL|EXPAND,FILL|EXPAND,pad,pad)
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -751,7 +799,15 @@ class ReportDialog:
         retrieves a value whether or not the file entry box is
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
-        self.template_name = self.html_fileentry.get_full_path(0)
+
+        text = self.template_combo.entry.get_text()
+        if _template_map.has_key(text):
+            if text == _user_template:
+                self.template_name = self.html_fileentry.get_full_path(0)
+            else:
+                self.template_name = "%s/%s" % (const.template_dir,_template_map[text])
+        else:
+            self.template_name = None
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the
@@ -942,3 +998,33 @@ class DrawReportDialog(ReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,self.orien)
+
+class TemplateParser(handler.ContentHandler):
+    def __init__(self,data,path):
+        handler.ContentHandler.__init__(self)
+        self.data = data
+        self.path = path
+    
+    def setDocumentLocator(self,locator):
+        self.locator = locator
+
+    def startElement(self,tag,attrs):
+        if tag == "template":
+            self.data[attrs['title']] = "%s/%s" % (path,attrs['file'])
+            
+    def characters(self, data):
+        pass
+
+try:
+    parser = make_parser()
+    path = const.template_dir
+    parser.setContentHandler(TemplateParser(_template_map,path))
+    parser.parse("%s/templates.xml" % path)
+    parser = make_parser()
+    path = os.path.expanduser("~/.gramps/templates")
+    parser.setContentHandler(TemplateParser(_template_map,path))
+    parser.parse("%s/templates.xml" % path)
+except (IOError,OSError,SAXParseException):
+    pass
+
+

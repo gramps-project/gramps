@@ -50,6 +50,7 @@ from RelLib import *
 import ImageSelect
 import sort
 import AutoComp
+from DateEdit import DateEdit
 
 from intl import gettext
 _ = gettext
@@ -598,6 +599,7 @@ class EditPerson:
             self.bdate.set_text(self.birth.getDate())
             self.bplace.set_text(self.birth.getPlaceName())
             self.dplace.set_text(prev_dtext)
+        self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
 
         # Update death with new values, make sure birth values don't change
         if (self.update_death):
