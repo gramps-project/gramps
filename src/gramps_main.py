@@ -66,14 +66,10 @@ import utils
 import Bookmarks
 import ListColors
 import Config
-import EditSource
 import EditPerson
-import EditPlace
 import Marriage
 import Find
 import VersionControl
-import RelImage
-import ImageSelect
 
 #-------------------------------------------------------------------------
 #
@@ -99,6 +95,7 @@ alt2col       = {}
 pedigree_view = None
 place_view    = None
 media_view    = None
+source_view   = None
 
 bookmarks     = None
 topWindow     = None
@@ -115,8 +112,6 @@ dateArrow     = None
 merge_button  = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
-p_sort_column = 0
-p_sort_direct = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
 c_birth_order = 0
 c_name        = 1
@@ -125,6 +120,8 @@ c_birth_date  = 4
 c_details     = 6
 c_sort_column = c_birth_order
 c_sort_direct = SORT_ASCENDING
+cNameArrow    = None
+cDateArrow    = None
 
 #-------------------------------------------------------------------------
 #
@@ -542,7 +539,6 @@ def on_ok_button2_clicked(obj):
 #-------------------------------------------------------------------------
 def save_file(filename,comment):        
     import WriteXML
-    import VersionControl
 
     path = filename
     filename = os.path.normpath(filename)
@@ -1096,7 +1092,7 @@ def on_save_activate(obj):
 def on_save_activate_quit():
     """Saves the file, first prompting for a comment if revision control needs it"""
     if not database.getSavePath():
-        on_save_as_activate(obj)
+        on_save_as_activate(None)
     else:
         if Config.usevc and Config.vc_comment:
             display_comment_box(database.getSavePath())
@@ -1105,7 +1101,6 @@ def on_save_activate_quit():
 
 def display_comment_box(filename):
     """Displays a dialog box, prompting for a revison control comment"""
-    import VersionControl
     VersionControl.RevisionComment(filename,save_file)
     
 #-------------------------------------------------------------------------
@@ -1849,11 +1844,10 @@ def main(arg):
     global pedigree_view, place_view, source_view, media_view
     global database, gtop
     global statusbar,notebook
-    global person_list, source_list, canvas
+    global person_list
     global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow, idArrow
     global cNameArrow, cDateArrow
-#    global mid, mtype, mdesc, mpath, mdetails
     
     rc_parse(const.gtkrcFile)
     database = RelDataBase()

@@ -112,7 +112,7 @@ class Date:
         return compare_dates(self,other) < 0
 
     def equal_to(self,other):
-        return compare_dates(other) == 0
+        return compare_dates(self,other) == 0
 
     #--------------------------------------------------------------------
     #

@@ -76,6 +76,7 @@ class EditPlace:
         self.gallery = ImageSelect.Gallery(place, self.path, idval, plwidget, db)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
+        self.parish = self.top_window.get_widget("parish")
         self.county = self.top_window.get_widget("county")
         self.state = self.top_window.get_widget("state")
         self.country = self.top_window.get_widget("country")
@@ -92,6 +93,7 @@ class EditPlace:
         self.loc_city = self.top_window.get_widget("loc_city")
         self.loc_county = self.top_window.get_widget("loc_county")
         self.loc_state  = self.top_window.get_widget("loc_state")
+        self.loc_parish  = self.top_window.get_widget("loc_parish")
         self.loc_country = self.top_window.get_widget("loc_country")
 
         self.lists_changed = 0
@@ -103,6 +105,7 @@ class EditPlace:
         self.city.set_text(mloc.get_city())
         self.county.set_text(mloc.get_county())
         self.state.set_text(mloc.get_state())
+        self.parish.set_text(mloc.get_parish())
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
@@ -138,6 +141,7 @@ class EditPlace:
         # Typing CR selects OK button
         self.top.editable_enters(self.title);
         self.top.editable_enters(self.city);
+        self.top.editable_enters(self.parish);
         self.top.editable_enters(self.county);
         self.top.editable_enters(self.state);
         self.top.editable_enters(self.country);
@@ -183,6 +187,7 @@ class EditPlace:
         city = self.city.get_text()
         county = self.county.get_text()
         state = self.state.get_text()
+        parish = self.parish.get_text()
         country = self.country.get_text()
         longitude = self.longitude.get_text()
         latitude = self.latitude.get_text()
@@ -191,6 +196,10 @@ class EditPlace:
         mloc = self.place.get_main_location()
         if city != mloc.get_city():
             mloc.set_city(city)
+            utils.modified()
+
+        if parish != mloc.get_parish():
+            mloc.set_parish(parish)
             utils.modified()
 
         if self.lists_changed:
@@ -297,6 +306,7 @@ class EditPlace:
         self.loc_city.set_text(loc.get_city())
         self.loc_county.set_text(loc.get_county())
         self.loc_state.set_text(loc.get_state())
+        self.loc_parish.set_text(loc.get_parish())
         self.loc_country.set_text(loc.get_country())
 
     def display_references(self):

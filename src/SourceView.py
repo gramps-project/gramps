@@ -63,14 +63,12 @@ class SourceView:
             if len(obj.selection) > 0:
                 index = obj.selection[0]
                 source = obj.get_row_data(index)
-                EditSource.EditSource(source,self.db,update_display_after_edit)
+                EditSource.EditSource(source,self.db,self.update_display_after_edit)
 
     def on_add_source_clicked(self,obj):
         EditSource.EditSource(Source(),self.db,self.new_source_after_edit)
 
     def on_delete_source_clicked(self,obj):
-        import EditSource
-    
         if len(obj.selection) == 0:
             return
         else:
@@ -80,8 +78,8 @@ class SourceView:
 
         if self.is_source_used(source):
             msg = _("This source is currently being used. Delete anyway?")
-            ans = EditSource.DelSrcQuery(source,database,update_display)
-            GnomeQuestionDialog(msg,ans.query_response)
+            ans = EditSource.DelSrcQuery(source,self.db,self.update)
+            gnome.ui.GnomeQuestionDialog(msg,ans.query_response)
         else:
             map = self.db.getSourceMap()
             del map[source.getId()]

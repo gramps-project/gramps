@@ -29,6 +29,7 @@ from RelLib import *
 import intl
 import utils
 import const
+import os
 
 _ = intl.gettext
 
@@ -127,10 +128,9 @@ class MediaView:
             index = self.media_list.selection[0]
         mobj = self.media_list.get_row_data(index)
         if self.is_media_object_used(mobj):
-            import ImageSelect
-            ans = ImageSelect.DeleteMediaQuery(mobj,database,self.update)
+            ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
             msg = _("This media object is currently being used. Delete anyway?")
-            GnomeQuestionDialog(msg,ans.query_response)
+            gnome.ui.GnomeQuestionDialog(msg,ans.query_response)
         else:
             map = self.db.getObjectMap()
             del map[mobj.getId()]
@@ -177,9 +177,9 @@ class MediaView:
                 photo.setDescription(description)
                 self.db.addObject(photo)
                 utils.modified()
-                w.drag_finish(context, TRUE, FALSE, time)
+                w.drag_finish(context, 1, 0, time)
                 self.load_media()
             else:
-                w.drag_finish(context, FALSE, FALSE, time)
+                w.drag_finish(context, 0, 0, time)
 
     

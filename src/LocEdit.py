@@ -62,11 +62,13 @@ class LocationEditor:
         self.window = self.top.get_widget("loc_edit")
         self.city   = self.top.get_widget("city")
         self.state  = self.top.get_widget("state")
+        self.parish = self.top.get_widget("parish")
         self.county = self.top.get_widget("county")
         self.country = self.top.get_widget("country")
 
         # Typing CR selects OK button
         self.window.editable_enters(self.city);
+        self.window.editable_enters(self.parish);
         self.window.editable_enters(self.county);
         self.window.editable_enters(self.state);
         self.window.editable_enters(self.country);
@@ -83,6 +85,7 @@ class LocationEditor:
             self.county.set_text(location.get_county())
             self.country.set_text(location.get_country())
             self.state.set_text(location.get_state())
+            self.parish.set_text(location.get_parish())
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
@@ -97,19 +100,24 @@ class LocationEditor:
         county = self.county.get_text()
         country = self.country.get_text()
         state = self.state.get_text()
+        parish = self.parish.get_text()
         
         if self.location == None:
             self.location = Location()
             self.parent.llist.append(self.location)
         
-        self.update_location(city,county,state,country)
+        self.update_location(city,parish,county,state,country)
         
         self.parent.redraw_location_list()
         utils.destroy_passed_object(obj)
 
-    def update_location(self,city,county,state,country):
+    def update_location(self,city,parish,county,state,country):
         if self.location.get_city() != city:
             self.location.set_city(city)
+            self.parent.lists_changed = 1
+
+        if self.location.get_parish() != parish:
+            self.location.set_parish(parish)
             self.parent.lists_changed = 1
 
         if self.location.get_county() != county:

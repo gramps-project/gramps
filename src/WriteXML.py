@@ -233,6 +233,7 @@ def append_value(orig,val):
 def build_place_title(loc):
     "Builds a title from a location"
     city = fix(loc.get_city())
+    parish = fix(loc.get_parish())
     state = fix(loc.get_state())
     country = fix(loc.get_country())
     county = fix(loc.get_county())
@@ -241,6 +242,8 @@ def build_place_title(loc):
 
     if city:
         value = city
+    if parish:
+        value = append_value(value,parish)
     if county:
         value = append_value(value,county)
     if state:
@@ -252,16 +255,19 @@ def build_place_title(loc):
 def dump_location(g,loc):
     "Writes the location information to the output file"
     city = fix(loc.get_city())
+    parish = fix(loc.get_parish())
     state = fix(loc.get_state())
     country = fix(loc.get_country())
     county = fix(loc.get_county())
 
-    if not city and not state and not county and not country:
+    if not city and not state and not parish and not county and not country:
         return
     
     g.write('      <location')
     if city:
         g.write(' city="%s"' % city)
+    if parish:
+        g.write(' parish="%s"' % parish)
     if county:
         g.write(' county="%s"' % county)
     if state:

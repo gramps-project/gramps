@@ -2590,6 +2590,62 @@
 	    <widget>
 	      <class>GtkHBox</class>
 	      <child_name>CList:title</child_name>
+	      <name>hbox45p</name>
+	      <homogeneous>True</homogeneous>
+	      <spacing>0</spacing>
+
+	      <widget>
+		<class>GtkHBox</class>
+		<name>hbox46</name>
+		<homogeneous>False</homogeneous>
+		<spacing>0</spacing>
+		<child>
+		  <padding>0</padding>
+		  <expand>False</expand>
+		  <fill>False</fill>
+		</child>
+
+		<widget>
+		  <class>GtkLabel</class>
+		  <child_name>CList:title</child_name>
+		  <name>label284p</name>
+		  <label>Parish</label>
+		  <justify>GTK_JUSTIFY_CENTER</justify>
+		  <wrap>False</wrap>
+		  <xalign>0.5</xalign>
+		  <yalign>0.5</yalign>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <child>
+		    <padding>0</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
+		  </child>
+		</widget>
+
+		<widget>
+		  <class>GtkArrow</class>
+		  <name>parish_arrow</name>
+		  <width>10</width>
+		  <height>10</height>
+		  <visible>False</visible>
+		  <arrow_type>GTK_ARROW_DOWN</arrow_type>
+		  <shadow_type>GTK_SHADOW_OUT</shadow_type>
+		  <xalign>0.5</xalign>
+		  <yalign>0.5</yalign>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <child>
+		    <padding>5</padding>
+		    <expand>False</expand>
+		    <fill>True</fill>
+		  </child>
+		</widget>
+	      </widget>
+	    </widget>
+	    <widget>
+	      <class>GtkHBox</class>
+	      <child_name>CList:title</child_name>
 	      <name>hbox45</name>
 	      <homogeneous>True</homogeneous>
 	      <spacing>0</spacing>
@@ -2819,6 +2875,19 @@
 	      <class>GtkLabel</class>
 	      <child_name>CList:title</child_name>
 	      <name>label276</name>
+	      <label></label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	    </widget>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <child_name>CList:title</child_name>
+	      <name>label276p</name>
 	      <label></label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
