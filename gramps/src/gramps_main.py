@@ -539,7 +539,7 @@ def on_choose_parents_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_new_clicked(obj):
-    msg = _("Do you wish to delete all entries and create a new database?")
+    msg = _("Do you want to close the current database and create a new database?")
     topWindow.question(msg,new_database_response)
 
 #-------------------------------------------------------------------------
@@ -1350,6 +1350,7 @@ def on_open_activate(obj):
         })
 
     fileSelector = wFs.get_widget(FILESEL)
+    fileSelector.set_filename(Config.db_dir)
     fileSelector.show()
 
 #-------------------------------------------------------------------------
