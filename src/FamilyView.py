@@ -1100,8 +1100,7 @@ class FamilyView:
         try:
             ChooseParents.ChooseParents(self.parent.db,person,None,
                                         self.load_family,
-                                        self.parent.full_update,
-                                        self.parent.topWindow)
+                                        self.parent.full_update)
         except:
             DisplayTrace.DisplayTrace()
         
