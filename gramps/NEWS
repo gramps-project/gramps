@@ -38,6 +38,8 @@ Version 0.6.0pre
   format statements (such as "I-%04d").
 * Adoption relationships are visible on the pedigree view (seen as
   a dotted line).
+* Reordering GRAMPS' ids attempts to preserve the integer originally
+  assigned to the object.
 
 Version 0.5.1
 * Bug fixes

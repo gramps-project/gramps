@@ -2659,7 +2659,7 @@ def main(arg):
     fw.set_sensitive(0)
 
     # set the window icon 
-    topWindow.set_icon(GtkPixmap(topWindow,const.logo))
+    topWindow.set_icon(GtkPixmap(topWindow,const.icon))
     
     person_list.column_titles_active()
 

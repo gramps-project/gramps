@@ -53,7 +53,8 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
-logo           = rootDir + os.sep + "gramps.xpm"
+icon           = rootDir + os.sep + "gramps.xpm"
+logo           = rootDir + os.sep + "logo.png"
 gladeFile      = rootDir + os.sep + "gramps.glade"
 placesFile     = rootDir + os.sep + "places.glade"
 imageselFile   = rootDir + os.sep + "imagesel.glade"
@@ -78,16 +79,9 @@ gtkrcFile      = rootDir + os.sep + "gtkrc"
 #-------------------------------------------------------------------------
 progName     = "gramps"
 version      = "0.6.0pre"
-copyright    = "(C) 2001 Donald N. Allingham"
-authors      = ["Donald N. Allingham"]
-comments     = _("Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program that can be extended by using the Python programming language.")
-
-#-------------------------------------------------------------------------
-#
-# Enable/disable exceptions.  For debugging purposes
-#
-#-------------------------------------------------------------------------
-useExceptions= 0
+copyright    = "© 2001 Donald N. Allingham"
+authors      = ["Donald N. Allingham", "David Hampton"]
+comments     = _("Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")
 
 #-------------------------------------------------------------------------
 #
