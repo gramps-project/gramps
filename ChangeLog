@@ -1,3 +1,11 @@
+2003-06-13  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: Removed the conflict of using pmap for two seperate
+	purposes - mapping places to iterators and places to keys. The place to
+	key map is now pdmap
+	* src/EditPlace.py: Handle drag and drop with places
+	* src/EditPerson.py: Handle exchange of perferred name and selected
+	name in the alternate name list
+
 2003-06-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/const.py.in: Add InverseNameTypesMap.
 	* src/plugins/IndivComplete.py: Use InverseNameTypesMap for 
