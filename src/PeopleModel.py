@@ -85,6 +85,7 @@ class PeopleModel(gtk.GenericTreeModel):
             self.column_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.sort_name,
             ]
 
         maps = self.db.get_people_view_maps()
