@@ -55,7 +55,8 @@ from RelLib import Person
 #-------------------------------------------------------------------------
 class SelectChild:
 
-    def __init__(self,db,family,person,redraw,add_person):
+    def __init__(self,parent,db,family,person,redraw,add_person):
+        self.parent = parent
         self.db = db
         self.person = person
         self.family = family
@@ -72,7 +73,8 @@ class SelectChild:
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_child_help_clicked"    : self.on_child_help_clicked,
             "on_show_toggled"          : self.on_show_toggled,
-            "destroy_passed_object"    : self.close
+            "destroy_passed_object"    : self.close,
+            "on_select_child_delete_event" : self.on_delete_event,
             })
 
         self.select_child_list = {}
@@ -122,19 +124,47 @@ class SelectChild:
         
         self.refmodel = ListModel.ListModel(self.add_child,titles)
         self.redraw_child_list(2)
+        self.add_itself_to_menu()
+        self.top.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.top.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self] = self
+        self.parent_menu_item = gtk.MenuItem(_('Add Child to Family'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.top.present()
 
     def on_child_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
-    def close(self,obj):
-        self.top.destroy()
-        
     def redraw_child_list(self,filter):
         self.refmodel.clear()
         self.refmodel.new_model()
-        bday = self.person.get_birth().get_date_object()
-        dday = self.person.get_death().get_date_object()
+        birth = self.db.find_event_from_id(self.person.get_birth_id())
+        death = self.db.find_event_from_id(self.person.get_death_id())
+        if birth:
+            bday = birth.get_date_object()
+        else:
+            bday = None
+        if death:
+            dday = death.get_date_object()
+        else:
+            dday = None
 
         slist = {}
         for f in self.person.get_parent_family_id_list():
@@ -154,11 +184,20 @@ class SelectChild:
                 if slist.has_key(key) or person.get_main_parents_family_id():
                     continue
             
-                pdday = person.get_death().get_date_object()
-                pbday = person.get_birth().get_date_object()
+                birth_event = self.db.find_event_from_id(person.get_birth_id())
+                if birth_event:
+                    pbday = birth_event.get_date_object()
+                else:
+                    pbday = None
 
-        	if bday.getYearValid():
-                    if pbday.getYearValid():
+                death_event = self.db.find_event_from_id(person.get_death_id())
+                if death_event:
+                    pdday = death_event.get_date_object()
+                else:
+                    pdday = None
+ 
+                if bday and bday.getYearValid():
+                    if pbday and pbday.getYearValid():
                         # reject if child birthdate < parents birthdate + 10
                         if pbday.getLowYear() < bday.getHighYear()+10:
                             continue
@@ -167,18 +206,18 @@ class SelectChild:
                         if pbday.getLowYear() > bday.getHighYear()+90:
                             continue
 
-                    if pdday.getYearValid():
+                    if pdday and pdday.getYearValid():
                         # reject if child deathdate < parents birthdate+ 10
                         if pdday.getLowYear() < bday.getHighYear()+10:
                             continue
                 
-                if dday.getYearValid():
-                    if pbday.getYearValid():
+                if dday and dday.getYearValid():
+                    if pbday and pbday.getYearValid():
                         # reject if childs birth date > parents deathday + 3
                         if pbday.getLowYear() > dday.getHighYear()+3:
                             continue
 
-                    if pdday.getYearValid():
+                    if pdday and pdday.getYearValid():
                         # reject if childs death date > parents deathday + 150
                         if pdday.getLowYear() > dday.getHighYear() + 150:
                             continue
@@ -237,9 +276,9 @@ class SelectChild:
 
         select_child.add_parent_family_id(self.family.get_id(),mrel,frel)
 
-        Utils.modified()
-        self.top.destroy()
+        self.db.commit_person(select_child)
         self.redraw(self.family)
+        self.close(obj)
         
     def on_show_toggled(self,obj):
         self.redraw_child_list(not obj.get_active())
@@ -367,5 +406,6 @@ class EditRel:
                 frel = "Unknown"
 
         self.child.change_parent_family_id(self.family.get_id(),mrel,frel)
+        self.db.commit_person(self.child)
         self.update()
         self.top.destroy()
