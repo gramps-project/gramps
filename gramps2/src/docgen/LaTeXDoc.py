@@ -108,13 +108,13 @@ class LaTeXDoc(TextDoc.TextDoc):
             options = options + ",letterpaper"
 
         # Use the article template, T1 font encodings, and specify
-        # that we should use Latin1 character encodings.
+        # that we should use Latin1 and unicode character encodings.
         self.f.write('\\documentclass[%s]{article}\n' % options)
         self.f.write('\\usepackage[T1]{fontenc}\n')
-        self.f.write('\\usepackage[latin1]{inputenc}\n')
+        self.f.write('\\usepackage[latin1,utf8]{inputenc}\n')
 	# add packages (should be standard on a default installation)
 	# for finer output control.  Put comments in file for user to read
-        self.f.write('\\usepackage{graphicx} % Extended graphics support\n')
+        self.f.write('\\usepackage{graphicx}  % Extended graphics support\n')
         self.f.write('\\usepackage{longtable} % For multi-page tables\n')
         self.f.write('\\usepackage{calc} % For margin indents\n')
 	self.f.write('%\n% Depending on your LaTeX installation, the')
@@ -232,7 +232,7 @@ class LaTeXDoc(TextDoc.TextDoc):
 
     def start_paragraph(self,style_name,leader=None):
         """Paragraphs handling - A Gramps paragraph is any 
-	single body of text, from a single word, to several sentences.
+	single body of text from a single word to several sentences.
 	We assume a linebreak at the end of each paragraph."""
 
         style = self.style_list[style_name]
@@ -387,6 +387,7 @@ class LaTeXDoc(TextDoc.TextDoc):
 	if text == '\n':
 	    text = '\\newline\n'
         text = string.replace(text,'#','\#')
+        text = string.replace(text,'&','\&')
         text = text.replace('<super>','\\textsuperscript{')
         text = text.replace('</super>','}')
         self.f.write(text)
@@ -398,6 +399,15 @@ class LaTeXDoc(TextDoc.TextDoc):
 #
 #------------------------------------------------------------------------
 Plugins.register_text_doc(
+    name=_("LaTeX"),
+    classref=LaTeXDoc,
+    table=1,
+    paper=1,
+    style=0,
+    ext=".tex"
+    )
+
+Plugins.register_book_doc(
     name=_("LaTeX"),
     classref=LaTeXDoc,
     table=1,
