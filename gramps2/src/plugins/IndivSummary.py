@@ -48,6 +48,7 @@ import StyleEditor
 import Report
 import Errors
 from QuestionDialog import ErrorDialog
+from Utils import get_xpm_image
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -124,13 +125,13 @@ class IndivSummary(Report.Report):
             place = ""
         
         description = event.get_description()
-        if date == "":
-            if place == "":
+        if not date:
+            if not place:
                 return
             else:
                 val = place + ". " + description
         else:
-            if place == "":
+            if not place:
                 val = date + ". " + description
             else:
                 val = date + " in " + place + ". " +  description
@@ -173,15 +174,12 @@ class IndivSummary(Report.Report):
                 spouse_id = family.get_mother_id()
             else:
                 spouse_id = family.get_father_id()
-            if spouse_id:
-                spouse = self.database.find_person_from_id(spouse_id)
-            else:
-                spouse = None
                 
             self.d.start_row()
             self.d.start_cell("IVS-NormalCell",2)
             self.d.start_paragraph("IVS-Spouse")
-            if spouse:
+            if spouse_id:
+                spouse = self.database.find_person_from_id(spouse_id)
                 self.d.write_text(spouse.get_primary_name().get_regular_name())
             else:
                 self.d.write_text(_("unknown"))
@@ -194,7 +192,7 @@ class IndivSummary(Report.Report):
                 self.write_fact(event)
 
             child_list = family.get_child_id_list()
-            if len(child_list) > 0:
+            if len(child_list):
                 self.d.start_row()
                 self.d.start_cell("IVS-NormalCell")
                 self.d.start_paragraph("IVS-Normal")
@@ -413,96 +411,6 @@ class IndivSummaryDialog(Report.TextReportDialog):
 #------------------------------------------------------------------------
 def report(database,person):
     IndivSummaryDialog(database,person)
-
-#------------------------------------------------------------------------
-#
-# get_xpm_image
-#
-#------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 33 1",
-        " 	c None",
-        ".	c #312D2A",
-        "+	c #4773AA",
-        "@	c #A8A7A5",
-        "#	c #BABAB6",
-        "$	c #CECECE",
-        "%	c #ECDECB",
-        "&	c #5C5C60",
-        "*	c #7C7262",
-        "=	c #F2EADE",
-        "-	c #867A6F",
-        ";	c #8E887E",
-        ">	c #E2CAA2",
-        ",	c #565354",
-        "'	c #4C4E51",
-        ")	c #6D655E",
-        "!	c #B69970",
-        "~	c #F6F2EE",
-        "{	c #9E9286",
-        "]	c #416CA3",
-        "^	c #3D4557",
-        "/	c #A29E96",
-        "(	c #FAFAFA",
-        "_	c #BA7458",
-        ":	c #C67C5E",
-        "<	c #BDA37E",
-        "[	c #CECABE",
-        "}	c #A26E62",
-        "|	c #E6E2E2",
-        "1	c #423E43",
-        "2	c #966A60",
-        "3	c #D2D2D2",
-        "4	c #E5D2B8",
-        "                                                ",
-        "                                                ",
-        "             ;-;-----***)*))))&,&)*             ",
-        "             -##############@#@/;&,*            ",
-        "             -#((((((((((((((=|$#;;{,           ",
-        "             ;#(((((((((((((((~|3/*[{1          ",
-        "             -#((((((((((((((((~|3,|[;.         ",
-        "             -#((((((((@/@@@@@@/@/'(|[;.        ",
-        "             -#((((((((((((((((((~'((|[;.       ",
-        "             -#(((((((((((]+]+]]+('=((|[;1      ",
-        "             -#(((((((((((]+]}2&+('|=((|[{,     ",
-        "             *#(((((((((((]+}<:-+('[|~((|#{)    ",
-        "             *#(((((((((((+]2_:)+('...1'&*-)*   ",
-        "             -#(((((((((((]&1(_&+(3@#//--)&1)   ",
-        "             *#~((((((((((+]1}/^]((|$##/;--'1   ",
-        "             *#(((((((((((]]^)11,(((|$[#@/;)1   ",
-        "             *#(((((((((((]^.^^&&((~=|$[#@/*.   ",
-        "             *#(((((((((((((~(((((((|$[$[#/-.   ",
-        "             *#~(((((((((((((((((~~~~||$[[@;.   ",
-        "             )#((((@@@@@@/@@/@/@@@@///{;[[[;.   ",
-        "             )#(((((((((((((((((~~~~==|$$[#;.   ",
-        "             )#((((@/@@/@@@@@@@@@//////{4>3{.   ",
-        "             )#(((((((((((((((~~~~==|=||%$[{.   ",
-        "             )#((((@@@@@/@@@///////////{43>/.   ",
-        "             )#((((((((((((((~~~~~==|||%>4[!.   ",
-        "             )#((((@/@@@@@//~~~~======%%%43{.   ",
-        "             )#((((((((((((~~~~=|==||=%%%44!.   ",
-        "             ,#((((@@/@@/@/@////////{/{{%4$!.   ",
-        "             )#~((((((((~~~~~~==||%=%=%%44>/.   ",
-        "             ,#((((/@@//@///////////{{{{%4>!.   ",
-        "             )#((((((((~~~=~||=|%%%%%4%%%44{.   ",
-        "             ,#((((@@@/@/////////{{{{{{{444!.   ",
-        "             &#(((((~~~~~|~|||%%|%%%%44444%!.   ",
-        "             ,#(((~/@//////////{{{{{{;{;4>4!.   ",
-        "             ,#(((~~~~=~|==|%|=%%%4%%44444>!.   ",
-        "             &#(((~//////////{{{{{{{;{;{4>><.   ",
-        "             ,#(~~~~~~==||%|%%%%%%44444>4>>!.   ",
-        "             '#~~~~///////{{{{{{{;!;{;;;>>>!.   ",
-        "             ,#~~~~||=||%|%=%%4%444>44>>>>>!.   ",
-        "             '#~~~~====%=%=%4%%444444>>>>>>!.   ",
-        "             '@~~====|%=%%%%%4%444>>4>>>>>>!.   ",
-        "             ,@~======%%%%%%>%%4444>>>>>>>>!.   ",
-        "             '#====||=%%%%4%44444>4>>>>>>>>!.   ",
-        "             ,@##@<#<<#@<<<<<<<<<<!<!!:!!!!!.   ",
-        "             ................................   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]
 
 #------------------------------------------------------------------------
 #
