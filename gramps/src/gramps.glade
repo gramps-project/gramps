@@ -264,6 +264,18 @@
 	      <label>P_laces</label>
 	      <right_justify>False</right_justify>
 	    </widget>
+
+	    <widget>
+	      <class>GtkMenuItem</class>
+	      <name>media1</name>
+	      <signal>
+		<name>activate</name>
+		<handler>on_media_activate</handler>
+		<last_modification_time>Sun, 14 Oct 2001 14:12:22 GMT</last_modification_time>
+	      </signal>
+	      <label>_Media</label>
+	      <right_justify>False</right_justify>
+	    </widget>
 	  </widget>
 	</widget>
 
@@ -610,14 +622,13 @@
       <class>GtkNotebook</class>
       <child_name>GnomeDock:contents</child_name>
       <name>notebook1</name>
-      <can_focus>True</can_focus>
       <signal>
 	<name>switch_page</name>
 	<handler>on_notebook1_switch_page</handler>
 	<after>True</after>
 	<last_modification_time>Fri, 20 Oct 2000 01:16:41 GMT</last_modification_time>
       </signal>
-      <show_tabs>True</show_tabs>
+      <show_tabs>False</show_tabs>
       <show_border>True</show_border>
       <tab_pos>GTK_POS_TOP</tab_pos>
       <scrollable>False</scrollable>
