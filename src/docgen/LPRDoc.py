@@ -216,6 +216,9 @@ class GnomePrintParagraph:
                 fontstyle.set_bold(1)
             elif directive == _END_BOLD:
                 fontstyle.set_bold(0)
+            elif directive == _START_SUPER:
+                size = fontstyle.get_size()
+                fontstyle.set_size(size-2)
             
             font = find_font_from_fontstyle(self.style.get_font())
             width += font.get_width_utf8(text)
@@ -234,6 +237,9 @@ class GnomePrintParagraph:
                 fontstyle.set_bold(1)
             elif directive == _END_BOLD:
                 fontstyle.set_bold(0)
+            elif directive == _START_SUPER:
+                size = fontstyle.get_size()
+                fontstyle.set_size(size-2)
 
             for word in text.split():
                 length = get_text_width(word,fontstyle)
@@ -258,6 +264,9 @@ class GnomePrintParagraph:
                 fontstyle.set_bold(1)
             elif directive == _END_BOLD:
                 fontstyle.set_bold(0)
+            elif directive == _START_SUPER:
+                size = fontstyle.get_size()
+                fontstyle.set_size(size-2)
             
             if text and avail_width > get_text_width(text,fontstyle):
                 avail_width -= get_text_width(text,fontstyle)
@@ -572,6 +581,20 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
     def write_text(self,text):
         """Add the text to the paragraph"""
+        super_count = text.count('<super>')
+        for num in range(super_count):
+            start = text.find('<super>')
+            self.__paragraph_text = self.__paragraph_text + text[:start]
+            self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+            self.__paragraph_text = ""
+            text = text[start+7:]
+
+            start = text.find('</super>')
+            self.__paragraph_text = self.__paragraph_text + text[:start]
+            self.paragraph.add_piece(_START_SUPER,self.__paragraph_text)
+            self.__paragraph_text = ""
+            text = text[start+8:]
+
         self.__paragraph_text = self.__paragraph_text + text
 
     def write_note(self,text,format,style_name):
@@ -622,6 +645,10 @@ class LPRDoc(BaseDoc.BaseDoc):
                 fontstyle.set_bold(1)
             elif directive == _END_BOLD:
                 fontstyle.set_bold(0)
+            elif directive == _START_SUPER:
+                size = fontstyle.get_size()
+                fontstyle.set_size(size-2)
+                y = y + 0.25 * _LINE_SPACING
             elif directive == _LINE_BREAK:
                 y = self.__advance_line()
                 x = self.__x
@@ -635,6 +662,8 @@ class LPRDoc(BaseDoc.BaseDoc):
 
             #all text will fit within the width provided
             if not text:
+                if directive == _START_SUPER:
+                    y = y - 0.25 * _LINE_SPACING
                 continue
             if avail_width >= get_text_width(text,fontstyle):
                 avail_width -= get_text_width(text,fontstyle)
@@ -644,7 +673,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.__pc.show(text)
             else:
                 #divide up text and print
-                if x == left_margin:
+                if x == left_margin or directive == _START_SUPER \
+                        or text[0] == '.':
                     the_text = ""
                 else:
                     the_text = " "
@@ -673,7 +703,10 @@ class LPRDoc(BaseDoc.BaseDoc):
                     self.__pc.setfont(find_font_from_fontstyle(fontstyle))
                     self.__pc.moveto(left_margin, y)
                     self.__pc.show(the_text)
+                    x = x + get_text_width(the_text,fontstyle)
                     avail_width = width - get_text_width(the_text,fontstyle)
+            if directive == _START_SUPER:
+                y = y - 0.25 * _LINE_SPACING
         y = self.__advance_line(y)
         return (x,y)
 
