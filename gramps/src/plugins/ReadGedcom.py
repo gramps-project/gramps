@@ -353,7 +353,7 @@ class GedcomParser:
                 self.parse_source(matches[1],1)
             elif matches[2] == "REPO":
                 self.ignore_sub_junk(1)
-            elif matches[2] == "NOTE":
+            elif matches[2][0:4] == "NOTE":
                 if self.nmap.has_key(matches[1]):
                     noteobj = self.nmap[matches[1]]
                 else:
