@@ -6,6 +6,8 @@ dist_pkgdata_DATA = gedcom.xml \
 	       papersize.xml \
 	       tips.xml \
 	       gnome-mime-application-x-gramps.png \
+               gnome-mime-application-x-gedcom.png \
+	       gnome-mime-application-x-gramps-package.png \
 	       gramps.applications \
 	       gramps.desktop \
 	       gramps.svg \
@@ -18,7 +20,7 @@ install-data-local:
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) gramps.desktop $(DESTDIR)$(prefix)/share/applications
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
-	$(INSTALL_DATA) gnome-mime-application-x-gramps.png $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
+	$(INSTALL_DATA) gnome-mime-application-x-*.png $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/application-registry
 	$(INSTALL_DATA) gramps.applications $(DESTDIR)$(prefix)/share/application-registry
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime/packages
