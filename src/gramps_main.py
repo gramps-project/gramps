@@ -1367,58 +1367,8 @@ class Gramps:
         prompter.chooser()
 
     def on_export_activate(self,obj):
-        choose = gtk.FileChooserDialog(_('GRAMPS: Export database'),
-                                       self.topWindow,
-                                       gtk.FILE_CHOOSER_ACTION_SAVE,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('By extension'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
-
-#   FIXME: Uncomment when we have grdb importer
-#
-#        # Always add native format filter
-#        filter = gtk.FileFilter()
-#        filter.set_name(_('GRAMPS databases'))
-#        filter.add_mime_type('application/x-gramps')
-#        choose.add_filter(filter)
-
-        for (exportData,filter,pattern_list) in Plugins._exports:
-            choose.add_filter(filter)
-
-        if GrampsCfg.lastfile:
-            choose.set_filename(GrampsCfg.lastfile)
-
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            filename = os.path.normpath(os.path.abspath(filename))
-            (junk,the_file) = os.path.split(filename)
-
-#   FIXME: Uncomment when we have grdb importer
-#
-#            if filetype == 'application/x-gramps':
-#                if self.auto_save_load(filename) == 0:
-#                    DbPrompter.DbPrompter(self,0,self.topWindow)
-#            else:
-            if True:
-                opened = 0
-                for (exportData,filter,pattern_list) in Plugins._exports:
-                    for pattern in pattern_list:
-                        if filter.filter((filename,None,None,None)):
-                            exportData(self.db,filename)
-                            opened = 1
-                            break
-                if not opened:
-                    ErrorDialog( _("Could not write file: %s") % filename,
-                            _('The type is not in the list of known file types') )
-        choose.destroy()
+        prompter = DbPrompter.SaveAsDbPrompter(self,self.topWindow)
+        prompter.chooser()
 
     def on_revert_activate(self,obj):
         pass

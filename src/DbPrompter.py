@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import shutil
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -314,3 +315,85 @@ class NewNativeDbPrompter:
         while os.path.isfile(os.path.expanduser('~/Untitled_%d.grdb' % ix ) ):
             ix = ix + 1
         return os.path.expanduser('~/Untitled_%d.grdb' % ix )
+
+#-------------------------------------------------------------------------
+#
+# SaveAsDbPrompter
+#
+#-------------------------------------------------------------------------
+class SaveAsDbPrompter:
+    """
+    This class allows to save (export) an existing database. 
+    
+    Any data format is allowed. The available formats are obtained
+    from the plugins. If the selected format is non-native (non-grdb)
+    then corresponding export routine is called. Native save as just
+    copies file to another name. 
+    
+    """
+    
+    def __init__(self,parent,parent_window=None):
+        self.parent = parent
+        self.parent_window = parent_window
+
+    def chooser(self):
+        """
+        Select the new file. 
+        Return 1 when selection is made and 0 otherwise.
+        """
+        choose = gtk.FileChooserDialog(_('GRAMPS: Export database'),
+                                           self.parent_window,
+                                           gtk.FILE_CHOOSER_ACTION_SAVE,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
+        choose.set_local_only(gtk.FALSE)
+        # Always add automatic (macth all files) filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('By extension'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+        
+        # Always add native format filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS databases'))
+        filter.add_mime_type('application/x-gramps')
+        choose.add_filter(filter)
+
+        # Add more data type selections if opening existing db
+        for (exportData,filter,pattern_list) in Plugins._exports:
+            choose.add_filter(filter)
+        
+        if GrampsCfg.lastfile:
+            choose.set_filename(GrampsCfg.lastfile)
+
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            filename = os.path.normpath(os.path.abspath(filename))
+            (junk,the_file) = os.path.split(filename)
+            the_ext = os.path.splitext(filename)[1]
+
+            if the_ext in ('.grdb', '.GRDB'):
+                choose.destroy()
+                try:
+                    shutil.copyfile(self.parent.db.get_save_path(),filename)
+                    return 1
+                except shutil.Error, msg:
+                    QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,
+                        _('System message was: %s') % msg )
+                    return 0
+
+            for (exportData,filter,pattern_list) in Plugins._exports:
+                if the_ext in pattern_list:
+                    choose.destroy()
+                    exportData(self.parent.db,filename)
+                    return 1
+            else:
+                QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,
+                        _('The type is not in the list of known file types') )
+                return 0
+        else:
+            choose.destroy()
+            return 0

@@ -1,3 +1,9 @@
+2004-06-30  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (on_export_activate): Delegate work
+	to DbPrompter.
+	* src/WriteXML.py: Register with the new scheme.
+	* src/DbPrompter.py (SaveAsDbPrompter): Add class.
+
 2004-06-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: fix reordering of children
 	* src/ChooseParents.py: get filters working again
