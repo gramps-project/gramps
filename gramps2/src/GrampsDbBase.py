@@ -34,9 +34,11 @@ from RelLib import *
 import cPickle
 import time
 import locale
+import re
 from gettext import gettext as _
 
 import GrampsGconfKeys
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +46,7 @@ import GrampsGconfKeys
 #
 #-------------------------------------------------------------------------
 _UNDO_SIZE = 1000
-_id_reg    = compile("%\d+d")
+_id_reg    = re.compile("%\d+d")
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1

@@ -1,3 +1,12 @@
+2004-10-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Date.py: fix get_month_valid call
+	* src/DateDisplay.py: pychecker fixes
+	* src/EditPerson.py: pychecker fixes
+	* src/GrampDbBase.py: pychecker fixes
+	* src/Marriage.py: bring up to date with the DateParser
+	* src/PeopleView.py: pychecker fixes
+	* src/RelLib.py: pychecker fixes
+
 2004-10-02 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateDisplay.py (display): Display text for text-only dates. 
 	Closes # 1036846.

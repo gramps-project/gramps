@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import pickle
-import time
 
 #-------------------------------------------------------------------------
 #
@@ -1133,7 +1132,7 @@ class EditPerson:
             changed = True
         if self.pname.get_note() != name.get_note():
             changed = True
-        if self.lds_not_loaded == False and self.check_lds():
+        if not self.lds_not_loaded and self.check_lds():
             changed = True
 
         bplace = unicode(self.bplace.get_text().strip())
@@ -1142,7 +1141,6 @@ class EditPerson:
         if self.pdmap.has_key(bplace):
             self.birth.set_place_handle(self.pdmap[bplace])
         else:
-            p1 = None
             if bplace != "":
                 changed = True
             self.birth.set_place_handle('')
@@ -1150,7 +1148,6 @@ class EditPerson:
         if self.pdmap.has_key(dplace):
             self.death.set_place_handle(self.pdmap[dplace])
         else:
-            p1 = None
             if dplace != "":
                 changed = True
             self.death.set_place_handle('')
@@ -1170,7 +1167,7 @@ class EditPerson:
         if format != self.person.get_note_format():
             changed = True
 
-        if self.lds_not_loaded == False:
+        if not self.lds_not_loaded:
             if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
                 changed= True
 
@@ -1580,7 +1577,7 @@ class EditPerson:
                         temp_family.set_mother_handle(None)
                         temp_family.set_father_handle(self.person)
 
-        if error == True:
+        if error:
             msg2 = _("Problem changing the gender")
             msg = _("Changing the gender caused problems "
                     "with marriage information.\nPlease check "
@@ -1600,7 +1597,7 @@ class EditPerson:
         if self.complete.get_active() != self.person.get_complete_flag():
             self.person.set_complete_flag(self.complete.get_active())
 
-        if self.lds_not_loaded == False:
+        if not self.lds_not_loaded:
             self.check_lds()
             lds_ord = RelLib.LdsOrd(self.person.get_lds_baptism())
             if not self.lds_baptism.are_equal(lds_ord):
@@ -1744,7 +1741,7 @@ class EditPerson:
         else:
             Utils.unbold_label(self.notes_label)
 
-        if self.lds_not_loaded == False:
+        if not self.lds_not_loaded:
             self.check_lds()
         if self.lds_baptism.is_empty() \
                         and self.lds_endowment.is_empty() \

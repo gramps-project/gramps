@@ -478,5 +478,5 @@ class Date:
         date, and having year, month, and day all non-zero.
         """
         return self.modifier == MOD_NONE and self.quality == QUAL_NONE\
-                    and self.get_year_valid() and self.get_month_valid\
+                    and self.get_year_valid() and self.get_month_valid()\
                     and self.get_day_valid()

@@ -32,7 +32,6 @@ import gtk
 import gtk.gdk
 import gtk.glade
 import gnome
-import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +46,7 @@ import AutoComp
 import ListModel
 import RelLib
 import ImageSelect
-import Date
+import DateHandler
 import Sources
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
@@ -84,6 +83,7 @@ class Marriage:
         self.cb = callback
         self.update_fv = update
         self.pmap = {}
+        self.dp = DateHandler.create_parser()
 
         if family:
             self.srcreflist = family.get_source_references()
@@ -542,9 +542,8 @@ class Marriage:
             if date or temple or place or self.seal_stat:
                 changed = 1
         else:
-            d = Date.Date()
-            d.set(date)
-            if Date.compare_dates(d,lds_ord.get_date_object()) != 0 or \
+            d = self.dp.parse(date)
+            if d.is_equal(lds_ord.get_date_object()) or \
                lds_ord.get_temple() != temple or \
                (place and lds_ord.get_place_handle() != place.get_handle()) or \
                lds_ord.get_status() != self.seal_stat:
@@ -624,9 +623,8 @@ class Marriage:
                 lds_ord.set_place_handle(place)
                 self.family.set_lds_sealing(lds_ord)
         else:
-            d = Date.Date()
-            d.set(date)
-            if Date.compare_dates(d,lds_ord.get_date_object()) != 0:
+            d = self.dp.parse(date)
+            if d.is_equal(lds_ord.get_date_object()):
                 lds_ord.set_date_object(d)
             if lds_ord.get_temple() != temple:
                 lds_ord.set_temple(temple)

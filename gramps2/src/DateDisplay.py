@@ -30,7 +30,6 @@ __version__ = "$Revision$"
 
 import Date
 import locale
-import time
 
 class DateDisplay:
     """
@@ -206,54 +205,55 @@ class DateDisplay:
             # YYYY-MM-DD (ISO)
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    return year
+                    value = year
                 else:
-                    return "%s-%d" % (year,date_val[1])
+                    value = "%s-%d" % (year,date_val[1])
             else:
-                return "%s-%d-%d" % (year,date_val[1],date_val[0])
+                value = "%s-%d-%d" % (year,date_val[1],date_val[0])
         elif self.format == 1:
             if date_val[0] == 0 and date_val[1] == 0:
-                return str(date_val[2])
+                value = str(date_val[2])
             else:
-                val = self._tformat.replace('%m',str(date_val[1]))
-                val = val.replace('%d',str(date_val[0]))
-                return val.replace('%Y',str(date_val[2]))
+                value = self._tformat.replace('%m',str(date_val[1]))
+                value = value.replace('%d',str(date_val[0]))
+                value = value.replace('%Y',str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    return year
+                    value = year
                 else:
-                    return "%s %s" % (self._months[date_val[1]],year)
+                    value = "%s %s" % (self._months[date_val[1]],year)
             else:
-                return "%s %d, %s" % (self._months[date_val[1]],date_val[0],year)
+                value = "%s %d, %s" % (self._months[date_val[1]],date_val[0],year)
         elif self.format == 3:
             # MON Day, Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    return year
+                    value = year
                 else:
-                    return "%s %s" % (self._MONS[date_val[1]].upper(),year)
+                    value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
-                return "%s %d, %s" % (self._MONS[date_val[1]].upper(),date_val[0],year)
+                value = "%s %d, %s" % (self._MONS[date_val[1]],date_val[0],year)
         elif self.format == 4:
             # Day Month Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    return year
+                    value = year
                 else:
-                    return "%s %s" % (self._months[date_val[1]],year)
+                    value = "%s %s" % (self._months[date_val[1]],year)
             else:
-                return "%d %s %s" % (date_val[0],self._months[date_val[1]],year)
+                value = "%d %s %s" % (date_val[0],self._months[date_val[1]],year)
         else:
             # Day MON Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    return year
+                    value = year
                 else:
-                    return "%s %s" % (self._MONS[date_val[1]].upper(),year)
+                    value = "%s %s" % (self._MONS[date_val[1]],year)
             else:
-                return "%d %s %s" % (date_val[0],self._MONS[date_val[1]].upper(),year)
+                value = "%d %s %s" % (date_val[0],self._MONS[date_val[1]],year)
+        return value
 
     def _display_julian(self,date_val):
         # Julian date display is the same as Gregorian
