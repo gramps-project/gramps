@@ -120,8 +120,10 @@ class Marriage:
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
-        self.event_details = self.get_widget("event_details")
-        self.attr_details_field = self.get_widget("attr_details")
+        self.event_src_field = self.get_widget("event_srcinfo")
+        self.event_conf_field = self.get_widget("event_conf")
+        self.attr_src_field = self.get_widget("attr_srcinfo")
+        self.attr_conf_field = self.get_widget("attr_conf")
         self.lds_date = self.get_widget("lds_date")
         self.lds_temple = self.get_widget("lds_temple")
         self.lds_status = self.get_widget("lds_status")
@@ -467,7 +469,13 @@ class Marriage:
         self.place_field.set_text(event.getPlaceName())
         self.cause_field.set_text(event.getCause())
         self.name_field.set_label(const.display_fevent(event.getName()))
-        self.event_details.set_text(Utils.get_detail_text(event))
+        if len(event.getSourceRefList()) > 0:
+            psrc = event.getSourceRefList()[0]
+            self.event_src_field.set_text(psrc.getBase().getTitle())
+            self.event_conf_field.set_text(const.confidence[psrc.getConfidence()])
+        else:
+            self.event_src_field.set_text('')
+            self.event_conf_field.set_text('')
         self.descr_field.set_text(event.getDescription())
 
     def on_attr_list_select_row(self,obj,row,b,c):
@@ -475,7 +483,13 @@ class Marriage:
 
         self.attr_type.set_label(const.display_fattr(attr.getType()))
         self.attr_value.set_text(attr.getValue())
-        self.attr_details_field.set_text(Utils.get_detail_text(attr))
+        if len(attr.getSourceRefList()) > 0:
+            psrc = attr.getSourceRefList()[0]
+            self.attr_src_field.set_text(psrc.getBase().getTitle())
+            self.attr_conf_field.set_text(const.confidence[psrc.getConfidence()])
+        else:
+            self.attr_src_field.set_text('')
+            self.attr_conf_field.set_text('')
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
