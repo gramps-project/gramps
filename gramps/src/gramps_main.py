@@ -110,17 +110,37 @@ class Gramps:
 
         self.database = GrampsDB()
 
-        Plugins.load_plugins(const.docgenDir)
-        Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))
-        Plugins.load_plugins(const.pluginsDir)
-        Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
-        Filter.load_filters(const.filtersDir)
-        Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
-
         (self.sort_column,self.sort_direct) = GrampsCfg.get_sort_cols("person",self.sort_column,self.sort_direct)
 
         GrampsCfg.loadConfig(self.full_update)
+        self.init_interface()
 
+        self.col_map = [ 5, 1, 2, 6, 7 ]
+        self.col_arr = [ self.nameArrow, self.idArrow, self.genderArrow,
+                         self.dateArrow, self.deathArrow]
+
+        self.change_sort(self.sort_column,self.sort_direct==GTK.SORT_DESCENDING)
+        self.set_sort_arrow(self.sort_column,self.sort_direct)
+
+        self.database.set_iprefix(GrampsCfg.iprefix)
+        self.database.set_oprefix(GrampsCfg.oprefix)
+        self.database.set_fprefix(GrampsCfg.fprefix)
+        self.database.set_sprefix(GrampsCfg.sprefix)
+        self.database.set_pprefix(GrampsCfg.pprefix)
+        
+        if arg != None:
+            self.read_file(arg)
+        elif GrampsCfg.lastfile != None and GrampsCfg.lastfile != "" and GrampsCfg.autoload:
+            self.auto_save_load(GrampsCfg.lastfile)
+        else:
+            DbPrompter(self,0)
+
+            if GrampsCfg.autosave_int != 0:
+                Utils.enable_autosave(self.autosave_database,GrampsCfg.autosave_int)
+
+        self.database.setResearcher(GrampsCfg.get_researcher())
+
+    def init_interface(self):
         self.gtop = libglade.GladeXML(const.gladeFile, "gramps")
 
         self.statusbar   = self.gtop.get_widget("statusbar")
@@ -151,23 +171,25 @@ class Gramps:
         self.spouse_tab  = self.gtop.get_widget("lab_or_list")
         self.spouse_edit = self.gtop.get_widget("edit_sp")
         self.spouse_del  = self.gtop.get_widget("delete_sp")
-        
-        export_menu = self.gtop.get_widget("export1")
-        import_menu = self.gtop.get_widget("import1")
-        report_menu = self.gtop.get_widget("reports_menu")
-        tools_menu  = self.gtop.get_widget("tools_menu")
 
-        self.col_map = [ 5, 1, 2, 6, 7 ]
-        self.col_arr = [ self.nameArrow, self.idArrow, self.genderArrow,
-                         self.dateArrow, self.deathArrow]
+        self.person_list.set_column_visibility(5,0)
+        self.person_list.set_column_visibility(6,0)
+        self.person_list.set_column_visibility(7,0)
+        self.person_list.set_column_visibility(1,GrampsCfg.id_visible)
+        self.person_list.column_titles_active()
 
-        self.toolbar.set_style(GrampsCfg.toolbar)
+        self.build_plugin_menus()
+        self.init_filters()
 
-        Plugins.build_report_menu(report_menu,self.menu_report)
-        Plugins.build_tools_menu(tools_menu,self.menu_tools)
-        Plugins.build_export_menu(export_menu,self.export_callback)
-        Plugins.build_import_menu(import_menu,self.import_callback)
+        # set the window icon 
+        self.topWindow.set_icon(gtk.GtkPixmap(self.topWindow,const.icon))
     
+        self.toolbar.set_style(GrampsCfg.toolbar)
+        self.notebook.set_show_tabs(GrampsCfg.usetabs)
+
+        self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
+        self.child_list.set_column_justification(self.c_birth_order,GTK.JUSTIFY_RIGHT)
+
         self.pedigree_view = PedigreeView(self.canvas,
                                           self.modify_statusbar,
                                           self.statusbar,
@@ -176,22 +198,6 @@ class Gramps:
         self.place_view  = PlaceView(self.database,self.gtop,self.update_display)
         self.source_view = SourceView(self.database,self.gtop,self.update_display)
         self.media_view  = MediaView(self.database,self.gtop,self.update_display)
-
-        self.person_list.set_column_visibility(5,0)
-        self.person_list.set_column_visibility(6,0)
-        self.person_list.set_column_visibility(7,0)
-        menu = Filter.build_filter_menu(self.on_filter_name_changed,self.filter_text)
-        self.filter_list.set_menu(menu)
-    
-        self.filter_text.set_sensitive(0)
-
-        # set the window icon 
-        self.topWindow.set_icon(gtk.GtkPixmap(self.topWindow,const.icon))
-    
-        self.person_list.column_titles_active()
-
-        self.change_sort(self.sort_column,self.sort_direct==GTK.SORT_DESCENDING)
-        self.set_sort_arrow(self.sort_column,self.sort_direct)
 
         self.gtop.signal_autoconnect({
             "delete_event"                      : self.delete_event,
@@ -274,29 +280,32 @@ class Gramps:
             "on_writing_extensions_activate"    : self.on_writing_extensions_activate,
             })	
         
-        self.person_list.set_column_visibility(1,GrampsCfg.id_visible)
+    def build_plugin_menus(self):
+        export_menu = self.gtop.get_widget("export1")
+        import_menu = self.gtop.get_widget("import1")
+        report_menu = self.gtop.get_widget("reports_menu")
+        tools_menu  = self.gtop.get_widget("tools_menu")
 
-        self.notebook.set_show_tabs(GrampsCfg.usetabs)
-        self.database.set_iprefix(GrampsCfg.iprefix)
-        self.database.set_oprefix(GrampsCfg.oprefix)
-        self.database.set_fprefix(GrampsCfg.fprefix)
-        self.database.set_sprefix(GrampsCfg.sprefix)
-        self.database.set_pprefix(GrampsCfg.pprefix)
-        self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
-        self.child_list.set_column_justification(self.c_birth_order,GTK.JUSTIFY_RIGHT)
+        Plugins.load_plugins(const.docgenDir)
+        Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        Plugins.load_plugins(const.pluginsDir)
+        Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
+
+        Plugins.build_report_menu(report_menu,self.menu_report)
+        Plugins.build_tools_menu(tools_menu,self.menu_tools)
+        Plugins.build_export_menu(export_menu,self.export_callback)
+        Plugins.build_import_menu(import_menu,self.import_callback)
+
+    def init_filters(self):
+
+        Filter.load_filters(const.filtersDir)
+        Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
+
+        menu = Filter.build_filter_menu(self.on_filter_name_changed,self.filter_text)
+
+        self.filter_list.set_menu(menu)
+        self.filter_text.set_sensitive(0)
         
-        if arg != None:
-            self.read_file(arg)
-        elif GrampsCfg.lastfile != None and GrampsCfg.lastfile != "" and GrampsCfg.autoload:
-            self.auto_save_load(GrampsCfg.lastfile)
-        else:
-            DbPrompter(self,0)
-
-            if GrampsCfg.autosave_int != 0:
-                Utils.enable_autosave(self.autosave_database,GrampsCfg.autosave_int)
-
-        self.database.setResearcher(GrampsCfg.get_researcher())
-
     def on_find_activate(self,obj):
         """Display the find box"""
         Find.Find(self.person_list,self.find_goto_to,
