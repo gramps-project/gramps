@@ -4594,7 +4594,7 @@
 
       <widget>
 	<class>GtkButton</class>
-	<name>spouseExistingPerson</name>
+	<name>spouse_ok</name>
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
 	<signal>
@@ -4680,8 +4680,13 @@
 	  <can_focus>True</can_focus>
 	  <signal>
 	    <name>select_row</name>
-	    <handler>on_spouseList_select_row</handler>
-	    <last_modification_time>Sun, 19 Nov 2000 00:44:36 GMT</last_modification_time>
+	    <handler>on_select_row</handler>
+	    <last_modification_time>Fri, 29 Mar 2002 13:44:27 GMT</last_modification_time>
+	  </signal>
+	  <signal>
+	    <name>unselect_row</name>
+	    <handler>on_unselect_row</handler>
+	    <last_modification_time>Fri, 29 Mar 2002 13:44:33 GMT</last_modification_time>
 	  </signal>
 	  <columns>2</columns>
 	  <column_widths>256,80</column_widths>
