@@ -510,6 +510,9 @@ class AncestorsReport (Report.Report):
         return ret
 
     def inline_notes (self, person):
+        name_note = person.getPrimaryName ().getNote ()
+        if not (name_note == '' or name_note.find ('\n') != -1):
+            return '  Note about their name: ' + name_note
         note = person.getNote ()
         if not (note == '' or note.find ('\n') != -1):
             return '  ' + note
