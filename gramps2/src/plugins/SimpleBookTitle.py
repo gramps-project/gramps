@@ -51,14 +51,17 @@ import gnome.ui
 #------------------------------------------------------------------------
 class SimpleBookTitle(Report.Report):
 
-    def __init__(self,database,person,title_string,object_id,copyright_string,
-                        doc,output,newpage=0):
+    def __init__(self,database,
+                    person,title_string,subtitle_string,object_id,image_size,
+                    footer_string,doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
         self.title_string = title_string
         self.object_id = object_id
-        self.copyright_string = copyright_string
+        self.image_size = image_size
+        self.subtitle_string = subtitle_string
+        self.footer_string = footer_string
         self.doc = doc
         self.newpage = newpage
         if output:
@@ -81,13 +84,23 @@ class SimpleBookTitle(Report.Report):
         self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
+        self.doc.start_paragraph('SBT-Subtitle')
+        self.doc.write_text(self.subtitle_string)
+        self.doc.end_paragraph()
+
         if self.object_id:
             object = self.database.getObject(self.object_id)
             name = object.getPath()
-            self.doc.add_photo(name,'center',10,10)
+            if self.image_size:
+                image_size = self.image_size
+            else:
+                image_size = min(
+                        0.8 * self.doc.get_usable_width(), 
+                        0.7 * self.doc.get_usable_height() )
+            self.doc.add_photo(name,'center',image_size,image_size)
 
-        self.doc.start_paragraph('SBT-Subtitle')
-        self.doc.write_text(self.copyright_string)
+        self.doc.start_paragraph('SBT-Footer')
+        self.doc.write_text(self.footer_string)
         self.doc.end_paragraph()
 
         if self.standalone:
@@ -115,7 +128,49 @@ def _make_default_style(default_style):
     para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the subtitle.'))
     default_style.add_style("SBT-Subtitle",para)
+
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=1)
+    para = BaseDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(2)
+    para.set(pad=0.5)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+    para.set_description(_('The style used for the footer.'))
+    default_style.add_style("SBT-Footer",para)
     
+
+#-------------------------------------------------------------------------
+#
+# Define pre-set image sizes
+#
+#-------------------------------------------------------------------------
+_sizes = (
+    ( _('Fit page'), 0 ),
+    ( _('%d cm') % 5, 5 ),
+    ( _('%d cm') % 10, 10 ),
+    ( _('%d cm') % 15, 15 ),
+)
+
+#-------------------------------------------------------------------------
+#
+# make_paper_menu
+#
+#-------------------------------------------------------------------------
+def make_size_menu(main_menu,def_size_index=0):
+
+    index = 0
+    myMenu = gtk.Menu()
+    for size in _sizes:
+        name = size[0]
+        menuitem = gtk.MenuItem(name)
+        menuitem.show()
+        myMenu.append(menuitem)
+        if index == def_size_index:
+            myMenu.set_active(index)
+        index = index + 1
+    main_menu.set_menu(myMenu)
+
 #------------------------------------------------------------------------
 #
 # Set up sane defaults for the book_item
@@ -126,10 +181,19 @@ _style_name = "default"
 
 _person_id = ""
 _title_string = ""
+_subtitle_string = ""
 _object_id = ""
-_copyright_string = ""
+_size_index = 0
+_footer_string = ""
 
-_options = ( _person_id, _title_string, _object_id, _copyright_string )
+_options = ( 
+    _person_id, 
+    _title_string, 
+    _subtitle_string, 
+    _object_id, 
+    _size_index, 
+    _footer_string
+)
 
 
 #------------------------------------------------------------------------
@@ -157,20 +221,32 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             self.title_string = _('Title of the Book')
         
         if self.options[2]:
-            self.object_id = self.options[2]
+            self.subtitle_string = self.options[2]
+        else:
+            self.subtitle_string = _('Subtitle of the Book')
+
+        if self.options[3]:
+            self.object_id = self.options[3]
         else:
             self.object_id = ""
         
-        if self.options[3]:
-            self.copyright_string = self.options[3]
+        if self.options[4]:
+            self.size_index = int(self.options[4])
+        else:
+            self.size_index = 0
+
+        if self.options[5]:
+            self.footer_string = self.options[5]
         else:
             import time
             dateinfo = time.localtime(time.time())
             name = self.db.getResearcher().getName()
-            self.copyright_string = _('Copyright %d %s') % (dateinfo[0], name)
+            self.footer_string = _('Copyright %d %s') % (dateinfo[0], name)
 
         self.title_entry.set_text(self.title_string)
-        self.copyright_entry.set_text(self.copyright_string)
+        self.subtitle_entry.set_text(self.subtitle_string)
+        self.footer_entry.set_text(self.footer_string)
+        self.size_menu.set_history(self.size_index)
         if self.object_id:
             object = self.db.getObject(self.object_id)
             self.obj_title.set_text(object.getDescription())
@@ -184,6 +260,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
                 icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
                 self.preview.set_from_pixbuf(icon_image)
             self.remove_obj_button.set_sensitive(gtk.TRUE)
+            self.size_menu.set_sensitive(gtk.TRUE)
 
         self.new_person = None
 
@@ -219,9 +296,11 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
 
     def add_user_options(self):
         self.title_entry = gtk.Entry()
-        self.copyright_entry = gtk.Entry()
-        self.add_frame_option(_('Text'),_('Title String'),self.title_entry)
-        self.add_frame_option(_('Text'),_('Subtitle String'),self.copyright_entry)
+        self.subtitle_entry = gtk.Entry()
+        self.footer_entry = gtk.Entry()
+        self.add_frame_option(_('Text'),_('Title'),self.title_entry)
+        self.add_frame_option(_('Text'),_('Subtitle'),self.subtitle_entry)
+        self.add_frame_option(_('Text'),_('Footer'),self.footer_entry)
         
         frame = gtk.Frame()
         frame.set_size_request(96,96)
@@ -248,8 +327,14 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
                 1,2,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
         select_table.attach(self.remove_obj_button,
                 2,3,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+
+        self.size_menu = gtk.OptionMenu()
+        make_size_menu(self.size_menu)
+        self.size_menu.set_sensitive(gtk.FALSE)
+
         self.add_frame_option(_('Image'),_('Preview'),preview_table)
         self.add_frame_option(_('Image'),_('Select'),select_table)
+        self.add_frame_option(_('Image'),_('Size'),self.size_menu)
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
@@ -259,7 +344,9 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
 
         # get values from the widgets
         self.title_string = self.title_entry.get_text()
-        self.copyright_string = self.copyright_entry.get_text()
+        self.subtitle_string = self.subtitle_entry.get_text()
+        self.footer_string = self.footer_entry.get_text()
+        self.size_index = self.size_menu.get_history()
 
     def on_cancel(self, obj):
         pass
@@ -269,7 +356,8 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.obj_title.set_text('')
         self.preview.set_from_pixbuf(None)
         self.remove_obj_button.set_sensitive(gtk.FALSE)
-        
+        self.size_menu.set_sensitive(gtk.FALSE)
+
     def select_obj(self, obj):
         s_o = SelectObject.SelectObject(self.db,_("Select an Object"))
         object = s_o.run()
@@ -288,6 +376,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
             self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(gtk.TRUE)
+        self.size_menu.set_sensitive(gtk.TRUE)
 
     def select_file(self, obj):
         a_o = AddMedia.AddMediaObject(self.db)
@@ -307,6 +396,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
             self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(gtk.TRUE)
+        self.size_menu.set_sensitive(gtk.TRUE)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -318,10 +408,12 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId() , self.title_string, self.object_id, self.copyright_string )
+
+        self.options = ( self.person.getId(), 
+                    self.title_string, self.subtitle_string, 
+                    self.object_id, self.size_index, self.footer_string )
         self.style_name = self.selected_style.get_name() 
    
-
 #------------------------------------------------------------------------
 #
 # Function to write Book Item 
@@ -338,17 +430,28 @@ def write_book_item(database,person,doc,options,newpage=0):
         else:
             title_string = _('Title of the Book')
         if options[2]:
-            object_id = options[2]
+            subtitle_string = options[2]
+        else:
+            subtitle_string = _('Subtitle of the Book')
+        if options[3]:
+            object_id = options[3]
         else:
             object_id = ""
-        if options[3]:
-            copyright_string = options[3]
+        if options[4]:
+            size_index = int(options[4])
+        else:
+            size_index = 0
+        size = _sizes[size_index][1]
+        if options[5]:
+            footer_string = options[5]
         else:
             import time
             dateinfo = time.localtime(time.time())
             name = database.getResearcher().getName()
-            copyright_string = _('Copyright %d %s') % (dateinfo[0], name)
-        return SimpleBookTitle(database, person, title_string, object_id, copyright_string, doc, None, newpage )
+            footer_string = _('Copyright %d %s') % (dateinfo[0], name)
+        return SimpleBookTitle(database, person, 
+                title_string, subtitle_string, object_id, size, 
+                footer_string, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
@@ -458,7 +561,7 @@ from Plugins import register_book_item
 
 # (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
 register_book_item( 
-    _("Simple Book Title"), 
+    _("Title Page"), 
     _("Title"),
     SimpleBookTitleDialog,
     write_book_item,

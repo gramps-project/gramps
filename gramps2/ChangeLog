@@ -1,3 +1,8 @@
+2003-09-10  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/SimpleBookTitle.py: Introduce footer. 
+	Introduce Image size option. Re-name item to Title Page (no longer
+	simple I'm afraid). 
+
 2003-09-10  Tim Waugh  <twaugh@redhat.com>
 	* src/Relationship.py: Fixed typos in relationship descriptions.
 
