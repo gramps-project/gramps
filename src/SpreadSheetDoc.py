@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from TextDoc import *
+import TextDoc
 
 #------------------------------------------------------------------------
 #
@@ -26,9 +26,9 @@ from TextDoc import *
 #
 #------------------------------------------------------------------------
 class SpreadSheetDoc:
-    def __init__(self,type,orientation=PAPER_PORTRAIT):
+    def __init__(self,type,orientation=TextDoc.PAPER_PORTRAIT):
         self.orientation = orientation
-        if orientation == PAPER_PORTRAIT:
+        if orientation == TextDoc.PAPER_PORTRAIT:
             self.width = type.get_width()
             self.height = type.get_height()
         else:
@@ -39,7 +39,7 @@ class SpreadSheetDoc:
         self.lmargin = 2.54
         self.rmargin = 2.54
                 
-        self.font = FontStyle()
+        self.font = TextDoc.FontStyle()
         self.actfont = self.font
         self.style_list = {}
 	self.table_styles = {}
@@ -56,16 +56,16 @@ class SpreadSheetDoc:
         self.name = name
 
     def add_style(self,name,style):
-        self.style_list[name] = ParagraphStyle(style)
+        self.style_list[name] = TextDoc.ParagraphStyle(style)
 
     def add_table_style(self,name,style):
-        self.table_styles[name] = TableStyle(style)
+        self.table_styles[name] = TextDoc.TableStyle(style)
 
     def add_cell_style(self,name,style):
-        self.cell_styles[name] = TableCellStyle(style)
+        self.cell_styles[name] = TextDoc.TableCellStyle(style)
 
     def change_font(self,font):
-        self.actfont = FontStyle(font)
+        self.actfont = TextDoc.FontStyle(font)
 
     def restore_font(self):
         self.actfont = self.font

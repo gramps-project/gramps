@@ -21,9 +21,11 @@
 import os
 import string
 
-from TextDoc import *
-from DrawDoc import *
 import Plugins
+import Errors
+
+import TextDoc 
+import DrawDoc
 from intl import gettext as _
 
 try:
@@ -31,16 +33,16 @@ try:
     from reportlab.lib.units import cm
     from reportlab.lib.colors import Color
 except:
-    raise Plugins.MissingLibraries, _("The ReportLab modules are not installed")
+    raise Errors.PluginError( _("The ReportLab modules are not installed"))
 
 def make_color(color):
     return Color(float(color[0])/255.0, float(color[1])/255.0,
                  float(color[2])/255.0)
 
-class PdfDrawDoc(DrawDoc):
+class PdfDrawDoc(DrawDoc.DrawDoc):
 
     def __init__(self,styles,type,orientation):
-        DrawDoc.__init__(self,styles,type,orientation)
+        DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -117,7 +119,7 @@ class PdfDrawDoc(DrawDoc):
 
         self.f.saveState()
         self.f.setFillColor(make_color(font.get_color()))
-        if font.get_type_face() == FONT_SANS_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
             if font.get_bold():
                 self.f.setFont("Helvetica-Bold",font.get_size())
             else:
@@ -142,7 +144,7 @@ class PdfDrawDoc(DrawDoc):
 
         self.f.saveState()
         self.f.setFillColor(make_color(font.get_color()))
-        if font.get_type_face() == FONT_SANS_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
             if font.get_bold():
                 self.f.setFont("Helvetica-Bold",font.get_size())
             else:

@@ -18,19 +18,18 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import os
 import string
 import Plugins
 from intl import gettext as _
 
-from TextDoc import *
-from DrawDoc import *
+import TextDoc
+import DrawDoc
 
 
-class PSDrawDoc(DrawDoc):
+class PSDrawDoc(DrawDoc.DrawDoc):
 
     def __init__(self,styles,type,orientation):
-        DrawDoc.__init__(self,styles,type,orientation)
+        DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -42,7 +41,7 @@ class PSDrawDoc(DrawDoc):
 
     def fontdef(self,para):
         font = para.get_font()
-        if font.get_type_face() == FONT_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SERIF:
             if font.get_bold():
                 if font.get_italic():
                     font_name = "/Times-BoldItalic"
@@ -77,7 +76,7 @@ class PSDrawDoc(DrawDoc):
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')
         self.f.write('%%PageOrder: Ascend\n')
-        if self.orientation != PAPER_PORTRAIT:
+        if self.orientation != TextDoc.PAPER_PORTRAIT:
             self.f.write('%%Orientation: Landscape\n')
         self.f.write('%%EndComments\n')
         self.f.write('/cm { 28.34 mul } def\n')
@@ -102,7 +101,7 @@ class PSDrawDoc(DrawDoc):
 	self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
-        if self.orientation != PAPER_PORTRAIT:
+        if self.orientation != TextDoc.PAPER_PORTRAIT:
             self.f.write('90 rotate %5.2f cm %5.2f cm translate\n' % (0,-1*self.height))
 
     def end_page(self):

@@ -18,24 +18,38 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import os
 import tempfile
 import string
 import zipfile
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import Plugins
-from intl import gettext as _
-
-from TextDoc import *
-from DrawDoc import *
-
+import Errors
+import TextDoc
+import DrawDoc
 import const
 
+from intl import gettext as _
 
-class OpenDrawDoc(DrawDoc):
+#-------------------------------------------------------------------------
+#
+# OpenDrawDoc
+#
+#-------------------------------------------------------------------------
+class OpenDrawDoc(DrawDoc.DrawDoc):
 
     def __init__(self,styles,type,orientation):
-        DrawDoc.__init__(self,styles,type,orientation)
+        DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -53,11 +67,13 @@ class OpenDrawDoc(DrawDoc):
             self.filename = filename + ".sxd"
         else:
             self.filename = filename
-            
-        tempfile.tempdir = "/tmp"
-        self.content_xml = tempfile.mktemp()
-        self.f = open(self.content_xml,"wb")
 
+        try:
+            self.content_xml = tempfile.TemporaryFile()
+            self.f = open(self.content_xml,"wb")
+        except:
+            raise Errors.ReportError("Could not create %s" % self.filename)
+            
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -98,7 +114,7 @@ class OpenDrawDoc(DrawDoc):
             self.f.write('<style:properties ')
 
             font = style.get_font()
-            if font.get_type_face() == FONT_SANS_SERIF:
+            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
                 self.f.write('fo:font-family="Arial" ')
             else:
                 self.f.write('fo:font-family="&apos;Times New Roman&apos;" ')
@@ -121,10 +137,13 @@ class OpenDrawDoc(DrawDoc):
         self.f.write('</office:body>\n')
         self.f.write('</office:document-content>\n')
         self.f.close()
-        self._write_styles_file()
-        self._write_manifest()
-        self._write_meta_file()
-        self._write_zip()
+        try:
+            self._write_styles_file()
+            self._write_manifest()
+            self._write_meta_file()
+            self._write_zip()
+        except:
+            Errors.ReportError("Could not create %s" % self.filename)
 
     def _write_zip(self):
         
@@ -133,10 +152,6 @@ class OpenDrawDoc(DrawDoc):
         file.write(self.content_xml,"content.xml")
         file.write(self.meta_xml,"meta.xml")
         file.write(self.styles_xml,"styles.xml")
-        
-#        for image in self.photo_list:
-#            base = os.path.basename(image[0])
-#            file.write(image[0],"Pictures/%s" % base)
         file.close()
 
         os.unlink(self.manifest_xml)
@@ -145,7 +160,7 @@ class OpenDrawDoc(DrawDoc):
         os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-        self.styles_xml = tempfile.mktemp()
+        self.styles_xml = tempfile.TemporaryFile()
 	self.f = open(self.styles_xml,"wb")
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
@@ -252,18 +267,18 @@ class OpenDrawDoc(DrawDoc):
 	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
 
             align = style.get_alignment()
-	    if align == PARA_ALIGN_LEFT:
+	    if align == TextDoc.PARA_ALIGN_LEFT:
 	       self.f.write('fo:text-align="left" ')
-            elif align == PARA_ALIGN_RIGHT:
+            elif align == TextDoc.PARA_ALIGN_RIGHT:
                self.f.write('fo:text-align="right" ')
-            elif align == PARA_ALIGN_CENTER:
+            elif align == TextDoc.PARA_ALIGN_CENTER:
                self.f.write('fo:text-align="center" ')
                self.f.write('style:justify-single-word="false" ')
             else:
                self.f.write('fo:text-align="justify" ')
                self.f.write('style:justify-single-word="false" ')
             font = style.get_font()
-            if font.get_type_face() == FONT_SANS_SERIF:
+            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
                 self.f.write('style:font-name="Arial" ')
             else:
                 self.f.write('style:font-name="Times New Roman" ')
@@ -293,7 +308,7 @@ class OpenDrawDoc(DrawDoc):
         self.f.write('<style:properties fo:page-width="%.2fcm" ' % self.width)
         self.f.write('fo:page-height="%.2fcm" ' % self.height)
         self.f.write('style:num-format="1" ')
-        if self.orientation == PAPER_PORTRAIT:
+        if self.orientation == TextDoc.PAPER_PORTRAIT:
             self.f.write('style:print-orientation="portrait" ')
         else:
             self.f.write('style:print-orientation="landscape" ')
@@ -336,7 +351,7 @@ class OpenDrawDoc(DrawDoc):
 	self.f.write(text)
 
     def _write_manifest(self):
-        self.manifest_xml = tempfile.mktemp()
+        self.manifest_xml = tempfile.TemporaryFile()
 	self.f = open(self.manifest_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
@@ -359,7 +374,7 @@ class OpenDrawDoc(DrawDoc):
 
     def _write_meta_file(self):
         name = self.name
-        self.meta_xml = tempfile.mktemp()
+        self.meta_xml = tempfile.TemporaryFile()
 	self.f = open(self.meta_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')

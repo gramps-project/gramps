@@ -22,23 +22,33 @@
 
 #------------------------------------------------------------------------
 #
-# Module imports
+# python modules
 #
 #------------------------------------------------------------------------
 import os
-import sort
-import Utils
-import string
-import const
-import GenericFilter
-import ListModel
-from TextDoc import *
-from OpenSpreadSheet import *
-from intl import gettext as _
 
-import gnome.ui
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
 import gtk
 import gtk.glade
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import GenericFilter
+import ListModel
+import sort
+import Utils
+import TextDoc
+import OpenSpreadSheet
+
+from QuestionDialog import WarningDialog
+from intl import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -53,26 +63,26 @@ class TableReport:
         
     def initialize(self,cols):
 
-        t = TableStyle()
+        t = TextDoc.TableStyle()
         t.set_columns(cols)
         for index in range(0,cols):
             t.set_column_width(index,4)
         self.doc.add_table_style("mytbl",t)
 
-        f = FontStyle()
-        f.set_type_face(FONT_SANS_SERIF)
+        f = TextDoc.FontStyle()
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
         f.set_size(12)
         f.set_bold(1)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(f)
         p.set_background_color((0xcc,0xff,0xff))
         p.set_padding(0.1)
         self.doc.add_style("head",p)
 
-        f = FontStyle()
-        f.set_type_face(FONT_SANS_SERIF)
+        f = TextDoc.FontStyle()
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
         f.set_size(10)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(f)
         self.doc.add_style("data",p)
 
@@ -141,7 +151,7 @@ class EventComparison:
         plist = cfilter.apply(self.db.getPersonMap().values())
 
         if len(plist) == 0:
-            gnome.ui.GnomeWarningDialog(_("No matches were found"))
+            WarningDialog(_("No matches were found"))
         else:
             DisplayChart(plist)
 
@@ -210,10 +220,6 @@ class DisplayChart:
         self.list = ListModel.ListModel(self.eventlist,titles)
         for data in self.row_data:
             self.list.add(data)
-
-#        for index in range(0,len(self.event_titles)):
-#            width = min(150,eventlist.optimal_column_width(index))
-#            self.eventlist.set_column_width(index,width)
 
     def build_row_data(self):
         for individual in self.my_list:
@@ -299,7 +305,8 @@ class DisplayChart:
         
         name = self.form.get_widget("filename").get_text()
 
-        doc = OpenSpreadSheet(PaperStyle("junk",10,10),PAPER_PORTRAIT)
+        pstyle = TextDoc.PaperStyle("junk",10,10)
+        doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,TextDoc.PAPER_PORTRAIT)
         spreadsheet = TableReport(name,doc)
         spreadsheet.initialize(len(self.event_titles))
 

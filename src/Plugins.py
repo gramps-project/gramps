@@ -55,6 +55,8 @@ from re import compile
 import const
 import Utils
 import GrampsCfg
+import Errors
+
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -76,13 +78,6 @@ _drawdoc = []
 _failmsg = []
 
 _unavailable = _("No description was provided"),
-
-#-------------------------------------------------------------------------
-#
-# Exception Strings
-#
-#-------------------------------------------------------------------------
-MissingLibraries = _("Missing Libraries")
 
 #-------------------------------------------------------------------------
 #
@@ -336,8 +331,8 @@ def load_plugins(direct):
         try: 
             a = __import__(plugin)
             _success.append(a)
-        except MissingLibraries,msg:
-            _expect.append((file,msg))
+        except Errors.PluginError, msg:
+            _expect.append((file,str(msg)))
         except:
             _failmsg.append((file,sys.exc_info()))
 

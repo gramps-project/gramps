@@ -29,7 +29,7 @@ Provides a TextDoc based interface to the AbiWord document format.
 import os
 import base64
 
-from TextDoc import *
+import TextDoc
 from latin_utf8 import latin_to_utf8
 import string
 import Plugins
@@ -41,14 +41,14 @@ from intl import gettext as _
 # Class Definitions
 #
 #-------------------------------------------------------------------------
-class AbiWordDoc(TextDoc):
+class AbiWordDoc(TextDoc.TextDoc):
     """AbiWord document generator. Inherits from the TextDoc generic
     document interface class."""
 
     def __init__(self,styles,type,template,orientation):
         """Initializes the AbiWordDoc class, calling the __init__ routine
         of the parent TextDoc class"""
-        TextDoc.__init__(self,styles,type,template,orientation)
+        TextDoc.TextDoc.__init__(self,styles,type,template,orientation)
         self.f = None
         self.level = 0
         self.new_page = 0
@@ -71,7 +71,7 @@ class AbiWordDoc(TextDoc):
         self.f.write('version="0.9.6.1" fileformat="1.0">\n')
         self.f.write('<pagesize ')
         self.f.write('pagetype="%s" ' % self.paper.get_name())
-        if self.orientation == PAPER_PORTRAIT:
+        if self.orientation == TextDoc.PAPER_PORTRAIT:
             self.f.write('orientation="portrait" ')
         else:
             self.f.write('orientation="landscape" ')
@@ -142,11 +142,11 @@ class AbiWordDoc(TextDoc):
         style = self.style_list[style_name]
         self.current_style = style
         self.f.write('<p props="')
-        if style.get_alignment() == PARA_ALIGN_RIGHT:
+        if style.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
             self.f.write('text-align:right;')
-        elif style.get_alignment() == PARA_ALIGN_LEFT:
+        elif style.get_alignment() == TextDoc.PARA_ALIGN_LEFT:
             self.f.write('text-align:left;')
-        elif style.get_alignment() == PARA_ALIGN_CENTER:
+        elif style.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
             self.f.write('text-align:center;')
         else:
             self.f.write('text-align:justify;')
@@ -160,7 +160,7 @@ class AbiWordDoc(TextDoc):
         self.f.write('">')
         font = style.get_font()
         self.f.write('<c props="font-family:')
-        if font.get_type_face() == FONT_SANS_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
             self.f.write('Arial;')
         else:
             self.f.write('Times New Roman;')
@@ -187,7 +187,7 @@ class AbiWordDoc(TextDoc):
         self.current_style = style
         font = style.get_font()
         self.cdata = '<c props="font-family:'
-        if font.get_type_face() == FONT_SANS_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
             self.cdata = self.cdata + 'Arial;'
         else:
             self.cdata = self.cdata + 'Times New Roman;'
@@ -227,7 +227,7 @@ class AbiWordDoc(TextDoc):
     def start_bold(self):
         font = self.current_style.get_font()
         self.f.write('</c><c props="font-family:')
-        if font.get_type_face() == FONT_SANS_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
             self.f.write('Arial;')
         else:
             self.f.write('Times New Roman;')
@@ -245,7 +245,7 @@ class AbiWordDoc(TextDoc):
     def end_bold(self):
         font = self.current_style.get_font()
         self.f.write('</c><c props="font-family:')
-        if font.get_type_face() == FONT_SANS_SERIF:
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
             self.f.write('Arial;')
         else:
             self.f.write('Times New Roman;')

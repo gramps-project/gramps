@@ -20,18 +20,10 @@
 
 #------------------------------------------------------------------------
 #
-# python modules
-#
-#------------------------------------------------------------------------
-import string
-import os
-
-#------------------------------------------------------------------------
-#
 # gramps modules
 #
 #------------------------------------------------------------------------
-from TextDoc import *
+import TextDoc
 
 #------------------------------------------------------------------------
 #
@@ -89,9 +81,9 @@ class GraphicsStyle:
 #
 #------------------------------------------------------------------------
 class DrawDoc:
-    def __init__(self,styles,type,orientation=PAPER_PORTRAIT):
+    def __init__(self,styles,type,orientation=TextDoc.PAPER_PORTRAIT):
         self.orientation = orientation
-        if orientation == PAPER_PORTRAIT:
+        if orientation == TextDoc.PAPER_PORTRAIT:
             self.width = type.get_width()
             self.height = type.get_height()
         else:

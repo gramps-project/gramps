@@ -78,6 +78,25 @@ _template_map = {
     _user_template : None
     }
 
+#-------------------------------------------------------------------------
+#
+# Exceptions
+#
+#-------------------------------------------------------------------------
+
+class ReportError(Exception):
+    
+    def __init__(self,value):
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
+#-------------------------------------------------------------------------
+#
+# Report
+#
+#-------------------------------------------------------------------------
 class Report:
     """
     The Report base class.  This is a base class for generating

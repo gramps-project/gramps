@@ -20,30 +20,40 @@
 
 "Generate files/Individual Summary"
 
-import RelLib
-import const
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
 import string
-from intl import gettext as _
 
-from TextDoc import *
-from StyleEditor import *
-from Report import *
-
+#------------------------------------------------------------------------
+#
+# GNOME/gtk
+#
+#------------------------------------------------------------------------
 import gtk
 
 #------------------------------------------------------------------------
 #
-# 
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import RelLib
+import const
+import TextDoc
+import StyleEditor
+import Report
+from intl import gettext as _
+
+#------------------------------------------------------------------------
+#
+# IndivSummary
 #
 #------------------------------------------------------------------------
 class IndivSummary:
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,database,person,output,document):
         self.d = document
         
@@ -54,46 +64,31 @@ class IndivSummary:
         self.person = person
         self.output = output
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def setup(self):
-        tbl = TableStyle()
+        tbl = TextDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
         self.d.add_table_style("IndTable",tbl)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
         self.d.add_cell_style("TableHead",cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         self.d.add_cell_style("NormalCell",cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
 	cell.set_longlist(1)
         self.d.add_cell_style("ListCell",cell)
 
         self.d.open(self.output)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def end(self):
         self.d.close()
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_fact(self,event):
         if event == None:
             return
@@ -187,11 +182,6 @@ class IndivSummary:
                 self.d.end_row()
         self.d.end_table()
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_report(self):
         photo_list = self.person.getPhotoList()
 
@@ -312,18 +302,14 @@ class IndivSummary:
 
 #------------------------------------------------------------------------
 #
-# 
+# IndivSummaryDialog
 #
 #------------------------------------------------------------------------
-class IndivSummaryDialog(TextReportDialog):
-    def __init__(self,database,person):
-        TextReportDialog.__init__(self,database,person)
+class IndivSummaryDialog(Report.TextReportDialog):
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
+    def __init__(self,database,person):
+        Report.TextReportDialog.__init__(self,database,person)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - %s - GRAMPS" %(_("Individual Summary"),_("Text Reports"))
@@ -345,60 +331,44 @@ class IndivSummaryDialog(TextReportDialog):
         """This report requires table support."""
         return 1
 
-    #------------------------------------------------------------------------
-    #
-    # Create output styles appropriate to this report.
-    #
-    #------------------------------------------------------------------------
     def make_default_style(self):
         """Make the default output style for the Individual Summary Report."""
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(16)
-        p = ParagraphStyle()
-        p.set_alignment(PARA_ALIGN_CENTER)
+        p = TextDoc.ParagraphStyle()
+        p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
         p.set_font(font)
         self.default_style.add_style("Title",p)
         
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(12)
         font.set_italic(1)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("TableTitle",p)
         
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
+        font.set_type_face(TextDoc.FONT_SANS_SERIF)
         font.set_size(12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Spouse",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_size(12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Normal",p)
     
-
-    #------------------------------------------------------------------------
-    #
-    # Functions related to setting up the dialog window
-    #
-    #------------------------------------------------------------------------
     def setup_report_options(self):
         """The 'Report Options' frame is not used in this dialog."""
         pass
 
-    #------------------------------------------------------------------------
-    #
-    # Create the contents of the report.
-    #
-    #------------------------------------------------------------------------
     def make_report(self):
         """Create the object that will produce the Ancestor Chart.
         All user dialog has already been handled and the output file
@@ -409,7 +379,7 @@ class IndivSummaryDialog(TextReportDialog):
 
 #------------------------------------------------------------------------
 #
-# 
+# report
 #
 #------------------------------------------------------------------------
 def report(database,person):
@@ -417,7 +387,7 @@ def report(database,person):
 
 #------------------------------------------------------------------------
 #
-# 
+# get_xpm_image
 #
 #------------------------------------------------------------------------
 def get_xpm_image():

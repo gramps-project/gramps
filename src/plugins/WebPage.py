@@ -20,26 +20,46 @@
 
 "Web Site/Generate Web Site"
 
-from RelLib import *
-from HtmlDoc import *
-
-import const
-import GrampsCfg
-import GenericFilter
-import Date
-from intl import gettext as _
-
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 import os
 import re
-import sort
 import string
 import time
 import shutil
 
+#------------------------------------------------------------------------
+#
+# GNOME/gtk
+#
+#------------------------------------------------------------------------
 import gtk
-from gnome.ui import *
-from Report import *
 
+#------------------------------------------------------------------------
+#
+# GRAMPS module
+#
+#------------------------------------------------------------------------
+import RelLib
+import HtmlDoc
+import TextDoc
+import const
+import GrampsCfg
+import GenericFilter
+import Date
+import sort
+import Report
+from QuestionDialog import ErrorDialog
+from intl import gettext as _
+
+#------------------------------------------------------------------------
+#
+# constants
+#
+#------------------------------------------------------------------------
 _month = [
     "",    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
@@ -50,15 +70,17 @@ _month = [
 #
 #------------------------------------------------------------------------
 def by_date(a,b):
-    return compare_dates(a.getDateObj(),b.getDateObj())
+    return Date.compare_dates(a.getDateObj(),b.getDateObj())
 
 #------------------------------------------------------------------------
 #
-# 
+# HtmlLickDoc
 #
 #------------------------------------------------------------------------
-class HtmlLinkDoc(HtmlDoc):
-
+class HtmlLinkDoc(HtmlDoc.HtmlDoc):
+    """
+    Version of the HtmlDoc class the provides the ability to create a link
+    """
     def start_link(self,path):
         self.f.write('<A HREF="%s">' % path)
 
@@ -78,7 +100,8 @@ class HtmlLinkDoc(HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,imgdir,doc,id,idlink,ext):
+    def __init__(self,person,photos,restrict,private,uc,link,map,
+                 dir_name,imgdir,doc,id,idlink,ext):
         self.person = person
         self.ext = ext
         self.doc = doc
@@ -257,9 +280,9 @@ class IndividualPage:
                 val = self.person.getId()
             self.write_normal_row("%s:" % _("ID Number"),val,None)
             
-        if self.person.getGender() == Person.male:
+        if self.person.getGender() == RelLib.Person.male:
             self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
-        elif self.person.getGender() == Person.female:
+        elif self.person.getGender() == RelLib.Person.female:
             self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
         else:
             self.write_normal_row("%s:" % _("Gender"), _("Unknown"),None)
@@ -431,11 +454,6 @@ class IndividualPage:
         if count != 0:
             self.doc.end_table()
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_notes(self):
 
         if self.person.getNote() == "" or self.alive:
@@ -449,11 +467,6 @@ class IndividualPage:
         self.doc.write_text(self.person.getNote())
         self.doc.end_paragraph()
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_fam_fact(self,event):
 
         if event == None:
@@ -495,11 +508,6 @@ class IndividualPage:
 
         self.write_marriage_row([name, val])
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_families(self):
         if len(self.person.getFamilyList()) == 0:
             return
@@ -569,10 +577,10 @@ class IndividualPage:
 
 #------------------------------------------------------------------------
 #
-# 
+# WebReport
 #
 #------------------------------------------------------------------------
-class WebReport(Report):
+class WebReport(Report.Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, style, image_dir,
                  template_name,use_id,id_link,gendex,ext):
@@ -739,19 +747,19 @@ class WebReport(Report):
         elif not os.path.isdir(dir_name):
             parent_dir = os.path.dirname(dir_name)
             if not os.path.isdir(parent_dir):
-                GnomeErrorDialog(_("Neither %s nor %s are directories") % \
-                                 (dir_name,parent_dir))
+                ErrorDialog(_("Neither %s nor %s are directories") % \
+                            (dir_name,parent_dir))
                 return
             else:
                 try:
                     os.mkdir(dir_name)
                 except IOError, value:
-                    GnomeErrorDialog(_("Could not create the directory : %s") % \
-                                     dir_name + "\n" + value[1])
+                    ErrorDialog(_("Could not create the directory : %s") % \
+                                dir_name + "\n" + value[1])
                     return
                 except:
-                    GnomeErrorDialog(_("Could not create the directory : %s") % \
-                                     dir_name)
+                    ErrorDialog(_("Could not create the directory : %s") % \
+                                dir_name)
                     return
 
         if self.image_dir:
@@ -762,11 +770,11 @@ class WebReport(Report):
             try:
                 os.mkdir(image_dir_name)
             except IOError, value:
-                GnomeErrorDialog(_("Could not create the directory : %s") % \
+                ErrorDialog(_("Could not create the directory : %s") % \
                                  image_dir_name + "\n" + value[1])
                 return
             except:
-                GnomeErrorDialog(_("Could not create the directory : %s") % \
+                ErrorDialog(_("Could not create the directory : %s") % \
                                  image_dir_name)
                 return
     
@@ -804,19 +812,19 @@ class WebReport(Report):
         self.progress_bar_done()
 
     def add_styles(self,doc):
-        tbl = TableStyle()
+        tbl = TextDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_column_widths([15,85])
         doc.add_table_style("IndTable",tbl)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         doc.add_cell_style("NormalCell",cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.2)
         doc.add_cell_style("ImageCell",cell)
 
-        cell = TableCellStyle()
+        cell = TextDoc.TableCellStyle()
         cell.set_padding(0.2)
         doc.add_cell_style("NoteCell",cell)
 
@@ -826,9 +834,9 @@ class WebReport(Report):
 # 
 #
 #------------------------------------------------------------------------
-class WebReportDialog(ReportDialog):
+class WebReportDialog(Report.ReportDialog):
     def __init__(self,database,person):
-        ReportDialog.__init__(self,database,person)
+        Report.ReportDialog.__init__(self,database,person)
 
     def add_user_options(self):
         lnk_msg = _("Include a link to the index page")
@@ -882,11 +890,6 @@ class WebReportDialog(ReportDialog):
     def show_link(self,obj):
         self.linkpath.set_sensitive(obj.get_active())
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
         return "%s - %s - GRAMPS" % (_("Generate Web Site"),_("Web Page"))
@@ -931,11 +934,6 @@ class WebReportDialog(ReportDialog):
 
         return [all,des,df,ans]
 
-    #------------------------------------------------------------------------
-    #
-    # Functions related to the default directory
-    #
-    #------------------------------------------------------------------------
     def get_default_directory(self):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
@@ -952,100 +950,95 @@ class WebReportDialog(ReportDialog):
         his/her preferences."""
         GrampsCfg.web_dir = value
     
-    #------------------------------------------------------------------------
-    #
-    # Create output style appropriate to this report.
-    #
-    #------------------------------------------------------------------------
     def make_default_style(self):
         """Make the default output style for the Web Pages Report."""
-        font = FontStyle()
-        font.set(bold=1, face=FONT_SANS_SERIF, size=16)
-        p = ParagraphStyle()
-        p.set(align=PARA_ALIGN_CENTER,font=font)
+        font = TextDoc.FontStyle()
+        font.set(bold=1, face=TextDoc.FONT_SANS_SERIF, size=16)
+        p = TextDoc.ParagraphStyle()
+        p.set(align=TextDoc.PARA_ALIGN_CENTER,font=font)
         self.default_style.add_style("Title",p)
         
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = TextDoc.ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("EventsTitle",p)
     
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = TextDoc.ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("NotesTitle",p)
 
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=10)
-        p = ParagraphStyle()
-        p.set(font=font,align=PARA_ALIGN_CENTER)
+        font = TextDoc.FontStyle()
+        font.set(face=TextDoc.FONT_SANS_SERIF,size=10)
+        p = TextDoc.ParagraphStyle()
+        p.set(font=font,align=TextDoc.PARA_ALIGN_CENTER)
         self.default_style.add_style("Copyright",p)
     
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = TextDoc.ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("SourcesTitle",p)
 
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=14,italic=1)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
+        p = TextDoc.ParagraphStyle()
         p.set(font=font)
         self.default_style.add_style("IndexLabel",p)
 
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = TextDoc.ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("GalleryTitle",p)
     
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12,italic=1)
+        p = TextDoc.ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("FamilyTitle",p)
         
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12)
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Spouse",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set(size=12,italic=1)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Label",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_size(12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("Data",p)
     
-        font = FontStyle()
-        font.set(bold=1,face=FONT_SANS_SERIF,size=12)
-        p = ParagraphStyle()
+        font = TextDoc.FontStyle()
+        font.set(bold=1,face=TextDoc.FONT_SANS_SERIF,size=12)
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("PhotoDescription",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set(size=12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("PhotoNote",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_size(10)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("SourceParagraph",p)
     
-        font = FontStyle()
+        font = TextDoc.FontStyle()
         font.set_size(12)
-        p = ParagraphStyle()
+        p = TextDoc.ParagraphStyle()
         p.set_font(font)
         self.default_style.add_style("NotesParagraph",p)
 
@@ -1088,7 +1081,7 @@ class WebReportDialog(ReportDialog):
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the
         user selected choices for later use."""
-        ReportDialog.parse_report_options_frame(self)
+        Report.ReportDialog.parse_report_options_frame(self)
         self.include_link = self.use_link.get_active()
 
     def parse_other_frames(self):

@@ -40,14 +40,20 @@ import gtk
 #
 #------------------------------------------------------------------------
 import GraphLayout
-from FontScale import string_width
-from DrawDoc import *
-from Report import *
-from TextDoc import *
-from SubstKeywords import SubstKeywords
+import FontScale
+import DrawDoc
+import Report
+import TextDoc
+import Errors
 
+from SubstKeywords import SubstKeywords
 from intl import gettext as _
 
+#------------------------------------------------------------------------
+#
+# constants
+#
+#------------------------------------------------------------------------
 _sep = 0.5
 
 #------------------------------------------------------------------------
@@ -91,7 +97,7 @@ class DescendantReport:
 
             self.font = self.doc.style_list["Normal"].get_font()
             for line in self.text[p.getId()]:
-                new_width = string_width(self.font,line)
+                new_width = FontScale.string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
 
             self.lines = max(self.lines,len(self.text[p.getId()]))    
@@ -200,7 +206,7 @@ class DescendantReport:
 	try:
             self.doc.open(self.output)
         except:
-            print "Document open failure"
+            Errors.ReportError(_("Could not create %s") % self.output)
 
         for r in range(len(self.pg)):
             for c in range(len(self.pg[r])):
@@ -209,7 +215,7 @@ class DescendantReport:
 	try:
 	    self.doc.close()
         except:
-            print "Document close failure"
+            Errors.ReportError(_("Could not create %s") % self.output)
 
     def calc(self):
         """calc - calculate the maximum width that a box needs to be. From
@@ -221,14 +227,14 @@ class DescendantReport:
 	self.maxx = int(self.doc.get_usable_width()/(self.box_width+_sep))
         self.maxy = int(self.doc.get_usable_height()/(self.height+_sep))
 
-        g = GraphicsStyle()
+        g = DrawDoc.GraphicsStyle()
         g.set_height(self.height)
         g.set_width(self.box_width)
         g.set_paragraph_style("Normal")
         g.set_shadow(1)
         self.doc.add_draw_style("box",g)
 
-        g = GraphicsStyle()
+        g = DrawDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
 
     def print_page(self, plist,elist,r,c):
@@ -292,9 +298,10 @@ class DescendantReport:
 # DescendantReportDialog
 #
 #------------------------------------------------------------------------
-class DescendantReportDialog(DrawReportDialog):
+class DescendantReportDialog(Report.DrawReportDialog):
+
     def __init__(self,database,person):
-        DrawReportDialog.__init__(self,database,person)
+        Report.DrawReportDialog.__init__(self,database,person)
 
     def get_title(self):
         return "%s - %s - GRAMPS" % (_("Descendant Graph"),_("Graphical Reports"))
@@ -319,10 +326,10 @@ class DescendantReportDialog(DrawReportDialog):
     
     def make_default_style(self):
         """Make the default output style for the Ancestor Chart report."""
-        f = FontStyle()
+        f = TextDoc.FontStyle()
         f.set_size(9)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        p = TextDoc.ParagraphStyle()
         p.set_font(f)
         self.default_style.add_style("Normal",p)
 
