@@ -21,6 +21,7 @@
 # $Id$
 
 import types
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -72,21 +73,36 @@ class GrampsDBCallback(object):
         t.emit_signal()
 
         r = R()
-
-        # connect to a method
-        t.connect_object('test-signal', R.func, r)
-        
-        t.emit_signal()
-    
     """
+
+    # If this True no signals will be emitted from any instance of
+    # any class derived from this class. This should be toggled using
+    # the class methods, dissable_all_signals() and enable_all_signals().
+    __BLOCK_ALL_SIGNALS = False
     
     def __init__(self):
-        self.__callback_map = {}
-        self.__signal_map = {}
+        self.__block_instance_signals = False # controls the blocking of
+                                              # signals from this instance
+        self.__callback_map = {} # dictionary containing all the connected
+                                 # callback functions. The keys are the
+                                 # signal names and the values are the
+                                 # bound methods that will be called when
+                                 # the signal is emitted
+        self.__signal_map = {}   # dictionary contains all the signals that
+                                 # this instance can emit. The keys are the
+                                 # signal names and the values are tuples
+                                 # containing the list of types of the arguments
+                                 # that the callback methods must accept.
         
-        # Build signal list, the signals can't change so we only
-        # need to do this once.            
+        # To speed up the signal type checking the signals declared by
+        # each of the classes in the inheritance tree of this instance
+        # are consolidated into a single dictionary.
+        # The signals can't change so we only need to do this once.
+        
         def trav(cls):
+            """A traversal function to walk through all the classes in
+            the inheritance tree. The return is a list of all the
+            __signals__ dictionaries."""
             if cls.__dict__.has_key('__signals__'):
                 signal_list = [cls.__signals__]
             else:
@@ -102,6 +118,9 @@ class GrampsDBCallback(object):
         # Build a signal dict from the list of signal dicts
         for s in trav(self.__class__):
             for (k,v) in s.items():
+                if self.__signal_map.has_key(k):
+                    # signal name clash
+                    sys.err.write("Warning: signal name clash: ", str(k))
                 self.__signal_map[k] = v
 
         # self.__signal_map now contains the connonical list
@@ -111,7 +130,7 @@ class GrampsDBCallback(object):
     def connect(self, signal_name, callback):
         # Check that signal exists.
         if signal_name not in self.__signal_map.keys():
-            print "Warning: attempt to connect to unknown signal: ", str(signal_name)
+            sys.stderr.write("Warning: attempt to connect to unknown signal: ", str(signal_name))
             return
         
         # Add callable to callback_map
@@ -119,36 +138,37 @@ class GrampsDBCallback(object):
             self.__callback_map[signal_name] = []
         self.__callback_map[signal_name].append(callback)
 
-    def connect_object(self, signal_name, class_method, instance):
-        # Check that signal exists.
-        if signal_name not in self.__signal_map.keys():
-            print "Warning: attempt to connect to unknown signal: ", str(signal_name)
-            return
-
-        # Add object and instance to callback_map
-        self.__callback_map[signal_name].append((class_method,instance))
-
     def emit(self, signal_name, args=tuple()):
+        # Check that signals are not blocked
+        if GrampsDBCallback.__BLOCK_ALL_SIGNALS or \
+               self.__block_instance_signals:
+            return
+        
         # Check signal exists
         if signal_name not in self.__signal_map.keys():
-            print "Warning: attempt to emit to unknown signal: ", str(signal_name)
+            sys.stderr.write("Warning: attempt to emit to unknown signal: ", str(signal_name))
             return
 
         # type check arguments
         arg_types = self.__signal_map[signal_name]
         if arg_types == None and len(args) > 0:
-            print "Warning: signal emitted with wrong number of args: ", str(signal_name)
+            sys.stderr.write("Warning: signal emitted with "\
+                             "wrong number of args: ", str(signal_name))
             return
 
         if len(args) > 0:
             if len(args) != len(arg_types):
-                print "Warning: signal emitted with wrong number of args: ", str(signal_name)
+                sys.stderr.write("Warning: signal emitted with "\
+                                 "wrong number of args: ", str(signal_name))
                 return
 
             if arg_types != None:
                 for i in range(0,len(arg_types)):
-                    if type(args[i]) != arg_types[i]:
-                        print "Warning: signal emitted with wrong arg types: ", str(signal_name)
+                    if not isinstance(args[i],arg_types[i]):
+                        sys.stderr.write("Warning: signal emitted with "\
+                                         "wrong arg types: %s" % (str(signal_name),))
+                        sys.stderr.write("arg passed was: %s type should be: %s"
+                                         % (args[i],repr(arg_types[i])))
                         return 
                 
         for cb in self.__callback_map[signal_name]:
@@ -159,12 +179,33 @@ class GrampsDBCallback(object):
                          type(cb) == types.MethodType: # call func
                     cb(*args)
                 else:
-                    print "Warning: badly formed entry in callback map"
+                    sys.stderr.write("Warning: badly formed entry in callback map")
             except:
-                print "Warning: exception occured in callback function."
+                sys.stderr.write("Warning: exception occured in callback function.")
 
+    #
+    # instance signals control methods
+    #
+    def disable_signals(self):
+        self.__block_instance_signals = True
+        
+    def enable_signals(self):
+        self.__block_instance_signals = False
+        
+    #
+    # Class methods
+    #
 
+    def __disable_all_signals(cls):
+        GrampsDBCallback.__BLOCK_ALL_SIGNALS = True
 
+    disable_all_signals = classmethod(__disable_all_signals)
+    
+    def __enable_all_signals(cls):
+        GrampsDBCallback.__BLOCK_ALL_SIGNALS = False
+
+    enable_all_signals = classmethod(__enable_all_signals)
+    
 #-------------------------------------------------------------------------
 #
 # Testing code below this point
@@ -173,62 +214,142 @@ class GrampsDBCallback(object):
 
 if __name__ == "__main__":
 
+    import unittest
 
-    class TestSignals(GrampsDBCallback):
+    class TestGrampsDBCallback(unittest.TestCase):
 
-        __signals__ = {
-                  'test-signal' : (int,)
-                 }
+        def test_simple(self):
 
-        def __init__(self):
-            GrampsDBCallback.__init__(self)
+            class TestSignals(GrampsDBCallback):
 
-        def emit_signal(self):
-            self.emit('test-signal',(1,))
-            self.emit('test-signal',(0,2))
-            self.emit('test-signal',(2.0,))
+                __signals__ = {
+                          'test-signal' : (int,)
+                         }
 
-    class TestSignalsSubclass(TestSignals):
+            rl = []
+            def fn(i,r=rl):
+                rl.append(i)
 
-        __signals__ = {
-                  'test-base-signal' : (str,str,list),
-                  'test-noargs'      : None
-                 }
-
-        def emit_signal(self):
-            self.emit('test-signal',(1,))
-            self.emit('test-base-signal',("Hi","There",[1,2,3]))
-            self.emit('test-noargs')
-
-    class R(object):
-
-        def func(self, i):
-            print "got class signal = ", 1
-
-    def fn(i):
-        print "got signal value = ", i
-
-    def fn2(s,t,l):
-        print "got signal value = ", s, t, repr(l)
-
-    def fn3():
-        print "got signal noargs"
-
-    t = TestSignals()
-    t.connect('test-signal', fn)
-    t.connect('test-signal', fn)
-    t.connect('test-signal', fn)
-    t.connect('test-signal', fn)
-    #t.emit_signal()
-
-    r = R()
-    t.connect_object('test-signal', R.func, r)
-    t.connect('test-signal',r.func)
+            t = TestSignals()
+            t.connect('test-signal',fn)
+            t.emit('test-signal',(1,))
     
-    t.emit_signal()
+            
+            assert len(rl) == 1, "No signal emitted"
+            assert rl[0] == 1, "Wrong argument recieved"
 
-    s = TestSignalsSubclass()
-    s.connect('test-signal', fn)
-    s.connect('test-base-signal', fn2)
-    s.connect('test-noargs', fn3)
-    #s.emit_signal()
+        def test_subclassing(self):
+
+            class TestSignals(GrampsDBCallback):
+                __signals__ = {
+                          'test-signal' : (int,)
+                         }
+                
+            class TestSignalsSubclass(TestSignals):
+                __signals__ = {
+                          'test-sub-signal' : (int,),
+                         }
+
+            rl = []
+            def fn(i,r=rl):
+                rl.append(i)
+
+            t = TestSignalsSubclass()
+            t.connect('test-signal',fn)
+            t.emit('test-signal',(1,))
+                
+            assert len(rl) == 1, "No signal emitted"
+            assert rl[0] == 1, "Wrong argument recieved"
+
+            t.connect('test-sub-signal',fn)
+            t.emit('test-sub-signal',(1,))
+                
+            assert len(rl) == 2, "No subclass signal emitted"
+            assert rl[1] == 1, "Wrong argument recieved in subclass"
+
+        def test_signal_block(self):
+
+            class TestSignals(GrampsDBCallback):
+
+                __signals__ = {
+                          'test-signal' : (int,)
+                         }
+
+            rl = []
+            def fn(i,r=rl):
+                rl.append(i)
+
+            t = TestSignals()
+            t.connect('test-signal',fn)
+            t.emit('test-signal',(1,))    
+            
+            assert len(rl) == 1, "No signal emitted"
+            assert rl[0] == 1, "Wrong argument recieved"
+
+            GrampsDBCallback.disable_all_signals()
+            t.emit('test-signal',(1,))    
+            assert len(rl) == 1, "Signal emitted while class blocked"
+
+            GrampsDBCallback.enable_all_signals()
+            t.emit('test-signal',(1,))    
+            assert len(rl) == 2, "Signals not class unblocked"
+
+            t.disable_signals()
+            t.emit('test-signal',(1,))    
+            assert len(rl) == 2, "Signal emitted while instance blocked"
+
+            t.enable_signals()
+            t.emit('test-signal',(1,))    
+            assert len(rl) == 3, "Signals not instance unblocked"
+
+        def test_type_checking(self):
+
+            class TestSignals(GrampsDBCallback):
+                __signals__ = {
+                          'test-int' : (int,),
+                          'test-list': (list,),
+                          'test-object': (object,),
+                          'test-str': (str,),
+                          'test-float': (float,),
+                          'test-dict': (dict,),
+                          'test-lots': (int,str,list,object,float)
+                         }
+
+            rl = []
+            def fn(i,r=rl):
+                rl.append(i)
+
+            t = TestSignals()
+            t.connect('test-int',fn), t.emit('test-int',(1,))
+            assert type(rl[0]) == int, "not int"
+
+            t.connect('test-list',fn), t.emit('test-list',([1,2],))
+            assert type(rl[1]) == list, "not list"
+
+            t.connect('test-object',fn), t.emit('test-object',(t,))
+            assert isinstance(rl[2],object), "not object"
+
+            t.connect('test-float',fn), t.emit('test-float',(2.3,))
+            assert type(rl[3]) == float, "not float"
+
+            t.connect('test-dict',fn), t.emit('test-dict',({1:2},))
+            assert type(rl[4]) == dict, "not dict"
+
+            rl = []
+            def fn2(i,s,l,o,f,r=rl):
+                rl.append(i)
+
+            t.connect('test-lots',fn2), t.emit('test-lots',(1,'a',[1,2],t,1.2))
+            assert type(rl[0]) == int, "not lots"
+
+            # This should fail because the type of arg1 is wrong
+            res=[]
+            class C:
+                def write(self,s,r=res):
+                    res.append(s)
+            sys.stderr = C()
+            t.connect('test-lots',fn2), t.emit('test-lots',('a','a',[1,2],t,1.2))
+            assert res[0][0:8] == "Warning:", "Type error not detected"
+
+
+    unittest.main()

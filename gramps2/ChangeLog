@@ -1,3 +1,8 @@
+2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsDBCallback.py: Added code to disable/enable signals on
+	a per instance or all instance bassis. Improved test code and 
+	changed type checking to use isinstance instead of type(). 
+	
 2005-04-04  Alex Roitman  <shura@gramps-project.org>
 	* src/ImageSelect.py (on_savephoto_clicked): Pass transaction to
 	savephoto; (savephoto): take transaction argument);
