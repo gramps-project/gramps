@@ -33,14 +33,6 @@ _ = intl.gettext
 #
 #
 #-------------------------------------------------------------------------
-def progress(val):
-    pass
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def readData(database,active_person,cb):
     ReadNative(database,active_person,cb)
 
@@ -60,6 +52,17 @@ class ReadNative:
         self.top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,self.top)
         self.top.show()
 
+    def show_display(self):
+        self.window = gtk.GtkWindow(title=_("Import from GRAMPS"))
+        vbox = gtk.GtkVBox()
+        self.window.add(vbox)
+        label = gtk.GtkLabel(_("Import from GRAMPS"))
+        vbox.add(label)
+        adj = gtk.GtkAdjustment(lower=0,upper=100)
+        self.progress_bar = gtk.GtkProgressBar(adj)
+        vbox.add(self.progress_bar)
+        self.window.show_all()
+        
     def on_ok_clicked(self,obj):
 
         name = self.top.get_filename()
@@ -68,13 +71,20 @@ class ReadNative:
 
         name = "%s/%s" % (name,const.xmlFile)
         Utils.destroy_passed_object(self.top)
+        self.show_display()
         try:
-            importData(self.db,name,progress)
+            importData(self.db,name,self.progress)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
+        self.window.destroy()
         self.callback(1)
 
+    def progress(self,val):
+        self.progress_bar.set_value(val*100.0)
+        while gtk.events_pending():
+            gtk.mainiteration()
+        
 #------------------------------------------------------------------------
 #
 # 
