@@ -25,6 +25,7 @@
 	* src/gramps_main.py: add the new filter to the menu.
 	* src/RelLib.py (Event,Source): fix get_text_data_child_list() to correct
 	attributes of the class; (Family): fix get_sourcref_child_list().
+	* src/plugins/ImportGeneWeb.py: fixed small typos
 
 2005-03-14  Alex Roitman  <shura@gramps-project.org>
 	* src/AddSpouse.py (select_spouse_clicked): Prevent adding oneself

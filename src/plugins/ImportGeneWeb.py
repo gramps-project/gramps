@@ -238,7 +238,7 @@ class GeneWebParser:
                 if child:
                     self.current_family.add_child_handle(child.get_handle())
                     self.db.commit_family(self.current_family,self.trans)
-                    child.add_parent_family_handle(self.current_family.get_handle(),"Birth","Birth")
+                    child.add_parent_family_handle(self.current_family.get_handle(),RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
                     self.db.commit_person(child,self.trans)
             else:
                 break
@@ -324,7 +324,7 @@ class GeneWebParser:
                 sep_date = self.parse_date(self.decode(fields[idx]))
                 #print " Seperated since: %s" % fields[idx]
                 idx = idx + 1
-            elif fields[idx] == "#np":
+            elif fields[idx] == "#nm":
                 #print " Are not married."
                 married = 0
                 idx = idx + 1
@@ -505,7 +505,7 @@ class GeneWebParser:
                 #print "Cremention Date: %s" % fields[idx]
                 crem_date = self.parse_date(self.decode(fields[idx]))
                 idx = idx + 1
-            elif fields[idx] == '#bp':
+            elif fields[idx] == '#rp':
                 idx = idx + 1
                 #print "Burial Place: %s" % fields[idx]
                 bur_place = self.get_or_create_place(self.decode(fields[idx]))
