@@ -66,9 +66,10 @@ class SourceEditor:
     # __init__ - Creates a source editor window associated with an event
     #
     #---------------------------------------------------------------------
-    def __init__(self,active_entry,database):
+    def __init__(self,active_entry,database,update=None):
 
         self.db = database
+        self.update = update
         self.active_entry = active_entry
         self.showSource = libglade.GladeXML(const.gladeFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
@@ -182,6 +183,10 @@ def on_sourceok_clicked(obj):
     current_source_ref.getDate().set(date)
     current_source_ref.setText(text)
     current_source_ref.setComments(comments)
+
+    if src_edit.update:
+        src_edit.update.set_text(current_source_ref.getBase().getTitle())
+        
     utils.modified()
     utils.destroy_passed_object(obj)
 

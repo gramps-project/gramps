@@ -807,7 +807,6 @@ def on_add_address_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_add_clicked(obj):
-
     epo = obj.get_data(EDITPERSON)
     editor = EventEditor(epo,None)
 
@@ -1444,6 +1443,7 @@ class EventEditor:
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
+        self.source_field = self.top.get_widget("event_source")
 
         name = parent.person.getPrimaryName().getName()
         
@@ -1454,6 +1454,12 @@ class EventEditor:
             self.place_field.set_text(event.getPlace())
             self.date_field.set_text(event.getDate())
             self.descr_field.set_text(event.getDescription())
+            srcref_base = self.event.getSourceRef().getBase()
+            if srcref_base:
+                self.source_field.set_text(srcref_base.getTitle())
+            else:
+                self.source_field.set_text("")
+                 
             self.note_field.set_point(0)
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
@@ -1462,8 +1468,18 @@ class EventEditor:
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_event_edit_ok_clicked" : on_event_edit_ok_clicked,
+            "on_source_clicked" : on_source_clicked,
             "on_event_edit_apply_clicked" : on_event_edit_apply_clicked
             })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_source_clicked(obj):
+    ee = obj.get_data("o")
+    Sources.SourceEditor(ee.event,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
