@@ -519,7 +519,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <child_name>CList:title</child_name>
-	      <name>event_details</name>
+	      <name>event_details_header</name>
 	      <label>Details</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>

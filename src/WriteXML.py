@@ -114,7 +114,7 @@ def dump_my_event(g,name,event,index=1):
     sp = "  " * index
     g.write('%s<event type="%s"%s>\n' % (sp,fix(name),conf_priv(event)))
     write_line(g,"date",date,index+1)
-    write_line(g,"place",place,index+1)
+    write_ref(g,"place",place,index+1)
     write_line(g,"description",description,index+1)
     if event.getNote() != "":
         writeNote(g,"note",event.getNote(),index+1)
@@ -230,7 +230,8 @@ def exportData(database, filename, callback):
     familyList = database.getFamilyMap().values()
     familyList.sort(sortById)
     sourceList = database.getSourceMap().values()
-    sourceList.sort(sortById)
+    placeList = database.getPlaceMap().values()
+    placeList.sort(sortById)
 
     total = len(personList) + len(familyList)
 
@@ -437,6 +438,57 @@ def exportData(database, filename, callback):
                 g.write("/>\n")
             g.write("    </source>\n")
         g.write("  </sources>\n")
+
+    if len(placeList) > 0:
+        g.write("  <places>\n")
+        for place in placeList:
+            g.write('    <placeobj id="%s" title="%s">\n' % \
+                    (place.getId(),place.get_title()))
+            if place.get_longitude() != "" or place.get_latitude() != "":
+                g.write('      <coord long="%s" lat=%s"/>\n' % \
+                        (place.get_longitude(),place.get_latitude()))
+            loc = place.get_main_location()
+            city = loc.get_city()
+            state = loc.get_state()
+            country = loc.get_country()
+            county = loc.get_county()
+            if city or state or country or county:
+                g.write('      <location city="%s" ' % city)
+                g.write('county="%s" state="%s" ' % (county,state))
+                g.write('country="%s"/>\n' % country)
+            for loc in place.get_alternate_locations():
+                city = loc.get_city()
+                state = loc.get_state()
+                country = loc.get_country()
+                county = loc.get_county()
+                if city or state or country or county:
+                    g.write('      <location type="alternate"')
+                    g.write('city="%s" county="%s" state="%s" country="%s"/>\n' \
+                        % (city,county,state,country))
+            for photo in place.getPhotoList():
+                path = photo.getPath()
+                l = len(fileroot)
+                if len(path) >= l:
+                    if fileroot == path[0:l]:
+                        path = path[l+1:]
+                g.write("      <img src=\"" + fix(path) + "\"")
+                g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+                proplist = photo.getPropertyList()
+                if proplist:
+                    for key in proplist.keys():
+                        g.write(' %s="%s"' % (key,proplist[key]))
+                g.write("/>\n")
+                if len(place.getUrlList()) > 0:
+                    for url in place.getUrlList():
+                        g.write('      <url priv="%d" href="%s"' % \
+                                (url.getPrivacy(),url.get_path()))
+                        if url.get_description() != "":
+                            g.write(' description="' + url.get_description() + '"')
+                if place.getNote() != "":
+                    writeNote(g,"note",place.getNote(),3)
+                dump_source_ref(g,event.getSourceRef(),index+1)
+            g.write("    </placeobj>\n")
+        g.write("  </places>\n")
 
     if len(database.getBookmarks()) > 0:
         g.write("  <bookmarks>\n")

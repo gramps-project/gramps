@@ -198,7 +198,8 @@ class Marriage:
         if not event:
             return
         detail = get_detail_flags(event)
-        self.event_list.append([text,event.getQuoteDate(),event.getPlace(),detail])
+        self.event_list.append([text,event.getQuoteDate(),
+                                event.getPlace().get_title(),detail])
         self.event_list.set_row_data(self.lines,event)
         self.lines = self.lines + 1
 
@@ -435,7 +436,7 @@ def on_select_row(obj,row,b,c):
     event = obj.get_row_data(row)
     
     family_obj.date_field.set_text(event.getDate())
-    family_obj.place_field.set_text(event.getPlace())
+    family_obj.place_field.set_text(event.getPlace().get_title())
     family_obj.name_field.set_label(const.display_fevent(event.getName()))
     family_obj.event_details.set_text(get_detail_text(event))
     family_obj.descr_field.set_text(event.getDescription())
@@ -767,6 +768,7 @@ class EventEditor:
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")
+        self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
@@ -799,9 +801,16 @@ class EventEditor:
 
         self.conf_menu.set_menu(myMenu)
 
+        values = self.parent.db.getPlaceMap().values()
         if event != None:
             self.name_field.set_text(event.getName())
-            self.place_field.set_text(event.getPlace())
+
+            attach_places(values,self.place_combo,event.getPlace())
+            if event.getPlace():
+                self.place_field.set_text(event.getPlace().get_title())
+            else:
+                self.place_field.set_text('')
+
             self.date_field.set_text(event.getDate())
             self.descr_field.set_text(event.getDescription())
             self.conf_menu.set_history(event.getConfidence())
@@ -818,6 +827,7 @@ class EventEditor:
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
         else:
+            attach_places(values,self.place_combo,None)
             self.conf_menu.set_history(2)
 
         self.window.set_data("o",self)
@@ -847,7 +857,8 @@ def on_event_edit_ok_clicked(obj):
 
     ename = ee.name_field.get_text()
     edate = ee.date_field.get_text()
-    eplace = ee.place_field.get_text()
+    eplace = string.strip(ee.place_field.get_text())
+    eplace_obj = get_place_from_list(ee.place_combo)
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
@@ -857,7 +868,12 @@ def on_event_edit_ok_clicked(obj):
         event = Event()
         ee.parent.elist.append(event)
         
-    if update_event(event,ename,edate,eplace,edesc,enote,epriv,econf):
+    if eplace_obj == None and eplace != "":
+        eplace_obj = Place()
+        eplace_obj.set_title(eplace)
+        ee.parent.db.addPlace(eplace_obj)
+
+    if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,econf):
         ee.parent.events_changed = 1
         
     if not source_refs_equal(event.getSourceRef(),ee.srcref):
@@ -1038,3 +1054,50 @@ def source_refs_equal(one,two):
     if one.text != two.text:
         return 0
     return 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def attach_places(values,combo,place):
+    l = GtkLabel("")
+    l.show()
+    l.set_alignment(0,0.5)
+    c = GtkListItem()
+    c.add(l)
+    c.set_data("s",None)
+    c.show()
+    sel_child = c
+    list = [c]
+    mymap = {}
+    for src in values:
+        l = GtkLabel("%s [%s]" % (src.get_title(),src.getId()))
+        l.show()
+        l.set_alignment(0,0.5)
+        c = GtkListItem()
+        c.add(l)
+        c.set_data("s",src)
+        c.show()
+        list.append(c)
+        if src == place:
+            sel_child = c
+        mymap[src] = c
+
+    combo.list.append_items(list)
+    combo.list.select_child(sel_child)
+
+    for v in mymap.keys():
+        combo.set_item_string(mymap[v],v.get_title())
+        
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_place_from_list(obj):
+    select = obj.list.get_selection()
+    if len(select) == 0:
+        return None
+    else:
+        return select[0].get_data("s")

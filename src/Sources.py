@@ -67,15 +67,21 @@ class SourceEditor:
         self.showSource = libglade.GladeXML(const.gladeFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
             "on_sourceok_clicked" : on_sourceok_clicked,
+            "on_source_changed": on_source_changed,
             "destroy_passed_object" : utils.destroy_passed_object
             })
         self.sourceDisplay = self.get_widget("sourceDisplay")
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
+        self.title_menu.set_data("o",self)
+        
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
-        self.active_source = None
+        if self.source_ref:
+            self.active_source = self.source_ref.getBase()
+        else:
+            self.active_source = None
         self.draw()
         self.sourceDisplay.set_data(SOURCEDISP,self)
         self.sourceDisplay.show()
@@ -88,41 +94,12 @@ class SourceEditor:
     def get_widget(self,name):
         return self.showSource.get_widget(name)
 
+    #---------------------------------------------------------------------
+    #
+    # draw
+    #
+    #---------------------------------------------------------------------
     def draw(self):
-
-        typeMenu = GtkMenu()
-        menuitem = GtkMenuItem('None')
-        menuitem.set_data("s",None)
-        menuitem.set_data("o",self)
-        menuitem.connect("activate",on_source_changed)
-        menuitem.show()
-        typeMenu.append(menuitem)
-        index = 1
-        active = 0
-        save = 0
-        if self.source_ref:
-            self.base = self.source_ref.getBase()
-        else:
-            self.base = None
-
-        for src in self.db.getSourceMap().values():
-            if src == self.base:
-                active = 1
-                save = index
-            menuitem = GtkMenuItem(src.getTitle())
-            menuitem.set_data("s",src)
-            menuitem.set_data("o",self)
-            menuitem.connect("activate",on_source_changed)
-            menuitem.show()
-            typeMenu.append(menuitem)
-            index = index + 1
-        typeMenu.set_active(save)
-        self.title_menu.set_menu(typeMenu)
-
-        self.get_widget("spage").set_sensitive(active)
-        self.get_widget("sdate").set_sensitive(active)
-        self.get_widget("stext").set_sensitive(active)
-        self.get_widget("scomment").set_sensitive(active)
 
         if self.source_ref:
             self.get_widget("spage").set_text(self.source_ref.getPage())
@@ -149,6 +126,50 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
+        if self.active_source:
+            active = 1
+        else:
+            active = 0
+
+        values = self.db.getSourceMap().values()
+        values.sort(by_title)
+        l = GtkLabel("-- No Source --")
+        l.show()
+        l.set_alignment(0,0.5)
+        c = GtkListItem()
+        c.add(l)
+        c.set_data("s",None)
+        c.show()
+        sel_child = c
+        list = [c]
+
+        for src in values:
+            l = GtkLabel("%s [%s]" % (src.getTitle(),src.getId()))
+            l.show()
+            l.set_alignment(0,0.5)
+            c = GtkListItem()
+            c.add(l)
+            c.set_data("s",src)
+            c.show()
+            list.append(c)
+            if src == self.active_source:
+                sel_child = c
+
+        self.title_menu.list.append_items(list)
+        self.title_menu.list.select_child(sel_child)
+        self.get_widget("spage").set_sensitive(active)
+        self.get_widget("sdate").set_sensitive(active)
+        self.get_widget("stext").set_sensitive(active)
+        self.get_widget("scomment").set_sensitive(active)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def by_title(a,b):
+    return cmp(a.getTitle(),b.getTitle())
+               
 #-------------------------------------------------------------------------
 #
 #
@@ -158,9 +179,10 @@ def on_sourceok_clicked(obj):
 
     src_edit = obj.get_data(SOURCEDISP)
 
+    
     if src_edit.active_source != src_edit.source_ref.getBase():
         src_edit.source_ref.setBase(src_edit.active_source)
-
+        
     page = src_edit.get_widget("spage").get_text()
     date = src_edit.get_widget("sdate").get_text()
     text = src_edit.get_widget("stext").get_chars(0,-1)
@@ -189,7 +211,7 @@ def on_sourceok_clicked(obj):
 def on_source_changed(obj):
 
     src_entry = obj.get_data("o")
-    src_entry.active_source = obj.get_data("s")
+    src_entry.active_source = obj.list.get_selection()[0].get_data("s")
 
     if src_entry.active_source == None:
         active = 0

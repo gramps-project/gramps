@@ -21,6 +21,162 @@
 from Date import *
 from Researcher import *
 
+class Place:
+    def __init__(self,source=None):
+        if source:
+            self.long = source.log
+            self.lat = source.lat
+            self.title = source.title
+            self.main_loc = Location(source.main_loc)
+            self.alt_loc = []
+            if source.source_ref:
+                self.source_ref = SourceRef(source.source_ref)
+            else:
+                self.source_ref = None
+            if source.note:
+                self.note = Note(source.note.get())
+            else:
+                self.note = None
+            for loc in source.alt_loc:
+                self.alt_loc = Location(loc)
+            self.id = source.id
+            self.urls = []
+            for u in source.urls:
+                self.urls.append(Url(u))
+            self.photoList = []
+            for photo in source.photoList:
+                self.photoList.append(Photo(photo))
+        else:
+            self.source_ref = None
+            self.long = ""
+            self.lat = ""
+            self.title = ""
+            self.note = None
+            self.main_loc = Location()
+            self.alt_loc = []
+            self.id = ""
+            self.urls = []
+            self.photoList = []
+            
+    def getUrlList(self):
+        return self.urls
+
+    def setUrlList(self,list):
+        self.urls = list
+
+    def addUrl(self,url):
+        self.urls.append(url)
+    
+    def setSourceRef(self,id) :
+        self.source_ref = id
+
+    def getSourceRef(self) :
+        if not self.source_ref:
+            self.source_ref = SourceRef()
+        return self.source_ref
+
+    def setId(self,id):
+        self.id = id
+
+    def getId(self):
+        return self.id
+    
+    def set_title(self,name):
+        self.title = name
+
+    def get_title(self):
+        return self.title
+
+    def set_longitude(self,long):
+        self.long = long
+
+    def get_longitude(self):
+        return self.long
+
+    def set_latitude(self,long):
+        self.lat = long
+
+    def get_latitude(self):
+        return self.lat
+
+    def get_main_location(self):
+        return self.main_loc
+
+    def set_main_location(self,loc):
+        self.main_loc = loc
+
+    def get_alternate_locations(self):
+        return self.alt_loc
+
+    def add_alternate_locations(self,loc):
+        if loc not in self.alt_loc:
+            self.alt_loc.append(loc)
+
+    def setNote(self,text):
+        if self.note == None:
+            self.note = Note()
+        self.note.set(text)
+
+    def getNote(self):
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
+
+    def setNoteObj(self,obj):
+        self.note = obj
+
+    def getNoteObj(self):
+        return self.note
+
+    def addPhoto(self,photo):
+        self.photoList.append(photo)
+
+    def getPhotoList(self):
+        return self.photoList
+
+#-------------------------------------------------------------------------
+#
+# Location
+#
+#-------------------------------------------------------------------------
+class Location:
+    def __init__(self,source=None):
+        if source:
+            self.city = source.city
+            self.county = source.county
+            self.state = source.state
+            self.country = source.country
+        else:
+            self.city = ""
+            self.county = ""
+            self.state = ""
+            self.country = ""
+
+    def set_city(self,data):
+        self.city = data
+
+    def get_city(self):
+        return self.city
+
+    def set_county(self,data):
+        self.county = data
+
+    def get_county(self):
+        return self.county
+
+    def set_state(self,data):
+        self.state = data
+
+    def get_state(self):
+        return self.state
+
+    def set_country(self,data):
+        self.country = data
+
+    def get_country(self):
+        return self.country
+
 #-------------------------------------------------------------------------
 #
 # Note class.
@@ -42,11 +198,22 @@ class Note:
 #
 #-------------------------------------------------------------------------
 class Photo:
-    def __init__(self):
-        self.path = ""
-        self.desc = ""
-        self.private = 0
-        self.proplist = None
+    def __init__(self,source=None):
+        if source:
+            self.path = source.path
+            self.desc = source.desc
+            self.private = source.private
+            if self.proplist != None:
+                self.proplist = {}
+                for p in source.proplist.keys():
+                    self.proplist[k] = source.proplist[k]
+            else:
+                self.proplist = None
+        else:
+            self.path = ""
+            self.desc = ""
+            self.private = 0
+            self.proplist = None
 
     def setPath(self,path):
         self.path = path
@@ -659,7 +826,7 @@ class Event:
             self.confidence = source.confidence
             self.private = source.private
         else:
-            self.place = ""
+            self.place = None
             self.date = Date()
             self.description = ""
             self.name = ""
@@ -1025,13 +1192,16 @@ class RelDataBase:
         self.personMap = {}
         self.familyMap = {}
         self.sourceMap = {}
+        self.placeMap  = {}
         self.smapIndex = 0
         self.pmapIndex = 0
         self.fmapIndex = 0
+        self.lmapIndex = 0
         self.default = None
         self.owner = Researcher()
         self.bookmarks = []
         self.path = ""
+        self.place2title = {}
 
     def getBookmarks(self):
         return self.bookmarks
@@ -1061,6 +1231,19 @@ class RelDataBase:
 
     def setPersonMap(self,map):
         self.personMap = map
+
+    def getPlaceFromTitle(self,title):
+        for val in self.placeMap.keys():
+            p = self.placeMap[val]
+            if title == p.title:
+                return p
+        return None
+
+    def getPlaceMap(self):
+        return self.placeMap
+
+    def setPlaceMap(self,map):
+        self.placeMap = map
 
     def getFamilyMap(self):
         return self.familyMap
@@ -1116,14 +1299,10 @@ class RelDataBase:
         return map.keys()
 
     def getPlaces(self):
-        map = {}
-        for family in self.familyMap.values():
-            for attr in family.getEventList():
-                map[attr.getPlace()] = 1
-        for person in self.personMap.values():
-            for attr in person.getEventList():
-                map[attr.getPlace()] = 1
-        return map.keys()
+        map = []
+        for place in self.placeMap.values():
+            map.append(place.get_title())
+        return map[:]
 
     def getFamilyRelationTypes(self):
         map = {}
@@ -1165,6 +1344,9 @@ class RelDataBase:
     def getNextSourceId(self):
         return self.smapIndex
 
+    def getNextPlaceId(self):
+        return self.lmapIndex
+
     def addSource(self,source):
         index = "S%d" % self.smapIndex
         while self.sourceMap.has_key(index):
@@ -1173,6 +1355,16 @@ class RelDataBase:
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
+        return index
+
+    def addPlace(self,place):
+        index = "P%d" % self.lmapIndex
+        while self.placeMap.has_key(index):
+            self.lmapIndex = self.lmapIndex + 1
+            index = "P%d" % self.lmapIndex
+        place.setId(index)
+        self.placeMap[index] = place
+        self.lmapIndex = self.lmapIndex + 1
         return index
 
     def findSource(self,idVal,map):
@@ -1184,11 +1376,27 @@ class RelDataBase:
             map[idVal] = self.addSource(source)
         return source
 
+    def findPlace(self,idVal,map):
+        idVal = str(idVal)
+        if map.has_key(idVal):
+            place = self.placeMap[map[idVal]]
+        else:
+            palce = Place()
+            map[idVal] = self.addPlace(place)
+        return place
+
     def addSourceNoMap(self,source,index):
         index = str(index)
         source.setId(index)
         self.sourceMap[index] = source
         self.smapIndex = self.smapIndex + 1
+        return index
+
+    def addPlaceNoMap(self,place,index):
+        index = str(index)
+        place.setId(index)
+        self.placeMap[index] = place
+        self.lmapIndex = self.lmapIndex + 1
         return index
 
     def findSourceNoMap(self,idVal):
@@ -1199,6 +1407,15 @@ class RelDataBase:
             source = Source()
             self.addSourceNoMap(source,val)
         return source
+
+    def findPlaceNoMap(self,idVal):
+        val = str(idVal)
+        if self.placeMap.has_key(val):
+            place = self.placeMap[val]
+        else:
+            place = Place()
+            self.addPlaceNoMap(place,val)
+        return place
 
     def newFamily(self):
         index = "F%d" % self.fmapIndex
@@ -1241,3 +1458,4 @@ class RelDataBase:
             del self.familyMap[family.getId()]
 
         
+

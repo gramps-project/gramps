@@ -92,6 +92,8 @@ class GrampsParser(handler.ContentHandler):
         self.source = None
         self.source_ref = None
         self.attribute = None
+        self.placeobj = None
+        self.place_map = {}
 
         self.resname = ""
         self.resaddr = "" 
@@ -142,6 +144,57 @@ class GrampsParser(handler.ContentHandler):
                 person = self.db.personMap[id]
                 self.db.setDefaultPerson(person)
     
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_place(self,attrs):
+        if attrs.has_key('ref'):
+            self.placeobj = self.db.findPlaceNoMap(u2l(attrs['ref']))
+        else:
+            self.placeobj = None
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_placeobj(self,attrs):
+        self.placeobj = self.db.findPlaceNoMap(u2l(attrs['id']))
+        self.placeobj.set_title(u2l(attrs['title']))
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_location(self,attrs):
+        loc = Location()
+        if attrs.has_key('city'):
+            loc.set_city(attrs['city'])
+        if attrs.has_key('state'):
+            loc.set_state(attrs['state'])
+        if attrs.has_key('county'):
+            loc.set_state(attrs['county'])
+        if attrs.has_key('country'):
+            loc.set_state(attrs['country'])
+        if attrs.has_key('type'):
+            self.placeobj.add_alternate_locations(loc)
+        else:
+            self.placeobj.set_main_location(loc)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_coord(tag,attrs):
+        if attrs.has_key('lat'):
+            self.placeobj.set_latitude(attrs['lat'])
+        if attrs.has_key('long'):
+            self.placeobj.set_longitude(attrs['long'])
+
     #---------------------------------------------------------------------
     #
     #
@@ -262,7 +315,10 @@ class GrampsParser(handler.ContentHandler):
             url.set_description(desc)
             if attrs.has_key("priv"):
                 url.setPrivacy(string.atoi(attrs['priv']))
-            self.person.addUrl(url)
+            if self.person:
+                self.person.addUrl(url)
+            elif self.placeobj:
+                self.placeobj.addUrl(url)
         except KeyError:
             return
 
@@ -352,6 +408,8 @@ class GrampsParser(handler.ContentHandler):
             self.event.setSourceRef(self.source_ref)
         elif self.attribute:
             self.attribute.setSourceRef(self.source_ref)
+        elif self.placeobj:
+            self.placeobj.setSourceRef(self.source_ref)
         else: 
             print "Sorry, I'm lost"
 
@@ -385,8 +443,10 @@ class GrampsParser(handler.ContentHandler):
                     self.family.addPhoto(photo)
                 elif self.source:
                     self.source.addPhoto(photo)
-                else:
+                elif self.person:
                     self.person.addPhoto(photo)
+                elif self.placeobj:
+                    self.placeobj.addPhoto(photo)
             else:
                 photo.addProperty(key,attrs[key])
 
@@ -446,6 +506,14 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
+    def stop_places(self,tag):
+        self.placeobj = None
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
     def stop_event(self,tag):
         self.event.name = self.event_type
 
@@ -474,7 +542,15 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_place(self,tag):
-        self.event.place = u2l(tag)
+        if self.placeobj == None:
+            if self.place_map.has_key(tag):
+                self.placeobj = self.place_map[tag]
+            else:
+                self.placeobj = Place()
+                self.placeobj.set_title(tag)
+                self.db.addPlace(self.placeobj)
+                self.place_map[tag] = self.placeobj
+        self.event.place = self.placeobj
 
     #---------------------------------------------------------------------
     #
@@ -706,6 +782,8 @@ class GrampsParser(handler.ContentHandler):
             self.person.setNote(note)
         elif self.family:
             self.family.setNote(note)
+        elif self.placeobj:
+            self.placeobj.setNote(note)
         self.note_list = []
 
     #---------------------------------------------------------------------
@@ -837,7 +915,11 @@ class GrampsParser(handler.ContentHandler):
         "people"     : (start_people, stop_people),
         "person"     : (start_person, None),
         "img"        : (start_photo, None),
-        "place"      : (None, stop_place),
+        "place"      : (start_place, stop_place),
+        "places"     : (None, stop_places),
+        "placeobj"   : (start_placeobj,None),
+        "location"   : (start_location,None),
+        "coord"      : (start_coord,None),
         "pos"        : (start_pos, None),
         "postal"     : (None, stop_postal),
         "researcher" : (None, stop_research),
@@ -1003,6 +1085,8 @@ class GrampsImportParser(GrampsParser):
             self.event.setSourceRef(self.source_ref)
         elif self.attribute:
             self.attribute.setSourceRef(self.source_ref)
+        elif self.placeobj:
+            self.placeobj.setSourceRef(self.source_ref)
         else: 
             print "Sorry, I'm lost"
 
