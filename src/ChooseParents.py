@@ -118,7 +118,8 @@ class ChooseParents:
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
         self.top = self.glade.get_widget("familyDialog")
 
-        self.title_text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
+        self.title_text = _("Choose the Parents of %s") % \
+                          GrampsCfg.nameof(self.person)
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          self.title_text,_('Choose Parents'))
         
@@ -249,14 +250,20 @@ class ChooseParents:
     def likely_father_filter(self,person):
         if person.get_gender() != RelLib.Person.male:
             return 0
+        if self.exclude.has_key(person.get_id()):
+            return 0
         return self.likely_filter(person)
 
     def likely_mother_filter(self,person):
         if person.get_gender() != RelLib.Person.female:
             return 0
+        if self.exclude.has_key(person.get_id()):
+            return 0
         return self.likely_filter(person)
 
     def likely_filter(self,person):
+        if person.get_id() == self.person.get_id():
+            return 0
         birth_event = self.db.find_event_from_id(person.get_birth_id())
         if birth_event:
             pbday = birth_event.get_date_object()
@@ -296,12 +303,22 @@ class ChooseParents:
                     return 0
         return 1
 
+    def build_exclude_list(self):
+        self.exclude = { self.person.get_id() : 1 }
+        for family_id in self.person.get_family_id_list():
+            fam = self.db.find_family_from_id(family_id)
+            for id in [fam.get_father_id(), fam.get_mother_id()] + \
+                    fam.get_child_id_list():
+                if id:
+                    self.exclude[id] = 1
+
     def redrawf(self):
         """Redraws the potential father list"""
         self.father_nsort = PeopleModel.PeopleModel(self.db)
         self.father_nsort.rebuild_data()
         self.father_nsort.reset_visible()
-
+        self.build_exclude_list()
+        
         for pid in self.db.get_person_keys():
             person = self.db.try_to_find_person_from_id(pid)
             visible = self.father_filter(person)
@@ -323,6 +340,7 @@ class ChooseParents:
         self.mother_nsort = PeopleModel.PeopleModel(self.db)
         self.mother_nsort.rebuild_data()
         self.mother_nsort.reset_visible()
+        self.build_exclude_list()
         
         for pid in self.db.get_person_keys():
             person = self.db.try_to_find_person_from_id(pid)

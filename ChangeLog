@@ -1,3 +1,10 @@
+2004-07-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: build an exclusion list of those
+	obviously not the parents
+	* src/EditPerson.py: allow ID value to be edited
+	* src/RelLib.py: Add try_to_find_from_gramps_id
+	* src/ImageSelect.py: catch OSError
+
 2004-07-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DbPrompter.py (SaveAsDbPrompter.change_suggested_name): 
 	Add method; (SaveAsDbPrompter.chooser): Make dialog a class attribute.
