@@ -1,5 +1,5 @@
 %define ver      0.9.0
-%define rel      pre7
+%define rel      pre8
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
