@@ -1051,7 +1051,7 @@ class FtmDescendantReport(Report.Report):
                                     })
                             else:
                                 self.doc.write_text(_("%(female_name)s%(endnotes)s "
-                                                "died %(death_date)s%(death_endotes)s.") % {
+                                                "died %(death_date)s%(death_endnotes)s.") % {
                                     'female_name' : _('She'), 'endnotes' : '',
                                     'death_endnotes' : self.endnotes(death),
                                     'death_date' : ddate,

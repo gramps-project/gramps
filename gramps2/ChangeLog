@@ -1,3 +1,8 @@
+2003-08-07  Lars Kr. Lundin  <gramps@lklundin.dk>
+	* src/plugins/BookReport.py: Fixed typo (containg).
+	* src/plugins/FtmStyleAncestors.py, src/plugins/FtmStyleDescendants.py:
+	Fixed typo (death_endotes).
+
 2003-08-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py (load_family): Enable translation for family
 	relation. 
