@@ -533,7 +533,7 @@ def auto_save_load(filename):
     autosave = "%s/autosave.gramps" % dirname
 
     if os.path.isfile(autosave):
-        q = _("An autosave file exists. Should this be loaded instead of the last saved version?")
+        q = _("An autosave file exists for %s.\nShould this be loaded instead of the last saved version?") % dirname
         yname = autosave
         nname = filename
         gnome.ui.GnomeQuestionDialog(q,autosave_query)
