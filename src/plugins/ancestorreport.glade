@@ -203,7 +203,7 @@
 
       <widget>
 	<class>GtkFrame</class>
-	<name>frame3</name>
+	<name>style_frame</name>
 	<border_width>5</border_width>
 	<label>Styles</label>
 	<label_xalign>0</label_xalign>
