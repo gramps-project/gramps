@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,6 +49,9 @@ import Errors
 from SubstKeywords import SubstKeywords
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
+
+_BORN = _('b.')
+_DIED = _('d.')
 
 #------------------------------------------------------------------------
 #
@@ -322,7 +325,7 @@ class DescendantReportDialog(Report.DrawReportDialog):
     
     def get_report_extra_textbox_info(self):
         """Label the textbox and provide the default contents."""
-        return (_("Display Format"), "$n\nb. $b\nd. $d",
+        return (_("Display Format"), "$n\n%s $b\n%s $d" % (_BORN,_DIED),
                 _("Allows you to customize the data in the boxes in the report"))
     
     def make_default_style(self):

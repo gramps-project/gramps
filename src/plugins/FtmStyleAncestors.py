@@ -91,7 +91,7 @@ class FtmAncestorReport(Report.Report):
         for key in keys :
             (person,generation) = self.map[key]
             if old_gen != generation:
-                if self.pgbrk and generation > 0:
+                if self.pgbrk and generation > 1:
                     self.doc.page_break()
                 self.doc.start_paragraph("Generation")
                 t = _("Generation No. %d") % generation
@@ -199,7 +199,7 @@ class FtmAncestorReport(Report.Report):
             return
 
         self.doc.start_paragraph('Generation')
-        self.doc.write_text('Endnotes')
+        self.doc.write_text(_('Endnotes'))
         self.doc.end_paragraph()
         
         keys.sort()
@@ -237,10 +237,11 @@ class FtmAncestorReport(Report.Report):
         slist = obj.getSourceRefList()
         if slist:
             msg.write('<super>')
-            first = 0
+            first = 1
             for ref in slist:
-                if first == 1:
+                if not first:
                     msg.write(',')
+                first = 0
                 msg.write("%d" % self.sref_index)
                 self.sref_map[self.sref_index] = ref
                 self.sref_index += 1

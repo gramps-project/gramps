@@ -18,6 +18,14 @@
 	* src/dialog.glade: Add accelerator to "Address" label of AddrEdit.
 	* src/po/template.po: Update the above corrections in template.
 	* src/plugins/Makefile.am: Ship CustomBookText.py
+	* src/plugins/FtmStyleAncestors.py: Fix coma-sepration for endnotes. 
+	Translate "Endnotes" sub-heading. Enable pagebreak only when 
+	generation > 1 (was 0).
+	* src/plugins/FtmStyleDescendants.py: Likewise. 
+	* src/const.py.in: Make the confidence order high to low (was l->h).
+	* src/plugins/AncestorChart.py: Enable translation for "b." and "d."
+	* src/plugins/DesGraph.py: Likewise.
+	* src/po/template.po: Update the above corrections in template.
 
 2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a
