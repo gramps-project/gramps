@@ -112,15 +112,21 @@ class CheckIntegrity:
                 self.db.commit_person(mother,self.trans)
             for child_handle in family.get_child_handle_list():
                 child = self.db.get_person_from_handle(child_handle)
-                if family_handle == child.get_main_parents_family_handle():
-                    continue
-                for family_type in child.get_parent_family_handle_list():
-                    if family_type[0] == family_handle:
-                        break
+                if child:
+                    if family_handle == child.get_main_parents_family_handle():
+                       continue
+                    for family_type in child.get_parent_family_handle_list():
+                        if family_type[0] == family_handle:
+                            break
+                    else:
+                        family.remove_child_handle(child_handle)
+                        self.db.commit_family(family,self.trans)
+                        self.broken_links.append((child_handle,family_handle))
                 else:
                     family.remove_child_handle(child_handle)
                     self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_handle,family_handle))
+                    
 
     def cleanup_missing_photos(self,cl=0):
         missmedia_action = 0
@@ -301,7 +307,10 @@ class CheckIntegrity:
             for (person_handle,family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
                 family = self.db.get_family_from_handle(family_handle)
-                cn = person.get_primary_name().get_name()
+                if person:
+                    cn = person.get_primary_name().get_name()
+                else:
+                    cn = _("Non existing child")
                 f = self.db.get_person_from_handle(family.get_father_handle())
                 m = self.db.get_person_from_handle(family.get_mother_handle())
                 if f and m:
