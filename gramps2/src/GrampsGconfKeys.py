@@ -38,7 +38,7 @@ except ImportError:
 
 import gobject
 import os
-from const import ErrorSchemaInvalid
+import Errors
 
 client = gconf.client_get_default()
 client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
@@ -349,7 +349,7 @@ def get_bool(key):
     else:
         val = client.get_default_from_schema(key)
         if val == None:
-            raise ErrorSchemaInvalid, "No default value for key "+key
+            raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_bool()
 
 def set_bool(key,val):
@@ -366,7 +366,7 @@ def get_int(key,correct_tuple=None):
     else:
         val = client.get_default_from_schema(key)
         if val == None:
-            raise ErrorSchemaInvalid, "No default value for key "+key
+            raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_int()
 
 def set_int(key,val,correct_tuple=None):
@@ -383,7 +383,7 @@ def get_string(key,test_func=None):
     else:
         val = client.get_default_from_schema(key)
         if val == None:
-            raise ErrorSchemaInvalid, "No default value for key "+key
+            raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_string()
 
 def set_string(key,val,test_func=None):
