@@ -54,7 +54,7 @@ def nocnv(s):
 _cnv = nocnv
 
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
-                "tiff", "pcx" ]
+                "jpg", "tiff", "pcx" ]
 
 _ADDRX = [ "ADDR", "ADR1", "ADR2" ]
 
@@ -362,7 +362,7 @@ class GedcomParser:
             elif matches[1] == "PUBL":
                 self.source.setPubInfo(matches[2] + self.parse_continue_data(2))
             elif matches[1] == "OBJE":
-                pass
+                self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
                     note = matches[1] + self.parse_continue_data(1)
@@ -1136,10 +1136,7 @@ class GedcomParser:
                 source.setDate(d)
                 source.setText(text)
             elif matches[1] == "OBJE":
-                if matches[2] and matches[2][0] == '@':
-                    self.barf(2)
-                else:
-                    self.parse_source_object(source,level+1)
+                self.ignore_sub_junk(level+1)
             elif matches[1] == "QUAY":
                 val = int(matches[2])
                 if val > 1:
