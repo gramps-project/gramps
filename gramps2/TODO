@@ -1,7 +1,12 @@
-* Remember where the images are added from (RFE 748974). This is actually 
-  very useful when you add 50 new images -- navigating 50 times to the same 
-  place is a nightmare. All that's needed is keeping track of a single 
-  last selected directory and then point gtk.FileSellector there.
+* Add support for storing reliability (confidence) of the marriage information; 
+  see http://sourceforge.net/mailarchive/forum.php?thread_id=3066997&forum_id=1993 
+  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
+  for the details.
+
+* Work out the model and the interface for the completeness of a person,
+  see http://sourceforge.net/mailarchive/forum.php?thread_id=3127454&forum_id=1993
+  and http://sourceforge.net/mailarchive/forum.php?thread_id=3134932&forum_id=1993
+  for the details.
 
 * Presense of Notes for a person/event/whatever_else. RFE 747527 suggested 
   either a column in the People View or something like boldfaces "Notes" 

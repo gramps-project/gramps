@@ -30,7 +30,8 @@ Version 0.9.4 -- the "This used to bug me..." release
 * User can choose between the usual (left to right) or alternative (top to 
   bottom) Family View. 
 * Support for graphics in Book Report. 
-* Fair share of bug fixes. 
+* Command line option for exporting to the Web Family Tree (-f wtf).
+* Dozens of bug fixes. 
 
 Version 0.9.3
 * New reports: Ancestors (text), Fan Chart (graphics), and 

@@ -542,6 +542,7 @@ class GedcomWriter:
         self.source_refs = self.target_ged.get_source_refs()
         
         self.cnvtxt = keep_utf8
+        self.nl = self.cnvtxt(self.target_ged.get_endl())
         
         self.flist = {}
         self.slist = {}

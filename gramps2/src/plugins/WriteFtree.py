@@ -73,52 +73,56 @@ def writeData(database,person):
 #-------------------------------------------------------------------------
 class FtreeWriter:
 
-    def __init__(self,database,person):
+    def __init__(self,database,person,cl=0,name=""):
         self.db = database
-
-        base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"writeftree.glade")
-        
-        
-        dic = {
-            "destroy_passed_object" : self.close,
-            "on_ok_clicked" : self.on_ok_clicked,
-            }
-
+        self.person = person
         self.plist = {}
-        self.top = gtk.glade.XML(glade_file,"top","gramps")
 
-        Utils.set_titles(self.top.get_widget('top'),
+        if cl:
+            if name:
+                self.export(name,None,0)
+        else:
+            base = os.path.dirname(__file__)
+            glade_file = "%s/%s" % (base,"writeftree.glade")
+        
+            dic = {
+                "destroy_passed_object" : self.close,
+                "on_ok_clicked" : self.on_ok_clicked,
+                }
+
+            self.top = gtk.glade.XML(glade_file,"top","gramps")
+
+            Utils.set_titles(self.top.get_widget('top'),
                          self.top.get_widget('title'),
                          _title_string)
         
-        self.top.signal_autoconnect(dic)
+            self.top.signal_autoconnect(dic)
 
-        self.topwin = self.top.get_widget("top")
-        self.restrict = self.top.get_widget("restrict")
-        self.filter = self.top.get_widget("filter")
+            self.topwin = self.top.get_widget("top")
+            self.restrict = self.top.get_widget("restrict")
+            self.filter = self.top.get_widget("filter")
 
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
+            all = GenericFilter.GenericFilter()
+            all.set_name(_("Entire Database"))
+            all.add_rule(GenericFilter.Everyone([]))
         
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
-        des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+            des = GenericFilter.GenericFilter()
+            des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
+            des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
         
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
-        ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+            ans = GenericFilter.GenericFilter()
+            ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
+            ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
         
-        com = GenericFilter.GenericFilter()
-        com.set_name(_("People with common ancestor with %s") %
+            com = GenericFilter.GenericFilter()
+            com.set_name(_("People with common ancestor with %s") %
                      person.getPrimaryName().getName())
-        com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+            com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
         
-        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
-        self.filter.set_menu(self.filter_menu)
+            self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+            self.filter.set_menu(self.filter_menu)
         
-        self.topwin.show()
+            self.topwin.show()
 
     def close(self,obj):
         self.topwin.destroy()
