@@ -37,6 +37,10 @@
 	then fall back to home.
 	* src/data/Makefile.am: Kill gconfd using SIGTERM -- HUP did not work.
 
+	* src/const.py.in: Add gramps-package mime type.
+	* src/ArgHandler.py (auto_save_load): Subclass database depending 
+	on the format.
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
 
