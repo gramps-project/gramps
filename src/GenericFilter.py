@@ -681,7 +681,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
             
         if not self.init:
             self.init = 1
-            filt = MatchesFilter(self.list[0])
+            filt = MatchesFilter(self.list)
             for person_handle in db.get_person_handles(sort_handles=False):
                 if filt.apply (db, person_handle):
                     self.init_ancestor_list (person_handle,first)
