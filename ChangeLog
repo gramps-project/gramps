@@ -1,3 +1,25 @@
+2003-09-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PaperMenu.py: Change from TextDoc to BaseDoc.
+	* src/Report.py: Likewise.
+	* src/SpreadSheetDoc.py: Likewise. 
+	* src/StyleEditor.py: Likewise.
+	* src/docgen/OpenSpreadSheet.py: Likewise.
+	* src/docgen/AbiWord2Doc.py: Likewise.
+	* src/plugins/AncestorReport.py: Likewise.
+	* src/plugins/DescendReport.py: Likewise.
+	* src/plugins/DetAncestralReport.py: Likewise.
+	* src/plugins/DetDescendantReport.py: Likewise.
+	* src/plugins/EventCmp.py: Likewise.
+	* src/plugins/FamilyGroup.py: Likewise.
+	* src/plugins/FtmStyleAncestors.py: Likewise.
+	* src/plugins/GraphViz.py: Likewise.
+	* src/plugins/IndivComplete.py: Likewise.
+	* src/plugins/IndivSummary.py: Likewise.
+	* src/plugins/WebPage.py: Likewise.
+	* src/plugins/Ancestors.py: Likewise.
+	* src/plugins/CustomBookText.py: Likewise.
+	* src/BaseDoc.py: Likewise.
+
 2003-09-01  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Separate paternal and maternal ancestors
 	for easier reading.

@@ -35,7 +35,7 @@ import string
 #
 #------------------------------------------------------------------------
 import Report
-import TextDoc
+import BaseDoc
 import Errors
 
 from QuestionDialog import ErrorDialog
@@ -283,19 +283,19 @@ def write_book_item(database,person,doc,options,newpage=0):
 #------------------------------------------------------------------------
 def _make_default_style(default_style):
     """Make the default output style for the Descendant Report."""
-    f = TextDoc.FontStyle()
+    f = BaseDoc.FontStyle()
     f.set_size(14)
-    f.set_type_face(TextDoc.FONT_SANS_SERIF)
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
     f.set_bold(1)
-    p = TextDoc.ParagraphStyle()
+    p = BaseDoc.ParagraphStyle()
     p.set_header_level(1)
     p.set_font(f)
     p.set_description(_("The style used for the title of the page."))
     default_style.add_style("DR-Title",p)
 
-    f = TextDoc.FontStyle()
+    f = BaseDoc.FontStyle()
     for i in range(1,32):
-        p = TextDoc.ParagraphStyle()
+        p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_left_margin(max(10.0,float(i-1)))
         p.set_description(_("The style used for the level %d display.") % i)

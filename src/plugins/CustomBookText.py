@@ -37,7 +37,7 @@ import cStringIO
 #
 #------------------------------------------------------------------------
 import Report
-import TextDoc
+import BaseDoc
 import RelLib
 import Errors
 from QuestionDialog import ErrorDialog
@@ -97,29 +97,29 @@ class CustomText(Report.Report):
 
 def _make_default_style(default_style):
     """Make the default output style for the Custom Text report."""
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the first portion of the custom text.'))
     default_style.add_style("CBT-Initial",para)
     
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set(pad=0.5)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the middle portion of the custom text.'))
     default_style.add_style("CBT-Middle",para)
     
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the last portion of the custom text.'))
     default_style.add_style("CBT-Final",para)

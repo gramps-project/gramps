@@ -5,10 +5,10 @@
 #
 # Modified September 2002 by Gary Shao
 #
-#   Added line_break() method to TextDoc class to allow breaking a line
+#   Added line_break() method to BaseDoc class to allow breaking a line
 #   in a paragraph (in those document generators that support it).
 #
-#   Added start_listing() and end_listing() methods to TextDoc class to
+#   Added start_listing() and end_listing() methods to BaseDoc class to
 #   allow displaying text blocks without automatic filling and justification.
 #   Creating a new listing element seems called for because many document
 #   generator implementation have to use a different mechanism for text
@@ -23,11 +23,11 @@
 #   may be important, such as in code source or column-aligned data.
 #   Especially useful in styles for the new listing element discussed above.
 #
-#   Added start_italic() and end_italic() methods to TextDoc class to
+#   Added start_italic() and end_italic() methods to BaseDoc class to
 #   complement the emphasis of text in a paragraph by bolding with the
 #   ability to italicize segments of text in a paragraph.
 #
-#   Added the show_link() method to TextDoc to enable the creation of
+#   Added the show_link() method to BaseDoc to enable the creation of
 #   hyperlinks in HTML output. Only produces active links in HTML, while
 #   link will be represented as text in other generator output. (active
 #   links are technically possible in PDF documents, but the reportlab
@@ -1041,7 +1041,7 @@ class GraphicsStyle:
 
 #------------------------------------------------------------------------
 #
-# TextDoc
+# BaseDoc
 #
 #------------------------------------------------------------------------
 class BaseDoc:
@@ -1052,7 +1052,7 @@ class BaseDoc:
     """
     def __init__(self,styles,paper_type,template,orientation=PAPER_PORTRAIT):
         """
-        Creates a TextDoc instance, which provides a document generation
+        Creates a BaseDoc instance, which provides a document generation
         interface. This class should never be instantiated directly, but
         only through a derived class.
 

@@ -42,7 +42,7 @@ import gtk
 #------------------------------------------------------------------------
 import Utils
 import Report
-import TextDoc
+import BaseDoc
 import GenericFilter
 import Errors
 
@@ -363,7 +363,7 @@ def write_dot(file, ind_list, orien, width, height, tb_margin,
                                             (height*vpages)-(tb_margin*2)-((vpages-1)*1.0)))
     file.write("page=\"%3.1f,%3.1f\";\n" % (width,height))
 
-    if orien == TextDoc.PAPER_LANDSCAPE:
+    if orien == BaseDoc.PAPER_LANDSCAPE:
         file.write("rotate=90;\n")
 
     if len(ind_list) > 1:

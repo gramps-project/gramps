@@ -40,7 +40,7 @@ import gtk
 #------------------------------------------------------------------------
 import Utils
 import const
-import TextDoc
+import BaseDoc
 import ListModel
 import locale
 from gettext import gettext as _
@@ -160,7 +160,7 @@ class StyleEditor:
         """
         
         self.original_style = style
-        self.style = TextDoc.StyleSheet(style)
+        self.style = BaseDoc.StyleSheet(style)
         self.parent = parent
         self.top = gtk.glade.XML(const.stylesFile,"editor","gramps")
         
@@ -207,18 +207,18 @@ class StyleEditor:
         
         font = p.get_font()
         self.top.get_widget("size").set_value(font.get_size())
-        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             self.top.get_widget("roman").set_active(1)
         else:
             self.top.get_widget("swiss").set_active(1)
         self.top.get_widget("bold").set_active(font.get_bold())
         self.top.get_widget("italic").set_active(font.get_italic())
         self.top.get_widget("underline").set_active(font.get_underline())
-        if p.get_alignment() == TextDoc.PARA_ALIGN_LEFT:
+        if p.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
             self.top.get_widget("lalign").set_active(1)
-        elif p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
+        elif p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
             self.top.get_widget("ralign").set_active(1)
-        elif p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
+        elif p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
             self.top.get_widget("calign").set_active(1)
         else:
             self.top.get_widget("jalign").set_active(1)
@@ -252,21 +252,21 @@ class StyleEditor:
         font.set_size(int(self.top.get_widget("size").get_value()))
     
         if self.top.get_widget("roman").get_active():
-            font.set_type_face(TextDoc.FONT_SANS_SERIF)
+            font.set_type_face(BaseDoc.FONT_SANS_SERIF)
         else:
-            font.set_type_face(TextDoc.FONT_SERIF)
+            font.set_type_face(BaseDoc.FONT_SERIF)
 
         font.set_bold(self.top.get_widget("bold").get_active())
         font.set_italic(self.top.get_widget("italic").get_active())
         font.set_underline(self.top.get_widget("underline").get_active())
         if self.top.get_widget("lalign").get_active():
-            p.set_alignment(TextDoc.PARA_ALIGN_LEFT)
+            p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
         elif self.top.get_widget("ralign").get_active():
-            p.set_alignment(TextDoc.PARA_ALIGN_RIGHT)
+            p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)
         elif self.top.get_widget("calign").get_active():
-            p.set_alignment(TextDoc.PARA_ALIGN_CENTER)            
+            p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)            
         else:
-            p.set_alignment(TextDoc.PARA_ALIGN_JUSTIFY)            
+            p.set_alignment(BaseDoc.PARA_ALIGN_JUSTIFY)            
 
         p.set_right_margin(Utils.gfloat(self.top.get_widget("rmargin").get_text()))
         p.set_left_margin(Utils.gfloat(self.top.get_widget("lmargin").get_text()))
