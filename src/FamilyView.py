@@ -663,14 +663,9 @@ class FamilyView:
            if self.person:
                try:
                    if self.selected_spouse:
-                       Marriage.Marriage(
-                           self.parent,self.family,self.parent.db,
-                           self.parent.new_after_edit, self.load_family,
-                           self.parent.source_view.build_tree)
+                       Marriage.Marriage(self.parent,self.family,self.parent.db)
                    else:
                        AddSpouse.AddSpouse(self.parent,self.parent.db,self.person,
-                                           self.load_family,
-                                           self.parent.people_view.redisplay_person_list,
                                            self.family)
                except:
                    DisplayTrace.DisplayTrace()
@@ -679,9 +674,7 @@ class FamilyView:
         if not self.person:
             return
         try:
-            AddSpouse.AddSpouse(self.parent, self.parent.db, self.person,
-                                self.load_family,
-                                self.parent.people_view.redisplay_person_list)
+            AddSpouse.AddSpouse(self.parent, self.parent.db, self.person)
         except:
             DisplayTrace.DisplayTrace()
 
