@@ -86,20 +86,21 @@ STATUS    = "s"
 
 #-------------------------------------------------------------------------
 #
-# ReportPlugins interface class
+# PluginDialog interface class
 #
 #-------------------------------------------------------------------------
-class ReportPlugins:
+class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,db,active):
+    def __init__(self,db,active,list,msg):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
         
         self.db = db
         self.active = active
+        self.update = None
         
         self.dialog = libglade.GladeXML(const.pluginsFile,"report")
         self.dialog.signal_autoconnect({
@@ -109,42 +110,103 @@ class ReportPlugins:
             })
 
         tree = self.dialog.get_widget("tree")
+        self.top = self.dialog.get_widget("report")
+        self.img = self.dialog.get_widget("image")
+        self.description = self.dialog.get_widget("description")
+        self.status = self.dialog.get_widget("report_status")
+        self.label = self.dialog.get_widget("report_label")
+        self.title = self.dialog.get_widget("title")
+        
         self.run_tool = None
-        build_tree(tree,_reports,self.on_node_selected)
+        self.build_tree(tree,list)
+        self.title.set_text(msg)
+        self.top.set_title("%s - GRAMPS" % msg)
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
         Utils.destroy_passed_object(obj)
         if self.run_tool:
-            self.run_tool(self.db,self.active)
+            if self.update:
+                self.run_tool(self.db,self.active,self.update)
+            else:
+                self.run_tool(self.db,self.active)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
         the dialog box with the description of the selected report"""
-        
-        doc = obj.get_data(DOCSTRING)
-        xpm = obj.get_data(IMAGE)
-        status = ": %s" % obj.get_data(STATUS)
-        title = obj.get_data(TITLE)
-        img = self.dialog.get_widget("image")
-    
-        self.dialog.get_widget("description").set_text(doc)
-        self.dialog.get_widget("report_status").set_text(status)
-        self.dialog.get_widget("report_label").show()
+
+        (task,cat,title,doc,xpm,status) = obj.get_data(TASK)
 
         i,m = gtk.create_pixmap_from_xpm_d(gtk.GtkWindow(),None,xpm)
-        img.set(i,m)
-    
+        self.description.set_text(doc)
+        self.status.set_text(": %s" % status)
+        self.label.show()
+        self.img.set(i,m)
+        self.title.set_text(title)
+
         self.dialog.get_widget("title").set_text(title)
-        self.run_tool = obj.get_data(TASK)
+        self.run_tool = task
+
+    def build_tree(self,tree,list):
+        """Populates a GtkTree with each menu item assocated with a entry
+        in the lists. The list must consist of a tuples with the following
+        format:
+        
+        (task_to_call, category of report, report name, description, image, status)
+        
+        Items in the same category are grouped under the same submen. The
+        task_to_call is bound to the 'select' callback of the menu entry."""
+        
+        # build the tree items and group together based on the category name
+        item_hash = {}
+        for report in list:
+            item = gtk.GtkTreeItem(report[2])
+            item.connect("select",self.on_node_selected)
+            item.set_data(TASK,report)
+            
+            if item_hash.has_key(report[1]):
+                item_hash[report[1]].append(item)
+            else:
+                item_hash[report[1]] = [item]
+
+        # add a submenu for each category, and populate it with the GtkTreeItems
+        # that are associated with it.
+        key_list = item_hash.keys()
+        key_list.sort()
+        for key in key_list:
+            top_item = gtk.GtkTreeItem(key)
+            top_item.show()
+            tree.append(top_item)
+            subtree = gtk.GtkTree()
+            subtree.show()
+            top_item.set_subtree(subtree)
+            subtree.show()
+            for item in item_hash[key]:
+                item.show()
+                subtree.append(item)
+
+#-------------------------------------------------------------------------
+#
+# ReportPlugins interface class
+#
+#-------------------------------------------------------------------------
+class ReportPlugins(PluginDialog):
+    """Displays the dialog box that allows the user to select the
+    report that is desired."""
+
+    def __init__(self,db,active):
+        """Display the dialog box, and build up the list of available
+        reports. This is used to build the selection tree on the left
+        hand side of the dailog box."""
+        PluginDialog.__init__(self,db,active,_reports,_("Report Selection"))
 
 #-------------------------------------------------------------------------
 #
 # ToolPlugins interface class
 #
 #-------------------------------------------------------------------------
-class ToolPlugins:
+class ToolPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the tool
     that is desired."""
 
@@ -153,39 +215,8 @@ class ToolPlugins:
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
 
-        self.db = db
-        self.active = active
+        PluginDialog.__init__(self,db,active,_tools,_("Tool Selection"))
         self.update = update
-        
-        self.dialog = libglade.GladeXML(const.pluginsFile,"pluginsel")
-        self.dialog.signal_autoconnect({
-            "on_apply_clicked"      : self.on_apply_clicked,
-            "on_ok_clicked"         : self.on_apply_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object
-            })
-
-        tree = self.dialog.get_widget("tree")
-        self.run_tool = None
-        build_tree(tree,_tools,self.on_node_selected)
-
-    def on_apply_clicked(self,obj):
-        """Execute the selected tool."""
-
-        Utils.destroy_passed_object(obj)
-        if self.run_tool:
-            self.run_tool(self.db,self.active,self.update)
-
-    def on_node_selected(self,obj):
-        """Updates the informational display on the right hand side of
-        the dialog box with the description of the selected tool."""
-
-        doc = obj.get_data(DOCSTRING)
-        title = obj.get_data(TITLE)
-    
-        self.dialog.get_widget("description").set_text(doc)
-        self.dialog.get_widget("title").set_text(title)
-        self.run_tool = obj.get_data(TASK)
-
 
 #-------------------------------------------------------------------------
 #
@@ -198,7 +229,7 @@ class PluginStatus:
     def __init__(self):
         import cStringIO
         
-        self.glade = libglade.GladeXML(const.plugfile,"plugstat")
+        self.glade = libglade.GladeXML(const.pluginsFile,"plugstat")
         self.top = self.glade.get_widget("plugstat")
         window = self.glade.get_widget("text")
 
@@ -219,52 +250,6 @@ class PluginStatus:
         self.top.run_and_close()
         
 
-#-------------------------------------------------------------------------
-#
-# build_tree
-#
-#-------------------------------------------------------------------------
-def build_tree(tree,list,task):
-    """Populates a GtkTree with each menu item assocated with a entry
-    in the lists. The list must consist of a tuples with the following
-    format:
-
-    (task_to_call, category of report, report name, description, image, status)
-
-    Items in the same category are grouped under the same submen. The
-    task_to_call is bound to the 'select' callback of the menu entry."""
-
-    # build the tree items and group together based on the category name
-    item_hash = {}
-    for report in list:
-        item = gtk.GtkTreeItem(report[2])
-        item.connect("select",task)
-        item.set_data(TASK,report[0])
-        item.set_data(TITLE,report[2])
-        item.set_data(DOCSTRING,report[3])
-        item.set_data(IMAGE,report[4])
-        item.set_data(STATUS,report[5])
-        
-        if item_hash.has_key(report[1]):
-            item_hash[report[1]].append(item)
-        else:
-            item_hash[report[1]] = [item]
-
-    # add a submenu for each category, and populate it with the GtkTreeItems
-    # that are associated with it.
-    key_list = item_hash.keys()
-    key_list.sort()
-    for key in key_list:
-        top_item = gtk.GtkTreeItem(key)
-        top_item.show()
-        tree.append(top_item)
-        subtree = gtk.GtkTree()
-        subtree.show()
-        top_item.set_subtree(subtree)
-        subtree.show()
-        for item in item_hash[key]:
-            item.show()
-            subtree.append(item)
 
 #-------------------------------------------------------------------------
 #
