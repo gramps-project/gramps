@@ -3,6 +3,7 @@
 	* src/po/ru.po: Typo.
 	* doc/gramps-manual/C/usage.xml: Typo.
 	* doc/gramps-manual/ru/usage.xml: Update.
+	* doc/gramps-manual/ru/custom.xml: Update.
 
 2004-01-31  Egyeki Gergely  <egeri@elte.hu>
 	* src/plugins/rel_hu.py: Update

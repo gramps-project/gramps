@@ -19,12 +19,11 @@
 <!-- ================ Customization ================================ -->
 
   <sect1 id="gramps-prefs"> 
-    <title>Settings</title> 
-    <para>To configure &app;, choose 
-      <menuchoice><guimenu>Edit</guimenu>
-      <guimenuitem>Preferences...</guimenuitem></menuchoice>. 
-      The <guilabel>Preferences</guilabel> dialog contains the following 
-      categories: </para>
+    <title>Настройки</title> 
+    <para>Чтобы настроить &app;, выберите
+      <menuchoice><guimenu>Правка</guimenu>
+      <guimenuitem>Настройки...</guimenuitem></menuchoice>. 
+      Диалог <guilabel>Настройки</guilabel> содержит следующие категории: </para>
       
       <itemizedlist>
       <listitem><para><xref linkend="gramps-prefs-usage"/></para></listitem>
@@ -34,22 +33,21 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
-      <title>Usage</title> 
-	<para> This category contains preferences relevant to the 
-	general usage of &app;. It has the following subcategories:</para>
+      <title>Использование</title> 
+	<para> Эта категория содержит настройки, относящиеся к общему 
+	использованию &app;. Она состоит из следующих подкатегорий:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-find"> 
-        <title>Find</title> 
+        <title>Поиск</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Enable autocompletion</guilabel></term>
-	<listitem><para>If this box is checked, &app; will attempt to complete
-	the text as you type it into text entry fields such as family name,
-	place of birth, etc. Completion is attempted based on the match 
-	between the beginning of the text being typed and the corresponding 
-	data already stored in the database. 
+	<varlistentry><term><guilabel>Включить автозавершение</guilabel></term>
+	<listitem><para>Если эта опция отмечена, &app; будет пытаться завершить текст
+	по мере вводя его в поля ввода текста, такие как фамилия, место рождения, и т.д.
+	Завершение базируется на соответствии между началом вводимого текста и 
+	соответствующими данными, хранящимися в базе данных.
 	</para></listitem>
 	</varlistentry>
 
@@ -59,38 +57,37 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-report"> 
-        <title>Report Preferences</title> 
+        <title>Настройки отчётов</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Preferred text format</guilabel></term>
-	<listitem><para> Select the preferred format for text reports 
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Предпочитаемый текстовый формат</guilabel></term>
+	<listitem><para> Выберите предпочитаемый формат для текстовых отчётов из 
+	перечисленных в меню. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Предпочитаемый графический формат</guilabel></term>
+	<listitem><para> Выберите предпочитаемый формат для графических отчётов из 
+	перечисленных в меню.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred graphical format</guilabel></term>
-	<listitem><para> Select the preferred format for graphical reports 
-	from the available formats listed in this menu.
+	<varlistentry><term><guilabel>Предпочитаемый размер бумаги</guilabel></term>
+	<listitem><para> Выберите предпочитаемый размер бумаги, используемый в отчётах,
+	из перечисленных в меню.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred paper size</guilabel></term>
-	<listitem><para> Select the preferred paper size used for reports 
-	from the available sizes listed in this menu.
-	</para></listitem>
+	<varlistentry><term><guilabel>Базовый каталог для отчётов</guilabel></term>
+	<listitem><para> Выберите базовый каталог для отчётов, используя кнопку 
+	<guibutton>Просмотреть...</guibutton>, или введите имя каталога в поле ввода 
+	текста. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default report directory</guilabel></term>
-	<listitem><para> Choose the default directory for the reports using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term><guilabel>Default web site directory</guilabel></term>
-	<listitem><para> Choose the default directory for the web site using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
+	<varlistentry><term><guilabel>Базовый каталог для Web сайтов</guilabel></term>
+	<listitem><para> Выберите базовый каталог для Web сайтов, используя кнопку 
+	<guibutton>Просмотреть...</guibutton>, или введите имя каталога в поле ввода 
+	текста. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -99,17 +96,17 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-res"> 
-        <title>Researcher Information</title> 
+        <title>Информация об исследователе</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Researcher information</guilabel></term>
-	<listitem><para> Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however 
-	none of your exported GEDCOM files will be valid. 
+	<varlistentry><term><guilabel>Информация об исследователе</guilabel></term>
+	<listitem><para> Введите Ваши персональные данные в соответствующие поля 
+	ввода текста. Хотя &app; и запрашивает Ваши данные, эта информация используется
+	только для создания корректных файлов GEDCOM. Корректный файл GEDCOM 
+	требует информацию об исследователе. Если Вы хотите, Вы можете оставить эти 
+	данные незаполненными. Однако, все экспортируемые файлы GEDCOM будут
+	некорректными.
 	</para></listitem>
 	</varlistentry>
 
@@ -119,26 +116,24 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-guess"> 
-        <title>Data Guessing</title> 
+        <title>Угадывание данных</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Family name guessing</guilabel></term>
-	<listitem><para> This option affects the initial family name of a 
-	child when he/she is added to the database. NOTE: this option only
-	affects the initial family name guessed by &app; when the 
-	<guilabel>Edit Person</guilabel> dialog is launched. You can modify
-	that name the way you see fit. Set this option to the value that you 
-	will most frequently use, as it will save you a lot of typing.</para>
+	<varlistentry><term><guilabel>Угадывание фамилии</guilabel></term>
+	<listitem><para> Эта настройка влияет на начальное значение фамилии ребёнка 
+	при добавлении его к базе данных. ЗАМЕТЬТЕ: этот параметр влияет только на 
+	начальное значение фамилии, угадываемое &app; при запуске диалога 
+	<guilabel>Правка личной информации</guilabel>. Вы можете изменить это значение
+	по Вашему желанию. Установите этот параметр на наиболее часто используемое 
+	значение, т.к. это сэкономит Вам работу по вводу данных. </para>
 	
-	<para>If <guilabel>None</guilabel> is selected, no guessing will be 
-	attempted. Selecting <guilabel>Father's surname</guilabel> will use
-	the family name of the father. Selecting <guilabel>Combination of 
-	mother's and father's surname</guilabel> will use the father's name 
-	followed by the mother's name. Finally, <guilabel>Icelandic 
-	style</guilabel> will use the father's given name followed by the 
-	&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
-	Edwinsson).
+	<para>Если выбрано значение <guilabel>Нет</guilabel>, угадывание не будет 
+	предпринято. Выбор <guilabel>Фамилия отца</guilabel> использует фамилию отца.
+	Выбор <guilabel>Комбинация фамилий матери и отца</guilabel> использует фамилию 
+	отца, за которой следует фамилия матери. Наконец, <guilabel>Исландский 
+	стиль</guilabel> использует имя отца с суффиксом "ссон" (напр. сын Вильяма будет
+	угадан как Вильямссон).
 	</para></listitem>
 	</varlistentry>
 
@@ -150,28 +145,27 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-display"> 
-      <title>Display</title> 
-	<para> This category contains preferences relevant to  
-	displaying database records and controls in &app;. 
-	It has the following subcategories:</para>
+      <title>Отображение</title> 
+	<para> Эта категория содержит настройки, относящиеся к отображению записей 
+	базы данных и управления &app;. Она состоит из следующих подкатегорий:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-gen"> 
-        <title>General</title> 
+        <title>Общее</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Default view</guilabel></term>
-	<listitem><para> This determines which view will appear when you 
-        start &app;. Choose between Person and Family views. 
+	<varlistentry><term><guilabel>Базовый вид</guilabel></term>
+	<listitem><para> Эта настройка определяет какой вид появится при запуске &app;. 
+	Выберите Вид Людей или Вид Семьи. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Family view style</guilabel></term>
-	<listitem><para> This selects between the two available styles of the Family 
-        view layout. The <guilabel>Left to right</guilabel> style is similar to the 
-        Family Tree Maker (tm), while the <guilabel>Top to bottom</guilabel> is
-        similar to the Reunion. 
+	<varlistentry><term><guilabel>Стиль вида семья</guilabel></term>
+	<listitem><para> Эта настройка выбирает между двумя возможными стилями
+	расположения Вида Семьи. Стиль <guilabel>Слева направо</guilabel> похож на
+	программу Family Tree Maker (tm), тогда как стиль <guilabel>Сверху вниз</guilabel> 
+	схож с программой Reunion. 
 	</para></listitem>
 	</varlistentry>
 
