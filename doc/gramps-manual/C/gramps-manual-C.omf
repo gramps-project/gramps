@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<omf>
+  <resource>
+    <title>
+      GRAMPS User Manual
+    </title>
+    <subject>
+      <category>GNOME|Applications</category>
+    </subject>
+    <format mime="text/sgml"/>
+    <identifier url="gramps-manual.sgml"/>
+    <language code="C"/>
+  </resource>
+</omf>

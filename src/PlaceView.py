@@ -1,0 +1,225 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2001  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+"""
+Handles the place view for GRAMPS.
+"""
+
+#-------------------------------------------------------------------------
+#
+# GTK modules
+#
+#-------------------------------------------------------------------------
+import gobject
+import gtk
+import gtk.gdk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from RelLib import *
+from QuestionDialog import QuestionDialog
+
+import EditPlace
+import Utils
+import GrampsCfg
+
+from intl import gettext as _
+
+_column_headers = [
+    (_('Place Name'),7,200),
+    (_('ID'),1,50),
+    (_('Church Parish'),8,75),
+    (_('City'),9,75),
+    (_('County'),10,75),
+    (_('State'),11,75),
+    (_('Country'),12,75),
+    (_(''),7,0),
+    (_(''),8,0),
+    (_(''),9,0),
+    (_(''),10,0),
+    (_(''),11,0),
+    (_(''),12,0)]
+
+#-------------------------------------------------------------------------
+#
+# PlaceView class
+#
+#-------------------------------------------------------------------------
+class PlaceView:
+    
+    def __init__(self,db,glade,update):
+        self.db = db
+        self.glade = glade
+        self.list    = glade.get_widget("place_list")
+        self.update_display= update
+
+        self.active = None
+
+        self.id2col = {}
+        self.selection = self.list.get_selection()
+        colno = 0
+        for title in _column_headers:
+            renderer = gtk.CellRendererText ()
+            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
+            colno = colno + 1
+            column.set_clickable (gtk.TRUE)
+            if title[0] == '':
+                column.set_visible(gtk.FALSE)
+            else:
+                column.set_resizable(gtk.TRUE)
+                column.set_visible(gtk.TRUE)
+            column.set_sort_column_id(title[1])
+            column.set_min_width(title[2])
+            self.list.append_column(column)
+
+        self.list.set_search_column(0)
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                   gobject.TYPE_STRING)
+        self.list.set_model(self.model)
+        self.list.get_column(0).clicked()
+
+    def change_db(self,db):
+        self.db = db
+
+    def load_places(self,id=None):
+        """Rebuilds the entire place view. This can be very time consuming
+        on large databases, and should only be called when absolutely
+        necessary"""
+
+        self.model.clear()
+        self.id2col = {}
+
+        for key in self.db.getPlaceKeys():
+            val = self.db.getPlaceDisplay(key)
+                
+            iter = self.model.append()
+            self.id2col[key] = iter
+            self.model.set(iter,
+                           0,   val[0], 1, val[1], 2,   val[2],  3,  val[3],
+                           4,   val[4], 5, val[5], 6,   val[6],  7,  val[7],
+                           8,   val[8], 9, val[9], 10, val[10], 11,  val[11],
+                           12, val[12]
+                           )
+        self.list.connect('button-press-event',self.button_press)
+        
+    def merge(self):
+        if len(self.place_list.selection) != 2:
+            msg = _("Exactly two places must be selected to perform a merge")
+            gnome.ui.GnomeErrorDialog(msg)
+        else:
+            import MergeData
+            p1 = self.place_list.get_row_data(self.place_list.selection[0])
+            p2 = self.place_list.get_row_data(self.place_list.selection[1])
+            p1 = self.db.getPlace(p1)
+            p2 = self.db.getPlace(p2)
+            MergeData.MergePlaces(self.db,p1,p2,self.load_places)
+
+    def button_press(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            store,iter = self.selection.get_selected()
+            id = store.get_value(iter,1)
+        
+            place = self.db.getPlace(id)
+            EditPlace.EditPlace(self,place,self.update_display)
+            return 1
+
+    def insert_place(self,place):
+        self.place_list.append(place.getDisplayInfo())
+        self.place_list.set_row_data(self.place_list.rows-1,place.getId())
+        
+    def new_place_after_edit(self,place):
+        self.db.addPlace(place)
+        self.update(0)
+
+    def update_display(self,place):
+        self.db.buildPlaceDisplay(place.getId())
+        self.update(0)
+
+    def on_add_place_clicked(self,obj):
+        EditPlace.EditPlace(self,Place(),self.new_place_after_edit)
+
+    def moveto(self,row):
+        self.place_list.unselect_all()
+        self.place_list.select_row(row,0)
+        self.place_list.moveto(row)
+        
+    def on_delete_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        elif len(obj.selection) > 1:
+            msg = _("Currently, you can only delete one place at a time")
+            gnome.ui.GnomeErrorDialog(msg)
+            return
+        else:
+            index = obj.selection[0]
+
+        used = 0
+        place = self.db.getPlace(obj.get_row_data(index))
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
+            event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
+            if p.getLdsBaptism():
+                event_list.append(p.getLdsBaptism())
+            if p.getLdsEndowment():
+                event_list.append(p.getLdsEndowment())
+            if p.getLdsSeal():
+                event_list.append(p.getLdsSeal())
+            for event in event_list:
+                if event.getPlace() == place:
+                    used = 1
+
+        for f in self.db.getFamilyMap().values():
+            event_list = f.getEventList()
+            if f.getLdsSeal():
+                event_list.append(f.getLdsSeal())
+            for event in event_list:
+                if event.getPlace() == place:
+                    used = 1
+
+        if used == 1:
+            ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
+            QuestionDialog(_('Delete Place'),
+                           _("This place is currently being used. Delete anyway?"),
+                           _('Delete Place'),ans.query_response,
+                           _('Keep Place'))
+        else:
+            obj.remove(index)
+            self.db.removePlace(place.getId())
+            Utils.modified()
+
+    def on_edit_clicked(self,obj):
+        """Display the selected places in the EditPlace display"""
+        list_store, iter = self.selection.get_selected()
+        if iter:
+            id = list_store.get_value(iter,1)
+            place = self.db.getPlace(id)
+            EditPlace.EditPlace(self, place, self.update_display)
+
+
+
+
