@@ -158,9 +158,6 @@ class PeopleModel(gtk.GenericTreeModel):
                     val += 1
         self.db.set_people_view_maps(self.get_maps())
 
-        print self.sname_sub
-        print self.top_path2iter
-
     def get_maps(self):
         return (None,
                 self.top_path2iter,
@@ -226,10 +223,6 @@ class PeopleModel(gtk.GenericTreeModel):
         except ValueError:
             (surname,index) = self.iter2path[node]
             return (self.top_path2iter.index(surname),index)
-        except:
-            print self.top_path2iter
-            print node
-        
 
     def on_get_column_type(self,index):
         """The visibility column is a boolean, the weight column is an integer,
