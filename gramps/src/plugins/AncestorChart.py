@@ -27,6 +27,7 @@ import string
 from FontScale import string_width
 from DrawDoc import *
 from Report import *
+from SubstKeywords import SubstKeywords
 
 import libglade
 import gtk
@@ -73,56 +74,10 @@ class AncestorChart:
 
 	self.text[index] = []
 
-        n = person.getPrimaryName().getRegularName()
-        N = person.getPrimaryName().getName()
-        b = person.getBirth().getDate()
-        d = person.getDeath().getDate()
-        B = person.getBirth().getPlaceName()
-        D = person.getDeath().getPlaceName()
-        if len(person.getFamilyList()) > 0:
-            f = person.getFamilyList()[0]
-            if f.getFather() == person:
-                s = f.getMother().getPrimaryName().getRegularName()
-                S = f.getMother().getPrimaryName().getName()
-            else:
-                s = ""
-                S = ""
-            m = ''
-            M = ''
-            for e in f.getEventList():
-                if e.getName == 'Marriage':
-                    m = e.getDate()
-                    M = e.getPlace()
-        else:
-            s = ""
-            S = ""
-            m = ""
-            M = ""
-            
-        i = "%s" % person.getId()
-        A = GrampsCfg.attr_name
-        a = ""
-        for attr in person.getAttributeList():
-            if attr.getType() == GrampsCfg.attr_name:
-                a = attr.getValue()
-                break
-
+        subst = SubstKeywords(person)
+        
         for line in self.display:
-            line = string.replace(line,"$n",n)
-            line = string.replace(line,"$N",N)
-            line = string.replace(line,"$b",b)
-            line = string.replace(line,"$B",B)
-            line = string.replace(line,"$d",d)
-            line = string.replace(line,"$D",D)
-            line = string.replace(line,"$i",i)
-            line = string.replace(line,"$a",a)
-            line = string.replace(line,"$A",A)
-            line = string.replace(line,"$S",S)
-            line = string.replace(line,"$s",s)
-            line = string.replace(line,"$m",m)
-            line = string.replace(line,"$M",M)
-            line = string.replace(line,"$$",'$')
-            self.text[index].append(line)
+            self.text[index].append(subst.replace(line))
 
         self.font = self.doc.style_list["Normal"].get_font()
 	for line in self.text[index]:
