@@ -66,6 +66,7 @@ _HANDLE_COL = len(column_names)
 class SourceView:
     def __init__(self,parent,db,glade):
         self.parent = parent
+        self.parent.connect('database-changed',self.change_db)
         self.glade = glade
         self.list = glade.get_widget("source_list")
         #self.list.set_property('fixed-height-mode',True)
@@ -178,8 +179,7 @@ class SourceView:
             source = self.parent.db.get_source_from_handle(handle)
 
             the_lists = Utils.get_source_referents(handle,self.parent.db)
-            ans = EditSource.DelSrcQuery(source,self.parent.db,the_lists,
-                                         self.model.delete_row_by_handle)
+            ans = EditSource.DelSrcQuery(source,self.parent.db,the_lists)
 
             if filter(None,the_lists): # quick test for non-emptiness
                 msg = _('This source is currently being used. Deleting it '

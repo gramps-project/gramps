@@ -207,6 +207,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.close()
 
     def close(self):
+        if not self.person_map:
+            return
         self.name_group.close()
         self.person_map.close()
         self.family_map.close()
@@ -402,7 +404,6 @@ class GrampsBSDDB(GrampsDbBase):
         print 'Successfully finished all upgrades'
 
     def upgrade_2(self,child_rel_notrans):
-        print "Upgrading to DB version 2"
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -428,7 +429,6 @@ class GrampsBSDDB(GrampsDbBase):
         cursor.close()
 
     def upgrade_3(self):
-        print "Upgrading to DB version 3"
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -444,7 +444,6 @@ class GrampsBSDDB(GrampsDbBase):
         cursor.close()
 
     def upgrade_4(self,child_rel_notrans):
-        print "Upgrading to DB version 4"
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -476,6 +475,7 @@ class GrampsBSDDB(GrampsDbBase):
         #       comments into note in SourceRefs
         # in all primary and secondary objects
         # Also MediaObject gets place attribute removed
+
         cursor = self.get_media_cursor()
         data = cursor.first()
         while data:

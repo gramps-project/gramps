@@ -182,7 +182,7 @@ class DispBox:
 #
 #-------------------------------------------------------------------------
 class PedigreeView:
-    def __init__(self,parent,canvas,update,status_bar,change_active,lp):
+    def __init__(self,parent,canvas,update,status_bar,lp):
         self.parent = parent
         self.canvas = canvas
         self.canvas_items = []
@@ -197,7 +197,6 @@ class PedigreeView:
         self.y2 = 0
         self.update = update
         self.sb = status_bar
-        self.change_active_person = change_active
         self.load_person = lp
         self.anchor = None
         self.canvas.parent.connect('button-press-event',self.on_canvas_press)
@@ -339,7 +338,7 @@ class PedigreeView:
                                               ypts[mindex], h, w, p[0], style, p[1])
                 p = lst[i]
                 box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],self.parent.db,
-                              self.change_active_person, 
+                              self.parent.change_active_person, 
                               self.load_person, self.build_full_nav_menu)
                 self.boxes.append(box)
         self.change_active_person(person)

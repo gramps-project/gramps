@@ -189,8 +189,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         self.bookmarks = []
         self.path = ""
         self.place2title = {}
-        self.name_groups = {}
-
+        self.name_group = {}
 
     def need_upgrade(self):
         return False

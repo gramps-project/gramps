@@ -375,11 +375,10 @@ class EditSource:
 
 
 class DelSrcQuery:
-    def __init__(self,source,db,the_lists,update):
+    def __init__(self,source,db,the_lists):
         self.source = source
         self.db = db
         self.the_lists = the_lists
-        self.update = update
 
     def query_response(self):
         trans = self.db.transaction_begin()
@@ -418,7 +417,7 @@ class DelSrcQuery:
             media = self.db.get_object_from_handle(handle)
             media.remove_source_references(src_handle_list)
             self.db.commit_media_object(media,trans)
-        
+
         self.db.remove_source(self.source.get_handle(),trans)
-        self.db.transaction_commit(trans,_("Delete Source (%s)") % self.source.get_title())
-        self.update(self.source.get_handle())
+        self.db.transaction_commit(
+            trans,_("Delete Source (%s)") % self.source.get_title())

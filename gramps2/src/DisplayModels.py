@@ -72,9 +72,6 @@ class BaseModel(gtk.GenericTreeModel):
             self.datalist = []
             self.indexlist = []
         
-    def on_row_inserted(self,obj,path,node):
-        self.rebuild_data()
-
     def add_row_by_handle(self,handle):
         self.datalist = self.sort_keys()
         i = 0
@@ -88,7 +85,15 @@ class BaseModel(gtk.GenericTreeModel):
 
     def delete_row_by_handle(self,handle):
         index = self.indexlist[handle]
-        self.rebuild_data()
+
+        self.indexlist = {}
+        self.datalist = []
+        i = 0
+        for key in self.sort_keys():
+            if key != handle:
+                self.indexlist[key] = i
+                self.datalist.append(key)
+                i += 1
         self.row_deleted(index)
 
     def update_row_by_handle(self,handle):

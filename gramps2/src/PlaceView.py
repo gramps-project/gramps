@@ -69,15 +69,15 @@ class PlaceView:
     
     def __init__(self,parent,db,glade):
         self.parent = parent
+        self.parent.connect('database-changed',self.change_db)
+
         self.glade  = glade
         self.list   = glade.get_widget("place_list")
         self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
         self.selection = self.list.get_selection()
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
-
         self.renderer = gtk.CellRendererText()
-
         self.model = DisplayModels.PlaceModel(self.parent.db)
             
         self.list.set_model(self.model)

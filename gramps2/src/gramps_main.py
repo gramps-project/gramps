@@ -52,6 +52,7 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 import RelLib
+import GrampsDbBase
 import GrampsBSDDB
 import PedView
 import MediaView
@@ -77,11 +78,10 @@ import RelImage
 import RecentFiles
 import NameDisplay
 import Errors
+import GrampsDBCallback
 
 from GrampsMime import mime_type_is_defined
-
 from QuestionDialog import *
-
 from bsddb import db
 
 #-------------------------------------------------------------------------
@@ -106,9 +106,15 @@ MEDIA_VIEW    = 6
 # Main GRAMPS class
 #
 #-------------------------------------------------------------------------
-class Gramps:
+class Gramps(GrampsDBCallback.GrampsDBCallback):
+
+    __signals__ = {
+        'database-changed' : (GrampsDbBase.GrampsDbBase,),
+        }
 
     def __init__(self,args):
+
+        GrampsDBCallback.GrampsDBCallback.__init__(self)
 
         try:
             self.program = gnome.program_init('gramps',const.version, 
@@ -318,9 +324,9 @@ class Gramps:
         self.family_view = FamilyView.FamilyView(self)
         self.people_view = PeopleView.PeopleView(self)
         
-        self.pedigree_view = PedView.PedigreeView(self,
-            self.canvas, self.modify_statusbar, self.statusbar,
-            self.change_active_person, self.load_person
+        self.pedigree_view = PedView.PedigreeView(
+            self, self.canvas, self.modify_statusbar, self.statusbar,
+            self.load_person
             )
         
         self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop)
@@ -496,12 +502,7 @@ class Gramps:
         if self.active_person:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
-        self.place_view.change_db(self.db)
-        self.family_view.change_db()
-        self.people_view.change_db(self.db)
-        self.people_view.apply_filter()
-        self.source_view.change_db(self.db)
-        self.media_view.change_db(self.db)
+        self.emit('database-changed',(self.db,))
 
     def exit_and_undo(self,*args):
         self.db.abort_changes()
@@ -1111,20 +1112,13 @@ class Gramps:
             
     def full_update(self):
         """Brute force display update, updating all the pages"""
-        self.people_view.person_model.rebuild_data()
         if Utils.wasHistory_broken():
             self.clear_history()
             Utils.clearHistory_broken()
-        self.family_view.change_db()
-        self.people_view.change_db(self.db)
-        self.people_view.apply_filter()
+        self.emit('database-changed',(self.db,))
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
         self.goto_active_person()
-
-        self.place_view.change_db(self.db)
-        self.source_view.change_db(self.db)
-        self.media_view.change_db(self.db)
 
     def update_display(self,changed=True):
         """Incremental display update, update only the displayed page"""
@@ -1240,8 +1234,8 @@ class Gramps:
         self.gtop.get_widget('edit_bookmarks').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools_menu').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools').set_sensitive(not self.db.readonly)
+
         self.goto_active_person()
-        self.update_display()
         return 1
 
     def save_media(self,filename):
