@@ -66,6 +66,7 @@ import Plugins
 import sort
 import Utils
 import Bookmarks
+import Sorter
 import ListColors
 import GrampsCfg
 import EditPerson
@@ -100,16 +101,7 @@ class Gramps:
         self.active_person = None
         self.active_spouse = None
         self.bookmarks = None
-        self.c_birth_date = 4
-        self.c_birth_order = 0
         self.c_details = 6
-        self.c_gender = 3
-        self.c_id = 2
-        self.c_name = 1
-        self.c_scol = self.c_birth_order
-        self.c_sdir = GTK.SORT_ASCENDING
-        self.scol = 0
-        self.sdir = GTK.SORT_ASCENDING
         self.id2col = {}
 
         gtk.rc_parse(const.gtkrcFile)
@@ -129,18 +121,25 @@ class Gramps:
         self.db.set_sprefix(GrampsCfg.sprefix)
         self.db.set_pprefix(GrampsCfg.pprefix)
 
-        (self.scol,self.sdir) = GrampsCfg.get_sort_cols("person",self.scol,self.sdir)
-
         GrampsCfg.loadConfig(self.full_update)
         self.init_interface()
 
-        self.col_map = [ 5, 1, 2, 6, 7 ]
-        self.col_arr = [ self.nameArrow, self.idArrow, self.genderArrow,
-                         self.dateArrow, self.deathArrow]
+        plist_map = [ (5, self.gtop.get_widget("nameSort")),
+                      (1, self.gtop.get_widget("idSort")),
+                      (2, self.gtop.get_widget("genderSort")),
+                      (6, self.gtop.get_widget("dateSort")),
+                      (7, self.gtop.get_widget("deathSort"))]
 
-        self.change_sort(self.scol,self.sdir==GTK.SORT_DESCENDING)
-        self.set_sort_arrow(self.scol,self.sdir)
+        date_arrow = self.gtop.get_widget("cDateSort")
+        clist_map = [ (0, date_arrow),
+                      (1, self.gtop.get_widget("cNameSort")),
+                      (2, self.gtop.get_widget("cIDSort")),
+                      (3, self.gtop.get_widget("cGenderSort")),
+                      (4, date_arrow)]
         
+        self.person_sort = Sorter.Sorter(self.person_list, plist_map, 'person', self.topWindow)
+        self.child_sort = Sorter.ChildSorter(self.child_list, clist_map, 'child', self.topWindow)
+                                                  
         if arg != None:
             if string.upper(arg[-3:]) == "GED":
                 self.read_gedcom(arg)
@@ -169,16 +168,7 @@ class Gramps:
         self.person_list = self.gtop.get_widget("person_list")
         self.filter_list = self.gtop.get_widget("filter_list")
         self.notebook    = self.gtop.get_widget("notebook1")
-        self.nameArrow   = self.gtop.get_widget("nameSort")
-        self.genderArrow = self.gtop.get_widget("genderSort")
-        self.idArrow     = self.gtop.get_widget("idSort")
-        self.dateArrow   = self.gtop.get_widget("dateSort")
-        self.deathArrow  = self.gtop.get_widget("deathSort")
         self.merge_button= self.gtop.get_widget("merge")
-        self.cNameArrow  = self.gtop.get_widget("cNameSort")
-        self.cGenderArrow= self.gtop.get_widget("cGenderSort")
-        self.cIDArrow    = self.gtop.get_widget("cIDSort")
-        self.cDateArrow  = self.gtop.get_widget("cDateSort")
         self.canvas      = self.gtop.get_widget("canvas1")
         self.child_list  = self.gtop.get_widget("child_list")
         self.toolbar     = self.gtop.get_widget("toolbar1")
@@ -214,16 +204,16 @@ class Gramps:
         self.notebook.set_show_tabs(GrampsCfg.usetabs)
 
         self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
-        self.child_list.set_column_justification(self.c_birth_order,GTK.JUSTIFY_RIGHT)
+        self.child_list.set_column_justification(0,GTK.JUSTIFY_RIGHT)
 
         self.pedigree_view = PedigreeView(self.canvas,
                                           self.modify_statusbar,
                                           self.statusbar,
                                           self.change_active_person,
                                           self.load_person)
-        self.place_view  = PlaceView(self.db,self.gtop,self.update_display)
-        self.source_view = SourceView(self.db,self.gtop,self.update_display)
-        self.media_view  = MediaView(self.db,self.gtop,self.update_display)
+        self.place_view  = PlaceView(self.db,self.gtop,self.update_display,self.topWindow)
+        self.source_view = SourceView(self.db,self.gtop,self.update_display,self.topWindow)
+        self.media_view  = MediaView(self.db,self.gtop,self.update_display,self.topWindow)
 
         self.gtop.signal_autoconnect({
             "delete_event" : self.delete_event,
@@ -246,7 +236,6 @@ class Gramps:
             "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
             "on_child_list_button_press" : self.on_child_list_button_press,
             "on_child_list_select_row" : self.on_child_list_select_row,
-            "on_child_list_click_column" : self.on_child_list_click_column,
             "on_child_list_row_move" : self.on_child_list_row_move,
             "on_choose_parents_clicked" : self.on_choose_parents_clicked, 
             "on_contents_activate" : self.on_contents_activate,
@@ -282,9 +271,7 @@ class Gramps:
             "on_pedegree1_activate" : self.on_pedegree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
             "on_person_list_button_press" : self.on_person_list_button_press,
-            "on_person_list_click_column" : self.on_person_list_click_column,
             "on_person_list_select_row" : self.on_person_list_select_row,
-            "on_place_list_click_column" : self.place_view.on_click_column,
             "on_main_key_release_event" : self.on_main_key_release_event,
             "on_add_media_clicked" : self.media_view.create_add_dialog,
             "on_media_activate" : self.on_media_activate,
@@ -663,9 +650,8 @@ class Gramps:
         self.notebook.set_show_tabs(GrampsCfg.usetabs)
         self.child_list.set_column_visibility(self.c_details,
                                               GrampsCfg.show_detail)
-        self.child_list.set_column_visibility(self.c_id,GrampsCfg.id_visible)
-        self.child_list.set_column_visibility(self.c_birth_order,
-                                              GrampsCfg.index_visible)
+        self.child_list.set_column_visibility(2,GrampsCfg.id_visible)
+        self.child_list.set_column_visibility(0,GrampsCfg.index_visible)
         self.apply_filter()
         self.load_family()
         self.source_view.load_sources()
@@ -926,7 +912,7 @@ class Gramps:
             
         self.db.removePerson(self.active_person.getId())
         self.remove_from_person_list(self.active_person)
-        self.person_list.sort()
+        self.person_list.sort_list()
         self.update_display(0)
         Utils.modified()
 
@@ -968,81 +954,6 @@ class Gramps:
             person = self.db.getPerson(obj.get_row_data(row))
             self.change_active_person(person)
 
-    def on_person_list_click_column(self,obj,column):
-        self.change_sort(column)
-
-    def set_sort_arrow(self,column,direct):
-        arrow = self.col_arr[column]
-        for a in self.col_arr:
-            if arrow != a:
-                a.hide()
-        arrow.show()
-        if direct == GTK.SORT_ASCENDING:
-            arrow.set(GTK.ARROW_DOWN,2)
-        else:
-            arrow.set(GTK.ARROW_UP,2)
-    
-    def change_sort(self,column,change=1):
-        arrow = self.col_arr[column]
-        for a in self.col_arr:
-            if arrow != a:
-                a.hide()
-        arrow.show()
-
-        self.person_list.set_sort_column(self.col_map[column])
-        self.person_list.set_sort_type(self.sdir)
-
-        self.sort_person_list()
-
-        if change:
-            if self.scol == column:
-                if self.sdir == GTK.SORT_DESCENDING:
-                    self.sdir = GTK.SORT_ASCENDING
-                    arrow.set(GTK.ARROW_DOWN,2)
-                else:
-                    self.sdir = GTK.SORT_DESCENDING
-                    arrow.set(GTK.ARROW_UP,2)
-            else:
-                self.sdir = GTK.SORT_ASCENDING
-                arrow.set(GTK.ARROW_DOWN,2)
-        self.scol = column
-
-        if self.active_person:
-            pid = self.active_person.getId()
-            if self.id2col.has_key(pid):
-                data = self.id2col[pid]
-                row = self.person_list.find_row_from_data(data)
-                self.person_list.moveto(row)
-        GrampsCfg.save_sort_cols("person",self.scol,self.sdir)
-    
-    def sort_person_list(self):
-        self.person_list.freeze()
-        self.person_list.sort()
-        self.person_list.sort()
-        if ListColors.get_enable():
-            try:
-                loddbg = ListColors.oddbg
-                loddfg = ListColors.oddfg
-                levenbg = ListColors.evenbg
-                levenfg = ListColors.evenfg
-
-                cmap = self.topWindow.get_colormap()
-                oddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
-                oddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
-                evenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
-                evenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
-                rows = self.person_list.rows
-                for i in range(0,rows,2):
-                    self.person_list.set_background(i,oddbg)
-                    self.person_list.set_foreground(i,oddfg)
-                    if i != rows:
-                        self.person_list.set_background(i+1,evenbg)
-                        self.person_list.set_foreground(i+1,evenfg)
-            except OverflowError:
-                pass
-        self.goto_active_person()
-        self.person_list.thaw()
-    
     def on_child_list_button_press(self,obj,event):
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             self.load_person(self.active_child)
@@ -1096,81 +1007,6 @@ class Gramps:
         id = obj.get_row_data(row)
         self.active_child = id 
 
-    def on_child_list_click_column(self,clist,column):
-        """Called when the user selects a column header on the self.person_list
-        window. Change the sort function (column 0 is the name column, and
-        column 2 is the birthdate column), set the arrows on the labels to
-        the correct orientation, and then call apply_filter to redraw the
-        list"""
-        if column == self.c_name:
-            self.child_change_sort(clist,self.c_name,self.cNameArrow)
-        elif column == self.c_gender:
-            self.child_change_sort(clist,self.c_gender,self.cGenderArrow)
-        elif column == self.c_id:
-            self.child_change_sort(clist,self.c_id,self.cIDArrow)
-        elif column == self.c_birth_order or column == self.c_birth_date:
-            self.child_change_sort(clist,self.c_birth_order,self.cDateArrow)
-        else:
-            return
-
-        self.sort_child_list(clist)
-        if self.active_child and self.id2col.has_key(self.active_child.getId()):
-            row = clist.find_row_from_data(self.id2col[
-                self.active_child.getId()])
-            clist.moveto(row)
-
-    def child_change_sort(self,clist,column,arrow):
-        self.cNameArrow.hide()
-        self.cDateArrow.hide()
-        self.cIDArrow.hide()
-        self.cGenderArrow.hide()
-        arrow.show()
-    
-        if self.c_scol == column:
-            if self.c_sdir == GTK.SORT_DESCENDING:
-                self.c_sdir = GTK.SORT_ASCENDING
-                arrow.set(GTK.ARROW_DOWN,2)
-            else:
-                self.c_sdir = GTK.SORT_DESCENDING
-                arrow.set(GTK.ARROW_UP,2)
-        else:
-            self.c_sdir = GTK.SORT_ASCENDING
-        self.c_scol = column
-        clist.set_sort_type(self.c_sdir)
-        clist.set_sort_column(self.c_scol)
-        clist.set_reorderable(self.c_scol == self.c_birth_order)
-
-    def sort_child_list(self,clist):
-        clist.freeze()
-        clist.sort()
-        clist.sort()
-        if ListColors.get_enable():
-            try:
-                loddbg = ListColors.oddbg
-                loddfg = ListColors.oddfg
-                levenbg = ListColors.evenbg
-                levenfg = ListColors.evenfg
-                lafg = ListColors.ancestorfg
-
-                cmap = self.topWindow.get_colormap()
-                oddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
-                oddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
-                evenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
-                evenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
-                ancestorfg = cmap.alloc(lafg[0],lafg[1],lafg[2])
-                rows = clist.rows
-                for i in range(0,rows):
-                    clist.set_background(i,(evenbg,oddbg)[i%2])
-                    id = clist.get_row_data(i)
-                    person = self.db.getPerson(id)
-                    if (person.getAncestor()):
-                        clist.set_foreground(i,ancestorfg)
-                    else:
-                        clist.set_foreground(i,(evenfg,oddfg)[i%2])
-            except OverflowError:
-                pass
-        clist.thaw()
-
     def on_child_list_row_move(self,clist,fm,to):
         """Validate whether or not this child can be moved within the clist.
         This routine is called in the middle of the clist's callbacks, so
@@ -1193,7 +1029,7 @@ class Gramps:
 
         # This function deals with ascending order lists.  Convert if
         # necessary.
-        if (self.c_sdir == GTK.SORT_DESCENDING):
+        if (self.child_sort.sort_direction() == GTK.SORT_DESCENDING):
             clist_order.reverse()
             max_index = len(clist_order) - 1
             fm = max_index - fm
@@ -1223,13 +1059,13 @@ class Gramps:
 
         # Convert the original list back to whatever ordering is being
         # used by the clist itself.
-        if (self.c_sdir == GTK.SORT_DESCENDING):
+        if self.child_sort.sort_direction() == GTK.SORT_DESCENDING:
             clist_order.reverse()
 
         # Update the clist indices so any change of sorting works
         i = 0
         for tmp in clist_order:
-            clist.set_text(i,self.c_birth_order,"%2d"%(new_order[tmp]+1))
+            clist.set_text(i,0,"%2d"%(new_order[tmp]+1))
             i = i + 1
 
         # Need to save the changed order
@@ -1447,7 +1283,7 @@ class Gramps:
         if self.DataFilter.compare(person):
             self.person_list.insert(0,person.getDisplayInfo())
             self.person_list.set_row_data(0,person.getId())
-        self.sort_person_list()
+        self.person_sort.sort_list()
 
     def load_person(self,person):
         if person:
@@ -1680,9 +1516,6 @@ class Gramps:
         self.active_child = None
         
         i = 0
-        self.child_list.set_sort_type(self.c_sdir)
-        self.child_list.set_sort_column(self.c_scol)
-        self.child_list.set_reorderable(self.c_scol == self.c_birth_order)
 
         if family:
             if self.active_person == family.getFather():
@@ -1738,7 +1571,7 @@ class Gramps:
                 else:	
                     fv_prev.set_sensitive(0)
             self.child_list.set_data("f",family)
-            self.sort_child_list(self.child_list)
+            self.child_sort.sort_list()
         else:
             self.active_spouse = None
             fv_prev.set_sensitive(0)
@@ -1857,7 +1690,7 @@ class Gramps:
                         self.person_list.remove(row)
 
         self.person_list.thaw()
-        self.sort_person_list()
+        self.person_sort.sort_list()
 
     def on_home_clicked(self,obj):
         temp = self.db.getDefaultPerson()

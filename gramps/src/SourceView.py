@@ -45,6 +45,7 @@ from QuestionDialog import QuestionDialog
 import EditSource
 import Utils
 import GrampsCfg
+import Sorter
 
 #-------------------------------------------------------------------------
 #
@@ -55,29 +56,19 @@ from intl import gettext
 _ = gettext
 
 class SourceView:
-    def __init__(self,db,glade,update):
+    def __init__(self,db,glade,update,top_window):
         self.glade = glade
         self.db = db
         self.update = update
+        self.top_window = top_window
+
+        arrow_map = [(3, glade.get_widget("title_arrow")),
+                     (1, glade.get_widget("src_id_arrow")),
+                     (4, glade.get_widget("author_arrow"))]
         self.source_list = glade.get_widget("source_list")
-        self.title_arrow = glade.get_widget("title_arrow")
-        self.id_arrow    = glade.get_widget("src_id_arrow")
-        self.author_arrow= glade.get_widget("author_arrow")
         self.source_list.set_column_visibility(3,0)
         self.source_list.set_column_visibility(4,0)
-        self.id_arrow.hide()
-        self.author_arrow.hide()
-        self.sort_map = [3,1,4,-1]
-        self.sort_arrow = [self.title_arrow, self.id_arrow, self.author_arrow]
-        self.source_list.connect('click-column',self.click_column)
-
-        self.scol,self.sdir = GrampsCfg.get_sort_cols("source",3,GTK.SORT_ASCENDING)
-        if self.scol >= len(self.sort_arrow):
-            self.scol = 0
-            
-        self.source_list.set_sort_type(self.sdir)
-        self.source_list.set_sort_column(self.sort_map[self.scol])
-        self.set_arrow(self.scol)
+        self.source_sort = Sorter.Sorter(self.source_list,arrow_map,'source',self.top_window)
 
     def change_db(self,db):
         self.db = db
@@ -86,50 +77,6 @@ class SourceView:
         self.source_list.unselect_all()
         self.source_list.select_row(row,0)
         self.source_list.moveto(row)
-
-    def set_arrow(self,column):
-
-        for a in self.sort_arrow:
-            a.hide()
-
-        a = self.sort_arrow[column]
-        a.show()
-        if self.sdir == GTK.SORT_ASCENDING:
-            a.set(GTK.ARROW_DOWN,2)
-        else:
-            a.set(GTK.ARROW_UP,2)
-        
-    def click_column(self,obj,column):
-
-        new_col = self.sort_map[column]
-        if new_col == -1:
-            return
-
-        data = None
-        if len(obj.selection) == 1:
-            id = obj.get_row_data(obj.selection[0])
-            data = self.db.getSourceMap()[id]
-        
-        obj.freeze()
-        if new_col == self.scol:
-            if self.sdir == GTK.SORT_ASCENDING:
-                self.sdir = GTK.SORT_DESCENDING
-            else:
-                self.sdir = GTK.SORT_ASCENDING
-        else:
-            self.sdir = GTK.SORT_ASCENDING
-
-        self.set_arrow(column)
-            
-        obj.set_sort_type(self.sdir)
-        obj.set_sort_column(new_col)
-        self.scol = new_col
-        GrampsCfg.save_sort_cols("source",self.scol,self.sdir)
-        obj.sort()
-        if data:
-            row = obj.find_row_from_data(data)
-            obj.moveto(row)
-        obj.thaw()
         
     def load_sources(self):
 
@@ -152,7 +99,7 @@ class SourceView:
             self.source_list.select_row(current_row,0)
             self.source_list.moveto(current_row)
 
-        self.source_list.sort()
+        self.source_sort.sort_list()
         self.source_list.thaw()
     
     def button_press(self,obj,event):

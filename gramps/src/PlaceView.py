@@ -42,6 +42,7 @@ from QuestionDialog import QuestionDialog
 import EditPlace
 import Utils
 import GrampsCfg
+import Sorter
 
 from intl import gettext
 _ = gettext
@@ -53,23 +54,12 @@ _ = gettext
 #-------------------------------------------------------------------------
 class PlaceView:
     
-    def __init__(self,db,glade,update):
+    def __init__(self,db,glade,update,top_window):
         self.db = db
         self.glade = glade
+        self.top_window = top_window
         self.place_list    = glade.get_widget("place_list")
-        self.place_arrow   = glade.get_widget("place_arrow")
-        self.place_id_arrow= glade.get_widget("place_id_arrow")
-        self.city_arrow    = glade.get_widget("city_arrow")
-        self.parish_arrow  = glade.get_widget("parish_arrow")
-        self.county_arrow  = glade.get_widget("county_arrow")
-        self.state_arrow   = glade.get_widget("state_arrow")
-        self.country_arrow = glade.get_widget("country_arrow")
         self.update_display= update
-
-        self.sort_arrow = [ self.place_arrow, self.place_id_arrow,
-                            self.parish_arrow, self.city_arrow,
-                            self.county_arrow, self.state_arrow,
-                            self.country_arrow ]
 
         for i in range(7,13):
             self.place_list.set_column_visibility(i,0)
@@ -77,14 +67,17 @@ class PlaceView:
         self.place_list.connect('button-press-event',self.on_button_press_event)
         self.place_list.connect('select-row',self.select_row)
         self.active = None
-        self.sort_map = [7,1,8,9,10,11,12]
 
-        # Restore the previous sort column
-        
-        self.sort_col,self.sort_dir = GrampsCfg.get_sort_cols("place",0,GTK.SORT_ASCENDING)
-        self.set_arrow(self.sort_col)
-        self.place_list.set_sort_column(self.sort_map[self.sort_col])
-        self.place_list.set_sort_type(self.sort_dir)
+        plist_map = [(7,  glade.get_widget("place_arrow")),
+                     (1,  glade.get_widget("place_id_arrow")),
+                     (8,  glade.get_widget("parish_arrow")),
+                     (9,  glade.get_widget("city_arrow")),
+                     (10, glade.get_widget("county_arrow")),
+                     (11, glade.get_widget("state_arrow")),
+                     (12, glade.get_widget("country_arrow"))]
+
+        self.place_sort = Sorter.Sorter(self.place_list,plist_map,'place',self.top_window)
+
 
     def change_db(self,db):
         self.db = db
@@ -117,7 +110,7 @@ class PlaceView:
         else:
             self.active = None
 
-        self.place_list.sort()
+        self.place_sort.sort_list()
         self.place_list.thaw()
         
     def select_row(self,obj,row,b,c):
@@ -143,45 +136,6 @@ class PlaceView:
                 EditPlace.EditPlace(self.active,self.db,
                                     self.update_display_after_edit)
 
-    def set_arrow(self,column):
-        for a in self.sort_arrow:
-            a.hide()
-
-        a = self.sort_arrow[column]
-        a.show()
-        if self.sort_dir == GTK.SORT_ASCENDING:
-            a.set(GTK.ARROW_DOWN,2)
-        else:
-            a.set(GTK.ARROW_UP,2)
-
-    def on_click_column(self,obj,column):
-        obj.freeze()
-        if len(obj.selection):
-            id = obj.get_row_data(obj.selection[0])
-            sel = id
-        else:
-            sel = None
-        
-        for a in self.sort_arrow:
-            a.hide()
-        if self.sort_col == column:
-            if self.sort_dir == GTK.SORT_DESCENDING:
-                self.sort_dir = GTK.SORT_ASCENDING
-            else:
-                self.sort_dir = GTK.SORT_DESCENDING
-        else:
-            self.sort_dir = GTK.SORT_ASCENDING
-        self.sort_col = column
-        self.set_arrow(column)
-        self.place_list.set_sort_type(self.sort_dir)
-        self.place_list.set_sort_column(self.sort_map[self.sort_col])
-        GrampsCfg.save_sort_cols("place",self.sort_col,self.sort_dir)
-
-        self.place_list.sort()
-        if sel:
-            self.place_list.moveto(self.place_list.find_row_from_data(sel))
-        obj.thaw()
-
     def insert_place(self,place):
         self.place_list.append(place.getDisplayInfo())
         self.place_list.set_row_data(self.place_list.rows-1,place.getId())
@@ -190,7 +144,7 @@ class PlaceView:
         self.place_list.freeze()
         self.db.addPlace(place)
         self.insert_place(place)
-        self.place_list.sort()
+        self.place_sort.sort_list()
         self.place_list.thaw()
 
     def update_display_after_edit(self,place):
@@ -204,7 +158,7 @@ class PlaceView:
 
         self.place_list.remove(index)
         self.insert_place(place)
-        self.place_list.sort()
+        self.place_sort.sort_list()
         self.place_list.thaw()
 
     def on_add_place_clicked(self,obj):
