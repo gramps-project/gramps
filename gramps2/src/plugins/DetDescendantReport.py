@@ -180,7 +180,7 @@ class DetDescendantReport(Report.Report):
             self.doc.start_paragraph("DDR-Generation")
             text = self.gen.get(generation+1,
                         _("Generation %(generation_number)d") % {
-                                'generation_number' : generation })
+                                'generation_number' : generation+1 })
             self.doc.write_text(text)
             self.doc.end_paragraph()
             if self.childRef:
@@ -192,7 +192,7 @@ class DetDescendantReport(Report.Report):
                 person = self.database.get_person_from_handle(person_handle)
                 self.gen_handles[person_handle] = key
                 dupPerson = self.write_person(key)
-                if dupPerson == 0:		# Is this a duplicate ind record
+                if dupPerson == 0:    # Is this a duplicate ind record
                     if self.listChildren:
                         for family_handle in person.get_family_handle_list():
                             family = self.database.get_family_from_handle(family_handle)
@@ -231,7 +231,7 @@ class DetDescendantReport(Report.Report):
                 if self.map[key] == self.map[dkey]:
                     self.doc.write_text(_(" is the same person as [%s].") % str(dkey))
                     self.doc.end_paragraph()
-                    return 1	# Duplicate person
+                    return 1    # Duplicate person
 
         # Check birth record
         birth_handle = person.get_birth_handle()
@@ -266,7 +266,7 @@ class DetDescendantReport(Report.Report):
             self.doc.end_paragraph()
             self.doc.write_note(person.get_note(),person.get_note_format(),"DDR-Entry")
 
-        return 0		# Not duplicate person
+        return 0        # Not duplicate person
 
     def write_parents(self, person, firstName):
         """ Ouptut parents sentence"""
