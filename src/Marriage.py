@@ -77,7 +77,6 @@ class Marriage:
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor")
-
         Utils.set_title_label(self.top,_('Marriage/Relationship Editor'))
 
         top_window = self.get_widget("marriageEditor")
@@ -103,12 +102,10 @@ class Marriage:
             "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
             })
 
-        text_win = self.get_widget("marriageTitle")
         title = _("%s and %s") % (GrampsCfg.nameof(family.getFather()),
                                   GrampsCfg.nameof(family.getMother()))
-        
-        text_win.set_text('<span weight="bold" size="larger">%s</span>' % title)
-        text_win.set_use_markup(gtk.TRUE)
+
+        Utils.set_title_label(self.top,title)
         
         self.event_list = self.get_widget("marriageEventList")
 

@@ -2847,7 +2847,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label180">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Given:</property>
+		      <property name="label" translatable="yes">_Given name:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -2875,7 +2875,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label181">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Last:</property>
+		      <property name="label" translatable="yes">_Family Name:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -2903,7 +2903,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label186">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Suffix:</property>
+		      <property name="label" translatable="yes">Suffi_x:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -3008,7 +3008,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label290">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Prefix:</property>
+		      <property name="label" translatable="yes">Family _Prefix:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>

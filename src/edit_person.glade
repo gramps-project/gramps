@@ -127,7 +127,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label21">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Given:</property>
+			  <property name="label" translatable="yes">_Given name:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -152,7 +152,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label22">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Last:</property>
+			  <property name="label" translatable="yes">_Family name:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -177,7 +177,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label293">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Prefix:</property>
+			  <property name="label" translatable="yes">Family _prefix:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -277,7 +277,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label269">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">T_ype:</property>
+			  <property name="label" translatable="yes">T_ype</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -737,7 +737,7 @@
 			    <widget class="GtkRadioButton" id="genderFemale">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_female</property>
+			      <property name="label" translatable="yes">fema_le</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="active">False</property>
