@@ -302,7 +302,6 @@ class Gramps:
             "on_new_clicked" : self.on_new_clicked,
             "on_notebook1_switch_page" : self.on_views_switch_page,
             "on_ok_button1_clicked" : self.on_ok_button1_clicked,
-            "on_help_dbopen_clicked" : self.on_help_dbopen_clicked,
             "on_open_activate" : self.on_open_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
