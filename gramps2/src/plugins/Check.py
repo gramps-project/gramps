@@ -383,7 +383,8 @@ class Report:
         glade_file = base + os.sep + "summary.glade"
         topDialog = gtk.glade.XML(glade_file,"summary","gramps")
         topDialog.signal_autoconnect({
-                "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object"  : self.close_result,
+            "on_result_delete_event" : self.on_result_delete_event,
         })
         
         self.title = _("Integrity Check Results")
