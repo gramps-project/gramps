@@ -725,17 +725,17 @@ class GedcomParser:
                     self.parse_person_attr(attr,2)
                     continue
                 else:
-                    val = self.gedsource.tag2gramps(matches[1])
+                    val = self.gedsource.tag2gramps(n)
                     if val:
                         event.setName(val)
                     else:
-                        event.setName(matches[1])
+                        event.setName(n)
                     
 	        self.parse_person_event(event,2)
-                if matches[2] != None:
+                if matches[2]:
                     event.setDescription(matches[2])
                 self.person.addEvent(event)
-
+                
     def parse_optional_note(self,level):
         note = ""
         while 1:
@@ -1119,20 +1119,15 @@ class GedcomParser:
                 self.person.addAltFamily(family,mrel,frel)
             elif matches[1] == "PLAC":
                 val = matches[2]
-                n = string.strip(event.getName())
-                if self.is_ftw and n in ["Occupation","Degree","SSN"]:
-                    event.setDescription(val)
-                    self.ignore_sub_junk(level+1)
+                if self.placemap.has_key(val):
+                    place = self.placemap[val]
                 else:
-                    if self.placemap.has_key(val):
-                        place = self.placemap[val]
-                    else:
-                        place = Place()
-                        place.set_title(matches[2])
-                        self.db.addPlace(place)
-                        self.placemap[val] = place
-                    event.setPlace(place)
-                    self.ignore_sub_junk(level+1)
+                    place = Place()
+                    place.set_title(matches[2])
+                    self.db.addPlace(place)
+                    self.placemap[val] = place
+                event.setPlace(place)
+                self.ignore_sub_junk(level+1)
             elif matches[1] == "TYPE":
                 # eventually do something intelligent here
                 pass
@@ -1645,7 +1640,6 @@ class GedcomParser:
         index = 0
         new_pmax = self.db.pmapIndex
         for person in self.added.keys():
-            print index,person.getPrimaryName().getName()
             index = index + 1
             if self.refn.has_key(person):
                 val = self.refn[person]
