@@ -328,11 +328,9 @@ class EditPlace:
             Utils.unbold_label(self.names_label)
 
     def on_web_go_clicked(self,obj):
-        import gnome.url
-
         text = obj.get()
         if text != "":
-            gnome.url.show(text)
+            gnome.url_show(text)
 
     def set(self,field,getf,setf):
         text = unicode(field.get_text())
