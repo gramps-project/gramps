@@ -9,9 +9,6 @@
   large database. This is way too slow.
 * Finish the generic load of revision control interfaces to allow a
   revision control plugin system. Most of the work is already done.
-* Extend the gramps package exporting to export to a ISO-9660 CD-ROM
-  image. Thumbnails would need to be exported for this as well, since
-  the CD-ROM would be read-only after burning.
 * Disable the save buttons if gramps database is marked read-only. Disable 
   the adding of media objects as well, since this will cause gramps to
   try to create a thumbnail in a readonly database.
