@@ -296,8 +296,10 @@ class EditPerson:
         build_dropdown(self.bplace,self.place_list)
         build_dropdown(self.dplace,self.place_list)
         build_dropdown(self.surname,self.db.get_surname_list())
-            
-        self.gid.set_text(person.get_gramps_id())
+
+        gid = person.get_gramps_id()
+        if gid:
+            self.gid.set_text(gid)
         self.gid.set_editable(1)
 
         self.lds_baptism = RelLib.LdsOrd(self.person.get_lds_baptism())
