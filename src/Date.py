@@ -409,7 +409,7 @@ class SingleDate:
     def setMonthStr(self,text):
         try:
             self.month = SingleDate.m2num[string.lower(text[0:3])]
-        except:
+        except KeyError:
             self.month = -1
 
     #--------------------------------------------------------------------
@@ -420,7 +420,7 @@ class SingleDate:
     def setMonthStrEng(self,text):
         try:
             self.month = SingleDate.em2num[string.lower(text[0:3])]
-        except:
+        except KeyError:
             self.month = -1
 
     #--------------------------------------------------------------------
@@ -751,6 +751,8 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthStr(matches[2])
+            if self.month == -1:
+                raise Date.Error,text
             self.day = int(matches[1])
             if len(matches) == 4:
                 val = matches[3]
@@ -825,6 +827,8 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthStr(matches[1])
+            if self.month == -1:
+                raise Date.Error,text
             val = matches[2]
             if val:
                 self.day = int(string.replace(val,',',''))
@@ -842,6 +846,8 @@ class SingleDate:
             matches = match.groups()
             self.getMode(matches[0])
             self.setMonthStr(matches[1])
+            if self.month == -1:
+                raise Date.Error,text
             self.day = -1
             if len(matches) == 4:
                 val = matches[3]
@@ -875,6 +881,8 @@ class SingleDate:
             matches = match.groups()
             self.setMode(matches[0])
             self.setMonthStrEng(matches[2])
+            if self.month == -1:
+                raise Date.Error,text
             self.day = int(matches[1])
             if len(matches) == 4:
                 val = matches[3]
@@ -935,6 +943,8 @@ if __name__ == "__main__":
         Date.entryCode = 1
         checkit("1/12/1999")
         checkit("12/11/1999")
+        checkit("summer")
 
+    print "----------"
     checkit("BET. 1994 - 1999")
 
