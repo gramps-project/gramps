@@ -2,6 +2,10 @@
 	* src/Exporter.py: Fix EXPAND/FILL state of the chooser widget.
 	* src/DbPrompter.py (SaveAsDbPrompter): Remove class.
 	* src/plugins/WriteGedcom.py: Fix image path problem.
+	
+	* src/data/gramps.schemas: Add to CVS.
+	* src/data/Makefile.am: Install schemas. 
+	* configure.in: Insert AM_GCONF_SOURCE_2 macro. 
 
 2004-07-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteGedcom.py: use the correct id value

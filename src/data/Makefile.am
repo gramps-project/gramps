@@ -6,17 +6,21 @@ dist_pkgdata_DATA = gedcom.xml \
 	       papersize.xml \
 	       tips.xml \
 	       gnome-mime-application-x-gramps.png \
-               gnome-mime-application-x-gedcom.png \
+           gnome-mime-application-x-gedcom.png \
 	       gnome-mime-application-x-gramps-package.png \
 	       gramps.applications \
 	       gramps.desktop \
 	       gramps.svg \
 	       gramps.keys \
-               gramps.mime
+           gramps.mime
 
 EXTRA_DIST = $(dist_pkgdata_DATA)
 
-install-data-local:
+install-schemas:
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
+	gconftool --makefile-install-rule gramps.schemas
+
+install-data-local:    install-schemas
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) gramps.desktop $(DESTDIR)$(prefix)/share/applications
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
@@ -35,4 +39,3 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
 	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
-

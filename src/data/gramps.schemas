@@ -1,0 +1,538 @@
+<gconfschemafile>
+    <schemalist>
+      <schema>
+        <key>/schemas/apps/gramps/autoload</key>
+        <applyto>/apps/gramps/autoload</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Load last database on startup</short>
+          <long>If set to 1, the last database will be loaded on the startup.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/betawarn</key>
+        <applyto>/apps/gramps/betawarn</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Display beta warning on startup</short>
+          <long>If set to 1, the warning about beta version will be loaded on the startup.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/date-entry</key>
+        <applyto>/apps/gramps/date-entry</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Date entry format</short>
+          <long>This key determines the date entry format. O corresponds to
+          the MM/DD/YYYY (US format), 1 corrsponds to DD/MM/YYYY (European 
+          format), and 2 corresponds to YYYY-MM-DD (ISO format).</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/date-format</key>
+        <applyto>/apps/gramps/date-format</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Date display format</short>
+          <long>This key determines the date display format. O corresponds to
+          the MM/DD/YYYY (US format), 1 corrsponds to DD/MM/YYYY (European 
+          format), and 2 corresponds to YYYY-MM-DD (ISO format).</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/defaultview</key>
+        <applyto>/apps/gramps/defaultview</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Default view on a startup</short>
+          <long>This key determines which view will be presented when GRAMPS
+          starts. Use 0 for People View and 1 for Family View.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/familyview</key>
+        <applyto>/apps/gramps/familyview</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Family View style</short>
+          <long>This key determines style of the Family View. 
+          Use 0 for "Left-to-right" style and 1 for "Top-to-bottom" style.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/filter</key>
+        <applyto>/apps/gramps/filter</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Display Filter controls</short>
+          <long>If set to 1, the Filter controls will be displayed in People View.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/fprefix</key>
+        <applyto>/apps/gramps/fprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>F%04d</default>
+        <locale name="C">
+          <short>Default family GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the family are generated according
+          to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/iprefix</key>
+        <applyto>/apps/gramps/iprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>I%04d</default>
+        <locale name="C">
+          <short>Default person GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the person are generated according
+          to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/oprefix</key>
+        <applyto>/apps/gramps/oprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>F%04d</default>
+        <locale name="C">
+          <short>Default media object GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the media object are generated 
+          according to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/pprefix</key>
+        <applyto>/apps/gramps/pprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>F%04d</default>
+        <locale name="C">
+          <short>Default place GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the place are generated according
+          to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/sprefix</key>
+        <applyto>/apps/gramps/sprefix</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>F%04d</default>
+        <locale name="C">
+          <short>Default source GRAMPS ID pattern</short>
+          <long>The new GRAMPS IDs for the source are generated according
+          to this format string.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/goutput-preference</key>
+        <applyto>/apps/gramps/goutput-preference</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>No default format</default>
+        <locale name="C">
+          <short>Preferred format for graphical reports</short>
+          <long>Preferred format for graphical reports.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/output-preference</key>
+        <applyto>/apps/gramps/output-preference</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>No default format</default>
+        <locale name="C">
+          <short>Preferred format for text reports</short>
+          <long>Preferred format for text reports.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/paper-preference</key>
+        <applyto>/apps/gramps/paper-preference</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>Letter</default>
+        <locale name="C">
+          <short>Preferred page size</short>
+          <long>Preferred page size.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/id-edit</key>
+        <applyto>/apps/gramps/id-edit</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Allow editing GRAMPS IDs</short>
+          <long>If set to 1, GRAMPS IDs are user-editable.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/index-visible</key>
+        <applyto>/apps/gramps/index-visible</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Show index numbers in children list</short>
+          <long>If set to 1, the index numbers will be shown in children list.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/last-file</key>
+        <applyto>/apps/gramps/last-file</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Last XML database GRAMPS has worked with</short>
+          <long>Full pathname of the last XML database GRAMPS has worked with.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/recent-file</key>
+        <applyto>/apps/gramps/recent-file</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Last GRDB database GRAMPS has worked with</short>
+          <long>Full pathname of the last GRDB database GRAMPS has worked with.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/make-reference</key>
+        <applyto>/apps/gramps/make-reference</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Make a reference to the dropped object</short>
+          <long>If set to 1, dropping the object into the gallery will 
+          make a reference to the object. If set to 0, the copy of the 
+          object will be made instead of a reference.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/media-global</key>
+        <applyto>/apps/gramps/media-global</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Display global properties editor when object 
+          is dropped from external source</short>
+          <long>If set to 1, dropping the object from an external source
+          into the gallery will invoke the global properties editor.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/media-local</key>
+        <applyto>/apps/gramps/media-local</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Display local properties editor when object 
+          is dropped from internal source</short>
+          <long>If set to 1, dropping the object from an internal source
+          into the gallery will invoke the local properties editor.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/name-format</key>
+        <applyto>/apps/gramps/name-format</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Name display format</short>
+          <long>This key determines the name display format. Use 0 
+          for "Firstname Surname", 1 for "Surname, Firstname", 
+          2 for "Firstname SURNAME", and 3 for "SURNAME, Firstname" style. </long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/report-directory</key>
+        <applyto>/apps/gramps/report-directory</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Default report directory</short>
+          <long>Full pathname of the default report directory.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-addr</key>
+        <applyto>/apps/gramps/researcher-addr</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher street address</short>
+          <long>Researcher stret address.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-city</key>
+        <applyto>/apps/gramps/researcher-city</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher city</short>
+          <long>Researcher city.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-country</key>
+        <applyto>/apps/gramps/researcher-country</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher country</short>
+          <long>Researcher country.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-email</key>
+        <applyto>/apps/gramps/researcher-email</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher email address</short>
+          <long>Researcher email address.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-name</key>
+        <applyto>/apps/gramps/researcher-name</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher name</short>
+          <long>Researcher name.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-phone</key>
+        <applyto>/apps/gramps/researcher-phone</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher phone</short>
+          <long>Researcher phone.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-postal</key>
+        <applyto>/apps/gramps/researcher-postal</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher postal code</short>
+          <long>Researcher postal code.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/researcher-state</key>
+        <applyto>/apps/gramps/researcher-state</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Researcher state</short>
+          <long>Researcher state.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/show-calendar</key>
+        <applyto>/apps/gramps/show-calendar</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Show alternate calndar options</short>
+          <long>If set to 1, the alternate calendar menus will be shown
+          in date editing dialogs.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/startup</key>
+        <applyto>/apps/gramps/startup</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Startup druid has been run</short>
+          <long>If set to 1, this key indicates that the startup druid
+          has already been run.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/statusbar</key>
+        <applyto>/apps/gramps/statusbar</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Information shown in statusbar</short>
+          <long>If set to 0 or 1, the statusbar will the name and GRAMPS ID
+          of an active person. If set to 2, the statusbar will show the
+          relationship of the active person tp the Default Person.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/surname-guessing</key>
+        <applyto>/apps/gramps/surname-guessing</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Default surname guessing style</short>
+          <long>This key determines the style of the surname guessing when
+          the new person is added to the database. Use 0 for Father's surname,
+          1 for no guessing, 2 for the combination of mother's and father's
+          surnames, and 3 foe the Icelandic style.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/toolbar</key>
+        <applyto>/apps/gramps/toolbar</applyto>
+        <owner>gramps</owner>
+        <type>int</type>
+        <default>5</default>
+        <locale name="C">
+          <short>Default toolbar style</short>
+          <long>This key determines the style of the toolbar.
+          Use 0 for icons only, 1 for text only, 2 for text below images, 
+          3 for text beside images, and 5 for the current GNOME style.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/toolbar-on</key>
+        <applyto>/apps/gramps/toolbar-on</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>1</default>
+        <locale name="C">
+          <short>Show toolbar</short>
+          <long>If set to 1, the toolbar will be shown in the main 
+          GRAMPS window.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/use-lds</key>
+        <applyto>/apps/gramps/use-lds</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Use LDS options</short>
+          <long>If set to 1, the LDS ordinance options will be shown.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/use-tips</key>
+        <applyto>/apps/gramps/use-tips</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Display Tip of the Day</short>
+          <long>If set to 1, Tip of the Day will be displayed on startup.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/view</key>
+        <applyto>/apps/gramps/view</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Save last view</short>
+          <long>If set to 1, the last displayed view will be presented
+          on the startup.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gramps/website-directory</key>
+        <applyto>/apps/gramps/website-directory</applyto>
+        <owner>gramps</owner>
+        <type>string</type>
+        <default>""</default>
+        <locale name="C">
+          <short>Default website directory</short>
+          <long>Full pathname of the default website directory.</long>
+        </locale>
+      </schema>
+
+    </schemalist>
+</gconfschemafile>
