@@ -381,7 +381,7 @@ register_tool(
     category=_("Utilities"),
     description=_("The Custom Filter Editor builds custom "
                   "filters that can be used to select people "
-                  "included reports, exports, and other utilities.")
+                  "included in reports, exports, and other utilities.")
     )
 
 if ((os.path.exists(const.system_filters) and

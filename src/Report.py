@@ -1019,10 +1019,10 @@ class DrawReportDialog(ReportDialog):
         self.doc = self.format(self.selected_style,self.paper,self.orien)
 
 class TemplateParser(handler.ContentHandler):
-    def __init__(self,data,path):
+    def __init__(self,data,fpath):
         handler.ContentHandler.__init__(self)
         self.data = data
-        self.path = path
+        self.path = fpath
     
     def setDocumentLocator(self,locator):
         self.locator = locator
