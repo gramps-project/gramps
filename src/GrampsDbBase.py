@@ -128,6 +128,9 @@ class GrampsDbBase:
         """
         assert False, "Needs to be overridden in the derived class"
         
+    def abort_changes(self):
+        pass
+    
     def is_open(self):
         """
         Returns 1 if the database has been opened.
@@ -789,7 +792,7 @@ class GrampsDbBase:
         the state before the transaction was committed.
         """
         if self.undoindex == -1:
-            return
+            return False
         transaction = self.translist[self.undoindex]
 
         self.undoindex -= 1
@@ -834,7 +837,8 @@ class GrampsDbBase:
             else:
                 transaction = self.translist[self.undoindex]
                 self.undo_callback(_("_Undo %s") % transaction.get_description())
-
+        return True
+    
     def set_undo_callback(self,callback):
         """
         Defines the callback function that is called whenever an undo operation
