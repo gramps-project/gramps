@@ -1,6 +1,20 @@
 # translation of hu.po to 
 # translation of hu.po to
 # translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
+# translation of hu.po to
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
@@ -10,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2004-01-12 19:28+0100\n"
+"PO-Revision-Date: 2004-01-14 17:37+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -364,7 +378,7 @@ msgstr "Útvonal"
 #: gramps.glade:4800 gramps.glade:5218 gramps.glade:5398 gramps.glade:6876
 #: gramps.glade:7122 gramps.glade:7708 gramps.glade:7879
 msgid "None"
-msgstr "senki"
+msgstr "Nincs"
 
 #: EditPerson.py:481 EditSource.py:159
 msgid "%(father)s and %(mother)s"
@@ -1206,7 +1220,7 @@ msgstr "Összesítők tulajdonságai"
 
 #: GrampsCfg.py:118 StartupDialog.py:141
 msgid "Researcher Information"
-msgstr "Kereső információ"
+msgstr "Információk a kutatóról"
 
 #: GrampsCfg.py:119
 msgid "Data Guessing"
@@ -1928,7 +1942,7 @@ msgstr "Forrás információ"
 
 #: StartupDialog.py:80
 msgid "Getting Started"
-msgstr "Ismerkedés"
+msgstr "Felhasználói telepítés"
 
 #: StartupDialog.py:85
 msgid ""
@@ -1938,9 +1952,9 @@ msgid ""
 "to be used. Any of this information can be changed in the future in the "
 "Preferences dialog under the Settings menu."
 msgstr ""
-"Üdvözlöm a GRAMPS programban, ez egy leszármazáskutató és elemzést segítő "
+"Üdvözli önt a GRAMPS program, ez egy leszármazáskutató és elemzést segítő "
 "programrendszer.\n"
-"Néhány információt meg kell adnia mielőtt a GRAMPS kész a futtatásra. Néhány "
+"Néhány információt meg kell adnia mielőtt a GRAMPS elindul. Néhány "
 "ezek közül a későbbiekben megváltoztatható a Tulajdonságok dialógus "
 "Beállítások menüjében."
 
@@ -1956,10 +1970,9 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
-"GRAMPS egy szabad forrású projekt. Fejlesztése nagyban függ a "
-"felhasználóktól. A felhasználói visszajelzések nagyon fontosak nekünk. "
-"Kérjük látogassa a levelező listánkat, ahol szívesen vesszük a hibajelzéseit "
-"fejlesztési elképzeléseit; és ha teheti, segítsen nekünk.\n"
+"GRAMPS egy szabad forrású projekt. Fejlesztése nagyban függ a felhasználóktól. "
+"A felhasználói visszajelzések nagyon fontosak nekünk. Kérjük látogassa a "
+"levelezőlistánkat, ahol szívesen vesszük a hibajelzéseit fejlesztési elképzeléseit.\n"
 "\n"
 "Élvezze a GRAMPS használatát!"
 
@@ -2010,7 +2023,7 @@ msgstr "Email:"
 
 #: StartupDialog.py:196
 msgid "Numerical date formats"
-msgstr "Numerikus dátum formátumok"
+msgstr "Dátum formátumok"
 
 #: StartupDialog.py:205
 msgid ""
@@ -2019,7 +2032,7 @@ msgid ""
 "tell what format you are using. Please indicate your preferred format\n"
 "for entering numerical dates."
 msgstr ""
-"Három általánosa használt formátum van a dátumok megadására.\n"
+"Három általánosan használt formátum van a dátumok megadására.\n"
 "Előzetes információk nélkül a GRAMPS nem tudja eldönteni melyiket használja.\n"
 "Kérem adja meg az ön által kedvelt formát."
 
@@ -2037,7 +2050,7 @@ msgstr "ÉÉÉÉ-HH-NN (ISO)"
 
 #: StartupDialog.py:240
 msgid "Alternate calendar support"
-msgstr "Alternatív naptár támogatása"
+msgstr "Alternatív naptárak használata"
 
 #: StartupDialog.py:249
 msgid ""
@@ -2049,17 +2062,17 @@ msgid ""
 msgstr ""
 "Alapbeállításként minden GRAMPS által tárolt dátum a Gregorián naptárat\n"
 "használja. Ez a legtöbb felhasználónak megfelelő. Rendelkezésre áll még \n"
-"Julián, Francia köztársasági és Héber naptár. Ha úgy gondolja, hogy\n"
-"szűksége van ezek használatára akkor engedélyezze az alternatív\n"
+"Julián, Francia köztársasági és Héber naptár. Ha úgy gondolja, hogy \n"
+"szűksége van ezek használatára akkor engedélyezze az alternatív \n"
 "naptárak használatát.\n"
 
 #: StartupDialog.py:260
 msgid "Enable support for alternate calendars"
-msgstr "Alternatív naptárak támogatásának engedélyezése"
+msgstr "Alternatív naptárak használata"
 
 #: StartupDialog.py:274
 msgid "LDS extensions"
-msgstr "Mormon bővítések"
+msgstr "Mormon modul"
 
 #: StartupDialog.py:283
 msgid ""
@@ -2069,15 +2082,15 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS engedélyezheti a Mormon (Churc of Jesus Christ of Latter Day Saints)\n"
-"ünnepeket.\n"
+"GRAMPSben nyílván lehet tartani a Mormon \n"
+"(Churc of Jesus Christ of Latter Day Saints) ünnepeket.\n"
 "\n"
-"Engedélyezheted vagy tilthatod ezek használatát. Ezt a beállítást később\n"
-"módosíthatod a Tulajdonságok párbeszédablakban."
+"Engedélyezheti vagy tilthatja ezek használatát. Ezt a beállítást később\n"
+"módosíthatja a Tulajdonságok párbeszédablakban."
 
 #: StartupDialog.py:294
 msgid "Enable LDS ordinance support"
-msgstr "Mormon ünnepek támogatása"
+msgstr "Mormon ünnepek használata"
 
 #: StyleEditor.py:68
 msgid "Document Styles"
@@ -2425,7 +2438,7 @@ msgstr "Kaszt"
 
 #: const.py:392
 msgid "Identification Number"
-msgstr "Azonosító szám"
+msgstr "Személyi szám"
 
 #: const.py:393
 msgid "National Origin"
@@ -2623,7 +2636,7 @@ msgstr "_Irányítószám:"
 
 #: dialog.glade:2652
 msgid "_Web address:"
-msgstr "_Web címek:"
+msgstr "_Web cím:"
 
 #: dialog.glade:2680
 msgid "_Description:"
@@ -3004,7 +3017,7 @@ msgstr "Galéria"
 
 #: edit_person.glade:3771 places.glade:1384
 msgid "Web address:"
-msgstr "Web címek:"
+msgstr "Web cím:"
 
 #: edit_person.glade:3866 places.glade:1479
 msgid "<b>Internet addresses</b>"
@@ -3927,7 +3940,7 @@ msgstr "_Ne hozzon létre helyi másolatot"
 
 #: imagesel.glade:551 imagesel.glade:1295
 msgid "Object type:"
-msgstr ":Objektum típus"
+msgstr "Objektum típus:"
 
 #: imagesel.glade:773
 msgid "<b>Notes</b>"
@@ -6178,8 +6191,8 @@ msgid ""
 "\n"
 msgstr ""
 "A képek elérési útvonala Windows stílusban a következő helyet használja a "
-"képek megtalálásához. Ezek az útvonalak ezen a rendszeren lévő Windowsos "
-"fájlrendszeren alapulnak:\n"
+"képek megtalálásához. Ezek az útvonalak a gépen lévő Windows "
+"fájlrendszere(ke)n alapulnak:\n"
 "\n"
 
 #: plugins/ReadGedcom.py:283
@@ -7248,7 +7261,7 @@ msgstr "AN_SI (ISO-8859-1)"
 
 #: plugins/gedcomexport.glade:514
 msgid "Use _Living as first name"
-msgstr "Az é_lők keresztneveinek a használata"
+msgstr "Élőknél a _keresztnév használata"
 
 #: plugins/gedcomexport.glade:549
 msgid "Exclude _notes"
