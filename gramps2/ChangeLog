@@ -1,5 +1,6 @@
 2004-10-13 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/Makefile.am: Ship rel_es.py plugin.
+	* src/rule.glade: Clean up the filter definition dialog.
 
 2004-10-13 Julio Sanchez <julio.sanchez@gmail.com>
 	* src/plugins/rel_es.py: Add to CVS.
