@@ -18,7 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Database Processing/Reorder gramps IDs"
+"""
+Change id IDs of all the elements in the database to conform to the
+scheme specified in the database's prefix ids
+"""
 
 import re
 import utils
@@ -28,13 +31,9 @@ _ = intl.gettext
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
-
+    """Changed person, family, object, source, and place ids"""
+    
     make_new_ids(database.getPersonMap(),database.iprefix)
     make_new_ids(database.getFamilyMap(),database.fprefix)
     make_new_ids(database.getObjectMap(),database.oprefix)
@@ -45,11 +44,24 @@ def runTool(database,active_person,callback):
 
 
 def make_new_ids(data_map,prefix):
+    """Try to extract the old integer out of the id, and reuse it
+    if possible. Otherwise, blindly renumber those that can't."""
+
     dups = []
     newids = []
+
+    # search all ids in the map
     for id in data_map.keys():
+
+        # attempt to extract integer, if we can't, treat it as a
+        # duplicate
+        
         match = _findint.match(id)
         if match:
+            # get the integer, build the new id. Make sure it
+            # hasn't already been chosen. If it has, put this
+            # in the duplicate id list
+            
             index = match.groups()[0]
             newid = prefix % int(index)
             if newid == id:
@@ -62,6 +74,12 @@ def make_new_ids(data_map,prefix):
                 data.setId(newid)
                 data_map[newid] = data
                 del data_map[id]
+        else:
+            dups.append(id)
+            
+    # go through the duplicates, looking for the first availble
+    # id that matches the new scheme.
+    
     index = 0
     for id in dups:
         while 1:
