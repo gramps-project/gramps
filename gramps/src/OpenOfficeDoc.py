@@ -189,7 +189,7 @@ class OpenOfficeDoc(TextDoc):
         self.f.write(tag)
         self.f.write('" text:anchor-type="paragraph" ')
         self.f.write('svg:width="%scm" ' % cnv("%.3f",float(act_width)/72.0))
-        self.f.write('svg:height="%scm" ' % cnv((float(act_height)/72.0)))
+        self.f.write('svg:height="%scm" ' % cnv("%.3f",(float(act_height)/72.0)))
         self.f.write('draw:z-index="0" ')
         self.f.write('xlink:href="#Pictures/')
         self.f.write(base)
@@ -370,9 +370,9 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('<office:automatic-styles>\n')
         self.f.write('<style:page-master style:name="pm1">\n')
         self.f.write('<style:properties fo:page-width="%scm" ' % \
-                     cnv(self.width))
+                     cnv("%.3f",self.width))
         self.f.write('fo:page-height="%scm" ' % \
-                     cnv(self.height))
+                     cnv("%.3f",self.height))
         self.f.write('style:num-format="1" ')
         if self.orientation == PAPER_PORTRAIT:
             self.f.write('style:print-orientation="portrait" ')
