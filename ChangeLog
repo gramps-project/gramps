@@ -3,6 +3,8 @@
 	* src/AttrEdit.py (__init__): Set text to translated attribute type.
 	* src/const.py.in (display_attr): Add function.
 
+	* src/DbPrompter.py (ImportDbPrompter.chooser): Typo.
+
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.
 	* src/EditPerson.py (on_add_addr_clicked): Typos.

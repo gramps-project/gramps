@@ -303,7 +303,7 @@ class ImportDbPrompter:
                 import ReadXML
                 ReadXML.importData(self.parent.db,filename)
                 return True
-            elif filetype == const.app_gramps_gedcom:
+            elif filetype == const.app_gedcom:
                 choose.destroy()
                 import ReadGedcom
                 ReadGedcom.importData(self.parent.db,filename)
