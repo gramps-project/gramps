@@ -1191,6 +1191,12 @@ class BaseDoc:
     def add_draw_style(self,name,style):
         self.draw_styles[name] = GraphicsStyle(style)
 
+    def get_draw_style(self,name):
+        return self.draw_styles[name]
+
+    def get_style(self,name):
+        return self.style_list[name]
+
     def add_table_style(self,name,style):
         """
         Adds the TableStyle with the specfied name.

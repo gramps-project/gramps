@@ -950,6 +950,28 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.cntnt.write('</text:p>\n')
         self.cntnt.write('</draw:text-box>\n')
 
+    def write_at(self,style,text,x,y):
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+        pstyle = self.style_list[para_name]
+        font = pstyle.get_font()
+
+        size = 1.1*(FontScale.string_width(font,text)/72.0) * 2.54
+
+	self.cntnt.write('<draw:text-box text:anchor-type="paragraph" ')
+	self.cntnt.write('draw:z-index="0" ')
+        self.cntnt.write('svg:width="%.3fcm" ' % size)
+	self.cntnt.write('svg:height="%dpt" ' % font.get_size())
+
+	self.cntnt.write('svg:x="%.3fcm" ' % x)
+        self.cntnt.write('svg:y="%.3fcm">\n' % float(y))
+
+	if text != "":
+  	    self.cntnt.write('<text:p text:style-name="X%s">' % para_name)
+	    self.cntnt.write(text)
+            self.cntnt.write('</text:p>\n')
+        self.cntnt.write('</draw:text-box>\n')
+
 #------------------------------------------------------------------------
 #
 # point to centimeter convertion
