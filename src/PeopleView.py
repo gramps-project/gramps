@@ -115,10 +115,8 @@ class PeopleView:
             index += 1
 
     def build_tree(self):
-        self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        #self.sort_model = self.person_model
-        self.sort_model = self.person_model.filter_new()
-        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.person_model = PeopleModel.PeopleModel(self.parent.db,self.DataFilter)
+        self.sort_model = self.person_model
         self.person_tree.set_model(self.sort_model)
         
     def blist(self, store, path, node, id_list):
@@ -147,10 +145,10 @@ class PeopleView:
 
     def change_db(self,db):
         self.build_columns()
-        self.person_model = PeopleModel.PeopleModel(db)
-        #self.sort_model = self.person_model
-        self.sort_model = self.person_model.filter_new()
-        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.person_model = PeopleModel.PeopleModel(db,self.DataFilter)
+        self.sort_model = self.person_model
+        #self.sort_model = self.person_model.filter_new()
+        #self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.apply_filter()
         self.person_tree.set_model(self.sort_model)
 
@@ -193,32 +191,26 @@ class PeopleView:
         if not self.parent.active_person:
             return
         p = self.parent.active_person
-        path = self.person_model.on_get_path(p.get_handle())
-        group_name = p.get_primary_name().get_group_name()
-        top_name = self.parent.db.get_name_group_mapping(group_name)
-        top_path = self.person_model.on_get_path(top_name)
-        self.person_tree.expand_row(top_path,0)
-        self.person_selection.select_path(path)
-        self.person_tree.scroll_to_cell(path,None,1,0.5,0)
+        try:
+            path = self.person_model.on_get_path(p.get_handle())
+            group_name = p.get_primary_name().get_group_name()
+            top_name = self.parent.db.get_name_group_mapping(group_name)
+            top_path = self.person_model.on_get_path(top_name)
+            self.person_tree.expand_row(top_path,0)
+            self.person_selection.select_path(path)
+            self.person_tree.scroll_to_cell(path,None,1,0.5,0)
+        except KeyError:
+            self.person_selection.unselect_all()
+            print "Person not currently available due to filter"
+            self.parent.active_person = p
 
     def alpha_event(self,*obj):
         self.parent.load_person(self.parent.active_person)
 
     def apply_filter(self,current_model=None):
-        self.person_model.rebuild_data()
         self.parent.status_text(_('Updating display...'))
-        keys = self.DataFilter.apply(
-            self.parent.db,
-            self.parent.db.get_person_handles(sort_handles=False))
-        self.person_model.reset_visible()
-        for person_handle in keys:
-            self.person_model.set_visible(person_handle,True)
-
-        print "Applying filter"
-        self.sort_model.refilter()
-        print "Done"
+        self.build_tree()
         self.parent.modify_statusbar()
-        print "exit"
         
     def on_plist_button_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
@@ -265,7 +257,7 @@ class PeopleView:
         menu.popup(None,None,None,event.button,event.time)
         
     def redisplay_person_list(self,person):
-        self.person_model.rebuild_data()
+        self.person_model.rebuild_data(self.DataFilter)
         self.add_person(person)
 
     def add_person(self,person):
@@ -294,7 +286,7 @@ class PeopleView:
 
     def update_person_list(self,person):
         self.delete_person(person)
-        self.person_model.rebuild_data()
+        self.person_model.rebuild_data(self.DataFilter)
         self.add_person(person)
         self.parent.change_active_person(person)
         self.goto_active_person()

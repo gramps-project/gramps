@@ -66,40 +66,31 @@ _CHANGE_COL= 21
 #-------------------------------------------------------------------------
 class PeopleModel(gtk.GenericTreeModel):
 
-    def __init__(self,db):
+    def __init__(self,db,data_filter):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
         self.visible = {}
         self.top_visible = {}
-
-        maps = self.db.get_people_view_maps()
-        if maps[0] != None and len(maps[0]) != 0:
-            self.top_path2iter = maps[0]
-            self.iter2path = maps[1]
-            self.path2iter = maps[2]
-            self.sname_sub = maps[3]
-        else:
-            self.rebuild_data()
-
-    def rebuild_data(self):
-        self.top_path2iter = []
-        self.iter2path = {}
-        self.path2iter = {}
+        self.rebuild_data(data_filter)
+    
+    def rebuild_data(self,data_filter):
+        self.data_filter = data_filter
+        temp_top_path2iter = []
+        temp_iter2path = {}
+        temp_path2iter = {}
         self.sname_sub = {}
-        self.visible = {}
-        self.top_visible = {}
 
         if not self.db.is_open():
             return
 
-        cursor = self.db.get_person_cursor()
-
-        data = cursor.first()
-        while data:
-            person = Person()
-            person_handle = data[0]
-            person.unserialize(data[1])
+        if data_filter:
+            keys = self.data_filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
+        else:
+            keys = self.db.get_person_handles(sort_handles=False)
+            
+        for person_handle in keys:
+            person = self.db.get_person_from_handle(person_handle)
             grp_as = person.get_primary_name().get_group_as()
             sn = person.get_primary_name().get_surname()
             if grp_as:
@@ -111,21 +102,23 @@ class PeopleModel(gtk.GenericTreeModel):
                 self.sname_sub[surname].append(person_handle)
             else:
                 self.sname_sub[surname] = [person_handle]
-
-            data = cursor.next()
-        cursor.close()
         
-        self.top_path2iter = self.sname_sub.keys()
-        self.top_path2iter.sort(locale.strcoll)
-        for name in self.top_path2iter:
+        temp_top_path2iter = self.sname_sub.keys()
+        temp_top_path2iter.sort(locale.strcoll)
+        for name in temp_top_path2iter:
             val = 0
             entries = self.sname_sub[name]
             entries.sort(self.byname)
             for person_handle in entries:
                 tpl = (name,val)
-                self.iter2path[person_handle] = tpl
-                self.path2iter[tpl] = person_handle
+                temp_iter2path[person_handle] = tpl
+                temp_path2iter[tpl] = person_handle
                 val += 1
+
+        self.top_path2iter = temp_top_path2iter
+        self.iter2path = temp_iter2path
+        self.path2iter = temp_path2iter
+
         self.db.set_people_view_maps(self.get_maps())
 
     def get_maps(self):
@@ -188,16 +181,10 @@ class PeopleModel(gtk.GenericTreeModel):
                 return u'error'
 
     def reset_visible(self):
-        self.visible = {}
-        self.top_visible = {}
+        pass
 
     def set_visible(self,node,val):
-        try:
-            col = self.iter2path[node]
-            self.top_visible[col[0]] = val
-            self.visible[node] = val
-        except:
-            self.visible[node] = val
+        pass
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
@@ -234,11 +221,14 @@ class PeopleModel(gtk.GenericTreeModel):
             return 0
 
     def on_iter_nth_child(self,node,n):
-        if node == None:
-            return self.top_path2iter[n]
         try:
-            return self.path2iter[(node,n)]
-        except:
+            if node == None:
+                return self.top_path2iter[n]
+            try:
+                return self.path2iter[(node,n)]
+            except:
+                return None
+        except IndexError:
             return None
 
     def on_iter_parent(self, node):
@@ -315,9 +305,6 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_bold(self,data,node):
         return pango.WEIGHT_NORMAL
 
-    def column_view(self,data,node):
-        return self.visible.has_key(node)
-
     def column_header(self,node):
         return node
 
@@ -325,7 +312,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return pango.WEIGHT_NORMAL #BOLD
 
     def column_header_view(self,node):
-        return self.top_visible.has_key(node)
+        return True
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -346,7 +333,6 @@ COLUMN_DEFS = [
 
     # these columns are hidden, and must always be last in the list
     (PeopleModel.column_sort_name,  None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_view,       PeopleModel.column_header_view,gobject.TYPE_BOOLEAN),
     (PeopleModel.column_bold,       PeopleModel.column_header_bold,gobject.TYPE_INT),
     (PeopleModel.column_int_id,     None,                          gobject.TYPE_STRING),
     ]
@@ -354,7 +340,6 @@ COLUMN_DEFS = [
 # dynamic calculation of column indices, for use by various Views
 COLUMN_INT_ID = len(COLUMN_DEFS) - 1
 COLUMN_BOLD   = COLUMN_INT_ID - 1 
-COLUMN_VIEW   = COLUMN_BOLD - 1
 
 # indices into main column definition table
 COLUMN_DEF_LIST = 0

@@ -1,3 +1,8 @@
+2004-12-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: remove debug statement
+	* src/PeopleModel.py: abandon the attempt to use TreeFilter
+	* src/PeopleView.py: abandon the attempt to use TreeFilter
+
 2004-12-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: destroy filechooser if open cancelled.
 	* src/Report.py: Use markup in dialog
