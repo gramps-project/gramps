@@ -8047,9 +8047,9 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkLabel" id="label293">
+			<widget class="GtkLabel" id="prefix_label">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Family prefi_x:</property>
+			  <property name="label" translatable="yes">Famil_y prefix:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
