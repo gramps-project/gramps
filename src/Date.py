@@ -376,21 +376,21 @@ class SingleDate:
         try:
             val = int(s)
             self.month = val - 1
-        except ValueError:
+        except:
             self.month = UNDEF
 
     def setDayVal(self,s):
         try:
             val = int(s)
             self.day = val
-        except ValueError:
+        except:
             self.day = UNDEF
 
     def setYearVal(self,s):
         try:
             val = int(s)
             self.year = val
-        except ValueError:
+        except:
             self.year = UNDEF
 
     def getMonth(self):
