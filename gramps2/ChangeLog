@@ -1,4 +1,7 @@
 2003-11-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/StartupDialog.py: handle SuSE 9.0's broken handling of
+	gconf
+	* src/gramps.py: handle SuSE 9.0's broken handling of gconf
 	* src/plugins/WriteCD.py: launch nautilus to burn:/// after exporting to a CD
 	* src/PeopleView.py: rebuild after a filter is applied
 	* src/DbPrompter: remove ZODB option
