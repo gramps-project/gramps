@@ -46,6 +46,7 @@ import Date
 from DateEdit import DateEdit
 from intl import gettext as _
 
+from QuestionDialog import WarningDialog
 #-------------------------------------------------------------------------
 #
 # EventEditor class
@@ -203,6 +204,18 @@ class EventEditor:
 
         ename = self.name_field.get_text()
         self.date.set(self.date_field.get_text())
+        if self.date.start.year == Calendar.UNDEF:
+            if self.date.start.month == Calendar.UNDEF:
+                if self.date.start.day == Calendar.UNDEF:
+                    if self.date_field.get_text():
+                        WarningDialog(_("Unrecognized date"),
+                            _('The text "%s" you have entered into the date '
+                            'field did not match any known date format and will '
+                            'not be recorded.\n\n' 
+                            'If you want to store textual description of this '
+                            'date (such as "during War"), '
+                            'use the Note tab instead of the Date field.') 
+                            % self.date_field.get_text() )
         ecause = self.cause_field.get_text()
         eplace_obj = self.get_place(self.place_field,1)
         buf = self.note_field.get_buffer()

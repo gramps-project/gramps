@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ import ListModel
 import RelLib
 from DateEdit import DateEdit
 from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
+from Calendar import UNDEF
 
 from intl import gettext as _
 
@@ -1286,6 +1287,19 @@ class EditPerson:
             self.pmap[p[0]] = key
 
         self.birth.setDate(self.bdate.get_text())
+	if self.birth.getDateObj().start.year == UNDEF:
+            if self.birth.getDateObj().start.month == UNDEF:
+                if self.birth.getDateObj().start.day == UNDEF:
+                    if self.bdate.get_text():
+                        WarningDialog(_("Unrecognized date"),
+                            _('The text "%s" you have entered into the date '
+                            'field did not match any known date format and will '
+                            'not be recorded.\n\n' 
+                            'If you want to store textual description of this '
+                            'date (such as "during War"), '
+                            'click Edit... button and then '
+                            'use the Note tab instead of the Date field.') 
+                            % self.bdate.get_text() )
         self.birth.setPlace(self.get_place(self.bplace,1))
 
         if not self.person.getBirth().are_equal(self.birth):
@@ -1303,6 +1317,19 @@ class EditPerson:
             family.setChildList(new_order)
     
         self.death.setDate(self.ddate.get_text())
+	if self.death.getDateObj().start.year == UNDEF:
+            if self.death.getDateObj().start.month == UNDEF:
+                if self.death.getDateObj().start.day == UNDEF:
+                    if self.ddate.get_text():
+                        WarningDialog(_("Unrecognized date"),
+                            _('The text "%s" you have entered into the date '
+                            'field did not match any known date format and will '
+                            'not be recorded.\n\n' 
+                            'If you want to store textual description of this '
+                            'date (such as "during War"), '
+                            'click Edit... button and then '
+                            'use the Note tab instead of the Date field.') 
+                            % self.ddate.get_text() )
         self.death.setPlace(self.get_place(self.dplace,1))
 
         if not self.person.getDeath().are_equal(self.death):
