@@ -109,7 +109,6 @@ class PackageWriter:
         #--------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.try_to_find_object_from_id(m_id)
             for p_id in self.db.get_family_keys():
                 p = self.db.find_family_from_id(p_id)
                 nl = p.get_media_list()
@@ -124,7 +123,6 @@ class PackageWriter:
                 for o in nl:
                     if o.get_reference_id() == m_id:
                         nl.remove(o) 
-                        print key
                 p.set_media_list(nl)
                 self.db.commit_person(p,None)
             for key in self.db.get_source_keys():

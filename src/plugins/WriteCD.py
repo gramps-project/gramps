@@ -200,37 +200,48 @@ class PackageWriter:
         #--------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.get_object(self.object_id)
-            for p_id in self.db.get_family_keys:
+            for p_id in self.db.get_family_keys():
                 p = self.db.find_family_from_id(p_id)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == self.object_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
+                self.db.commit_family(p,None)
                 
             for key in self.db.get_person_keys():
                 p = self.db.try_to_find_person_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == self.object_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
+                self.db.commit_person(p,None)
             for key in self.db.get_source_keys():
                 p = self.db.try_to_find_source_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == self.object_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
+                self.db.commit_source(p,None)
             for key in self.db.get_place_id_keys():
                 p = self.db.try_to_find_place_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == self.object_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            self.db.remove_object(self.object_id) 
+                self.db.commit_place(p,None)
+            for key in self.db.get_event_keys():
+                p = self.db.find_event_from_id(key)
+                nl = p.get_media_list()
+                for o in nl:
+                    if o.get_reference_id() == self.object_id:
+                        nl.remove(o) 
+                p.set_media_list(nl)
+                self.db.commit_event(p,None)
+            self.db.remove_object(self.object_id,None) 
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
