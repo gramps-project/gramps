@@ -99,8 +99,6 @@ class SelectChild:
         self.top.show()
 
     def redraw_child_list(self,filter):
-        person_list = self.db.getPersonMap().values()
-        person_list.sort(sort.by_last_name)
         self.add_child.freeze()
         self.add_child.clear()
         index = 0
@@ -118,8 +116,8 @@ class SelectChild:
                 for c in f.getChildList():
                     slist.append(c)
             
-        personmap = {}
-        for person in person_list:
+        person_list = []
+        for person in self.db.getPersonMap().values():
             if filter:
                 if person in slist:
                     continue
@@ -158,14 +156,13 @@ class SelectChild:
                         if pbday.getLowYear() > dday.getHighYear() + 150:
                             continue
         
-            personmap[utils.phonebook_name(person)] = person
+            person_list.append(person)
 
-        keynames = personmap.keys()
-        keynames.sort()
-        for key in keynames:
-            person = personmap[key]
-            self.add_child.append([utils.phonebook_name(person),utils.birthday(person),\
-                                  person.getId()])
+        person_list.sort(sort.by_last_name)
+        for person in person_list:
+            self.add_child.append([utils.phonebook_name(person),
+                                   utils.birthday(person),
+                                   person.getId()])
             self.add_child.set_row_data(index,person)
             index = index + 1
         self.add_child.thaw()
