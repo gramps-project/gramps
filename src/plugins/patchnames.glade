@@ -135,9 +135,9 @@
 	<class>GtkLabel</class>
 	<name>label1</name>
 	<label>Below is a list of the nicknames and titles that Gramps can extract from the 
-current database. If you select &quot;Yes&quot;, Gramps will modify your database as 
+current database. If you select 'Yes', Gramps will modify your database as 
 specified below. If you do not approve of these changes, you should select 
-&quot;No&quot;, and your database will not be altered.
+'No', and your database will not be altered.
 
 Should the following changes be made?</label>
 	<justify>GTK_JUSTIFY_LEFT</justify>

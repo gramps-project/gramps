@@ -323,6 +323,16 @@ def store_researcher(res):
     gnome.config.set_string("/gramps/researcher/phone",res.phone)
     gnome.config.set_string("/gramps/researcher/email",res.email)
     gnome.config.sync()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_propertybox_help(obj,page):
+    import gnome.help
+
+    gnome.help.display("gramps","preferences.html#prefs_tab%d" % page)
     
 #-------------------------------------------------------------------------
 #
@@ -514,6 +524,7 @@ def display_preferences_box():
     prefsTop.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_propertybox_apply" : on_propertybox_apply,
+        "on_propertybox_help" : on_propertybox_help,
         "on_color_toggled" : on_color_toggled,
         "on_color_set" : on_color_set,
         "on_object_toggled" : on_object_toggled
