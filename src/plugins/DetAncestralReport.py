@@ -27,7 +27,6 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -105,11 +104,6 @@ class DetAncestorReport(Report.Report):
         self.genIDs = {}
         self.prevGenIDs= {}
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
     def apply_filter(self,person_handle,index):
         if (not person_handle) or (index >= 2**self.max_generations):
             return
@@ -596,16 +590,16 @@ class DetAncestorReport(Report.Report):
                         mother = self.database.get_person_from_handle(fam.get_mother_handle())
                         spouse = mother.get_primary_name().get_regular_name()
                     if fam_num == 1:
-                        heshe= _("He")
+                        heshe = _("He")
                     elif fam_num < len(famList):
-                        heshe= _(",")
-                    else: heshe= _("and he")
+                        heshe = _(",")
+                    else: heshe = _("and he")
                 else:
                     if fam_num == 1:
-                        heshe= _("She")
+                        heshe = _("She")
                     elif fam_num < len(famList):
-                        heshe= _(",")
-                    else: heshe= _("and she")
+                        heshe = _(",")
+                    else: heshe = _("and she")
 
                     if fam.get_father_handle():
                         father = self.database.get_person_from_handle(fam.get_father_handle())
@@ -692,7 +686,7 @@ class DetAncestorReport(Report.Report):
 
                     self.doc.start_paragraph("DAR-Entry")
 
-                    if self.firstName:
+                    if not self.firstName:
                         firstName = heshe
 
                     self.doc.write_text(person)
