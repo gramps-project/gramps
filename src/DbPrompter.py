@@ -249,12 +249,11 @@ class ImportDbPrompter:
         mime_filter.add_pattern('*')
         choose.add_filter(mime_filter)
         
-#   FIXME: Uncomment when we have grdb importer
-#        # Always add native format filter
-#        mime_filter = gtk.FileFilter()
-#        mime_filter.set_name(_('GRAMPS databases'))
-#        mime_filter.add_mime_type(const.app_gramps)
-#        choose.add_filter(mime_filter)
+        # Always add native format filter
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GRAMPS databases'))
+        mime_filter.add_mime_type(const.app_gramps)
+        choose.add_filter(mime_filter)
 
         # Add more data type selections if opening existing db
         for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
@@ -275,12 +274,13 @@ class ImportDbPrompter:
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
             filetype = get_mime_type(filename)
-#   FIXME: Uncomment when we have grdb importer
-#
-#            if filetype == 'application/x-gramps':
-#                choose.destroy()
-#                self.parent.read_file(filename)
-#                return True
+
+            if filetype == 'application/x-gramps':
+                choose.destroy()
+                import ReadGrdb
+                ReadGrdb.importData(self.parent.db,filename)
+                self.parent.import_tool_callback()
+                return True
 
             (the_path,the_file) = os.path.split(filename)
             GrampsKeys.save_last_import_dir(the_path)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 class FilterError(Exception):
     """Error used to report Filter errors"""
@@ -64,6 +66,15 @@ class GedcomError(Exception):
 
 class PluginError(Exception):
     """Error used to report plugin errors"""
+    def __init__(self,value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value
+
+class HandleError(Exception):
+    """Error used to report wrong database handle errors"""
     def __init__(self,value):
         Exception.__init__(self)
         self.value = value
