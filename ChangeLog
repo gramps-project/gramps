@@ -1,3 +1,9 @@
+2003-06-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/KwordDoc.py (write_text): Replace & with &amp in text.
+	Closes gramps-bugs-649228, finally.
+	(start_table): close FRAMESET tag conditionally. This prevents closing
+	it twice (both in end_cell and start_table). Closes 753151.
+
 2003-06-12  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenOfficeDoc.py: Fix typo. Prevent images from being
 	copied more than once.
