@@ -1,3 +1,13 @@
+2004-09-18 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateEdit.py (DateEdit): Take care of both the button and 
+	the LED pixmap now; Invoke DateEditorDialog if the button is pressed;
+	(DateEditorDialog): Correct the use of constants; adjust the date 
+	on the calendar change; preserve the old date unless OK was pressed;
+	* src/AddrEdit.py: Remove date editor callback in favor of DateEdit.
+	* src/EditPerson.py: Remove date editor callback in favor of DateEdit.
+	* src/EventEdit.py: Remove date editor callback in favor of DateEdit.
+	* src/gramps.glade: Minor cleanup; remove unused signal handlers.
+
 2004-09-17 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add date_edit dialog.
 	* src/DateEdit.py (DateEditorDialog): Add class.

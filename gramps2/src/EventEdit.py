@@ -213,17 +213,11 @@ class EventEditor:
             "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
-            "on_date_edit_clicked"      : self.on_date_edit_clicked,
             })
 
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
-
-    def on_date_edit_clicked(self,obj):
-        date_dialog = DateEdit.DateEditorDialog(self.date_check.checkval)
-        the_date = date_dialog.get_date()
-        print "The date was built as follows:", the_date
 
     def on_delete_event(self,obj,b):
         self.gallery.close()
@@ -273,13 +267,6 @@ class EventEditor:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
-    def on_menu_changed(self,obj):
-        cobj = obj.get_data("d")
-        self.date = self.dp.parse(self.date_field.get_text())
-        self.date.set_calendar(cobj)
-        self.date_field.set_text(self.dd(self.date))
-        self.date_check.set_calendar(cobj)
-        
     def get_place(self,field,trans):
         text = strip(unicode(field.get_text()))
         if text:

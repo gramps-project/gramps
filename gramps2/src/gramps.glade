@@ -8969,16 +8969,15 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="button174">
+			<widget class="GtkButton" id="birth_stat">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Invoke date editor</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
-			  <signal name="clicked" handler="on_edit_date_birth_clicked" last_modification_time="Sat, 18 Sep 2004 02:29:41 GMT"/>
 
 			  <child>
-			    <widget class="GtkImage" id="birth_stat">
+			    <widget class="GtkImage" id="birth_stat_child">
 			      <property name="visible">True</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -8998,7 +8997,7 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="button175">
+			<widget class="GtkButton" id="death_stat">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Invoke date editor</property>
 			  <property name="can_focus">True</property>
@@ -9007,7 +9006,7 @@ Other</property>
 			  <signal name="clicked" handler="on_edit_date_death_clicked" last_modification_time="Sat, 18 Sep 2004 02:30:11 GMT"/>
 
 			  <child>
-			    <widget class="GtkImage" id="death_stat">
+			    <widget class="GtkImage" id="death_stat_child">
 			      <property name="visible">True</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -26428,15 +26427,14 @@ Other</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="button176">
+		    <widget class="GtkButton" id="date_stat">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_date_edit_clicked" last_modification_time="Sat, 18 Sep 2004 02:42:17 GMT"/>
 
 		      <child>
-			<widget class="GtkImage" id="date_stat">
+			<widget class="GtkImage" id="date_stat_child">
 			  <property name="visible">True</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
@@ -26451,7 +26449,7 @@ Other</property>
 		      <property name="top_attach">1</property>
 		      <property name="bottom_attach">2</property>
 		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
+		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
 		</widget>
@@ -28684,15 +28682,14 @@ Other</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkButton" id="button177">
+		    <widget class="GtkButton" id="date_stat">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
-		      <signal name="clicked" handler="on_date_edit_clicked" last_modification_time="Sat, 18 Sep 2004 02:40:33 GMT"/>
 
 		      <child>
-			<widget class="GtkImage" id="date_stat">
+			<widget class="GtkImage" id="date_stat_child">
 			  <property name="visible">True</property>
 			  <property name="xalign">0.5</property>
 			  <property name="yalign">0.5</property>
@@ -30729,12 +30726,13 @@ Other</property>
 
 <widget class="GtkDialog" id="date_edit">
   <property name="visible">True</property>
-  <property name="title" translatable="yes">Date selection - GRAMPS</property>
+  <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
+  <property name="icon">gramps.png</property>
   <property name="decorated">True</property>
   <property name="skip_taskbar_hint">False</property>
   <property name="skip_pager_hint">False</property>
@@ -30807,9 +30805,9 @@ Other</property>
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label403">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;Date selection&lt;/big&gt;&lt;/b&gt;</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -30822,7 +30820,7 @@ Other</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
-	      <property name="expand">False</property>
+	      <property name="expand">True</property>
 	      <property name="fill">False</property>
 	    </packing>
 	  </child>
@@ -31136,7 +31134,7 @@ Other</property>
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">0 0 2100 1 10 10</property>
+		      <property name="adjustment">0 0 99999 1 10 10</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">7</property>
@@ -31236,7 +31234,7 @@ Other</property>
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">0 0 2100 1 10 10</property>
+		      <property name="adjustment">0 0 99999 1 10 10</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
