@@ -141,6 +141,7 @@ class GrampsDbBase:
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
+
         self.person_map[handle] = person.serialize()
           
     def commit_media_object(self,obj,transaction,change_time=None):

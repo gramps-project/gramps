@@ -61,6 +61,15 @@ CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
 
+
+#-------------------------------------------------------------------------
+#
+# Class definitions
+#
+#-------------------------------------------------------------------------
+_display = DateHandler.create_display()
+_parser  = DateHandler.create_parser()
+
 #-------------------------------------------------------------------------
 #
 # Class definitions
@@ -817,8 +826,6 @@ class Event(PrimaryObject,DataObj):
         PrimaryObject.__init__(self,source)
         DataObj.__init__(self,source)
 
-        self.dd = DateHandler.create_display()
-        self.dp = DateHandler.create_parser()
         if source:
             self.place = source.place
             self.date = Date.Date(source.date)
@@ -984,12 +991,12 @@ class Event(PrimaryObject,DataObj):
 
     def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
-        self.date = self.dp.parse(date)
+        self.date = _parser.parse(date)
 
     def get_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return self.dd.display(self.date)
+            return _display.display(self.date)
         return u""
 
     def get_preferred_date(self) :
@@ -1000,7 +1007,7 @@ class Event(PrimaryObject,DataObj):
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
         if self.date:
-            return self.dd.quote_display(self.date)
+            return _display.quote_display(self.date)
         return u""
 
     def get_date_object(self):
@@ -1357,8 +1364,6 @@ class LdsOrd(SourceNote):
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
-        self.dp = DateHandler.create_parser()
-        self.dd = DateHandler.create_display()
         
         if source:
             self.famc = source.famc
@@ -1403,12 +1408,12 @@ class LdsOrd(SourceNote):
         """attempts to sets the date of the ordinance"""
         if not self.date:
             self.date = Date.Date()
-        self.dp.set_date(self.date,date)
+        _parser.set_date(self.date,date)
 
     def get_date(self) :
         """returns a string representation of the date of the ordinance"""
         if self.date:
-            return self.dd.display(self.date)
+            return _display.display(self.date)
         return u""
 
     def get_date_object(self):
@@ -1723,8 +1728,6 @@ class Address(DataObj):
         if provided"""
         DataObj.__init__(self,source)
         
-        self.dd = DateHandler.create_display()
-        self.dp = DateHandler.create_parser()
         if source:
             self.street = source.street
             self.city = source.city
@@ -1745,13 +1748,13 @@ class Address(DataObj):
     def set_date(self,text):
         """attempts to sets the date that the person lived at the address
         from the passed string"""
-        self.date = self.dp.parse(text)
+        self.date = _parser.parse(text)
 
     def get_date(self):
         """returns a string representation of the date that the person
         lived at the address"""
         if self.date:
-            return self.dd.display(self.date)
+            return _display.display(self.date)
         return u""
 
     def get_preferred_date(self):

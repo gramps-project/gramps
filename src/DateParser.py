@@ -101,12 +101,13 @@ class DateParser:
         ) + ')'
     _mon_str  = '(' + '|'.join(month_to_int.keys()) + ')'
     
-    _qual     = re.compile("%s\s+(.*)" % _qual_str,re.IGNORECASE)
-    _span     = re.compile("from\s+(.*)\s+to\s+(.*)",re.IGNORECASE)
-    _range    = re.compile("(bet.|between)\s+(.*)\s+and\s+(.*)",re.IGNORECASE)
+    _qual     = re.compile("%s\s+(.+)" % _qual_str,re.IGNORECASE)
+    _span     = re.compile("from\s+(.+)\s+to\s+(.+)",re.IGNORECASE)
+    _range    = re.compile("(bet.|between)\s+(.+)\s+and\s+(.+)",re.IGNORECASE)
     _modifier = re.compile('%s\s+(.*)' % _mod_str,re.IGNORECASE)
     _text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % _mon_str,re.IGNORECASE)
     _text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % _mon_str,re.IGNORECASE)
+    _range2   = re.compile('%s\s+(\d+)-(\d+)\s*,?\s*((\d+)(/\d+)?)?' % _mon_str,re.IGNORECASE)
     _numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
     _iso      = re.compile("(\d+)-(\d+)-(\d+)")
 
@@ -211,6 +212,24 @@ class DateParser:
             start = self._parse_subdate(grps[1])
             stop = self._parse_subdate(grps[2])
             date.set(qual,Date.MOD_RANGE,Date.CAL_GREGORIAN,start + stop)
+            return
+
+        match = self._range2.match(text)
+        if match:
+            grps = match.groups()
+            m = self.month_to_int[grps[0].lower()]
+
+            d0 = self._get_int(grps[1])
+            d1 = self._get_int(grps[2])
+
+            if grps[3] == None:
+                y = 0
+                s = None
+            else:
+                y = int(grps[3])
+                s = grps[4] != None
+            date.set(qual,Date.MOD_RANGE,Date.CAL_GREGORIAN,
+                     (d0,m,y,s,d1,m,y,s))
             return
     
         match = self._modifier.match(text)

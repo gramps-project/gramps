@@ -103,11 +103,11 @@ class EditPerson:
         self.callback = callback
         self.child_windows = {}
         self.path = db.get_save_path()
-        self.not_loaded = 1
-        self.lds_not_loaded = 1
-        self.lists_changed = 0
-        self.update_birth = 0
-        self.update_death = 0
+        self.not_loaded = True
+        self.lds_not_loaded = True
+        self.lists_changed = False
+        self.update_birth = False
+        self.update_death = False
         self.pdmap = {}
         self.add_places = []
         self.should_guess_gender = (person.get_gramps_id() == '' and
@@ -607,7 +607,7 @@ class EditPerson:
         self.build_endow_menu()
 
     def on_gender_activate (self, button):
-        self.should_guess_gender = 0
+        self.should_guess_gender = False
 
     def on_givenName_focus_out_event (self, entry, event):
         if not self.should_guess_gender:
@@ -615,11 +615,11 @@ class EditPerson:
 
         gender = self.db.genderStats.guess_gender(unicode(entry.get_text ()))
         if gender == RelLib.Person.unknown:
-            self.is_unknown.set_active (1)
+            self.is_unknown.set_active(True)
         elif gender == RelLib.Person.male:
-            self.is_male.set_active (1)
+            self.is_male.set_active(True)
         else:
-            self.is_female.set_active (1)
+            self.is_female.set_active(True)
 
     def build_menu(self,list,task,opt_menu,type):
         menu = gtk.Menu()
@@ -677,7 +677,7 @@ class EditPerson:
                     foo.set_place_handle(place.get_handle())
                 self.elist.insert(row,foo)
 
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_event_list()
 
     def move_element(self,list,src,dest):
@@ -718,7 +718,7 @@ class EditPerson:
             else:
                 foo = pickle.loads(data[2]);
                 self.ulist.append(foo)
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_url_list()
 
     def url_drag_begin(self, context, a):
@@ -751,7 +751,7 @@ class EditPerson:
                     newbase = self.db.get_source_from_handle(base_handle)
                     src.set_base_handle(newbase)
                 self.alist.append(foo)
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_attr_list()
 
     def at_drag_begin(self, context, a):
@@ -785,7 +785,7 @@ class EditPerson:
                     src.set_base_handle(newbase)
                 self.plist.insert(row,foo)
                 
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_addr_list()
 
     def ad_drag_data_get(self,widget, context, sel_data, info, time):
@@ -830,11 +830,11 @@ class EditPerson:
             self.wmap[str(url)] = node
             
         if len(self.ulist) > 0:
-            self.web_go.set_sensitive(0)
+            self.web_go.set_sensitive(False)
             self.wtree.select_row(0)
             Utils.bold_label(self.inet_label)
         else:
-            self.web_go.set_sensitive(0)
+            self.web_go.set_sensitive(False)
             self.web_url.set_text("")
             self.web_description.set_text("")
             Utils.unbold_label(self.inet_label)
@@ -923,13 +923,13 @@ class EditPerson:
 
         # Update birth with new values, make sure death values don't change
         if self.update_birth:
-            self.update_birth = 0
+            self.update_birth = False
             self.update_birth_info()
             self.dplace.set_text(prev_dtext)
 
         # Update death with new values, make sure birth values don't change
         if self.update_death:
-            self.update_death = 0
+            self.update_death = False
             self.update_death_info()
             self.bplace.set_text(prev_btext)
 
@@ -982,7 +982,7 @@ class EditPerson:
         name cannot be changed"""
         
         import EventEdit
-        self.update_birth = 1
+        self.update_birth = True
         pname = self.person.get_primary_name().get_name()
         event = self.birth
         event.set_date_object(Date.Date(self.birth_date_object))
@@ -1000,7 +1000,7 @@ class EditPerson:
         name cannot be changed"""
         
         import EventEdit
-        self.update_death = 1
+        self.update_death = True
         pname = self.person.get_primary_name().get_name()
         event = self.death
         event.set_date_object(Date.Date(self.death_date_object))
@@ -1018,7 +1018,7 @@ class EditPerson:
         store,node = self.ntree.get_selected()
         if node:
             self.nlist.remove(self.ntree.get_object(node))
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_name_list()
 
     def on_delete_url_clicked(self,obj):
@@ -1026,7 +1026,7 @@ class EditPerson:
         store,node = self.wtree.get_selected()
         if node:
             self.ulist.remove(self.wtree.get_object(node))
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_url_list()
 
     def on_delete_attr_clicked(self,obj):
@@ -1034,7 +1034,7 @@ class EditPerson:
         store,node = self.atree.get_selected()
         if node:
             self.alist.remove(self.atree.get_object(node))
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_attr_list()
 
     def on_delete_addr_clicked(self,obj):
@@ -1042,7 +1042,7 @@ class EditPerson:
         store,node = self.ptree.get_selected()
         if node:
             self.plist.remove(self.ptree.get_object(node))
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_addr_list()
 
     def on_web_go_clicked(self,obj):
@@ -1077,10 +1077,10 @@ class EditPerson:
                          'have made will be lost'),
                        self.cancel_callback,
                        self.save)
-            return 1
+            return True
         else:
             self.close()
-            return 0
+            return False
 
     def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
@@ -1110,32 +1110,32 @@ class EditPerson:
         if idval == "":
             idval = None
 
-        changed = 0
+        changed = False
         name = self.person.get_primary_name()
 
         if self.complete.get_active() != self.person.get_complete_flag():
-            changed = 1
+            changed = True
 
         if self.person.get_gramps_id() != idval:
-            changed = 1
+            changed = True
         if suffix != name.get_suffix():
-            changed = 1
+            changed = True
         if prefix != name.get_surname_prefix():
-            changed = 1
+            changed = True
         if surname.upper() != name.get_surname().upper():
-            changed = 1
+            changed = True
         if ntype != const.NameTypesMap.find_value(name.get_type()):
-            changed = 1
+            changed = True
         if given != name.get_first_name():
-            changed = 1
+            changed = True
         if nick != self.person.get_nick_name():
-            changed = 1
+            changed = True
         if title != name.get_title():
-            changed = 1
+            changed = True
         if self.pname.get_note() != name.get_note():
-            changed = 1
-        if self.lds_not_loaded == 0 and self.check_lds():
-            changed = 1
+            changed = True
+        if self.lds_not_loaded == False and self.check_lds():
+            changed = True
 
         bplace = unicode(self.bplace.get_text().strip())
         dplace = unicode(self.dplace.get_text().strip())
@@ -1145,7 +1145,7 @@ class EditPerson:
         else:
             p1 = None
             if bplace != "":
-                changed = 1
+                changed = True
             self.birth.set_place_handle('')
 
         if self.pdmap.has_key(dplace):
@@ -1153,33 +1153,33 @@ class EditPerson:
         else:
             p1 = None
             if dplace != "":
-                changed = 1
+                changed = True
             self.death.set_place_handle('')
 
         if not self.birth.are_equal(self.orig_birth):
-            changed = 1
+            changed = True
         if not self.death.are_equal(self.orig_death):
-            changed = 1
+            changed = True
         if male and self.person.get_gender() != RelLib.Person.male:
-            changed = 1
+            changed = True
         elif female and self.person.get_gender() != RelLib.Person.female:
-            changed = 1
+            changed = True
         elif unknown and self.person.get_gender() != RelLib.Person.unknown:
-            changed = 1
-        if text != self.person.get_note() or self.lists_changed:
-            changed = 1
+            changed = True
+        if text != self.person.get_note():
+            changed = True
         if format != self.person.get_note_format():
-            changed = 1
+            changed = True
 
-        if self.lds_not_loaded == 0:
+        if self.lds_not_loaded == False:
             if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
-                changed= 1
+                changed= True
 
             if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
-                changed = 1
+                changed = True
 
             if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
-                changed = 1
+                changed = True
                 
         return changed
 
@@ -1212,7 +1212,7 @@ class EditPerson:
     def on_event_delete_clicked(self,obj):
         """Delete the selected event"""
         if Utils.delete_selected(obj,self.elist):
-            self.lists_changed = 1
+            self.lists_changed = True
             self.redraw_event_list()
 
     def update_birth_death(self):
@@ -1452,7 +1452,7 @@ class EditPerson:
     def on_apply_person_clicked(self,obj):
 
         trans = self.db.transaction_begin()
-        
+
         surname = unicode(self.surname.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
@@ -1546,13 +1546,13 @@ class EditPerson:
         male = self.is_male.get_active()
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
-        error = 0
+        error = False
         if male and self.person.get_gender() != RelLib.Person.male:
             self.person.set_gender(RelLib.Person.male)
             for temp_family in self.person.get_family_handle_list():
                 if self.person == temp_family.get_mother_handle():
                     if temp_family.get_father_handle() != None:
-                        error = 1
+                        error = True
                     else:
                         temp_family.set_mother_handle(None)
                         temp_family.set_father_handle(self.person)
@@ -1561,7 +1561,7 @@ class EditPerson:
             for temp_family in self.person.get_family_handle_list():
                 if self.person == temp_family.get_father_handle():
                     if temp_family.get_mother_handle() != None:
-                        error = 1
+                        error = True
                     else:
                         temp_family.set_father_handle(None)
                         temp_family.set_mother_handle(self.person)
@@ -1570,18 +1570,18 @@ class EditPerson:
             for temp_family in self.person.get_family_handle_list():
                 if self.person == temp_family.get_father_handle():
                     if temp_family.get_mother_handle() != None:
-                        error = 1
+                        error = True
                     else:
                         temp_family.set_father_handle(None)
                         temp_family.set_mother_handle(self.person)
                 if self.person == temp_family.get_mother_handle():
                     if temp_family.get_father_handle() != None:
-                        error = 1
+                        error = True
                     else:
                         temp_family.set_mother_handle(None)
                         temp_family.set_father_handle(self.person)
 
-        if error == 1:
+        if error == True:
             msg2 = _("Problem changing the gender")
             msg = _("Changing the gender caused problems "
                     "with marriage information.\nPlease check "
@@ -1601,7 +1601,7 @@ class EditPerson:
         if self.complete.get_active() != self.person.get_complete_flag():
             self.person.set_complete_flag(self.complete.get_active())
 
-        if self.lds_not_loaded == 0:
+        if self.lds_not_loaded == False:
             self.check_lds()
             lds_ord = RelLib.LdsOrd(self.person.get_lds_baptism())
             if not self.lds_baptism.are_equal(lds_ord):
@@ -1617,6 +1617,7 @@ class EditPerson:
 
         if self.lists_changed:
             self.person.set_source_reference_list(self.srcreflist)
+            self.update_lists()
 
         if self.person.get_handle() == None:
             self.db.add_person(self.person, trans)
@@ -1624,7 +1625,6 @@ class EditPerson:
             self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
-        self.update_lists()
         if self.callback:
             self.callback(self,1)
         self.close()
@@ -1654,7 +1654,7 @@ class EditPerson:
 
     def update_primary_name(self,list):
         self.pname.set_source_reference_list(list)
-        self.lists_changed = 1
+        self.lists_changed = True
 
     def on_name_note_clicked(self,obj):
         import NoteEdit
@@ -1666,7 +1666,7 @@ class EditPerson:
 
     def update_ldsbap_list(self,list):
         self.lds_baptism.set_source_reference_list(list)
-        self.lists_changed = 1
+        self.lists_changed = True
         
     def on_ldsbap_note_clicked(self,obj):
         import NoteEdit
@@ -1678,7 +1678,7 @@ class EditPerson:
 
     def set_ldsendow_list(self,list):
         self.lds_endowment.set_source_reference_list(list)
-        self.lists_changed = 1
+        self.lists_changed = True
 
     def on_ldsendow_note_clicked(self,obj):
         import NoteEdit
@@ -1690,7 +1690,7 @@ class EditPerson:
 
     def lds_seal_list(self,list):
         self.lds_sealing.set_source_reference_list(list)
-        self.lists_changed = 1
+        self.lists_changed = True
 
     def on_ldsseal_note_clicked(self,obj):
         import NoteEdit
@@ -1726,9 +1726,9 @@ class EditPerson:
         elif page == 2:
             self.redraw_event_list()
         elif page == 7 and self.not_loaded:
-            self.not_loaded = 0
+            self.not_loaded = False
         elif page == 9 and self.lds_not_loaded:
-            self.lds_not_loaded = 0
+            self.lds_not_loaded = False
             self.draw_lds()
         note_buf = self.notes_buffer
         text = unicode(note_buf.get_text(note_buf.get_start_iter(),
@@ -1738,7 +1738,7 @@ class EditPerson:
         else:
             Utils.unbold_label(self.notes_label)
 
-        if self.lds_not_loaded == 0:
+        if self.lds_not_loaded == False:
             self.check_lds()
         if self.lds_baptism.is_empty() \
                         and self.lds_endowment.is_empty() \
@@ -1756,7 +1756,7 @@ class EditPerson:
             self.nlist.append(old)
             self.redraw_name_list()
             self.pname = RelLib.Name(new)
-            self.lists_changed = 1
+            self.lists_changed = True
             self.write_primary_name()
 
     def write_primary_name(self):
@@ -1776,7 +1776,7 @@ class EditPerson:
     def birth_dates_in_order(self,list):
         """Check any *valid* birthdates in the list to insure that they are in
         numerically increasing order."""
-        inorder = 1
+        inorder = True
         prev_date = "00000000"
         for i in range(len(list)):
             child_handle = list[i]
@@ -1790,7 +1790,7 @@ class EditPerson:
             if (prev_date <= child_date):   # <= allows for twins
                 prev_date = child_date
             else:
-                inorder = 0
+                inorder = False
         return inorder
 
     def reorder_child_list(self, person, list):

@@ -10,6 +10,11 @@
 	(event_edit, addr_edit): Remove button relief as in editPerson.
 
 2004-09-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Date.py: remove comment field
+	* src/DateParser.py: add parsing of Month Day1-Day2, Year
+	* src/RelLib.py: make date parsers/displayers global to resolve
+	pickle-ing problem
+	* src/EditPerson.py: update lists before committing to database
 	* src/gramps.glade: remove button border for date editor button
 	* src/DateDisplay.py: fix quality prefix display
 
