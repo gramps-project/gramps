@@ -36,6 +36,7 @@
 	* src/select_person.glade: select person interface
 	* src/Plugins.py: Catch the LANG environment variable not being set when
 	determining which relationship calculator to use
+	* src/const.py.in: Updated LDS temple list
 	
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
