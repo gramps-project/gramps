@@ -32,6 +32,7 @@ filters, importer, exporters, and document generators.
 # GTK libraries
 #
 #-------------------------------------------------------------------------
+import GdkImlib
 import gtk
 import libglade
 
@@ -138,11 +139,11 @@ class PluginDialog:
 
         (task,cat,title,doc,xpm,status) = obj.get_data(TASK)
 
-        i,m = gtk.create_pixmap_from_xpm_d(gtk.GtkWindow(),None,xpm)
+        image = GdkImlib.create_image_from_xpm(xpm)
         self.description.set_text(doc)
         self.status.set_text(": %s" % status)
         self.label.show()
-        self.img.set(i,m)
+        self.img.load_imlib(image)
         self.title.set_text(title)
 
         self.dialog.get_widget("title").set_text(title)
