@@ -70,18 +70,18 @@ class AncestorReport:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,database,person,output,doc, max):
+    def __init__(self,database,display,person,output,doc,max):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
         self.map = {}
         self.text = {}
-        self.database = database
         self.start = person
         self.max_generations = max
         self.output = output
 	self.box_width = 0
 	self.height = 0
         self.lines = 0
+        self.display = display
         
     #--------------------------------------------------------------------
     #
@@ -94,22 +94,35 @@ class AncestorReport:
         if person == None or index >= 2**self.max_generations:
             return
         self.map[index] = person
-	self.text[index] = [ person.getPrimaryName().getName() ]
 
-	birth = person.getBirth()
-        if birth.getDate() != "":
-            self.text[index].append("b. %s" % birth.getDate())
-	death = person.getDeath()
-        if death.getDate() != "":
-            self.text[index].append("d. %s" % death.getDate())
-	if Config.status_bar == 1:
-	    self.text[index].append("id: %s" % person.getId())
-	elif Config.status_bar == 2:
-            for attr in active_person.getAttributeList():
-                if attr.getType() == Config.attr_name:
-                    txt = "%s: %s" % (Config.attr_name,attr.getValue())
-		    self.text[index].append(txt)
-                    break
+	self.text[index] = []
+
+        n = person.getPrimaryName().getRegularName()
+        N = person.getPrimaryName().getName()
+        b = person.getBirth().getDate()
+        d = person.getDeath().getDate()
+        B = person.getBirth().getPlace()
+        D = person.getDeath().getPlace()
+        i = "%s" % person.getId()
+        A = Config.attr_name
+        a = ""
+        for attr in person.getAttributeList():
+            if attr.getType() == Config.attr_name:
+                a = attr.getValue()
+                break
+
+        for line in self.display:
+            line = string.replace(line,"$n",n)
+            line = string.replace(line,"$N",N)
+            line = string.replace(line,"$b",b)
+            line = string.replace(line,"$B",B)
+            line = string.replace(line,"$d",d)
+            line = string.replace(line,"$D",D)
+            line = string.replace(line,"$i",i)
+            line = string.replace(line,"$a",a)
+            line = string.replace(line,"$A",A)
+            line = string.replace(line,"$$",'$')
+            self.text[index].append(line)
 
         self.font = self.doc.style_list["Normal"].get_font()
 	for line in self.text[index]:
@@ -165,7 +178,6 @@ class AncestorReport:
 	width = 0
         self.filter(self.start,1)
 
-        print self.lines
 	self.height = self.lines*pt2cm(1.2*self.font.get_size())
 	self.box_width = pt2cm(self.box_width+20)
 
@@ -340,14 +352,16 @@ def on_save_clicked(obj):
     paper = paper_obj.get_data("i")
     orien_obj = topDialog.get_widget("orientation").get_menu().get_active()
     orien = orien_obj.get_data("i")
-        
     max_gen = topDialog.get_widget("generations").get_value_as_int()
+    text = topDialog.get_widget("display_text").get_chars(0,-1)
+    text = string.split(text,'\n')
 
+    styles = topDialog.get_widget("style_menu").get_menu().get_active().get_data("d")
     item = topDialog.get_widget("format").get_menu().get_active()
     format = item.get_data("name")
     doc = FindDoc.make_draw_doc(styles,format,paper,orien)
 
-    MyReport = AncestorReport(db,active_person,outputName,doc,max_gen)
+    MyReport = AncestorReport(db,text,active_person,outputName,doc,max_gen)
 
     MyReport.write_report()
 
