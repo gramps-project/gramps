@@ -1,3 +1,7 @@
+2003-12-01  Tim Waugh  <twaugh@redhat.com>
+	* doc/xmldocs.make: Clean copied XML files.  Now 'make distcheck' works
+	again.
+
 2003-11-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 	* src/FamilyView.py (on_child_list_button_press): Add edit person

@@ -43,7 +43,7 @@ xml_files = $(entities) $(docname).xml
 omf_dir=$(top_srcdir)/omf-install
 
 EXTRA_DIST = $(xml_files) $(omffile)
-CLEANFILES = omf_timestamp
+CLEANFILES = omf_timestamp $(xml_files)
 
 include $(top_srcdir)/doc/omf.make
 
