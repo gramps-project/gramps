@@ -1,3 +1,6 @@
+2005-01-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* gramps.spec.in: pkill gconfd to fix settings
+
 2005-01-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Fix adding styles and calling doc.init().
 	* src/BaseDoc.py: Restructure header; Replace tabs with spaces.

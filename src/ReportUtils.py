@@ -66,9 +66,9 @@ def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
     @type center_x: float
     @param center_y: y coordinate in centimeters where the center of the pie
        chart should be. 0 is the top edge of the document
-    @param center_y: float
-    @type radius: radius of the pie chart. The pie charts width and height will
-       be twice this value.
+    @type center_y: float
+    @param radius: radius of the pie chart. The pie charts width and height
+       will be twice this value.
     @type radius: float
     @param data: List of tuples containing the data to be plotted. The values
        are (graphics_format, value), where graphics_format is a BaseDoc
@@ -99,10 +99,10 @@ def draw_legend(doc, start_x, start_y, data):
     @type doc: BaseDoc derived class
     @param start_x: x coordinate in centimeters where the left hand corner
         of the legend is placed. 0 is the left hand edge of the document.
-    @type center_x: float
-    @param center_y: y coordinate in centimeters where the top of the legend
+    @type start_x: float
+    @param start_y: y coordinate in centimeters where the top of the legend
         should be. 0 is the top edge of the document
-    @param center_y: float
+    @type start_y: float
     @param data: List of tuples containing the data to be used to create the
        legend. In order to be compatible with the graph plots, the first and
        third values of the tuple used. The format is (graphics_format, value,
@@ -131,7 +131,7 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
     @type start_x: float
     @param start_y: y coordinate in centimeters where the top of the chart
     should be. 0 is the top edge of the document
-    @param start_y: float
+    @type start_y: float
     @param height: height of the graph in centimeters
     @type height: float
     @param width: width of the graph in centimeters
@@ -172,7 +172,7 @@ def estimate_age(db, person):
     @param db: GRAMPS database to which the Person object belongs
     @type db: GrampsDbBase
     @param person: Person object to calculate the age of
-    @type db: Person
+    @type person: Person
     @returns: tuple containing the lower and upper bounds of the
        person's age, or (-1,-1) if it could not be determined.
     @rtype: tuple
@@ -234,7 +234,7 @@ def sanitize_person(db,person):
     @type db: GrampsDbBase
     @param person: source Person object that will be copied with
     privacy records removed
-    @type db: Person
+    @type person: Person
     @returns: 'cleansed' Person object
     @rtype: Person
     """

@@ -74,31 +74,34 @@ class OptionList:
     def set_options(self,options):
         """
         Sets the whole bunch of options for the OptionList.
-        
-        options:    list of options to set.
+        @param options: list of options to set.
+        @type options: list
         """
         self.options = options
 
     def get_options(self):
         """
         Returns the whole bunch of  options for the OptionList.
+        @returns: list of options
+        @rtype: list
         """
         return self.options
 
     def set_option(self,name,value):
         """
         Sets a particular option in the OptionList.
-        
-        name:    name of the option to set.
-        value:   value of the option to set.
+        @param name: name of the option to set.
+        @type name: str
+        @param value: value of the option to set.
+        @type str
         """
         self.options[name] = value
 
     def remove_option(self,name):
         """
         Removes a particular option from the OptionList.
-        
-        name:    name of the option to remove.
+        @param name: name of the option to remove.
+        @type name: str
         """
         if self.options.has_key(name):
             del self.options[name]
@@ -106,76 +109,92 @@ class OptionList:
     def get_option(self,name):
         """
         Returns the value of a particular option in the OptionList.
+        @param name: name of the option to retrieve
+        @type name: str
+        @returns: value associated with the passed option
+        @rtype: str
         """
         return self.options.get(name,None)
 
     def set_style_name(self,style_name):
         """
         Sets the style name for the OptionList.
-        
-        style_name: name of the style to set.
+        @param style_name: name of the style to set.
+        @type style_name: str
         """
         self.style_name = style_name
 
     def get_style_name(self):
         """
         Returns the style name of the OptionList.
+        @returns: string representing the style name
+        @rtype: str
         """
         return self.style_name
 
     def set_paper_name(self,paper_name):
         """
         Sets the paper name for the OptionList.
-        
-        style_name: name of the paper to set.
+        @param paper_name: name of the paper to set.
+        @type paper_name: str
         """
         self.paper_name = paper_name
 
     def get_paper_name(self):
         """
         Returns the paper name of the OptionList.
+        @returns: returns the paper name
+        @rtype: str
         """
         return self.paper_name
 
     def set_orientation(self,orientation):
         """
         Sets the orientation for the OptionList.
-        
-        orientation: orientation to set.
+        @param orientation: orientation to set. Possible values are
+            BaseDoc.PAPER_LANDSCAPE or BaseDoc.PAPER_PORTRAIT
+        @type orientation: int
         """
         self.orientation = orientation
 
     def get_orientation(self):
         """
         Returns the orientation for the OptionList.
+        @returns: returns the selected orientation. Valid values are
+            BaseDoc.PAPER_LANDSCAPE or BaseDoc.PAPER_PORTRAIT
+        @rtype: int
         """
         return self.orientation
 
     def set_template_name(self,template_name):
         """
         Sets the template name for the OptionList.
-        
-        template_name: name of the template to set.
+        @param template_name: name of the template to set.
+        @type template_name: str
         """
         self.template_name = template_name
 
     def get_template_name(self):
         """
         Returns the template name of the OptionList.
+        @returns: template name
+        @rtype: str
         """
         return self.template_name
 
     def set_format_name(self,format_name):
         """
         Sets the format name for the OptionList.
-        
-        format_name: name of the format to set.
+        @param format_name: name of the format to set.
+        @type format_name: str
         """
         self.format_name = format_name
 
     def get_format_name(self):
         """
         Returns the format name of the OptionList.
+        @returns: returns the format name
+        @rtype: str
         """
         return self.format_name
 
@@ -197,8 +216,8 @@ class OptionListCollection:
         """
         Creates an OptionListCollection instance from the list defined
         in the specified file.
-
-        filename:   XML file that contains option definitions
+        @param filename: XML file that contains option definitions
+        @type filename: str
         """
 
         if not filename or not os.path.isfile(filename):
@@ -216,55 +235,70 @@ class OptionListCollection:
     def get_option_list_map(self):
         """
         Returns the map of reports names to option lists.
+        @returns: Returns the map of reports names to option lists.
+        @rtype: dictionary
         """
         return self.option_list_map
 
     def get_option_list(self,name):
         """
         Returns the option_list associated with the report name
-
-        name:   name associated with the desired report.
+        @param name: name associated with the desired report.
+        @type name: str
+        @returns: returns the option list associated with the name,
+            or None of no such option exists
+        @rtype: str
         """
         return self.option_list_map.get(name,None)
 
     def get_report_names(self):
-        "Returns a list of all the report names in the OptionListCollection"
+        """
+        Returns a list of all the report names in the OptionListCollection
+        @returns: returns the list of report names
+        @rtype: list
+        """
         return self.option_list_map.keys()
 
     def set_option_list(self,name,option_list):
         """
         Adds or replaces an option_list in the OptionListCollection. 
-
-        name:           name assocated with the report to add or replace.
-        option_list:    option_list
+        @param name: name assocated with the report to add or replace.
+        @type name: str
+        @param option_list: list of options
+        @type option_list: str
         """
         self.option_list_map[name] = option_list
 
     def set_last_paper_name(self,paper_name):
         """
         Sets the last paper name used for the any report in this collection.
-        
-        paper_name: name of the paper to set.
+        @param paper_name: name of the paper to set.
+        @type paper_name: str
         """
         self.last_paper_name = paper_name
 
     def get_last_paper_name(self):
         """
         Returns the last paper name used for the any report in this collection.
+        @returns: returns the name of the paper
+        @rtype: str
         """
         return self.last_paper_name
 
     def set_last_orientation(self,orientation):
         """
         Sets the last orientation used for the any report in this collection.
-        
-        orientation: orientation to set.
+        @param orientation: orientation to set.
+        @type orientation: int
         """
         self.last_orientation = orientation
 
     def get_last_orientation(self):
         """
-        Returns the last orientation used for the any report in this collection.
+        Returns the last orientation used for the any report in this
+        collection.
+        @returns: last orientation used
+        @rtype: int
         """
         return self.last_orientation
 
@@ -676,7 +710,7 @@ class ReportOptions:
             self.options_help
                 This is a dictionary whose keys are option names
                 and values are 3- or 4- lists or tuples:
-                    ('=example","Short description",VALUES,DO_PREPEND)
+                    ('=example",'Short description',VALUES,DO_PREPEND)
                 The VALUES is either a single string (in that case
                 the DO_PREPEND does not matter) or a list/tuple of
                 strings to list. In that case, if DO_PREPEND evaluates
