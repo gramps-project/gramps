@@ -1,3 +1,7 @@
+2005-03-26  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (Source.replace_source_references): Add method.
+	* src/MergeData.py (MergeSources.merge): Use new handle replacement.
+
 2005-03-26  Don Allingham  <don@gramps-project.org>
 	* src/MergeData.py: Add interface support for parents/family merging
 
