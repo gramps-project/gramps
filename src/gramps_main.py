@@ -1,3 +1,4 @@
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2004  Donald N. Allingham
@@ -115,12 +116,6 @@ class Gramps:
         self.c_details = 6
         self.cl = 0
 
-        if os.getuid() == 0:
-            WarningDialog(_("GRAMPS is being run as the 'root' user."),
-                         _("This account is not meant for normal appication use. "
-                           "Running user applications in the administrative account "
-                           "is rarely a wise idea, and can open up potential "
-                           "security risks."))
 
         self.history = []
         self.mhistory = []
@@ -134,6 +129,16 @@ class Gramps:
         self.db.set_pprefix(GrampsCfg.pprefix)
 
         GrampsCfg.loadConfig(self.pref_callback)
+
+        if GrampsCfg.get_bool('/apps/gramps/betawarn') == 0:
+            WarningDialog(_("Use at your own risk"),
+                          _("This is an unstable development version of GRAMPS. "
+                            "It is intended as a technology preview. Do not trust your "
+                            "family database to this development version. This version may "
+                            "contain bugs which could corrupt your database."))
+            GrampsCfg.set_bool('/apps/gramps/betawarn',1)
+        
+
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(self.db)
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")

@@ -336,12 +336,9 @@ class Place(SourceNote):
                 self.alt_loc, self.urls, self.media_list, self.source_list, self.note)
 
     def unserialize(self,data):
-        try:
-            (self.id, self.title, self.long, self.lat, self.main_loc,
-             self.alt_loc, self.urls, self.media_list, self.source_list,
-             self.note) = data
-        except:
-            print data
+        (self.id, self.title, self.long, self.lat, self.main_loc,
+         self.alt_loc, self.urls, self.media_list, self.source_list,
+         self.note) = data
             
     def get_url_list(self):
         """Return the list of URLs"""
@@ -2956,7 +2953,6 @@ class GrampsDB:
         If no such Person exists, a new Person is added to the database."""
 
         data = self.person_map.get(str(val))
-        print data
 
         if data:
             person = Person()
