@@ -1,4 +1,4 @@
-
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000  Donald N. Allingham
@@ -472,6 +472,7 @@ class ParagraphStyle:
 	    self.left_border = source.left_border
             self.pad = source.pad
             self.bgcolor = source.bgcolor
+            self.description = source.description
         else:
             self.font    = FontStyle()
             self.rmargin = 0
@@ -485,6 +486,13 @@ class ParagraphStyle:
 	    self.left_border = 0
             self.pad = 0
             self.bgcolor = (255,255,255)
+            self.description = ""
+
+    def set_description(self,text):
+        self.description = text
+
+    def get_description(self):
+        return self.description
 
     def set(self,rmargin=None,lmargin=None,first_indent=None,align=None,
             tborder=None,bborder=None,rborder=None,lborder=None,pad=None,

@@ -1660,7 +1660,7 @@ class Family(Persistent):
 
     def setChildList(self, list):
         """sets the list of children"""
-        self.Children = list
+        self.Children = list[:]
 
     def getMarriage(self):
         """returns the marriage event of the Family. Obsolete"""
