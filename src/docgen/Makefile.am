@@ -13,7 +13,8 @@ pkgpython_PYTHON = \
 	PdfDoc.py\
 	PSDrawDoc.py\
 	RTFDoc.py\
-	SvgDrawDoc.py
+	SvgDrawDoc.py\
+	LPRDoc.py
 
 pkgpyexecdir = @pkgpyexecdir@/docgen
 pkgpythondir = @pkgpythondir@/docgen

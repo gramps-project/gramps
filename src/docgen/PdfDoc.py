@@ -454,13 +454,13 @@ class PdfDoc(BaseDoc.BaseDoc):
         fc = make_color(font.get_color())
         fnt = self.pdf_set_font(font)
         if p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
-            twidth = ((FontScale.string_width(font,str(text)))/2.0)*cm
+            twidth = ((FontScale.string_width(font,enc(text)))/2.0)*cm
             xcm = (stype.get_width() - x) - twidth
         else:
             xcm = x * cm
         s = reportlab.graphics.shapes.String(xcm,
                                              y-size,
-                                             str(text),
+                                             enc(text),
                                              strokeColor=sc,
                                              fillColor=fc,
                                              fontName=fnt,
@@ -493,7 +493,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         sc = make_color(font.get_color())
         fc = make_color(font.get_color())
         for line in text:
-            s = reportlab.graphics.shapes.String(0,yval,str(line),
+            s = reportlab.graphics.shapes.String(0,yval,enc(line),
                                                  fontName=fnt,
                                                  fontSize=size,
                                                  strokeColor=sc,
