@@ -45,12 +45,9 @@ class PlaceView:
         self.country_arrow = glade.get_widget("country_arrow")
         self.update_display= update
 
-        self.place_arrows = [ self.place_arrow, self.place_id_arrow, self.parish_arrow,
-                              self.city_arrow, self.county_arrow, self.state_arrow,
-                              self.country_arrow ]
-
-        self.sort_column = 0
-        self.sort_direct = GTK.SORT_ASCENDING
+        self.sort_arrow = [ self.place_arrow, self.place_id_arrow, self.parish_arrow,
+                            self.city_arrow, self.county_arrow, self.state_arrow,
+                            self.country_arrow ]
 
         self.place_list.set_column_visibility(7,0)
         self.place_list.set_column_visibility(8,0)
@@ -59,11 +56,16 @@ class PlaceView:
         self.place_list.set_column_visibility(11,0)
         self.place_list.set_column_visibility(12,0)
         self.place_list.set_column_visibility(13,0)
-        self.place_list.set_sort_column(self.sort_column+7)
-        self.place_list.set_sort_type(self.sort_direct)
         self.place_list.connect('button-press-event',self.on_button_press_event)
         self.place_list.connect('select-row',self.select_row)
         self.active = None
+
+        # Restore the previous sort column
+        
+        self.sort_col,self.sort_dir = Config.get_sort_cols("place",0,GTK.SORT_ASCENDING)
+        self.place_list.set_sort_column(self.sort_col+7)
+        self.place_list.set_sort_type(self.sort_dir)
+        self.set_arrow(self.sort_col)
 
     def load_places(self):
         if len(self.place_list.selection) == 0:
@@ -126,6 +128,17 @@ class PlaceView:
                 EditPlace.EditPlace(self.active,self.db,
                                     self.update_display_after_edit)
 
+    def set_arrow(self,column):
+        for a in self.sort_arrow:
+            a.hide()
+
+        a = self.sort_arrow[column]
+        a.show()
+        if self.sort_dir == GTK.SORT_ASCENDING:
+            a.set(GTK.ARROW_DOWN,2)
+        else:
+            a.set(GTK.ARROW_UP,2)
+
     def on_click_column(self,obj,column):
         obj.freeze()
         if len(obj.selection):
@@ -133,23 +146,22 @@ class PlaceView:
         else:
             sel = None
         
-        for a in self.place_arrows:
+        for a in self.sort_arrow:
             a.hide()
-        arrow = self.place_arrows[column]
-        if self.sort_column == column:
+        arrow = self.sort_arrow[column]
+        if self.sort_col == column:
             if self.sort_direct == GTK.SORT_DESCENDING:
                 self.sort_direct = GTK.SORT_ASCENDING
-                arrow.set(GTK.ARROW_DOWN,2)
             else:
                 self.sort_direct = GTK.SORT_DESCENDING
-                arrow.set(GTK.ARROW_UP,2)
         else:
             self.sort_direct = GTK.SORT_ASCENDING
-            arrow.set(GTK.ARROW_DOWN,2)
-        self.sort_column = column
+        self.sort_col = column
+        self.set_arrow(column)
         self.place_list.set_sort_type(self.sort_direct)
-        self.place_list.set_sort_column(self.sort_column + 7)
-        arrow.show()
+        self.place_list.set_sort_column(self.sort_col + 7)
+        Config.save_sort_cols("place",self.sort_col,self.sort_direct)
+
         self.place_list.sort()
         if sel:
             self.place_list.moveto(self.place_list.find_row_from_data(sel))

@@ -51,8 +51,6 @@ class MediaView:
         self.sort_arrow = [self.mdescr_arrow, self.mid_arrow, 
                            self.mtype_arrow, self.mpath_arrow]
         self.sort_map   = [5,1,2,3,-1]
-        self.sort_col   = 5
-        self.sort_dir   = GTK.SORT_ASCENDING
         self.media_list.connect('click-column',self.click_column)
 
         self.mid_arrow.hide()
@@ -76,6 +74,24 @@ class MediaView:
         self.media_list.set_column_visibility(5,0)
         self.media_list.connect('button-press-event',self.on_button_press_event)
 
+        # Restore the previous sort column
+        
+        self.sort_col,self.sort_dir = Config.get_sort_cols("media",0,GTK.SORT_ASCENDING)
+        self.media_list.set_sort_type(self.sort_dir)
+        self.media_list.set_sort_column(self.sort_map[self.sort_col])
+        self.set_arrow(self.sort_col)
+
+    def set_arrow(self,column):
+        for a in self.sort_arrow:
+            a.hide()
+
+        a = self.sort_arrow[column]
+        a.show()
+        if self.sort_dir == GTK.SORT_ASCENDING:
+            a.set(GTK.ARROW_DOWN,2)
+        else:
+            a.set(GTK.ARROW_UP,2)
+        
     def click_column(self,obj,column):
 
         new_col = self.sort_map[column]
@@ -95,19 +111,12 @@ class MediaView:
         else:
             self.sort_dir = GTK.SORT_ASCENDING
 
-        for a in self.sort_arrow:
-            a.hide()
-
-        a = self.sort_arrow[column]
-        a.show()
-        if self.sort_dir == GTK.SORT_ASCENDING:
-            a.set(GTK.ARROW_DOWN,2)
-        else:
-            a.set(GTK.ARROW_UP,2)
-            
+        self.set_arrow(column)
+        
         obj.set_sort_type(self.sort_dir)
         obj.set_sort_column(new_col)
-        self.sort_col = new_col
+        self.sort_col = column
+        Config.save_sort_cols("media",self.sort_col,self.sort_dir)
         obj.sort()
         if data:
             row = obj.find_row_from_data(data)
