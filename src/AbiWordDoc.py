@@ -40,9 +40,9 @@ class AbiWordDoc(TextDoc):
         else:
             self.filename = filename
             
-        self.f = open(filename,"w")
+        self.f = open(self.filename,"w")
         self.f.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
-        self.f.write('<abiword version="0.7.13" fileformat="1.0">\n')
+        self.f.write('<abiword version="0.7.14" fileformat="1.0">\n')
         self.f.write('<pagesize ')
         self.f.write('pagetype="%s" ' % self.paper.get_name())
         if self.orientation == PAPER_PORTRAIT:
@@ -67,13 +67,13 @@ class AbiWordDoc(TextDoc):
                 file = file_tuple[0]
                 width = file_tuple[1]
                 height = file_tuple[2]
-                base = os.path.basename(file)
+                base = "/tmp/%s.png" % os.path.basename(file)
                 tag = string.replace(base,'.','_')
                 cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,base)
                 os.system(cmd)
                 self.f.write('<d name="')
                 self.f.write(tag)
-                self.f.write('" mime=type="image/png" base64="yes">\n')
+                self.f.write('" mime-type="image/png" base64="yes">\n')
                 f = open(base,"rb")
                 base64.encode(f,self.f)
                 f.close()
@@ -94,13 +94,13 @@ class AbiWordDoc(TextDoc):
 
         self.photo_list.append((name,act_width,act_height))
 
-        base = os.path.basename(name)
+	base = "/tmp/%s.png" % os.path.basename(name)
         tag = string.replace(base,'.','_')
 
-        self.f.write('<image data="')
+        self.f.write('<image dataid="')
         self.f.write(tag)
         self.f.write('" props="width:%.3fin; ' % ((float(act_width)/72.0)/2.54))
-        self.f.write('height:%.3fin"/>\n'  % ((float(act_height)/72.0)/2.54))
+        self.f.write('height:%.3fin"/>'  % ((float(act_height)/72.0)/2.54))
 
     def start_paragraph(self,style_name):
         style = self.style_list[style_name]
@@ -155,31 +155,14 @@ if __name__ == "__main__":
     foo.set_size(24)
 
     para = ParagraphStyle()
-    para.set_font(foo)
-    para.set_alignment(PARA_ALIGN_RIGHT)
-    doc.add_style("MyTitle",para)
-
-    para = ParagraphStyle()
-    para.set_left_margin(1)
-    para.set_right_margin(1)
-    para.set_alignment(PARA_ALIGN_JUSTIFY)
     doc.add_style("Normal",para)
-
-    doc.open("/home/dona/oo_test.abw")
-    doc.start_paragraph("MyTitle")
-    doc.write_text("This is my Title")
-    doc.end_paragraph()
+	
+    doc.open("test")
 
     doc.start_paragraph("Normal")
-    doc.add_photo("/home/dona/dad.jpg",200,200)
+    doc.add_photo("image.jpg",200,200)
     doc.end_paragraph()
 
-    doc.start_paragraph("Normal")
-    doc.write_text("This is a test of the emergency broadcast system. ")    
-    doc.write_text("This is a only a test.  Repeat.  This is only a test. ")    
-    doc.write_text("Had this been an actual emergency, we would not be here ")
-    doc.write_text("to give you this message.")
-    doc.end_paragraph()
     doc.close()
 
     
