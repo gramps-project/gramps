@@ -11,6 +11,12 @@
 	* src/EditPerson.py: Clean up note format support.
 	* src/Marriage.py: Add note format support.
 
+2003-12-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/AbiWordDoc.py: removed the 1.0 version of AbiWord, since
+	GRAMPS is a GNOME 2 application, support the GNOME 2 version of AbiWord
+	* src/docgen/OpenOfficeDoc.py: Fixed width fonts for preformatted text
+	* src/docgen/AbiWord2Doc.py: Fixed width fonts for preformatted text
+
 2003-12-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/dialog.glade: Add format controls for notes.
 	* src/marriage.glade: Add format controls for notes.
@@ -21,7 +27,6 @@
 	* src/plugins/FtmStyleAncestors.py (print_notes): Call write_note().
 	* src/plugins/IndivComplete.py (write_note): Call doc.write_note().
 	* src/plugins/WebPage.py (write_gallery,write_notes): Call write_note().
-
 2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_note): Implement function.
 	* src/edit_person.glade: Correct hotkeys.
