@@ -80,7 +80,10 @@ def ansel_to_latin(s):
     buff = cStringIO.StringIO()
     while s:
         c0 = ord(s[0])
-        if c0 > 127:
+        if c0 <= 31:
+            head = ' '
+            s = s[1:]
+        elif c0 > 127:
             try:
                 if c0 >= 0xE0:
                     c1 = ord(s[1])
