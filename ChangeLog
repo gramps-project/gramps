@@ -1,3 +1,8 @@
+2003-10-23  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GenericFilter.py: add a filter to return the path to the
+	common ancestor(s) of two people.
+	* src/RelLib.py: don't barf on ZODB sorting
+
 2003-10-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/ReadGedcom.py (GedcomParser.__init__): 
 	Build translation map of correct length.
