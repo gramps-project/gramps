@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Sun Apr 13 22:43:06 2003\n"
-"PO-Revision-Date: 2003-04-14 21:39+0200\n"
+"POT-Creation-Date: Wed Apr 16 12:06:31 2003\n"
+"PO-Revision-Date: 2003-04-16 21:34+0200\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,14 +25,15 @@ msgstr "Der eingegebene Dateiname konnte nicht gefunden werden"
 #: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
 #: SelectChild.py:105 gramps_main.py:103 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
-#: plugins/RelCalc.py:326 plugins/TimeLine.py:336 plugins/WebPage.py:274
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:326 plugins/TimeLine.py:336
+#: plugins/WebPage.py:274
 msgid "Name"
 msgstr "Name"
 
 #: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:825
 #: MediaView.py:75 PlaceView.py:60 SelectChild.py:105 SourceView.py:68
 #: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:103
-#: plugins/RelCalc.py:326
+#: plugins/PatchNames.py:136 plugins/RelCalc.py:326
 msgid "ID"
 msgstr "ID"
 
@@ -309,7 +310,7 @@ msgstr "Ort"
 
 #: EditPerson.py:194 EditSource.py:159 ImageSelect.py:619 ImageSelect.py:742
 #: ImageSelect.py:825 Marriage.py:143 marriage.glade:853
-#: plugins/FilterEditor.py:130
+#: plugins/FilterEditor.py:130 plugins/PatchNames.py:142
 msgid "Value"
 msgstr "Wert"
 
@@ -322,6 +323,7 @@ msgid "Address"
 msgstr "Adresse"
 
 #: EditPerson.py:206 ImageSelect.py:825 MediaView.py:76
+#: plugins/PatchNames.py:139
 msgid "Type"
 msgstr "Typ"
 
@@ -955,7 +957,7 @@ msgstr ""
 "verwendet."
 
 #: MediaView.py:75 SourceView.py:68 Sources.py:77 Sources.py:160
-#: plugins/TimeLine.py:347
+#: plugins/PatchNames.py:168 plugins/TimeLine.py:347
 msgid "Title"
 msgstr "Titel"
 
@@ -3696,7 +3698,7 @@ msgid "Rename personal event types"
 msgstr "Ereignistypen umbenennen"
 
 #: plugins/ChangeTypes.py:104 plugins/Check.py:227 plugins/Merge.py:554
-#: plugins/PatchNames.py:158 plugins/ReorderIds.py:122
+#: plugins/PatchNames.py:209 plugins/ReorderIds.py:122
 msgid "Database Processing"
 msgstr "Datenbankverarbeitung"
 
@@ -3720,10 +3722,6 @@ msgstr "Eine ungültige Verwandschaftsbeziehung repariert\n"
 #: plugins/Check.py:156
 msgid "%d broken child/family links were found\n"
 msgstr "%d ungültige Verwandschaftsbeziehungen gefunden\n"
-
-#: plugins/Check.py:169
-msgid "%s was removed from the family of %s\n"
-msgstr "%s wurde aus der Familie von %s entfernt\n"
 
 #: plugins/Check.py:173
 msgid "1 broken spouse/family link was fixed\n"
@@ -4218,7 +4216,7 @@ msgid "Custom Filter Editor"
 msgstr "Filtereditor"
 
 #: plugins/FilterEditor.py:398 plugins/FilterEditor.py:411
-#: plugins/RelCalc.py:452 plugins/Verify.py:302 plugins/soundgen.py:95
+#: plugins/RelCalc.py:452 plugins/Verify.py:417 plugins/soundgen.py:95
 msgid "Utilities"
 msgstr "Werkzeuge"
 
@@ -4525,31 +4523,31 @@ msgstr ""
 "Durchsucht die gesamte Datenbank nach Einträgen, die die gleiche Person "
 "repräsentieren könnten."
 
-#: plugins/PatchNames.py:101
-msgid "%s will be extracted as a nickname from %s\n"
-msgstr "%s wird als Spitzname aus %s extrahiert\n"
-
-#: plugins/PatchNames.py:106
-msgid "%s will be extracted as a title from %s\n"
-msgstr "%s wird als Titel aus %s extrahiert\n"
-
-#: plugins/PatchNames.py:120
-msgid "Name and title extraction tool"
-msgstr "Extraktion von Namen und Titeln"
-
-#: plugins/PatchNames.py:124
+#: plugins/PatchNames.py:103
 msgid "No modifications made"
 msgstr "Keine Veränderungen"
 
-#: plugins/PatchNames.py:125
+#: plugins/PatchNames.py:104
 msgid "No titles or nicknames were found"
 msgstr "Keine Titel oder Spitznamen gefunden"
 
-#: plugins/PatchNames.py:157
+#: plugins/PatchNames.py:125
+msgid "Name and title extraction tool"
+msgstr "Extraktion von Namen und Titeln"
+
+#: plugins/PatchNames.py:133
+msgid "Select"
+msgstr "Auswählen"
+
+#: plugins/PatchNames.py:158
+msgid "Nickname"
+msgstr "Spitzname"
+
+#: plugins/PatchNames.py:208
 msgid "Extract information from names"
 msgstr "Information aus Namen extrahieren"
 
-#: plugins/PatchNames.py:159
+#: plugins/PatchNames.py:210
 msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
@@ -5065,161 +5063,280 @@ msgstr "Generiert eine Zeitleistengrafik"
 msgid "Timeline Graph"
 msgstr "Zeitleistengrafik"
 
-#: plugins/Verify.py:83 plugins/Verify.py:282
+#: plugins/Verify.py:85 plugins/Verify.py:397
 msgid "Database Verify"
 msgstr "Datenbankprüfung"
 
-#: plugins/Verify.py:117
-msgid "Baptized before birth: %s born %d, baptized %d.\n"
-msgstr "Vor der Geburt getauft: %s, geboren %d, getauft %d.\n"
+#: plugins/Verify.py:120
+msgid ""
+"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgstr "Vor der Geburt getauft: %(male_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
 
-#: plugins/Verify.py:119
-msgid "Baptized late: %s born %d, baptized %d.\n"
-msgstr "Späte Taufe: %s, geboren %d, getauft %d.\n"
+#: plugins/Verify.py:123
+msgid ""
+"Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)"
+"d.\n"
+msgstr "Vor der Geburt getauft: %(female_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
 
-#: plugins/Verify.py:122
-msgid "Buried before death: %s died %d, buried %d.\n"
-msgstr "Vor dem Tod begraben: %s, gestorben %d, begraben %d.\n"
-
-#: plugins/Verify.py:124
-msgid "Buried late: %s died %d, buried %d.\n"
-msgstr "Spät begraben: %s, gestorben %d, begraben %d.\n"
-
-#: plugins/Verify.py:126
-msgid "Died before birth: %s born %d, died %d.\n"
-msgstr "Vor der Geburt gestorben: %s, geboren %d, gestorben %d.\n"
-
-#: plugins/Verify.py:128
-msgid "Died before birth: %s baptized %d, died %d.\n"
-msgstr ""
+#: plugins/Verify.py:127
+msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgstr "Späte Taufe: %(male_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
 
 #: plugins/Verify.py:130
-msgid "Buried before birth: %s born %d, died %d.\n"
-msgstr ""
+msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
+msgstr "Späte Taufe: %(female_name)s, geboren %(byear)d, getauft %(bapyear)d.\n"
 
-#: plugins/Verify.py:132
-msgid "Buried before birth: %s baptized %d, died %d.\n"
-msgstr ""
+#: plugins/Verify.py:135
+msgid ""
+"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr "Vor dem Tod begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
+
+#: plugins/Verify.py:138
+msgid ""
+"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr "Vor dem Tod begraben: %(female_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
 
 #: plugins/Verify.py:142
-msgid "Old age: %s born %d, died %d, at the age of %d.\n"
-msgstr "Großes Alter: %s, geboren %d, gestorben %d im Alter von %d Jahren.\n"
+msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr "Spät begraben: %(male_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
 
-#: plugins/Verify.py:146
-msgid "mother "
-msgstr "Mutter "
+#: plugins/Verify.py:145
+msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr "Spät begraben: %(female_name)s, gestorben %(dyear)d, begraben %(buryear)d.\n"
 
-#: plugins/Verify.py:149 plugins/Verify.py:160 plugins/Verify.py:166
-msgid " was a widow "
-msgstr " war eine Witwe "
+#: plugins/Verify.py:149
+msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
+msgstr "Vor der Geburt gestorben: %(male_name)s, geboren %(byear)d, gestorben %(dyear)d.\n"
 
-#: plugins/Verify.py:151
-msgid "father "
-msgstr "Vater "
-
-#: plugins/Verify.py:154
-msgid " was a widower "
-msgstr " war ein Witwer "
+#: plugins/Verify.py:152
+msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
+msgstr "Vor der Geburt gestorben: %(female_name)s, geboren %(byear)d, gestorben %(dyear)d.\n"
 
 #: plugins/Verify.py:156
+msgid ""
+"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgstr "Vor der Taufe gestorben: %(male_name)s, getauft %(bapyear)d, gestorben %(dyear)d.\n"
+
+#: plugins/Verify.py:159
+msgid ""
+"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgstr "Vor der Taufe gestorben: %(female_name)s, getauft %(bapyear)d, gestorben %(dyear)d.\n"
+
+#: plugins/Verify.py:163
+msgid ""
+"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgstr "Vor der Geburt begraben: %(male_name)s, geboren %(byear)d, begraben %(buryear)d.\n"
+
+#: plugins/Verify.py:166
+msgid ""
+"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+msgstr "Vor der Geburt begraben: %(female_name)s, geboren %(byear)d, begraben %(buryear)d.\n"
+
+#: plugins/Verify.py:170
+msgid ""
+"Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)"
+"d.\n"
+msgstr "Vor der Taufe begraben: %(male_name)s, getauft %(bapyear)d, begraben %(buryear)d.\n"
+
+#: plugins/Verify.py:173
+msgid ""
+"Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %"
+"(buryear)d.\n"
+msgstr "Vor der Taufe begraben: %(female_name)s, getauft %(bapyear)d, begraben %(buryear)d.\n"
+
+#: plugins/Verify.py:185
+msgid ""
+"Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %"
+"(ageatdeath)d.\n"
+msgstr "Großes Alter: %(male_name)s, geboren %(byear)d, gestorben %(dyear)d im Alter von %(ageatdeath)d Jahren.\n"
+
+#: plugins/Verify.py:188
+msgid ""
+"Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %"
+"(ageatdeath)d.\n"
+msgstr "Großes Alter: %(female_name)s, geboren %(byear)d, gestorben %(dyear)d im Alter von %(ageatdeath)d Jahren.\n"
+
+#: plugins/Verify.py:205
 msgid "Unknown gender for %s.\n"
 msgstr "Unbekanntes Geschlecht: %s.\n"
 
-#: plugins/Verify.py:157 plugins/Verify.py:163
-msgid "parent "
-msgstr "Elternteil "
+#: plugins/Verify.py:211
+msgid "Ambiguous gender for %s.\n"
+msgstr "Unklares Geschlecht für %s.\n"
 
-#: plugins/Verify.py:162
-msgid "Ambigous gender for %s.\n"
-msgstr "Unklares Geschlecht: %s.\n"
-
-#: plugins/Verify.py:170
+#: plugins/Verify.py:219
 msgid "Multiple parentage for %s.\n"
 msgstr "Zuviele Eltern: %s.\n"
 
-#: plugins/Verify.py:176
-msgid "Married often: %s married %d times.\n"
-msgstr "Zahlreiche Ehen: %s, %d Mal verheiratet.\n"
+#: plugins/Verify.py:226
+msgid "Married often: %(male_name)s married %(nfam)d times.\n"
+msgstr "Zahlreiche Ehen: %(male_name)s, %(nfam)d Mal verheiratet.\n"
 
-#: plugins/Verify.py:178
-msgid "Old and unmarried: %s died unmarried, at the age of %d years.\n"
-msgstr "Alt und unverheiratet: %s starb unverheiratet im Alter von %d Jahren.\n"
+#: plugins/Verify.py:229
+msgid "Married often: %(female_name)s married %(nfam)d times.\n"
+msgstr "Zahlreiche Ehen: %(female_name)s, %(nfam)d Mal verheiratet.\n"
 
-#: plugins/Verify.py:191
+#: plugins/Verify.py:233
+msgid ""
+"Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)"
+"d years.\n"
+msgstr "Alt und unverheiratet: %(male_name)s starb unverheiratet im Alter von %(ageatdeath)d Jahren.\n"
+
+#: plugins/Verify.py:236
+msgid ""
+"Old and unmarried: %(female_name)s died unmarried, at the age of %"
+"(ageatdeath)d years.\n"
+msgstr "Alt und unverheiratet: %(female_name)s starb unverheiratet im Alter von %(ageatdeath)d Jahren.\n"
+
+#: plugins/Verify.py:250
 msgid "Homosexual marriage: %s in family %s.\n"
 msgstr "Homesexuelle Ehe: %s in Familie %s.\n"
 
-#: plugins/Verify.py:193
+#: plugins/Verify.py:252
 msgid "Female husband: %s in family %s.\n"
 msgstr "Weiblicher Ehemann: %s in Familie %s.\n"
 
-#: plugins/Verify.py:195
+#: plugins/Verify.py:254
 msgid "Male wife: %s in family %s.\n"
 msgstr "Männliche Ehefrau: %s in Familie %s.\n"
 
-#: plugins/Verify.py:203
-msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
-msgstr "Ehemann und Ehefrau mit dem gelichen Nachnamen: %s in Fmilie %s, und %s.\n"
-
-#: plugins/Verify.py:221
-msgid "Married before birth: %s born %d, married %d to %s.\n"
-msgstr "Vor der Geburt verheiratet: %s, geboren %d, Heirat in %d mit %s.\n"
-
-#: plugins/Verify.py:224
-msgid "Young marriage: %s married at age %d to %s.\n"
-msgstr "Jung verheiratet: %s, Heirat mit %d Jahren mit %s.\n"
-
-#: plugins/Verify.py:226
-msgid "Old marriage: %s married at age %d to %s.\n"
-msgstr "Alt verheiratet: %s, Heirat mit %d Jahren mit %s.\n"
-
-#: plugins/Verify.py:228
-msgid "Married after death: %s died %d, married %d to %s.\n"
-msgstr "Nach dem Tod geheiratet: %s, gestorben %d, Heirat in %d mit %s.\n"
-
-#: plugins/Verify.py:230
-msgid ""
-"Marriage before birth from previous family: %s married %d to %s, previous "
-"birth %d.\n"
-msgstr ""
-
-#: plugins/Verify.py:238
-msgid "Long widowhood: %s %s %d years before, family %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:243
-msgid "Long widowhood: %s %s %d years.\n"
-msgstr ""
-
-#: plugins/Verify.py:257
-msgid "Old %s: %s at age of %d in family %s had a child %s.\n"
-msgstr ""
-
-#: plugins/Verify.py:259
-msgid "Unborn %s: %s born %d, in family %s had a child %s born %d.\n"
-msgstr ""
-
 #: plugins/Verify.py:262
-msgid "Young %s: %s at the age of %d in family %s had a child %s.\n"
+msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
 msgstr ""
+"Ehemann und Ehefrau mit dem gelichen Nachnamen: %s in Fmilie %s, und %s.\n"
 
-#: plugins/Verify.py:266 plugins/Verify.py:268 plugins/Verify.py:270
-msgid "Dead %s: %s died %d, but in family %s had a child %s born %d.\n"
-msgstr ""
+#: plugins/Verify.py:281
+msgid ""
+"Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %"
+"(spouse)s.\n"
+msgstr "Vor der Geburt verheiratet: %(male_name)s, geboren %(byear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
 
-#: plugins/Verify.py:275
+#: plugins/Verify.py:284
+msgid ""
+"Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
+"%(spouse)s.\n"
+msgstr "Vor der Geburt verheiratet: %(female_name)s, geboren %(byear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+
+#: plugins/Verify.py:289
+msgid ""
+"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Jung verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+
+#: plugins/Verify.py:292
+msgid ""
+"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Jung verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+
+#: plugins/Verify.py:296
+msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Alt verheiratet: %(male_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+
+#: plugins/Verify.py:299
+msgid ""
+"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr "Alt verheiratet: %(female_name)s, Heirat mit %(marage)d Jahren mit %(spouse)s.\n"
+
+#: plugins/Verify.py:303
+msgid ""
+"Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %"
+"(spouse)s.\n"
+msgstr "Nach dem Tod geheiratet: %(male_name)s, gestorben %(dyear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+
+#: plugins/Verify.py:306
+msgid ""
+"Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %"
+"(spouse)s.\n"
+msgstr "Nach dem Tod geheiratet: %(female_name)s, gestorben %(dyear)d, Heirat in %(maryear)d mit %(spouse)s.\n"
+
+#: plugins/Verify.py:310
+msgid ""
+"Marriage before birth from previous family: %(male_name)s married %(maryear)"
+"d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+msgstr "Hochzeit vor der Geburt: %(male_name)s heiratete %(maryear)d %(spouse)s, wurde aber %(prev_cbyear)d geboren.\n"
+
+#: plugins/Verify.py:313
+msgid ""
+"Marriage before birth from previous family: %(female_name)s married %"
+"(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+msgstr "Hochzeit vor der Geburt: %(female_name)s heiratete %(maryear)d %(spouse)s, wurde aber %(prev_cbyear)d geboren.\n"
+
+#: plugins/Verify.py:323
+msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
+msgstr "Lange Witwerschaft: %s war %d Jahre Witwer, Familie %s.\n"
+
+#: plugins/Verify.py:325
+msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
+msgstr "Lange Witwenschaft: %s war %d Jahre Witwe, Familie %s.\n"
+
+#: plugins/Verify.py:331
+msgid "Long widowhood: %s was a widower %d years.\n"
+msgstr "Lange Witwerschaft: %s war %d Jahre Witwer.\n"
+
+#: plugins/Verify.py:333
+msgid "Long widowhood: %s was a widow %d years.\n"
+msgstr "Lange Witwenschaft: %s war %d Jahre Witwe.\n"
+
+#: plugins/Verify.py:348
+msgid ""
+"Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %"
+"(child)s.\n"
+msgstr "Alter Vater: %(male_name)s hatte im Alter von %(bage)d in der Familie %(fam)s ein Kind %(child)s.\n"
+
+#: plugins/Verify.py:351
+msgid ""
+"Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child "
+"%(child)s.\n"
+msgstr "Alte Mutter: %(female_name)s hatte im Alter von %(bage)d in der Familie %(fam)s ein Kind %(child)s.\n"
+
+#: plugins/Verify.py:355
+msgid ""
+"Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %"
+"(child)s born %(cbyear)d.\n"
+msgstr "Ungeborener Vater: %(male_name)s, geboren %(byear)d, hatte ein Kind %(child)s, geboren %(cbyear)d in Familie %(fam)s.\n"
+
+#: plugins/Verify.py:358
+msgid ""
+"Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child "
+"%(child)s born %(cbyear)d.\n"
+msgstr "Ungeborene Mutter: %(female_name)s, geboren %(byear)d, hatte ein Kind %(child)s, geboren %(cbyear)d in Familie %(fam)s.\n"
+
+#: plugins/Verify.py:363
+msgid ""
+"Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a "
+"child %(child)s.\n"
+msgstr "Junger Vater: %(male_name)s hatte im Alter von %(bage)d in Familie %(fam)s ein Kind %(child)s.\n"
+
+#: plugins/Verify.py:366
+msgid ""
+"Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a "
+"child %(child)s.\n"
+msgstr "Junge Mutter: %(female_name)s hatte im Alter von %(bage)d in Familie %(fam)s ein Kind %(child)s.\n"
+
+#: plugins/Verify.py:371 plugins/Verify.py:378
+msgid ""
+"Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child "
+"%(child)s born %(cbyear)d.\n"
+msgstr "Toter Vater: %(male_name)s starb %(dyear)d, hatte aber in Familie %(fam)s ein Kind %(child)s, geboren %(cbyear)d.\n"
+
+#: plugins/Verify.py:374 plugins/Verify.py:381
+msgid ""
+"Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
+"child %(child)s born %(cbyear)d.\n"
+msgstr "Tote Mutter: %(female_name)s starb %(dyear)d, hatte aber in Familie %(fam)s ein Kind %(child)s, geboren %(cbyear)d.\n"
+
+#: plugins/Verify.py:387
 msgid "ERRORS:\n"
 msgstr "FEHLER:\n"
 
-#: plugins/Verify.py:277
+#: plugins/Verify.py:389
 msgid "WARNINGS:\n"
 msgstr "WARNUNGEN:\n"
 
-#: plugins/Verify.py:301
+#: plugins/Verify.py:416
 msgid "Verify the database"
 msgstr "Datenbankprüfung"
 
-#: plugins/Verify.py:303
+#: plugins/Verify.py:418
 msgid "List exceptions to assertions or checks about the database"
 msgstr ""
 "Ausnahmen zu vorgegebenen und selbstdefinierten Regeln in der Datenbank "
@@ -5623,29 +5740,20 @@ msgstr "Optionen"
 msgid "Restrict data on living people"
 msgstr "Daten auf lebende Personen einschränken"
 
-#: plugins/patchnames.glade:40
-msgid "_Accept changes and close"
-msgstr "Änderungen _akzeptieren und Fenster schließen"
-
-#: plugins/patchnames.glade:105
+#: plugins/patchnames.glade:50
 msgid ""
 "Below is a list of the nicknames and titles that GRAMPS can extract from "
 "the \n"
-"current database. If you accept the changes, GRAMPS will modify your "
-"database as \n"
-"specified below. If you do not approve of these changes, you should select \n"
-"'Cancel', and your database will not be altered.\n"
-"\n"
-"Should the following changes be made?"
+"current database. If you accept the changes, GRAMPS will modify the entries\n"
+"that have been selected."
 msgstr ""
-"Unten steht eine Liste mit Spitznamen und Titeln, die GRAMPS aus der "
-"aktuellen\n"
-"Datenbank extrahieren kann. Wenn Sie akzeptieren, wird GRAMPS die Datenbank "
-"wie\n"
-"angegeben verändern. Wenn Sie mit den Änderungen nicht einverstanden sind,\n"
-"wählen Sie \"Abbrechen\", und die Datenbank wird nicht geändert.\n"
-"\n"
-"Sollen die folgenden Änderungen durchgeführt werden?"
+"Unten steht eine Liste mit Spitznamen und Titeln, die GRAMPS aus der aktuellen\n"
+"Datenbank extrahieren kann. Wenn Sie akzeptieren, wird GRAMPS die gewählten\n"
+"Einträge ändern."
+
+#: plugins/patchnames.glade:106
+msgid "_Accept changes and close"
+msgstr "Änderungen _akzeptieren und Fenster schließen"
 
 #: plugins/relcalc.glade:90
 msgid "Select a person to determine the relationship"
@@ -6252,3 +6360,27 @@ msgstr "<b>Ausrichtung</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Absatzoptionen</b>"
+
+#~ msgid "%s was removed from the family of %s\n"
+#~ msgstr "%s wurde aus der Familie von %s entfernt\n"
+
+#~ msgid "%s will be extracted as a nickname from %s\n"
+#~ msgstr "%s wird als Spitzname aus %s extrahiert\n"
+
+#~ msgid "%s will be extracted as a title from %s\n"
+#~ msgstr "%s wird als Titel aus %s extrahiert\n"
+
+#~ msgid "mother "
+#~ msgstr "Mutter "
+
+#~ msgid " was a widow "
+#~ msgstr " war eine Witwe "
+
+#~ msgid "father "
+#~ msgstr "Vater "
+
+#~ msgid " was a widower "
+#~ msgstr " war ein Witwer "
+
+#~ msgid "parent "
+#~ msgstr "Elternteil "
