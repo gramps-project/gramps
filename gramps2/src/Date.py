@@ -144,7 +144,7 @@ class Date:
     def getMonth(self):
         if self.start.month == UNDEF:
             return UNDEF
-        return self.start.month+1
+        return self.start.month
 
     def getMonthValid(self):
         return self.start.month != UNDEF
@@ -346,7 +346,7 @@ class SingleDate:
             else:
                 m = "-??"
         else:
-            m = "-%02d" % (self.month+1)
+            m = "-%02d" % (self.month)
         if self.day == UNDEF:
             d = ''
         else:
@@ -372,7 +372,7 @@ class SingleDate:
         vals = string.split(v,'-')
         self.setYearVal(vals[0])
         if len(vals) > 1:
-            self.setMonthVal(int(vals[1])-1)
+            self.setMonthVal(int(vals[1]))
         else:
             self.month = UNDEF
         if len(vals) > 2:
