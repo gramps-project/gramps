@@ -38,15 +38,17 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-
+import RelLib
 import const
 import sort
 import utils
 import Config
 
-
 class ChooseParents:
+    """
+    Displays the Choose Parents dialog box, allowing the parents
+    to be edited.
+    """
     def __init__(self,db,person,family,family_update,full_update):
         self.db = db
         self.person = person
@@ -62,42 +64,40 @@ class ChooseParents:
             self.father = None
 
         self.glade = libglade.GladeXML(const.gladeFile,"familyDialog")
-
         self.top = self.glade.get_widget("familyDialog")
-	self.mrel = self.glade.get_widget("mrel")
-	self.frel = self.glade.get_widget("frel")
+	self.mother_rel = self.glade.get_widget("mrel")
+	self.father_rel = self.glade.get_widget("frel")
         self.fcombo = self.glade.get_widget("prel_combo")
         self.prel = self.glade.get_widget("prel")
         self.title = self.glade.get_widget("chooseTitle")
-        self.fatherName = self.glade.get_widget("fatherName")
-        self.motherName = self.glade.get_widget("motherName")
+        self.father_name = self.glade.get_widget("fatherName")
+        self.mother_name = self.glade.get_widget("motherName")
         self.father_list = self.glade.get_widget("fatherList")
         self.mother_list = self.glade.get_widget("motherList")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
-
         self.fcombo.set_popdown_strings(const.familyRelations)
 
         if self.family and self.family == self.person.getMainFamily():
-            self.mrel.set_text(_("Birth"))
-            self.frel.set_text(_("Birth"))
+            self.mother_rel.set_text(_("Birth"))
+            self.father_rel.set_text(_("Birth"))
         else:
             for (f,mr,fr) in self.person.getAltFamilyList():
                 if f == self.family:
-                    self.mrel.set_text(_(mr))
-                    self.frel.set_text(_(fr))
+                    self.mother_rel.set_text(_(mr))
+                    self.father_rel.set_text(_(fr))
                     break
             else:
-                self.mrel.set_text(_("Birth"))
-                self.frel.set_text(_("Birth"))
+                self.mother_rel.set_text(_("Birth"))
+                self.father_rel.set_text(_("Birth"))
 
         self.glade.signal_autoconnect({
-            "on_motherList_select_row" : self.on_mother_list_select_row,
-            "on_fatherList_select_row" : self.on_father_list_select_row,
-            "on_save_parents_clicked"  : self.on_save_parents_clicked,
-            "on_addmother_clicked"     : self.on_addmother_clicked,
-            "on_addfather_clicked"     : self.on_addfather_clicked,
-            "on_prel_changed"          : self.on_prel_changed,
+            "on_motherList_select_row" : self.mother_list_select_row,
+            "on_fatherList_select_row" : self.father_list_select_row,
+            "on_save_parents_clicked"  : self.save_parents_clicked,
+            "on_addmother_clicked"     : self.add_mother_clicked,
+            "on_addfather_clicked"     : self.add_father_clicked,
+            "on_prel_changed"          : self.parent_relation_changed,
             "on_combo_insert_text"     : utils.combo_insert_text,
             "destroy_passed_object"    : utils.destroy_passed_object
             })
@@ -107,15 +107,15 @@ class ChooseParents:
         if self.family:
             self.prel.set_text(_(self.family.getRelationship()))
         else:
-            self.on_prel_changed(self.prel)
+            self.parent_relation_changed(self.prel)
         self.top.show()
 
-    def on_prel_changed(self,obj):
+    def parent_relation_changed(self,obj):
 
         type = obj.get_text()
 
-        self.fatherName.set_text(Config.nameof(self.father))
-        self.motherName.set_text(Config.nameof(self.mother))
+        self.father_name.set_text(Config.nameof(self.father))
+        self.mother_name.set_text(Config.nameof(self.mother))
         
         self.father_list.freeze()
         self.mother_list.freeze()
@@ -133,18 +133,19 @@ class ChooseParents:
         father_index = 1
         mother_index = 1
         for person in people:
-            if person == self.person or person.getGender() == Person.unknown:
+            if person == self.person:
+                continue
+            if person.getGender() == RelLib.Person.unknown:
                 continue
             rdata = [utils.phonebook_name(person),utils.birthday(person)]
             if type == "Partners":
                 self.father_list.append(rdata)
                 self.father_list.set_row_data(father_index,person)
                 father_index = father_index + 1
-
                 self.mother_list.append(rdata)
                 self.mother_list.set_row_data(mother_index,person)
                 mother_index = mother_index + 1
-            elif person.getGender() == Person.male:
+            elif person.getGender() == RelLib.Person.male:
                 self.father_list.append(rdata)
                 self.father_list.set_row_data(father_index,person)
                 father_index = father_index + 1
@@ -164,7 +165,10 @@ class ChooseParents:
         self.father_list.thaw()
 
     def find_family(self,father,mother):
-
+        """
+        Finds the family associated with the father and mother.
+        If one does not exist, it is created.
+        """
         if not father and not mother:
             return None
 	
@@ -184,37 +188,36 @@ class ChooseParents:
             father.addFamily(family)
         if mother:
             mother.addFamily(family)
-
         return family
 
-    def on_mother_list_select_row(self,obj,a,b,c):
+    def mother_list_select_row(self,obj,a,b,c):
         self.mother = obj.get_row_data(a)
-        self.motherName.set_text(Config.nameof(self.mother))
+        self.mother_name.set_text(Config.nameof(self.mother))
 
-    def on_father_list_select_row(self,obj,a,b,c):
+    def father_list_select_row(self,obj,a,b,c):
         self.father = obj.get_row_data(a)
-        self.fatherName.set_text(Config.nameof(self.father))
+        self.father_name.set_text(Config.nameof(self.father))
 
-    def on_save_parents_clicked(self,obj):
-        mrel = const.childRelations[self.mrel.get_text()]
-        frel = const.childRelations[self.frel.get_text()]
+    def save_parents_clicked(self,obj):
+        mother_rel = const.childRelations[self.mother_rel.get_text()]
+        father_rel = const.childRelations[self.father_rel.get_text()]
         type = const.save_frel(self.prel.get_text())
 
         if self.father or self.mother:
             if self.mother and not self.father:
-                if self.mother.getGender() == Person.male:
+                if self.mother.getGender() == RelLib.Person.male:
                     self.father = self.mother
                     self.mother = None
                 self.family = self.find_family(self.father,self.mother)
             elif self.father and not self.mother: 
-                if self.father.getGender() == Person.female:
+                if self.father.getGender() == RelLib.Person.female:
                     self.mother = self.father
                     self.father = None
                 self.family = self.find_family(self.father,self.mother)
             elif self.mother.getGender() != self.father.getGender():
                 if type == "Partners":
                     type = "Unknown"
-                if self.father.getGender() == Person.female:
+                if self.father.getGender() == RelLib.Person.female:
                     x = self.father
                     self.father = self.mother
                     self.mother = x
@@ -228,14 +231,14 @@ class ChooseParents:
         utils.destroy_passed_object(obj)
         if self.family:
             self.family.setRelationship(type)
-            self.change_family_type(self.family,mrel,frel)
+            self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(self.family)
 
-    def on_addparent_clicked(self,obj,sex):
+    def add_parent_clicked(self,obj,sex):
         self.xml = libglade.GladeXML(const.gladeFile,"addperson")
         self.xml.get_widget(sex).set_active(1)
         self.xml.signal_autoconnect({
-            "on_addfather_close": self.on_addparent_close,
+            "on_addfather_close": self.add_parent_close,
             "on_combo_insert_text" : utils.combo_insert_text,
             "destroy_passed_object" : utils.destroy_passed_object
             })
@@ -245,83 +248,77 @@ class ChooseParents:
         window.editable_enters(self.xml.get_widget("surname"))
         utils.attach_surnames(self.xml.get_widget("surnameCombo"))
 
-    def on_addfather_clicked(self,obj):
-        self.on_addparent_clicked(obj,"male")
+    def add_father_clicked(self,obj):
+        self.add_parent_clicked(obj,"male")
 
-    def on_addmother_clicked(self,obj):
-        self.on_addparent_clicked(obj,"female")
+    def add_mother_clicked(self,obj):
+        self.add_parent_clicked(obj,"female")
 
-    def change_family_type(self,family,mrel,frel):
+    def change_family_type(self,family,mother_rel,father_rel):
+        """
+        Changes the family type of the specified family. If the family
+        is None, the the relationship type shoud be deleted.
+        """
+        is_main = mother_rel == "Birth" and father_rel == "Birth"
 
-        is_main = (mrel == "Birth") and (frel == "Birth")
-    
-        if not family:
-            if is_main:
-                main = self.person.getMainFamily()
-                if main:
-                    main.removeChild(self.person)
-                self.person.setMainFamily(None)
-            else:
-                for fam in self.person.getAltFamilyList():
-                    if is_main:
-                        self.person.removeAltFamily(fam[0])
-                        fam.removeChild(self.person)
-                        return
-        elif family == self.person.getMainFamily():
-            family.addChild(self.person)
+        if family == self.person.getMainFamily():
+            # make sure that the person is listed as a child
+            if self.person not in family.getChildList():
+                family.addChild(self.person)
+            # if the relationships indicate that this is no longer
+            # the main family, we need to delete the main family,
+            # and add it as an alternate family (assuming that it
+            # does not already in the list)
             if not is_main:
-                utils.modified()
                 self.person.setMainFamily(None)
                 for fam in self.person.getAltFamilyList():
                     if fam[0] == family:
-                        fam[1] = type
-                        break
-                    elif fam[1] == type:
-                        fam[0] = family
-                        break
+                        if fam[1] == mother_rel and fam[2] == father_rel:
+                            return
+                        else:
+                            self.person.removeFamily(fam[0])
                 else:
-                    self.person.addAltFamily(family,mrel,frel)
+                    self.person.addAltFamily(family,mother_rel,father_rel)
+        # The family is not already the main family
         else:
-            family.addChild(self.person)
+            if self.person not in family.getChildList():
+                family.addChild(self.person)
             for fam in self.person.getAltFamilyList():
                 if family == fam[0]:
                     if is_main:
                         self.person.setMainFamily(family)
                         self.person.removeAltFamily(family)
-                        utils.modified()
                         break
-                    if mrel == fam[1] and frel == fam[2]:
-                        break
-                    if mrel != fam[1] or frel != fam[2]:
+                    if mother_rel == fam[1] and father_rel == fam[2]:
+                        return
+                    if mother_rel != fam[1] or father_rel != fam[2]:
                         self.person.removeAltFamily(family)
-                        self.person.addAltFamily(family,mrel,frel)
-                        utils.modified()
+                        self.person.addAltFamily(family,mother_rel,father_rel)
                         break
             else:
                 if is_main:
                     self.person.setMainFamily(family)
                 else:
-                    self.person.addAltFamily(family,mrel,frel)
-            utils.modified()
+                    self.person.addAltFamily(family,mother_rel,father_rel)
+        utils.modified()
 
-    def on_addparent_close(self,obj):
+    def add_parent_close(self,obj):
 
         surname = self.xml.get_widget("surname").get_text()
         given = self.xml.get_widget("given").get_text()
-        person = Person()
+        person = RelLib.Person()
         self.db.addPerson(person)
-        name = Name()
+        name = person.getPrimaryName()
         name.setSurname(surname)
         name.setFirstName(given)
-        person.setPrimaryName(name)
         if self.xml.get_widget("male").get_active():
-            person.setGender(Person.male)
+            person.setGender(RelLib.Person.male)
             self.father = person
         else:
-            person.setGender(Person.female)
+            person.setGender(RelLib.Person.female)
             self.mother = person
         utils.modified()
-        self.on_prel_changed(self.prel)
+        self.parent_relation_changed(self.prel)
         utils.destroy_passed_object(obj)
         self.full_update()
 

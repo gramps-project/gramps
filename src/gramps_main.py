@@ -2029,6 +2029,7 @@ def main(arg):
         read_file(Config.lastfile)
 
     database.setResearcher(Config.owner)
+
     gtk.mainloop()
 
 #-------------------------------------------------------------------------

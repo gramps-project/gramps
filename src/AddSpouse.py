@@ -45,14 +45,26 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-
+import RelLib
 import const
 import sort
 import utils
 
 class AddSpouse:
+    """
+    Displays the AddSpouse dialog, allowing the user to create a new
+    family with the passed person as one spouse, and another person to
+    be selected.
+    """
     def __init__(self,db,person,update,addperson):
+        """
+        Displays the AddSpouse dialog box.
+
+        db - database to which to add the new family
+        person - the current person, will be one of the parents
+        update - function that updates the family display
+        addperson - function that adds a person to the person view
+        """
         self.db = db
         self.update = update
         self.person = person
@@ -61,9 +73,9 @@ class AddSpouse:
         self.glade = libglade.GladeXML(const.gladeFile, "spouseDialog")
 
         self.rel_combo = self.glade.get_widget("rel_combo")
-        self.rel_type = self.glade.get_widget("rel_type")
+        self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouseList")
-        self.rel_def = self.glade.get_widget("reldef")
+        self.relation_def = self.glade.get_widget("reldef")
         self.top = self.glade.get_widget("spouseDialog")
         self.given = self.glade.get_widget("given")
         self.surname = self.glade.get_widget("surname")
@@ -76,97 +88,111 @@ class AddSpouse:
         self.top.editable_enters(self.given)
         self.top.editable_enters(self.surname)
 
+        self.name_list = self.db.getPersonMap().values()
+        self.name_list.sort(sort.by_last_name)
+
         self.glade.signal_autoconnect({
-            "on_select_spouse_clicked" : self.on_select_spouse_clicked,
-            "on_new_spouse_clicked"    : self.on_new_spouse_clicked,
-            "on_rel_type_changed"      : self.on_rel_type_changed,
+            "on_select_spouse_clicked" : self.select_spouse_clicked,
+            "on_new_spouse_clicked"    : self.new_spouse_clicked,
+            "on_rel_type_changed"      : self.relation_type_changed,
             "on_combo_insert_text"     : utils.combo_insert_text,
             "destroy_passed_object"    : utils.destroy_passed_object
             })
 
-        self.rel_type.set_text(_("Married"))
+        self.relation_type.set_text(_("Married"))
 
-    def on_new_spouse_clicked(self,obj):
-        select_spouse = Person()
-        self.db.addPerson(select_spouse)
-        name = Name()
-        select_spouse.setPrimaryName(name)
+    def new_spouse_clicked(self,obj):
+        """
+        Called when the spouse to be added does not exist, and needs
+        to be created and added to the database
+        """
+        spouse = RelLib.Person()
+        self.db.addPerson(spouse)
+
+        name = spouse.getPrimaryName()
         name.setSurname(string.strip(self.surname.get_text()))
         name.setFirstName(string.strip(self.given.get_text()))
-        reltype = const.save_frel(self.rel_type.get_text())
 
-        if reltype == "Partners":
-            select_spouse.setGender(self.person.getGender())
+        relation = const.save_frel(self.relation_type.get_text())
+        if relation == "Partners":
+            spouse.setGender(self.person.getGender())
+        elif self.person.getGender() == RelLib.Person.male:
+            spouse.setGender(RelLib.Person.female)
         else:
-            if self.person.getGender() == Person.male:
-                select_spouse.setGender(Person.female)
-            else:
-                select_spouse.setGender(Person.male)
-
-        utils.modified()
+            spouse.setGender(RelLib.Person.male)
 
         family = self.db.newFamily()
+        family.setRelationship(relation)
 
         self.person.addFamily(family)
-        select_spouse.addFamily(family)
-        
+        spouse.addFamily(family)
+
         if self.person.getGender() == Person.male:
-            family.setMother(select_spouse)
+            family.setMother(spouse)
             family.setFather(self.person)
         else:	
-            family.setFather(select_spouse)
+            family.setFather(spouse)
             family.setMother(self.person)
             
-        family.setRelationship(reltype)
-            
         utils.destroy_passed_object(obj)
-        self.addperson(select_spouse)
+        utils.modified()
+        self.addperson(spouse)
         self.update(family)
 
-    def on_select_spouse_clicked(self,obj):
+    def select_spouse_clicked(self,obj):
+        """
+        Called when the spouse to be added already exists and has been
+        selected from the list.
+        """
         if len(self.spouse_list.selection) == 0:
             return
         row = self.spouse_list.selection[0]
-        select_spouse = self.spouse_list.get_row_data(row)
+        spouse = self.spouse_list.get_row_data(row)
+
+        # don't do anything if the marriage already exists
         for f in self.person.getFamilyList():
-            if select_spouse == f.getMother() or select_spouse == f.getFather():
+            if spouse == f.getMother() or spouse == f.getFather():
                 utils.destroy_passed_object(obj)
                 return
 
         utils.modified()
         family = self.db.newFamily()
         self.person.addFamily(family)
-        select_spouse.addFamily(family)
+        spouse.addFamily(family)
 
-        if self.person.getGender() == Person.male:
-            family.setMother(select_spouse)
+        if self.person.getGender() == RelLib.Person.male:
+            family.setMother(spouse)
             family.setFather(self.person)
         else:	
-            family.setFather(select_spouse)
+            family.setFather(spouse)
             family.setMother(self.person)
 
-        family.setRelationship(const.save_frel(self.rel_type.get_text()))
+        family.setRelationship(const.save_frel(self.relation_type.get_text()))
         utils.destroy_passed_object(obj)
         self.update(family)
 
-    def on_rel_type_changed(self,obj):
-
-        nameList = self.db.getPersonMap().values()
-        nameList.sort(sort.by_last_name)
-        self.spouse_list.clear()
-        self.spouse_list.freeze()
+    def relation_type_changed(self,obj):
+        """
+        Called whenever the relationship type changes. Rebuilds the
+        the potential spouse list.
+        """
         text = obj.get_text()
-        self.rel_def.set_text(const.relationship_def(text))
+        self.relation_def.set_text(const.relationship_def(text))
     
+        # determine the gender of the people to be loaded into
+        # the potential spouse list. If Partners is selected, use
+        # the same gender as the current person.
         gender = self.person.getGender()
         if text == _("Partners"):
-            if gender == Person.male:
-                gender = Person.female
+            if gender == RelLib.Person.male:
+                gender = RelLib.Person.female
             else:
-                gender = Person.male
+                gender = RelLib.Person.male
 	
         index = 0
-        for person in nameList:
+        self.spouse_list.clear()
+        self.spouse_list.freeze()
+        for person in self.name_list:
             if person.getGender() == gender:
                 continue
             name = person.getPrimaryName().getName()

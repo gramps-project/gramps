@@ -107,12 +107,12 @@ def dump_my_event(g,name,event,index=1):
     if not event:
         return
     
-    date = event.getSaveDate()
+    date = event.getDateObj()
     place = event.getPlace()
     description = event.getDescription()
     cause = event.getCause()
     if (not name or name == "Birth" or name == "Death") and \
-       not date and not place and not description:
+       date.isEmpty() and not place and not description:
         return
 
     sp = "  " * index
@@ -160,10 +160,10 @@ def dump_source_ref(g,source_ref,index=1):
         p = source_ref.getPage()
         c = source_ref.getComments()
         t = source_ref.getText()
-        d = source_ref.getDate().getSaveDate()
+        d = source_ref.getDate()
         q = source_ref.getConfidence()
         g.write("  " * index)
-        if p == "" and c == "" and t == "" and d == "" and q == 2:
+        if p == "" and c == "" and t == "" and d.isEmpty() and q == 2:
             g.write('<sourceref ref="%s"/>\n' % source.getId())
         else:
             if q == 2:
@@ -173,7 +173,7 @@ def dump_source_ref(g,source_ref,index=1):
             write_line(g,"spage",p,index+1)
             write_note(g,"scomments",c,index+1)
             write_note(g,"stext",t,index+1)
-            write_line(g,"sdate",d,index+1)
+            write_date(g,d,index+1)
             g.write("%s</sourceref>\n" % ("  " * index))
 
 #-------------------------------------------------------------------------

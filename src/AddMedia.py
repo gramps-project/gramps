@@ -1,4 +1,3 @@
-#! /usr/bin/python -O
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -52,18 +51,29 @@ import libglade
 import const
 import utils
 import RelImage
-from RelLib import Photo
+import RelLib
 
 class AddMediaObject:
-
+    """
+    Displays the Add Media Dialog window, allowing the user to select
+    a media object from the file system, while providing a description.
+    """
+    
     def __init__(self,db,update):
+        """
+        Creates and displays the dialog box
+
+        db - the database in which the new object is to be stored
+        update - a function to call to update the display
+        """
         self.db = db
-        self.glade       = libglade.GladeXML(const.imageselFile,"imageSelect")
-        self.window      = self.glade.get_widget("imageSelect")
+        self.glade = libglade.GladeXML(const.imageselFile,"imageSelect")
+        self.window = self.glade.get_widget("imageSelect")
         self.description = self.glade.get_widget("photoDescription")
-        self.image       = self.glade.get_widget("image")
-        self.update      = update
-        self.temp_name   = ""
+        self.image = self.glade.get_widget("image")
+        self.file_text = self.glade.get_widget("fname")
+        self.update = update
+        self.temp_name = ""
         
         self.glade.signal_autoconnect({
             "on_savephoto_clicked"  : self.on_savephoto_clicked,
@@ -75,19 +85,24 @@ class AddMediaObject:
         self.window.show()
 
     def on_savephoto_clicked(self,obj):
+        """
+        Callback function called with the save button is pressed.
+        A new media object is created, and added to the database.
+        """
         filename = self.glade.get_widget("photosel").get_full_path(0)
         description = self.description.get_text()
         external = self.glade.get_widget("private")
         
         if os.path.exists(filename) == 0:
-            err = _("%s is not a valid file name or does not exist.") % filename
-            GnomeErrorDialog(err)
+            msgstr = _("%s is not a valid file name or does not exist.")
+            GnomeErrorDialog(msgstr % filename)
             return
 
         type = utils.get_mime_type(filename)
-        mobj = Photo()
         if description == "":
             description = os.path.basename(filename)
+
+        mobj = RelLib.Photo()
         mobj.setDescription(description)
         mobj.setMimeType(type)
         self.db.addObject(mobj)
@@ -104,19 +119,24 @@ class AddMediaObject:
         utils.destroy_passed_object(obj)
         
     def on_name_changed(self,obj):
-        filename = self.glade.get_widget("fname").get_text()
+        """
+        Called anytime the filename text window changes. Checks to
+        see if the file exists. If it does, the imgae is loaded into
+        the preview window.
+        """
 
+        filename = self.file_text.get_text()
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
         old_title  = self.description.get_text()
 
-        if old_title == "" or old_title == self.temp_name:
+        if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)
         self.temp_name = root
 
         if os.path.isfile(filename):
             type = utils.get_mime_type(filename)
-            if type[0:5] == "image":
+            if type[0:5] == 'image':
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.load_imlib(image)
             else:

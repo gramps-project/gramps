@@ -1227,12 +1227,6 @@ class Event(DataObj):
         """sets the Date object associated with the Event"""
         self.date = date
 
-    def getSaveDate(self) :
-        """returns the date of the Event in the form wanted by gramps XML save"""
-        if self.date:
-            return self.date.getSaveDate()
-        return ""
-
 class Family:
     """Represents a family unit in the gramps database"""
 

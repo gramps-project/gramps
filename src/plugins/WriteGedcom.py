@@ -666,13 +666,13 @@ class GedcomWriter:
 
             birth = person.getBirth()
             if not (self.private and birth.getPrivacy()):
-                if birth.getSaveDate() != "" or birth.getPlaceName() != "":
+                if not birth.getDateObj().isEmpty() or birth.getPlaceName() != "":
                     self.g.write("1 BIRT\n")
                     self.dump_event_stats(birth)
 				
             death = person.getDeath()
             if not (self.private and death.getPrivacy()):
-                if death.getSaveDate() != "" or death.getPlaceName() != "":
+                if not death.getDateObj().isEmpty() or death.getPlaceName() != "":
                     self.g.write("1 DEAT\n")
                     self.dump_event_stats(death)
 
@@ -764,9 +764,7 @@ class GedcomWriter:
                 if self.private and addr.getPrivacy():
                     continue
                 self.g.write("1 RESI\n")
-                datestr = addr.getDateObj().getSaveDate()
-                if datestr != "":
-                    self.g.write("2 DATE %s\n" % self.cnvtxt(datestr))
+                self.print_date("2 DATE",addr.getDateObj())
                 if self.resi == 0:
                     self.write_long_text("ADDR",2,addr.getStreet())
                     if addr.getCity() != "":
@@ -881,10 +879,7 @@ class GedcomWriter:
     
     def dump_event_stats(self,event):
         dateobj = event.getDateObj()
-        if not dateobj.isEmpty():
-            self.print_date("2 DATE",dateobj)
-        elif dateobj.getText() != "":
-            self.g.write("2 DATE %s\n" % self.cnvtxt(dateobj.getText()))
+        self.print_date("2 DATE",dateobj)
         if event.getPlaceName() != "":
             self.g.write("2 PLAC %s\n" % self.cnvtxt(event.getPlaceName()))
         if event.getCause() != "":
@@ -906,8 +901,11 @@ class GedcomWriter:
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
-        
-        if date.get_calendar() == Date.GREGORIAN:
+        if date.isEmpty():
+            val = date.getText()
+            if val != "":
+                self.g.write("%s %s\n" % (prefix,self.cnvtxt(val)))
+        elif date.get_calendar() == Date.GREGORIAN:
             if date.isRange():
                 val = "FROM %s TO %s" % (make_date(start,_month),
                                          make_date(date.get_stop_date(),_month))
@@ -969,12 +967,13 @@ class GedcomWriter:
             self.g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
 
         ref_text = ref.getText()
-        if ref_text != "" or ref.getDate().getDate() != "":
+        if ref_text != "" or not ref.getDate().isEmpty():
             self.g.write('%d DATA\n' % (level+1))
             if ref_text != "":
                 self.write_long_text("TEXT",level+2,ref_text)
-            if ref.getDate().getDate():
-                self.g.write("%d DATE %s\n" % (level+2,ref.getDate().getSaveDate()))
+            pfx = "%d DATE" % (level+2)
+            print pfx,ref.getDate()
+            self.print_date(pfx,ref.getDate())
         if ref.getComments() != "":
             self.write_long_text("NOTE",level+1,ref.getComments())
         

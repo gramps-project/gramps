@@ -225,7 +225,6 @@ def reload_plugins(obj):
     for plugin in _failed:
         try: 
             __import__(plugin)
-            print plugin
         except:
             print _("Failed to load the module: %s") % plugin
             import traceback

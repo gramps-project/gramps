@@ -169,10 +169,7 @@ class EditPlace:
             self.redraw_url_list()
 
     def url_source_drag_data_get(self,widget, context, selection_data, info, time):
-        if len(widget.selection) != 1:
-            return
-        row = widget.selection[0]
-        ev = widget.get_row_data(row)
+        ev = widget.get_row_data(widget.focus_row)
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
