@@ -142,8 +142,14 @@ class Gramps:
 
         self.cl = 1
         if args:
-            options,leftargs = getopt.getopt(args,
-                const.shortopts,const.longopts)
+            try:
+                options,leftargs = getopt.getopt(args,
+                    const.shortopts,const.longopts)
+            except getopt.GetoptError,msg:
+                print "Error: %s. Exiting." % msg
+                os._exit(1)
+            except:
+                print "Error parsing arguments: %s " % args
             if leftargs:
                 print "Unrecognized option: %s" % leftargs[0]
                 os._exit(1)
