@@ -82,16 +82,6 @@ class AddSpouse:
         self.spouse_list = self.glade.get_widget("spouseList")
         self.relation_def = self.glade.get_widget("reldef")
         self.top = self.glade.get_widget("spouseDialog")
-        self.given = self.glade.get_widget("given")
-        self.surname = self.glade.get_widget("surname")
-        self.surname_combo = self.glade.get_widget("surname_combo")
-
-        self.rel_combo.set_popdown_strings(const.familyRelations)
-        Utils.attach_surnames(self.surname_combo)
-
-        # Typing CR selects 'Add Existing' button
-        self.top.editable_enters(self.given)
-        self.top.editable_enters(self.surname)
 
         self.name_list = self.db.getPersonMap().values()
         self.name_list.sort(sort.by_last_name)
@@ -114,38 +104,26 @@ class AddSpouse:
         Called when the spouse to be added does not exist, and needs
         to be created and added to the database
         """
-        spouse = RelLib.Person()
-        self.db.addPerson(spouse)
-
-        name = spouse.getPrimaryName()
-        name.setSurname(string.strip(self.surname.get_text()))
-        name.setFirstName(string.strip(self.given.get_text()))
+        import QuickAdd
 
         relation = const.save_frel(self.relation_type.get_text())
         if relation == "Partners":
-            spouse.setGender(self.person.getGender())
+            if self.person.getGender() == RelLib.Person.male:
+                gen = "male"
+            else:
+                gen = "female"
         elif self.person.getGender() == RelLib.Person.male:
-            spouse.setGender(RelLib.Person.female)
+            gen = "female"
         else:
-            spouse.setGender(RelLib.Person.male)
+            gen = "male"
 
-        family = self.db.newFamily()
-        family.setRelationship(relation)
+        QuickAdd.QuickAdd(self.db,gen,self.update_list)
 
-        self.person.addFamily(family)
-        spouse.addFamily(family)
-
-        if self.person.getGender() == RelLib.Person.male:
-            family.setMother(spouse)
-            family.setFather(self.person)
-        else:	
-            family.setFather(spouse)
-            family.setMother(self.person)
-            
-        Utils.destroy_passed_object(obj)
-        Utils.modified()
-        self.addperson(spouse)
-        self.update(family)
+    def update_list(self,person):
+        self.name_list.append(person)
+        self.name_list.sort(sort.by_last_name)
+        self.addperson(person)
+        self.relation_type_changed(self.relation_type)
 
     def select_spouse_clicked(self,obj):
         """

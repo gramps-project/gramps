@@ -1570,25 +1570,19 @@
 		  </widget>
 
 		  <widget>
-		    <class>GtkNotebook</class>
-		    <name>rel_notebook</name>
-		    <visible>False</visible>
-		    <show_tabs>False</show_tabs>
-		    <show_border>False</show_border>
-		    <tab_pos>GTK_POS_TOP</tab_pos>
-		    <scrollable>False</scrollable>
-		    <tab_hborder>2</tab_hborder>
-		    <tab_vborder>2</tab_vborder>
-		    <popup_enable>False</popup_enable>
+		    <class>GtkHBox</class>
+		    <name>hbox77</name>
+		    <homogeneous>False</homogeneous>
+		    <spacing>0</spacing>
 		    <child>
 		      <left_attach>1</left_attach>
 		      <right_attach>2</right_attach>
 		      <top_attach>1</top_attach>
 		      <bottom_attach>2</bottom_attach>
-		      <xpad>5</xpad>
+		      <xpad>0</xpad>
 		      <ypad>0</ypad>
 		      <xexpand>False</xexpand>
-		      <yexpand>True</yexpand>
+		      <yexpand>False</yexpand>
 		      <xshrink>False</xshrink>
 		      <yshrink>False</yshrink>
 		      <xfill>True</xfill>
@@ -1596,127 +1590,132 @@
 		    </child>
 
 		    <widget>
-		      <class>GtkCheckButton</class>
-		      <name>prefrel</name>
-		      <can_focus>True</can_focus>
-		      <signal>
-			<name>toggled</name>
-			<handler>on_prefrel_toggled</handler>
-			<last_modification_time>Sat, 23 Mar 2002 15:15:51 GMT</last_modification_time>
-		      </signal>
-		      <label>Make this the preferred relationship</label>
-		      <active>False</active>
-		      <draw_indicator>True</draw_indicator>
+		      <class>GtkHButtonBox</class>
+		      <name>hbuttonbox30</name>
+		      <layout_style>GTK_BUTTONBOX_DEFAULT_STYLE</layout_style>
+		      <spacing>30</spacing>
+		      <child_min_width>85</child_min_width>
+		      <child_min_height>27</child_min_height>
+		      <child_ipad_x>7</child_ipad_x>
+		      <child_ipad_y>0</child_ipad_y>
+		      <child>
+			<padding>0</padding>
+			<expand>True</expand>
+			<fill>True</fill>
+		      </child>
+
+		      <widget>
+			<class>GtkButton</class>
+			<name>pref_spouse</name>
+			<can_default>True</can_default>
+			<can_focus>True</can_focus>
+			<signal>
+			  <name>clicked</name>
+			  <handler>on_prefrel_toggled</handler>
+			  <last_modification_time>Tue, 26 Mar 2002 15:03:14 GMT</last_modification_time>
+			</signal>
+			<label>Make this the preferred spouse</label>
+			<relief>GTK_RELIEF_NORMAL</relief>
+		      </widget>
 		    </widget>
 
 		    <widget>
-		      <class>GtkLabel</class>
-		      <child_name>Notebook:tab</child_name>
-		      <name>label296</name>
-		      <label>label296</label>
-		      <justify>GTK_JUSTIFY_CENTER</justify>
-		      <wrap>False</wrap>
-		      <xalign>0.5</xalign>
-		      <yalign>0.5</yalign>
-		      <xpad>5</xpad>
-		      <ypad>0</ypad>
-		    </widget>
+		      <class>GtkVBox</class>
+		      <name>multi_spouse</name>
+		      <homogeneous>False</homogeneous>
+		      <spacing>0</spacing>
+		      <child>
+			<padding>0</padding>
+			<expand>False</expand>
+			<fill>True</fill>
+		      </child>
 
-		    <widget>
-		      <class>GtkLabel</class>
-		      <name>label298</name>
-		      <label>Preferred Relationship</label>
-		      <justify>GTK_JUSTIFY_CENTER</justify>
-		      <wrap>False</wrap>
-		      <xalign>0</xalign>
-		      <yalign>0.5</yalign>
-		      <xpad>0</xpad>
-		      <ypad>0</ypad>
-		    </widget>
+		      <widget>
+			<class>GtkButton</class>
+			<name>button150</name>
+			<tooltip>Make the current father the active person</tooltip>
+			<can_focus>True</can_focus>
+			<signal>
+			  <name>clicked</name>
+			  <handler>on_spouse_up_clicked</handler>
+			  <last_modification_time>Tue, 26 Mar 2002 15:18:30 GMT</last_modification_time>
+			</signal>
+			<relief>GTK_RELIEF_NORMAL</relief>
+			<child>
+			  <padding>0</padding>
+			  <expand>False</expand>
+			  <fill>False</fill>
+			</child>
 
-		    <widget>
-		      <class>GtkLabel</class>
-		      <child_name>Notebook:tab</child_name>
-		      <name>label297</name>
-		      <label>label297</label>
-		      <justify>GTK_JUSTIFY_CENTER</justify>
-		      <wrap>False</wrap>
-		      <xalign>0.5</xalign>
-		      <yalign>0.5</yalign>
-		      <xpad>0</xpad>
-		      <ypad>0</ypad>
+			<widget>
+			  <class>GtkArrow</class>
+			  <name>arrow13</name>
+			  <width>10</width>
+			  <height>10</height>
+			  <arrow_type>GTK_ARROW_UP</arrow_type>
+			  <shadow_type>GTK_SHADOW_OUT</shadow_type>
+			  <xalign>0.5</xalign>
+			  <yalign>0.5</yalign>
+			  <xpad>0</xpad>
+			  <ypad>0</ypad>
+			</widget>
+		      </widget>
+
+		      <widget>
+			<class>GtkButton</class>
+			<name>button151</name>
+			<tooltip>Make the current mother the active person</tooltip>
+			<can_focus>True</can_focus>
+			<signal>
+			  <name>clicked</name>
+			  <handler>on_spouse_down_clicked</handler>
+			  <last_modification_time>Tue, 26 Mar 2002 15:18:40 GMT</last_modification_time>
+			</signal>
+			<relief>GTK_RELIEF_NORMAL</relief>
+			<child>
+			  <padding>0</padding>
+			  <expand>False</expand>
+			  <fill>False</fill>
+			</child>
+
+			<widget>
+			  <class>GtkArrow</class>
+			  <name>arrow14</name>
+			  <width>10</width>
+			  <height>10</height>
+			  <arrow_type>GTK_ARROW_DOWN</arrow_type>
+			  <shadow_type>GTK_SHADOW_OUT</shadow_type>
+			  <xalign>0.5</xalign>
+			  <yalign>0.5</yalign>
+			  <xpad>0</xpad>
+			  <ypad>0</ypad>
+			</widget>
+		      </widget>
 		    </widget>
 		  </widget>
 
 		  <widget>
-		    <class>GtkNotebook</class>
-		    <name>lab_or_list</name>
-		    <show_tabs>False</show_tabs>
-		    <show_border>False</show_border>
-		    <tab_pos>GTK_POS_TOP</tab_pos>
-		    <scrollable>False</scrollable>
-		    <tab_hborder>2</tab_hborder>
-		    <tab_vborder>2</tab_vborder>
-		    <popup_enable>False</popup_enable>
+		    <class>GtkEntry</class>
+		    <name>fv_spouse1</name>
+		    <can_focus>True</can_focus>
+		    <editable>False</editable>
+		    <text_visible>True</text_visible>
+		    <text_max_length>0</text_max_length>
+		    <text></text>
 		    <child>
 		      <left_attach>1</left_attach>
 		      <right_attach>2</right_attach>
 		      <top_attach>0</top_attach>
 		      <bottom_attach>1</bottom_attach>
-		      <xpad>5</xpad>
+		      <xpad>0</xpad>
 		      <ypad>0</ypad>
 		      <xexpand>True</xexpand>
-		      <yexpand>True</yexpand>
+		      <yexpand>False</yexpand>
 		      <xshrink>False</xshrink>
 		      <yshrink>False</yshrink>
 		      <xfill>True</xfill>
 		      <yfill>False</yfill>
 		    </child>
-
-		    <widget>
-		      <class>GtkEntry</class>
-		      <name>fv_spouse1</name>
-		      <can_focus>True</can_focus>
-		      <editable>False</editable>
-		      <text_visible>True</text_visible>
-		      <text_max_length>0</text_max_length>
-		      <text></text>
-		    </widget>
-
-		    <widget>
-		      <class>GtkLabel</class>
-		      <child_name>Notebook:tab</child_name>
-		      <name>label224</name>
-		      <label></label>
-		      <justify>GTK_JUSTIFY_CENTER</justify>
-		      <wrap>False</wrap>
-		      <xalign>0.5</xalign>
-		      <yalign>0.5</yalign>
-		      <xpad>0</xpad>
-		      <ypad>0</ypad>
-		    </widget>
-
-		    <widget>
-		      <class>GtkOptionMenu</class>
-		      <name>fv_spouse</name>
-		      <can_focus>True</can_focus>
-		      <items>
-</items>
-		      <initial_choice>0</initial_choice>
-		    </widget>
-
-		    <widget>
-		      <class>GtkLabel</class>
-		      <child_name>Notebook:tab</child_name>
-		      <name>label225</name>
-		      <label></label>
-		      <justify>GTK_JUSTIFY_CENTER</justify>
-		      <wrap>False</wrap>
-		      <xalign>0.5</xalign>
-		      <yalign>0.5</yalign>
-		      <xpad>0</xpad>
-		      <ypad>0</ypad>
-		    </widget>
 		  </widget>
 		</widget>
 
@@ -2192,18 +2191,14 @@
 		</widget>
 
 		<widget>
-		  <class>GtkCheckButton</class>
-		  <name>preffam</name>
-		  <visible>False</visible>
-		  <can_focus>True</can_focus>
-		  <signal>
-		    <name>toggled</name>
-		    <handler>on_preffam_toggled</handler>
-		    <last_modification_time>Sun, 24 Mar 2002 16:20:15 GMT</last_modification_time>
-		  </signal>
-		  <label>Make this the preferred family</label>
-		  <active>False</active>
-		  <draw_indicator>True</draw_indicator>
+		  <class>GtkHButtonBox</class>
+		  <name>hbuttonbox31</name>
+		  <layout_style>GTK_BUTTONBOX_DEFAULT_STYLE</layout_style>
+		  <spacing>30</spacing>
+		  <child_min_width>85</child_min_width>
+		  <child_min_height>27</child_min_height>
+		  <child_ipad_x>7</child_ipad_x>
+		  <child_ipad_y>0</child_ipad_y>
 		  <child>
 		    <left_attach>1</left_attach>
 		    <right_attach>2</right_attach>
@@ -2216,8 +2211,22 @@
 		    <xshrink>False</xshrink>
 		    <yshrink>False</yshrink>
 		    <xfill>True</xfill>
-		    <yfill>False</yfill>
+		    <yfill>True</yfill>
 		  </child>
+
+		  <widget>
+		    <class>GtkButton</class>
+		    <name>preffam</name>
+		    <can_default>True</can_default>
+		    <can_focus>True</can_focus>
+		    <signal>
+		      <name>clicked</name>
+		      <handler>on_preffam_clicked</handler>
+		      <last_modification_time>Tue, 26 Mar 2002 15:04:33 GMT</last_modification_time>
+		    </signal>
+		    <label>Make these the preferred parents</label>
+		    <relief>GTK_RELIEF_NORMAL</relief>
+		  </widget>
 		</widget>
 	      </widget>
 
@@ -4586,7 +4595,7 @@
       <class>GtkHButtonBox</class>
       <child_name>GnomeDialog:action_area</child_name>
       <name>hbuttonbox6</name>
-      <layout_style>GTK_BUTTONBOX_SPREAD</layout_style>
+      <layout_style>GTK_BUTTONBOX_END</layout_style>
       <spacing>0</spacing>
       <child_min_width>0</child_min_width>
       <child_min_height>0</child_min_height>
@@ -4601,21 +4610,6 @@
 
       <widget>
 	<class>GtkButton</class>
-	<name>spouseNewPerson</name>
-	<can_default>True</can_default>
-	<has_default>True</has_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>on_new_spouse_clicked</handler>
-	  <object>spouseDialog</object>
-	  <last_modification_time>Thu, 23 Aug 2001 21:21:10 GMT</last_modification_time>
-	</signal>
-	<label>Add new person</label>
-      </widget>
-
-      <widget>
-	<class>GtkButton</class>
 	<name>spouseExistingPerson</name>
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
@@ -4625,7 +4619,7 @@
 	  <object>spouseDialog</object>
 	  <last_modification_time>Thu, 23 Aug 2001 21:21:01 GMT</last_modification_time>
 	</signal>
-	<label>Select existing person</label>
+	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
       </widget>
 
       <widget>
@@ -4670,12 +4664,10 @@
     </widget>
 
     <widget>
-      <class>GtkFrame</class>
-      <name>frame5</name>
-      <border_width>5</border_width>
-      <label>Select existing person as spouse</label>
-      <label_xalign>0</label_xalign>
-      <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+      <class>GtkVBox</class>
+      <name>vbox50</name>
+      <homogeneous>False</homogeneous>
+      <spacing>0</spacing>
       <child>
 	<padding>0</padding>
 	<expand>True</expand>
@@ -4692,6 +4684,11 @@
 	<vscrollbar_policy>GTK_POLICY_ALWAYS</vscrollbar_policy>
 	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
 	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
 
 	<widget>
 	  <class>GtkCList</class>
@@ -4735,154 +4732,36 @@
 	  </widget>
 	</widget>
       </widget>
-    </widget>
-
-    <widget>
-      <class>GtkFrame</class>
-      <name>frame4</name>
-      <border_width>5</border_width>
-      <label>Add new person as spouse</label>
-      <label_xalign>0</label_xalign>
-      <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
-      <child>
-	<padding>5</padding>
-	<expand>False</expand>
-	<fill>True</fill>
-      </child>
 
       <widget>
-	<class>GtkTable</class>
-	<name>table25</name>
-	<rows>2</rows>
-	<columns>2</columns>
-	<homogeneous>False</homogeneous>
-	<row_spacing>5</row_spacing>
-	<column_spacing>5</column_spacing>
+	<class>GtkHButtonBox</class>
+	<name>hbuttonbox28</name>
+	<layout_style>GTK_BUTTONBOX_DEFAULT_STYLE</layout_style>
+	<spacing>30</spacing>
+	<child_min_width>85</child_min_width>
+	<child_min_height>27</child_min_height>
+	<child_ipad_x>7</child_ipad_x>
+	<child_ipad_y>0</child_ipad_y>
+	<child>
+	  <padding>0</padding>
+	  <expand>False</expand>
+	  <fill>True</fill>
+	</child>
 
 	<widget>
-	  <class>GtkLabel</class>
-	  <name>label235</name>
-	  <label>Given Name</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>1</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>0</top_attach>
-	    <bottom_attach>1</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkLabel</class>
-	  <name>label236</name>
-	  <label>Surname</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>1</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <child>
-	    <left_attach>0</left_attach>
-	    <right_attach>1</right_attach>
-	    <top_attach>1</top_attach>
-	    <bottom_attach>2</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>False</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkEntry</class>
-	  <name>given</name>
+	  <class>GtkButton</class>
+	  <name>spouseNewPerson</name>
+	  <can_default>True</can_default>
+	  <has_default>True</has_default>
 	  <can_focus>True</can_focus>
-	  <has_focus>True</has_focus>
 	  <signal>
-	    <name>activate</name>
-	    <handler>on_given_activate</handler>
+	    <name>clicked</name>
+	    <handler>on_new_spouse_clicked</handler>
 	    <object>spouseDialog</object>
-	    <last_modification_time>Sat, 22 Sep 2001 04:20:27 GMT</last_modification_time>
+	    <last_modification_time>Thu, 23 Aug 2001 21:21:10 GMT</last_modification_time>
 	  </signal>
-	  <editable>True</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
-	  <child>
-	    <left_attach>1</left_attach>
-	    <right_attach>2</right_attach>
-	    <top_attach>0</top_attach>
-	    <bottom_attach>1</bottom_attach>
-	    <xpad>5</xpad>
-	    <ypad>5</ypad>
-	    <xexpand>True</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCombo</class>
-	  <name>surname_combo</name>
-	  <border_width>5</border_width>
-	  <value_in_list>False</value_in_list>
-	  <ok_if_empty>True</ok_if_empty>
-	  <case_sensitive>False</case_sensitive>
-	  <use_arrows>True</use_arrows>
-	  <use_arrows_always>False</use_arrows_always>
-	  <items></items>
-	  <child>
-	    <left_attach>1</left_attach>
-	    <right_attach>2</right_attach>
-	    <top_attach>1</top_attach>
-	    <bottom_attach>2</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <xexpand>True</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-
-	  <widget>
-	    <class>GtkEntry</class>
-	    <child_name>GtkCombo:entry</child_name>
-	    <name>surname</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>insert_text</name>
-	      <handler>on_combo_insert_text</handler>
-	      <object>surname_combo</object>
-	      <last_modification_time>Tue, 30 Oct 2001 09:51:42 GMT</last_modification_time>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text></text>
-	  </widget>
+	  <label>Add new person</label>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
       </widget>
     </widget>
@@ -4974,7 +4853,7 @@
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
   <allow_shrink>False</allow_shrink>
-  <allow_grow>False</allow_grow>
+  <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
   <auto_close>False</auto_close>
   <hide_on_close>False</hide_on_close>
@@ -5072,16 +4951,156 @@
 	<name>hseparator15</name>
 	<child>
 	  <padding>5</padding>
-	  <expand>True</expand>
+	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
       </widget>
 
       <widget>
-	<class>GtkHBox</class>
-	<name>hbox6</name>
-	<homogeneous>False</homogeneous>
-	<spacing>0</spacing>
+	<class>GtkFrame</class>
+	<name>flabel</name>
+	<border_width>5</border_width>
+	<label>Father</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkVBox</class>
+	  <name>vbox51</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkCList</class>
+	    <name>fatherList</name>
+	    <border_width>3</border_width>
+	    <width>400</width>
+	    <height>100</height>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>select_row</name>
+	      <handler>on_fatherList_select_row</handler>
+	    </signal>
+	    <columns>2</columns>
+	    <column_widths>198,80</column_widths>
+	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	    <show_titles>True</show_titles>
+	    <shadow_type>GTK_SHADOW_IN</shadow_type>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <child_name>CList:title</child_name>
+	      <name>label81</name>
+	      <label>Name</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	    </widget>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <child_name>CList:title</child_name>
+	      <name>label82</name>
+	      <label>Birth Date</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkHBox</class>
+	    <name>hbox24</name>
+	    <border_width>3</border_width>
+	    <homogeneous>False</homogeneous>
+	    <spacing>0</spacing>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <name>label223</name>
+	      <label>Relationship to child</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>5</xpad>
+	      <ypad>0</ypad>
+	      <child>
+		<padding>5</padding>
+		<expand>False</expand>
+		<fill>False</fill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkCombo</class>
+	      <name>frel_combo</name>
+	      <value_in_list>True</value_in_list>
+	      <ok_if_empty>False</ok_if_empty>
+	      <case_sensitive>True</case_sensitive>
+	      <use_arrows>True</use_arrows>
+	      <use_arrows_always>False</use_arrows_always>
+	      <items>Birth
+Adopted
+Stepchild
+Foster
+None
+Unknown
+</items>
+	      <child>
+		<padding>5</padding>
+		<expand>True</expand>
+		<fill>True</fill>
+	      </child>
+
+	      <widget>
+		<class>GtkEntry</class>
+		<child_name>GtkCombo:entry</child_name>
+		<name>frel</name>
+		<can_focus>True</can_focus>
+		<signal>
+		  <name>insert_text</name>
+		  <handler>on_combo_insert_text</handler>
+		  <object>frel_combo</object>
+		</signal>
+		<editable>True</editable>
+		<text_visible>True</text_visible>
+		<text_max_length>0</text_max_length>
+		<text>Birth</text>
+	      </widget>
+	    </widget>
+	  </widget>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>mlabel</name>
+	<border_width>5</border_width>
+	<label>Mother</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>
 	  <padding>10</padding>
 	  <expand>True</expand>
@@ -5089,37 +5108,143 @@
 	</child>
 
 	<widget>
-	  <class>GtkLabel</class>
-	  <name>flabel</name>
-	  <label>Father</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>1</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>0</ypad>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>True</fill>
-	  </child>
-	</widget>
+	  <class>GtkVBox</class>
+	  <name>vbox52</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
 
-	<widget>
-	  <class>GtkEntry</class>
-	  <name>fatherName</name>
-	  <can_focus>True</can_focus>
-	  <has_focus>True</has_focus>
-	  <editable>False</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
-	  <child>
-	    <padding>0</padding>
-	    <expand>True</expand>
-	    <fill>True</fill>
-	  </child>
+	  <widget>
+	    <class>GtkCList</class>
+	    <name>motherList</name>
+	    <border_width>3</border_width>
+	    <height>100</height>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>select_row</name>
+	      <handler>on_motherList_select_row</handler>
+	    </signal>
+	    <columns>2</columns>
+	    <column_widths>198,80</column_widths>
+	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	    <show_titles>True</show_titles>
+	    <shadow_type>GTK_SHADOW_IN</shadow_type>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <child_name>CList:title</child_name>
+	      <name>label84</name>
+	      <label>Name</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	    </widget>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <child_name>CList:title</child_name>
+	      <name>label85</name>
+	      <label>Birth Date</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkHBox</class>
+	    <name>hbox16</name>
+	    <border_width>3</border_width>
+	    <homogeneous>False</homogeneous>
+	    <spacing>0</spacing>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <name>label186</name>
+	      <label>Relationship to child</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>5</xpad>
+	      <ypad>0</ypad>
+	      <child>
+		<padding>5</padding>
+		<expand>False</expand>
+		<fill>False</fill>
+	      </child>
+	    </widget>
+
+	    <widget>
+	      <class>GtkCombo</class>
+	      <name>mrel_combo</name>
+	      <value_in_list>True</value_in_list>
+	      <ok_if_empty>False</ok_if_empty>
+	      <case_sensitive>True</case_sensitive>
+	      <use_arrows>True</use_arrows>
+	      <use_arrows_always>False</use_arrows_always>
+	      <items>Birth
+Adopted
+Stepchild
+Foster
+None
+Unknown
+</items>
+	      <child>
+		<padding>5</padding>
+		<expand>True</expand>
+		<fill>True</fill>
+	      </child>
+
+	      <widget>
+		<class>GtkEntry</class>
+		<child_name>GtkCombo:entry</child_name>
+		<name>mrel</name>
+		<can_focus>True</can_focus>
+		<signal>
+		  <name>insert_text</name>
+		  <handler>on_combo_insert_text</handler>
+		  <object>mrel_combo</object>
+		</signal>
+		<editable>True</editable>
+		<text_visible>True</text_visible>
+		<text_max_length>0</text_max_length>
+		<text></text>
+	      </widget>
+	    </widget>
+	  </widget>
 	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkHButtonBox</class>
+	<name>hbuttonbox29</name>
+	<layout_style>GTK_BUTTONBOX_DEFAULT_STYLE</layout_style>
+	<spacing>30</spacing>
+	<child_min_width>85</child_min_width>
+	<child_min_height>27</child_min_height>
+	<child_ipad_x>7</child_ipad_x>
+	<child_ipad_y>0</child_ipad_y>
+	<child>
+	  <padding>0</padding>
+	  <expand>False</expand>
+	  <fill>True</fill>
+	</child>
 
 	<widget>
 	  <class>GtkButton</class>
@@ -5127,336 +5252,12 @@
 	  <can_focus>True</can_focus>
 	  <signal>
 	    <name>clicked</name>
-	    <handler>on_addfather_clicked</handler>
+	    <handler>on_add_parent_clicked</handler>
 	    <object>prel</object>
-	    <last_modification_time>Thu, 27 Sep 2001 23:08:17 GMT</last_modification_time>
+	    <last_modification_time>Tue, 26 Mar 2002 14:41:53 GMT</last_modification_time>
 	  </signal>
-	  <label>Add</label>
+	  <label>Add New Person</label>
 	  <relief>GTK_RELIEF_NORMAL</relief>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>False</fill>
-	  </child>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkScrolledWindow</class>
-	<name>scrolledwindow11</name>
-	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
-	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
-	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
-	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
-	<child>
-	  <padding>0</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
-
-	<widget>
-	  <class>GtkCList</class>
-	  <name>fatherList</name>
-	  <width>400</width>
-	  <height>100</height>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>select_row</name>
-	    <handler>on_fatherList_select_row</handler>
-	  </signal>
-	  <columns>2</columns>
-	  <column_widths>198,80</column_widths>
-	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
-	  <show_titles>True</show_titles>
-	  <shadow_type>GTK_SHADOW_IN</shadow_type>
-
-	  <widget>
-	    <class>GtkLabel</class>
-	    <child_name>CList:title</child_name>
-	    <name>label81</name>
-	    <label>Name</label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>0.5</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	  </widget>
-
-	  <widget>
-	    <class>GtkLabel</class>
-	    <child_name>CList:title</child_name>
-	    <name>label82</name>
-	    <label>Birth Date</label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>0.5</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	  </widget>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkHBox</class>
-	<name>hbox24</name>
-	<homogeneous>False</homogeneous>
-	<spacing>0</spacing>
-	<child>
-	  <padding>8</padding>
-	  <expand>False</expand>
-	  <fill>False</fill>
-	</child>
-
-	<widget>
-	  <class>GtkLabel</class>
-	  <name>label223</name>
-	  <label>Relationship to child</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>0.5</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>0</ypad>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>False</fill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCombo</class>
-	  <name>frel_combo</name>
-	  <value_in_list>True</value_in_list>
-	  <ok_if_empty>False</ok_if_empty>
-	  <case_sensitive>True</case_sensitive>
-	  <use_arrows>True</use_arrows>
-	  <use_arrows_always>False</use_arrows_always>
-	  <items>Birth
-Adopted
-Stepchild
-Foster
-None
-Unknown
-</items>
-	  <child>
-	    <padding>5</padding>
-	    <expand>True</expand>
-	    <fill>True</fill>
-	  </child>
-
-	  <widget>
-	    <class>GtkEntry</class>
-	    <child_name>GtkCombo:entry</child_name>
-	    <name>frel</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>insert_text</name>
-	      <handler>on_combo_insert_text</handler>
-	      <object>frel_combo</object>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text>Birth</text>
-	  </widget>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkHSeparator</class>
-	<name>hseparator17</name>
-	<child>
-	  <padding>10</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkHBox</class>
-	<name>hbox7</name>
-	<homogeneous>False</homogeneous>
-	<spacing>0</spacing>
-	<child>
-	  <padding>10</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
-
-	<widget>
-	  <class>GtkLabel</class>
-	  <name>mlabel</name>
-	  <label>Mother</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>1</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>0</ypad>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>True</fill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkEntry</class>
-	  <name>motherName</name>
-	  <can_focus>True</can_focus>
-	  <editable>False</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
-	  <child>
-	    <padding>0</padding>
-	    <expand>True</expand>
-	    <fill>True</fill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkButton</class>
-	  <name>button124</name>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>clicked</name>
-	    <handler>on_addmother_clicked</handler>
-	    <object>prel</object>
-	  </signal>
-	  <label>Add</label>
-	  <relief>GTK_RELIEF_NORMAL</relief>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>False</fill>
-	  </child>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkScrolledWindow</class>
-	<name>scrolledwindow12</name>
-	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
-	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
-	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
-	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
-	<child>
-	  <padding>0</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
-
-	<widget>
-	  <class>GtkCList</class>
-	  <name>motherList</name>
-	  <height>100</height>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>select_row</name>
-	    <handler>on_motherList_select_row</handler>
-	  </signal>
-	  <columns>2</columns>
-	  <column_widths>198,80</column_widths>
-	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
-	  <show_titles>True</show_titles>
-	  <shadow_type>GTK_SHADOW_IN</shadow_type>
-
-	  <widget>
-	    <class>GtkLabel</class>
-	    <child_name>CList:title</child_name>
-	    <name>label84</name>
-	    <label>Name</label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>0.5</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	  </widget>
-
-	  <widget>
-	    <class>GtkLabel</class>
-	    <child_name>CList:title</child_name>
-	    <name>label85</name>
-	    <label>Birth Date</label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>0.5</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	  </widget>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkHBox</class>
-	<name>hbox16</name>
-	<homogeneous>False</homogeneous>
-	<spacing>0</spacing>
-	<child>
-	  <padding>8</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
-
-	<widget>
-	  <class>GtkLabel</class>
-	  <name>label186</name>
-	  <label>Relationship to child</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>0.5</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>0</ypad>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>False</fill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkCombo</class>
-	  <name>mrel_combo</name>
-	  <value_in_list>True</value_in_list>
-	  <ok_if_empty>False</ok_if_empty>
-	  <case_sensitive>True</case_sensitive>
-	  <use_arrows>True</use_arrows>
-	  <use_arrows_always>False</use_arrows_always>
-	  <items>Birth
-Adopted
-Stepchild
-Foster
-None
-Unknown
-</items>
-	  <child>
-	    <padding>5</padding>
-	    <expand>True</expand>
-	    <fill>True</fill>
-	  </child>
-
-	  <widget>
-	    <class>GtkEntry</class>
-	    <child_name>GtkCombo:entry</child_name>
-	    <name>mrel</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>insert_text</name>
-	      <handler>on_combo_insert_text</handler>
-	      <object>mrel_combo</object>
-	    </signal>
-	    <editable>True</editable>
-	    <text_visible>True</text_visible>
-	    <text_max_length>0</text_max_length>
-	    <text></text>
-	  </widget>
 	</widget>
       </widget>
 
@@ -5465,7 +5266,7 @@ Unknown
 	<name>hseparator19</name>
 	<child>
 	  <padding>10</padding>
-	  <expand>True</expand>
+	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
       </widget>
@@ -5477,7 +5278,7 @@ Unknown
 	<spacing>0</spacing>
 	<child>
 	  <padding>0</padding>
-	  <expand>True</expand>
+	  <expand>False</expand>
 	  <fill>True</fill>
 	</child>
 
@@ -7092,7 +6893,7 @@ Unknown
 <widget>
   <class>GnomeDialog</class>
   <name>addperson</name>
-  <title>Edit Person - GRAMPS</title>
+  <title>Add Person - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>

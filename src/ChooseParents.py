@@ -70,8 +70,6 @@ class ChooseParents:
         self.fcombo = self.glade.get_widget("prel_combo")
         self.prel = self.glade.get_widget("prel")
         self.title = self.glade.get_widget("chooseTitle")
-        self.father_name = self.glade.get_widget("fatherName")
-        self.mother_name = self.glade.get_widget("motherName")
         self.father_list = self.glade.get_widget("fatherList")
         self.mother_list = self.glade.get_widget("motherList")
         self.flabel = self.glade.get_widget("flabel")
@@ -91,8 +89,7 @@ class ChooseParents:
             "on_motherList_select_row" : self.mother_list_select_row,
             "on_fatherList_select_row" : self.father_list_select_row,
             "on_save_parents_clicked"  : self.save_parents_clicked,
-            "on_addmother_clicked"     : self.add_mother_clicked,
-            "on_addfather_clicked"     : self.add_father_clicked,
+            "on_add_parent_clicked"    : self.add_parent_clicked,
             "on_prel_changed"          : self.parent_relation_changed,
             "on_combo_insert_text"     : Utils.combo_insert_text,
             "destroy_passed_object"    : Utils.destroy_passed_object
@@ -110,9 +107,6 @@ class ChooseParents:
 
         type = obj.get_text()
 
-        self.father_name.set_text(GrampsCfg.nameof(self.father))
-        self.mother_name.set_text(GrampsCfg.nameof(self.mother))
-        
         self.father_list.freeze()
         self.mother_list.freeze()
         self.father_list.clear()
@@ -128,11 +122,17 @@ class ChooseParents:
         people.sort(sort.by_last_name)
         father_index = 1
         mother_index = 1
+        fsel = 0
+        msel = 0
         for person in people:
             if person == self.person:
                 continue
             if person.getGender() == RelLib.Person.unknown:
                 continue
+            if self.father == person:
+                fsel = father_index
+            if self.mother == person:
+                msel = mother_index
             rdata = [Utils.phonebook_name(person),Utils.birthday(person)]
             if type == "Partners":
                 self.father_list.append(rdata)
@@ -150,12 +150,17 @@ class ChooseParents:
                 self.mother_list.set_row_data(mother_index,person)
                 mother_index = mother_index + 1
 
+        self.mother_list.select_row(msel,0)
+        self.mother_list.moveto(msel,0)
+        self.father_list.select_row(fsel,0)
+        self.father_list.moveto(fsel,0)
+        
         if type == "Partners":
-            self.mlabel.set_text(_("Parent"))
-            self.flabel.set_text(_("Parent"))
+            self.mlabel.set_label(_("Parent"))
+            self.flabel.set_label(_("Parent"))
         else:
-            self.mlabel.set_text(_("Mother"))
-            self.flabel.set_text(_("Father"))
+            self.mlabel.set_label(_("Mother"))
+            self.flabel.set_label(_("Father"))
 
         self.mother_list.thaw()
         self.father_list.thaw()
@@ -188,16 +193,17 @@ class ChooseParents:
 
     def mother_list_select_row(self,obj,a,b,c):
         self.mother = obj.get_row_data(a)
-        self.mother_name.set_text(GrampsCfg.nameof(self.mother))
 
     def father_list_select_row(self,obj,a,b,c):
         self.father = obj.get_row_data(a)
-        self.father_name.set_text(GrampsCfg.nameof(self.father))
 
     def save_parents_clicked(self,obj):
         mother_rel = const.childRelations[self.mother_rel.get_text()]
         father_rel = const.childRelations[self.father_rel.get_text()]
         type = const.save_frel(self.prel.get_text())
+
+        msel = self.mother_list.selection
+        fsel = self.father_list.selection
 
         if self.father or self.mother:
             if self.mother and not self.father:
@@ -230,25 +236,13 @@ class ChooseParents:
             self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(None)
 
-    def add_parent_clicked(self,obj,sex):
-        self.xml = libglade.GladeXML(const.gladeFile,"addperson")
-        self.xml.get_widget(sex).set_active(1)
-        self.xml.signal_autoconnect({
-            "on_addfather_close": self.add_parent_close,
-            "on_combo_insert_text" : Utils.combo_insert_text,
-            "destroy_passed_object" : Utils.destroy_passed_object
-            })
-
-        window = self.xml.get_widget("addperson")
-        window.editable_enters(self.xml.get_widget("given"))
-        window.editable_enters(self.xml.get_widget("surname"))
-        Utils.attach_surnames(self.xml.get_widget("surnameCombo"))
-
-    def add_father_clicked(self,obj):
-        self.add_parent_clicked(obj,"male")
-
-    def add_mother_clicked(self,obj):
-        self.add_parent_clicked(obj,"female")
+    def add_new_parent(self,person):
+        self.parent_relation_changed(self.prel)
+        self.full_update()
+        
+    def add_parent_clicked(self,obj):
+        import QuickAdd
+        QuickAdd.QuickAdd(self.db,"male",self.add_new_parent)
 
     def change_family_type(self,family,mother_rel,father_rel):
         """
