@@ -128,6 +128,7 @@ class PluginDialog:
         self.db = db
         self.active = active
         self.update = None
+        self.noparent = 0
         self.imap = {}
         self.msg = msg
         
@@ -207,9 +208,15 @@ class PluginDialog:
 
         if self.run_tool:
             if self.update:
-                self.run_tool(self.db,self.active,self.update,self.parent)
+                if self.noparent:
+                    self.run_tool(self.db,self.active,self.update)
+                else:
+                    self.run_tool(self.db,self.active,self.update,self.parent)
             else:
-                self.run_tool(self.db,self.active,None,self.parent)
+                if self.noparent:
+                    self.run_tool(self.db,self.active)
+                else:
+                    self.run_tool(self.db,self.active,self.parent)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -295,8 +302,9 @@ class ReportPlugins(PluginDialog):
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
         PluginDialog.__init__(self,parent,db,active,_reports,_("Report Selection"),
-			_("Select a report from those available on the left."),
+                        _("Select a report from those available on the left."),
                         _("_Generate"), _("Generate selected report"))
+        self.noparent = 1
 
 #-------------------------------------------------------------------------
 #
@@ -313,9 +321,10 @@ class ToolPlugins(PluginDialog):
         hand side of the dailog box."""
 
         PluginDialog.__init__(self,parent,db,active,_tools,_("Tool Selection"),
-			_("Select a tool from those available on the left."),
+                        _("Select a tool from those available on the left."),
                         _("_Run"), _("Run selected tool"))
         self.update = update
+        self.noparent = 0
 
 #-------------------------------------------------------------------------
 #
@@ -382,7 +391,7 @@ def load_plugins(direct):
     # list for use on reloading
 
     if direct not in _loaddir:
-	_loaddir.append(direct)
+        _loaddir.append(direct)
 
     # add the directory to the python search path
     sys.path.append(direct)
@@ -399,7 +408,7 @@ def load_plugins(direct):
         match = pymod.match(name[1])
         if not match:
             continue
-	_attempt.append(file)
+        _attempt.append(file)
         plugin = match.groups()[0]
         try: 
             a = __import__(plugin)
@@ -439,9 +448,9 @@ def reload_plugins(obj):
 
     # attempt to load any new files found
     for dir in _loaddir:
- 	for file in os.listdir(dir):
+        for file in os.listdir(dir):
             name = os.path.split(file)
-	    match = pymod.match(name[1])
+            match = pymod.match(name[1])
             if not match:
                 continue
             if file in _attempt:
