@@ -87,6 +87,52 @@ class SourceNote:
         """Return in note instance, not just the text"""
         return self.note
 
+class LdsOrd:
+    """LDS Ordinance support"""
+    def __init__(self,source=None):
+        if source:
+            self.famc = source.famc
+            self.date = Date(source.date)
+            self.temple = source.temple
+        else:
+            self.famc = None
+            self.date = None
+            self.temple = ""
+
+    def setFamily(self,family):
+        self.famc = family
+
+    def getFamily(self):
+        return self.famc
+
+    def setDate(self, date) :
+        """attempts to sets the date of the LdsOrd instance"""
+        if not self.date:
+            self.date = Date()
+        self.date.set(date)
+
+    def getDate(self) :
+        """returns a string representation of the date of the LdsOrd instance"""
+        if self.date:
+            return self.date.getDate()
+        return ""
+
+    def getDateObj(self):
+        """returns the Date object associated with the LdsOrd"""
+        if not self.date:
+            self.date = Date()
+       	return self.date
+
+    def setDateObj(self,date):
+        """sets the Date object associated with the LdsOrd"""
+        self.date = date
+
+    def setTemple(self,temple):
+        self.temple = temple
+
+    def getTemple(self):
+        return self.temple
+
 class DataObj(SourceNote):
     """Base class for data elements, providing source, note, and privacy data"""
 
@@ -782,6 +828,9 @@ class Person:
         self.paf_uid = ""
         self.position = None
         self.ancestor = None
+        self.lds_bapt = None
+        self.lds_endow = None
+        self.lds_seal = None
 
     def setPrimaryName(self,name):
         """sets the primary name of the Person to the specified Name instance"""
@@ -1031,6 +1080,24 @@ class Person:
     def getAncestor(self):
         return self.ancestor
 
+    def setLdsBaptism(self,ord):
+        self.lds_bapt = ord
+
+    def getLdsBaptism(self):
+        return self.lds_bapt
+
+    def setLdsEndowment(self,ord):
+        self.lds_endow = None
+
+    def getLdsEndowment(self):
+        return self.lds_endow
+
+    def setLdsSeal(self,ord):
+        self.lds_seal = ord
+
+    def getLdsSeal(self):
+        return self.lds_seal
+    
 class Event(DataObj):
     """Event record, recording the event type, description, place, and date
     of a particular event"""

@@ -80,8 +80,6 @@ def import_media_object(filename,path,base):
         
         try:
             path = "%s/%s" % (thumb,base)
-
-            print filename,path,const.thumbScale
             mk_thumb(filename,path,const.thumbScale)
             shutil.copy(filename,name)
         except:

@@ -42,40 +42,46 @@ from latin_utf8  import latin_to_utf8
 # GEDCOM feature support
 #
 #-------------------------------------------------------------------------
-_ADOPT_NONE      = 0
-_ADOPT_EVENT     = 1
-_ADOPT_FTW       = 2
-_ADOPT_LEGACY    = 3
-_ADOPT_PEDI      = 4
-_ADOPT_EVENT_EXT = 5
+_ADOP_NONE   = 0
+_ADOP_EVENT  = 1
+_ADOP_FTW    = 2
+_ADOP_LEGACY = 3
+_ADOP_PEDI   = 4
+_ADOP_EVEXT  = 5
 
-_CONC_OK         = 0
-_CONC_BROKEN     = 1
+_CONC_OK     = 0
+_CONC_BROKEN = 1
 
-_ALT_NONE        = 0
-_ALT_STD         = 1
-_ALT_ALIAS       = 2
-_ALT_AKA         = 3
-_ALT_EVENT_AKA   = 4
+_ALT_NONE    = 0
+_ALT_STD     = 1
+_ALT_ALIAS   = 2
+_ALT_AKA     = 3
+_ALT_EVAKA   = 4
 
-_CAL_NO          = 0
-_CAL_YES         = 1
+_CAL_NO      = 0
+_CAL_YES     = 1
 
-_EVEN_NONE       = 0
-_EVEN_GED        = 1
-_EVEN_FTW        = 2
+_EVEN_NONE   = 0
+_EVEN_GED    = 1
+_EVEN_FTW    = 2
+
+_OBJE_NO     = 0
+_OBJE_YES    = 1
+
+_RESI_ADDR   = 0
+_RESI_PLAC   = 1
 
 targets = [
-    ("Standard GEDCOM 5.5", "GEDCOM 5.5", _ADOPT_EVENT_EXT, _CONC_OK, _ALT_STD, _CAL_YES, _EVEN_GED),
-    ("Brother's Keeper", "BROSKEEP", _ADOPT_NONE, _CONC_OK, _ALT_NONE, _CAL_NO, _EVEN_GED),
-    ("Family Origins", "FamilyOrigins", _ADOPT_EVENT, _CONC_BROKEN, _ALT_EVENT_AKA, _CAL_NO, _EVEN_GED),
-    ("Family Tree Maker", "FTW", _ADOPT_FTW, _CONC_BROKEN, _ALT_ALIAS, _CAL_NO, _EVEN_FTW),
-    ("Ftree", "", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO, _EVEN_GED),
-    ("GeneWeb", "", _ADOPT_EVENT_EXT, _CONC_OK, _ALT_NONE, _CAL_YES, _EVEN_GED),
-    ("Legacy", "Legacy", _ADOPT_LEGACY, _CONC_BROKEN, _ALT_STD, _CAL_NO, _EVEN_GED),
-    ("Personal Ancestral File", "PAF",  _ADOPT_PEDI, _CONC_OK, _ALT_AKA, _CAL_NO, _EVEN_GED),
-    ("Reunion", "REUNION",  _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO, _EVEN_GED),
-    ("Visual Genealogie", "", _ADOPT_NONE, _CONC_BROKEN, _ALT_NONE, _CAL_NO, _EVEN_GED),
+    ("Standard GEDCOM 5.5","GEDCOM 5.5",_ADOP_EVEXT,_CONC_OK,_ALT_STD,_CAL_YES,_EVEN_GED,_OBJE_YES,_RESI_ADDR),
+    ("Brother's Keeper","BROSKEEP",_ADOP_NONE,_CONC_OK,_ALT_NONE,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("Family Origins","FamilyOrigins",_ADOP_EVENT,_CONC_BROKEN,_ALT_EVAKA,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("Family Tree Maker","FTW",_ADOP_FTW,_CONC_BROKEN,_ALT_ALIAS,_CAL_NO,_EVEN_FTW,_OBJE_NO,_RESI_PLAC),
+    ("Ftree","",_ADOP_NONE,_CONC_BROKEN,_ALT_NONE,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("GeneWeb","",_ADOP_EVEXT,_CONC_OK,_ALT_NONE,_CAL_YES,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("Legacy","Legacy",_ADOP_LEGACY,_CONC_BROKEN,_ALT_STD,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("Personal Ancestral File","PAF",_ADOP_PEDI,_CONC_OK,_ALT_AKA,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("Reunion", "REUNION", _ADOP_NONE,_CONC_BROKEN,_ALT_NONE,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
+    ("Visual Genealogie","",_ADOP_NONE,_CONC_BROKEN,_ALT_NONE,_CAL_NO,_EVEN_GED,_OBJE_NO,_RESI_ADDR),
     ]
 
 #-------------------------------------------------------------------------
@@ -274,6 +280,17 @@ def add_persons_sources(person,slist,private):
 #
 #
 #-------------------------------------------------------------------------
+def addr_append(text,data):
+    if data:
+        return "%s, %s" % (text,data)
+    else:
+        return text
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def sortById(first,second):
     fid = first.getId()
     sid = second.getId()
@@ -407,7 +424,7 @@ class GedcomWriter:
         self.plist = []
         self.slist = []
         self.flist = []
-        self.adopt = _ADOPT_EVENT
+        self.adopt = _ADOP_EVENT
         self.fidval = 0
         self.fidmap = {}
         self.pidval = 0
@@ -451,10 +468,10 @@ class GedcomWriter:
 
         target_obj = self.topDialog.get_widget("target")
         myMenu = gtk.GtkMenu()
-        for (name,dest,adopt,conc,alt,cal,even) in targets:
+        for (name,dest,adopt,conc,alt,cal,even,obje,resi) in targets:
             menuitem = gtk.GtkMenuItem(name)
             myMenu.append(menuitem)
-            menuitem.set_data("data",(dest,adopt,conc,alt,cal,even))
+            menuitem.set_data("data",(dest,adopt,conc,alt,cal,even,obje,resi))
             menuitem.show()
 
         target_obj.set_menu(myMenu)
@@ -469,7 +486,7 @@ class GedcomWriter:
 
         filter = self.filter_menu.get_active().get_data("filter")
         act_tgt = self.target_menu.get_active()
-        (self.dest,self.adopt,self.conc,self.altname,self.cal,self.even) = act_tgt.get_data("data")
+        (self.dest,self.adopt,self.conc,self.altname,self.cal,self.even,self.obje,self.resi) = act_tgt.get_data("data")
 
         if self.topDialog.get_widget("ansel").get_active():
             self.cnvtxt = latin_to_ansel
@@ -622,7 +639,7 @@ class GedcomWriter:
 
             for person in family.getChildList():
                 self.g.write("1 CHIL @%s@\n" % self.pid(person.getId()))
-                if self.adopt == _ADOPT_FTW:
+                if self.adopt == _ADOP_FTW:
                     if person.getMainFamily() == family:
                         self.g.write('2 _FREL Natural\n')
                         self.g.write('2 _MREL Natural\n')
@@ -632,7 +649,7 @@ class GedcomWriter:
                                 self.g.write('2 _FREL %s\n' % f[2])
                                 self.g.write('2 _MREL %s\n' % f[1])
                                 break
-                if self.adopt == _ADOPT_LEGACY:
+                if self.adopt == _ADOP_LEGACY:
                     for f in person.getAltFamilyList():
                         if f[0] == family:
                             self.g.write('2 _STAT %s\n' % f[2])
@@ -711,7 +728,7 @@ class GedcomWriter:
                 else:
                     val = ""
                     
-                if self.adopt == _ADOPT_EVENT and val == "ADOP":
+                if self.adopt == _ADOP_EVENT and val == "ADOP":
                     ad = 1
                     self.g.write('1 ADOP\n')
                     fam = None
@@ -740,7 +757,7 @@ class GedcomWriter:
 
                 self.dump_event_stats(event)
 
-            if self.adopt == _ADOPT_EVENT and ad == 0 and len(person.getAltFamilyList()) != 0:
+            if self.adopt == _ADOP_EVENT and ad == 0 and len(person.getAltFamilyList()) != 0:
                 self.g.write('1 ADOP\n')
                 fam = None
                 for f in person.getAltFamilyList():
@@ -784,15 +801,24 @@ class GedcomWriter:
                 datestr = addr.getDateObj().getSaveDate()
                 if datestr != "":
                     self.g.write("2 DATE %s\n" % self.cnvtxt(datestr))
-                self.write_long_text("ADDR",2,addr.getStreet())
-                if addr.getCity() != "":
-                    self.g.write("3 CITY %s\n" % addr.getCity())
-                if addr.getState() != "":
-                    self.g.write("3 STAE %s\n" % addr.getState())
-                if addr.getPostal() != "":
-                    self.g.write("3 POST %s\n" % addr.getPostal())
-                if addr.getCountry() != "":
-                    self.g.write("3 CTRY %s\n" % addr.getCountry())
+                if self.resi == 0:
+                    self.write_long_text("ADDR",2,addr.getStreet())
+                    if addr.getCity() != "":
+                        self.g.write("3 CITY %s\n" % addr.getCity())
+                    if addr.getState() != "":
+                        self.g.write("3 STAE %s\n" % addr.getState())
+                    if addr.getPostal() != "":
+                        self.g.write("3 POST %s\n" % addr.getPostal())
+                    if addr.getCountry() != "":
+                        self.g.write("3 CTRY %s\n" % addr.getCountry())
+                else:
+                    text = addr.getStreet()
+                    text = addr_append(text,addr.getCity())
+                    text = addr_append(text,addr.getState())
+                    text = addr_append(text,addr.getPostal())
+                    text = addr_append(text,addr.getCountry())
+                    if text:
+                        self.g.write("2 PLAC %s\n" % text)
                 if addr.getNote() != "":
                     self.write_long_text("NOTE",3,addr.getNote())
                 for srcref in addr.getSourceRefList():
@@ -804,7 +830,7 @@ class GedcomWriter:
 
         for family in person.getAltFamilyList():
             self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
-            if self.adopt == _ADOPT_PEDI:
+            if self.adopt == _ADOP_PEDI:
                 if string.lower(family[1]) == "adopted":
                     self.g.write("2 PEDI Adopted\n")
         
@@ -812,13 +838,14 @@ class GedcomWriter:
             if family != None and family in self.flist:
                 self.g.write("1 FAMS @%s@\n" % self.fid(family.getId()))
 
-        for url in person.getUrlList():
-            self.g.write('1 OBJE\n')
-            self.g.write('2 FORM URL\n')
-            if url.get_description() != "":
-                self.g.write('2 TITL %s\n' % url.get_description())
-            if url.get_path() != "":
-                self.g.write('2 FILE %s\n' % url.get_path())
+        if self.obje:
+            for url in person.getUrlList():
+                self.g.write('1 OBJE\n')
+                self.g.write('2 FORM URL\n')
+                if url.get_description() != "":
+                    self.g.write('2 TITL %s\n' % url.get_description())
+                if url.get_path() != "":
+                    self.g.write('2 FILE %s\n' % url.get_path())
 
         if person.getNote() != "":
             self.write_long_text("NOTE",1,person.getNote())

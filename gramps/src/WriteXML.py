@@ -133,6 +133,27 @@ def dump_my_event(g,name,event,index=1):
 #
 #
 #-------------------------------------------------------------------------
+def dump_ordinance(g,name,ord,index=1):
+    if not ord:
+        return
+
+    sp = "  " * index
+    sp2 = "  " * (index+1)
+    g.write('%s<lds_ord type="%s">\n' % (sp,fix(name)))
+    dateobj = ord.getDateObj()
+    if dateobj != None and not dateobj.isEmpty():
+        write_date(g,dateobj,index+1)
+    if ord.getTemple():
+        g.write('%s<temple val="%s"/>\n' % (sp2,fix(ord.getTemple())))
+    if ord.getFamily():
+        g.write('%s<sealed_to ref="%s"/>\n' % (sp2,fix(ord.getFamily().getId())))
+    g.write('%s</lds_ord>\n' % sp)
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def dump_source_ref(g,source_ref,index=1):
     source = source_ref.getBase()
     if source:
@@ -520,6 +541,10 @@ def write_xml_data(database, g, callback, sp):
             dump_my_event(g,"Death",person.getDeath(),3)
             for event in person.getEventList():
                 dump_event(g,event,3)
+                
+            dump_ordinance(g,"baptism",person.getLdsBaptism(),3)
+            dump_ordinance(g,"endowment",person.getLdsEndowment(),3)
+            dump_ordinance(g,"sealed_to_parents",person.getLdsSeal(),3)
 
             write_photo_list(g,person.getPhotoList())
 
@@ -527,7 +552,6 @@ def write_xml_data(database, g, callback, sp):
                 for address in person.getAddressList():
                     g.write('      <address%s>\n' % conf_priv(address))
                     write_date(g,address.getDateObj(),4)
-#                    write_line(g,"date",address.getDateObj().getSaveDate(),4)
                     write_line(g,"street",address.getStreet(),4)
                     write_line(g,"city",address.getCity(),4)
                     write_line(g,"state",address.getState(),4)
