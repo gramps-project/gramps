@@ -21,13 +21,19 @@
 from TextDoc import *
 
 import reportlab.platypus.tables
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
 from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import cm
 from reportlab.lib.colors import Color
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
 
 import reportlab.lib.styles
+
+try:
+    import PIL.Image
+    no_pil = 0
+except:
+    no_pil = 1
 
 def page_def(canvas,doc):
     canvas.saveState()
@@ -102,11 +108,14 @@ class PdfDoc(TextDoc):
         self.current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
         self.text = ""
+        self.image = 0
 
     def end_paragraph(self):
-        if self.in_table == 0:
+        if self.in_table == 0 and self.image == 0:
 	    self.story.append(Paragraph(self.text,self.current_para))
-	    self.story.append(Spacer(1,0.5*cm))
+	    self.story.append(Spacer(1,0.25*cm))
+        else:
+            self.image = 0
 
     def start_bold(self):
         self.text = self.text + '<b>'
@@ -135,7 +144,7 @@ class PdfDoc(TextDoc):
                                               colWidths=self.cur_table_cols,
                                               style=ts)
 	self.story.append(tbl)
-	self.story.append(Spacer(1,0.5*cm))
+	self.story.append(Spacer(1,0.25*cm))
         self.in_table = 0
 
     def start_row(self):
@@ -193,6 +202,19 @@ class PdfDoc(TextDoc):
             self.tblstyle.append('VALIGN', loc, loc, 'TOP')
 
         self.col = self.col + self.span
+
+    def add_photo(self,name,x,y):
+        if no_pil == 0:
+            im = PIL.Image.open(name)
+
+            nx,ny = im.size
+            scale = float(y)/float(nx)
+            act_width = int(nx * scale)
+            act_height = int(ny * scale)
+            
+            self.story.append(Image(name,act_width*0.5,act_height*0.5))
+	    self.story.append(Spacer(1,0.25*cm))
+            self.image = 1
 
     def horizontal_line(self):
         pass
