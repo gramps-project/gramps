@@ -1,3 +1,7 @@
+2004-09-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: remove button border for date editor button
+	* src/DateDisplay.py: fix quality prefix display
+
 2004-09-19 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateEdit.py: Take date object as an argument and work with it.
 	* src/AddrEdit.py: Use date object instead of text.
