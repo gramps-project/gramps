@@ -1724,7 +1724,7 @@ class FamilyWithIncompleteEvent(Rule):
 class ProbablyAlive(Rule):
     """People probably alive"""
 
-    labels = []
+    labels = ["On year"]
 
     def name(self):
         return 'People probably alive'
@@ -1737,8 +1737,12 @@ class ProbablyAlive(Rule):
 
 
     def apply(self,db,p_id):
+        if len(self.list) == 0:
+            current_year = None
+        else:
+            current_year = int(self.list[0])
         p = db.get_person_from_handle(p_id)
-        return probably_alive(p,db)
+        return probably_alive(p,db,current_year)
 
 #-------------------------------------------------------------------------
 # "People marked private"

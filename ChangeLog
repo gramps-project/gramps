@@ -1,4 +1,8 @@
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GenericFilter.py: added a current year parameter to probably alive rule.
+	* src/Utils.py: added a current year parameter to probably alive function.
+
+2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/FilterEditor.py: Added source IDs into the source combobox.
 
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
