@@ -59,7 +59,7 @@
     <widget>
       <class>GtkTable</class>
       <name>table13</name>
-      <rows>3</rows>
+      <rows>6</rows>
       <columns>2</columns>
       <homogeneous>False</homogeneous>
       <row_spacing>0</row_spacing>
@@ -125,20 +125,20 @@
 
       <widget>
 	<class>GtkCheckButton</class>
-	<name>use_vc</name>
+	<name>usetabs</name>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>toggled</name>
 	  <handler>on_object_toggled</handler>
 	  <object>propertybox</object>
-	  <last_modification_time>Tue, 02 Oct 2001 14:14:35 GMT</last_modification_time>
+	  <last_modification_time>Thu, 15 Feb 2001 21:32:23 GMT</last_modification_time>
 	</signal>
-	<label>Use Revision Control</label>
+	<label>Use tabbed pages</label>
 	<active>False</active>
 	<draw_indicator>True</draw_indicator>
 	<child>
 	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
+	  <right_attach>2</right_attach>
 	  <top_attach>2</top_attach>
 	  <bottom_attach>3</bottom_attach>
 	  <xpad>5</xpad>
@@ -153,20 +153,114 @@
       </widget>
 
       <widget>
-	<class>GtkOptionMenu</class>
-	<name>vc_menu</name>
+	<class>GtkEntry</class>
+	<name>attr_name</name>
 	<can_focus>True</can_focus>
-	<items>RCS
-</items>
-	<initial_choice>0</initial_choice>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 24 May 2001 21:14:30 GMT</last_modification_time>
+	</signal>
+	<editable>True</editable>
+	<text_visible>True</text_visible>
+	<text_max_length>0</text_max_length>
+	<text></text>
 	<child>
 	  <left_attach>1</left_attach>
 	  <right_attach>2</right_attach>
-	  <top_attach>2</top_attach>
-	  <bottom_attach>3</bottom_attach>
+	  <top_attach>5</top_attach>
+	  <bottom_attach>6</bottom_attach>
+	  <xpad>0</xpad>
+	  <ypad>0</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkCheckButton</class>
+	<name>gid_edit</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>toggled</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 12 Jul 2001 13:42:44 GMT</last_modification_time>
+	</signal>
+	<label>Allow internal GRAMPS ID numbers to be edited</label>
+	<active>False</active>
+	<draw_indicator>True</draw_indicator>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>4</top_attach>
+	  <bottom_attach>5</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
-	  <xexpand>True</xexpand>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkCheckButton</class>
+	<name>gid_visible</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>toggled</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 12 Jul 2001 13:42:44 GMT</last_modification_time>
+	</signal>
+	<label>Display gramps ID in lists</label>
+	<active>False</active>
+	<draw_indicator>True</draw_indicator>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>3</top_attach>
+	  <bottom_attach>4</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkCheckButton</class>
+	<name>attr_display</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>toggled</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 24 May 2001 21:14:10 GMT</last_modification_time>
+	</signal>
+	<label>Display attribute on Edit Person form</label>
+	<active>False</active>
+	<draw_indicator>True</draw_indicator>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>1</right_attach>
+	  <top_attach>5</top_attach>
+	  <bottom_attach>6</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
 	  <xshrink>False</xshrink>
 	  <yshrink>False</yshrink>
@@ -199,104 +293,16 @@
       <column_spacing>0</column_spacing>
 
       <widget>
-	<class>GtkEntry</class>
-	<name>attr_name</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>changed</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 24 May 2001 21:14:30 GMT</last_modification_time>
-	</signal>
-	<editable>True</editable>
-	<text_visible>True</text_visible>
-	<text_max_length>0</text_max_length>
-	<text></text>
-	<child>
-	  <left_attach>1</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>3</top_attach>
-	  <bottom_attach>4</bottom_attach>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
 	<class>GtkCheckButton</class>
-	<name>attr_display</name>
+	<name>vc_comment</name>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>toggled</name>
 	  <handler>on_object_toggled</handler>
 	  <object>propertybox</object>
-	  <last_modification_time>Thu, 24 May 2001 21:14:10 GMT</last_modification_time>
+	  <last_modification_time>Thu, 04 Oct 2001 13:26:10 GMT</last_modification_time>
 	</signal>
-	<label>Display attribute on Edit Person form</label>
-	<active>False</active>
-	<draw_indicator>True</draw_indicator>
-	<child>
-	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
-	  <top_attach>3</top_attach>
-	  <bottom_attach>4</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>False</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkCheckButton</class>
-	<name>usetabs</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>toggled</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 15 Feb 2001 21:32:23 GMT</last_modification_time>
-	</signal>
-	<label>Use tabbed pages</label>
-	<active>False</active>
-	<draw_indicator>True</draw_indicator>
-	<child>
-	  <left_attach>0</left_attach>
-	  <right_attach>2</right_attach>
-	  <top_attach>0</top_attach>
-	  <bottom_attach>1</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>False</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkCheckButton</class>
-	<name>gid_visible</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>toggled</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Thu, 12 Jul 2001 13:42:44 GMT</last_modification_time>
-	</signal>
-	<label>Display gramps ID in lists</label>
+	<label>Prompt for comment on save</label>
 	<active>False</active>
 	<draw_indicator>True</draw_indicator>
 	<child>
@@ -317,22 +323,45 @@
 
       <widget>
 	<class>GtkCheckButton</class>
-	<name>gid_edit</name>
+	<name>use_vc</name>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>toggled</name>
 	  <handler>on_object_toggled</handler>
 	  <object>propertybox</object>
-	  <last_modification_time>Thu, 12 Jul 2001 13:42:44 GMT</last_modification_time>
+	  <last_modification_time>Tue, 02 Oct 2001 14:14:35 GMT</last_modification_time>
 	</signal>
-	<label>Allow internal GRAMPS ID numbers to be edited</label>
+	<label>Use Revision Control</label>
 	<active>False</active>
 	<draw_indicator>True</draw_indicator>
 	<child>
 	  <left_attach>0</left_attach>
+	  <right_attach>1</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkOptionMenu</class>
+	<name>vc_menu</name>
+	<can_focus>True</can_focus>
+	<items>RCS
+</items>
+	<initial_choice>0</initial_choice>
+	<child>
+	  <left_attach>1</left_attach>
 	  <right_attach>2</right_attach>
-	  <top_attach>2</top_attach>
-	  <bottom_attach>3</bottom_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>
@@ -349,7 +378,7 @@
       <class>GtkLabel</class>
       <child_name>Notebook:tab</child_name>
       <name>label209</name>
-      <label>Display</label>
+      <label>Revision Control</label>
       <justify>GTK_JUSTIFY_CENTER</justify>
       <wrap>False</wrap>
       <xalign>0.5</xalign>
