@@ -1,3 +1,7 @@
+2003-06-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/IndivComplete.py: make compatible with BookReport
+	* src/plugins/IndivSummary.py: changed style names to use colon qualifiers
+
 2003-06-26  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WebPage.py: Fix gendex creation.
 	* src/ImgManip.py: Seems to need the SIGCHLD handler resetting here
