@@ -1,4 +1,8 @@
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetAncestralReport.py (write_marriage):
+	Consider missing case of spouse and no-date-no-place for marriage.
+        
+2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py: Added to CVS. 
 	* src/plugins/book.glade: Likewise. 
 	* src/ListModel.py: (insert, get_data): Added new methods.
