@@ -176,6 +176,7 @@ class EditPerson:
         self.alt_suffix_field = self.get_widget("alt_suffix")
         self.name_type_field = self.get_widget("name_type")
         self.surname_field = self.get_widget("surname")
+        self.ntype_field = self.get_widget("ntype")
         self.suffix = self.get_widget("suffix")
         self.given = self.get_widget("givenName")
         self.nick = self.get_widget("nickname")
@@ -215,13 +216,14 @@ class EditPerson:
         self.window.editable_enters(self.suffix);
         self.window.editable_enters(self.title);
         self.window.editable_enters(self.nick);
+        self.window.editable_enters(self.ntype_field.entry)
         self.window.editable_enters(self.bdate);
         self.window.editable_enters(self.bplace);
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
         self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
-
+                
         AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),self.autoplace)
         self.comp = AutoComp.AutoCombo(self.sncombo,const.surnames)
             
@@ -262,6 +264,12 @@ class EditPerson:
 
         self.surname_field.set_text(self.pname.getSurname())
         self.given.set_text(self.pname.getFirstName())
+
+        types = const.NameTypesMap.keys()
+        types.sort()
+        self.ntype_field.set_popdown_strings(types)
+        self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
+        self.ntype_field.entry.set_text(_(self.pname.getType()))
 
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
@@ -742,6 +750,7 @@ class EditPerson:
     def did_data_change(self):
         """Check to see if any of the data has changed from the original record"""
         surname = self.surname_field.get_text()
+        ntype = self.ntype_field.entry.get_text()
         suffix = self.suffix.get_text()
         given = self.given.get_text()
         nick = self.nick.get_text()
@@ -764,6 +773,8 @@ class EditPerson:
         if suffix != name.getSuffix():
             changed = 1
         if surname != name.getSurname():
+            changed = 1
+        if ntype != name.getType():
             changed = 1
         if given != name.getFirstName():
             changed = 1
@@ -1038,11 +1049,12 @@ class EditPerson:
     
         surname = self.surname_field.get_text()
         suffix = self.suffix.get_text()
+        ntype = self.ntype_field.entry.get_text()
         given = self.given.get_text()
         nick = self.nick.get_text()
         title = self.title.get_text()
         idval = self.gid.get_text()
-        
+
         name = self.pname
 
         if idval != self.person.getId():
@@ -1064,6 +1076,14 @@ class EditPerson:
         if suffix != name.getSuffix():
             name.setSuffix(suffix)
 
+        if const.NameTypesMap.has_key(ntype):
+            ntype = const.NameTypesMap[ntype]
+        else:
+            ntype = "Birth Name"
+
+        if ntype != name.getType():
+            name.setType(ntype)
+            
         if surname != name.getSurname():
             name.setSurname(surname)
             if surname not in const.surnames:

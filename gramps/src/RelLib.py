@@ -804,6 +804,8 @@ class Name(DataObj):
             return 0
         if self.Title != other.Title:
             return 0
+        if self.type != other.type:
+            return 0
         if self.private != other.private:
             return 0
         if self.getNote() != other.getNote():

@@ -525,6 +525,8 @@ class GrampsParser:
 
     def stop_name(self,tag):
         self.person.PrimaryName = self.name
+        if self.name.getType() == "":
+            self.name.setType("Birth Name")
         self.name = None
 
     def stop_place(self,tag):

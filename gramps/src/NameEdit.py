@@ -61,7 +61,8 @@ class NameEditor:
 
         types = const.NameTypesMap.keys()
         types.sort()
-        self.typecomp = AutoComp.AutoCombo(self.type_field,types)
+        self.type_field.set_popdown_strings(types)
+        self.typecomp = AutoComp.AutoEntry(self.type_field.entry,types)
 
         if self.name:
             self.srcreflist = self.name.getSourceRefList()
