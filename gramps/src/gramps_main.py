@@ -2694,6 +2694,7 @@ def main(arg):
         "on_merge_activate"                 : on_merge_activate,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
+        "on_reload_plugins_activate"        : Plugins.reload_plugins,
         "on_remove_child_clicked"           : on_remove_child_clicked,
         "on_reports_clicked"                : on_reports_clicked,
         "on_revert_activate"                : on_revert_activate,

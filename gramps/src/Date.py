@@ -105,6 +105,15 @@ class Date:
             self.stop = SingleDate()
         return self.get_stop_date().getDay()
 
+    def greater_than(self,other):
+        return compare_dates(self,other) > 0
+
+    def less_than(self,other):
+        return compare_dates(self,other) < 0
+
+    def equal_to(self,other):
+        return compare_dates(other) == 0
+
     #--------------------------------------------------------------------
     #
     # 
@@ -347,7 +356,7 @@ class SingleDate:
     # 
     #
     #--------------------------------------------------------------------
-    def __cmp__(self,other):
+    def my__cmp__(self,other):
         if other == None:
             return 0
         elif self.year != other.year:
