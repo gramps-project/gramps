@@ -245,6 +245,7 @@ class AncestorReportDialog(Report.TextReportDialog):
         para.set_font(font)
         para.set_header_level(1)
         para.set(pad=0.5)
+        para.set_description(_('The style used for the title of the page.'))
         self.default_style.add_style("Title",para)
     
         font = TextDoc.FontStyle()
@@ -253,10 +254,12 @@ class AncestorReportDialog(Report.TextReportDialog):
         para.set_font(font)
         para.set_header_level(2)
         para.set(pad=0.5)
+        para.set_description(_('The style used for the generation header.'))
         self.default_style.add_style("Generation",para)
     
         para = TextDoc.ParagraphStyle()
         para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+        para.set_description(_('The basic style used for the text display.'))
         self.default_style.add_style("Entry",para)
 
     def make_report(self):

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Fri Mar  7 21:56:51 2003\n"
+"POT-Creation-Date: Fri Mar  7 22:49:58 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "The filename supplied could not be found."
 msgstr ""
 
-#: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:146
+#: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
 #: SelectChild.py:105 gramps_main.py:91 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
 #: plugins/RelCalc.py:322 plugins/TimeLine.py:330 plugins/WebPage.py:274
@@ -31,14 +31,14 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:146 ImageSelect.py:824
+#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:824
 #: MediaView.py:59 PlaceView.py:48 SelectChild.py:105 SourceView.py:54
 #: Sources.py:75 Sources.py:145 Witness.py:54 gramps_main.py:91
 #: plugins/RelCalc.py:322
 msgid "ID"
 msgstr ""
 
-#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:147 SelectChild.py:105
+#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:139 SelectChild.py:105
 #: gramps_main.py:92
 msgid "Birth date"
 msgstr ""
@@ -221,14 +221,14 @@ msgstr ""
 msgid "Parent"
 msgstr ""
 
-#: ChooseParents.py:194 ChooseParents.py:399 FamilyView.py:377
+#: ChooseParents.py:194 ChooseParents.py:399 FamilyView.py:369
 #: plugins/FamilyGroup.py:208 plugins/IndivComplete.py:197
 #: plugins/IndivComplete.py:199 plugins/IndivComplete.py:410
 #: plugins/IndivSummary.py:272 plugins/WebPage.py:293 plugins/WebPage.py:296
 msgid "Mother"
 msgstr ""
 
-#: ChooseParents.py:195 ChooseParents.py:400 FamilyView.py:376
+#: ChooseParents.py:195 ChooseParents.py:400 FamilyView.py:368
 #: plugins/FamilyGroup.py:195 plugins/IndivComplete.py:189
 #: plugins/IndivComplete.py:191 plugins/IndivComplete.py:405
 #: plugins/IndivSummary.py:258 plugins/WebPage.py:292 plugins/WebPage.py:295
@@ -259,12 +259,12 @@ msgstr ""
 msgid "Open a database"
 msgstr ""
 
-#: DbPrompter.py:97 gramps_main.py:1039
+#: DbPrompter.py:97 gramps_main.py:1034
 msgid "Save database"
 msgstr ""
 
-#: DbPrompter.py:106 gramps_main.py:774 gramps_main.py:1051
-#: gramps_main.py:1063
+#: DbPrompter.py:106 gramps_main.py:774 gramps_main.py:1046
+#: gramps_main.py:1058
 msgid "No Comment Provided"
 msgstr ""
 
@@ -346,7 +346,7 @@ msgstr ""
 msgid "Save Changes to %s?"
 msgstr ""
 
-#: EditPerson.py:810 EditPerson.py:827 Marriage.py:405
+#: EditPerson.py:810 EditPerson.py:827 Marriage.py:404
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Make the selected name the preferred name"
 msgstr ""
 
-#: EditPerson.py:1216 Marriage.py:430
+#: EditPerson.py:1216 Marriage.py:429
 msgid "GRAMPS ID value was not changed."
 msgstr ""
 
@@ -462,63 +462,63 @@ msgstr ""
 msgid "Event Editor"
 msgstr ""
 
-#: FamilyView.py:147 gramps_main.py:91 plugins/IndivComplete.py:381
+#: FamilyView.py:139 gramps_main.py:91 plugins/IndivComplete.py:381
 #: plugins/IndivSummary.py:225 plugins/WebPage.py:284 plugins/WebPage.py:286
 #: plugins/WebPage.py:288
 msgid "Gender"
 msgstr ""
 
-#: FamilyView.py:148
+#: FamilyView.py:140
 msgid "Status"
 msgstr ""
 
-#: FamilyView.py:231
+#: FamilyView.py:223
 msgid "Remove %s as a spouse of %s?"
 msgstr ""
 
-#: FamilyView.py:232
+#: FamilyView.py:224
 msgid "Removing a spouse removes the relationship betwen the spouse and the active person. It does not remove the spouse from the database"
 msgstr ""
 
-#: FamilyView.py:235
+#: FamilyView.py:227
 msgid "Remove Spouse"
 msgstr ""
 
-#: FamilyView.py:393
+#: FamilyView.py:385
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
 msgstr ""
 
-#: FamilyView.py:395
+#: FamilyView.py:387
 msgid "%s: unknown"
 msgstr ""
 
-#: FamilyView.py:432 Plugins.py:413 Plugins.py:414 Plugins.py:415
+#: FamilyView.py:423 Plugins.py:413 Plugins.py:414 Plugins.py:415
 #: Plugins.py:427 Plugins.py:428 Plugins.py:429 Witness.py:71 const.py:159
 #: const.py:434 const.py:442 gramps.glade:3502 gramps.glade:3695
 #: gramps.glade:4117 gramps.glade:4297 gramps.glade:5775 gramps.glade:6021
-#: gramps_main.py:1225 plugins/WebPage.py:288
+#: gramps_main.py:1220 plugins/WebPage.py:288
 msgid "Unknown"
 msgstr ""
 
-#: FamilyView.py:480 FamilyView.py:494
+#: FamilyView.py:465 FamilyView.py:480
 msgid "Remove Parents of %s"
 msgstr ""
 
-#: FamilyView.py:481 FamilyView.py:495
+#: FamilyView.py:466 FamilyView.py:481
 msgid "Removing the parents of a person removes the person as a child of the parents. The parents are not removed from the database, and the relationship between the parents is not removed."
 msgstr ""
 
-#: FamilyView.py:485 FamilyView.py:499
+#: FamilyView.py:470 FamilyView.py:485
 msgid "Remove Parents"
 msgstr ""
 
-#: FamilyView.py:593
+#: FamilyView.py:579
 msgid "Attempt to Reorder Children Failed"
 msgstr ""
 
-#: FamilyView.py:594
+#: FamilyView.py:580
 msgid "Children must be ordered by their birth dates."
 msgstr ""
 
@@ -928,16 +928,16 @@ msgstr ""
 msgid "Marriage/Relationship Editor"
 msgstr ""
 
-#: Marriage.py:107 Marriage.py:566 Marriage.py:584 Utils.py:132
+#: Marriage.py:107 Marriage.py:565 Marriage.py:583 Utils.py:132
 #: plugins/Check.py:161 plugins/Check.py:180
 msgid "%s and %s"
 msgstr ""
 
-#: Marriage.py:404
+#: Marriage.py:403
 msgid "Save Changes?"
 msgstr ""
 
-#: Marriage.py:431
+#: Marriage.py:430
 msgid "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr ""
 
@@ -3091,70 +3091,58 @@ msgid "Delete Person"
 msgstr ""
 
 #: gramps_main.py:1000
-msgid "Do you wish to abandon your changes and revert to the last saved database?"
-msgstr ""
-
-#: gramps_main.py:1003
 msgid "Revert to last saved database?"
 msgstr ""
 
-#: gramps_main.py:1004
+#: gramps_main.py:1001
 msgid "Reverting to the last saved database will cause all unsaved changes to be lost, and the last saved database will be loaded."
 msgstr ""
 
-#: gramps_main.py:1007
+#: gramps_main.py:1004
 msgid "Revert"
 msgstr ""
 
-#: gramps_main.py:1010
-msgid "Cannot revert to a previous database, since one does not exist"
-msgstr ""
-
-#: gramps_main.py:1012
+#: gramps_main.py:1007
 msgid "Could Not Revert to the Previous Database."
 msgstr ""
 
-#: gramps_main.py:1013
+#: gramps_main.py:1008
 msgid "GRAMPS could not find a previous version of the database"
 msgstr ""
 
-#: gramps_main.py:1316
+#: gramps_main.py:1311
 msgid "Loading %s..."
 msgstr ""
 
-#: gramps_main.py:1411
+#: gramps_main.py:1406
 msgid "No home person has been set."
 msgstr ""
 
-#: gramps_main.py:1412
+#: gramps_main.py:1407
 msgid "The home person may be set from the Settings menu."
 msgstr ""
 
-#: gramps_main.py:1418
+#: gramps_main.py:1413
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1421
+#: gramps_main.py:1416
 msgid "Could Not Set a Bookmark."
 msgstr ""
 
-#: gramps_main.py:1422
+#: gramps_main.py:1417
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: gramps_main.py:1434
-msgid "Do you wish to set %s as the home person?"
-msgstr ""
-
-#: gramps_main.py:1436
+#: gramps_main.py:1429
 msgid "Set %s as the Home Person"
 msgstr ""
 
-#: gramps_main.py:1437
+#: gramps_main.py:1430
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr ""
 
-#: gramps_main.py:1440
+#: gramps_main.py:1433
 msgid "Set Home Person"
 msgstr ""
 
@@ -3310,14 +3298,14 @@ msgstr ""
 msgid "Author's email:"
 msgstr ""
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:424
+#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:425
 msgid "Ancestor Chart"
 msgstr ""
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:425
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:459 plugins/FullFamily.py:105
+#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:426
+#: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/FullFamily.py:105
 #: plugins/FullFamily.py:170 plugins/GraphViz.py:78 plugins/GraphViz.py:448
-#: plugins/TimeLine.py:310 plugins/TimeLine.py:448
+#: plugins/TimeLine.py:310 plugins/TimeLine.py:451
 msgid "Graphical Reports"
 msgstr ""
 
@@ -3339,16 +3327,22 @@ msgstr ""
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 
-#: plugins/AncestorChart.py:426 plugins/AncestorReport.py:386
-#: plugins/DescendReport.py:282 plugins/DetAncestralReport.py:972
-#: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:562
+#: plugins/AncestorChart.py:248 plugins/AncestorReport.py:262
+#: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
+#: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
+msgid "The basic style used for the text display."
+msgstr ""
+
+#: plugins/AncestorChart.py:427 plugins/AncestorReport.py:389
+#: plugins/DescendReport.py:284 plugins/DetAncestralReport.py:972
+#: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:566
 #: plugins/FullFamily.py:171 plugins/GraphViz.py:447
-#: plugins/IndivComplete.py:663 plugins/IndivSummary.py:496
-#: plugins/Summary.py:146 plugins/TimeLine.py:447 plugins/WebPage.py:1269
+#: plugins/IndivComplete.py:667 plugins/IndivSummary.py:500
+#: plugins/Summary.py:146 plugins/TimeLine.py:450 plugins/WebPage.py:1268
 msgid "Beta"
 msgstr ""
 
-#: plugins/AncestorChart.py:427 plugins/FullFamily.py:172
+#: plugins/AncestorChart.py:428 plugins/FullFamily.py:172
 msgid "Produces a graphical ancestral tree graph"
 msgstr ""
 
@@ -3429,16 +3423,16 @@ msgstr ""
 msgid " and was buried in %s."
 msgstr ""
 
-#: plugins/AncestorReport.py:225 plugins/AncestorReport.py:384
+#: plugins/AncestorReport.py:225 plugins/AncestorReport.py:387
 msgid "Ahnentafel Report"
 msgstr ""
 
-#: plugins/AncestorReport.py:225 plugins/AncestorReport.py:385
-#: plugins/DescendReport.py:124 plugins/DescendReport.py:281
+#: plugins/AncestorReport.py:225 plugins/AncestorReport.py:388
+#: plugins/DescendReport.py:124 plugins/DescendReport.py:283
 #: plugins/DetAncestralReport.py:973 plugins/DetDescendantReport.py:851
-#: plugins/FamilyGroup.py:344 plugins/FamilyGroup.py:561
-#: plugins/IndivComplete.py:446 plugins/IndivComplete.py:664
-#: plugins/IndivSummary.py:317 plugins/IndivSummary.py:497
+#: plugins/FamilyGroup.py:344 plugins/FamilyGroup.py:565
+#: plugins/IndivComplete.py:446 plugins/IndivComplete.py:668
+#: plugins/IndivSummary.py:317 plugins/IndivSummary.py:501
 msgid "Text Reports"
 msgstr ""
 
@@ -3446,7 +3440,17 @@ msgstr ""
 msgid "Save Ancestor Report"
 msgstr ""
 
-#: plugins/AncestorReport.py:387
+#: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
+#: plugins/FamilyGroup.py:408 plugins/IndivComplete.py:502
+#: plugins/IndivSummary.py:345 plugins/TimeLine.py:389 plugins/WebPage.py:961
+msgid "The style used for the title of the page."
+msgstr ""
+
+#: plugins/AncestorReport.py:257
+msgid "The style used for the generation header."
+msgstr ""
+
+#: plugins/AncestorReport.py:390
 msgid "Produces a textual ancestral report"
 msgstr ""
 
@@ -3547,7 +3551,7 @@ msgstr ""
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
 
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:458
+#: plugins/DesGraph.py:308 plugins/DesGraph.py:459
 msgid "Descendant Graph"
 msgstr ""
 
@@ -3559,11 +3563,11 @@ msgstr ""
 msgid "Save Descendant Graph"
 msgstr ""
 
-#: plugins/DesGraph.py:460 plugins/DescendReport.py:283
+#: plugins/DesGraph.py:461 plugins/DescendReport.py:285
 msgid "Generates a list of descendants of the active person"
 msgstr ""
 
-#: plugins/DesGraph.py:461
+#: plugins/DesGraph.py:462
 msgid "Alpha"
 msgstr ""
 
@@ -3585,7 +3589,7 @@ msgstr ""
 msgid "Descendants of %s"
 msgstr ""
 
-#: plugins/DescendReport.py:124 plugins/DescendReport.py:280
+#: plugins/DescendReport.py:124 plugins/DescendReport.py:282
 msgid "Descendant Report"
 msgstr ""
 
@@ -3595,6 +3599,10 @@ msgstr ""
 
 #: plugins/DescendReport.py:133 plugins/DetDescendantReport.py:699
 msgid "Save Descendant Report"
+msgstr ""
+
+#: plugins/DescendReport.py:156
+msgid "The style used for the level %d display."
 msgstr ""
 
 #: plugins/DetAncestralReport.py:115 plugins/DetDescendantReport.py:125
@@ -3900,7 +3908,7 @@ msgid "Aids in the analysis of data by allowing the development of custom filter
 msgstr ""
 
 #: plugins/FamilyGroup.py:117 plugins/FamilyGroup.py:344
-#: plugins/FamilyGroup.py:560
+#: plugins/FamilyGroup.py:564
 msgid "Family Group Report"
 msgstr ""
 
@@ -3929,7 +3937,15 @@ msgstr ""
 msgid "Save Family Group Report"
 msgstr ""
 
-#: plugins/FamilyGroup.py:563
+#: plugins/FamilyGroup.py:426
+msgid "The style used for the text related to the children."
+msgstr ""
+
+#: plugins/FamilyGroup.py:435
+msgid "The style used for the parent's name"
+msgstr ""
+
+#: plugins/FamilyGroup.py:567
 msgid "Creates a family group report, showing information on a set of parents and their children."
 msgstr ""
 
@@ -4179,7 +4195,7 @@ msgid "Include Source Information"
 msgstr ""
 
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:450
-#: plugins/IndivComplete.py:662
+#: plugins/IndivComplete.py:666
 msgid "Complete Individual Report"
 msgstr ""
 
@@ -4187,11 +4203,20 @@ msgstr ""
 msgid "Save Complete Individual Report"
 msgstr ""
 
-#: plugins/IndivComplete.py:665
+#: plugins/IndivComplete.py:512 plugins/IndivSummary.py:355
+msgid "The style used category labels."
+msgstr ""
+
+#: plugins/IndivComplete.py:521 plugins/IndivSummary.py:364
+#: plugins/WebPage.py:1019
+msgid "The style used for the spouse's name."
+msgstr ""
+
+#: plugins/IndivComplete.py:669
 msgid "Produces a complete report on the selected people."
 msgstr ""
 
-#: plugins/IndivSummary.py:317 plugins/IndivSummary.py:495
+#: plugins/IndivSummary.py:317 plugins/IndivSummary.py:499
 msgid "Individual Summary"
 msgstr ""
 
@@ -4203,7 +4228,7 @@ msgstr ""
 msgid "Save Individual Summary"
 msgstr ""
 
-#: plugins/IndivSummary.py:498
+#: plugins/IndivSummary.py:502
 msgid "Produces a detailed report on the selected person."
 msgstr ""
 
@@ -4664,11 +4689,19 @@ msgstr ""
 msgid "Sort by"
 msgstr ""
 
-#: plugins/TimeLine.py:442
+#: plugins/TimeLine.py:373
+msgid "The style used for the person's name."
+msgstr ""
+
+#: plugins/TimeLine.py:381
+msgid "The style used for the year labels."
+msgstr ""
+
+#: plugins/TimeLine.py:445
 msgid "Generates a timeline graph."
 msgstr ""
 
-#: plugins/TimeLine.py:446
+#: plugins/TimeLine.py:449
 msgid "Timeline Graph"
 msgstr ""
 
@@ -4774,11 +4807,11 @@ msgstr ""
 msgid "GRAMPS ID link URL"
 msgstr ""
 
-#: plugins/WebPage.py:897 plugins/WebPage.py:1267
+#: plugins/WebPage.py:897 plugins/WebPage.py:1266
 msgid "Generate Web Site"
 msgstr ""
 
-#: plugins/WebPage.py:897 plugins/WebPage.py:1268
+#: plugins/WebPage.py:897 plugins/WebPage.py:1267
 msgid "Web Page"
 msgstr ""
 
@@ -4794,67 +4827,59 @@ msgstr ""
 msgid "Descendant Families of %s"
 msgstr ""
 
-#: plugins/WebPage.py:961
-msgid "The style used for the title of the page."
-msgstr ""
-
-#: plugins/WebPage.py:969
+#: plugins/WebPage.py:968
 msgid "The style used for the header that identifies facts and events."
 msgstr ""
 
-#: plugins/WebPage.py:977
+#: plugins/WebPage.py:976
 msgid "The style used for the header for the notes section."
 msgstr ""
 
-#: plugins/WebPage.py:984
+#: plugins/WebPage.py:983
 msgid "The style used for the copyright notice."
 msgstr ""
 
-#: plugins/WebPage.py:991
+#: plugins/WebPage.py:990
 msgid "The style used for the header for the sources section."
 msgstr ""
 
-#: plugins/WebPage.py:998
+#: plugins/WebPage.py:997
 msgid "The style used on the index page that labels each section."
 msgstr ""
 
-#: plugins/WebPage.py:1005
+#: plugins/WebPage.py:1004
 msgid "The style used for the header for the image section."
 msgstr ""
 
-#: plugins/WebPage.py:1012
+#: plugins/WebPage.py:1011
 msgid "The style used for the header for the marriages and children section."
 msgstr ""
 
-#: plugins/WebPage.py:1020
-msgid "The style used for the spouse's name."
-msgstr ""
-
-#: plugins/WebPage.py:1027
+#: plugins/WebPage.py:1026
 msgid "The style used for the general data labels."
 msgstr ""
 
-#: plugins/WebPage.py:1034
+#: plugins/WebPage.py:1033
 msgid "The style used for the general data."
 msgstr ""
 
-#: plugins/WebPage.py:1041
+#: plugins/WebPage.py:1040
 msgid "The style used for the description of images."
 msgstr ""
 
-#: plugins/WebPage.py:1048
+#: plugins/WebPage.py:1047
 msgid "The style used for the notes associated with images."
 msgstr ""
 
-#: plugins/WebPage.py:1055
+#: plugins/WebPage.py:1054
 msgid "The style used for the source information."
 msgstr ""
 
-#: plugins/WebPage.py:1062
+#: plugins/WebPage.py:1061
 msgid "The style used for the note information."
 msgstr ""
 
-#: plugins/WebPage.py:1270
+#: plugins/WebPage.py:1269
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 

@@ -20,13 +20,6 @@
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-import pickle
-
-#-------------------------------------------------------------------------
-#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -49,7 +42,6 @@ import SelectChild
 import DisplayTrace
 import Marriage
 import ChooseParents
-import RelLib
 
 from intl import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
@@ -427,15 +419,8 @@ class FamilyView:
 
         self.child_map = {}
 
-        attr = ""
         for child in child_list:
             status = _("Unknown")
-            if child.getGender() == RelLib.Person.male:
-                gender = const.male
-            elif child.getGender() == RelLib.Person.female:
-                gender = const.female
-            else:
-                gender = const.unknown
             for fam in child.getParentList():
                 if fam[0] == family:
                     if self.person == family.getFather():
@@ -491,6 +476,7 @@ class FamilyView:
     def del_sp_parents(self,obj):
         if not self.selected_spouse or len(self.selected_spouse.getParentList()) == 0:
             return
+        n = GrampsCfg.nameof(self.selected_spouse)
         QuestionDialog(_('Remove Parents of %s') % n,
                        _('Removing the parents of a person removes the person as a '
                          'child of the parents. The parents are not removed from the '
@@ -602,7 +588,6 @@ class FamilyView:
         if not iter:
             return
         id = self.child_model.get_value(iter,2)
-        person = self.parent.db.getPerson(id)
         bits_per = 8; # we're going to pass a string
         data = str(('child',id));
         sel_data.set(sel_data.target, bits_per, data)

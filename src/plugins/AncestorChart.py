@@ -245,6 +245,7 @@ class AncestorChartDialog(Report.DrawReportDialog):
         f.set_type_face(TextDoc.FONT_SANS_SERIF)
         p = TextDoc.ParagraphStyle()
         p.set_font(f)
+        p.set_description(_('The basic style used for the text display.'))
         self.default_style.add_style("Normal",p)
 
     def make_report(self):

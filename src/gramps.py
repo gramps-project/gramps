@@ -1,6 +1,5 @@
 #! /usr/bin/python -O
 
-import const
 import sys
 import os
 import locale
@@ -35,7 +34,6 @@ else:
 #
 #-------------------------------------------------------------------------
 import gramps_main 
-import const
 
 if len(sys.argv) > 1:
     arg = sys.argv[1]

@@ -43,7 +43,7 @@ import RelLib
 import ImageSelect
 import Date
 
-from QuestionDialog import QuestionDialog, WarningDialog
+from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -400,8 +400,7 @@ class Marriage:
         if self.did_data_change():
             global quit
             self.quit = obj
-
-            SaveDialog(_('Save Changes?' % n),
+            SaveDialog(_('Save Changes?'),
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
                        self.cancel_callback,

@@ -13,6 +13,10 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
+# This is the src/plugins level Makefile for Gramps
+# Use GNU make's ':=' syntax for nice wildcard use.
+# If not using GNU make, then list all .py files individually
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -105,15 +109,16 @@ ZIP = @ZIP@
 am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
+
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-# This is the src/plugins level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all .py files individually
-pkgpython_PYTHON := ${wildcard *.py}
+pkgpython_PYTHON = \
+	Islamic.py \
+	Persian.py
+
 subdir = src/calendars
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
