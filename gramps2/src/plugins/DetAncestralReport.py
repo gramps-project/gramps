@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003 Bruce J. DeGrasse
+# Copyright (C) 2000-2004 Bruce J. DeGrasse
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -204,7 +204,7 @@ class DetAncestorReport(Report.Report):
 
         person = self.map[key]
         if rptOptions.addImages == reportOptions.Yes:
-			self.insert_images(person, rptOptions.imageAttrTag)
+            self.insert_images(person)
 
         name = person.getPrimaryName().getRegularName()
 
@@ -538,7 +538,7 @@ class DetAncestorReport(Report.Report):
                     self.doc.start_paragraph("DAR-Entry")
 
                     if rptOptions.addImages == reportOptions.Yes:
-						self.insert_images(ind, rptOptions.imageAttrTag)
+                        self.insert_images(ind)
 
                     if rptOptions.firstName == reportOptions.No:
                         firstName= heshe
@@ -562,57 +562,19 @@ class DetAncestorReport(Report.Report):
     #
     #
     #--------------------------------------------------------------------
-    def insert_images(self, person, tag):
+    def insert_images(self, person):
 
-        photos= person.getPhotoList()
+        photos = person.getPhotoList()
+        paragraph_started = 0
         for photo in photos :
-            if photo.getMimeType()[0:5] != "image":
-                continue
-            attribs= photo.getAttributeList()
-            for attrib in attribs :
-                if attrib.getType() == tag:
-                    vlist= string.split(attrib.getValue())
-                    if vlist[0] == 'left' or vlist[0] == 'right':
-                        self.doc.add_photo(photo.ref.getPath(), vlist[0], \
-                                           float(vlist[1]), float(vlist[2]))
-
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
-    def append_images(self, person, tag):
-
-        photos= person.getPhotoList()
-        numPhotos= 0                      # Number of photos
-        for photo in photos :
-            if photo.getMimeType()[0:5] != "image":
-                continue
-            attribs= photo.getAttributeList()
-            for attrib in attribs :
-                if attrib.getType() == tag:
-                    vlist= string.split(attrib.getValue())
-                    if vlist[0] == 'single':
-                        #if numPhotos > 0:
-                        #	self.doc.end_paragraph()
-
-                        numPhotos= numPhotos + 1
-                        if numPhotos == 1:
-                            self.doc.start_paragraph("DAR-Entry")
-                        self.doc.add_photo(photo.ref.getPath(), vlist[0], \
-							float(vlist[1]), float(vlist[2]))
-						#self.doc.end_paragraph()
-						#numPhotos= 0
-                    elif vlist[0] == 'row':
-                        numPhotos= numPhotos + 1
-                        if numPhotos == 1:
-                            self.doc.start_paragraph("DAR-Entry")
-                        self.doc.add_photo(photo.ref.getPath(), vlist[0], \
-							float(vlist[1]), float(vlist[2]))
-
-        if numPhotos > 0 :
+            object = photo.getReference()
+            if object.getMimeType()[0:5] == "image":
+                file = object.getPath()
+                if not paragraph_started:
+                    self.doc.start_paragraph("DAR-Entry")
+                    paragraph_started = 1
+                self.doc.add_photo(file,"row",4.0,4.0)
             self.doc.end_paragraph()
-
 
     #--------------------------------------------------------------------
     #
@@ -661,8 +623,8 @@ class DetAncestorReport(Report.Report):
                     family= person.getFamilyList()[0]
                     self.write_children(family, rptOpt)
 
-                if rptOpt.addImages == reportOptions.Yes:
-                    self.append_images(person, rptOpt.imageAttrTag)
+                #if rptOpt.addImages == reportOptions.Yes:
+                #    self.append_images(person)
 
         if self.standalone:
             self.doc.close()
@@ -1323,7 +1285,7 @@ class reportOptions:
 
         #Add Photos and Images to report
         self.addImages= reportOptions.Yes
-        self.imageAttrTag= "DetAncestralReport-H"
+        #self.imageAttrTag= "DetAncestralReport-H"
         #self.imageAttrTag= "DetAncestralReport-L"
 
         #Omit sensitive information such as birth, christening, marriage
