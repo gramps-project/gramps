@@ -1,3 +1,7 @@
+2004-10-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/WriteGedcom.py (GedcomWriter.write_person): handle
+	empty event handles
+
 2004-10-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* Makefile.am: added distuninstallcheck_listfiles
 	* doc/Makefile.am: Added CLEANFILES
