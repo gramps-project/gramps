@@ -736,7 +736,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         for name in names:
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text,
-                         [const.NameTypesMap.get_value(name.getType ()) +
+                         [const.NameTypesMap.find_value(name.getType ()) +
                             ': ' + name.getRegularName ()]))
             paras.append ((self.doc.end_paragraph, []))
 
