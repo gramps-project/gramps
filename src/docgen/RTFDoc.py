@@ -202,9 +202,9 @@ class RTFDoc(BaseDoc.BaseDoc):
             self.f.write(self.text)
             if self.opened:
                 self.f.write('}')
-                self.text = ""
                 self.opened = 0
             self.f.write('\n\\par')
+            self.text = ""
         else:
             if self.text == "":
                 self.write_text(" ")
