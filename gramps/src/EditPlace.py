@@ -297,7 +297,6 @@ def on_photo_select_icon(obj,iconNumber,event):
 #-------------------------------------------------------------------------
 def on_delete_photo_clicked(obj):
     epo = obj.get_data(_PLACE)
-    print epo
     icon = epo.selectedIcon
 
     if icon != -1:

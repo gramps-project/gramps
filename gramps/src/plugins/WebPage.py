@@ -91,13 +91,14 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,person,photos,restrict,private,link,list,dir_name,doc):
+    def __init__(self,person,photos,restrict,private,uc,link,list,dir_name,doc):
         self.person = person
         self.doc = doc
         self.list = list
         self.private = private
         self.alive = probably_alive(person) or restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
+        self.usecomments = not uc
         self.dir = dir_name
         self.link = link
         self.slist = []
@@ -198,19 +199,24 @@ class IndividualPage:
             self.doc.start_paragraph("SourceParagraph")
             self.doc.write_text('<A NAME="s%d">%d. ' % (index,index))
             index = index + 1
-            self.doc.write_text("%s. " % sref.getBase().getTitle())
-            author = sref.getBase().getAuthor()
-            if author != "":
-                self.doc.write_text("%s. " % author)
-            pubinfo = sref.getBase().getPubInfo()
-            if pubinfo != "":
-                self.doc.write_text("%s. " % pubinfo)
-            if sref.getDate() != "":
-                self.doc.write_text("%s. " % sref.getDate())
-            if sref.getPage() != "":
-                self.doc.write_text("%s. " % sref.getPage())
+            self.write_info(sref.getBase().getTitle())
+            self.write_info(sref.getBase().getAuthor())
+            self.write_info(sref.getBase().getPubInfo())
+            self.write_info(sref.getDate().getDate())
+            self.write_info(sref.getPage())
+            if self.usecomments:
+                self.write_info(sref.getText())
+                self.write_info(sref.getComments())
             self.doc.end_paragraph()
 
+    def write_info(self,info):
+        info = string.strip(info)
+        if info != "":
+            if info[-1] == '.':
+                self.doc.write_text("%s " % info)
+            else:
+                self.doc.write_text("%s. " % info)
+                
     #--------------------------------------------------------------------
     #
     # 
@@ -702,7 +708,8 @@ def on_ok_clicked(obj):
     templ_name = topDialog.get_widget("htmlTemplate").get_full_path(0)
 
     restrict = topDialog.get_widget("restrict").get_active()
-    privated = topDialog.get_widget("private").get_active()
+    private = topDialog.get_widget("private").get_active()
+    srccomments = topDialog.get_widget("srccomments").get_active()
     restrict_photos = topDialog.get_widget("restrict_photos").get_active()
     no_photos = topDialog.get_widget("nophotos").get_active()
     include_link = topDialog.get_widget("include_link").get_active()
@@ -742,7 +749,7 @@ def on_ok_clicked(obj):
 
     for person in ind_list:
         doc = HtmlLinkDoc(styles,templ_name)
-        idoc = IndividualPage(person,photos,restrict,private,\
+        idoc = IndividualPage(person,photos,restrict,private,srccomments,\
                               include_link, ind_list,dir_name,doc)
         idoc.create_page()
         idoc.close()
