@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-07-03 14:47-0600\n"
+"POT-Creation-Date: 2001-07-05 18:06-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -304,20 +304,20 @@ msgstr ""
 msgid "Ancestor Graph"
 msgstr ""
 
-#: glade.c:1508 glade.c:1602
+#: glade.c:1508 glade.c:1604
 msgid "Ancestors"
 msgstr ""
 
-#: glade.c:1617
+#: glade.c:1619
 #, c-format
 msgid "Ancestors and Descendants of %s"
 msgstr ""
 
-#: glade.c:1510 glade.c:1604
+#: glade.c:1510 glade.c:1606
 msgid "Ancestors and descendants"
 msgstr ""
 
-#: glade.c:1615
+#: glade.c:1617
 #, c-format
 msgid "Ancestors of %s"
 msgstr ""
@@ -474,7 +474,7 @@ msgstr ""
 msgid "Checks the database for any relationship errors"
 msgstr ""
 
-#: glade.c:171 glade.c:1499 glade.c:1531 glade.c:1539 glade.c:1600
+#: glade.c:171 glade.c:1499 glade.c:1531 glade.c:1539 glade.c:1602
 msgid "Children"
 msgstr ""
 
@@ -548,7 +548,7 @@ msgstr ""
 msgid "Could not create %s"
 msgstr ""
 
-#: glade.c:1514 glade.c:1515 glade.c:1608 glade.c:1609
+#: glade.c:1514 glade.c:1515 glade.c:1610 glade.c:1611
 #, c-format
 msgid "Could not create the directory : %s"
 msgstr ""
@@ -729,11 +729,11 @@ msgstr ""
 msgid "Descendant Report"
 msgstr ""
 
-#: glade.c:1509 glade.c:1603
+#: glade.c:1509 glade.c:1605
 msgid "Descendants"
 msgstr ""
 
-#: glade.c:1486 glade.c:1616
+#: glade.c:1486 glade.c:1618
 #, c-format
 msgid "Descendants of %s"
 msgstr ""
@@ -754,7 +754,7 @@ msgstr ""
 msgid "Directories"
 msgstr ""
 
-#: glade.c:1576 glade.c:1623
+#: glade.c:1577 glade.c:1625
 msgid "Disconnected individuals"
 msgstr ""
 
@@ -909,11 +909,11 @@ msgstr ""
 msgid "Engagement"
 msgstr ""
 
-#: glade.c:1614
+#: glade.c:1616
 msgid "Entire Database"
 msgstr ""
 
-#: glade.c:1512 glade.c:1606
+#: glade.c:1512 glade.c:1608
 msgid "Entire database"
 msgstr ""
 
@@ -966,8 +966,12 @@ msgstr ""
 msgid "Export GEDCOM file"
 msgstr ""
 
-#: glade.c:1619
+#: glade.c:1621
 msgid "Export to GEDCOM"
+msgstr ""
+
+#: glade.c:1598
+msgid "Facts and Events"
 msgstr ""
 
 #: glade.c:1400
@@ -988,7 +992,7 @@ msgstr ""
 msgid "Family Group Report for %s"
 msgstr ""
 
-#: glade.c:1581
+#: glade.c:1582
 msgid "Family Information"
 msgstr ""
 
@@ -1000,11 +1004,11 @@ msgstr ""
 msgid "Family Tree - Index"
 msgstr ""
 
-#: glade.c:1534 glade.c:1610 glade.c:1611
+#: glade.c:1534 glade.c:1612 glade.c:1613
 msgid "Family Tree Index"
 msgstr ""
 
-#: glade.c:395 glade.c:1494 glade.c:1545 glade.c:1591 glade.c:1593
+#: glade.c:395 glade.c:1494 glade.c:1545 glade.c:1593 glade.c:1595
 msgid "Father"
 msgstr ""
 
@@ -1012,11 +1016,11 @@ msgstr ""
 msgid "February"
 msgstr ""
 
-#: glade.c:1544 glade.c:1590
+#: glade.c:1544 glade.c:1592
 msgid "Female"
 msgstr ""
 
-#: glade.c:1573 glade.c:1626
+#: glade.c:1574 glade.c:1628
 msgid "Females"
 msgstr ""
 
@@ -1110,7 +1114,7 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: glade.c:449 glade.c:1542 glade.c:1589 glade.c:1590
+#: glade.c:449 glade.c:1542 glade.c:1591 glade.c:1592
 msgid "Gender"
 msgstr ""
 
@@ -1174,7 +1178,7 @@ msgstr ""
 msgid "Generates relationship graphs, currently only in GraphViz format."
 msgstr ""
 
-#: glade.c:1535 glade.c:1612
+#: glade.c:1535 glade.c:1614
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 
@@ -1353,7 +1357,7 @@ msgstr ""
 msgid "Gramps file"
 msgstr ""
 
-#: glade.c:1511 glade.c:1605
+#: glade.c:1511 glade.c:1607
 msgid "Grandparent's ancestors and descendants"
 msgstr ""
 
@@ -1423,7 +1427,7 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
-#: glade.c:1577
+#: glade.c:1578
 msgid "Images and files"
 msgstr ""
 
@@ -1439,11 +1443,11 @@ msgstr ""
 msgid "Include a link to the index page"
 msgstr ""
 
-#: glade.c:1507 glade.c:1601
+#: glade.c:1507 glade.c:1603
 msgid "Individual"
 msgstr ""
 
-#: glade.c:1547 glade.c:1597
+#: glade.c:1547
 msgid "Individual Facts"
 msgstr ""
 
@@ -1451,19 +1455,19 @@ msgstr ""
 msgid "Individual Summary"
 msgstr ""
 
-#: glade.c:1570
+#: glade.c:1571
 msgid "Individuals"
 msgstr ""
 
-#: glade.c:1575
+#: glade.c:1576
 msgid "Individuals missing birth dates"
 msgstr ""
 
-#: glade.c:1578
+#: glade.c:1579
 msgid "Individuals with images"
 msgstr ""
 
-#: glade.c:1574
+#: glade.c:1575
 msgid "Individuals with incomplete names"
 msgstr ""
 
@@ -1576,11 +1580,11 @@ msgstr ""
 msgid "Make the selected child the active person"
 msgstr ""
 
-#: glade.c:1543 glade.c:1589
+#: glade.c:1543 glade.c:1591
 msgid "Male"
 msgstr ""
 
-#: glade.c:1572 glade.c:1629
+#: glade.c:1573 glade.c:1631
 msgid "Males"
 msgstr ""
 
@@ -1620,7 +1624,7 @@ msgstr ""
 msgid "Marriage/Family Editor"
 msgstr ""
 
-#: glade.c:1537 glade.c:1598
+#: glade.c:1537 glade.c:1600
 msgid "Marriages/Children"
 msgstr ""
 
@@ -1660,7 +1664,7 @@ msgstr ""
 msgid "Month Day, Year"
 msgstr ""
 
-#: glade.c:697 glade.c:1495 glade.c:1546 glade.c:1592 glade.c:1594
+#: glade.c:697 glade.c:1495 glade.c:1546 glade.c:1594 glade.c:1596
 msgid "Mother"
 msgstr ""
 
@@ -1668,7 +1672,7 @@ msgstr ""
 msgid "Multiple"
 msgstr ""
 
-#: glade.c:707 glade.c:1541 glade.c:1588
+#: glade.c:707 glade.c:1541 glade.c:1590
 msgid "Name"
 msgstr ""
 
@@ -1684,19 +1688,19 @@ msgstr ""
 msgid "Names"
 msgstr ""
 
-#: glade.c:1637
+#: glade.c:1639
 msgid "Names that contain a substring"
 msgstr ""
 
-#: glade.c:1636
+#: glade.c:1638
 msgid "Names that match a regular expression"
 msgstr ""
 
-#: glade.c:1631
+#: glade.c:1633
 msgid "Names with same SoundEx code as ..."
 msgstr ""
 
-#: glade.c:1630
+#: glade.c:1632
 msgid "Names with the specified SoundEx code"
 msgstr ""
 
@@ -1708,7 +1712,7 @@ msgstr ""
 msgid "Naturalization"
 msgstr ""
 
-#: glade.c:1513 glade.c:1607
+#: glade.c:1513 glade.c:1609
 #, c-format
 msgid "Neither %s nor %s are directories"
 msgstr ""
@@ -1749,7 +1753,7 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: glade.c:737 glade.c:1532 glade.c:1595
+#: glade.c:737 glade.c:1532 glade.c:1599
 msgid "Notes"
 msgstr ""
 
@@ -1769,11 +1773,11 @@ msgstr ""
 msgid "Number of People"
 msgstr ""
 
-#: glade.c:1582
+#: glade.c:1583
 msgid "Number of families"
 msgstr ""
 
-#: glade.c:1571
+#: glade.c:1572
 msgid "Number of individuals"
 msgstr ""
 
@@ -1881,52 +1885,52 @@ msgstr ""
 msgid "People"
 msgstr ""
 
-#: glade.c:1618
+#: glade.c:1620
 #, c-format
 msgid "People somehow connected to %s"
 msgstr ""
 
-#: glade.c:1625
+#: glade.c:1627
 msgid "People who have an event type of ..."
 msgstr ""
 
-#: glade.c:1627
+#: glade.c:1629
 msgid "People who have images"
 msgstr ""
 
-#: glade.c:1621
+#: glade.c:1623
 msgid "People who were adopted"
 msgstr ""
 
-#: glade.c:1620
+#: glade.c:1622
 msgid "People with an event after ..."
 msgstr ""
 
-#: glade.c:1622
+#: glade.c:1624
 msgid "People with an event before ..."
 msgstr ""
 
-#: glade.c:1624
+#: glade.c:1626
 msgid "People with an event location of ..."
 msgstr ""
 
-#: glade.c:1635
+#: glade.c:1637
 msgid "People with children"
 msgstr ""
 
-#: glade.c:1628
+#: glade.c:1630
 msgid "People with incomplete names"
 msgstr ""
 
-#: glade.c:1632
+#: glade.c:1634
 msgid "People with multiple marriage records"
 msgstr ""
 
-#: glade.c:1633
+#: glade.c:1635
 msgid "People with no marriage records"
 msgstr ""
 
-#: glade.c:1634
+#: glade.c:1636
 msgid "People without a birth date"
 msgstr ""
 
@@ -2016,7 +2020,7 @@ msgstr ""
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr ""
 
-#: glade.c:1584
+#: glade.c:1585
 msgid "Provides a summary of the current database"
 msgstr ""
 
@@ -2084,7 +2088,7 @@ msgstr ""
 msgid "Retirement"
 msgstr ""
 
-#: glade.c:1596
+#: glade.c:1597
 msgid "Return to the index of people"
 msgstr ""
 
@@ -2295,7 +2299,7 @@ msgstr ""
 msgid "Source Information"
 msgstr ""
 
-#: glade.c:1020
+#: glade.c:1020 glade.c:1588
 msgid "Sources"
 msgstr ""
 
@@ -2354,7 +2358,7 @@ msgstr ""
 msgid "Suffix"
 msgstr ""
 
-#: glade.c:1540 glade.c:1586 glade.c:1587
+#: glade.c:1540 glade.c:1587 glade.c:1589
 #, c-format
 msgid "Summary of %s"
 msgstr ""
@@ -2423,11 +2427,11 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: glade.c:1579
+#: glade.c:1580
 msgid "Total number of images"
 msgstr ""
 
-#: glade.c:1580
+#: glade.c:1581
 msgid "Total size of images"
 msgstr ""
 
@@ -2491,7 +2495,7 @@ msgstr ""
 msgid "Underline"
 msgstr ""
 
-#: glade.c:1583
+#: glade.c:1584
 msgid "Unique surnames"
 msgstr ""
 
@@ -2519,6 +2523,10 @@ msgstr ""
 msgid "Use tabbed pages"
 msgstr ""
 
+#: glade.c:1570
+msgid "Utilities/Generate SoundEx codes"
+msgstr ""
+
 #: glade.c:1568
 msgid "Utilities/Relationship calculator"
 msgstr ""
@@ -2535,7 +2543,7 @@ msgstr ""
 msgid "View Image"
 msgstr ""
 
-#: glade.c:1585
+#: glade.c:1586
 msgid "View/Summary of the database"
 msgstr ""
 
@@ -2552,7 +2560,7 @@ msgstr ""
 msgid "Web Address"
 msgstr ""
 
-#: glade.c:1613
+#: glade.c:1615
 msgid "Web Site/Generate Web Site"
 msgstr ""
 
@@ -2670,7 +2678,7 @@ msgstr ""
 msgid "bottom"
 msgstr ""
 
-#: glade.c:1580
+#: glade.c:1581
 msgid "bytes"
 msgstr ""
 
@@ -2758,6 +2766,6 @@ msgstr ""
 msgid "top"
 msgstr ""
 
-#: glade.c:1538 glade.c:1599
+#: glade.c:1538 glade.c:1601
 msgid "unknown"
 msgstr ""
