@@ -1,3 +1,6 @@
+2003-06-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Date.py: Handle date ranges in the form of xxxx - xxxx
+
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
 	* src/gramps.desktop: Add startup notification (egg timer)
