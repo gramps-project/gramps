@@ -51,6 +51,7 @@ from RelLib import *
 import ImageSelect
 import sort
 import AutoComp
+import ListModel
 from DateEdit import DateEdit
 from QuestionDialog import QuestionDialog
 
@@ -110,13 +111,10 @@ class EditPerson:
             "on_add_aka_clicked"        : self.on_add_aka_clicked,
             "on_add_attr_clicked"       : self.on_add_attr_clicked,
             "on_add_url_clicked"        : self.on_add_url_clicked,
-            "on_addr_button_press"      : self.addr_double_click,
-            "on_web_button_press"       : self.url_double_click,
             "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
             "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
             "on_aka_update_clicked"     : self.on_aka_update_clicked,
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
-            "on_attr_button_press"      : self.attr_double_click,
             "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
             "on_edit_death_clicked"     : self.on_edit_death_clicked,
             "on_delete_address_clicked" : self.on_delete_addr_clicked,
@@ -127,10 +125,8 @@ class EditPerson:
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_editperson_switch_page" : self.on_switch_page,
             "on_event_add_clicked"      : self.on_event_add_clicked,
-            "on_event_button_press"     : self.event_double_click,
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
             "on_event_update_clicked"   : self.on_event_update_clicked,
-            "on_name_button_press"      : self.aka_double_click,
             "on_name_note_clicked"      : self.on_name_note_clicked,
             "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
             "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
@@ -219,38 +215,36 @@ class EditPerson:
         self.plist = person.getAddressList()[:]
 
         # event display
-        self.event_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING,
-                                         gobject.TYPE_STRING,gobject.TYPE_STRING)
-
-        self.build_columns(self.event_list, [(_('Event'),150), (_('Description'),150),
-                                             (_('Date'),100), (_('Place'),100)])
-        self.event_list.set_model(self.event_model)
-        self.event_list.get_selection().connect('changed',self.on_event_select_row)
+        etitles = [(_('Event'),0,150),(_('Description'),1,150),
+                   (_('Date'),3,100),(_('Place'),4,100)]
+        
+        self.etree = ListModel.ListModel(self.event_list,etitles,
+                                         self.on_event_select_row,
+                                         self.on_event_update_clicked)
 
         # attribute display
-        self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        self.build_columns(self.attr_list, [(_('Attribute'),150),(_('Value'),150)])
-        self.attr_list.set_model(self.attr_model)
-        self.attr_list.get_selection().connect('changed',self.on_attr_select_row)
-
+        atitles = [(_('Attribute'),0,150),(_('Value'),1,150)]
+        self.atree = ListModel.ListModel(self.attr_list,atitles,
+                                         self.on_attr_select_row,
+                                         self.on_update_attr_clicked)
+                                         
         # address display
-        self.addr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING,
-                                        gobject.TYPE_STRING)
-        self.build_columns(self.addr_list, [(_('Date'),150),(_('Address'),150)])
-        self.addr_list.set_model(self.addr_model)
-        self.addr_list.get_selection().connect('changed',self.on_addr_select_row)
+        ptitles = [(_('Date'),0,150),(_('Address'),1,150)]
+        self.ptree = ListModel.ListModel(self.addr_list, ptitles,
+                                         self.on_addr_select_row,
+                                         self.on_update_addr_clicked)
 
         # name display
-        self.name_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        self.build_columns(self.name_list,[(_('Name'),250),(_('Type'),100)])
-        self.name_list.set_model(self.name_model)
-        self.name_list.get_selection().connect('changed',self.on_name_select_row)
+        ntitles = [(_('Name'),0,250),(_('Type'),1,100)]
+        self.ntree = ListModel.ListModel(self.name_list,ntitles,
+                                         self.on_name_select_row)
+        self.ntree.tree.connect('event',self.aka_double_click)
 
         # web display
-        self.web_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        self.build_columns(self.web_list, [(_('Path'),250),(_('Description'),100)])
-        self.web_list.set_model(self.web_model)
-        self.web_list.get_selection().connect('changed',self.on_web_select_row)
+        wtitles = [(_('Path'),0,250),(_('Description'),1,100)]
+        self.wtree = ListModel.ListModel(self.web_list,wtitles,
+                                         self.on_web_select_row,
+                                         self.on_update_url_clicked)
 
         self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
         self.autodeath = AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),
@@ -259,8 +253,6 @@ class EditPerson:
             
         self.gid.set_text(person.getId())
         self.gid.set_editable(GrampsCfg.id_edit)
-
-        self.event_list = self.get_widget("eventList")
 
         self.lds_baptism = LdsOrd(self.person.getLdsBaptism())
         self.lds_endowment = LdsOrd(self.person.getLdsEndowment())
@@ -568,27 +560,37 @@ class EditPerson:
 
     def redraw_name_list(self):
         """redraws the name list"""
-        Utils.redraw_list(self.nlist,self.name_model,disp_name)
+        self.ntree.clear()
+        for name in self.nlist:
+            self.ntree.add([name.getName(),_(name.getType())],name)
 
     def redraw_url_list(self):
         """redraws the url list, disabling the go button if no url
         is selected"""
-        length = Utils.redraw_list(self.ulist,self.web_model,disp_url)
-        if length > 0:
-            #self.web_go.set_sensitive(1)
+        self.wtree.clear()
+        for url in self.ulist:
+            self.wtree.add([url.get_path(),url.get_description()],url)
+
+        if len(self.ulist) > 0:
             self.web_go.set_sensitive(0)
         else:
             self.web_go.set_sensitive(0)
             self.web_url.set_text("")
             self.web_description.set_text("")
 
-    def redraw_attr_list(self):
-        """Redraws the attribute list"""
-        Utils.redraw_list(self.alist,self.attr_model,disp_attr)
-
     def redraw_addr_list(self):
-        """redraws the address list for the person"""
-        Utils.redraw_list(self.plist,self.addr_model,disp_addr)
+        """Redraws the address list"""
+        self.ptree.clear()
+        for addr in self.plist:
+            location = "%s %s %s %s" % (addr.getStreet(),addr.getCity(),
+                                        addr.getState(),addr.getCountry())
+            self.ptree.add([addr.getDate(),location],addr)
+
+    def redraw_attr_list(self):
+        """redraws the attribute list for the person"""
+        self.atree.clear()
+        for attr in self.alist:
+            self.atree.add([const.display_pattr(attr.getType()),attr.getValue()],attr)
 
     def redraw_event_list(self):
         """redraw_event_list - Update both the birth and death place combo
@@ -597,8 +599,11 @@ class EditPerson:
         any values in the death event, and vice versa.  Since updating a
         combo list resets its present value, this code will have to save
         and restore the value for the event *not* being edited."""
-        
-        Utils.redraw_list(self.elist,self.event_model,disp_event)
+
+        self.etree.clear()
+        for event in self.elist:
+            self.etree.add([const.display_pevent(event.getName()),event.getDescription(),
+                            event.getQuoteDate(),event.getPlaceName()],event)
 
         # Remember old combo list input
         prev_btext = Utils.strip_id(self.bplace.get_text())
@@ -697,25 +702,33 @@ class EditPerson:
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
-        if Utils.delete_selected(obj,self.nlist):
+        store,iter = self.ntree.get_selected()
+        if iter:
+            self.nlist.remove(self.ntree.get_object(iter))
             self.lists_changed = 1
             self.redraw_name_list()
 
     def on_delete_url_clicked(self,obj):
         """Deletes the selected URL from the URL list"""
-        if Utils.delete_selected(obj,self.ulist):
+        store,iter = self.wtree.get_selected()
+        if iter:
+            self.ulist.remove(self.wtree.get_object(iter))
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_attr_clicked(self,obj):
         """Deletes the selected attribute from the attribute list"""
-        if Utils.delete_selected(obj,self.alist):
+        store,iter = self.atree.get_selected()
+        if iter:
+            self.alist.remove(self.atree.get_object(iter))
             self.lists_changed = 1
             self.redraw_attr_list()
 
     def on_delete_addr_clicked(self,obj):
         """Deletes the selected address from the address list"""
-        if Utils.delete_selected(obj,self.plist):
+        store,iter = self.ptree.get_selected()
+        if iter:
+            self.plist.remove(self.ptree.get_object(iter))
             self.lists_changed = 1
             self.redraw_addr_list()
 
@@ -877,29 +890,19 @@ class EditPerson:
 #        self.bplace.set_position(0)
 #        self.dplace.set_position(0)
 
-    def attr_double_click(self,obj,event):
-        if event.button == 1 and event.type == _2BUTTON_PRESS:
-            self.on_update_attr_clicked(obj)
-
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        if obj.selection:
-            attr = obj.get_row_data(obj.selection[0])
+        store,iter = self.atree.get_selected()
+        if iter:
+            attr = self.atree.get_object(iter)
             pname = self.person.getPrimaryName().getName()
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes)
 
-    def addr_double_click(self,obj,event):
-        if event.button == 1 and event.type == _2BUTTON_PRESS:
-            self.on_update_addr_clicked(obj)
-
     def on_update_addr_clicked(self,obj):
         import AddrEdit
-        if obj.selection:
-            AddrEdit.AddressEditor(self,obj.get_row_data(obj.selection[0]))
-
-    def url_double_click(self,obj,event):
-        if event.button == 1 and event.type == _2BUTTON_PRESS:
-            self.on_update_url_clicked(obj)
+        store,iter = self.ptree.get_selected()
+        if iter:
+            AddrEdit.AddressEditor(self.ptree.get_object(iter))
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -908,18 +911,17 @@ class EditPerson:
             url = obj.get_row_data(obj.selection[0])
             UrlEdit.UrlEditor(self,pname,url)
 
-    def event_double_click(self,obj,event):
-        if event.button == 1 and event.type == _2BUTTON_PRESS:
-            self.on_event_update_clicked(obj)
-        
     def on_event_update_clicked(self,obj):
         import EventEdit
-        if obj.selection:
-            pname = self.person.getPrimaryName().getName()
-            event = obj.get_row_data(obj.selection[0])
-            EventEdit.EventEditor(self,pname,const.personalEvents,
-                                  const.save_fevent,event,None,0,
-                                  self.callback)
+
+        store,iter = self.etree.get_selected()
+        if not iter:
+            return
+        pname = self.person.getPrimaryName().getName()
+        event = self.etree.get_object(iter)
+        EventEdit.EventEditor(self,pname,const.personalEvents,
+                              const.save_fevent,event,None,0,
+                              self.callback)
         
     def on_event_select_row(self,obj):
         store,iter = obj.get_selected()
@@ -950,10 +952,9 @@ class EditPerson:
             self.event_delete_btn.set_sensitive(0)
 
     def on_addr_select_row(self,obj):
-        store,iter = obj.get_selected()
+        store,iter = self.ptree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            addr = self.plist[row[0]]
+            addr = self.ptree.get_object(iter)
             label = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
             self.addr_label.set_label(label)
             self.addr_start.set_text(addr.getDate())
@@ -983,10 +984,9 @@ class EditPerson:
             self.addr_delete_btn.set_sensitive(0)
 
     def on_name_select_row(self,obj):
-        store,iter = obj.get_selected()
+        store,iter = self.ntree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            name = self.nlist[row[0]]
+            name = self.ntree.get_object(iter)
             self.name_frame.set_label(name.getName())
             self.alt_given_field.set_text(name.getFirstName())
             self.alt_title_field.set_text(name.getTitle())
@@ -1013,10 +1013,9 @@ class EditPerson:
             self.name_delete_btn.set_sensitive(0)
 
     def on_web_select_row(self,obj):
-        store,iter = obj.get_selected()
+        store,iter = self.wtree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            url = self.ulist[row[0]]
+            url = self.wtree.get_object(iter)
             path = url.get_path()
             self.web_url.set_text(path)
             self.web_description.set_text(url.get_description())
@@ -1030,10 +1029,9 @@ class EditPerson:
             self.web_delete_btn.set_sensitive(0)
             
     def on_attr_select_row(self,obj):
-        store,iter = obj.get_selected()
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            attr = self.alist[row[0]]
+            attr = self.atree.get_object(iter)
             self.attr_type.set_label(const.display_pattr(attr.getType()))
             self.attr_value.set_text(attr.getValue())
             if len(attr.getSourceRefList()) > 0:
@@ -1052,9 +1050,9 @@ class EditPerson:
             self.attr_delete_btn.set_sensitive(0)
 
     def aka_double_click(self,obj,event):
-        if event.button == 1 and event.type == _2BUTTON_PRESS:
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_aka_update_clicked(obj)
-        elif event.button == 3:
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             menu = gtk.Menu()
             item = gtk.TearoffMenuItem()
             item.show()
@@ -1065,8 +1063,9 @@ class EditPerson:
 
     def on_aka_update_clicked(self,obj):
         import NameEdit
-        if obj.selection:
-            NameEdit.NameEditor(self,obj.get_row_data(obj.selection[0]))
+        store,iter = self.ntree.get_selected()
+        if iter:
+            NameEdit.NameEditor(self,self.ntree.get_object(iter))
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
@@ -1385,48 +1384,6 @@ class EditPerson:
 
         self.ntype_field.entry.set_text(_(self.pname.getType()))
         self.title.set_text(self.pname.getTitle())
-
-#-------------------------------------------------------------------------
-#
-# disp_name
-#
-#-------------------------------------------------------------------------
-def disp_name(name):
-    return [name.getName(),_(name.getType())]
-
-#-------------------------------------------------------------------------
-#
-# disp_url
-#
-#-------------------------------------------------------------------------
-def disp_url(url):
-    return [url.get_path(),url.get_description()]
-
-#-------------------------------------------------------------------------
-#
-# disp_attr
-#
-#-------------------------------------------------------------------------
-def disp_attr(attr):
-    return [const.display_pattr(attr.getType()),attr.getValue()]
-
-#-------------------------------------------------------------------------
-#
-# disp_addr
-#
-#-------------------------------------------------------------------------
-def disp_addr(addr):
-    location = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
-    return [addr.getDate(),location]
-
-#-------------------------------------------------------------------------
-#
-# disp_event
-#
-#-------------------------------------------------------------------------
-def disp_event(event):
-    return [const.display_pevent(event.getName()),event.getDescription(),
-            event.getQuoteDate(),event.getPlaceName()]
 
 #-------------------------------------------------------------------------
 # 

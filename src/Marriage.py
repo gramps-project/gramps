@@ -40,19 +40,17 @@ import const
 import GrampsCfg
 import Utils
 import AutoComp
+import ListModel
 from QuestionDialog import QuestionDialog
 from RelLib import *
 import ImageSelect
-from intl import gettext
-_ = gettext
-
+from intl import gettext as _
 
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
 
-pycode_tgts = [('fevent', 0, 0),
-               ('fattr', 0, 1)]
+pycode_tgts = [('fevent', 0, 0), ('fattr', 0, 1)]
 
 #-------------------------------------------------------------------------
 #
@@ -82,12 +80,12 @@ class Marriage:
             "destroy_passed_object" : self.on_cancel_edit,
             "on_up_clicked" : self.on_up_clicked,
             "on_down_clicked" : self.on_down_clicked,
+            "on_attr_up_clicked" : self.on_attr_up_clicked,
+            "on_attr_down_clicked" : self.on_attr_down_clicked,
             "on_add_attr_clicked" : self.on_add_attr_clicked,
-            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
-            "on_attr_list_select_row" : self.on_attr_list_select_row,
-#            "on_combo_insert_text"  : Utils.combo_insert_text,
-            "on_close_marriage_editor" : self.on_close_marriage_editor,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
+            "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
+            "on_close_marriage_editor" : self.on_close_marriage_editor,
             "on_delete_event" : self.on_delete_event,
             "on_lds_src_clicked" : self.lds_src_clicked,
             "on_lds_note_clicked" : self.lds_note_clicked,
@@ -95,11 +93,6 @@ class Marriage:
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_marriageAddBtn_clicked" : self.on_add_clicked,
             "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
-            "on_marriageEventList_select_row" : self.on_select_row,
-            "on_marriageUpdateBtn_clicked" : self.on_update_clicked,
-            "on_photolist_button_press_event" : self.gallery.on_button_press_event,
-            "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
-            "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
 
         text_win = self.get_widget("marriageTitle")
@@ -137,26 +130,15 @@ class Marriage:
         # set initial data
         self.gallery.load_images()
 
-        self.event_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING,
-                                         gobject.TYPE_STRING)
-        cnum = 0
-        for name in [_('Event'),_('Date'),_('Place')]:
-            renderer = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name,renderer,text=cnum)
-            cnum = cnum + 1
-            self.event_list.append_column(column)
-        self.event_list.set_model(self.event_model)
+        etitles = [(_('Event'),0,150),(_('Date'),1,150),(_('Place'),2,150)]
+        atitles = [(_('Attribute'),0,150),(_('Value'),1,150)]
 
-        self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        cnum = 0
-        for name in [_('Attribute'),_('Value')]:
-            renderer = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name,renderer,text=cnum)
-            cnum = cnum + 1
-            self.attr_list.append_column(column)
-        self.attr_list.set_model(self.attr_model)
-
-        self.addr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
+        self.etree = ListModel.ListModel(self.event_list, etitles,
+                                         self.on_select_row,
+                                         self.on_update_clicked)
+        self.atree = ListModel.ListModel(self.attr_list, atitles,
+                                         self.on_attr_list_select_row,
+                                         self.on_update_attr_clicked)
 
         self.type_field.set_popdown_strings(const.familyRelations)
         frel = const.display_frel(family.getRelationship())
@@ -241,18 +223,38 @@ class Marriage:
         NoteEdit.NoteEditor(ord)
 
     def on_up_clicked(self,obj):
-        if len(obj.selection) == 0:
+        model,iter = self.etree.get_selected()
+        if not iter:
             return
-        row = obj.selection[0]
+        
+        row = self.etree.get_row(iter)
         if row != 0:
-            obj.select_row(row-1,0)
+            self.etree.select_row(row-1)
 
     def on_down_clicked(self,obj):
-        if len(obj.selection) == 0:
+        model,iter = self.etree.get_selected()
+        if not iter:
             return
-        row = obj.selection[0]
-        if row != obj.rows-1:
-            obj.select_row(row+1,0)
+
+        row = self.etree.get_row(iter)
+        self.etree.select_row(row+1)
+
+    def on_attr_up_clicked(self,obj):
+        model,iter = self.atree.get_selected()
+        if not iter:
+            return
+        
+        row = self.atree.get_row(iter)
+        if row != 0:
+            self.atree.select_row(row-1)
+
+    def on_attr_down_clicked(self,obj):
+        model,iter = self.atree.get_selected()
+        if not iter:
+            return
+
+        row = self.atree.get_row(iter)
+        self.atree.select_row(row+1)
 
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
@@ -314,10 +316,12 @@ class Marriage:
         self.family.setAttributeList(self.alist)
 
     def redraw_attr_list(self):
-        Utils.redraw_list(self.alist,self.attr_model,disp_attr)
+        for data in self.alist:
+            self.atree.add([data.getName(),data.getValue()],data)
 
     def redraw_event_list(self):
-        Utils.redraw_list(self.elist,self.event_model,disp_event)
+        for data in self.elist:
+            self.etree.add([data.getName(),data.getQuoteDate(),data.getPlaceName()],data)
 
     def get_widget(self,name):
         return self.top.get_widget(name)
@@ -469,10 +473,10 @@ class Marriage:
 
     def on_update_clicked(self,obj):
         import EventEdit
-        if len(obj.selection) <= 0:
+        model,iter = self.etree.get_selected()
+        if not iter:
             return
-
-        event = obj.get_row_data(obj.selection[0])
+        event = self.etree.get_object(iter)
         name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.save_pevent,event,None,0,self.cb)
@@ -482,8 +486,12 @@ class Marriage:
             self.lists_changed = 1
             self.redraw_event_list()
 
-    def on_select_row(self,obj,row,b,c):
-        event = obj.get_row_data(row)
+    def on_select_row(self,obj):
+        
+        model,iter = self.etree.get_selected()
+        if not iter:
+            return
+        event = self.etree.get_object(iter)
     
         self.date_field.set_text(event.getDate())
         self.place_field.set_text(event.getPlaceName())
@@ -498,8 +506,11 @@ class Marriage:
             self.event_conf_field.set_text('')
         self.descr_field.set_text(event.getDescription())
 
-    def on_attr_list_select_row(self,obj,row,b,c):
-        attr = obj.get_row_data(row)
+    def on_attr_list_select_row(self,obj):
+        model,iter = self.atree.get_selected()
+        if not iter:
+            return
+        attr = self.atree.get_object(iter)
 
         self.attr_type.set_label(const.display_fattr(attr.getType()))
         self.attr_value.set_text(attr.getValue())
@@ -513,19 +524,22 @@ class Marriage:
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        if len(obj.selection) > 0:
-            row = obj.selection[0]
-            attr = obj.get_row_data(row)
-            father = self.family.getFather()
-            mother = self.family.getMother()
-            if father and mother:
-                name = _("%s and %s") % (father.getPrimaryName().getName(),
+        model,iter = self.atree.get_selected()
+        if not iter:
+            return
+
+        attr = self.atree.get_object(iter)
+
+        father = self.family.getFather()
+        mother = self.family.getMother()
+        if father and mother:
+            name = _("%s and %s") % (father.getPrimaryName().getName(),
                                          mother.getPrimaryName().getName())
-            elif father:
-                name = father.getPrimaryName().getName()
-            else:
-                name = mother.getPrimaryName().getName()
-            AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes)
+        elif father:
+            name = father.getPrimaryName().getName()
+        else:
+            name = mother.getPrimaryName().getName()
+        AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
