@@ -26,6 +26,7 @@ from HtmlDoc import *
 
 import const
 import utils
+import Config
 import intl
 _ = intl.gettext
 
@@ -520,7 +521,8 @@ def report(database,person):
     build_menu(None)
     
     top = topDialog.get_widget("top")
-    topDialog.get_widget("targetDirectory").set_default_path(os.getcwd())
+    topDialog.get_widget("targetDirectory").set_default_path(Config.web_dir)
+    topDialog.get_widget("tgtdir").set_text(Config.web_dir)
     filterName = topDialog.get_widget("filterName")
 
     popdown_strings = filter_map.keys()
