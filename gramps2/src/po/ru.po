@@ -1,12 +1,12 @@
-# Russian translation for GRAMPS; Русский перевод GRAMPS. 
-# Copyright (C) 2002 Free Software Foundation, Inc. 
-# Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2003. 
+# Russian translation for GRAMPS; Р�.�.�.кий пе�.евод GRAMPS.
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
+# Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2003.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps 0.9.1\n"
-"POT-Creation-Date: Fri May 23 22:14:44 2003\n"
-"PO-Revision-Date: 2003-05-23 22:17-0500\n"
+"Project-Id-Version: gramps 0.9.2\n"
+"POT-Creation-Date: Tue May 27 12:56:19 2003\n"
+"PO-Revision-Date: 2003-05-27 13:11-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr "Не могу импортировать %s"
 msgid "The filename supplied could not be found."
 msgstr "Данное имя файла не найдено."
 
-#: AddSpouse.py:86 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
+#: AddSpouse.py:86 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:141
 #: SelectChild.py:112 gramps_main.py:102 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
 #: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:340
@@ -29,14 +29,14 @@ msgstr "Данное имя файла не найдено."
 msgid "Name"
 msgstr "Имя"
 
-#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:831
+#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:141 ImageSelect.py:831
 #: MediaView.py:75 PlaceView.py:60 SelectChild.py:112 SourceView.py:68
 #: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:102
 #: plugins/PatchNames.py:136 plugins/RelCalc.py:87
 msgid "ID"
 msgstr "ID Номер"
 
-#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:139 SelectChild.py:112
+#: AddSpouse.py:86 ChooseParents.py:55 FamilyView.py:142 SelectChild.py:112
 #: gramps_main.py:103
 msgid "Birth date"
 msgstr "Дата рождения"
@@ -219,14 +219,14 @@ msgstr "Рождение"
 msgid "Parent"
 msgstr "Родитель"
 
-#: ChooseParents.py:217 ChooseParents.py:502 FamilyView.py:380
+#: ChooseParents.py:217 ChooseParents.py:502 FamilyView.py:384
 #: plugins/FamilyGroup.py:195 plugins/IndivComplete.py:189
 #: plugins/IndivComplete.py:191 plugins/IndivComplete.py:405
 #: plugins/IndivSummary.py:258 plugins/WebPage.py:292 plugins/WebPage.py:295
 msgid "Father"
 msgstr "Отец"
 
-#: ChooseParents.py:293 ChooseParents.py:501 FamilyView.py:381
+#: ChooseParents.py:293 ChooseParents.py:501 FamilyView.py:385
 #: plugins/FamilyGroup.py:208 plugins/IndivComplete.py:197
 #: plugins/IndivComplete.py:199 plugins/IndivComplete.py:410
 #: plugins/IndivSummary.py:272 plugins/WebPage.py:293 plugins/WebPage.py:296
@@ -483,21 +483,29 @@ msgstr "Редактор Событий для %s"
 msgid "Event Editor"
 msgstr "Редактор Событий"
 
-#: FamilyView.py:139 gramps_main.py:102 plugins/IndivComplete.py:381
+#: FamilyView.py:49 PedView.py:43
+msgid "b."
+msgstr "р."
+
+#: FamilyView.py:50 PedView.py:44
+msgid "d."
+msgstr "у."
+
+#: FamilyView.py:142 gramps_main.py:102 plugins/IndivComplete.py:381
 #: plugins/IndivSummary.py:225 plugins/WebPage.py:284 plugins/WebPage.py:286
 #: plugins/WebPage.py:288
 msgid "Gender"
 msgstr "Пол"
 
-#: FamilyView.py:140
+#: FamilyView.py:143
 msgid "Status"
 msgstr "Статус"
 
-#: FamilyView.py:227
+#: FamilyView.py:230
 msgid "Remove %s as a spouse of %s?"
 msgstr "Удалить %s в качестве супруга %s?"
 
-#: FamilyView.py:228
+#: FamilyView.py:231
 msgid ""
 "Removing a spouse removes the relationship between the spouse and the active "
 "person. It does not remove the spouse from the database"
@@ -506,11 +514,11 @@ msgstr ""
 "супругом и активным лицом. Это не удаляет "
 "супруга из базы данных."
 
-#: FamilyView.py:231
+#: FamilyView.py:234
 msgid "_Remove Spouse"
 msgstr "_Удалить супруга"
 
-#: FamilyView.py:397
+#: FamilyView.py:401
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
@@ -518,11 +526,11 @@ msgstr ""
 "%s: %s\n"
 "\tОтношение: %s"
 
-#: FamilyView.py:399
+#: FamilyView.py:403
 msgid "%s: unknown"
 msgstr "%s: неизвестно"
 
-#: FamilyView.py:435 Plugins.py:433 Plugins.py:434 Plugins.py:435
+#: FamilyView.py:439 Plugins.py:433 Plugins.py:434 Plugins.py:435
 #: Plugins.py:455 Plugins.py:456 Plugins.py:457 Witness.py:71 const.py:171
 #: const.py:446 const.py:454 gramps.glade:3675 gramps.glade:3868
 #: gramps.glade:4290 gramps.glade:4470 gramps.glade:5946 gramps.glade:6192
@@ -530,11 +538,11 @@ msgstr "%s: неизвестно"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: FamilyView.py:477 FamilyView.py:492
+#: FamilyView.py:481 FamilyView.py:496
 msgid "Remove Parents of %s"
 msgstr "Удалить Родителей %s"
 
-#: FamilyView.py:478 FamilyView.py:493
+#: FamilyView.py:482 FamilyView.py:497
 msgid ""
 "Removing the parents of a person removes the person as a child of the "
 "parents. The parents are not removed from the database, and the relationship "
@@ -545,16 +553,16 @@ msgstr ""
 "из базы данных, и отношение между "
 "родителями тоже не удаляется."
 
-#: FamilyView.py:482 FamilyView.py:497
+#: FamilyView.py:486 FamilyView.py:501
 msgid "_Remove Parents"
 msgstr "_Удалить Родителей"
 
-#: FamilyView.py:591
+#: FamilyView.py:595
 msgid "Attempt to Reorder Children Failed"
 msgstr ""
 "Попытка переупорядочить детей не удалась"
 
-#: FamilyView.py:592
+#: FamilyView.py:596
 msgid "Children must be ordered by their birth dates."
 msgstr ""
 "Дети должны быть упорядочены по дате их "
@@ -1081,14 +1089,6 @@ msgstr "Горизонтально"
 #: PaperMenu.py:126 PaperMenu.py:138
 msgid "Custom Size"
 msgstr "Размер По Заказу"
-
-#: PedView.py:43
-msgid "b."
-msgstr "р."
-
-#: PedView.py:44
-msgid "d."
-msgstr "у."
 
 #: PedView.py:373
 msgid "Double clicking will make %s the active person"
@@ -3957,10 +3957,10 @@ msgstr ""
 
 #: plugins/AncestorChart.py:245 plugins/AncestorReport.py:262
 #: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
-#: plugins/FtmStyleAncestors.py:734 plugins/FtmStyleAncestors.py:739
-#: plugins/FtmStyleAncestors.py:744 plugins/FtmStyleAncestors.py:749
-#: plugins/FtmStyleDescendants.py:1128 plugins/FtmStyleDescendants.py:1133
-#: plugins/FtmStyleDescendants.py:1138 plugins/FtmStyleDescendants.py:1143
+#: plugins/FtmStyleAncestors.py:766 plugins/FtmStyleAncestors.py:771
+#: plugins/FtmStyleAncestors.py:776 plugins/FtmStyleAncestors.py:781
+#: plugins/FtmStyleDescendants.py:1166 plugins/FtmStyleDescendants.py:1171
+#: plugins/FtmStyleDescendants.py:1176 plugins/FtmStyleDescendants.py:1181
 #: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
 msgid "The basic style used for the text display."
 msgstr ""
@@ -3970,7 +3970,7 @@ msgstr ""
 #: plugins/AncestorChart.py:428 plugins/AncestorReport.py:393
 #: plugins/DescendReport.py:288 plugins/DetAncestralReport.py:976
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:570
-#: plugins/FtmStyleAncestors.py:881 plugins/FtmStyleDescendants.py:1275
+#: plugins/FtmStyleAncestors.py:913 plugins/FtmStyleDescendants.py:1313
 #: plugins/GraphViz.py:451 plugins/IndivComplete.py:671
 #: plugins/IndivSummary.py:504 plugins/Summary.py:162 plugins/TimeLine.py:464
 #: plugins/WebPage.py:1273
@@ -4066,28 +4066,28 @@ msgstr "Таблица Предков"
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:287
 #: plugins/DetAncestralReport.py:977 plugins/DetDescendantReport.py:851
 #: plugins/FamilyGroup.py:344 plugins/FamilyGroup.py:569
-#: plugins/FtmStyleAncestors.py:695 plugins/FtmStyleAncestors.py:880
-#: plugins/FtmStyleDescendants.py:1089 plugins/FtmStyleDescendants.py:1274
+#: plugins/FtmStyleAncestors.py:727 plugins/FtmStyleAncestors.py:912
+#: plugins/FtmStyleDescendants.py:1127 plugins/FtmStyleDescendants.py:1312
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:672
 #: plugins/IndivSummary.py:317 plugins/IndivSummary.py:505
 msgid "Text Reports"
 msgstr "Текстовые Отчеты"
 
 #: plugins/AncestorReport.py:234 plugins/DetAncestralReport.py:677
-#: plugins/FtmStyleAncestors.py:704
+#: plugins/FtmStyleAncestors.py:736
 msgid "Save Ancestor Report"
 msgstr "Сохранить Отчеты о Предках"
 
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
-#: plugins/FamilyGroup.py:408 plugins/FtmStyleAncestors.py:719
-#: plugins/FtmStyleDescendants.py:1113 plugins/IndivComplete.py:502
+#: plugins/FamilyGroup.py:408 plugins/FtmStyleAncestors.py:751
+#: plugins/FtmStyleDescendants.py:1151 plugins/IndivComplete.py:502
 #: plugins/IndivSummary.py:345 plugins/TimeLine.py:399 plugins/WebPage.py:960
 msgid "The style used for the title of the page."
 msgstr ""
 "Стиль, используемый для титульного листа."
 
-#: plugins/AncestorReport.py:257 plugins/FtmStyleAncestors.py:729
-#: plugins/FtmStyleDescendants.py:1123
+#: plugins/AncestorReport.py:257 plugins/FtmStyleAncestors.py:761
+#: plugins/FtmStyleDescendants.py:1161
 msgid "The style used for the generation header."
 msgstr ""
 "Стиль, используемый для заголовка "
@@ -4361,12 +4361,42 @@ msgstr "- %s"
 #: plugins/DetAncestralReport.py:204 plugins/DetAncestralReport.py:451
 #: plugins/DetAncestralReport.py:521 plugins/DetDescendantReport.py:216
 #: plugins/DetDescendantReport.py:458 plugins/DetDescendantReport.py:526
+#: plugins/FtmStyleAncestors.py:391 plugins/FtmStyleAncestors.py:401
+#: plugins/FtmStyleAncestors.py:412 plugins/FtmStyleAncestors.py:421
+#: plugins/FtmStyleAncestors.py:431 plugins/FtmStyleAncestors.py:440
+#: plugins/FtmStyleAncestors.py:449 plugins/FtmStyleAncestors.py:456
+#: plugins/FtmStyleAncestors.py:467 plugins/FtmStyleAncestors.py:475
+#: plugins/FtmStyleAncestors.py:484 plugins/FtmStyleAncestors.py:491
+#: plugins/FtmStyleAncestors.py:500 plugins/FtmStyleAncestors.py:506
+#: plugins/FtmStyleAncestors.py:513 plugins/FtmStyleDescendants.py:782
+#: plugins/FtmStyleDescendants.py:792 plugins/FtmStyleDescendants.py:803
+#: plugins/FtmStyleDescendants.py:812 plugins/FtmStyleDescendants.py:822
+#: plugins/FtmStyleDescendants.py:831 plugins/FtmStyleDescendants.py:840
+#: plugins/FtmStyleDescendants.py:848 plugins/FtmStyleDescendants.py:859
+#: plugins/FtmStyleDescendants.py:867 plugins/FtmStyleDescendants.py:876
+#: plugins/FtmStyleDescendants.py:884 plugins/FtmStyleDescendants.py:893
+#: plugins/FtmStyleDescendants.py:900 plugins/FtmStyleDescendants.py:908
 msgid "He"
 msgstr "Он"
 
 #: plugins/DetAncestralReport.py:206 plugins/DetAncestralReport.py:457
 #: plugins/DetAncestralReport.py:519 plugins/DetDescendantReport.py:218
 #: plugins/DetDescendantReport.py:464 plugins/DetDescendantReport.py:528
+#: plugins/FtmStyleAncestors.py:526 plugins/FtmStyleAncestors.py:536
+#: plugins/FtmStyleAncestors.py:547 plugins/FtmStyleAncestors.py:565
+#: plugins/FtmStyleAncestors.py:574 plugins/FtmStyleAncestors.py:583
+#: plugins/FtmStyleAncestors.py:590 plugins/FtmStyleAncestors.py:600
+#: plugins/FtmStyleAncestors.py:608 plugins/FtmStyleAncestors.py:617
+#: plugins/FtmStyleAncestors.py:624 plugins/FtmStyleAncestors.py:633
+#: plugins/FtmStyleAncestors.py:639 plugins/FtmStyleAncestors.py:646
+#: plugins/FtmStyleDescendants.py:921 plugins/FtmStyleDescendants.py:931
+#: plugins/FtmStyleDescendants.py:942 plugins/FtmStyleDescendants.py:951
+#: plugins/FtmStyleDescendants.py:961 plugins/FtmStyleDescendants.py:970
+#: plugins/FtmStyleDescendants.py:979 plugins/FtmStyleDescendants.py:987
+#: plugins/FtmStyleDescendants.py:997 plugins/FtmStyleDescendants.py:1005
+#: plugins/FtmStyleDescendants.py:1014 plugins/FtmStyleDescendants.py:1022
+#: plugins/FtmStyleDescendants.py:1031 plugins/FtmStyleDescendants.py:1038
+#: plugins/FtmStyleDescendants.py:1046
 msgid "She"
 msgstr "Она"
 
@@ -4745,34 +4775,28 @@ msgid "Generation No. %d"
 msgstr "Поколение No. %d"
 
 #: plugins/FtmStyleAncestors.py:125
-#, fuzzy
 msgid "born %(date)s in %(place)s%(endnotes)s"
-msgstr "родился(лась) %(date)s в %(place)s"
+msgstr "родился(лась) %(date)s в %(place)s%(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:131
-#, fuzzy
 msgid "born %(date)s%(endnotes)s"
-msgstr "родился(лась) %(date)s в %(place)s"
+msgstr "родился(лась) %(date)s%(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:137
-#, fuzzy
 msgid "born in %(place)s%(endnotes)s"
-msgstr "родился(лась) в %(place)s"
+msgstr "родился(лась) в %(place)s%(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:157
-#, fuzzy
 msgid "died %(date)s in %(place)s%(endnotes)s."
-msgstr "умер(ла) %(date)s в %(place)s. "
+msgstr "умер(ла) %(date)s в %(place)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:163
-#, fuzzy
 msgid "died %(date)s%(endnotes)s."
-msgstr "умер(ла) %(date)s в %(place)s. "
+msgstr "умер(ла) %(date)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:169
-#, fuzzy
 msgid "died in %(place)s%(endnotes)s."
-msgstr "умер(ла) в %(place)s. "
+msgstr "умер(ла) в %(place)s%(endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:212 plugins/FtmStyleDescendants.py:244
 msgid "Text:"
@@ -4810,327 +4834,389 @@ msgstr "%(event_name)s: %(date)s%(endnotes)s"
 msgid "%(event_name)s: %(place)s%(endnotes)s"
 msgstr "%(event_name)s: %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:323 plugins/FtmStyleDescendants.py:717
+#: plugins/FtmStyleAncestors.py:324 plugins/FtmStyleDescendants.py:717
 msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Он женился на %(spouse)s %(date)s в %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:329 plugins/FtmStyleDescendants.py:723
+#: plugins/FtmStyleAncestors.py:330 plugins/FtmStyleDescendants.py:723
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Она вышла замуж за %(spouse)s %(date)s в "
 "%(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:336 plugins/FtmStyleDescendants.py:730
+#: plugins/FtmStyleAncestors.py:337 plugins/FtmStyleDescendants.py:730
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
 msgstr "Он женился на: %(spouse)s %(date)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:341 plugins/FtmStyleAncestors.py:352
+#: plugins/FtmStyleAncestors.py:342 plugins/FtmStyleAncestors.py:353
 #: plugins/FtmStyleDescendants.py:735 plugins/FtmStyleDescendants.py:746
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Она вышла замуж за %(spouse)s в %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:347 plugins/FtmStyleDescendants.py:741
+#: plugins/FtmStyleAncestors.py:348 plugins/FtmStyleDescendants.py:741
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Он женился на %(spouse)s в %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:358 plugins/FtmStyleDescendants.py:752
+#: plugins/FtmStyleAncestors.py:359 plugins/FtmStyleDescendants.py:752
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr "Он женился на %(spouse)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:363
+#: plugins/FtmStyleAncestors.py:364
 msgid "She married %(spouse)s%(endnotes)s "
 msgstr "Она вышла замуж за %(spouse)s%(endnotes)s "
 
-#: plugins/FtmStyleAncestors.py:384 plugins/FtmStyleDescendants.py:778
+#: plugins/FtmStyleAncestors.py:387 plugins/FtmStyleDescendants.py:439
+#: plugins/FtmStyleDescendants.py:778
 msgid ""
-"He was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died "
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s in "
+"%(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:398 plugins/FtmStyleDescendants.py:448
+#: plugins/FtmStyleDescendants.py:789
+msgid ""
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер "
+"%(death_date)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:409 plugins/FtmStyleDescendants.py:457
+msgid ""
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died in "
+"%(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:419
+msgid ""
+"%(male_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s. "
+
+#: plugins/FtmStyleAncestors.py:428 plugins/FtmStyleDescendants.py:473
+#: plugins/FtmStyleDescendants.py:819
+msgid ""
+"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died "
 "%(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"Он родился %(birth_date)s в %(birth_place)s%(birth_endnotes)s, и "
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, и "
 "умер %(death_date)s в %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:394 plugins/FtmStyleDescendants.py:788
+#: plugins/FtmStyleAncestors.py:438 plugins/FtmStyleDescendants.py:482
+#: plugins/FtmStyleDescendants.py:829
 msgid ""
-"He was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died "
+"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died "
 "%(death_date)s%(death_endnotes)s."
 msgstr ""
-"Он родился %(birth_date)s в %(birth_place)s%(birth_endnotes)s, и "
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, и "
 "умер %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:404 plugins/FtmStyleDescendants.py:798
+#: plugins/FtmStyleAncestors.py:447 plugins/FtmStyleDescendants.py:491
+#: plugins/FtmStyleDescendants.py:838
 msgid ""
-"He was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in "
-"%(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died "
+"in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"Он родился %(birth_date)s в %(birth_place)s%(birth_endnotes)s, и "
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s, и "
 "умер в %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:413 plugins/FtmStyleDescendants.py:807
-msgid "He was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
+#: plugins/FtmStyleAncestors.py:455
+msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr ""
-"Он родился %(birth_date)s в %(birth_place)s%(birth_endnotes)s. "
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:421 plugins/FtmStyleDescendants.py:815
+#: plugins/FtmStyleAncestors.py:464 plugins/FtmStyleDescendants.py:507
+#: plugins/FtmStyleDescendants.py:856
 msgid ""
-"He was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
+"died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"Он родился %(birth_date)s%(birth_endnotes)s, и умер "
-"%(death_date)s в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:430 plugins/FtmStyleDescendants.py:824
-msgid ""
-"He was born %(birth_date)s%(birth_endnotes)s, and died "
-"%(death_date)s%(death_endnotes)s."
-msgstr ""
-"Он родился %(birth_date)s%(birth_endnotes)s, и умер "
-"%(death_date)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:438 plugins/FtmStyleDescendants.py:832
-msgid ""
-"He was born %(birth_date)s%(birth_endnotes)s, and died in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-"Он родился %(birth_date)s%(birth_endnotes)s, и умер в "
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s, и умер %(death_date)s в "
 "%(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:445 plugins/FtmStyleDescendants.py:839
-msgid "He was born %(birth_date)s%(birth_endnotes)s. "
-msgstr "Он родился %(birth_date)s%(birth_endnotes)s. "
-
-#: plugins/FtmStyleAncestors.py:453 plugins/FtmStyleDescendants.py:847
+#: plugins/FtmStyleAncestors.py:473 plugins/FtmStyleDescendants.py:516
+#: plugins/FtmStyleDescendants.py:865
 msgid ""
-"He was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
+"died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"Он родился в %(birth_place)s%(birth_endnotes)s, и умер "
-"%(death_date)s в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:461 plugins/FtmStyleDescendants.py:855
-msgid ""
-"He was born in %(birth_place)s%(birth_endnotes)s, and died "
-"%(death_date)s$(death_endnotes)s."
-msgstr ""
-"Он родился в %(birth_place)s%(birth_endnotes)s, и умер "
-"%(death_date)s$(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:469 plugins/FtmStyleDescendants.py:863
-msgid ""
-"He was born in %(birth_place)s%(birth_endnotes)s, and died in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-"Он родился в %(birth_place)s%(birth_endnotes)s, и умер в "
-"%(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:476 plugins/FtmStyleDescendants.py:870
-msgid "He was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "Он родился в %(birth_place)s%(birth_endnotes)s. "
-
-#: plugins/FtmStyleAncestors.py:483 plugins/FtmStyleDescendants.py:877
-msgid "He died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr "Он умер %(death_date)s в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:489 plugins/FtmStyleDescendants.py:883
-msgid "He died %(death_date)s%(death_endnotes)s."
-msgstr "Он умер %(death_date)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:495 plugins/FtmStyleDescendants.py:889
-msgid "He died in %(death_place)s%(death_endnotes)s."
-msgstr "Он умер в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:504 plugins/FtmStyleDescendants.py:898
-msgid ""
-"She was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died "
-"%(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"Она родилась %(birth_date)s в %(birth_place)s%(birth_endnotes)s, "
-"и умерла %(death_date)s в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:514 plugins/FtmStyleDescendants.py:908
-msgid ""
-"She was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died "
-"%(death_date)s%(death_endnotes)s."
-msgstr ""
-"Она родилась %(birth_date)s в %(birth_place)s%(birth_endnotes)s, "
-"и умрела %(death_date)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:524 plugins/FtmStyleDescendants.py:918
-msgid ""
-"She was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-"Она родилась %(birth_date)s в %(birth_place)s%(birth_endnotes)s, "
-"и умерла в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:533 plugins/FtmStyleDescendants.py:927
-msgid "She was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s. "
-msgstr ""
-"Она родилась %(birth_date)s в %(birth_place)s%(birth_endnotes)s. "
-
-#: plugins/FtmStyleAncestors.py:541 plugins/FtmStyleDescendants.py:935
-msgid ""
-"She was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-"Она родилась %(birth_date)s%(birth_endnotes)s, и умерла "
-"%(death_date)s в %(death_place)s%(death_endnotes)s."
-
-#: plugins/FtmStyleAncestors.py:550 plugins/FtmStyleDescendants.py:944
-msgid ""
-"She was born %(birth_date)s%(birth_endnotes)s, and died "
-"%(death_date)s%(death_endnotes)s."
-msgstr ""
-"Она родилась %(birth_date)s%(birth_endnotes)s, и умерла "
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s, и умер "
 "%(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:558 plugins/FtmStyleDescendants.py:952
+#: plugins/FtmStyleAncestors.py:482 plugins/FtmStyleDescendants.py:525
+#: plugins/FtmStyleDescendants.py:874
 msgid ""
-"She was born %(birth_date)s%(birth_endnotes)s, and died in "
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
+"died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s, и умер в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:490
+msgid ""
+"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s. "
+
+#: plugins/FtmStyleAncestors.py:498 plugins/FtmStyleDescendants.py:541
+#: plugins/FtmStyleDescendants.py:891
+msgid ""
+"%(male_name)s%(endnotes)s died %(death_date)s in "
 "%(death_place)s%(death_endnotes)s."
 msgstr ""
-"Она родилась %(birth_date)s%(birth_endnotes)s, и умерла в "
+"%(male_name)s%(endnotes)s умер %(death_date)s в "
 "%(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:565 plugins/FtmStyleDescendants.py:959
-msgid "She was born %(birth_date)s%(birth_endnotes)s. "
-msgstr "Она родилась %(birth_date)s%(birth_endnotes)s. "
+#: plugins/FtmStyleAncestors.py:505 plugins/FtmStyleDescendants.py:547
+#: plugins/FtmStyleDescendants.py:898
+msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s умер %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:573 plugins/FtmStyleDescendants.py:967
+#: plugins/FtmStyleAncestors.py:512 plugins/FtmStyleDescendants.py:554
+#: plugins/FtmStyleDescendants.py:906
+msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s умер в %(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:522 plugins/FtmStyleDescendants.py:567
+#: plugins/FtmStyleDescendants.py:917
 msgid ""
-"She was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in "
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s in "
 "%(death_place)s%(death_endnotes)s."
 msgstr ""
-"Она родилась в %(birth_place)s%(birth_endnotes)s, и умерла "
-"%(death_date)s в %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:580 plugins/FtmStyleDescendants.py:974
+#: plugins/FtmStyleAncestors.py:533 plugins/FtmStyleDescendants.py:576
+#: plugins/FtmStyleDescendants.py:928
 msgid ""
-"She was born in %(birth_place)s%(birth_endnotes)s, and died "
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умерла "
 "%(death_date)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:544 plugins/FtmStyleDescendants.py:585
+#: plugins/FtmStyleDescendants.py:939
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s, and died in "
+"%(death_place)s%(death_endnotes)s."
 msgstr ""
-"Она родилась в %(birth_place)s%(birth_endnotes)s, и умерла "
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умерла в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:554
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s in "
+"%(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s. "
+
+#: plugins/FtmStyleAncestors.py:562 plugins/FtmStyleDescendants.py:601
+#: plugins/FtmStyleDescendants.py:958
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+"died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s, и умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:572 plugins/FtmStyleDescendants.py:610
+#: plugins/FtmStyleDescendants.py:968
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+"died %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s, и умерла "
 "%(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:588 plugins/FtmStyleDescendants.py:982
+#: plugins/FtmStyleAncestors.py:581 plugins/FtmStyleDescendants.py:619
+#: plugins/FtmStyleDescendants.py:977
 msgid ""
-"She was born in %(birth_place)s%(birth_endnotes)s, and died in "
-"%(death_place)s$(death_endnotes)s."
+"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
+"died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"Она родилась в %(birth_place)s%(birth_endnotes)s, и умерла "
-"в %(death_place)s$(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s, и умерла в "
+"%(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:595 plugins/FtmStyleDescendants.py:989
-msgid "She was born in %(birth_place)s%(birth_endnotes)s. "
-msgstr "Она родилась в %(birth_place)s%(birth_endnotes)s. "
-
-#: plugins/FtmStyleAncestors.py:602 plugins/FtmStyleDescendants.py:996
-msgid "She died %(death_date)s in %(death_place)s%(death_endnotes)s."
+#: plugins/FtmStyleAncestors.py:589
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr ""
-"Она умерла %(death_date)s в %(death_place)s%(death_endnotes)s."
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:608 plugins/FtmStyleDescendants.py:1002
-msgid "She died %(death_date)s$(death_endotes)s."
-msgstr "Она умерла %(death_date)s$(death_endotes)s."
+#: plugins/FtmStyleAncestors.py:598 plugins/FtmStyleDescendants.py:635
+#: plugins/FtmStyleDescendants.py:995
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+"and died %(death_date)s in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s, и умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:614 plugins/FtmStyleDescendants.py:1008
-msgid "She died in %(death_place)s$(death_endnotes)s."
-msgstr "Она умерла в %(death_place)s$(death_endnotes)s."
+#: plugins/FtmStyleAncestors.py:606 plugins/FtmStyleDescendants.py:644
+#: plugins/FtmStyleDescendants.py:1003
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+"and died %(death_date)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s, и умерла "
+"%(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:631 plugins/FtmStyleDescendants.py:1025
+#: plugins/FtmStyleAncestors.py:615 plugins/FtmStyleDescendants.py:653
+#: plugins/FtmStyleDescendants.py:1012
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
+"and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s, и умерла в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:623
+msgid ""
+"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
+msgstr ""
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s. "
+
+#: plugins/FtmStyleAncestors.py:631 plugins/FtmStyleDescendants.py:669
+#: plugins/FtmStyleDescendants.py:1029
+msgid ""
+"%(female_name)s%(endnotes)s died %(death_date)s in "
+"%(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s умерла %(death_date)s в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:638 plugins/FtmStyleDescendants.py:1036
+msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s умерла %(death_date)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:645 plugins/FtmStyleDescendants.py:682
+#: plugins/FtmStyleDescendants.py:1044
+msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s умерла в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleAncestors.py:663 plugins/FtmStyleDescendants.py:1063
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Он был сыном %(father)s и %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:635 plugins/FtmStyleDescendants.py:1029
+#: plugins/FtmStyleAncestors.py:667 plugins/FtmStyleDescendants.py:1067
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr "Он является сыном %(father)s и %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:640 plugins/FtmStyleDescendants.py:1034
+#: plugins/FtmStyleAncestors.py:672 plugins/FtmStyleDescendants.py:1072
 msgid "He was the son of %(mother)s."
 msgstr "Он был сыном %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:643 plugins/FtmStyleDescendants.py:1037
+#: plugins/FtmStyleAncestors.py:675 plugins/FtmStyleDescendants.py:1075
 msgid "He is the son of %(mother)s."
 msgstr "Он является сыном %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:647 plugins/FtmStyleDescendants.py:1041
+#: plugins/FtmStyleAncestors.py:679 plugins/FtmStyleDescendants.py:1079
 msgid "He was the son of %(father)s."
 msgstr "Он был сыном %(father)s."
 
-#: plugins/FtmStyleAncestors.py:650 plugins/FtmStyleDescendants.py:1044
+#: plugins/FtmStyleAncestors.py:682 plugins/FtmStyleDescendants.py:1082
 msgid "He is the son of %(father)s."
 msgstr "Он является сыном %(father)s."
 
-#: plugins/FtmStyleAncestors.py:655 plugins/FtmStyleDescendants.py:1049
+#: plugins/FtmStyleAncestors.py:687 plugins/FtmStyleDescendants.py:1087
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Она была дочерью %(father)s and %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:659 plugins/FtmStyleDescendants.py:1053
+#: plugins/FtmStyleAncestors.py:691 plugins/FtmStyleDescendants.py:1091
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr "Она является дочерью %(father)s and %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:664 plugins/FtmStyleDescendants.py:1058
+#: plugins/FtmStyleAncestors.py:696 plugins/FtmStyleDescendants.py:1096
 msgid "She was the daughter of %(mother)s."
 msgstr "Она была дочерью %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:667 plugins/FtmStyleDescendants.py:1061
+#: plugins/FtmStyleAncestors.py:699 plugins/FtmStyleDescendants.py:1099
 msgid "She is the daughter of %(mother)s."
 msgstr "Она является дочерью %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:671 plugins/FtmStyleDescendants.py:1065
+#: plugins/FtmStyleAncestors.py:703 plugins/FtmStyleDescendants.py:1103
 msgid "She was the daughter of %(father)s."
 msgstr "Она была дочерью %(father)s."
 
-#: plugins/FtmStyleAncestors.py:674 plugins/FtmStyleDescendants.py:1068
+#: plugins/FtmStyleAncestors.py:706 plugins/FtmStyleDescendants.py:1106
 msgid "She is the daughter of %(father)s."
 msgstr "Она является дочерью %(father)s."
 
-#: plugins/FtmStyleAncestors.py:695
+#: plugins/FtmStyleAncestors.py:727
 msgid "FTM Style Ancestral Report"
 msgstr "Отчет о Предках в Стиле FTM"
 
-#: plugins/FtmStyleAncestors.py:699
+#: plugins/FtmStyleAncestors.py:731
 msgid "FTM Style Ancestral Report for %s"
 msgstr "Отчет о Предках в Стиле FTM для %s"
 
-#: plugins/FtmStyleAncestors.py:879
+#: plugins/FtmStyleAncestors.py:911
 msgid "FTM Style Ancestor Report"
 msgstr "Отчет о Предках в Стиле FTM"
 
-#: plugins/FtmStyleAncestors.py:882
+#: plugins/FtmStyleAncestors.py:914
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
 msgstr ""
 "Производит текстовый отчет о предках, "
 "сходный с отчетом Family Tree Maker."
 
 #: plugins/FtmStyleDescendants.py:155
-#, fuzzy
 msgid "was born %(date)s in %(place)s%(endnotes)s"
-msgstr "родился(лась) %(date)s в %(place)s"
+msgstr "родился(лась) %(date)s в %(place)s%(endnotes)s"
 
 #: plugins/FtmStyleDescendants.py:161
-#, fuzzy
 msgid "was born %(date)s%(endnotes)s"
-msgstr "родился(лась) %(date)s в %(place)s"
+msgstr "родился(лась) %(date)s%(endnotes)s"
 
 #: plugins/FtmStyleDescendants.py:167
-#, fuzzy
 msgid "was born in %(place)s%(endnotes)s"
-msgstr "родился(лась) в %(place)s"
+msgstr "родился(лась) в %(place)s%(endnotes)s"
 
 #: plugins/FtmStyleDescendants.py:187
-#, fuzzy
 msgid "and died %(date)s in %(place)s%(endnotes)s."
-msgstr "умер(ла) %(date)s в %(place)s. "
+msgstr "и умер(ла) %(date)s в %(place)s%(endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:193
-#, fuzzy
 msgid "and died %(date)s%(endnotes)s."
-msgstr "умер(ла) %(date)s в %(place)s. "
+msgstr "и умер(ла) %(date)s%(endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:199
-#, fuzzy
 msgid "and died in %(place)s%(endnotes)s."
-msgstr "умер(ла) в %(place)s. "
+msgstr "и умер(ла) в %(place)s."
 
 #: plugins/FtmStyleDescendants.py:356
 msgid "More about %(husband)s and %(wife)s:"
@@ -5144,201 +5230,94 @@ msgstr "Дети %(person_name)s and %(spouse_name)s:"
 msgid "Children of %(person_name)s are:"
 msgstr "Дети %(person_name)s:"
 
-#: plugins/FtmStyleDescendants.py:439
-msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in "
-"%(birth_place)s%(birth_endnotes)s and died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:448
-msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in "
-"%(birth_place)s%(birth_endnotes)s and died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:457
-msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s in "
-"%(birth_place)s%(birth_endnotes)s and died in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:465
+#: plugins/FtmStyleDescendants.py:465 plugins/FtmStyleDescendants.py:810
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in "
 "%(birth_place)s%(birth_endnotes)s."
 msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:473
-msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s and died "
-"%(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:482
-msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s and died "
-"%(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:491
-msgid ""
-"%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s and died "
-"in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:499
+#: plugins/FtmStyleDescendants.py:499 plugins/FtmStyleDescendants.py:846
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:507
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s and "
-"died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:516
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s and "
-"died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:525
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s and "
-"died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:533
+#: plugins/FtmStyleDescendants.py:533 plugins/FtmStyleDescendants.py:882
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
-
-#: plugins/FtmStyleDescendants.py:541
-msgid ""
-"%(male_name)s%(endnotes)s died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:547
-msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:554
-msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
+"%(male_name)s%(endnotes)s родился в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:560
 msgid "%(male_name)s%(endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:567
-msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in "
-"%(birth_place)s%(birth_endnotes)s and died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:576
-msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in "
-"%(birth_place)s%(birth_endnotes)s and died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:585
-msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s in "
-"%(birth_place)s%(birth_endnotes)s and died in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:593
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in "
 "%(birth_place)s%(birth_endnotes)s."
 msgstr ""
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:601
-msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s and "
-"died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:610
-msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s and "
-"died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:619
-msgid ""
-"%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s and "
-"died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:627
+#: plugins/FtmStyleDescendants.py:627 plugins/FtmStyleDescendants.py:985
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
+"%(female_name)s%(endnotes)s родилась "
+"%(birth_date)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:635
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s and "
-"died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:644
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s and "
-"died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:653
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s and "
-"died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:661
+#: plugins/FtmStyleDescendants.py:661 plugins/FtmStyleDescendants.py:1020
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
-
-#: plugins/FtmStyleDescendants.py:669
-msgid ""
-"%(female_name)s%(endnotes)s died %(death_date)s in "
-"%(death_place)s%(death_endnotes)s."
-msgstr ""
+"%(female_name)s%(endnotes)s родилась в "
+"%(birth_place)s%(birth_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:675
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr ""
-
-#: plugins/FtmStyleDescendants.py:682
-msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
+"%(female_name)s%(endnotes)s умерла %(death_date)s%(death_endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:688
 msgid "%(female_name)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s%(endnotes)s."
 
 #: plugins/FtmStyleDescendants.py:756
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Он вышла замуж за %(spouse)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:1089 plugins/FtmStyleDescendants.py:1273
+#: plugins/FtmStyleDescendants.py:800
+msgid ""
+"%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s "
+"%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
+msgstr ""
+"%(male_name)s%(endnotes)s родился %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s, и умер в "
+"%(death_place)s%(death_endnotes)s."
+
+#: plugins/FtmStyleDescendants.py:949
+msgid ""
+"%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s "
+"%(birth_endnotes)s."
+msgstr ""
+"%(female_name)s%(endnotes)s родилась %(birth_date)s в "
+"%(birth_place)s%(birth_endnotes)s."
+
+#: plugins/FtmStyleDescendants.py:1127 plugins/FtmStyleDescendants.py:1311
 msgid "FTM Style Descendant Report"
 msgstr "Отчет о Потомках в Стиле FTM"
 
-#: plugins/FtmStyleDescendants.py:1093
+#: plugins/FtmStyleDescendants.py:1131
 msgid "FTM Style Descendant Report for %s"
 msgstr "Отчет о Потомках в Стиле FTM для %s"
 
-#: plugins/FtmStyleDescendants.py:1098
+#: plugins/FtmStyleDescendants.py:1136
 msgid "Save FTM Style Descendant Report"
 msgstr "Сохраниить Отчет о Потомках в Стиле FTM"
 
-#: plugins/FtmStyleDescendants.py:1276
+#: plugins/FtmStyleDescendants.py:1314
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr ""
 "Производит текстовый отчет о потомках, "
@@ -5801,7 +5780,7 @@ msgstr "Их общие предки : "
 
 #: plugins/RelCalc.py:142
 msgid "%(person)s and %(active_person)s are not related."
-msgstr ""
+msgstr "%(person)s и %(active_person)s -- не родственники."
 
 #: plugins/RelCalc.py:145
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
@@ -6593,15 +6572,19 @@ msgstr "<b>Окно Вывода</b>"
 msgid "<b>Error Window</b>"
 msgstr "<b>Окно Ошибок</b>"
 
-#: plugins/eval.py:89
+#: plugins/eval.py:53
+msgid "Python Evaluation Window"
+msgstr "Окно Питон-Оценки"
+
+#: plugins/eval.py:90
 msgid "Python evaluation window"
 msgstr "Окно оценки"
 
-#: plugins/eval.py:90 plugins/leak.py:79
+#: plugins/eval.py:91 plugins/leak.py:79
 msgid "Debug"
 msgstr "Отладка"
 
-#: plugins/eval.py:91
+#: plugins/eval.py:92
 msgid "Provides a window that can evaluate python code"
 msgstr ""
 "Предоставляет окно для оценки питон-кода"
@@ -7470,305 +7453,3 @@ msgstr "<b>Выравнивание</b>"
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
 
-#~ msgid "A Data Compression Problem Was Encountered"
-#~ msgstr "Столкнулась с проблемой сжатия данных"
-
-#~ msgid ""
-#~ "Your database has encountered an error in the library that compresses the "
-#~ "data. Your data should be okay, but you may want to consider disabling "
-#~ "compression. This can be disabled in the Properties dialog. Once you have "
-#~ "disabled compression, this error will go away after the next time you "
-#~ "save the database."
-#~ msgstr ""
-#~ "Ваша база данных столкнулась с ошибкой в библиотеке сжатия данных. Ваши "
-#~ "данные должны быть в порядке, но вы можете быть заинтересованы в "
-#~ "отключении сжатия. Это может быть сделано в диалоге Свойства. После "
-#~ "отключения сжатия ошибка перестанет возникать, начиная со следующего "
-#~ "сохранения базы данных."
-
-#~ msgid "AbiWord"
-#~ msgstr "AbiWord"
-
-#~ msgid "<b>Spouse</b>"
-#~ msgstr "<b>Супруг</b>"
-
-#~ msgid "%(p1)s is the first cousin of %(p2)s."
-#~ msgstr "%(p1)s является двоюродным братом/сестрой %(p2)s."
-
-#~ msgid "%(p1)s is the first cousin once removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является двоюродным дядей/тетей или двоюродным племянником/"
-#~ "племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the first cousin twice removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является двоюродным дедом/бабушкой или внучатым племянником/"
-#~ "племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является двоюродным (%(removed)d - 2)-прадедом/бабушкой или (%"
-#~ "(removed)d - 2)-правнучатым племянником/племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the second cousin of %(p2)s."
-#~ msgstr "%(p1)s является троюродным братом/сестрой %(p2)s."
-
-#~ msgid "%(p1)s is the second cousin once removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является троюродным дядей/тетей или троюродным племянником/"
-#~ "племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the second cousin twice removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является троюродным дедом/бабушкой или двоюродным внучатым "
-#~ "племянником/племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является троюродным (%(removed)d - 2)-прадедом/бабушкой или "
-#~ "двоюродным (%(removed)d - 2)-правнучатым племянником/племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the third cousin of %(p2)s."
-#~ msgstr "%(p1)s является четвероюродным братом/сестрой %(p2)s."
-
-#~ msgid "%(p1)s is the third cousin once removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является четвероюродным дядей/тетей или четвероюродным племянником/"
-#~ "племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the third cousin twice removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является четвероюродным дедом/бабушкой или троюродным внучатым "
-#~ "племянником/племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the third cousin %(removed)d times removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является четвероюродным (%(removed)d - 2)-прадедом/бабушкой или "
-#~ "троюродным (%(removed)d - 2)-правнучатым племянником/племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является (%(level)d + 1 )-юродным дядей/тетей или (%(level)d + 1 )"
-#~ "d-юродным племянником/племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth cousin twice removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является (%(level)d + 1 )-юродным дедом/бабушкой или %(level)d-"
-#~ "юродным внучатым племянником/племянницей %(p2)s."
-
-#~ msgid ""
-#~ "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-#~ msgstr ""
-#~ "%(p1)s является (%(level)d + 1 )-юродным (%(removed)d - 2)-прадедом/"
-#~ "бабушкой или %(level)d-юродным (%(removed)d - 2)-правнучатым племянником/"
-#~ "племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the father of %(p2)s."
-#~ msgstr "%(p1)s является отцом %(p2)s."
-
-#~ msgid "%(p1)s is the grandfather of %(p2)s."
-#~ msgstr "%(p1)s является дедом %(p2)s."
-
-#~ msgid "%(p1)s is the great grandfather of %(p2)s."
-#~ msgstr "%(p1)s является прадедом %(p2)s."
-
-#~ msgid "%(p1)s is the second great grandfather of %(p2)s."
-#~ msgstr "%(p1)s является прапрадедом %(p2)s."
-
-#~ msgid "%(p1)s is the third great grandfather of %(p2)s."
-#~ msgstr "%(p1)s является прапрапрадедом %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great grandfather of %(p2)s."
-#~ msgstr "%(p1)s является %(level)d-прадедом %(p2)s."
-
-#~ msgid "%(p1)s is the grandson of %(p2)s."
-#~ msgstr "%(p1)s является внуком %(p2)s."
-
-#~ msgid "%(p1)s is the great grandson of %(p2)s."
-#~ msgstr "%(p1)s является правнуком %(p2)s."
-
-#~ msgid "%(p1)s is the second great grandson of %(p2)s."
-#~ msgstr "%(p1)s является праправнуком %(p2)s."
-
-#~ msgid "%(p1)s is the third great grandson of %(p2)s."
-#~ msgstr "%(p1)s является прапраправнуком %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great grandson of %(p2)s."
-#~ msgstr "%(p1)s является %(level)d-правнуком %(p2)s."
-
-#~ msgid "%(p1)s is the mother of %(p2)s."
-#~ msgstr "%(p1)s является матерью %(p2)s."
-
-#~ msgid "%(p1)s is the grandmother of %(p2)s."
-#~ msgstr "%(p1)s является бабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the great grandmother of %(p2)s."
-#~ msgstr "%(p1)s является прабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the second great grandmother of %(p2)s."
-#~ msgstr "%(p1)s является прапрабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the third great grandmother of %(p2)s."
-#~ msgstr "%(p1)s является прапрапрабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great grandmother of %(p2)s."
-#~ msgstr "%(p1)s является %(level)d-прабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the granddaughter of %(p2)s."
-#~ msgstr "%(p1)s является внучкой %(p2)s."
-
-#~ msgid "%(p1)s is the great granddaughter of %(p2)s."
-#~ msgstr "%(p1)s является правнучкой %(p2)s."
-
-#~ msgid "%(p1)s is the second great granddaughter of %(p2)s."
-#~ msgstr "%(p1)s является праправнучкой %(p2)s."
-
-#~ msgid "%(p1)s is the third great granddaughter of %(p2)s."
-#~ msgstr "%(p1)s является прапраправнучкой %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great granddaughter of %(p2)s."
-#~ msgstr "%(p1)s является %(level)d-правнучкой %(p2)s."
-
-#~ msgid "%(p1)s is the sister of %(p2)s."
-#~ msgstr "%(p1)s является сестрой %(p2)s."
-
-#~ msgid "%(p1)s is the aunt of %(p2)s."
-#~ msgstr "%(p1)s является тетей %(p2)s."
-
-#~ msgid "%(p1)s is the grandaunt of %(p2)s."
-#~ msgstr "%(p1)s является двоюродной бабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the great grandaunt of %(p2)s."
-#~ msgstr "%(p1)s является двоюродной прабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the second great grandaunt of %(p2)s."
-#~ msgstr "%(p1)s является двоюродной прапрабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the third great grandaunt of %(p2)s."
-#~ msgstr "%(p1)s является двоюродной прапрапрабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great grandaunt of %(p2)s."
-#~ msgstr "%(p1)s является двоюродной %(level)d-прабабушкой %(p2)s."
-
-#~ msgid "%(p1)s is the brother of %(p2)s."
-#~ msgstr "%(p1)s является братом %(p2)s."
-
-#~ msgid "%(p1)s is the uncle of %(p2)s."
-#~ msgstr "%(p1)s является дядей %(p2)s."
-
-#~ msgid "%(p1)s is the granduncle of %(p2)s."
-#~ msgstr "%(p1)s является двоюродным дедушкой %(p2)s."
-
-#~ msgid "%(p1)s is the great granduncle of %(p2)s."
-#~ msgstr "%(p1)s является двоюродным прадедушкой %(p2)s."
-
-#~ msgid "%(p1)s is the second great granduncle of %(p2)s."
-#~ msgstr "%(p1)s является двоюродным прапрадедушкой %(p2)s."
-
-#~ msgid "%(p1)s is the third great granduncle of %(p2)s."
-#~ msgstr "%(p1)s является двоюродным прапрапрадедушкой %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great granduncle of %(p2)s."
-#~ msgstr "%(p1)s является двоюродным %(level)d-прадедушкой %(p2)s."
-
-#~ msgid "%(p1)s is the nephew of %(p2)s."
-#~ msgstr "%(p1)s является племянником %(p2)s."
-
-#~ msgid "%(p1)s is the grandnephew of %(p2)s."
-#~ msgstr "%(p1)s является внучатым племянником %(p2)s."
-
-#~ msgid "%(p1)s is the great grandnephew of %(p2)s."
-#~ msgstr "%(p1)s является правнучатым племянником %(p2)s."
-
-#~ msgid "%(p1)s is the second great grandnephew of %(p2)s."
-#~ msgstr "%(p1)s является праправнучатым племянником %(p2)s."
-
-#~ msgid "%(p1)s is the third great grandnephew of %(p2)s."
-#~ msgstr "%(p1)s является прапраправнучатым племянником %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great grandnephew of %(p2)s."
-#~ msgstr "%(p1)s является %(level)d-правнучатым племянником %(p2)s."
-
-#~ msgid "%(p1)s is the niece of %(p2)s."
-#~ msgstr "%(p1)s является племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the grandniece of %(p2)s."
-#~ msgstr "%(p1)s является внучатой племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the great grandniece of %(p2)s."
-#~ msgstr "%(p1)s является правнучатой племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the second great grandniece of %(p2)s."
-#~ msgstr "%(p1)s является праправнучатой племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the third great grandniece of %(p2)s."
-#~ msgstr "%(p1)s является прапраправнучатой племянницей %(p2)s."
-
-#~ msgid "%(p1)s is the %(level)dth great grandniece of %(p2)s."
-#~ msgstr "%(p1)s является %(level)d-правнучатой племянницей %(p2)s."
-
-#~ msgid "There is no relationship between %s and %s."
-#~ msgstr "Между %s и %s нет родственных отношений."
-
-#~ msgid "%s and %s are the same person."
-#~ msgstr "%s и %s являются одним и тем же лицом."
-
-#~ msgid "%s was removed from the family of %s\n"
-#~ msgstr "%s был(а) удален(а) из семьи %s\n"
-
-#~ msgid "%s will be extracted as a nickname from %s\n"
-#~ msgstr "%s будет выделено из %s в качестве краткого имени\n"
-
-#~ msgid "%s will be extracted as a title from %s\n"
-#~ msgstr "%s будет выделено из %s в качестве титула\n"
-
-#~ msgid "mother "
-#~ msgstr "мать "
-
-#~ msgid " was a widow "
-#~ msgstr " была вдовой "
-
-#~ msgid "father "
-#~ msgstr "отец "
-
-#~ msgid " was a widower "
-#~ msgstr " был вдовцом "
-
-#~ msgid "parent "
-#~ msgstr "родитель "
-
-#~ msgid "LDS extenstions"
-#~ msgstr "Расширения LDS"
-
-#~ msgid "Text Buffer Preview"
-#~ msgstr "Предварительный просмотр текстового буфера"
-
-#~ msgid "label2"
-#~ msgstr "label2"
-
-#~ msgid "label1"
-#~ msgstr "label1"
-
-#~ msgid "_Surname:"
-#~ msgstr "Фамилия:"
-
-#~ msgid "_Given:"
-#~ msgstr "Имя:"
-
-#~ msgid "born on %(date)s"
-#~ msgstr "родился(лась) %(date)s"
-
-#~ msgid "died on %(date)s. "
-#~ msgstr "умер(ла) %s. "
-
-#~ msgid "Full Family Chart"
-#~ msgstr "Полная Семейная Карта"
-
-#~ msgid "Full Family Chart for %s"
-#~ msgstr "Полная Семейная Карта для %s"
-
-#~ msgid "Save Full Family Chart"
-#~ msgstr "Сохранить Полную Семейную Карту"
-
-#~ msgid "Relationshp to %s"
-#~ msgstr "Отношение к %s"
