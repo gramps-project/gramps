@@ -205,6 +205,7 @@ familyConstantEvents = {
     }
 
 _fe_e2l = {
+    "Alternate Marriage"  : _("Alternate Marriage"),
     "Annulment"           : _("Annulment"),
     "Divorce Filing"      : _("Divorce Filing"),
     "Divorce"             : _("Divorce"),
