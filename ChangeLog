@@ -1,3 +1,15 @@
+2003-08-10  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in: Set version to 0.9.4 (since the release is 0.CVS...).
+	Otherwise it becomes older-version that the latest release. 
+	* src/EditPerson.py: Change const.save_fevent() calls to
+	const.save_event().
+	* src/EventEdit.py: Display event name with const.display_event() 
+	(was backwards).
+	* src/GrampsParser.py: Call const.save_event() and const.attr() 
+	when parsing XML. This should take care of prior data with standard 
+	events and attributes recorded in $LANG. 
+	* src/FamilyView.py (nameof): Translate parent's relation to a child. 
+
 2003-08-11  Alexandre Duret-Lutz  <adl@gnu.org>
 	* configure.in: Modernize calls to AC_INIT, AM_INIT_AUTOMAKE and
 	AC_OUTPUT.  Require Autoconf >= 2.57 and Automake >= 1.6.3.

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import const
 import RelLib
 import Date
 
@@ -279,7 +280,7 @@ class GrampsParser:
 
     def start_event(self,attrs):
         self.event = RelLib.Event()
-        self.event_type = attrs["type"]
+        self.event_type = const.save_event(attrs["type"])
         if attrs.has_key("conf"):
             self.event.conf = int(attrs["conf"])
         else:
@@ -296,7 +297,7 @@ class GrampsParser:
         if attrs.has_key("priv"):
             self.attribute.private = int(attrs["priv"])
         if attrs.has_key('type'):
-            self.attribute.setType(attrs["type"])
+            self.attribute.setType(const.save_attr(attrs["type"]))
         if attrs.has_key('value'):
             self.attribute.setValue(attrs["value"])
         if self.photo:
@@ -371,7 +372,7 @@ class GrampsParser:
         self.count = self.count + 1
         self.family = self.db.findFamilyNoMap(attrs["id"])
         if attrs.has_key("type"):
-            self.family.setRelationship(attrs["type"])
+            self.family.setRelationship(const.save_frel(attrs["type"]))
         else:
             self.family.setRelationship("")
 
@@ -923,7 +924,7 @@ class GrampsImportParser(GrampsParser):
         self.count = self.count + 1
         self.family = self.db.findFamilyNoConflicts(attrs["id"],self.fmap)
         if attrs.has_key("type"):
-            self.family.setRelationship(attrs["type"])
+            self.family.setRelationship(const.save_frel(attrs["type"]))
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
