@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed Apr 16 10:37:11 2003\n"
+"POT-Creation-Date: Wed Apr 16 12:06:31 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4908,7 +4908,7 @@ msgstr ""
 
 #: plugins/Verify.py:211
 msgid ""
-"Ambigous gender for %s.\n"
+"Ambiguous gender for %s.\n"
 msgstr ""
 
 #: plugins/Verify.py:219
