@@ -80,7 +80,6 @@ def import_photo(filename,path,prefix):
             else:
                 PIL.Image.open(filename).save(name)
     except:
-        print path
         return None
 
     return name

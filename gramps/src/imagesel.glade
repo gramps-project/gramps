@@ -15,7 +15,6 @@
 <widget>
   <class>GnomeDialog</class>
   <name>imageSelect</name>
-  <width>300</width>
   <title>Gramps - Select a picture</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
@@ -305,6 +304,7 @@
 	<widget>
 	  <class>GnomeFileEntry</class>
 	  <name>photosel</name>
+	  <width>350</width>
 	  <history_id>photoselect</history_id>
 	  <max_saved>10</max_saved>
 	  <title>Select an image</title>
