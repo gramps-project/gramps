@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000, 2003  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,12 +67,13 @@ _iconlist_refs = []
 #-------------------------------------------------------------------------
 class ImageSelect:
 
-    def __init__(self, path, db, parent):
+    def __init__(self, path, db, parent, parent_window=None):
         """Creates an edit window.  Associates a person with the window."""
         self.path        = path;
         self.db          = db
         self.dataobj     = None
         self.parent      = parent
+        self.parent_window = parent_window
         self.canvas_list = {}
         self.p_map       = {}
         self.canvas      = None
@@ -106,16 +107,21 @@ class ImageSelect:
                          _('Select a media object'))
         
         self.glade.signal_autoconnect({
-            "on_savephoto_clicked" : self.on_savephoto_clicked,
             "on_name_changed" : self.on_name_changed,
-            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         if os.path.isdir(_last_path):
             self.photosel.set_default_path(_last_path)
             self.photosel.set_filename(_last_path)
             self.photosel.gtk_entry().set_position(len(_last_path))
+
+        if self.parent_window:
+            window.set_transient_for(self.parent_window)
         window.show()
+        val = window.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_savephoto_clicked()
+        window.destroy()
 
     def on_name_changed(self, obj):
         """The filename has changed.  Verify it and load the picture."""
@@ -138,7 +144,7 @@ class ImageSelect:
                 i = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
                 self.image.set_from_pixbuf(i)
 
-    def on_savephoto_clicked(self, obj):
+    def on_savephoto_clicked(self):
         """Save the photo in the dataobj object.  (Required function)"""
         global _last_path
         
@@ -190,7 +196,6 @@ class ImageSelect:
             mobj.setPath(name)
             
         self.parent.lists_changed = 1
-        Utils.destroy_passed_object(obj)
         self.load_images()
 
     def savephoto(self, photo):
@@ -211,8 +216,8 @@ _drag_targets = [
 #
 #-------------------------------------------------------------------------
 class Gallery(ImageSelect):
-    def __init__(self, dataobj, path, icon_list, db, parent):
-        ImageSelect.__init__(self, path, db, parent)
+    def __init__(self, dataobj, path, icon_list, db, parent, parent_window=None):
+        ImageSelect.__init__(self, path, db, parent, parent_window)
 
         if path:
             icon_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, _drag_targets,
