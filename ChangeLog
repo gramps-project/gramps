@@ -1,3 +1,7 @@
+2003-07-11  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/SimpleBookTitle.py: Define self.style_name before
+        calling Report.BareReportDialog.__init__().
+
 2003-07-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsCfg.py (GrampsPreferences.select): Conditional get_path(). 
 	* src/Plugins.py (PluginDialog.on_node_selected): Likewise.
