@@ -301,6 +301,18 @@ def view_photo(photo):
 #
 #
 #-------------------------------------------------------------------------
+def strip_id(text):
+    index = string.rfind(text,'[')
+    if (index > 0):
+        text = text[:index]
+        text = string.rstrip(text)
+    return text
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def attach_places(values,combo,place):
     l = gtk.GtkLabel("")
     l.show()
