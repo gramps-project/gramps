@@ -105,8 +105,22 @@ class _DdTargets(object):
         self.NAME      = _DdType(self,'name')
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
 
+        self.PERSON_LINK  = _DdType(self,'person-link')
+
         self.FAMILY_EVENT     = _DdType(self,'fevent')
         self.FAMILY_ATTRIBUTE = _DdType(self,'fattr')
+
+        # List of all types that are used between
+        # gramps widgets but should not be exported
+        # to non gramps widgets.
+        self._all_gramps_types = [self.URL,
+                                  self.EVENT,
+                                  self.ATTRIBUTE,
+                                  self.ADDRESS,
+                                  self.SOURCEREF,
+                                  self.NAME,
+                                  self.MEDIAOBJ,
+                                  self.PERSON_LINK]
         
         self.CHILD     = _DdType(self,'child')
         self.SPOUSE    = _DdType(self,'spouce')
@@ -116,6 +130,14 @@ class _DdTargets(object):
         self.STRING        = _DdType(self,'STRING', 0, 2)
         self.COMPOUND_TEXT = _DdType(self,'COMPOUND_TEXT', 0, 3)
         self.UTF8_STRING   = _DdType(self,'UTF8_STRING', 0, 4)
+
+        # List of all the test types. These are types
+        # that can be interpreted as text.
+        self._all_text_types = (self.TEXT,
+                                self.TEXT_MIME,
+                                self.STRING,
+                                self.COMPOUND_TEXT,
+                                self.UTF8_STRING)
 
     def insert(self,dd_type):
         """Add a target to the lookup lists. These lists are
@@ -134,21 +156,13 @@ class _DdTargets(object):
         return type_name in self.all_text_types()
 
     def all_text(self):
-        return (self.TEXT,
-                self.TEXT_MIME,
-                self.STRING,
-                self.COMPOUND_TEXT,
-                self.UTF8_STRING)
+        return self._all_text_types
         
     def all_text_types(self):
         """return a list of all the type names that could be
         used as the type of a string."""
         
-        return (self.TEXT.drag_type,
-                self.TEXT_MIME.drag_type,
-                self.STRING.drag_type,
-                self.COMPOUND_TEXT.drag_type,
-                self.UTF8_STRING.drag_type)
+        return tuple([t.drag_type for t in self._all_text_types])
     
     def is_gramps_type(self,type_name):
         return type_name in self.all_gramps_types()
@@ -156,40 +170,20 @@ class _DdTargets(object):
     def all_gramps_types(self):
         """return a list of all the type names that are internal
         to gramps."""
-        
-        return (self.MEDIAOBJ.drag_type,
-                self.URL.drag_type,
-                self.EVENT.drag_type,
-                self.ATTRIBUTE.drag_type,
-                self.ADDRESS.drag_type,
-                self.SOURCEREF.drag_type,
-                self.NAME.drag_type,
-                self.FAMILY_EVENT.drag_type,
-                self.FAMILY_ATTRIBUTE.drag_type)
+
+        return tuple([t.drag_type for t in self._all_gramps_types])
 
     def all_text_targets(self):
         """return a list of all the targets that could be used
         for text."""
         
-        return (self.TEXT.target(),
-                self.TEXT_MIME.target(),
-                self.STRING.target(),
-                self.COMPOUND_TEXT.target(),
-                self.UTF8_STRING.target())
+        return tuple([t.target() for t in self._all_text_types])
 
 
     def all_gramps_targets(self):
         """return a list off the internal gramps targets."""
-        
-        return (self.MEDIAOBJ.target(),
-                self.URL.target(),
-                self.EVENT.target(),
-                self.ATTRIBUTE.target(),
-                self.ADDRESS.target(),
-                self.SOURCEREF.target(),
-                self.NAME.target(),
-                self.FAMILY_EVENT.target(),
-                self.FAMILY_ATTRIBUTE.target())
+
+        return tuple([t.target() for t in self._all_gramps_types])
 
     def all_targets(self):
         """return a list of all the known targets."""
