@@ -1661,7 +1661,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=0.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
+RELEASE=1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
