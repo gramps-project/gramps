@@ -761,7 +761,7 @@ class GraphVizDialog(Report.ReportDialog):
                                     name,translated_name)
 
         response = self.window.run()
-        if response == True:
+        if response == gtk.RESPONSE_OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:
@@ -886,6 +886,9 @@ class EmptyDoc:
     def __init__(self,styles,type,template,orientation,source=None):
         pass
 
+    def init(self):
+        pass
+
 #------------------------------------------------------------------------
 #
 # 
@@ -915,6 +918,7 @@ class GraphVizGraphics(Report.Report):
         self.database = database
         self.start_person = person
         self.options_class = options_class
+        self.doc = options_class.get_document()
 
         self.user_output = options_class.get_output()
         self.junk_output = os.path.expanduser("~/.gramps/junk")
