@@ -180,10 +180,11 @@ class Extract:
         return [_("Person's missing death month")]
 
     def death_age(self, db, person):
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = db.get_event_from_handle(birth_handle).get_date_object()
-            return [self.estimate_age(person, person.getDeath().getDateObj())]
+        death_handle = person.get_death_handle()
+        if death_handle:
+            death = db.get_event_from_handle(death_handle).get_date_object()
+            return [self.estimate_age(db, person, death)]
+        return [_("Missing date(s)")]
 
     def marriage_age(self, db, person):
         return "Marriage age stat unimplemented"
@@ -470,13 +471,18 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             'year_from' : ("=num", _("Birth year from which to include people"),
                                 _("earlier than 'year_to' value")),
             'no_years'  : ("=num", _("Include people without birth years"), 
-                                [_("No"), _("Yes")], False),
-            'gender'    : ("=num", _('Genders included'), str(self._genders), False),
+                                [_("No"), _("Yes")], True),
+            'gender'    : ("=num", _('Genders included'), 
+                                [ "%d\t%s" % item for item in self._genders],
+                                False),
             'extract'   : ("=num", _('Data to show'), 
-                                str([item[0] for item in _Extract.extractors]),False),
-            'sort'      : ("=num", _('Sorted by'), str(self._sorts), False),
+                                [item[0] for item in _Extract.extractors],
+                                False),
+            'sort'      : ("=num", _('Sorted by'), 
+                                [ "%d\t%s" % item for item in self._sorts],
+                                False),
             'reverse'   : ("=num", _("Sort in reverse order"), 
-                                [_("Yes"), _("No")], False)
+                                [_("No"), _("Yes")], True)
         }
 
     def enable_options(self):
