@@ -7,6 +7,8 @@
 	* src/edit_person.glade: Add notes format radiobuttons.
 	* src/EditPerson.py: Support format for the person's notes.
 	* src/RelLib.py: More support for the notes' format.
+	* src/plugins/ReadGedcom.py: Add an "Unknown" address when
+	parsing an incorrect PHON field. 
 
 2003-12-10  Tim Waugh  <twaugh@redhat.com>
 	* doc/omf.make: Fixed DESTDIR support.
