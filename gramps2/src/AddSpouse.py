@@ -145,12 +145,18 @@ class AddSpouse:
         person.setGender(gen)
         EditPerson.EditPerson(person,self.db,self.update_list)
 
-    def update_list(self,person):
+    def update_list(self,epo,list):
         """
         Updates the potential spouse list after a person has been added
         to database. Called by the QuickAdd class when the dialog has
         been closed.
         """
+        person = epo.person
+        if person.getId() == "":
+            self.db.addPerson(person)
+        else:
+            self.db.addPersonNoMap(person,person.getId())
+        self.db.buildPersonDisplay(person.getId())
         self.addperson(person)
         self.update_data(person.getId())
         self.slist.center_selected()
