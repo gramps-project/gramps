@@ -147,7 +147,7 @@
   <sect1 id="gramps-intro"> 
     <title>Introduction</title> 
     <para> The <application>&app;</application> is a genealogical 
-    application. <application>&app;</application> is an acronym for the 
+    application. &app; is an acronym for the 
     Genealogical Research and Analysis Management Programming System. To put 
     it shortly, it allows you to store, edit, and research genealogical data 
     using your computer. Its functionality is somewhat common to other 
@@ -328,22 +328,22 @@
       </varlistentry>
       <varlistentry><term>Progress bar. </term>
 	<listitem><para>The progress bar is located in the lower left corner 
-	of the <application>&app;</application> window. It displays the 
+	of the &app; window. It displays the 
 	progress of time consuming operations, such as opening and saving 
 	large data bases, importing and exporting to other formats, generating 
 	web-sites, etc. </para></listitem>
       </varlistentry>
       <varlistentry><term>Statusbar. </term>
 	<listitem><para>The statusbar is located to the right of the progress
-	bar, on the very bottom of the <application>&app;</application> window. 
+	bar, on the very bottom of the &app; window. 
 	It displays information about current <application>&app;</application> 
 	activity and contextual information about the menu items. 
 	The behavior of the Status line can be adjusted in 
 	<guilabel>Preferences</guilabel> dialog. </para></listitem>
       </varlistentry>
       <varlistentry><term>Display area. </term>
-	<listitem><para>The largest are in the center of the
-	<application>&app;</application> window is the display area.  
+	<listitem><para>The largest area in the center of the
+	&app; window is the display area.  
 	It shows certain aspects of genealogical information, depending on the 
 	currently selected View. There are six Views available 
 	in <application>&app;</application>: <xref linkend="people-view"/>, 
@@ -417,8 +417,8 @@
 	<para>When <application>&app;</application> opens a database, 
 	the View is set to the People View. People View lists individuals 
 	whose data is stored in the database. People View displays people's 
-	<guilabel>Names</guilabel>, <application>&app;</application>
-	<guilabel>ID</guilabel> numbers, <guilabel>Gender</guilabel>, and 
+	<guilabel>Names</guilabel>, &app; <guilabel>ID</guilabel> numbers, 
+	<guilabel>Gender</guilabel>, and 
 	their <guilabel>Birth</guilabel> and <guilabel>Death dates</guilabel>. 
 	The list can be ordered by any field.</para> 
 
@@ -487,7 +487,7 @@
 	  database, <application>&app;</application> checks for the stored 
 	  Family names and breaks the people list into sublists based on the 
 	  first letter of their name. The alphabetical tabs are displayed in 
-	  the bottom part of the <application>&app;</application> window. 
+	  the bottom part of the &app; window. 
 	  The last tab, <guilabel>Other</guilabel>, stands for unidentified 
 	  characters -- all the entries not assigned to any other tab end up 
 	  in <guilabel>Other</guilabel>. In particular, people with no family 
@@ -740,12 +740,11 @@
     <sect2 id="import-gedcom"> 
       <title>Importing GEDCOM Data</title> 
       <para>Importing GEDCOM data allows you to incorporate the data created in 
-      other genealogical programs into your currently 
-      open <application>&app;</application> database. 
+      other genealogical programs into your currently open &app; database. 
       <application>&app;</application> can import GEDCOM data files from a 
       number of software packages, as long as they comply with GEDCOM 
       standards. To import GEDCOM file, choose <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>Import</guimenuitem><guimenuitem>Import from 
+      <guisubmenu>Import</guisubmenu><guimenuitem>Import from 
       GEDCOM</guimenuitem></menuchoice>. You will then be prompted with the
       <guilabel>Open File</guilabel> dialog asking to specify the GEDCOM file
       name. </para> 
@@ -768,11 +767,11 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="export-gedcom"> 
       <title>Exporting GEDCOM Data</title> 
-      <para>Exporting GEDCOM data allows you to share any portion of you 
-      <application>&app;</application> database with other researchers 
+      <para>Exporting GEDCOM data allows you to share any portion of your 
+      &app; database with other researchers 
       by way of standard GEDCOM files. To export into GEDCOM file, 
       choose <menuchoice> <guimenu>File</guimenu>
-      <guimenuitem>Export</guimenuitem>
+      <guisubmenu>Export</guisubmenu>
       <guimenuitem>Export to GEDCOM</guimenuitem></menuchoice>. The following 
       <guilabel>Export GEDCOM file</guilabel> dialog will appear.</para>
 
@@ -820,12 +819,12 @@
     <sect2 id="gramps-package-impex"> 
       <title>Importing and Exporting &app; Packages</title> 
       <para> <application>&app;</application> provides a way to make your 
-      <application>&app;</application> database completely portable. This might 
+      &app; database completely portable. This might 
       prove useful, for instance, when you need to move your database to 
       another machine or to share it with somebody, while retaining all the 
       features provided by <application>&app;</application>. To accomplish 
       this, choose <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>Export</guimenuitem>
+      <guisubmenu>Export</guisubmenu>
       <guimenuitem>Export to GRAMPS Package</guimenuitem></menuchoice>. The
       <guilabel>GRAMPS Package Export</guilabel> window will appear. Type
       the desired package name into the text entry area or click 
@@ -835,9 +834,8 @@
       gramps database, all local media objects, and copies of all external 
       media objects. </para>
       
-      <para>To import data from such a package into your
-      <application>&app;</application> database, choose 
-      <menuchoice><guimenu>File</guimenu><guimenuitem>Import</guimenuitem> 
+      <para>To import data from such a package into your &app; database, choose 
+      <menuchoice><guimenu>File</guimenu><guisubmenu>Import</guisubmenu> 
       <guimenuitem>Import from GRAMPS</guimenuitem></menuchoice>, then select 
       a package to be imported from the <guilabel>Import from GRAMPS</guilabel> 
       dialog. </para> 
@@ -1001,7 +999,9 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit-complete"> 
       <title>Editing Data: Complete Description</title> 
-    
+      <para> This section provides a complete description of all editing 
+      options for all pieces of data in the &app; database. </para>
+
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-pers"> 
         <title>Edit Personal Information</title> 
@@ -2145,40 +2145,153 @@
       
     </sect2>
 
-<!--
-[ FIXME: STOPPED HERE ] 
--->
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
        <title>Navigation</title> 
-	<para> </para>
+	<para> As long as any database is open, 
+	<application>&app;</application> is focused on a 
+	single person usually referred to as an Active person. This 
+	allows you to view or modify the data concerning this person, 
+	his or her immediate family, etc. Navigating in the databse (i.e. 
+	moving from person to person) is in fact nothing else but changing 
+	the Active person. This section describes many alternative ways
+	to navigate through the database using complex and convenient 
+	interface <application>&app;</application> provides. All these ways
+	eventually accomplish the same thing, but some are more convenient 
+	than others, depending what you are doing in 
+	<application>&app;</application> at the moment. </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-default"> 
-        <title>Setting Default Person</title> 
-	<para> </para>
-      </sect3>
-
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-bookmk"> 
-        <title>Bookmarking People</title> 
-	<para> </para>
+      <sect3 id="gramps-nav-people"> 
+        <title>Using People View</title> 
+	<para> The most intuitive way to select an active person is 
+	to use the People View. When in the People View, just select the
+	name of the desired person from the list by clicking that list 
+	entry. The person you have selected becomes active. The statusbar 
+	updates to reflect the change of the active person. </para> 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-family"> 
         <title>Using Family View</title> 
-	<para> </para>
+	<para> When in the Family View, you can easily navigate between the
+	members of the displayed family as follows: </para>
+
+	<itemizedlist>
+	<listitem><para>To make currently selected spouse the active person, 
+	click double-arrow button to the right of the active person box. 
+	</para></listitem>
+	
+	<listitem><para>To make currently selected parents the active family
+	(thereby making father the active person and mother the selected
+	spouse), click right-arrow button to the right of the active person's
+	parents box. </para></listitem> 
+	
+	<listitem><para>To make currently selected spouse's parents 
+	the active family (thereby making father the active person and mother 
+	the selected spouse), click right-arrow button to the right of the 
+	spouse's parents box.</para></listitem>
+	
+	<listitem><para>To make currently selected child the active person, 
+	click left-arrow button to the right of the children box. 
+	</para></listitem>
+
+	</itemizedlist>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-pedigree"> 
         <title>Using Pedigree View</title> 
-	<para> </para>
+	<para> Pedigree View also allows you to move along the family tree. 
+	The benefits of this method is that you can see more than one 
+	generation of the family tree. Also, you can jump directly from a
+	great-grandson to a great-grandfather without going through the 
+	intermediate generations. </para>
+
+	<para> Note that after changing the active person in the Pedigree 
+	View, the display is re-adjusted to show four generations, starting 
+	from a newly selected Active person. When in the Pedigree View, you 
+	can easily navigate between the members of the displayed family tree 
+	as follows: </para> 
+
+	<itemizedlist>
+	<listitem><para>To make any displayed person the active person, 
+	double click the line that connects to the left side of the
+	corresponding box. </para></listitem>
+
+	<listitem><para>To make a child of currently active person (if any) 
+	the active person, click the left arrow button to the left of the
+	corresponding box. If there is more than one child, the button expands
+	to the menu listing the children to choose from. </para></listitem> 
+
+	<listitem><para>To move the whole family tree one generation back,
+	click on the corresponding right arrow button on the right-hand side 
+	of the display area. Clicking the upper button will move the tree 
+	along the paternal line. Clicking the lower button will move the 
+	tree along the maternal line. </para>
+
+	<para> Clicking either of these buttons is completely equivalent to
+	double-clicking the lines connecting to the left of the corresponding
+	boxes for father and mother. </para></listitem>
+	</itemizedlist>
+
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-nav-default"> 
+        <title>Setting Default Person</title> 
+	<para> One and only one person in the databse can be selected as the 
+	default person. Once the default person is selected, moving to that
+	person becomes a matter of a signle click, regardless of which view 
+	you are using at the moment. </para>
+
+	<para> To set the default person, first navigate to that person using 
+	any method you like. Then choose 
+	<menuchoice><guimenu>Settings</guimenu>
+	<guimenuitem>Default Person</guimenuitem></menuchoice>. Once this is 
+	done, you can move to the default person from anywhere in the 
+	database by simply clicking <guibutton>Home</guibutton> on the 
+	toolbar. </para>
+	
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="gramps-nav-bookmk"> 
+        <title>Bookmarking People</title> 
+	<para> Similarly to the default person, you can bookmark other people 
+	from the database to simplify further navigation. To bookmark a person,
+	first navigate to that person, then choose 
+	<menuchoice><guisubmenu>Bookmarks</guisubmenu>
+	<guimenuitem>Add bookmark</guimenuitem></menuchoice>. To move to that
+	person from anywhere in the database, choose 
+	<menuchoice><guimenu>Bookmarks</guimenu>
+	<guisubmenu>Go to bookmark</guisubmenu>
+	<guimenuitem><replaceable>Person's name</replaceable></guimenuitem>
+	</menuchoice>. </para>
+	
+	<para> You can manage your bookmarks by choosing 
+	<menuchoice><guisubmenu>Bookmarks</guisubmenu>
+	<guimenuitem>Edit bookmarks</guimenuitem></menuchoice>. This opens
+	the following<guilabel>Edit Bookmarks</guilabel> dialog with the 
+	list of	bookmarks and the controls to modify this list. </para>
+	
+ 	<!-- ==== Figure: Edit Bookmarks dialog ==== -->
+	<figure id="edit-bm-fig"> 
+	<title>Edit Bookmarks dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-bm.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Edit Bookmarks dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
       </sect3>
 
    </sect2>
    
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gen-reports"> 
         <title>Generating Reports</title> 
