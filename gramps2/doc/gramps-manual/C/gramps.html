@@ -5567,7 +5567,7 @@ CLASS="variablelist"
 ><DD
 ><P
 >This report covers in detail the ancestors of the
-	active person. It includes vital (birth and death) as well as 
+	active person. It includes vital data (birth and death) as well as 
 	marriages. Specific options: number of backward generations 
 	to consider, as well as a variety of options on what exactly 
 	contents to include. </P
@@ -5596,7 +5596,16 @@ CLASS="variablelist"
 >Ahnentafel Report</DT
 ><DD
 ><P
->&#13;	[ FIXME: Someone who know exactly what this is has to fill it in. ]
+>This report lists the active person and his or her 
+	ancestors along with their vital data. The people are numbered in a 
+	special way which is an established standard called Ahnentafel. 
+	The active person is given number 1. His or her father and mother 
+	have numbers 2 and 3, respectively. This rule holds for every person 
+	while going back in generations: father's parents are numbered 4 and 5, 
+	and mother's parents are numbered 6 and 7, fathers always numbered 
+	with even and mothers with odd numbers. Therefore, for any person 
+	having number N in this tree, the numbers of father and mother 
+	are 2N and 2N+1, respectively. 
 	</P
 ></DD
 ></DL
@@ -5605,11 +5614,11 @@ CLASS="variablelist"
 >Common options for text reports are the filename of the
 	output, the format of the output, selected style, and page size and 
 	orientation. For HTML reports, there is no page information. 
-	Instead, HTML options includes the choice of the HTML template, 
+	Instead, HTML options include the choice of the HTML template, 
 	either available in <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> or custom template defined by you. </P
+> or a custom template defined by you. </P
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -5930,7 +5939,37 @@ CLASS="guimenu"
 >-&gt;<SPAN
 CLASS="guimenuitem"
 >Preferences</SPAN
->. </P
+>. 
+      The <SPAN
+CLASS="guilabel"
+>Preferences</SPAN
+> dialog contains the following 
+      categories: </P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="#gramps-prefs-usage"
+>Section 5.1</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="#gramps-prefs-display"
+>Section 5.2</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="#gramps-prefs-db"
+>Section 5.3</A
+></P
+></LI
+></UL
 ><DIV
 CLASS="sect2"
 ><HR><H3
@@ -5940,7 +5979,11 @@ NAME="gramps-prefs-usage"
 ></A
 >5.1. Usage</H3
 ><P
-> </P
+> This category contains preferences relevant to the 
+	general usage of <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>. It has the following subcategories:</P
 ><DIV
 CLASS="sect3"
 ><HR><H4
@@ -5950,7 +5993,29 @@ NAME="prefs-usage-find"
 ></A
 >5.1.1. Find</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Enable autocompletion</SPAN
+></DT
+><DD
+><P
+>If this box is checked, <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> will attempt to complete
+	the text as you type it into text entry fields such as family name,
+	place of birth, etc. Completion is attempted based on the match 
+	between the beginning of the text being typed and the corresponding 
+	data already stored in the database. 
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -5961,7 +6026,73 @@ NAME="prefs-usage-report"
 ></A
 >5.1.2. Report Preferences</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Preferred text format</SPAN
+></DT
+><DD
+><P
+> Select the preferred format for text reports 
+	from the available formats listed in this menu. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Preferred graphical format</SPAN
+></DT
+><DD
+><P
+> Select the preferred format for graphical reports 
+	from the available formats listed in this menu.
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Preferred paper size</SPAN
+></DT
+><DD
+><P
+> Select the preferred paper size used for reports 
+	from the available sizes listed in this menu.
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Default report directory</SPAN
+></DT
+><DD
+><P
+> Choose the default directory for the reports using
+	<SPAN
+CLASS="guibutton"
+>Browse...</SPAN
+> button or type it in the text entry
+	field. </P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Default web site directory</SPAN
+></DT
+><DD
+><P
+> Choose the default directory for the web site using
+	<SPAN
+CLASS="guibutton"
+>Browse...</SPAN
+> button or type it in the text entry
+	field. </P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -5972,7 +6103,27 @@ NAME="prefs-usage-res"
 ></A
 >5.1.3. Researcher Information</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Researcher information</SPAN
+></DT
+><DD
+><P
+> Enter your personal information in the corresponding
+	text entry fields. Although GRAMPS requests information about you, 
+	this information is used only so that it can create valid GEDCOM 
+	output files. A valid GEDCOM file requires information about the files 
+	creator. If you choose, you may leave the information empty, however
+	all the GEDCOM files you export will not be valid. 
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -5983,7 +6134,23 @@ NAME="prefs-usage-guess"
 ></A
 >5.1.4. Data Guessing</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Surname guessing</SPAN
+></DT
+><DD
+><P
+> Select the surname guessing method which is used 
+[ FIXME: where exactly is this used ? ]
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ></DIV
 ><DIV
@@ -5995,7 +6162,12 @@ NAME="gramps-prefs-display"
 ></A
 >5.2. Display</H3
 ><P
-> </P
+> This category contains preferences relevant to  
+	displaying database records and controls in <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>. 
+	It has the following subcategories:</P
 ><DIV
 CLASS="sect3"
 ><HR><H4
@@ -6005,7 +6177,34 @@ NAME="prefs-display-gen"
 ></A
 >5.2.1. General</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Always display the LDS ordinance tabs</SPAN
+></DT
+><DD
+><P
+> Check this box to have LDS ordinance tabs displayed. 
+	If you do not know what LDS is then you probably should not check it. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Show index numbers in child list</SPAN
+></DT
+><DD
+><P
+> 
+[ FIXME: where exactly is this used ? ]
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -6016,7 +6215,56 @@ NAME="prefs-display-date"
 ></A
 >5.2.2. Dates and Calendar</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Display: Date format</SPAN
+></DT
+><DD
+><P
+> Select the display format for the dates
+	from the available formats listed in this menu. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Name format</SPAN
+></DT
+><DD
+><P
+> Select the display format for the names  
+	from the available formats listed in this menu. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Entry: Date format</SPAN
+></DT
+><DD
+><P
+> Select the entry format for the dates
+	from the available formats listed in this menu. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Show calendar format selection menu</SPAN
+></DT
+><DD
+><P
+> Check this box to enable calendar format selection menu 
+[ FIXME: where exactly? ]
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -6027,7 +6275,34 @@ NAME="prefs-display-bars"
 ></A
 >5.2.3. Tool and Status Bars</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Toolbar</SPAN
+></DT
+><DD
+><P
+> Select the desired appearance of the toolbar icons
+	using the radio buttons. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Status bar</SPAN
+></DT
+><DD
+><P
+> Select the desired contents displayed in the 
+	statusbar using the radio buttons. 
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ></DIV
 ><DIV
@@ -6039,7 +6314,8 @@ NAME="gramps-prefs-db"
 ></A
 >5.3. Database</H3
 ><P
-> </P
+> This category contains preferences relevant to the 
+	database itself. It has the following subcategories: </P
 ><DIV
 CLASS="sect3"
 ><HR><H4
@@ -6049,7 +6325,74 @@ NAME="prefs-db-gen"
 ></A
 >5.3.1. General</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Automatically load last database</SPAN
+></DT
+><DD
+><P
+> Check this box to automatically load the last open
+	database on startup. </P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Do not compress XML data file</SPAN
+></DT
+><DD
+><P
+> Check this box to disable compression of the XML
+	data file. Compression significantly reduces the file size. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Capitalize surnames</SPAN
+></DT
+><DD
+><P
+> Check this box to capitalize surnames entered into the
+	database. </P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Autosave interval</SPAN
+></DT
+><DD
+><P
+> Set the interval (in minutes) after which <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> will
+	automatically save your database. Zero interval completely disables 
+	autosave. </P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Default database directory</SPAN
+></DT
+><DD
+><P
+> Choose the default directory in which <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> starts
+	looking when saving the database using <SPAN
+CLASS="guibutton"
+>Browse..</SPAN
+> 
+	or type its path into the text entry field. </P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -6060,7 +6403,48 @@ NAME="prefs-db-media"
 ></A
 >5.3.2. Media Objects</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Drag and drop from an external source</SPAN
+></DT
+><DD
+><P
+> Choose between a reference and a local copy made when
+	the object is dropped into the gallery. The reference saves disk 
+	space as it does not copy the object. The local copy makes your 
+	database portable as it does not depend on an external file. Consult
+	your need to make best choice.</P
+><P
+>Check <SPAN
+CLASS="guilabel"
+>Display global properties editor when object is
+	dropped</SPAN
+> box to invoke global properties editor after you 
+	drop an external object into the gallery. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Drag and drop from an internal source</SPAN
+></DT
+><DD
+><P
+> Check <SPAN
+CLASS="guilabel"
+>Display local properties editor when 
+	object is dropped</SPAN
+> box to invoke local properties editor 
+	after you drop an internal object into the gallery. 
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -6074,7 +6458,38 @@ CLASS="application"
 >GRAMPS</SPAN
 > internal IDs</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+> GRAMPS ID prefixes</SPAN
+></DT
+><DD
+><P
+> Enter ID prefixes for various kinds of database 
+	entries into the corresponding text entry fields. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Allow internal GRAMPS ID numbers to be
+	edited</SPAN
+></DT
+><DD
+><P
+> Check this box to enable editing of the internal <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+>
+	ID numbers. Unless you know what you are doing, leave it unchecked.
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -6085,7 +6500,41 @@ NAME="prefs-db-rcs"
 ></A
 >5.3.4. Revision Control</H4
 ><P
-> </P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Use revision control</SPAN
+></DT
+><DD
+><P
+> Check this box to enable <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> to use revision control
+	system for your database. If you choose this option, select the
+	particular revision control system from the menu. 
+	</P
+></DD
+><DT
+><SPAN
+CLASS="guilabel"
+>Prompt for comment on save</SPAN
+></DT
+><DD
+><P
+> Check this box to instruct <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> to prompt you to enter
+	the comment when you save the database. 
+	</P
+></DD
+></DL
+></DIV
 ></DIV
 ></DIV
 ></DIV
