@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=GRAMPS genealogical database
+Comment=Manage your family tree
+Exec=gramps
+Terminal=false
+Type=Application
+Icon=gramps.png
+Categories=Application;Genealogy;
+StartupNotify=true
+X-GNOME-DocPath=gramps/gramps-manual.xml
