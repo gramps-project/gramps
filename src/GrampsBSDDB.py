@@ -58,20 +58,20 @@ class GrampsBSDDB(GrampsDbBase):
             self.close()
 
         self.env = db.DBEnv()
-        self.env.set_cachesize(0,4*1024*1024) # 2MB
+        self.env.set_cachesize(0,0x2000000) # 2MB
         flags = db.DB_CREATE|db.DB_INIT_MPOOL|db.DB_PRIVATE
 
         self.undolog = "%s.log" % name
         self.env.open(os.path.dirname(name), flags)
             
         name = os.path.basename(name)
-        self.person_map = dbshelve.open(name, dbname="person", dbenv=self.env)
         self.family_map = dbshelve.open(name, dbname="family", dbenv=self.env)
         self.place_map  = dbshelve.open(name, dbname="places", dbenv=self.env)
         self.source_map = dbshelve.open(name, dbname="sources",dbenv=self.env)
         self.media_map  = dbshelve.open(name, dbname="media",  dbenv=self.env)
         self.event_map  = dbshelve.open(name, dbname="events", dbenv=self.env)
         self.metadata   = dbshelve.open(name, dbname="meta",   dbenv=self.env)
+        self.person_map = dbshelve.open(name, dbname="person", dbenv=self.env)
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)

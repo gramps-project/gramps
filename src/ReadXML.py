@@ -776,7 +776,7 @@ class GrampsParser:
             self.family.set_gramps_id(handle)
         except KeyError:
             self.family = self.find_family_by_gramps_id(handle)
-        
+
         if attrs.has_key("type"):
             self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
                                                            const.FAMILY_UNKNOWN))
@@ -1017,10 +1017,15 @@ class GrampsParser:
         else:
             dv = self.event.get_date_object()
 
-        start = attrs['val'].split('-')
+        bc = 1
+        val = attrs['val']
+        if val[0] == '-':
+            bc = -1
+            val = val[1:]
+        start = val.split('-')
 
         try:
-            y = int(start[0])
+            y = int(start[0])*bc
         except:
             y = 0
 

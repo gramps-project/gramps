@@ -148,16 +148,28 @@ class GrampsInMemDB(GrampsDbBase):
 
     def get_family_from_gramps_id(self,val):
         handle = self.fid_trans.get(str(val))
-        return self.family_map[handle]
+        if handle:
+            return self.family_map[handle]
+        else:
+            return None
 
     def get_place_from_gramps_id(self,val):
         handle = self.pid_trans.get(str(val))
-        return self.place_map[handle]
+        if handle:
+            return self.place_map[handle]
+        else:
+            return None
 
     def get_source_from_gramps_id(self,val):
         handle = self.sid_trans.get(str(val))
-        return self.source_map[handle]
+        if handle:
+            return self.source_map[handle]
+        else:
+            return None
 
     def get_object_from_gramps_id(self,val):
         handle = self.oid_trans.get(str(val))
-        return self.media_map[handle]
+        if handle:
+            return self.media_map[handle]
+        else:
+            return None

@@ -495,6 +495,12 @@
 2 DATE 10 JUL 1996
 2 PLAC Community Presbyterian Church, Danville, CA
 1 FAMC @F01@
+0 @I43@ INDI
+1 NAME Really Old /Guy/
+1 SEX M
+1 BIRT
+2 DATE 26 JUN 34 B.C.
+2 PLAC Hayward, Alameda Co., CA
 0 @F01@ FAM
 1 HUSB @I01@
 1 WIFE @I40@

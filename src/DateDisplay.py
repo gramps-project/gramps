@@ -194,10 +194,15 @@ class DateDisplay:
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
 
     def _slash_year(self,val,slash):
+        bc = ""
+        if val < 0:
+            val = - val
+            bc = " B.C.E"
+            
         if slash:
-            return "%d/%d" % (val,(val%10)+1)
+            return "%d/%d%s" % (val,(val%10)+1,bc)
         else:
-            return str(val)
+            return "%d%s" % (val,bc)
         
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])
