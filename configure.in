@@ -36,9 +36,16 @@ try:
     f.write("YES")
     f.close()
 except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
+
+    try:
+        from _xmlplus.sax import saxlib
+        f = open("conftest.out", "w")
+        f.write("YES")
+        f.close()
+    except ImportError:
+        f = open("conftest.out", "w")
+        f.write("NO")
+        f.close()
 EOF
 changequote([, ])
 $PYTHON conftest.py

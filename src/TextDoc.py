@@ -21,8 +21,6 @@
 import string
 import os
 import sys
-import xml.sax
-import xml.sax.saxutils
 import utils
 
 #-------------------------------------------------------------------------
@@ -32,11 +30,21 @@ import utils
 #-------------------------------------------------------------------------
 if sys.version[0] != '1':
     sax = 2
+    try:
+        from _xmlplus.sax import make_parser
+        from _xmlplus.sax import handler
+    except:
+        from xml.sax import make_parser
+        from xml.sax import handler
 else:
     try:
         import xml.sax.saxexts
+        from xml.sax.saxutils import ErrorRaiser
+        from xml.sax import handler
         sax = 1
     except:
+        from xml.sax.saxutils import ErrorRaiser
+        from xml.sax import handler
         sax = 2
 
 FONT_SANS_SERIF = 0
@@ -466,12 +474,12 @@ class StyleSheetList:
             return
 
         if sax == 1:
-            parser = xml.sax.saxexts.make_parser()
+            parser = make_parser()
             parser.setDocumentHandler(SheetParser(self))
-            parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
+            parser.setErrorHandler(ErrorRaiser())
             parser.parseFile(f)
         else:
-            parser = xml.sax.make_parser()
+            parser = make_parser()
             parser.setContentHandler(SheetParser(self))
             parser.parse(f)
         
@@ -510,9 +518,9 @@ class StyleSheet:
 # 
 #
 #-------------------------------------------------------------------------
-class SheetParser(xml.sax.handler.ContentHandler):
+class SheetParser(handler.ContentHandler):
     def __init__(self,sheetlist):
-        xml.sax.handler.ContentHandler.__init__(self)
+        handler.ContentHandler.__init__(self)
         self.sheetlist = sheetlist
         self.f = None
         self.p = None
