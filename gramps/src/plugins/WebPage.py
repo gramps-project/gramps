@@ -867,6 +867,19 @@ def on_ok_clicked(obj):
                                  dir_name)
                 return
 
+    image_dir_name = os.path.join(dir_name, "images")
+    if not os.path.isdir(image_dir_name) and not no_photos:
+        try:
+            os.mkdir(image_dir_name)
+        except IOError, value:
+            GnomeErrorDialog(_("Could not create the directory : %s") % \
+                             image_dir_name + "\n" + value[1])
+            return
+        except:
+            GnomeErrorDialog(_("Could not create the directory : %s") % \
+                             image_dir_name)
+            return
+
     filter = filter_map[filterName]
     ind_list = []
 
