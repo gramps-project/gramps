@@ -1,4 +1,4 @@
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Aktualn± wersjê tego pliku mo¿esz odnale¼æ w repozytorium cvs.gnome.pl
 # (:pserver:anonymous@cvs.gnome.pl:/home/cvs, puste has³o)
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
-"POT-Creation-Date: 2002-07-05 07:44:19 2002\n"
-"PO-Revision-Date: 2002-11-01 15:55+0200\n"
+"POT-Creation-Date: 2002-11-24 08:27:08 2002\n"
+"PO-Revision-Date: 2003-02-21 01:11+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "%s nie jest prawn± nazw± pliku lub te¿ plik nie istnieje."
 
 #: AddSpouse.py:1 AddSpouse.py:1
 msgid "Choose Spouse/Partner of %s"
-msgstr ""
+msgstr "Wybierz ma³¿onka/partnera dla %s"
 
 #: AddSpouse.py:1 AddSpouse.py:1 const.py:1 const.py:1
 #: plugins/FamilyGroup.py:1 plugins/FamilyGroup.py:1
@@ -60,7 +60,8 @@ msgstr "W dó³"
 #: dialog.glade:1 dialog.glade:1 dialog.glade:1 dialog.glade:1
 #: gramps.glade:1 gramps.glade:1 imagesel.glade:1 imagesel.glade:1
 #: marriage.glade:1 marriage.glade:1 places.glade:1 places.glade:1
-#: rule.glade:1 rule.glade:1 srcsel.glade:1 styles.glade:1
+#: places.glade:1 rule.glade:1 rule.glade:1 srcsel.glade:1
+#: styles.glade:1
 msgid "Delete"
 msgstr "Usuñ"
 
@@ -262,16 +263,18 @@ msgstr "Brak wprowadzonych komentarzy"
 
 #: DisplayTrace.py:1
 msgid ""
-"GRAMPS has encountered an internal error.\n"
+"GRAMPS %s has encountered an internal error.\n"
 "Please copy the message below and post a bug report at "
 "http://sourceforge.net/projects/gramps or send an email message to "
 "gramps-users@lists.sourceforge.net\n"
 "\n"
+"Please include the distribution you are running, along with an email address "
+"so more information can be gathered if necessary\n"
 msgstr ""
-"W programie GRAMPS wyst±pi³ b³±d wewnêtrzny.\n"
-"Skopiuj poni¿szy komunikat oraz wy¶lij go na listê b³êdów "
-"pod adresem http://sourceforge.net/projects/gramps lub te¿ "
-"za po¶rednictwem poczty pod adres gramps-users@lists.sourceforge.net\n"
+"W programie GRAMPS %s wyst±pi³ b³±d wewnêtrzny.\n"
+"Skopiuj poni¿szy komunikat oraz wy¶lij go na listê b³êdów pod adresem "
+"http://sourceforge.net/projects/gramps lub te¿ za po¶rednictwem poczty pod "
+"adres gramps-users@lists.sourceforge.net\n"
 "\n"
 
 #: DisplayTrace.py:1
@@ -321,8 +324,8 @@ msgstr "Przywo³uje edytor zdarzeñ dotycz±cych urodzin"
 #: EditPerson.glade:1 EditPerson.glade:1 EditPerson.glade:1
 #: EditPerson.glade:1 dialog.glade:1 dialog.glade:1 dialog.glade:1
 #: dialog.glade:1 imagesel.glade:1 imagesel.glade:1
-#: marriage.glade:1 marriage.glade:1 rule.glade:1 rule.glade:1
-#: srcsel.glade:1 styles.glade:1
+#: marriage.glade:1 marriage.glade:1 places.glade:1 rule.glade:1
+#: rule.glade:1 srcsel.glade:1 styles.glade:1
 msgid "Edit"
 msgstr "Modyfikuj"
 
@@ -372,7 +375,8 @@ msgstr "Przyrostek"
 #: dialog.glade:1 dialog.glade:1 dialog.glade:1 dialog.glade:1
 #: dialog.glade:1 gramps.glade:1 gramps.glade:1 gramps.glade:1
 #: gramps.glade:1 imagesel.glade:1 imagesel.glade:1 imagesel.glade:1
-#: imagesel.glade:1 places.glade:1 srcsel.glade:1 srcsel.glade:1
+#: imagesel.glade:1 places.glade:1 places.glade:1 srcsel.glade:1
+#: srcsel.glade:1
 msgid "Title"
 msgstr "Tytu³"
 
@@ -391,7 +395,7 @@ msgid "Select source for this name information"
 msgstr "Wybierz ¼ród³o dla tej informacji o imieniu"
 
 #: EditPerson.glade:1 ImageSelect.py:1 Utils.py:1 Utils.py:1
-#: places.glade:1 preferences.glade:1
+#: preferences.glade:1
 msgid "Source"
 msgstr "¬ród³o"
 
@@ -468,8 +472,8 @@ msgstr ""
 #: EditPerson.glade:1 EditPerson.glade:1 dialog.glade:1
 #: dialog.glade:1 dialog.glade:1 dialog.glade:1 gramps.glade:1
 #: imagesel.glade:1 imagesel.glade:1 marriage.glade:1
-#: marriage.glade:1 places.glade:1 places.glade:1 rule.glade:1
-#: rule.glade:1 srcsel.glade:1 styles.glade:1
+#: marriage.glade:1 places.glade:1 places.glade:1 places.glade:1
+#: rule.glade:1 rule.glade:1 srcsel.glade:1 styles.glade:1
 msgid "Add"
 msgstr "Dodaj"
 
@@ -573,7 +577,7 @@ msgstr "Miasto/Region"
 #: EditPerson.glade:1 config.glade:1 dialog.glade:1
 #: preferences.glade:1
 msgid "Address"
-msgstr "Adresy"
+msgstr "Adres"
 
 #: EditPerson.glade:1 config.glade:1 dialog.glade:1
 #: preferences.glade:1
@@ -690,7 +694,7 @@ msgstr "Ko¶ció³"
 
 #: EditPerson.glade:1 EditPerson.glade:1 EditPerson.glade:1
 #: dialog.glade:1 dialog.glade:1 dialog.glade:1 dialog.glade:1
-#: gramps.glade:1 gramps.glade:1 marriage.glade:1
+#: gramps.glade:1 gramps.glade:1 marriage.glade:1 places.glade:1
 #: plugins/IndivComplete.py:1 plugins/WebPage.py:1
 #: plugins/gedcomexport.glade:1 plugins/pkgexport.glade:1
 msgid "Sources"
@@ -790,6 +794,10 @@ msgid "Individual Names"
 msgstr "Nazwiska indywidualne"
 
 #: EditSource.py:1
+msgid "Individual Addresses"
+msgstr "Adresy indywidualne"
+
+#: EditSource.py:1
 msgid "Family Events"
 msgstr "Zdarzenia rodzinne"
 
@@ -842,12 +850,12 @@ msgid "Find Media Object"
 msgstr "Znajd¼ obiekt medialny"
 
 #: GenericFilter.py:1 GenericFilter.py:1 GenericFilter.py:1
-#: GenericFilter.py:1 dialog.glade:1 dialog.glade:1 dialog.glade:1
-#: dialog.glade:1 gramps.glade:1 gramps.glade:1 gramps.glade:1
+#: GenericFilter.py:1 GenericFilter.py:1 dialog.glade:1
+#: dialog.glade:1 dialog.glade:1 dialog.glade:1 gramps.glade:1
 #: gramps.glade:1 gramps.glade:1 gramps.glade:1 gramps.glade:1
-#: imagesel.glade:1 imagesel.glade:1 imagesel.glade:1
-#: mergedata.glade:1 mergedata.glade:1 plugins/relcalc.glade:1
-#: srcsel.glade:1
+#: gramps.glade:1 gramps.glade:1 imagesel.glade:1 imagesel.glade:1
+#: imagesel.glade:1 mergedata.glade:1 mergedata.glade:1
+#: places.glade:1 plugins/relcalc.glade:1 srcsel.glade:1
 msgid "ID"
 msgstr "ID"
 
@@ -919,6 +927,10 @@ msgstr "Jest cz³onkiem rodziny potomka dla"
 #: GenericFilter.py:1
 msgid "Is an ancestor of"
 msgstr "Jest przodkiem dla"
+
+#: GenericFilter.py:1
+msgid "Has a common ancestor with"
+msgstr "Posiada wspólnego przodka z"
 
 #: GenericFilter.py:1
 msgid "Is a female"
@@ -1170,7 +1182,7 @@ msgstr "Edytor alternatywnych nazwisk dla osoby %s"
 
 #: NoteEdit.py:1 NoteEdit.py:1
 msgid "Edit Note"
-msgstr "Edytowanie notatki"
+msgstr "Redagowanie notatki"
 
 #: PaperMenu.py:1
 msgid "Portrait"
@@ -1182,7 +1194,7 @@ msgstr "Poziome"
 
 #: PedView.py:1
 msgid "Doubleclick to edit, Shift-Doubleclick to make the active person"
-msgstr "Podwójne klikniêcie aby edytowaæ, z Shiftem aby uczyniæ aktywn± osob±"
+msgstr "Klikniêcie podwójne otwiera okno modyfikacji, z klawiszem Shift - zaznacza osobê jako aktywn±"
 
 #: PedView.py:1
 msgid "Double clicking will make %s the active person"
@@ -1463,7 +1475,7 @@ msgstr "Style"
 
 #: Report.py:1 styles.glade:1
 msgid "Style Editor"
-msgstr "Edytor styli"
+msgstr "Edytor stylów"
 
 #: Report.py:1 Report.py:1
 msgid "Paper Options"
@@ -1516,13 +1528,15 @@ msgstr "Generacje"
 
 #: Report.py:1
 msgid "Page break between generations"
-msgstr "Przerwa na stronie pomiêdzy generacjami"
+msgstr "Rozdzielenie generacji na osobne strony"
 
 #: Report.py:1
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
 msgstr ""
+"Wprowadzona nazwa pliku jest katalogiem.\n"
+"Nale¿y podaæ poprawn± nazwê."
 
 #: SelectChild.py:1 SelectChild.py:1 SelectChild.py:1 SelectChild.py:1
 #: SelectChild.py:1 SelectChild.py:1 plugins/RelCalc.py:1
@@ -1575,11 +1589,11 @@ msgid ""
 "information can be changed in the future in the \n"
 "Preferences dialog under the Settings menu."
 msgstr ""
-"Witaj w programie GRAMPS - systemie poszukiwañ\n"
+"Witaj w programie GRAMPS - systemie badañ\n"
 "genealogicznych i zarz±dzania analizami.\n"
 "\n"
-"Musi zostaæ pobranych kilka opcji zanim GRAMPS\n"
-"bêdzie móg³ byæ u¿ywany. Dowolna z tych\n"
+"Przed rozpoczêciem korzystania z programu GRAMPS\n"
+"nale¿y skonfigurowaæ kilka opcji. Dowolna z tych\n"
 "informacji bêdzie mog³a byæ zmieniona pó¼niej za\n"
 "pomoc± okna preferencji w menu ustawieñ."
 
@@ -1648,9 +1662,9 @@ msgid ""
 "more of these alternate calendars, enable alternate calendar support."
 msgstr ""
 "Domy¶lnie wszystkie daty s± przechowywane przez program GRAMPS\n"
-"w formacie kalendarza gregoriañskiego. To z regu³y jest wystarczaj±ce\n"
-"dla wiêkszo¶ci u¿ytkowników. Obs³uga mo¿e dotyczyæ tak¿e kalendarza\n"
-"juliañskiego, francuskiego republikañskiego oraz ¿ydowskiego. Je¶li wiesz,\n"
+"w formacie kalendarza gregoriañskiego. Dla wiêkszo¶ci u¿ytkowników\n"
+"jest on wystarczaj±cy. Obs³uga mo¿e dotyczyæ tak¿e kalendarza\n"
+"juliañskiego, francuskiego, republikañskiego oraz ¿ydowskiego. Je¶li wiesz,\n"
 "¿e bêdzie potrzebny jeden z alternatywnych kalendarzy, zaznacz\n"
 "jego obs³ugê."
 
@@ -1675,7 +1689,7 @@ msgstr ""
 "Dnia Ostatniego.\n"
 "\n"
 "Mo¿na wybraæ zarówno w³±czenie jak i wy³±czenie tej obs³ugi.\n"
-"Mo¿na zmieniæ t± opcjê w przysz³o¶ci w oknie preferencji."
+"Ta opcja mo¿e zostaæ w przysz³o¶ci zmieniona w oknie preferencji."
 
 #: config.glade:1
 msgid "Enable LDS Ordinance Support"
@@ -1701,7 +1715,7 @@ msgstr ""
 "sugestie dotycz±ce ulepszeñ oraz zobacz jak mo¿na\n"
 "pomóc w projekcie.\n"
 "\n"
-"Przyjemnego u¿ywania programu GRAMPS."
+"Przyjemnego korzystania z programu GRAMPS."
 
 #: const.py:1
 msgid ""
@@ -2073,6 +2087,10 @@ msgstr "KWord"
 msgid "LaTeX"
 msgstr "LaTeX"
 
+#: docgen/NroffDoc.py:1
+msgid "nroff/groff"
+msgstr ""
+
 #: docgen/OpenDrawDoc.py:1 docgen/OpenOfficeDoc.py:1
 msgid "OpenOffice/StarOffice 6"
 msgstr "OpenOffice/StarOffice 6"
@@ -2088,10 +2106,6 @@ msgstr "Modu³y ReportLab nie s± zainstalowane"
 #: docgen/PdfDoc.py:1 docgen/PdfDrawDoc.py:1
 msgid "PDF"
 msgstr "PDF"
-
-#: docgen/RTFDoc.py:1
-msgid "Rich Text Format (RTF)"
-msgstr "Rich Text Format (RTF)"
 
 #: docgen/SvgDrawDoc.py:1
 msgid "SVG (Scalable Vector Graphics)"
@@ -3090,10 +3104,6 @@ msgstr "D³ugo¶æ geogr."
 msgid "Latitude"
 msgstr "Szeroko¶æ geogr."
 
-#: places.glade:1
-msgid "Select"
-msgstr "Wybierz"
-
 #: places.glade:1 places.glade:1
 msgid "Other Names"
 msgstr "Inne nazwiska"
@@ -3163,12 +3173,12 @@ msgstr "Nie mo¿na otworzyæ %s"
 
 #: plugins/AncestorReport.py:1 plugins/AncestorReport.py:1
 msgid "Ahnentafel Report for %s"
-msgstr ""
+msgstr "Raport przodków dla osoby %s"
 
 #: plugins/AncestorReport.py:1 plugins/DetAncestralReport.py:1
 #: plugins/DetDescendantReport.py:1
 msgid "%s Generation"
-msgstr ""
+msgstr "Generacja %s"
 
 #: plugins/AncestorReport.py:1
 msgid "%s was born on %s in %s. "
@@ -3240,7 +3250,7 @@ msgstr ""
 
 #: plugins/AncestorReport.py:1 plugins/AncestorReport.py:1
 msgid "Ahnentafel Report"
-msgstr ""
+msgstr "Raport przodków"
 
 #: plugins/AncestorReport.py:1 plugins/AncestorReport.py:1
 #: plugins/DescendReport.py:1 plugins/DescendReport.py:1
@@ -3259,6 +3269,22 @@ msgstr ""
 msgid "Produces a textual ancestral report"
 msgstr "Tworzy tekstowy raport dotycz±cy przodków"
 
+#: plugins/Capitalize.py:1
+msgid "Convert surnames to all capital letters"
+msgstr "Ustawienie wielkich liter w nazwiskach"
+
+#: plugins/Capitalize.py:1 plugins/ChangeTypes.py:1 plugins/Check.py:1
+#: plugins/Merge.py:1 plugins/PatchNames.py:1 plugins/ReorderIds.py:1
+msgid "Database Processing"
+msgstr "Przetwarzanie bazy danych"
+
+#: plugins/Capitalize.py:1
+msgid ""
+"Searches the entire database and converts all surnames to capital letters"
+msgstr ""
+"Przeszukuje ca³± bazê danych i konwertuje wszystkie nazwiska tak, "
+"aby by³y pisane wielk± liter±"
+
 #: plugins/ChangeTypes.py:1
 msgid "1 event record was modified"
 msgstr "Zmodyfikowano jeden zapis dotycz±cy zdarzenia"
@@ -3270,11 +3296,6 @@ msgstr "Zmodyfikowano %d zapisów dotycz±cych zdarzeñ"
 #: plugins/ChangeTypes.py:1
 msgid "Rename personal event types"
 msgstr "Zmiana osobistych typów zdarzeñ"
-
-#: plugins/ChangeTypes.py:1 plugins/Check.py:1 plugins/Merge.py:1
-#: plugins/PatchNames.py:1 plugins/ReorderIds.py:1
-msgid "Database Processing"
-msgstr "Przetwarzanie bazy danych"
 
 #: plugins/ChangeTypes.py:1
 msgid "Allows all the events of a certain name to be renamed to a new name"
@@ -3303,11 +3324,11 @@ msgstr "Zosta³o naprawione jedno uszkodzone dowi±zanie ma³¿onka/rodziny\n"
 #: plugins/Check.py:1
 #, fuzzy
 msgid "%d broken spouse/family links were found\n"
-msgstr "Zosta³o naprawione jedno uszkodzone dowi±zanie rodziny\n"
+msgstr "Odnaleziono %d dowi±zañ do ma³¿onka/rodziny\n"
 
 #: plugins/Check.py:1
 msgid "%s was restored to the family of %s\n"
-msgstr ""
+msgstr "Osoba %s zosta³a przywrócona do rodziny %s\n"
 
 #: plugins/Check.py:1
 msgid "1 empty family was found\n"
@@ -3412,15 +3433,14 @@ msgid "- %s Born: %s %s Died: %s %s"
 msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
+#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 #: plugins/DetDescendantReport.py:1 plugins/DetDescendantReport.py:1
-#: plugins/DetDescendantReport.py:1
 msgid "- %s Born: %s %s Died: %s"
 msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
 msgid "- %s Born: %s %s"
-msgstr " Urodzony: "
+msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
 #: plugins/DetDescendantReport.py:1 plugins/DetDescendantReport.py:1
@@ -3428,28 +3448,24 @@ msgid "- %s Born: %s Died: %s %s"
 msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
-#: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
+#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 #: plugins/DetDescendantReport.py:1 plugins/DetDescendantReport.py:1
-#: plugins/DetDescendantReport.py:1
 msgid "- %s Born: %s Died: %s"
 msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
 #: plugins/DetDescendantReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
 msgid "- %s Born: %s"
-msgstr " Urodzony: "
+msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
 msgid "- %s Died: %s %s"
-msgstr " Zmar³y: "
+msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
 #: plugins/DetDescendantReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
 msgid "- %s Died: %s"
-msgstr " Zmar³y: "
+msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 msgid "- %s"
@@ -3550,26 +3566,23 @@ msgstr ""
 #: plugins/DetAncestralReport.py:1 plugins/DetAncestralReport.py:1
 #: plugins/DetDescendantReport.py:1 plugins/DetDescendantReport.py:1
 msgid ","
-msgstr ""
+msgstr ","
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 msgid "and he"
+msgstr "i on"
+
+#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
+msgid "and she"
+msgstr "i ona"
+
+#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
+msgid "  %s married %s"
 msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
-msgid "and she"
-msgstr "%s i %s"
-
-#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
-msgid "  %s married %s"
-msgstr "%s i %s"
-
-#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
 msgid "  %s married %s in %s"
-msgstr "Dzieckiem osób %s i %s jest:"
+msgstr ""
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 msgid "  %s married %s on %s"
@@ -3578,11 +3591,6 @@ msgstr ""
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 msgid "  %s married %s on %s in %s"
 msgstr ""
-
-#: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
-#, fuzzy
-msgid "  %s married"
-msgstr "Bez ¶lubu"
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 msgid "  %s married in %s"
@@ -3602,7 +3610,47 @@ msgstr "Szczegó³owy raport przodków dla osoby %s"
 
 #: plugins/DetAncestralReport.py:1 plugins/DetDescendantReport.py:1
 msgid "Gramps - Ahnentafel Report"
-msgstr ""
+msgstr "Gramps - Raport przodków"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Use first names instead of pronouns"
+msgstr "U¿ywanie imion zamiast zaimków"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Use full dates instead of only the year"
+msgstr "U¿ywanie pe³nych dat zamiast samego roku"
+
+#: plugins/DetAncestralReport.py:1
+msgid "List children"
+msgstr "Wypisz dzieci"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Include notes"
+msgstr "Do³±czanie uwag"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Replace Place with ______"
+msgstr "Zmiana miejsc na ______"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Replace Dates with ______"
+msgstr "Zmiana dat na ________"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Compute age"
+msgstr "Obliczanie wieku"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Omit duplicate ancestors"
+msgstr "Pomijanie zduplikowanych przodków"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Add descendant reference in child list"
+msgstr "Dodawanie odwo³añ potomków do listy dzieci"
+
+#: plugins/DetAncestralReport.py:1
+msgid "Include Photo/Images from Gallery"
+msgstr "Do³±czanie zdjêæ/obrazów z galerii"
 
 #: plugins/DetAncestralReport.py:1
 msgid "Detailed Ancestral Report"
@@ -3617,20 +3665,12 @@ msgid " at the age of %d %s"
 msgstr ""
 
 #: plugins/DetDescendantReport.py:1
+msgid "  %s married"
+msgstr ""
+
+#: plugins/DetDescendantReport.py:1
 msgid "Detailed Descendant Report for %s"
 msgstr "Szczegó³owy raport potomków dla osoby %s"
-
-#: plugins/DetDescendantReport.py:1
-msgid "Use first names instead of pronouns"
-msgstr ""
-
-#: plugins/DetDescendantReport.py:1
-msgid "Use full dates instead of only the year"
-msgstr ""
-
-#: plugins/DetDescendantReport.py:1
-msgid "List children"
-msgstr "Wypisz dzieci"
 
 #: plugins/DetDescendantReport.py:1
 msgid "Detailed Descendant Report"
@@ -3751,6 +3791,11 @@ msgstr "Plik GraphViz"
 msgid "Ancestors of %s"
 msgstr "Przodkowie osoby %s"
 
+#: plugins/GraphViz.py:1 plugins/IndivComplete.py:1 plugins/WebPage.py:1
+#: plugins/WriteGedcom.py:1
+msgid "People with common ancestor with %s"
+msgstr "Osoby maj±ce wspólnego przodka %s"
+
 #: plugins/GraphViz.py:1
 msgid "Descendants <- Ancestors"
 msgstr "Potomkowie <- Przodkowie"
@@ -3770,6 +3815,7 @@ msgstr "Potomkowie - Przodkowie"
 #: plugins/GraphViz.py:1 plugins/GraphViz.py:1 plugins/GraphViz.py:1
 #: plugins/GraphViz.py:1 plugins/GraphViz.py:1 plugins/GraphViz.py:1
 #: plugins/GraphViz.py:1 plugins/GraphViz.py:1 plugins/GraphViz.py:1
+#: plugins/GraphViz.py:1
 msgid "GraphViz Options"
 msgstr "Opcje GraphViz"
 
@@ -3823,6 +3869,14 @@ msgid "Non-birth relationships will show up as dashed lines in the graph."
 msgstr ""
 "Zwi±zki inne ni¿ z racji urodzenia bêd± zaznaczane lini± przerywan± na "
 "wykresie."
+
+#: plugins/GraphViz.py:1
+msgid "Show family nodes"
+msgstr ""
+
+#: plugins/GraphViz.py:1
+msgid "Families will show up as circles, linked to parents and children."
+msgstr ""
 
 #: plugins/GraphViz.py:1
 msgid "Top & Bottom Margins"
@@ -3981,6 +4035,13 @@ msgstr ""
 "Przeszukuje ca³± bazê danych oraz próbuje wyci±gn±æ tytu³y i pseudonimy "
 "które mog± byæ wpisane do pola nazwiska wybranej osoby."
 
+#: plugins/ReadGedcom.py:1
+msgid ""
+"Failure reading %s: %s\n"
+"First line should have been '0 HEAD'\n"
+"but was '%s'"
+msgstr ""
+
 #: plugins/ReadGedcom.py:1 plugins/ReadGedcom.py:1
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr "Ostrze¿enie: wiersz %d nie zosta³ rozpoznany, zosta³ zignorowany"
@@ -3993,7 +4054,8 @@ msgstr "Importowanie zakoñczone: %d sek."
 msgid "Import from GEDCOM"
 msgstr "Import z GEDCOM"
 
-#: plugins/ReadNative.py:1 plugins/ReadNative.py:1
+#: plugins/ReadNative.py:1 plugins/ReadNative.py:1 plugins/ReadNative.py:1
+#: plugins/ReadNative.py:1
 msgid "Import from GRAMPS"
 msgstr "Import z GRAMPS"
 
@@ -5323,7 +5385,7 @@ msgstr "Style dokumentu"
 
 #: styles.glade:1
 msgid "Style Editor - GRAMPS"
-msgstr "Edytor styli - GRAMPS"
+msgstr "Edytor stylów - GRAMPS"
 
 #: styles.glade:1
 msgid "Style Name"
