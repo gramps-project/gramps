@@ -41,7 +41,7 @@ import os
 import md5
 import gtk
 
-import GrampsGconfKeys
+import GrampsKeys
 import Utils
 
 #-------------------------------------------------------------------------
@@ -123,12 +123,12 @@ class GrampsDbBase:
         self.lmap_index = 0
         self.omap_index = 0
 
-        self.set_person_id_prefix(GrampsGconfKeys.get_person_id_prefix())
-        self.set_object_id_prefix(GrampsGconfKeys.get_object_id_prefix())
-        self.set_family_id_prefix(GrampsGconfKeys.get_family_id_prefix())
-        self.set_source_id_prefix(GrampsGconfKeys.get_source_id_prefix())
-        self.set_place_id_prefix(GrampsGconfKeys.get_place_id_prefix())
-        self.set_event_id_prefix(GrampsGconfKeys.get_event_id_prefix())
+        self.set_person_id_prefix(GrampsKeys.get_person_id_prefix())
+        self.set_object_id_prefix(GrampsKeys.get_object_id_prefix())
+        self.set_family_id_prefix(GrampsKeys.get_family_id_prefix())
+        self.set_source_id_prefix(GrampsKeys.get_source_id_prefix())
+        self.set_place_id_prefix(GrampsKeys.get_place_id_prefix())
+        self.set_event_id_prefix(GrampsKeys.get_event_id_prefix())
 
         self.open = 0
         self.genderStats = GenderStats()

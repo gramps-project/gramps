@@ -48,7 +48,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsGconfKeys
+import GrampsKeys
 import GrampsCfg
 import GrampsMime
 import ImageSelect
@@ -331,7 +331,7 @@ class EditPerson:
         self.lds_endowment = RelLib.LdsOrd(self.person.get_lds_endowment())
         self.lds_sealing = RelLib.LdsOrd(self.person.get_lds_sealing())
 
-        if GrampsGconfKeys.get_uselds() \
+        if GrampsKeys.get_uselds() \
                         or (not self.lds_baptism.is_empty()) \
                         or (not self.lds_endowment.is_empty()) \
                         or (not self.lds_sealing.is_empty()):
@@ -1146,7 +1146,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         
-        if self.did_data_change() and not GrampsGconfKeys.get_dont_ask():
+        if self.did_data_change() and not GrampsKeys.get_dont_ask():
             n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
@@ -1162,7 +1162,7 @@ class EditPerson:
     def on_delete_event(self,obj,b):
         """If the data has changed, give the user a chance to cancel
         the close window"""
-        if self.did_data_change() and not GrampsGconfKeys.get_dont_ask():
+        if self.did_data_change() and not GrampsKeys.get_dont_ask():
             n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '

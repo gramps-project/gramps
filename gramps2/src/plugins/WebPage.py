@@ -50,7 +50,7 @@ import RelLib
 import HtmlDoc
 import BaseDoc
 import const
-import GrampsGconfKeys
+import GrampsKeys
 import GenericFilter
 import DateHandler
 import Sort
@@ -1327,7 +1327,7 @@ class WebReportDialog(Report.ReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return GrampsGconfKeys.get_web_dir()
+        return GrampsKeys.get_web_dir()
     
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -1337,7 +1337,7 @@ class WebReportDialog(Report.ReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        GrampsGconfKeys.save_web_dir(value)
+        GrampsKeys.save_web_dir(value)
     
     def make_default_style(self):
         """Make the default output style for the Web Pages Report."""

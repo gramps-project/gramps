@@ -49,7 +49,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsGconfKeys
+import GrampsKeys
 import Utils
 import BaseDoc
 
@@ -188,7 +188,7 @@ class OptionListCollection:
 
     # Default values for common options
     default_style_name = "default"
-    default_paper_name = GrampsGconfKeys.get_paper_preference()
+    default_paper_name = GrampsKeys.get_paper_preference()
     default_template_name = ""
     default_orientation = BaseDoc.PAPER_PORTRAIT
     default_format_name = _('Print...')

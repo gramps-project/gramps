@@ -36,7 +36,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #-------------------------------------------------------------------------
 import const
 import Utils
-import GrampsGconfKeys
+import GrampsKeys
 import GrampsCfg
 import AddSpouse
 import SelectChild
@@ -183,7 +183,7 @@ class FamilyView:
                                  self.sp_drag_data_received)
 
     def init_interface(self):
-        fv = GrampsGconfKeys.get_family_view()
+        fv = GrampsKeys.get_family_view()
         self.set_widgets(fv)
 
         already_init = self.cadded[fv]
@@ -710,7 +710,7 @@ class FamilyView:
             return
 
         person = RelLib.Person()
-        autoname = GrampsGconfKeys.get_lastnamegen()
+        autoname = GrampsKeys.get_lastnamegen()
         
         if autoname == 0:
             name = self.north_american(0)

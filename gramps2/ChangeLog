@@ -1,3 +1,13 @@
+2005-01-06  Don Allingham  <dallingham@users.sourceforge.net>
+        * const.py.in: add support for overriding gconf usage
+	* src/GrampsIniKeys.py: provide support for the default schema
+	* src/GrampsKeys.py: select appropriate backend
+	* various: switch from GrampsGconfKeys to GrampsKeys for normal usage
+	
+2005-01-05 Douglas S. Blank  <dblank@brynmawr.edu>
+	* src/GrampsIniKeys.py: Alternate backend using .ini files instead
+	of gconf
+
 2005-01-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: detect pygtk_version before passing
 	False for markup on MenuItem

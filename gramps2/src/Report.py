@@ -52,7 +52,7 @@ import Utils
 import Plugins
 import BaseDoc
 import StyleEditor
-import GrampsGconfKeys
+import GrampsKeys
 import PaperMenu
 import Errors
 import GenericFilter
@@ -962,7 +962,7 @@ class ReportDialog(BareReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return GrampsGconfKeys.get_report_dir()
+        return GrampsKeys.get_report_dir()
 
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -972,7 +972,7 @@ class ReportDialog(BareReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        GrampsGconfKeys.save_report_dir(value)
+        GrampsKeys.save_report_dir(value)
 
     #------------------------------------------------------------------------
     #

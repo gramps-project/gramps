@@ -224,9 +224,9 @@ def view_photo(photo):
         os.execvp(args[0],args)
 
 def nautilus_icon(icon,mime_type):
-    import GrampsGconfKeys
+    import GrampsKeys
     
-    theme = GrampsGconfKeys.client.get_string("/desktop/gnome/file_views/icon_theme")
+    theme = GrampsKeys.client.get_string("/desktop/gnome/file_views/icon_theme")
 
     if icon :
         newicon = "%s/%s/%s.png" % (const.nautdir,theme,icon)
