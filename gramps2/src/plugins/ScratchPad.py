@@ -351,6 +351,42 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
 
         return s
 
+class ScratchPadName(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.NAME]
+    DRAG_TARGET  = DdTargets.NAME
+    ICON         = BLANK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Name")
+        self._title = self._obj.get_name()
+        self._value = self._obj.get_type()
+
+
+    def tooltip(self):
+        global escape
+        
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Name"),
+            _("Name"),escape(self._obj.get_name()),
+            _("Type"),escape(self._obj.get_type()))
+
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
+
 class ScratchPadText(ScratchPadWrapper):
 
     DROP_TARGETS = DdTargets.all_text()
@@ -460,6 +496,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadAttribute)
         self.register_wrapper_class(ScratchPadFamilyAttribute)
         self.register_wrapper_class(ScratchPadSourceRef)
+        self.register_wrapper_class(ScratchPadName)
         self.register_wrapper_class(ScratchPadText)
 
     def register_wrapper_class(self,wrapper_class):

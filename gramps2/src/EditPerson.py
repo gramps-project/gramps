@@ -400,6 +400,17 @@ class EditPerson:
                 self.flowed.set_active(1)
             Utils.bold_label(self.notes_label)
 
+        self.name_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                      [DdTargets.NAME.target()],
+                                      ACTION_COPY)
+        self.name_list.drag_source_set(BUTTON1_MASK,
+                                        [DdTargets.NAME.target()],
+                                        ACTION_COPY)
+        self.name_list.connect('drag_data_get', self.name_drag_data_get)
+        self.name_list.connect('drag_begin', self.name_drag_begin)
+        self.name_list.connect('drag_data_received',
+                                self.name_drag_data_received)
+
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                       [DdTargets.EVENT.target()],
                                       ACTION_COPY)
@@ -807,7 +818,47 @@ class EditPerson:
 
     def set_lds_seal(self,obj):
         self.lds_sealing.set_status(obj.get_active())
-    
+
+    def name_drag_data_get(self,widget, context, sel_data, info, time):
+        name = self.ntree.get_selected_objects()
+
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(name[0]);
+        data = str((DdTargets.NAME.drag_type,self.person.get_handle(),pickled));
+        sel_data.set(sel_data.target, bits_per, data)
+
+    def name_drag_begin(self, context, a):
+        return
+        icon = self.ntree.get_icon()
+        t = self.ntree.tree
+        (x,y) = icon.get_size()
+        mask = gtk.gdk.Pixmap(self.window.window,x,y,1)
+        mask.draw_rectangle(t.get_style().white_gc, True, 0,0,x,y)
+        t.drag_source_set_icon(t.get_colormap(),icon,mask)
+
+    def name_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        row = self.ntree.get_row_at(x,y)
+        
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if mytype != DdTargets.NAME.drag_type:
+                return
+            elif person == self.person.get_handle():
+                self.move_element(self.nlist,self.ntree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                for src in foo.get_source_references():
+                    base_handle = src.get_base_handle()
+                    newbase = self.db.get_source_from_handle(base_handle)
+                    src.set_base_handle(newbase.get_handle())
+
+                self.nlist.insert(row,foo)
+
+            self.lists_changed = True
+            self.redraw_name_list()
+
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
         row = self.etree.get_row_at(x,y)
         
