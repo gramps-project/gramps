@@ -856,7 +856,7 @@ def on_edit_source_clicked(obj):
 #-------------------------------------------------------------------------
 def new_source_after_edit(source):
     database.addSource(source)
-    update_display(1)
+    update_display(0)
 
 #-------------------------------------------------------------------------
 #
@@ -864,7 +864,7 @@ def new_source_after_edit(source):
 #
 #-------------------------------------------------------------------------
 def update_source_after_edit(source):
-    update_display(1)
+    update_display(0)
     
 #-------------------------------------------------------------------------
 #
@@ -1891,8 +1891,6 @@ def new_after_edit(person):
                   sort.build_sort_birth(bday), sort.build_sort_death(dday)])
         person_list.set_row_data(0,pos)
         sort_person_list()
-        
-#    update_display(1)
 
 #-------------------------------------------------------------------------
 #
