@@ -1,3 +1,9 @@
+2003-11-23  Don Allingham  <dona@localhost.localdomain>
+	* src/gramps_main.py: just update information after an edit
+	instead of deleting/re-enter. Caused pygtk to segfault
+	* src/PeopleView.py: provide update person function
+	* src/dialog.glade: remove unused callbacks
+	
 2003-11-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ChooseParents.py (ChooseParents.__init__): Revert the dialog 
 	back to being non-modal (otherwise adding new people is impossible).
