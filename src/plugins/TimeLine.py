@@ -86,6 +86,7 @@ class TimeLine:
         if output:
             self.standalone = 1
             self.d.open(output)
+            self.d.init()
         else:
             self.standalone = 0
 
