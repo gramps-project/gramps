@@ -16,23 +16,23 @@
 
       <!-- =============== Appendices Subsection ================ -->
   <sect2 id="append-cmdline">
-	  <title>Manuel de r?f?rence pour l'utilisation en ligne de commande</title>
-	  <para>Cette annexe d?crit les possibilit?s offertes par &app; en 
+	  <title>Manuel de référence pour l'utilisation en ligne de commande</title>
+	  <para>Cette annexe décrit les possibilités offertes par &app; en 
   ligne de commande, depuis un terminal. </para>
   
-  <para>Notons ici que &app; est ?crit pour ?tre pilot? ? travers
-  son interface graphique. Il ne peut pas ?tre utilis? dans un mode
-  strictement limit? au texte. Les modifications pour le faire seraient
-  tr?s importantes. C'est pourquoi les options de la ligne de commande
-  ne visent pas l'ind?pendance par rapport au mode graphique.
-  En fait, elles rendent seulement certaines t?ches fr?quentes plus
-  commodes et ex?cutables depuis des scripts. L'affichage
-  graphique doit cependant toujours ?tre accessible.
+  <para>Notons ici que &app; est écrit pour être piloté à travers
+  son interface graphique. Il ne peut pas être utilisé dans un mode
+  strictement limité au texte. Les modifications pour le faire seraient
+  très importantes. C'est pourquoi les options de la ligne de commande
+  ne visent pas l'indépendance par rapport au mode graphique.
+  En fait, elles rendent seulement certaines tâches fréquentes plus
+  commodes et exécutables depuis des scripts. L'affichage
+  graphique doit cependant toujours être accessible.
   </para>
 
-  <para>En r?sum?, les options de la ligne de commande fournissent
+  <para>En résumé, les options de la ligne de commande fournissent
 	  un mode non-interactif mais n'affranchissent pas d'un
-	  affichage graphique. C'est comme ?? !
+	  affichage graphique. C'est comme çà !
   </para>
 
 
@@ -42,38 +42,38 @@
       <para>Voici la liste des options de lancement de &app; : </para>
           <variablelist>
           <varlistentry><term>Options de format</term>
-          <listitem><para> Le format des fichiers de lecture ou d'?criture est donn? par l'option
+          <listitem><para> Le format des fichiers de lecture ou d'écriture est donné par l'option
           	<command>-f</command> <replaceable>format</replaceable>
-          <replaceable>format</replaceable> est ? choisir parmi un des choix suivants :
+          <replaceable>format</replaceable> est à choisir parmi un des choix suivants :
           	<variablelist>
           	<varlistentry><term>gramps</term>
           	<listitem><para> &app; chemin. Ce format est disponible 
-		en lecture comme en ?criture. Il est devin? d'apr?s la nature
-		la nature (fichier ou r?pertoire) du chemin. 
+		en lecture comme en écriture. Il est deviné d'après la nature
+		la nature (fichier ou répertoire) du chemin. 
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
           	<listitem><para> fichier GEDCOM. Ce format est disponible 
-		en lecture comme en ?criture. Il est devin?
+		en lecture comme en écriture. Il est deviné
                 si le nom de fichier a comme suffixe .ged.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
           	<listitem><para> &app; package. Ce format est disponible 
-		en lecture comme en ?criture. Il est devin?
+		en lecture comme en écriture. Il est deviné
                 si le nom de fichier a comme suffixe .tgz .
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
           	<listitem><para>Web Family Tree. Ce format est disponible 
-		en ?criture seulement. Il est devin?
+		en écriture seulement. Il est deviné
                 si le nom de fichier a comme suffixe .wft.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>iso</term>
           	<listitem><para>image de CD. Ce format  est disponible
-		en ?criture seulement. Il doit toujours ?tre
-		pr?cis? explicitement.
+		en écriture seulement. Il doit toujours être
+		précisé explicitement.
                 </para></listitem></varlistentry>
 
           	</variablelist>
@@ -82,52 +82,52 @@
           </varlistentry>
 
           <varlistentry><term>Options de lecture</term>
-          <listitem><para> Les fichiers ? lire sont sp?cifi?s avec l'option 
+          <listitem><para> Les fichiers à lire sont spécifiés avec l'option 
 			  <command>-i</command> <replaceable>chemin</replaceable>.
-          Le format peut ?tre pr?cis? avec l'option <command>-f</command> 
-          imm?diatement apr?s le <replaceable>chemin</replaceable>. 
-	  Si le format n'est pas pr?cis?, il sera devin? d'apr?s le 
-          <replaceable>chemin</replaceable> donn?. Pour le format <term>gramps</term>, 
+          Le format peut être précisé avec l'option <command>-f</command> 
+          immédiatement après le <replaceable>chemin</replaceable>. 
+	  Si le format n'est pas précisé, il sera deviné d'après le 
+          <replaceable>chemin</replaceable> donné. Pour le format <term>gramps</term>, 
           le <replaceable>chemin</replaceable> est en fait le 
-          nom du r?pertoire dans lequel les donn?es gramps sont plac?es. Pour les formats 
+          nom du répertoire dans lequel les données gramps sont placées. Pour les formats 
           <term>gedcom</term> et <term>gramps-pkg</term>, le 
-          <replaceable>chemin</replaceable> est le nom du fichier de donn?es. </para>
+          <replaceable>chemin</replaceable> est le nom du fichier de données. </para>
 
-	  <para>Quand plusieurs fichiers sont ? lire, chaque nom de fichier doit ?tre
-	  pr?c?d? par une commande <command>-i</command>. 
-	  Les fichiers sont lus dans l'ordre des arguments, c'est ? dire que 
+	  <para>Quand plusieurs fichiers sont à lire, chaque nom de fichier doit être
+	  précédé par une commande <command>-i</command>. 
+	  Les fichiers sont lus dans l'ordre des arguments, c'est à dire que 
           <command>-i</command> <replaceable>chemin1</replaceable> 
           <command>-i</command> <replaceable>chemin2</replaceable> 
           et 
           <command>-i</command> <replaceable>chemin2</replaceable> 
           <command>-i</command> <replaceable>chemin1</replaceable> 
-	  peuvent ne pas donner les m?mes identifications gramps dans les donn?es apr?s chargement.
+	  peuvent ne pas donner les mêmes identifications gramps dans les données après chargement.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Options d'?criture</term>
-          <listitem><para> Les fichiers ? ?crire sont pr?cis?s par l'option 
+          <varlistentry><term>Options d'écriture</term>
+          <listitem><para> Les fichiers à écrire sont précisés par l'option 
 	  <command>-o</command> <replaceable>chemin</replaceable>.
-          Le format peut ?tre sp?cifi? par l'option <command>-f</command> 
-          plac?e imm?diatement apr?s le <replaceable>chemin</replaceable>. 
-          Si ce n'est pas le cas, il sera devin? d'apr?s le 
+          Le format peut être spécifié par l'option <command>-f</command> 
+          placée immédiatement après le <replaceable>chemin</replaceable>. 
+          Si ce n'est pas le cas, il sera deviné d'après le 
           <replaceable>chemin</replaceable>. Pour les formats <term>gramps</term> 
           et <term>iso</term>, le <replaceable>chemin</replaceable> 
-          est en fait le nom du r?pertoire o? seront ?crites les donn?es gramps. 
+          est en fait le nom du répertoire où seront écrites les données gramps. 
           Pour les formats <term>gedcom</term>, <term>wft</term>, 
           et <term>gramps-pkg</term>, le <replaceable>chemin</replaceable> 
-          est le nom du fichier ?crit.
+          est le nom du fichier écrit.
           </para>
 
-          <para>Quand plusieurs fichiers de sortie sont pr?cis?s, chacun doit ?tre
-          pr?c?d? par une option <command>-o</command> . Les fichiers sont ?crits 
+          <para>Quand plusieurs fichiers de sortie sont précisés, chacun doit être
+          précédé par une option <command>-o</command> . Les fichiers sont écrits 
 	  un par un dans l'ordre des arguments. </para></listitem>
           </varlistentry>
 
           <varlistentry><term>Options d'action</term>
-          <listitem><para>L'action ? ex?cuter sur les donn?es lues peut ?tre pr?cis?e
+          <listitem><para>L'action à exécuter sur les données lues peut être précisée
           avec l'option <command>-a</command> <replaceable>action</replaceable>.
-          Ceci est fait apr?s que toutes les lectures ont ?t? faites avec succ?s. 
+          Ceci est fait après que toutes les lectures ont été faites avec succès. 
           Les actions actuellement disponibles sont <term>summary</term> (comme 
           <menuchoice><guimenu>Reports</guimenu> <guisubmenu>View</guisubmenu>
 	  <guimenuitem>Summary</guimenuitem></menuchoice>)
@@ -136,8 +136,8 @@
 	  <guimenuitem>Check and Repair</guimenuitem></menuchoice>).
           </para>
 
-          <para>Si plusieurs actions de sorties sont donn?es, chacune doit ?tre pr?c?d?e par une option
-          <command>-a</command>. Les actions sont ex?cut?es une par une dans l'ordre des arguments.
+          <para>Si plusieurs actions de sorties sont données, chacune doit être précédée par une option
+          <command>-a</command>. Les actions sont exécutées une par une dans l'ordre des arguments.
           </para></listitem>
           </varlistentry>
 
@@ -150,20 +150,20 @@
       
        <para>L'ordre des options <command>-i</command>, <command>-o</command>, 
        ou <command>-a</command> entre elles n'a pas de signification.
-       L'ordre r?el d'ex?cution est toujours : les lectures (s'il y en a) puis les
-       ?critures (s'il y en a) et enfin les actions (s'il y en a).</para>
+       L'ordre réel d'exécution est toujours : les lectures (s'il y en a) puis les
+       écritures (s'il y en a) et enfin les actions (s'il y en a).</para>
 
-       <para>Si aucune option<command>-i</command> n'est donn?e, gramps ouvrira
-       sa fen?tre principale et commencera une session interactive avec un ensemble vide de donn?es
-       puisqu'il n'y a pas de donn?es ? traiter.</para>
+       <para>Si aucune option<command>-i</command> n'est donnée, gramps ouvrira
+       sa fenêtre principale et commencera une session interactive avec un ensemble vide de données
+       puisqu'il n'y a pas de données à traiter.</para>
                                                                                 
-       <para>Si aucune option<command>-o</command> ou <command>-a</command> n'est donn?e,
-       gramps ouvrira sa fen?tre principale et commencera une session interactive
-       avec les donn?es lues. Cet ensemble de donn?es se situe dans le r?pertoire
+       <para>Si aucune option<command>-o</command> ou <command>-a</command> n'est donnée,
+       gramps ouvrira sa fenêtre principale et commencera une session interactive
+       avec les données lues. Cet ensemble de données se situe dans le répertoire
        <replaceable>~/.gramps/import</replaceable> .</para>
                                                                                 
-       <para>Les erreurs trouv?es pendant les phases de lecture, d'?criture et d'action sont
-       rapport?es soit sur la sortie standard quand elles sont g?r?es par gramps,
+       <para>Les erreurs trouvées pendant les phases de lecture, d'écriture et d'action sont
+       rapportées soit sur la sortie standard quand elles sont gérées par gramps,
        soit sur la sortie d'erreur dans le cas contraire. Utilisez les redirections
        du shell pour les conserver dans des fichiers. </para>
 
@@ -171,8 +171,8 @@
 
       <sect3 id="cmdline-examples">
       <title>Exemples</title>
-        <para>Lecture de quatre bases de donn?es dont les formats peuvent ?tre devin?s d'apr?s les noms,
-        puis v?rification des donn?es : </para>
+        <para>Lecture de quatre bases de données dont les formats peuvent être devinés d'après les noms,
+        puis vérification des données : </para>
         <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
         <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
         <command>-i</command> <replaceable>~/db3</replaceable> 
@@ -180,9 +180,9 @@
         <command>-a</command> <replaceable>check</replaceable>
         </para> 
         
-        <para>Si vous voulez pr?ciser les formats de fichiers dans l'exemple ci-dessus, 
-        compl?tez les noms de fichiers par les options
-         <command>-f</command> appropri?es : </para>
+        <para>Si vous voulez préciser les formats de fichiers dans l'exemple ci-dessus, 
+        complétez les noms de fichiers par les options
+         <command>-f</command> appropriées : </para>
         <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
           <command>-f</command> <replaceable>gedcom</replaceable> 
         <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
@@ -194,16 +194,16 @@
         <command>-a</command> <replaceable>check</replaceable>
         </para>
 
-       <para>Pour enregistrer le r?sultat des lectures, donnez l'option
+       <para>Pour enregistrer le résultat des lectures, donnez l'option
        <command>-o</command> (utilisez l'option <command>-f</command>
-       si le nom de fichier ne permet pas ? gramps de deviner le format) : </para>
+       si le nom de fichier ne permet pas à gramps de deviner le format) : </para>
         <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
         <command>-i</command> <replaceable>chemin2.tgz</replaceable> 
         <command>-o</command> <replaceable>~/nouvel-ensemble-gramps</replaceable> 
           <command>-f</command> <replaceable>gramps-pkg</replaceable> 
         </para>
                                                                                 
-       <para>Pour sauver les erreurs de l'exemple pr?c?dent dans les fichiers
+       <para>Pour sauver les erreurs de l'exemple précédent dans les fichiers
        <replaceable>sortie</replaceable> et 
        <replaceable>erreur</replaceable>, lancez : </para>
         <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
@@ -214,7 +214,7 @@
         2&gt;<replaceable>erreur</replaceable> 
         </para>
 
-       <para>Pour lire trois ensembles de donn?es puis lancer une session interactive de gramps 
+       <para>Pour lire trois ensembles de données puis lancer une session interactive de gramps 
        sur le tout : </para>
         <para><command>gramps -i</command> <replaceable>chemin1.ged</replaceable> 
         <command>-i</command> <replaceable>chemin2.tgz</replaceable> 

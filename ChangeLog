@@ -1,3 +1,13 @@
+2003-12-18  Michel Guitel  <michel.guitel@free.fr>
+	* doc/gramps-manual/fr/cmdline.xml: Update translation.
+	* doc/gramps-manual/fr/custom.xml: Update translation.
+	* doc/gramps-manual/fr/faq.xml: Update translation.
+	* doc/gramps-manual/fr/filtref.xml: Update translation.
+	* doc/gramps-manual/fr/getstart.xml: Update translation.
+	* doc/gramps-manual/fr/gramps-manual.xml: Update translation.
+	* doc/gramps-manual/fr/keybind.xml: Update translation.
+	* doc/gramps-manual/fr/mainwin.xml: Update translation.
+
 2003-12-17  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/cmdline.xml: Provide translation.
 	* doc/gramps-manual/fr/faq.xml: Provide translation.

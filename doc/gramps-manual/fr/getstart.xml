@@ -33,18 +33,18 @@
     <varlistentry>
 	<term>Ligne de commande</term>
     	<listitem><para>Pour lancer &app; en ligne de commande, entrez
-        <command>gramps</command>, puis <keycap>Entr?e</keycap>.</para>
+        <command>gramps</command>, puis <keycap>Entrée</keycap>.</para>
 	
-	<para>Si vous voulez que &app; ouvre un ensemble de donn?es
-        lors de son lancement, sp?cifiez le fichier au lancement comme argument 
+	<para>Si vous voulez que &app; ouvre un ensemble de données
+        lors de son lancement, spécifiez le fichier au lancement comme argument 
         de la ligne de commande :</para>
 
 	<para>
 	<command>gramps -i</command> <replaceable>chemin.ged</replaceable>
     	</para> 
 
-    	<para>o? <replaceable>chemin.ged</replaceable> est le nom du fichier
-	que vous voulez ouvrir ou importer. La documentation de r?f?rence
+    	<para>où <replaceable>chemin.ged</replaceable> est le nom du fichier
+	que vous voulez ouvrir ou importer. La documentation de référence
         des options en ligne de commande est dans <xref linkend="append-cmdline"/>. 
         </para></listitem>
     </varlistentry>
@@ -53,75 +53,75 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>La premi?re utilisation de &app;</title>
+      <title>La première utilisation de &app;</title>
     <para> 
-    La premi?re fois que vous l'utilisez, GRAMPS affiche un
+    La première fois que vous l'utilisez, GRAMPS affiche un
     dialogue de premier lancement. Suivez les directives qui vous guident
-    ? travers les sections
+    à travers les sections
     <guilabel>Informations sur le chercheur</guilabel>, <guilabel>Formats de dates
-    num?riques</guilabel>, <guilabel>Utilisation d'autres calendriers</guilabel>,
+    numériques</guilabel>, <guilabel>Utilisation d'autres calendriers</guilabel>,
     et <guilabel>extensions LDS</guilabel> . La plupart de ces dialogues
-    sont simples et ne seront pas d?crits ici.
+    sont simples et ne seront pas décrits ici.
     </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>Dialogue de premier lancement : Informations sur le chercheur en g?n?alogie</title> 
+	<title>Dialogue de premier lancement : Informations sur le chercheur en généalogie</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Affiche le dialogue d'information sur le chercheur en g?n?alogie. </phrase>
+	<phrase>Affiche le dialogue d'information sur le chercheur en généalogie. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
 	<para>Saisissez vos informations personnelles dans les champs
-        de texte. &app; vous demande ces donn?es uniquement pour pouvoir cr?er
-        des fichiers Gedcom valides. Ceux-ci d?crivent le cr?ateur du fichier. 
-        Si vous le souhaitez, vous pouvez tout laisser ? blanc mais les fichiers
-        Gedcom cr??s seront alors incorrects.
+        de texte. &app; vous demande ces données uniquement pour pouvoir créer
+        des fichiers Gedcom valides. Ceux-ci décrivent le créateur du fichier. 
+        Si vous le souhaitez, vous pouvez tout laisser à blanc mais les fichiers
+        Gedcom créés seront alors incorrects.
 	</para>
 	
-	<para>Ces informations peuvent ?tre saisies plus tard dans le dialogue
-	<guilabel>Pr?f?rences</guilabel>, dans la cat?gorie
+	<para>Ces informations peuvent être saisies plus tard dans le dialogue
+	<guilabel>Préférences</guilabel>, dans la catégorie
 	<guilabel>Usage</guilabel> , sous le choix 
-        <guilabel>Recherche d'information/Information sur le chercheur en g?n?alogie</guilabel>.
+        <guilabel>Recherche d'information/Information sur le chercheur en généalogie</guilabel>.
 	</para>
 
     <!-- ================ Getting Started Sub-section  -->
       <sect2 id="choose-db-start">
-      <title>Choix d'une banque de donn?es au d?marrage</title> 
-      <para>Si &app; est lanc? sans base de donn?es ? ouvrir,
+      <title>Choix d'une banque de données au démarrage</title> 
+      <para>Si &app; est lancé sans base de données à ouvrir,
       le dialogue suivant s'ouvrira pour vous le demander.</para>
       
 	<!-- ==== Figure: Open existing/new database window ==== -->
 	<figure id="first-open"> 
-	<title>Dialogue d'ouverture d'une base de donn?es</title> 
+	<title>Dialogue d'ouverture d'une base de données</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/first-open.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Pr?sente le dialogue d'ouverture d'une base de donn?es. </phrase>
+	<phrase>Présente le dialogue d'ouverture d'une base de données. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
       
       <para>Si vous voulez ouvrir une base existante, cochez le bouton radio du haut
-      puis le bouton <guibutton>OK</guibutton> . Il vous sera alors demand? le nom
-      d'une base existante ? ouvrir. Au contraire, si vous voulez partir en cr?ant
-      une base vide, s?lectionnez Cr?er une nouvelle base XML. </para> 
+      puis le bouton <guibutton>OK</guibutton> . Il vous sera alors demandé le nom
+      d'une base existante à ouvrir. Au contraire, si vous voulez partir en créant
+      une base vide, sélectionnez Créer une nouvelle base XML. </para> 
 
-      <para>NOTE : quand vous partez avec une base de donn?es nouvelle, vous devez
+      <para>NOTE : quand vous partez avec une base de données nouvelle, vous devez
       choisir un <replaceable>REPERTOIRE</replaceable> vide et 
-      <replaceable>NON UN FICHIER</replaceable>. Cela cr?era un r?pertoire vide
-      si besoin est. Le r?pertoire que vous donnez servira ? &app; pour ranger
-      le fichier de donn?es <replaceable>data.gramps</replaceable> et ?ventuellement les
-      copies des objets multimedia. Ce r?pertoire sera mis ? jour par &app;
-      lors de chaque sauvegarde de la base de donn?es. </para>
+      <replaceable>NON UN FICHIER</replaceable>. Cela créera un répertoire vide
+      si besoin est. Le répertoire que vous donnez servira à &app; pour ranger
+      le fichier de données <replaceable>data.gramps</replaceable> et éventuellement les
+      copies des objets multimedia. Ce répertoire sera mis à jour par &app;
+      lors de chaque sauvegarde de la base de données. </para>
 
-      <para>NOTE : quand vous ouvrez une base de donn?es existantes, sp?cifiez
+      <para>NOTE : quand vous ouvrez une base de données existantes, spécifiez
       un <replaceable>REPERTOIRE</replaceable> et
-      <replaceable>NON UN FICHIER</replaceable>. Le r?pertoire que vous voulez
-      ouvrir doit contenir le fichier de donn?es <replaceable>data.gramps</replaceable>
-      et ?ventuellement les copies d'objets multimedia. Un tel r?pertoire est cr??
-      par &app; quand vous cr?ez une base vide et est mis ? jour lors de chaque 
+      <replaceable>NON UN FICHIER</replaceable>. Le répertoire que vous voulez
+      ouvrir doit contenir le fichier de données <replaceable>data.gramps</replaceable>
+      et éventuellement les copies d'objets multimedia. Un tel répertoire est créé
+      par &app; quand vous créez une base vide et est mis à jour lors de chaque 
       sauvegarde. </para>
 
       </sect2>
@@ -130,26 +130,26 @@
       <sect3 id="zodb-support">
         <title>Support optionnel du format ZODB</title> 
 
-      <para>Dans le cas o? StandaloneZODB ou bien Zope sont install?s sur votre syst?me,
-      &app; vous proposera en plus la possibilit? de cr?er une base ZODB nouvelle. 
-      Vous pouvez alors choisir de cr?er une base nouvelle au format XML ou ZODB.
-      Chaque format a ses avantages et ses inconv?nients. </para>
+      <para>Dans le cas où StandaloneZODB ou bien Zope sont installés sur votre système,
+      &app; vous proposera en plus la possibilité de créer une base ZODB nouvelle. 
+      Vous pouvez alors choisir de créer une base nouvelle au format XML ou ZODB.
+      Chaque format a ses avantages et ses inconvénients. </para>
 
-      <para>XML signifie eXtensible Markup Language et conserve les donn?es
-      dans une forme structur?e, lisible en clair. En cas de besoin, il peut ?tre 
-      facilement analys? par d'autres programmes. Il ne conserve que les donn?es
-      "pures" (sans index par exemple). Son point faible est le co?t de
-      traitement plus lourd de gros fichiers de donn?es. </para>
+      <para>XML signifie eXtensible Markup Language et conserve les données
+      dans une forme structurée, lisible en clair. En cas de besoin, il peut être 
+      facilement analysé par d'autres programmes. Il ne conserve que les données
+      "pures" (sans index par exemple). Son point faible est le coût de
+      traitement plus lourd de gros fichiers de données. </para>
 
-      <para>ZODB signifie "Zope Object Database" et fournit toutes les capacit?s
-      d'une base de donn?es. Les fichiers ZODB ne peuvent ?tre lus simplement. 
-      Ils comprennent des donn?es suppl?mentaires pour mieux traiter de grandes
-      quantit?s de donn?es. ZODB est nettement plus rapide pour
-      des ensembles de donn?es de plusieurs milliers de personnes. </para>
+      <para>ZODB signifie "Zope Object Database" et fournit toutes les capacités
+      d'une base de données. Les fichiers ZODB ne peuvent être lus simplement. 
+      Ils comprennent des données supplémentaires pour mieux traiter de grandes
+      quantités de données. ZODB est nettement plus rapide pour
+      des ensembles de données de plusieurs milliers de personnes. </para>
 
-      <para>Dire quel format de donn?es est le meilleur est difficile dans l'absolu. 
+      <para>Dire quel format de données est le meilleur est difficile dans l'absolu. 
       Si vous commencez vos recherches, une base XML vous conviendra probablement.
-      Par contre, si vous avez des milliers de personnes dans vos donn?es, vous serez
+      Par contre, si vous avez des milliers de personnes dans vos données, vous serez
       probablement mieux servis avec ZODB. </para>
 
       </sect3>
@@ -157,7 +157,7 @@
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
       <title>Avoir de l'aide</title>
-    <para> Les possibilit?s suivantes vous sont toujours accessibles ? partir du menu
+    <para> Les possibilités suivantes vous sont toujours accessibles à partir du menu
     <menuchoice><guimenu>Aide</guimenu></menuchoice> : </para>
     
 	<variablelist>
@@ -168,7 +168,7 @@
 	</varlistentry>
 
         <varlistentry><term>FAQ</term>
-        <listitem><para> Ce choix vous donne acc?s ? la Foire Aux Questions
+        <listitem><para> Ce choix vous donne accès à la Foire Aux Questions
         de &app; dans le navigateur web. </para></listitem>
         </varlistentry>
 
@@ -184,16 +184,16 @@
     
 	<varlistentry><term>Rapporter une anomalie</term>
 	<listitem><para> Ce choix vous permet d'enregistrer un rapport d'anomalie sur &app; 
-	dans le syst?me de suivi d'anomalies. </para></listitem>
+	dans le système de suivi d'anomalies. </para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>Lister les greffons</term>
-	<listitem><para> Ce choix liste les greffons charg?s par &app;. </para></listitem>
+	<listitem><para> Ce choix liste les greffons chargés par &app;. </para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>Ouvrir une base exemple</term>
-	<listitem><para> Ce choix ouvre la base de donn?es exemple install?e avec
-	&app;. Elle d?crit des personnes fictives et sert ? apprendre ? utiliser 
+	<listitem><para> Ce choix ouvre la base de données exemple installée avec
+	&app;. Elle décrit des personnes fictives et sert à apprendre à utiliser 
 	&app;. </para></listitem>
 	</varlistentry>
     

@@ -18,30 +18,30 @@
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="faq">
       <title>Foire Aux Questions</title>
-      <para>Cette annexe r?pond aux questions fr?quemment pos?es sur les listes 
-      de discussions et les forums. Elle n'est ?videmment pas limitative. 
-      Si vous souhaitez y ajouter des questions et/ou des r?ponses,
-      envoyez un message ?lectronique ? 
+      <para>Cette annexe répond aux questions fréquemment posées sur les listes 
+      de discussions et les forums. Elle n'est évidemment pas limitative. 
+      Si vous souhaitez y ajouter des questions et/ou des réponses,
+      envoyez un message électronique à 
       <ulink url="mailto:gramps-devel@lists.sf.net" type="mailto">gramps-devel@lists.sf.net</ulink>
       </para>
       
       <variablelist>
 
       <varlistentry><term>Qu'est ce que &app; ? </term>
-      <listitem><para>&app; est le Syst?me de Recherche et Analyse G?n?alogique
+      <listitem><para>&app; est le Système de Recherche et Analyse Généalogique
       (Genealogical Research and Analysis Management Program System). 
-      Autrement dit, c'est un programme personnel de g?n?alogie qui vous permet
-      de conserver, modifier et chercher dans des donn?es g?n?alogiques, avec
+      Autrement dit, c'est un programme personnel de généalogie qui vous permet
+      de conserver, modifier et chercher dans des données généalogiques, avec
       l'aide de l'ordinateur. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>O? puis-je le trouver et que co?te-t'il ? </term>
+      <varlistentry><term>Où puis-je le trouver et que coûte-t'il ? </term>
       <listitem><para> 
-      &app; peut ?tre t?l?charg? gratuitement depuis le site Internet 
+      &app; peut être téléchargé gratuitement depuis le site Internet 
       <ulink url="http://sf.net/projects/gramps" type="http">http://sf.net/projects/gramps</ulink>. 
-      C'est un projet Open Source publi? sous la licence GNU GPL.
-      Vous avez compl?tement acc?s aux programmes sources et vous avez
+      C'est un projet Open Source publié sous la licence GNU GPL.
+      Vous avez complètement accès aux programmes sources et vous avez
       le droit de redistribuer le programme et les sources librement. 
       </para></listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry><term>Fonctionne-t'il avec Windows (tm) ? </term>
       <listitem><para> 
       Non. &app; utilise les librairies GTK et GNOME. Les librairies GTK
-      ont ?t? port?es sous Windows, mais pas les librairies GNOME.
+      ont été portées sous Windows, mais pas les librairies GNOME.
       Cependant, cela pourrait changer un jour.
       </para></listitem>
       </varlistentry>
@@ -57,20 +57,20 @@
       <varlistentry><term>Fonctionne-t'il sur le Macintosh ? </term>
       <listitem><para> 
       Le projet Fink (<ulink url="http://fink.sf.net" 
-      type="http">http://fink.sf.net</ulink>) a port? une vieille version de 
-      &app; (0.8.0) sur OSX. La version Mac OSX n'est pas directement support?e
-      par le projet &app;, surtout parce qu'aucun d?veloppeur de &app;
-      n'a acc?s ? Mac OSX.</para>
+      type="http">http://fink.sf.net</ulink>) a porté une vieille version de 
+      &app; (0.8.0) sur OSX. La version Mac OSX n'est pas directement supportée
+      par le projet &app;, surtout parce qu'aucun développeur de &app;
+      n'a accès à Mac OSX.</para>
 
-      <para>La version Gnome 2 de &app; (0.9.x) n'a pas ?t? port?e par le
-      projet Fink. Vous ?tes pri?s de contacter le projet Fink pour plus
+      <para>La version Gnome 2 de &app; (0.9.x) n'a pas été portée par le
+      projet Fink. Vous êtes priés de contacter le projet Fink pour plus
       d'information.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Fonctionne-t'il avec KDE ? </term>
       <listitem><para> 
-      Oui, ? condition que les librairies GNOME n?cessaires soient install?es.
+      Oui, à condition que les librairies GNOME nécessaires soient installées.
       </para></listitem>
       </varlistentry>
 
@@ -81,53 +81,53 @@
 
       <varlistentry><term>De quelle version de GNOME ai-je besoin ? </term>
       <listitem><para> 
-      Les derni?res versions de &app; (0.9.0 et suivantes) ont besoin de GNOME 2.0 ou ult?rieures.
-      Les versions pr?c?dentes utilisaient GNOME 1.X. 
+      Les dernières versions de &app; (0.9.0 et suivantes) ont besoin de GNOME 2.0 ou ultérieures.
+      Les versions précédentes utilisaient GNOME 1.X. 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>&app; est-il compatible avec 
-      d'autres logiciels de g?n?alogie ? </term>
+      d'autres logiciels de généalogie ? </term>
       <listitem><para> 
       &app; fait tout ce qui est possible pour rester compatible avec
-      le format de donn?es g?n?alogique standard Gedcom. Nous avons
-      des filtres de lecture et d'?criture pour les fichiers Gedcom. </para>
+      le format de données généalogique standard Gedcom. Nous avons
+      des filtres de lecture et d'écriture pour les fichiers Gedcom. </para>
 
       <para>
-      Il faut savoir que le format Gedcom est mal utilis?. Chaque logiciel
-      de g?n?alogie a sa propre variante de Gedcom. Quand nous avons connaissance
-      d'une variante, il est tr?s rapide de cr?er les filtres de lecture et d'?criture. 
+      Il faut savoir que le format Gedcom est mal utilisé. Chaque logiciel
+      de généalogie a sa propre variante de Gedcom. Quand nous avons connaissance
+      d'une variante, il est très rapide de créer les filtres de lecture et d'écriture. 
       Par contre, trouver les variantes demande d'avoir l'information de la part
-      des utilisateurs. N'h?sitez pas ? nous signaler une variante non support?e
+      des utilisateurs. N'hésitez pas à nous signaler une variante non supportée
       par &app;, nous ferons ensuite de notre mieux pour la supporter !
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>&app; peut-il lire les fichiers cr??s par le logiciel de 
-      g?n?alogie SuperGenWare ? </term>
-      <listitem><para>Voir la question pr?c?dente. 
+      <varlistentry><term>&app; peut-il lire les fichiers créés par le logiciel de 
+      généalogie SuperGenWare ? </term>
+      <listitem><para>Voir la question précédente. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>&app; peut-il ?crire les fichiers lisibles par le logiciel de 
-      g?n?alogie SuperGenWare ?</term>
+      <varlistentry><term>&app; peut-il écrire les fichiers lisibles par le logiciel de 
+      généalogie SuperGenWare ?</term>
       <listitem><para>Voir au-dessus..
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>&app; peut-il imprimer mon arbre g?n?alogique ? </term>
+      <varlistentry><term>&app; peut-il imprimer mon arbre généalogique ? </term>
       <listitem><para> 
-      Oui. Chacun a son id?e sur comment doit ?tre dessin? un arbre g?n?alogique. 
-      Certains pensent qu'il faut montrer toues les familles depuis un anc?tre lointain
-      jusqu'? la racine de l'arbre, d'autres qu'il faut remonter de la personne
-      actuelle et montrer tous ses anc?tres et leurs familles. D'autres encore
-      pensent ? un tableau, ? des ?ditions en mode texte... </para>
+      Oui. Chacun a son idée sur comment doit être dessiné un arbre généalogique. 
+      Certains pensent qu'il faut montrer toues les familles depuis un ancêtre lointain
+      jusqu'à la racine de l'arbre, d'autres qu'il faut remonter de la personne
+      actuelle et montrer tous ses ancêtres et leurs familles. D'autres encore
+      pensent à un tableau, à des éditions en mode texte... </para>
 
       <para>
-      &app; peut faire tout cela, en des pr?sentations tr?s vari?es ainsi que d'autres encore. 
-      Plus g?n?ralement, le principe de greffons (plugins) permet aux utilisateurs
-      et donc ? vous-m?me, de cr?er vos propres greffons qui cr?ent vos propres rapports,
-      ?tats ou sorties papier pour aider vos recherches. 
+      &app; peut faire tout cela, en des présentations très variées ainsi que d'autres encore. 
+      Plus généralement, le principe de greffons (plugins) permet aux utilisateurs
+      et donc à vous-même, de créer vos propres greffons qui créent vos propres rapports,
+      états ou sorties papier pour aider vos recherches. 
       </para></listitem>
       </varlistentry>
 
@@ -142,35 +142,35 @@
       <varlistentry><term>&app; est-il compatible avec Internet ? </term>
       <listitem><para> 
       &app; peut garder des liens web et envoyer votre navigateur web vers elles. 
-      Il peut importer des donn?es que vous t?l?chargez depuis le R?seau. Il
-      peut exporter des donn?es que vous y enverrez. Il connait les formats
+      Il peut importer des données que vous téléchargez depuis le Réseau. Il
+      peut exporter des données que vous y enverrez. Il connait les formats
       de fichiers courants (JPEG, PNG et GIF pour les images, MP3, OGG et 
       WAV pour les sons, QuickTime, MPEG et AVI pour les video). A part cela,
-      il n'y a pas grand chose d'autre qu'un g?n?alogiqte puisse faire avec
+      il n'y a pas grand chose d'autre qu'un généalogiqte puisse faire avec
       Internet :-) . 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Puis-je cr?er une ?dition, un filtre ou un machin ? </term>
+      <varlistentry><term>Puis-je créer une édition, un filtre ou un machin ? </term>
       <listitem><para> 
-      Oui. Il y a beaucoup de fa?ons de personnaliser &app;. Vous pouvez
-      modifier ou cr?er les mod?les d'impressions. Vous avez ainsi le contr?le des
-      polices de caract?res, des couleurs et d'?l?ments de la disposition
-      des impressions. Vous pouvez aussi utiliser les r?glages de &app;
-      pour choisir les informations servant ? pr?parer l'impression. 
-      En plus de tout cela, vous pouvez cr?er vos propres filtres.
-      Cela sert ? s?lectionner des individus selon vos besoins. 
+      Oui. Il y a beaucoup de façons de personnaliser &app;. Vous pouvez
+      modifier ou créer les modèles d'impressions. Vous avez ainsi le contrôle des
+      polices de caractères, des couleurs et d'éléments de la disposition
+      des impressions. Vous pouvez aussi utiliser les réglages de &app;
+      pour choisir les informations servant à préparer l'impression. 
+      En plus de tout cela, vous pouvez créer vos propres filtres.
+      Cela sert à sélectionner des individus selon vos besoins. 
       Vous pouvez combiner ces filtres pour constituer des filtres
-      plus ?labor?s. Enfin, vous pouvez cr?er vos greffons. Ils peuvent
-      servir ? d?finir des rapports, des outils d'aide ? la recherche 
-      ou encore des filtres de lecture ou d'?criture de donn?es. Cela
+      plus élaborés. Enfin, vous pouvez créer vos greffons. Ils peuvent
+      servir à définir des rapports, des outils d'aide à la recherche 
+      ou encore des filtres de lecture ou d'écriture de données. Cela
       demande la connaissance de la programmation en Python. 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Quels standards &app; supporte-t'il ? </term>
       <listitem><para> 
-      L'amusant ? propos des standards est qu'on ne risque pas d'en manquer :-).
+      L'amusant à propos des standards est qu'on ne risque pas d'en manquer :-).
       &app; supporte les variantes suivantes de Gedcom : 
       GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
       GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion et 
@@ -178,130 +178,130 @@
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Quelle est la taille maximale d'une base de donn?es 
+      <varlistentry><term>Quelle est la taille maximale d'une base de données 
       &app; ? </term>
       <listitem><para> 
-      &app; n'a pas de limite stricte sur la taille de sa base de donn?es.
+      &app; n'a pas de limite stricte sur la taille de sa base de données.
       Il y a seulement des limites pratiques. Pour le moment, &app; charge
-      ses donn?es en m?moire, qui devient alors la ressource critique. 
+      ses données en mémoire, qui devient alors la ressource critique. 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Combien de personnes peut-on mettre dans une base 
-      de donn?es &app; ? </term>
+      de données &app; ? </term>
       <listitem><para> 
-      Nous avons exp?riment? que &app; tient jusqu'environ 15000 personnes
-      sur une configuration moyenne. Encore une fois, cela d?pend en fait
-      de la taille m?moire du syst?me. 
+      Nous avons expérimenté que &app; tient jusqu'environ 15000 personnes
+      sur une configuration moyenne. Encore une fois, cela dépend en fait
+      de la taille mémoire du système. 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Pourquoi &app; est-il si lent ? </term>
       <listitem><para> 
       Si &app; vous parait si lent, c'est probablement que vous avez une
-      grosse base de donn?es. Pour le moment, &app; charge les donn?es en
-      m?moire. En cons?quence, les temps de r?ponse s'allongent pour de gros 
-      volumes de donn?es. En particulier, le r?sultat sera catastrophique
-      si les donn?es de &app; occasionnent de la pagination (swap).
+      grosse base de données. Pour le moment, &app; charge les données en
+      mémoire. En conséquence, les temps de réponse s'allongent pour de gros 
+      volumes de données. En particulier, le résultat sera catastrophique
+      si les données de &app; occasionnent de la pagination (swap).
       </para>
       <para>
-      Ceci sera trait? dans la premi?re version stable apr?s le version 1.0 .
-      En attendant, ajouter de la m?moire peut tout changer mais nous sommes
-      conscients que ce n'est pas la meilleure fa?on de traiter le probl?me. 
-      Si vous souhaitez aider ? l'impl?mentation avec une vraie base de donn?e,
-      n'h?sitez pas ? nous contacter par courrier ?lectronique ? 
+      Ceci sera traité dans la première version stable après le version 1.0 .
+      En attendant, ajouter de la mémoire peut tout changer mais nous sommes
+      conscients que ce n'est pas la meilleure façon de traiter le problème. 
+      Si vous souhaitez aider à l'implémentation avec une vraie base de donnée,
+      n'hésitez pas à nous contacter par courrier électronique à 
       <ulink url="mailto:gramps-devel@lists.sf.net" 
       type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Ma base de donn?es est vraiment tr?s grosse.
-      Y-a t'il un moyen de la charger sans tout charger en m?moire ? </term>
+      <varlistentry><term>Ma base de données est vraiment très grosse.
+      Y-a t'il un moyen de la charger sans tout charger en mémoire ? </term>
       <listitem><para> 
       Actuellement, il n'y a pas d'autre moyen. C'est notre plus grosse 
-      priorit? apr?s la finition de la version 1.0 . L'utilisation d'une
-      vraie base de donn?es se fera dans la prochaine version stable (1.2),
-      qui am?liorera grandement les performances, tant en vitesse
-      d'ex?cution qu'en empreinte m?moire. 
+      priorité après la finition de la version 1.0 . L'utilisation d'une
+      vraie base de données se fera dans la prochaine version stable (1.2),
+      qui améliorera grandement les performances, tant en vitesse
+      d'exécution qu'en empreinte mémoire. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Pourquoi les caract?res non latins sont-ils mal
-      affich?s dans les impressions PDF ou Postscript ? </term>
+      <varlistentry><term>Pourquoi les caractères non latins sont-ils mal
+      affichés dans les impressions PDF ou Postscript ? </term>
       <listitem><para> 
-      C'est un probl?me connu. Le Postscript (et le PDF) utilisent des
-      polices de caract?res internes qui correspondent bien au jeu de caract?re
-      latin-1. En principe, on pourrait utiliser n'importe quel police de caract?res
-      mais il faudrait l'embarquer dans le fichier. C'est d?licat parce que
-      chaque syst?me g?re ? sa fa?on les polices et leur d?finition. </para>
+      C'est un problème connu. Le Postscript (et le PDF) utilisent des
+      polices de caractères internes qui correspondent bien au jeu de caractère
+      latin-1. En principe, on pourrait utiliser n'importe quel police de caractères
+      mais il faudrait l'embarquer dans le fichier. C'est délicat parce que
+      chaque système gère à sa façon les polices et leur définition. </para>
 
       <para>
-      Ce devrait ?tre r?gl? quand nous serons pass?s avec Gnome-print. 
-      Entre temps, une solution de contournement est de g?n?rer des ?ditions
-      en format OpenOffice.org, puis de g?n?rer le PDF depuis OpenOffice.org. 
+      Ce devrait être réglé quand nous serons passés avec Gnome-print. 
+      Entre temps, une solution de contournement est de générer des éditions
+      en format OpenOffice.org, puis de générer le PDF depuis OpenOffice.org. 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>Pourquoi ne peut-on pas ajouter, enlever ou modifier
       des colonnes aux listes dans les Vues Individis et Famille ? </term>
       <listitem><para> 
-      Ceci sera trait? quand l'erreur dans TreeModelSort de pygtk sera corrig?e
+      Ceci sera traité quand l'erreur dans TreeModelSort de pygtk sera corrigée
       (voir <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
       type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
       for the details).
-      D?s que la correction sera valid?e et mise dans pygtk, nous ajouterons
-      la capacit? d'ajouter, retirer et ?diter des colonnes avec tri. 
+      Dès que la correction sera validée et mise dans pygtk, nous ajouterons
+      la capacité d'ajouter, retirer et éditer des colonnes avec tri. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Je souhaiterais contribuer ? &app; en ?crivant
-      mon ?dition favorite. Comment fais-je ? </term>
+      <varlistentry><term>Je souhaiterais contribuer à &app; en écrivant
+      mon édition favorite. Comment fais-je ? </term>
       <listitem><para> 
-      La fa?on la plus simple pour ?crire de nouveaux rapports, filtres
-      ou outils est d'en copier un qui existe d?j? puis de le modifier.
-      Si cela vous convient, tant mieux ! Si votre id?e ne rentre 
+      La façon la plus simple pour écrire de nouveaux rapports, filtres
+      ou outils est d'en copier un qui existe déjà puis de le modifier.
+      Si cela vous convient, tant mieux ! Si votre idée ne rentre 
       dans la logique d'aucun outil existant, le <ulink 
       url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
-      type="http">lien</ulink> peut vous aider ? ?crire un greffon en partant de rien. 
+      type="http">lien</ulink> peut vous aider à écrire un greffon en partant de rien. 
 
       Si vous avez besoin de plus d'aide, ou si vous voulez discuter de
-      votre id?e avec nous, n'h?sitez pas ? nous contacter par messagerie
-      ?lectronique ? <ulink 
+      votre idée avec nous, n'hésitez pas à nous contacter par messagerie
+      électronique à <ulink 
       url="mailto:gramps-devel@lists.sf.net" 
       type="mailto">gramps-devel@lists.sf.net</ulink>
       </para>
 
       <para>
-      Pour tester votre r?alisation, vous pouvez sauver le greffon dans le r?pertoire
-      <replaceable>$HOME/.gramps/plugins</replaceable> o? il devrait ?tre
-      trouv? par &app; et charg? lors du lancement. 
-      Un greffon bien ?crit s'enregistre lui-m?me dans &app; et cr?e son
-      entr?e dans un menu.
+      Pour tester votre réalisation, vous pouvez sauver le greffon dans le répertoire
+      <replaceable>$HOME/.gramps/plugins</replaceable> où il devrait être
+      trouvé par &app; et chargé lors du lancement. 
+      Un greffon bien écrit s'enregistre lui-même dans &app; et crée son
+      entrée dans un menu.
       </para>
 
       <para>
       Si votre greffon vous satisfait et que vous voulez contribuer vers
-      le projet &app;, vous ?tes le bienvenu : contactez-nous ? 
+      le projet &app;, vous êtes le bienvenu : contactez-nous à 
       <ulink url="mailto:gramps-devel@lists.sf.net" 
       type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>J'ai trouv? une erreur et je veux qu'elle soit
-      corrig?e tout de suite ! Que puis-je faire ? </term>
+      <varlistentry><term>J'ai trouvé une erreur et je veux qu'elle soit
+      corrigée tout de suite ! Que puis-je faire ? </term>
       <listitem><para> 
-      La meilleure chose ? faire est de corriger l'erreur, puis d'envoyer
-      la correction ? 
+      La meilleure chose à faire est de corriger l'erreur, puis d'envoyer
+      la correction à 
       <ulink url="mailto:gramps-devel@lists.sf.net" 
       type="mailto">gramps-devel@lists.sf.net</ulink> :-)</para>
 
       <para>
       Autrement, la meilleure chose ensuite est d'envoyer un bon
-      rapport d'anomalie. Ceci peut se faire de deux fa?ons diff?rentes : 
-      (1) envoyez votre rapport ? 
+      rapport d'anomalie. Ceci peut se faire de deux façons différentes : 
+      (1) envoyez votre rapport à 
       <ulink url="mailto:gramps-bugs@lists.sf.net" 
       type="mailto">gramps-bugs@lists.sf.net</ulink>
-      ou (2) enregistrez votre rapport avec les syst?me de suivi d'erreur ?
+      ou (2) enregistrez votre rapport avec les système de suivi d'erreur à
       <ulink url="http://sf.net/tracker/?group_id=25770" type="http">
       http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
       (cette fonction est aussi disponible en choisissant
@@ -313,7 +313,7 @@
       <itemizedlist>
 
       <listitem><para>
-      La version de &app; que vous utilisez (disponible par l'entr?e de menu
+      La version de &app; que vous utilisez (disponible par l'entrée de menu
       <menuchoice><guisubmenu>Aide</guisubmenu>
       <guimenuitem>A propos</guimenuitem></menuchoice>).
       </para></listitem>
@@ -330,20 +330,20 @@
 
       <listitem><para>
       Tous les messages de trace, d'erreur ou avertissement
-      qui ont ?t? affich?s dans le terminal ou dans une fen?tre de trace s?par?e.
+      qui ont été affichés dans le terminal ou dans une fenêtre de trace séparée.
       </para></listitem>
 
       </itemizedlist>
 
-      <para>La plupart des erreurs peuvent ?tre corrig?es rapidement
+      <para>La plupart des erreurs peuvent être corrigées rapidement
       quand suffisamment d'information est fournie. Pour garantir
-      la qualit? de l'information, nous vous invitons ? suivre
+      la qualité de l'information, nous vous invitons à suivre
       vos rapports d'anomalie. En particulier, si vous enregistrez
-      un rapport sur le syst?me de suivi sf.net bug, PAR PITIE enregistrez-vous
+      un rapport sur le système de suivi sf.net bug, PAR PITIE enregistrez-vous
       sur sf.net avant de soumettre votre rapport
       (enregistrez-vous sur un compte libre si vous n'en avez pas encore). 
       Nous aurons ainsi un moyen de vous joindre si nous avons besoin de plus d'information. 
-      Si vous pr?f?rez enregistrer un rapport de fa?on anonyme, au moins 
+      Si vous préférez enregistrer un rapport de façon anonyme, au moins 
       surveillez souvent si votre page de rapport a quelque chose de nouveau,
       comme ce sera probablement le cas. </para>
 
@@ -354,32 +354,32 @@
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Il est ?vident que &app; doit absolument
-      devenir une application (client-serveur/web/PHP/weblog/Javascript/C++/distribu?e/KDE/Motif/Tcl/Win32/C#/Je-ne-sais-pas-encore-quoi).
+      <varlistentry><term>Il est évident que &app; doit absolument
+      devenir une application (client-serveur/web/PHP/weblog/Javascript/C++/distribuée/KDE/Motif/Tcl/Win32/C#/Je-ne-sais-pas-encore-quoi).
       Quand cela va-t'il se faire ? </term>
       <listitem><para> 
-      Le meilleur moyen que cela se fasse est de le faire vous-m?me.
+      Le meilleur moyen que cela se fasse est de le faire vous-même.
       Comme &app; est libre et open-source, personne ne vous interdit
-      de prendre tout le code et de continuer le d?veloppement dans
+      de prendre tout le code et de continuer le développement dans
       la direction qui vous convient. Vous devrez donner un autre nom
-      ? votre projet pour ?viter les confusions avec la suite de &app;.
+      à votre projet pour éviter les confusions avec la suite de &app;.
       Si vous voulez que le projet &app; vous fournisse des avis,
       de l'expertise, des outils ou n'importe quoi, nous serons heureux
-      de coop?rer avec votre projet, pour assurer la compatibilit?
-      ou bien des op?rations de lecture-?criture de et vers le format
-      de donn?es de votre projet. </para>
+      de coopérer avec votre projet, pour assurer la compatibilité
+      ou bien des opérations de lecture-écriture de et vers le format
+      de données de votre projet. </para>
 
       <para>
       Cependant, si vous souhaitez que le projet &app; suive votre
-      strat?gie, vous devrez convaincre les d?veloppeurs de &app;
-      que votre strat?gie est bonne pour &app; et meilleure que
-      celle pr?vue. </para>
+      stratégie, vous devrez convaincre les développeurs de &app;
+      que votre stratégie est bonne pour &app; et meilleure que
+      celle prévue. </para>
 
       <para>
-      TRUC : si les d?veloppeurs de &app; ne sont pas convaincus
-      apr?s trois messages envoy?s ? gramps-devel, peut-?tre vous feriez mieux
-      d'aller seul plut?t qu'avec un groupe d'idiots qui ne
-      peuvent pas comprendre votre g?nie :-) .
+      TRUC : si les développeurs de &app; ne sont pas convaincus
+      après trois messages envoyés à gramps-devel, peut-être vous feriez mieux
+      d'aller seul plutôt qu'avec un groupe d'idiots qui ne
+      peuvent pas comprendre votre génie :-) .
 
       </para></listitem>
       </varlistentry>
