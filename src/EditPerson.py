@@ -112,6 +112,7 @@ class EditPerson:
         self.attr_value = self.get_widget("attr_value")
         self.web_list = self.get_widget("web_list")
         self.web_url = self.get_widget("web_url")
+        self.web_go = self.get_widget("web_go")
         self.web_description = self.get_widget("url_des")
         self.addr_label = self.get_widget("address_label")
         self.addr_list = self.get_widget("address_list")
@@ -194,6 +195,7 @@ class EditPerson:
             "on_update_address_clicked" : on_update_addr_clicked,
             "on_update_attr_clicked"    : on_update_attr_clicked,
             "on_update_url_clicked"     : on_update_url_clicked,
+            "on_web_go_clicked"         : on_web_go_clicked,
             "on_web_list_select_row"    : on_web_list_select_row,
             })
 
@@ -299,11 +301,10 @@ class EditPerson:
     def redraw_url_list(self):
         length = utils.redraw_list(self.ulist,self.web_list,disp_url)
         if length > 0:
-            self.web_url.set_sensitive(1)
+            self.web_go.set_sensitive(1)
         else:
-            self.web_url.set_sensitive(0)
-            self.web_url.set_label("")
-            self.web_url.set_url(_DEFHTTP)
+            self.web_go.set_sensitive(0)
+            self.web_url.set_text("")
             self.web_description.set_text("")
 
     #---------------------------------------------------------------------
@@ -495,6 +496,14 @@ def did_data_change(obj):
 
     return changed
 
+
+def on_web_go_clicked(obj):
+    import gnome.url
+
+    text = obj.get()
+    if text != "":
+        gnome.url.show(text)
+        
 #-------------------------------------------------------------------------
 #
 # on_cancel_edit
@@ -569,17 +578,13 @@ def on_web_list_select_row(obj,row,b,c):
     url = obj.get_row_data(row)
 
     if url == None:
-        epo.web_url.set_label("")
-        epo.web_url.set_url(_DEFHTTP)
-        epo.web_url.set_sensitive(0)
+        epo.web_url.set_text("")
+        epo.web_go.set_sensitive(0)
         epo.web_description.set_text("")
     else:
         path = url.get_path()
-        if path == "":
-            path = _DEFHTTP
-        epo.web_url.set_label(path)
-        epo.web_url.set_url(path)
-        epo.web_url.set_sensitive(1)
+        epo.web_url.set_text(path)
+        epo.web_go.set_sensitive(1)
         epo.web_description.set_text(url.get_description())
 
 #-------------------------------------------------------------------------
