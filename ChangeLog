@@ -1,3 +1,7 @@
+2004-02-06  Michel Guitel  <michel.guitel@free.fr>
+	* doc/gramps-manual/fr/*.xml: Replace &app; with gramps inside
+	the title tag.
+
 2004-02-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Define handler for the gallery's Edit button.
 	* src/EditSource.py: Connect callback to the gallery's Edit button.
@@ -5,6 +9,10 @@
 	* src/EditPlace.py: Revert photos on Cancel.
 	* src/EditPerson.py: Revert photos on Cancel.
 	* src/Marriage.py: Revert photos on Cancel.
+	* doc/gramps-manual/ru/*.xml: Replace &app; with gramps inside
+	the title tag.
+	* doc/gramps-manual/C/*.xml: Replace &app; with gramps inside
+	the title tag.
 
 2004-02-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/Merge.py (gen_key,name_compare): 
