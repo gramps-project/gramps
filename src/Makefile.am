@@ -42,6 +42,7 @@ gdir_PYTHON = \
 	GedcomInfo.py\
 	GenericFilter.py\
 	GrampsCfg.py\
+	GrampsBSDDB.py\
 	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\
