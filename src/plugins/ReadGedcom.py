@@ -371,21 +371,7 @@ class GedcomParser:
             elif matches[1] == "OBJE":
                 self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
-                if matches[2] and matches[2][0] != "@":
-                    if note:
-                        note = "%s\n%s%s" % (note,matches[2],self.parse_continue_data(level+1))
-                    else:
-                        note = matches[2] + self.parse_continue_data(level+1)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.source.setNoteObj(self.nmap[matches[2]])
-                        self.share_note.append(self.source)
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(self.source)
-                        self.source.setNoteObj(noteobj)
+                note = self.parse_note(matches,self.source,level+1,note)
             elif matches[1] == "TEXT":
                 d = self.parse_continue_data(level+1)
                 if note:
@@ -508,6 +494,7 @@ class GedcomParser:
     
     def parse_family(self):
         self.addr = None
+        note = ""
         while 1:
 	    matches = self.get_next()
 
@@ -560,19 +547,7 @@ class GedcomParser:
                 self.family.setNote(note)
                 self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
-                if matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(2)
-                    self.family.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(self.family)
-                        self.family.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(self.family)
-                        self.family.setNoteObj(noteobj)
+                note = self.parse_note(matches,self.family,1,note)
             else:
                 event = Event()
                 try:
@@ -583,6 +558,26 @@ class GedcomParser:
                     self.family.setRelationship("Married")
                 self.family.addEvent(event)
 	        self.parse_family_event(event,2)
+
+    def parse_note(self,matches,obj,level,old_note):
+        if matches[2] and matches[2][0] == "@":
+            if self.nmap.has_key(matches[2]):
+                self.share_note.append(obj)
+                self.family.setNoteObj(self.nmap[matches[2]])
+            else:
+                noteobj = Note()
+                self.nmap[matches[2]] = noteobj
+                self.share_note.append(self.family)
+                obj.setNoteObj(noteobj)
+        else:
+            if old_note:
+                note = "%s\n%s%s" % (old_note,matches[2],self.parse_continue_data(level))
+            else:
+                note = matches[2] + self.parse_continue_data(level)
+            obj.setNote(note)
+            self.ignore_sub_junk(level+1)
+        return note
+        
 
     def parse_individual(self):
         name_cnt = 0
@@ -639,23 +634,7 @@ class GedcomParser:
                 else:
                     self.parse_person_object(2)
             elif matches[1] in ["NOTE","_COMM"]:
-                if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = self.person.getNote()
-                    if note == "":
-                        note = matches[2] + self.parse_continue_data(1)
-                    else:
-                        note = "%s\n\n%s%s" % (note,matches[2],self.parse_continue_data(1))
-                    self.person.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(self.person)
-                        self.person.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.share_note.append(self.person)
-                        self.nmap[matches[2]] = noteobj
-                        self.person.setNoteObj(noteobj)
+                note = self.parse_note(matches,self.person,1,note)
 	    elif matches[1] == "SEX":
                 if matches[2] == '':
                     self.person.setGender(Person.unknown)
@@ -954,24 +933,13 @@ class GedcomParser:
             elif matches[1] == "PHON":
                 pass
             elif matches[1] == "NOTE":
-                if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    address.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(address)
-                        address.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(address)
-                        address.setNoteObj(noteobj)
+                note = self.parse_note(matches,address,level+1,note)
             else:
 	        self.barf(level+1)
 
     def parse_address(self,address,level):
         first = 0
+        note = ""
         while 1:
             matches = self.get_next()
 	    if int(matches[0]) < level:
@@ -1000,6 +968,7 @@ class GedcomParser:
 	        self.barf(level+1)
 
     def parse_ord(self,ord,level):
+        note = ""
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -1024,22 +993,11 @@ class GedcomParser:
                 ord.setPlace(place)
                 self.ignore_sub_junk(level+1)
               except NameError:
+                  pass
             elif matches[1] == "SOUR":
                 ord.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "NOTE":
-                if matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    ord.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(ord)
-                        ord.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(ord)
-                        ord.setNoteObj(noteobj)
+                note = self.parse_note(matches,ord,level+1,note)
             elif matches[1] == "STAT":
                 if const.lds_status.has_key(matches[2]):
                     ord.setStatus(const.lds_status[matches[2]])
@@ -1273,24 +1231,13 @@ class GedcomParser:
                 else:
                     note = note + "\n" + matches[2]
             elif matches[1] == "NOTE":
-                if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    event.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(event)
-                        event.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(event)
-                        event.setNoteObj(noteobj)
+                note = self.parse_note(matches,event,level+1,note)
             else:
 	        self.barf(level+1)
 
     def parse_source_reference(self,source,level):
         """Reads the data associated with a SOUR reference"""
+        note = ""
         while 1:
             matches = self.get_next()
 
@@ -1314,19 +1261,7 @@ class GedcomParser:
                 else:
                     source.setConfidence(val)
             elif matches[1] == "NOTE":
-                if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    source.setComments(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(source)
-                        source.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(source)
-                        source.setNoteObj(noteobj)
+                self.ignore_sub_junk(level+1)
             else:
 	        self.barf(level+1)
         
@@ -1402,19 +1337,7 @@ class GedcomParser:
                 name.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
             elif matches[1][0:4] == "NOTE":
-                if matches[2] and matches[2][0] != "@":
-                    note = matches[2] + self.parse_continue_data(level+1)
-                    name.setNote(note)
-                    self.ignore_sub_junk(2)
-                else:
-                    if self.nmap.has_key(matches[2]):
-                        self.share_note.append(name)
-                        name.setNoteObj(self.nmap[matches[2]])
-                    else:
-                        noteobj = Note()
-                        self.nmap[matches[2]] = noteobj
-                        self.share_note.append(name)
-                        name.setNoteObj(noteobj)
+                note = self.parse_note(matches,name,level+1,note)
             else:
 	        self.barf(level+1)
 
