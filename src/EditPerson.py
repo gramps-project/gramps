@@ -82,7 +82,8 @@ class EditPerson:
         self.original_id = person.get_id()
         self.parent = parent
         if self.parent.wins_dict.has_key(self.original_id):
-            return
+            self.parent.wins_dict[self.original_id].present(None)
+	    return
         self.db = db
         self.callback = callback
         self.child_windows = []
@@ -410,19 +411,36 @@ class EditPerson:
         self.add_itself_to_winsmenu()
         self.window.show()
 
+    def close_child_windows(self):
+	for child_window in self.child_windows:
+	    child_window.close(None)
+
+    def close(self,ok=0):
+	self.gallery.close(ok)
+	self.close_child_windows()
+    	self.remove_itself_from_winsmenu()
+	self.window.destroy()
+
     def add_itself_to_winsmenu(self):
-        self.parent.wins_dict[self.original_id] = self.window
-        label = GrampsCfg.nameof(self.person)
-        if not label.strip():
-            label = _("NewPerson %(gramps_id)s") % { 'gramps_id' : self.original_id }
-        self.menu_item = gtk.MenuItem(label)
+        self.parent.wins_dict[self.original_id] = self
+        win_menu_label = GrampsCfg.nameof(self.person)
+        if not win_menu_label.strip():
+            win_menu_label = _("NewPerson")
+        self.win_menu_item = gtk.MenuItem(win_menu_label)
+	self.win_menu_item.set_submenu(gtk.Menu())
+        self.win_menu_item.show()
+        self.parent.winsmenu.append(self.win_menu_item)
+	self.menu = self.win_menu_item.get_submenu()
+	self.menu_item = gtk.MenuItem(_('Edit Person'))
         self.menu_item.connect("activate",self.present)
         self.menu_item.show()
-        self.parent.winsmenu.append(self.menu_item)
+        self.menu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
         self.parent.wins_dict.pop(self.original_id,None)
         self.menu_item.destroy()
+	self.menu.destroy()
+	self.win_menu_item.destroy()
 
     def present(self,obj):
         self.window.present()
@@ -995,9 +1013,7 @@ class EditPerson:
                        self.cancel_callback,
                        self.save)
         else:
-            self.gallery.close(0)
-            self.remove_itself_from_winsmenu()
-            self.window.destroy()
+            self.close(0)
 
     def save(self):
         self.on_apply_person_clicked(None)
@@ -1014,16 +1030,12 @@ class EditPerson:
                        self.save)
             return 1
         else:
-            self.gallery.close(0)
-            self.remove_itself_from_winsmenu()
-            self.window.destroy()
+            self.close(0)
             return 0
 
     def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
-        self.gallery.close(0)
-        self.remove_itself_from_winsmenu()
-        self.window.destroy()
+        self.close(0)
 
     def did_data_change(self):
         """Check to see if any of the data has changed from the
@@ -1582,9 +1594,7 @@ class EditPerson:
         if self.callback:
             self.callback(self)
 
-        self.gallery.close(1)
-        self.remove_itself_from_winsmenu()
-        self.window.destroy()
+        self.close(1)
 
     def get_place(self,field,makenew=0):
         text = unicode(string.strip(field.get_text()))
