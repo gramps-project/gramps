@@ -459,7 +459,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == "SOUR":
-                event.addSourceRef(self.handle_source(matches))
+                event.addSourceRef(self.handle_source(matches,level))
             else:
 	        self.barf(1)
                 
@@ -742,7 +742,7 @@ class GedcomParser:
                 else:
                     self.person.addEvent(event)
             elif matches[1] == "SOUR":
-                source_ref = self.handle_source(matches)
+                source_ref = self.handle_source(matches,2)
                 self.person.getPrimaryName().addSourceRef(source_ref)
 	    elif matches[1] == "REFN":
                 if intRE.match(matches[2]):
@@ -1026,7 +1026,7 @@ class GedcomParser:
               except NameError:
                 print 'please fix the val NameError'
             elif matches[1] == "SOUR":
-                ord.addSourceRef(self.handle_source(matches))
+                ord.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(level+1)
@@ -1072,7 +1072,7 @@ class GedcomParser:
             elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                event.addSourceRef(self.handle_source(matches))
+                event.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "PLAC":
                 val = matches[2]
                 n = string.strip(event.getName())
@@ -1126,7 +1126,7 @@ class GedcomParser:
             elif matches[1] in ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                event.addSourceRef(self.handle_source(matches))
+                event.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "FAMC":
                 family = self.db.findFamily(matches[2],self.fmap)
                 mrel,frel = self.parse_adopt_famc(level+1);
@@ -1206,7 +1206,7 @@ class GedcomParser:
             elif matches[1] in ["CAUS", "DATE","TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                attr.addSourceRef(self.handle_source(matches))
+                attr.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "PLAC":
                 val = matches[2]
                 if attr.getValue() == "":
@@ -1253,7 +1253,7 @@ class GedcomParser:
             elif matches[1] in ["TIME","AGE","AGNC","ADDR","STAT","TEMP","HUSB","WIFE","OBJE","_CHUR"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                event.addSourceRef(self.handle_source(matches))
+                event.addSourceRef(self.handle_source(matches,level))
             elif matches[1] == "PLAC":
                 val = matches[2]
                 if self.placemap.has_key(val):
@@ -1634,7 +1634,7 @@ class GedcomParser:
 
         return dateobj
 
-    def handle_source(self,matches):
+    def handle_source(self,matches,level):
         source_ref = SourceRef()
         if matches[2] and matches[2][0] != "@":
             self.localref = self.localref + 1
