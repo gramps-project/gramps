@@ -71,7 +71,6 @@ import Find
 import VersionControl
 import ReadXML
 import ListModel
-import TreeModel
 import GrampsXML
 
 try:
