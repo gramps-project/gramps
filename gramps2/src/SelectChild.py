@@ -270,28 +270,29 @@ class SelectChild:
         elif self.family:
             f = self.family.getFather()
             if f:
-                return f.getPrimaryName().getSurname()
-        return ""
+                pname = f.getPrimaryName()
+                return (pname.getSurnamePrefix(),pname.getSurname())
+        return ("","")
 
     def no_name(self,val):
-        return ""
+        return ("","")
 
     def latin_american(self,val):
         if self.family:
             father = self.family.getFather()
             mother = self.family.getMother()
             if not father or not mother:
-                return ""
+                return ("","")
             fsn = father.getPrimaryName().getSurname()
             msn = mother.getPrimaryName().getSurname()
             if not father or not mother:
-                return ""
+                return ("","")
             try:
-                return "%s %s" % (fsn.split()[0],msn.split()[0])
+                return ("","%s %s" % (fsn.split()[0],msn.split()[0]))
             except:
-                return ""
+                return ("","")
         else:
-            return ""
+            return ("","")
 
     def icelandic(self,val):
         fname = ""
@@ -304,11 +305,11 @@ class SelectChild:
         if fname:
             fname = string.split(fname)[0]
         if val == 0:
-            return "%ssson" % fname
+            return ("","%ssson" % fname)
         elif val == 1:
-            return "%sdóttir" % fname
+            return ("","%sdóttir" % fname)
         else:
-            return ""
+            return ("","")
 
 class EditRel:
 

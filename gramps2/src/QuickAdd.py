@@ -42,7 +42,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class QuickAdd:
-    def __init__(self,db,sex,callback,default_name = ""):
+    def __init__(self,db,sex,callback,default_name = ("","")):
         self.db = db
         self.callback = callback
         
@@ -62,8 +62,8 @@ class QuickAdd:
         Utils.set_titles(self.window,title, _('Add Person'))
         
         self.c = AutoComp.AutoCombo(combo,self.db.getSurnames())
-        if default_name:
-            self.surname.set_text(default_name)
+        if default_name[1]:
+            self.surname.set_text(default_name[1])
             
     def close(self,obj):
         surname = self.surname.get_text()

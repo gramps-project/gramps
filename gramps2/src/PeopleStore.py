@@ -228,7 +228,7 @@ class PeopleStore:
                     self.model.set_value(new_iter,col,o)
                     col += 1
                 self.model.set_value(new_iter,_BCOL,pango.WEIGHT_NORMAL)
-                self.parent.id2col[d[1]] = (self.model,new_iter)
+                self.parent.id2col[d[1]] = (self,new_iter)
     
     def add(self,data,select=0):
         self.count = self.count + 1
@@ -244,8 +244,8 @@ class PeopleStore:
             self.model.set_value(top,0,name)
             self.model.set_value(top,_BCOL,pango.WEIGHT_BOLD)
             self.tree_roots[name] = top
-        
-        if self.tree_open[name]:
+
+        if self.tree_open[name] or select:
             iter = self.model.append(top)
             col = 0
             for object in data[:-1]:

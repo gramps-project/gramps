@@ -477,7 +477,6 @@ class FamilyView:
             return
 
         person = RelLib.Person()
-
         autoname = GrampsCfg.lastnamegen
         
         if autoname == 0:
@@ -488,7 +487,8 @@ class FamilyView:
             name = self.icelandic(0)
         else:
             name = ""
-        person.getPrimaryName().setSurname(name)
+        person.getPrimaryName().setSurname(name[1])
+        person.getPrimaryName().setSurnamePrefix(name[0])
 
         try:
             EditPerson.EditPerson(person, self.parent.db, self.child_after_edit)
@@ -1057,15 +1057,17 @@ class FamilyView:
 
     def north_american(self,val):
         if self.person.getGender() == RelLib.Person.male:
-            return self.person.getPrimaryName().getSurname()
+            pname = self.person.getPrimaryName()
+            return (pname.getSurnamePrefix(),pname.getSurname())
         elif self.family:
             f = self.family.getFather()
             if f:
-                return f.getPrimaryName().getSurname()
+                pname = f.getPrimaryName()
+                return (pname.getSurnamePrefix(),pname.getSurname())
         return ""
 
     def no_name(self,val):
-        return ""
+        return ("","")
 
     def latin_american(self,val):
         if self.family:
@@ -1076,13 +1078,13 @@ class FamilyView:
             fsn = father.getPrimaryName().getSurname()
             msn = mother.getPrimaryName().getSurname()
             if not father or not mother:
-                return ""
+                return ("","")
             try:
-                return "%s %s" % (fsn.split()[0],msn.split()[0])
+                return ("","%s %s" % (fsn.split()[0],msn.split()[0]))
             except:
-                return ""
+                return ("","")
         else:
-            return ""
+            return ("","")
 
     def icelandic(self,val):
         fname = ""
@@ -1095,11 +1097,11 @@ class FamilyView:
         if fname:
             fname = fname.split()[0]
         if val == 0:
-            return "%ssson" % fname
+            return ("","%ssson" % fname)
         elif val == 1:
-            return "%sdóttir" % fname
+            return ("","%sdóttir" % fname)
         else:
-            return ""
+            return ("","")
 
     def drag_begin(self, obj, context):
         return 
