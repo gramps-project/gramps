@@ -1,13 +1,12 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@AJJRESS>, YEAR.
+# French Translation for Gramps
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Laurent Protois <laurent.protois@free.fr>, 201.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.3.2\n"
 "POT-Creation-Date: 2001-07-05 18:06-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2001-07-05 18:06-0600\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +139,7 @@ msgid "1 broken family image was found\n"
 msgstr "1 lien avec une photo de famille a été perdu\n"
 
 #: glade.c:1474
-msgid "1 broken personal image was found\n"
+msgid "1 broken family link was found\n"
 msgstr "1 lien familial a été perdu\n"
 
 #: glade.c:1480
@@ -639,7 +638,7 @@ msgid "DD/MM/YYYY"
 msgstr "JJ.MM.AAAA"
 
 #: glade.c:1234
-msgid "DD/MM/YYYY"
+msgid "DD.MM.YYYY"
 msgstr "JJ/MM/AAAA"
 
 #: glade.c:1240
