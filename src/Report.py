@@ -158,6 +158,7 @@ class ReportDialog:
         self.extra_textbox = None
         self.pagebreak_checkbox = None
         self.generations_spinbox = None
+        self.widgets = []
         
         self.window = GnomeDialog('My Window',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
         self.window.set_default(0)
@@ -280,6 +281,14 @@ class ReportDialog:
         remembered for this session of gramps unless the user saves
         his/her preferences."""
         Config.report_dir = value
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to extending the options
+    #
+    #------------------------------------------------------------------------
+    def add_option(self,label_text,widget):
+        self.widgets.append((label_text,widget))
 
     #------------------------------------------------------------------------
     #
@@ -446,12 +455,12 @@ class ReportDialog:
         choose from."""
 
         # Styles Frame
-        self.style_frame = GtkFrame('Styles')
+        self.style_frame = GtkFrame(_("Styles"))
         hbox = GtkHBox()
         hbox.set_border_width(ReportDialog.border_pad)
         self.style_menu = GtkOptionMenu()
         hbox.pack_start(self.style_menu,TRUE,TRUE,2)
-        style_button = GtkButton('Style Editor')
+        style_button = GtkButton(_("Style Editor"))
         style_button.connect('clicked',self.on_style_edit_clicked)
         hbox.pack_end(style_button,0,0,2)
         self.style_frame.add(hbox)
@@ -477,12 +486,12 @@ class ReportDialog:
         the callback from when the file format is changed."""
 
         self.output_notebook = GtkNotebook()
-        self.paper_frame = GtkFrame('Paper Options')
+        self.paper_frame = GtkFrame(_("Paper Options"))
         self.paper_frame.set_border_width(ReportDialog.frame_pad)
-        self.output_notebook.append_page(self.paper_frame,GtkLabel('Paper Options'))
-        self.html_frame = GtkFrame('HTML Options')
+        self.output_notebook.append_page(self.paper_frame,GtkLabel(_("Paper Options")))
+        self.html_frame = GtkFrame(_("HTML Options"))
         self.html_frame.set_border_width(ReportDialog.frame_pad)
-        self.output_notebook.append_page(self.html_frame,GtkLabel('HTML Options'))
+        self.output_notebook.append_page(self.html_frame,GtkLabel(_("HTML Options")))
         self.output_notebook.set_show_tabs(0)
         self.output_notebook.set_show_border(0)
         self.output_notebook.set_page(self.notebook_page)
@@ -519,7 +528,7 @@ class ReportDialog:
             self.pagecount_menu = GtkOptionMenu()
             myMenu = utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-            table.attach(GtkLabel(_("Count")),0,1,1,2,FILL,FILL,pad,pad)
+            table.attach(GtkLabel(_("Page Count")),0,1,1,2,FILL,FILL,pad,pad)
             table.attach(self.pagecount_menu,1,2,1,2,xpadding=pad,ypadding=pad)
 
     def setup_html_frame(self):
@@ -559,6 +568,8 @@ class ReportDialog:
         if string:
             max_rows = max_rows + 1
 
+        max_rows = max_rows + len(self.widgets)
+
         if max_rows == 0:
             return
 
@@ -571,7 +582,7 @@ class ReportDialog:
         pad = ReportDialog.border_pad
         if filter_strings:
             self.filter_combo = GtkCombo()
-            l = GtkLabel("Filter")
+            l = GtkLabel(_("Filter"))
             l.set_alignment(1.0,0.5)
             table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
             table.attach(self.filter_combo,1,2,row,row+1,xpadding=pad,ypadding=pad)
@@ -622,6 +633,14 @@ class ReportDialog:
             table.attach(self.extra_textbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
             row = row + 1
 #            self.topDialog.get_widget("extra_scrolledwindow").show()
+
+        # Setup requested widgets
+        for (text,widget) in self.widgets:
+            text_widget = GtkLabel(text)
+            text_widget.set_alignment(1.0,0)
+            table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
+            table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            row = row + 1
         
     def setup_other_frames(self):
         """Do nothing.  This sole purpose of this function is to give
