@@ -62,6 +62,8 @@ UNICODE = 2
 db = None
 callback = None
 
+UNEXPECTED_EOF = "Unexpected End of File"
+
 def nocnv(s):
     return s
 
@@ -250,7 +252,10 @@ class GedcomParser:
 
     def get_next(self):
         if self.backoff == 0:
-            self.text = self.cnv(string.strip(self.f.readline()))
+            next_line = self.f.readline()
+            if next_line == '':
+                raise UNEXPECTED_EOF
+            self.text = self.cnv(string.strip(next_line))
             self.text = string.translate(self.text,self.trans,self.delc)
             
             self.index = self.index + 1
@@ -294,10 +299,15 @@ class GedcomParser:
         self.index = 0
         self.fam_count = 0
         self.indi_count = 0
-	self.parse_header()
-        self.parse_submitter()
-	self.parse_record()
-        self.parse_trailer()
+        try:
+            self.parse_header()
+            self.parse_submitter()
+            self.parse_record()
+            self.parse_trailer()
+        except UNEXPECTED_EOF:
+            self.error_text_obj.insert_defaults('Error: Incomplete file')
+            self.error_text_obj.insert_defaults('\n')
+            
         self.update(self.families_obj,str(self.fam_count))
         self.update(self.people_obj,str(self.indi_count))
         self.break_note_links()
