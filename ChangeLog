@@ -1,6 +1,7 @@
 2004-04-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/RTFDoc.py: Completely switch from grampslib.
 	* src/docgen/PdfDoc.py: Typo.
+	* src/docgen/HtmlDoc.py: Typo.
 
 2004-04-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SelectChild.py (on_save_child_clicked): Corrections.
