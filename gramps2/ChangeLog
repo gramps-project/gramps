@@ -1,3 +1,8 @@
+2005-02-25 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DbPrompter.py (GrampsFormatWidget): Add class;
+	(format_maker): Add_function; (NewSaveasDbPrompter.chooser): Support
+	for explicit format selection.
+
 2005-02-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (on_select_row): Add garbage collection call.
 
