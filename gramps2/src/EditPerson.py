@@ -282,7 +282,7 @@ class EditPerson:
                         or (not self.lds_sealing.isEmpty()):
                 Utils.bold_label(self.lds_tab)
 
-        types = const.NameTypesMap.keys()
+        types = const.NameTypesMap.get_values()
         types.sort()
         self.autotype = AutoComp.AutoCombo(self.ntype_field,types)
         self.write_primary_name()
@@ -1030,7 +1030,7 @@ class EditPerson:
             changed = 1
         if surname.upper() != name.getSurname().upper():
             changed = 1
-        if ntype != const.InverseNameTypesMap[name.getType()]:
+        if ntype != const.NameTypesMap.find_value(name.getType()):
             changed = 1
         if given != name.getFirstName():
             changed = 1
@@ -1238,7 +1238,7 @@ class EditPerson:
             self.alt_last_field.set_text(name.getSurname())
             self.alt_suffix_field.set_text(name.getSuffix())
             self.alt_prefix_field.set_text(name.getSurnamePrefix())
-            self.name_type_field.set_text(const.InverseNameTypesMap[name.getType()])
+            self.name_type_field.set_text(const.NameTypesMap.find_value(name.getType()))
             if len(name.getSourceRefList()) > 0:
                 psrc = name.getSourceRefList()[0]
                 self.name_src_field.set_text(short(psrc.getBase().getTitle()))
@@ -1387,8 +1387,8 @@ class EditPerson:
         if prefix != name.getSurnamePrefix():
             name.setSurnamePrefix(prefix)
 
-        if const.NameTypesMap.has_key(ntype):
-            ntype = const.NameTypesMap[ntype]
+        if const.NameTypesMap.has_value(ntype):
+            ntype = const.NameTypesMap.find_key(ntype)
         else:
             ntype = "Birth Name"
 

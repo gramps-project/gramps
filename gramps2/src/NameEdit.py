@@ -70,7 +70,7 @@ class NameEditor:
         self.flowed = self.top.get_widget("alt_flowed")
         self.preform = self.top.get_widget("alt_preform")
 
-        types = const.NameTypesMap.keys()
+        types = const.NameTypesMap.get_values()
         types.sort()
         self.type_field.set_popdown_strings(types)
         self.typecomp = AutoComp.AutoEntry(self.type_field.entry,types)
@@ -143,8 +143,8 @@ class NameEditor:
 
         type = unicode(self.type_field.entry.get_text())
 
-        if const.NameTypesMap.has_key(type):
-            type = const.NameTypesMap[type]
+        if const.NameTypesMap.has_value(type):
+            type = const.NameTypesMap.find_key(type)
         else:
             type = "Also Known As"
         
