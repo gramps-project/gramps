@@ -298,7 +298,7 @@ def _make_default_style(default_style):
     for i in range(1,32):
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
-        p.set_left_margin(max(10.0,float(i-1)))
+        p.set_left_margin(min(10.0,float(i-1)))
         p.set_description(_("The style used for the level %d display.") % i)
         default_style.add_style("DR-Level%d" % i,p)
 
