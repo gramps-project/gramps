@@ -18,7 +18,7 @@ AC_SUBST(VERSIONSTRING)
 AC_PATH_PROG(MSGFMT, msgfmt)
 AC_SUBST(MSGFMT)
 
-LANGUAGES="sv pl de fr es it pt_BR ru da_DK cs ro"
+LANGUAGES="sv pl de fr es it pt_BR ru da_DK cs ro nl"
 AC_SUBST(LANGUAGES)
 
 DISTLANGS=

@@ -743,7 +743,7 @@ class Gramps:
 
     def read_file(self,filename):
         filename = os.path.normpath(os.path.abspath(filename))
-        
+
         base = os.path.basename(filename)
         if base == const.xmlFile:
             filename = os.path.dirname(filename)
@@ -757,15 +757,12 @@ class Gramps:
                                 "a gramps.zodb file."))
             return
 
-        self.status_text(_("Loading %s ...") % filename)
-
         if self.load_database(filename) == 1:
             if filename[-1] == '/':
                 filename = filename[:-1]
             name = os.path.basename(filename)
             self.topWindow.set_title("%s - GRAMPS" % name)
         else:
-            self.status_text("")
             GrampsCfg.save_last_file("")
         
     def on_ok_button2_clicked(self,obj):
@@ -949,20 +946,33 @@ class Gramps:
             self.person_model = self.pl_page[0].model
             self.ptabs.set_current_page(0)
             return
+        
         id = self.active_person.getId()
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
-            self.ptabs.set_current_page(self.model2page[model])
-            if not self.model_used.has_key(model) or self.model_used[model] == 0:
-                self.model_used[model] = 1
-                self.apply_filter(model)
-                
-            model.selection.unselect_all()
-            model.selection.select_iter(iter);
-            itpath = model.model.get_path(iter)
-            col = model.tree.get_column(0)
-            model.tree.scroll_to_cell(itpath,col,1,0.5,0.0)
-    
+        else:
+            val = self.db.getPersonDisplay(id)
+            pg = val[5]
+            if pg:
+                pg = pg[0]
+            else:
+                pg = '@'
+            model = self.alpha_page[pg]
+            iter = None
+
+        self.ptabs.set_current_page(self.model2page[model])
+
+        if not self.model_used.has_key(model) or self.model_used[model] == 0 or not iter:
+            self.model_used[model] = 1
+            self.apply_filter(model)
+            (model,iter) = self.id2col[id]
+            
+        model.selection.unselect_all()
+        model.selection.select_iter(iter);
+        itpath = model.model.get_path(iter)
+        col = model.tree.get_column(0)
+        model.tree.scroll_to_cell(itpath,col,1,0.5,0.0)
+            
     def change_active_person(self,person):
         self.active_person = person
         self.modify_statusbar()
@@ -1133,7 +1143,8 @@ class Gramps:
         class_init = mi.get_data("function")
         self.DataFilter = class_init(qualifer)
         self.DataFilter.set_invert(invert_filter)
-        self.apply_filter()
+        self.model_used = {}
+        self.apply_filter(self.person_model)
 
     def on_filter_name_changed(self,obj):
         filter = obj.get_data("filter")
@@ -1304,15 +1315,19 @@ class Gramps:
         return 1
     
     def load_database(self,name):
+
         filename = "%s/%s" % (name,const.xmlFile)
         if not os.path.isfile(filename) and zodb_ok:
             filename = "%s/%s" % (name,const.zodbFile)
             self.clear_database(1)
         else:
             self.clear_database(0)
-            
+
+        self.status_text(_("Loading %s ...") % name)
         if self.db.load(filename,self.load_progress) == 0:
+            self.status_text('')
             return 0
+        self.status_text('')
         return self.post_load(name)
 
     def load_revision(self,f,name,revision):
@@ -1334,21 +1349,7 @@ class Gramps:
     def complete_rebuild(self):
         self.id2col = {}
         self.model_used = {}
-
-        for key in self.db.getPersonKeys():
-            person = self.db.getPerson(key)
-            val = self.db.getPersonDisplay(key)
-            pg = val[5]
-            if pg:
-                pg = pg[0]
-            else:
-                pg = ''
-            if pg != '@':
-                if not self.alpha_page.has_key(pg):
-                    self.create_new_panel(pg)
-
         self.apply_filter()
-
         self.goto_active_person()
         self.modify_statusbar()
 
@@ -1357,6 +1358,8 @@ class Gramps:
         self.status_text(_('Updating display...'))
 
         datacomp = self.DataFilter.compare
+        if current_model == None:
+            self.id2col = {}
 
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
@@ -1365,8 +1368,8 @@ class Gramps:
             if pg:
                 pg = pg[0]
             else:
-                pg = ''
-                
+                pg = '@'
+
             if datacomp(person):
                 if self.id2col.has_key(key):
                     continue
@@ -1377,15 +1380,15 @@ class Gramps:
                 else:
                     model = self.default_list
 
-                if current_model == None or current_model == model:
+                if current_model == model:
                     iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
                                       val[6],val[7]],key)
                     self.id2col[key] = (model,iter)
             else:
                 if self.id2col.has_key(key):
                     (model,iter) = self.id2col[key]
-                    if current_model == None or current_model == model:
-                        model.remove(iter)
+                    model.remove(iter)
+
         for i in self.pl_page:
             i.sort()
         self.modify_statusbar()
