@@ -6,6 +6,7 @@ INSTALL		= @INSTALL@
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
 CFLAGS          = -fPIC -shared -O -I/usr/include/python1.5 -I/usr/lib/python1.5/config
+LANG            = sv
 
 @SET_MAKE@
 
@@ -23,11 +24,10 @@ install:
 	${INSTALL} -c gramps.png ${prefix}/share/pixmaps
 	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
 	${INSTALL} -c gramps.desktop ${prefix}/share/gnome/apps/Applications
-	for i in locale/*; do\
-		base=`basename $$i`;\
-		${INSTALL} -d ${prefix}/share/locale/$$base; \
-		${INSTALL} -d ${prefix}/share/locale/$$base/LC_MESSAGES; \
-		${INSTALL} $$i/LC_MESSAGES/gramps.mo ${prefix}/share/locale/$$base/LC_MESSAGES; \
+	for i in ${LANG}; do\
+		${INSTALL} -d ${prefix}/share/locale/$$i; \
+		${INSTALL} -d ${prefix}/share/locale/$$i/LC_MESSAGES; \
+		${INSTALL} locale/$$i/LC_MESSAGES/gramps.mo ${prefix}/share/locale/$$i/LC_MESSAGES; \
 		done
 
 uninstall:

@@ -35,7 +35,10 @@ class Date:
     formatCode = 0
     BadFormat = _("Unknown Format")
 
-    fmt = re.compile("\s*(from|between|bet)(.+)(and|to)(.+)\s*$",
+    from_str = _("(from|between|bet)")
+    to_str = _("(and|to)")
+    
+    fmt = re.compile("\s*" + from_str + "(.+)" + to_str + "(.+)\s*$",
                       re.IGNORECASE)
 
     def __init__(self):
@@ -74,7 +77,8 @@ class Date:
         function = SingleDate.fmtFunc[Date.formatCode]
 
 	if self.range:
-	    return "from " + function(self.start) + " to " + function(self.stop)
+	    return _("from") + " " + function(self.start) + " " + \
+                   _("to") + " " + function(self.stop)
 	else:
 	    return function(self.start)
 
@@ -128,11 +132,27 @@ class SingleDate:
               "may" : 4, "jun" : 5, "jul" : 6, "aug" : 7,
               "sep" : 8, "oct" : 9, "nov" : 10,"dec" : 11 }
 
-    m2v = { "abt"   : about ,   "about" : about,   "est"   : about ,
-            "circa" : about,    "around": about,   "before": before,
-            "bef"   : before,   "after" : after,   "aft"   : after }
+    m2v = { _("abt")    : about ,
+            _("about")  : about,
+            _("est")    : about ,
+            _("circa")  : about,
+            _("around") : about,
+            _("before") : before,
+            _("bef")    : before,
+            _("after")  : after,
+            _("aft")    : after }
 
-    modifiers = "(abt|about|est|circa|around|before|after|aft|bef)"
+    modifiers = "(" + \
+                _("abt") + '|' + \
+                _("about") + '|' + \
+                _("est") + '|' + \
+                _("circa") + '|' + \
+                _("around") + '|' + \
+                _("before") + '|' + \
+                _("after") + '|' + \
+                _("aft") + '|' + \
+                _("bef") + ")"
+    
     start = "^\s*" + modifiers + "?\s*"
     
     fmt1 = re.compile(start + "(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$",
@@ -261,6 +281,17 @@ class SingleDate:
     # 
     #
     #--------------------------------------------------------------------
+    def setMonthStrEng(self,text):
+        if SingleDate.m2num.has_key(string.lower(text[0:3])):
+            self.month = SingleDate.m2num[string.lower(text[0:3])]
+        else:
+            self.month = -1
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def getMonthStr(self):
 	return SingleDate.mname[self.month]
 
@@ -300,14 +331,14 @@ class SingleDate:
         elif self.mode == SingleDate.about:
             month = SingleDate.mname[self.month]
             if self.year == -1:
-                retval = "about %s %d, ????" % (month,self.day)
+                retval = _("about") + " %s %d, ????" % (month,self.day)
             else:
-                retval = "about %s %d, %d" % (month,self.day,self.year)
+                retval = _("about") + " %s %d, %d" % (month,self.day,self.year)
             
         if self.mode == SingleDate.before:
-            retval = "before " + retval
+            retval = _("before") +" " + retval
         elif self.mode == SingleDate.after:
-            retval = "after " + retval
+            retval = _("after") + " " + retval
 
         return retval
 
@@ -346,9 +377,9 @@ class SingleDate:
                 retval = "ABT %s %s, ????" % (string.upper(month[0:3]),self.day,self.year)
             
         if self.mode == SingleDate.before:
-            retval = "BEFORE " + retval
+            retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
-            retval = "AFTER " + retval
+            retval = _("AFTER") + " " + retval
 
         return retval
 
@@ -383,9 +414,9 @@ class SingleDate:
         if self.mode == SingleDate.about:
             retval = "ABT " + retval
         elif self.mode == SingleDate.before:
-            retval = "BEFORE " + retval
+            retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
-            retval = "AFTER " + retval
+            retval = _("AFTER") + " " + retval
 
         return retval
 
@@ -449,9 +480,9 @@ class SingleDate:
                 retval = "ABT %d-%d-%d" % (self.month+1,self.day,self.year)
 
         if self.mode == SingleDate.before:
-            retval = "BEFORE " + retval
+            retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
-            retval = "AFTER " + retval
+            retval = _("AFTER") + " " + retval
 
         return retval
 
@@ -482,9 +513,9 @@ class SingleDate:
                 retval = "ABT %d/%d/%d" % (self.day,self.month+1,self.year)
 
         if self.mode == SingleDate.before:
-            retval = "BEFORE " + retval
+            retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
-            retval = "AFTER " + retval
+            retval = _("AFTER") + " " + retval
 
         return retval
 
@@ -515,9 +546,9 @@ class SingleDate:
                 retval = "ABT %d-%d-%d" % (self.day,self.month+1,self.year)
 
         if self.mode == SingleDate.before:
-            retval = "BEFORE " + retval
+            retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
-            retval = "AFTER " + retval
+            retval = _("AFTER") + " " + retval
 
         return retval
 
@@ -658,7 +689,7 @@ class SingleDate:
         if match != None:
             matches = match.groups()
             self.setMode(matches[0])
-            self.setMonthStr(matches[2])
+            self.setMonthStrEng(matches[2])
             self.setDay(string.atoi(matches[1]))
             if len(matches) == 4:
                 val = matches[3]

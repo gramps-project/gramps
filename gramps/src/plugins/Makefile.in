@@ -14,7 +14,7 @@ all:
 
 
 install:
-	-mkdir ${plugins}
+	${INSTALL} -d ${plugins}
 	${INSTALL} -c *.py *.pyo *.glade ${plugins}
 
 uninstall:
