@@ -56,7 +56,7 @@ from SourceView import SourceView
 from MediaView import MediaView
 from FamilyView import FamilyView
 
-from QuestionDialog import QuestionDialog, ErrorDialog
+from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
 
 import DisplayTrace
 import Filter
@@ -355,6 +355,10 @@ class Gramps:
 
         self.enable_sidebar(self.use_sidebar)
         self.enable_filter(self.use_filter)
+
+        WarningDialog("This is a non-stable, prerelease version of GRAMPS.\n"
+                      "Significant bugs may exist in this version, so please "
+                      "use at your own risk.")
 
     def change_alpha_page(self,obj,junk,page):
         self.person_list = self.pl_page[page].tree
