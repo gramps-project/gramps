@@ -35,7 +35,7 @@ import GrampsMime
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import Plugins
+import PluginMgr
 import ImgManip
 import Errors
 
@@ -429,6 +429,6 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(mtype, RTFDoc, 1, 0, 1, ".rtf", print_label)
+    PluginMgr.register_text_doc(mtype, RTFDoc, 1, 0, 1, ".rtf", print_label)
 except:
-    Plugins.register_text_doc(_('RTF document'), RTFDoc, 1, 0, 1, ".rtf", None)
+    PluginMgr.register_text_doc(_('RTF document'), RTFDoc, 1, 0, 1, ".rtf", None)

@@ -202,5 +202,6 @@ _filter.set_name(_('GRAMPS packages'))
 _filter.add_mime_type(_mime_type)
 _ext_list = ('.gpkg',)
 
-from Plugins import register_export
+from PluginMgr import register_export
+
 register_export(writeData,_filter,_ext_list)

@@ -685,5 +685,6 @@ _filter = gtk.FileFilter()
 _filter.set_name(_('GeneWeb files'))
 _filter.add_mime_type(_mime_type)
 
-from Plugins import register_import
+from PluginMgr import register_import
+
 register_import(importData,_filter,_mime_type,1)

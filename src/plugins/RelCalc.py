@@ -46,7 +46,7 @@ import RelLib
 import Utils
 import NameDisplay
 import ListModel
-import Plugins
+import PluginMgr
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -70,7 +70,7 @@ class RelCalc:
     def __init__(self,database,person,parent):
         self.person = person
         self.db = database
-        self.RelClass = Plugins.relationship_class
+        self.RelClass = PluginMgr.relationship_class
         self.relationship = self.RelClass(database)
         self.parent = parent
         self.win_key = self
@@ -200,7 +200,7 @@ class RelCalc:
 #
 #-------------------------------------------------------------------------
 
-Plugins.register_tool(
+PluginMgr.register_tool(
     runTool,
     _("Relationship calculator"),
     category=_("Utilities"),

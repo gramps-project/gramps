@@ -1398,6 +1398,8 @@ class IsSpouseOfFilterMatch(Rule):
 class GenericFilter:
     """Filter class that consists of several rules"""
     
+    logical_functions = ['or', 'and', 'xor', 'one']
+
     def __init__(self,source=None):
         if source:
             self.need_param = source.need_param
@@ -1415,7 +1417,7 @@ class GenericFilter:
             self.invert = 0
 
     def set_logical_op(self,val):
-        if val in const.logical_functions:
+        if val in GenericFilter.logical_functions:
             self.logical_op = val
         else:
             self.logical_op = 'and'

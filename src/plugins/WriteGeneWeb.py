@@ -582,5 +582,6 @@ _description = _('GeneWeb is a web based genealogy program.')
 _config = (_('GeneWeb export options'),GeneWebWriterOptionBox)
 _filename = 'gw'
 
-from Plugins import register_export
+from PluginMgr import register_export
+
 register_export(exportData,_title,_description,_config,_filename)

@@ -41,7 +41,7 @@ from math import pi, cos, sin, fabs
 import Errors
 import BaseDoc
 import const
-import Plugins
+import PluginMgr
 import ImgManip
 import FontScale
 import GrampsMime
@@ -975,10 +975,10 @@ try:
     else:
         print_label = None
 
-    Plugins.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
-    Plugins.register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
-    Plugins.register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxw",print_label);
+    PluginMgr.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
+    PluginMgr.register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
+    PluginMgr.register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxw",print_label);
 except:
-    Plugins.register_text_doc(_('OpenOffice.org Writer'), OpenOfficeDoc,1,1,1,".sxw", None)
-    Plugins.register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
-    Plugins.register_draw_doc(_("OpenOffice.org Writer"),   OpenOfficeDoc,1,1,".sxx",None);
+    PluginMgr.register_text_doc(_('OpenOffice.org Writer'), OpenOfficeDoc,1,1,1,".sxw", None)
+    PluginMgr.register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
+    PluginMgr.register_draw_doc(_("OpenOffice.org Writer"),   OpenOfficeDoc,1,1,".sxx",None);

@@ -40,7 +40,7 @@ import string
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import Plugins
+import PluginMgr
 import ImgManip
 import Errors
 
@@ -425,7 +425,7 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 # Register the document generator with the system
 #
 #------------------------------------------------------------------------
-Plugins.register_text_doc(
+PluginMgr.register_text_doc(
     name=_("LaTeX"),
     classref=LaTeXDoc,
     table=1,

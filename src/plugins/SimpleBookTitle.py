@@ -466,7 +466,7 @@ def write_book_item(database,person,doc,options,newpage=0):
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_book_item
+from PluginMgr import register_book_item
 
 # (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
 register_book_item( 

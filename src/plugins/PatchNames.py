@@ -299,7 +299,7 @@ class PatchNames:
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_tool
+from PluginMgr import register_tool
 
 register_tool(
     runTool,

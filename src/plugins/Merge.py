@@ -650,7 +650,7 @@ def by_id(p1,p2):
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_tool
+from PluginMgr import register_tool
 
 register_tool(
     runTool,

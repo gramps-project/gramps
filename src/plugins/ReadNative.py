@@ -104,6 +104,6 @@ class ReadNative:
 #  Register with the plugin system
 #
 #------------------------------------------------------------------------
-from Plugins import register_import
+from PluginMgr import register_import
 
 register_import(readData,_title_string)

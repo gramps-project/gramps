@@ -842,7 +842,7 @@ def SystemFilterEditor(database,person,callback,parent=None):
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_tool
+from PluginMgr import register_tool
 
 register_tool(
     CustomFilterEditor,

@@ -44,7 +44,7 @@ import const
 import Report
 import BaseDoc
 import RelLib
-import Plugins
+import PluginMgr
 import ReportOptions
 from DateHandler import displayer as _dd
 
@@ -83,7 +83,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         self.sources = []
         self.sourcerefs = []
-        self.RelClass = Plugins.relationship_class
+        self.RelClass = PluginMgr.relationship_class
         self.relationship = self.RelClass(database)
 
         table = BaseDoc.TableStyle ()
@@ -988,7 +988,7 @@ class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-Plugins.register_report(
+PluginMgr.register_report(
     name = 'ancestors_report',
     category = const.CATEGORY_TEXT,
     report_class = ComprehensiveAncestorsReport,

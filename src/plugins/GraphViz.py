@@ -541,7 +541,7 @@ def get_description():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
 import sys
 
 ver = sys.version_info
