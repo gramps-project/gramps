@@ -73,11 +73,9 @@ class HtmlDoc(TextDoc):
         top_add = 1
         bottom_add = 0
 
-        print "Template name is",self.template
         if self.template and self.template != "":
             try:
                 templateFile = open(self.template,"r")
-                print "template opened"
                 for line in templateFile.readlines():
                     if top_add == 1:
                         self.top.append(line)
@@ -92,6 +90,7 @@ class HtmlDoc(TextDoc):
                     else:
                         self.bottom.append(line)
                 templateFile.close()
+
                 if top_add == 1:
                     mymsg = _("The marker '<!-- START -->' was not in the template")
                     gnome.ui.GnomeErrorDialog(mymsg)
@@ -122,6 +121,7 @@ class HtmlDoc(TextDoc):
             self.filename = filename + ".html"
 
         self.f = open(self.filename,"w")
+        
         for line in self.top:
             self.f.write(line)
 
@@ -193,7 +193,8 @@ class HtmlDoc(TextDoc):
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]
-        self.f.write('<table width="%d%%" cellspacing="0">\n' % self.tbl.get_width())
+        self.f.write('<table width="%d%%" ' % self.tbl.get_width())
+        self.f.write('cellspacing="0">\n')
 
     def end_table(self):
         self.f.write('</table>\n')
