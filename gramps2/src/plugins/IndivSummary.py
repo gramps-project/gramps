@@ -26,7 +26,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import string
 
 #------------------------------------------------------------------------
 #
@@ -51,12 +50,24 @@ from intl import gettext as _
 
 #------------------------------------------------------------------------
 #
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+
+_person_id = ""
+_max_gen = 0
+_pg_brk = 0
+_options = [ _person_id, _max_gen, _pg_brk ]
+
+
+#------------------------------------------------------------------------
+#
 # IndivSummary
 #
 #------------------------------------------------------------------------
-class IndivSummary:
+class IndivSummary(Report.Report):
 
-    def __init__(self,database,person,output,document):
+    def __init__(self,database,person,output,document,newpage):
         self.d = document
         
         c = database.getResearcher().getName()
@@ -65,6 +76,12 @@ class IndivSummary:
         self.database = database
         self.person = person
         self.output = output
+        if output:
+            self.standalone = 1
+            self.d.open(output)
+        else:
+            self.standalone = 0
+        self.newpage = newpage
         
     def setup(self):
         tbl = TextDoc.TableStyle()
@@ -72,24 +89,23 @@ class IndivSummary:
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
-        self.d.add_table_style("IndTable",tbl)
+        self.d.add_table_style("IVS-IndTable",tbl)
 
         cell = TextDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
-        self.d.add_cell_style("TableHead",cell)
+        self.d.add_cell_style("IVS-TableHead",cell)
 
         cell = TextDoc.TableCellStyle()
-        self.d.add_cell_style("NormalCell",cell)
+        self.d.add_cell_style("IVS-NormalCell",cell)
 
         cell = TextDoc.TableCellStyle()
 	cell.set_longlist(1)
-        self.d.add_cell_style("ListCell",cell)
-
-        self.d.open(self.output)
+        self.d.add_cell_style("IVS-ListCell",cell)
 
     def end(self):
-        self.d.close()
+        if self.standalone:
+            self.d.close()
 
     def write_fact(self,event):
         if event == None:
@@ -110,14 +126,14 @@ class IndivSummary:
                 val = date + " in " + place + ". " +  description
 
         self.d.start_row()
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(name)
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(val)
         self.d.end_paragraph()
         self.d.end_cell()
@@ -130,12 +146,12 @@ class IndivSummary:
     #--------------------------------------------------------------------
     def write_families(self):
 
-        self.d.start_paragraph("Normal")
+        self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
-        self.d.start_table("three","IndTable")
+        self.d.start_table("three","IVS-IndTable")
         self.d.start_row()
-        self.d.start_cell("TableHead",2)
-        self.d.start_paragraph("TableTitle")
+        self.d.start_cell("IVS-TableHead",2)
+        self.d.start_paragraph("IVS-TableTitle")
         self.d.write_text(_("Marriages/Children"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -147,8 +163,8 @@ class IndivSummary:
             else:
                 spouse = family.getFather()
             self.d.start_row()
-            self.d.start_cell("NormalCell",2)
-            self.d.start_paragraph("Spouse")
+            self.d.start_cell("IVS-NormalCell",2)
+            self.d.start_paragraph("IVS-Spouse")
             if spouse:
                 self.d.write_text(spouse.getPrimaryName().getRegularName())
             else:
@@ -163,14 +179,14 @@ class IndivSummary:
             child_list = family.getChildList()
             if len(child_list) > 0:
                 self.d.start_row()
-                self.d.start_cell("NormalCell")
-                self.d.start_paragraph("Normal")
+                self.d.start_cell("IVS-NormalCell")
+                self.d.start_paragraph("IVS-Normal")
                 self.d.write_text(_("Children"))
                 self.d.end_paragraph()
                 self.d.end_cell()
 
-                self.d.start_cell("ListCell")
-                self.d.start_paragraph("Normal")
+                self.d.start_cell("IVS-ListCell")
+                self.d.start_paragraph("IVS-Normal")
                 
                 first = 1
                 for child in family.getChildList():
@@ -185,49 +201,53 @@ class IndivSummary:
         self.d.end_table()
 
     def write_report(self):
+
+        if self.newpage:
+            self.d.page_break()
+
         photo_list = self.person.getPhotoList()
 
         name = self.person.getPrimaryName().getRegularName()
-        self.d.start_paragraph("Title")
+        self.d.start_paragraph("IVS-Title")
         self.d.write_text(_("Summary of %s") % name)
         self.d.end_paragraph()
 
-        self.d.start_paragraph("Normal")
+        self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
 
         if len(photo_list) > 0:
             object = photo_list[0].getReference()
             if object.getMimeType()[0:5] == "image":
                 file = object.getPath()
-                self.d.start_paragraph("Normal")
+                self.d.start_paragraph("IVS-Normal")
                 self.d.add_photo(file,"row",4.0,4.0)
                 self.d.end_paragraph()
 
-        self.d.start_table("one","IndTable")
+        self.d.start_table("one","IVS-IndTable")
 
         self.d.start_row()
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Name"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(self.person.getPrimaryName().getRegularName())
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
 
         self.d.start_row()
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Gender"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         if self.person.getGender() == RelLib.Person.male:
             self.d.write_text(_("Male"))
         else:
@@ -253,41 +273,41 @@ class IndivSummary:
             mother = ""
 
         self.d.start_row()
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Father"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(father)
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
 
         self.d.start_row()
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Mother"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("NormalCell")
-        self.d.start_paragraph("Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(mother)
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
         self.d.end_table()
 
-        self.d.start_paragraph("Normal")
+        self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
         
-        self.d.start_table("two","IndTable")
+        self.d.start_table("two","IVS-IndTable")
         self.d.start_row()
-        self.d.start_cell("TableHead",2)
-        self.d.start_paragraph("TableTitle")
+        self.d.start_cell("IVS-TableHead",2)
+        self.d.start_paragraph("IVS-TableTitle")
         self.d.write_text(_("Individual Facts"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -335,41 +355,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
 
     def make_default_style(self):
         """Make the default output style for the Individual Summary Report."""
-        font = TextDoc.FontStyle()
-        font.set_bold(1)
-        font.set_type_face(TextDoc.FONT_SANS_SERIF)
-        font.set_size(16)
-        p = TextDoc.ParagraphStyle()
-        p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
-        p.set_font(font)
-        p.set_description(_("The style used for the title of the page."))
-        self.default_style.add_style("Title",p)
-        
-        font = TextDoc.FontStyle()
-        font.set_bold(1)
-        font.set_type_face(TextDoc.FONT_SANS_SERIF)
-        font.set_size(12)
-        font.set_italic(1)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for category labels."))
-        self.default_style.add_style("TableTitle",p)
-        
-        font = TextDoc.FontStyle()
-        font.set_bold(1)
-        font.set_type_face(TextDoc.FONT_SANS_SERIF)
-        font.set_size(12)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_("The style used for the spouse's name."))
-        self.default_style.add_style("Spouse",p)
-    
-        font = TextDoc.FontStyle()
-        font.set_size(12)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(font)
-        p.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Normal",p)
+        _make_default_style(self.default_style)
     
     def setup_report_options(self):
         """The 'Report Options' frame is not used in this dialog."""
@@ -493,10 +479,141 @@ def get_xpm_image():
 
 #------------------------------------------------------------------------
 #
-# 
+# Book Item Options dialog
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+class IndivSummaryBareReportDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        def make_default_style(self):
+            _make_default_style(self.default_style)
+
+        self.max_gen = int(self.options[1])
+        self.pg_brk = int(self.options[2])
+        self.style_name = stl
+        self.new_person = None
+
+        self.generations_spinbox.set_value(self.max_gen)
+        self.pagebreak_checkbox.set_active(self.pg_brk)
+        
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Individual Summary"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Individual Summary Report for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return "individual_summary.xml"
+    
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
+        self.style_name = self.selected_style.get_name()
+
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the FTM Style Descendant Report options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        max_gen = int(options[1])
+        pg_brk = int(options[2])
+        return IndivSummary(database, person, None, doc, newpage)
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+
+#------------------------------------------------------------------------
+#
+# Makes the default styles
+#
+#------------------------------------------------------------------------
+def _make_default_style(default_style):
+    """Make the default output style for the Individual Summary Report."""
+    font = TextDoc.FontStyle()
+    font.set_bold(1)
+    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_size(16)
+    p = TextDoc.ParagraphStyle()
+    p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    p.set_font(font)
+    p.set_description(_("The style used for the title of the page."))
+    default_style.add_style("IVS-Title",p)
+        
+    font = TextDoc.FontStyle()
+    font.set_bold(1)
+    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_size(12)
+    font.set_italic(1)
+    p = TextDoc.ParagraphStyle()
+    p.set_font(font)
+    p.set_description(_("The style used for category labels."))
+    default_style.add_style("IVS-TableTitle",p)
+    
+    font = TextDoc.FontStyle()
+    font.set_bold(1)
+    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_size(12)
+    p = TextDoc.ParagraphStyle()
+    p.set_font(font)
+    p.set_description(_("The style used for the spouse's name."))
+    default_style.add_style("IVS-Spouse",p)
+    
+    font = TextDoc.FontStyle()
+    font.set_size(12)
+    p = TextDoc.ParagraphStyle()
+    p.set_font(font)
+    p.set_description(_('The basic style used for the text display.'))
+    default_style.add_style("IVS-Normal",p)
+
+#------------------------------------------------------------------------
+#
+# Register plugins
+#
+#------------------------------------------------------------------------
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -510,7 +627,16 @@ register_report(
     
     )
 
-
+register_book_item( 
+    _("Individual Summary"), 
+    _("Text"),
+    IndivSummaryBareReportDialog,
+    write_book_item,
+    _options,
+    "default" ,
+    "individual_summary.xml",
+    _make_default_style
+    )
 
 
 
