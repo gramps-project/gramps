@@ -18,20 +18,26 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+The core of the GRAMPS plugin system. This module provides tasks to load
+plugins from specfied directories, build menus for the different categories,
+and provide dialog to select and execute plugins.
+
+Plugins are divided into several categories. This are: reports, tools,
+filters, importer, exporters, and document generators.
+"""
+
 #-------------------------------------------------------------------------
 #
-# 
+# GTK libraries
 #
 #-------------------------------------------------------------------------
 import gtk
 import libglade
 
-from intl import gettext
-_ = gettext
-
 #-------------------------------------------------------------------------
 #
-# 
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
 import os
@@ -40,15 +46,18 @@ from re import compile
 
 #-------------------------------------------------------------------------
 #
-# 
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
 import const
 import utils
+import Config
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
-# 
+# Global lists
 #
 #-------------------------------------------------------------------------
 _reports = []
@@ -59,10 +68,12 @@ _success = []
 _failed  = []
 _attempt = []
 _loaddir = []
+_textdoc = []
+_drawdoc = []
 
 #-------------------------------------------------------------------------
 #
-# 
+# Constants
 #
 #-------------------------------------------------------------------------
 DOCSTRING = "d"
@@ -71,36 +82,45 @@ TASK      = "f"
 TITLE     = "t"
 STATUS    = "s"
 
-pymod = compile(r"^(.*)\.py$")
-
 #-------------------------------------------------------------------------
 #
-# 
+# ReportPlugins interface class
 #
 #-------------------------------------------------------------------------
 class ReportPlugins:
+    """Displays the dialog box that allows the user to select the
+    report that is desired."""
 
     def __init__(self,db,active):
+        """Display the dialog box, and build up the list of available
+        reports. This is used to build the selection tree on the left
+        hand side of the dailog box."""
+        
         self.db = db
         self.active = active
         
         self.dialog = libglade.GladeXML(const.pluginsFile,"report")
         self.dialog.signal_autoconnect({
-            "on_report_apply_clicked" : self.on_report_apply_clicked,
-            "on_report_ok_clicked"    : self.on_report_apply_clicked,
+            "on_report_apply_clicked" : self.on_apply_clicked,
+            "on_report_ok_clicked"    : self.on_apply_clicked,
             "destroy_passed_object"   : utils.destroy_passed_object
             })
 
         tree = self.dialog.get_widget("tree1")
         self.run_tool = None
-        build_tree(tree,_reports,self.on_report_node_selected)
+        build_tree(tree,_reports,self.on_node_selected)
 
-    def on_report_apply_clicked(self,obj):
+    def on_apply_clicked(self,obj):
+        """Execute the selected report"""
+
         utils.destroy_passed_object(obj)
         if self.run_tool:
             self.run_tool(self.db,self.active)
 
-    def on_report_node_selected(self,obj):
+    def on_node_selected(self,obj):
+        """Updates the informational display on the right hand side of
+        the dialog box with the description of the selected report"""
+        
         doc = obj.get_data(DOCSTRING)
         xpm = obj.get_data(IMAGE)
         status = ": %s" % obj.get_data(STATUS)
@@ -119,11 +139,18 @@ class ReportPlugins:
 
 #-------------------------------------------------------------------------
 #
-# 
+# ToolPlugins interface class
 #
 #-------------------------------------------------------------------------
 class ToolPlugins:
+    """Displays the dialog box that allows the user to select the tool
+    that is desired."""
+
     def __init__(self,db,active,update):
+        """Display the dialog box, and build up the list of available
+        reports. This is used to build the selection tree on the left
+        hand side of the dailog box."""
+
         self.db = db
         self.active = active
         self.update = update
@@ -140,11 +167,16 @@ class ToolPlugins:
         build_tree(tree,_tools,self.on_node_selected)
 
     def on_apply_clicked(self,obj):
+        """Execute the selected tool."""
+
         utils.destroy_passed_object(obj)
         if self.run_tool:
             self.run_tool(self.db,self.active,self.update)
 
     def on_node_selected(self,obj):
+        """Updates the informational display on the right hand side of
+        the dialog box with the description of the selected tool."""
+
         doc = obj.get_data(DOCSTRING)
         title = obj.get_data(TITLE)
     
@@ -154,10 +186,20 @@ class ToolPlugins:
 
 #-------------------------------------------------------------------------
 #
-# 
+# build_tree
 #
 #-------------------------------------------------------------------------
 def build_tree(tree,list,task):
+    """Populates a GtkTree with each menu item assocated with a entry
+    in the lists. The list must consist of a tuples with the following
+    format:
+
+    (task_to_call, category of report, report name, description, image, status)
+
+    Items in the same category are grouped under the same submen. The
+    task_to_call is bound to the 'select' callback of the menu entry."""
+
+    # build the tree items and group together based on the category name
     item_hash = {}
     for report in list:
         item = gtk.GtkTreeItem(report[2])
@@ -173,6 +215,8 @@ def build_tree(tree,list,task):
         else:
             item_hash[report[1]] = [item]
 
+    # add a submenu for each category, and populate it with the GtkTreeItems
+    # that are associated with it.
     key_list = item_hash.keys()
     key_list.sort()
     for key in key_list:
@@ -189,19 +233,38 @@ def build_tree(tree,list,task):
 
 #-------------------------------------------------------------------------
 #
-# 
+# load_plugins
 #
 #-------------------------------------------------------------------------
 def load_plugins(dir):
+    """Searches the specified directory, and attempts to load any python
+    modules that it finds, adding name to the _attempts list. If the module
+    successfully loads, it is added to the _success list. Each plugin is
+    responsible for registering itself in the correct manner. No attempt
+    is done in this routine to register the tasks."""
+    
     global _success,_failed,_attempt,_loaddir
     
+    # if the directory does not exist, do nothing
     if not os.path.isdir(dir):
         return
 
+    # if the path has not already been loaded, save it in the _loaddir
+    # list for use on reloading
+    
     if dir not in _loaddir:
 	_loaddir.append(dir)
 
+    # add the directory to the python search path
     sys.path.append(dir)
+
+    pymod = compile(r"^(.*)\.py$")
+
+    # loop through each file in the directory, looking for files that
+    # have a .py extention, and attempt to load the file. If it succeeds,
+    # add it to the _success list. If it fails, add it to the _failure
+    # list
+    
     for file in os.listdir(dir):
         name = os.path.split(file)
         match = pymod.match(name[1])
@@ -218,7 +281,19 @@ def load_plugins(dir):
             traceback.print_exc()
             _failed.append(plugin)
 
+#-------------------------------------------------------------------------
+#
+# reload_plugins
+#
+#-------------------------------------------------------------------------
 def reload_plugins(obj):
+    """Treated as a callback, causes all plugins to get reloaded. This is
+    useful when writing and debugging a plugin"""
+    
+    pymod = compile(r"^(.*)\.py$")
+
+    # attempt to reload all plugins that have succeeded
+    # in the past
     for plugin in _success:
         try: 
             reload(plugin)
@@ -227,6 +302,9 @@ def reload_plugins(obj):
             import traceback
             traceback.print_exc()
             _failed.append(plugin)
+            
+    # attempt to load the plugins that have failed in the past
+    
     for plugin in _failed:
         try: 
             __import__(plugin)
@@ -236,12 +314,15 @@ def reload_plugins(obj):
             traceback.print_exc()
             _failed.append(plugin)
 
+    # attempt to load any new files found
     for dir in _loaddir:
  	for file in os.listdir(dir):
             name = os.path.split(file)
 	    match = pymod.match(name[1])
             if not match:
                 continue
+            if file in _attempt:
+                return
             _attempt.append(file)
             plugin = match.groups()[0]
             try: 
@@ -259,9 +340,11 @@ def reload_plugins(obj):
 #
 #-------------------------------------------------------------------------
 def register_export(task, name):
+    """Register an export filter, taking the task and name"""
     _exports.append((task, name))
 
 def register_import(task, name):
+    """Register an import filter, taking the task and name"""
     _imports.append((task, name))
 
 def register_report(task, name,
@@ -269,28 +352,36 @@ def register_report(task, name,
                     description=_("No description was provided"),
                     xpm=None,
                     status=_("Unknown")):
+    """Register a report with the plugin system"""
+    
     if xpm == None:
-        xpm_data = no_image()
-    elif type(xpm) == type([]):
-        xpm_data = xpm
-    else:
-        xpm_data = xpm
-
-    _reports.append((task, category, name, description, xpm_data, status))
+        xpm = no_image()
+    _reports.append((task, category, name, description, xpm, status))
 
 def register_tool(task, name,
                   category=_("Uncategorized"),
                   description=_("No description was provided"),
                   xpm=None,
                   status=_("Unknown")):
+    """Register a tool with the plugin system"""
     if xpm == None:
-        xpm_data = no_image()
-    elif type(xpm) == type([]):
-        xpm_data = xpm
-    else:
-        xpm_data = xpm
+        xpm = no_image()
+    _tools.append((task, category, name, description, xpm, status))
 
-    _tools.append((task, category, name, description, xpm_data, status))
+
+def register_text_doc(name,classref, table, paper, style):
+    """Register a text document generator"""
+    for n in _textdoc:
+        if n[0] == name:
+            return
+    _textdoc.append((name,classref,table,paper,style))
+
+def register_draw_doc(name,classref):
+    """Register a drawing document generator"""
+    for n in _drawdoc:
+        if n[0] == name:
+            return
+    _drawdoc.append((name,classref))
 
 #-------------------------------------------------------------------------
 #
@@ -326,12 +417,27 @@ def build_menu(top_menu,list,callback):
             submenu.append(subentry)
     top_menu.set_submenu(report_menu)
 
+#-------------------------------------------------------------------------
+#
+# build_report_menu
+#
+#-------------------------------------------------------------------------
 def build_report_menu(top_menu,callback):
     build_menu(top_menu,_reports,callback)
 
+#-------------------------------------------------------------------------
+#
+# build_tools_menu
+#
+#-------------------------------------------------------------------------
 def build_tools_menu(top_menu,callback):
     build_menu(top_menu,_tools,callback)
 
+#-------------------------------------------------------------------------
+#
+# build_export_menu
+#
+#-------------------------------------------------------------------------
 def build_export_menu(top_menu,callback):
     myMenu = gtk.GtkMenu()
 
@@ -342,6 +448,11 @@ def build_export_menu(top_menu,callback):
         myMenu.append(item)
     top_menu.set_submenu(myMenu)
 
+#-------------------------------------------------------------------------
+#
+# build_import_menu
+#
+#-------------------------------------------------------------------------
 def build_import_menu(top_menu,callback):
     myMenu = gtk.GtkMenu()
 
@@ -352,13 +463,66 @@ def build_import_menu(top_menu,callback):
         myMenu.append(item)
     top_menu.set_submenu(myMenu)
 
+#-------------------------------------------------------------------------
+#
+# get_text_doc_menu
+#
+#-------------------------------------------------------------------------
+def get_text_doc_menu(main_menu,tables,callback,obj=None):
+
+    index = 0
+    myMenu = gtk.GtkMenu()
+    _textdoc.sort()
+    for item in _textdoc:
+        if tables and item[2] == 0:
+            continue
+        name = item[0]
+        menuitem = gtk.GtkMenuItem(name)
+        menuitem.set_data("name",item[1])
+        menuitem.set_data("styles",item[4])
+        menuitem.set_data("paper",item[3])
+        menuitem.set_data("obj",obj)
+        if callback:
+            menuitem.connect("activate",callback)
+        menuitem.show()
+        myMenu.append(menuitem)
+        if name == Config.output_preference:
+            myMenu.set_active(index)
+            callback(menuitem)
+        index = index + 1
+    main_menu.set_menu(myMenu)
 
 #-------------------------------------------------------------------------
 #
-# 
+# get_draw_doc_menu
+#
+#-------------------------------------------------------------------------
+def get_draw_doc_menu(main_menu,callback=None,obj=None):
+
+    index = 0
+    myMenu = gtk.GtkMenu()
+    for (name,classref) in _drawdoc:
+        menuitem = gtk.GtkMenuItem(name)
+        menuitem.set_data("name",classref)
+        menuitem.set_data("obj",obj)
+        if callback:
+            menuitem.connect("activate",callback)
+        menuitem.show()
+        myMenu.append(menuitem)
+        if name == Config.output_preference:
+            myMenu.set_active(index)
+        if callback:
+            callback(menuitem)
+        index = index + 1
+    main_menu.set_menu(myMenu)
+
+#-------------------------------------------------------------------------
+#
+# no_image
 #
 #-------------------------------------------------------------------------
 def no_image():
+    """Returns XPM data for basic 48x48 icon"""
     return [
         "48 48 5 1",
         " 	c None",

@@ -572,8 +572,9 @@ class SheetParser(handler.ContentHandler):
 #
 #------------------------------------------------------------------------
 class TextDoc:
-    def __init__(self,styles,type,orientation=PAPER_PORTRAIT):
+    def __init__(self,styles,type,template,orientation=PAPER_PORTRAIT):
         self.orientation = orientation
+        self.template = template
         if orientation == PAPER_PORTRAIT:
             self.width = type.get_width()
             self.height = type.get_height()

@@ -2009,6 +2009,8 @@ def main(arg):
 
     database = RelDataBase()
 
+    Plugins.load_plugins(const.docgenDir)
+    Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))
     Plugins.load_plugins(const.pluginsDir)
     Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
     Filter.load_filters(const.filtersDir)

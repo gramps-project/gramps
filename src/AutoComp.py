@@ -27,7 +27,10 @@ import string
 import gtk
 
 class AutoComp:
-
+    """
+    Allows allow completion of the GtkEntry widget with the entries
+    in the passed string list.
+    """
     def __init__(self,widget,plist):
         self.entry = widget
         self.nlist = [("","")]

@@ -28,6 +28,7 @@ import sort
 import string
 import utils
 import intl
+import Plugins
 
 _ = intl.gettext
 
@@ -35,7 +36,6 @@ from TextDoc import *
 from StyleEditor import *
 
 import Config
-import FindDoc
 import PaperMenu
 
 from gtk import *
@@ -898,14 +898,13 @@ class TextReportDialog(ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        FindDoc.get_text_doc_menu(self.format_menu, self.doc_uses_tables(),
+        Plugins.get_text_doc_menu(self.format_menu, self.doc_uses_tables(),
                                   self.doc_type_changed)
 
     def make_document(self):
         """Create a document of the type requested by the user."""
-        self.doc = FindDoc.make_text_doc(self.selected_style,self.format,
-                                         self.paper,self.orien,
-                                         self.template_name)
+        self.doc = self.format(self.selected_style,self.paper,
+                               self.template_name,self.orien)
 
     #------------------------------------------------------------------------
     #
@@ -942,9 +941,8 @@ class DrawReportDialog(ReportDialog):
     def make_doc_menu(self):
         """Build a menu of document types that are appropriate for
         this drawing report."""
-        FindDoc.get_draw_doc_menu(self.format_menu)
+        Plugins.get_draw_doc_menu(self.format_menu)
 
     def make_document(self):
         """Create a document of the type requested by the user."""
-        self.doc = FindDoc.make_draw_doc(self.selected_style,self.format,
-                                         self.paper,self.orien)
+        self.doc = self.format(self.selected_style,self.paper,self.orien)
