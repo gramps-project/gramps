@@ -1,5 +1,6 @@
 2004-01-05  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/plugins/ReadGedcom.py: More source parsing cleanups. 
+	* src/plugins/ReadGedcom.py: More source parsing cleanups.
+	(parse_source_objects): Remove redundant function. 
 
 2004-01-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/ReadGedcom.py: Correct level in parsing LDS ordinance
