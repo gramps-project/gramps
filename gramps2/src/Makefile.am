@@ -36,7 +36,6 @@ gdir_PYTHON = \
 	Errors.py\
 	EventEdit.py\
 	FamilyView.py\
-	Find.py\
 	FontScale.py\
 	FrenchRepublic.py\
 	GedcomInfo.py\
