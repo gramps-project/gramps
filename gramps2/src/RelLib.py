@@ -1569,7 +1569,7 @@ class Person(SourceNote):
                         if child_birth.get_date () != "":
                             d = SingleDate (child_birth.get_date_object ().
                                         get_start_date ())
-                            d.setYear (d.getYear () - years)
+                            d.set_year (d.get_year () - years)
                             if not not_too_old (d):
                                 return 1
 
@@ -1599,10 +1599,10 @@ class Person(SourceNote):
                     parent = db.find_person_from_id(parent_id)
                     if parent.birth_id:
                         parent_birth = db.find_event_from_id(parent.birth_id)
-                        if parent_birth.get_date () != "":
-                            d = SingleDate (parent.birth.get_date_object ().
+                        if parent_birth.get_date ():
+                            d = SingleDate (parent_birth.get_date_object ().
                                         get_start_date ())
-                            d.setYear (d.getYear () + max_generation +
+                            d.set_year (d.get_year () + max_generation +
                                    age_difference)
                             if not not_too_old (d):
                                 return 1
@@ -1610,9 +1610,9 @@ class Person(SourceNote):
                     if parent.death_id:
                         parent_death = db.find_event_from_id(parent.death_id)
                         if parent_death.get_date () != "":
-                            d = SingleDate (parent.death.get_date_object ().
+                            d = SingleDate (parent_death.get_date_object ().
                                         get_start_date ())
-                            d.setYear (d.getYear () + age_difference)
+                            d.set_year (d.get_year () + age_difference)
                             if not not_too_old (d):
                                 return 1
 
@@ -1632,18 +1632,18 @@ class Person(SourceNote):
                 if spouse.birth_id:
                     spouse_birth = db.find_event_from_id(spouse.birth_id)
                     if spouse_birth.get_date () != "":
-                        d = SingleDate (spouse.birth.get_date_object().
+                        d = SingleDate (spouse_birth.get_date_object().
                                     get_start_date ())
-                        d.setYear (d.getYear () + max_age_difference)
+                        d.set_year (d.get_year () + max_age_difference)
                         if not not_too_old (d):
                             return 0
 
                 if spouse.death_id:
                     spouse_death = db.find_event_from_id(spouse.death_id)
                     if spouse_death.get_date () != "":
-                        d = SingleDate (spouse.birth.get_date_object().
+                        d = SingleDate (spouse_birth.get_date_object().
                                     get_start_date ())
-                        d.setYear (d.getYear () - min_generation)
+                        d.set_year (d.get_year () - min_generation)
                         if not not_too_old (d):
                             return 0
 
