@@ -12,7 +12,7 @@ Version 1.0.0 -- the "Stable as a tombstone" release
 * Anchor can be set in Pedigree View -- in that case generations are labeled
   relative to that anchor.
 * Manual is translated into French (Michel Guitel), German (Sebastian Vöcking),
-  and Russian (Alex Roitman) languages.
+  Hungarian (Egyeki Gergely), and Russian (Alex Roitman) languages.
 * Relationship calculator for German (Dr. Martin Senftleben) and 
   Hungarian (Egyeki Gergely) languages. 
 

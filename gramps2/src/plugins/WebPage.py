@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -410,8 +410,9 @@ class IndividualPage:
         for obj in my_list:
             try:
                 src = obj.getReference().getPath()
-                base = os.path.basename(src)
-                    
+                junk,ext = os.path.splitext(src)
+                base = '%s%s' % (obj.getReference().getId(),ext)
+                
                 if self.image_dir:
                     shutil.copyfile(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
                     try:

@@ -171,6 +171,8 @@ class MissingMediaDialog:
         label2.set_text(msg2)
         label2.set_use_markup(gtk.TRUE)
 
+        check_button = self.xml.get_widget('use_always')
+
         self.top.show()
         if parent:
             self.top.set_transient_for(parent)
@@ -181,4 +183,8 @@ class MissingMediaDialog:
             self.task2()
         elif response == 3:
             self.task3()
+        if check_button.get_active():
+            self.default_action = response
+        else:
+            self.default_action = 0
         self.top.destroy()
