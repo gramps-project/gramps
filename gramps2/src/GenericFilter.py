@@ -1975,6 +1975,48 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
 
 #-------------------------------------------------------------------------
 #
+# HasSourceOf
+#
+#-------------------------------------------------------------------------
+class HasSourceOf(Rule):
+    """Rule that checks people that have a particular source."""
+
+    labels = [ _('Source ID:') ]
+    
+    def prepare(self,db):
+        self.db = db
+
+    def name(self):
+        return 'Has source of'
+
+    def category(self): 
+        return _('Event filters')
+    
+    def description(self):
+        return _('Matches people who have a particular source')
+
+    def apply(self,db,p_id):
+        if not self.list[0]:
+            return False
+        
+        p = self.db.get_person_from_handle(p_id)
+
+        return p.has_source_reference(
+            self.db.get_source_from_gramps_id(self.list[0]).get_handle())
+    
+##        if len(p.get_source_references()) > 0:
+##            for src in p.get_source_references():
+                
+##                if self.list[0] == \
+##                   self.db.get_source_from_handle(
+##                    src.get_base_handle()).get_gramps_id():
+##                    return True
+        
+##        return False
+
+
+#-------------------------------------------------------------------------
+#
 # GenericFilter
 #
 #-------------------------------------------------------------------------
@@ -2144,6 +2186,7 @@ tasks = {
     unicode(_("Has the family event"))                 : HasFamilyEvent,
     unicode(_("Has the personal attribute"))           : HasAttribute,
     unicode(_("Has the family attribute"))             : HasFamilyAttribute,
+    unicode(_("Has source of"))                        : HasSourceOf,
     unicode(_("Matches the filter named"))             : MatchesFilter,
     unicode(_("Is spouse of filter match"))            : IsSpouseOfFilterMatch,
     unicode(_("Is a sibling of filter match"))         : IsSiblingOfFilterMatch,
