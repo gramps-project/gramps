@@ -170,18 +170,20 @@ class GrampsDBCallback(object):
                         sys.stderr.write("arg passed was: %s type should be: %s"
                                          % (args[i],repr(arg_types[i])))
                         return 
-                
-        for cb in self.__callback_map[signal_name]:
-            try:
-                if type(cb) == tuple: # call class method
-                    cb[0](cb[1],*args)
-                elif type(cb) == types.FunctionType or \
-                         type(cb) == types.MethodType: # call func
-                    cb(*args)
-                else:
-                    sys.stderr.write("Warning: badly formed entry in callback map")
-            except:
-                sys.stderr.write("Warning: exception occured in callback function.")
+
+        if signal_name in self.__callback_map.keys():
+            # Don't bother if there are no callbacks.
+            for cb in self.__callback_map[signal_name]:
+                try:
+                    if type(cb) == tuple: # call class method
+                        cb[0](cb[1],*args)
+                    elif type(cb) == types.FunctionType or \
+                             type(cb) == types.MethodType: # call func
+                        cb(*args)
+                    else:
+                        sys.stderr.write("Warning: badly formed entry in callback map")
+                except:
+                    sys.stderr.write("Warning: exception occured in callback function.")
 
     #
     # instance signals control methods
@@ -233,6 +235,26 @@ if __name__ == "__main__":
             t = TestSignals()
             t.connect('test-signal',fn)
             t.emit('test-signal',(1,))
+    
+            
+            assert len(rl) == 1, "No signal emitted"
+            assert rl[0] == 1, "Wrong argument recieved"
+
+        def test_noargs(self):
+
+            class TestSignals(GrampsDBCallback):
+
+                __signals__ = {
+                          'test-noargs' : None
+                         }
+
+            rl = []
+            def fn(r=rl):
+                rl.append(1)
+
+            t = TestSignals()
+            t.connect('test-noargs',fn)
+            t.emit('test-noargs')
     
             
             assert len(rl) == 1, "No signal emitted"
