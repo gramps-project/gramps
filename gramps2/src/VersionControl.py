@@ -77,6 +77,8 @@ class RevisionComment:
         self.top.signal_autoconnect({
             "on_savecomment_clicked" : self.on_savecomment_clicked,
             })
+
+        Utils.set_title_label(self.top,_('Revision control comment'))
         self.text = self.top.get_widget("text")
         self.win = self.top.get_widget("revcom")
         self.win.editable_enters(self.text)
@@ -103,6 +105,8 @@ class RevisionSelect:
             "on_loadrev_clicked"    : self.on_loadrev_clicked,
             })
 
+        Utils.set_title_label(dialog,_('Select an older revision'))
+        
         self.revlist = dialog.get_widget("revlist")
         l = self.vc.revision_list()
         index = 0

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
 "POT-Creation-Date: Thu Feb 13 18:46:40 2003\n"
-"PO-Revision-Date: 2003-03-02 14:59+0100\n"
+"PO-Revision-Date: 2003-03-03 09:54+0100\n"
 "Last-Translator: Radu Bogdan Mare <bogdan_mare@web.de>\n"
 "Language-Team: romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,15 +58,15 @@ msgstr "Parteneri"
 
 #: AddrEdit.py:79
 msgid "Address Editor for %s"
-msgstr "Editor adresă pentru %s"
+msgstr "Editor Adresă pentru %s"
 
 #: AttrEdit.py:89
 msgid "Attribute Editor for %s"
-msgstr "Editor atribute pentru %s"
+msgstr "Editor Atribute pentru %s"
 
 #: Bookmarks.py:90 Bookmarks.py:94
 msgid "Edit Bookmarks"
-msgstr "Modifică semne de carte"
+msgstr "Modifică Semne de Carte"
 
 #: Calendar.py:51
 msgid "abt\\.?"
@@ -186,7 +186,7 @@ msgstr "după"
 
 #: Calendar.py:141
 msgid "Undefined Calendar"
-msgstr "Calendar nedefinit"
+msgstr "Calendar Nedefinit"
 
 #: ChooseParents.py:121 ChooseParents.py:122 ChooseParents.py:366
 #: ChooseParents.py:367 SelectChild.py:103 SelectChild.py:105 const.py:131
@@ -231,7 +231,7 @@ msgstr "(de la|între)"
 
 #: Date.py:77
 msgid "(and|to|-)"
-msgstr "(şi|până la)"
+msgstr "(şi|până la|-)"
 
 #: Date.py:228 Date.py:241
 msgid "from %(start_date)s to %(stop_date)s"
@@ -239,7 +239,7 @@ msgstr "de la %(start_date)s până la %(stop_date)s"
 
 #: DbPrompter.py:99 gramps_main.py:735 gramps_main.py:988 gramps_main.py:1000
 msgid "No Comment Provided"
-msgstr "Nu există comentarii"
+msgstr "Nu Există Comentarii"
 
 #: DisplayTrace.py:67
 msgid ""
@@ -257,7 +257,7 @@ msgstr ""
 
 #: DisplayTrace.py:92
 msgid "Internal Error - GRAMPS"
-msgstr "Eroare internă - GRAMPS"
+msgstr "Eroare Internă - GRAMPS"
 
 #: EditPerson.py:180 EditPerson.py:206 EditPlace.py:99 GenericFilter.py:310
 #: GenericFilter.py:348 GenericFilter.py:437 GenericFilter.py:469 const.py:331
@@ -336,7 +336,7 @@ msgstr "necunoscut"
 #: EditPerson.py:802 EditPerson.py:813 Marriage.py:399 gramps_main.py:497
 #: gramps_main.py:948
 msgid "Abandon Changes"
-msgstr "Abandonează modificări"
+msgstr "Abandonează Modificări"
 
 #: EditPerson.py:803 EditPerson.py:814
 msgid "Are you sure you want to abandon your changes?"
@@ -348,7 +348,7 @@ msgstr "Fă numele selectat ca nume preferat"
 
 #: EditPerson.py:1195 Marriage.py:421
 msgid "GRAMPS ID value was not changed."
-msgstr "valoarea GRAMPS ID nu a fost modificată"
+msgstr "Valoarea GRAMPS ID nu a fost modificată."
 
 #: EditPerson.py:1196
 msgid "%(grampsid)s is already used by %(person)s"
@@ -385,11 +385,11 @@ msgstr "Ţara"
 
 #: EditPlace.py:283 EditPlace.py:307
 msgid "Internet Address Editor for %s"
-msgstr "Editor adrese de Internet pentru %s"
+msgstr "Editor Adrese Internet pentru %s"
 
 #: EditPlace.py:285 EditPlace.py:309 dialog.glade:2259
 msgid "Internet Address Editor"
-msgstr "Editor adrese de Internet"
+msgstr "Editor Adrese Internet"
 
 #: EditPlace.py:354 gramps.glade:680 plugins/gedcomexport.glade:644
 #: plugins/pkgexport.glade:272
@@ -406,15 +406,15 @@ msgstr "Familii"
 
 #: EditSource.py:155
 msgid "Individual Events"
-msgstr "Evenimente persoana"
+msgstr "Evenimente pt. Persoana"
 
 #: EditSource.py:159
 msgid "Individual Attributes"
-msgstr "Atribute persoana"
+msgstr "Atribute pt. Persoana"
 
 #: EditSource.py:163
 msgid "Individual Names"
-msgstr "Nume persoana"
+msgstr "Nume Persoana"
 
 #: EditSource.py:166
 msgid "Family Events"
@@ -440,7 +440,7 @@ msgstr "Sex"
 
 #: FamilyView.py:143 plugins.glade:208
 msgid "Status"
-msgstr "Statut"
+msgstr "Status"
 
 #: FamilyView.py:221
 msgid "Delete Spouse"
@@ -456,7 +456,7 @@ msgid ""
 "\tRelationship: %s"
 msgstr ""
 "%s: %s\n"
-"\tRelaţia: %s"
+"\tLegătura: %s"
 
 #: FamilyView.py:375
 msgid "%s: unknown"
@@ -480,7 +480,7 @@ msgstr "Doriţi să ştergeţi părinţii selectaţi?"
 
 #: FamilyView.py:560
 msgid "Invalid move. Children must be ordered by birth date."
-msgstr "Modificare invalidă. Copiii trebuiesc ordonaţi după data naşterii."
+msgstr "Modificare invalidă. Copiii trebuie ordonaţi după data naşterii."
 
 #: Filter.py:73
 msgid "All people"
@@ -500,7 +500,7 @@ msgstr "Modulul nu a putut fi încărcat: %s"
 
 #: Find.py:155
 msgid "Find Person"
-msgstr "Caută Persoana"
+msgstr "Caută Persoană"
 
 #: Find.py:180
 msgid "Find Place"
@@ -508,7 +508,7 @@ msgstr "Caută Localitate"
 
 #: Find.py:203
 msgid "Find Source"
-msgstr "Caută Sursa"
+msgstr "Caută Sursă"
 
 #: Find.py:226
 msgid "Find Media Object"
@@ -520,7 +520,7 @@ msgstr "Francez Republican"
 
 #: GenericFilter.py:310 plugins/FilterEditor.py:37
 msgid "Personal Event"
-msgstr "Eveniment Persoana"
+msgstr "Eveniment pt. Persoana"
 
 #: GenericFilter.py:348 plugins/FilterEditor.py:38
 msgid "Family Event"
@@ -533,7 +533,7 @@ msgstr "Număr Relaţii"
 #: GenericFilter.py:388 gramps.glade:3027 marriage.glade:124
 #: plugins/FilterEditor.py:41
 msgid "Relationship Type"
-msgstr "Tip relaţie"
+msgstr "Tip Relaţie"
 
 #: GenericFilter.py:389 const.py:373
 msgid "Number of Children"
@@ -656,11 +656,11 @@ msgstr "Filtre Personalizate"
 
 #: GrampsCfg.py:61
 msgid "Father's surname"
-msgstr "Prenumele tatălui"
+msgstr "Numele de familie al tatălui"
 
 #: GrampsCfg.py:63
 msgid "Combination of mother's and father's surname"
-msgstr "Combinaţie a prenumelui mamei şi tatălui"
+msgstr "Combinaţie a numelui de familie a mamei şi tatălui"
 
 #: GrampsCfg.py:64
 msgid "Icelandic style"
@@ -732,11 +732,11 @@ msgstr "AAAA/LL/ZZ, AAAA.LL.ZZ, sau AAAA-LL-ZZ"
 
 #: GrampsCfg.py:90
 msgid "Firstname Surname"
-msgstr "Nume Prenume"
+msgstr "Prenume Nume"
 
 #: GrampsCfg.py:91
 msgid "Surname, Firstname"
-msgstr "Prenume, Nume"
+msgstr "Nume, Prenume"
 
 #: GrampsCfg.py:95 preferences.glade:477 revision.glade:111
 msgid "Database"
@@ -765,7 +765,7 @@ msgstr "Date şi Calendar"
 
 #: GrampsCfg.py:103
 msgid "Tool and Status Bars"
-msgstr "Bara de unelte şi status"
+msgstr "Bara de Unelte şi Status"
 
 #: GrampsCfg.py:104
 msgid "Usage"
@@ -781,7 +781,7 @@ msgstr "Preferinţe pentru Raport"
 
 #: GrampsCfg.py:107 config.glade:48 preferences.glade:1871
 msgid "Researcher Information"
-msgstr "Informaţii despre Cercetator"
+msgstr "Informaţii despre Cercetător"
 
 #: GrampsCfg.py:108
 msgid "Data Guessing"
@@ -801,7 +801,7 @@ msgstr "Evreu"
 
 #: ImageSelect.py:143
 msgid "That is not a valid file name."
-msgstr "Acesta nu e un nume valid pentru fişier"
+msgstr "Acesta nu e un nume valid pentru fişier."
 
 #: ImageSelect.py:344
 msgid "Thumbnail %s could not be found"
@@ -818,7 +818,7 @@ msgstr "Obiect Multimedia"
 
 #: ImageSelect.py:535
 msgid "Open in %s"
-msgstr "Deschide in %s"
+msgstr "Deschide în %s"
 
 #: ImageSelect.py:538 MediaView.py:170
 msgid "Edit with the GIMP"
@@ -826,11 +826,11 @@ msgstr "Editează cu GIMP"
 
 #: ImageSelect.py:540 MediaView.py:172
 msgid "Edit Object Properties"
-msgstr "Modifică Propritetaţile Obiectului"
+msgstr "Modifică Propritetăţile Obiectului"
 
 #: ImageSelect.py:543 MediaView.py:175
 msgid "Convert to local copy"
-msgstr "Converteşte la copia locala"
+msgstr "Converteşte la copia locală"
 
 #: ImageSelect.py:822 plugins/EventCmp.py:288 preferences.glade:2507
 msgid "Person"
@@ -888,7 +888,7 @@ msgstr "Editor Nume Alternativ pentru %s"
 
 #: NoteEdit.py:50 NoteEdit.py:57
 msgid "Edit Note"
-msgstr "Modifică nota"
+msgstr "Modifică Nota"
 
 #: PaperMenu.py:83
 msgid "Portrait"
@@ -904,7 +904,7 @@ msgstr "Dublu click va face pe %s persoana activă"
 
 #: PlaceView.py:47
 msgid "Place Name"
-msgstr "Localitate Nume"
+msgstr "Numele Localităţii"
 
 #: PlaceView.py:49 dialog.glade:1443 places.glade:459 places.glade:849
 msgid "Church Parish"
@@ -924,7 +924,7 @@ msgid ""
 "Delete anyway?"
 msgstr ""
 "%s este actualmente folosit.\n"
-"Totuşi doriţi ştergere?"
+"Totuşi doriţi ştergerea?"
 
 #: Plugins.py:80
 msgid "No description was provided"
@@ -932,11 +932,11 @@ msgstr "Nu există descriere"
 
 #: Plugins.py:237 plugins.glade:140
 msgid "Report Selection"
-msgstr "Selectare raport"
+msgstr "Selectare Raport"
 
 #: Plugins.py:253
 msgid "Tool Selection"
-msgstr "Selectare unealtă"
+msgstr "Selectare Unealtă"
 
 #: Plugins.py:275
 msgid "The following modules could not be loaded:"
@@ -962,11 +962,11 @@ msgstr "%s nu a putut fi deschis\n"
 
 #: ReadXML.py:93 ReadXML.py:98 ReadXML.py:163 ReadXML.py:169 ReadXML.py:197
 msgid "Error reading %s"
-msgstr "Eroare de citire in %s"
+msgstr "Eroare de citire în %s"
 
 #: ReadXML.py:99
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Fişierul este probabil corupt sau nu e o bază de date GRAMPS validă"
+msgstr "Fişierul este probabil corupt sau nu e o bază de date GRAMPS validă."
 
 #: ReadXML.py:103
 msgid ""
@@ -1004,7 +1004,7 @@ msgstr "Eroare la crearea miniaturii : %s"
 
 #: RelImage.py:86
 msgid "Error copying %s"
-msgstr "Eroare la copiere %s"
+msgstr "Eroare la copierea %s"
 
 #: RelImage.py:106 RelImage.py:116
 msgid "Could not load image file %s"
@@ -1024,7 +1024,7 @@ msgstr ""
 
 #: RelImage.py:157
 msgid "Could not create a thumbnail for %s"
-msgstr "Miniatura nu a putut fi creată pentru %s"
+msgstr "Nu am putut crea miniatura pentru %s"
 
 #: Report.py:75
 msgid "Default Template"
@@ -1116,39 +1116,39 @@ msgstr "A Douăzecea"
 
 #: Report.py:116
 msgid "Twenty-first"
-msgstr "A Douăzeci-si-una"
+msgstr "A Douăzeci-şi-una"
 
 #: Report.py:117
 msgid "Twenty-second"
-msgstr "A Douăzeci-si-doua"
+msgstr "A Douăzeci-şi-doua"
 
 #: Report.py:118
 msgid "Twenty-third"
-msgstr "A Douăzeci-si-treia"
+msgstr "A Douăzeci-şi-treia"
 
 #: Report.py:119
 msgid "Twenty-fourth"
-msgstr "A Douăzeci-si-patra"
+msgstr "A Douăzeci-şi-patra"
 
 #: Report.py:120
 msgid "Twenty-fifth"
-msgstr "A Douăzeci-si-cincea"
+msgstr "A Douăzeci-şi-cincea"
 
 #: Report.py:121
 msgid "Twenty-sixth"
-msgstr "A Douăzeci-si-sasea"
+msgstr "A Douăzeci-şi-sasea"
 
 #: Report.py:122
 msgid "Twenty-seventh"
-msgstr "A Douăzeci-si-saptea"
+msgstr "A Douăzeci-şi-saptea"
 
 #: Report.py:123
 msgid "Twenty-eighth"
-msgstr "A Douăzeci-si-opta"
+msgstr "A Douăzeci-şi-opta"
 
 #: Report.py:124
 msgid "Twenty-ninth"
-msgstr "A Douăzeci-si-noua"
+msgstr "A Douăzeci-şi-noua"
 
 #: Report.py:130
 msgid "Progress Report - GRAMPS"
@@ -1289,7 +1289,7 @@ msgstr "RCS"
 
 #: WriteXML.py:78
 msgid "Failure writing %s, original file restored"
-msgstr "Eroare la scriere %s, am revenit la fişierul original"
+msgstr "Eroare la scrierea %s, am revenit la fişierul original"
 
 #: calendars/Islamic.py:70
 msgid "Islamic"
@@ -1330,7 +1330,7 @@ msgstr ""
 "\n"
 "Câteva opţiuni şi informaţii sunt necesare înainte ca\n"
 "GRAMPS să fie utilizat. Oricare din aceste informaţii\n"
-"pot fi modificate ulterior din dialogul Preferinţe din\n"
+"pot fi modificate ulterior din dialogul Preferinţe în\n"
 "meniul Setări."
 
 #: config.glade:72
@@ -1363,7 +1363,7 @@ msgstr "Telefon"
 
 #: config.glade:504
 msgid "Numerical Date Formats"
-msgstr "Format Numeric Data"
+msgstr "Formate Date Numerice"
 
 #: config.glade:529
 msgid ""
@@ -1400,9 +1400,9 @@ msgid ""
 "more of these alternate calendars, enable alternate calendar support."
 msgstr ""
 "Implicit, toate datele stocate de GRAMPS folosesc calendarul Gregorian.\n"
-"Aceasta este in mod uzual suficient pentru majoritatea utilizatorilor.\n"
+"Acesta este în mod uzual suficient pentru majoritatea utilizatorilor.\n"
 "Se poate activa suportul pentru calendarul Iulian, Francez Republican sau\n"
-"Hebrew. Dacă doriţi să uitilzaţi vreunul din aceste calendare, activaţi\n"
+"Hebrew. Dacă doriţi să utilizaţi vreunul din aceste calendare, activaţi\n"
 "suportul pentru calendare alternative."
 
 #: config.glade:710
@@ -1421,7 +1421,7 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS are suport pentru Ordonanţe LDS, care sunt un tip special\n"
+"GRAMPS are suport pentru Ordinanţe LDS, care sunt un tip special\n"
 "de evenimente legate de Biserica lui Isus Hristos a Sfinţilor de Ultima Zi\n"
 "\n"
 "Puteţi alege să activaţi sau să dezactivaţi acest suport. Puteţi modifica\n"
@@ -1429,7 +1429,7 @@ msgstr ""
 
 #: config.glade:808
 msgid "Enable LDS Ordinance Support"
-msgstr "Activează Suport pentru Ordonanţa LDS"
+msgstr "Activează Suport pentru Ordinanţa LDS"
 
 #: config.glade:848
 msgid "Complete"
@@ -1516,7 +1516,7 @@ msgstr "Anulare"
 
 #: const.py:172 const.py:266
 msgid "Divorce Filing"
-msgstr "Introducere de divorţ"
+msgstr "Introducere divorţ"
 
 #: const.py:173
 msgid "Divorce"
@@ -1532,7 +1532,7 @@ msgstr "Contract Căsătorie"
 
 #: const.py:176
 msgid "Marriage License"
-msgstr "Licenţa Căsătorie"
+msgstr "Licenţă Căsătorie"
 
 #: const.py:177
 msgid "Marriage Settlement"
@@ -1664,7 +1664,7 @@ msgstr "Religie"
 
 #: const.py:283
 msgid "Residence"
-msgstr "Rezidenţă"
+msgstr "Rezidenţa"
 
 #: const.py:284
 msgid "Retirement"
@@ -1720,7 +1720,7 @@ msgstr "Nu există nici o definiţie disponibilă"
 
 #: const.py:878
 msgid "Also Known As"
-msgstr "Cunsocut Şi Ca"
+msgstr "Cunsocut şi Ca"
 
 #: const.py:879
 msgid "Birth Name"
@@ -1756,12 +1756,12 @@ msgstr "Selectează formatul de afişare a calendarului"
 
 #: dialog.glade:408 dialog.glade:1958
 msgid "French"
-msgstr "Franceza"
+msgstr "Franceză"
 
 #: dialog.glade:484 dialog.glade:943 dialog.glade:1988 dialog.glade:2378
 #: dialog.glade:2925
 msgid "Private Record"
-msgstr "Inregistrare privată"
+msgstr "Inregistrare Privată"
 
 #: dialog.glade:510 dialog.glade:969 dialog.glade:2014 dialog.glade:2998
 #: edit_person.glade:1425
@@ -1824,7 +1824,7 @@ msgstr "<b>Editor Nume Alternativ</b>"
 
 #: dialog.glade:2945 edit_person.glade:1161 edit_person.glade:1986
 msgid "Surname Prefix"
-msgstr "Prefix Prenume"
+msgstr "Prefix Nume"
 
 #: docgen/AbiWordDoc.py:321
 msgid "AbiWord"
@@ -1926,11 +1926,11 @@ msgstr "Porecla"
 
 #: edit_person.glade:942
 msgid "Select source for this name information"
-msgstr "Selectaţi sursa pentru aceasta informaţie"
+msgstr "Selectaţi sursa pentru această informaţie"
 
 #: edit_person.glade:987
 msgid "Enter/modify notes regarding this name"
-msgstr "Introduce/modifcă note legate de acest nume"
+msgstr "Introdu/modifcă note legate de acest nume"
 
 #: edit_person.glade:1212
 msgid "<b>Preferred Name</b>"
@@ -1961,7 +1961,7 @@ msgstr "Confidenţă"
 
 #: edit_person.glade:2062
 msgid "<b>No Alternate Names</b>"
-msgstr "<b>Fără nume alternative</b>"
+msgstr "<b>Fără Nume Alternative</b>"
 
 #: edit_person.glade:2213
 msgid "Create an alternate name for this person"
@@ -1977,11 +1977,11 @@ msgstr "<b>Nume</b>"
 
 #: edit_person.glade:2745 marriage.glade:760
 msgid "<b>No Events</b>"
-msgstr "<b>Fără evenimente</b>"
+msgstr "<b>Fără Evenimente</b>"
 
 #: edit_person.glade:2896
 msgid "Create a new event from the above data"
-msgstr "Creează un nou eveniment cu data de mai sus"
+msgstr "Creează un nou eveniment cu datele de mai sus"
 
 #: edit_person.glade:2910
 msgid "Delete the selected event"
@@ -1997,7 +1997,7 @@ msgstr "<b>Fără Atribute</b>"
 
 #: edit_person.glade:3367
 msgid "Create a new attribute from the above data"
-msgstr "Creează un nou atribut cu data de mai sus"
+msgstr "Creează un nou atribut cu datele de mai sus"
 
 #: edit_person.glade:3381 imagesel.glade:1227 imagesel.glade:2217
 #: marriage.glade:1384
@@ -2010,11 +2010,11 @@ msgstr "<b>Atribute</b>"
 
 #: edit_person.glade:4045
 msgid "<b>No Addresses</b>"
-msgstr "<b>Fără adrese</b>"
+msgstr "<b>Fără Adrese</b>"
 
 #: edit_person.glade:4202
 msgid "Create a new address from the above data"
-msgstr "Creează o nouă adresă cu data de mai sus"
+msgstr "Creează o nouă adresă cu datele de mai sus"
 
 #: edit_person.glade:4216
 msgid "Delete the selected address"
@@ -2114,7 +2114,7 @@ msgstr "Persoane cu un eveniment înainte de ..."
 
 #: filters/Disconnected.py:38 plugins/Summary.py:112
 msgid "Disconnected individuals"
-msgstr "Persoane fără relaţii"
+msgstr "Persoane fără legături"
 
 #: filters/EventPlace.py:68
 msgid "People with an event location of ..."
@@ -2142,7 +2142,7 @@ msgstr "Bărbaţi"
 
 #: filters/MatchSndEx.py:43
 msgid "Names with same SoundEx code as ..."
-msgstr "Nume cu acelaşi SoundEx cod ca şi ..."
+msgstr "Nume cu acelaşi cod SoundEx ca şi ..."
 
 #: filters/MatchSndEx2.py:39
 msgid "Names with the specified SoundEx code"
@@ -2194,15 +2194,15 @@ msgstr "_Nou"
 
 #: gramps.glade:75
 msgid "_Revert"
-msgstr "_Revino"
+msgstr "_Revenire"
 
 #: gramps.glade:96
 msgid "_Import"
-msgstr "_Importă"
+msgstr "_Import"
 
 #: gramps.glade:112
 msgid "_Export"
-msgstr "_Exportă"
+msgstr "_Export"
 
 #: gramps.glade:132
 msgid "Reload Plugins"
@@ -2234,15 +2234,15 @@ msgstr "_Semne de carte"
 
 #: gramps.glade:268
 msgid "_Add Bookmark"
-msgstr "_Adaugă semn de carte"
+msgstr "_Adaugă Semn de Carte"
 
 #: gramps.glade:290
 msgid "_Edit Bookmarks"
-msgstr "_Modifică semne de carte"
+msgstr "_Modifică Semne de Carte"
 
 #: gramps.glade:318
 msgid "Go to Bookmark"
-msgstr "_Mergi la semn de carte"
+msgstr "_Mergi la Semn de Carte"
 
 #: gramps.glade:330
 msgid "_Reports"
@@ -2258,7 +2258,7 @@ msgstr "_Configurări"
 
 #: gramps.glade:363
 msgid "_Default Person"
-msgstr "_Persoana implicită"
+msgstr "_Persoana Implicită"
 
 #: gramps.glade:388
 msgid "_Help"
@@ -2266,11 +2266,11 @@ msgstr "_Ajutor"
 
 #: gramps.glade:397
 msgid "_User's Manual"
-msgstr "_Manualul utilizatorului"
+msgstr "_Manualul Utilizatorului"
 
 #: gramps.glade:418
 msgid "_Writing Extensions"
-msgstr "_Extensii de scriere"
+msgstr "_Extensii de Scriere"
 
 #: gramps.glade:439
 msgid "GRAMPS _Home Page"
@@ -2278,7 +2278,7 @@ msgstr "_Pagina de Internet GRAMPS"
 
 #: gramps.glade:460
 msgid "GRAMPS _Mailing Lists"
-msgstr "_Lista de discuţii GRAMPS"
+msgstr "_Lista de Discuţii GRAMPS"
 
 #: gramps.glade:481
 msgid "_Report a bug"
@@ -2394,7 +2394,7 @@ msgstr "Schimbă soţ(ul/ia) curent(ă) cu persoana activă"
 
 #: gramps.glade:1610
 msgid "Make the selected spouse's family the active family"
-msgstr "Fă familia soţ(ului/iei) selectate familia activă"
+msgstr "Fă familia soţ(ului/iei) selectat(e) familia activă"
 
 #: gramps.glade:1640
 msgid "Adds a new set of parents to the selected spouse"
@@ -2414,7 +2414,7 @@ msgstr "<b>Părinţii Persoanei Active</b>"
 
 #: gramps.glade:1792
 msgid "<b>Spouse's Parents</b>"
-msgstr "<b>Părinţii soţ(ului/iei)</b>"
+msgstr "<b>Părinţii Soţ(ului/iei)</b>"
 
 #: gramps.glade:1847
 msgid "<b>Children</b>"
@@ -2514,7 +2514,7 @@ msgstr "Arată toate persoanele"
 
 #: gramps.glade:3913
 msgid "Add New Person"
-msgstr "Adauga Persoană"
+msgstr "Adaugă Persoană"
 
 #: gramps.glade:3946
 msgid "Add Child - GRAMPS"
@@ -2550,7 +2550,7 @@ msgstr "Modifică datele căsătoriei"
 
 #: gramps.glade:4666
 msgid "Add a new spouse"
-msgstr "Adaugă soţ(ie)"
+msgstr "Adaugă nou soţ(ie)"
 
 #: gramps.glade:4685
 msgid "Remove current spouse"
@@ -2566,7 +2566,7 @@ msgstr "<b>Editor Sursă</b>"
 
 #: gramps.glade:4883
 msgid "Publication Info"
-msgstr "Date Publicaţie"
+msgstr "Info Publicaţie"
 
 #: gramps.glade:4983
 msgid "<b><i>General</i></b>"
@@ -2606,11 +2606,11 @@ msgstr "Deschide o Bază de Date Existentă"
 
 #: gramps.glade:5671
 msgid "Create a New XML Database"
-msgstr "Creează o nouă Bază de Date XML"
+msgstr "Creează o Nouă Bază de Date XML"
 
 #: gramps.glade:5690
 msgid "Create a New ZODB Database"
-msgstr "Creează o nouă Bază de Date ZODB"
+msgstr "Creează o Nouă Bază de Date ZODB"
 
 #: gramps.glade:5717
 msgid "Question - GRAMPS"
@@ -2622,7 +2622,7 @@ msgstr "Alegeţi soţ(ie)"
 
 #: gramps.glade:5755
 msgid "New Relationship"
-msgstr "Relaţie nouă"
+msgstr "Relaţie Nouă"
 
 #: gramps.glade:5793
 msgid "Add a Spouse or Create a New Relationship"
@@ -2634,11 +2634,15 @@ msgid ""
 "\n"
 "You can either define the spouse of the current relationship\n"
 "or create a new relationship."
-msgstr "Pentru relaţia curentă nu a fost definit un/o soţ(ie)"
+msgstr ""
+"Pentru relaţia curentă nu a fost definit un/o soţ(ie)\n"
+"\n"
+"Puteţi fie să definiţi soţul/(ia) relaţiei curente sau să creaţi o\n"
+"nouă relaţie."
 
 #: gramps.glade:5871
 msgid "Modify Parents - GRAMPS"
-msgstr "Modifică părinţi - GRAMPS"
+msgstr "Modifică Părinţi - GRAMPS"
 
 #: gramps.glade:5936
 msgid "<b>Modify Parents</b>"
@@ -2674,7 +2678,7 @@ msgid ""
 "Do you wish to save the changes?"
 msgstr ""
 "În baza de date curentă există modifcări nesalvate\n"
-"Doriţi sa salvaţi modificările?"
+"Doriţi să salvaţi modificările?"
 
 #: gramps_main.py:552
 msgid "Do you want to close the current database and create a new one?"
@@ -2698,7 +2702,7 @@ msgstr "Fişier Autosalvat"
 
 #: gramps_main.py:714 gramps_main.py:750
 msgid "%s is not a directory"
-msgstr "%s nu e director"
+msgstr "%s nu e un director"
 
 #: gramps_main.py:717
 msgid "Loading %s ..."
@@ -2758,7 +2762,7 @@ msgstr "Doriţi să definiţi pe %s ca persoană implicită?"
 
 #: gramps_main.py:1370
 msgid "Set Home Person"
-msgstr "Defineşte Persoana Implicită"
+msgstr "Defineşte Persoana Implicită (Acasă)"
 
 #: imagesel.glade:9
 msgid "Select a Media Object - GRAMPS"
@@ -2835,7 +2839,7 @@ msgstr "Fă Copie Locală"
 
 #: imagesel.glade:2204
 msgid "Creates a new attribute from the above data"
-msgstr "Creeaza un nou atribut din datele de mai sus"
+msgstr "Creează un nou atribut din datele de mai sus"
 
 #: imagesel.glade:2338 places.glade:1626
 msgid "References"
@@ -2867,7 +2871,7 @@ msgstr "<b>Sigiliarea Soţ(ului/iei)</b>"
 
 #: mergedata.glade:8
 msgid "Merge Places - GRAMPS"
-msgstr "Uneşte localităţile - GRAMPS"
+msgstr "Uneşte Localităţi - GRAMPS"
 
 #: mergedata.glade:71
 msgid "Select the title for the merged place"
@@ -2907,7 +2911,7 @@ msgstr "Locul Decesului"
 
 #: mergedata.glade:761 mergedata.glade:1288
 msgid "Spouses"
-msgstr "Soţ(ie)"
+msgstr "Soţi(i)"
 
 #: mergedata.glade:979 plugins/Merge.py:215
 msgid "First Person"
@@ -3004,7 +3008,7 @@ msgstr "Format Vizualizare"
 #: plugins/AncestorChart.py:239 plugins/DesGraph.py:326
 #: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr "Vă permite personalizarea datele din căsuţele raportului"
+msgstr "Vă permite personalizarea datelor din căsuţele raportului"
 
 #: plugins/AncestorChart.py:426 plugins/AncestorReport.py:386
 #: plugins/DescendReport.py:282 plugins/DetAncestralReport.py:826
@@ -3144,7 +3148,7 @@ msgstr "Nu am găsit erori"
 
 #: plugins/Check.py:153
 msgid "1 broken child/family link was fixed\n"
-msgstr "1 legătură întreruptă copil/familie a fost reparată\n"
+msgstr "O legătură întreruptă copil/familie a fost reparată\n"
 
 #: plugins/Check.py:155
 msgid "%d broken child/family links were found\n"
@@ -3156,7 +3160,7 @@ msgstr "%s a fost şters din familia lui %s\n"
 
 #: plugins/Check.py:172
 msgid "1 broken spouse/family link was fixed\n"
-msgstr "1 legătura întreruptă soţ(ie)/familie a fost reparată\n"
+msgstr "O legătura întreruptă soţ(ie)/familie a fost reparată\n"
 
 #: plugins/Check.py:174
 msgid "%d broken spouse/family links were found\n"
@@ -3168,7 +3172,7 @@ msgstr "%s a fost readăugat(ă) la familia lui %s\n"
 
 #: plugins/Check.py:190
 msgid "1 empty family was found\n"
-msgstr "1 familie care nu conţine nimic a fost găsită\n"
+msgstr "O familie care nu conţine nimic a fost găsită\n"
 
 #: plugins/Check.py:192
 msgid "%d empty families were found\n"
@@ -3176,7 +3180,7 @@ msgstr "%d familii care nu conţin nimic au fost găsite\n"
 
 #: plugins/Check.py:194
 msgid "1 corrupted family relationship fixed\n"
-msgstr "1 relaţie de familie eronată a fost reparată\n"
+msgstr "O relaţie de familie eronată a fost reparată\n"
 
 #: plugins/Check.py:196
 msgid "%d corrupted family relationship fixed\n"
@@ -3184,11 +3188,11 @@ msgstr "%d relaţii de familie eronate au fost reparate\n"
 
 #: plugins/Check.py:198
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 obiect multimedia a fost referenţiat, dar nu a fost găsit\n"
+msgstr "Un obiect multimedia a fost referenţiat, dar nu a fost găsit\n"
 
 #: plugins/Check.py:200
 msgid "%d media objects were referenced, but not found\n"
-msgstr "1 obiecte multimedia au fost referenţiate, dar nu au fost găsite\n"
+msgstr "%d obiecte multimedia au fost referenţiate, dar nu au fost găsite\n"
 
 #: plugins/Check.py:208
 msgid "Check Integrity"
@@ -3238,7 +3242,7 @@ msgstr "Realizează o ierarhie navigabilă bazată pe persoana activă"
 #: plugins/IndivComplete.py:475 plugins/TimeLine.py:353
 #: plugins/WriteGedcom.py:373
 msgid "Descendants of %s"
-msgstr "Descendenţi ai %s"
+msgstr "Descendenţi pentru %s"
 
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:280
 msgid "Descendant Report"
@@ -3368,15 +3372,15 @@ msgstr "  %s a decedat în %s"
 
 #: plugins/DetAncestralReport.py:373 plugins/DetDescendantReport.py:384
 msgid "  And %s was buried on %s in %s."
-msgstr "  Şi %s a fost înmormântat pe %s în %s."
+msgstr "  Şi %s a fost înmormântat(ă) pe %s în %s."
 
 #: plugins/DetAncestralReport.py:375 plugins/DetDescendantReport.py:386
 msgid "  And %s was buried on %s."
-msgstr "  Şi %s  fost înmormântat pe %s."
+msgstr "  Şi %s  fost înmormântat(ă) pe %s."
 
 #: plugins/DetAncestralReport.py:377 plugins/DetDescendantReport.py:388
 msgid "  And %s was buried in %s."
-msgstr "  Şi %s a fost înmormântat în %s."
+msgstr "  Şi %s a fost înmormântat(ă) în %s."
 
 #: plugins/DetAncestralReport.py:407 plugins/DetDescendantReport.py:418
 msgid " %s was the son of %s and %s."
@@ -3471,7 +3475,7 @@ msgstr "Foloseşte prenumele în loc de pronume"
 
 #: plugins/DetDescendantReport.py:783
 msgid "Use full dates instead of only the year"
-msgstr "Foloseşte data completăm, nu doar anul"
+msgstr "Foloseşte data completă, nu doar anul"
 
 #: plugins/DetDescendantReport.py:787
 msgid "List children"
@@ -3555,7 +3559,7 @@ msgstr "Utilităţi"
 
 #: plugins/FilterEditor.py:374
 msgid "The Custom Filter Editor builds custom filters that can be used to select people included in reports, exports, and other utilities."
-msgstr "Editorul de Filtru Personalizat construieşte filtre ce pot fi folosite pentru a selecta persoane incluse în rapoarte, exporturi, sau alte utilităţi."
+msgstr "Editorul de Filtru Personalizat construieşte filtre ce pot fi folosite pentru a selecta persoane incluse în rapoarte, export, sau alte utilităţi."
 
 #: plugins/FilterEditor.py:385
 msgid "System Filter Editor"
@@ -3655,7 +3659,7 @@ msgstr "Include un URL în fiecare nod al graficului astfel ca fişierele PDF ş
 
 #: plugins/GraphViz.py:168
 msgid "Colorize Graph"
-msgstr "Grafic colorat"
+msgstr "Grafic Colorat"
 
 #: plugins/GraphViz.py:173
 msgid "Males will be outlined in blue, females will be outlined in pink.  If the sex of an individual is unknown it will be outlined in black."
@@ -3663,7 +3667,7 @@ msgstr "Persoanele de sex masculin vor fi în căsuţă albastră iar cele de se
 
 #: plugins/GraphViz.py:178
 msgid "Indicate non-birth relationships with dashed lines"
-msgstr "Indică relaţiile non-natală cu linie întreruptă"
+msgstr "Indică relaţiile non-natale cu linie întreruptă"
 
 #: plugins/GraphViz.py:183
 msgid "Non-birth relationships will show up as dashed lines in the graph."
@@ -3824,12 +3828,12 @@ msgstr "Import Complet: %d secunde"
 
 #: plugins/ReadGedcom.py:1699 plugins/ReadGedcom.py:1742
 msgid "Import from GEDCOM"
-msgstr "Importă din GEDCOM"
+msgstr "Import din GEDCOM"
 
 #: plugins/ReadNative.py:47 plugins/ReadNative.py:58 plugins/ReadNative.py:61
 #: plugins/ReadNative.py:97
 msgid "Import from GRAMPS"
-msgstr "Importă din GRAMPS"
+msgstr "Import din GRAMPS"
 
 #: plugins/RelCalc.py:74
 msgid "%(p1)s is the first cousin of %(p2)s."
@@ -4149,11 +4153,11 @@ msgstr "Persoane cu nume incomplete"
 
 #: plugins/Summary.py:111
 msgid "Individuals missing birth dates"
-msgstr "Persoane fără data de naştere"
+msgstr "Persoane fără dată de naştere"
 
 #: plugins/Summary.py:113
 msgid "Family Information"
-msgstr "Informaţie Familie"
+msgstr "Informaţii Familie"
 
 #: plugins/Summary.py:115
 msgid "Number of families"
@@ -4275,7 +4279,7 @@ msgstr "Nu include intrările marcate privat"
 
 #: plugins/WebPage.py:846
 msgid "Restrict information on living people"
-msgstr "Redu informaţia la persoanele în viaţă"
+msgstr "Restrictează informaţia la persoanele în viaţă"
 
 #: plugins/WebPage.py:847
 msgid "Do not use images"
@@ -4315,7 +4319,7 @@ msgstr "Avansat"
 
 #: plugins/WebPage.py:886
 msgid "GRAMPS ID link URL"
-msgstr "URL legătură pentru GRAMPS ID "
+msgstr "Legătură URL pentru GRAMPS ID "
 
 #: plugins/WebPage.py:897 plugins/WebPage.py:1249
 msgid "Generate Web Site"
@@ -4343,11 +4347,11 @@ msgstr "Generează pagini Internet pentru persoane, sau set de persoane."
 
 #: plugins/WriteGedcom.py:1076
 msgid "Export to GEDCOM"
-msgstr "Exportă pentru GEDCOM"
+msgstr "Export pentru GEDCOM"
 
 #: plugins/WritePkg.py:151
 msgid "Export to GRAMPS package"
-msgstr "Exportă pentru pachet GRAMPS"
+msgstr "Export pentru pachet GRAMPS"
 
 #: plugins/changetype.glade:6
 msgid "Change Event Types - GRAMPS"
@@ -4359,7 +4363,7 @@ msgstr "Schimbă Tip Eveniment pentru"
 
 #: plugins/changetype.glade:137
 msgid "to"
-msgstr "pentru"
+msgstr "în"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
@@ -4427,7 +4431,7 @@ msgstr "Comparaţie Evenimente"
 
 #: plugins/gedcomexport.glade:9 plugins/gedcomexport.glade:502
 msgid "Export GEDCOM file"
-msgstr "Exportă fişier GEDCOM"
+msgstr "Export fişier GEDCOM"
 
 #: plugins/gedcomexport.glade:72 plugins/gedcomexport.glade:551
 #: plugins/pkgexport.glade:188
@@ -4476,7 +4480,7 @@ msgstr "Fără Copyright"
 
 #: plugins/gedcomexport.glade:448 plugins/pafexport.glade:292
 msgid "Restrict data on living people"
-msgstr "Restricteză date la persoane în viaţă"
+msgstr "Restricteză datele la persoane în viaţă"
 
 #: plugins/gedcomexport.glade:467 plugins/merge.glade:445
 #: plugins/pafexport.glade:261 styles.glade:794
@@ -4549,7 +4553,7 @@ msgstr "(Recomandat doar pentru nume engleze)"
 
 #: plugins/pafexport.glade:8
 msgid "Export PAF for PalmOS file"
-msgstr "Exportă PAF pentru fişier PalmOS"
+msgstr "Export PAF pentru fişier PalmOS"
 
 #: plugins/pafexport.glade:70
 msgid "PAF for PalmOS Export"
@@ -4581,15 +4585,15 @@ msgid ""
 "Should the following changes be made?"
 msgstr ""
 "Mai jos este o listă de porecle şi titluri pe care GRAMPS le poate extrage din \n"
-"baza de date curentă. Dacă selectaţi 'Da', va modifica baza de date după cum e \n"
-"specificat mai jos. Dacă nu doriţi să aprobaţi aceste modificări, selectaţi  'Nu', iar\n"
-"baza de date nu va fi modificată.\n"
+"baza de date curentă. Dacă selectaţi 'Da', GRAMPS va modifica baza de date \n"
+"după cum e specificat mai jos. Dacă nu doriţi să aprobaţi aceste modificări, \n"
+"selectaţi  'Nu', iar baza de date nu va fi modificată.\n"
 "\n"
 "Doriţi ca modificările următoare să fie făcute?"
 
 #: plugins/pkgexport.glade:8
 msgid "Export GRAMPS package - GRAMPS"
-msgstr "Exportă pachet GRAMPS - GRAMPS"
+msgstr "Export pachet GRAMPS - GRAMPS"
 
 #: plugins/pkgexport.glade:70
 msgid "GRAMPS package export"
@@ -4626,7 +4630,7 @@ msgstr "Generator de Cod SoundEx - GRAMPS"
 
 #: plugins/soundex.glade:28
 msgid "Calculate SoundEx code for the name"
-msgstr "Calculează codul SoundEx pentru numele"
+msgstr "Calculează codul SoundEx pentru nume"
 
 #: plugins/soundex.glade:42
 msgid "Close Window"
@@ -4786,7 +4790,7 @@ msgstr "Activează autocompletarea"
 
 #: preferences.glade:784
 msgid "Display only icons"
-msgstr "Afişează doar icoanele"
+msgstr "Afişează doar icoane"
 
 #: preferences.glade:803
 msgid "Display only text"
@@ -4890,7 +4894,7 @@ msgstr "Format Grafic Preferat"
 
 #: preferences.glade:2310
 msgid "Make a reference to the object when the object is dropped"
-msgstr "Fă o referinţă spre obiect acolo este plasat"
+msgstr "Fă o referinţă spre obiect unde este plasat"
 
 #: preferences.glade:2330
 msgid "Make a local copy when the object is dropped"
@@ -4966,7 +4970,7 @@ msgstr "Deschide Bază de Date GRAMPS"
 
 #: revision.glade:171
 msgid "Revert to an older version from revision control"
-msgstr "Revino la o versiune precedentă din controlul reviziei"
+msgstr "Revenire la o versiune precedentă din controlul reviziei"
 
 #: revision.glade:197
 msgid "Select an older revision - GRAMPS"
@@ -4974,7 +4978,7 @@ msgstr "Selectează o versiune precedentă - GRAMPS"
 
 #: revision.glade:260
 msgid "Revert to an older revision"
-msgstr "Revino la o revizie precedentă"
+msgstr "Revenire la o revizie precedentă"
 
 #: revision.glade:327
 msgid "Revison Control Comment - GRAMPS"
@@ -5126,7 +5130,7 @@ msgstr "Aldin"
 
 #: styles.glade:675
 msgid "Italic"
-msgstr "Italic"
+msgstr "Cursiv"
 
 #: styles.glade:698
 msgid "Underline"

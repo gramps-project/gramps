@@ -24,6 +24,8 @@ import Utils
 import AutoComp
 import const
 import RelLib
+from intl import gettext as _
+
 
 class QuickAdd:
     def __init__(self,db,sex,callback):
@@ -38,6 +40,9 @@ class QuickAdd:
             })
 
         self.window = self.xml.get_widget("addperson")
+
+        Utils.set_title_label(self.xml,_('Add Person'))
+        
         self.c = AutoComp.AutoCombo(self.xml.get_widget("surnameCombo"),
                                     self.db.getSurnames())
 

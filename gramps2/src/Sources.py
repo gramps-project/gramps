@@ -53,6 +53,9 @@ class SourceSelector:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
         self.top = gtk.glade.XML(const.srcselFile,"sourcesel")
+
+        Utils.set_title_label(self.top,_('Source Reference Selection'))
+        
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked"    : self.add_src_clicked,
@@ -208,6 +211,9 @@ class SourceEditor:
         self.update = update
         self.source_ref = srcref
         self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay")
+
+        Utils.set_title_label(self.showSource,_('Source Information'))
+        
         self.showSource.signal_autoconnect({
             "on_sourceok_clicked"   : self.on_sourceok_clicked,
             "on_source_changed"     : self.on_source_changed,

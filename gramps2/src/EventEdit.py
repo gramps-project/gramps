@@ -77,6 +77,11 @@ class EventEditor:
             self.date = Date.Date(None)
 
         self.top = gtk.glade.XML(const.dialogFile, "event_edit")
+
+        title_label = self.top.get_widget('title')
+        title_label.set_text(Utils.title(_('Event Editor for %s') % name))
+        title_label.set_use_markup(gtk.TRUE)
+        
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")

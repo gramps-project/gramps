@@ -92,6 +92,9 @@ class ChooseParents:
             self.father = None
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog")
+
+        text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
+        Utils.set_title_label(self.glade,text)
         self.top = self.glade.get_widget("familyDialog")
 	self.mother_rel = self.glade.get_widget("mrel")
 	self.father_rel = self.glade.get_widget("frel")
@@ -137,10 +140,6 @@ class ChooseParents:
             "on_showall_toggled"       : self.showall_toggled,
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
-
-        text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
-        self.title.set_text('<span size="larger" weight="bold">%s</span>' % text)
-        self.title.set_use_markup(gtk.TRUE)
 
     def redraw(self):
         """Redraws the potential father and mother lists"""
@@ -363,6 +362,9 @@ class ModifyParents:
         self.mother = self.family.getMother()
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents")
+
+        Utils.set_title_label(self.glade,_("Modify the Parents of %s") % GrampsCfg.nameof(self.person))
+        
         self.top = self.glade.get_widget("modparents")
 	self.mother_rel = self.glade.get_widget("mrel")
 	self.father_rel = self.glade.get_widget("frel")
@@ -385,16 +387,14 @@ class ModifyParents:
             "destroy_passed_object"    : self.quit,
             })
 
-        text = _("<b>Modify the Parents of %s</b>") % GrampsCfg.nameof(self.person)
-        self.title.set_text(text)
         self.title.set_use_markup(gtk.TRUE)
 
         if self.family.getRelationship() == "Partners":
-            self.mlabel.set_label(_("Parent"))
-            self.flabel.set_label(_("Parent"))
+            self.mlabel.set_label('<b>%s</b>' % _("Parent"))
+            self.flabel.set_label('<b>%s</b>' % _("Parent"))
         else:
-            self.mlabel.set_label(_("Mother"))
-            self.flabel.set_label(_("Father"))
+            self.mlabel.set_label('<b>%s</b>' % _("Mother"))
+            self.flabel.set_label('<b>%s</b>' % _("Father"))
 
 
         if self.father:

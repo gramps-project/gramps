@@ -77,6 +77,9 @@ class Marriage:
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor")
+
+        Utils.set_title_label(self.top,_('Marriage/Relationship Editor'))
+
         top_window = self.get_widget("marriageEditor")
         self.icon_list = self.get_widget('iconlist')
         self.gallery = ImageSelect.Gallery(family, self.path, self.icon_list, db, self)

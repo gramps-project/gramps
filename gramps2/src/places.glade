@@ -70,9 +70,9 @@
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label262">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;span size=&quot;larger&quot; weight=&quot;bold&quot;&gt;Place Editor&lt;/span&gt;</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -980,7 +980,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label263">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Other Names&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">&lt;b&gt;Other names&lt;/b&gt;</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1109,7 +1109,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button133">
+			    <widget class="GtkButton" id="edit_src">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">_Edit...</property>

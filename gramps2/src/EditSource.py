@@ -56,6 +56,9 @@ class EditSource:
         self.ref_not_loaded = 1
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor")
+
+        Utils.set_title_label(self.top_window,_('Source Editor'))
+        
         plwidget = self.top_window.get_widget("iconlist")
         self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self)
         self.title = self.top_window.get_widget("source_title")

@@ -73,11 +73,11 @@ class NameEditor:
 
         full_name = parent.person.getPrimaryName().getName()
 
-        alt_title = self.top.get_widget("altTitle")
+        alt_title = self.top.get_widget("title")
 
         tmsg = _("Alternate Name Editor for %s") % full_name
         
-        alt_title.set_text('<span weight="bold" size="larger">%s</span>' % tmsg)
+        alt_title.set_text(Utils.title(tmsg))
         alt_title.set_use_markup(gtk.TRUE)
 
         self.sourcetab = Sources.SourceTab(self.srcreflist, self.parent,

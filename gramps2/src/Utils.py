@@ -492,3 +492,11 @@ def for_each_ancestor(start, func, data):
             if f: todo.append(f)
             if m: todo.append(m)
     return 0
+
+def title(n):
+    return '<span weight="bold" size="larger">%s</span>' % n
+
+def set_title_label(xmlobj,t):
+    title_label = xmlobj.get_widget('title')
+    title_label.set_text('<span weight="bold" size="larger">%s</span>' % t)
+    title_label.set_use_markup(gtk.TRUE)

@@ -33,6 +33,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +51,9 @@ class UrlEditor:
         self.addr = self.top.get_widget("url_addr")
         self.priv = self.top.get_widget("priv")
 
-        self.top.get_widget("urlTitle").set_text(name) 
+        title_label = self.top.get_widget("title")
+        title_label.set_text(Utils.title(_('Internet Address Editor for %s') % name))
+        title_label.set_use_markup(gtk.TRUE)
 
         if url != None:
             self.des.set_text(url.get_description())

@@ -78,6 +78,8 @@ class AddSpouse:
 
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog")
 
+        Utils.set_title_label(self.glade,_('Choose Spouse/Partner'))
+        
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
