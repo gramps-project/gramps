@@ -873,6 +873,23 @@ class GrampsImportParser(GrampsParser):
         self.func_map["placeobj"] = (self.start_placeobj,self.stop_placeobj)
         self.func_map["source"]   = (self.start_source, self.stop_source)
         self.func_map["sourceref"]= (self.start_sourceref, self.stop_sourceref)
+        self.func_map["childof"]  = (self.start_childof,None)
+        self.func_map["parentin"] = (self.start_parentin,None)
+
+    def start_childof(self,attrs):
+        family = self.db.findFamilyNoConflict(attrs["ref"],self.fmap)
+        if attrs.has_key("mrel"):
+            mrel = attrs["mrel"]
+        else:
+            mrel = "Birth"
+        if attrs.has_key("frel"):
+            frel = attrs["frel"]
+        else:
+            frel = "Birth"
+        self.person.AltFamilyList.append((family,mrel,frel))
+
+    def start_parentin(self,attrs):
+        self.person.FamilyList.append(self.db.findFamilyNoConflict(attrs["ref"],self.fmap))
 
     def start_bmark(self,attrs):
         person = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
@@ -885,16 +902,13 @@ class GrampsImportParser(GrampsParser):
         self.person = self.db.findPersonNoConflicts(attrs["id"],self.pmap)
 
     def start_father(self,attrs):
-        father = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
-        self.family.setFather(father)
+        self.family.Father = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
 
     def start_mother(self,attrs):
-        mother = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
-        self.family.setMother(mother)
+        self.family.Mother = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
     
     def start_child(self,attrs):
-        child = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
-        self.family.addChild(child)
+        self.family.Children.append(self.db.findPersonNoConflicts(attrs["ref"],self.pmap))
 
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
@@ -950,10 +964,7 @@ class GrampsImportParser(GrampsParser):
             self.placeobj.addSourceRef(self.source_ref)
 
     def start_place(self,attrs):
-        if attrs.has_key('ref'):
-            self.placeobj = self.db.findPlaceNoConflicts(attrs['ref'],self.lmap)
-        else:
-            self.placeobj = None
+        self.placeobj = self.db.findPlaceNoConflicts(attrs['ref'],self.lmap)
 
     def start_placeobj(self,attrs):
         self.placeobj = self.db.findPlaceNoConflicts(attrs['id'],self.lmap)
