@@ -1,14 +1,14 @@
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
-	* src/styles.glade - scrolling fix
-	* src/dialog.glade - scrolling fix
-	* src/edit_person.glade - scrolling fix
-	* src/gramps.glade - scrolling fix
-	* src/imagesel.glade - scrolling fix
-	* src/marriage.glade - scrolling fix
-	* src/mergedata.glade - scrolling fix
-	* src/places.glade - scrolling fix
-	* src/rule.glade - scrolling fix
-	* src/srcsel.glade - scrolling fix
+	* src/styles.glade: - scrolling fix
+	* src/dialog.glade: - scrolling fix
+	* src/edit_person.glade: - scrolling fix
+	* src/gramps.glade: - scrolling fix
+	* src/imagesel.glade: - scrolling fix
+	* src/marriage.glade: - scrolling fix
+	* src/mergedata.glade: - scrolling fix
+	* src/places.glade: - scrolling fix
+	* src/rule.glade: - scrolling fix
+	* src/srcsel.glade: - scrolling fix
 
 2003-06-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Date.py: Handle date ranges in the form of xxxx - xxxx
