@@ -33,7 +33,7 @@
 #-------------------------------------------------------------------------
 
 import RelLib
-from Relationship import apply_filter as getallancestors
+import Relationship
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -228,182 +228,253 @@ _niece_level = [ "", "Nichte",
   "Urururururururururururururururururururgroßnichte", 
 ]
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-
-def get_junior_male_cousin(level,removed):
-    if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
-        return "remote relative"
-    else:
-        return "%s %s Grades" % (_cousin_level[level],_removed_level[removed])
-
-def get_senior_male_cousin(level,removed):
-    if removed > len(_removed_level)-1 or level>len(_brother_level)-1:
-        return "remote relative"
-    else:
-        return "%s %s Grades" % (_brother_level[level],_removed_level[removed])
-
-def get_junior_female_cousin(level,removed):
-    if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
-        return "remote relative"
-    else:
-        return "%se %s Grades" % (_cousin_level[level],_removed_level[removed])
-
-def get_senior_female_cousin(level,removed):
-    if removed > len(_removed_level)-1 or level>len(_sister_level)-1:
-        return "remote relative"
-    else:
-        return "%s %s Grades" % (_sister_level[level],_removed_level[removed])
-
-def get_father(level):
-    if level>len(_father_level)-1:
-        return "remote ancestor"
-    else:
-        return _father_level[level]
-
-def get_son(level):
-    if level>len(_son_level)-1:
-        return "remote descendant"
-    else:
-        return _son_level[level]
-
-def get_mother(level):
-    if level>len(_mother_level)-1:
-        return "remote ancestor"
-    else:
-        return _mother_level[level]
-
-def get_daughter(level):
-    if level>len(_daughter_level)-1:
-        return "remote descendant"
-    else:
-        return _daughter_level[level]
-
-def get_aunt(level):
-    if level>len(_sister_level)-1:
-        return "remote ancestor"
-    else:
-        return _sister_level[level]
-
-def get_uncle(level):
-    if level>len(_brother_level)-1:
-        return "remote ancestor"
-    else:
-        return _brother_level[level]
-
-def get_nephew(level):
-    if level>len(_nephew_level)-1:
-        return "remote descendant"
-    else:
-        return _nephew_level[level]
-
-def get_niece(level):
-    if level>len(_niece_level)-1:
-        return "remote descendant"
-    else:
-        return _niece_level[level]
-
-def is_spouse(orig,other):
-    for f in orig.get_family_id_list():
-        if other == f.get_father_id() or other == f.get_mother_id():
-            return 1
-    return 0
-
-def get_relationship(orig_person,other_person):
-    """
-    Returns a string representing the relationshp between the two people,
-    along with a list of common ancestors (typically father,mother) 
-    
-    Special cases: relation strings "", "undefined" and "spouse".
-    """
-
-    firstMap = {}
-    firstList = []
-    secondMap = {}
-    secondList = []
-    common = []
-    rank = 9999999
-    
-    if orig_person == None:
-        return ("undefined",[])
-    
-    firstName = orig_person.get_primary_name().get_regular_name()
-    secondName = other_person.get_primary_name().get_regular_name()
-    
-    if orig_person == other_person:
-        return ('', [])
-    if is_spouse(orig_person,other_person):
-        return ("spouse",[])
-
-    try:
-        getallancestors(orig_person,0,firstList,firstMap)
-        getallancestors(other_person,0,secondList,secondMap)
-    except RuntimeError,msg:
-        return (_("Relationship loop detected"),None)
-    
-    for person in firstList:
-        if person in secondList:
-            new_rank = firstMap[person.get_id()]
-            if new_rank < rank:
-                rank = new_rank
-                common = [ person ]
-            elif new_rank == rank:
-                common.append(person)
-
-    firstRel = -1
-    secondRel = -1
-
-    if common:
-        person = common[0]
-        secondRel = firstMap[person.get_id()]
-        firstRel = secondMap[person.get_id()]
-    
-    if firstRel == -1:
-        return ("",[])
-    elif firstRel == 0:
-        if secondRel == 0:
-            return ('',common)
-        elif other_person.get_gender() == RelLib.Person.male:
-            return (get_father(secondRel),common)
-        else:
-            return (get_mother(secondRel),common)
-    elif secondRel == 0:
-        if other_person.get_gender() == RelLib.Person.male:
-            return (get_son(firstRel),common)
-        else:
-            return (get_daughter(firstRel),common)
-    elif firstRel == 1:
-        if other_person.get_gender() == RelLib.Person.male:
-            return (get_uncle(secondRel),common)
-        else:
-            return (get_aunt(secondRel),common)
-    elif secondRel == 1:
-        if other_person.get_gender() == RelLib.Person.male:
-            return (get_nephew(firstRel-1),common)
-        else:
-            return (get_niece(firstRel-1),common)
-    elif secondRel > firstRel:
-        if other_person.get_gender() == RelLib.Person.male:
-            return (get_senior_male_cousin(secondRel-firstRel+1,secondRel-1),common)
-        else:
-            return (get_senior_female_cousin(secondRel-firstRel+1,secondRel-1),common)
-    else:
-        if other_person.get_gender() == RelLib.Person.male:
-            return (get_junior_male_cousin(secondRel-1,firstRel-1),common)
-        else:
-            return (get_junior_female_cousin(secondRel-1,firstRel-1),common)
-    
+_parents_level = [ "", "Eltern", "Großeltern", "Urgroßeltern", 
+"Alteltern", "Altgroßeltern", "Alturgroßeltern", "Obereltern", 
+"Obergroßeltern", "Oberurgroßeltern", "Stammeltern", "Stammgroßeltern", 
+"Stammurgroßeltern", "Ahneneltern", "Ahnengroßeltern", "Ahnenurgroßeltern", 
+"Urahneneltern", "Urahnengroßeltern", "Urahnenurgroßeltern",
+"Erzeltern", "Erzgroßeltern", "Erzurgroßeltern", "Erzahneneltern",
+"Erzahnengroßeltern", "Erzahnenurgroßeltern", 
+]
 
 #-------------------------------------------------------------------------
 #
-# Register this function with the Plugins system 
+#
+#
+#-------------------------------------------------------------------------
+class RelationshipCalculator(Relationship.RelationshipCalculator):
+
+    def __init__(self,db):
+        Relationship.RelationshipCalculator.__init__(self,db)
+
+    def get_parents(self,level):
+        if level>len(_parents_level)-1:
+            return "remote ancestors"
+        else:
+            return _parents_level[level]
+
+    def get_junior_male_cousin(self,level,removed):
+        if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
+            return "remote relative"
+        else:
+            return "%s %s Grades" % (_cousin_level[level],_removed_level[removed])
+
+    def get_senior_male_cousin(self,level,removed):
+        if removed > len(_removed_level)-1 or level>len(_brother_level)-1:
+            return "remote relative"
+        else:
+            return "%s %s Grades" % (_brother_level[level],_removed_level[removed])
+
+    def get_junior_female_cousin(self,level,removed):
+        if removed > len(_removed_level)-1 or level>len(_cousin_level)-1:
+            return "remote relative"
+        else:
+            return "%se %s Grades" % (_cousin_level[level],_removed_level[removed])
+
+    def get_senior_female_cousin(self,level,removed):
+        if removed > len(_removed_level)-1 or level>len(_sister_level)-1:
+            return "remote relative"
+        else:
+            return "%s %s Grades" % (_sister_level[level],_removed_level[removed])
+
+    def get_father(self,level):
+        if level>len(_father_level)-1:
+            return "remote ancestor"
+        else:
+            return _father_level[level]
+
+    def get_son(self,level):
+        if level>len(_son_level)-1:
+            return "remote descendant"
+        else:
+            return _son_level[level]
+
+    def get_mother(self,level):
+        if level>len(_mother_level)-1:
+            return "remote ancestor"
+        else:
+            return _mother_level[level]
+
+    def get_daughter(self,level):
+        if level>len(_daughter_level)-1:
+            return "remote descendant"
+        else:
+            return _daughter_level[level]
+
+    def get_aunt(self,level):
+        if level>len(_sister_level)-1:
+            return "remote ancestor"
+        else:
+            return _sister_level[level]
+
+    def get_uncle(self,level):
+        if level>len(_brother_level)-1:
+            return "remote ancestor"
+        else:
+            return _brother_level[level]
+
+    def get_nephew(self,level):
+        if level>len(_nephew_level)-1:
+            return "remote descendant"
+        else:
+            return _nephew_level[level]
+
+    def get_niece(self,level):
+        if level>len(_niece_level)-1:
+            return "remote descendant"
+        else:
+            return _niece_level[level]
+
+    def is_spouse(self,orig,other):
+        for f in orig.get_family_id_list():
+            family = self.db.find_family_from_id(f)
+            if family:
+                if other == family.get_father_id() or other == family.get_mother_id():
+                    return 1
+        return 0
+
+    def get_relationship(self,orig_person,other_person):
+        """
+        Returns a string representing the relationshp between the two people,
+        along with a list of common ancestors (typically father,mother) 
+        
+        Special cases: relation strings "", "undefined" and "spouse".
+        """
+
+        firstMap = {}
+        firstList = []
+        secondMap = {}
+        secondList = []
+        common = []
+        rank = 9999999
+    
+        if orig_person == None:
+            return ("undefined",[])
+    
+        firstName = orig_person.get_primary_name().get_regular_name()
+        secondName = other_person.get_primary_name().get_regular_name()
+    
+        if orig_person == other_person:
+            return ('', [])
+        if self.is_spouse(orig_person,other_person):
+            return ("spouse",[])
+
+        try:
+            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
+            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+        except RuntimeError,msg:
+            return (_("Relationship loop detected"),None)
+    
+        for person_id in firstList:
+            if person_id in secondList:
+                new_rank = firstMap[person_id]
+                if new_rank < rank:
+                    rank = new_rank
+                    common = [ person_id ]
+                elif new_rank == rank:
+                    common.append(person_id)
+
+        firstRel = -1
+        secondRel = -1
+
+        if common:
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
+    
+        if firstRel == -1:
+            return ("",[])
+        elif firstRel == 0:
+            if secondRel == 0:
+                return ('',common)
+            elif other_person.get_gender() == RelLib.Person.male:
+                return (self.get_father(secondRel),common)
+            else:
+                return (self.get_mother(secondRel),common)
+        elif secondRel == 0:
+            if other_person.get_gender() == RelLib.Person.male:
+                return (self.get_son(firstRel),common)
+            else:
+                return (self.get_daughter(firstRel),common)
+        elif firstRel == 1:
+            if other_person.get_gender() == RelLib.Person.male:
+                return (self.get_uncle(secondRel),common)
+            else:
+                return (self.get_aunt(secondRel),common)
+        elif secondRel == 1:
+            if other_person.get_gender() == RelLib.Person.male:
+                return (self.get_nephew(firstRel-1),common)
+            else:
+                return (self.get_niece(firstRel-1),common)
+        elif secondRel > firstRel:
+            if other_person.get_gender() == RelLib.Person.male:
+                return (self.get_senior_male_cousin(secondRel-firstRel+1,secondRel-1),common)
+            else:
+                return (self.get_senior_female_cousin(secondRel-firstRel+1,secondRel-1),common)
+        else:
+            if other_person.get_gender() == RelLib.Person.male:
+                return (self.get_junior_male_cousin(secondRel-1,firstRel-1),common)
+            else:
+                return (self.get_junior_female_cousin(secondRel-1,firstRel-1),common)
+    
+
+    def get_grandparents_string(self,orig_person,other_person):
+        """
+        returns a string representing the relationshp between the two people,
+        along with a list of common ancestors (typically father,mother) 
+        """
+        firstMap = {}
+        firstList = []
+        secondMap = {}
+        secondList = []
+        common = []
+        rank = 9999999
+
+        if orig_person == None:
+            return ("undefined",[])
+
+        if orig_person == other_person:
+            return ('', [])
+
+        try:
+            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
+            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+        except RuntimeError,msg:
+            return (_("Relationship loop detected"),None)
+    
+        for person_id in firstList:
+            if person_id in secondList:
+                new_rank = firstMap[person_id]
+                if new_rank < rank:
+                    rank = new_rank
+                    common = [ person_id ]
+                elif new_rank == rank:
+                    common.append(person_id)
+
+        firstRel = -1
+        secondRel = -1
+
+        if common:
+            person = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
+
+        if firstRel == 0:
+            if secondRel == 0:
+                return ('',common)
+            else:
+                return (self.get_parents(secondRel),common)
+        else:
+            return None
+
+
+#-------------------------------------------------------------------------
+#
+# Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
 from Plugins import register_relcalc
 
-register_relcalc(get_relationship,
+register_relcalc(RelationshipCalculator,
     ["de","DE","de_DE","deutsch","Deutsch","de_DE.UTF8","de_DE@euro","de_DE.UTF8@euro",
             "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8"])

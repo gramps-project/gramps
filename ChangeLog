@@ -4,6 +4,7 @@
 	* src/gramps_main.py: Corrections. 
 	* src/plugins/Ancestors.py: Use get_grandparents_string which is
 	registered in Plugins (possibly from the relationship calculator).
+	* src/plugins/rel_de.py: Implement get_parents().
 
 2004-02-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/RelCalc.py: Handle IDs properly
