@@ -1242,7 +1242,7 @@ class Gramps:
         person = RelLib.Person()
         try:
             EditPerson.EditPerson(self, person, self.db,
-                                  self.update_after_edit)
+                                  self.new_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1514,7 +1514,17 @@ class Gramps:
             self.filter_text.set_sensitive(0)
 
     def new_after_edit(self,epo,val):
-        self.update_after_edit(epo,val)
+        self.active_person = epo.person
+        pn = self.active_person.get_primary_name()
+
+        mapname = self.db.get_name_group_mapping(pn.get_group_name())
+
+        self.people_view.build_tree()
+        self.family_view.load_family()
+        self.place_view.build_tree()
+        self.source_view.build_tree()
+        self.update_display(0)
+        self.goto_active_person()
         
     def update_after_newchild(self,family,person,plist):
         self.family_view.load_family(family)
@@ -1528,7 +1538,7 @@ class Gramps:
 
         mapname = self.db.get_name_group_mapping(pn.get_group_name())
 
-        if epo.orig_surname != pn.get_group_name() or epo.orig_surname != mapname:
+        if epo.orig_surname in [pn.get_group_name(), mapname ]:
             self.people_view.build_tree()
         elif change:
             self.people_view.update_person_list(epo.person)
