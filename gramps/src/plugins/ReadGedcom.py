@@ -68,6 +68,7 @@ intRE = re.compile(r"\s*(\d+)\s*$")
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
+snameRegexp= re.compile(r"/([^/]*)/")
 calRegexp = re.compile(r"\s*@#D([^@]+)@\s*(.*)$")
 fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 
@@ -155,6 +156,9 @@ class GedcomParser:
         self.backoff = 0
         self.cnv = nocnv
 
+        self.trans = string.maketrans('','')
+        self.delc = self.trans[0:31]
+        
         self.file_obj = window.get_widget("file")
         self.encoding_obj = window.get_widget("encoding")
         self.created_obj = window.get_widget("created")
@@ -219,6 +223,8 @@ class GedcomParser:
     def get_next(self):
         if self.backoff == 0:
             self.text = self.cnv(string.strip(self.f.readline()))
+            self.text = string.translate(self.text,self.trans,self.delc)
+            
             self.index = self.index + 1
             l = string.split(self.text, None, 2)
             ln = len(l)
@@ -558,10 +564,15 @@ class GedcomParser:
                 return
 	    elif matches[1] == "NAME":
                 name = Name()
-                try:
-                    names = nameRegexp.match(matches[2]).groups()
-                except:
-                    names = (matches[2],"","","","")
+                m = snameRegexp.match(matches[2])
+                if m:
+                    n = m.groups()
+                    names = ('','',n,'','')
+                else:
+                    try:
+                        names = nameRegexp.match(matches[2]).groups()
+                    except:
+                        names = (matches[2],"","","","")
                 if names[0]:
                     name.setFirstName(names[0])
                 if names[2]:
