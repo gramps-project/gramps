@@ -20,8 +20,7 @@
 
 # $Id$
 
-# Written by Alex Roitman,
-# largely based on WriteXML by Don Allingham
+# Written by Alex Roitman
 
 #-------------------------------------------------------------------------
 #
@@ -61,25 +60,25 @@ def exportData(database, filename, person=None, callback=None):
     # copy all data from new_database to database,
 
     for handle in database.person_map.keys():
-        new_database.person_map.put(str(handle),
-                database.person_map.get(str(handle)))
+        new_database.person_map.put(handle,
+                database.person_map.get(handle))
     for handle in database.family_map.keys():
-        new_database.family_map.put(str(handle),
-                database.family_map.get(str(handle)))
+        new_database.family_map.put(handle,
+                database.family_map.get(handle))
     for handle in database.place_map.keys():
-        new_database.place_map.put(str(handle),
-                database.place_map.get(str(handle)))
+        new_database.place_map.put(handle,
+                database.place_map.get(handle))
     for handle in database.source_map.keys():
-        new_database.source_map.put(str(handle),
-                database.source_map.get(str(handle)))
+        new_database.source_map.put(handle,
+                database.source_map.get(handle))
     for handle in database.media_map.keys():
-        new_database.media_map.put(str(handle),
-                database.media_map.get(str(handle)))
+        new_database.media_map.put(handle,
+                database.media_map.get(handle))
     for handle in database.event_map.keys():
-        new_database.event_map.put(str(handle),
-                database.event_map.get(str(handle)))
+        new_database.event_map.put(handle,
+                database.event_map.get(handle))
     for handle in database.metadata.keys():
-        new_database.metadata.put(str(handle),
-                database.metadata.get(str(handle)))
+        new_database.metadata.put(handle,
+                database.metadata.get(handle))
 
     new_database.close()
