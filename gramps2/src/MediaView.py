@@ -260,7 +260,7 @@ class MediaView:
                              'If you delete this object, it will be removed '
                              'from the database and from all records that '
                              'reference it.'),
-                           _('Delete Media Object?'),
+                           _('_Delete Media Object?'),
                            ans.query_response)
         else:
             self.db.removeObject(mobj.getId())

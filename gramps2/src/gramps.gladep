@@ -2,7 +2,7 @@
 <!DOCTYPE glade-project SYSTEM "http://glade.gnome.org/glade-project-2.0.dtd">
 
 <glade-project>
-  <name>Src</name>
-  <program_name>src</program_name>
+  <name>gramps</name>
+  <program_name>gramps</program_name>
   <pixmaps_directory>.</pixmaps_directory>
 </glade-project>

@@ -183,6 +183,7 @@ class ReportDialog:
         self.widgets = []
         self.frame_names = []
         self.frames = {}
+        self.format_menu = None
 
         self.window = gtk.Dialog('GRAMPS')
         self.window.set_has_separator(gtk.FALSE)
@@ -226,8 +227,8 @@ class ReportDialog:
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
 
-        menu = self.format_menu.get_menu()
-        self.doc_type_changed(menu.get_active())
+        if self.format_menu:
+            self.doc_type_changed(self.format_menu.get_menu().get_active())
         self.setup_post_process()
 
 

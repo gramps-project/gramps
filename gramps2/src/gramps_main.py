@@ -570,7 +570,7 @@ class Gramps:
                        _('Creating a new database will close the existing database, '
                          'discarding any unsaved changes. You will then be prompted '
                          'to create a new database'),
-                       _('Create New Database'),
+                       _('_Create New Database'),
                        self.new_database_response)
                        
     def new_database_response(self):
@@ -737,9 +737,9 @@ class Gramps:
                            'when GRAMPS was unexpected shutdown before the '
                            'data was saved. You may load this file to try to '
                            'recover any missing data.'),
-                         _('Load autosave file'),
+                         _('_Load autosave file'),
                          self.autosave_query,
-                         _('Load saved database'),
+                         _('Load _saved database'),
                          self.loadsaved_file)
         else:
             self.active_person = None
@@ -909,7 +909,7 @@ class Gramps:
                              'recovered by closing the database without saving '
                              'changes. This change will become permanent '
                              'after you save the database.'),
-                           _('Delete Person'),
+                           _('_Delete Person'),
                            self.delete_person_response)
 
     def delete_person_response(self):
@@ -1055,7 +1055,7 @@ class Gramps:
                            _('Reverting to the last saved database '
                              'will cause all unsaved changes to be lost, and '
                              'the last saved database will be loaded.'),
-                           _('Revert'),
+                           _('_Revert'),
                            self.revert_query)
         else:
             WarningDialog(_('Could Not Revert to the Previous Database.'),
@@ -1504,7 +1504,7 @@ class Gramps:
                            _('Once a Home Person is defined, pressing the '
                              'Home button on the toolbar will make the home '
                              'person the active person.'),
-                           _('Set Home Person'),
+                           _('_Set Home Person'),
                            self.set_person)
             
     def set_person(self):

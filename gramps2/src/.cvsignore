@@ -3,3 +3,5 @@ Makefile
 *.pyo
 gramps.strings
 glade.c
+.xvpics
+*.gladep

@@ -224,7 +224,7 @@ class FamilyView:
                            _('Removing a spouse removes the relationship between '
                              'the spouse and the active person. It does not '
                              'remove the spouse from the database'),
-                           _('Remove Spouse'),
+                           _('_Remove Spouse'),
                            self.really_remove_spouse)
         elif self.family and not self.family.getChildList():
             self.really_remove_spouse()
@@ -467,7 +467,7 @@ class FamilyView:
                          'child of the parents. The parents are not removed from the '
                          'database, and the relationship between the parents '
                          'is not removed.'),
-                       _('Remove Parents'),
+                       _('_Remove Parents'),
                        self.really_del_parents)
         
     def really_del_parents(self):
@@ -482,7 +482,7 @@ class FamilyView:
                          'child of the parents. The parents are not removed from the '
                          'database, and the relationship between the parents '
                          'is not removed.'),
-                       _('Remove Parents'),
+                       _('_Remove Parents'),
                        self.really_del_sp_parents)
 
     def really_del_sp_parents(self):
