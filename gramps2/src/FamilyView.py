@@ -767,8 +767,10 @@ class FamilyView:
         self.parent.db.transaction_commit(trans,_("Modify family"))
             
     def new_child_after_edit(self,epo,value):
-        trans = self.parent.db.transaction_begin()
         if not self.family:
+            # Add family to active person, 
+            # if it does not exist yet (child with no spouse)
+            trans = self.parent.db.transaction_begin()
             self.family = RelLib.Family()
             self.parent.db.add_family(self.family,trans)
             self.person.add_family_handle(self.family.get_handle())
@@ -776,7 +778,11 @@ class FamilyView:
                 self.family.set_father_handle(self.person.get_handle())
             else:
                 self.family.set_mother_handle(self.person.get_handle())
+            self.parent.db.commit_family(self.family,trans)
+            self.parent.db.commit_person(self.person,trans)
+            self.parent.db.transaction_commit(trans,_("Add Family"))
 
+        trans = self.parent.db.transaction_begin()
         self.family.add_child_handle(epo.person.get_handle())
         epo.person.add_parent_family_handle(self.family.get_handle(),RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
         self.parent.db.commit_person(epo.person,trans)
