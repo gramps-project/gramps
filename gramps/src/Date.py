@@ -264,7 +264,7 @@ class Date:
         try:
             return self.get_fmt(SingleDate.getDate)
         except:
-            return "DATE CONVERSION ERROR"
+            return "DATE ERROR (d%d/m%d/y%d)" % (self.start.day,self.start.month,self.start.year)
 
     def getQuoteDate(self):
         if self.calendar == GREGORIAN:

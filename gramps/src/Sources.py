@@ -247,21 +247,23 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
-        values = self.db.getSourceMap().values()
-        values.sort(by_title)
+        values = []
+        for v in self.db.getSourceKeys():
+            values.append(self.db.getSourceDisplay(v))
+        values.sort()
 
         sel_child = None
         list = []
         for src in values:
-            l = gtk.GtkLabel("%s [%s]" % (src.getTitle(),src.getId()))
+            l = gtk.GtkLabel("%s [%s]" % (src[0],src[1]))
             l.show()
             l.set_alignment(0,0.5)
             c = gtk.GtkListItem()
             c.add(l)
-            c.set_data("s",src)
+            c.set_data("s",src[1])
             c.show()
             list.append(c)
-            if self.active_source == src:
+            if self.active_source and self.active_source.getId() == src[1]:
                 sel_child = c
 
         self.title_menu.list.append_items(list)
@@ -293,7 +295,8 @@ class SourceEditor:
         Utils.destroy_passed_object(obj)
 
     def on_source_changed(self,obj):
-        self.active_source = obj.list.get_selection()[0].get_data("s")
+        id = obj.list.get_selection()[0].get_data("s")
+        self.active_source = self.db.getSource(id)
 
         if self.active_source == None:
             self.author_field.set_text(self.active_source.getAuthor())
