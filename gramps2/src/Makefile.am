@@ -12,6 +12,13 @@ MOSTLYCLEANFILES =
 
 gdirdir=$(prefix)/share/gramps
 
+docfiles = \
+	RelLib.py \
+	Date.py \
+	DateParser.py \
+	DateDisplay.py \
+	GrampsDbBase.py 
+
 gdir_PYTHON = \
 	accent.py \
 	AddMedia.py\
@@ -145,3 +152,6 @@ pycheck:
 	done;
 	pychecker $(gdir_PYTHON)
 
+docs:
+	epydoc -o doc --url http://gramps.sourceforge.net --name GRAMPS --html $(docfiles)
+	epydoc --pdf $(docfiles)

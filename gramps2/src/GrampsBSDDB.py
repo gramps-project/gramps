@@ -122,6 +122,11 @@ class GrampsBSDDB(GrampsDbBase):
         self.genderStats = GenderStats(self.metadata.get('gender_stats'))
         return 1
 
+    def abort_changes(self):
+        while self.undo():
+            pass
+        self.close()
+
     def close(self):
         self.name_group.close()
         self.person_map.close()

@@ -1,3 +1,12 @@
+2004-10-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: fix source display
+	* src/GrampsBSDDB.py: add abort_changes task
+	* src/GrampsDbBase.py: add abort_changes task
+	* src/GrampsInMemDB.py: add abort_changes task
+	* src/Makefile.am: Add target to build documentation using epydoc
+	* src/gramps.glade: Add abandon changes menu item. Not fully implemented yet
+	* src/gramps_main.py: add exit_and_undo
+
 2004-10-12 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Remove "Save as" from toolbar.
 

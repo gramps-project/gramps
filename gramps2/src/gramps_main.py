@@ -312,6 +312,7 @@ class Gramps:
 
         self.gtop.signal_autoconnect({
             "on_undo_activate" : self.undo,
+            "on_abandon_activate" : self.exit_and_undo,
             "on_column_order_activate": self.column_order,
             "on_back_clicked" : self.back_clicked,
             "on_back_pressed" : self.back_pressed,
@@ -434,6 +435,11 @@ class Gramps:
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
         self.family_view.load_family()
+
+    def exit_and_undo(self,*args):
+        self.db.abort_changes()
+        self.db.set_people_view_maps((None,None,None,None))
+        gtk.main_quit()
 
     def set_person_column_order(self,list):
         self.db.set_person_column_order(list)

@@ -138,7 +138,6 @@ class BaseModel(gtk.GenericTreeModel):
 class SourceModel(BaseModel):
 
     def __init__(self,db):
-        BaseModel.__init__(self,db)
         self.sort_keys = db.get_source_handles
         self.map = db.source_map
         self.fmap = [
@@ -150,6 +149,7 @@ class SourceModel(BaseModel):
             self.column_change,
             self.column_handle,
             ]
+        BaseModel.__init__(self,db)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
