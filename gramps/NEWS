@@ -6,6 +6,9 @@ Version 0.4.0
 * gramps ID can be displayed in many lists
 * Multiple selection in Add Children box
 * Internal gramps ID now a string instead of an integer
+* Double clicking on a name in the Pedegree view brings up the edit
+  box for that person
+* Support for same sex parent families has been added
 
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.

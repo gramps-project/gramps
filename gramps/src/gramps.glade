@@ -1914,6 +1914,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv4</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:18:50 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -1938,6 +1943,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv5</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:19:01 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -1962,6 +1972,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv6</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:19:10 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -1986,6 +2001,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv7</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:19:20 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2010,6 +2030,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv2</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:18:28 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2034,6 +2059,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv3</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:18:38 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2058,6 +2088,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv1</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:18:18 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2082,6 +2117,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv8</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:19:30 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2106,6 +2146,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv9</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:19:57 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2130,6 +2175,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv10</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:20:19 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2154,6 +2204,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv11</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:20:28 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2178,6 +2233,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv12</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:20:36 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2202,6 +2262,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv13</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:20:49 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2226,6 +2291,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv14</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:21:00 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -2250,6 +2320,11 @@
 	  <class>GtkEntry</class>
 	  <name>pv15</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>button_press_event</name>
+	    <handler>on_pv_button_press_event</handler>
+	    <last_modification_time>Sun, 15 Jul 2001 21:21:09 GMT</last_modification_time>
+	  </signal>
 	  <editable>False</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -3073,7 +3148,7 @@
 
 	<widget>
 	  <class>GtkLabel</class>
-	  <name>label80</name>
+	  <name>mlabel</name>
 	  <width>100</width>
 	  <label>Mother</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
@@ -3246,7 +3321,7 @@ Unknown
 
 	<widget>
 	  <class>GtkLabel</class>
-	  <name>label83</name>
+	  <name>flabel</name>
 	  <width>100</width>
 	  <label>Father</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
@@ -3393,6 +3468,77 @@ Unknown
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
 	    <text>Birth</text>
+	  </widget>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkHSeparator</class>
+	<name>hseparator19</name>
+	<child>
+	  <padding>10</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkHBox</class>
+	<name>hbox30</name>
+	<homogeneous>False</homogeneous>
+	<spacing>0</spacing>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkLabel</class>
+	  <name>label229</name>
+	  <label>Parent Relationship</label>
+	  <justify>GTK_JUSTIFY_CENTER</justify>
+	  <wrap>False</wrap>
+	  <xalign>0.5</xalign>
+	  <yalign>0.5</yalign>
+	  <xpad>0</xpad>
+	  <ypad>0</ypad>
+	  <child>
+	    <padding>5</padding>
+	    <expand>False</expand>
+	    <fill>False</fill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkCombo</class>
+	  <name>prel_combo</name>
+	  <value_in_list>True</value_in_list>
+	  <ok_if_empty>True</ok_if_empty>
+	  <case_sensitive>False</case_sensitive>
+	  <use_arrows>True</use_arrows>
+	  <use_arrows_always>False</use_arrows_always>
+	  <items></items>
+	  <child>
+	    <padding>5</padding>
+	    <expand>True</expand>
+	    <fill>True</fill>
+	  </child>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <child_name>GtkCombo:entry</child_name>
+	    <name>prel</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>changed</name>
+	      <handler>on_prel_changed</handler>
+	      <last_modification_time>Sun, 15 Jul 2001 14:33:47 GMT</last_modification_time>
+	    </signal>
+	    <editable>False</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text></text>
 	  </widget>
 	</widget>
       </widget>
