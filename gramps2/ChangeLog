@@ -1,3 +1,7 @@
+2003-11-25  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* FAQ: Several minor corrections. New question about bug reports.
+	* Makefile.am, Makefile.in: Add FAQ to EXTRA_DIST.
+
 2003-11-25  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Utils.py (search_for): check for directory
 

@@ -2,7 +2,7 @@
 
 SUBDIRS = src doc example
 
-EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
+EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS FAQ
 
 bin_SCRIPTS = gramps
 
