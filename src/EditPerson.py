@@ -1288,10 +1288,11 @@ class EditPerson:
             self.alt_prefix_field.set_text(name.get_surname_prefix())
             self.name_type_field.set_text(const.NameTypesMap.find_value(name.get_type()))
             if len(name.get_source_references()) > 0:
-                psrc_id = name.get_source_references()[0].get_base_id()
+                psrc_ref = name.get_source_references()[0]
+                psrc_id = psrc_ref.get_base_id()
                 psrc = self.db.find_source_from_id(psrc_id)
-                self.name_src_field.set_text(short(psrc.get_base_id().get_title()))
-                self.name_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
+                self.name_src_field.set_text(short(psrc.get_title()))
+                self.name_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
                 self.name_src_field.set_text('')
                 self.name_conf_field.set_text('')
