@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -12,6 +12,7 @@
 	  no Front-Cover Texts, and no Back-Cover Texts. 
           A copy of the license is included in the file COPYING-DOCS 
           distributed with this manual.
+
 -->
 
 <!-- $Id$ -->
@@ -35,8 +36,8 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
       <title>Használat</title> 
-	<para> Ez a kategória a &app; általános használathoz szűkséges információkat tertalmazza. 
- A következő alkategóriákat tartalmazza:</para>
+	<para> Ez a kategória a &app; általános használathoz szűkséges információkat tartalmazza. 
+ A következő alkategóriákat választhatóak:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-find"> 
@@ -63,33 +64,33 @@
 	<variablelist>
 
 	<varlistentry><term><guilabel>Kedvelt szöveg formátum</guilabel></term>
-	<listitem><para> Select the preferred format for text reports 
-	from the available formats listed in this menu. 
+	<listitem><para> Az összesítőkhöz, az ön által kedvelt szövegformátumot 
+	választhatja ki a menüben felsoroltak közül. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Kedvelt grafikai formátum</guilabel></term>
-	<listitem><para> Select the preferred format for graphical reports 
-	from the available formats listed in this menu.
+	<listitem><para> Az összesítőkhöz, az ön által kedvelt grafikai formátumot 
+	választhatja ki a menüben felsoroltak közül. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Kedvelt papír méret</guilabel></term>
-	<listitem><para> Select the preferred paper size used for reports 
-	from the available sizes listed in this menu.
+	<listitem><para> Az összesítőkhöz, az ön által kedvelt papírméretet 
+	állíthatja be a menüben felsoroltak közül. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Alapértelmezett összesítő könyvtár</guilabel></term>
-	<listitem><para> Choose the default directory for the reports using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
+	<listitem><para> Az összesítőkhöz használt alapértelmezett könyvtár beállításához 
+	kattintson a <guibutton>Tallózás...</guibutton> gombra vagy egyszerűen írja be 
+	a könyvtár nevét a szövegmezőbe. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Alapértelmezett web site könyvtár</guilabel></term>
-	<listitem><para> Choose the default directory for the web site using the 
-	<guibutton>Browse...</guibutton> button or type it in the text entry
-	field. </para></listitem>
+	<listitem><para> A weboldalhoz használt alapértelmezett könyvtár beállításához 
+	kattintson a <guibutton>Tallózás...</guibutton>  gombra vagy egyszerűen írja be 
+	a könyvtár nevét a szövegmezőbe. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -103,12 +104,12 @@
 	<variablelist>
 
 	<varlistentry><term><guilabel>Kutató információ</guilabel></term>
-	<listitem><para> Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however 
-	none of your exported GEDCOM files will be valid. 
+	<listitem><para> Itt adhatja meg személyes adatait a megfelelő 
+	szövegmezőkben. Habár a &app; kéri ezeket az információkat, 
+	ezek az adatok csak a szabályos GEDCOM fájlok készítéséhez kellenek.
+	Egy szabályos GEDCOM fájlban a készítőről információkat kell megadni. 
+	Üresen hagyhatja a mezőket, de ekkor az ön által készített 
+	GEDCOM fájlok nem lesznek szabályosak. 
 	</para></listitem>
 	</varlistentry>
 
@@ -123,21 +124,20 @@
 	<variablelist>
 	
 	<varlistentry><term><guilabel>Valószínüsíthető családnév</guilabel></term>
-	<listitem><para> This option affects the initial family name of a 
-	child when he/she is added to the database. NOTE: this option only
-	affects the initial family name guessed by &app; when the 
-	<guilabel>Edit Person</guilabel> dialog is launched. You can modify
-	that name the way you see fit. Set this option to the value that you 
-	will most frequently use, as it will save you a lot of typing.</para>
+	<listitem><para> Ez a beállítás egy gyerek -adatbázisba való vételekor- 
+	családnevének a megállapításában segít. 
+	MEGJEGYZÉS: ez a segítség csak a <guilabel>Személy szerkesztés</guilabel> 
+	dialógus ablakban működik. A megadott nevet természetesen kedve szerint 
+	módosíthatja. Állítsa be arra a típusra amelyiket valószínűleg a leggyakrabban 
+	fogja használni, így egy kicsit lehet spórolni a gépeléssel.</para>
 	
-	<para>If <guilabel>None</guilabel> is selected, no guessing will be 
-	attempted. Selecting <guilabel>Father's surname</guilabel> will use
-	the family name of the father. Selecting <guilabel>Combination of 
-	mother's and father's surname</guilabel> will use the father's name 
-	followed by the mother's name. Finally, <guilabel>Icelandic 
-	style</guilabel> will use the father's given name followed by the 
-	&quot;sson&quot; suffix (e.g. the son of Edwin will be guessed as 
-	Edwinsson).
+	<para>Ha a <guilabel>Nincs</guilabel> van kiválasztva, akkor semmilyen kiegészítés 
+	sem lesz alkalmazva. Az <guilabel>Édesapjának a családneve</guilabel> opció 
+	értelemszerűen működik. Az <guilabel>Édesanyja és édesapja családnevének a 
+	kombinációja </guilabel> opció az édesapa utána az édesanyja nevét 
+	használja fel. Végezetül, <guilabel>Izlandi 
+	stílus</guilabel> az édesapa keresztneve után adja a 
+	&quot;sson&quot; utótagot. (pl.: Edwin fia Edwinsson lesz).
 	</para></listitem>
 	</varlistentry>
 
@@ -150,9 +150,9 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-display"> 
       <title>Megjelenítés</title> 
-	<para> This category contains preferences relevant to  
-	displaying database records and controls in &app;. 
-	It has the following subcategories:</para>
+	<para> E kategória beállításai az adatbázis rekordjainak és kezelésének 
+	a tulajdonságait állítja be a &app;ben. 
+	Az alábbi alkategóriák választhatóak:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-gen"> 
@@ -161,29 +161,30 @@
 	<variablelist>
 	
 	<varlistentry><term><guilabel>Alapértelmezett nézet</guilabel></term>
-	<listitem><para> This determines which view will appear when you 
-        start &app;. Choose between Person and Family views. 
+	<listitem><para> Meghatározza hogyan nézzen ki a &app; az indítás után. 
+	Személynézet és Családnézet közül lehet választani. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Család nézeti stílus</guilabel></term>
-	<listitem><para> This selects between the two available styles of the Family 
-        view layout. The <guilabel>Left to right</guilabel> style is similar to the 
-        Family Tree Maker (tm), while the <guilabel>Top to bottom</guilabel> is
-        similar to the Reunion. 
+	<listitem><para> Ezzel választani lehet a két Családnézeti stílus között. 
+        A <guilabel>Balról jobbra</guilabel> stílus hasonlít a 
+        Family Tree Maker (tm) kinézetéhez, míg a <guilabel>Felülről lefelé</guilabel> a 
+        Reunion program kinézetéhez hasonlít. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Mindig jelenítse meg a mormon ünnepeket</guilabel></term>
-	<listitem><para> Check this box to have LDS ordinance tabs displayed. 
-	If you do not know what LDS is then you probably should not check it. 
+	<listitem><para> Jelölje be ezt a négyzetet ha a mormon egyházi eseményeket nyilván 
+	szeretné tartani. 
+	Ha nem tudja kik a mormonok akkor valószínűleg nincs is szűksége erre az opcióra. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Gyermekek listájában az indexek feltüntetése
 	</guilabel></term>
 	<listitem><para> 
-	This option is not currently implemented.
+	Még nem működik.
 	</para></listitem>
 	</varlistentry>
 
@@ -196,29 +197,24 @@
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Megjelenítési dátum formátum</guilabel></term>
-	<listitem><para> Select the display format for the dates
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Dátum formátum</guilabel></term>
+	<listitem><para> Itt beállíthatja milyen formában jelenjenek meg a dátumok. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Megjelenítési név formátum</guilabel></term>
-	<listitem><para> Select the display format for the names  
-	from the available formats listed in this menu. 
+	<varlistentry><term><guilabel>Név formátum</guilabel></term>
+	<listitem><para>Itt beállíthatja milyen formában jelenjenek meg a nevek. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Beviteli dátum formátum</guilabel></term>
-	<listitem><para> Select the entry format for the dates
-	from the available formats listed in this menu. 
+	<listitem><para> Beállíthatja, hogy milyen formában viheti be a dátumokat. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Naptárválasztó megjelenítése</guilabel></term>
-	<listitem><para> Check this box to enable the calendar format selection 
-	menu when you are entering dates in the <guilabel>Event 
-	Editor</guilabel> dialog.  This will allow you to select different 
-	calendars when editing the dates. 
+	<varlistentry><term><guilabel>Naptárválasztó engedélyezése</guilabel></term>
+	<listitem><para> Az opció kiválasztásával a dátumok bevitelénél lehetőség 
+	nyílik a formátum megválasztására az <guilabel>Esemény szerkesztő</guilabel> ablakban. 
 	</para></listitem>
 	</varlistentry>
 
@@ -231,15 +227,15 @@
 	<variablelist>
 	
 	<varlistentry><term><guilabel>Eszköztár</guilabel></term>
-	<listitem><para> Select the desired appearance of the toolbar icons
-	from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use
-	the overall settings selected for your GNOME desktop. 
+	<listitem><para> Az ikonok a menük kinézete állítható ezen opcióval.
+	A <guilabel>GNOME Beállítások</guilabel> kiválasztása az alapértelmezett 
+	GNOME asztal beállítását használja. 
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Állapotjelző</guilabel></term>
-	<listitem><para> Select the desired contents displayed in the 
-	statusbar using the radio buttons. 
+	<listitem><para> Beállíthatja, hogy az alsó állapotjelzőben milyen 
+	információk jelenjenek meg a kiválasztott személyről.
 	</para></listitem>
 	</varlistentry>
 
@@ -251,8 +247,8 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-db"> 
       <title>Adatbázis</title> 
-	<para> This category contains preferences relevant to the 
-	database itself. It has the following subcategories: </para>
+	<para> E kategóriában magára az adatbázisra vonatkozó 
+	tulajdonságok állíthatóak be. A következő alkategóriákat tartalmazza:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-gen"> 
@@ -260,31 +256,32 @@
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Utolsó adatbázis autómatikus betöltése</guilabel></term>
-	<listitem><para> Check this box to automatically load the last open
-	database on startup. </para></listitem>
+	<varlistentry><term><guilabel>Utolsó adatbázis automatikus betöltése</guilabel></term>
+	<listitem><para> Jelölje be a négyzetet ha az utolsó megnyitott adatbázist 
+	szeretné betölteni a program indulásakor. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Ne tömörítse az XML adatbázis fájlt</guilabel></term>
-	<listitem><para> Check this box to disable compression of the XML
-	data file. Compression significantly reduces the file size. While it 
-	creates an overhead in performance (some processor cycles must be spent
-	to decompress the file before use), this overhead is extremely small. 
-	Now that the compression-related bugs have long been fixed, there is 
-	virtually no reason to disable data file compression. 
+	<listitem><para> Ezt kiválasztva letilthatja az XML adatbázis fájl tömörítését. 
+	A tömörítés jelentősen csökkenti a fájl méretét. Bár közben kis 
+	teljesítménycsökkenés is történik (kevés processzoridő kell a kitömörítéshez 
+	a fájl használtba vétele előtt), ami egyáltalán nem jelentős. 
+	Most már, hogy a tömörítéssel kapcsolatos hiba ki lett javítva, 
+	nincsen semmi értelme a tömörítés tiltásának.
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Automentés gyakorisága</guilabel></term>
-	<listitem><para> Set the interval (in minutes) after which &app; will
-	automatically save your database. Setting the interval to zero (0) 
-	disables autosaving. </para></listitem>
+	<listitem><para> Beállíthatja az idő lépésközt (percekben) miután a &app; 
+	automatikusan menti az adatbázist. Az érték nullára (0) állításával 
+	le lehet tiltani az automentést. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Alapértelmezett adatbázis könyvtár</guilabel></term>
-	<listitem><para> Choose the default directory in which &app; starts
-	looking when saving the database using the <guibutton>Browse...</guibutton> 
-	or type its path into the text entry field. </para></listitem>
+	<listitem><para> Az alapértelmezett könyvtár állítható be ahol a &app; 
+	mentéskor "körülnéz". A mentési mezőknél a hely megadható a 
+	<guibutton>Tallózás...</guibutton> funkció vagy a 
+	szövegnek a szövegmezőbe való közvetlen beírásával. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -294,53 +291,53 @@
       <sect3 id="prefs-db-media"> 
         <title>Média objektumok</title> 
 
-	<para>Before describing preferences for media objects, let us
-	review the background on local and non-local objects. A local object 
-	is the object whose file is stored inside the same directory in which 
-	the &app; database file resides. A non-local object is stored 
-	elsewhere, so that the database has only the reference to the file's 
-	location and some records of the object's properties. </para>
+	<para>Mielött a média objektumok tulajdonságainak a beállítására 
+	térnénk, meg kell említeni mi a különbség a helyi és a külső forrásból 
+	származó objektumok között. A helyi objektum egy olyan objektum aminek a 
+	adatfájlja ugyanabban a könyvtárban helyezkedik el mint maga  
+	a &app; adatbázis fájl. A nem helyi objektum pedig valahol máshol érhető el, 
+	így az adatbázis az objektum fájlnak csak az elérési útvonalát, néhány adatát és 
+	tulajdonságát tárolja. </para>
 	
-	<para>You may choose to store your media objects either locally 
-	or externally. Making your objects local will increase the amount 
-	of disk space consumed by the &app; database directory. However, 
-	if the external file is deleted or removed, &app; will still be able 
-	to use the local copy. In contrast, leaving your objects non-local 
-	will decrease the disk space requirements. However, losing the 
-	original file will render your media object unusable.
+	<para>Ki lehet választani, hogy milyen módon szeretné tárolni a média 
+	objektumokat. A helyi tárolást választva megnő a helyfoglalása a 
+	&app; adatbázis könyvtárának. E megoldással minden adat egy könyvtárba kerül és, ha 
+	a külső forrásfájl törlődik vagy áthelyeződik akkor a &app; a helyi másolat 
+	használatára áll át. Ezzel ellentétesen a külső forrás használata 
+	csökkenti a felhasznált lemezterületet, és a fájlt törlésével 
+	az objektum használhatatlanná válik.
 	</para>
 	
-	<para>Note that exporting your database to any format will compile
-	all medial objects, no matter whether they are local or not. 
-	Specifically, export to gramps package will include all the media 
-	object files in the package and change the references accordingly. 
-	Export to CD will copy all media object files to the directory under 
-	the <guilabel>burn:///</guilabel> location in Nautilus and change the 
-	references accordingly. Finally, export to GEDCOM will place all 
-	media object files next to the GEDCOM file with the appropriate 
-	changes in the path names. 
+	<para>Az adatbázis exportálásakor a médiaobjektumok módosulnak függetlenül 
+	attól, hogy helyi vagy nem helyi objektumok exportálása történik. 
+	Speciálisan, ha gramps csomagba exportál, akkor minden médiaobjektum fájl 
+	a csomagba kerül az elérési útvonalaik átírásával. 
+	CD-re exportáláskor minden fájl a Nautilus ablakba a 
+	<guilabel>burn:///</guilabel> helyre másolódik át, az útvonalak 
+	átírása közben. Végezetül, GEDCOM formátumba való exportáláskor 
+	a médiaobjektumok fájljai a GEDCOM fájl beállításai szerinti helyre 
+	kerülnek.
 	</para>
 	
 	<variablelist>
 
-	<varlistentry><term><guilabel>Drag and drop from an external 
-	source</guilabel></term>
-	<listitem><para> Choose between a reference and a local copy made when
-	the object is dropped into the gallery. The reference saves disk 
-	space as it does not copy the object. The local copy makes your 
-	database portable as it does not depend on an external file. Consult
-	your needs to make best choice.</para> 
+	<varlistentry><term><guilabel>Drag and drop egy külső forrásból</guilabel></term>
+	<listitem><para> Itt választható ki, hogy ha egy fájlt a Galériához ad 
+	akkor helyi vagy nem helyi objektumként tárolódjon. 
+	A nem helyi (hivatkozást tartalmazó) tárolás helyet takarít meg 
+	mivel nem másolja be az objektumokat. A helyi másolat 
+	hordozhatóvá teszi az adatbázis, és nem függ a különböző külső fájloktól. 
+	Gondolja végig melyik megoldás felel meg jobban az igényeinek.</para> 
 	
-	<para>Check the <guilabel>Display global properties editor when 
-	object is dropped</guilabel> box to invoke the global properties 
-	editor after you drop an external object into the gallery. 
-	</para></listitem>
+	<para>Bejelőlve a <guilabel> Globális tulajdonságszerkesztő megnyitása az 
+	új objektum használatba vételekor</guilabel> négyzetet a Globális tulajdonságszerkesztő 
+	nyílik meg az új objektum Galériába való felvételekor.</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop egy külső forrásból</guilabel></term>
-	<listitem><para> Check the <guilabel>Display local properties editor 
-	when object is dropped</guilabel> box to invoke the local properties 
-	editor after you drop an internal object into the gallery. 
+	<varlistentry><term><guilabel>Drag and drop egy belső forrásból</guilabel></term>
+	<listitem><para> Bejelőlve a <guilabel>Helyi tulajdonságszerkesztő megnyitása 
+	az új objektum használatba vételekor</guilabel> négyzetet a Helyi tulajdonságszerkesztő 
+	nyílik meg az új belső objektum Galériába való felvételekor.
 	</para></listitem>
 	</varlistentry>
 
@@ -354,15 +351,15 @@
 	<variablelist>
 
 	<varlistentry><term><guilabel> GRAMPS ID előtagok</guilabel></term>
-	<listitem><para> Enter ID prefixes for various kinds of database 
-	entries into the corresponding text entry fields. 
+	<listitem><para> Megváltoztathatja az adatbázis azonosítók 
+	(ID-k) előtagjait különböző célokkal.
 	</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>GRAMPS ID-k szerkesztésének az engedélyezése
 	</guilabel></term>
-	<listitem><para> Check this box to enable editing of the internal &app;
-	ID numbers. Unless you know what you are doing, leave it unchecked.
+	<listitem><para> Ha bejelöli akkor átállíthatja a &app; belső azonosító számait 
+	(ID számok). Ha nem tudja, hogy mire való akkor hagyja jelöletlenül.
 	</para></listitem>
 	</varlistentry>
 
