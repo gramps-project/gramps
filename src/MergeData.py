@@ -1327,18 +1327,23 @@ class MergePlaces:
     Merges to places into a single place. Displays a dialog box that
     allows the places to be combined into one.
     """
-    def __init__(self,database,place1,place2,update):
+    def __init__(self,database,new_handle,old_handle,update):
         self.db = database
-        self.p1 = place1
-        self.p2 = place2
+        self.new_handle = new_handle
+        self.old_handle = old_handle
+        self.p1 = self.db.get_place_from_handle(self.new_handle)
+        self.p2 = self.db.get_place_from_handle(self.old_handle)
         self.update = update
+        self.trans = self.db.transaction_begin()
 
         self.glade = gtk.glade.XML(const.mergeFile,"merge_places","gramps")
         self.top = self.glade.get_widget("merge_places")
-        self.glade.get_widget("title1_text").set_text(place1.get_title())
-        self.glade.get_widget("title2_text").set_text(place2.get_title())
+        Utils.set_titles(self.top,self.glade.get_widget('title'),
+                         _("Select title"))
+        self.glade.get_widget("title1_text").set_text(self.p1.get_title())
+        self.glade.get_widget("title2_text").set_text(self.p2.get_title())
         self.t3 = self.glade.get_widget("title3_text")
-        self.t3.set_text(place1.get_title())
+        self.t3.set_text(self.p1.get_title())
         
         self.glade.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
@@ -1352,8 +1357,6 @@ class MergePlaces:
         """
         t2active = self.glade.get_widget("title2").get_active()
 
-        old_id = self.p1.get_handle()
-        
         if t2active:
             self.p1.set_title(self.p2.get_title())
         elif self.glade.get_widget("title3").get_active():
@@ -1399,25 +1402,41 @@ class MergePlaces:
                 if not l.is_empty():
                     self.p1.add_alternate_locations(l)
 
-        # loop through people, changing event references to P2 to P1
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            for event in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
-                if event.get_place_handle() == self.p2:
-                    event.set_place_handle(self.p1)
+        # remove old and commit new source
+        self.db.remove_place(self.old_handle,self.trans)
+        self.db.commit_place(self.p1,self.trans)
 
-        # loop through families, changing event references to P2 to P1
-        for f in self.db.get_family_handle_map().values():
-            for event in f.get_event_list():
-                if event.get_place_handle() == self.p2:
-                    event.set_place_handle(self.p1)
-                    
-        self.db.remove_place(self.p2.get_handle())
-        self.db.build_place_display(self.p1.get_handle(),old_id)
-        
-        self.update(self.p1.get_handle())
+        # replace references in other objetcs
+        # events
+        for handle in self.db.get_event_handles():
+            event = self.db.get_event_from_handle(handle)
+            if event.get_place_handle() == self.old_handle:
+                event.set_place_handle(self.new_handle)
+
+        # personal LDS ordinances
+        for handle in self.db.get_person_handles(sort_handles=False):
+            person = self.db.get_person_from_handle(handle)
+            ord_list = [ordinance for ordinance \
+                        in [person.lds_bapt,person.lds_endow,person.lds_seal]
+                        if (ordinance and \
+                                ordinance.get_place_handle() == self.old_handle)
+                    ]
+            if ord_list:
+                for ordinance in ord_list:
+                    ordinance.set_place_handle(self.new_handle)
+                self.db.commit_person(person,self.trans)
+
+        # family LDS ordinance
+        for handle in self.db.get_family_handles():
+            family = self.db.get_family_from_handle(handle)
+            if family.lds_seal and \
+                    family.lds_seal.get_place_handle() == self.old_handle:
+                family.lds_seal.set_place_handle(self.new_handle)
+                self.db.commit_family(family,self.trans)
+
+        self.db.transaction_commit(self.trans,_("Merge Places"))
+        self.update()
         Utils.destroy_passed_object(obj)
-
 
 #-------------------------------------------------------------------------
 #
@@ -1429,10 +1448,12 @@ class MergeSources:
     Merges to places into a single place. Displays a dialog box that
     allows the places to be combined into one.
     """
-    def __init__(self,database,src1,src2,update):
+    def __init__(self,database,new_handle,old_handle,update):
         self.db = database
-        self.p1 = src1
-        self.p2 = src2
+        self.new_handle = new_handle
+        self.old_handle = old_handle
+        self.src1 = self.db.get_source_from_handle(self.new_handle)
+        self.src2 = self.db.get_source_from_handle(self.old_handle)
         self.update = update
 
         self.glade = gtk.glade.XML(const.mergeFile,"merge_sources","gramps")
@@ -1465,6 +1486,7 @@ class MergeSources:
         
         self.glade.get_widget('ok').connect('clicked',self.merge)
         self.glade.get_widget('close').connect('clicked',self.close)
+        self.trans = self.db.transaction_begin()
         self.top.show()
 
     def close(self,obj):
@@ -1472,7 +1494,7 @@ class MergeSources:
 
     def merge(self,obj):
         """
-        Performs the merge of the places when the merge button is clicked.
+        Performs the merge of the sources when the merge button is clicked.
         """
 
         use_title1 = self.glade.get_widget("title_btn1").get_active()
@@ -1480,8 +1502,6 @@ class MergeSources:
         use_abbrev1 = self.glade.get_widget("abbrev_btn1").get_active()
         use_pub1 = self.glade.get_widget("pub_btn1").get_active()
         use_gramps1 = self.glade.get_widget("gramps_btn1").get_active()
-
-        old_id = self.p1.get_handle()
         
         if not use_title1:
             self.src1.set_title(self.src2.get_title())
@@ -1516,38 +1536,53 @@ class MergeSources:
             if not src1_map.has_key(key):
                 src1_map[key] = src2_map[key]
 
+        # replace references in other objetcs
+        self.db.remove_source(self.old_handle,self.trans)
+        self.db.commit_source(self.src1,self.trans)
+
         # replace handles
-        old_handle = self.src2.get_handle()
-        new_handle = self.src1.get_handle()
 
         # people
         for handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(handle)
-            person.replace_source_references(old_handle,new_handle)
+            if person.has_source_reference(self.old_handle):
+                person.replace_source_references(self.old_handle,self.new_handle)
+                self.db.commit_person(person,trans)
 
         # family
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
-            family.replace_source_references(old_handle,new_handle)
+            if family.has_source_reference(self.old_handle):
+                family.replace_source_references(self.old_handle,self.new_handle)
+                self.db.commit_family(family,trans)
 
         # events
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
-            event.replace_source_references(old_handle,new_handle)
+            if event.has_source_reference(self.old_handle):
+                event.replace_source_references(self.old_handle,self.new_handle)
+                self.db.commit_event(event,trans)
 
         # sources
         for handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(handle)
-            source.replace_source_references(old_handle,new_handle)
+            if source.has_source_reference(self.old_handle):
+                source.replace_source_references(self.old_handle,self.new_handle)
+                self.db.commit_source(source,trans)
 
         # places
         for handle in self.db.get_place_handles():
             place = self.db.get_place_from_handle(handle) 
-            place.replace_source_references(old_handle,new_handle)
+            if place.has_source_reference(self.old_handle):
+                place.replace_source_references(self.old_handle,self.new_handle)
+                self.db.commit_place(place,trans)
 
         # media
         for handle in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(handle)
-            obj.replace_source_references(old_handle,new_handle)
+            if obj.has_source_reference(self.old_handle):
+                obj.replace_source_references(self.old_handle,self.new_handle)
+                self.db.commit_media_object(obj,trans)
         
+        self.db.transaction_commit(self.trans,_("Merge Sources"))
         self.top.destroy()

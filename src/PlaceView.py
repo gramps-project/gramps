@@ -154,7 +154,7 @@ class PlaceView:
         ]
 
         menu = gtk.Menu()
-        menu.set_title(_('Source Menu'))
+        menu.set_title(_('Place Menu'))
         for stock_id,callback,sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             if callback:
