@@ -963,44 +963,6 @@ class GedcomParser:
                 oref.setReference(photo)
                 self.person.addPhoto(oref)
 
-    def parse_source_object(self,source,level):
-        form = ""
-        file = ""
-        title = ""
-        note = ""
-        while 1:
-            matches = self.get_next()
-            if matches[1] == "FORM":
-                form = string.lower(matches[2])
-            elif matches[1] == "TITL":
-                title = matches[2]
-            elif matches[1] == "FILE":
-                file = matches[2]
-            elif matches[1] == "NOTE":
-                note = matches[2] + self.parse_continue_data(level+1)
-            elif int(matches[0]) < level:
-                self.backup()
-                break
-            else:
-                self.barf(level+1)
-
-        if form:
-            (ok,path) = self.find_file(file,self.dir_path)
-            if not ok:
-                self.warn(_("Warning: could not import %s") % file + "\n")
-                self.warn(_("\tThe following paths were tried:\n\t\t"))
-                self.warn(string.join(path,"\n\t\t"))
-                self.warn('\n')
-            else:
-                photo = RelLib.Photo()
-                photo.setPath(path)
-                photo.setDescription(title)
-                photo.setMimeType(Utils.get_mime_type(path))
-                self.db.addObject(photo)
-                oref = RelLib.ObjectRef()
-                oref.setReference(photo)
-                source.addPhoto(oref)
-
     def parse_family_object(self,level):
         form = ""
         file = ""
