@@ -5,6 +5,8 @@
 	* src/EditPlace.py: Handle drag and drop with places
 	* src/EditPerson.py: Handle exchange of perferred name and selected
 	name in the alternate name list
+	* src/docgen/OpenDrawDoc.py: add support for superscripts
+	* src/docgen/OpenOfficeDoc.py: add support for superscripts
 
 2003-06-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/const.py.in: Add InverseNameTypesMap.
@@ -17,6 +19,7 @@
 	* src/docgen/OpenOfficeDoc.py: Escape special XML characters. 
 	* src/docgen/HtmlDoc.py: Properly build style declaration.
 	* src/plugins/FtmStyleDescendants.py: Setup before opening. 
+	* src/plugins/Ancestors.py: New Ancestors report added
 
 2003-06-12  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenOfficeDoc.py: Surround images by paragraph tags
