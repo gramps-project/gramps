@@ -1,3 +1,6 @@
+2004-01-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py: allow disabling of the box shadow
+
 2004-01-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/rel_de.py: Update possible German locale list. 
 	* src/const.py.in: Mark LDS status strings as translatable.
