@@ -2544,19 +2544,35 @@ def change_parents(family):
 #
 #-------------------------------------------------------------------------
 
-def find_tree(person,index,depth,list):
+def find_tree(person,index,depth,list,val=0):
 
     if depth > 5 or person == None:
         return
     family = person.getMainFamily()
-    list[index] = person
+    frel = 0
+    mrel = 0
+    if family == None:
+        l = person.getAltFamilyList()
+        if len(l) > 0:
+            f = l[0]
+            family = f[0]
+            if f[1] == "Birth":
+                mrel = 0
+            else:
+                mrel = 1
+            if f[2] == "Birth":
+                frel = 0
+            else:
+                frel = 1
+            
+    list[index] = (person,val)
     if family != None:
         father = family.getFather()
         if father != None:
-            find_tree(father,(2*index)+1,depth+1,list)
+            find_tree(father,(2*index)+1,depth+1,list,frel)
         mother = family.getMother()
         if mother != None:
-            find_tree(mother,(2*index)+2,depth+1,list)
+            find_tree(mother,(2*index)+2,depth+1,list,mrel)
 
 #-------------------------------------------------------------------------
 #
@@ -2588,11 +2604,11 @@ def load_canvas():
     find_tree(active_person,0,1,list)
     for t in list:
         if t:
-            n = t.getPrimaryName().getName()
+            n = t[0].getPrimaryName().getName()
             h = max(h,font.height(n)+2*PAD)
             w = max(w,font.width(n)+2*PAD)
-            w = max(w,font.width("d. %s" % t.getDeath().getDate())+2*PAD)
-            w = max(w,font.width("b. %s" % t.getBirth().getDate())+2*PAD)
+            w = max(w,font.width("d. %s" % t[0].getDeath().getDate())+2*PAD)
+            w = max(w,font.width("b. %s" % t[0].getBirth().getDate())+2*PAD)
 
     cpad = max(h+4,CANVASPAD)
     cw = (cx2-cx1-(2*cpad))
@@ -2641,10 +2657,12 @@ def load_canvas():
         canvas_items = []
 
     if list[1]:
-        l = add_parent_button(root,canvas_items,list[1],cx2-PAD,ypts[1],h)
+        p = list[1]
+        l = add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[1],h)
         
     if list[2]:
-        l = add_parent_button(root,canvas_items,list[2],cx2-PAD,ypts[2],h)
+        p = list[2]
+        l = add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[2],h)
 
     for i in range(gen):
         if list[i]:
@@ -2652,12 +2670,15 @@ def load_canvas():
                 findex = (2*i)+1 
                 mindex = findex+1
                 if list[findex]:
+                    p = list[findex]
                     draw_canvas_line(root, xpts[i], ypts[i], xpts[findex],
-                                     ypts[findex], h, w, list[findex], style)
+                                     ypts[findex], h, w, p[0], style, p[1])
                 if list[mindex]:
+                    p = list[mindex]
                     draw_canvas_line(root,xpts[i],ypts[i], xpts[mindex],
-                                     ypts[mindex], h, w, list[mindex], style)
-            add_box(root,xpts[i],ypts[i],w,h,list[i],style)
+                                     ypts[mindex], h, w, p[0], style, p[1])
+            p = list[i]
+            add_box(root,xpts[i],ypts[i],w,h,p[0],style)
 
 
 def add_parent_button(root,item_list,parent,x,y,h):
@@ -2685,12 +2706,13 @@ def change_to_parent(obj):
 #
 #
 #-------------------------------------------------------------------------
-def draw_canvas_line(root,x1,y1,x2,y2,h,w,data,style):
+def draw_canvas_line(root,x1,y1,x2,y2,h,w,data,style,ls):
     startx = x1+(w/2.0)
     pts = [startx,y1, startx,y2+(h/2.0), x2,y2+(h/2.0)]
     item = root.add("line",
                     width_pixels=2,
                     points=pts,
+                    line_style=ls,
                     fill_color_gdk=style.black)
     item.set_data("p",data)
     item.connect("event",line_event)
