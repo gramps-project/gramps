@@ -339,7 +339,7 @@ class Gallery(ImageSelect):
         """Scale the image and add it to the IconList."""
         object = photo.getReference()
         oid = object.getId()
-        
+
         if self.canvas_list.has_key(oid):
             (grp,item,text,x,y) = self.canvas_list[oid]
             if x != self.cx or y != self.cy:
@@ -387,11 +387,11 @@ class Gallery(ImageSelect):
             
         self.canvas_list[oid] = (grp,item,text,self.cx,self.cy)
 
+        self.cx += _PAD + _IMAGEX
+        
         if self.cx + _PAD + _IMAGEX > self.x:
             self.cx = _PAD
-            self.cy = self.cy + _PAD + _IMAGEY
-        else:
-            self.cx = self.cx + _PAD + _IMAGEX
+            self.cy += _PAD + _IMAGEY
         
     def load_images(self):
         """clears the currentImages list to free up any cached 
