@@ -191,7 +191,7 @@ class PlaceView:
             if used == 1:
                 ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
                 QuestionDialog(_('Delete %s') %  place.get_title(),
-                               _('This place is currently being used at least one '
+                               _('This place is currently being used by at least one '
                                  'record in the database. Deleting it will remove it '
                                  'from the database and remove it from all records '
                                  'that reference it.'),

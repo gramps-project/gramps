@@ -352,7 +352,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
         font.set_italic(1)
         p = TextDoc.ParagraphStyle()
         p.set_font(font)
-        p.set_description(_("The style used category labels."))
+        p.set_description(_("The style used for category labels."))
         self.default_style.add_style("TableTitle",p)
         
         font = TextDoc.FontStyle()
