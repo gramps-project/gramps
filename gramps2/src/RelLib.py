@@ -149,6 +149,110 @@ class BaseObject:
         """
         return []
 
+    def has_handle_reference(self,classname,handle):
+        """
+        Returns True if the object or any of its non-primary child objects
+        has reference to a given handle of given primary object type.
+        
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle: The handle to be checked.
+        @type handle: str
+        @return: Returns whether the object or any of it's non-primary child objects has reference to this handle of this object type.
+        @rtype: bool
+        """
+        # Run through its own items
+        if classname == 'Source' and isinstance(self,SourceNote):
+            if self.has_source_reference(handle):
+                return True
+        elif classname == 'MediaObject' and isinstance(self,MediaBase):
+            if self.has_media_reference(handle):
+                return True
+        else:
+            if handle in self.get_handleholder_list(classname):
+                return True
+
+        # Run through child objects
+        for obj in self.get_handleholder_child_list(classname):
+            if obj.has_handle_reference(classname,handle):
+                return True
+
+        return False
+
+    def remove_handle_references(self,classname,handle_list):
+        """
+        Removes references to object handles in the list
+        in this object and all child objects.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle_list: The list of handles to be removed.
+        @type handle_list: str
+        """
+        # Run through its own items
+        if classname == 'Source' and isinstance(self,SourceNote):
+            self.remove_source_references(handle_list)
+        elif classname == 'MediaObject' and isinstance(self,MediaBase):
+            self.remove_media_references(handle_list)
+        else:
+            self._remove_handle_references(classname,handle_list)
+
+        # Run through child objects
+        for obj in self.get_handleholder_child_list(classname):
+            obj.remove_handle_references(classname,handle_list)
+
+    def replace_handle_reference(self,classname,old_handle,new_handle):
+        """
+        Replaces references to source handles in the list
+        in this object and all child objects.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param old_handle: The handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The handle to replace the old one with.
+        @type new_handle: str
+        """
+        # Run through its own items
+        if classname == 'Source' and isinstance(self,SourceNote):
+            self.replace_source_references(old_handle,new_handle)
+        elif classname == 'MediaObject' and isinstance(self,MediaBase):
+            self.replace_media_references(old_handle,new_handle)
+        else:
+            self._replace_handle_reference(classname,old_handle,new_handle)
+
+        # Run through child objects
+        for obj in self.get_handleholder_child_list(classname):
+            obj.replace_handle_reference(classname,old_handle,new_handle)
+
+    def _replace_handle_reference(self,classname,old_handle,new_handle):
+        pass
+
+    def _remove_handle_references(self,classname,handle_list):
+        pass
+
+    def get_handleholder_list(self,classname):
+        """
+        Returns the list of all bjects referring to handles of a given type.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @return: Returns the list of all attributes referring to handles of this type.
+        @rtype: list
+        """
+        return []
+
+    def get_handleholder_child_list(self,classname):
+        """
+        Returns the list of child objects that may refer to handles of a given type.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @return: Returns the list of child objects that may refer to handles of this type.
+        @rtype: list
+        """
+        return []
+
 class PrimaryObject(BaseObject):
     """
     The PrimaryObject is the base class for all primary objects in the
@@ -293,7 +397,7 @@ class SourceNote(BaseObject):
         to this source handle.
 
         @param src_handle: The source handle to be checked.
-        @type src_ref: str
+        @type src_handle: str
         @return: Returns whether the object or any of it's child objects has reference to this source handle.
         @rtype: bool
         """
@@ -322,6 +426,23 @@ class SourceNote(BaseObject):
 
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
+
+    def replace_source_references(self,old_handle,new_handle):
+        """
+        Replaces references to source handles in the list
+        in this object and all child objects.
+
+        @param old_handle: The source handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The source handle to replace the old one with.
+        @type new_handle: str
+        """
+        while old_handle in self.source_list:
+            ix = self.source_list.index(old_handle)
+            self.source_list[ix] = new_handle
+
+        for item in self.get_sourcref_child_list():
+            item.replace_source_references(old_handle,new_handle)
 
     def set_source_reference_list(self,src_ref_list) :
         """
@@ -401,6 +522,116 @@ class SourceNote(BaseObject):
         """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
+class MediaBase(BaseObject):
+    """
+    Base class for storing media references
+    """
+    
+    def __init__(self,source=None):
+        """
+        Create a new MediaBase, copying from source if not None
+        
+        @param source: Object used to initialize the new object
+        @type source: MediaBase
+        """
+        
+        if source:
+            self.media_list = [ MediaRef(mref) for mref in source.media_list ]
+        else:
+            self.media_list = []
+
+    def add_media_reference(self,media_ref):
+        """
+        Adds a L{MediaRef} instance to the object's media list.
+
+        @param media_ref: L{MediaRef} instance to be added to the object's
+            media list.
+        @type media_ref: L{MediaRef}
+        """
+        self.media_list.append(media_ref)
+
+    def get_media_list(self):
+        """
+        Returns the list of L{MediaRef} instances associated with the object.
+
+        @returns: list of L{MediaRef} instances associated with the object
+        @rtype: list
+        """
+        return self.media_list
+
+    def set_media_list(self,media_ref_list):
+        """
+        Sets the list of L{MediaRef} instances associated with the object.
+        It replaces the previous list.
+
+        @param media_ref_list: list of L{MediaRef} instances to be assigned
+            to the object.
+        @type media_ref_list: list
+        """
+        self.media_list = media_ref_list
+
+    def get_mediaref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer media.
+
+        @return: Returns the list of child secondary child objects that may refer media.
+        @rtype: list
+        """
+        return []
+
+    def has_media_reference(self,obj_handle) :
+        """
+        Returns True if the object or any of it's child objects has reference
+        to this media object handle.
+
+        @param obj_handle: The media handle to be checked.
+        @type obj_handle: str
+        @return: Returns whether the object or any of it's child objects has reference to this media handle.
+        @rtype: bool
+        """
+        for media_ref in self.media_list:
+            # Using direct access here, not the getter method -- efficiency!
+            if media_ref.ref == obj_handle:
+                return True
+
+        for item in self.get_mediaref_child_list():
+            if item.has_media_reference(obj_handle):
+                return True
+
+        return False
+
+    def remove_media_references(self,obj_handle_list):
+        """
+        Removes references to all media handles in the list
+        in this object and all child objects.
+
+        @param obj_handle_list: The list of media handles to be removed.
+        @type obj_handle_list: list
+        """
+        new_media_list = [ media_ref for media_ref in self.media_list \
+                                    if media_ref.ref not in obj_handle_list ]
+        self.media_list = new_media_list
+
+        for item in self.get_mediaref_child_list():
+            item.remove_media_references(obj_handle_list)
+
+    def replace_media_references(self,old_handle,new_handle):
+        """
+        Replaces references to media handles in the list
+        in this object and all child objects.
+
+        @param old_handle: The media handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The media handle to replace the old one with.
+        @type new_handle: str
+        """
+        while old_handle in self.media_list:
+            ix = self.media_list.index(old_handle)
+            self.media_list[ix] = new_handle
+
+        for item in self.get_mediaref_child_list():
+            item.replace_media_references(old_handle,new_handle)
+
 class DataObj(SourceNote):
     """
     Base class for data elements, providing source, note, and privacy data
@@ -440,7 +671,7 @@ class DataObj(SourceNote):
         """
         return self.private
 
-class Person(PrimaryObject,DataObj):
+class Person(PrimaryObject,DataObj,MediaBase):
     """
     Introduction
     ============
@@ -486,11 +717,11 @@ class Person(PrimaryObject,DataObj):
         PrimaryObject.__init__(self)
         DataObj.__init__(self)
         SourceNote.__init__(self)
+        MediaBase.__init__(self)
         self.primary_name = Name()
         self.event_list = []
         self.family_list = []
         self.parent_family_list = []
-        self.media_list = []
         self.nickname = ""
         self.alternate_names = []
         self.gender = Person.UNKNOWN
@@ -552,6 +783,62 @@ class Person(PrimaryObject,DataObj):
          self.lds_seal, self.complete, self.source_list, self.note,
          self.change,self.private) = (data + (False,))[0:23]
             
+    def _remove_handle_references(self,classname,handle_list):
+        if classname == 'Event':
+            new_list = [ handle for handle in self.event_list \
+                                        if handle not in handle_list ]
+            self.event_list = new_list
+            if self.death_handle and self.death_handle in handle_list:
+                self.death_handle = None
+            if self.birth_handle and self.birth_handle in handle_list:
+                self.birth_handle = None
+        elif classname == 'Family':
+            new_list = [ handle for handle in self.family_list \
+                                        if handle not in handle_list ]
+            self.family_list = new_list
+            new_list = [ item for item in self.parent_family_list \
+                                        if item[0] not in handle_list ]
+            self.parent_family_list = new_list
+
+    def _replace_handle_reference(self,classname,old_handle,new_handle):
+        if classname == 'Event':
+            while old_handle in self.event_list:
+                ix = self.event_list.index(old_handle)
+                self.event_list[ix] = new_handle
+            if self.death_handle and self.death_handle == old_handle:
+                self.death_handle = new_handle
+            if self.birth_handle and self.birth_handle == old_handle:
+                self.birth_handle = new_handle
+        elif classname == 'Family':
+            while old_handle in self.family_list:
+                ix = self.family_list.index(old_handle)
+                self.family_list[ix] = new_handle
+
+            new_list = []
+            for item in self.parent_family_list:
+                if item[0] == old_handle:
+                    new_list.append((new_handle,item[1],item[2]))
+                else:
+                    new_list.append(item)
+            self.parent_family_list = new_list
+
+    def get_handleholder_list(self,classname):
+        """
+        Returns the list of all objects referring to handles of a given type.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @return: Returns the list of all attributes referring to handles of this type.
+        @rtype: list
+        """
+        if classname == 'Event':
+            check_list = [self.birth_handle,self.death_handle]
+            add_list = [item for item in check_list if item]
+            return self.event_list + check_list
+        elif classname == 'Family':
+            return self.family_list + \
+                        [item[0] for item in self.parent_family_list ]
+
     def get_text_data_list(self):
         """
         Returns the list of all textual attributes of the object.
@@ -780,36 +1067,6 @@ class Person(PrimaryObject,DataObj):
         @rtype: str
         """
         return self.death_handle
-
-    def add_media_reference(self,media_ref):
-        """
-        Adds a L{MediaRef} instance to the Person's media list.
-
-        @param media_ref: L{MediaRef} instance to be added to the Person's
-            media list.
-        @type media_ref: L{MediaRef}
-        """
-        self.media_list.append(media_ref)
-
-    def get_media_list(self):
-        """
-        Returns the list of L{MediaRef} instances associated with the Person
-
-        @returns: list of L{MediaRef} instances associated with the Person
-        @rtype: list
-        """
-        return self.media_list
-
-    def set_media_list(self,media_ref_list):
-        """
-        Sets the list of L{MediaRef} instances associated with the Person.
-        It replaces the previous list.
-
-        @param media_ref_list: list of L{MediaRef} instances to be assigned
-            to the Person.
-        @type media_ref_list: list
-        """
-        self.media_list = media_ref_list
 
     def add_event_handle(self,event_handle):
         """
@@ -1220,7 +1477,7 @@ class Person(PrimaryObject,DataObj):
         """
         return self.lds_seal
 
-class Family(PrimaryObject,SourceNote):
+class Family(PrimaryObject,SourceNote,MediaBase):
     """
     Introduction
     ============
@@ -1256,12 +1513,12 @@ class Family(PrimaryObject,SourceNote):
         """
         PrimaryObject.__init__(self)
         SourceNote.__init__(self)
+        MediaBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
         self.type = Family.MARRIED
         self.event_list = []
-        self.media_list = []
         self.attribute_list = []
         self.lds_seal = None
         self.complete = 0
@@ -1297,6 +1554,50 @@ class Family(PrimaryObject,SourceNote):
          self.child_list, self.type, self.event_list,
          self.media_list, self.attribute_list, self.lds_seal,
          self.complete, self.source_list, self.note, self.change) = data
+
+    def _remove_handle_references(self,classname,handle_list):
+        if classname == 'Event':
+            new_list = [ handle for handle in self.event_list \
+                                        if handle not in handle_list ]
+            self.event_list = new_list
+        elif classname == 'Person':
+            new_list = [ handle for handle in self.child_list \
+                                        if handle not in handle_list ]
+            self.child_list = new_list
+            if self.father_handle in handle_list:
+                self.father_handle = None
+            if self.mother_handle in handle_list:
+                self.mother_handle = None
+
+    def _replace_handle_reference(self,classname,old_handle,new_handle):
+        if classname == 'Event':
+            while old_handle in self.event_list:
+                ix = self.event_list.index(old_handle)
+                self.event_list[ix] = new_handle
+        elif classname == 'Person':
+            while old_handle in self.child_list:
+                ix = self.child_list.index(old_handle)
+                self.child_list[ix] = new_handle
+            if self.father_handle == old_handle:
+                self.father_handle = new_handle
+            if self.mother_handle == old_handle:
+                self.mother_handle = new_handle
+
+    def get_handleholder_list(self,classname):
+        """
+        Returns the list of all objects referring to handles of a given type.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @return: Returns the list of all attributes referring to handles of this type.
+        @rtype: list
+        """
+        if classname == 'Event':
+            return self.event_list
+        elif classname == 'Person':
+            check_list = [self.father_handle,self.mother_handle]
+            add_list = [item for item in check_list if item]
+            return self.child_list + add_list
 
     def get_text_data_child_list(self):
         """
@@ -1563,37 +1864,7 @@ class Family(PrimaryObject,SourceNote):
         """
         self.event_list = event_list
 
-    def add_media_reference(self,media_ref):
-        """
-        Adds a L{MediaRef} instance to the Family's media list.
-
-        @param media_ref: L{MediaRef} instance to be added to the Family's
-            media list.
-        @type media_ref: L{MediaRef}
-        """
-        self.media_list.append(media_ref)
-
-    def get_media_list(self):
-        """
-        Returns the list of L{MediaRef} instances associated with the Family
-
-        @returns: list of L{MediaRef} instances associated with the Family
-        @rtype: list
-        """
-        return self.media_list
-
-    def set_media_list(self,media_ref_list):
-        """
-        Sets the list of L{MediaRef} instances associated with the Person.
-        It replaces the previous list.
-
-        @param media_ref_list: list of L{MediaRef} instances to be assigned
-            to the Person.
-        @type media_ref_list: list
-        """
-        self.media_list = media_ref_list
-
-class Event(PrimaryObject,DataObj):
+class Event(PrimaryObject,DataObj,MediaBase):
     """
     Introduction
     ============
@@ -1615,6 +1886,7 @@ class Event(PrimaryObject,DataObj):
 
         PrimaryObject.__init__(self,source)
         DataObj.__init__(self,source)
+        MediaBase.__init__(self,source)
 
         if source:
             self.place = source.place
@@ -1622,7 +1894,6 @@ class Event(PrimaryObject,DataObj):
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
-            self.media_list = [MediaRef(media_id) for media_id in source.media_list]
             if source.witness != None:
                 self.witness = source.witness[:]
             else:
@@ -1634,7 +1905,6 @@ class Event(PrimaryObject,DataObj):
             self.name = ""
             self.cause = ""
             self.witness = None
-            self.media_list = []
 
     def serialize(self):
         """
@@ -1670,6 +1940,38 @@ class Event(PrimaryObject,DataObj):
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness, self.media_list, self.change) = data
 
+    def _remove_handle_references(self,classname,handle_list):
+        if classname == 'Person' and self.witness:
+            new_list = [ witness for witness in self.witness \
+                                        if witness.type == ID and \
+                                        witness.val not in handle_list ]
+            self.witness = new_list
+        elif classname == 'Place' and self.place in handle_list:
+                self.place = u''
+
+    def _replace_handle_reference(self,classname,old_handle,new_handle):
+        if classname == 'Person' and self.witness:
+            for witness in self.witness:
+                if witness.type == ID and witness.val == old_handle:
+                    witness.val = new_hanlde
+        elif classname == 'Place' and self.place == old_handle:
+            self.place = new_handle
+
+    def get_handleholder_list(self,classname):
+        """
+        Returns the list of all objects referring to handles of a given type.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @return: Returns the list of all attributes referring to handles of this type.
+        @rtype: list
+        """
+        if classname == 'Place':
+            return [self.place]
+        elif classname == 'Person' and self.witness:
+            return [ witness.val for witness in self.witness \
+                                        if witness.type == ID ]
+
     def get_text_data_list(self):
         """
         Returns the list of all textual attributes of the object.
@@ -1701,36 +2003,6 @@ class Event(PrimaryObject,DataObj):
         @rtype: list
         """
         return self.media_list
-
-    def add_media_reference(self,media_ref):
-        """
-        Adds a L{MediaRef} instance to the object's media list.
-
-        @param media_ref: L{MediaRef} instance to be added to the object's
-            media list.
-        @type media_ref: L{MediaRef}
-        """
-        self.media_list.append(media_ref)
-
-    def get_media_list(self):
-        """
-        Returns the list of media references associated with the object.
-
-        @return: Returns the list of L{MediaRef} objects assocated with
-            the object.
-        @rtype: list
-        """
-        return self.media_list
-
-    def set_media_list(self,media_list):
-        """
-        Assigns the passed list to the Event's list of media references.
-
-        @param media_list: List of media references to ba associated
-            with the Event
-        @type media_list: list of L{MediaRef} instances
-        """
-        self.media_list = media_list
 
     def get_witness_list(self):
         """
@@ -1960,7 +2232,7 @@ class Event(PrimaryObject,DataObj):
         """
         self.date = date
 
-class Place(PrimaryObject,SourceNote):
+class Place(PrimaryObject,SourceNote,MediaBase):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
@@ -1976,6 +2248,7 @@ class Place(PrimaryObject,SourceNote):
         """
         PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
+        MediaBase.__init__(self,source)
         if source:
             self.long = source.long
             self.lat = source.lat
@@ -1987,9 +2260,6 @@ class Place(PrimaryObject,SourceNote):
             self.urls = []
             for u in source.urls:
                 self.urls.append(Url(u))
-            self.media_list = []
-            for media_id in source.media_list:
-                self.media_list.append(MediaRef(media_id))
         else:
             self.long = ""
             self.lat = ""
@@ -1997,7 +2267,6 @@ class Place(PrimaryObject,SourceNote):
             self.main_loc = None
             self.alt_loc = []
             self.urls = []
-            self.media_list = []
 
     def serialize(self):
         """
@@ -2201,36 +2470,6 @@ class Place(PrimaryObject,SourceNote):
         if location not in self.alt_loc:
             self.alt_loc.append(location)
 
-    def add_media_reference(self,media_ref):
-        """
-        Adds a L{MediaRef} instance to the object's media list.
-
-        @param media_ref: L{MediaRef} instance to be added to the objects's
-            media list.
-        @type media_ref: L{MediaRef}
-        """
-        self.media_list.append(media_ref)
-
-    def get_media_list(self):
-        """
-        Returns the list of L{MediaRef} instances associated with the object
-
-        @returns: list of L{MediaRef} instances associated with the object
-        @rtype: list
-        """
-        return self.media_list
-
-    def set_media_list(self,media_ref_list):
-        """
-        Sets the list of L{MediaRef} instances associated with the object.
-        It replaces the previous list.
-
-        @param media_ref_list: list of L{MediaRef} instances to be assigned
-            to the object.
-        @type media_ref_list: list
-        """
-        self.media_list = media_ref_list
-
     def get_display_info(self):
         """Gets the display information associated with the object. This includes
         the information that is used for display and for sorting. Returns a list
@@ -2316,6 +2555,26 @@ class MediaObject(PrimaryObject,SourceNote):
          self.attrlist, self.source_list, self.note, self.change,
          self.date, self.place) = data
     
+
+    def _remove_handle_references(self,classname,handle_list):
+        if classname == 'Place' and self.place in handle_list:
+            self.place = u''
+
+    def _replace_handle_reference(self,classname,old_handle,new_handle):
+        if classname == 'Place' and self.place == old_handle:
+            self.place = new_handle
+
+    def get_handleholder_list(self,classname):
+        """
+        Returns the list of all objects referring to handles of a given type.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @return: Returns the list of all attributes referring to handles of this type.
+        @rtype: list
+        """
+        if classname == 'Place':
+            return [self.place]
 
     def get_text_data_list(self):
         """
@@ -2457,17 +2716,17 @@ class MediaObject(PrimaryObject,SourceNote):
     def set_attribute_list(self,list):
         self.attrlist = list
 
-class Source(PrimaryObject):
+class Source(PrimaryObject,MediaBase):
     """A record of a source of information"""
     
     def __init__(self):
         """creates a new Source instance"""
         PrimaryObject.__init__(self)
+        MediaBase.__init__(self)
         self.title = ""
         self.author = ""
         self.pubinfo = ""
         self.note = Note()
-        self.media_list = []
         self.datamap = {}
         self.abbrev = ""
 
@@ -2542,36 +2801,6 @@ class Source(PrimaryObject):
         """
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
-
-    def add_media_reference(self,media_ref):
-        """
-        Adds a L{MediaRef} instance to the object's media list.
-
-        @param media_ref: L{MediaRef} instance to be added to the objects's
-            media list.
-        @type media_ref: L{MediaRef}
-        """
-        self.media_list.append(media_ref)
-
-    def get_media_list(self):
-        """
-        Returns the list of L{MediaRef} instances associated with the object
-
-        @returns: list of L{MediaRef} instances associated with the object
-        @rtype: list
-        """
-        return self.media_list
-
-    def set_media_list(self,media_ref_list):
-        """
-        Sets the list of L{MediaRef} instances associated with the object.
-        It replaces the previous list.
-
-        @param media_ref_list: list of L{MediaRef} instances to be assigned
-            to the object.
-        @type media_ref_list: list
-        """
-        self.media_list = media_ref_list
 
     def get_data_map(self):
         """Returns the data map of attributes for the source"""
@@ -3686,7 +3915,6 @@ class Name(DataObj):
         @type date: L{Date}
         """
         self.date = date
-
 
 class Url(BaseObject):
     """Contains information related to internet Uniform Resource Locators,

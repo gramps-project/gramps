@@ -1,3 +1,10 @@
+2005-03-22  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (MediaBase): Add base class for media references;
+	(BaseObject): Add has_handle_reference, remove_handle_references,
+	and replace_handle_reference methods; (SourceNote): Add
+	replace_source_references method; (People,Family,Event,MediaObject):
+	Add handle_reference methods.
+
 2005-03-21  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/MergeData.py: further changes to adapt to new API
 
