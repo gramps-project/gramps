@@ -80,6 +80,7 @@ class GrampsParser(handler.ContentHandler):
         self.in_stext = 0
         self.in_scomments = 0
         self.in_people = 0
+        self.in_name = 0
         self.db = database
         self.base = base
         self.in_family = 0
@@ -326,7 +327,8 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_name(self,attrs):
         self.name = Name()
-
+        self.in_name = 1
+        
     #---------------------------------------------------------------------
     #
     #
@@ -370,6 +372,8 @@ class GrampsParser(handler.ContentHandler):
         self.source_ref.setBase(self.source)
         if self.in_address:
             self.address.setSourceRef(self.source_ref)
+        elif self.in_name:
+            self.name.setSourceRef(self.source_ref)
         elif self.in_event:
             self.event.setSourceRef(self.source_ref)
         elif self.in_attribute:
@@ -484,6 +488,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_name(self,tag):
         self.person.setPrimaryName(self.name)
+        self.in_name = 0
 
     #---------------------------------------------------------------------
     #
@@ -685,8 +690,10 @@ class GrampsParser(handler.ContentHandler):
             note = tag
         if self.in_address == 1:
             self.address.setNote(note)
-        if self.in_attribute == 1:
+        elif self.in_attribute == 1:
             self.attribute.setNote(note)
+        elif self.in_name == 1:
+            self.name.setNote(note)
         elif self.in_source == 1:
             self.source.setNote(note)
         elif self.in_event == 1:
