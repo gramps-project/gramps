@@ -1,11 +1,30 @@
 Version 0.7.2
+* New Brazilian-Portuguese translation (Marcos Bedinelli)
 * Python Imaging Library no longer required for several report
   formats.
+* Better sizing of images in reports (Bruce DeGrasse)
+* An image subdirectory name can now be specified in the WebPage
+  generation. This allows you to specify the subdirectory (or
+  absence of a subdirectory) where images are placed when generating
+  a web site.
+* Merging allows you to choose the GRAMPS ID of the merged person.
+* Better handling of auto completion of names, places, and other
+  items.
 * Ability to rerun Startup dialog when necessary
 * More information in the Startup dialog
 * Fewer intermediate files when handling images for reports
 * Reports are now plugins, stored in the DocGen library
 * Filter out control characters on GEDCOM import
+* New document format generators for SVG and PostScript.
+* Improved document format generators for LaTeX (Donald Peterson),
+  KWord (Bruce DeGrasse), and AbiWord.
+* Names now have a type (e.g. "Married Name", "Birth Name") 
+  associated with them.
+* Eliminated the intermediate dialog box on importing - GRAMPS
+  now always appends to the current database.
+* If an imported GEDCOM contains REFN tags, they are correlated
+  to the GRAMPS ID if possible.
+
 
 Version 0.7.1
 * A database must now be open at all times. Prevents the problem of
