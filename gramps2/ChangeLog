@@ -5,6 +5,7 @@
 	* src/AddrEdit.py: Use date editor callback.
 	* src/EditPerson.py: Use date editor callback.
 	* src/EventEdit.py: Use date editor callback.
+	* src/DateParser.py: Minor cleanup.
 
 2004-09-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateDisplay.py: use locale.nl_langinfo to get month
