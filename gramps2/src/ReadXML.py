@@ -762,6 +762,7 @@ class GrampsParser:
 
     def start_object(self,attrs):
         self.object = self.db.find_object_from_handle(attrs['id'],self.trans)
+        self.object.set_gramps_id(attrs['id'])
         self.object.set_mime_type(attrs['mime'])
         self.object.set_description(attrs['description'])
         src = attrs["src"]

@@ -1,4 +1,7 @@
 2004-08-22  Tim Waugh  <twaugh@redhat.com>
+
+	* src/ReadXML.py (GrampsParser.start_object): Set GRAMPS ID.
+
 	* src/WriteXML.py (write_xml_data): Fixed typo causing XML export to
 	omit all place definitions.
 	(XmlWriter.write_xml_data): Sort person IDs before writing.
@@ -8,6 +11,8 @@
 	(XmlWriter.write_xml_data): Sort family IDs before writing.
 	(XmlWriter.write_xml_data): Fixed families output by preventing
 	confusion between handles and GRAMPS IDs.
+	(XmlWriter.write_xml_data): Sort object IDs before writing.
+	(XmlWriter.write_object): Use GRAMPS ID not DB handle.
 
 	* src/RelLib.py (probably_alive): Fixed typo (bug #1012347).
 
