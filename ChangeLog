@@ -2,6 +2,12 @@
 	* src/NameEdit.py (on_help_clicked): Add function.
 	* src/UrlEdit.py (on_help_clicked): Add function.
 	* src/gramps.glade: Add hot keys to the family view list labels.
+	* src/ChooseParents.py (ModifyParents.__init__): Make the dialog modal
+	and a transient for its parent; (ModifyParents.on_help_clicked): Add 
+	function; (ChooseParents.__init__): Make the dialog modal and a 
+	transient for its parent; (ChooseParents.on_help_clicked): 
+	Add function.
+	* src/FamilyView.py: Pass the window to the ChooseParents classes.
 
 2003-11-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add Help buttons to dialogs.
