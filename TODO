@@ -25,15 +25,5 @@
 * Add Confession as a standard event
 * Now that the completeness flag exists, create filters that are using it
   (both individual and family). 
-* Introduce format attribute for the notes (Flowed or Preformatted).
-* Add ZIP/Postal code to Places
-* Add Phone as an attribute for Addresses and Places
-* Add FAX too? Maybe rather a property of Phone 
-  (one of: Home, Work, Mobile, FAX, etc).
-* Add Phone as a standard personal and family attribute
-* Add Award as a standard personal (and family?) attribute
-* Add an option to add media from gallery (like TitlePage in BookReport).
-  Currently it has to be done via DnD, which is hard for small displays.
-  The selector is already there waiting anyway ;-)
 * Add autofill feature for City, Church parish, County, State and Country? 
 * And a whole lot more....

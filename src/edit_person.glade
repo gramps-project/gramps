@@ -188,7 +188,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label293">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Family _prefix:</property>
+			  <property name="label" translatable="yes">Family prefi_x:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -213,7 +213,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label23">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Suffi_x:</property>
+			  <property name="label" translatable="yes">S_uffix:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -263,7 +263,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label116">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Nickname:</property>
+			  <property name="label" translatable="yes">Nic_kname:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -770,7 +770,7 @@
 			    <widget class="GtkRadioButton" id="genderUnknown">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_unknown</property>
+			      <property name="label" translatable="yes">u_nknown</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <property name="active">False</property>
@@ -939,7 +939,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label123">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Pla_ce:</property>
+			  <property name="label" translatable="yes">_Place:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1194,7 +1194,7 @@
 		      <property name="border_width">6</property>
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Information is complete</property>
+		      <property name="label" translatable="yes">Information i_s complete</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="active">False</property>
