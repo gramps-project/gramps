@@ -1,4 +1,4 @@
-# translation of hu.po to Hungarian
+# translation of template.po to hungarian hu.po
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
 # Egyeki Gergely <egeri@elte.hu>, 2003, 2004.
@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
-"POT-Creation-Date: Sun Jan 18 19:41:31 2004\n"
-"PO-Revision-Date: 2004-01-19 21:30+0100\n"
+"POT-Creation-Date: Mon Jan 19 14:10:17 2004\n"
+"PO-Revision-Date: 2004-01-20 21:17+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -529,13 +529,13 @@ msgstr ""
 "Ez a típus az események menüben mostantól elérhető"
 
 #: FamilyView.py:53 PedView.py:45 plugins/AncestorChart.py:52
-#: plugins/AncestorChart2.py:49 plugins/DesGraph.py:52
+#: plugins/AncestorChart2.py:51 plugins/DesGraph.py:52
 #: plugins/DescendReport.py:50
 msgid "b."
 msgstr "születési ideje:"
 
 #: FamilyView.py:54 PedView.py:46 plugins/AncestorChart.py:53
-#: plugins/AncestorChart2.py:50 plugins/DesGraph.py:53
+#: plugins/AncestorChart2.py:52 plugins/DesGraph.py:53
 #: plugins/DescendReport.py:51
 msgid "d."
 msgstr "halálának ideje:"
@@ -758,9 +758,7 @@ msgstr ""
 
 #: GenericFilter.py:263
 msgid "Matches the person with a specified GRAMPS ID"
-msgstr ""
-"Megadott GRAMPS ID -vel rendelkező "
-"személyre illeszkedik"
+msgstr "Megadott GRAMPS ID -vel rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:288
 msgid "Matches all people whose records are complete"
@@ -804,16 +802,16 @@ msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Egy megadott személy összes leszármazottjára illeszkedik nem több "
-"mint N generációs távolságra"
+"Egy megadott személy összes leszármazottjára illeszkedik nem több mint N "
+"generációs távolságra"
 
 #: GenericFilter.py:471
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Egy megadott személy összes leszármazottjára illeszkedik legalább "
-"N generációs távolságra"
+"Egy megadott személy összes leszármazottjára illeszkedik legalább N "
+"generációs távolságra"
 
 #: GenericFilter.py:514
 msgid "Matches the person that is a child of someone matched by a filter"
@@ -828,7 +826,9 @@ msgstr "Családi szűrők"
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr "Egy megadott személy összes utódára vagy utódainak a házastársaira illeszkedik"
+msgstr ""
+"Egy megadott személy összes utódára vagy utódainak a házastársaira "
+"illeszkedik"
 
 #: GenericFilter.py:600
 msgid "Matches people that are ancestors of a specified person"
@@ -848,16 +848,16 @@ msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Olyan emberekre illeszkedik akik egy megadott személy ősei nem több "
-"mint N generációs távolságra"
+"Olyan emberekre illeszkedik akik egy megadott személy ősei nem több mint N "
+"generációs távolságra"
 
 #: GenericFilter.py:750
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Olyan emberekre illeszkedik akik a megadott személy ősei legalább "
-"N generációs távolságra"
+"Olyan emberekre illeszkedik akik a megadott személy ősei legalább N "
+"generációs távolságra"
 
 #: GenericFilter.py:800
 msgid "Matches the person that is a parent of someone matched by a filter"
@@ -901,9 +901,7 @@ msgstr "Személyes esemény:"
 
 #: GenericFilter.py:943
 msgid "Matches the person with a personal event of a particular value"
-msgstr ""
-"Megadott személyes esményi adatokkal "
-"rendelkező személyre illeszkedik"
+msgstr "Megadott személyes esményi adatokkal rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:946 GenericFilter.py:993 GenericFilter.py:1095
 #: GenericFilter.py:1135
@@ -916,9 +914,7 @@ msgstr "Családi esemény:"
 
 #: GenericFilter.py:990
 msgid "Matches the person with a family event of a particular value"
-msgstr ""
-"Megadott családi adatokkal "
-"rendelkező személyre illeszkedik"
+msgstr "Megadott családi adatokkal rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1022
 msgid "Number of relationships:"
@@ -938,9 +934,7 @@ msgstr "A megadott paraméterű kapcsolattal rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1092
 msgid "Matches the person with a birth of a particular value"
-msgstr ""
-"Megadott születési adatokkal "
-"rendelkező személyre illeszkedik"
+msgstr "Megadott születési adatokkal rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1132
 msgid "Matches the person with a death of a particular value"
@@ -982,9 +976,7 @@ msgstr "A megadott névvel rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1274
 msgid "Matches the person married to someone matching a filter"
-msgstr ""
-"Egy szűrő által megadott személyhez "
-"házasodottra illeszkedik"
+msgstr "Egy szűrő által megadott személyhez házasodottra illeszkedik"
 
 #: GenericFilter.py:1421
 msgid "Everyone"
@@ -1242,7 +1234,7 @@ msgstr "Információk a kutatóról"
 msgid "Data Guessing"
 msgstr "Adatok következtetése"
 
-#: GrampsCfg.py:666 GrampsCfg.py:681
+#: GrampsCfg.py:667 GrampsCfg.py:682
 msgid "No default format"
 msgstr "Formázatlan"
 
@@ -1333,11 +1325,11 @@ msgid "The GRAMPS ID that you chose for this relationship is already being used.
 msgstr "A GRAMPS ID amit választott a kapcsolatnak már használatban van."
 
 #: MediaView.py:77 SelectObject.py:86 SourceView.py:70 Sources.py:79
-#: Sources.py:175 plugins/AncestorChart2.py:448 plugins/BookReport.py:680
-#: plugins/BookReport.py:697 plugins/BookReport.py:770
-#: plugins/PatchNames.py:168 plugins/SimpleBookTitle.py:300
-#: plugins/SimpleBookTitle.py:564 plugins/TimeLine.py:437
-#: plugins/TimeLine.py:579
+#: Sources.py:175 plugins/AncestorChart2.py:450 plugins/AncestorChart2.py:581
+#: plugins/BookReport.py:680 plugins/BookReport.py:697
+#: plugins/BookReport.py:770 plugins/PatchNames.py:168
+#: plugins/SimpleBookTitle.py:300 plugins/SimpleBookTitle.py:564
+#: plugins/TimeLine.py:437 plugins/TimeLine.py:579
 msgid "Title"
 msgstr "Megnevezés"
 
@@ -2570,11 +2562,11 @@ msgstr "Tisztázatlan"
 
 #: const.py:953
 msgid "BIC"
-msgstr ""
+msgstr "BIC"
 
 #: const.py:954 const.py:960
 msgid "DNS"
-msgstr ""
+msgstr "DNS"
 
 #: const.py:959
 msgid "Canceled"
@@ -2582,7 +2574,7 @@ msgstr "Visszavonva"
 
 #: const.py:960
 msgid "DNS/CAN"
-msgstr ""
+msgstr "DNS/CAN"
 
 #: const.py:966 const.py:973
 msgid "Also Known As"
@@ -3313,9 +3305,9 @@ msgid ""
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing medial files."
 msgstr ""
-"Ha bejelöli ezt a gombot, akkor minden elveszett média fájl a "
-"jelenleg kiválasztott módon lesz kezelve. További hibaüzenet nem "
-"fog megjelenni egyik elveszett média fájlnál sem."
+"Ha bejelöli ezt a gombot, akkor minden elveszett média fájl a jelenleg "
+"kiválasztott módon lesz kezelve. További hibaüzenet nem fog megjelenni egyik "
+"elveszett média fájlnál sem."
 
 #: errdialogs.glade:1088
 msgid "_Use this selection for all missing media files"
@@ -4311,7 +4303,7 @@ msgstr "Készítő:"
 msgid "Author's email:"
 msgstr "Készítő email címe:"
 
-#: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:420
+#: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:422
 #: plugins/AncestorReport.py:411 plugins/Ancestors.py:791
 #: plugins/Ancestors.py:807 plugins/Ancestors.py:813 plugins/DesGraph.py:315
 #: plugins/FamilyGroup.py:621 plugins/FanChart.py:283
@@ -4325,12 +4317,12 @@ msgstr "A szöveg megjelenítéséhez használt stílus."
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:345
 #: plugins/AncestorChart.py:559 plugins/AncestorChart.py:570
-#: plugins/AncestorChart2.py:460 plugins/AncestorChart2.py:568
+#: plugins/AncestorChart2.py:462 plugins/AncestorChart2.py:589
 msgid "Ancestor Chart"
 msgstr "Ősök grafikonja"
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:560
-#: plugins/AncestorChart2.py:460 plugins/AncestorChart2.py:783
+#: plugins/AncestorChart2.py:462 plugins/AncestorChart2.py:818
 #: plugins/DesGraph.py:329 plugins/DesGraph.py:586 plugins/FanChart.py:310
 #: plugins/FanChart.py:462 plugins/GraphViz.py:83 plugins/GraphViz.py:531
 #: plugins/RelGraph.py:111 plugins/RelGraph.py:912 plugins/TimeLine.py:396
@@ -4338,31 +4330,32 @@ msgstr "Ősök grafikonja"
 msgid "Graphical Reports"
 msgstr "Grafikus összesítők"
 
-#: plugins/AncestorChart.py:246 plugins/AncestorChart2.py:464
+#: plugins/AncestorChart.py:246 plugins/AncestorChart2.py:466
+#: plugins/AncestorChart2.py:593
 msgid "Ancestor Chart for %s"
 msgstr "%s őseinek grafikonja"
 
-#: plugins/AncestorChart.py:251 plugins/AncestorChart2.py:469
+#: plugins/AncestorChart.py:251 plugins/AncestorChart2.py:471
 msgid "Save Ancestor Chart"
 msgstr "Ősök grafikonjának mentése"
 
 #: plugins/AncestorChart.py:263 plugins/AncestorChart.py:361
-#: plugins/AncestorChart2.py:481 plugins/AncestorChart2.py:584
+#: plugins/AncestorChart2.py:483 plugins/AncestorChart2.py:609
 #: plugins/DesGraph.py:346 plugins/DesGraph.py:440
 msgid "Display Format"
 msgstr "Megjelenítési formátum"
 
 #: plugins/AncestorChart.py:264 plugins/AncestorChart.py:362
-#: plugins/AncestorChart2.py:482 plugins/AncestorChart2.py:585
+#: plugins/AncestorChart2.py:484 plugins/AncestorChart2.py:610
 #: plugins/DesGraph.py:347 plugins/DesGraph.py:441
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr "Az összesítőkben lévő adatok testreszabásának engedélyezése"
 
-#: plugins/AncestorChart.py:349 plugins/AncestorChart2.py:572
+#: plugins/AncestorChart.py:349 plugins/AncestorChart2.py:597
 msgid "Ancestor Chart for GRAMPS Book"
 msgstr "Ősök grafikonja a GRAMPS könyvbe"
 
-#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:784
+#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:819
 #: plugins/AncestorReport.py:515 plugins/Ancestors.py:1120
 #: plugins/DescendReport.py:405 plugins/DetAncestralReport.py:1210
 #: plugins/DetDescendantReport.py:1219 plugins/FamilyGroup.py:762
@@ -4373,28 +4366,28 @@ msgstr "Ősök grafikonja a GRAMPS könyvbe"
 msgid "Beta"
 msgstr "Béta"
 
-#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:785
+#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:820
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Grafikus fa készítése az ősökről"
 
-#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:794
+#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:829
 #: plugins/DesGraph.py:597 plugins/FanChart.py:470 plugins/TimeLine.py:667
 msgid "Graphics"
 msgstr "Grafikák"
 
-#: plugins/AncestorChart2.py:429
+#: plugins/AncestorChart2.py:431
 msgid "The basic style used for the title display."
 msgstr "A cím megjelenítéséhez az alapértelmezett stílus lett felhasználva."
 
-#: plugins/AncestorChart2.py:449
-msgid "Compress chart"
-msgstr "Grafikon tömörítése"
+#: plugins/AncestorChart2.py:451 plugins/AncestorChart2.py:582
+msgid "Co_mpress chart"
+msgstr "Grafikon _tömörítése"
 
-#: plugins/AncestorChart2.py:453
-msgid "Scale to fit on a single page"
-msgstr "Megjelenítés egyetlen oldalon"
+#: plugins/AncestorChart2.py:455
+msgid "Sc_ale to fit on a single page"
+msgstr "M_egjelenítés egyetlen oldalon"
 
-#: plugins/AncestorChart2.py:782 plugins/AncestorChart2.py:793
+#: plugins/AncestorChart2.py:817 plugins/AncestorChart2.py:828
 msgid "Ancestor Chart (Wall Chart)"
 msgstr "Ősök Grafikon (Fal Grafikon)"
 
@@ -6461,11 +6454,11 @@ msgstr "Figyelmeztetés: %d sor nem értelmezhető, így elutasítva."
 msgid "Import Complete: %d seconds"
 msgstr "Importálás kész: %d másodperc"
 
-#: plugins/ReadGedcom.py:952 plugins/ReadGedcom.py:990
+#: plugins/ReadGedcom.py:953 plugins/ReadGedcom.py:991
 msgid "Warning: could not import %s"
 msgstr "Figyelmeztetés: %s nem importálható"
 
-#: plugins/ReadGedcom.py:953 plugins/ReadGedcom.py:991
+#: plugins/ReadGedcom.py:954 plugins/ReadGedcom.py:992
 msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
