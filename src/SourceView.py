@@ -107,7 +107,8 @@ class SourceView:
 
         data = None
         if len(obj.selection) == 1:
-            data = obj.get_row_data(obj.selection[0])
+            id = obj.get_row_data(obj.selection[0])
+            data = self.db.getSourceMap()[data]
         
         obj.freeze()
         if new_col == self.scol:
@@ -143,9 +144,8 @@ class SourceView:
 
         index = 0
         for key in self.db.getSourceKeys():
-            src = self.db.getSourceMap()[key]
-            self.source_list.append(src.getDisplayInfo())
-            self.source_list.set_row_data(index,src)
+            self.source_list.append(self.db.getSourceDisplay(key))
+            self.source_list.set_row_data(index,key)
             index = index + 1
 
         if index > 0:
@@ -159,7 +159,7 @@ class SourceView:
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             if len(obj.selection) > 0:
                 index = obj.selection[0]
-                source = obj.get_row_data(index)
+                source = self.db.getSourceMap()[obj.get_row_data(index)]
                 EditSource.EditSource(source,self.db,
                                       self.update_display_after_edit)
 
@@ -172,7 +172,7 @@ class SourceView:
         else:
             index = obj.selection[0]
             
-        source = obj.get_row_data(index)
+        source = self.db.getSourceMap()[obj.get_row_data(index)]
 
         if self.is_source_used(source):
             ans = EditSource.DelSrcQuery(source,self.db,self.update)
@@ -182,8 +182,7 @@ class SourceView:
                            _('Delete Source'),ans.query_response,
                            _('Keep Source'))
         else:
-            map = self.db.getSourceMap()
-            del map[source.getId()]
+            self.db.removeSource(source.getId())
             Utils.modified()
             self.update(0)
 
@@ -227,7 +226,7 @@ class SourceView:
     def on_edit_source_clicked(self,obj):
         if len(obj.selection) > 0:
             index = obj.selection[0]
-            source = obj.get_row_data(index)
+            source = self.db.getSourceMap()[obj.get_row_data(index)]
             EditSource.EditSource(source,self.db,
                                   self.update_display_after_edit)
 

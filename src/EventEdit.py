@@ -59,9 +59,9 @@ class EventEditor:
         self.callback = cb
         self.plist = []
         
-        self.pmap = {}
-        for p in self.parent.db.getPlaces():
-            self.pmap[p.get_title()] = p
+        for key in db.getPlaceKeys():
+            p = db.getPlaceDisplay(key)
+            self.pmap[p[0]] = key
 
         if event:
             self.srcreflist = self.event.getSourceRefList()
@@ -155,12 +155,12 @@ class EventEditor:
         text = strip(field.get_text())
         if text != "":
             if self.pmap.has_key(text):
-                return self.pmap[text]
+                return self.db.getPlaceMap()[self.pmap[text]]
             elif makenew:
                 place = Place()
                 place.set_title(text)
-                self.pmap[text] = place
                 self.parent.db.addPlace(place)
+                self.pmap[text] = place.getId()
                 self.plist.append(place)
                 Utils.modified()
                 return place

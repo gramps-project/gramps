@@ -86,9 +86,10 @@ class EditPerson:
         self.pmap = {}
         self.add_places = []
 
-        for p in db.getPlaces():
-            self.pmap[p.get_title()] = p
-
+        for key in db.getPlaceKeys():
+            p = db.getPlaceDisplay(key)
+            self.pmap[p[0]] = key
+            
         self.load_obj = None
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
         gwidget = self.top.get_widget("photolist")
@@ -777,9 +778,10 @@ class EditPerson:
         text = self.notes_field.get_chars(0,-1)
         idval = self.gid.get_text()
 
-        self.pmap = {}
-        for p in self.db.getPlaces():
-            self.pmap[p.get_title()] = p
+#        self.pmap = {}
+#        for key in db.getPlaceKeys():
+#            p = db.getPlaceDisplay(key)
+#            self.pmap[p[0]] = key
 
         changed = 0
         name = self.person.getPrimaryName()
@@ -807,7 +809,7 @@ class EditPerson:
         dplace = string.strip(self.dplace.get_text())
 
         if self.pmap.has_key(bplace):
-            p1 = self.pmap[bplace]
+            p1 = self.db.getPlaceMap()[self.pmap[bplace]]
         else:
             p1 = None
             if bplace != "":
@@ -815,7 +817,7 @@ class EditPerson:
         self.birth.setPlace(p1)
 
         if self.pmap.has_key(dplace):
-            p1 = self.pmap[dplace]
+            p1 = self.db.getPlaceMap()[self.pmap[dplace]]
         else:
             p1 = None
             if dplace != "":
@@ -1157,8 +1159,9 @@ class EditPerson:
             Utils.modified()
 
         self.pmap = {}
-        for p in self.db.getPlaces():
-            self.pmap[p.get_title()] = p
+        for p in self.db.getPlaceKeys():
+            p = db.getPlaceDisplay(key)
+            self.pmap[p[0]] = key
 
         self.birth.setDate(self.bdate.get_text())
         self.birth.setPlace(self.get_place(self.bplace,1))
@@ -1302,12 +1305,12 @@ class EditPerson:
         text = string.strip(field.get_text())
         if text:
             if self.pmap.has_key(text):
-                return self.pmap[text]
+                return self.db.getPlaceMap()[self.pmap[text]]
             elif makenew:
                 place = Place()
                 place.set_title(text)
-                self.pmap[text] = place
                 self.db.addPlace(place)
+                self.pmap[text] = place.getId()
                 self.add_places.append(place)
                 Utils.modified()
                 return place

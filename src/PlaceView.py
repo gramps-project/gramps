@@ -112,15 +112,15 @@ class PlaceView:
 
         index = 0
         for key in self.db.getPlaceKeys():
-            src = self.db.getPlaceMap()[key]
-            self.place_list.append(src.getDisplayInfo())
-            self.place_list.set_row_data(index,src)
+            self.place_list.append(self.db.getPlaceDisplay(key))
+            self.place_list.set_row_data(index,key)
             index = index + 1
 
         if index > 0:
             self.place_list.select_row(current_row,0)
             self.place_list.moveto(current_row)
-            self.active = self.place_list.get_row_data(current_row)
+            id = self.place_list.get_row_data(current_row)
+            self.active = self.db.getPlaceMap()[id]
         else:
             self.active = None
 
@@ -129,7 +129,8 @@ class PlaceView:
         
     def select_row(self,obj,row,b,c):
         if row == obj.selection[0]:
-            self.active = self.place_list.get_row_data(row)
+            id = self.place_list.get_row_data(row)
+            self.active = self.db.getPlaceMap()[id]
             
     def merge(self):
         if len(self.place_list.selection) != 2:
@@ -139,6 +140,8 @@ class PlaceView:
             import MergeData
             p1 = self.place_list.get_row_data(self.place_list.selection[0])
             p2 = self.place_list.get_row_data(self.place_list.selection[1])
+            p1 = self.db.getPlaceMap()[p1]
+            p2 = self.db.getPlaceMap()[p2]
             MergeData.MergePlaces(self.db,p1,p2,self.load_places)
 
     def on_button_press_event(self,obj,event):
@@ -161,7 +164,8 @@ class PlaceView:
     def on_click_column(self,obj,column):
         obj.freeze()
         if len(obj.selection):
-            sel = obj.get_row_data(obj.selection[0])
+            id = obj.get_row_data(obj.selection[0])
+            sel = self.db.getPlaceMap()[id]
         else:
             sel = None
         
@@ -223,8 +227,9 @@ class PlaceView:
             index = obj.selection[0]
 
         used = 0
-        place = obj.get_row_data(index)
-        for p in self.db.getPersonMap().values():
+        place = self.db.getPlaceMap()[obj.get_row_data(index)]
+        for key in self.db.getPersonKeys():
+            p = self.db.getPersonMap()[key]
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():
                 if event.getPlace() == place:
                     used = 1
@@ -241,8 +246,7 @@ class PlaceView:
                            _('Keep Place'))
         else:
             obj.remove(index)
-            map = self.db.getPlaceMap()
-            del map[place.getId()]
+            self.db.removePlace(place.getId())
             Utils.modified()
 
     def on_edit_place_clicked(self,obj):
