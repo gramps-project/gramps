@@ -772,17 +772,17 @@ class LocalMediaProperties:
         self.parent_menu_item = gtk.MenuItem(label)
         self.parent_menu_item.set_submenu(gtk.Menu())
         self.parent_menu_item.show()
-        self.parent.parent.menu.append(self.parent_menu_item)
-        self.menu = self.parent_menu_item.get_submenu()
+        self.parent.parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
         self.menu_item = gtk.MenuItem(_('Reference Editor'))
         self.menu_item.connect("activate",self.present)
         self.menu_item.show()
-        self.menu.append(self.menu_item)
+        self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
         del self.parent.parent.child_windows[self.win_key]
         self.menu_item.destroy()
-        self.menu.destroy()
+        self.winsmenu.destroy()
         self.parent_menu_item.destroy()
 
     def present(self,obj):

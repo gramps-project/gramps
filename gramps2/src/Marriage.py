@@ -73,8 +73,8 @@ class Marriage:
         """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.parent = parent
-        if self.parent.wins_dict.has_key(family.get_id()):
-            self.parent.wins_dict[family.get_id()].present(None)
+        if self.parent.child_windows.has_key(family.get_id()):
+            self.parent.child_windows[family.get_id()].present(None)
             return
         self.child_windows = {}
         self.db = db
@@ -271,7 +271,7 @@ class Marriage:
         self.window.destroy()
 
     def add_itself_to_winsmenu(self):
-        self.parent.wins_dict[self.family.get_id()] = self
+        self.parent.child_windows[self.family.get_id()] = self
         win_menu_label = self.title
         if not win_menu_label.strip():
             win_menu_label = _("New Relationship")
@@ -279,16 +279,16 @@ class Marriage:
         self.win_menu_item.set_submenu(gtk.Menu())
         self.win_menu_item.show()
         self.parent.winsmenu.append(self.win_menu_item)
-        self.menu = self.win_menu_item.get_submenu()
+        self.winsmenu = self.win_menu_item.get_submenu()
         self.menu_item = gtk.MenuItem(_('Marriage/Relationship Editor'))
         self.menu_item.connect("activate",self.present)
         self.menu_item.show()
-        self.menu.append(self.menu_item)
+        self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
-        del self.parent.wins_dict[self.family.get_id()]
+        del self.parent.child_windows[self.family.get_id()]
         self.menu_item.destroy()
-        self.menu.destroy()
+        self.winsmenu.destroy()
         self.win_menu_item.destroy()
 
     def present(self,obj):

@@ -78,6 +78,7 @@ class ChooseParents:
         """
         self.parent = parent
         self.db = db
+        self.child_windows = {}
         self.person = person
         self.family = family
         self.family_update = family_update
@@ -102,9 +103,9 @@ class ChooseParents:
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
         self.top = self.glade.get_widget("familyDialog")
 
-        text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
+        self.title_text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
         Utils.set_titles(self.top,self.glade.get_widget('title'),
-                         text,_('Choose Parents'))
+                         self.title_text,_('Choose Parents'))
         
         self.mother_rel = self.glade.get_widget("mrel")
         self.father_rel = self.glade.get_widget("frel")
@@ -149,14 +150,52 @@ class ChooseParents:
             "on_prel_changed"          : self.parent_relation_changed,
             "on_showallf_toggled"      : self.showallf_toggled,
             "on_showallm_toggled"      : self.showallm_toggled,
-            "destroy_passed_object"    : Utils.destroy_passed_object,
+            "destroy_passed_object"    : self.close,
             "on_help_familyDialog_clicked"  : self.on_help_clicked,
+            "on_familyDialog_delete_event" : self.on_delete_event,
             })
+
+        self.add_itself_to_menu()
+        self.top.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        self.top.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self] = self
+        self.win_menu_item = gtk.MenuItem(self.title_text)
+        self.win_menu_item.set_submenu(gtk.Menu())
+        self.win_menu_item.show()
+        self.parent.winsmenu.append(self.win_menu_item)
+        self.winsmenu = self.win_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Choose Parents'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.win_menu_item.destroy()
+
+    def present(self,obj):
+        self.top.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
-        self.val = self.top.run()
 
     def redrawf(self):
         """Redraws the potential father list"""
@@ -460,11 +499,11 @@ class ChooseParents:
         else:    
             self.family = None
 
-        Utils.destroy_passed_object(obj)
         if self.family:
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(None)
+        self.close(obj)
 
     def add_new_parent(self,epo):
         """Adds a new person to either the father list or the mother list,
@@ -502,7 +541,7 @@ class ChooseParents:
         
         try:
             import EditPerson
-            EditPerson.EditPerson(self.parent, person,self.db,self.add_new_parent)
+            EditPerson.EditPerson(self, person,self.db,self.add_new_parent)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
