@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed Apr  9 21:04:15 2003\n"
+"POT-Creation-Date: Thu Apr 10 14:37:48 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2068,11 +2068,11 @@ msgstr ""
 msgid "Reject changes and close"
 msgstr ""
 
-#: dialog.glade:2850 edit_person.glade:129
+#: dialog.glade:2850 edit_person.glade:129 gramps.glade:5345
 msgid "_Given name:"
 msgstr ""
 
-#: dialog.glade:2878 edit_person.glade:154
+#: dialog.glade:2878 edit_person.glade:154 gramps.glade:5212
 msgid "_Family name:"
 msgstr ""
 
@@ -2493,16 +2493,6 @@ msgstr ""
 
 #: edit_person.glade:4783 marriage.glade:1739
 msgid "<b>LDS</b>"
-msgstr ""
-
-#: errdialogs.glade:60 errdialogs.glade:214 errdialogs.glade:354
-#: errdialogs.glade:494 errdialogs.glade:623 errdialogs.glade:752
-msgid "label2"
-msgstr ""
-
-#: errdialogs.glade:104 errdialogs.glade:258 errdialogs.glade:398
-#: errdialogs.glade:538 errdialogs.glade:667 errdialogs.glade:796
-msgid "label1"
 msgstr ""
 
 #: errdialogs.glade:160
@@ -3002,20 +2992,12 @@ msgstr ""
 msgid "<b>References</b>"
 msgstr ""
 
-#: gramps.glade:5212
-msgid "_Surname:"
-msgstr ""
-
 #: gramps.glade:5242
 msgid "Gender:"
 msgstr ""
 
 #: gramps.glade:5316
 msgid "_female"
-msgstr ""
-
-#: gramps.glade:5345
-msgid "_Given:"
 msgstr ""
 
 #: gramps.glade:5544
@@ -5431,7 +5413,7 @@ msgid "The default directory for storing databases"
 msgstr ""
 
 #: preferences.glade:400
-msgid "_Capitalize surnames"
+msgid "_Capitalize family names"
 msgstr ""
 
 #: preferences.glade:421
@@ -5675,7 +5657,7 @@ msgid "_Allow internal GRAMPS ID numbers to be edited"
 msgstr ""
 
 #: preferences.glade:2771
-msgid "_Surname guessing:"
+msgid "_Family name guessing:"
 msgstr ""
 
 #: preferences.glade:2799
