@@ -961,12 +961,12 @@ class Gramps:
 
     def on_tools_clicked(self,obj):
         if self.active_person:
-            Plugins.ToolPlugins(self.db,self.active_person,
+            Plugins.ToolPlugins(self,self.db,self.active_person,
                                 self.tool_callback)
 
     def on_reports_clicked(self,obj):
         if self.active_person:
-            Plugins.ReportPlugins(self.db,self.active_person)
+            Plugins.ReportPlugins(self,self.db,self.active_person)
 
     def on_ok_button1_clicked(self,obj):
     

@@ -116,21 +116,26 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,db,active,list,msg,label=None,button_label=None,tool_tip=None):
+    def __init__(self,parent,db,active,list,msg,label=None,button_label=None,tool_tip=None):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
         
+        self.parent = parent
+        if self.parent.child_windows.has_key(msg):
+            self.parent.child_windows[msg].present(None)
+            return
         self.db = db
         self.active = active
         self.update = None
         self.imap = {}
+        self.msg = msg
         
         self.dialog = gtk.glade.XML(const.pluginsFile,"report","gramps")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
-            "on_report_ok_clicked"    : self.on_ok_clicked,
-            "destroy_passed_object"   : Utils.destroy_passed_object
+            "destroy_passed_object"   : self.close,
+            "on_delete_event"         : self.on_delete_event,
             })
 
         self.tree = self.dialog.get_widget("tree")
@@ -174,6 +179,29 @@ class PluginDialog:
 
         self.run_tool = None
         self.build_tree(list)
+        self.add_itself_to_menu()
+        self.top.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,ok=0):
+        self.remove_itself_from_menu()
+        self.top.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.msg] = self
+        self.win_menu_item = gtk.MenuItem(self.msg)
+        self.win_menu_item.connect("activate",self.present)
+        self.win_menu_item.show()
+        self.parent.winsmenu.append(self.win_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.msg]
+        self.win_menu_item.destroy()
+
+    def present(self,obj):
+        self.top.present()
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
@@ -183,12 +211,6 @@ class PluginDialog:
                 self.run_tool(self.db,self.active,self.update)
             else:
                 self.run_tool(self.db,self.active)
-
-    def on_ok_clicked(self,obj):
-        """Execute the selected report and close the dialog window"""
-
-        Utils.destroy_passed_object(obj)
-        self.on_apply_clicked(obj)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -271,11 +293,11 @@ class ReportPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,db,active):
+    def __init__(self,parent,db,active):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
-        PluginDialog.__init__(self,db,active,_reports,_("Report Selection"),
+        PluginDialog.__init__(self,parent,db,active,_reports,_("Report Selection"),
 			_("Select a report from those available on the left."),
                         _("_Generate"), _("Generate selected report"))
 
@@ -288,12 +310,12 @@ class ToolPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the tool
     that is desired."""
 
-    def __init__(self,db,active,update):
+    def __init__(self,parent,db,active,update):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
 
-        PluginDialog.__init__(self,db,active,_tools,_("Tool Selection"),
+        PluginDialog.__init__(self,parent,db,active,_tools,_("Tool Selection"),
 			_("Select a tool from those available on the left."),
                         _("_Run"), _("Run selected tool"))
         self.update = update
