@@ -77,7 +77,6 @@ def importData(database, filename, callback):
             f.close()
         except IOError,msg:
             use_gzip = 0
-            f.close()
     else:
         use_gzip = 0
 
