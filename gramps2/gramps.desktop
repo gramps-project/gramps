@@ -1,6 +1,10 @@
 [Desktop Entry]
 Name=GRAMPS genealogical database
+Name[no]=GRAMPS
+Name[nb]=GRAMPS
 Comment=Manage your family tree
+Comment[no]=Et slektsforskningsprogram
+Comment[nb]=Et slektsforskningsprogram
 Exec=gramps
 Terminal=false
 Type=Application
@@ -8,9 +12,3 @@ Icon=gramps.png
 Categories=Application;Genealogy;
 StartupNotify=true
 X-GNOME-DocPath=gramps/gramps-manual.xml
-
-Name[no]=GRAMPS slekts database
-Comment[no]=Administrer ditt famili tre
-Name[nb]=GRAMPS slekts database
-Comment[nb]=Administrer ditt famili tre
-
