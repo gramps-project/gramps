@@ -136,7 +136,7 @@ def ancestors(person,plist,flist,slist,private):
         return
     plist.append(person)
     add_persons_sources(person,slist,private)
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family == None or family in flist:
         return
     add_familys_sources(family,slist,private)
@@ -156,8 +156,8 @@ def walk(person,plist,flist,slist,private):
     plist.append(person)
     add_persons_sources(person,slist,private)
     families = person.getFamilyList()
-    families.append(person.getMainFamily())
-    for f in person.getAltFamilyList():
+    families.append(person.getMainParents())
+    for f in person.getParentList():
         families.append(f[0])
     for family in families:
         if family == None or family in flist:
@@ -626,17 +626,17 @@ class GedcomWriter:
             for person in family.getChildList():
                 self.g.write("1 CHIL @%s@\n" % self.pid(person.getId()))
                 if self.adopt == ADOPT_FTW:
-                    if person.getMainFamily() == family:
+                    if person.getMainParents() == family:
                         self.g.write('2 _FREL Natural\n')
                         self.g.write('2 _MREL Natural\n')
                     else:
-                        for f in person.getAltFamilyList():
+                        for f in person.getParentList():
                             if f[0] == family:
                                 self.g.write('2 _FREL %s\n' % f[2])
                                 self.g.write('2 _MREL %s\n' % f[1])
                                 break
                 if self.adopt == ADOPT_LEGACY:
-                    for f in person.getAltFamilyList():
+                    for f in person.getAltParentList():
                         if f[0] == family:
                             self.g.write('2 _STAT %s\n' % f[2])
                             break
@@ -722,7 +722,7 @@ class GedcomWriter:
                     ad = 1
                     self.g.write('1 ADOP\n')
                     fam = None
-                    for f in person.getAltFamilyList():
+                    for f in person.getParentList():
                         mrel = string.lower(f[1])
                         frel = string.lower(f[2])
                         if mrel=="adopted" or mrel=="adopted":
@@ -745,10 +745,10 @@ class GedcomWriter:
 
                 self.dump_event_stats(event)
 
-            if self.adopt == ADOPT_EVENT and ad == 0 and len(person.getAltFamilyList()) != 0:
+            if self.adopt == ADOPT_EVENT and ad == 0 and len(person.getParentList()) != 0:
                 self.g.write('1 ADOP\n')
                 fam = None
-                for f in person.getAltFamilyList():
+                for f in person.getParentList():
                     mrel = string.lower(f[1])
                     frel = string.lower(f[2])
                     if mrel=="adopted" or mrel=="adopted":
@@ -810,11 +810,11 @@ class GedcomWriter:
                 for srcref in addr.getSourceRefList():
                     self.write_source_ref(3,srcref)
 
-        family = person.getMainFamily()
+        family = person.getMainParents()
         if family != None and family in self.flist:
             self.g.write("1 FAMC @%s@\n" % self.fid(family.getId()))
 
-        for family in person.getAltFamilyList():
+        for family in person.getParentList():
             self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
             if self.adopt == ADOPT_PEDI:
                 if string.lower(family[1]) == "adopted":

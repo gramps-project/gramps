@@ -1071,7 +1071,7 @@ class Person:
         """sets the attribute list to the specified list"""
         self.attributeList = list
 
-    def getAltFamilyList(self):
+    def getParentList(self):
         """returns the list of alternate Family instances, in which the Person
         is a child of the family, but not a natural child of both parents"""
         return self.AltFamilyList
@@ -1085,9 +1085,7 @@ class Person:
     def removeAltFamily(self,family):
         """removes a Family instance from the alternate family list"""
         for f in self.AltFamilyList[:]:
-            print "+",f[0],family
             if f[0] == family:
-                print f, family
                 self.AltFamilyList.remove(f)
                 return f
         else:
@@ -1100,7 +1098,7 @@ class Person:
         else:
             return None
 
-    def setMainFamily(self,family):
+    def setMainParents(self,family):
         """sets the main Family of the Person, the Family in which the
         Person is a natural born child"""
         assert(family in self.AltFamilyList)
@@ -1108,7 +1106,7 @@ class Person:
         if f:
             self.AltFamilyList = [f] + self.AltFamilyList
         
-    def getMainFamily(self):
+    def getMainParents(self):
         """returns the main Family of the Person, the Family in which the
         Person is a natural born child"""
         if len(self.AltFamilyList) == 0:
@@ -1116,7 +1114,7 @@ class Person:
         else:
             return self.AltFamilyList[0][0]
 
-    def getMainFamilyRel(self):
+    def getMainParentsRel(self):
         """returns the main Family of the Person, the Family in which the
         Person is a natural born child"""
         if len(self.AltFamilyList) == 0:

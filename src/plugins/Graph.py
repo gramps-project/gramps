@@ -77,7 +77,7 @@ def calc_gen( person, gen):
     done[ id ] = TRUE
     
     # going into the past...
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family != None:
         father = family.getFather()
         mother = family.getMother()
@@ -164,7 +164,7 @@ def report(database,person):
 	    b = boxes[i]
 	    id = b[3]
 	    person = personList[id]
-	    family = person.getMainFamily()
+	    family = person.getMainParents()
 	    if family != None:
 	       father = family.getFather()
 	       f=""

@@ -74,9 +74,9 @@ class CheckIntegrity:
         family_list = self.db.getFamilyMap().values()[:]
         for family in family_list:
             for child in family.getChildList():
-                if family == child.getMainFamily():
+                if family == child.getMainParents():
                     continue
-                for family_type in child.getAltFamilyList():
+                for family_type in child.getParentList():
                     if family_type[0] == family:
                         break
                 else:
@@ -110,10 +110,7 @@ class CheckIntegrity:
 
     def delete_empty_family(self,family):
         for child in self.db.getPersonMap().values():
-            if child.getMainFamily() == family:
-                child.setMainFamily(None)
-            else:
-                child.removeAltFamily(family)
+            child.removeAltFamily(family)
         self.db.deleteFamily(family)
 
     #-------------------------------------------------------------------------

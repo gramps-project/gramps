@@ -239,7 +239,7 @@ class IndividualPage:
         else:
             self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
 
-        family = self.person.getMainFamily()
+        family = self.person.getMainParents()
         if family:
             self.write_link_row("%s:" % _("Father"), family.getFather())
             self.write_link_row("%s:" % _("Mother"), family.getMother())
@@ -564,7 +564,7 @@ def ancestor_filter(database,person,list,generations):
     if generations <= 1:
         return
 
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family != None:
         ancestor_filter(database,family.getFather(),list,generations-1)
         ancestor_filter(database,family.getMother(),list,generations-1)
@@ -616,13 +616,13 @@ def an_des_of_gparents_filter(database,person,list,generations):
 
     my_list = []
 
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family == None:
         return
 
     for p in [ family.getMother(), family.getFather() ]:
 	if p:
-            pf = p.getMainFamily()
+            pf = p.getMainParents()
             if pf:
                 if pf.getFather():
                     my_list.append(pf.getFather())

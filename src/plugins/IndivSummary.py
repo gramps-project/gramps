@@ -247,7 +247,7 @@ class IndivSummary:
         self.d.end_cell()
         self.d.end_row()
 
-        family = self.person.getMainFamily()
+        family = self.person.getMainParents()
         if family:
             father_inst = family.getFather()
             if father_inst:

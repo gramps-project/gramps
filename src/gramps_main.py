@@ -842,7 +842,7 @@ class Gramps:
                 else:
                     family.setMother(None)
 
-        family = self.active_person.getMainFamily()
+        family = self.active_person.getMainParents()
         if family:
             family.removeChild(self.active_person)
             
@@ -1312,7 +1312,7 @@ class Gramps:
 
     def on_preferred_fam_toggled(self,obj):
         obj.set_active(0)
-        self.active_person.setMainFamily(self.active_parents)
+        self.active_person.setMainParents(self.active_parents)
         self.change_parents(self.active_parents)
         Utils.modified()
         
@@ -1403,10 +1403,10 @@ class Gramps:
         self.person_text.set_text(GrampsCfg.nameof(self.active_person))
 
         if self.active_person:
-            main_family = self.active_person.getMainFamily()
+            main_family = self.active_person.getMainParents()
             self.active_parents = main_family
             self.parents_index = 0
-            family_types = self.active_person.getAltFamilyList()
+            family_types = self.active_person.getParentList()
 
             if self.active_parents == None and len(family_types) > 0:
                 self.active_parents = family_types[0][0]
@@ -1497,8 +1497,8 @@ class Gramps:
 
         pframe = self.gtop.get_widget('parent_frame')
         if self.active_parents:
-            val = len(self.active_person.getAltFamilyList())
-            if self.active_parents == self.active_person.getMainFamily():
+            val = len(self.active_person.getParentList())
+            if self.active_parents == self.active_person.getMainParents():
                 self.gtop.get_widget('preffam').set_sensitive(0)
                 if val > 1:
                     pframe.set_label(_("Preferred Parents (%d of %d)") % \
@@ -1540,7 +1540,7 @@ class Gramps:
             else :
                 fv_mother.set_text("")
                 mother_next.set_sensitive(0)
-            for f in self.active_person.getAltFamilyList():
+            for f in self.active_person.getParentList():
                 if f[0] == family:
                     self.gtop.get_widget("mrel").set_text(_(f[1]))
                     self.gtop.get_widget("frel").set_text(_(f[2]))
@@ -1603,15 +1603,12 @@ class Gramps:
                     gender = const.female
                 else:
                     gender = const.unknown
-                if child.getMainFamily() == family:
-                    status = _("Birth")
-                else:
-                    for fam in child.getAltFamilyList():
-                        if fam[0] == family:
-                            if self.active_person == family.getFather():
-                                status = "%s/%s" % (_(fam[2]),_(fam[1]))
-                            else:
-                                status = "%s/%s" % (_(fam[1]),_(fam[2]))
+                for fam in child.getParentList():
+                    if fam[0] == family:
+                        if self.active_person == family.getFather():
+                            status = "%s/%s" % (_(fam[2]),_(fam[1]))
+                        else:
+                            status = "%s/%s" % (_(fam[1]),_(fam[2]))
 
                 if GrampsCfg.show_detail:
                     attr = ""
@@ -1839,7 +1836,7 @@ class Gramps:
     def family_up_clicked(self,obj):
         if self.active_parents == None:
             return
-        flist = self.active_person.getAltFamilyList()
+        flist = self.active_person.getParentList()
         if self.parents_index == 0:
             self.parents_index = len(flist)-1
         else:
@@ -1850,7 +1847,7 @@ class Gramps:
     def family_down_clicked(self,obj):
         if self.active_parents == None:
             return
-        flist = self.active_person.getAltFamilyList()
+        flist = self.active_person.getParentList()
         if self.parents_index == len(flist)-1:
             self.parents_index = 0
         else:

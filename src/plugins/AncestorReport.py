@@ -68,7 +68,7 @@ class AncestorReport(Report):
             return
         self.map[index] = person
     
-        family = person.getMainFamily()
+        family = person.getMainParents()
         if family != None:
             self.filter(family.getFather(),index*2)
             self.filter(family.getMother(),(index*2)+1)

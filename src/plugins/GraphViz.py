@@ -45,7 +45,7 @@ def ancestor_filter(database,person,list,generations):
     if generations <= 1:
         return
     
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family != None:
         ancestor_filter(database,family.getFather(),list,generations-1)
         ancestor_filter(database,family.getMother(),list,generations-1)
@@ -239,7 +239,7 @@ def report(database,person):
 #------------------------------------------------------------------------
 def dump_person(person_list,file):
     for person in person_list:
-        family = person.getMainFamily()
+        family = person.getMainParents()
         if family == None:
             continue
         father = family.getFather()

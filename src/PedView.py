@@ -382,7 +382,7 @@ class PedigreeView:
 
         if depth > 5 or person == None:
             return
-        (family,m,f) = person.getMainFamilyRel()
+        (family,m,f) = person.getMainParentsRel()
         if family:
             mrel = (m != "Birth")
             frel = (f != "Birth")

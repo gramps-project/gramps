@@ -78,7 +78,7 @@ def report(database,person):
         name = person.getPrimaryName()
         if name.getFirstName() == "" or name.getSurname() == "":
             incomp_names = incomp_names + 1
-        if person.getMainFamily() == None and len(person.getFamilyList()) == 0:
+        if person.getMainParents() == None and len(person.getFamilyList()) == 0:
             disconnected = disconnected + 1
         if person.getBirth().getDate() == "":
             missing_bday = missing_bday + 1

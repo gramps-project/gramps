@@ -61,7 +61,7 @@ def report(database,person):
 	  temp = thisgen
 	  thisgen = []
 	  for person in temp:
-	      family = person.getMainFamily()
+	      family = person.getMainParents()
 	      if family != None:
 	          father = family.getFather()
 		  mother = family.getMother()
