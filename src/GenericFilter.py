@@ -207,9 +207,12 @@ class IsDescendantOf(Rule):
 
     def apply(self,db,p):
         self.orig = p
-        if int(self.list[1]):
-            first = 0
-        else:
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
             first = 1
 
         if not self.init:
@@ -251,9 +254,12 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     
     def apply(self,db,p):
         self.orig = p
-        if int(self.list[1]):
-            first = 0
-        else:
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
             first = 1
 
         if not self.init:
@@ -464,11 +470,16 @@ class IsAncestorOf(Rule):
         return _("Ancestral filters")
 
     def apply(self,db,p):
+        """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.orig = p
-        if int(self.list[1]):
-            first = 0
-        else:
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
             first = 1
+            
         if not self.init:
             self.init = 1
             root = db.getPerson(self.list[0])
@@ -476,8 +487,6 @@ class IsAncestorOf(Rule):
         return self.map.has_key(p.getId())
 
     def init_ancestor_list(self,p,first):
-#        if self.map.has_key(p.getId()) == 1:
-#            loop_error(self.orig,p)
         if not first:
             self.map[p.getId()] = 1
         
@@ -517,10 +526,14 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
     def apply(self,db,p):
         self.orig = p
-        if int(self.list[1]):
-            first = 0
-        else:
+        try:
+            if int(self.list[1]):
+                first = 0
+            else:
+                first = 1
+        except IndexError:
             first = 1
+            
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list[0])
