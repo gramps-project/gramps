@@ -1017,6 +1017,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">views</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1065,6 +1066,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">views</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1113,6 +1115,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">views</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1161,6 +1164,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">views</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1209,6 +1213,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">views</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1257,6 +1262,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">views</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1403,6 +1409,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -1815,6 +1822,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">chlist</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -1840,6 +1848,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">ap_data</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -1865,6 +1874,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">ap_parents</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -1890,6 +1900,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">sp_list</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -1915,6 +1926,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">sp_parents</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -2193,6 +2205,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -2254,6 +2267,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">chlist2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -2527,6 +2541,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">sp_parents2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -2649,6 +2664,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">sp_list2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -2771,6 +2787,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">ap_data2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -2796,6 +2813,7 @@
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">ap_parents2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -2953,6 +2971,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -3000,6 +3019,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -3059,6 +3079,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -3118,6 +3139,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -3169,6 +3191,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="type">label_item</property>
@@ -3205,6 +3228,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">2</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -3230,6 +3254,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">2</property>
@@ -3253,6 +3278,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">2</property>
@@ -3276,6 +3302,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">2</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -3301,6 +3328,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">2</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -3326,6 +3354,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">2</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -3351,6 +3380,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">2</property>
@@ -3374,6 +3404,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">2</property>
@@ -3397,6 +3428,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">2</property>
@@ -3420,6 +3452,7 @@
 			      <property name="yalign">0</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">2</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -3445,6 +3478,7 @@
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">0</property>
@@ -3518,6 +3552,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -3646,6 +3681,7 @@
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
 	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	</widget>
 	<packing>
 	  <property name="padding">5</property>
@@ -3792,6 +3828,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -3817,6 +3854,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">5</property>
 		  <property name="ypad">5</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -3980,6 +4018,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">6</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -4018,6 +4057,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">frel</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="frel_combo" type="label-for"/>
 		      </accessibility>
@@ -4046,6 +4086,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">mrel</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="mrel_combo" type="label-for"/>
 		      </accessibility>
@@ -4073,6 +4114,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -4098,6 +4140,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">father_list</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -4193,6 +4236,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">mother_list</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -4217,6 +4261,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -4378,6 +4423,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4400,6 +4446,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4422,6 +4469,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4444,6 +4492,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4466,6 +4515,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4488,6 +4538,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4510,6 +4561,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4571,6 +4623,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4593,6 +4646,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4615,6 +4669,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4637,6 +4692,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4659,6 +4715,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4681,6 +4738,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4703,6 +4761,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -4865,6 +4924,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">6</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -5048,6 +5108,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -5070,6 +5131,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -5092,6 +5154,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -5114,6 +5177,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -5136,6 +5200,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -5158,6 +5223,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			  </child>
 			</widget>
@@ -5228,6 +5294,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -5250,6 +5317,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -5272,6 +5340,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -5294,6 +5363,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -5316,6 +5386,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -5338,6 +5409,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -5369,6 +5441,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -5394,6 +5467,7 @@ Other</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">frel</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -5517,6 +5591,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">5</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -5561,6 +5636,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">source_title</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -5586,6 +5662,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">author</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="author" type="label-for"/>
 		      </accessibility>
@@ -5657,6 +5734,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">pubinfo</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -5724,6 +5802,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">abbrev</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -5754,6 +5833,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -5824,6 +5904,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -5908,6 +5989,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -6038,6 +6120,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -6251,6 +6334,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -6297,6 +6381,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -6421,6 +6506,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">10</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -6575,6 +6661,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">10</property>
@@ -6612,6 +6699,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -6636,6 +6724,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -6660,6 +6749,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">frel</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="combo1" type="label-for"/>
 		      </accessibility>
@@ -6719,6 +6809,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6741,6 +6832,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6763,6 +6855,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6785,6 +6878,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6807,6 +6901,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6829,6 +6924,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6851,6 +6947,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6880,6 +6977,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -6905,6 +7003,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">mrel</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkproperty name="AtkObject::accessible_name" translatable="yes">Relationship:</atkproperty>
 			<atkrelation target="combo2" type="label-for"/>
@@ -6965,6 +7064,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -6987,6 +7087,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -7009,6 +7110,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -7031,6 +7133,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -7053,6 +7156,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -7075,6 +7179,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -7097,6 +7202,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 			      </child>
 			    </widget>
@@ -7126,6 +7232,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -7150,6 +7257,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -7174,6 +7282,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -7197,6 +7306,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -7358,6 +7468,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
@@ -7393,6 +7504,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">entry</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="padding">6</property>
@@ -7527,6 +7639,7 @@ Other</property>
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">6</property>
 	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	</widget>
 	<packing>
 	  <property name="padding">6</property>
@@ -7590,6 +7703,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7612,6 +7726,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7634,6 +7749,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7656,6 +7772,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7678,6 +7795,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7700,6 +7818,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7761,6 +7880,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7783,6 +7903,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7805,6 +7926,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7827,6 +7949,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7849,6 +7972,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7871,6 +7995,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 		      </child>
 		    </widget>
@@ -7900,6 +8025,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -7925,6 +8051,7 @@ Other</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
 	      <property name="mnemonic_widget">frel</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -8061,6 +8188,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">0</property>
@@ -8176,6 +8304,7 @@ Other</property>
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
 	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	</widget>
 	<packing>
 	  <property name="padding">10</property>
@@ -8234,6 +8363,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">givenName</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8259,6 +8389,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">surname</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8284,6 +8415,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">prefix</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8309,6 +8441,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">suffix</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8334,6 +8467,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">title</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8359,6 +8493,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">nickname</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8383,6 +8518,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8408,6 +8544,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">birthDate</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8498,6 +8635,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -8600,6 +8738,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -8625,6 +8764,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">gid</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">7</property>
@@ -8671,6 +8811,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">birth_place</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -8695,6 +8836,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">6</property>
@@ -8720,6 +8862,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">deathDate</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <accessibility>
 			    <atkproperty name="AtkObject::accessible_name" translatable="yes">Date:</atkproperty>
 			  </accessibility>
@@ -8748,6 +8891,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">death_place</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">7</property>
@@ -8860,6 +9004,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -8885,6 +9030,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -9104,6 +9250,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -9127,6 +9274,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">6</property>
@@ -9266,6 +9414,7 @@ Other</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			    </widget>
 			    <packing>
 			      <property name="type">label_item</property>
@@ -9317,6 +9466,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -9358,6 +9508,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -9382,6 +9533,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -9406,6 +9558,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -9430,6 +9583,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -9454,6 +9608,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -9478,6 +9633,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -9502,6 +9658,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -9526,6 +9683,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -9550,6 +9708,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -9574,6 +9733,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -9598,6 +9758,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -9621,6 +9782,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -9644,6 +9806,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -9667,6 +9830,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -9690,6 +9854,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">5</property>
@@ -9713,6 +9878,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">5</property>
@@ -9736,6 +9902,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">5</property>
@@ -9759,6 +9926,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">5</property>
@@ -9960,6 +10128,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -10001,6 +10170,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -10025,6 +10195,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10049,6 +10220,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10073,6 +10245,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10097,6 +10270,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10121,6 +10295,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10145,6 +10320,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -10169,6 +10345,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10193,6 +10370,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -10217,6 +10395,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10241,6 +10420,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10265,6 +10445,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10289,6 +10470,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10313,6 +10495,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10336,6 +10519,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10359,6 +10543,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">5</property>
@@ -10419,7 +10604,7 @@ Other</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkButton" id="button58">
+			    <widget class="GtkButton" id="event_add">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Create a new event</property>
 			      <property name="can_focus">True</property>
@@ -10475,7 +10660,7 @@ Other</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="event_delete_btn">
+			    <widget class="GtkButton" id="event_del">
 			      <property name="visible">True</property>
 			      <property name="sensitive">False</property>
 			      <property name="tooltip" translatable="yes">Delete the selected event</property>
@@ -10547,6 +10732,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -10588,6 +10774,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -10612,6 +10799,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10636,6 +10824,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10660,6 +10849,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -10684,6 +10874,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -10708,6 +10899,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -10732,6 +10924,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10756,6 +10949,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10779,6 +10973,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -10802,6 +10997,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -10862,7 +11058,7 @@ Other</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkButton" id="button88">
+			    <widget class="GtkButton" id="attr_add">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Create a new attribute</property>
 			      <property name="can_focus">True</property>
@@ -10918,7 +11114,7 @@ Other</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="attr_delete_btn">
+			    <widget class="GtkButton" id="attr_del">
 			      <property name="visible">True</property>
 			      <property name="sensitive">False</property>
 			      <property name="tooltip" translatable="yes">Delete the selected attribute</property>
@@ -10990,6 +11186,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -11025,6 +11222,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -11049,6 +11247,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -11073,6 +11272,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -11097,6 +11297,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -11121,6 +11322,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -11145,6 +11347,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">4</property>
@@ -11169,6 +11372,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">4</property>
@@ -11193,6 +11397,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">4</property>
@@ -11217,6 +11422,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -11241,6 +11447,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -11265,6 +11472,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11289,6 +11497,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11313,6 +11522,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">5</property>
@@ -11337,6 +11547,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">5</property>
@@ -11361,6 +11572,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">5</property>
@@ -11384,6 +11596,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11407,6 +11620,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11431,6 +11645,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11455,6 +11670,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -11479,6 +11695,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -11571,7 +11788,7 @@ Other</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkButton" id="button92">
+			    <widget class="GtkButton" id="addr_add">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Create a new address</property>
 			      <property name="can_focus">True</property>
@@ -11627,7 +11844,7 @@ Other</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="addr_delete_btn">
+			    <widget class="GtkButton" id="addr_del">
 			      <property name="visible">True</property>
 			      <property name="sensitive">False</property>
 			      <property name="tooltip" translatable="yes">Delete the selected address</property>
@@ -11699,6 +11916,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -11772,6 +11990,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">flowed</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -11856,6 +12075,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -12012,6 +12232,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -12067,7 +12288,7 @@ Other</property>
 		      <property name="spacing">6</property>
 
 		      <child>
-			<widget class="GtkButton" id="button76">
+			<widget class="GtkButton" id="media_add">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
 			  <property name="can_focus">True</property>
@@ -12095,7 +12316,7 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="button135">
+			<widget class="GtkButton" id="media_sel">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
 			  <property name="can_focus">True</property>
@@ -12150,7 +12371,7 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="image_remove_btn">
+			<widget class="GtkButton" id="media_del">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Remove the selected object from this gallery only</property>
 			  <property name="can_focus">True</property>
@@ -12210,6 +12431,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -12245,6 +12467,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -12269,6 +12492,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -12293,6 +12517,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -12317,6 +12542,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -12340,6 +12566,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -12549,6 +12776,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -12578,6 +12806,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -12624,6 +12853,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">ldsbapdate</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="ldsbapdate" type="label-for"/>
 		  </accessibility>
@@ -12651,6 +12881,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkproperty name="AtkObject::accessible_name" translatable="yes">Temple:</atkproperty>
 		  </accessibility>
@@ -12699,6 +12930,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">lds_bap_place</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="lds_bap_place" type="label-for"/>
 		  </accessibility>
@@ -12767,6 +12999,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -12792,6 +13025,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">endowdate</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkproperty name="AtkObject::accessible_name" translatable="yes">Date:</atkproperty>
 		    <atkrelation target="endowdate" type="label-for"/>
@@ -12820,6 +13054,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -12845,6 +13080,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">lds_end_place</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="lds_end_place" type="label-for"/>
 		  </accessibility>
@@ -12955,6 +13191,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">sealdate</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="sealdate" type="label-for"/>
 		  </accessibility>
@@ -13003,6 +13240,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -13048,6 +13286,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">lds_seal_place</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="lds_seal_place" type="label-for"/>
 		  </accessibility>
@@ -13117,6 +13356,7 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">sealparents</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -13141,6 +13381,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -13285,6 +13526,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -13346,7 +13588,7 @@ Other</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button107">
+	    <widget class="GtkButton" id="ok">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
@@ -13403,6 +13645,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -13451,6 +13694,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -13476,6 +13720,7 @@ Other</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">gid</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <accessibility>
 			    <atkrelation target="gid" type="label-for"/>
 			  </accessibility>
@@ -13541,6 +13786,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -13565,6 +13811,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13624,6 +13871,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -13659,6 +13907,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13683,6 +13932,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13707,6 +13957,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13731,6 +13982,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13755,6 +14007,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13779,6 +14032,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -13803,6 +14057,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -13827,6 +14082,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -13850,6 +14106,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -13874,6 +14131,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -13898,6 +14156,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -13921,6 +14180,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -13944,6 +14204,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -13968,6 +14229,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -13992,6 +14254,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -14015,6 +14278,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -14074,7 +14338,7 @@ Other</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkButton" id="marriageAddBtn">
+			    <widget class="GtkButton" id="marriage_add">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Add new event for this marriage</property>
 			      <property name="can_focus">True</property>
@@ -14128,7 +14392,7 @@ Other</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="marriageDeleteBtn">
+			    <widget class="GtkButton" id="marriage_del">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Delete selected event</property>
 			      <property name="can_focus">True</property>
@@ -14192,6 +14456,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -14227,6 +14492,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -14251,6 +14517,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -14275,6 +14542,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -14299,6 +14567,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -14323,6 +14592,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -14347,6 +14617,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -14371,6 +14642,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -14395,6 +14667,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -14418,6 +14691,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -14441,6 +14715,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -14500,7 +14775,7 @@ Other</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkButton" id="button103">
+			    <widget class="GtkButton" id="attr_add">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Create a new attribute for this marriage</property>
 			      <property name="can_focus">True</property>
@@ -14554,7 +14829,7 @@ Other</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button105">
+			    <widget class="GtkButton" id="attr_del">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Delete the selected attribute</property>
 			      <property name="can_focus">True</property>
@@ -14618,6 +14893,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -14688,6 +14964,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -14772,6 +15049,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -14925,6 +15203,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -14974,7 +15253,7 @@ Other</property>
 		      <property name="spacing">6</property>
 
 		      <child>
-			<widget class="GtkButton" id="button100">
+			<widget class="GtkButton" id="media_add">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
 			  <property name="can_focus">True</property>
@@ -15002,7 +15281,7 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="button120">
+			<widget class="GtkButton" id="media_sel">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
 			  <property name="can_focus">True</property>
@@ -15057,7 +15336,7 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkButton" id="button101">
+			<widget class="GtkButton" id="media_del">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Remove selected object from this gallery only</property>
 			  <property name="can_focus">True</property>
@@ -15110,6 +15389,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -15145,6 +15425,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -15169,6 +15450,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -15193,6 +15475,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -15217,6 +15500,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -15365,6 +15649,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -15488,6 +15773,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">5</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -15531,6 +15817,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">place_title</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="place_title" type="label-for"/>
 		      </accessibility>
@@ -15559,6 +15846,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">city</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="city" type="label-for"/>
 		      </accessibility>
@@ -15587,6 +15875,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">state</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="state" type="label-for"/>
 		      </accessibility>
@@ -15615,6 +15904,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">county</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="county" type="label-for"/>
 		      </accessibility>
@@ -15643,6 +15933,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">country</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="country" type="label-for"/>
 		      </accessibility>
@@ -15671,6 +15962,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">longitude</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="longitude" type="label-for"/>
 		      </accessibility>
@@ -15699,6 +15991,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">latitude</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="latitude" type="label-for"/>
 		      </accessibility>
@@ -15727,6 +16020,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">parish</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkproperty name="AtkObject::accessible_name" translatable="yes">Church Parish:</atkproperty>
 			<atkrelation target="parish" type="label-for"/>
@@ -15924,6 +16218,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -15949,6 +16244,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">postal</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -15995,6 +16291,7 @@ Other</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">phone</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -16040,6 +16337,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -16064,6 +16362,7 @@ Other</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -16094,6 +16393,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -16129,6 +16429,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -16153,6 +16454,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -16177,6 +16479,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -16201,6 +16504,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -16225,6 +16529,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -16249,6 +16554,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -16274,6 +16580,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -16300,6 +16607,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -16326,6 +16634,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -16350,6 +16659,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -16375,6 +16685,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -16398,6 +16709,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -16422,6 +16734,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -16448,6 +16761,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -16472,6 +16786,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -16660,6 +16975,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -16730,6 +17046,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -16814,6 +17131,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -16993,6 +17311,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -17204,6 +17523,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -17239,6 +17559,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -17263,6 +17584,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -17287,6 +17609,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -17310,6 +17633,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -17334,6 +17658,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -17549,6 +17874,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -17602,6 +17928,7 @@ Other</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -17708,6 +18035,7 @@ Other</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">6</property>
@@ -17824,6 +18152,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="padding">0</property>
@@ -17853,6 +18182,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -17888,6 +18218,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -17935,6 +18266,7 @@ Other</property>
 				  <property name="xpad">3</property>
 				  <property name="ypad">3</property>
 				  <property name="mnemonic_widget">lastnamegen</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -17988,6 +18320,7 @@ Other</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -18023,6 +18356,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18093,6 +18427,7 @@ Other</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18151,6 +18486,7 @@ Text Beside Icons</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -18210,6 +18546,7 @@ Text Beside Icons</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18234,6 +18571,7 @@ Text Beside Icons</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18304,6 +18642,7 @@ Text Beside Icons</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18411,6 +18750,7 @@ Text Beside Icons</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -18447,6 +18787,7 @@ Text Beside Icons</property>
 				  <property name="xpad">5</property>
 				  <property name="ypad">5</property>
 				  <property name="mnemonic_widget">date_format</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18471,6 +18812,7 @@ Text Beside Icons</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18524,6 +18866,7 @@ Text Beside Icons</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -18560,6 +18903,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">resname</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18585,6 +18929,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">resaddr</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18610,6 +18955,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">rescity</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18635,6 +18981,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">resstate</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18660,6 +19007,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">rescountry</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18685,6 +19033,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">respostal</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18710,6 +19059,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">resphone</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18735,6 +19085,7 @@ Text Beside Icons</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
 				  <property name="mnemonic_widget">resemail</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -18927,6 +19278,7 @@ Text Beside Icons</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -18964,6 +19316,7 @@ Text Beside Icons</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -19000,6 +19353,7 @@ Text Beside Icons</property>
 				  <property name="xpad">2</property>
 				  <property name="ypad">2</property>
 				  <property name="mnemonic_widget">iprefix</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -19025,6 +19379,7 @@ Text Beside Icons</property>
 				  <property name="xpad">2</property>
 				  <property name="ypad">2</property>
 				  <property name="mnemonic_widget">fprefix</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -19050,6 +19405,7 @@ Text Beside Icons</property>
 				  <property name="xpad">2</property>
 				  <property name="ypad">2</property>
 				  <property name="mnemonic_widget">pprefix</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -19075,6 +19431,7 @@ Text Beside Icons</property>
 				  <property name="xpad">2</property>
 				  <property name="ypad">2</property>
 				  <property name="mnemonic_widget">sprefix</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -19100,6 +19457,7 @@ Text Beside Icons</property>
 				  <property name="xpad">2</property>
 				  <property name="ypad">2</property>
 				  <property name="mnemonic_widget">oprefix</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">1</property>
@@ -19229,6 +19587,7 @@ Text Beside Icons</property>
 				  <property name="yalign">0.5</property>
 				  <property name="xpad">0</property>
 				  <property name="ypad">0</property>
+				  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 				</widget>
 				<packing>
 				  <property name="left_attach">0</property>
@@ -19266,6 +19625,7 @@ Text Beside Icons</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="type">tab</property>
@@ -19401,6 +19761,7 @@ Text Beside Icons</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">5</property>
@@ -19439,6 +19800,7 @@ Text Beside Icons</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">conf</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -19464,6 +19826,7 @@ Text Beside Icons</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">spage</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -19489,6 +19852,7 @@ Text Beside Icons</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">sdate</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="sdate" type="label-for"/>
 		      </accessibility>
@@ -19516,6 +19880,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="stext" type="label-for"/>
 		      </accessibility>
@@ -19543,6 +19908,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="scomment" type="label-for"/>
 		      </accessibility>
@@ -19570,6 +19936,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -19594,6 +19961,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -19618,6 +19986,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -19642,6 +20011,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">3</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -19666,6 +20036,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">3</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -19690,6 +20061,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -19714,6 +20086,7 @@ Text Beside Icons</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -20093,6 +20466,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">5</property>
@@ -20344,6 +20718,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -20489,6 +20864,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -20536,6 +20912,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -20572,6 +20949,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -20597,6 +20975,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -20620,6 +20999,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -20643,6 +21023,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -20668,6 +21049,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -20693,6 +21075,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -20718,6 +21101,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -20741,6 +21125,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -20764,6 +21149,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -20787,6 +21173,7 @@ Very High</property>
 		      <property name="yalign">0</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">2</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -20812,6 +21199,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -20960,6 +21348,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -21181,6 +21570,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">5</property>
 	      <property name="ypad">5</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">10</property>
@@ -21209,6 +21599,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">style_name</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="style_name" type="label-for"/>
 		  </accessibility>
@@ -21319,6 +21710,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -21340,6 +21732,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -21367,6 +21760,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">tab</property>
@@ -21396,6 +21790,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">3</property>
@@ -21527,6 +21922,7 @@ Very High</property>
 			  <property name="yalign">0</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -21551,6 +21947,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -21575,6 +21972,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -21599,6 +21997,7 @@ Very High</property>
 			  <property name="yalign">0</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -21624,6 +22023,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -21699,6 +22099,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">tab</property>
@@ -21748,6 +22149,7 @@ Very High</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">rmargin</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <accessibility>
 			    <atkrelation target="rmargin" type="label-for"/>
 			  </accessibility>
@@ -21776,6 +22178,7 @@ Very High</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">lmargin</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <accessibility>
 			    <atkrelation target="lmargin" type="label-for"/>
 			  </accessibility>
@@ -21804,6 +22207,7 @@ Very High</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">pad</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <accessibility>
 			    <atkrelation target="pad" type="label-for"/>
 			  </accessibility>
@@ -21831,6 +22235,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -21855,6 +22260,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -21879,6 +22285,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -22057,6 +22464,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -22081,6 +22489,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -22106,6 +22515,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -22130,6 +22540,7 @@ Very High</property>
 			  <property name="yalign">0</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -22154,6 +22565,7 @@ Very High</property>
 			  <property name="yalign">0</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -22266,6 +22678,7 @@ Very High</property>
 			  <property name="yalign">0</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -22311,6 +22724,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">4</property>
@@ -22336,6 +22750,7 @@ Very High</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">pad</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -22366,6 +22781,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">tab</property>
@@ -22492,6 +22908,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">6</property>
@@ -22559,6 +22976,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -22606,6 +23024,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">photoDescription</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -22778,6 +23197,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -22824,6 +23244,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -22860,6 +23281,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -22884,6 +23306,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -22908,6 +23331,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -22932,6 +23356,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -22956,6 +23381,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -22980,6 +23406,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -23005,6 +23432,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -23029,6 +23457,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -23088,6 +23517,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -23112,6 +23542,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -23136,6 +23567,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -23160,6 +23592,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -23268,6 +23701,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -23314,6 +23748,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -23344,6 +23779,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -23414,6 +23850,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -23498,6 +23935,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -23553,6 +23991,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -23588,6 +24027,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -23612,6 +24052,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -23636,6 +24077,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -23659,6 +24101,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -23683,6 +24126,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -23874,6 +24318,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -24053,6 +24498,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -24177,6 +24623,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -24223,6 +24670,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -24259,6 +24707,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -24283,6 +24732,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -24307,6 +24757,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -24331,6 +24782,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -24354,6 +24806,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -24378,6 +24831,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -24444,6 +24898,7 @@ Very High</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">description</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -24489,6 +24944,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -24514,6 +24970,7 @@ Very High</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
 			  <property name="mnemonic_widget">place</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -24632,6 +25089,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -24667,6 +25125,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -24691,6 +25150,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -24714,6 +25174,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>
@@ -24738,6 +25199,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -24762,6 +25224,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -24953,6 +25416,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -25023,6 +25487,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -25107,6 +25572,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -25152,6 +25618,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -25331,6 +25798,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -25424,6 +25892,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">12</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25448,6 +25917,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25586,6 +26056,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">12</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25630,6 +26101,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25755,6 +26227,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">12</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25799,6 +26272,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25902,6 +26376,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">12</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -25946,6 +26421,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26036,6 +26512,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">12</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26080,6 +26557,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26170,6 +26648,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">12</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26214,6 +26693,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26318,6 +26798,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -26406,6 +26887,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -26451,6 +26933,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">24</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26495,6 +26978,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -26641,6 +27125,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -26683,6 +27168,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -26708,6 +27194,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">eventDate</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="eventDate" type="label-for"/>
 		      </accessibility>
@@ -26736,6 +27223,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">event_description</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="event_description" type="label-for"/>
 		      </accessibility>
@@ -26764,6 +27252,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">3</property>
 		      <property name="mnemonic_widget">eventPlace</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="eventPlace" type="label-for"/>
 		      </accessibility>
@@ -26792,6 +27281,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">eventCause</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="eventCause" type="label-for"/>
 		      </accessibility>
@@ -26975,6 +27465,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -27154,6 +27645,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -27227,6 +27719,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -27311,6 +27804,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -27491,6 +27985,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -27702,6 +28197,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -27824,6 +28320,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -27866,6 +28363,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -27891,6 +28389,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">attr_value</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="attr_value" type="label-for"/>
 		      </accessibility>
@@ -27984,6 +28483,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -28163,6 +28663,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -28234,6 +28735,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -28318,6 +28820,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -28440,6 +28943,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -28472,6 +28976,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">city</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="city" type="label-for"/>
 		  </accessibility>
@@ -28500,6 +29005,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">county</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="county" type="label-for"/>
 		  </accessibility>
@@ -28528,6 +29034,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">country</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkproperty name="AtkObject::accessible_name" translatable="yes">Country:</atkproperty>
 		    <atkrelation target="country" type="label-for"/>
@@ -28557,6 +29064,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">state</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkproperty name="AtkObject::accessible_name" translatable="yes">State:</atkproperty>
 		    <atkrelation target="state" type="label-for"/>
@@ -28586,6 +29094,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">parish</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="parish" type="label-for"/>
 		  </accessibility>
@@ -28720,6 +29229,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">phone</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -28766,6 +29276,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">postal</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -28915,6 +29426,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -28958,6 +29470,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">address_start</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="address_start" type="label-for"/>
 		      </accessibility>
@@ -28986,6 +29499,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">street</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="street" type="label-for"/>
 		      </accessibility>
@@ -29014,6 +29528,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">city</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="city" type="label-for"/>
 		      </accessibility>
@@ -29042,6 +29557,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">state</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="state" type="label-for"/>
 		      </accessibility>
@@ -29070,6 +29586,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">country</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="country" type="label-for"/>
 		      </accessibility>
@@ -29098,6 +29615,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">postal</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="postal" type="label-for"/>
 		      </accessibility>
@@ -29275,6 +29793,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">phone</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -29353,6 +29872,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -29532,6 +30052,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -29603,6 +30124,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -29687,6 +30209,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -29810,6 +30333,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -29842,6 +30366,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">url_addr</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="url_addr" type="label-for"/>
 		  </accessibility>
@@ -29870,6 +30395,7 @@ Very High</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">url_des</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="url_des" type="label-for"/>
 		  </accessibility>
@@ -30081,6 +30607,7 @@ Very High</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">10</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -30124,6 +30651,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">alt_given</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="alt_given" type="label-for"/>
 		      </accessibility>
@@ -30152,6 +30680,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">alt_suffix</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="alt_suffix" type="label-for"/>
 		      </accessibility>
@@ -30179,6 +30708,7 @@ Very High</property>
 		      <property name="yalign">0</property>
 		      <property name="xpad">1</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="name_type" type="label-for"/>
 		      </accessibility>
@@ -30207,6 +30737,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">alt_title</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="alt_title" type="label-for"/>
 		      </accessibility>
@@ -30257,6 +30788,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">alt_prefix</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="alt_prefix" type="label-for"/>
 		      </accessibility>
@@ -30370,6 +30902,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">patronymic</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="patronymic" type="label-for"/>
 		      </accessibility>
@@ -30397,6 +30930,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="alt_surname_list" type="label-for"/>
 		      </accessibility>
@@ -30466,6 +31000,7 @@ Very High</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">group_as</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="group_as" type="label-for"/>
 		      </accessibility>
@@ -30493,6 +31028,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="sort_as" type="label-for"/>
 		      </accessibility>
@@ -30542,6 +31078,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <accessibility>
 			<atkrelation target="display_as" type="label-for"/>
 		      </accessibility>
@@ -30569,6 +31106,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -30593,6 +31131,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -30702,6 +31241,7 @@ Family name Given name
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -30882,6 +31422,7 @@ Family name Given name
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -30954,6 +31495,7 @@ Family name Given name
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">0</property>
@@ -31038,6 +31580,7 @@ Family name Given name
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="type">tab</property>
@@ -31159,6 +31702,7 @@ Family name Given name
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">6</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -31191,6 +31735,7 @@ Family name Given name
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">name</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="name" type="label-for"/>
 		  </accessibility>
@@ -31219,6 +31764,7 @@ Family name Given name
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">scrolledwindow30</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <accessibility>
 		    <atkrelation target="comment" type="label-for"/>
 		  </accessibility>
@@ -31469,6 +32015,7 @@ Family name Given name
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -31568,6 +32115,7 @@ Family name Given name
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">6</property>
 	      <property name="ypad">6</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -31591,6 +32139,7 @@ Family name Given name
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="left_attach">2</property>
@@ -31649,6 +32198,7 @@ Family name Given name
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
 	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	</widget>
 	<packing>
 	  <property name="left_attach">1</property>
@@ -31673,6 +32223,7 @@ Family name Given name
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
 	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	</widget>
 	<packing>
 	  <property name="left_attach">1</property>
@@ -31697,6 +32248,7 @@ Family name Given name
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
 	  <property name="ypad">0</property>
+	  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	</widget>
 	<packing>
 	  <property name="left_attach">1</property>
@@ -31823,6 +32375,7 @@ Family name Given name
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">6</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -31857,6 +32410,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">calendar_box</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">6</property>
@@ -31909,6 +32463,7 @@ Family name Given name
 		      <property name="xpad">6</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">quality_box</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -31953,6 +32508,7 @@ Family name Given name
 		      <property name="xpad">6</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">type_box</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">4</property>
@@ -31996,6 +32552,7 @@ Family name Given name
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">6</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -32021,6 +32578,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">start_day</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -32046,6 +32604,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">start_month_box</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">2</property>
@@ -32071,6 +32630,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">start_year</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">3</property>
@@ -32156,6 +32716,7 @@ Family name Given name
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">6</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">4</property>
@@ -32181,6 +32742,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">stop_day</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">5</property>
@@ -32206,6 +32768,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">stop_month_box</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">6</property>
@@ -32231,6 +32794,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">stop_year</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">7</property>
@@ -32330,6 +32894,7 @@ Family name Given name
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
 		      <property name="mnemonic_widget">date_text_entry</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">6</property>
@@ -32463,6 +33028,7 @@ Family name Given name
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -32490,6 +33056,7 @@ Family name Given name
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>

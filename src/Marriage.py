@@ -278,11 +278,23 @@ class Marriage:
                                            self.top,self.window,self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
-                                           self.top.get_widget('del_src'))
+                                           self.top.get_widget('del_src'),
+                                           self.db.readonly)
 
         self.redraw_event_list()
         self.redraw_attr_list()
         self.add_itself_to_winsmenu()
+        self.top.get_widget('ok').set_sensitive(not self.db.readonly)
+
+        mode = not self.db.readonly
+        self.top.get_widget('marriage_del').set_sensitive(mode)
+        self.top.get_widget('marriage_add').set_sensitive(mode)
+        self.top.get_widget('attr_del').set_sensitive(mode)
+        self.top.get_widget('attr_add').set_sensitive(mode)
+        self.top.get_widget('media_del').set_sensitive(mode)
+        self.top.get_widget('media_add').set_sensitive(mode)
+        self.top.get_widget('media_sel').set_sensitive(mode)
+
         self.window.show()
 
     def close_child_windows(self):

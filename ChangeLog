@@ -1,5 +1,9 @@
 2005-02-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditSource.py: commit events after deleting sources
+	* src/Marriage.py: disable buttons in readonly mode
+	* src/EditPerson.py: disable buttons in readonly mode
+	* src/Sources.py: disable buttons in readonly mode
+	* src/gramps.glade: name buttons
 
 2005-02-16  Eero Tamminen <eerot@sf>
 	* src/plugins/GraphViz.py: 'pagesv' value comes from 'vpages'
