@@ -453,7 +453,7 @@ class FamilyView:
         else:
             self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
         self.parent.db.buildPersonDisplay(epo.person.getId())
-        self.parent.add_to_person_list(epo.person,0)
+        self.parent.people_view.add_to_person_list(epo.person,0)
 
         self.family = self.parent.db.newFamily()
         self.person.addFamily(self.family)
@@ -517,7 +517,7 @@ class FamilyView:
             self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
             
         self.parent.db.buildPersonDisplay(epo.person.getId())
-        self.parent.add_to_person_list(epo.person,0)
+        self.parent.people_view.add_to_person_list(epo.person,0)
 
         if not self.family:
             self.family = self.parent.db.newFamily()
