@@ -90,110 +90,109 @@
 
           <varlistentry><term>A la naissance</term>
           <listitem><para>Cette fonction sélectionne les personnes dont
-          la naissance correspond aux valeurs données pour Date, Lieu, et Description. 
+          la naissance correspond aux valeurs données pour Date, Lieu, et Description.
 	  La correspondance est faite même quand l'évènement n'est que partiellement
 	  identique. Les correspondances sont insensibles à la casse des caractères.
-	  Par exemple, toute personne née en France sera sélectionnée par 
-	  la valeur "fr" pour le lieu. 
+	  Par exemple, toute personne née en France sera sélectionnée par
+	  la valeur "fr" pour le lieu.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          <para> La règle sélectionne l'entrée si et seulement si toutes les
+	  valeurs non vides correspondent (partiellement) à la naissance
+	  de la personne. Si vous voulez sélectionner sur un seul champ,
+	  laissez les autres champs vides.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the death</term>
-          <listitem><para> This rule matches people whose death event 
-          matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's death event 
-          matches the value partially. The matching rules are case-insensitive. 
-          For example, anyone who died in Sweden
-          will be matched by the rule using the value "sw" for the Place.
+          <varlistentry><term>A le décès</term>
+          <listitem><para>Cette fonction sélectionne les personnes dont
+          le décès correspond aux valeurs données pour Date, Lieu, et Description.
+	  La correspondance est faite même quand l'évènement n'est que partiellement
+	  identique. Les correspondances sont insensibles à la casse des caractères.
+	  Par exemple, toute personne décédée en France sera sélectionnée par
+	  la valeur "fr" pour le lieu.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          death. To use just one value, leave the other values empty. 
+          <para> La règle sélectionne l'entrée si et seulement si toutes les
+	  valeurs non vides correspondent (partiellement) à la naissance
+	  de la personne. Si vous voulez sélectionner sur un seul champ,
+	  laissez les autres champs vides.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the personal event</term>
-          <listitem><para> This rule matches people that have a personal 
-          event matching specified values for the Event type, Date, Place, 
-          and Description. The rule returns a match even if the person's 
-          event matches the value partially. The matching rules are 
-          case-insensitive. For example, anyone who graduated 
-          in Sweden will be matched by the rule using the Graduation event 
-          and the value "sw" for the Place.
+          <varlistentry><term>A l'évènement personnel</term>
+          <listitem><para>Cette fonction sélectionne les personnes dont
+          un évènement personnel correspond aux valeurs données pour Date, Lieu, Type et Description.
+	  La correspondance est faite même quand l'évènement n'est que partiellement
+	  identique. Les correspondances sont insensibles à la casse des caractères.
+	  Par exemple, toute personne ayant obtenu un diplômee en France sera sélectionnée par
+	  la valeur "fr" pour le lieu.
           </para>
 
-          <para> The personal events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
-          are (partially) matched by the personal event. 
-          To use just one value, leave the other values empty. 
+          <para> L'évènement personnel est sélectionné dans une liste déroulante.
+	  La règle sélectionne l'entrée si et seulement si toutes les
+	  valeurs non vides correspondent (partiellement) à un évènement
+	  de la personne. Si vous voulez sélectionner sur un seul champ,
+	  laissez les autres champs vides.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the family event</term>
-          <listitem><para> This rule matches people that have a family 
-          event matching specified values for the Event type, Date, Place, 
-          and Description. The rule returns a match even if the person's 
-          event matches the value partially. The matching rules are 
-          case-insensitive. For example, anyone who was married in Sweden 
-          will be matched by the rule using the Marriage event and the 
-          value "sw" for the Place. 
+          <varlistentry><term>A l'évènement familial</term>
+          <listitem><para>Cette fonction sélectionne les personnes dont
+          un évènement familial correspond aux valeurs données pour Date, Lieu, Type et Description.
+	  La correspondance est faite même quand l'évènement n'est que partiellement
+	  identique. Les correspondances sont insensibles à la casse des caractères.
+	  Par exemple, toute personne s'étant mariée en France sera sélectionnée par
+	  la valeur Mariage pour l'évènement et "fr" pour le lieu.
           </para>
 
-          <para> The family events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
-          are (partially) matched by the personal event. 
-          To use just one value, leave the other values empty. 
+          <para> L'évènement familial est sélectionné dans une liste déroulante.
+	  La règle sélectionne l'entrée si et seulement si toutes les
+	  valeurs non vides correspondent (partiellement) à un évènement
+	  de la famille de la personne. Si vous voulez sélectionner sur un seul champ,
+	  laissez les autres champs vides.
           </para></listitem>
           </varlistentry>
-
-
-          </variablelist>
-        </sect3> 
+        </sect3>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-family">
-        <title>Family filters</title>
-        <para>This category includes the following rules that match people 
-        based on their family relationships:</para>
+        <title>Filtres Famillex</title>
+        <para>Cette catégorie comprend les règles suivantes qui sélectionnent
+	les personnes d'après leurs relations familiales : </para>
           <variablelist>
 
-          <varlistentry><term>Has the relationships</term>
-          <listitem><para> This rule matches people with a particular 
-          relationship. The relationship must match the type selected from 
-          the menu. Optionally, the number of relationships and the number 
-          of children can be specified. 
+          <varlistentry><term>A les relations</term>
+          <listitem><para> Cette règle sélectionne les personnes
+	  possédant un type de relation, sélectionné dans le menu.
+	  On peut spécifier le nombre de relations et d'enfants en option.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          <para> La règle sélectionne l'entrée si et seulement si toutes les
+	  valeurs non vides correspondent (partiellement) à un évènement
+	  de la famille de la personne. Si vous voulez sélectionner sur un seul champ,
+	  laissez les autres champs vides.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is spouse of filter match</term>
-          <listitem><para> This rule matches people married to someone 
-          who is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Est l'époux(se) d'un individu résultant du filtrage</term>
+          <listitem><para> Cette règle sélectionne les personnes mariées
+	  à une personne choisie par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a child of filter match</term>
-          <listitem><para> This rule matches people for whom either parent  
-          is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Est l'enfant d'un individu résultant du filtrage</term>
+          <listitem><para> Cette règle sélectionne les personnes enfant
+	  d'une personne choisie par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a parent of filter match</term>
-          <listitem><para> This rule matches people whose child  
-          is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Est le parent d'un individu résultant du filtrage</term>
+          <listitem><para> Cette règle sélectionne les personnes parentes
+	  (père ou mère) d'une personne choisie par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
           </para></listitem>
           </varlistentry>
 
@@ -202,124 +201,115 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-ancestral">
-        <title>Ancestral filters</title>
-        <para>This category includes the following rules that match people 
-        based on their ancestral relations to other people:</para>
+        <title>Filtres ascendants</title>
+        <para>Cette catégorie comprend les règles suivantes qui sélectionnent
+	les personnes d'après leurs relations d'ascendance avec d'autres personnes : </para>
           <variablelist>
 
-          <varlistentry><term>Is an ancestor of</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person. The Inclusive option determines whether the 
-          specified person should be considered his/her own ancestor (useful 
-          for building reports). 
+          <varlistentry><term>Est l'ancêtre de</term>
+          <listitem><para>Cette règle sélectionne les personnes ancêtres
+	  de la personne désignée. L'option Inclusif précise
+	  si la personne désignée est à considérer comme ancêtre
+	  d'elle-même, ce qui est utile pour construire des éditions.
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made.
+          <para> Vous pouvez soit saisir l'identifiant dans une zone de saisie,
+	  soit sélectionner une personne dans la liste en cochant le bouton
+          <guibutton>Sélectionner...</guibutton>. Dans ce cas, son identifiant
+	  apparaîtra dans la zone de saisie après la sélection.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of person at 
-          least N generations away</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are at least N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandparents, 
-          great-grandparents, etc., but not the parents of the specified 
-          person. 
+          <varlistentry><term>Est l'ascendant d'un individu sur au moins N générations</term>
+          <listitem><para>Cette règle sélectionne les personnes ancêtres
+	  de la personne désignée à au moins N générations d'écart.
+	  Par exemple, un écart de 2 sélectionnera les grands-parents, les
+	  arrière-grands-parents..., mais pas les parents de la personnes
+	  désignée.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of person not more 
-          than N generations away</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are no more than N generations away from that 
-          person in their lineage. For example, using this rule with the value 
-          of 2 for the number of generations will match parents and 
-          grandparents, but not great-grandparents, etc., of the specified 
-          person. 
+          <varlistentry><term>Est l'ascendant d'un individu sur moins de N générations</term>
+          <listitem><para>Cette règle sélectionne les personnes ancêtres
+	  de la personne désignée à au plus N générations d'écart.
+	  Par exemple, un écart de 2 sélectionnera les parents et les grands-parents,
+	  mais pas les arrière-grands-parents... de la personnes
+	  désignée.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a common ancestor with</term>
-          <listitem><para> This rule matches people who have common ancestors 
-          with the specified person. 
+          <varlistentry><term>A un ancêtre commun avec</term>
+          <listitem><para> Cette règle sélectionne les personnes qui ont un ancêtre
+	  commun avec la personne désignée.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a common ancestor with filter match</term>
-          <listitem><para> This rule matches people who have common ancestors 
-          with someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>A un ascendant commun avec les individus résultant du filtrage</term>
+          <listitem><para> Cette règle sélectionne les personnes qui ont un ancêtre
+	  commun avec les personnes sélectionnées par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of filter match</term>
-          <listitem><para> This rule matches people who are ancestors 
-          of someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
-          </para></listitem>
+          <varlistentry><term>Est l'ascendant d'un individu résultant du filtrage</term>
+          <listitem><para> Cette règle sélectionne les personnes qui sont ancêtres
+	  d'une des personnes sélectionnées par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
+	  </para></listitem>
           </varlistentry>
 
           </variablelist>
-        </sect3> 
+        </sect3>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-descendant">
-        <title>Descendant filters</title>
-        <para>This category includes the following rules that match people 
-        based on their descendant relations to other people:</para>
+        <title>Filtres des Descendants</title>
+        <para>Cette catégorie comprend les règles suivantes qui sélectionnent
+	les personnes d'après leurs relations de descendance avec d'autres personnes : </para>
           <variablelist>
 
-          <varlistentry><term>Is a descendant of</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person. The Inclusive option determines whether the 
-          specified person should be considered his/her own descendant (useful 
-          for building reports). 
+          <varlistentry><term>Est descendant(e) de</term>
+          <listitem><para>Cette règle sélectionne les personnes qui descendent
+	  de la personne désignée. L'option Inclusif précise
+	  si la personne désignée est à considérer comme descendant
+	  d'elle-même, ce qui est utile pour construire des éditions.
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made.
+          <para> Vous pouvez soit saisir l'identifiant dans une zone de saisie,
+	  soit sélectionner une personne dans la liste en cochant le bouton
+          <guibutton>Sélectionner...</guibutton>. Dans ce cas, son identifiant
+	  apparaîtra dans la zone de saisie après la sélection.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of person at 
-          least N generations away</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person and are at least N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandchildren, 
-          great-grandchildren, etc., but not the children of the specified 
-          person.
+          <varlistentry><term>Est descendant d'un individu sur au moins N générations</term>
+          <listitem><para>Cette règle sélectionne les personnes qui descendent
+	  de la personne désignée à au moins N générations d'écart.
+	  Par exemple, un écart de 2 sélectionnera les petits-enfants, les
+	  arrière-petits-enfants..., mais pas les enfants de la personnes
+	  désignée.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of person not more 
-          than N generations away</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person and are no more than N generations away from that 
-          person in their lineage. For example, using this rule with the value 
-          of 2 for the number of generations will match children and 
-          grandchildren, but not great-grandchildren, etc., of the specified 
-          person. 
+          <varlistentry><term>Est descendant d'un individu sur moins de N générations</term>
+          <listitem><para>Cette règle sélectionne les personnes qui descendent
+	  de la personne désignée à au plus N générations d'écart.
+	  Par exemple, un écart de 2 sélectionnera les enfants et les petits-enfants,
+	  mais pas les arrière-petits-enfants... de la personnes
+	  désignée.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of filter match</term>
-          <listitem><para> This rule matches people who are descendants 
-          of someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
-          </para></listitem>
+          <varlistentry><term>Est descendant d'un individu résultant du filtrage</term>
+          <listitem><para> Cette règle sélectionne les personnes qui descendent
+	  d'une des personnes sélectionnées par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
+	  </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant family member of</term>
-          <listitem><para> This rule not only matches people who are 
-          descendants of the specified person, but also those descendants' 
-          spouses.
+          <varlistentry><term>Est un membre de la famille descendante de</term>
+          <listitem><para> Cette règle sélectione en plus des descendants directs
+	  de la personne désignée, ceux des époux(ses) des descendants directs.
           </para></listitem>
           </varlistentry>
 
@@ -328,23 +318,22 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
         <sect3 id="filtref-relat">
-        <title>Relationship filters</title>
-        <para>This category includes the following rules that match people
-        based on their mutual relationship:</para>
+        <title>Filtres relationnels</title>
+        <para>Cette catégorie comprend les règles suivantes qui sélectionnent
+	les personnes d'après leurs relations : </para>
           <variablelist>
-          <varlistentry><term>Relationship path between two people</term>
-           <listitem><para> This rule matches all ancestors of both people
-           back to their common ancestors (if exist). This produces the
-           &quot;relationship path&quot; between these two people, through
-           their common ancestors.
+          <varlistentry><term>Relation entre deux individus</term>
+           <listitem><para> Cette règle sélectionne les ancêtres des deux personnes
+	   jusqu'à leur ancêtre commun s'il existe. Ceci donne la
+           &quot;liaison relationnelle&quot; entre ces individus à travers leur(s)
+	   ancêtre(s) commun(s).
            </para>
 
-           <para> You can either enter the ID of each person into the
-           appropriate text entry fields, or select people from the list by
-           clicking their <guibutton>Select...</guibutton> buttons. In the
-           latter case, the ID will appear in the text field after the
-           selection was made.
-           </para>
+          <para> Vous pouvez soit saisir l'identifiant des personnes dans une zone de saisie,
+	  soit les sélectionner dans la liste en cochant leur bouton
+          <guibutton>Sélectionner...</guibutton>. Dans ce cas, l'identifiant
+	  apparaîtra dans la zone de saisie après la sélection.
+          </para>
            </listitem>
            </varlistentry>
 
@@ -353,31 +342,30 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-misc">
-        <title>Miscellaneous filters</title>
-        <para>This category includes the following rules which do not
-        naturally fit into any of the above categories:</para>
+        <title>Filtres divers</title>
+        <para>Cette catégorie comprend les règles suivantes qui n'appartiennent
+	pas à une autre catégorie : </para>
           <variablelist>
 
-          <varlistentry><term>Has the personal attribute</term>
-          <listitem><para> This rule matches people who have the personal 
-          attribute of the specified value. The specified personal attribute
-          name should be selected from the menu. The specified value should 
-          be typed into the text entry field. 
+          <varlistentry><term>A l'attribut individuel</term>
+          <listitem><para> Cette règle sélectionne les personnes
+	  qui ont l'attribut individuel avec une valeur donnée.
+	  L'attribut sur lequel porte la sélection est choisi dans un menu déroulant.
+	  La valeur désirée pour cet attribut est saisie dans une zone de texte.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the family attribute</term>
-          <listitem><para> This rule matches people who have the family 
-          attribute of the specified value. The specified family attribute
-          should be selected from the menu. The specified value should be 
-          typed into the text entry field. 
+          <varlistentry><term>A l'attribut familial</term>
+          <listitem><para> Cette règle sélectionne les personnes
+	  qui ont l'attribut familial avec une valeur donnée.
+	  L'attribut sur lequel porte la sélection est choisi dans un menu déroulant.
+	  La valeur désirée pour cet attribut est saisie dans une zone de texte.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Matches the filter named</term>
-          <listitem><para> This rule matches people who are matched 
-          by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Correspond au filtre suivant</term>
+          <listitem><para> Cette règle sélectionne les personnes par un filtre.
+	  Le filtre est choisi par son nom dans un menu.
           </para></listitem>
           </varlistentry>
 
