@@ -457,6 +457,7 @@ register_report(
     report,
     _("Family Group Report"),
     category=_("Text Reports"),
+    status=(_("Beta")),
     description=_("Creates a family group report, showing information on a set of parents and their children.")
     )
 

@@ -372,6 +372,7 @@ register_report(
     report,
     _("Ahnentafel Report"),
     category=_("Text Reports"),
+    status=(_("Beta")),
     description= _("Produces a textual ancestral report"),
     xpm=get_xpm_image()
     )

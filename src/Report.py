@@ -38,8 +38,8 @@ import Config
 import FindDoc
 import PaperMenu
 
-import gtk
-import gnome.ui
+from gtk import *
+from gnome.ui import *
 import libglade
 
 #------------------------------------------------------------------------
@@ -136,6 +136,10 @@ class Report:
 #
 #------------------------------------------------------------------------
 class ReportDialog:
+
+    frame_pad = 5
+    border_pad = 5
+
     def __init__(self,database,person,filename="basicreport.glade"):
         """Initialize a dialog to request that the user select options
         for a basic report.  The glade filename is optional.  If
@@ -146,27 +150,35 @@ class ReportDialog:
         # Save info about who the report is about.
         self.db = database
         self.person = person
-
-        # Load the glade file
-        base = os.path.dirname(__file__)
-        self.glade_file = os.path.join(base, "plugins", filename)
-        self.topDialog = libglade.GladeXML(self.glade_file,"report_dialog")
+        self.output_notebook = None
+        self.notebook_page = 1
+        self.pagecount_menu = None
+        self.filter_combo = None
+        self.extra_menu = None
+        self.extra_textbox = None
+        self.pagebreak_checkbox = None
+        self.generations_spinbox = None
+        
+        self.window = GnomeDialog('My Window',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
+        self.window.set_default(0)
+        self.window.button_connect(0,self.on_ok_clicked)
+        self.window.button_connect(1,self.on_cancel)
+        self.window.set_resize_mode(0)
 
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
         # interaction between the various frames.
         self.setup_title()
         self.setup_header()
-        self.setup_output_notebook()
         self.setup_target_frame()
-        self.setup_style_frame()
         self.setup_format_frame()
+        self.setup_style_frame()
+        self.setup_output_notebook()
         self.setup_paper_frame()
         self.setup_html_frame()
         self.setup_report_options_frame()
         self.setup_other_frames()
-        self.connect_signals()
-
+        self.window.show_all()
     #------------------------------------------------------------------------
     #
     # Customization hooks for subclasses
@@ -323,10 +335,16 @@ class ReportDialog:
 
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
+
         if obj.get_data("paper") == 1:
-            self.output_notebook.set_page(0)
+            self.notebook_page = 0
         else:
-            self.output_notebook.set_page(1)
+            self.notebook_page = 1
+            
+        if self.output_notebook == None:
+            return
+        
+        self.output_notebook.set_page(self.notebook_page)
 
         # Does this report format use styles?
         self.style_frame.set_sensitive(obj.get_data("styles"))
@@ -340,7 +358,8 @@ class ReportDialog:
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-        self.window = self.topDialog.get_widget("report_dialog")
+
+        title = self.get_title()
         self.name = self.person.getPrimaryName().getRegularName()
         self.window.set_title(self.get_title())
 
@@ -350,9 +369,12 @@ class ReportDialog:
         header line should read.  If no customization function is
         supplied by the subclass, the default is to use the full name
         of the currently selected person."""
-        name = self.person.getPrimaryName().getRegularName()
-        self.header = self.topDialog.get_widget("header_label")
-        self.header.set_text(self.get_header(name))
+
+        title = self.get_header(self.name)
+        label = GtkLabel(title)
+        label.set_usize(450,10)
+        self.window.vbox.pack_start(label,TRUE,TRUE,ReportDialog.border_pad)
+        self.window.vbox.add(GtkHSeparator())
         
     def setup_target_frame(self):
         """Set up the target frame of the dialog.  This function
@@ -360,15 +382,37 @@ class ReportDialog:
         determine whether the target is a directory or file, what the
         title of any browser window should be, and what default
         directory should be used."""
-        self.target_fileentry = self.topDialog.get_widget("fileentry1")
-        self.target_fileentry.set_title(self.get_target_browser_title())
+
+        # Save Frame
+        frame = GtkFrame(_("Save As"))
+        frame.set_border_width(ReportDialog.frame_pad)
+        hbox = GtkHBox()
+        hbox.set_border_width(ReportDialog.border_pad)
+        if (self.get_target_is_directory()):
+            import _gnomeui
+            _gnomeui.gnome_file_entry_set_directory(self.target_fileentry._o, 1)
+            label = GtkLabel(_("Directory"))
+        else:
+            label = GtkLabel(_("Filename"))
+        hbox.pack_start(label,0,0,5)
+
+        hid = self.get_stylesheet_savefile()
+        if hid[-4:]==".xml":
+            hid = hid[0:-4]
+            
+        self.target_fileentry = GnomeFileEntry(hid,_("Save As"))
+        hbox.add(self.target_fileentry)
+        frame.add(hbox)
+        self.window.vbox.add(frame)
+
         self.target_fileentry.set_default_path(self.get_default_directory())
         if (self.get_target_is_directory()):
             import _gnomeui
             _gnomeui.gnome_file_entry_set_directory(self.target_fileentry._o, 1)
             self.topDialog.get_widget("saveas").set_text(_("Directory"))
-        self.target_filename = self.topDialog.get_widget("filename")
-        self.target_filename.set_text(self.get_default_directory())
+
+        target_filename = self.target_fileentry.children()[0].entry
+        target_filename.set_text(self.get_default_directory())
 
         # Faugh! The following line of code would allow the 'Enter'
         # key in the file name box to close the dialog.  However there
@@ -385,9 +429,13 @@ class ReportDialog:
         """Set up the format frame of the dialog.  This function
         relies on the make_doc_menu() function to do all the hard
         work."""
-        self.topDialog.get_widget("format_frame").show()
-        self.format_menu = self.topDialog.get_widget("format")
+
+        self.format_menu = GtkOptionMenu()
         self.make_doc_menu()
+        frame = GtkFrame(_("Output Format"))
+        frame.add(self.format_menu)
+        frame.set_border_width(ReportDialog.frame_pad)        
+        self.window.vbox.add(frame)
 
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
@@ -395,10 +443,20 @@ class ReportDialog:
         and to read in any user defined styles for this report.  It
         the builds a menu of all the available styles for the user to
         choose from."""
-        self.style_frame = self.topDialog.get_widget("style_frame")
-        self.style_frame.show()
-        self.style_menu = self.topDialog.get_widget("style_menu")
 
+        # Styles Frame
+        self.style_frame = GtkFrame('Styles')
+        hbox = GtkHBox()
+        hbox.set_border_width(ReportDialog.border_pad)
+        self.style_menu = GtkOptionMenu()
+        hbox.pack_start(self.style_menu,TRUE,TRUE,2)
+        style_button = GtkButton('Style Editor')
+        style_button.connect('clicked',self.on_style_edit_clicked)
+        hbox.pack_end(style_button,0,0,2)
+        self.style_frame.add(hbox)
+        self.style_frame.set_border_width(ReportDialog.frame_pad)
+        self.window.vbox.add(self.style_frame)
+        
         # Build the default style set for this report.
         self.default_style = StyleSheet()
         self.make_default_style()
@@ -416,34 +474,63 @@ class ReportDialog:
         """Set up the output notebook of the dialog.  This sole
         purpose of this function is to grab a pointer for later use in
         the callback from when the file format is changed."""
-        self.output_notebook = self.topDialog.get_widget("output_notebook")
+
+        self.output_notebook = GtkNotebook()
+        self.paper_frame = GtkFrame('Paper Options')
+        self.paper_frame.set_border_width(ReportDialog.frame_pad)
+        self.output_notebook.append_page(self.paper_frame,GtkLabel('Paper Options'))
+        self.html_frame = GtkFrame('HTML Options')
+        self.html_frame.set_border_width(ReportDialog.frame_pad)
+        self.output_notebook.append_page(self.html_frame,GtkLabel('HTML Options'))
+        self.output_notebook.set_show_tabs(0)
+        self.output_notebook.set_show_border(0)
+        self.output_notebook.set_page(self.notebook_page)
+        self.window.vbox.add(self.output_notebook)
         
     def setup_paper_frame(self):
         """Set up the paper selection frame of the dialog.  This
         function relies on a paper_xxx() customization functions to
         determine whether the pagecount menu should appear and what
         its strings should be."""
-        # Paper size and orientation.  Always present in this frame.
-        self.papersize_menu = self.topDialog.get_widget("papersize")
+
+        (pagecount_map, start_text) = self.get_print_pagecount_map()
+        if pagecount_map:
+            table = GtkTable(2,4)
+        else:
+            table = GtkTable(1,4)
+        self.paper_frame.add(table)
+        self.papersize_menu = GtkOptionMenu()
+        self.orientation_menu = GtkOptionMenu()
+        l = GtkLabel(_("Size"))
+        pad = ReportDialog.border_pad
+        l.set_alignment(1.0,0.5)
+        table.attach(l,0,1,0,1,FILL,FILL,pad,pad)
+        table.attach(self.papersize_menu,1,2,0,1,xpadding=pad,ypadding=pad)
+        l = GtkLabel(_("Orientation"))
+        l.set_alignment(1.0,0.5)
+        table.attach(l,2,3,0,1,FILL,FILL,pad,pad)
+        table.attach(self.orientation_menu,3,4,0,1,xpadding=pad,ypadding=pad)
         PaperMenu.make_paper_menu(self.papersize_menu)
-        self.orientation_menu = self.topDialog.get_widget("orientation")
         PaperMenu.make_orientation_menu(self.orientation_menu)
 
         # The optional pagecount stuff.
-        self.pagecount_menu = self.topDialog.get_widget("pagecount_menu")
-        self.pagecount_label = self.topDialog.get_widget("pagecount_label")
-        (pagecount_map, start_text) = self.get_print_pagecount_map()
         if pagecount_map:
+            self.pagecount_menu = GtkOptionMenu()
             myMenu = utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-            self.pagecount_menu.show()
-            self.pagecount_label.show()
+            table.attach(GtkLabel(_("Count")),0,1,1,2,FILL,FILL,pad,pad)
+            table.attach(self.pagecount_menu,1,2,1,2,xpadding=pad,ypadding=pad)
 
     def setup_html_frame(self):
         """Set up the html frame of the dialog.  This sole purpose of
         this function is to grab a pointer for later use in the parse
         html frame function."""
-        self.html_fileentry = self.topDialog.get_widget("htmltemplate")
+
+        hbox = GtkHBox()
+        hbox.pack_start(GtkLabel("Template"))
+        self.html_fileentry = GnomeFileEntry(_("HTML Template"),_("Choose File"))
+        hbox.add(self.html_fileentry)
+        self.html_frame.add(hbox)
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -452,53 +539,88 @@ class ReportDialog:
         this box.  *All* of these items are optional, although the
         generations fields and the filter combo box are used in most
         (but not all) dialog boxes."""
-        self.topDialog.get_widget("options_frame").show()
 
-        # Set up the generations spin and page break checkbox
         (use_gen, use_break) = self.get_report_generations()
-        self.generations_spinbox = self.topDialog.get_widget("generations")
-        self.pagebreak_checkbox = self.topDialog.get_widget("pagebreak")
-        if use_gen:
-            self.topDialog.get_widget("gen_label").show()
-            self.generations_spinbox.set_value(use_gen)
-            self.generations_spinbox.show()
-        else:
-            use_break = 0
-        if use_break:
-            self.pagebreak_checkbox.show()
-
-        # Now the filter combo
-        self.filter_combo = self.topDialog.get_widget("filter_combo")
         filter_strings = self.get_report_filter_strings()
+        (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
+        (et_label, string, et_tip) = self.get_report_extra_textbox_info()
+
+        row = 0
+        max_rows = 0
+        if use_gen:
+            max_rows = max_rows + 1
+            if use_break:
+                max_rows = max_rows + 1
         if filter_strings:
-            self.topDialog.get_widget("filter_label").show()
+            max_rows = max_rows + 1
+        if extra_map:
+            max_rows = max_rows + 1
+        if string:
+            max_rows = max_rows + 1
+
+        if max_rows == 0:
+            return
+
+        frame = GtkFrame(_("Report Options"))
+        frame.set_border_width(ReportDialog.frame_pad)
+        self.window.vbox.add(frame)
+        table = GtkTable(2,max_rows)
+        frame.add(table)
+
+        pad = ReportDialog.border_pad
+        if filter_strings:
+            self.filter_combo = GtkCombo()
+            l = GtkLabel("Filter")
+            l.set_alignment(1.0,0.5)
+            table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
+            table.attach(self.filter_combo,1,2,row,row+1,xpadding=pad,ypadding=pad)
             filter_strings.sort()
             self.filter_combo.set_popdown_strings(filter_strings)
-            self.filter_combo.show()
+            row = row + 1
+            
+        # Set up the generations spin and page break checkbox
+        if use_gen:
+            self.generations_spinbox = GtkSpinButton(digits=0)
+            self.generations_spinbox.set_numeric(1)
+            adjustment = GtkAdjustment(use_gen,1,31,1,0)
+            self.generations_spinbox.set_adjustment(adjustment)
+            adjustment.value_changed()
+            l = GtkLabel(_("Generations"))
+            l.set_alignment(1.0,0.5)
+            table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
+            table.attach(self.generations_spinbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            row = row + 1
+
+            if use_break:
+                self.pagebreak_checkbox = GtkCheckButton(_("Page break between generations"))
+                table.attach(self.pagebreak_checkbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
+                row = row + 1
 
         # Now the "extra" option menu
-        self.extra_menu_label = self.topDialog.get_widget("extra_menu_label")
-        self.extra_menu = self.topDialog.get_widget("extra_menu")
-        (label, extra_map, preset, tip) = self.get_report_extra_menu_info()
         if extra_map:
-            self.extra_menu_label.set_text(label)
-            self.extra_menu_label.show()
+            self.extra_menu_label = GtkLabel(em_label)
+            self.extra_menu_label.set_alignment(1.0,0.5)
+            self.extra_menu = GtkOptionMenu()
             myMenu = utils.build_string_optmenu(extra_map, preset)
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
-            self.add_tooltip(self.extra_menu,tip)
-            self.extra_menu.show()
-
+            self.add_tooltip(self.extra_menu,em_tip)
+            table.attach(self.extra_menu_label,0,1,row,row+1,FILL,FILL,pad,pad)
+            table.attach(self.extra_menu,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            row = row + 1
+            
         # Now the "extra" text box
-        self.extra_textbox_label = self.topDialog.get_widget("extra_textbox_label")
-        self.extra_textbox = self.topDialog.get_widget("extra_textbox")
-        (label, string, tip) = self.get_report_extra_textbox_info()
         if string:
-            self.extra_textbox_label.set_text(label)
-            self.extra_textbox_label.show()
+            self.extra_textbox_label = GtkLabel(et_label)
+            self.extra_textbox_label.set_alignment(1.0,0)
+            self.extra_textbox = GtkText()
             self.extra_textbox.insert_defaults(string)
-            self.add_tooltip(self.extra_textbox,tip)
-            self.topDialog.get_widget("extra_scrolledwindow").show()
+            self.extra_textbox.set_editable(1)
+            self.add_tooltip(self.extra_textbox,et_tip)
+            table.attach(self.extra_textbox_label,0,1,row,row+1,FILL,FILL,pad,pad)
+            table.attach(self.extra_textbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            row = row + 1
+#            self.topDialog.get_widget("extra_scrolledwindow").show()
         
     def setup_other_frames(self):
         """Do nothing.  This sole purpose of this function is to give
@@ -506,19 +628,6 @@ class ReportDialog:
         that are unique to that specific report."""
         pass
 
-    def connect_signals(self):
-        """Connect the signal handlers for this dialog.  The signal
-        handlers in this default function will handle all of the items
-        in the basic report dialog.  Most items do not interact with
-        each other, and their vales will be read back when the user
-        clicks the OK button.  This dialog only need be sub-classed if
-        there is interaction between/within any additional frames
-        added in a subclass."""
-        self.topDialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "on_style_edit_clicked" : self.on_style_edit_clicked,
-            "on_ok_clicked" : self.on_ok_clicked
-            })
 
     #------------------------------------------------------------------------
     #
@@ -558,7 +667,10 @@ class ReportDialog:
         it has enabled.  This is for simplicity of programming."""
         self.paper = self.papersize_menu.get_menu().get_active().get_data("i")
         self.orien = self.orientation_menu.get_menu().get_active().get_data("i")
-        self.pagecount = self.pagecount_menu.get_menu().get_active().get_data("d")
+        if self.pagecount_menu == None:
+            self.pagecount = 0
+        else:
+            self.pagecount = self.pagecount_menu.get_menu().get_active().get_data("d")
 
     def parse_html_frame(self):
         """Parse the html frame of the dialog.  Save the user selected
@@ -575,11 +687,31 @@ class ReportDialog:
         whether or not they are displayed on the screen.  The subclass
         will know which ones it has enabled.  This is for simplicity
         of programming."""
-        self.max_gen = self.generations_spinbox.get_value_as_int()
-        self.pg_brk = self.pagebreak_checkbox.get_active()
-        self.filter = self.filter_combo.entry.get_text()
-        self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
-        self.report_text = string.split(self.extra_textbox.get_chars(0,-1),'\n')
+
+        if self.generations_spinbox:
+            self.max_gen = self.generations_spinbox.get_value_as_int()
+        else:
+            self.max_gen = 0
+            
+        if self.pagebreak_checkbox:
+            self.pg_brk = self.pagebreak_checkbox.get_active()
+        else:
+            self.pg_brk = 0
+
+        if self.filter_combo:
+            self.filter = self.filter_combo.entry.get_text()
+        else:
+            self.filter = ""
+
+        if self.extra_menu:
+            self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
+        else:
+            self.report_menu = None
+
+        if self.extra_textbox:
+            self.report_text = string.split(self.extra_textbox.get_chars(0,-1),'\n')
+        else:
+            self.report_text = ""
         
     def parse_other_frames(self):
         """Do nothing.  This sole purpose of this function is to give
@@ -598,6 +730,9 @@ class ReportDialog:
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
         StyleListDisplay(self.style_sheet_list,self.build_style_menu,None)
+
+    def on_cancel(self, obj):
+        self.window.destroy()
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate
@@ -623,7 +758,7 @@ class ReportDialog:
         self.make_report()
 
         # Clean up the dialog object
-        utils.destroy_passed_object(obj)
+        self.window.destroy()
 
     #------------------------------------------------------------------------
     #

@@ -233,9 +233,9 @@ class StyleEditor:
         else:
             p.set_alignment(PARA_ALIGN_JUSTIFY)            
 
-        p.set_right_margin(utils.txt2fl(self.top.get_widget("rmargin").get_text()))
-        p.set_left_margin(utils.txt2fl(self.top.get_widget("lmargin").get_text()))
-        p.set_padding(utils.txt2fl(self.top.get_widget("pad").get_text()))
+        p.set_right_margin(float(self.top.get_widget("rmargin").get_text()))
+        p.set_left_margin(float(self.top.get_widget("lmargin").get_text()))
+        p.set_padding(float(self.top.get_widget("pad").get_text()))
         p.set_top_border(self.top.get_widget("tborder").get_active())
         p.set_left_border(self.top.get_widget("lborder").get_active())
         p.set_right_border(self.top.get_widget("rborder").get_active())

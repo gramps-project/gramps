@@ -6,7 +6,10 @@ Python 1.5.2 or greater
 Gnome 1.2 or greater
 PyGnome 1.0.53 or greater
 
-PyXML 0.6.2 or greater (http://sourceforge.net/project/showfiles.php?group_id=6473)
+If you are using python 1.5.2, you may also need PyXML 0.6.2 or
+greater. Many distributions already provide this, but if your
+installation does not have it, you can get it from
+http://sourceforge.net/project/showfiles.php?group_id=6473
 
 Building on non-Linux systems: i18n support and GNU make
 --------------------------------------------------------

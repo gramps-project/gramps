@@ -273,6 +273,7 @@ register_report(
     report,
     _("Descendant Report"),
     category=_("Text Reports"),
+    status=(_("Beta")),
     description=_("Generates a list of descendants of the active person"),
     xpm=get_xpm_image()
     )

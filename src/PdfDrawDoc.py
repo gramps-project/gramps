@@ -96,6 +96,14 @@ class PdfDrawDoc(DrawDoc):
             lines = string.split(text,'\n')
             self.center_print(lines,font,x*cm,y*cm,w,h)
 
+    def write_at(self,style,text,x,y):
+	p = self.style_list[style]
+	font = p.get_font()
+
+        self.f.setStrokeColor(make_color(font.get_color()))
+
+        self.left_print(text,font,x*cm,y*cm)
+
     def center_print(self,lines,font,x,y,w,h):
         l = len(lines)
         size = font.get_size()
@@ -118,7 +126,29 @@ class PdfDrawDoc(DrawDoc):
         for text in lines:
             self.f.drawCentredString(start_x,start_y,text)
             start_y = start_y + size*1.2
+        start_y = start_y + size*1.2
 
+        self.f.restoreState()
+
+    def left_print(self,text,font,x,y):
+        size = font.get_size()
+        start_y = y
+        start_x = x
+
+        self.f.saveState()
+        self.f.setFillColor(make_color(font.get_color()))
+        if font.get_type_face() == FONT_SANS_SERIF:
+            if font.get_bold():
+                self.f.setFont("Helvetica-Bold",font.get_size())
+            else:
+                self.f.setFont("Helvetica",font.get_size())
+        else:
+            if font.get_bold():
+                self.f.setFont("Times-Bold",font.get_size())
+            else:
+                self.f.setFont("Times-Roman",font.get_size())
+       
+        self.f.drawString(start_x,start_y,text)
         self.f.restoreState()
 
 if __name__ == "__main__":

@@ -69,6 +69,7 @@ DOCSTRING = "d"
 IMAGE     = "i"
 TASK      = "f"
 TITLE     = "t"
+STATUS    = "s"
 
 pymod = compile(r"^(.*)\.py$")
 
@@ -102,10 +103,13 @@ class ReportPlugins:
     def on_report_node_selected(self,obj):
         doc = obj.get_data(DOCSTRING)
         xpm = obj.get_data(IMAGE)
+        status = ": %s" % obj.get_data(STATUS)
         title = obj.get_data(TITLE)
         img = self.dialog.get_widget("image")
     
         self.dialog.get_widget("description").set_text(doc)
+        self.dialog.get_widget("report_status").set_text(status)
+        self.dialog.get_widget("report_label").show()
 
         i,m = gtk.create_pixmap_from_xpm_d(gtk.GtkWindow(),None,xpm)
         img.set(i,m)
@@ -162,7 +166,8 @@ def build_tree(tree,list,task):
         item.set_data(TITLE,report[2])
         item.set_data(DOCSTRING,report[3])
         item.set_data(IMAGE,report[4])
-
+        item.set_data(STATUS,report[5])
+        
         if item_hash.has_key(report[1]):
             item_hash[report[1]].append(item)
         else:
@@ -259,7 +264,11 @@ def register_export(task, name):
 def register_import(task, name):
     _imports.append((task, name))
 
-def register_report(task, name, category=None, description=None, xpm=None):
+def register_report(task, name,
+                    category=_("Uncategorized"),
+                    description=_("No description was provided"),
+                    xpm=None,
+                    status=_("Unknown")):
     if xpm == None:
         xpm_data = no_image()
     elif type(xpm) == type([]):
@@ -267,14 +276,13 @@ def register_report(task, name, category=None, description=None, xpm=None):
     else:
         xpm_data = xpm
 
-    if category == None:
-        category = _("Uncategorized")
-    if description == None:
-        description = _("No description was provided")
-        
-    _reports.append((task, category, name, description, xpm_data))
+    _reports.append((task, category, name, description, xpm_data, status))
 
-def register_tool(task, name, category=None, description=None, xpm=None):
+def register_tool(task, name,
+                  category=_("Uncategorized"),
+                  description=_("No description was provided"),
+                  xpm=None,
+                  status=_("Unknown")):
     if xpm == None:
         xpm_data = no_image()
     elif type(xpm) == type([]):
@@ -282,12 +290,7 @@ def register_tool(task, name, category=None, description=None, xpm=None):
     else:
         xpm_data = xpm
 
-    if category == None:
-        category = _("Uncategorized")
-    if description == None:
-        description = _("No description was provided")
-        
-    _tools.append((task, category, name, description, xpm_data))
+    _tools.append((task, category, name, description, xpm_data, status))
 
 #-------------------------------------------------------------------------
 #

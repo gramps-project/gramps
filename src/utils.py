@@ -163,18 +163,6 @@ def destroy_passed_object(obj):
 
 #-------------------------------------------------------------------------
 #
-# Get around python's interpretation of commas/periods in floating
-# point numbers
-#
-#-------------------------------------------------------------------------
-
-def txt2fl_(st):
-    return string.atof(string.replace(st,',','.'))
-def fl2txt(fmt,val):
-    return string.replace(fmt % val, ',', '.')
-
-#-------------------------------------------------------------------------
-#
 #
 #
 #-------------------------------------------------------------------------
