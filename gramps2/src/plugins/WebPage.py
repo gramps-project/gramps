@@ -74,7 +74,7 @@ def by_date(a,b):
 
 #------------------------------------------------------------------------
 #
-# HtmlLickDoc
+# HtmlLinkDoc
 #
 #------------------------------------------------------------------------
 class HtmlLinkDoc(HtmlDoc.HtmlDoc):
@@ -738,7 +738,6 @@ class WebReport(Report.Report):
             col_len = col_len - 1
         doc.write_raw('</td></tr></table>')
         doc.close()
-        doc.write_support_files()
         
     def write_report(self):
         dir_name = self.target_path
