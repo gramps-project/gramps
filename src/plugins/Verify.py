@@ -125,11 +125,11 @@ def on_apply_clicked(obj):
 	if dyear>0 and (byear>dyear):
 	    error = error + _("Died before birth: %s born %d, died %d.\n") % (idstr, byear, dyear) 
 	if dyear>0 and (bapyear>dyear):
-	    error = error + _("Died before birth: %s baptized %d, died %d.\n") % (idstr, bapyear, dyear) 
+	    error = error + _("Died before baptism: %s baptized %d, died %d.\n") % (idstr, bapyear, dyear) 
 	if buryear>0 and (byear>buryear):
-	    error = error + _("Buried before birth: %s born %d, died %d.\n") % (idstr, byear, buryear) 
+	    error = error + _("Buried before birth: %s born %d, buried %d.\n") % (idstr, byear, buryear) 
 	if buryear>0 and (bapyear>buryear):
-	    error = error + _("Buried before birth: %s baptized %d, died %d.\n") % (idstr, bapyear, buryear) 
+	    error = error + _("Buried before birth: %s baptized %d, buried %d.\n") % (idstr, bapyear, buryear) 
 	if byear == 0:
 	    byear = bapyear  # guess baptism = birth
 	if dyear == 0:
@@ -159,7 +159,7 @@ def on_apply_clicked(obj):
 	    yngpar = yngdad
 	    waswidstr = _(" was a widow ")
 	if (person.getGender() == RelLib.Person.female) and (person.getGender() == RelLib.Person.male):
-	    error = error + _("Ambiguous gender for %s.\n") % idstr
+	    error = error + _("Ambigous gender for %s.\n") % idstr
 	    parstr = _("parent ")
 	    oldpar = olddad
 	    yngpar = yngdad
