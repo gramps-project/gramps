@@ -1,3 +1,6 @@
+2003-12-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: update person table after edit
+
 2003-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py (add_child_clicked): Call self.no_name() 
 	when the surname guessing is set to "None" (otherwise it produced 
@@ -41,6 +44,7 @@
 	* doc/gramps-manual/C/keybind.xml: Update.
 	* doc/gramps-manual/C/filtref.xml: Update.
 
+>>>>>>> 1.492
 2003-11-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PedView.py (PedigreeView.find_children): used italics instead of
 	'*' to indicate children in popup menu
