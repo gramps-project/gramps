@@ -1117,7 +1117,7 @@
 		      <property name="show_border">True</property>
 		      <property name="tab_pos">GTK_POS_BOTTOM</property>
 		      <property name="scrollable">False</property>
-		      <property name="tab_hborder">2</property>
+		      <property name="tab_hborder">4</property>
 		      <property name="tab_vborder">2</property>
 		      <property name="enable_popup">False</property>
 		      <signal name="switch_page" handler="on_alpha_switch_page" last_modification_time="Sat, 09 Nov 2002 22:11:07 GMT"/>

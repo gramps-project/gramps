@@ -42,13 +42,14 @@ class ListModel:
                 column.set_resizable(gtk.TRUE)
             cnum = cnum + 1
             tree.append_column(column)
-            if cnum == 1:
-                column.clicked()
-
-        cnum = 0
+            
+        num = 0
         for name in dlist:
-            column = tree.get_column(cnum)
+            column = tree.get_column(num)
             column.set_sort_column_id(name[1])
+            if num == 0:
+                column.clicked()
+            num = num + 1
 
         if select_func:
             self.selection.connect('changed',select_func)
