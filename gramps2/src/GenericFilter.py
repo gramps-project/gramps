@@ -608,6 +608,9 @@ class GenericFilter:
     def get_rules(self):
         return self.flist
 
+    def delete_rule(self,r):
+        self.flist.remove(r)
+
     def check_or(self,p):
         test = 0
         for rule in self.flist:

@@ -36,8 +36,8 @@ import Plugins
 #
 #-------------------------------------------------------------------------
 import gobject
-import gtk
 import gconf
+import gtk
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -126,11 +126,8 @@ autocomp      = 1
 usevc         = 0
 vc_comment    = 0
 uncompress    = 0
-hide_altnames = 0
 lastfile      = None
 nameof        = Utils.normal_name
-display_attr  = 0
-attr_name     = ""
 status_bar    = 0
 toolbar       = 2
 calendar      = 0
@@ -160,11 +157,6 @@ _callback     = None
 # Constants 
 #
 #-------------------------------------------------------------------------
-ODDFGCOLOR    = "oddfg"
-ODDBGCOLOR    = "oddbg"
-EVENFGCOLOR   = "evenfg"
-EVENBGCOLOR   = "evenbg"
-ANCESTORFGCOLOR = "ancestorfg"
 INDEX         = "i"
 OBJECT        = "o"
 DATA          = "d"
@@ -192,16 +184,17 @@ def loadConfig(call):
     global autocomp
     global calendar
     global usevc
-    global iprefix, fprefix, pprefix, oprefix, sprefix
+    global iprefix
+    global fprefix
+    global pprefix
+    global oprefix
+    global sprefix
     global vc_comment
     global uncompress
     global id_edit
     global index_visible
-    global hide_altnames
     global lastfile
     global nameof
-    global display_attr
-    global attr_name
     global _name_format
     global _callback
     global paper_preference
@@ -218,43 +211,40 @@ def loadConfig(call):
     global localprop
 
     _callback = call
-    lastfile = get_string("/gramps/data/LastFile")
-    uselds = get_bool("/gramps/config/UseLDS")
-    ac = get_bool("/gramps/config/DisableAutoComplete",0)
-    mediaref = get_bool("/gramps/config/MakeReference",1)
-    globalprop = get_bool("/gramps/config/DisplayGlobal",1)
-    localprop = get_bool("/gramps/config/DisplayLocal",1)
-    calendar = get_bool("/gramps/config/ShowCalendar")
-    usevc = get_bool("/gramps/config/UseVersionControl")
-    vc_comment = get_bool("/gramps/config/UseComment")
-    uncompress = get_bool("/gramps/config/DontCompressXML")
-    id_edit = get_bool("/gramps/config/IdEdit")
-    index_visible = get_bool("/gramps/config/IndexVisible")
-    status_bar = get_int("/gramps/config/StatusBar")
-    toolbar = get_int("/gramps/config/ToolBar",2)
-    display_attr = get_bool("/gramps/config/DisplayAttr")
-    attr_name = get_string("/gramps/config/DisplayAttrName")
+    lastfile = get_string("/apps/gramps/last-file")
+    uselds = get_bool("/apps/gramps/use-lds")
+    ac = get_bool("/apps/gramps/disable-auto-complete",0)
+    mediaref = get_bool("/apps/gramps/make-reference",1)
+    globalprop = get_bool("/apps/gramps/media-global",1)
+    localprop = get_bool("/apps/gramps/media-local",1)
+    calendar = get_bool("/apps/gramps/show-calendar")
+    usevc = get_bool("/apps/gramps/version-control")
+    vc_comment = get_bool("/apps/gramps/use-comment")
+    uncompress = get_bool("/apps/gramps/dont-compress-xml")
+    id_edit = get_bool("/apps/gramps/id-edit")
+    index_visible = get_bool("/apps/gramps/index-visible")
+    status_bar = get_int("/apps/gramps/statusbar")
+    toolbar = get_int("/apps/gramps/toolbar",2)
     
-    hide_altnames = get_bool("/gramps/config/DisplayAltNames")
-    autoload = get_bool("/gramps/config/autoLoad",0)
-    autosave_int = get_int("/gramps/config/autoSaveInterval")
-    dateFormat = get_int("/gramps/config/dateFormat")
-    dateEntry = get_int("/gramps/config/dateEntry")
-    paper_preference = get_string("/gramps/config/paperPreference")
-    output_preference = get_string("/gramps/config/outputPreference")
-    goutput_preference = get_string("/gramps/config/goutputPreference")
-    lastnamegen = get_int("/gramps/config/surnameGuessing")
-    _name_format = get_int("/gramps/config/nameFormat")
+    autoload = get_bool("/apps/gramps/autoload",0)
+    autosave_int = get_int("/apps/gramps/auto-save-interval")
+    dateFormat = get_int("/apps/gramps/date-format")
+    dateEntry = get_int("/apps/gramps/date-entry")
+    paper_preference = get_string("/apps/gramps/paper-preference")
+    output_preference = get_string("/apps/gramps/output-preference")
+    goutput_preference = get_string("/apps/gramps/goutput-preference")
+    lastnamegen = get_int("/apps/gramps/surname-guessing")
+    _name_format = get_int("/apps/gramps/nameFormat")
 
-    iprefix = get_string("/gramps/config/iprefix")
-    fprefix = get_string("/gramps/config/fprefix")
-    sprefix = get_string("/gramps/config/sprefix")
-    oprefix = get_string("/gramps/config/oprefix")
-    pprefix = get_string("/gramps/config/pprefix")
+    iprefix = get_string("/apps/gramps/iprefix")
+    fprefix = get_string("/apps/gramps/fprefix")
+    sprefix = get_string("/apps/gramps/sprefix")
+    oprefix = get_string("/apps/gramps/oprefix")
+    pprefix = get_string("/apps/gramps/pprefix")
 
-    report_dir = get_string("/gramps/config/ReportDirectory")
-    web_dir = get_string("/gramps/config/WebsiteDirectory")
-    db_dir = get_string("/gramps/config/DbDirectory")
+    report_dir = get_string("/apps/gramps/report-directory")
+    web_dir = get_string("/apps/gramps/website-directory")
+    db_dir = get_string("/apps/gramps/db-directory")
 
     if report_dir == None:
         report_dir = "./"
@@ -270,10 +260,6 @@ def loadConfig(call):
         db_dir = "./"
     else:
         db_dir = os.path.normpath(db_dir) + os.sep
-
-    en = get_bool("/gramps/color/enableColors")
-    if en == None:
-        en = 0
 
     if paper_preference == None:
         paper_preference = "Letter"
@@ -294,12 +280,6 @@ def loadConfig(call):
         pprefix = "P"
     if oprefix == None:
         oprefix = "O"
-
-    if display_attr == None:
-        display_attr = 0
-
-    if attr_name == None:
-        attr_name = ""
 
     autocomp = not ac
         
@@ -355,7 +335,7 @@ def sync():
 #
 #-------------------------------------------------------------------------
 def save_last_file(file):
-    set_string("/gramps/data/LastFile",file)
+    set_string("/apps/gramps/last-file",file)
     sync()
 
 #-------------------------------------------------------------------------
@@ -364,14 +344,14 @@ def save_last_file(file):
 #
 #-------------------------------------------------------------------------
 def get_researcher():
-    n = get_string("/gramps/researcher/name")
-    a = get_string("/gramps/researcher/addr")
-    c = get_string("/gramps/researcher/city")
-    s = get_string("/gramps/researcher/state")
-    ct = get_string("/gramps/researcher/country")
-    p = get_string("/gramps/researcher/postal")
-    ph = get_string("/gramps/researcher/phone")
-    e = get_string("/gramps/researcher/email")
+    n = get_string("/apps/gramps/researcher-name")
+    a = get_string("/apps/gramps/researcher-addr")
+    c = get_string("/apps/gramps/researcher-city")
+    s = get_string("/apps/gramps/researcher-state")
+    ct = get_string("/apps/gramps/researcher-country")
+    p = get_string("/apps/gramps/researcher-postal")
+    ph = get_string("/apps/gramps/researcher-phone")
+    e = get_string("/apps/gramps/researcher-email")
 
     owner = Researcher()
     owner.set(n,a,c,s,ct,p,ph,e)
@@ -382,29 +362,19 @@ def get_researcher():
 #
 #
 #-------------------------------------------------------------------------
-def save_config_color(name,color):
-    set_int("/gramps/color/" + name + ".r",color[0])
-    set_int("/gramps/color/" + name + ".g",color[1])
-    set_int("/gramps/color/" + name + ".b",color[2])
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 
 def get_config_text(panel,key):
-    val = get_string("/gramps/%s/%s" % (panel,key))
+    val = get_string("/apps/gramps/%s/%s" % (panel,key))
     if val:
         return val
     else:
         return ""
 
 def get_config_bool(panel,key):
-    return get_bool("/gramps/%s/%s" % (panel,key))
+    return get_bool("/apps/gramps/%s/%s" % (panel,key))
 
 def get_config_int(panel,key):
-    return get_int("/gramps/%s/%s" % (panel,key))
+    return get_int("/apps/gramps/%s/%s" % (panel,key))
 
 ext_items = []
 
@@ -415,7 +385,7 @@ class ConfigWidget:
         self.l = label
         self.w = None
         self.d = default
-        self.tag = "/gramps/%s/%s" % (panel,key)
+        self.tag = "/apps/gramps/%s/%s" % (panel,key)
         
     def set(self):
         pass
@@ -531,8 +501,6 @@ class GrampsPreferences:
             "on_ok_clicked" : self.on_ok_clicked,
             "on_apply_clicked" : self.on_propertybox_apply,
             "on_help_clicked" : self.on_propertybox_help,
-            "on_color_toggled" : self.on_color_toggled,
-            "on_color_set" : self.on_color_set,
             "on_object_toggled" : self.on_object_toggled,
             "on_tree_select_row" : self.select
             })
@@ -587,8 +555,6 @@ class GrampsPreferences:
         vcom = self.top.get_widget("vc_comment")
         compress = self.top.get_widget("uncompress")
         detail = self.top.get_widget("showdetail")
-        display_attr_obj = self.top.get_widget("attr_display")
-        display_altnames = self.top.get_widget("display_altnames")
 
         auto.set_active(autoload)
         asave_int.set_value(int(autosave_int))
@@ -626,11 +592,6 @@ class GrampsPreferences:
             self.top.get_widget("tool2").set_active(1)
         else:
             self.top.get_widget("tool3").set_active(1)
-
-        display_attr_obj.set_active(display_attr)
-        self.top.get_widget("attr_name").set_text(attr_name)
-        
-        display_altnames.set_active(hide_altnames)
 
         paper_obj = self.top.get_widget("paper_size")
         menu = gtk.Menu()
@@ -724,14 +685,14 @@ class GrampsPreferences:
         name_menu.set_active(_name_format)
         name_option.set_menu(name_menu)
 
-        cname = get_string("/gramps/researcher/name")
-        caddr = get_string("/gramps/researcher/addr")
-        ccity = get_string("/gramps/researcher/city")
-        cstate = get_string("/gramps/researcher/state")
-        ccountry = get_string("/gramps/researcher/country")
-        cpostal = get_string("/gramps/researcher/postal")
-        cphone = get_string("/gramps/researcher/phone")
-        cemail = get_string("/gramps/researcher/email")
+        cname = get_string("/apps/gramps/researcher-name")
+        caddr = get_string("/apps/gramps/researcher-addr")
+        ccity = get_string("/apps/gramps/researcher-city")
+        cstate = get_string("/apps/gramps/researcher-state")
+        ccountry = get_string("/apps/gramps/researcher-country")
+        cpostal = get_string("/apps/gramps/researcher-postal")
+        cphone = get_string("/apps/gramps/researcher-phone")
+        cemail = get_string("/apps/gramps/researcher-email")
 
         self.top.get_widget("resname").set_text(cname)
         self.top.get_widget("resaddr").set_text(caddr)
@@ -834,9 +795,6 @@ class GrampsPreferences:
         global index_visible
         global status_bar
         global toolbar
-        global display_attr
-        global attr_name
-        global hide_altnames
         global paper_preference
         global output_preference
         global goutput_preference
@@ -848,8 +806,6 @@ class GrampsPreferences:
     
         autoload = self.top.get_widget("autoload").get_active()
         autosave_int = self.top.get_widget("autosave_interval").get_value_as_int()
-        display_attr = self.top.get_widget("attr_display").get_active()
-        attr_name = string.strip(self.top.get_widget("attr_name").get_text())
         uselds = self.top.get_widget("uselds").get_active()
         autocomp = self.top.get_widget("autocomp").get_active()
         mediaref = self.top.get_widget("mediaref").get_active()
@@ -861,7 +817,6 @@ class GrampsPreferences:
         uncompress = self.top.get_widget("uncompress").get_active()
         id_edit = self.top.get_widget("gid_edit").get_active()
         index_visible = self.top.get_widget("show_child_id").get_active()
-        hide_altnames = self.top.get_widget("display_altnames").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
 
         output_obj = self.osubmenu.get_active()
@@ -913,54 +868,51 @@ class GrampsPreferences:
         output_preference = output_obj.get_data(DATA)
         goutput_preference = goutput_obj.get_data(DATA)
     
-        set_bool("/gramps/config/UseLDS",uselds)
-        set_bool("/gramps/config/DisableAutoComplete",not autocomp)
-        set_bool("/gramps/config/MakeReference",mediaref)
-        set_bool("/gramps/config/DisplayGlobal",globalprop)
-        set_bool("/gramps/config/DisplayLocal",localprop)
-        set_bool("/gramps/config/ShowCalendar",calendar)
-        set_bool("/gramps/config/UseVersionControl",usevc)
-        set_bool("/gramps/config/UseComment",vc_comment)
-        set_bool("/gramps/config/DontCompressXML",uncompress)
-        set_bool("/gramps/config/IdEdit",id_edit)
-        set_bool("/gramps/config/IndexVisible",index_visible)
-        set_int("/gramps/config/StatusBar",status_bar)
-        set_int("/gramps/config/ToolBar",toolbar+1)
-        set_bool("/gramps/config/DisplayAttr",display_attr)
-        set_string("/gramps/config/DisplayAttrName",attr_name)
-        set_string("/gramps/config/paperPreference",paper_preference)
-        set_string("/gramps/config/outputPreference",output_preference)
-        set_string("/gramps/config/goutputPreference",goutput_preference)
-        set_bool("/gramps/config/autoLoad",autoload)
-        set_int("/gramps/config/autoSaveInterval",autosave_int)
+        set_bool("/apps/gramps/use-lds",uselds)
+        set_bool("/apps/gramps/disable-auto-complete",not autocomp)
+        set_bool("/apps/gramps/make-reference",mediaref)
+        set_bool("/apps/gramps/media-global",globalprop)
+        set_bool("/apps/gramps/media-local",localprop)
+        set_bool("/apps/gramps/show-calendar",calendar)
+        set_bool("/apps/gramps/version-control",usevc)
+        set_bool("/apps/gramps/use-comment",vc_comment)
+        set_bool("/apps/gramps/dont-compress-xml",uncompress)
+        set_bool("/apps/gramps/id-edit",id_edit)
+        set_bool("/apps/gramps/index-visible",index_visible)
+        set_int("/apps/gramps/statusbar",status_bar)
+        set_int("/apps/gramps/toolbar",toolbar+1)
+        set_string("/apps/gramps/paper-preference",paper_preference)
+        set_string("/apps/gramps/output-preference",output_preference)
+        set_string("/apps/gramps/goutput-preference",goutput_preference)
+        set_bool("/apps/gramps/autoload",autoload)
+        set_int("/apps/gramps/auto-save-interval",autosave_int)
         
         if autosave_int != 0:
             Utils.enable_autosave(None,autosave_int)
         else:
             Utils.disable_autosave()
         
-        set_bool("/gramps/config/DisplayAltNames",hide_altnames)
-        set_string("/gramps/config/ReportDirectory",report_dir)
-        set_string("/gramps/config/WebsiteDirectory",web_dir)
-        set_string("/gramps/config/DbDirectory",db_dir)
-        set_string("/gramps/config/iprefix",iprefix)
-        set_string("/gramps/config/fprefix",fprefix)
-        set_string("/gramps/config/pprefix",pprefix)
-        set_string("/gramps/config/oprefix",oprefix)
-        set_string("/gramps/config/sprefix",sprefix)
+        set_string("/apps/gramps/report-directory",report_dir)
+        set_string("/apps/gramps/website-directory",web_dir)
+        set_string("/apps/gramps/db-directory",db_dir)
+        set_string("/apps/gramps/iprefix",iprefix)
+        set_string("/apps/gramps/fprefix",fprefix)
+        set_string("/apps/gramps/pprefix",pprefix)
+        set_string("/apps/gramps/oprefix",oprefix)
+        set_string("/apps/gramps/sprefix",sprefix)
         
         # search for the active date format selection
         format_menu = self.top.get_widget("date_format").get_menu()
         active = format_menu.get_active().get_data(INDEX)
         
         set_format_code(active)
-        set_int("/gramps/config/dateFormat",active)
+        set_int("/apps/gramps/date-format",active)
         
         format_menu = self.top.get_widget("date_entry_format").get_menu()
         entry_active = format_menu.get_active().get_data(INDEX)
         
         Date.entryCode = entry_active
-        set_int("/gramps/config/dateEntry",entry_active)
+        set_int("/apps/gramps/date-entry",entry_active)
         
         # get the name format
         
@@ -969,11 +921,11 @@ class GrampsPreferences:
         
         name_tuple = _name_format_list[active_name]
         nameof = name_tuple[1]
-        set_int("/gramps/config/nameFormat",active_name)
+        set_int("/apps/gramps/nameFormat",active_name)
         
         format_menu = self.top.get_widget("lastnamegen").get_menu()
         lastnamegen = format_menu.get_active().get_data(DATA)
-        set_int("/gramps/config/surnameGuessing",lastnamegen)
+        set_int("/apps/gramps/surname-guessing",lastnamegen)
         
         name = self.top.get_widget("resname").get_text()
         addr = self.top.get_widget("resaddr").get_text()
@@ -984,14 +936,14 @@ class GrampsPreferences:
         phone = self.top.get_widget("resphone").get_text()
         email = self.top.get_widget("resemail").get_text()
         
-        set_string("/gramps/researcher/name",name)
-        set_string("/gramps/researcher/addr",addr)
-        set_string("/gramps/researcher/city",city)
-        set_string("/gramps/researcher/state",state)
-        set_string("/gramps/researcher/country",country)
-        set_string("/gramps/researcher/postal",postal)
-        set_string("/gramps/researcher/phone",phone)
-        set_string("/gramps/researcher/email",email)
+        set_string("/apps/gramps/researcher-name",name)
+        set_string("/apps/gramps/researcher-addr",addr)
+        set_string("/apps/gramps/researcher-city",city)
+        set_string("/apps/gramps/researcher-state",state)
+        set_string("/apps/gramps/researcher-country",country)
+        set_string("/apps/gramps/researcher-postal",postal)
+        set_string("/apps/gramps/researcher-phone",phone)
+        set_string("/apps/gramps/researcher-email",email)
         
         self.db.set_iprefix(iprefix)
         self.db.set_fprefix(fprefix)
@@ -1017,22 +969,6 @@ class GrampsPreferences:
         so that the property box knows to set the Apply button"""
         self.apply.set_sensitive(1)
 
-    def on_color_toggled(self,obj):
-        """Called by the elements on the property box to set the changed flag,
-        so that the property box knows to set the Apply button"""
-        active = self.top.get_widget("enableColors").get_active()
-        self.top.get_widget(ODDFGCOLOR).set_sensitive(active)
-        self.top.get_widget(ODDBGCOLOR).set_sensitive(active)
-        self.top.get_widget(EVENFGCOLOR).set_sensitive(active)
-        self.top.get_widget(EVENBGCOLOR).set_sensitive(active)
-        self.top.get_widget(ANCESTORFGCOLOR).set_sensitive(active)
-        self.apply.set_sensitive(1)
-
-    def on_color_set(self,obj,r,g,b,a):
-        """Called by the elements on the property box to set the changed flag,
-        so that the property box knows to set the Apply button"""
-        self.apply.set_sensitive(1)
-        
 #-------------------------------------------------------------------------
 #
 # Create the property box, and set the elements off the current values
@@ -1041,43 +977,15 @@ class GrampsPreferences:
 def display_preferences_box(db):
     GrampsPreferences(db)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_config_color(name,defval):
-    r = get_int("/gramps/color/" + name + ".r")
-    g = get_int("/gramps/color/" + name + ".g")
-    b = get_int("/gramps/color/" + name + ".b")
-    if r == None:
-        return defval
-    else:
-        return (r,g,b)
-
-def get_sort_cols(name,col,dir):
-    c = get_int("/gramps/sort/%s_col" % name)
-    if c == None:
-        c = col
-    d = get_int("/gramps/sort/%s_dir" % name)
-    if d == None:
-        d = dir
-    return (c,d)
-
-def save_sort_cols(name,col,dir):
-    set_int("/gramps/sort/%s_col" % name, col)
-    set_int("/gramps/sort/%s_dir" % name, dir)
-    sync()
-
 def save_view(val):
-    set_bool("/gramps/config/view",val)
+    set_bool("/apps/gramps/view",val)
 
 def get_view():
-    return get_bool("/gramps/config/view",1)
+    return get_bool("/apps/gramps/view",1)
 
 def save_filter(val):
-    set_bool("/gramps/config/filter",val)
+    set_bool("/apps/gramps/filter",val)
 
 def get_filter():
-    return get_bool("/gramps/config/filter")
+    return get_bool("/apps/gramps/filter")
 
