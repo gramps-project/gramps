@@ -416,37 +416,6 @@ def search_for(name):
                   
 #-------------------------------------------------------------------------
 #
-#  Roman numbers
-#
-#-------------------------------------------------------------------------
-def roman(num):
-    """ Integer to Roman numeral converter for 0 < num < 4000 """
-    if type(num) != type(0):
-        return "?"
-    if not 0 < num < 4000:
-        return "?"
-    vals = (1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,   1)
-    nums = ( 'M','CM', 'D','CD', 'C','XC', 'L','XL', 'X','IX', 'V','IV', 'I')
-    retval = ""
-    for i in range(len(vals)):
-        amount  = int(num / vals[i])
-        retval += nums[i] * amount
-        num    -= vals[i] * amount
-    return retval
-
-#-------------------------------------------------------------------------
-#
-#  Convert points to cm and back
-#
-#-------------------------------------------------------------------------
-def pt2cm(pt):
-    return (float(pt)/28.3465)
-
-def cm2pt(cm):
-    return (float(cm)/2.54)*72
-
-#-------------------------------------------------------------------------
-#
 #  Change label apperance
 #
 #-------------------------------------------------------------------------

@@ -46,7 +46,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from Utils import pt2cm
+from ReportUtils import pt2cm
 import const                # gender and report type names
 from RelLib import Person   # need Person internals for getting gender / gender name
 import Utils
