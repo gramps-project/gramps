@@ -15,7 +15,7 @@
 <widget>
   <class>GtkWindow</class>
   <name>status</name>
-  <title>GEDCOM import status</title>
+  <title>GEDCOM Import Status</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>False</modal>
@@ -92,7 +92,7 @@
 <widget>
   <class>GtkWindow</class>
   <name>gedcomImport</name>
-  <title>Gramps - GEDCOM import</title>
+  <title>Gramps - GEDCOM Import</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>True</modal>

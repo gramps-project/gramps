@@ -432,7 +432,7 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Creates a family group report, showing information on a set of parents and their children.")
+    return _("Produces a detailed report on the selected person.")
 
 def get_name():
     return _("Generate files/Individual Summary")

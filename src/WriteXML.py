@@ -123,7 +123,7 @@ def dump_my_event(g,name,event):
 #-------------------------------------------------------------------------
 def write_ref(g,label,person):
     if person:
-        g.write("<" + label + " ref=\"" + str(person.getId()) + "\"/>\n")
+        g.write('<%s ref="%s"/>\n' % (label,str(person.getId())))
 
 #-------------------------------------------------------------------------
 #
@@ -132,7 +132,20 @@ def write_ref(g,label,person):
 #-------------------------------------------------------------------------
 def write_id(g,label,person):
     if person:
-        g.write("<" + label + " id=\"" + str(person.getId()) + "\">\n")
+        g.write('<%s id="%s">\n' % (label,str(person.getId())))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def write_family_id(g,family):
+    if family:
+        rel = family.getRelationship()
+        if rel != "":
+            g.write('<family id="%s" type="%s">\n' % (str(family.getId()),rel))
+        else:
+            g.write('<family id="%s">\n' % str(family.getId()))
 
 #-------------------------------------------------------------------------
 #
@@ -141,7 +154,7 @@ def write_id(g,label,person):
 #-------------------------------------------------------------------------
 def write_line(g,label,value):
     if value:
-        g.write("<" + label + ">" + fix(value) + "</" + label + ">\n")
+        g.write('<%s>%s</%s>\n' % (label,fix(value),label))
 
 #-------------------------------------------------------------------------
 #
@@ -149,12 +162,12 @@ def write_line(g,label,value):
 #
 #-------------------------------------------------------------------------
 def dump_name(g,label,name):
-    g.write("<" + label + ">\n")
+    g.write('<%s>\n' % label)
     write_line(g,"first",name.getFirstName())
     write_line(g,"last",name.getSurname())
     write_line(g,"suffix",name.getSuffix())
     write_line(g,"title",name.getTitle())
-    g.write("</" + label + ">\n")
+    g.write('</%s>\n' % label)
 
 #-------------------------------------------------------------------------
 #
@@ -289,7 +302,7 @@ def exportData(database, filename, callback):
             callback(float(count)/float(total))
         count = count + 1
             
-        write_id(g,"family",family)
+        write_family_id(g,family)
         write_ref(g,"father",family.getFather())
         write_ref(g,"mother",family.getMother())
 
@@ -310,6 +323,7 @@ def exportData(database, filename, callback):
             for person in family.getChildList():
                 write_ref(g,"child",person)
             g.write("</childlist>\n")
+        writeNote(g,"note",family.getNote())
         g.write("</family>\n")
     g.write("</families>\n")
 

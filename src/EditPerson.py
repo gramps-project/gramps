@@ -174,6 +174,20 @@ class EditPerson:
         birth = person.getBirth()
         death = person.getDeath()
 
+        self.get_widget("gid").set_text(str(person.getId()))
+        if Config.display_attr:
+            self.get_widget("user_label").set_text("%s : " % Config.attr_name)
+            val = ""
+            for attr in self.person.getAttributeList():
+                if attr.getType() == Config.attr_name:
+                    val = attr.getValue()
+                    break
+            self.get_widget("user_data").set_text(val)
+                
+        else:
+            self.get_widget("user_label").hide()
+            self.get_widget("user_data").hide()
+
         # initial values
         self.get_widget("activepersonTitle").set_text(Config.nameof(person))
         self.suffix.set_text(name.getSuffix())
@@ -1015,7 +1029,7 @@ def on_apply_person_clicked(obj):
     if error == 1:
         msg = _("Changing the gender caused problems with marriage information.")
         msg2 = _("Please check the person's marriages.")
-        GnomeErrorDialog(msg + msg2)
+        GnomeErrorDialog(msg + '\n' + msg2)
         
     text = edit_person_obj.notes_field.get_chars(0,-1)
     if text != person.getNote():

@@ -68,8 +68,7 @@ def ancestors_of(p1,list):
 #
 #
 #-------------------------------------------------------------------------
-def get_name(p1):
-
+def get_name_obj(p1):
     if p1 == None:
         return None
     else:
@@ -874,8 +873,8 @@ class Merge:
         f2 = p2.getMainFamily()
 
         if f1 and f2:
-            dad1 = get_name(f1.getFather())
-            dad2 = get_name(f2.getFather())
+            dad1 = get_name_obj(f1.getFather())
+            dad2 = get_name_obj(f2.getFather())
             
             value = self.name_match(dad1,dad2)
             
@@ -884,8 +883,8 @@ class Merge:
 
             chance = chance + value
             
-            mom1 = get_name(f1.getMother())
-            mom2 = get_name(f2.getMother())
+            mom1 = get_name_obj(f1.getMother())
+            mom2 = get_name_obj(f2.getMother())
 
             value = self.name_match(mom1,mom2)
             if value == -1:
@@ -902,8 +901,8 @@ class Merge:
                         if father1 == father2:
                             chance = chance + 1
                         else:
-                            fname1 = get_name(father1)
-                            fname2 = get_name(father2)
+                            fname1 = get_name_obj(father1)
+                            fname2 = get_name_obj(father2)
                             value = self.name_match(fname1,fname2)
                             if value != -1:
                                 chance = chance + value
@@ -914,8 +913,8 @@ class Merge:
                         if mother1 == mother2:
                             chance = chance + 1
                         else:
-                            mname1 = get_name(mother1)
-                            mname2 = get_name(mother2)
+                            mname1 = get_name_obj(mother1)
+                            mname2 = get_name_obj(mother2)
                             value = self.name_match(mname1,mname2)
                             if value != -1:
                                 chance = chance + value

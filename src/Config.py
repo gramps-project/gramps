@@ -89,6 +89,8 @@ usetabs       = 0
 hide_altnames = 0
 lastfile      = None
 nameof        = utils.normal_name
+display_attr  = 0
+attr_name     = ""
 
 #-------------------------------------------------------------------------
 #
@@ -132,6 +134,8 @@ def loadConfig(call):
     global hide_altnames
     global lastfile
     global nameof
+    global display_attr
+    global attr_name
     global _druid
     global _name_format
     global _callback
@@ -139,6 +143,9 @@ def loadConfig(call):
     _callback = call
     lastfile = gnome.config.get_string("/gramps/data/LastFile")
     usetabs = gnome.config.get_bool("/gramps/config/UseTabs")
+    display_attr = gnome.config.get_bool("/gramps/config/DisplayAttr")
+    attr_name = gnome.config.get_string("/gramps/config/DisplayAttrName")
+    
     hide_altnames = gnome.config.get_bool("/gramps/config/DisplayAltNames")
     autoload = gnome.config.get_bool("/gramps/config/autoLoad")
     dateFormat = gnome.config.get_int("/gramps/config/dateFormat")
@@ -162,6 +169,12 @@ def loadConfig(call):
     ListColors.oddbg = get_config_color(ODDBGCOLOR,(0xffff,0xffff,0xffff))
     ListColors.evenfg = get_config_color(EVENFGCOLOR,(0,0,0))
     ListColors.evenbg = get_config_color(EVENBGCOLOR,(0xffff,0xffff,0xffff))
+
+    if display_attr == None:
+        display_attr = 0
+
+    if attr_name == None:
+        attr_name = ""
 
     if autoload == None:
         autoload = 1
@@ -252,16 +265,22 @@ def on_propertybox_apply(obj,page):
     global nameof
     global owner
     global usetabs
+    global display_attr
+    global attr_name
     global hide_altnames
 
     if page != -1:
         return
     
     autoload = prefsTop.get_widget("autoload").get_active()
+    display_attr = prefsTop.get_widget("attr_display").get_active()
+    attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
     usetabs = prefsTop.get_widget("usetabs").get_active()
     hide_altnames = prefsTop.get_widget("display_altnames").get_active()
     
     gnome.config.set_bool("/gramps/config/UseTabs",usetabs)
+    gnome.config.set_bool("/gramps/config/DisplayAttr",display_attr)
+    gnome.config.set_string("/gramps/config/DisplayAttrName",attr_name)
     gnome.config.set_bool("/gramps/config/autoLoad",autoload)
     gnome.config.set_bool("/gramps/config/DisplayAltNames",hide_altnames)
 
@@ -389,9 +408,14 @@ def display_preferences_box():
     pbox = prefsTop.get_widget("propertybox")
     auto = prefsTop.get_widget("autoload")
     tabs = prefsTop.get_widget("usetabs")
+    display_attr_obj = prefsTop.get_widget("attr_display")
     display_altnames = prefsTop.get_widget("display_altnames")
     auto.set_active(autoload)
     tabs.set_active(usetabs)
+
+    display_attr_obj.set_active(display_attr)
+    prefsTop.get_widget("attr_name").set_text(attr_name)
+        
     display_altnames.set_active(hide_altnames)
 
     date_option = prefsTop.get_widget("date_format")

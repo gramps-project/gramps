@@ -204,7 +204,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label8</name>
-	      <label>Birth date : </label>
+	      <label>Birth Date : </label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -230,7 +230,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label12</name>
-	      <label>Death date : </label>
+	      <label>Death Date : </label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -856,7 +856,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label13</name>
-	      <label>Death date : </label>
+	      <label>Death Date : </label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -960,7 +960,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label9</name>
-	      <label>Birth date : </label>
+	      <label>Birth Date : </label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -1579,7 +1579,7 @@
     <widget>
       <class>GtkLabel</class>
       <name>label44</name>
-      <label>Please be patient.  This may take a while.</label>
+      <label>Please be patient. This may take a while.</label>
       <justify>GTK_JUSTIFY_CENTER</justify>
       <wrap>True</wrap>
       <xalign>0.5</xalign>

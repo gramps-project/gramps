@@ -179,12 +179,6 @@ class Name:
         else:
             return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
 
-    def getNote(self):
-        return self.note
-
-    def setNote(self,text):
-        self.note = text
-
 #-------------------------------------------------------------------------
 #
 #
@@ -458,9 +452,17 @@ class Family:
         self.Children = []
         self.Marriage = None
         self.Divorce = None
+        self.type = ""
         self.EventList = []
         self.id = -1
         self.photoList = []
+        self.note = ""
+
+    def getNote(self):
+        return self.note
+
+    def setNote(self,text):
+        self.note = text
 
     def setId(self,id) :
        	self.id = id
@@ -468,6 +470,12 @@ class Family:
     def getId(self) :
        	return self.id
 
+    def setRelationship(self,type):
+        self.type = type
+
+    def getRelationship(self):
+        return self.type
+    
     def setFather(self,person):
        	self.Father = person
 
@@ -689,6 +697,12 @@ class RelDataBase:
         for person in self.personMap.values():
             for attr in person.getAttributeList():
                 map[attr.getType()] = 1
+        return map.keys()
+
+    def getFamilyRelationTypes(self):
+        map = {}
+        for family in self.familyMap.values():
+            map[family.getRelationship()] = 1
         return map.keys()
 
     def findPerson(self,idVal,map):

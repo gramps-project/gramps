@@ -50,7 +50,8 @@ class OpenOfficeDoc(TextDoc):
 
     def open(self,filename):
         import time
-        
+
+        print filename
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % \
                     (t[0],t[1],t[2],t[3],t[4],t[5])
