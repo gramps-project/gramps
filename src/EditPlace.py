@@ -289,8 +289,8 @@ class EditPlace:
     
     def on_place_apply_clicked(self):
 
-        note = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                         self.note_buffer.get_end_iter(),gtk.FALSE)
+        note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
+                                 self.note_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
 	mloc = self.place.get_main_location()
 
@@ -331,8 +331,8 @@ class EditPlace:
         elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             self.display_references()
-        text = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                self.note_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
+                                self.note_buffer.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:

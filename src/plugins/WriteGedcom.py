@@ -461,7 +461,7 @@ class GedcomWriter:
         self.images = self.topDialog.get_widget ("images").get_active ()
         if self.images:
             images_path = self.topDialog.get_widget ("images_path")
-            self.images_path = images_path.get_text ()
+            self.images_path = unicode(images_path.get_text ())
 
         self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
@@ -481,7 +481,7 @@ class GedcomWriter:
             self.cnvtxt = keep_utf8
 
         self.nl = self.cnvtxt(self.target_ged.get_endl())
-        name = self.topDialog.get_widget("filename").get_text()
+        name = unicode(self.topDialog.get_widget("filename").get_text())
 
         if cfilter == None:
             for p in self.db.getPersonKeys():

@@ -95,7 +95,7 @@ class PackageWriter:
         self.top.get_widget("packageExport").show()
 
     def on_ok_clicked(self,obj):
-        name = self.top.get_widget("filename").get_text()
+        name = unicode(self.top.get_widget("filename").get_text())
         Utils.destroy_passed_object(obj)
         self.export(name)
 

@@ -238,8 +238,8 @@ class EditSource:
         author = unicode(self.author.get_text())
         pubinfo = unicode(self.pubinfo.get_text())
         abbrev = unicode(self.abbrev.get_text())
-        note = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE)
+        note = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                  self.notes_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
 
         if author != self.source.getAuthor():
@@ -278,8 +278,8 @@ class EditSource:
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             self.display_references()
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                self.notes_buffer.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:

@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Report Generation Framework"
 
 __author__ =  "David R. Hampton, Donald N. Allingham"
@@ -694,7 +696,7 @@ class BareReportDialog:
 
         if self.extra_textbox:
             b = self.extra_textbox.get_buffer()
-            text_val = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
+            text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE))
             self.report_text = text_val.split('\n')
         else:
             self.report_text = ""

@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 Provides a python evaluation window
 """
@@ -53,8 +55,8 @@ class EvalWindow:
                          _("Python Evaluation Window"))
 
     def apply_clicked(self,obj):
-        text = self.ebuf.get_text(self.ebuf.get_start_iter(),
-                                  self.ebuf.get_end_iter(),gtk.FALSE)
+        text = unicode(self.ebuf.get_text(self.ebuf.get_start_iter(),
+                                  self.ebuf.get_end_iter(),gtk.FALSE))
 
         outtext = cStringIO.StringIO()
         errtext = cStringIO.StringIO()

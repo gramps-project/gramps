@@ -822,7 +822,6 @@ class EditPerson:
         # Remember old combo list input
 
         bplace_text = unicode(self.bplace.get_text())
-
         dplace_text = unicode(self.dplace.get_text())
             
         prev_btext = Utils.strip_id(bplace_text)
@@ -1013,8 +1012,8 @@ class EditPerson:
         male = self.is_male.get_active()
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                          self.notes_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
         idval = unicode(self.gid.get_text())
 
@@ -1491,8 +1490,8 @@ class EditPerson:
                     "the person's marriages.")
             ErrorDialog(msg)
 
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                          self.notes_buffer.get_end_iter(),gtk.FALSE))
 
         if text != self.person.getNote():
             self.person.setNote(text)
@@ -1632,8 +1631,8 @@ class EditPerson:
         elif page == 9 and self.lds_not_loaded:
             self.lds_not_loaded = 0
             self.draw_lds()
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                            self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                            self.notes_buffer.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:

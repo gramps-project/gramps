@@ -863,7 +863,7 @@ class BookReportSelector:
         Save the current book in the xml booklist file. 
         """
         self.book_list = BookList(self.file)
-        name = self.name_entry.get_text()
+        name = unicode(self.name_entry.get_text())
         self.book.set_name(name)
         self.book.set_dbname(self.db.getSavePath())
         self.book_list.set_book(name,self.book)

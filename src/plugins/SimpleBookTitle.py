@@ -17,6 +17,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #------------------------------------------------------------------------
 #
 # python modules
@@ -344,9 +346,9 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         Report.BareReportDialog.parse_report_options_frame(self)
 
         # get values from the widgets
-        self.title_string = self.title_entry.get_text()
-        self.subtitle_string = self.subtitle_entry.get_text()
-        self.footer_string = self.footer_entry.get_text()
+        self.title_string = unicode(self.title_entry.get_text())
+        self.subtitle_string = unicode(self.subtitle_entry.get_text())
+        self.footer_string = unicode(self.footer_entry.get_text())
         self.size_index = self.size_menu.get_history()
 
     def on_cancel(self, obj):

@@ -430,8 +430,8 @@ class Marriage:
         if self.complete.get_active() != self.family.getComplete():
             changed = 1
 
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                  self.notes_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
 
         if text != self.family.getNote():
@@ -526,8 +526,8 @@ class Marriage:
                     self.family.setRelationship(val)
                 Utils.modified()
 
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                  self.notes_buffer.get_end_iter(),gtk.FALSE))
         if text != self.family.getNote():
             self.family.setNote(text)
             Utils.modified()
@@ -699,8 +699,8 @@ class Marriage:
         list.insert(dest,obj)
 
     def on_switch_page(self,obj,a,page):
-        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                self.notes_buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                self.notes_buffer.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -721,7 +721,7 @@ class Marriage:
 
     def get_place(self,makenew=0):
         field = self.lds_place.entry
-        text = unicode(string.strip(field.get_text()))
+        text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
                 return self.db.getPlaceMap()[self.pmap[text]]

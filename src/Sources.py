@@ -359,16 +359,16 @@ class SourceEditor:
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
 
         buffer = self.get_widget("scomment").get_buffer()
-        comments = buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE)
+        comments = unicode(buffer.get_text(buffer.get_start_iter(),
+                               buffer.get_end_iter(),gtk.FALSE))
 
         buffer = self.get_widget("stext").get_buffer()
-        text = buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE)
+        text = unicode(buffer.get_text(buffer.get_start_iter(),
+                               buffer.get_end_iter(),gtk.FALSE))
 
         buffer = self.get_widget('spage').get_buffer()
-        page = buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE)
+        page = unicode(buffer.get_text(buffer.get_start_iter(),
+                               buffer.get_end_iter(),gtk.FALSE))
 
         self.source_ref.setPage(page)
         self.source_ref.getDate().set(date)

@@ -1,3 +1,30 @@
+2003-12-17  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Sources.py: Unicode conversion from gtk.TextView.
+	* src/Witness.py: Unicode conversion from gtk.TextView.
+	* src/Report.py: Unicode conversion from gtk.TextView.
+	* src/NameEdit.py: Unicode conversion from gtk.TextView.
+	* src/Marriage.py: Unicode conversion from gtk.TextView.
+	* src/ImageSelect.py: Unicode conversion from gtk.TextView.
+	* src/EventEdit.py: Unicode conversion from gtk.TextView.
+	* src/EditSource.py: Unicode conversion from gtk.TextView.
+	* src/EditPlace.py: Unicode conversion from gtk.TextView.
+	* src/EditPerson.py: Unicode conversion from gtk.TextView.
+	* src/AutoComp.py: Unicode conversion from gtk.TextView.
+	* src/AttrEdit.py: Unicode conversion from gtk.TextView.
+	* src/AddrEdit.py: Unicode conversion from gtk.TextView.
+	* src/plugins/BookReport.py: Unicode conversion from gtk.Entry 
+	and gtk.TextView.
+	* src/plugins/ChangeTypes.py: Unicode conversion.
+	* src/plugins/EventCmp.py: Unicode conversion.
+	* src/plugins/FilterEditor.py: Unicode conversion.
+	* src/plugins/SimpleBookTitle.py: Unicode conversion.
+	* src/plugins/TimeLine.py: Unicode conversion.
+	* src/plugins/WebPage.py: Unicode conversion.
+	* src/plugins/WriteGedcom.py: Unicode conversion.
+	* src/plugins/WritePkg.py: Unicode conversion.
+	* src/plugins/eval.py: Unicode conversion.
+	* src/plugins/soundgen.py: Unicode conversion.
+
 2003-12-17  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py
 	(ComprehensiveAncestorsReport.write_report): No need for separate

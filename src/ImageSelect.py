@@ -736,7 +736,7 @@ class LocalMediaProperties:
         
     def on_notebook_switch_page(self,obj,junk,page):
         t = self.notes.get_buffer()
-        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -746,7 +746,7 @@ class LocalMediaProperties:
         priv = self.change_dialog.get_widget("private").get_active()
 
         t = self.notes.get_buffer()
-        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
         note = self.photo.getNote()
         format = self.preform.get_active()
         if text != note or priv != self.photo.getPrivacy():
@@ -976,7 +976,7 @@ class GlobalMediaProperties:
         if page == 3:
             self.display_refs()
         t = self.notes.get_buffer()
-        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -984,7 +984,7 @@ class GlobalMediaProperties:
             
     def on_apply_clicked(self, obj):
         t = self.notes.get_buffer()
-        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
         desc = unicode(self.descr_window.get_text())
         note = self.object.getNote()
         format = self.preform.get_active()

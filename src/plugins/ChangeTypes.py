@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Database Processing/Rename personal event types"
 
 import os
@@ -73,8 +75,8 @@ class ChangeTypes:
     
     def on_apply_clicked(self,obj):
         modified = 0
-        original = self.glade.get_widget("original_text").get_text()
-        new = self.glade.get_widget("new_text").get_text()
+        original = unicode(self.glade.get_widget("original_text").get_text())
+        new = unicode(self.glade.get_widget("new_text").get_text())
 
         for person in self.db.getPersonMap().values():
             for event in person.getEventList():

@@ -190,6 +190,6 @@ class WitnessEditor:
             self.ref.set_value(unicode(self.name.get_text()))
 
         c = self.comment.get_buffer()
-        self.ref.set_comment(c.get_text(c.get_start_iter(),c.get_end_iter(),gtk.FALSE))
+        self.ref.set_comment(unicode(c.get_text(c.get_start_iter(),c.get_end_iter(),gtk.FALSE)))
         if self.update:
             self.update()
