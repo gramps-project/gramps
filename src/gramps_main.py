@@ -169,10 +169,10 @@ class Gramps:
         self.db.setResearcher(GrampsCfg.get_researcher())
 
     def pref_callback(self,val):
+        self.modify_statusbar()
         self.family_view.init_interface()
         self.update_display(val)
         self.toolbar.set_style(GrampsCfg.toolbar)
-
 
     def init_interface(self):
         """Initializes the GLADE interface, and gets references to the
