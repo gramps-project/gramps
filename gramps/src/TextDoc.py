@@ -3,6 +3,37 @@
 #
 # Copyright (C) 2000  Donald N. Allingham
 #
+# Modified September 2002 by Gary Shao
+#
+#   Added line_break() method to TextDoc class to allow breaking a line
+#   in a paragraph (in those document generators that support it).
+#
+#   Added start_listing() and end_listing() methods to TextDoc class to
+#   allow displaying text blocks without automatic filling and justification.
+#   Creating a new listing element seems called for because many document
+#   generator implementation have to use a different mechanism for text
+#   that is not going to be automatically filled and justified than that
+#   used for normal paragraphs. Examples are <pre> tags in HTML, using
+#   the Verbatim environment in LaTeX, and using the Preformatted class
+#   in reportlab for generating PDF.
+#
+#   Added another option, FONT_MONOSPACE, for use as a font face. This
+#   calls for a fixed-width font (e.g. Courier). It is intended primarily
+#   for supporting the display of text where alignment by character position
+#   may be important, such as in code source or column-aligned data.
+#   Especially useful in styles for the new listing element discussed above.
+#
+#   Added start_italic() and end_italic() methods to TextDoc class to
+#   complement the emphasis of text in a paragraph by bolding with the
+#   ability to italicize segments of text in a paragraph.
+#
+#   Added the show_link() method to TextDoc to enable the creation of
+#   hyperlinks in HTML output. Only produces active links in HTML, while
+#   link will be represented as text in other generator output. (active
+#   links are technically possible in PDF documents, but the reportlab
+#   modules the PDF generator is based on does not support them at this
+#   time)
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -51,6 +82,7 @@ except:
 #-------------------------------------------------------------------------
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
+FONT_MONOSPACE = 2
 
 PAPER_PORTRAIT  = 0
 PAPER_LANDSCAPE = 1
@@ -600,7 +632,7 @@ class ParagraphStyle:
 
     def set_alignment(self,align):
         """
-        Sets the pargraph alignment.
+        Sets the paragraph alignment.
 
         align - PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, or
                 PARA_ALIGN_JUSTIFY
@@ -797,7 +829,7 @@ class StyleSheet:
         Adds a paragraph style to the style sheet.
 
         name - name of the ParagraphStyle
-        style - PargraphStyle instance to be added.
+        style - ParagraphStyle instance to be added.
         """
         self.style_list[name] = ParagraphStyle(style)
 
@@ -1006,6 +1038,10 @@ class TextDoc:
         "Closes the document"
         pass
 
+    def line_break(self):
+        "Forces a line break within a paragraph"
+	pass
+
     def page_break(self):
         "Forces a page break, creating a new page"
         pass
@@ -1016,12 +1052,23 @@ class TextDoc:
     def end_bold(self):
         pass
 
+    def start_listing(self,style_name):
+        """
+	Starts a new listing block, using the specified style name.
+
+        style_name - name of the ParagraphStyle to use for the block.
+	"""
+        pass
+
+    def end_listing(self):
+        pass
+
     def start_paragraph(self,style_name,leader=None):
         """
-        Starts a new pargraph, using the specified style name.
+        Starts a new paragraph, using the specified style name.
 
-        style_name - name of the PargraphStyle to use for the paragraph.
-        leader     - Leading text for a pargraph. Typically ssed for numbering.
+        style_name - name of the ParagraphStyle to use for the paragraph.
+        leader     - Leading text for a paragraph. Typically used for numbering.
         """
         pass
 

@@ -3,6 +3,24 @@
 #
 # Copyright (C) 2000  Donald N. Allingham
 #
+# Modified August 2002 by Gary Shao
+#
+#   Changed reference to convert variable of Gramps const module to
+#   a string variable Convert. If Gramps system is present, this is
+#   set to the value of const.convert, else it is set to the fixed
+#   value "convert"
+#   NOTE: this means the module expects to be able to make a system
+#   call to a program called "convert" if the PIL module is not present.
+#   The convert program is part of the ImageMagick application, which
+#   should be installed prior to using this module if PIL is not
+#   available.
+#
+#   Corrected a bug in the fmt_scale_data method of ImgManip class
+#   under the PIL case. Call to tostring method of image class
+#   requires that the format name be in lower case (it uses the
+#   format name internally to construct the name of the encoder
+#   function to call, which is in lower case).
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -19,8 +37,15 @@
 #
 
 import os
-import const
 import string
+import sys
+
+try:
+    import const
+except:
+    Convert = "convert"
+else:
+    Convert = const.convert
 
 #-------------------------------------------------------------------------
 #
@@ -33,12 +58,16 @@ try:
     PIL.Image.init()
     no_pil = 0
 except:
-    import popen2
-    import GDK
-    import GTK
-    import gtk
-    import GdkImlib
-    no_pil = 1
+    try:
+        import popen2
+        import GDK
+        import GTK
+        import gtk
+        import GdkImlib
+        no_pil = 1
+    except:
+        raise "ImgLibException", "Error: No imaging library available"
+        
 
 class ImgManip:
     def __init__(self,source):
@@ -53,15 +82,15 @@ class ImgManip:
         def fmt_thumbnail(self,dest,width,height,cnv):
             w = int(width)
             h = int(height)
-            cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,w,h,self.src,cnv,dest)
+            cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (Convert,w,h,self.src,cnv,dest)
             os.system(cmd)
 
         def fmt_convert(self,dest,cnv):
-            cmd = "%s '%s' '%s:%s'" % (const.convert,self.src,cnv,dest)
+            cmd = "%s '%s' '%s:%s'" % (Convert,self.src,cnv,dest)
             os.system(cmd)
 
         def fmt_data(self,cnv):
-            cmd = "%s '%s' '%s:-'" % (const.convert,self.src,cnv)
+            cmd = "%s '%s' '%s:-'" % (Convert,self.src,cnv)
             r,w = popen2.popen2(cmd)
             buf = r.read()
             r.close()
@@ -69,7 +98,7 @@ class ImgManip:
             return buf
 
         def fmt_scale_data(self,x,y,cnv):
-            cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,self.src,cnv)
+            cmd = "%s -geometry %dx%d '%s' '%s:-'" % (Convert,x,y,self.src,cnv)
             r,w = popen2.popen2(cmd)
             buf = r.read()
             r.close()
@@ -114,7 +143,8 @@ class ImgManip:
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            return im.tostring(string.upper(pil),"RGB")
+            #return im.tostring(string.upper(pil),"RGB")
+            return im.tostring(pil,"RGB")
 
     def jpg_thumbnail(self,dest,width,height):
         self.fmt_thumbnail(dest,width,height,"jpeg")
@@ -155,8 +185,6 @@ class ImgManip:
 
 if __name__ == "__main__":
 
-    import sys
-    
     img = ImgManip(sys.argv[1])
     img.jpg_thumbnail("foo.jpg",50,50)
     img.png_thumbnail("foo.png",50,50)

@@ -179,7 +179,7 @@ class DescendantReportDialog(TextReportDialog):
 #
 #------------------------------------------------------------------------
 def report(database,person):
-    DescendantReportDialog(person,database)
+    DescendantReportDialog(database,person)
 
 #------------------------------------------------------------------------
 #

@@ -205,8 +205,10 @@ class ChooseParents:
         self.father_list.sort()
         self.mother_list.thaw()
         self.father_list.thaw()
-        self.father_list.moveto(self.father_list.selection[0],0)
-        self.mother_list.moveto(self.mother_list.selection[0],0)
+        if self.father_list.selection:
+            self.father_list.moveto(self.father_list.selection[0],0)
+        if self.mother_list.selection:
+            self.mother_list.moveto(self.mother_list.selection[0],0)
 
         if self.type == "Partners":
             self.mlabel.set_label(_("Parent"))
