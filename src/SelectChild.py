@@ -120,6 +120,7 @@ class SelectChild:
         
     def redraw_child_list(self,filter):
         self.refmodel.clear()
+        self.refmodel.new_model()
         bday = self.person.getBirth().getDateObj()
         dday = self.person.getDeath().getDateObj()
 
@@ -182,11 +183,14 @@ class SelectChild:
                 if self.default_name and ln == self.default_name and not iter:
                     iter = new_iter
 
+        self.refmodel.connect_model()
+
         if iter:
             self.refmodel.selection.select_iter(iter)
             path = self.refmodel.model.get_path(iter)
             col = self.add_child.get_column(0)
             self.add_child.scroll_to_cell(path,col,1,0.5,0.0)
+
 
     def on_save_child_clicked(self,obj):
         store,iter = self.refmodel.selection.get_selected()
