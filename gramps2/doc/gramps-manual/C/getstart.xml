@@ -85,9 +85,10 @@
 	<guilabel>Usage</guilabel> category. 
 	</para>
 
+    </sect2>
 
-    <!-- ================ Getting Started Sub-subsection  -->
-      <sect3 id="choose-db-start">
+    <!-- ================ Getting Started Subsection  -->
+      <sect2 id="choose-db-start">
       <title>Choosing a database on startup</title> 
       <para>If &app; is started without any
       database  to open, the following window will appear prompting you to 
@@ -108,9 +109,18 @@
       specify the name of your existing database. If you would like to start
       creating your brand new database from scratch right away, choose new XML
       database. </para> 
-      </sect3>
+
+      <para>NOTE: when starting new database, you should 
+      select an empty <replaceable>DIRECTORY</replaceable> 
+      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
+      needed. The directory you specify will be used by &app; to store 
+      database file <replaceable>data.gramps</replaceable> as well as any 
+      possible copies of media objects. This directory will be updated by &app; 
+      each time the database is saved. </para> 
       
-    <!-- ================ Getting Started Sub-subsection  -->
+      </sect2>
+      
+<!-- ================ Getting Started Sub-subsection  
       <sect3 id="zodb-support">
         <title>Optional ZODB support</title> 
 
@@ -138,7 +148,8 @@
       probably better off with ZODB. </para>
 
       </sect3>
-    </sect2>
+-->
+
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
       <title>Obtaining Help</title>
