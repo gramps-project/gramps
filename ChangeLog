@@ -1,3 +1,8 @@
+2003-10-18  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/SourceView.py: Enable popup menu on right-click.
+	* src/PlaceView.py: Likewise.
+	* src/MediaView.py: Likewise.
+
 2003-10-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Add a "sortbynames" to presort keys before adding to
 	the tables
