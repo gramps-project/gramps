@@ -180,6 +180,7 @@
       <widget>
 	<class>GtkFrame</class>
 	<name>frame1</name>
+	<border_width>5</border_width>
 	<label>Format</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -190,36 +191,65 @@
 	</child>
 
 	<widget>
-	  <class>GtkVBox</class>
-	  <name>vbox4</name>
+	  <class>GtkOptionMenu</class>
+	  <name>format</name>
+	  <border_width>5</border_width>
+	  <can_focus>True</can_focus>
+	  <items>OpenOffice
+</items>
+	  <initial_choice>0</initial_choice>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>style_frame</name>
+	<border_width>5</border_width>
+	<label>Styles</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkHBox</class>
+	  <name>hbox3</name>
 	  <homogeneous>False</homogeneous>
 	  <spacing>0</spacing>
 
 	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>openoffice</name>
+	    <class>GtkOptionMenu</class>
+	    <name>style_menu</name>
+	    <border_width>10</border_width>
 	    <can_focus>True</can_focus>
-	    <label>OpenOffice</label>
-	    <active>True</active>
-	    <draw_indicator>True</draw_indicator>
-	    <group>format</group>
+	    <items>default
+</items>
+	    <initial_choice>0</initial_choice>
 	    <child>
 	      <padding>0</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
+	      <expand>True</expand>
+	      <fill>True</fill>
 	    </child>
 	  </widget>
 
 	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>pdf</name>
+	    <class>GtkButton</class>
+	    <name>button17</name>
+	    <border_width>10</border_width>
 	    <can_focus>True</can_focus>
-	    <label>PDF</label>
-	    <active>False</active>
-	    <draw_indicator>True</draw_indicator>
-	    <group>format</group>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_style_edit_clicked</handler>
+	      <object>dialog1</object>
+	      <last_modification_time>Tue, 05 Jun 2001 14:39:29 GMT</last_modification_time>
+	    </signal>
+	    <label>Style Editor</label>
+	    <relief>GTK_RELIEF_NORMAL</relief>
 	    <child>
-	      <padding>0</padding>
+	      <padding>5</padding>
 	      <expand>False</expand>
 	      <fill>False</fill>
 	    </child>
@@ -230,6 +260,7 @@
       <widget>
 	<class>GtkFrame</class>
 	<name>frame2</name>
+	<border_width>5</border_width>
 	<label>Options</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -330,7 +361,7 @@
 	    <class>GtkOptionMenu</class>
 	    <name>papersize</name>
 	    <can_focus>True</can_focus>
-	    <items>
+	    <items>Letter
 </items>
 	    <initial_choice>0</initial_choice>
 	    <child>
@@ -353,7 +384,7 @@
 	    <class>GtkOptionMenu</class>
 	    <name>orientation</name>
 	    <can_focus>True</can_focus>
-	    <items>
+	    <items>Portrait
 </items>
 	    <initial_choice>0</initial_choice>
 	    <child>

@@ -37,8 +37,8 @@ except:
 
 class OpenDrawDoc(DrawDoc):
 
-    def __init__(self,type,orientation):
-        DrawDoc.__init__(self,type,orientation)
+    def __init__(self,styles,type,orientation):
+        DrawDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -99,8 +99,8 @@ class OpenDrawDoc(DrawDoc):
 	self.f.write('<style:properties fo:margin-left="0cm" ')
 	self.f.write('fo:margin-right="0cm" fo:text-indent="0cm"/>\n')
 	self.f.write('</style:style>\n')
-        for key in self.paragraph_styles.keys():
-            style = self.paragraph_styles[key]
+        for key in self.style_list.keys():
+            style = self.style_list[key]
             self.f.write('<style:style style:name="T' + key + '" ')
             self.f.write('style:family="text">\n')
             self.f.write('<style:properties ')
@@ -249,8 +249,8 @@ class OpenDrawDoc(DrawDoc):
 
         self.f.write('<style:style style:name="Standard" ')
         self.f.write('style:family="paragraph" style:class="text"/>\n')
-        for key in self.paragraph_styles.keys():
-            style = self.paragraph_styles[key]
+        for key in self.style_list.keys():
+            style = self.style_list[key]
             self.f.write('<style:style style:name="' + key + '" ')
             self.f.write('style:family="paragraph" ')
             self.f.write('style:parent-style-name="Standard" ')
