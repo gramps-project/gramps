@@ -145,10 +145,11 @@ class AutoCombo(AutoCompBase):
         widget.entry.connect("insert-text",self.insert_text)
         self.vals = [""]
         self.inb = 0
-        if len(plist) > 0:
+        if plist and len(plist) < 250:
             widget.set_popdown_strings(plist)
         else:
             widget.set_popdown_strings([""])
+            widget.get_children()[1].hide()
         
     def setval(self,widget):
         """Callback task called on the button release"""
@@ -165,7 +166,7 @@ class AutoCombo(AutoCompBase):
         """
         self.inb = 1
 
-        if len(self.vals) > 0:
+        if self.vals and len(self.vals) < 250:
             if self.vals[0] == "":
                 self.entry.set_popdown_strings([self.entry.entry.get_text()])
             else:
