@@ -115,9 +115,12 @@ def mk_thumb(source,dest,size):
         print cmd
         os.system(cmd)
     else:
-        im = Image.open(source)
-        im.thumbnail((size,size))
-        im.save(dest,"JPEG")
+        try:
+            im = Image.open(source)
+            im.thumbnail((size,size))
+            im.save(dest,"JPEG")
+        except:
+            pass
 
 #-------------------------------------------------------------------------
 #
