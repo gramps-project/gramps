@@ -1,3 +1,10 @@
+2003-08-05  Tim Waugh  <twaugh@redhat.com>
+	* src/Report.py, src/TextDoc.py, src/DrawDoc.py: Adjusted the way
+	that 'Print Report' is handled.
+	* src/docgen/OpenOfficeDoc.py, src/docgen/PSDrawDoc.py: Likewise.
+	* src/plugins/AncestorChart.py: Undo previous change to do with
+	printing reports.
+
 2003-08-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py (make_doc_menu): Add paper option to the menu.
 	* src/GenericFilter.py: Fixes for existing filters (ancestors and

@@ -124,9 +124,8 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%d\n' % self.page)
         self.f.write('%%EOF\n')
         self.f.close()
-
-    def print_report(self):
-        return run_print_dialog (self.filename)
+        if self.print_req:
+            run_print_dialog (self.filename)
         
     def start_paragraph(self,style_name):
 	pass
