@@ -1029,17 +1029,21 @@ class GedcomWriter:
                 photo_obj_id = photo.get_reference_handle()
                 photo_obj = self.db.get_object_from_handle(photo_obj_id)
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
+                    path = photo_obj.get_path ()
+                    print path
+                    if not os.path.isfile(path):
+                        continue
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
-                    path = photo_obj.get_path ()
                     dirname = os.path.join (self.dirname, self.images_path)
                     basename = os.path.basename (path)
                     self.writeln('2 FILE %s' % os.path.join(self.images_path,
                                                            basename))
                     try:
-                        os.mkdir (dirname)
+                        if not os.path.isdir(dirname):
+                            os.mkdir (dirname)
                     except:
-                        pass
+                        continue
                     dest = os.path.join (dirname, basename)
                     try:
                         os.link (path, dest)
