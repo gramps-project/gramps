@@ -31,6 +31,11 @@ import utils
 from TextDoc import *
 from DrawDoc import *
 from OpenDrawDoc import *
+try:
+    from PdfDrawDoc import *
+    no_pdf = 0
+except:
+    no_pdf = 1
 
 from gtk import *
 from gnome.ui import *
@@ -162,6 +167,7 @@ class AncestorChart:
                 name = name + "\nd. " + death.getDate()
 
             self.doc.draw_box("box",name,self.x[level],self.y[index-1])
+
             if index > 1:
                 old_index = int(index/2)-1
                 x1 = self.x[level-1]+(self.width/2.0)
@@ -170,6 +176,7 @@ class AncestorChart:
                     y1 = self.y[old_index]+self.height
                 else:
                     y1 = self.y[old_index]
+                    
                 y2 = self.y[index-1]+(self.height/2.0)
                 self.doc.draw_line("line",x1,y1,x1,y2)
                 self.doc.draw_line("line",x1,y2,x2,y2)
@@ -201,6 +208,9 @@ def report(database,person):
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
 
+    if no_pdf == 1:
+        topDialog.get_widget("pdf").set_sensitive(0)
+
     title = _("Ancestor chart for %s") % name
     topDialog.get_widget("labelTitle").set_text(title)
     topDialog.signal_autoconnect({
@@ -228,9 +238,12 @@ def on_save_clicked(obj):
         
     max_gen = topDialog.get_widget("generations").get_value_as_int()
 
-    document = OpenDrawDoc(paper,orien)
+    if topDialog.get_widget("openoffice").get_active():
+        document = OpenDrawDoc(paper,orien)
+    else:
+        document = PdfDrawDoc(paper,orien)
 
-    MyReport = AncestorChart(db,active_person,outputName,document, max_gen)
+    MyReport = AncestorChart(db,active_person,outputName,document,max_gen)
 
     MyReport.setup()
     MyReport.write_report()

@@ -226,6 +226,27 @@
 
 	  <widget>
 	    <class>GtkRadioButton</class>
+	    <name>pdf</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_html_toggled</handler>
+	      <object>dialog1</object>
+	      <last_modification_time>Tue, 20 Mar 2001 17:02:37 GMT</last_modification_time>
+	    </signal>
+	    <label>PDF</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>format</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
 	    <name>html</name>
 	    <can_focus>True</can_focus>
 	    <signal>
@@ -384,7 +405,8 @@
 	    <class>GtkOptionMenu</class>
 	    <name>papersize</name>
 	    <can_focus>True</can_focus>
-	    <items></items>
+	    <items>
+</items>
 	    <initial_choice>0</initial_choice>
 	    <child>
 	      <left_attach>1</left_attach>
@@ -406,7 +428,8 @@
 	    <class>GtkOptionMenu</class>
 	    <name>orientation</name>
 	    <can_focus>True</can_focus>
-	    <items></items>
+	    <items>
+</items>
 	    <initial_choice>0</initial_choice>
 	    <child>
 	      <left_attach>1</left_attach>

@@ -35,7 +35,6 @@ class Date:
     formatCode = 0
     entryCode = 0
     
-    BadFormat = _("Unknown Format")
     Error = _("Illegal Date")
 
     range = 1
@@ -231,7 +230,7 @@ class SingleDate:
                 _("before") + '|' + \
                 _("after") + '|' + \
                 _("aft") + '|' + \
-                _("bef") + ")"
+                _("bef") + ')'
     
     start = "^\s*" + modifiers + "?\s*"
     

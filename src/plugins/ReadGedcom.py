@@ -23,6 +23,8 @@
 from RelLib import *
 import latin_ansel
 import latin_utf8 
+import intl
+_ = intl.gettext
 
 import os
 import re
@@ -641,13 +643,12 @@ def on_ok_clicked(obj):
     try:
         importData(db,name)
     except InvalidGedcom:
-        GnomeErrorDialog(name + " is not a valid GEDCOM file")
+        GnomeErrorDialog(_("%s is not a valid GEDCOM file") % name)
         statusWindow.destroy()
     except IOError, val:
-        GnomeErrorDialog("Could not load " + name + "\n" + val[1])
+        GnomeErrorDialog(_("Could not load %s") % name + "\n" + val[1])
     except:
-        GnomeErrorDialog("Could not load " + name + \
-                         "\n due to an unexpected internal error")
+        GnomeErrorDialog(_("Could not load %s") % name)
         statusWindow.destroy()
     
 #-------------------------------------------------------------------------
@@ -676,3 +677,10 @@ def readData(database,active_person,cb):
     topDialog.signal_autoconnect(dic)
     topDialog.get_widget("gedcomImport").show()
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_name():
+    return _("Import from GEDCOM")

@@ -27,6 +27,8 @@ import re
 import sort
 import string
 import utils
+import intl
+_ = intl.gettext
 
 from gtk import *
 from gnome.ui import *
@@ -113,5 +115,8 @@ def report(database,person):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Provides a summary of the current database"
+    return _("Provides a summary of the current database")
 
+
+def get_name():
+    return _("View/Summary of the database")

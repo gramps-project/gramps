@@ -25,6 +25,9 @@ import re
 import string
 import os
 import utils
+import intl
+
+_ = intl.gettext
 
 from gtk import *
 from gnome.ui import *
@@ -75,12 +78,20 @@ def add_to_tree(tree,person):
                 subtree.show()
                 item.set_subtree(subtree)
             add_to_tree(subtree,child)
-        
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_name():
+    return _("Analysis and Exploration/Interactive descendant browser")
+
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Provides a browsable hierarchy of the active person"
+    return _("Provides a browsable hierarchy of the active person")
 

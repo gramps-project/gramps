@@ -23,6 +23,8 @@
 from RelLib import *
 import const
 import utils
+import intl
+_ = intl.gettext
 
 import os
 import re
@@ -144,12 +146,12 @@ def an_des_of_gparents_filter(database,person,list):
 #------------------------------------------------------------------------
 
 filter_map = {
-    "Individual" : individual_filter,
-    "Ancestors" : ancestor_filter,
-    "Descendants" : descendant_filter,
-    "Ancestors and descendants" : an_des_filter,
-    "Grandparent's ancestors and descendants" : an_des_of_gparents_filter,
-    "Entire database" : entire_db_filter
+    _("Individual") : individual_filter,
+    _("Ancestors") : ancestor_filter,
+    _("Descendants") : descendant_filter,
+    _("Ancestors and descendants") : an_des_filter,
+    _("Grandparent's ancestors and descendants") : an_des_of_gparents_filter,
+    _("Entire database") : entire_db_filter
     }
     
 #-------------------------------------------------------------------------
@@ -261,19 +263,19 @@ def on_ok_clicked(obj):
     elif not os.path.isdir(directoryName):
         parent_dir = os.path.dirname(directoryName)
         if not os.path.isdir(parent_dir):
-            GnomeErrorDialog("Neither " + directoryName + " nor " + \
-                             parent_dir + " are directories")
+            GnomeErrorDialog(_("Neither %s nor %s are directories") % \
+                             (directoryName,parent_dir))
             return
         else:
             try:
-                print "trying to make",directoryName
                 os.mkdir(directoryName)
             except IOError, value:
-                GnomeErrorDialog("Could not create the directory " + directoryName + "\n" + \
-                         value[1])
+                GnomeErrorDialog(_("Could not create the directory : %s") % \
+                                 directoryName + "\n" + value[1])
                 return
             except:
-                GnomeErrorDialog("Could not create the directory " + directoryName)
+                GnomeErrorDialog(_("Could not create the directory : %s") % \
+                                 directoryName)
                 return
 
     if templateName == None:
@@ -282,11 +284,11 @@ def on_ok_clicked(obj):
     try:
         templateFile = open(templateName,"r")
     except IOError, value:
-        GnomeErrorDialog("Could not open the template file (" + templateName + ")\n" + \
-                         value[1])
+        GnomeErrorDialog(_("Could not open the template file (%s)") % templateName + \
+                         "\n" + value[1])
         return
     except:
-        GnomeErrorDialog("Could not open the template file (" + templateName + ")")
+        GnomeErrorDialog(_("Could not open the template file (%s)") % templateName)
         return
         
     top_add = 1
@@ -351,9 +353,9 @@ def print_event(html,name,event):
         html.write("<H2>%s</H2>\n" % name)
         html.write("<UL>\n")
         if date != "":
-            html.write("<LI>Date : %s</LI>\n" % date)
+            html.write("<LI>%s : %s</LI>\n" % (_("Date"),date))
         if place != "":
-            html.write("<LI>Place : %s</LI>\n" % place)
+            html.write("<LI>%s : %s</LI>\n" % (_("Place"),place))
         html.write("</UL>\n")
             
 #------------------------------------------------------------------------
@@ -401,7 +403,8 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
 
         regex_match = titleRe.search(line)
         if regex_match != None:
-            html.write("Family Tree - %s\n" % name )
+            txt = _("Family Tree")
+            html.write("%s - %s\n" % (txt,name) )
 
     html.write("<H1>%s</H1>\n" % person.getPrimaryName().getRegularName())
 
@@ -424,12 +427,12 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
         html.write('" WIDTH="' + str(width) + '" HEIGHT="200">\n')
         
     if not alive:
-        print_event(html,"Birth",person.getBirth())
-        print_event(html,"Death",person.getDeath())
+        print_event(html,_("Birth"),person.getBirth())
+        print_event(html,_("Death"),person.getDeath())
     
     family = person.getMainFamily()
     if family != None:
-        html.write("<H2>Parents</H2>\n")
+        html.write("<H2>%s</H2>\n" % _("Parents"))
         html.write("<UL>\n")
         write_reference(html,family.getFather(), prefix)
         write_reference(html,family.getMother(), prefix)
@@ -438,7 +441,7 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
 
     for family in person.getFamilyList():
 
-        html.write("<H2>Spouse</H2>\n")
+        html.write("<H2>%s</H2>\n" % _("Spouse"))
         html.write("<UL>\n")
         if person.getGender() == Person.male:
             spouse = family.getMother()
@@ -453,7 +456,8 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
             spouse_alive = probably_alive(spouse)
             
         if name == None or name.getRegularName() == "":
-            html.write("<LI>Spouse's name is not known</LI>\n")
+            txt = _("Spouse's name is not known")
+            html.write("<LI>%s</LI>\n" % txt)
         else:
             write_reference(html,spouse,prefix)
 
@@ -461,12 +465,12 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
         if marriage and not alive and not spouse_alive:
             place = marriage.getPlace()
             date = marriage.getDate()
-            if place != "" and date != "":
-                html.write("<LI>Married %s, %s</LI>\n" % (date, place))
-            elif place == "":
-                html.write("<LI>Marriage place :%s</LI>\n" % place)
-            else:
-                html.write("<LI>Marriage date :%s</LI>\n" % date)
+            if place:
+                txt = _("Marriage place")
+                html.write("<LI>%s :%s</LI>\n" % (txt,place))
+            if date:
+                txt = _("Marriage date")
+                html.write("<LI>%s :%s</LI>\n" % (txt,date))
 
         if spouse:
             sp_family = spouse.getMainFamily()
@@ -474,23 +478,24 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
                 sp_father = sp_family.getFather()
                 sp_mother = sp_family.getMother()
                 if sp_father and sp_mother:
-                    html.write("<LI>Spouse's parents: ")
-                    html.write(name_or_link(sp_father,prefix))
-                    html.write(" and ")
-                    html.write(name_or_link(sp_mother,prefix))
-                    html.write("</LI>\n")
+                    txt = _("Spouse's parents: %s and %s") % \
+                          (name_or_link(sp_father,prefix),\
+                           name_or_link(sp_mother,prefix))
+                    html.write("<LI>%s</LI>\n" % txt)
                 elif sp_father:
-                    html.write("<LI>Spouse's father: %s</LI>\n" %
-                               name_or_link(sp_father,prefix))
+                    txt = _("Spouse's father: %s and %s") % \
+                          name_or_link(sp_father,prefix)
+                    html.write("<LI>%s</LI>\n" % txt)
                 elif sp_mother:
-                    html.write("<LI>Spouse's mother: %s</LI>\n" %
-                               name_or_link(sp_mother,prefix))
+                    txt = _("Spouse's father: %s and %s") % \
+                          name_or_link(sp_mother,prefix)
+                    html.write("<LI>%s</LI>\n" % txt)
             
         html.write("</UL>\n")
 
         childList = family.getChildList()
         if len(childList) > 0:
-            html.write("<H3>Children</H3>\n")
+            html.write("<H3>%s</H3>\n" % _("Children"))
             html.write("<UL>\n")
             for child in childList:
                 write_reference(html,child,prefix)
@@ -499,7 +504,7 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
 
     note = person.getNote()
     if note != "":
-        html.write("<H2>Notes</H2>\n")
+        html.write("<H2>%s</H2>\n" % _("Notes"))
         noteList = string.split(note,"\n")
         for text in noteList:
             html.write("<P>" + text + "</P>\n")
@@ -524,9 +529,9 @@ def dump_index(person_list,filename,prefix,templateTop,templateBottom,targetDir)
 
         regex_match = titleRe.search(line)
         if regex_match != None:
-            html.write("Family Tree - Index\n")
+            html.write("%s\n" % _("Family Tree - Index"))
 
-    html.write("<H1>Family Tree Index</H1>\n")
+    html.write("<H1>%s</H1>\n" % _("Family Tree Index"))
 
     person_list.sort(sort.by_last_name)
     for person in person_list:
@@ -544,6 +549,7 @@ def dump_index(person_list,filename,prefix,templateTop,templateBottom,targetDir)
 #
 #------------------------------------------------------------------------
 def get_description():
-    return "Generates web (HTML) pages for individuals, or a set of " \
-           "individuals."
-    
+    return _("Generates web (HTML) pages for individuals, or a set of individuals.")
+
+def get_name():
+    return _("Generate files/Individual web pages")

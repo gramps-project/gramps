@@ -34,6 +34,8 @@ import intl
 
 _ = intl.gettext
 
+names = {}
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -87,9 +89,14 @@ class ReportPlugins:
 
         item_hash = {}
         for report in reports:
-            info = string.split(report.__doc__,"/")
+            if report.__dict__.has_key("get_name"):
+                doc = report.get_name()
+            else:
+                doc = report.__doc__
+            
+            info = string.split(doc,"/")
             if len(info) == 1:
-                category = "Uncategorized"
+                category = _("Uncategorized")
                 name = info[0]
             else:
                 category = info[0]
@@ -105,7 +112,7 @@ class ReportPlugins:
                 item.set_data("i",report.get_xpm_image)
             else:
                 item.set_data("i",no_image)
-            item.set_data("t",report.__doc__)
+            item.set_data("t",doc)
             item.connect("select",on_report_node_selected)
             if item_hash.has_key(category):
                 item_hash[category].append(item)
@@ -151,12 +158,17 @@ class ToolPlugins:
 
         item_hash = {}
         for report in tools:
-            info = string.split(report.__doc__,"/")
+            if report.__dict__.has_key("get_name"):
+                doc = report.get_name()
+            else:
+                doc = report.__doc__
+
+            info = string.split(doc,"/")
             item = GtkTreeItem(info[1])
             item.set_data("o",self)
             item.set_data("c",report.runTool)
             item.set_data("d",report.get_description)
-            item.set_data("t",report.__doc__)
+            item.set_data("t",doc)
             item.connect("select",on_node_selected)
             if item_hash.has_key(info[0]):
                 item_hash[info[0]].append(item)
@@ -221,7 +233,7 @@ def on_report_node_selected(obj):
 #
 #-------------------------------------------------------------------------
 def by_doc(a,b):
-    return cmp(a.__doc__,b.__doc__)
+    return cmp(names[a],names[b])
 
 #-------------------------------------------------------------------------
 #
@@ -281,8 +293,14 @@ def load_plugins(dir):
         groups = match.groups()
         try: 
             plugin = __import__(groups[0])
+            try:
+                names[plugin] = plugin.get_name()
+            except:
+                names[plugin] = plugin.__doc__
         except:
-            print groups[0]
+            print _("Failed to load the module: %s") % groups[0]
+            import traceback
+            traceback.print_exc()
             continue
         for task in plugin.__dict__.keys():
             if task == "report":
@@ -308,7 +326,12 @@ def export_menu(callback):
     myMenu = GtkMenu()
 
     for report in exports:
-        item = GtkMenuItem(report.__doc__)
+        try:
+            text = report.get_name()
+        except:
+            text = report.__doc__
+        item = GtkMenuItem(text)
+        
         item.show()
         item.connect("activate", callback ,report.writeData)
         myMenu.append(item)
@@ -323,7 +346,12 @@ def import_menu(callback):
     myMenu = GtkMenu()
 
     for report in imports:
-        item = GtkMenuItem(report.__doc__)
+        try:
+            text = report.get_name()
+        except:
+            text = report.__doc__
+        item = GtkMenuItem(text)
+
         item.show()
         item.connect("activate", callback ,report.readData)
         myMenu.append(item)

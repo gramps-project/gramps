@@ -23,6 +23,9 @@
 import libglade
 from ReadXML import *
 import utils
+import intl
+
+_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -78,4 +81,11 @@ def on_ok_clicked(obj):
     utils.destroy_passed_object(obj)
     importData(db,name,progress)
     callback(1)
-    
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_name():
+    return _("Import from Gramps")

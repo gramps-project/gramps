@@ -30,6 +30,9 @@ import re
 import sort
 import utils
 import string
+import intl
+
+_ = intl.gettext
 
 #------------------------------------------------------------------------
 #
@@ -450,10 +453,10 @@ def runTool(database,person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Genealogical Research Event Analysis Tool\n\n" \
-           "Aids in the analysis of data by allowing the development "\
-           "of custom filters that can be applied to the database to "\
-           "find similar events"
+    return _("Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events")
+
+def get_name():
+    return _("Analysis and Exploration/Compare individual events")
 
 #-------------------------------------------------------------------------
 #
