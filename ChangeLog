@@ -1,3 +1,21 @@
+2004-08-20  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/rel_da.py: Convert to new interface. Add to CVS.
+	* src/plugins/rel_fi.py: Convert to new interface. Add to CVS.
+	* src/plugins/rel_fr.py: Convert to new interface. Add to CVS.
+	* src/plugins/rel_no.py: Convert to new interface. Add to CVS.
+	* src/plugins/rel_sv.py: Convert to new interface. Add to CVS.
+	* src/plugins/Makefile.am: Ship new files. 
+	* src/Relationship.py (apply_filter): Keep gender info of all
+	member in the relationship chain, not just number of generations;
+	(is_spouse): correctly compare handles; (get_relationship_distance, 
+	get_relationship, get_grandparents_string): correctly use apply_filter.
+	* src/plugins/rel_it.py (get_relationship): Correctly use apply_filter.
+	* src/plugins/rel_hu.py (get_relationship): Correctly use apply_filter.
+	* src/plugins/rel_de.py (is_spouse): Remove function; 
+	(get_relationship): Correctly use apply_filter.
+	* src/plugins/rel_ru.py (is_spouse): Remove function;
+	(get_relationship): Correctly use apply_filter.
+
 2004-08-20  Tim Waugh  <twaugh@redhat.com>
 	* src/RelLib.py (Event.are_equal): Fixed comparison with None.
 

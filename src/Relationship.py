@@ -163,19 +163,19 @@ class RelationshipCalculator:
     def set_db(self,db):
         self.db = db
 
-    def apply_filter(self,person,index,plist,pmap):
+    def apply_filter(self,person,rel_str,plist,pmap):
         if person == None:
             return
         plist.append(person.get_handle())
-        pmap[person.get_handle()] = index
+        pmap[person.get_handle()] = rel_str
 
         family_handle = person.get_main_parents_family_handle()
         if family_handle != None:
             family = self.db.get_family_from_handle(family_handle)
             father = self.db.get_person_from_handle(family.get_father_handle())
             mother = self.db.get_person_from_handle(family.get_mother_handle())
-            self.apply_filter(father,index+1,plist,pmap)
-            self.apply_filter(mother,index+1,plist,pmap)
+            self.apply_filter(father,rel_str+'f',plist,pmap)
+            self.apply_filter(mother,rel_str+'m',plist,pmap)
 
     def get_cousin(self,level,removed):
         if removed > len(_removed_level)-1 or level>len(_level_name)-1:
@@ -241,7 +241,7 @@ class RelationshipCalculator:
         for f in orig.get_family_handle_list():
             family = self.db.get_family_from_handle(f)
             if family:
-                if other == family.get_father_handle() or other == family.get_mother_handle():
+                if other.get_handle() == family.get_father_handle() or other.get_handle() == family.get_mother_handle():
                     return 1
             else:
                 return 0
@@ -271,14 +271,14 @@ class RelationshipCalculator:
         rank = 9999999
 
         try:
-            self.apply_filter(orig_person,0,firstList,firstMap)
-            self.apply_filter(other_person,0,secondList,secondMap)
+            self.apply_filter(orig_person,'',firstList,firstMap)
+            self.apply_filter(other_person,'',secondList,secondMap)
         except RuntimeError:
             return (firstRel,secondRel,_("Relationship loop detected"))
 
         for person_handle in firstList:
             if person_handle in secondList:
-                new_rank = firstMap[person_handle]
+                new_rank = len(firstMap[person_handle])
                 if new_rank < rank:
                     rank = new_rank
                     common = [ person_handle ]
@@ -315,6 +315,9 @@ class RelationshipCalculator:
             person_handle = common[0]
         else:
             return ("",[])
+
+        firstRel = len(firstRel)
+        secondRel = len(secondRel)
 
         if firstRel == 0:
             if secondRel == 0:
@@ -365,10 +368,10 @@ class RelationshipCalculator:
         else:
             return ("",[])
 
-        if firstRel == 0:
-            if secondRel == 0:
+        if len(firstRel) == 0:
+            if len(secondRel) == 0:
                 return ('',common)
             else:
-                return (self.get_parents(secondRel),common)
+                return (self.get_parents(len(secondRel)),common)
         else:
             return None

@@ -21,10 +21,8 @@
 
 # $Id$
 
-#
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham.
 # and on valuable input from Dr. Martin Senftleben
-#
 
 #-------------------------------------------------------------------------
 #
@@ -326,14 +324,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _niece_level[level]
 
-    def is_spouse(self,orig,other):
-        for f in orig.get_family_handle_list():
-            family = self.db.get_family_from_handle(f)
-            if family:
-                if other == family.get_father_handle() or other == family.get_mother_handle():
-                    return 1
-        return 0
-
     def get_relationship(self,orig_person,other_person):
         """
         Returns a string representing the relationshp between the two people,
@@ -359,6 +349,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             person_handle = common[0]
         else:
             return ("",[])
+
+        firstRel = len(firstRel)
+        secondRel = len(secondRel)
 
         if firstRel == 0:
             if secondRel == 0:
