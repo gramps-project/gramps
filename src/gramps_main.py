@@ -969,6 +969,8 @@ def find_family(father,mother):
     for family in families:
         if family.getFather() == father and family.getMother() == mother:
             return family
+        elif family.getFather() == mother and family.getMother() == father:
+            return family
 
     family = database.newFamily()
     family.setFather(father)
@@ -1024,13 +1026,16 @@ def change_family_type(family,mrel,frel):
                     active_person.setMainFamily(family)
                     active_person.removeAltFamily(family)
                     utils.modified()
-                    return
+                    break
+                if mrel == fam[1] and frel == fam[2]:
+                    break
                 if mrel != fam[1] or frel != fam[2]:
                     active_person.removeAltFamily(family)
                     active_person.addAltFamily(family,mrel,frel)
                     utils.modified()
-                    return
-        active_person.addAltFamily(family,mrel,frel)
+                    break
+        else:
+            active_person.addAltFamily(family,mrel,frel)
         utils.modified()
                 
 #-------------------------------------------------------------------------
@@ -1052,19 +1057,23 @@ def on_save_parents_clicked(obj):
     if select_father or select_mother:
         if select_mother.getGender() == Person.male and \
            select_father.getGender() == Person.female:
-            x = select_mother
-            select_mother = select_father
-            select_father = x
-            type = "Unknown"
+            family = find_family(select_father,select_mother)
+            family.setFather(select_mother)
+            family.setMother(select_father)
+            x = select_father
+            select_father = select_mother
+            select_mother = x
         elif select_mother.getGender() != select_father.getGender():
             if type == "Partners":
                 type = "Unknown"
+            family = find_family(select_father,select_mother)
         else:
             type = "Partners"
-        family = find_family(select_father,select_mother)
+            family = find_family(select_father,select_mother)
     else:    
         family = None
 
+    print type,family
     family.setRelationship(type)
 
     change_family_type(family,mrel,frel)
