@@ -581,9 +581,9 @@ class ReportDialog:
             self.pagecount_menu = GtkOptionMenu()
             myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-            table.attach(GtkLabel(_("Page Count")),2,1,3,2,FILL,FILL,pad,pad)
-            table.attach(self.pagecount_menu,3,2,4,2,xpadding=pad,ypadding=pad)
-
+            table.attach(GtkLabel(_("Page Count")),0,1,1,2,FILL,FILL,pad,pad)
+            table.attach(self.pagecount_menu,1,2,1,2,xpadding=pad,ypadding=pad)
+            
     def html_file_enable(self,obj):
         text = obj.get_text()
         if _template_map.has_key(text):
