@@ -174,9 +174,7 @@ class IndivSummary:
             self.d.end_cell()
             self.d.end_row()
             
-            event_list = [ family.getMarriage(), family.getDivorce() ]
-            event_list = event_list + family.getEventList()
-            for event in event_list:
+            for event in family.getEventList():
                 self.write_fact(event)
 
             child_list = family.getChildList()

@@ -283,7 +283,7 @@ class FamilyGroup:
         for family in person.getFamilyList():
             m = family.getMarriage()
             if person == family.getFather():
-                spouse =family.getMother()
+                spouse = family.getMother()
             else:
                 spouse = family.getFather()
             self.doc.start_row()
