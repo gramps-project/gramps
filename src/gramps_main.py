@@ -674,12 +674,16 @@ class Gramps:
         """Catch the reponse to the save on exit question"""
         self.delete_abandoned_photos()
         self.db.close()
+        if GrampsCfg.lastfile:
+            self.delete_autosave(GrampsCfg.lastfile)
         gtk.mainquit()
         
     def close_noquit(self):
         """Close database and delete abandoned photos, no quit"""
         self.delete_abandoned_photos()
         self.db.close()
+        if GrampsCfg.lastfile:
+            self.delete_autosave(GrampsCfg.lastfile)
 	Utils.clearModified()
 
     def delete_abandoned_photos(self):
@@ -758,6 +762,11 @@ class Gramps:
         self.model_used = {}
 
         self.default_list.clear()
+
+        for page in self.pl_page[0:-1]:
+            page.cleanup()
+            del page
+        
         self.pl_page = [
             self.default_list
             ]
@@ -1204,8 +1213,6 @@ class Gramps:
 
         path = filename
         filename = os.path.normpath(os.path.abspath(filename))
-        autosave = "%s/autosave.gramps" % filename
-    
         self.status_text(_("Saving %s ...") % filename)
 
         Utils.clearModified()
@@ -1256,6 +1263,10 @@ class Gramps:
         self.status_text("")
         self.statusbar.set_progress_percentage(0.0)
         self.statusbar.set_pulse_step(0.02)
+        self.delete_autosave(old_file)
+
+    def delete_autosave(self,filename):
+        autosave = "%s/autosave.gramps" % filename
         if os.path.exists(autosave):
             try:
                 os.remove(autosave)
