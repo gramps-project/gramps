@@ -118,9 +118,13 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         self.start_page(self)
  
+
     def find_font_from_fontstyle(self,fontstyle):
         """
+        This function returns the gnomeprint.Font() object instance
+        corresponding to the parameters of BaseDoc.FontStyle()
         """
+
         if fontstyle.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             face = _FONT_SANS_SERIF
         elif fontstyle.get_type_face() == BaseDoc.FONT_SERIF:
@@ -157,6 +161,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def page_break(self):
         "Forces a page break, creating a new page"
+        self.end_page()
         self.start_page()
                                                                                 
     def start_page(self,orientation=None):
@@ -199,17 +204,17 @@ class LPRDoc(BaseDoc.BaseDoc):
         #print "end paragraph"
         self.__in_paragraph=0
         #print text in paragraph if any data exists
-        if len(self.__paragraph_data) > 0:
+        if self.__paragraph_data:
             fontstyle = self.__paragraph_style.get_font()
             self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
             self.__pc.moveto(self.__x, self.__y)
-            self.__x, self.__y=self.__print_text(self.__paragraph_data, 
+            self.__x, self.__y = self.__print_text(self.__paragraph_data, 
                                                 self.__x, self.__y,
                                                 self.__left_margin, 
                                                 self.__right_margin,
                                                 fontstyle)
-            self.__paragraph_data=""
-            self.__y=self.__advance_line(self.__y)
+            self.__paragraph_data = ""
+            self.__y = self.__advance_line(self.__y)
 
 ####    FIXME BEGIN     #########
 # The following two functions don't work at the moment. The problem is
@@ -404,16 +409,18 @@ class LPRDoc(BaseDoc.BaseDoc):
            self.__paragraph_data=self.__paragraph_data+str(text)
            return
 
-        #if we are at the bottom of the page, create a new page
-        if self.__y < self.__bottom_margin:
-           self.end_page()
-           self.start_page()
-
-        #output data if we get this far (we are not in a paragaph or
-        #a table)
-        self.__x, self.__y=self.__print_text(text, self.__x, self.__y,
-                          self.__left_margin, self.__right_margin)
-        #self.__y=self.__advance_line(self.__y)
+#       write_text() should only be called from within a paragraph!!!
+#
+#        #if we are at the bottom of the page, create a new page
+#        if self.__y < self.__bottom_margin:
+#            self.end_page()
+#            self.start_page()
+#
+#        #output data if we get this far (we are not in a paragaph or
+#        #a table)
+#        self.__x, self.__y=self.__print_text(text, self.__x, self.__y,
+#                          self.__left_margin, self.__right_margin)
+#        #self.__y=self.__advance_line(self.__y)
 
     #function to help us advance a line 
     def __advance_line(self, y):
@@ -462,10 +469,16 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def __print_text(self, text, x, y, left_margin, right_margin,fontstyle):
         __width=right_margin-left_margin
-        self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
+
+        if y - _LINE_SPACING < self.__bottom_margin:
+            self.end_page()
+            self.start_page()
+            x=self.__x
+            y=self.__y
 
         #all text will fit within the width provided
         if __width >= self.__text_width(text,fontstyle):
+            self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
             self.__pc.moveto(left_margin, y)
             x=left_margin+self.__text_width(text,fontstyle)
             self.__pc.show(text)
@@ -479,13 +492,14 @@ class LPRDoc(BaseDoc.BaseDoc):
                     __text=__text+__element+" "
                 else:
                     #__text contains as many words as this __width allows
+                    self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
                     self.__pc.moveto(left_margin, y)
                     self.__pc.show(__text)
                     __text=__element+" "
                     y=self.__advance_line(y)
 
                 #if not in table and cursor is below bottom margin
-                if self.__in_table==0 and y < self.__bottom_margin:
+                if (not self.__in_table) and (y < self.__bottom_margin):
                     self.end_page()
                     self.start_page()
                     x=self.__x
@@ -493,6 +507,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
             #if __text still contains data, we will want to print it out
             if len(__text) > 0:
+                self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
                 self.__pc.moveto(left_margin, y)
                 self.__pc.show(__text)
                 y=self.__advance_line(y)
