@@ -1,3 +1,7 @@
+2004-06-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/filters/*: removed
+	* src/plugins/WritePkg.py: brought up to date
+
 2004-06-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteGedcom.py: brought up to date
 	* src/gramps_main.py: beta warning

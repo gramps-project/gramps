@@ -115,8 +115,6 @@ class DbPrompter:
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
-            print choose.get_filename()
-            print choose.get_uri()
             if save and os.path.splitext(filename)[1] != ".grdb":
                 filename = filename + ".grdb"
             self.db.read_file(filename)

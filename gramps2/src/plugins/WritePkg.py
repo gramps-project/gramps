@@ -74,31 +74,32 @@ class PackageWriter:
 
     def __init__(self,database):
         self.db = database
-        
-        base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"pkgexport.glade")
-        
-        
-        dic = {
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_help_clicked" : self.on_help_clicked
-            }
-        
-        self.top = gtk.glade.XML(glade_file,"packageExport","gramps")
 
-        Utils.set_titles(self.top.get_widget('packageExport'),
-                         self.top.get_widget('title'),
-                         _('Package export'))
+        choose = gtk.FileChooserDialog(_('Save GRAMPS Package'),
+                                       None,
+                                       gtk.FILE_CHOOSER_ACTION_SAVE,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
         
-        self.top.signal_autoconnect(dic)
-        self.top.get_widget("packageExport").show()
+        choose.set_local_only(gtk.FALSE)
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS package'))
+        filter.add_pattern('*.gpkg')
+        choose.add_filter(filter)
 
-    def on_ok_clicked(self,obj):
-        name = unicode(self.top.get_widget("filename").get_text())
-        Utils.destroy_passed_object(obj)
-        self.export(name)
+        response = choose.run()
 
+        if response == gtk.RESPONSE_OK:
+            name = choose.get_filename()
+            if os.path.splitext(filename)[1] != ".gpkg":
+                name = name + ".gpkg"
+            choose.destroy()
+            self.export(name)
+        else:
+            choose.destroy()
+            
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','export-data')

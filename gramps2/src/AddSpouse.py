@@ -350,5 +350,4 @@ class AddSpouse:
             self.filter_func = self.all_filter
         else:
             self.filter_func = self.likely_filter
-        print self.filter_func
         self.update_data()

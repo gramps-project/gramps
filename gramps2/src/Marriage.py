@@ -82,7 +82,6 @@ class Marriage:
         self.cb = callback
         self.update_fv = update
         self.pmap = {}
-        self.add_places = []
 
         if family:
             self.srcreflist = family.get_source_references()
@@ -100,7 +99,8 @@ class Marriage:
                          _('Marriage/Relationship Editor'))
         
         self.icon_list = self.get_widget('iconlist')
-        self.gallery = ImageSelect.Gallery(family, self.path, self.icon_list, db, self)
+        self.gallery = ImageSelect.Gallery(family, self.db.commit_family,
+                                           self.path, self.icon_list, db, self)
 
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_edit,
@@ -778,7 +778,7 @@ class Marriage:
         else:
             temple = ""
         
-        if date or temple or place:
+        if date or temple:
             Utils.bold_label(self.lds_label)
         else:
             Utils.unbold_label(self.lds_label)
@@ -788,13 +788,12 @@ class Marriage:
         text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.db.try_to_find_place_from_id(self.pmap[text],trans)
+                return self.db.try_to_find_place_from_id(self.pmap[text])
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
                 self.db.add_place(place,trans)
                 self.pmap[text] = place.get_id()
-                self.add_places.append(place)
                 return place
             else:
                 return None
