@@ -200,13 +200,12 @@ class PdfDoc(BaseDoc.BaseDoc):
             self.text = ''
         else:
             self.text = '<bullet>%s</bullet>' % leader
-        self.image = 0
 
     def end_paragraph(self):
-        if self.in_table == 0 and self.image == 0:
-            self.story.append(Paragraph(enc(self.text),self.current_para))
+        if self.in_table:
+            self.cur_cell.append(Paragraph(enc(self.text),self.current_para))
         else:
-            self.image = 0
+            self.story.append(Paragraph(enc(self.text),self.current_para))
 
     def start_bold(self):
         self.text = self.text + '<b>'
@@ -230,11 +229,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.table_data = []
 
         self.tblstyle = []
-        self.cur_table_cols = []
-        width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
-        for val in range(self.cur_table.get_columns()):
-            percent = float(self.cur_table.get_column_width(val))/100.0
-            self.cur_table_cols.append(int(width * percent * cm))
+        self.text = ""
 
     def end_table(self):
         ts = reportlab.platypus.tables.TableStyle(self.tblstyle)
@@ -248,6 +243,11 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.row = self.row + 1
         self.col = 0
         self.cur_row = []
+        self.cur_table_cols = []
+        width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
+        for val in range(self.cur_table.get_columns()):
+            percent = float(self.cur_table.get_column_width(val))/100.0
+            self.cur_table_cols.append(int(width * percent * cm))
 
     def end_row(self):
         self.table_data.append(self.cur_row)
@@ -255,15 +255,20 @@ class PdfDoc(BaseDoc.BaseDoc):
     def start_cell(self,style_name,span=1):
         self.span = span
         self.my_table_style = self.cell_styles[style_name]
-        pass
+        self.cur_cell = []
 
     def end_cell(self):
-        if self.span == 1:
-            self.cur_row.append(Paragraph(self.text,self.current_para))
+        if self.cur_cell:
+            self.cur_row.append(self.cur_cell)
         else:
-            self.cur_row.append(self.text)
+            self.cur_row.append("")
+        
+        the_width = self.cur_table_cols[self.col]
         for val in range(1,self.span):
             self.cur_row.append("")
+            the_width += self.cur_table_cols[self.col+val]
+            self.cur_table_cols[self.col+val] = 0
+        self.cur_table_cols[self.col] = the_width
 
         p = self.my_para
         f = p.get_font()
@@ -302,6 +307,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             self.tblstyle.append(('VALIGN', loc, loc, 'TOP'))
 
         self.col = self.col + self.span
+        self.text = ""
 
     def add_media_object(self,name,pos,x_cm,y_cm):
         try:
@@ -320,16 +326,25 @@ class PdfDoc(BaseDoc.BaseDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        self.story.append(Spacer(1,0.5*cm))
-        self.story.append(Image(enc(name),act_width*cm,act_height*cm))
-        self.story.append(Spacer(1,0.5*cm))
-        self.image = 1
+        im = Image(enc(name),act_width*cm,act_height*cm)
+        if pos in ['left','right','center']:
+            im.hAlign = pos.upper()
+        else:
+            im.hAlign = 'LEFT'
+
+        if self.in_table:
+            self.cur_cell.append(Spacer(1,0.5*cm))
+            self.cur_cell.append(im)
+            self.cur_cell.append(Spacer(1,0.5*cm))
+        else:
+            self.story.append(Spacer(1,0.5*cm))
+            self.story.append(im)
+            self.story.append(Spacer(1,0.5*cm))
 
     def write_note(self,text,format,style_name):
         current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
         self.super = "<font size=%d><super>" % (self.my_para.get_font().get_size()-2)
-        self.image = 0
 
         text = text.replace('&','&amp;')       # Must be first
         text = text.replace('<','&lt;')
@@ -337,15 +352,18 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = text.replace('&lt;super&gt;',self.super)
         text = text.replace('&lt;/super&gt;','</super></font>')
 
-        if self.in_table == 0:
-            if format == 1:
-                text = '<para firstLineIndent="0" fontname="Courier">%s</para>' % text.replace('\t',' '*8)
+        if format == 1:
+            text = '<para firstLineIndent="0" fontname="Courier">%s</para>' % text.replace('\t',' '*8)
+            if self.in_table:
+                self.cur_cell.append(XPreformatted(text,current_para))
+            else:
                 self.story.append(XPreformatted(text,current_para))
-            elif format == 0:
-                for line in text.split('\n\n'):
+        elif format == 0:
+            for line in text.split('\n\n'):
+                if self.in_table:
+                    self.cur_cell.append(Paragraph(line,current_para))
+                else:
                     self.story.append(Paragraph(line,current_para))
-        else:
-            self.image = 0
 
     def write_text(self,text):
         text = text.replace('&','&amp;')       # Must be first

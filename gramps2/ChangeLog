@@ -5,6 +5,9 @@
 	* src/ReportOptions.py (OptionHandler.set_options):
         Ignore unknown options.
 
+	* src/docgen/PdfDoc.py: Port table and image fixes from STABLE.
+	* src/plugins/Ancestors.py (person_name): Avoid overriding builtin.
+
 2005-01-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: don't use quote date
 	* src/PeopleModel.py: remove BOLD
