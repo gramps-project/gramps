@@ -1,4 +1,8 @@
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py (ReportOptionsDialog.on_change_clicked):
+	Deal with Cancel button pressed.
+
+2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetAncestralReport.py (write_marriage):
 	Consider missing case of spouse and no-date-no-place for marriage.
         
