@@ -62,7 +62,7 @@ POST_UNINSTALL = :
 EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-pkgdatadir = ${datadir}/@PACKAGE@/data
+pkgdatadir = $(datadir)/@PACKAGE@/data
 AMTAR = @AMTAR@
 AWK = @AWK@
 BINSH = @BINSH@
@@ -113,7 +113,7 @@ SUBDIRS = templates
 
 pkgdata_DATA = gedcom.xml 
 
-EXTRA_DIST = ${pkgdata_DATA}
+EXTRA_DIST = $(pkgdata_DATA)
 subdir = src/data
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =

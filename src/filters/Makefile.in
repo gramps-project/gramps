@@ -132,6 +132,8 @@ pkgpython_PYTHON = \
 	RegExMatch.py\
 	SubString.py
 
+
+GRAMPS_PY_MODPATH = "../"
 subdir = src/filters
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
@@ -275,6 +277,10 @@ uninstall-am: uninstall-info-am uninstall-pkgpythonPYTHON
 	uninstall uninstall-am uninstall-info-am \
 	uninstall-pkgpythonPYTHON
 
+
+pycheck: 
+	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
+	pychecker $(pkgpython_PYTHON));
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

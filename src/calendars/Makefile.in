@@ -14,7 +14,7 @@
 
 @SET_MAKE@
 
-# This is the src/plugins level Makefile for Gramps
+# This is the src/calendars level Makefile for Gramps
 # Use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all .py files individually
 SHELL = @SHELL@
@@ -67,7 +67,7 @@ EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 
-pkgdatadir = ${datadir}/@PACKAGE@/calendars
+pkgdatadir = $(datadir)/@PACKAGE@/calendars
 AMTAR = @AMTAR@
 AWK = @AWK@
 BINSH = @BINSH@
@@ -118,6 +118,8 @@ pkgpython_PYTHON = \
 	Islamic.py \
 	Persian.py
 
+
+GRAMPS_PY_MODPATH = "../"
 subdir = src/calendars
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
@@ -261,6 +263,10 @@ uninstall-am: uninstall-info-am uninstall-pkgpythonPYTHON
 	uninstall uninstall-am uninstall-info-am \
 	uninstall-pkgpythonPYTHON
 
+
+pycheck: 
+	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
+	pychecker $(pkgpython_PYTHON));
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
