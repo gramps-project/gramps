@@ -52,6 +52,10 @@ import sort
 from intl import gettext
 _ = gettext
 
+_temple_names = const.lds_temple_codes.keys()
+_temple_names.sort()
+_temple_names = [""] + _temple_names
+
 #-------------------------------------------------------------------------
 #
 # EditPerson class
@@ -256,22 +260,43 @@ class EditPerson:
         self.notes_field.set_word_wrap(1)
 
         # lds stuff
+        
         ord = person.getLdsBaptism()
+        self.ldsbap_temple.set_popdown_strings(_temple_names)
         if ord:
-            self.ldsbap_temple.entry.set_text(ord.getTemple())
             self.ldsbap_date.set_text(ord.getDate())
+            if ord.getTemple() != "":
+                name = const.lds_temple_to_abrev[ord.getTemple()]
+            else:
+                name = ""
+            self.ldsbap_temple.entry.set_text(name)
+        else:
+            self.ldsbap_temple.entry.set_text("")
 
         ord = person.getLdsEndowment()
+        self.ldsend_temple.set_popdown_strings(_temple_names)
         if ord:
-            self.ldsend_temple.entry.set_text(ord.getTemple())
             self.ldsend_date.set_text(ord.getDate())
+            if ord.getTemple() != "":
+                name = const.lds_temple_to_abrev[ord.getTemple()]
+            else:
+                name = ""
+            self.ldsend_temple.entry.set_text(name)
+        else:
+            self.ldsend_temple.entry.set_text("")
 
         ord = person.getLdsSeal()
+        self.ldsseal_temple.set_popdown_strings(_temple_names)
         if ord:
-            self.ldsseal_temple.entry.set_text(ord.getTemple())
             self.ldsseal_date.set_text(ord.getDate())
             self.ldsfam = ord.getFamily()
+            if ord.getTemple() != "":
+                name = const.lds_temple_to_abrev[ord.getTemple()]
+            else:
+                name = ""
+            self.ldsseal_temple.entry.set_text(name)
         else:
+            self.ldsseal_temple.entry.set_text("")
             self.ldsfam = None
 
         myMenu = gtk.GtkMenu()
@@ -527,6 +552,10 @@ class EditPerson:
 
         date = self.ldsbap_date.get_text()
         temple = self.ldsbap_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
         ord = self.person.getLdsBaptism()
         if not ord:
             if date or temple:
@@ -541,6 +570,10 @@ class EditPerson:
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
         ord = self.person.getLdsEndowment()
         if not ord:
             if date or temple:
@@ -555,6 +588,11 @@ class EditPerson:
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
+            
         ord = self.person.getLdsSeal()
         if not ord:
             if date or temple or self.ldsfam:
@@ -886,16 +924,28 @@ class EditPerson:
 
         date = self.ldsbap_date.get_text()
         temple = self.ldsbap_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
         ord = self.person.getLdsBaptism()
         update_ord(self.person.setLdsBaptism,ord,date,temple)
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
         ord = self.person.getLdsEndowment()
         update_ord(self.person.setLdsEndowment,ord,date,temple)
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
         ord = self.person.getLdsSeal()
         if not ord:
             if self.ldsfam or date or temple:
