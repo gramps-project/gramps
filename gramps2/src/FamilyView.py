@@ -996,7 +996,9 @@ class FamilyView:
 
         try:
             ChooseParents.ModifyParents(self.parent.db,person,parents,
-                                        self.load_family,self.parent.full_update)
+                                        self.load_family,
+                                        self.parent.full_update,
+                                        self.parent.topWindow)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1005,7 +1007,9 @@ class FamilyView:
             return
         try:
             ChooseParents.ChooseParents(self.parent.db,person,None,
-                                        self.load_family,self.parent.full_update)
+                                        self.load_family,
+                                        self.parent.full_update,
+                                        self.parent.topWindow)
         except:
             DisplayTrace.DisplayTrace()
         
