@@ -1,15 +1,14 @@
-# translation of fr2.po to Français
-# translation of fr_new.po to Français
-# translation of fr.po to Français
 # Gramps French translation
-# Copyright (C) 2001,2003 Free Software Foundation, Inc.
-# Laurent Protois <laurent.protois@free.fr>, 2001,2003.
+# Copyright (C) 2001,2003, 2004 Free Software Foundation, Inc.
+#
+# translation of fr.po to Français
+# Laurent Protois <laurent.protois@free.fr>, 2001,2003, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 24/12/2003 18:10\n"
+"POT-Creation-Date: 2004-01-05 20:13+0100\n"
+"PO-Revision-Date: 2004-01-05 20:16+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +105,7 @@ msgstr "env\\. ?"
 
 #: Calendar.py:53 Calendar.py:113 Calendar.py:130
 msgid "about"
-msgstr "A propos"
+msgstr "Vers"
 
 #: Calendar.py:54
 msgid "est\\.?"
@@ -291,7 +290,7 @@ msgstr "Enregistrer les données"
 #: DbPrompter.py:99 gramps_main.py:1074 gramps_main.py:1480
 #: gramps_main.py:1492
 msgid "No Comment Provided"
-msgstr "Commentaires non Fournis"
+msgstr "Aucun Commentaire fourni"
 
 #: DisplayTrace.py:73
 msgid ""
@@ -1194,11 +1193,11 @@ msgstr "Préférences d'édition"
 
 #: GrampsCfg.py:118 StartupDialog.py:141
 msgid "Researcher Information"
-msgstr "Recherche d'information"
+msgstr "Chercheur"
 
 #: GrampsCfg.py:119
 msgid "Data Guessing"
-msgstr "Hypothèse"
+msgstr "Patronymes"
 
 #: GrampsCfg.py:659 GrampsCfg.py:674
 msgid "No default format"
@@ -1447,7 +1446,7 @@ msgstr "_Supprimer un Lieu"
 
 #: Plugins.py:98
 msgid "No description was provided"
-msgstr "Aucune description fournie"
+msgstr "Aucune Description fournie"
 
 #: Plugins.py:166 gramps.glade:1371
 msgid "_Apply"
@@ -1463,7 +1462,7 @@ msgstr "Choisir une liste parmi celle de gauche."
 
 #: Plugins.py:278
 msgid "Generate selected report"
-msgstr "Générer la liste"
+msgstr "Constitution de la liste"
 
 #: Plugins.py:278
 msgid "_Generate"
@@ -3015,7 +3014,7 @@ msgstr "Aller à la page d'accueil"
 
 #: edit_person.glade:4011 gramps.glade:453 places.glade:1620
 msgid "_Go"
-msgstr "_Go"
+msgstr "_Aller à"
 
 #: edit_person.glade:4044
 msgid "Delete selected reference"
@@ -3267,7 +3266,7 @@ msgstr "Préfère_nces..."
 
 #: gramps.glade:385
 msgid "Set _Home person..."
-msgstr "Sélectionner_ le 'de cujus'"
+msgstr "Sélectionner_ le 'de Cujus'"
 
 #: gramps.glade:410
 msgid "_View"
@@ -3343,7 +3342,7 @@ msgstr "_Ouvrir une Base Exemple"
 
 #: gramps.glade:681
 msgid "_About"
-msgstr "_A propos"
+msgstr "_Vers"
 
 #: gramps.glade:730
 msgid "Open database"
@@ -3383,7 +3382,7 @@ msgstr "de Cujus"
 
 #: gramps.glade:791
 msgid "Generate reports"
-msgstr "Générer des listes"
+msgstr "Constitution des listes"
 
 #: gramps.glade:792
 msgid "Reports"
@@ -3732,7 +3731,7 @@ msgstr "_Créer une Nouvelle Base"
 
 #: gramps_main.py:951 gramps_main.py:1530
 msgid "Updating display - this may take a few seconds..."
-msgstr "Actualiser l'affichage, Patientez quelques secondes ..."
+msgstr "Chargement en cours, veuillez patienter quelques secondes ..."
 
 #: gramps_main.py:1001
 msgid "An autosave file was detected"
@@ -3951,7 +3950,7 @@ msgstr "_GRAMPS ID:"
 
 #: marriage.glade:218
 msgid "_Information is complete"
-msgstr "_Information Terminée"
+msgstr "_Information Complète"
 
 #: marriage.glade:539
 msgid "<b>Events</b>"
@@ -4719,7 +4718,7 @@ msgstr "Graphe des descendants pour le Livre GRAMPS"
 
 #: plugins/DesGraph.py:587
 msgid "Generates a graph of descendants of the active person"
-msgstr "Générer un graphe des descendants de la personne choisie"
+msgstr "Produit un graphe des descendants de la personne choisie"
 
 #: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
@@ -4771,7 +4770,7 @@ msgstr "Le style utilisé pour l'affichage du niveau %d "
 
 #: plugins/DescendReport.py:407
 msgid "Generates a list of descendants of the active person"
-msgstr "Générer une liste des descendants de la personne choisie"
+msgstr "Produit une liste des descendants de la personne choisie"
 
 #: plugins/DetAncestralReport.py:123 plugins/DetDescendantReport.py:128
 msgid "Child of %s and %s is:"
@@ -5967,7 +5966,7 @@ msgstr ""
 
 #: plugins/GraphViz.py:280 plugins/RelGraph.py:347
 msgid "Generate print output"
-msgstr "Générer des listes d'édition"
+msgstr "Constitution des listes d'édition"
 
 #: plugins/GraphViz.py:511 plugins/RelGraph.py:895
 msgid ""
@@ -6470,7 +6469,7 @@ msgstr "Trié(e) par"
 
 #: plugins/TimeLine.py:492
 msgid "Generates a timeline graph."
-msgstr "Généré un Graphe Temporel"
+msgstr "Produit un Graphe Temporel"
 
 #: plugins/TimeLine.py:550
 msgid "Timeline Graph for GRAMPS Book"
@@ -6574,7 +6573,7 @@ msgstr ""
 
 #: plugins/Verify.py:208
 msgid "Unknown gender for %s.\n"
-msgstr "Unknown gender for %s.\n"
+msgstr "Sexe inconnu pour %s.\n"
 
 #: plugins/Verify.py:212
 msgid "Ambiguous gender for %s.\n"
@@ -6782,7 +6781,7 @@ msgstr "Vérifier la Base de données"
 
 #: plugins/Verify.py:419
 msgid "Lists exceptions to assertions or checks about the database"
-msgstr "Liste les exceptions d'assertions ou vérifie dans la base de données"
+msgstr "Liste les critères de cohérence puis vérifie dans la base de données"
 
 #: plugins/WebPage.py:328
 msgid "ID Number"
@@ -6802,7 +6801,7 @@ msgstr "Crée les pages Web"
 
 #: plugins/WebPage.py:665
 msgid "Generate HTML reports - GRAMPS"
-msgstr "Génération d'éditions HTML - GRAMPS"
+msgstr "Constitution des pages HTML - GRAMPS"
 
 #: plugins/WebPage.py:754 plugins/WebPage.py:758
 msgid "Family Tree Index"
@@ -6879,7 +6878,7 @@ msgstr "URL de l'identifiant GRAMPS"
 
 #: plugins/WebPage.py:964 plugins/WebPage.py:1402
 msgid "Generate Web Site"
-msgstr "Générer un Site Web"
+msgstr "Constitution du Site Web"
 
 #: plugins/WebPage.py:964 plugins/WebPage.py:1403
 msgid "Web Page"
@@ -6951,7 +6950,7 @@ msgstr "Style utilisé pour une note d' information"
 
 #: plugins/WebPage.py:1405
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr "Générer des pages web (HTML) pour tout ou partie des individus."
+msgstr "Constitution des pages web (HTML) pour tout ou partie des individus."
 
 #: plugins/WriteCD.py:55
 msgid "Export to CD"
@@ -7103,11 +7102,11 @@ msgstr "Python evaluation window"
 
 #: plugins/eval.py:91 plugins/leak.py:79
 msgid "Debug"
-msgstr "Debug"
+msgstr "Débeuguer"
 
 #: plugins/eval.py:92
 msgid "Provides a window that can evaluate python code"
-msgstr "Provides a window that can evaluate python code"
+msgstr "Terminal d'évaluation Python"
 
 #: plugins/eventcmp.glade:9
 msgid "Save as a Spreadsheet - GRAMPS"
@@ -7278,7 +7277,7 @@ msgstr "Afficher les objets non retenus"
 
 #: plugins/leak.py:80
 msgid "Provide a window listing all uncollected objects"
-msgstr "Provide a window listing all uncollected objects"
+msgstr "Produit une liste des objets sans objet"
 
 #: plugins/merge.glade:46
 msgid "Please be patient. This may take a while."
@@ -7517,7 +7516,7 @@ msgstr "Configuration GNOME"
 
 #: preferences.glade:811
 msgid "Active person's _relationship to Home Person"
-msgstr "Récupérer la relation pour le 'de Cujus'"
+msgstr "Afficher la relation avec le 'de Cujus'"
 
 #: preferences.glade:833
 msgid "Active person's name and _GRAMPS ID"
@@ -7649,7 +7648,7 @@ msgstr "Sélection du répertoire de listes - GRAMPS"
 
 #: preferences.glade:2104
 msgid "The default directory for the output of many report generators"
-msgstr "Répertoire par défaut de génération des éditions"
+msgstr "Répertoire par défaut pour la création des éditions"
 
 #: preferences.glade:2129
 msgid "Default _web site directory:"
