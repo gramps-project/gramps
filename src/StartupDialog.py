@@ -166,7 +166,17 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
-        self.name.set_text(self.get_string('/apps/gramps/researcher-name'))
+        name = self.get_string('/apps/gramps/researcher-name')
+        if name.strip() == "":
+            import pwd
+            import os
+
+            try:
+                name = pwd.getpwnam(os.environ['USER'])[4]
+            except:
+                name = ""
+
+        self.name.set_text(name)
         self.addr.set_text(self.get_string('/apps/gramps/researcher-addr'))
         self.city.set_text(self.get_string('/apps/gramps/researcher-city'))
         self.state.set_text(self.get_string('/apps/gramps/researcher-state'))
