@@ -185,7 +185,7 @@ class PeopleView:
                 model = self.default_list
 
             iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
-                              val[6],val[7],val[8]])
+                              val[6],val[7],val[8]],1)
 
             self.id2col[key] = (model,iter)
 
@@ -229,7 +229,7 @@ class PeopleView:
             self.apply_filter(model)
             try:
                 (model,iter) = self.id2col[id]
-            except:
+            except KeyError:
                 return
 
         if not iter:
@@ -240,6 +240,7 @@ class PeopleView:
             
         model.selection.unselect_all()
         model.selection.select_iter(iter)
+            
         itpath = model.model.get_path(iter)
         col = model.tree.get_column(0)
         model.tree.scroll_to_cell(itpath,col,1,0.5,0)
