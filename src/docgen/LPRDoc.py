@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # Modifications and feature additions:
 #               2002  Donald A. Peterson
@@ -49,7 +49,7 @@ if gnomeprint.Context.__dict__.has_key('grestore'):
     support_photos = 1
 else:
     support_photos = 0
-    print "LPRDoc: Photos and rotated text (used in TimeChart)"
+    print "LPRDoc: Photos and rotated text (used in FanChart)"
     print "        are not supported for direct printing."
     print "        Get gnome-python from CVS" 
     print "        or wait for the next gnome-python release."
@@ -463,6 +463,12 @@ class GnomePrintPhoto:
         """
         return self.width
 
+    def get_alignment(self):
+        """
+        Return the alignment of the photo.
+        """
+        return self.alignment
+
 #------------------------------------------------------------------------
 #
 # LPRDoc class
@@ -697,13 +703,13 @@ class LPRDoc(BaseDoc.BaseDoc):
                                         self.right_margin - self.left_margin)
         self.brand_new_page = 0
 
-    def write_photo(self,photo,x,y,width):
+    def write_photo(self,photo,x,y,alloc_width):
         """
         Write the photo.
 
         photo       - GnomePrintPhoto instance
         x,y         - coordinates to start at
-        width       - allocated width
+        alloc_width - allocated width
         """
 
         self.brand_new_page = 0
@@ -711,7 +717,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         if not support_photos:
             return (x,y)
         # end FIXME
-
+        
         width = photo.get_width()
         height = photo.get_height()
 
@@ -720,8 +726,15 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.start_page()
             y = self.y
 
+        if photo.get_alignment() == 'center':
+            add_x = 0.5* (alloc_width - width)
+        elif photo.get_alignment() == 'right':
+            add_x = alloc_width - width
+        else:
+            add_x = 0
+
         self.gpc.gsave()
-        self.gpc.translate(x,y-height)
+        self.gpc.translate(x+add_x,y-height)
         self.gpc.scale(width,height)
         
         if photo.get_has_alpha():
