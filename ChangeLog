@@ -1,3 +1,6 @@
+2004-01-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleStore.py: handle unicode conversion from get_value
+
 2004-01-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/AbiWord2Doc.py: pychecker fixes
 	* src/docgen/HtmlDoc.py: pychecker fixes
