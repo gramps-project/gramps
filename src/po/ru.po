@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3\n"
 "POT-Creation-Date: Wed May  2 12:30:26 2002\n"
-"PO-Revision-Date: 2002-05-06 10:59-0500\n"
+"PO-Revision-Date: 2002-05-06 11:17-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3896,8 +3896,8 @@ msgstr ""
 #: plugins/RelCalc.py:69
 msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
 msgstr ""
-"%(p1)s является двоюродным %(removed-2)d-прадедом/бабушкой или "
-"%(removed-2)d-правнучатым племянником/племянницей %(p2)s."
+"%(p1)s является двоюродным (%(removed)d - 2)-прадедом/бабушкой или "
+"(%(removed)d - 2)-правнучатым племянником/племянницей %(p2)s."
 
 #: plugins/RelCalc.py:73
 msgid "%(p1)s is the second cousin of %(p2)s."
@@ -3918,8 +3918,8 @@ msgstr ""
 #: plugins/RelCalc.py:82
 msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
 msgstr ""
-"%(p1)s является троюродным %(removed-2)d-прадедом/бабушкой или двоюродным "
-"%(removed-2)d-правнучатым племянником/племянницей %(p2)s."
+"%(p1)s является троюродным (%(removed)d - 2)-прадедом/бабушкой или двоюродным "
+"(%(removed)d - 2)-правнучатым племянником/племянницей %(p2)s."
 
 #: plugins/RelCalc.py:86
 msgid "%(p1)s is the third cousin of %(p2)s."
@@ -3940,8 +3940,8 @@ msgstr ""
 #: plugins/RelCalc.py:95
 msgid "%(p1)s is the third cousin %(removed)d times removed of %(p2)s."
 msgstr ""
-"%(p1)s является четвероюродным %(removed-2)d-прадедом/бабушкой или троюродным "
-"%(removed-2)d-правнучатым племянником/племянницей %(p2)s."
+"%(p1)s является четвероюродным (%(removed)d - 2)-прадедом/бабушкой или "
+"троюродным (%(removed)d - 2)-правнучатым племянником/племянницей %(p2)s."
 
 #: plugins/RelCalc.py:99
 msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
@@ -3962,8 +3962,9 @@ msgstr ""
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
 msgstr ""
-"%(p1)s является %(level+1)d-юродным %(removed-2)d-прадедом/бабушкой или "
-"%(level)d-юродным %(removed-2)d-правнучатым племянником/племянницей %(p2)s."
+"%(p1)s является %(level+1)d-юродным (%(removed)d - 2)-прадедом/бабушкой или "
+"(%(level)d + 1)-юродным (%(removed)d - 2)-правнучатым племянником/племянницей "
+"%(p2)s."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
