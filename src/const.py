@@ -107,29 +107,26 @@ comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "Management Programming System) is a personal "
                  "genealogy program.")
 authors      = [
-    "Donald N. Allingham <dallingham@users.sourceforge.net>",
+    "Donald N. Allingham",
+    "Donald A. Peterson"
     "David Hampton",
-    "Donald A. Peterson <dpeterson@sigmaxi.org>"
     ]
 
 documenters  = [
-    'Donald N. Allingham <dallingham@users.sourceforge.net>',
-    'Lawrence Allingham'
+    'Alex Roitman',
     ]
 
-translators  =  u'Radek Malcic <malcic@atlas.cz> - Czech\n' \
-               u'Lars Kristian Lundin <gramps@lklundin.dk> - Danish (Dansk)\n' \
-               u'Bernd Schandl <schandl@gmx.net> - German (Deutsch)\n' \
-               u'Andr\xe9s Sep\xfalveda <andres@ccpo.odu.edu> - Spanish (Espa\xf1ol)\n' \
-               u'Laurent Protois <laurent.protois@free.fr> - French (Fran\xe7ais)\n' \
-               u'Marco Molteni <molter@gufi.org> - Italian (Italiano)\n' \
-               u'Marcos Bedinelli - Brazilian-Portuguese (Portugu\xeas do Brasil)\n' \
-               u'Alex Roitman <shura@alex.neuro.umn.edu> - Russian\n' \
-               u'Jens Arvidsson <arvid-jens@algonet.se> - Swedish (Svenska)\n' \
-               u'Tino Meinen <a.t.meinen@chello.nl> - Dutch' \
-
-
-
+translators  =  u'Radek Malcic - Czech\n' \
+               u'Lars Kristian Lundin - Danish (Dansk)\n' \
+               u'Bernd Schandl - German (Deutsch)\n' \
+               u'Andr\xe9s Sep\xfalveda - Spanish (Espa\xf1ol)\n' \
+               u'Laurent Protois - French (Fran\xe7ais)\n' \
+               u'Marco Molteni - Italian (Italiano)\n' \
+               u'Marcos Bedinelli - Brazilian-Portuguese\n' \
+               u'Alex Roitman - Russian\n' \
+               u'Jens Arvidsson - Swedish (Svenska)\n' \
+               u'Radu Bogden Mare - Romanian\n' \
+               u'Tino Meinen - Dutch' \
 
 #-------------------------------------------------------------------------
 #

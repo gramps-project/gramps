@@ -23,15 +23,15 @@ import gtk.glade
 import gconf
 import Utils
 
-_StartupEntry = "/gramps/config/startup"
+_StartupEntry = "/apps/gramps/startup"
 
 def need_to_run():
     return 0
     client = gconf.client_get_default()
     client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
-    if client.get_string(_StartupEntry) == None:
+    val = client.get_int(_StartupEntry)
+    if val == None:
         return 1
-    val  = client.set_int(_StartupEntry) 
     if val < const.startup:
         return 1
     return 0
@@ -53,11 +53,11 @@ class StartupDialog:
         self.rlist = ['name','addr','city','state','country',
                       'postal', 'phone', 'email']
 
-        self.client = gconf.client_get_default
+        self.client = gconf.client_get_default()
         for tag in self.rlist:
-            val = self.client.get_string("/gramps/researcher/%s" % tag)
+            val = self.client.get_string("/apps/gramps/researcher-%s" % tag)
             if val != None:
-                self.druid.get_widget(tag).set_text(val)()
+                self.druid.get_widget(tag).set_text(val)
                 
 
     def destroy(self,obj):
@@ -66,7 +66,7 @@ class StartupDialog:
     def on_finish(self,obj,b):
         for tag in self.rlist:
             val = self.druid.get_widget(tag).get_text()
-            self.client.set_string("/gramps/researcher/%s" % tag,val)
+            self.client.set_string("/apps/gramps/researcher-%s" % tag,val)
 
         if self.druid.get_widget("num_us").get_active():
             dateFormat = 0
@@ -74,15 +74,14 @@ class StartupDialog:
             dateFormat = 1
         else:
             dateFormat = 2
-            self.client.set_int("/gramps/config/dateEntry",dateFormat)
+            self.client.set_int("/apps/gramps/dateEntry",dateFormat)
 
         showcal = self.druid.get_widget("altcal").get_active()
-        self.client.set_int("/gramps/config/ShowCalendar",showcal)
+        self.client.set_int("/apps/gramps/ShowCalendar",showcal)
 
         lds = self.druid.get_widget("enable_lds").get_active()
-        self.client.set_int("/gramps/config/UseLDS",lds)
+        self.client.set_int("/apps/gramps/UseLDS",lds)
         self.client.set_int(_StartupEntry,const.startup)
-        self.client.sync()
         Utils.destroy_passed_object(obj)
 
     def on_cancel_clicked(self,obj):
