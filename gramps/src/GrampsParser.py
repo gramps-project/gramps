@@ -413,7 +413,7 @@ class GrampsParser:
         else:
             d = self.event.getDateObj()
 
-        d.set(attrs['val'])
+        d.set(u2l(attrs['val']))
 
     def start_created(self,attrs):
         self.entries = int(attrs["people"]) + int(attrs["families"])

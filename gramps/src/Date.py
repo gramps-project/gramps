@@ -155,6 +155,8 @@ class Date:
         return self.start.getYear()
 
     def getMonth(self):
+        if self.start.month == UNDEF:
+            return UNDEF
         return self.start.month+1
 
     def getDay(self):
@@ -407,6 +409,8 @@ class SingleDate:
             self.year = UNDEF
 
     def getMonth(self):
+        if self.month == UNDEF:
+            return UNDEF
         return self.month + 1
 
     def setDay(self,val):
