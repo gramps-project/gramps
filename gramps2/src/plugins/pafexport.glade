@@ -289,7 +289,7 @@
                       <widget class="GtkCheckButton" id="restrict">
                         <property name="border_width">3</property>
                         <property name="can_focus">yes</property>
-                        <property name="label" translatable="yes">Restrict data on living people</property>
+                        <property name="label" translatable="yes">Restrict information on living people</property>
                         <property name="active">yes</property>
                         <property name="draw_indicator">yes</property>
                         <property name="visible">yes</property>

@@ -1788,7 +1788,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button121">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Accept and close</property>
+	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
 	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
@@ -2523,7 +2523,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button124">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Accept and close</property>
+	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
 	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
@@ -2756,7 +2756,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button119">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Reject changes and close</property>
+	      <property name="tooltip" translatable="yes">Abandon changes and close window</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-cancel</property>
@@ -2770,7 +2770,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button118">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Accept and close</property>
+	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
 	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
