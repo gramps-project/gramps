@@ -478,7 +478,7 @@ class XmlWriter:
     def dump_name(self,label,name,index=1):
         sp = "  "*index
         type = name.getType()
-        if type and type != "Birth Name":
+        if type:
             self.g.write('%s<%s type="%s"%s>\n' % (sp,label,type,conf_priv(name)))
         else:
             self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))

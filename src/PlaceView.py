@@ -81,25 +81,30 @@ class PlaceView:
     def change_db(self,db):
         self.db = db
 
-    def load_places(self):
+    def load_places(self,id=None):
         """Rebuilds the entire place view. This can be very time consuming
         on large databases, and should only be called when absolutely
         necessary"""
-        
-        if len(self.place_list.selection) == 0:
-            current_row = 0
-        else:
-            current_row = self.place_list.selection[0]
 
         self.place_list.freeze()
         self.place_list.clear()
         self.place_list.set_column_visibility(1,GrampsCfg.id_visible)
+
+        if len(self.place_list.selection) == 0:
+            current_row = 0
+        else:
+            current_row = self.place_list.selection[0]
 
         index = 0
         for key in self.db.getPlaceKeys():
             self.place_list.append(self.db.getPlaceDisplay(key))
             self.place_list.set_row_data(index,key)
             index = index + 1
+
+        self.place_sort.sort_list()
+
+        if id:
+            current_row = self.place_list.find_row_from_data(id)
 
         if index > 0:
             self.place_list.select_row(current_row,0)
@@ -109,7 +114,6 @@ class PlaceView:
         else:
             self.active = None
 
-        self.place_sort.sort_list()
         self.place_list.thaw()
         
     def select_row(self,obj,row,b,c):
