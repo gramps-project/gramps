@@ -486,6 +486,7 @@ class GedcomWriter:
         for family in self.flist:
             father_alive = mother_alive = 0
             self.g.write("0 @%s@ FAM\n" % self.fid(family.getId()))
+            self.g.write('1 REFN %s\n' % family.getId())
             person = family.getFather()
             if person != None and person in self.plist:
                 self.g.write("1 HUSB @%s@\n" % self.pid(person.getId()))
@@ -569,7 +570,7 @@ class GedcomWriter:
 
     def write_person(self,person):
         self.g.write("0 @%s@ INDI\n" % self.pid(person.getId()))
-
+        self.g.write('1 REFN %s\n' % person.getId())
         self.write_person_name(person.getPrimaryName(),person.getNickName())
 
         if self.altname == ALT_NAME_STD:
