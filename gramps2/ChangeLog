@@ -14,6 +14,16 @@
 	* src/plugins/IndivSummary.py (get_xpm_image): Remove 
 	function, import it from Utils.py instead; Convert to db.
 
+	* src/SubstKeywords.py (__init__): Convert to db.
+	* src/plugins/AncestorChart.py: Convert to db.
+	* src/plugins/AncestorChart2.py: Convert to db.
+	* src/GraphLayout.py: Convert to db.
+	* src/plugins/DesGraph.py: Convert to db.
+	* src/plugins/FanChart.py: Convert to db.
+	* src/Sort.py: Add converted sort.py to CVS.
+	* src/sort.py: Remove file (obsolete). 
+	* src/plugins/TimeLine.py: Convert to db.
+
 2004-05-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: Convert to db interface.
 	* src/plugins/DetAncestralReport.py: Translate string.

@@ -46,6 +46,7 @@ import Errors
 import FontScale
 from QuestionDialog import ErrorDialog
 from SubstKeywords import SubstKeywords
+from Utils import get_xpm_image
 from gettext import gettext as _
 
 _BORN = _('b.')
@@ -172,6 +173,7 @@ class AncestorChart:
 
     def __init__(self,database,person,max,display,doc,output,scale,compress,
                  title,newpage=0):
+        self.database = database
         self.doc = doc
         self.title = title.strip()
         self.doc.creator(database.get_researcher().get_name())
@@ -193,7 +195,7 @@ class AncestorChart:
         self.font = self.doc.style_list["AC2-Normal"].get_font()
         self.tfont = self.doc.style_list["AC2-Title"].get_font()
 
-        self.filter(self.start,1)
+        self.filter(self.start.get_id(),1)
 
         keys = self.map.keys()
         keys.sort()
@@ -202,31 +204,33 @@ class AncestorChart:
         self.genchart = GenChart(max_key+1)
         for key in self.map.keys():
             self.genchart.set(key,self.map[key])
-	self.calc()
+        self.calc()
 
-    def filter(self,person,index):
+    def filter(self,person_id,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
 
-        if person == None or index >= 2**self.max_generations:
+        if (not person_id) or (index >= 2**self.max_generations):
             return
-        self.map[index] = person
+        self.map[index] = person_id
 
-	self.text[index] = []
+        self.text[index] = []
 
-        subst = SubstKeywords(person)
+        subst = SubstKeywords(self.database,person_id)
         
         for line in self.display:
             self.text[index].append(subst.replace(line))
 
-	for line in self.text[index]:
-	    self.box_width = max(self.box_width,FontScale.string_width(self.font,line))
+        for line in self.text[index]:
+            self.box_width = max(self.box_width,FontScale.string_width(self.font,line))
 
-	self.lines = max(self.lines,len(self.text[index]))    
+        self.lines = max(self.lines,len(self.text[index]))    
 
-        family = person.get_main_parents_family_id()
-        if family:
+        person = self.database.find_person_from_id(person_id)
+        family_id = person.get_main_parents_family_id()
+        if family_id:
+            family = self.database.find_family_from_id(family_id)
             self.filter(family.get_father_id(),index*2)
             self.filter(family.get_mother_id(),(index*2)+1)
 
@@ -279,9 +283,9 @@ class AncestorChart:
         self.uh = self.doc.get_usable_height() - self.offset
         uw = self.doc.get_usable_width()-pt2cm(self.box_pad_pts)
 
-	calc_width = pt2cm(self.box_width + self.box_pad_pts) + 0.2 
-	self.box_width = pt2cm(self.box_width)
-	self.box_height = self.lines*pt2cm(1.25*self.font.get_size())
+        calc_width = pt2cm(self.box_width + self.box_pad_pts) + 0.2 
+        self.box_width = pt2cm(self.box_width)
+        self.box_height = self.lines*pt2cm(1.25*self.font.get_size())
 
         self.scale = 1
         
@@ -639,7 +643,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
             self.title.set_text(self.the_title)
 
             new_name = new_person.getPrimaryName().getRegularName()
-	    if new_name:
+            if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )
                 self.person_label.set_use_markup(gtk.TRUE)
 
@@ -691,148 +695,6 @@ def write_book_item(database,person,doc,options,newpage=0):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 85 1",
-        " 	c None",
-        ".	c #887D6C",
-        "+	c #8C8A87",
-        "@	c #787775",
-        "#	c #766D5F",
-        "$	c #67655F",
-        "%	c #5E5A54",
-        "&	c #55524C",
-        "*	c #BBBAB8",
-        "=	c #B7AFA2",
-        "-	c #A9A5A0",
-        ";	c #99948A",
-        ">	c #FAFAFA",
-        ",	c #F8F6F2",
-        "'	c #F6F2EC",
-        ")	c #E6E5E5",
-        "!	c #D2CCBF",
-        "~	c #C7C6C3",
-        "{	c #413F3F",
-        "]	c #DCD9D4",
-        "^	c #322E2B",
-        "/	c #4F4E4C",
-        "(	c #908F8D",
-        "_	c #989897",
-        ":	c #8A8986",
-        "<	c #898885",
-        "[	c #F5EEE5",
-        "}	c #F5F5F5",
-        "|	c #979695",
-        "1	c #888784",
-        "2	c #8B8A87",
-        "3	c #1A1A1A",
-        "4	c #858582",
-        "5	c #949390",
-        "6	c #858480",
-        "7	c #92918E",
-        "8	c #8F8E8B",
-        "9	c #8E8D8A",
-        "0	c #797773",
-        "a	c #7B7975",
-        "b	c #81807C",
-        "c	c #817F7C",
-        "d	c #989796",
-        "e	c #807E7B",
-        "f	c #8C8B88",
-        "g	c #E3CAA5",
-        "h	c #F2EADF",
-        "i	c #DDCDB4",
-        "j	c #8E8E8B",
-        "k	c #888785",
-        "l	c #EFE4D2",
-        "m	c #969694",
-        "n	c #9F9F9D",
-        "o	c #E6D4B7",
-        "p	c #A5967E",
-        "q	c #8A8987",
-        "r	c #EBDCC4",
-        "s	c #878683",
-        "t	c #9B9995",
-        "u	c #9A9892",
-        "v	c #807F7B",
-        "w	c #7E7C79",
-        "x	c #8E8C88",
-        "y	c #8F8E8C",
-        "z	c #8D8B88",
-        "A	c #B59871",
-        "B	c #878581",
-        "C	c #8E8B87",
-        "D	c #848480",
-        "E	c #898785",
-        "F	c #8A8886",
-        "G	c #7D7B77",
-        "H	c #8D8C89",
-        "I	c #8B8A86",
-        "J	c #918F8B",
-        "K	c #989795",
-        "L	c #BBA382",
-        "M	c #8D8B86",
-        "N	c #868480",
-        "O	c #8E8C87",
-        "P	c #8E8B86",
-        "Q	c #8A8985",
-        "R	c #807F7A",
-        "S	c #8D8A84",
-        "T	c #898884",
-        "                                                ",
-        "                                                ",
-        "             .+....@@#####$$$%$%&$@             ",
-        "             .**************=*-;+%%@            ",
-        "             .*>>,>>>>>>,>>>>')!*..;&           ",
-        "             .*>>>>>>>>>>>>>>>,)!=@~;{          ",
-        "             .*,>>>>>>>>>>>>>>>,]]%)~+^         ",
-        "             .*>>>>>>>>>>>>>>>>>))/>)~+^        ",
-        "             .*>>>>>>>>>>>>>>>>>(_/>>)~+^       ",
-        "             .*>>>>>>>>>>>>>>>>>:>/)>>)~+{      ",
-        "             @*>>>>>>>>>>>>>>>>><>/]'>>)~;&     ",
-        "             @*>>>>>>>>>>>>>>>>>:>/~][>>)~;$    ",
-        "             #*>>>>>>>>>}}|1<<2>:>/33^{{%$@$@   ",
-        "             .*>>>>>>>>>4:<<<<<56>)~*-;+@$%{$   ",
-        "             #*>>>>>>>>><>|<1<7>8>>)!~=-;+@&{   ",
-        "             #*>>>>>>>>><>>>>>>>9>>,]!~*-;+${   ",
-        "             #*>>>>>>>>><>>>>>>>8>>,))~~*-;@^   ",
-        "             #*>>>>>>>>><>>>>>>>:>(000a!~*-@^   ",
-        "             #*>>>>>>>>>1>>>>>>>b2<<<1c]~~*.^   ",
-        "             #*>>>>>>>>><>>>>>>>,>de<<f]g~*+^   ",
-        "             #*>>>>>>>>><>>>>>>,,,''[h]]ii~+^   ",
-        "             $*>>jkkkkj><>>>>>,>'''[[hl]]ig;^   ",
-        "             $*>>mkkkkjn<>>>>>,,'''h[hl]o!!p^   ",
-        "             $*>>jkkkkq><>>>>,'''[)[hhll]i!p^   ",
-        "             $*>>>>>>>>><>>>,,'),[hh)llrro!p^   ",
-        "             $*>>>>>>>>><>>,,'''h[hhhllrriip^   ",
-        "             $*>>>>>>>>><>,'''h[hhlllllrroip^   ",
-        "             %*>>>>>>>>><,''''[[hh|<s<2rroip^   ",
-        "             %*>>>>>>>>><'''hhh)tu<<v0wrroip^   ",
-        "             $*>>>>>>>>,<''['[[hxly<<<zroooA^   ",
-        "             %*>>>>>>>,,<'hh)hhlxllrrrrrroiA^   ",
-        "             %*>>>>>>,''1[[[[hllxlrlrroooooA^   ",
-        "             %*>>>>>,,''<hqk<<BlClrrrrrooooA^   ",
-        "             %*>>>>,'''hDEF<<<GHIrrrroooogiA^   ",
-        "             %*>>>,,'''h)hJ<1<KrCrrorooooggL^   ",
-        "             &*>>,''[[h[[hllllrlCroroooggogA^   ",
-        "             &*>,,''[h[hlhllrlrrCroooooggggA^   ",
-        "             &=,''[[[[hlhllllrrrMoqkk1NogggL^   ",
-        "             &*''''h)hhlllrrrrrrOPQ<ksRggggA^   ",
-        "             /=''h[[[h)llrllrrrooo2STE6ggggA^   ",
-        "             &=''h)hlhlllrrrrorooooggggggggA^   ",
-        "             /=[[[[hhllrrlrroroooogggggg*ggA^   ",
-        "             /=hhhllllllrrrroooogogggggggggA^   ",
-        "             /=*=======LLLLLLLLLLLLAAAAAAAAA^   ",
-        "             ^^^^^^^^^^^^^^^^^^^^^^^^^^3^^3^^   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]
 
 #------------------------------------------------------------------------
 #

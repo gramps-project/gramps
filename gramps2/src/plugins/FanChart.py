@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #------------------------------------------------------------------------
 #
@@ -57,14 +59,15 @@ def pt2cm(pt):
 class FanChart:
 
     def __init__(self,database,person,display,doc,output,newpage=0):
+        self.database = database
         self.doc = doc
         self.doc.creator(database.get_researcher().get_name())
         self.map = {}
         self.text = {}
         self.start = person
         self.output = output
-	self.box_width = 0
-	self.height = 0
+        self.box_width = 0
+        self.height = 0
         self.lines = 0
         self.display = display
         self.newpage = newpage
@@ -135,41 +138,43 @@ class FanChart:
         self.doc.add_draw_style("FC-c5n",g)
 
         self.map = [None] * 32
-	self.text= {}
+        self.text= {}
         self.box_width = 0
         if self.standalone:
             self.doc.init()
 
-    def filter(self,person,index):
+    def filter(self,person_id,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
         
-        if person == None or index >= 32:
+        if (not person_id) or (index >= 32):
             return
-        self.map[index-1] = person
+        self.map[index-1] = person_id
 
-	self.text[index-1] = []
+        self.text[index-1] = []
 
-        subst = SubstKeywords(person)
+        subst = SubstKeywords(self.database,person_id)
         
         for line in self.display:
             self.text[index-1].append(subst.replace(line))
 
         self.font = self.doc.style_list["FC-Normal"].get_font()
-	for line in self.text[index-1]:
-	    self.box_width = max(self.box_width,string_width(self.font,line))
+        for line in self.text[index-1]:
+            self.box_width = max(self.box_width,string_width(self.font,line))
 
-	self.lines = max(self.lines,len(self.text[index-1]))    
+        self.lines = max(self.lines,len(self.text[index-1]))    
 
-        family = person.get_main_parents_family_id()
-        if family != None:
+        person = self.database.find_person_from_id(person_id)
+        family_id = person.get_main_parents_family_id()
+        if family_id:
+            family = self.database.find_family_from_id(family_id)
             self.filter(family.get_father_id(),index*2)
             self.filter(family.get_mother_id(),(index*2)+1)
 
     def write_report(self):
 
-        self.filter(self.start,1)
+        self.filter(self.start.get_id(),1)
 
         block_size = self.doc.get_usable_width()/14.0
 
@@ -196,13 +201,24 @@ class FanChart:
         if self.standalone:
             self.doc.close()
 
-    def get_info(self,person):
+    def get_info(self,person_id):
+        person = self.database.find_person_from_id(person_id)
         pn = person.get_primary_name()
-        b = person.get_birth().get_date_object().getYear()
-        d = person.get_death().get_date_object().getYear()
-        if b == Calendar.UNDEF:
+
+        birth_id = person.get_birth_id()
+        if birth_id:
+            b = self.database.find_event_from_id(birth_id).get_date_object().get_year()
+            if b == Calendar.UNDEF:
+                b = ""
+        else:
             b = ""
-        if d == Calendar.UNDEF:
+
+        death_id = person.get_death_id()
+        if death_id:
+            d = self.database.find_event_from_id(death_id).get_date_object().get_year()
+            if d == Calendar.UNDEF:
+                d = ""
+        else:
             d = ""
 
         if b or d:

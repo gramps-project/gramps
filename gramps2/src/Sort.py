@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
 """
 Provides sorting routines for use in GRAMPS. Since these functions are
 intended to provide fast sorting, they tend to bypass access methods,
@@ -68,31 +71,52 @@ def build_sort_date(n):
         d = 99
     return "%04d%02d%02d" % (y,m,d)
 
-def by_last_name(first, second):
-    """Sort routine for comparing two last names. If last names are equal,
-    uses the given name and suffix"""
-    name1 = first.get_primary_name()
-    name2 = second.get_primary_name()
+class Sort:
+    def __init__(self,database):
+        self.database = database
 
-    fsn = name1.get_surname().upper()
-    ssn = name2.get_surname().upper()
 
-    if fsn == ssn :
-        ffn = name1.get_first_name().upper()
-        sfn = name2.get_first_name().upper()
-        if ffn == sfn :
-            return cmp(name1.get_suffix().upper(), name2.get_suffix().upper())
-        else :
-            return cmp(ffn, sfn)
-    else :
-        return cmp(fsn, ssn)
+    def by_last_name(self,first_id,second_id):
+        """Sort routine for comparing two last names. If last names are equal,
+        uses the given name and suffix"""
+        first = self.database.find_person_from_id(first_id)
+        second = self.database.find_person_from_id(second_id)
+        
+        name1 = first.get_primary_name()
+        name2 = second.get_primary_name()
 
-def by_birthdate(first, second) :
-    """Sort routine for comparing two people by birth dates. If the birth dates
-    are equal, sorts by name"""
-    date1 = first.get_birth().get_date_object()
-    date2 = second.get_birth().get_date_object()
-    val = Date.compare_dates(date1,date2)
-    if val == 0:
-        return by_last_name(first,second)
-    return val
+        fsn = name1.get_surname().upper()
+        ssn = name2.get_surname().upper()
+
+        if fsn == ssn :
+            ffn = name1.get_first_name().upper()
+            sfn = name2.get_first_name().upper()
+            if ffn == sfn:
+                return cmp(name1.get_suffix().upper(), name2.get_suffix().upper())
+            else:
+                return cmp(ffn, sfn)
+        else:
+            return cmp(fsn, ssn)
+
+    def by_birthdate(self,first_id,second_id):
+        """Sort routine for comparing two people by birth dates. If the birth dates
+        are equal, sorts by name"""
+        first = self.database.find_person_from_id(first_id)
+        second = self.database.find_person_from_id(second_id)
+
+        birth_id1 = first.get_birth_id()
+        if birth_id1:
+            date1 = self.database.find_event_from_id(birth_id1).get_date_object()
+        else:
+            date1 = Date.Date()
+
+        birth_id2 = second.get_birth_id()
+        if birth_id2:
+            date2 = self.database.find_event_from_id(birth_id2).get_date_object()
+        else:
+            date2 = Date.Date()
+
+        val = Date.compare_dates(date1,date2)
+        if val == 0:
+            return self.by_last_name(first_id,second_id)
+        return val

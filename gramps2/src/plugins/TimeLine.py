@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ import GenericFilter
 import Errors
 import Date
 import FontScale
-import sort
+import Sort
 from QuestionDialog import ErrorDialog
 
 from gettext import gettext as _
@@ -76,10 +76,10 @@ class TimeLine:
                    class.
         """
         self.d = document
-	self.filter = filter
-	self.db = database
-	self.person = person
-	self.output = output
+        self.filter = filter
+        self.db = database
+        self.person = person
+        self.output = output
         self.title = title
         self.sort_func = sort_func
         self.newpage = newpage
@@ -183,9 +183,19 @@ class TimeLine:
 
         self.plist.sort(self.sort_func)
         
-        for p in self.plist:
-            b = p.get_birth().get_date_object().getYear()
-            d = p.get_death().get_date_object().getYear()
+        for p_id in self.plist:
+            p = self.db.find_person_from_id(p_id)
+            b_id = p.get_birth_id()
+            if b_id:
+                b = self.db.find_event_from_id(b_id).get_date_object().get_year()
+            else:
+                b = Date.UNDEF
+
+            d_id = p.get_death_id()
+            if d_id:
+                d = self.db.find_event_from_id(d_id).get_date_object().get_year()
+            else:
+                d = Date.UNDEF
 
             n = p.get_primary_name().get_name()
             self.d.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
@@ -267,24 +277,34 @@ class TimeLine:
 
     def find_year_range(self):
         low  =  999999
-	high = -999999
-	
-        self.plist = self.filter.apply(self.db,self.db.get_person_id_map().values())
+        high = -999999
+        
+        self.plist = self.filter.apply(self.db,self.db.get_person_keys())
 
-	for p in self.plist:
-	    b = p.get_birth().get_date_object().getYear()
-	    d = p.get_death().get_date_object().getYear()
+        for p_id in self.plist:
+            p = self.db.find_person_from_id(p_id)
+            b_id = p.get_birth_id()
+            if b_id:
+                b = self.db.find_event_from_id(b_id).get_date_object().get_year()
+            else:
+                b = Date.UNDEF
 
-	    if b != Date.UNDEF:
-	       low = min(low,b)
-	       high = max(high,b)
+            d_id = p.get_death_id()
+            if d_id:
+                d = self.db.find_event_from_id(d_id).get_date_object().get_year()
+            else:
+                d = Date.UNDEF
 
-	    if d != Date.UNDEF:
-	       low = min(low,d)
-	       high = max(high,d)
+            if b != Date.UNDEF:
+                low = min(low,b)
+                high = max(high,b)
+
+            if d != Date.UNDEF:
+                low = min(low,d)
+                high = max(high,d)
                
-	low = (low/10)*10
-	high = ((high+9)/10)*10
+        low = (low/10)*10
+        high = ((high+9)/10)*10
         
         if low == Date.UNDEF:
             low = high
@@ -294,13 +314,14 @@ class TimeLine:
         return (low,high)
 
     def name_size(self):
-        self.plist = self.filter.apply(self.db,self.db.get_person_id_map().values())
+        self.plist = self.filter.apply(self.db,self.db.get_person_keys())
 
         style_name = self.d.draw_styles['TLG-text'].get_paragraph_style()
         font = self.d.style_list[style_name].get_font()
         
         size = 0
-	for p in self.plist:
+        for p_id in self.plist:
+            p = self.db.find_person_from_id(p_id)
             n = p.get_primary_name().get_name()
             size = max(FontScale.string_width(font,n),size)
         return pt2cm(size)
@@ -372,7 +393,7 @@ def _get_report_filters(person):
 # Builds list of sorting functions for this report
 #
 #------------------------------------------------------------------------
-def _get_sort_functions():
+def _get_sort_functions(sort):
     return [
         (_("Birth Date"),sort.by_birthdate),
         (_("Name"),sort.by_last_name), 
@@ -388,6 +409,7 @@ class TimeLineDialog(Report.DrawReportDialog):
     report_options = {}
 
     def __init__(self,database,person):
+        self.database = database
         Report.DrawReportDialog.__init__(self,database,person,self.report_options)
 
     def get_title(self):
@@ -421,7 +443,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         self.sort_style = gtk.OptionMenu()
         self.sort_menu = gtk.Menu()
 
-        sort_functions = _get_sort_functions()
+        sort_functions = _get_sort_functions(Sort.Sort(self.database))
         for item in sort_functions:
             menuitem = gtk.MenuItem(item[0])
             menuitem.set_data('sort',item[1])
@@ -564,7 +586,7 @@ class TimeLineBareDialog(Report.BareReportDialog):
         self.sort_style = gtk.OptionMenu()
         self.sort_menu = gtk.Menu()
 
-        sort_functions = _get_sort_functions()
+        sort_functions = _get_sort_functions(Sort.Sort(self.db))
         for item in sort_functions:
             menuitem = gtk.MenuItem(item[0])
             menuitem.set_data('sort',item[1])
