@@ -28,9 +28,9 @@ import Config
 
 _ = intl.gettext
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import GDK
+import gtk
+import libglade
 
 #------------------------------------------------------------------------
 #
@@ -49,7 +49,7 @@ class DesBrowse:
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
 
-        self.glade = GladeXML(glade_file,"top")
+        self.glade = libglade.GladeXML(glade_file,"top")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             })
@@ -60,7 +60,7 @@ class DesBrowse:
         top.show()
 
     def add_to_tree(self,tree,person):
-        item = GtkTreeItem(Config.nameof(person))
+        item = gtk.GtkTreeItem(Config.nameof(person))
         item.show()
         item.connect('button-press-event',self.button_press_event)
         item.set_data('d',person)
@@ -69,7 +69,7 @@ class DesBrowse:
         for family in person.getFamilyList():
             for child in family.getChildList():
                 if subtree == None:
-                    subtree = GtkTree()
+                    subtree = gtk.GtkTree()
                     subtree.show()
                     item.set_subtree(subtree)
                 self.add_to_tree(subtree,child)

@@ -31,9 +31,10 @@ import string
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
 import GDK
+import GTK
+import gtk
+import gnome.ui
 import libglade
 
 #-------------------------------------------------------------------------
@@ -127,7 +128,7 @@ class ImageSelect:
         description = self.description.get_text()
 
         if os.path.exists(filename) == 0:
-            GnomeErrorDialog(_("That is not a valid file name."));
+            gnome.ui.GnomeErrorDialog(_("That is not a valid file name."));
             return
 
         already_imported = None
@@ -190,7 +191,7 @@ class Gallery(ImageSelect):
             ('text/uri-list',0,2),
             ('application/x-rootwin-drop',0,1)]
 
-        icon_list.drag_dest_set(DEST_DEFAULT_ALL, t, GDK.ACTION_COPY | GDK.ACTION_MOVE)
+        icon_list.drag_dest_set(GTK.DEST_DEFAULT_ALL, t, GDK.ACTION_COPY | GDK.ACTION_MOVE)
         icon_list.connect("drag_data_received", self.on_photolist_drag_data_received)
 
         icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,\
@@ -281,7 +282,7 @@ class Gallery(ImageSelect):
                 except IOError, msg:
                     t = _("Could not import %s") % d
                     
-                    GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    gnome.ui.GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = utils.get_mime_type(tfile)
                 photo = Photo()
@@ -300,7 +301,7 @@ class Gallery(ImageSelect):
                         photo.setPath(name)
                 except:
                     photo.setPath(tfile)
-                    w.drag_finish(context, TRUE, FALSE, time)
+                    w.drag_finish(context, 1, 0, time)
                     return
                 self.add_thumbnail(oref)
                 utils.modified()
@@ -310,10 +311,10 @@ class Gallery(ImageSelect):
                     for p in self.dataobj.getPhotoList():
                         if data.data == p.getReference().getId():
                             if index == icon_index or icon_index == -1:
-                                w.drag_finish(context, FALSE, FALSE, time)
+                                w.drag_finish(context, 0, 0, time)
                                 return
                             else:
-                                w.drag_finish(context, TRUE, FALSE, time)
+                                w.drag_finish(context, 1, 0, time)
                                 nl = self.dataobj.getPhotoList()
                                 item = nl[index]
                                 if icon_index == 0:
@@ -332,9 +333,9 @@ class Gallery(ImageSelect):
                     self.dataobj.addPhoto(oref)
                     self.add_thumbnail(oref)
                     utils.modified()
-            w.drag_finish(context, TRUE, FALSE, time)
+            w.drag_finish(context, 1, 0, time)
 	else:
-            w.drag_finish(context, FALSE, FALSE, time)
+            w.drag_finish(context, 0, 0, time)
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:
@@ -384,8 +385,8 @@ class Gallery(ImageSelect):
     
         if event.button == 3:
             photo = self.dataobj.getPhotoList()[icon]
-            menu = GtkMenu()
-            item = GtkTearoffMenuItem()
+            menu = gtk.GtkMenu()
+            item = gtk.GtkTearoffMenuItem()
             item.show()
             menu.append(item)
             utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)

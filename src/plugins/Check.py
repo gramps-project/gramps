@@ -22,17 +22,13 @@
 
 import RelLib
 import utils
-import soundex
-import Config
 import intl
 _ = intl.gettext
 
-import string
 import os
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import gnome.ui
+import libglade
 
 #-------------------------------------------------------------------------
 #
@@ -167,7 +163,7 @@ class CheckIntegrity:
         errors = blink + efam + photos + rel
         
         if errors == 0:
-            GnomeOkDialog(_("No errors were found"))
+            gnome.ui.GnomeOkDialog(_("No errors were found"))
             return
 
         text = ""
@@ -204,7 +200,7 @@ class CheckIntegrity:
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
-        topDialog = GladeXML(glade_file,"summary")
+        topDialog = libglade.GladeXML(glade_file,"summary")
         topDialog.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             })

@@ -22,11 +22,9 @@
 
 import os
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import gnome.ui
+import libglade
 
-import RelLib
 import const
 import utils
 import intl
@@ -48,7 +46,7 @@ class ChangeTypes:
 
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
-        self.glade = GladeXML(glade_file,"top")
+        self.glade = libglade.GladeXML(glade_file,"top")
 
         self.glade.get_widget("original").set_popdown_strings(const.personalEvents)
         self.glade.get_widget("new").set_popdown_strings(const.personalEvents)
@@ -79,7 +77,7 @@ class ChangeTypes:
         else:
             msg = _("%d event records were modified") % modified
             
-        GnomeOkDialog(msg)
+        gnome.ui.GnomeOkDialog(msg)
         utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------

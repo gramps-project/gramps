@@ -21,25 +21,21 @@
 "Generate files/Descendant Report"
 
 import os
-import re
 import sort
 import string
 import intl
 
 _ = intl.gettext
 
-import RelLib
 import const
 import Config
 import utils
-import const
 from TextDoc import *
 from StyleEditor import *
 import FindDoc
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import gtk
+import libglade
 
 #------------------------------------------------------------------------
 #
@@ -133,7 +129,7 @@ class DesReportWindow:
         self.person = person
 
         glade_file = os.path.dirname(__file__) + os.sep + "desreport.glade"
-        self.top = GladeXML(glade_file,"dialog1")
+        self.top = libglade.GladeXML(glade_file,"dialog1")
         self.top.get_widget("fileentry1").set_default_path(Config.report_dir)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
@@ -182,10 +178,10 @@ class DesReportWindow:
 #------------------------------------------------------------------------
 def build_menu(object):
 
-    myMenu = GtkMenu()
+    myMenu = gtk.GtkMenu()
 
     for style in object.style_sheet_list.get_style_names():
-        menuitem = GtkMenuItem(style)
+        menuitem = gtk.GtkMenuItem(style)
         menuitem.set_data("d",object.style_sheet_list.get_style_sheet(style))
         menuitem.show()
         myMenu.append(menuitem)
