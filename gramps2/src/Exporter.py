@@ -362,9 +362,9 @@ class Exporter:
     
     def native_export(self,database,filename,person):
         """
-        Native database export. For now, just stupid copying of the present
-        grdb file under another name. In the future, filter and other
-        options may be added.
+        Native database export.
+        
+        In the future, filter and other options may be added.
         """
         try:
             import WriteGrdb
