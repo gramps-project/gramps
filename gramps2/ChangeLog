@@ -1,6 +1,10 @@
 2003-12-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/WriteXML.py (XmlWriter.write_note): Don't use format=0,
 	since it is the default.
+	* src/RelLib.py: add sorting by source title, remove dependency on string
+	module
+	* src/PlaceView.py: do an initial sort, don't rely on "click" function
+	* src/SourceView.py: do an initial sort, don't rely on "click" function
 
 2003-12-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WebPage.py: proper handling of links in the MiniTree
