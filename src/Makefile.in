@@ -62,6 +62,7 @@ GNOMEINC = @GNOMEINC@
 GNOMELIB = @GNOMELIB@
 GPREFIX = @GPREFIX@
 HAVE_PKG_CONFIG = @HAVE_PKG_CONFIG@
+ICONV = @ICONV@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
@@ -158,7 +159,6 @@ pkgpython_PYTHON = \
 	Date.py\
 	DbPrompter.py\
 	DisplayTrace.py\
-	DrawDoc.py\
 	EditPerson.py\
 	EditPlace.py\
 	EditSource.py\
@@ -199,7 +199,6 @@ pkgpython_PYTHON = \
 	PlaceView.py\
 	Plugins.py\
 	QuestionDialog.py\
-	QuickAdd.py\
 	ReadXML.py\
 	Relationship.py\
 	RelImage.py\
@@ -216,7 +215,6 @@ pkgpython_PYTHON = \
 	StyleEditor.py\
 	SubstKeywords.py\
 	TarFile.py\
-	TextDoc.py\
 	UrlEdit.py\
 	Utils.py\
 	VersionControl.py\
@@ -643,6 +641,7 @@ install-data-local:
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
 	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
+	-rm $(DESTDIR)$(pkglibdir)/grampslib.so
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
