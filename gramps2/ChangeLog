@@ -1,3 +1,10 @@
+2005-01-15 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/KwordDoc.py: Register with paper capabilites.
+	* src/docgen/PdfDoc.py: Register with paper capabilites.
+	* src/docgen/RTFDoc.py: Register with paper capabilites.
+	* src/const.py.in: Update copyright year.
+	* NEWS: Update.
+
 2005-01-14 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py: Restore "Place/cause when no date"
 	option that was available before in RelGraph; rename 'show

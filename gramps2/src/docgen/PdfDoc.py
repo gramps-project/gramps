@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ class GrampsDocTemplate(BaseDocTemplate):
     def build(self,flowables):
         """Override the default build routine, to recalculate
         for any changes in the document (margins, etc.)"""
-        self._calc()	
+        self._calc()
         BaseDocTemplate.build(self,flowables)
 
 def enc(s):
@@ -99,7 +99,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.pagesize = (self.width*cm,self.height*cm)
 
         self.doc = GrampsDocTemplate(self.filename, 
-	                             pagesize=self.pagesize,
+                                     pagesize=self.pagesize,
                                      allowSplitting=1,
                                      _pageBreakQuick=0,
                                      leftMargin=self.lmargin*cm,
@@ -119,7 +119,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             style = self.style_list[style_name]
             font = style.get_font()
 
-	    pdf_style = reportlab.lib.styles.ParagraphStyle(name=style_name)
+            pdf_style = reportlab.lib.styles.ParagraphStyle(name=style_name)
             pdf_style.fontSize = font.get_size()
             pdf_style.bulletFontSize = font.get_size()
             
@@ -156,22 +156,22 @@ class PdfDoc(BaseDoc.BaseDoc):
             pdf_style.firstLineIndent = first
             pdf_style.bulletIndent = first
 
-	    align = style.get_alignment()
+            align = style.get_alignment()
             if align == BaseDoc.PARA_ALIGN_RIGHT:
-		pdf_style.alignment = TA_RIGHT
+                pdf_style.alignment = TA_RIGHT
             elif align == BaseDoc.PARA_ALIGN_LEFT:
-		pdf_style.alignment = TA_LEFT
+                pdf_style.alignment = TA_LEFT
             elif align == BaseDoc.PARA_ALIGN_CENTER:
-		pdf_style.alignment = TA_CENTER
+                pdf_style.alignment = TA_CENTER
             else:
-		pdf_style.alignment = TA_JUSTIFY
+                pdf_style.alignment = TA_JUSTIFY
             pdf_style.spaceBefore = style.get_padding()*cm
             pdf_style.spaceAfter = style.get_padding()*cm
             pdf_style.textColor = make_color(font.get_color())
-	    self.pdfstyles[style_name] = pdf_style
+            self.pdfstyles[style_name] = pdf_style
 
-	self.story = []
-	self.in_table = 0
+        self.story = []
+        self.in_table = 0
 
     def close(self):
         try:
@@ -204,7 +204,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def end_paragraph(self):
         if self.in_table == 0 and self.image == 0:
-	    self.story.append(Paragraph(enc(self.text),self.current_para))
+            self.story.append(Paragraph(enc(self.text),self.current_para))
         else:
             self.image = 0
 
@@ -229,23 +229,23 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.cur_row = []
         self.table_data = []
 
-	self.tblstyle = []
+        self.tblstyle = []
         self.cur_table_cols = []
         width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
-	for val in range(self.cur_table.get_columns()):
+        for val in range(self.cur_table.get_columns()):
             percent = float(self.cur_table.get_column_width(val))/100.0
             self.cur_table_cols.append(int(width * percent * cm))
 
     def end_table(self):
         ts = reportlab.platypus.tables.TableStyle(self.tblstyle)
-	tbl = reportlab.platypus.tables.Table(data=self.table_data,
+        tbl = reportlab.platypus.tables.Table(data=self.table_data,
                                               colWidths=self.cur_table_cols,
                                               style=ts)
-	self.story.append(tbl)
+        self.story.append(tbl)
         self.in_table = 0
 
     def start_row(self):
-	self.row = self.row + 1
+        self.row = self.row + 1
         self.col = 0
         self.cur_row = []
 
@@ -265,7 +265,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         for val in range(1,self.span):
             self.cur_row.append("")
 
-	p = self.my_para
+        p = self.my_para
         f = p.get_font()
         if f.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             if f.get_bold():
@@ -338,7 +338,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = text.replace('&lt;/super&gt;','</super></font>')
 
         if self.in_table == 0:
-	    if format == 1:
+            if format == 1:
                 text = '<para firstLineIndent="0" fontname="Courier">%s</para>' % text.replace('\t',' '*8)
                 self.story.append(XPreformatted(text,current_para))
             elif format == 0:
@@ -408,15 +408,15 @@ class PdfDoc(BaseDoc.BaseDoc):
     def draw_box(self,style,text,x,y):
         y = self.get_usable_height() - y
 
-	box_style = self.draw_styles[style]
-	para_name = box_style.get_paragraph_style()
-	p = self.style_list[para_name]
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        p = self.style_list[para_name]
 
-	w = box_style.get_width()*cm
+        w = box_style.get_width()*cm
         h = box_style.get_height()*cm
 
         sspace = box_style.get_shadow_space()
- 	if box_style.get_shadow():
+        if box_style.get_shadow():
             col = make_color((0xc0,0xc0,0xc0))
             r = reportlab.graphics.shapes.Rect((x+sspace)*cm,
                                                (y-sspace)*cm-h,
@@ -437,7 +437,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         size = p.get_font().get_size()
 
         x = x + sspace
-	if text != "":
+        if text != "":
             lines = text.split('\n')
             self.left_print(lines,p.get_font(),x*cm,y*cm - size)
             
@@ -445,7 +445,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
- 	font = p.get_font()
+        font = p.get_font()
         size = font.get_size()
         y = (self.get_usable_height()*cm)-(y*cm)
         sc = make_color(font.get_color())
@@ -481,7 +481,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
- 	font = p.get_font()
+        font = p.get_font()
         size = font.get_size()
         yt = (self.get_usable_height()*cm) - (y*cm) 
 
@@ -508,7 +508,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
- 	font = p.get_font()
+        font = p.get_font()
         yt = (self.get_usable_height()*cm) - (y*cm) 
 
         fnt = self.pdf_set_font(font)
@@ -589,10 +589,10 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype, PdfDoc, 1, 0, 1, ".pdf", print_label)
+    PluginMgr.register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
     PluginMgr.register_draw_doc(mtype, PdfDoc, 1, 1,    ".pdf", print_label)
     PluginMgr.register_book_doc(mtype,classref=PdfDoc,table=1,paper=1,style=1,ext=".pdf")
 except:
-    PluginMgr.register_text_doc(_('PDF document'), PdfDoc, 1, 0, 1,".pdf", None)
+    PluginMgr.register_text_doc(_('PDF document'), PdfDoc, 1, 1, 1,".pdf", None)
     PluginMgr.register_draw_doc(_('PDF document'), PdfDoc, 1, 1,   ".pdf", None)
     PluginMgr.register_book_doc(name=_("PDF document"),classref=PdfDoc,table=1,paper=1,style=1,ext=".pdf")
