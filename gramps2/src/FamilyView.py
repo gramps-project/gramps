@@ -170,6 +170,7 @@ class FamilyView:
             ]
         
         menu = gtk.Menu()
+        menu.set_title(_('Child Menu'))
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,id,callback)
         menu.popup(None,None,None,0,0)
