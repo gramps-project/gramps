@@ -156,8 +156,7 @@ class AddSpouse:
         if not iter:
             return
         
-        row = model.get_path(iter)
-        id = self.entries[row[0]]
+        id = self.slist.get_object(iter)
         spouse = self.db.getPerson(id)
 
         # don't do anything if the marriage already exists

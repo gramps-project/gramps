@@ -337,9 +337,9 @@ class FamilyView:
     def nameof(self,l,p,mode):
         if p:
             n = p.getPrimaryName().getName()
-            return "%s: %s\n\tRelationship: %s" % (l,n,mode)
+            return _("%s: %s\n\tRelationship: %s") % (l,n,mode)
         else:
-            return "unknown\n"
+            return _("%s: unknown") % (l)
 
     def display_marriage(self,family):
 
