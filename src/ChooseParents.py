@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ class ChooseParents:
         self.mother_list = self.glade.get_widget("mother_list")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
-        self.showallf = self.glade.get_widget('showall')
+        self.showallf = self.glade.get_widget('showallf')
         self.showallm = self.glade.get_widget('showallm')
         
         self.fcombo.set_popdown_strings(const.familyRelations)
@@ -133,92 +133,181 @@ class ChooseParents:
             self.type = "Married"
 
         self.prel.set_text(_(self.type))
-        self.redraw()
+        self.redrawf()
+        self.redrawm()
         
         self.glade.signal_autoconnect({
             "on_save_parents_clicked"  : self.save_parents_clicked,
             "on_add_parent_clicked"    : self.add_parent_clicked,
             "on_prel_changed"          : self.parent_relation_changed,
-            "on_showall_toggled"       : self.showall_toggled,
+            "on_showallf_toggled"      : self.showallf_toggled,
+            "on_showallm_toggled"      : self.showallm_toggled,
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-    def redraw(self):
-        """Redraws the potential father and mother lists"""
+    def redrawf(self):
+        """Redraws the potential father list"""
 
         self.fmodel.clear()
-        self.mmodel.clear()
-
         self.fmodel.new_model()
-        self.mmodel.new_model()
-        
+
         pkey = self.person.getId()
-        gender = self.person.getGender()
+
         if self.father:
             fid = self.father.getId()
         else:
             fid = None
+            
+        bday = self.person.getBirth().getDateObj()
+        dday = self.person.getDeath().getDateObj()
+
+        person_list = []
+        for key in self.db.getPersonKeys():
+            if pkey == key:
+                continue
+
+            person = self.db.getPerson(key)
+            if person.getGender() != person.male:
+                continue
+
+            if not self.showallf.get_active():
+                
+                pdday = person.getDeath().getDateObj()
+                pbday = person.getBirth().getDateObj()
+
+        	if bday.getYearValid():
+                    if pbday.getYearValid():
+                        # reject if parents birthdate + 10 > child birthdate
+                        if pbday.getLowYear()+10 > bday.getHighYear():
+                            continue
+
+                        # reject if parents birthdate + 90 < child birthdate 
+                        if pbday.getHighYear()+90 < bday.getLowYear():
+                            continue
+
+                    if pdday.getYearValid():
+                        # reject if parents birthdate + 10 > child deathdate 
+                        if pbday.getLowYear()+10 > dday.getHighYear():
+                            continue
+                
+                if dday.getYearValid():
+                    if pbday.getYearValid():
+                        # reject if parents deathday + 3 < childs birth date 
+                        if pdday.getHighYear()+3 < bday.getLowYear():
+                            continue
+
+                    if pdday.getYearValid():
+                        # reject if parents deathday + 150 < childs death date 
+                        if pdday.getHighYear() + 150 < dday.getLowYear():
+                            continue
+        
+            person_list.append(person.getId())
+
+	for idval in person_list:
+            d = self.db.getPersonDisplay(idval)
+            info = [d[0],d[1],d[3],d[5],d[6]]
+            if self.type == "Partners":
+                self.fmodel.add(info,None,fid==d[1])
+            elif d[2] == const.male:
+                self.fmodel.add(info,None,fid==d[1])
+
+        if self.type == "Partners":
+            self.flabel.set_label("<b>%s</b>" % _("Parent"))
+        else:
+            self.flabel.set_label("<b>%s</b>" % _("Father"))
+
+        self.fmodel.connect_model()
+
+
+    def redrawm(self):
+        """Redraws the potential mother list"""
+
+        self.mmodel.clear()
+        self.mmodel.new_model()
+
+        pkey = self.person.getId()
+
         if self.mother:
             mid = self.mother.getId()
         else:
             mid = None
             
-        comparef = self.date.isValid() and not self.showallf.get_active()
-        comparem = self.date.isValid() and not self.showallm.get_active()
-            
+        bday = self.person.getBirth().getDateObj()
+        dday = self.person.getDeath().getDateObj()
+
+        person_list = []
         for key in self.db.getPersonKeys():
             if pkey == key:
                 continue
-            if gender == const.unknown:
+
+            person = self.db.getPerson(key)
+            if person.getGender() != person.female:
                 continue
 
-            p = self.db.getPerson(key)
+            person = self.db.getPerson(key)
+
+            if not self.showallm.get_active():
                 
-            d = self.db.getPersonDisplay(key)
+                pdday = person.getDeath().getDateObj()
+                pbday = person.getBirth().getDateObj()
+
+        	if bday.getYearValid():
+                    if pbday.getYearValid():
+                        # reject if parents birthdate + 10 > child birthdate
+                        if pbday.getLowYear()+10 > bday.getHighYear():
+                            continue
+
+                        # reject if parents birthdate + 90 < child birthdate 
+                        if pbday.getHighYear()+90 < bday.getLowYear():
+                            continue
+
+                    if pdday.getYearValid():
+                        # reject if parents birthdate + 10 > child deathdate 
+                        if pbday.getLowYear()+10 > dday.getHighYear():
+                            continue
+                
+                if dday.getYearValid():
+                    if pbday.getYearValid():
+                        # reject if parents deathday + 3 < childs birth date 
+                        if pdday.getHighYear()+3 < bday.getLowYear():
+                            continue
+
+                    if pdday.getYearValid():
+                        # reject if parents deathday + 150 < childs death date 
+                        if pdday.getHighYear() + 150 < dday.getLowYear():
+                            continue
+        
+            person_list.append(person.getId())
+
+	for idval in person_list:
+            d = self.db.getPersonDisplay(idval)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
-                if not(comparef and self.not_likely(p)):
-                    self.fmodel.add(info,None,fid==d[1])
-                if not(comparem and self.not_likely(p)):
-                    self.mmodel.add(info,None,mid==d[1])
-            elif d[2] == const.male:
-                if comparef and self.not_likely(p):
-                    continue
-                self.fmodel.add(info,None,fid==d[1])
-            else:
-                if comparem and self.not_likely(p):
-                    continue
+                self.mmodel.add(info,None,mid==d[1])
+            elif d[2] == const.female:
                 self.mmodel.add(info,None,mid==d[1])
 
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Parent"))
-            self.flabel.set_label("<b>%s</b>" % _("Parent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mother"))
-            self.flabel.set_label("<b>%s</b>" % _("Father"))
 
-        self.fmodel.connect_model()
         self.mmodel.connect_model()
 
-    def not_likely(self,person):
-        """
-        Rough attempt to eliminate a few non-realistic relationships. If the person
-        was born after the primary person, he or she can't be a parent.
-        """
-        bdate = person.getBirth().getDateObj()
-        if bdate.isValid() and Date.compare_dates(self.date,bdate) < 1:
-            return 1
-        return 0
 
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changegd"""
         self.old_type = self.type
         self.type = const.save_frel(obj.get_text())
         if self.old_type == "Partners" or self.type == "Partners":
-            self.redraw()
+            self.redrawf()
+            self.redrawm()
 
-    def showall_toggled(self,obj):
-        self.redraw()
+    def showallf_toggled(self,obj):
+        self.redrawf()
+
+    def showallm_toggled(self,obj):
+        self.redrawm()
         
     def find_family(self,father,mother):
         """
