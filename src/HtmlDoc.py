@@ -73,9 +73,11 @@ class HtmlDoc(TextDoc):
         top_add = 1
         bottom_add = 0
 
+        print "Template name is",self.template
         if self.template and self.template != "":
             try:
                 templateFile = open(self.template,"r")
+                print "template opened"
                 for line in templateFile.readlines():
                     if top_add == 1:
                         self.top.append(line)
@@ -220,8 +222,11 @@ class HtmlDoc(TextDoc):
     def end_cell(self):
         self.f.write('</td>\n')
 
-    def start_paragraph(self,style_name):
+    def start_paragraph(self,style_name,leader=None):
         self.f.write('<p class="' + style_name + '">')
+        if leader != None:
+            self.f.write(leader)
+            self.f.write(' ')
 
     def end_paragraph(self):
         if self.empty == 1:

@@ -75,6 +75,8 @@ class PdfDoc(TextDoc):
 
 	    pdf_style = reportlab.lib.styles.ParagraphStyle(name=style_name)
             pdf_style.fontSize = font.get_size()
+            pdf_style.bulletFontSize = font.get_size()
+            
             if font.get_type_face() == FONT_SERIF:
                 if font.get_bold():
 	            pdf_style.fontName = "Times-Bold"
@@ -85,9 +87,20 @@ class PdfDoc(TextDoc):
 	            pdf_style.fontName = "Helvetica-Bold"
                 else:
 	            pdf_style.fontName = "Helvetica"
-            pdf_style.rightIndent = style.get_right_margin()*cm
-            pdf_style.leftIndent = style.get_left_margin()*cm
-            pdf_style.firstLineIndent = style.get_first_indent()*cm
+            pdf_style.bulletFontName = pdf_style.fontName
+
+
+            right = style.get_right_margin()*cm
+            left = style.get_left_margin()*cm
+            first = left + style.get_first_indent()*cm
+
+            pdf_style.rightIndent = right
+            pdf_style.leftIndent = left
+            pdf_style.firstLineIndent = first
+            pdf_style.bulletIndent = first
+
+            print first,left
+            
 	    align = style.get_alignment()
             if align == PARA_ALIGN_RIGHT:
 		pdf_style.alignment = TA_RIGHT
@@ -114,10 +127,13 @@ class PdfDoc(TextDoc):
     def end_page(self):
         self.story.append(PageBreak())
 
-    def start_paragraph(self,style_name):
+    def start_paragraph(self,style_name,leader=None):
         self.current_para = self.pdfstyles[style_name]
         self.my_para = self.style_list[style_name]
-        self.text = ""
+        if leader==None:
+            self.text = ''
+        else:
+            self.text = '<bullet>%s</bullet>' % leader
         self.image = 0
 
     def end_paragraph(self):
