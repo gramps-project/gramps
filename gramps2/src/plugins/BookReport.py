@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -94,14 +94,14 @@ class BookItem:
         
         Everything gets set to empty values except for the style_name"""
 
-        self.name = ""
+        self.translated_name = ""
         self.category = ""
         self.write_item = None
         self.option_class = None
         self.style_file = ""
         self.style_name = "default"
         self.make_default_style = None
-        self.item_name = ""
+        self.name = ""
 
     def get_registered_item(self,name):
         """ 
@@ -112,18 +112,24 @@ class BookItem:
 
         self.clear()
         for item in PluginMgr.bkitems_list:
-            if item[0] == name:
-                self.name = item[0]
+            if item[4] == name:
+                self.translated_name = item[0]
                 self.category = item[1]
                 self.write_item = item[2]
-                self.item_name = item[4]
-                self.option_class = item[3](self.item_name)
+                self.name = item[4]
+                self.option_class = item[3](self.name)
 
     def get_name(self):
         """
         Returns the name of the item.
         """
         return self.name
+
+    def get_translated_name(self):
+        """
+        Returns the translated name of the item.
+        """
+        return self.translated_name
 
     def get_category(self):
         """
@@ -343,7 +349,8 @@ class BookList:
             dbname = book.get_dbname()
             f.write('<book name="%s" database="%s">\n' % (name,dbname) )
             for item in book.get_item_list():
-                f.write('  <item name="%s">\n' % item.get_name() )
+                f.write('  <item name="%s" trans_name="%s">\n' % 
+                            (item.get_name(),item.get_translated_name() ) )
                 option_handler = item.option_class.handler
                 for option_name in option_handler.options_dict.keys():
                     option_value = option_handler.options_dict[option_name]
@@ -507,15 +514,15 @@ class BookListDisplay:
         if not len(names):
             return
         for name in names:
-            iter = self.blist.add([name])
-        if iter:
-            self.blist.selection.select_iter(iter)
+            the_iter = self.blist.add([name])
+        if the_iter:
+            self.blist.selection.select_iter(the_iter)
 
     def on_booklist_ok_clicked(self,obj):
         """Returns selected book. Saves the current list into xml file."""
-        store,iter = self.blist.get_selected()
-        if iter:
-            data = self.blist.get_data(iter,[0])
+        store,the_iter = self.blist.get_selected()
+        if the_iter:
+            data = self.blist.get_data(the_iter,[0])
             self.selection = self.booklist.get_book(data[0])
         if self.dosave:
             self.booklist.save()
@@ -526,12 +533,12 @@ class BookListDisplay:
         
         This change is not final. OK button has to be clicked to save the list.
         """
-        store,iter = self.blist.get_selected()
-        if not iter:
+        store,the_iter = self.blist.get_selected()
+        if not the_iter:
             return
-        data = self.blist.get_data(iter,[0])
+        data = self.blist.get_data(the_iter,[0])
         self.booklist.delete_book(data[0])
-        self.blist.remove(iter)
+        self.blist.remove(the_iter)
         self.top.run()
 
     def on_booklist_cancel_clicked(self,obj):
@@ -620,8 +627,8 @@ class BookReportSelector:
         book_label.set_use_underline(gtk.TRUE)
         book_label.set_use_markup(gtk.TRUE)
 
-        av_titles = [(_('Name'),0,150),(_('Type'),1,50)]
-        bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),
+        av_titles = [(_('Name'),0,150),(_('Type'),1,50),('',-1,0)]
+        bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),('',-1,0),
             (_('Center person'),-1,50)]
         
         self.av_ncols = len(av_titles)
@@ -647,7 +654,7 @@ class BookReportSelector:
             return
 
         for book_item in PluginMgr.bkitems_list:
-            data = [ book_item[0], book_item[1] ] 
+            data = [ book_item[0], book_item[1], book_item[4] ] 
             new_iter = self.av_model.add(data)
 
         self.av_model.connect_model()
@@ -688,8 +695,8 @@ class BookReportSelector:
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
             
-            data = [ item.get_name(), item.get_category() ]
-            if data[1] == _("Title"):
+            data = [ item.get_translated_name(), item.get_category(), item.get_name() ]
+            if data[2] == 'simple_book_title':
                 data.append(_("Not Applicable"))
             else:
                 pname = self.db.get_person_from_gramps_id(person_id)
@@ -702,16 +709,16 @@ class BookReportSelector:
         
         Use the selected available item to get the item's name in the registry.
         """
-        store,iter = self.av_model.get_selected()
-        if not iter:
+        store,the_iter = self.av_model.get_selected()
+        if not the_iter:
             return
-        data = self.av_model.get_data(iter,range(self.av_ncols))
-        if data[1] == _("Title"):
+        data = self.av_model.get_data(the_iter,range(self.av_ncols))
+        if data[2] == 'simple_book_title':
             data.append(_("Not Applicable"))
         else:
             data.append(self.person.get_primary_name().get_regular_name())
         self.bk_model.add(data)
-        item = BookItem(data[0])
+        item = BookItem(data[2])
         person_id = item.option_class.handler.get_person_id()
         if not person_id:
             person_id = self.person.get_gramps_id()
@@ -722,12 +729,12 @@ class BookReportSelector:
         """
         Remove the item from the current list of selections.
         """
-        store,iter = self.bk_model.get_selected()
-        if not iter:
+        store,the_iter = self.bk_model.get_selected()
+        if not the_iter:
             return
         row = self.bk_model.get_selected_row()
         self.book.pop_item(row)
-        self.bk_model.remove(iter)
+        self.bk_model.remove(the_iter)
 
     def on_clear_clicked(self,obj):
         """
@@ -743,9 +750,9 @@ class BookReportSelector:
         row = self.bk_model.get_selected_row()
         if not row or row == -1:
             return
-        store,iter = self.bk_model.get_selected()
-        data = self.bk_model.get_data(iter,range(self.bk_ncols))
-        self.bk_model.remove(iter)
+        store,the_iter = self.bk_model.get_selected()
+        data = self.bk_model.get_data(the_iter,range(self.bk_ncols))
+        self.bk_model.remove(the_iter)
         self.bk_model.insert(row-1,data,None,1)
         item = self.book.pop_item(row)
         self.book.insert_item(row-1,item)
@@ -757,9 +764,9 @@ class BookReportSelector:
         row = self.bk_model.get_selected_row()
         if row + 1 >= self.bk_model.count or row == -1:
             return
-        store,iter = self.bk_model.get_selected()
-        data = self.bk_model.get_data(iter,range(self.bk_ncols))
-        self.bk_model.remove(iter)
+        store,the_iter = self.bk_model.get_selected()
+        data = self.bk_model.get_data(the_iter,range(self.bk_ncols))
+        self.bk_model.remove(the_iter)
         self.bk_model.insert(row+1,data,None,1)
         item = self.book.pop_item(row)
         self.book.insert_item(row+1,item)
@@ -768,17 +775,18 @@ class BookReportSelector:
         """
         Configure currently selected item.
         """
-        store,iter = self.bk_model.get_selected()
-        if not iter:
+        store,the_iter = self.bk_model.get_selected()
+        if not the_iter:
             return
-        data = self.bk_model.get_data(iter,range(self.bk_ncols))
+        data = self.bk_model.get_data(the_iter,range(self.bk_ncols))
         row = self.bk_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
-        item_dialog = BookItemDialog(self.db,option_class,item.item_name,data[0])
+        item_dialog = BookItemDialog(self.db,option_class,item.get_name(),
+                                        item.get_translated_name())
         response = item_dialog.window.run()
         if response == True and item_dialog.person and data[1] != _("Title"): 
-            self.bk_model.model.set_value(iter,2,
+            self.bk_model.model.set_value(the_iter,2,
                 item_dialog.person.get_primary_name().get_regular_name())
             self.book.set_item(row,item)
         item_dialog.window.destroy()
@@ -806,8 +814,8 @@ class BookReportSelector:
     def build_bk_context_menu(self,event):
         """Builds the menu with item-centered and book-centered options."""
         
-        store,iter = self.bk_model.get_selected()
-        if iter:
+        store,the_iter = self.bk_model.get_selected()
+        if the_iter:
             sensitivity = 1 
         else:
             sensitivity = 0 
@@ -837,8 +845,8 @@ class BookReportSelector:
     def build_av_context_menu(self,event):
         """Builds the menu with the single Add option."""
         
-        store,iter = self.av_model.get_selected()
-        if iter:
+        store,the_iter = self.av_model.get_selected()
+        if the_iter:
             sensitivity = 1 
         else:
             sensitivity = 0 
