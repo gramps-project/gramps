@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allinghamg
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -131,7 +131,7 @@ class Gramps:
 
         self.history = []
         self.hindex = -1
-        
+                
         self.db = RelLib.GrampsDB()
         self.db.set_iprefix(GrampsCfg.iprefix)
         self.db.set_oprefix(GrampsCfg.oprefix)
@@ -378,6 +378,8 @@ class Gramps:
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
         self.back = self.gtop.get_widget('back')
         self.forward = self.gtop.get_widget('forward')
+        self.hist_gomenuitem = self.gtop.get_widget("history1")
+        self.histmenu = None
 
         self.gtop.signal_autoconnect({
             "on_back_clicked" : self.back_clicked,
@@ -462,6 +464,28 @@ class Gramps:
         self.remove_button.set_sensitive(val)
         self.edit_button.set_sensitive(val)
         
+    def redraw_histmenu(self):
+        """Create the pulldown history menu"""
+        self.hist_gomenuitem.remove_submenu()
+        if len(self.history) > 0:
+            self.histmenu = gtk.Menu()
+            start =  max(self.hindex-9,0)
+            pids = self.history[start:self.hindex+1]
+            pids.reverse()
+            num = 0
+            for pid in pids:
+                person = self.db.getPerson(pid)
+                item = gtk.MenuItem("_%d. %s [%s]" % 
+                    (num,person.getPrimaryName().getName(),pid))
+                item.connect("activate",self.bookmark_callback,person)
+                item.show()
+                self.histmenu.append(item)
+                self.hist_gomenuitem.set_submenu(self.histmenu)
+                self.hist_gomenuitem.set_sensitive(1)
+                num = num + 1
+        else:
+            self.hist_gomenuitem.set_sensitive(0)
+
     def back_clicked(self,obj):
         if self.hindex > 0:
             try:
@@ -469,6 +493,7 @@ class Gramps:
                 self.active_person = self.db.getPerson(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
+                self.redraw_histmenu()
                 self.set_buttons(1)
                 if self.hindex == 0:
                     self.backbtn.set_sensitive(0)
@@ -493,6 +518,7 @@ class Gramps:
                 self.active_person = self.db.getPerson(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
+                self.redraw_histmenu()
                 self.set_buttons(1)
                 if self.hindex == len(self.history)-1:
                     self.fwdbtn.set_sensitive(0)
@@ -1506,6 +1532,8 @@ class Gramps:
                     self.forward.set_sensitive(0)
                 self.history.append(person.getId())
                 self.hindex += 1
+                self.redraw_histmenu()
+
                 if self.hindex > 0:
                     self.backbtn.set_sensitive(1)
                     self.back.set_sensitive(1)
