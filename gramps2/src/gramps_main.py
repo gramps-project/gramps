@@ -76,6 +76,7 @@ import Exporter
 import RelImage
 import RecentFiles
 import NameDisplay
+import Errors
 
 from GrampsMime import mime_type_is_defined
 
@@ -152,7 +153,7 @@ class Gramps:
         
             self.init_interface()
             
-        except const.ErrorSchemaInvalid, val:
+        except Errors.GConfSchemaError, val:
             ErrorDialog(_("Configuration error"),
                         val + _("\n\nPossibly the installation of GRAMPS was incomplete."
                           " Make sure the GConf schema of GRAMPS is properly installed."))
@@ -398,6 +399,7 @@ class Gramps:
             "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
             "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
             "on_merge_activate" : self.on_merge_activate,
+            "on_fast_merge1_activate" : self.on_fast_merge_activate,
             "on_sidebar1_activate" : self.on_sidebar_activate,
             "on_toolbar2_activate" : self.on_toolbar_activate,
             "on_filter1_activate" : self.on_filter_activate,
@@ -991,6 +993,29 @@ class Gramps:
     def report_bug_activate(self,obj):
         gnome.url_show(_BUGREPORT)
 
+    def on_fast_merge_activate(self,obj):
+        """Calls up the merge dialog for the selection"""
+        page = self.views.get_current_page()
+        if page == PERSON_VIEW:
+
+            mlist = self.people_view.get_selected_objects()
+
+            if len(mlist) != 2:
+                msg = _("Cannot merge people.")
+                msg2 = _("Exactly two people must be selected to perform a merge. "
+                         "A second person can be selected by holding down the "
+                         "control key while clicking on the desired person.")
+                ErrorDialog(msg,msg2)
+            else:
+                import MergePeople
+                p1 = self.db.get_person_from_handle(mlist[0])
+                p2 = self.db.get_person_from_handle(mlist[1])
+                merger = MergePeople.MergePeopleUI(self.db,p1,p2,self.merge_update)
+        elif page == PLACE_VIEW:
+            self.place_view.merge()
+        elif page == SOURCE_VIEW:
+            self.source_view.merge()
+
     def on_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""
         page = self.views.get_current_page()
@@ -1005,11 +1030,10 @@ class Gramps:
                          "control key while clicking on the desired person.")
                 ErrorDialog(msg,msg2)
             else:
-                import MergeData
+                import MergePeople
                 p1 = self.db.get_person_from_handle(mlist[0])
                 p2 = self.db.get_person_from_handle(mlist[1])
-                MergeData.MergePeople(self,self.db,p1,p2,self.merge_update,
-                                      self.update_after_edit)
+                merger = MergePeople.Compare(self.db,p1,p2,self.merge_update)
         elif page == PLACE_VIEW:
             self.place_view.merge()
         elif page == SOURCE_VIEW:
@@ -1427,9 +1451,7 @@ class Gramps:
         self.redraw_histmenu()
         self.enable_interface()
 
-    def merge_update(self,p1,p2,old_id):
-        self.people_view.remove_from_person_list(p2)
-        self.people_view.remove_from_history(p2)
+    def merge_update(self):
         self.redraw_histmenu()
         self.people_view.build_tree()
         self.update_display(0)

@@ -1087,6 +1087,8 @@ class GrampsParser:
             dv = self.object.get_date_object()
         elif self.address:
             dv = self.address.get_date_object()
+        elif self.name:
+            dv = self.name.get_date_object()
         else:
             dv = self.event.get_date_object()
 
