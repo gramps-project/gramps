@@ -115,16 +115,16 @@ def mk_thumb(source,dest,size):
         GnomeErrorDialog(_("Could not create %s") % dir)
         return
 
-    print source[-3:]
-    if no_pil or source[-4:] == ".gif":
+    if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
-        print cmd
         os.system(cmd)
     else:
         try:
             im = PIL.Image.open(source)
-            im.convert("RGB")
             im.thumbnail((size,size))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
             im.save(dest,"JPEG")
         except:
             pass
