@@ -84,7 +84,7 @@ uninstall-local-doc:
 	-if test "$(figdir)"; then \
 	  for file in $(srcdir)/$(figdir)/*.png; do \
 	    basefile=`echo $$file | sed -e  's,^.*/,,'`; \
-	    rm -f $(docdir)/$(figdir)/$$basefile; \
+	    rm -f $(DESTDIR)/$(docdir)/$(figdir)/$$basefile; \
 	  done; \
 	  rmdir $(DESTDIR)$(docdir)/$(figdir); \
 	fi

@@ -18,3 +18,5 @@ pycheck:
 	(cd src; make pycheck) 
 trans:
 	(cd src; make trans) 
+
+CLEANFILES = gramps
