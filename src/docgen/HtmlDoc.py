@@ -435,6 +435,19 @@ class HtmlDoc(BaseDoc.BaseDoc):
     def end_bold(self):
         self.f.write('</b>')
 
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            self.start_paragraph(style_name)
+            self.f.write('<pre>')
+            self.write_text(text)
+            self.f.write('</pre>')
+            self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                self.write_text(line.strip().replace('\n',' '))
+                self.end_paragraph()
+
     def write_text(self,text):
         text = string.replace(text,'&','&amp;');       # Must be first
         text = string.replace(text,'<','&lt;');
