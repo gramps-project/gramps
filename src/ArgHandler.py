@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -318,6 +318,7 @@ class ArgHandler:
             
             print "Cleaning up."
             # remove import db after use
+            self.parent.db.close()
             os.remove(self.imp_db_path)
             print "Exiting."
             os._exit(0)
@@ -341,7 +342,15 @@ class ArgHandler:
         Command-line import routine. Try to import filename using the format.
         Any errors will cause the os._exit(1) call.
         """
-        if format == 'gedcom':
+        if format == 'grdb':
+            import ReadGrdb
+            filename = os.path.normpath(os.path.abspath(filename))
+            try:
+                ReadGrdb.importData(self.parent.db,filename,None)
+            except:
+                print "Error importing %s" % filename
+                os._exit(1)
+        elif format == 'gedcom':
             import ReadGedcom
             filename = os.path.normpath(os.path.abspath(filename))
             try:

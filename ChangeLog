@@ -4,6 +4,9 @@
 	* src/DbPrompter.py: Support for the native importer.
 	* src/Errors.py: Add HandleError exception for duplicate handles.
 
+	* src/ArgHandler.py: Support for the native importer.
+	* NEWS: Update.
+
 2005-01-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: gnome.vfs vs. gnomevfs, tolerence 
 	* src/GrampsMime.py: gnome.vfs vs. gnomevfs tolerence 
