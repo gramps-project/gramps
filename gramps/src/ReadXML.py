@@ -141,10 +141,12 @@ def loadData(database, filename, callback):
         
     try:
         parser.parse(xml_file)
-    except SAXParseException:
-        GnomeErrorDialog(_("%s is a corrupt file") % filename)
-        import traceback
-        traceback.print_exc()
+    except SAXParseException,msg:
+        line = string.split(str(msg),':')
+        filemsg = _("%s is a corrupt file.") % filename
+        errtype = string.strip(line[3])
+        errmsg = _('A "%s" error on line %s was detected.') % (errtype,line[1])
+        GnomeErrorDialog("%s\n%s" % (filemsg,errmsg))
         return 0
     except IOError,msg:
         GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
