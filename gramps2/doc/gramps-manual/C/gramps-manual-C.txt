@@ -62,15 +62,40 @@ information empty.
 <Main Window
 
 When you open a database (either existing or brand new), the following window is displayed:
-Figure 1, gramps - GRAMPS (example file loaded). The central area of the window shows
-certain aspects of genealogical information, depending on the current View setting. 
-When GRAMPS opens a database, the View is set to the People View. 
+Figure 1, gramps - GRAMPS (example file loaded). 
+
+<	<Menubar
+
+The Menubar provides access to all features of GRAMPS through its menus. 
+
+<	<Toolbar
+
+The Toolbar provides access to the most frequently used functions of GRAMPS. 
+The appearance of the Toolbar can be adjusted in the Preferences dialog.
+
+<	<Progress bar
+
+The Progress bar is located in the lower left corner of the GRAMPS window. It shows the 
+progress of time consuming operations, such as opening and saving large data bases, 
+importing and exporting to other formats, generating web-sites, etc. 
+
+<	<Status line
+
+The Status line is located to the right of the Progress bar, on the very bottom of the GRAMPS
+window. The behavior of the Status line can be adjusted in the Preferences dialog.
+
+<	<Display area
+
+The Display area of the GRAMPS window shows certain aspects of genealogical information, 
+depending on the currently selected View. There are six Views available in GRAMPS: 
+People, Family, Pedigree, Sources, Places, and Media. 
 
 <	<Views
 
-Views are the ways to display various aspects of genealogical information, as described below. 
-Since the relevant information is non-uniform and broad in both context and modality, it is best
-to break it's display into smaller uniform categories by context and modality. Before the detailed
+Views are the various ways to display various aspects of genealogical information, as described below. 
+Since the relevant information is very broad and non-uniform in both context and modality, it is best
+to split it's display into smaller categories, uniform in context and modality. Each View represents
+such a split and displays a certain portion of overall available information. Before the detailed
 description of available Views, let us  guide you through the ways of switching between the Views.
 
 <	<	<Viewing Modes
@@ -84,9 +109,10 @@ GRAMPS menu.
 
 <	<	<People View
 
+When GRAMPS opens a database, the View is set to the People View. 
 People View lists individuals whose data is stored in the database.  People View displays people's 
-names, GRAMPS ID numbers, gender, and their birth and death dates. 
-The list can be ordered by any field. Example: to order list by the birth date, click on the Birth date 
+Names, GRAMPS ID numbers, Gender, and their Birth and Death dates. 
+The list can be ordered by any field. Example: to order list by the Birth date, click on the Birth date 
 column heading. To order list in reverse (descending) order, click one more time on the desired 
 column heading. 
 
@@ -94,7 +120,7 @@ column heading.
 
 Genealogical databases may contain huge numbers of people. Since the long lists are hard 
 for humans to handle, GRAMPS provides a convenient way to limit the scope of browsing
-by using a Filter. To save screen space, Filter controls may be either displayed or not, depending
+by using the Filter. To save screen space, Filter controls may be either displayed or not, depending
 on the state of View->Filter menu item. 
 
 When GRAMPS opens a database, the Filter is set to the trivial filter called "All people", i.e. no 
@@ -102,14 +128,14 @@ filtering is in effect. To choose a filter, use a pop-up Filter menu above the p
 list (Figure 4, sidebar, filter). Once the Filter is chosen, press apply button in the upper right corner
 of the window. The filtering will take effect upon pressing Apply. To invert the filtering rule, check
 the Invert check-box on the left of Apply button. Example: To show people without children, 
-choose "People with children" Filter, check Invert check-box, and press Apply button. 
-To cancel any filtering, set the Filter to "All People" and press Apply button. 
+choose "People with children" Filter, then check Invert check-box, and then press Apply button. 
+To cancel any filtering, set the Filter to "All People" and then press Apply button. 
 
 Note: even if the Filter controls are not displayed (View->Edit menu item is unchecked), the filtering
 might still be in place. In other words, the visibility of the Filter controls is not related to the actual 
 filtering imposed on the list. This may be a cause of confusion, when you enable the filtering and 
-then remove the controls from the display. If in doubt, enable the display of Filter controls and check
-what kind of filter is currently set.
+then remove the controls from the display. If in doubt, enable the display of Filter controls 
+(by checking View->Edit menu item) and check what kind of filtering is currently set.
 
 <	<	<	<Alphabetical Tabs
 
@@ -176,7 +202,8 @@ four generations, starting from a newly selected Active person.
 
 Sources View lists the sources of information stored in the database. This can include various
 documents (birth, death, and marriage certificates, etc.), books, films, journals, private diaries, 
-i.e. virtually anything that can be classified as a source of information. The sources can be used as the reference for any event stored in the database. 
+i.e. virtually anything that can be classified as a source of information. The sources can be used 
+as the reference for any event stored in the database. 
 The Source View lists the title, ID, and the author of the source. All the columns can be used for 
 sorting the list. The usual rules apply: one click for ascending order, another click for descending order.
 
@@ -185,7 +212,6 @@ sorting the list. The usual rules apply: one click for ascending order, another 
 Places View lists the geographical places in which the events of the database took place. These could
 be places of birth, death, marriages of people, as well as their home, employment, education addresses, 
 or any other conceivable reference to the geographical location. 
-
 The Places View lists places' Name, ID, Church Parish, City, County, State, and Country. All of these
 can be used for sorting by the usual sorting rules. 
 
@@ -196,10 +222,6 @@ animation files, etc. The list-box on the bottom lists the Name, ID, Type, and P
 The top part of the GRAMPS window shows the preview (if available) and the information about the
 Media Object. 
 
-<	<Menubar
-<	<Toolbar
-<	<Progress Bar
-<	<Status Line
 <Usage
 <	<Opening database
 <	<Starting new database
