@@ -1,3 +1,6 @@
+2003-09-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FilterEditor.py (MyInteger): Fix type conversions. 
+
 2003-09-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FilterEditor.py (MyPlaces): fix handling of get_text,
 	set_text tasks. Use the default from the base class.
