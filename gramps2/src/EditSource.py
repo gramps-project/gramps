@@ -80,7 +80,9 @@ class EditSource:
         self.author.set_text(source.getAuthor())
         self.pubinfo.set_text(source.getPubInfo())
 
-        self.notes_buffer.set_text(source.getNote())
+        if source.getNote():
+            self.notes_buffer.set_text(source.getNote())
+            Utils.bold_label(self.notes_label)
 
         self.top_window.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,

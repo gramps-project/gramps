@@ -16,6 +16,7 @@
 	for its parent; (on_help_clicked): Add function.
 	* src/dialog.glade: Correct response IDs.
 	* src/places.glade: Correct response IDs.
+	* src/EditSource.py (__init__): Markup notes label on startup.
 
 2003-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/ru.po: Update Russian translation for 0.98.
