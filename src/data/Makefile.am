@@ -19,7 +19,7 @@ EXTRA_DIST = $(dist_pkgdata_DATA)
 install-schemas:
 	$(INSTALL_DATA) gramps.schemas $(DESTDIR)/etc/gconf/schemas
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool --makefile-install-rule gramps.schemas
+		gconftool-2 --makefile-install-rule gramps.schemas
 
 install-data-local:    install-schemas
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
@@ -42,4 +42,4 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
 	-rm $(DESTDIR)/etc/gconf/schemas/gramps.schemas
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool --makefile-uninstall-rule gramps.schemas
+		gconftool-2 --makefile-uninstall-rule gramps.schemas
