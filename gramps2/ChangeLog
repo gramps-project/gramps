@@ -5,6 +5,8 @@
 	* src/SourceView.py (button_press): Proper selection on double-click.
 	* src/plugins/Check.py (check_for_broken_family_links): Typo.
 
+	* src/plugins/ScratchPad.py (ScratchPadWindow.__init__): Minor change.
+
 2005-03-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* plugins/TestcaseGenerator.py: Added a dialog to specify what is to be generated
 	and a ProgressBar. Enhanced family tree generation and randomized names a little more.

@@ -385,9 +385,7 @@ class ScratchPadListModel(gtk.ListStore):
                                object  # tooltip callback
                                )
 
-                               
 
-        
 #-------------------------------------------------------------------------
 #
 # ScratchPadListView class
@@ -548,8 +546,6 @@ class ScratchPadListView:
 
     def get_selection(self):
         return self._widget.get_selection()
-    
-    
         
 #-------------------------------------------------------------------------
 #
@@ -602,13 +598,11 @@ class ScratchPadWindow:
         
         self.object_list = ScratchPadListView(self.db,self.top.get_widget('objectlist'))
 
-        # This causes the window open to fail. I don't know why.
-        #if ScratchPadWindow.otree == None:
-        ScratchPadWindow.otree = ScratchPadListModel()
+        if not ScratchPadWindow.otree:
+            ScratchPadWindow.otree = ScratchPadListModel()
 
         self.object_list.set_model(ScratchPadWindow.otree)
         
-
         self.top.signal_autoconnect({
             "on_close_scratchpad" : self.on_close_scratchpad,
             "on_clear_clicked": self.on_clear_clicked,
@@ -692,7 +686,6 @@ def ScratchPad(database,person,callback,parent=None):
 #-------------------------------------------------------------------------
 from PluginMgr import register_tool
 
-
 register_tool(
     ScratchPad,
     _("Scratch Pad"),
@@ -700,5 +693,3 @@ register_tool(
     description=_("The Scratch Pad provides a temporary note pad to store "
                   "objects for easy reuse.")
     )
-
-
