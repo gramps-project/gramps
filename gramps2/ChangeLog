@@ -3,6 +3,8 @@
 	* src/gramps_main.py: eliminate name only option in status line
 	* src/preferences.py : eliminate name only option in status line
 	* src/plugins/GraphViz.py: install only for python 2.2
+	* src/plugins/WebPage.py: handle page titles
+	* src/docgen/HtmlDoc.py: handle page titles
 
 2003-10-11  Lorenzo Cappelletti  <lorenzo.cappelletti@email.it>
 	* src/plugins/rel_it.py: Italian relationship calculator
