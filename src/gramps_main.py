@@ -72,7 +72,6 @@ import VersionControl
 import ReadXML
 import ListModel
 import GrampsXML
-import Relationship
 
 try:
     import GrampsZODB
@@ -138,6 +137,7 @@ class Gramps:
         self.db.set_pprefix(GrampsCfg.pprefix)
 
         GrampsCfg.loadConfig(self.full_update)
+        self.relationship = Plugins.relationship_function()
         self.init_interface()
 
         if arg != None:
@@ -1027,10 +1027,24 @@ class Gramps:
                 pname = GrampsCfg.nameof(self.active_person)
                 name = "[%s] %s" % (self.active_person.getId(),pname)
             else:
-                name = Relationship.get_relationship(self.db.getDefaultPerson(),
-                                                     self.active_person)
+                name = self.display_relationship()
             self.status_text(name)
         return 0
+
+    def display_relationship(self):
+        try:
+            pname = GrampsCfg.nameof(self.db.getDefaultPerson())
+            (name,plist) = self.relationship(self.db.getDefaultPerson(),
+                                             self.active_person)
+
+            if name:
+                return _("%(relationship)s of %(person)s") % {
+                    'relationship' : name, 'person' : pname }
+            else:
+                return ""
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 	
     def on_open_activate(self,obj):
         wFs = gtk.glade.XML(const.revisionFile, "dbopen")

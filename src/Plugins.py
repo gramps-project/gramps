@@ -79,6 +79,19 @@ _textdoc = []
 _drawdoc = []
 _failmsg = []
 
+#-------------------------------------------------------------------------
+#
+# Default relationship calculator
+#
+#-------------------------------------------------------------------------
+import Relationship
+
+_relcalc_task = Relationship.get_relationship
+
+#-------------------------------------------------------------------------
+#
+#
+#-------------------------------------------------------------------------
 _unavailable = _("No description was provided"),
 
 #-------------------------------------------------------------------------
@@ -453,9 +466,13 @@ def register_tool(task, name,
             del_index = i
     if del_index != -1:
         del _tools[del_index]
-    _tools.append((task, category, name, description, xpm, status, author_name, author_email))
+    _tools.append((task, category, name, description, xpm, status, author_name, author_name))
 
-
+#-------------------------------------------------------------------------
+#
+# Text document registration
+#
+#-------------------------------------------------------------------------
 def register_text_doc(name,classref, table, paper, style, ext):
     """Register a text document generator"""
     for n in _textdoc:
@@ -463,12 +480,34 @@ def register_text_doc(name,classref, table, paper, style, ext):
             return
     _textdoc.append((name,classref,table,paper,style,ext))
 
+#-------------------------------------------------------------------------
+#
+# Drawing document registration
+#
+#-------------------------------------------------------------------------
 def register_draw_doc(name,classref,paper,style, ext):
     """Register a drawing document generator"""
     for n in _drawdoc:
         if n[0] == name:
             return
     _drawdoc.append((name,classref,paper,style,ext))
+
+#-------------------------------------------------------------------------
+#
+# Relationchip calculator registration
+#
+#-------------------------------------------------------------------------
+def register_relcalc(func, languages):
+    """Register a relationshp calculator"""
+    import sys
+    global _relcal_task
+    
+    if sys.environ.get('LANG') in languages:
+        _relcalc_task = func
+
+def relationship_function():
+    global _relcal_task
+    return _relcalc_task
 
 #-------------------------------------------------------------------------
 #

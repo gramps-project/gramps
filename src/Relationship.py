@@ -33,148 +33,150 @@ import GrampsCfg
 #
 #-------------------------------------------------------------------------
 
-level_name = [ "", "First", "Second", "Third", "Fourth", "Fifth", "Sixth",
-               "Seventh", "Eighth", "Ninth", "Tenth", "Eleventh", "Twelfth",
-               "Thirteenth", "Fourteenth", "Fifteenth", "Sixteenth",
-               "Seventeenth", "Eigthteenth", "Nineteenth", "Twentieth" ]
+_level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
+                "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
+                "thirteenth", "fourteenth", "fifteenth", "sixteenth",
+                "seventeenth", "eigthteenth", "nineteenth", "twentieth" ]
 
-removed_level = [ "", " once removed", " twice removed", " three times removed",
-                  " four times removed", " five times removed", " six times removed",
-                  " sevent times removed", " eight times removed", " nine times removed",
-                  " ten times removed", " eleven times removed", " twelve times removed",
-                  " thirteen times removed", " fourteen times removed", " fifteen times removed",
-                  " sixteen times removed", " seventeen times removed", " eighteen times removed",
-                  " nineteen times removed", " twenty times removed" ]
+_removed_level = [ "", " once removed", " twice removed", " three times removed",
+                   " four times removed", " five times removed", " six times removed",
+                   " sevent times removed", " eight times removed", " nine times removed",
+                   " ten times removed", " eleven times removed", " twelve times removed",
+                   " thirteen times removed", " fourteen times removed", " fifteen times removed",
+                   " sixteen times removed", " seventeen times removed", " eighteen times removed",
+                   " nineteen times removed", " twenty times removed" ]
 
-father_level = [ "", "Father", "Grandfather", "Great Grandfather", "Second Great Grandfather",
-                 "Third Great Grandfather",  "Fourth Great Grandfather",
-                 "Fifth Great Grandfather",  "Sixth Great Grandfather",
-                 "Seventh Great Grandfather", "Eighth Great Grandfather",
-                 "Ninth Great Grandfather", "Tenth Great Grandfather",
-                 "Eleventh Great Grandfather",  "Twelefth Great Grandfather",
-                 "Thirteenth Great Grandfather", "Fourteenth Great Grandfather",
-                 "Fifteenth Great Grandfather", "Sixteenth Great Grandfather",
-                 "Seventeenth Great Grandfather", "Eightteenth Great Grandfather",
-                 "Ninetheen Great Grandfather", "Twentieth Great Grandfather", ]
+_father_level = [ "", "father", "grandfather", "great grandfather", "second great grandfather",
+                  "third great grandfather",  "fourth great grandfather",
+                  "fifth great grandfather",  "sixth great grandfather",
+                  "seventh great grandfather", "eighth great grandfather",
+                  "ninth great grandfather", "tenth great grandfather",
+                  "eleventh great grandfather",  "twelefth great grandfather",
+                  "thirteenth great grandfather", "fourteenth great grandfather",
+                  "fifteenth great grandfather", "sixteenth great grandfather",
+                  "seventeenth great grandfather", "eightteenth great grandfather",
+                  "ninetheen great grandfather", "twentieth great grandfather", ]
 
-mother_level = [ "", "Mother", "Grandmother", "Great Grandmother", "Second Great Grandmother",
-                 "Third Great Grandmother",  "Fourth Great Grandmother",
-                 "Fifth Great Grandmother",  "Sixth Great Grandmother",
-                 "Seventh Great Grandmother", "Eighth Great Grandmother",
-                 "Ninth Great Grandmother", "Tenth Great Grandmother",
-                 "Eleventh Great Grandmother",  "Twelefth Great Grandmother",
-                 "Thirteenth Great Grandmother", "Fourteenth Great Grandmother",
-                 "Fifteenth Great Grandmother", "Sixteenth Great Grandmother",
-                 "Seventeenth Great Grandmother", "Eightteenth Great Grandmother",
-                 "Ninetheen Great Grandmother", "Twentieth Great Grandmother", ]
+_mother_level = [ "", "mother", "grandmother", "great grandmother", "second great grandmother",
+                  "third great grandmother",  "fourth great grandmother",
+                  "fifth great grandmother",  "sixth great grandmother",
+                  "seventh great grandmother", "eighth great grandmother",
+                  "ninth great grandmother", "tenth great grandmother",
+                  "eleventh great grandmother",  "twelefth great grandmother",
+                  "thirteenth great grandmother", "fourteenth great grandmother",
+                  "fifteenth great grandmother", "sixteenth great grandmother",
+                  "seventeenth great grandmother", "eightteenth great grandmother",
+                  "ninetheen great grandmother", "twentieth great grandmother", ]
 
-son_level = [ "", "Son", "Grandson", "Great Grandson", "Second Great Grandson",
-              "Third Great Grandson",  "Fourth Great Grandson",
-              "Fifth Great Grandson",  "Sixth Great Grandson",
-              "Seventh Great Grandson", "Eighth Great Grandson",
-              "Ninth Great Grandson", "Tenth Great Grandson",
-              "Eleventh Great Grandson",  "Twelefth Great Grandson",
-              "Thirteenth Great Grandson", "Fourteenth Great Grandson",
-              "Fifteenth Great Grandson", "Sixteenth Great Grandson",
-              "Seventeenth Great Grandson", "Eightteenth Great Grandson",
-              "Ninetheen Great Grandson", "Twentieth Great Grandson", ]
+_son_level = [ "", "son", "grandson", "great grandson", "second great grandson",
+               "third great grandson",  "fourth great grandson",
+               "fifth great grandson",  "sixth great grandson",
+               "seventh great grandson", "eighth great grandson",
+               "ninth great grandson", "tenth great grandson",
+               "eleventh great grandson",  "twelefth great grandson",
+               "thirteenth great grandson", "fourteenth great grandson",
+               "fifteenth great grandson", "sixteenth great grandson",
+               "seventeenth great grandson", "eightteenth great grandson",
+               "ninetheen great grandson", "twentieth great grandson", ]
 
-daughter_level = [ "", "Daughter", "Granddaughter", "Great Granddaughter", "Second Great Granddaughter",
-              "Third Great Granddaughter",  "Fourth Great Granddaughter",
-              "Fifth Great Granddaughter",  "Sixth Great Granddaughter",
-              "Seventh Great Granddaughter", "Eighth Great Granddaughter",
-              "Ninth Great Granddaughter", "Tenth Great Granddaughter",
-              "Eleventh Great Granddaughter",  "Twelefth Great Granddaughter",
-              "Thirteenth Great Granddaughter", "Fourteenth Great Granddaughter",
-              "Fifteenth Great Granddaughter", "Sixteenth Great Granddaughter",
-              "Seventeenth Great Granddaughter", "Eightteenth Great Granddaughter",
-              "Ninetheen Great Granddaughter", "Twentieth Great Granddaughter", ]
+_daughter_level = [ "", "daughter", "granddaughter", "great granddaughter",
+                    "second great granddaughter",
+                    "third great granddaughter",  "fourth great granddaughter",
+                    "fifth great granddaughter",  "sixth great granddaughter",
+                    "seventh great granddaughter", "eighth great granddaughter",
+                    "ninth great granddaughter", "tenth great granddaughter",
+                    "eleventh great granddaughter",  "twelefth great granddaughter",
+                    "thirteenth great granddaughter", "fourteenth great granddaughter",
+                    "fifteenth great granddaughter", "sixteenth great granddaughter",
+                    "seventeenth great granddaughter", "eightteenth great granddaughter",
+                    "ninetheen great granddaughter", "twentieth great granddaughter", ]
 
-sister_level = [ "", "Sister", "Aunt", "Grandaunt", "Great Grandaunt", "Second Great Grandaunt",
-                 "Third Great Grandaunt",  "Fourth Great Grandaunt",
-                 "Fifth Great Grandaunt",  "Sixth Great Grandaunt",
-                 "Seventh Great Grandaunt", "Eighth Great Grandaunt",
-                 "Ninth Great Grandaunt", "Tenth Great Grandaunt",
-                 "Eleventh Great Grandaunt",  "Twelefth Great Grandaunt",
-                 "Thirteenth Great Grandaunt", "Fourteenth Great Grandaunt",
-                 "Fifteenth Great Grandaunt", "Sixteenth Great Grandaunt",
-                 "Seventeenth Great Grandaunt", "Eightteenth Great Grandaunt",
-                 "Ninetheen Great Grandaunt", "Twentieth Great Grandaunt", ]
+_sister_level = [ "", "sister", "aunt", "grandaunt", "great grandaunt", "second great grandaunt",
+                  "third great grandaunt",  "fourth great grandaunt",
+                  "fifth great grandaunt",  "sixth great grandaunt",
+                  "seventh great grandaunt", "eighth great grandaunt",
+                  "ninth great grandaunt", "tenth great grandaunt",
+                  "eleventh great grandaunt",  "twelefth great grandaunt",
+                  "thirteenth great grandaunt", "fourteenth great grandaunt",
+                  "fifteenth great grandaunt", "sixteenth great grandaunt",
+                  "seventeenth great grandaunt", "eightteenth great grandaunt",
+                  "ninetheen great grandaunt", "twentieth great grandaunt", ]
 
-brother_level = [ "", "Brother", "Uncle", "Granduncle", "Great Granduncle", "Second Great Granduncle",
-                 "Third Great Granduncle",  "Fourth Great Granduncle",
-                 "Fifth Great Granduncle",  "Sixth Great Granduncle",
-                 "Seventh Great Granduncle", "Eighth Great Granduncle",
-                 "Ninth Great Granduncle", "Tenth Great Granduncle",
-                 "Eleventh Great Granduncle",  "Twelefth Great Granduncle",
-                 "Thirteenth Great Granduncle", "Fourteenth Great Granduncle",
-                 "Fifteenth Great Granduncle", "Sixteenth Great Granduncle",
-                 "Seventeenth Great Granduncle", "Eightteenth Great Granduncle",
-                 "Ninetheen Great Granduncle", "Twentieth Great Granduncle", ]
+_brother_level = [ "", "brother", "uncle", "granduncle", "great granduncle", "second great granduncle",
+                   "third great granduncle",  "fourth great granduncle",
+                   "fifth great granduncle",  "sixth great granduncle",
+                   "seventh great granduncle", "eighth great granduncle",
+                   "ninth great granduncle", "tenth great granduncle",
+                   "eleventh great granduncle",  "twelefth great granduncle",
+                   "thirteenth great granduncle", "fourteenth great granduncle",
+                   "fifteenth great granduncle", "sixteenth great granduncle",
+                   "seventeenth great granduncle", "eightteenth great granduncle",
+                   "ninetheen great granduncle", "twentieth great granduncle", ]
 
-nephew_level = [ "", "Nephew", "Grandnephew", "Great Grandnephew", "Second Great Grandnephew",
-                 "Third Great Grandnephew",  "Fourth Great Grandnephew",
-                 "Fifth Great Grandnephew",  "Sixth Great Grandnephew",
-                 "Seventh Great Grandnephew", "Eighth Great Grandnephew",
-                 "Ninth Great Grandnephew", "Tenth Great Grandnephew",
-                 "Eleventh Great Grandnephew",  "Twelefth Great Grandnephew",
-                 "Thirteenth Great Grandnephew", "Fourteenth Great Grandnephew",
-                 "Fifteenth Great Grandnephew", "Sixteenth Great Grandnephew",
-                 "Seventeenth Great Grandnephew", "Eightteenth Great Grandnephew",
-                 "Ninetheen Great Grandnephew", "Twentieth Great Grandnephew", ]
-niece_level = [ "", "Niece", "Grandniece", "Great Grandniece", "Second Great Grandniece",
-                 "Third Great Grandniece",  "Fourth Great Grandniece",
-                 "Fifth Great Grandniece",  "Sixth Great Grandniece",
-                 "Seventh Great Grandniece", "Eighth Great Grandniece",
-                 "Ninth Great Grandniece", "Tenth Great Grandniece",
-                 "Eleventh Great Grandniece",  "Twelefth Great Grandniece",
-                 "Thirteenth Great Grandniece", "Fourteenth Great Grandniece",
-                 "Fifteenth Great Grandniece", "Sixteenth Great Grandniece",
-                 "Seventeenth Great Grandniece", "Eightteenth Great Grandniece",
-                 "Ninetheen Great Grandniece", "Twentieth Great Grandniece", ]
+_nephew_level = [ "", "nephew", "grandnephew", "great grandnephew", "second great grandnephew",
+                  "third great grandnephew",  "fourth great grandnephew",
+                  "fifth great grandnephew",  "sixth great grandnephew",
+                  "seventh great grandnephew", "eighth great grandnephew",
+                  "ninth great grandnephew", "tenth great grandnephew",
+                  "eleventh great grandnephew",  "twelefth great grandnephew",
+                  "thirteenth great grandnephew", "fourteenth great grandnephew",
+                  "fifteenth great grandnephew", "sixteenth great grandnephew",
+                  "seventeenth great grandnephew", "eightteenth great grandnephew",
+                  "ninetheen great grandnephew", "twentieth great grandnephew", ]
+
+_niece_level = [ "", "niece", "grandniece", "great grandniece", "second great grandniece",
+                 "third great grandniece",  "fourth great grandniece",
+                 "fifth great grandniece",  "sixth great grandniece",
+                 "seventh great grandniece", "eighth great grandniece",
+                 "ninth great grandniece", "tenth great grandniece",
+                 "eleventh great grandniece",  "twelefth great grandniece",
+                 "thirteenth great grandniece", "fourteenth great grandniece",
+                 "fifteenth great grandniece", "sixteenth great grandniece",
+                 "seventeenth great grandniece", "eightteenth great grandniece",
+                 "ninetheen great grandniece", "twentieth great grandniece", ]
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def filter(person,index,list,map):
+def apply_filter(person,index,plist,pmap):
     if person == None:
         return
-    list.append(person)
-    map[person.getId()] = index
+    plist.append(person)
+    pmap[person.getId()] = index
     
     family = person.getMainParents()
     if family != None:
-        filter(family.getFather(),index+1,list,map)
-        filter(family.getMother(),index+1,list,map)
+        apply_filter(family.getFather(),index+1,plist,pmap)
+        apply_filter(family.getMother(),index+1,plist,pmap)
 
-def get_cousin(f,s,level,removed):
-    return "%s cousin%s of %s" % (level_name[level],removed_level[removed],f)
+def get_cousin(level,removed):
+    return "%s cousin%s" % (_level_name[level],_removed_level[removed])
 
-def get_father(f,s,level):
-    return "%s of %s" % (father_level[level],f)
+def get_father(level):
+    return _father_level[level]
 
-def get_son(f,s,level):
-    return "%s of %s" % (son_level[level],f)
+def get_son(level):
+    return _son_level[level]
 
-def get_mother(f,s,level):
-    return "%s of %s" % (mother_level[level],f)
+def get_mother(level):
+    return _mother_level[level]
 
-def get_daughter(f,s,level):
-    return "%s of %s" % (daughter_level[level],f)
+def get_daughter(level):
+    return _daughter_level[level]
 
-def get_aunt(f,s,level):
-    return "%s of %s" % (sister_level[level],f)
+def get_aunt(level):
+    return _sister_level[level]
 
-def get_uncle(f,s,level):
-    return "%s of %s" % (brother_level[level],f)
+def get_uncle(level):
+    return _brother_level[level]
 
-def get_nephew(f,s,level):
-    return "%s of %s" % (nephew_level[level],f)
+def get_nephew(level):
+    return _nephew_level[level]
 
-def get_niece(f,s,level):
-    return "%s of %s" % (niece_level[level],f)
+def get_niece(level):
+    return _niece_level[level],f
 
 def is_spouse(orig,other):
     for f in orig.getFamilyList():
@@ -183,6 +185,10 @@ def is_spouse(orig,other):
     return 0
 
 def get_relationship(orig_person,other_person):
+    """
+    returns a string representing the relationshp between the two people,
+    along with a list of common ancestors (typically father,mother) 
+    """
     firstMap = {}
     firstList = []
     secondMap = {}
@@ -191,18 +197,18 @@ def get_relationship(orig_person,other_person):
     rank = 9999999
 
     if orig_person == None:
-        return "No Home Person has been defined"
+        return "undefined"
 
     firstName = orig_person.getPrimaryName().getRegularName()
     secondName = other_person.getPrimaryName().getRegularName()
 
     if orig_person == other_person:
-        return firstName
+        return ('', [])
     if is_spouse(orig_person,other_person):
-        return "Spouse of %s" % (firstName)
+        return ("spouse",[])
 
-    filter(orig_person,0,firstList,firstMap)
-    filter(other_person,0,secondList,secondMap)
+    apply_filter(orig_person,0,firstList,firstMap)
+    apply_filter(other_person,0,secondList,secondMap)
     
     for person in firstList:
         if person in secondList:
@@ -232,32 +238,32 @@ def get_relationship(orig_person,other_person):
         firstRel = secondMap[person.getId()]
 
     if firstRel == -1:
-        return "No relationship to %s" % firstName
+        return ("",[])
     elif firstRel == 0:
         if secondRel == 0:
-            return firstName
+            return ('',common)
         elif other_person.getGender() == RelLib.Person.male:
-            return get_father(firstName,secondName,secondRel)
+            return (get_father(secondRel),common)
         else:
-            return get_mother(firstName,secondName,secondRel)
+            return (get_mother(secondRel),common)
     elif secondRel == 0:
         if other_person.getGender() == RelLib.Person.male:
-            return get_son(firstName,secondName,firstRel)
+            return (get_son(firstRel),common)
         else:
-            return get_daughter(firstName,secondName,firstRel)
+            return (get_daughter(firstRel),common)
     elif firstRel == 1:
         if other_person.getGender() == RelLib.Person.male:
-            return get_uncle(firstName,secondName,secondRel)
+            return (get_uncle(secondRel),common)
         else:
-            return get_aunt(firstName,secondName,secondRel)
+            return (get_aunt(secondRel),common)
     elif secondRel == 1:
         if other_person.getGender() == RelLib.Person.male:
-            return get_nephew(firstName,secondName,firstRel-1)
+            return (get_nephew(firstRel-1),common)
         else:
-            return get_niece(firstName,secondName,firstRel-1)
+            return (get_niece(firstRel-1),common)
     else:
         if secondRel > firstRel:
-            return get_cousin(firstName,secondName,firstRel-1,secondRel-firstRel)
+            return (get_cousin(firstRel-1,secondRel-firstRel),common)
         else:
-            return get_cousin(firstName,secondName,secondRel-1,firstRel-secondRel)
+            return (get_cousin(secondRel-1,firstRel-secondRel),common)
 
