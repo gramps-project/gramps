@@ -1,3 +1,22 @@
+Version 0.3.0
+* Support for RTF (export to MSWord) and limited support for KWord
+  and LaTeX added.
+* User defined styles for reports. Allows the selection of fonts,
+  sizes, colors, alignment, and many other features in output 
+  reports. Styles can be saved for future use.
+* Improved report formats
+* Initial German translation. Please note that the German translation 
+  is new, and it will take a while before it is fully in sync with the
+  program. It will probably take a release or two before it is as 
+  stable as the Swedish translation (it can take a while to provide the
+  translations, and the code is changing, so it takes a while to flush
+  things out).
+* Output format preference and page size preference can be set in the
+  preferences menu.
+* Names can now have sources and notes.
+* Lots of bug fixes
+* Fixes to GEDCOM importer
+
 Version 0.2.0
 * New GEDCOM importer. This new importer understands the GEDCOM
   file structure, and intelligently parses the file.  More 
