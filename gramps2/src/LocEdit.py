@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -25,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +47,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class LocationEditor:
 
-    def __init__(self,parent,location):
+    def __init__(self,parent,location,parent_window=None):
         self.parent = parent
         self.location = location
         self.top = gtk.glade.XML(const.dialogFile, "loc_edit","gramps")
@@ -67,11 +70,22 @@ class LocationEditor:
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_loc_edit_ok_clicked" : self.on_location_edit_ok_clicked
-            })
+            "on_help_loc_clicked" : self.on_help_clicked,
+           })
 
-    def on_location_edit_ok_clicked(self,obj):
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
+            self.on_location_edit_ok_clicked()
+        self.window.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-complete')
+        self.val = self.window.run()
+
+    def on_location_edit_ok_clicked(self):
         self.location = self.location
 
         city = self.city.get_text()
@@ -87,7 +101,6 @@ class LocationEditor:
         self.update_location(city,parish,county,state,country)
         
         self.parent.redraw_location_list()
-        Utils.destroy_passed_object(obj)
 
     def update_location(self,city,parish,county,state,country):
         if self.location.get_city() != city:
@@ -109,4 +122,3 @@ class LocationEditor:
         if self.location.get_country() != country:
             self.location.set_country(country)
             self.parent.lists_changed = 1
-

@@ -271,7 +271,7 @@ class EditPlace:
             setf(text)
             Utils.modified()
     
-    def on_place_apply_clicked(self,obj):
+    def on_place_apply_clicked(self):
 
         note = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                          self.note_buffer.get_end_iter(),gtk.FALSE)
@@ -298,7 +298,6 @@ class EditPlace:
 
         self.update_lists()
 
-        self.close(None)
         if self.callback:
             self.callback(self.place)
 
@@ -335,7 +334,7 @@ class EditPlace:
         if iter:
             row = store.get_path(iter)
             loc = self.llist[row[0]]
-            LocEdit.LocationEditor(self,loc)
+            LocEdit.LocationEditor(self,loc,self.top)
 
     def on_delete_url_clicked(self,obj):
         if Utils.delete_selected(obj,self.ulist):
@@ -360,7 +359,7 @@ class EditPlace:
 
     def on_add_loc_clicked(self,obj):
         import LocEdit
-        LocEdit.LocationEditor(self,None)
+        LocEdit.LocationEditor(self,None,self.top)
 
     def on_web_list_select_row(self,obj):
         store,iter = obj.get_selected()
