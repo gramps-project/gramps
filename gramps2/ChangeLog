@@ -2,11 +2,11 @@
 	* src/plugins/DetAncestralReport.py: Typos.
 	* src/plugins/DetDescendantReport.py: Typos.
 
-2005-02-04 Alex Roitman  <shura@alex.neuro.umn.edu>
+2005-02-12 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReadGrdb.py: Check for overlapping handles prior to
 	modifying data.
 
-	* src/ArgHandler (handle_args): Natively open XML and GEDCOM
+	* src/ArgHandler.py (handle_args): Natively open XML and GEDCOM
 	when given a single filename argument.
 	* src/gramps_main.py (read_gedcom,read_xml): Remove ununsed functions.
 
