@@ -207,10 +207,10 @@ class PeopleView:
 
             self.id2col[key] = (model,iter)
 
-            if change:
-                self.parent.change_active_person(person)
-                self.goto_active_person()
-            model.enable_sort()
+        if change:
+            self.parent.change_active_person(person)
+        self.goto_active_person()
+        model.enable_sort()
 
     def goto_active_person(self,first=0):
         if not self.parent.active_person:
@@ -408,8 +408,7 @@ class PeopleView:
             (model,iter) = self.id2col[key]
             
         val = self.parent.db.getPersonDisplay(person.getId())
-        pg = unicode(val[5])
-        pg = pg[0]
+        pg = unicode(val[5])[0]
         if self.DataFilter.compare(person):
             col = 0
             for object in val[:-1]:
