@@ -679,7 +679,10 @@ class BookReportSelector:
         if not iter:
             return
 	data = self.av_model.get_data(iter,range(self.av_ncols))
-        data.append(self.person.getPrimaryName().getRegularName())
+        if data[1] == _("Title"):
+            data.append(_("Not Applicable"))
+        else:
+            data.append(self.person.getPrimaryName().getRegularName())
         self.bk_model.add(data)
         item = BookItem(data[0])
         options = item.get_options()
@@ -749,7 +752,7 @@ class BookReportSelector:
         style_name = item.get_style_name() 
         opt_dlg = options_dialog(self.db,self.person,options,style_name)
         opt_dlg.window.destroy()
-        if opt_dlg.person:
+        if opt_dlg.person and data[1] != _("Title"): 
             self.bk_model.model.set_value(iter,2,
                 opt_dlg.person.getPrimaryName().getRegularName())
         item.set_options(opt_dlg.options)
