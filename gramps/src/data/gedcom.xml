@@ -92,6 +92,17 @@
     <object_support val="no"/>
     <residence val="address"/>
   </target>
+  <target name="Pro-Gen">
+    <dest val="PRO-GEN"/>
+    <adopt val="none"/>
+    <conc val="broken"/>
+    <alternate_names val="_alias"/>
+    <calendar val="no"/>
+    <extended_events>
+    </extended_events>
+    <object_support val="no"/>
+    <residence val="address"/>
+  </target>
   <target name="Visual Genealogie">
     <dest val=""/>
     <adopt val="none"/>

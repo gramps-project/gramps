@@ -35,6 +35,7 @@ ALT_NAME_STD       = 1
 ALT_NAME_ALIAS     = 2
 ALT_NAME_AKA       = 3
 ALT_NAME_EVENT_AKA = 4
+ALT_NAME_UALIAS    = 5
 CALENDAR_NO        = 0
 CALENDAR_YES       = 1
 OBJE_NO            = 0
@@ -206,6 +207,8 @@ class GedInfoParser:
                 self.current.set_alt_name(ALT_NAME_ALIAS)
             elif val == 'aka':
                 self.current.set_alt_name(ALT_NAME_AKA)
+            elif val == '_alias':
+                self.current.set_alt_name(ALT_NAME_UALIAS)
         elif tag == "calendars":
             if u2l(attrs['val']) == 'no':
                 self.current.set_alt_calendar(CALENDAR_NO)
