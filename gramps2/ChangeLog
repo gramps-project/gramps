@@ -5,6 +5,7 @@
 
 	* src/Sources.py (SourceEditor.update_display): Do not add source
 	for the second time.
+	* src/EditPerson.py (EditPerson.__init__): Correct widget names.
 
 2005-02-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (on_select_row): Add garbage collection call.
