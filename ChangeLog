@@ -4,6 +4,9 @@
 	* src/Report.py: Mark translatable string.
 	* src/Witness.py: Mark translatable string.
 	* src/plugins/FamilyGroup.py: Mark translatable string.
+	* src/plugins/AncestorChart2.py: Change the tile when changing
+	the center person.
+	* src/plugins/SimpleBookTitle.py: Correct window title. 
 
 2004-01-31  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Updating translation for 1.0-RC

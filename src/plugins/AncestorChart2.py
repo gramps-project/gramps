@@ -558,7 +558,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         if self.options[4] is not None:
             self.the_title = self.options[4]
         else:
-            self.the_title = self.get_the_title()
+            self.the_title = self.get_the_title(self.person)
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
@@ -576,7 +576,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
     #------------------------------------------------------------------------
     def add_user_options(self):
         self.title=gtk.Entry()
-        self.title.set_text(self.get_the_title())
+        self.title.set_text(self.get_the_title(self.person))
         self.title.show()
         self.add_option(_('Title'),self.title)
         self.compress = gtk.CheckButton(_('Co_mpress chart'))
@@ -588,9 +588,9 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         """The window title for this dialog"""
         return "%s - GRAMPS Book" % (_("Ancestor Chart"))
 
-    def get_the_title(self):
+    def get_the_title(self,person):
         """The header line at the top of the dialog contents."""
-        return _("Ancestor Chart for %s") % self.person.getPrimaryName().getName()
+        return _("Ancestor Chart for %s") % person.getPrimaryName().getName()
 
     def get_header(self,name):
         """The header line at the top of the dialog contents"""
@@ -617,6 +617,21 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         Report.BareReportDialog.parse_report_options_frame (self)
         self.do_compress = self.compress.get_active()
         self.the_title = self.title.get_text()
+
+    def on_center_person_change_clicked(self,obj):
+        import SelectPerson
+        sel_person = SelectPerson.SelectPerson(self.db,_('Select Person'))
+        new_person = sel_person.run()
+        if new_person:
+            self.new_person = new_person
+
+            self.the_title = self.get_the_title(self.new_person)
+            self.title.set_text(self.the_title)
+
+            new_name = new_person.getPrimaryName().getRegularName()
+	    if new_name:
+                self.person_label.set_text( "<i>%s</i>" % new_name )
+                self.person_label.set_use_markup(gtk.TRUE)
 
     def on_cancel(self, obj):
         pass
