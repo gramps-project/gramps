@@ -1580,7 +1580,7 @@ class Gramps:
             filter.hide()
         filter.set_sensitive(qual)
 
-    def new_after_edit(self,epo,plist):
+    def new_after_edit(self,epo):
         if epo:
             if epo.person.getId() == "":
                 self.db.addPerson(epo.person)
@@ -1591,8 +1591,6 @@ class Gramps:
             self.people_view.redisplay_person_list(epo.person)
         if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:
             self.family_view.load_family()
-        for p in plist:
-            self.place_view.new_place_after_edit(p)
 
     def update_after_newchild(self,family,person,plist):
         self.family_view.load_family(family)
@@ -1600,13 +1598,11 @@ class Gramps:
         for p in plist:
             self.place_view.new_place_after_edit(p)
 
-    def update_after_edit(self,epo,plist):
+    def update_after_edit(self,epo):
         if epo:
             self.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
             self.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.people_view.redisplay_person_list(epo.person)
-        for p in plist:
-            self.place_view.new_place_after_edit(p)
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):
