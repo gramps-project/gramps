@@ -71,7 +71,7 @@ def write_note(g,val,note,indent=0):
         g.write("  " * indent)
         
     g.write("<" + val + ">")
-    g.write(fix(note))
+    g.write(fix(string.rstrip(note)))
     g.write("</" + val + ">\n")
 			
 #-------------------------------------------------------------------------
@@ -282,7 +282,8 @@ def write_attribute_list(g, list, indent=3):
 def write_photo_list(g,list,indent=3):
     sp = '  '*indent
     for photo in list:
-        g.write('%s<objref ref="%s"' % (sp,photo.getReference().getId()))
+        mobj = photo.getReference()
+        g.write('%s<objref ref="%s"' % (sp,mobj.getId()))
         if photo.getPrivacy():
             g.write(' priv="1"')
         proplist = photo.getAttributeList()
@@ -296,7 +297,6 @@ def write_photo_list(g,list,indent=3):
                 dump_source_ref(g,s,indent+1)
             g.write('%s</objref>\n' % sp)
 
-
 def write_url_list(g, list):
     for url in list:
         g.write('      <url priv="%d" href="%s"' % \
@@ -304,7 +304,6 @@ def write_url_list(g, list):
         if url.get_description() != "":
             g.write(' description="%s"' % fix(url.get_description()))
         g.write('/>\n')
-
 
 def write_place_obj(g,place):
     title = place.get_title()

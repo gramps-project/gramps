@@ -163,6 +163,7 @@ class Gallery(ImageSelect):
         t = [
             ('STRING', 0, 0),
             ('text/plain',0,0),
+            ('text/uri-list',0,2),
             ('application/x-rootwin-drop',0,1)]
 
         icon_list.drag_dest_set(DEST_DEFAULT_ALL, t, GDK.ACTION_COPY)
@@ -240,8 +241,9 @@ class Gallery(ImageSelect):
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
 	if data and data.format == 8:
-            if data.data[0:5] == "file:":
-                name = string.strip(data.data[5:])
+            d = string.strip(string.replace(data.data,'\0',' '))
+            if d[0:5] == "file:":
+                name = d[5:]
                 mime = gnome.mime.type_or_default_of_file(name,"unknown")
                 if mime[0:5] == "image":
                     photo = Photo()

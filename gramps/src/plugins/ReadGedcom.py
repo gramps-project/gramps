@@ -783,6 +783,10 @@ class GedcomParser:
                 photo = Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
+                photo.setMimeType(gnome.mime.type_or_default_of_file(name,"unknown"))
+                db.addObject(photo)
+                oref = ObjectRef()
+                oref.setReference(photo)
                 self.person.addPhoto(photo)
         else:
             self.warn(_("Could not import %s: currently an unknown file type") % \
