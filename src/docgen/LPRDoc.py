@@ -627,7 +627,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.table_width = (self.right_margin - self.left_margin) * \
                             self.tbl_style.get_width() / 100.0
         self.cell_widths = []
-        self.cell_styles = []
+        self.gp_cell_styles = []
         self.brand_new_page = 0
 
     def end_table(self):
@@ -646,7 +646,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.cellnum = -1
         self.span = 1
         self.cell_widths.append([0] * self.ncols)
-        self.cell_styles.append([None] * self.ncols)
+        self.gp_cell_styles.append([None] * self.ncols)
         for cell in range(self.ncols):
             self.cell_widths[self.rownum][cell] = self.table_width * \
                             self.tbl_style.get_column_width(cell) / 100.0
@@ -666,7 +666,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.cell_data = []
         self.cellnum = self.cellnum + self.span
         self.span = span
-        self.cell_styles[self.rownum][self.cellnum] = \
+        self.gp_cell_styles[self.rownum][self.cellnum] = \
                                     self.cell_styles[style_name]
         for extra_cell in range(1,span):
             self.cell_widths[self.rownum][self.cellnum] += \
@@ -907,7 +907,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                 if not self.cell_widths[row_num][col]:
                     continue
 
-                padding = cm2u(self.cell_styles[row_num][col].get_padding())
+                padding = cm2u(self.gp_cell_styles[row_num][col].get_padding())
                 the_max = 0
                 for paragraph in row[col]:
                     the_min = paragraph.get_min_width()
@@ -943,7 +943,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                 if not self.cell_widths[row_num][col]:
                     continue
                 self.y = col_y
-                padding = cm2u(self.cell_styles [row_num][col].get_padding())
+                padding = cm2u(self.gp_cell_styles [row_num][col].get_padding())
                 for paragraph in row[col]:
                     if paragraph.__class__.__name__ == 'GnomePrintPhoto':
                         write_item = self.write_photo
