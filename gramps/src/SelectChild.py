@@ -123,7 +123,8 @@ class SelectChild:
                     slist.append(c)
             
         person_list = []
-        for person in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            person = self.db.getPerson(key)
             if filter:
                 if person in slist or person.getMainParents():
                     continue

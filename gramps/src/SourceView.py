@@ -134,11 +134,13 @@ class SourceView:
             self.update(0)
 
     def is_source_used(self,source):
-        for p in self.db.getPlaceMap().values():
+        for key in self.db.getPlaceKeys():
+            p = self.db.getPlace(key)
             for sref in p.getSourceRefList():
                 if sref.getBase() == source:
                     return 1
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
                 for sref in v.getSourceRefList():
                     if sref.getBase() == source:
