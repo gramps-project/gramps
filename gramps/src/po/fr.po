@@ -655,7 +655,7 @@ msgstr "Adresses Internets"
 #: EditPerson.glade:4599 EditPerson.glade:4869 dialog.glade:2692
 #: places.glade:1618 places.glade:1811
 msgid "Web Address"
-msgstr "Page Web"
+msgstr "Web"
 
 #: EditPerson.glade:4688
 msgid "Go to this web page"
@@ -3251,7 +3251,7 @@ msgstr "Liste Ahnentafel"
 #: plugins/IndivComplete.py:447 plugins/IndivComplete.py:662
 #: plugins/IndivSummary.py:332 plugins/IndivSummary.py:522
 msgid "Text Reports"
-msgstr "Liste au format texte"
+msgstr "Editions"
 
 #: plugins/AncestorReport.py:232 plugins/DetAncestralReport.py:677
 msgid "Save Ancestor Report"
@@ -4403,7 +4403,7 @@ msgstr "Description de la Base"
 
 #: plugins/Summary.py:148 plugins/count_anc.py:98
 msgid "View"
-msgstr "Vue"
+msgstr "Statistiques"
 
 #: plugins/Summary.py:149
 msgid "Provides a summary of the current database"
