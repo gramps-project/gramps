@@ -228,7 +228,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
 #
 #------------------------------------------------------------------------
 def write_book_item(database,person,doc,options,newpage=0):
-    """Write the FTM Style Ancestor Report options set.
+    """Write the Title Page using options set.
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
