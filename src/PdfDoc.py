@@ -87,8 +87,10 @@ class PdfDoc(TextDoc):
                                      rightMargin=self.rmargin*cm,
                                      topMargin=self.tmargin*cm,
                                      bottomMargin=self.bmargin*cm)
-        frameT = Frame(self.doc.leftMargin, self.doc.bottomMargin, \
-                       self.doc.width, self.doc.height, id='normal')
+        frameT = Frame(0,0,self.width*cm,self.height*cm,
+                       self.lmargin*cm, self.bmargin*cm, \
+                       self.rmargin*cm,self.tmargin*cm,\
+                       id='normal')
         ptemp = PageTemplate(frames=frameT,pagesize=self.pagesize)
         self.doc.addPageTemplates([ptemp])
 
@@ -192,10 +194,9 @@ class PdfDoc(TextDoc):
 	self.tblstyle = []
         self.cur_table_cols = []
         width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
-
 	for val in range(self.cur_table.get_columns()):
             percent = float(self.cur_table.get_column_width(val))/100.0
-            self.cur_table_cols.append(width * percent * cm)
+            self.cur_table_cols.append(int(width * percent * cm))
 
     def end_table(self):
         ts = reportlab.platypus.tables.TableStyle(self.tblstyle)

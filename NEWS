@@ -9,6 +9,10 @@ Version 0.4.0
 * Double clicking on a name in the Pedegree view brings up the edit
   box for that person
 * Support for same sex parent families has been added
+* Complete rework of Edit Person dialog
+* Added privacy flag and confidence level to events, attributes, etc.
+* Automatically detect gzip'ed XML vs. XML
+* Added option to write either gzip'ed XML or straight XML
 
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.

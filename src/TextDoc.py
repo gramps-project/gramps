@@ -570,6 +570,8 @@ class TextDoc:
         self.rmargin = 2.54
         self.title = ""
                 
+        print self.height, self.width
+
         self.font = FontStyle()
         self.style_list = styles.get_styles()
 	self.table_styles = {}
