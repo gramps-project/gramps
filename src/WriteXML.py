@@ -307,11 +307,13 @@ class XmlWriter:
                         frel=' frel="%s"' % alt[2]
                     else:
                         frel=''
+                    parent_family = self.db.get_family_from_handle (alt[0])
                     self.g.write("      <childof ref=\"%s\"%s%s/>\n" % \
-                            (alt[0], mrel, frel))
+                            (parent_family.get_gramps_id (), mrel, frel))
 
-                for family in person.get_family_handle_list():
-                    self.write_ref("parentin",family,3)
+                for family_handle in person.get_family_handle_list():
+                    family = self.db.get_family_from_handle (family_handle)
+                    self.write_ref("parentin",family.get_gramps_id (),3)
 
                 self.write_note("note",person.get_note_object(),3)
                 for s in person.get_source_references():

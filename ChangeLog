@@ -2,6 +2,8 @@
 	* src/WriteXML.py (write_xml_data): Fixed typo causing XML export to
 	omit all place definitions.
 	(XmlWriter.write_xml_data): Sort person handles before writing.
+	(XmlWriter.write_xml_data): Fixed people output by preventing
+	confusion between handles and GRAMPS IDs.
 
 	* src/RelLib.py (probably_alive): Fixed typo (bug #1012347).
 
