@@ -16,7 +16,8 @@
 	* src/data/templates/blue_edge.tpkg, src/data/templates/marble.tpkg,
 	src/data/templates/pink_marble.tpkg, src/data/templates/sepia.tpkg, 
 	src/data/templates/sky_border.tpkg: Remove from CVS (need to add binary
-	files using -kb flag). 
+	files using -kb flag). Add with -kb flag. Add charset info to the header of
+	all templates. 
 
 2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: Change column sizes on the FamilyView to
