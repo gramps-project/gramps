@@ -482,7 +482,7 @@ class FtmDescendantReport(Report.Report):
             else:
                 father_name = ""
 
-            text = ReportUtils.child_str(person.get_gender(),
+            text = ReportUtils.child_str(person,0,
                                 father_name,mother_name,dead)
             if text:
                 self.doc.write_text(text)
