@@ -2,6 +2,7 @@
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
+<requires lib="gnome"/>
 <requires lib="canvas"/>
 
 <widget class="GtkDialog" id="editPerson">
@@ -92,9 +93,7 @@
 	  <property name="show_tabs">True</property>
 	  <property name="show_border">True</property>
 	  <property name="tab_pos">GTK_POS_TOP</property>
-	  <property name="scrollable">False</property>
-	  <property name="tab_hborder">2</property>
-	  <property name="tab_vborder">2</property>
+	  <property name="scrollable">True</property>
 	  <property name="enable_popup">False</property>
 	  <signal name="switch_page" handler="on_editperson_switch_page" object="editPerson"/>
 
@@ -2110,7 +2109,7 @@
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
-			  <property name="wrap">False</property>
+			  <property name="wrap">True</property>
 			  <property name="selectable">False</property>
 			  <property name="xalign">0</property>
 			  <property name="yalign">0.5</property>
@@ -2546,7 +2545,7 @@
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
-			  <property name="wrap">False</property>
+			  <property name="wrap">True</property>
 			  <property name="selectable">False</property>
 			  <property name="xalign">0</property>
 			  <property name="yalign">0.5</property>
@@ -3683,7 +3682,7 @@
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
-		      <property name="wrap">False</property>
+		      <property name="wrap">True</property>
 		      <property name="selectable">False</property>
 		      <property name="xalign">0</property>
 		      <property name="yalign">0.5</property>
