@@ -81,3 +81,12 @@ class HandleError(Exception):
 
     def __str__(self):
         return self.value
+
+class GConfSchemaError(Exception):
+    """Error used to report the absence of expected GConf schema."""
+    def __init__(self,value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return self.value

@@ -4,7 +4,7 @@
 	* src/const.py.in: Add custom exception "ErrorSchemaInvalid"
 	* src/GrampsMime.py (mime_type_is_defined): New method that returns
 	True/False
-	* src/gramps_main.py (__init__) Catch "ErrorSchemaInvalid" exception
+	* src/gramps_main.py (__init__): Catch "ErrorSchemaInvalid" exception
 	and check for installed MIME-type. Show error because installation is
 	incomplete.
 	
@@ -13,6 +13,11 @@
 	* configure.in: Use AM_SHARED_MIME macro.
 	* src/data/Makefile.am: Use defined GCONF_SCHEMA_FILE_DIR and
 	SHARED_MIME_DIR, not the hardcoded paths.
+
+	* src/Errors.py (GConfSchemaError): Add new exception.
+	* src/const.py.in: Remove exception string "ErrorSchemaInvalid"
+	(replaced by new class).
+	* src/GrampsGconfKeys.py (get_bool,get_int,get_string): Raise exception.
 
 2005-03-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Exporter.py (build_info_page): proofreading; (build_format_page):
