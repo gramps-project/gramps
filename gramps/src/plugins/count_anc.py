@@ -49,12 +49,12 @@ def report(database,person):
     text = text + title + ':\n'
     thisgensize=1
     gen=1
-    while(thisgensize>0):
+    while thisgensize>0:
        thisgensize=0
-       if( len(thisgen) >0):
+       if len(thisgen) >0:
           thisgensize=len(thisgen)
           gen= gen-1
-	  if( thisgensize > 1 ):
+	  if thisgensize == 1 :
               text = text + _("Generation %d has 1 individual.\n") % (gen)
           else:
               text = text + _("Generation %d has %d individuals.\n") % (gen, thisgensize)
