@@ -413,12 +413,12 @@ class HasBirth(Rule):
 
     def apply(self,p):
         event = p.getBirth()
-        if self.list[2] and find(event.getDescription(),self.list[2])==-1:
+        if len(self.list) > 2 and find(event.getDescription(),self.list[2])==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.getDateObj()) == 0:
                 return 0
-        if self.list[1] and find(p.getPlaceName(),self.list[1]) == -1:
+        if len(self.list) > 1 and find(event.getPlaceName(),self.list[1]) == -1:
             return 0
         return 1
 

@@ -1986,6 +1986,10 @@ class GrampsDB(Persistent):
         """returns a map of gramps's IDs to Family instances"""
         return extmap(self.familyMap)
 
+    def getFamily(self,id):
+        """returns a map of gramps's IDs to Family instances"""
+        return self.familyMap[id]
+
     def setFamilyMap(self,map):
         """sets the map of gramps's IDs to Family instances"""
         self.familyMap = map

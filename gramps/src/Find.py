@@ -56,13 +56,14 @@ _ = gettext
 class FindBase:
     """Opens find person dialog for gramps"""
     
-    def __init__(self,clist,task,name):
+    def __init__(self,clist,task,name,db):
         """Opens a dialog box instance that allows users to
         search for a person.
 
         clist - GtkCList containing the people information
         task - function to call to change the active person"""
-        
+
+        self.db = db
         self.clist = clist
         self.nlist = []
         self.task = task
@@ -84,12 +85,36 @@ class FindBase:
         self.top.editable_enters(self.entry)
         self.entry.grab_focus()
 
+    def get_value(self,id):
+        return None
+    
     def enable_autocomp(self):
         if GrampsCfg.autocomp:
             self.comp = AutoComp.AutoEntry(self.entry,self.nlist)
         
     def advance(self,func):
-        pass
+        try:
+            self.row = self.clist.selection[0]
+        except IndexError:
+            gtk.gdk_beep()
+            return
+
+        text = self.entry.get_text()
+        if self.row == None or text == "":
+            gtk.gdk_beep()
+            return
+        orow = self.row
+        func()
+        while self.row != orow:
+            id = self.clist.get_row_data(self.row)
+            if id == None:
+                func()
+                continue
+            if string.find(string.upper(self.get_value(id)),string.upper(text)) >= 0:
+                self.task(self.row)
+                return
+            func()
+        gtk.gdk_beep()
 
     def forward(self):
         self.row = self.row + 1
@@ -121,45 +146,22 @@ class FindBase:
 class FindPerson(FindBase):
     """Opens a Find Person dialog for GRAMPS"""
     
-    def __init__(self,clist,task,plist):
+    def __init__(self,clist,task,db):
         """Opens a dialog box instance that allows users to
         search for a person.
 
         clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Person"))
-        for n in plist:
-            self.nlist.append(n.getPrimaryName().getName())
+        FindBase.__init__(self,clist,task,_("Find Person"),db)
+        for n in self.db.getPersonKeys():
+            val = self.db.getPersonDisplay(n)
+            self.nlist.append(val[0])
         self.enable_autocomp()
-        
-    def advance(self,func):
-        try:
-            self.row = self.clist.selection[0]
-        except IndexError:
-            gtk.gdk_beep()
-            return
 
-        text = self.entry.get_text()
-        if self.row == None or text == "":
-            gtk.gdk_beep()
-            return
-        orow = self.row
-        func()
-        person = None
-        while self.row != orow:
-            value = self.clist.get_row_data(self.row)
-            if value == None:
-                func()
-                continue
-            person,alt = value
-            if alt == 0:
-                name = person.getPrimaryName().getName()
-                if string.find(string.upper(name),string.upper(text)) >= 0:
-                    self.task(person)
-                    return
-            func()
-        gtk.gdk_beep()
+    def get_value(self,id):
+        return self.db.getPersonDisplay(id)[0]
+    
 
 #-------------------------------------------------------------------------
 #
@@ -169,42 +171,20 @@ class FindPerson(FindBase):
 class FindPlace(FindBase):
     """Opens a Find Place dialog for GRAMPS"""
     
-    def __init__(self,clist,task,plist):
+    def __init__(self,clist,task,db):
         """Opens a dialog box instance that allows users to
         search for a place.
 
         clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Place"))
-        for n in plist:
-            self.nlist.append(n.get_title())
+        FindBase.__init__(self,clist,task,_("Find Place"),db)
+        for n in self.db.getPlaceKeys():
+            self.nlist.append(self.db.getPlaceDisplay(n)[0])
         self.enable_autocomp()
         
-    def advance(self,func):
-        try:
-            self.row = self.clist.selection[0]
-        except IndexError:
-            gtk.gdk_beep()
-            return
-
-        text = self.entry.get_text()
-        if self.row == None or text == "":
-            gtk.gdk_beep()
-            return
-        orow = self.row
-        func()
-        while self.row != orow:
-            value = self.clist.get_row_data(self.row)
-            if value == None:
-                func()
-                continue
-            name = value.get_title()
-            if string.find(string.upper(name),string.upper(text)) >= 0:
-                self.task(self.row)
-                return
-            func()
-        gtk.gdk_beep()
+    def get_value(self,id):
+        return  self.db.getPlaceDisplay(id)[0]
 
 #-------------------------------------------------------------------------
 #
@@ -214,42 +194,20 @@ class FindPlace(FindBase):
 class FindSource(FindBase):
     """Opens a Find Place dialog for GRAMPS"""
     
-    def __init__(self,clist,task,plist):
+    def __init__(self,clist,task,db):
         """Opens a dialog box instance that allows users to
         search for a place.
 
         clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Source"))
-        for n in plist:
-            self.nlist.append(n.getTitle())
+        FindBase.__init__(self,clist,task,_("Find Source"),db)
+        for n in self.db.getSourceKeys():
+            self.nlist.append(n[0])
         self.enable_autocomp()
         
-    def advance(self,func):
-        try:
-            self.row = self.clist.selection[0]
-        except IndexError:
-            gtk.gdk_beep()
-            return
-
-        text = self.entry.get_text()
-        if self.row == None or text == "":
-            gtk.gdk_beep()
-            return
-        orow = self.row
-        func()
-        while self.row != orow:
-            value = self.clist.get_row_data(self.row)
-            if value == None:
-                func()
-                continue
-            name = value.getTitle()
-            if string.find(string.upper(name),string.upper(text)) >= 0:
-                self.task(self.row)
-                return
-            func()
-        gtk.gdk_beep()
+    def get_value(self,id):
+        return  self.db.getSourceDisplay(id)[0]
 
 #-------------------------------------------------------------------------
 #

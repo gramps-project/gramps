@@ -4661,12 +4661,9 @@
 
       <widget>
 	<class>GtkScrolledWindow</class>
-	<name>scrolledwindow9</name>
-	<border_width>10</border_width>
-	<width>400</width>
-	<height>200</height>
-	<hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
-	<vscrollbar_policy>GTK_POLICY_ALWAYS</vscrollbar_policy>
+	<name>scrolledwindow36</name>
+	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
+	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
 	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
 	<child>
@@ -4678,28 +4675,143 @@
 	<widget>
 	  <class>GtkCList</class>
 	  <name>spouseList</name>
+	  <width>450</width>
+	  <height>300</height>
 	  <can_focus>True</can_focus>
 	  <signal>
 	    <name>select_row</name>
 	    <handler>on_select_row</handler>
-	    <last_modification_time>Fri, 29 Mar 2002 13:44:27 GMT</last_modification_time>
+	    <last_modification_time>Sat, 01 Jun 2002 20:59:14 GMT</last_modification_time>
 	  </signal>
 	  <signal>
 	    <name>unselect_row</name>
 	    <handler>on_unselect_row</handler>
-	    <last_modification_time>Fri, 29 Mar 2002 13:44:33 GMT</last_modification_time>
+	    <last_modification_time>Sat, 01 Jun 2002 20:59:58 GMT</last_modification_time>
 	  </signal>
-	  <columns>2</columns>
-	  <column_widths>256,80</column_widths>
+	  <columns>4</columns>
+	  <column_widths>229,85,5,80</column_widths>
 	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	  <show_titles>True</show_titles>
 	  <shadow_type>GTK_SHADOW_IN</shadow_type>
 
 	  <widget>
+	    <class>GtkHBox</class>
+	    <child_name>CList:title</child_name>
+	    <name>hbox82</name>
+	    <homogeneous>True</homogeneous>
+	    <spacing>0</spacing>
+
+	    <widget>
+	      <class>GtkHBox</class>
+	      <name>hbox83</name>
+	      <homogeneous>False</homogeneous>
+	      <spacing>0</spacing>
+	      <child>
+		<padding>0</padding>
+		<expand>False</expand>
+		<fill>False</fill>
+	      </child>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label315</name>
+		<label>Name</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <padding>0</padding>
+		  <expand>False</expand>
+		  <fill>False</fill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkArrow</class>
+		<name>NameArrow</name>
+		<width>10</width>
+		<height>10</height>
+		<arrow_type>GTK_ARROW_DOWN</arrow_type>
+		<shadow_type>GTK_SHADOW_OUT</shadow_type>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <padding>5</padding>
+		  <expand>False</expand>
+		  <fill>True</fill>
+		</child>
+	      </widget>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkHBox</class>
+	    <child_name>CList:title</child_name>
+	    <name>hbox80</name>
+	    <homogeneous>True</homogeneous>
+	    <spacing>0</spacing>
+
+	    <widget>
+	      <class>GtkHBox</class>
+	      <name>hbox81</name>
+	      <homogeneous>False</homogeneous>
+	      <spacing>0</spacing>
+	      <child>
+		<padding>0</padding>
+		<expand>False</expand>
+		<fill>False</fill>
+	      </child>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label311</name>
+		<label>Birth Date</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <padding>0</padding>
+		  <expand>False</expand>
+		  <fill>False</fill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkArrow</class>
+		<name>DateArrow</name>
+		<width>10</width>
+		<height>10</height>
+		<visible>False</visible>
+		<arrow_type>GTK_ARROW_DOWN</arrow_type>
+		<shadow_type>GTK_SHADOW_OUT</shadow_type>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <padding>0</padding>
+		  <expand>False</expand>
+		  <fill>False</fill>
+		</child>
+	      </widget>
+	    </widget>
+	  </widget>
+
+	  <widget>
 	    <class>GtkLabel</class>
 	    <child_name>CList:title</child_name>
-	    <name>label65</name>
-	    <label>Name</label>
+	    <name>label318</name>
+	    <label></label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>0.5</xalign>
@@ -4711,8 +4823,8 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <child_name>CList:title</child_name>
-	    <name>label66</name>
-	    <label>Birthdate</label>
+	    <name>label319</name>
+	    <label></label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>0.5</xalign>
