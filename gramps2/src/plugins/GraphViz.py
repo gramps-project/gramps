@@ -45,6 +45,7 @@ import Report
 import TextDoc
 import GenericFilter
 from intl import gettext as _
+from latin_utf8 import utf8_to_latin
 
 #------------------------------------------------------------------------
 #
@@ -333,8 +334,9 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
             mother   = family.getMother()
             fadopted = frel != _("Birth")
             madopted = mrel != _("Birth")
-            if show_families and (person_dict.has_key(father.getId()) or
-                                  person_dict.has_key(mother.getId())):
+            if (show_families and
+                (father and person_dict.has_key(father.getId()) or
+                 mother and person_dict.has_key(mother.getId()))):
                 # Link to the family node.
                 famid = string.replace(family.getId(),'-','_')
                 file.write('p%s -> f%s ['  % (pid, famid))
@@ -403,7 +405,7 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
                 file.write('color=deeppink, ')
             else:
                 file.write('color=black, ')
-        file.write('fontname="Arial", label="%s"];\n' % label)
+        file.write('fontname="Arial", label="%s"];\n' % utf8_to_latin(label))
         # Output families's nodes.
         if show_families:
             family_list = person.getFamilyList()
