@@ -147,7 +147,7 @@ class XmlWriter:
         objList = self.db.getObjectMap().values()
         objList.sort(sortById)
         
-        total = len(personList) + len(familyList)
+        total = len(personList) + len(familyList) + len(placeList) + len(sourceList)
 
         self.g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
         self.g.write('<!DOCTYPE self.db SYSTEM "gramps.dtd" []>\n')
@@ -156,7 +156,9 @@ class XmlWriter:
         self.g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
         self.g.write(" version=\"" + const.version + "\"")
         self.g.write(" people=\"%d\"" % (len(self.db.getPersonMap().values())))
-        self.g.write(" families=\"%d\"/>\n" % len(self.db.getFamilyMap().values()))
+        self.g.write(" families=\"%d\"\n" % len(self.db.getFamilyMap().values()))
+        self.g.write(" sources=\"%d\"\n" % len(self.db.getSourceMap().values()))
+        self.g.write(" places=\"%d\"/>\n" % len(self.db.getPlaceMap().values()))
         self.g.write("    <researcher>\n")
         self.write_line("resname",owner.getName(),3)
         self.write_line("resaddr",owner.getAddress(),3)
@@ -176,7 +178,6 @@ class XmlWriter:
                 self.g.write(' default="%s"' % person.getId())
             self.g.write(">\n")
 
-            total = len(personList) + len(familyList)
             delta = max(int(total/50),1)
 
             count = 0
@@ -283,6 +284,9 @@ class XmlWriter:
         if len(sourceList) > 0:
             self.g.write("  <sources>\n")
             for source in sourceList:
+                if self.callback and count % delta == 0:
+                    self.callback(float(count)/float(total))
+                count = count + 1
                 self.g.write("    <source id=\"" + source.getId() + "\">\n")
                 self.write_force_line("stitle",source.getTitle(),3)
                 self.write_line("sauthor",source.getAuthor(),3)
@@ -297,6 +301,9 @@ class XmlWriter:
         if len(placeList) > 0:
             self.g.write("  <places>\n")
             for place in placeList:
+                if self.callback and count % delta == 0:
+                    self.callback(float(count)/float(total))
+                count = count + 1
                 self.write_place_obj(place)
             self.g.write("  </places>\n")
 
@@ -458,7 +465,7 @@ class XmlWriter:
             
             self.g.write('%s<dateval val="%s"%s%s/>\n' % (sp,dstr,pref,calstr))
         else:
-            self.g.write('%s<datestr val="%s"/>\n' %(sp,fix(date.getText())))
+            self.g.write('%s<datestr val="%s"/>\n' %(sp,self.fix(date.getText())))
 
     def write_force_line(self,label,value,indent=1):
         if value != None:

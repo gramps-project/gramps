@@ -567,7 +567,9 @@ def read_file(filename):
     statusbar.set_status(_("Loading %s ...") % filename)
 
     if load_database(filename) == 1:
-        name = os.path.basename(filename[:-1])
+        if filename[-1] == '/':
+            filename = filename[:-1]
+        name = os.path.basename(filename)
         topWindow.set_title("%s - %s" % (name,_("GRAMPS")))
     else:
         statusbar.set_status("")
