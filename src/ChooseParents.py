@@ -304,7 +304,7 @@ class ChooseParents:
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changegd"""
         self.old_type = self.type
-        self.type = const.save_frel(obj.get_text())
+        self.type = const.save_frel(unicode(obj.get_text()))
         if self.old_type == "Partners" or self.type == "Partners":
             self.redrawf()
             self.redrawm()
@@ -384,12 +384,12 @@ class ChooseParents:
         of the main perosn.
         """
         try:
-            mother_rel = const.childRelations[self.mother_rel.get_text()]
+            mother_rel = const.childRelations[unicode(self.mother_rel.get_text())]
         except KeyError:
             mother_rel = const.childRelations["Birth"]
 
         try:
-            father_rel = const.childRelations[self.father_rel.get_text()]
+            father_rel = const.childRelations[unicode(self.father_rel.get_text())]
         except KeyError:
             father_rel = const.childRelations["Birth"]
 
@@ -437,7 +437,7 @@ class ChooseParents:
             self.db.addPersonNoMap(person,id)
         self.db.buildPersonDisplay(id)
 
-        self.type = const.save_frel(self.prel.get_text())
+        self.type = const.save_frel(unicode(self.prel.get_text()))
         dinfo = self.db.getPersonDisplay(id)
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
 
@@ -580,8 +580,8 @@ class ModifyParents:
         Called with the OK button nis pressed. Saves the selected people as parents
         of the main perosn.
         """
-        mother_rel = const.childRelations[self.mother_rel.get_text()]
-        father_rel = const.childRelations[self.father_rel.get_text()]
+        mother_rel = const.childRelations[unicode(self.mother_rel.get_text())]
+        father_rel = const.childRelations[unicode(self.father_rel.get_text())]
         mod = 0
 
         if mother_rel != self.orig_mrel or father_rel != self.orig_frel:

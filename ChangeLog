@@ -1,3 +1,34 @@
+2003-12-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PlaceView.py: Make sure to add new place after edit
+	* src/AddMedia.py: unicode conversion from gtk.Entry
+	* src/AddSpouse.py: unicode conversion from gtk.Entry
+	* src/AddrEdit.py: unicode conversion from gtk.Entry
+	* src/AttrEdit.py: unicode conversion from gtk.Entry
+	* src/AutoComp.py: unicode conversion from gtk.Entry
+	* src/ChooseParents.py: unicode conversion from gtk.Entry
+	* src/DateEdit.py: unicode conversion from gtk.Entry
+	* src/EditPerson.py: unicode conversion from gtk.Entry
+	* src/EditPlace.py: unicode conversion from gtk.Entry
+	* src/EditSource.py: unicode conversion from gtk.Entry
+	* src/EventEdit.py: unicode conversion from gtk.Entry
+	* src/Find.py: unicode conversion from gtk.Entry
+	* src/GrampsCfg.py: unicode conversion from gtk.Entry
+	* src/ImageSelect.py: unicode conversion from gtk.Entry
+	* src/LocEdit.py: unicode conversion from gtk.Entry
+	* src/Marriage.py: unicode conversion from gtk.Entry
+	* src/MergeData.py: unicode conversion from gtk.Entry
+	* src/NameEdit.py: unicode conversion from gtk.Entry
+	* src/PeopleView.py: unicode conversion from gtk.Entry
+	* src/Report.py: unicode conversion from gtk.Entry
+	* src/SelectChild.py: unicode conversion from gtk.Entry
+	* src/Sources.py: unicode conversion from gtk.Entry
+	* src/StartupDialog.py: unicode conversion from gtk.Entry
+	* src/StyleEditor.py: unicode conversion from gtk.Entry
+	* src/UrlEdit.py: unicode conversion from gtk.Entry
+	* src/Utils.py: unicode conversion from gtk.Entry
+	* src/VersionControl.py: unicode conversion from gtk.Entry
+	* src/Witness.py: unicode conversion from gtk.Entry
+
 2003-12-16  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Use write_note() when appropriate.
 

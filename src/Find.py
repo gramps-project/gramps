@@ -85,9 +85,7 @@ class FindBase:
         return id
         
     def advance(self,func):
-        text = self.entry.get_text()
-        if type(text) != self.t:
-            text = unicode(text.upper())
+        text = unicode(self.entry.get_text().upper())
         orow = self.index
         func()
         while self.index != orow:

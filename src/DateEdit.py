@@ -75,7 +75,7 @@ class DateEdit:
         """Called with the text box loses focus. If the string contains a
         valid date, sets the appropriate pixmap"""
 
-        text = self.text_obj.get_text()
+        text = unicode(self.text_obj.get_text())
         self.checkval.set(text)
         if not self.checkval.isValid():
             self.pixmap_obj.set_from_pixbuf(DateEdit.bad)

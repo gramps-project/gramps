@@ -284,7 +284,7 @@ class StyleEditor:
         the changes.
         """
         p = self.current_p
-        name = self.top.get_widget("style_name").get_text()
+        name = unicode(self.top.get_widget("style_name").get_text())
 
         self.save_paragraph(p)
         self.style.set_name(name)

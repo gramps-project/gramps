@@ -147,13 +147,13 @@ class AddressEditor:
         Called when the OK button is pressed. Gets data from the
         form and updates the Address data structure.
         """
-        date = self.addr_start.get_text()
-        street = self.street.get_text()
-        city = self.city.get_text()
-        state = self.state.get_text()
-        country = self.country.get_text()
-        phone = self.phone.get_text()
-        postal = self.postal.get_text()
+        date = unicode(self.addr_start.get_text())
+        street = unicode(self.street.get_text())
+        city = unicode(self.city.get_text())
+        state = unicode(self.state.get_text())
+        country = unicode(self.country.get_text())
+        phone = unicode(self.phone.get_text())
+        postal = unicode(self.postal.get_text())
         b = self.note_field.get_buffer()
         note = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
         format = self.preform.get_active()

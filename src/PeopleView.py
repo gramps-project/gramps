@@ -178,7 +178,7 @@ class PeopleView:
 
     def apply_filter_clicked(self):
         invert_filter = self.parent.filter_inv.get_active()
-        qualifer = self.parent.filter_text.get_text()
+        qualifer = unicode(self.parent.filter_text.get_text())
         mi = self.parent.filter_list.get_menu().get_active()
         class_init = mi.get_data("function")
         self.DataFilter = class_init(qualifer)

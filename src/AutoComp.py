@@ -155,7 +155,7 @@ class AutoCombo(AutoCompBase):
         """Callback task called on the button release"""
         
         self.inb = 0
-        text = self.entry.entry.get_text()
+        text = unicode(self.entry.entry.get_text())
         if self.nl == string.lower(text):
             gtk.Editable.set_position(self.entry.entry,self.l)
             gtk.Editable.select_region(self.entry.entry,self.l,-1)
@@ -168,7 +168,7 @@ class AutoCombo(AutoCompBase):
 
         if self.vals and len(self.vals) < 250:
             if self.vals[0] == "":
-                self.entry.set_popdown_strings([self.entry.entry.get_text()])
+                self.entry.set_popdown_strings([unicode(self.entry.entry.get_text())])
             else:
                 self.entry.set_popdown_strings(self.vals)
         else:

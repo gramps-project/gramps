@@ -152,8 +152,8 @@ class AttributeEditor:
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
         """
-        type = self.type_field.get_text()
-        value = self.value_field.get_text()
+        type = unicode(self.type_field.get_text())
+        value = unicode(self.value_field.get_text())
 
         buf = self.note_field.get_buffer()
         note = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)

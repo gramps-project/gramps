@@ -132,16 +132,16 @@ class NameEditor:
         self.val = self.window.run()
 
     def on_name_edit_ok_clicked(self):
-        first = self.given_field.get_text()
-        last = self.surname_field.get_text()
-        title = self.title_field.get_text()
-        suffix = self.suffix_field.get_text()
+        first = unicode(self.given_field.get_text())
+        last = unicode(self.surname_field.get_text())
+        title = unicode(self.title_field.get_text())
+        suffix = unicode(self.suffix_field.get_text())
         note = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                          self.note_buffer.get_end_iter(),gtk.FALSE)
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
-        type = self.type_field.entry.get_text()
+        type = unicode(self.type_field.entry.get_text())
 
         if const.NameTypesMap.has_key(type):
             type = const.NameTypesMap[type]

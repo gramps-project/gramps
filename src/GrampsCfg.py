@@ -442,7 +442,7 @@ class ConfigEntry(ConfigWidget):
         return [l,self.w]
 
     def set(self):
-        val = self.w.get_text()
+        val = unicode(self.w.get_text())
         set_string(self.tag,val)
 
 class ConfigInt(ConfigWidget):
@@ -883,21 +883,21 @@ class GrampsPreferences:
         defaultview = not self.top.get_widget("pvbutton").get_active()
         familyview = not self.top.get_widget("familyview1").get_active()
 
-        iprefix = self.top.get_widget("iprefix").get_text()
+        iprefix = unicode(self.top.get_widget("iprefix").get_text())
         if iprefix == "":
-            iprefix = "I"
-        sprefix = self.top.get_widget("sprefix").get_text()
+            iprefix = "I%04d"
+        sprefix = unicode(self.top.get_widget("sprefix").get_text())
         if sprefix == "":
-            sprefix = "S"
-        oprefix = self.top.get_widget("oprefix").get_text()
+            sprefix = "S%04d"
+        oprefix = unicode(self.top.get_widget("oprefix").get_text())
         if oprefix == "":
-            oprefix = "O"
-        fprefix = self.top.get_widget("fprefix").get_text()
+            oprefix = "O%04d"
+        fprefix = unicode(self.top.get_widget("fprefix").get_text())
         if fprefix == "":
-            fprefix = "F"
-        pprefix = self.top.get_widget("pprefix").get_text()
+            fprefix = "F%04d"
+        pprefix = unicode(self.top.get_widget("pprefix").get_text())
         if pprefix == "":
-            pprefix = "P"
+            pprefix = "P%04d"
 
         dbdir_temp = self.top.get_widget("dbdir").get_full_path(1)
         if dbdir_temp != None and os.path.isdir(dbdir_temp):
@@ -977,14 +977,14 @@ class GrampsPreferences:
         lastnamegen = format_menu.get_active().get_data(DATA)
         set_int("/apps/gramps/surname-guessing",lastnamegen)
         
-        name = self.top.get_widget("resname").get_text()
-        addr = self.top.get_widget("resaddr").get_text()
-        city = self.top.get_widget("rescity").get_text()
-        state = self.top.get_widget("resstate").get_text()
-        country = self.top.get_widget("rescountry").get_text()
-        postal = self.top.get_widget("respostal").get_text()
-        phone = self.top.get_widget("resphone").get_text()
-        email = self.top.get_widget("resemail").get_text()
+        name = unicode(self.top.get_widget("resname").get_text())
+        addr = unicode(self.top.get_widget("resaddr").get_text())
+        city = unicode(self.top.get_widget("rescity").get_text())
+        state = unicode(self.top.get_widget("resstate").get_text())
+        country = unicode(self.top.get_widget("rescountry").get_text())
+        postal = unicode(self.top.get_widget("respostal").get_text())
+        phone = unicode(self.top.get_widget("resphone").get_text())
+        email = unicode(self.top.get_widget("resemail").get_text())
         
         set_string("/apps/gramps/researcher-name",name)
         set_string("/apps/gramps/researcher-addr",addr)

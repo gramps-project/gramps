@@ -1085,7 +1085,7 @@ class ReportDialog(BareReportDialog):
 
 
     def html_file_enable(self,obj):
-        text = obj.get_text()
+        text = unicode(obj.get_text())
         if _template_map.has_key(text):
             if _template_map[text]:
                 self.html_fileentry.set_sensitive(0)
@@ -1195,8 +1195,8 @@ class ReportDialog(BareReportDialog):
 
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
             try:
-                h = float(self.pheight.get_text())
-                w = float(self.pwidth.get_text())
+                h = float(unicode(self.pheight.get_text()))
+                w = float(unicode(self.pwidth.get_text()))
                 
                 if h <= 1.0 or w <= 1.0:
                     self.paper.set_height(29.7)
@@ -1223,7 +1223,7 @@ class ReportDialog(BareReportDialog):
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
 
-        text = self.template_combo.entry.get_text()
+        text = unicode(self.template_combo.entry.get_text())
         if _template_map.has_key(text):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)

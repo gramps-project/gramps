@@ -87,7 +87,7 @@ class RevisionComment:
         self.win.show()
 
     def on_savecomment_clicked(self,obj):
-        comment = self.text.get_text()
+        comment = unicode(self.text.get_text())
         Utils.destroy_passed_object(self.win)
         self.save(self.filename,comment)
         

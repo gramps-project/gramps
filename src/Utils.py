@@ -625,12 +625,12 @@ def roman(num):
 #
 #-------------------------------------------------------------------------
 def bold_label(label):
-    text = label.get_text()
+    text = unicode(label.get_text())
     label.set_text("<b>%s</b>" % text )
     label.set_use_markup(1)
 
 def unbold_label(label):
-    text = label.get_text()
+    text = unicode(label.get_text())
     text = string.replace(text,'<b>','')
     text = string.replace(text,'</b>','')
     label.set_text(text)

@@ -86,8 +86,8 @@ class UrlEditor:
         self.val = self.window.run()
 
     def on_url_edit_ok_clicked(self):
-        des = self.des.get_text()
-        addr = self.addr.get_text()
+        des = unicode(self.des.get_text())
+        addr = unicode(self.addr.get_text())
         priv = self.priv.get_active()
         
         if self.url == None:

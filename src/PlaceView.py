@@ -192,7 +192,7 @@ class PlaceView:
         menu.popup(None,None,None,event.button,event.time)
 
     def new_place_after_edit(self,place):
-        #self.db.addPlace(place)
+        self.db.addPlace(place)
         self.update(0)
 
     def update_display(self,place):

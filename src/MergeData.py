@@ -844,7 +844,7 @@ class MergePlaces:
         if t2active:
             self.p1.set_title(self.p2.get_title())
         elif self.glade.get_widget("title3").get_active():
-            self.p1.set_title(self.t3.get_text())
+            self.p1.set_title(unicode(self.t3.get_text()))
 
         # Set longitude
         if self.p1.get_longitude() == "" and self.p2.get_longitude() != "":

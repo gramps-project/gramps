@@ -139,7 +139,7 @@ class AddSpouse:
         """
         import EditPerson
 
-        relation = const.save_frel(self.relation_type.get_text())
+        relation = const.save_frel(unicode(self.relation_type.get_text()))
         if relation == "Partners":
             if self.person.getGender() == RelLib.Person.male:
                 gen = RelLib.Person.male
@@ -202,7 +202,7 @@ class AddSpouse:
             self.active_family.setFather(spouse)
             self.active_family.setMother(self.person)
 
-        self.active_family.setRelationship(const.save_frel(self.relation_type.get_text()))
+        self.active_family.setRelationship(const.save_frel(unicode(self.relation_type.get_text())))
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
 
@@ -215,7 +215,7 @@ class AddSpouse:
         the potential spouse list.
         """
 
-        text = self.relation_type.get_text()
+        text = unicode(self.relation_type.get_text())
         self.relation_def.set_text(const.relationship_def(text))
     
         # determine the gender of the people to be loaded into
