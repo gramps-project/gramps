@@ -184,15 +184,14 @@
 	    <name>edit1_menu</name>
 
 	    <widget>
-	      <class>GtkMenuItem</class>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>find</name>
 	      <signal>
 		<name>activate</name>
 		<handler>on_find_activate</handler>
 		<last_modification_time>Wed, 05 Sep 2001 02:48:31 GMT</last_modification_time>
 	      </signal>
-	      <label>_Find</label>
-	      <right_justify>False</right_justify>
+	      <stock_item>GNOMEUIINFO_MENU_FIND_ITEM</stock_item>
 	    </widget>
 	  </widget>
 	</widget>
@@ -352,7 +351,7 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkMenuItem</class>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>default_person1</name>
 	      <tooltip>Make the active person the default person</tooltip>
 	      <signal>
@@ -362,6 +361,7 @@
 	      </signal>
 	      <label>_Default Person</label>
 	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_HOME</stock_icon>
 	    </widget>
 	  </widget>
 	</widget>

@@ -3492,6 +3492,7 @@
 		<name>web_url</name>
 		<sensitive>False</sensitive>
 		<can_focus>True</can_focus>
+		<url>http://gramps.sourceforge.net</url>
 		<label></label>
 		<child>
 		  <padding>0</padding>
