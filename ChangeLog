@@ -1,3 +1,6 @@
+2004-01-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/FamilyView.py (delete_family_from): Remove extra "[0]".
+
 2004-01-07  Egyeki Gergely  <egeri@elte.hu>
 	* src/plugins/rel_hu.py: Add to CVS.
 	* src/plugins/Makefile.am: Ship rel_hu.py.
