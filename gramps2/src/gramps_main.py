@@ -951,6 +951,7 @@ class Gramps:
                 ReadXML.importData(self.db,dbname,None)
             except:
                 print "Error importing %s" % filename
+                os._exit(1)
         elif format == 'gramps-pkg':
             # Create tempdir, if it does not exist, then check for writability
             tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
@@ -983,6 +984,7 @@ class Gramps:
                 ReadXML.importData(self.db,dbname,None)
             except:
                 print "Error importing %s" % filename
+                os._exit(1)
             # Clean up tempdir after ourselves
             files = os.listdir(tmpdir_path) 
             for fn in files:
