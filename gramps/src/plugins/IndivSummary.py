@@ -80,6 +80,10 @@ class IndivSummary:
         cell = TableCellStyle()
         self.d.add_cell_style("NormalCell",cell)
 
+        cell = TableCellStyle()
+	cell.set_longlist(1)
+        self.d.add_cell_style("ListCell",cell)
+
         self.d.open(self.output)
 
     #--------------------------------------------------------------------
@@ -173,7 +177,7 @@ class IndivSummary:
                 self.d.end_paragraph()
                 self.d.end_cell()
 
-                self.d.start_cell("NormalCell")
+                self.d.start_cell("ListCell")
                 self.d.start_paragraph("Normal")
                 
                 first = 1
