@@ -13,3 +13,5 @@ Icon=gramps.png
 Terminal=false
 Type=Application
 StartupNotify=true
+Categories=Application;Genealogy;
+X-GNOME-DocPath=gramps/gramps-manual.xml
