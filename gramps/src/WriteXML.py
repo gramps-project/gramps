@@ -471,6 +471,7 @@ def exportData(database, filename, callback):
 
     try:
         write_xml_data(database, g, callback, 0)
+        g.close()
     except:
         from gnome.ui import GnomeErrorDialog
         import traceback
