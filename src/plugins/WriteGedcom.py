@@ -340,7 +340,12 @@ class GedcomWriter:
         ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
         ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
 
-        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans])
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") %
+                     person.getPrimaryName().getName())
+        com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+
+        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
         filter_obj.set_menu(self.filter_menu)
 
         gedmap = GedcomInfoDB()
@@ -388,7 +393,7 @@ class GedcomWriter:
             for p in self.db.getPersonKeys():
                 self.plist[p] = 1
         else:
-            for p in cfilter.apply(self.db.getPersonMap().values()):
+            for p in cfilter.apply(self.db,self.db.getPersonMap().values()):
                 self.plist[p.getId()] = 1
         
         self.flist = {}

@@ -93,7 +93,11 @@ class GraphVizDialog(ReportDialog):
         ans.set_name(_("Ancestors of %s") % name)
         ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
 
-        return [all,des,ans]
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+
+        return [all,des,ans,com]
 
     def add_user_options(self):
         self.arrowstyle_optionmenu = gtk.GtkOptionMenu()
@@ -270,7 +274,7 @@ class GraphVizDialog(ReportDialog):
 
         file = open(self.target_path,"w")
 
-        ind_list = self.filter.apply(self.db.getPersonMap().values())
+        ind_list = self.filter.apply(self.db, self.db.getPersonMap().values())
 
         write_dot(file, ind_list, self.orien, width, height,
                   self.tb_margin, self.lr_margin, self.hpages,
@@ -443,4 +447,3 @@ register_report(
     category=_("Graphical Reports"),
     description=get_description()
     )
-

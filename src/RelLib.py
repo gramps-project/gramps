@@ -1988,14 +1988,17 @@ class GrampsDB(Persistent):
             self.default.setAncestor(0)
         self.default = person
         self.default.setAncestor(1)
-    
+
     def getDefaultPerson(self):
         """returns the default Person of the database"""
         return self.default
 
     def getPerson(self,id):
-        """returns a map of gramps's IDs to Person instances"""
-        return self.personMap[id]
+        """returns the Person instance associated to id, or None"""
+        if self.personMap.has_key(id):
+            return self.personMap[id]
+        else:
+            return None
 
     def getPersonMap(self):
         """returns a map of gramps's IDs to Person instances"""
@@ -2018,8 +2021,11 @@ class GrampsDB(Persistent):
         return extmap(self.familyMap)
 
     def getFamily(self,id):
-        """returns a map of gramps's IDs to Family instances"""
-        return self.familyMap[id]
+        """returns the Family instance associated to id, or None"""
+        if self.familyMap.has_key(id):
+            return self.familyMap[id]
+        else:
+            return None
 
     def setFamilyMap(self,map):
         """sets the map of gramps's IDs to Family instances"""
@@ -2320,18 +2326,23 @@ class GrampsDB(Persistent):
         return self.placeTable.keys()
 
     def getPlace(self,key):
-        return self.placeMap[key]
+        """returns the Place instance associated to key, or None"""
+        if self.placeMap.has_key(key):
+            return self.placeMap[key]
+        else:
+            return None
 
     def getPlaceDisplay(self,key):
         return self.placeTable[key]
-        
+
     def getSourceKeys(self):
         return self.sourceTable.keys()
-    
+
     def getSourceDisplay(self,key):
         return self.sourceTable[key]
 
     def getSource(self,key):
+        """returns the Source instance associated to key, or None"""
         if self.sourceMap.has_key(key):
             return self.sourceMap[key]
         else:
@@ -2399,6 +2410,3 @@ class GrampsDB(Persistent):
         """deletes the Family instance from the database"""
         if self.familyMap.has_key(family.getId()):
             del self.familyMap[family.getId()]
-
-        
-
