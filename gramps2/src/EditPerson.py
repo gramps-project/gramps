@@ -811,7 +811,7 @@ class EditPerson:
                 place = foo.get_place_handle()
                 if place:
                     foo.set_place_handle(place.get_handle())
-                self.elist.insert(row,foo)
+                self.elist.insert(row,foo.get_handle())
 
             self.lists_changed = True
             self.redraw_event_list()
