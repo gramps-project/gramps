@@ -1,3 +1,7 @@
+2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsDBCallback.py: added support for disconnecting callbacks,
+	better test code and lots of logging. Improved the comments.
+	
 2005-04-04  Alex Roitman  <shura@gramps-project.org>
 	* src/Marriage.py: proper window management on delete event.
 	* src/RelLib.py (Event.are_equal): Correction.
