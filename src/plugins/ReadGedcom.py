@@ -53,11 +53,10 @@ except:
     from latin_ansel import ansel_to_latin
     
 import latin_utf8 
-import intl
 import Utils
 from GedcomInfo import *
-
-_ = intl.gettext
+from QuestionDialog import ErrorDialog
+from intl import gettext as _
 
 ANSEL = 1
 UNICODE = 2
@@ -127,12 +126,12 @@ def importData(database, filename, cb=None):
         g = GedcomParser(database,filename,statusTop)
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
-        gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        ErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return
-    except:
-        Utils.destroy_passed_object(statusWindow)
-        gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename)
-        return
+#    except:
+#        Utils.destroy_passed_object(statusWindow)
+#        ErrorDialog(_("%s could not be opened\n") % filename)
+#        return
 
     close = g.parse_gedcom_file()
     g.resolve_refns()
@@ -208,8 +207,6 @@ class GedcomParser:
         self.error_text_obj = window.get_widget("error_text")
         self.window = window
         self.error_count = 0
-        self.error_text_obj.set_point(0)
-        self.error_text_obj.set_word_wrap(0)
 
         map = const.personalConstantAttributes
         self.attrs = map.values()
@@ -281,9 +278,9 @@ class GedcomParser:
                     self.groups = (int(l[0]),l[1],l[2])
             except:
                 msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-                self.error_text_obj.insert_defaults(msg)
+                self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
                 msg = "\n\t%s\n" % self.text
-                self.error_text_obj.insert_defaults(msg)
+                self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
                 self.error_count = self.error_count + 1
                 self.update(self.errors_obj,str(self.error_count))
                 self.groups = (999, "XXX", "XXX")
@@ -292,15 +289,15 @@ class GedcomParser:
             
     def barf(self,level):
         msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-        self.error_text_obj.insert_defaults(msg)
+        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
         msg = "\n\t%s\n" % self.text
-        self.error_text_obj.insert_defaults(msg)
+        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
         self.error_count = self.error_count + 1
         self.update(self.errors_obj,str(self.error_count))
         self.ignore_sub_junk(level)
 
     def warn(self,msg):
-        self.error_text_obj.insert_defaults(msg)
+        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
         self.error_count = self.error_count + 1
         self.update(self.errors_obj,str(self.error_count))
 
@@ -318,14 +315,15 @@ class GedcomParser:
             self.parse_record()
             self.parse_trailer()
         except UNEXPECTED_EOF:
-            self.error_text_obj.insert_defaults('Error: Incomplete file')
-            self.error_text_obj.insert_defaults('\n')
+            msg = 'Error: Incomplete file\n'
+            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
             
         self.update(self.families_obj,str(self.fam_count))
         self.update(self.people_obj,str(self.indi_count))
         self.break_note_links()
         t = time.time() - t
-        self.error_text_obj.insert_defaults(_('Import Complete: %d seconds') % t)
+        msg = _('Import Complete: %d seconds') % t
+        self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
         return self.close_done.get_active()
 
     def break_note_links(self):
@@ -1648,18 +1646,21 @@ class GedcomParser:
 
         self.db.pmapIndex = new_pmax
 
+global file_top
+
 def readData(database,active_person,cb):
     global db
     global callback
+    global file_top
     
     db = database
     callback = cb
     
-    top = gtk.FileSelection("%s - GRAMPS" % _("Import from GEDCOM"))
-    top.hide_fileop_buttons()
-    top.ok_button.connect_object('clicked', on_ok_clicked,top)
-    top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,top)
-    top.show()
+    file_top = gtk.FileSelection("%s - GRAMPS" % _("Import from GEDCOM"))
+    file_top.hide_fileop_buttons()
+    file_top.ok_button.connect('clicked', on_ok_clicked)
+    file_top.cancel_button.connect('clicked', Utils.destroy_passed_object)
+    file_top.show()
 
 #-------------------------------------------------------------------------
 #
@@ -1668,10 +1669,10 @@ def readData(database,active_person,cb):
 #-------------------------------------------------------------------------
 def on_ok_clicked(obj):
 
-    name = obj.get_filename()
+    name = file_top.get_filename()
     if name == "":
         return
-    Utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(file_top)
     try:
         importData(db,name)
     except:
