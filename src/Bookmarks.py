@@ -39,6 +39,7 @@ import gnome
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -82,9 +83,9 @@ class Bookmarks :
 
     def add_to_menu(self,person_handle):
         """adds a person's name to the drop down menu"""
-        data = self.db.person_map.get(str(person_handle))
-        if data:
-            name = data[3].get_name()
+        person = self.db.get_person_from_handle(person_handle)
+        if person:
+            name = NameDisplay.displayer.display(person)
             item = gtk.MenuItem(name)
             item.connect("activate", self.callback, person_handle)
             item.show()
@@ -143,8 +144,8 @@ class Bookmarks :
         self.draw_window()
         index = 0
         for person_handle in self.bookmarks:
-            data = self.db.person_map.get(str(person_handle))
-            name = data[3].get_name()
+            person = self.db.get_person_from_handle(person_handle)
+            name = NameDisplay.displayer.display(person)
             self.namelist.append([name])
             self.namelist.set_row_data(index,person_handle)
             index = index + 1

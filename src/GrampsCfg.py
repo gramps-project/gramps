@@ -67,13 +67,6 @@ _surname_styles = [
     _("Icelandic style"),
     ]
 
-_name_format_list = [
-    (_("Firstname Surname"),  Utils.normal_name, Utils.phonebook_name, lambda x: x.get_surname()),
-    (_("Surname, Firstname"), Utils.phonebook_name, Utils.phonebook_name, lambda x: x.get_surname()),
-    (_("Firstname SURNAME"),  Utils.upper_name, Utils.phonebook_upper_name, lambda x : x.get_upper_surname()),
-    (_("SURNAME, Firstname"), Utils.phonebook_upper_name, Utils.phonebook_upper_name, lambda x: x.get_upper_surname()),
-    ]
-
 panellist = [
     (_("Display"),
      [( _("General"), 3),
@@ -87,14 +80,6 @@ panellist = [
 
 
 # Not exactly gconf keys, but the functions directly dependent on them
-def get_nameof():
-    return _name_format_list[GrampsGconfKeys.get_name_format(_name_format_list)][1]
-
-def get_display_name():
-    return _name_format_list[GrampsGconfKeys.get_name_format(_name_format_list)][2]
-
-def get_display_surname():
-    return _name_format_list[GrampsGconfKeys.get_name_format(_name_format_list)][3]
 
 def get_toolbar_style():
     saved_toolbar = GrampsGconfKeys.get_toolbar()
@@ -311,21 +296,6 @@ class GrampsPreferences:
                 lambda obj: 
                 GrampsGconfKeys.save_date_format(obj.get_menu().get_active().get_data(INDEX),dlist)
                 )
-
-        name_option = self.top.get_widget("name_format")
-        name_menu = gtk.Menu()
-        for index in range(0,len(_name_format_list)):
-            name_tuple = _name_format_list[index]
-            item = gtk.MenuItem(name_tuple[0])
-            item.set_data(INDEX,index)
-            item.show()
-            name_menu.append(item)
-        name_menu.set_active(GrampsGconfKeys.get_name_format(_name_format_list))
-        name_option.set_menu(name_menu)
-        name_option.connect("changed", 
-                    lambda obj: 
-                    GrampsGconfKeys.save_name_format(obj.get_menu().get_active().get_data(INDEX),_name_format_list)
-                    )
 
         resname = self.top.get_widget("resname")
         resname.set_text(GrampsGconfKeys.get_researcher_name())

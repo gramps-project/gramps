@@ -44,6 +44,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -252,11 +253,11 @@ class PeopleModel(gtk.GenericTreeModel):
                 spouse = self.db.get_person_from_handle(spouse_id)
                 if len(spouses_names) > 0:
                     spouses_names += ", "
-                spouses_names += spouse.get_primary_name().get_regular_name()
+                spouses_names += NameDisplay.displayer.display(spouse)
 	return spouses_names
 
     def column_name(self,data,node):
-        return data[_NAME_COL].get_name()
+        return NameDisplay.displayer.sorted_name(data[_NAME_COL])
 
     def column_id(self,data,node):
         return data[_ID_COL]

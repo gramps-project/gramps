@@ -36,7 +36,7 @@ import os
 #------------------------------------------------------------------------
 import Utils
 from gettext import gettext as _
-import GrampsCfg
+import NameDisplay
 
 #------------------------------------------------------------------------
 #
@@ -119,7 +119,7 @@ class DesBrowse:
     def add_to_tree(self,parent_id,sib_id,person_handle):
         item_id = self.model.insert_after(parent_id,sib_id)
         person = self.db.get_person_from_handle(person_handle)
-        self.model.set(item_id,0,GrampsCfg.get_nameof()(person))
+        self.model.set(item_id,0,NameDisplay.displayer.display(person))
         self.model.set(item_id,1,person_handle)
         prev_id = None
         for family_handle in person.get_family_handle_list():

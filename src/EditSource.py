@@ -39,6 +39,7 @@ import GrampsCfg
 import ImageSelect
 import ListModel
 import RelLib
+import NameDisplay
 
 from gettext import gettext as _
 
@@ -57,6 +58,7 @@ class EditSource:
             self.source = RelLib.Source()
         self.db = db
         self.parent = parent
+        self.name_display = NameDisplay.displayer.display
         if source:
             if self.parent.child_windows.has_key(source.get_handle()):
                 self.parent.child_windows[source.get_handle()].present(None)
@@ -248,7 +250,7 @@ class EditSource:
                     p_list.append(name)
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
-            name = GrampsCfg.get_nameof()(p)
+            name = self.name_display(p)
             for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 if event_handle:
                     event = self.db.get_event_from_handle(event_handle)
@@ -283,12 +285,12 @@ class EditSource:
                 m = self.db.get_person_from_handle(m_id)
             if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
-                    "father" : GrampsCfg.get_nameof()(f),
-                    "mother" : GrampsCfg.get_nameof()(m)}
+                    "father" : self.name_display(f),
+                    "mother" : self.name_display(m)}
             elif f_id:
-                name = GrampsCfg.get_nameof()(f)
+                name = self.name_display(f)
             else:
-                name = GrampsCfg.get_nameof()(m)
+                name = self.name_display(m)
             for v_id in p.get_event_list():
                 v = self.db.get_event_from_handle(v_id)
                 if not v:

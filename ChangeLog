@@ -1,3 +1,36 @@
+2004-12-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: remove name display options
+	* src/GrampsCfg.py: remove name displaying functions
+	* src/Makefile.am: add NameDisplay.py to list
+	* src/NameDisplay.py: New name displaying class
+	* src/Utils.py: use new NameDisplay class
+	* src/AddSpouse.py: use new NameDisplay class
+	* src/AddrEdit.py: use new NameDisplay class
+	* src/Bookmarks.py: use new NameDisplay class
+	* src/ChooseParents.py: use new NameDisplay class
+	* src/DisplayModels.py: use new NameDisplay class
+	* src/EditPerson.py: use new NameDisplay class
+	* src/EditPlace.py: use new NameDisplay class
+	* src/EditSource.py: use new NameDisplay class
+	* src/FamilyView.py: use new NameDisplay class
+	* src/GenericFilter.py: use new NameDisplay class
+	* src/ImageSelect.py: use new NameDisplay class
+	* src/Marriage.py: use new NameDisplay class
+	* src/MergeData.py: use new NameDisplay class
+	* src/NameEdit.py: use new NameDisplay class
+	* src/PedView.py: use new NameDisplay class
+	* src/PeopleModel.py: use new NameDisplay class
+	* src/ReadGedcom.py: use new NameDisplay class
+	* src/Report.py: use new NameDisplay class
+	* src/SelectChild.py: use new NameDisplay class
+	* src/SubstKeywords.py: use new NameDisplay class
+	* src/Witness.py: use new NameDisplay class
+	* src/WriteGedcom.py: use new NameDisplay class
+	* src/gramps_main.py: use new NameDisplay class
+	* src/plugins/Desbrowser.py: use new NameDisplay class
+	* src/plugins/Merge.py: use new NameDisplay class
+	* src/plugins/RelCalc.py: use new NameDisplay class
+
 2004-12-31 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py (Family.set_mother_handle): Typo.
 	* src/Report.py: Use gen and pagebbg.

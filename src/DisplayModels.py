@@ -18,7 +18,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import time
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -28,7 +34,12 @@ import time
 import gobject
 import gtk
 
-from gettext import gettext as _
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import NameDisplay
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -160,7 +171,7 @@ class ChildModel(gtk.ListStore):
             child = db.get_person_from_handle(child_handle)
             self.append(row=[index,
                              child.get_gramps_id(),
-                             child.get_primary_name().get_name(),
+                             NameDisplay.displayer.display(child),
                              _GENDER[child.get_gender()],
                              self.column_birth_day(child),
                              self.column_death_day(child),

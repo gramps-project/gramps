@@ -57,6 +57,7 @@ import GrampsGconfKeys
 import PaperMenu
 import Errors
 import GenericFilter
+import NameDisplay
 from QuestionDialog import  ErrorDialog, OptionDialog
 
 #-------------------------------------------------------------------------
@@ -1585,9 +1586,10 @@ class CommandLineReport:
         id_list = []
         for person_handle in self.database.get_person_handles():
             person = self.database.get_person_from_handle(person_handle)
-            id_list.append("%s\t%s" % (person.get_gramps_id(),
-                                person.get_primary_name().get_name()))
-        self.options_help['id'].append(id_list)
+            id_list.append("%s\t%s" % (
+                person.get_gramps_id(),
+                NameDisplay.display.displayer(person)))
+            self.options_help['id'].append(id_list)
         self.options_help['id'].append(False)
 
         if self.options_dict.has_key('filter'):

@@ -42,6 +42,8 @@ __version__ = "$Revision$"
 #------------------------------------------------------------------------
 import string
 
+import NameDisplay
+
 #------------------------------------------------------------------------
 #
 # SubstKeywords
@@ -69,8 +71,8 @@ class SubstKeywords:
         """Creates a new object and associates a person with it."""
 
         person = database.get_person_from_handle(person_handle)
-        self.n = person.get_primary_name().get_regular_name()
-        self.N = person.get_primary_name().get_name()
+        self.n = NameDisplay.displayer.display(person)
+        self.N = NameDisplay.displayer.sorted(person)
         self.b = ""
         self.B = ""
         self.d = ""
@@ -104,13 +106,13 @@ class SubstKeywords:
             if father_handle == person_handle:
                 if mother_handle:
                     mother = database.get_person_from_handle(mother_handle)
-                    self.s = mother.get_primary_name().get_regular_name()
-                    self.S = mother.get_primary_name().get_name()
+                    self.s = NameDisplay.displayer.display(mother)
+                    self.S = NameDIsplay.displayer.sorted(mother)
             else:
                 if father_handle:
                     father = database.get_person_from_handle(father_handle)
-                    self.s = father.get_primary_name().get_regular_name()
-                    self.S = father.get_primary_name().get_name()
+                    self.s = NameDisplay.displayer.display(father)
+                    self.S = NameDisplay.displayer.sorted(father)
             for e_id in f.get_event_list():
                 if not e_id:
                     continue

@@ -69,6 +69,7 @@ gdir_PYTHON = \
 	Marriage.py\
 	MediaView.py\
 	MergeData.py\
+	NameDisplay.py\
 	NameEdit.py\
 	NoteEdit.py\
 	PaperMenu.py\

@@ -40,7 +40,6 @@ import gnome
 #-------------------------------------------------------------------------
 
 import const
-import GrampsCfg
 import Utils
 import AutoComp
 import ListModel
@@ -49,6 +48,7 @@ import ImageSelect
 import DateHandler
 import Sources
 import GrampsGconfKeys
+import NameDisplay
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
 from gettext import gettext as _
@@ -137,8 +137,8 @@ class Marriage:
         father = self.db.get_person_from_handle(fid)
         mother = self.db.get_person_from_handle(mid)
         
-        self.title = _("%s and %s") % (GrampsCfg.get_nameof()(father),
-                                  GrampsCfg.get_nameof()(mother))
+        self.title = _("%s and %s") % (NameDisplay.displayer.display(father),
+                                       NameDisplay.displayer.display(mother))
 
         Utils.set_title_label(self.top,self.title)
         
@@ -734,12 +734,13 @@ class Marriage:
         father = self.db.get_person_from_handle(father_handle)
         mother = self.db.get_person_from_handle(mother_handle)
         if father and mother:
-            name = _("%s and %s") % (father.get_primary_name().get_name(),
-                                         mother.get_primary_name().get_name())
+            name = _("%s and %s") % (
+                NameDisplay.displayer.display(father),
+                NameDisplay.displayer.display(mother))
         elif father:
-            name = father.get_primary_name().get_name()
+            name = NameDisplay.displayer.display(father)
         else:
-            name = mother.get_primary_name().get_name()
+            name = NameDisplay.displayer.display(mother)
         AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes,
                                  self.attr_edit_callback)
 
@@ -755,12 +756,13 @@ class Marriage:
         father = self.db.get_person_from_handle(father_handle)
         mother = self.db.get_person_from_handle(mother_handle)
         if father and mother:
-            name = _("%s and %s") % (father.get_primary_name().get_name(),
-                                     mother.get_primary_name().get_name())
+            name = _("%s and %s") % (
+                NameDisplay.displayer.display(father),
+                NameDisplay.displayer.display(mother))
         elif father:
-            name = father.get_primary_name().get_name()
+            name = NameDisplay.displayer.display(father)
         else:
-            name = mother.get_primary_name().get_name()
+            name = NameDisplay.displayer.display(mother)
         AttrEdit.AttributeEditor(self,None,name,const.familyAttributes,
                                  self.attr_edit_callback)
 
