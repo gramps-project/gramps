@@ -45,8 +45,6 @@ pkgpythondir=\${prefix}/share/\${PACKAGE}
 pkgpyexecdir=\${prefix}/share/\${PACKAGE}
 
 AC_PATH_PROG(BINSH, sh)
-AC_PATH_PROG(SWIG, swig)
-
 AC_PATH_PROG(ZIP, zip)
 
 AC_PROG_CC
@@ -153,6 +151,28 @@ $PYTHON conftest.py
 has_canvas=`cat conftest.out`
 rm -f conftest.out conftest.py
 if test YES != "$has_canvas"
+then
+   AC_MSG_ERROR([
+**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found.])
+fi
+AC_MSG_RESULT(ok)
+
+AC_MSG_CHECKING(Python bindings for GNOME VFS)
+cat > conftest.py <<EOF
+$pygtk_require
+try:
+    # Do not import gnome.canvas, this can raise a RuntimeError if the
+    # display cannot be opened.  Just search it.
+    import imp
+    imp.find_module('gnome/vfs')
+    out("YES")
+except ImportError:
+    out("NO")
+EOF
+$PYTHON conftest.py
+has_vfs=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test YES != "$has_vfs"
 then
    AC_MSG_ERROR([
 **** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found.])

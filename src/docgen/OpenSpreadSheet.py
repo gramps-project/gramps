@@ -18,16 +18,32 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard Python Modules 
+#
+#-------------------------------------------------------------------------
 import os
 import tempfile
 import string
+import zipfile
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import BaseDoc
 from SpreadSheetDoc import *
 
 from latin_utf8 import latin_to_utf8
 import const
 
+#-------------------------------------------------------------------------
+#
+# OpenSpreadSheet
+#
+#-------------------------------------------------------------------------
 class OpenSpreadSheet(SpreadSheetDoc):
 
     def __init__(self,type,orientation):
@@ -48,13 +64,16 @@ class OpenSpreadSheet(SpreadSheetDoc):
             self.filename = filename + ".sxc"
         else:
             self.filename = filename
-            
-        self.tempdir = tempfile.TemporaryFile()
-        os.mkdir(self.tempdir,0700)
-        os.mkdir(self.tempdir + os.sep + "Pictures")
-        os.mkdir(self.tempdir + os.sep + "META-INF")
-            
-        self.f = open(self.tempdir + os.sep + "content.xml","w")
+
+        try:
+            self.content_xml = tempfile.mktemp()
+            self.f = open(self.content_xml,"wb")
+        except IOError,msg:
+            raise Errors.ReportError(_("Could not create %s") % self.content_xml, msg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.content_xml)
+
+        self.f = open(self.content_xml,"w")
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -182,25 +201,31 @@ class OpenSpreadSheet(SpreadSheetDoc):
 
     def _write_zip(self):
         
-        if os.path.isfile(self.filename):
-            os.unlink(self.filename)
+        file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        file.write(self.manifest_xml,str("META-INF/manifest.xml"))
+        file.write(self.content_xml,str("content.xml"))
+        file.write(self.meta_xml,str("meta.xml"))
+        file.write(self.styles_xml,str("styles.xml"))
+        file.close()
 
-        os.system("cd " + self.tempdir + "; " + const.zipcmd + " " \
-                  + self.filename + " .")
-
-        os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
-        os.unlink(self.tempdir + os.sep + "content.xml")
-        os.unlink(self.tempdir + os.sep + "meta.xml")
-        os.unlink(self.tempdir + os.sep + "styles.xml")
-#        for image in self.image_list:
-#            os.unlink(self.tempdir + os.sep + "Pictures" + os.sep + image)
-        os.rmdir(self.tempdir + os.sep + "Pictures")
-        os.rmdir(self.tempdir + os.sep + "META-INF")
-        os.rmdir(self.tempdir)
+        os.unlink(self.manifest_xml)
+        os.unlink(self.content_xml)
+        os.unlink(self.meta_xml)
+        os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-	file = self.tempdir + os.sep + "styles.xml"
-	self.f = open(file,"w")
+        self.styles_xml = tempfile.mktemp()
+        
+        try:
+            self.f = open(self.styles_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            pass
+            raise Errors.ReportError(_("Could not create %s") % self.styles_xml)
+
+	self.f = open(self.styles_xml,"w")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-styles ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -364,8 +389,18 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.write(latin_to_utf8(text))
 
     def _write_manifest(self):
-	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"
-	self.f = open(file,"w")
+        self.manifest_xml = tempfile.mktemp()
+
+        try:
+            self.f = open(self.manifest_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.manifest_xml, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            pass
+            raise Errors.ReportError(_("Could not create %s") % self.manifest_xml)
+
+	self.f = open(self.manifest_xml,"w")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
@@ -386,9 +421,19 @@ class OpenSpreadSheet(SpreadSheetDoc):
 	self.f.close()
 
     def _write_meta_file(self):
-	file = self.tempdir + os.sep + "meta.xml"
+        self.meta_xml = tempfile.mktemp()
+
+        try:
+            self.f = open(self.meta_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.meta_xml, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            pass
+            raise Errors.ReportError(_("Could not create %s") % self.meta_xml)
+
         name = latin_to_utf8(self.name)
-	self.f = open(file,"w")
+	self.f = open(self.meta_xml,"w")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')

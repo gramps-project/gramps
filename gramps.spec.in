@@ -22,6 +22,7 @@ Requires: python >= 2.2
 Requires: gnome-python2 >= 1.99
 Requires: gnome-python2-gconf >= 1.99
 Requires: gnome-python2-canvas >= 1.99
+Requires: gnome-python2-gnomevfs >= 1.99
 Requires: pygtk2 >= 1.99
 Requires: pygtk2-libglade >= 1.99
 
