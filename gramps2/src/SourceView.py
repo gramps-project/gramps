@@ -42,7 +42,7 @@ import const
 
 from QuestionDialog import QuestionDialog
 
-_HANDLE_COL = 5
+_HANDLE_COL = 7
 
 #-------------------------------------------------------------------------
 #
@@ -241,6 +241,7 @@ class SourceView:
         list_store, node = self.selection.get_selected()
         if node:
             handle = list_store.get_value(node,_HANDLE_COL)
+            print handle
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source, self.parent.db, self.parent,
                                   self.topWindow, self.update_display)
