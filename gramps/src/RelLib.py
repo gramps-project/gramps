@@ -467,6 +467,10 @@ class ObjectRef:
         """returns the property list associated with the image"""
         return self.attrlist
 
+    def setAttributeList(self,list):
+        """sets the property list associated with the image"""
+        self.attrlist = list
+
 class Attribute(DataObj):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""

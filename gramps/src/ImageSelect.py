@@ -49,6 +49,7 @@ import Config
 from RelLib import *
 import RelImage
 import Sources
+import AttrEdit
 
 _ = intl.gettext
 
@@ -125,7 +126,7 @@ class ImageSelect:
         type = utils.get_mime_type(filename)
         mobj = Photo()
         if description == "":
-            description = os.path.basename(name)
+            description = os.path.basename(filename)
         mobj.setDescription(description)
         mobj.setMimeType(type)
         self.savephoto(mobj)
@@ -219,7 +220,6 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         object = photo.getReference()
         path = object.getPath()
-        src = os.path.basename(path)
         if object.getMimeType()[0:5] == "image":
             thumb = "%s/.thumb/%s.jpg" % (self.path,object.getId())
             RelImage.check_thumb(path,thumb,const.thumbScale)
@@ -368,7 +368,7 @@ class Gallery(ImageSelect):
     def popup_convert_to_private(self, obj):
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         object = photo.getReference()
-        name = RelImage.import_photo(object.getPath(),self.path,self.prefix)
+        name = RelImage.import_media_object(object.getPath(),self.path,self.prefix)
     
         object.setPath(name)
         object.setLocal(1)
@@ -381,64 +381,105 @@ class Gallery(ImageSelect):
     #-------------------------------------------------------------------------
     def popup_change_description(self, obj):
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
-        object = photo.getReference()
-        path = object.getPath()
-        src = os.path.basename(path)
+        LocalMediaProperties(photo,self.path)
+
+
+class LocalMediaProperties:
+
+    def __init__(self,photo,path):
+        self.photo = photo
+        self.object = photo.getReference()
+        self.alist = photo.getAttributeList()[:]
+        self.lists_changed = 0
+        
+        fname = self.object.getPath()
+        src = os.path.basename(fname)
     
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_description")
         window = self.change_dialog.get_widget("change_description")
-        self.change_dialog.get_widget("description").set_text(object.getDescription())
+        descr_window = self.change_dialog.get_widget("description")
         pixmap = self.change_dialog.get_widget("pixmap")
-        mtype = object.getMimeType()
+        self.attr_type = self.change_dialog.get_widget("attr_type")
+        self.attr_value = self.change_dialog.get_widget("attr_value")
+        self.attr_details = self.change_dialog.get_widget("attr_details")
+        self.attr_list = self.change_dialog.get_widget("attr_list")
+        
+        descr_window.set_text(self.object.getDescription())
+        mtype = self.object.getMimeType()
         if mtype[0:5] == "image":
-            thumb = "%s/.thumb/%s" % (self.path,object.getId())
-            RelImage.check_thumb(path,thumb,const.thumbScale)
+            thumb = "%s/.thumb/%s" % (path,self.object.getId())
+            RelImage.check_thumb(fname,thumb,const.thumbScale)
             pixmap.load_file(thumb)
         else:
             pixmap.load_file(utils.find_icon(mtype))
 
         self.change_dialog.get_widget("private").set_active(photo.getPrivacy())
-        self.change_dialog.get_widget("gid").set_text(object.getId())
-        self.change_dialog.get_widget("description").set_text(object.getDescription())
-        if object.getLocal():
+        self.change_dialog.get_widget("gid").set_text(self.object.getId())
+
+        if self.object.getLocal():
             self.change_dialog.get_widget("path").set_text("<local>")
         else:
-            self.change_dialog.get_widget("path").set_text(path)
+            self.change_dialog.get_widget("path").set_text(fname)
         self.change_dialog.get_widget("type").set_text(utils.get_mime_description(mtype))
         self.change_dialog.get_widget("notes").insert_defaults(photo.getNote())
         window.set_data("p",photo)
         window.set_data("t",self.change_dialog)
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : utils.destroy_passed_object,
-            "on_ok_clicked" : self.new_desc_ok_clicked,
-            "on_apply_clicked" : self.new_desc_apply_clicked
+            "on_ok_clicked" : self.on_ok_clicked,
+            "on_apply_clicked" : self.on_apply_clicked,
+            "on_attr_list_select_row" : self.on_attr_list_select_row,
+            "on_add_attr_clicked": self.on_add_attr_clicked,
+            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
+            "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
+        self.redraw_attr_list()
 
-    #-------------------------------------------------------------------------
-    #
-    # new_desc_apply_clicked - Apply the new description.
-    #
-    #-------------------------------------------------------------------------
-    def new_desc_apply_clicked(self, obj):
-        photo = obj.get_data("p")
-        top = obj.get_data('t')
-        priv = top.get_widget("private").get_active()
-        text = top.get_widget("notes").get_chars(0,-1)
-        note = photo.getNote()
-        if text != note or priv != photo.getPrivacy():
-            photo.setNote(text)
-            photo.setPrivacy(priv)
+    def redraw_attr_list(self):
+        utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        
+    def on_apply_clicked(self, obj):
+        priv = self.change_dialog.get_widget("private").get_active()
+        text = self.change_dialog.get_widget("notes").get_chars(0,-1)
+        note = self.photo.getNote()
+        if text != note or priv != self.photo.getPrivacy():
+            self.photo.setNote(text)
+            self.photo.setPrivacy(priv)
+            utils.modified()
+        if self.lists_changed:
+            self.photo.setAttributeList(self.alist)
             utils.modified()
 
-    #-------------------------------------------------------------------------
-    #
-    # new_desc_ok_clicked - Apply the new description and close the dialog.
-    #
-    #-------------------------------------------------------------------------
-    def new_desc_ok_clicked(self, obj):
-        self.new_desc_apply_clicked(obj)
+    def on_ok_clicked(self, obj):
+        self.on_apply_clicked(obj)
         utils.destroy_passed_object(obj)
-    
+        
+    def on_attr_list_select_row(self,obj,row,b,c):
+        attr = obj.get_row_data(row)
 
+        self.attr_type.set_label(attr.getType())
+        self.attr_value.set_text(attr.getValue())
+        self.attr_details.set_text(utils.get_detail_text(attr))
 
+    def on_update_attr_clicked(self,obj):
+        if len(obj.selection) > 0:
+            row = obj.selection[0]
+            attr = obj.get_row_data(row)
+            AttrEdit.AttributeEditor(self,attr,"Media Object",[])
 
+    def on_delete_attr_clicked(self,obj):
+        if utils.delete_selected(obj,self.alist):
+            self.lists_changed = 1
+            self.redraw_attr_list()
+
+    def on_add_attr_clicked(self,obj):
+        AttrEdit.AttributeEditor(self,None,"Media Object",[])
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def disp_attr(attr):
+    detail = utils.get_detail_flags(attr)
+    return [const.display_pattr(attr.getType()),attr.getValue(),detail]

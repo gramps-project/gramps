@@ -355,7 +355,7 @@
   <title>Gramps - Change Local Media Object Properties</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
-  <modal>True</modal>
+  <modal>False</modal>
   <allow_shrink>False</allow_shrink>
   <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
@@ -895,7 +895,7 @@
 
 	  <widget>
 	    <class>GtkFrame</class>
-	    <name>frame2</name>
+	    <name>attr_type</name>
 	    <border_width>5</border_width>
 	    <label>No Attributes</label>
 	    <label_xalign>0</label_xalign>
@@ -943,7 +943,7 @@
 
 	      <widget>
 		<class>GtkLabel</class>
-		<name>label139</name>
+		<name>attr_value</name>
 		<label></label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
@@ -969,7 +969,7 @@
 
 	      <widget>
 		<class>GtkLabel</class>
-		<name>label140</name>
+		<name>attr_details</name>
 		<label>Details</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
@@ -1090,7 +1090,7 @@
 
 	    <widget>
 	      <class>GtkCList</class>
-	      <name>clist1</name>
+	      <name>attr_list</name>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>select_row</name>

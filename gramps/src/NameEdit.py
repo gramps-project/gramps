@@ -1,0 +1,151 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import os
+import string
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+from gtk import *
+from gnome.ui import *
+import libglade
+import GdkImlib
+
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+import intl
+import const
+import utils
+import Config
+from RelLib import *
+import RelImage
+import Sources
+
+_ = intl.gettext
+
+#-------------------------------------------------------------------------
+#
+# NameEditor class
+#
+#-------------------------------------------------------------------------
+class NameEditor:
+
+    def __init__(self,parent,name):
+        self.parent = parent
+        self.name = name
+        self.top = libglade.GladeXML(const.editPersonFile, "name_edit")
+        self.window = self.top.get_widget("name_edit")
+        self.given_field  = self.top.get_widget("alt_given")
+        self.surname_field = self.top.get_widget("alt_last")
+        self.suffix_field = self.top.get_widget("alt_suffix")
+        self.note_field = self.top.get_widget("alt_note")
+        self.top.get_widget("alt_surname_list").set_popdown_strings(const.surnames)
+        self.priv = self.top.get_widget("priv")
+
+        if self.name:
+            self.srcreflist = self.name.getSourceRefList()
+        else:
+            self.srcreflist = []
+
+        full_name = parent.person.getPrimaryName().getName()
+        
+        self.top.get_widget("altTitle").set_text(
+            _("Alternate Name Editor for %s") % full_name)
+
+        # Typing CR selects OK button
+        self.window.editable_enters(self.given_field)
+        self.window.editable_enters(self.surname_field)
+        self.window.editable_enters(self.suffix_field)
+        
+        if name != None:
+            self.given_field.set_text(name.getFirstName())
+            self.surname_field.set_text(name.getSurname())
+            self.suffix_field.set_text(name.getSuffix())
+            self.priv.set_active(name.getPrivacy())
+            self.note_field.set_point(0)
+            self.note_field.insert_defaults(name.getNote())
+            self.note_field.set_word_wrap(1)
+
+        self.top.signal_autoconnect({
+            "destroy_passed_object"   : utils.destroy_passed_object,
+            "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
+            "on_source_clicked"       : self.on_name_source_clicked
+            })
+
+    def on_name_source_clicked(self,obj):
+        Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
+            
+    def on_name_edit_ok_clicked(self,obj):
+        first = self.given_field.get_text()
+        last = self.surname_field.get_text()
+        suffix = self.suffix_field.get_text()
+        note = self.note_field.get_chars(0,-1)
+        priv = self.priv.get_active()
+        
+        if self.name == None:
+            self.name = Name()
+            self.name.setSourceRefList(self.srcreflist)
+            self.parent.nlist.append(self.name)
+        
+        self.update_name(first,last,suffix,note,priv)
+        self.parent.lists_changed = 1
+
+        self.parent.redraw_name_list()
+        utils.destroy_passed_object(obj)
+
+    def update_name(self,first,last,suffix,note,priv):
+        
+        if self.name.getFirstName() != first:
+            self.name.setFirstName(first)
+            self.parent.lists_changed = 1
+        
+        if self.name.getSurname() != last:
+            self.name.setSurname(last)
+            if last not in const.surnames:
+                const.surnames.append(last)
+                const.surnames.sort()
+            self.parent.lists_changed = 1
+
+        if self.name.getSuffix() != suffix:
+            self.name.setSuffix(suffix)
+            self.parent.lists_changed = 1
+
+        if self.name.getNote() != note:
+            self.name.setNote(note)
+            self.parent.lists_changed = 1
+
+        if self.name.getPrivacy() != priv:
+            self.name.setPrivacy(priv)
+            self.parent.lists_changed = 1
+
+def src_changed(parent):
+    parent.lists_changed = 1
+    

@@ -174,7 +174,10 @@ class AbiWordDoc(TextDoc):
         self.f.write('</c></p>\n')
 
     def write_text(self,text):
-	self.f.write(text)
+        text = string.replace(text,'&','&amp;');       # Must be first
+        text = string.replace(text,'<','&lt;');
+        text = string.replace(text,'>','&gt;');
+        self.f.write(text)
 
     def start_bold(self):
         font = self.current_style.get_font()

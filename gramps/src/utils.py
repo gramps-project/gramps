@@ -253,7 +253,6 @@ def view_photo(photo):
     open = ""
     edit = ""
     for key in gnome.mime.get_keys(type):
-        print key,gnome.mime.get_value(type,key)
         if key == 'view':
             prog = string.split(gnome.mime.get_value(type,key))
         if key == 'open':
@@ -276,7 +275,6 @@ def view_photo(photo):
         else:
             args.append(val)
     
-    print args
     if os.fork() == 0:
         os.execvp(args[0],args)
 
@@ -345,11 +343,9 @@ def find_icon(mtype):
     if nicon:
 	p = "%s/%s" % (gnome.util.pixmap_file("nautilus"),nicon)
 	if os.path.isfile(p):
-            print "n",p
             return p
 	p = "%s.png" % p
 	if os.path.isfile(p):
-            print "n",p
             return p
     if icon:
         return icon
@@ -369,3 +365,5 @@ def get_mime_description(type):
         if key == "description":
             return gnome.mime.get_value(type,key)
     return type
+
+
