@@ -66,7 +66,11 @@ _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
 
-pycode_tgts = [('fevent', 0, 0), ('fattr', 0, 1)]
+pycode_tgts = [
+    ('fevent', 0, 0),
+    ('fattr',  0, 1),
+    ('srcref', 0, 4),
+    ]
 
 #-------------------------------------------------------------------------
 #

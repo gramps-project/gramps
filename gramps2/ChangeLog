@@ -1,16 +1,23 @@
-2005-03-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/GenericFilter.py (IsDefaultPerson,IsSiblingOfFilterMatch):
-	Add filter rules.
-
 2005-03-09  Don Allingham  <don@gramps-project.org>
-	* srcNameEdit.py: assign date on close
+	* src/EditPerson.py: add srcref as a drag and drop item
+	* src/EditPlace.py: add srcref as a drag and drop item
+	* src/Marriage.py: add srcref as a drag and drop item
+	* src/WriteGedcom.py: catch empty event
+	* src/Sources.py: add drag-n-drop for source references
+
+2005-03-09  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+        * src/GenericFilter.py (IsDefaultPerson,IsSiblingOfFilterMatch):
+        Add filter rules.
 
 2005-03-09 Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/PedView.py: Import RelLib for accessing relationship constants.
-	* src/NameEdit.py: Use empty Date for newly created name.
+        * src/PedView.py: Import RelLib for accessing relationship constants.
+        * src/NameEdit.py: Use empty Date for newly created name.
 
-	* src/data/gramps.schemas: Place dont-ask key into interface dir.
-	* src/Marriage.py (did_data_change): Compare gramps_id, not handle.
+        * src/data/gramps.schemas: Place dont-ask key into interface dir.
+        * src/Marriage.py (did_data_change): Compare gramps_id, not handle.
+
+2005-03-09  Don Allingham  <don@gramps-project.org>
+        * src/NameEdit.py: assign date on close
 
 2005-03-08  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: change _nsort to _model
@@ -36,9 +43,6 @@
 	* src/plugins/FilterEditor.py (on_delete_event,close_filter_editor):
 	Update filter ComboBox in the main window.
 	* src/gramps_main.py (init_filters): Clear layout before rebuilding.
-
-	* src/ChooseParents.py: Stop parent selection window from being
-	modal; fix child/parent relations from strings to integers.
 
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.

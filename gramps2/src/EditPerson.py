@@ -76,10 +76,11 @@ _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
 
-pycode_tgts = [('url', 0, 0),
+pycode_tgts = [('url',    0, 0),
                ('pevent', 0, 1),
-               ('pattr', 0, 2),
-               ('paddr', 0, 3)]
+               ('pattr',  0, 2),
+               ('paddr',  0, 3),
+               ('srcref', 0, 4)]
 
 
 _use_patronymic = [

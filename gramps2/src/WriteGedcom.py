@@ -693,7 +693,7 @@ class GedcomWriter:
 
                 for event_handle in family.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
-                    if self.private and event.get_privacy():
+                    if not event or self.private and event.get_privacy():
                         continue
                     name = event.get_name()
                     val = ""

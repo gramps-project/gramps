@@ -32,10 +32,12 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
 import gnome
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
+from gobject import TYPE_PYOBJECT
+import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +50,12 @@ import RelLib
 import Date
 import DateEdit
 import DateHandler
+
+pycode_tgts = [('url',    0, 0),
+               ('pevent', 0, 1),
+               ('pattr',  0, 2),
+               ('paddr',  0, 3),
+               ('srcref', 0, 4)]
 
 #-------------------------------------------------------------------------
 #
@@ -94,7 +102,7 @@ class SourceSelector:
         self.delete = self.top.get_widget('delete')
         self.delete.set_sensitive(not self.db.readonly)
         self.selection = self.slist.get_selection()
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.model = gtk.ListStore(str,str)
         self.slist.set_model(self.model)
         self.top.get_widget('add').set_sensitive(not self.db.readonly)
         self.top.get_widget('ok').set_sensitive(not self.db.readonly)
@@ -229,7 +237,7 @@ class SourceTab:
         self.window = window
         self.slist = clist
         self.selection = clist.get_selection()
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.model = gtk.ListStore(str,str,TYPE_PYOBJECT)
 
         add_btn.set_sensitive(not readonly)
         del_btn.set_sensitive(not readonly)
@@ -251,7 +259,42 @@ class SourceTab:
         edit_btn.connect('clicked', self.edit_src_clicked)
         del_btn.connect('clicked', self.del_src_clicked)
         self.slist.connect('button-press-event',self.double_click)
+        self.setup_drag_n_drop()
         self.redraw()
+
+    def setup_drag_n_drop(self):
+        self.slist.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.slist.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.slist.connect('drag_data_get', self.drag_data_get)
+        self.slist.connect('drag_begin', self.drag_begin)
+        self.slist.connect('drag_data_received',self.drag_data_received)
+
+    def drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+            if mytype != 'srcref':
+                return
+            else:
+                foo = pickle.loads(data[2]);
+                self.list.append(foo)
+
+            self.lists_changed = True
+            self.redraw()
+
+    def drag_data_get(self,widget, context, sel_data, info, time):
+
+        store,node = self.selection.get_selected()
+        ev = store.get_value(node,2)
+
+        bits_per = 8; # we're going to pass a string
+        pickled = pickle.dumps(ev);
+        data = str(('srcref',None,pickled));
+        sel_data.set(sel_data.target, bits_per, data)
+
+    def drag_begin(self, context, a):
+        return
 
     def double_click(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
@@ -263,7 +306,8 @@ class SourceTab:
             base_handle = s.get_base_handle()
             node = self.model.append()
             base = self.db.get_source_from_handle(base_handle)
-            self.model.set(node,0,base.get_gramps_id(),1,base.get_title())
+            self.model.set(node,0,base.get_gramps_id(),1,base.get_title(),
+                           2,s)
         if self.list:
             Utils.bold_label(self.parent.sources_label)
         else:
