@@ -52,6 +52,7 @@ class RevisionComment:
             })
         self.text = self.top.get_widget("text")
         self.win = self.top.get_widget("revcom")
+        self.win.editable_enters(self.text)
         self.win.show()
 
     def on_savecomment_clicked(self,obj):
