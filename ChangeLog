@@ -1,4 +1,7 @@
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/FamilyView.py (load_family): Select the first spouse in the list.
+
+2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleDescendants.py (print_children):
 	End children's table only if it was started.
 
