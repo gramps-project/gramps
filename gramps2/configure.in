@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 AC_INIT(src/gramps.py)
 AM_INIT_AUTOMAKE(gramps, 0.9.1)
-RELEASE=pre1
+RELEASE=rc1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
@@ -280,8 +280,6 @@ src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
-doc/extending-gramps/Makefile
-doc/extending-gramps/C/Makefile
 example/Makefile
 example/gramps/Makefile
 omf-install/Makefile

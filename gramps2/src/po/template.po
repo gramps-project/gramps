@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed Apr  9 20:34:53 2003\n"
+"POT-Creation-Date: Wed Apr  9 20:55:20 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -890,7 +890,7 @@ msgid "Change local media object properties"
 msgstr ""
 
 #: ImageSelect.py:728
-msgid "Change global media object properites"
+msgid "Change global media object properties"
 msgstr ""
 
 #: ImageSelect.py:832 plugins/EventCmp.py:306
@@ -1024,7 +1024,7 @@ msgid "Delete %s"
 msgstr ""
 
 #: PlaceView.py:194
-msgid "This place is currently being used at least one record in the database. Deleting it will remove it from the database and remove it from all records that reference it."
+msgid "This place is currently being used by at least one record in the database. Deleting it will remove it from the database and remove it from all records that reference it."
 msgstr ""
 
 #: PlaceView.py:198
@@ -1572,7 +1572,7 @@ msgstr ""
 msgid "Enable support for alternate calendars"
 msgstr ""
 
-#: config.glade:734
+#: config.glade:734 config.glade:1561
 msgid "LDS extensions"
 msgstr ""
 
@@ -1622,10 +1622,6 @@ msgstr ""
 
 #: config.glade:1526
 msgid "_Enable support for alternate calendars"
-msgstr ""
-
-#: config.glade:1561
-msgid "LDS extenstions"
 msgstr ""
 
 #: config.glade:1616
@@ -3182,11 +3178,11 @@ msgid "Loading %s..."
 msgstr ""
 
 #: gramps_main.py:1468
-msgid "No home person has been set."
+msgid "No Home Person has been set."
 msgstr ""
 
 #: gramps_main.py:1469
-msgid "The home person may be set from the Settings menu."
+msgid "The Home Person may be set from the Settings menu."
 msgstr ""
 
 #: gramps_main.py:1475
@@ -4336,7 +4332,7 @@ msgid "Save Complete Individual Report"
 msgstr ""
 
 #: plugins/IndivComplete.py:512 plugins/IndivSummary.py:355
-msgid "The style used category labels."
+msgid "The style used for category labels."
 msgstr ""
 
 #: plugins/IndivComplete.py:521 plugins/IndivSummary.py:364
