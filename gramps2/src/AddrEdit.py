@@ -27,11 +27,6 @@ mechanism for the user to edit address information.
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-try:
-    import pygtk; pygtk.require('2.0')
-except ImportError: # not set up for parallel install
-    pass 
-
 import gtk.glade
 
 #-------------------------------------------------------------------------

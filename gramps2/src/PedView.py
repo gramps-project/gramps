@@ -27,11 +27,6 @@ _PERSON    = "p"
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-try:
-    import pygtk; pygtk.require('2.0')
-except ImportError: # not set up for parallel install
-    pass 
-
 import gtk
 import gtk.gdk
 import gnome.canvas
@@ -154,7 +149,7 @@ class PedigreeView:
            as the root person of the tree."""
 
         for i in self.canvas_items:
-            self.i.destroy()
+            i.destroy()
         for i in self.boxes:
             i.cleanup()
             
