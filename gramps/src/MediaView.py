@@ -332,6 +332,7 @@ class MediaView:
                     id = photo.getId()
                     path = self.db.getSavePath()
                     name = RelImage.import_media_object(tfile,path,id)
+                    photo.setLocal(1)
                     photo.setPath(name)
                 except:
                     photo.setPath(tfile)

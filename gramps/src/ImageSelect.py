@@ -169,11 +169,13 @@ class ImageSelect:
             if type[0:5] == "image":
                 if self.external.get_active() == 0:
                     name = RelImage.import_media_object(filename,self.path,mobj.getId())
+                    mobj.setLocal(1)
             else:
                 if self.external.get_active() == 1:
                     name = filename
                 else:
                     name = RelImage.import_media_object(filename,self.path,mobj.getId())
+                    mobj.setLocal(1)
             mobj.setPath(name)
             
         utils.modified()
@@ -291,9 +293,7 @@ class Gallery(ImageSelect):
                 photo.setDescription(root)
                 self.savephoto(photo)
                 if Config.mediaref == 0:
-                    name = RelImage.import_media_object(name,
-                                                        self.path,
-                                                        photo.getId())
+                    name = RelImage.import_media_object(name,self.path,photo.getId())
                     photo.setPath(name)
                     photo.setLocal(1)
                 utils.modified()
@@ -322,6 +322,7 @@ class Gallery(ImageSelect):
                 try:
                     id = photo.getId()
                     name = RelImage.import_media_object(tfile,self.path,id)
+                    photo.setLocal(1)
                     photo.setPath(name)
                 except:
                     photo.setPath(tfile)
@@ -458,7 +459,6 @@ class Gallery(ImageSelect):
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         object = photo.getReference()
         name = RelImage.import_media_object(object.getPath(),self.path,object.getId())
-    
         object.setPath(name)
         object.setLocal(1)
 

@@ -114,6 +114,7 @@ class AddMediaObject:
         if external.get_active() == 0:
             path = self.db.getSavePath()
             name = RelImage.import_media_object(filename,path,mobj.getId())
+            mobj.setLocal(1)
         else:
             name = filename
         mobj.setPath(name)

@@ -82,7 +82,6 @@ def import_media_object(filename,path,base):
         
         try:
             path = "%s/%s" % (thumb,base)
-            print "Making",path,"from",filename
             mk_thumb(filename,path,const.thumbScale)
             shutil.copy(filename,name)
         except:
@@ -123,8 +122,6 @@ def scale_image(path,size):
 #-------------------------------------------------------------------------
 def mk_thumb(source,dest,size):
 
-    print "making a thumbnail",source,dest
-    
     dir = os.path.dirname(dest)
     try:
         if not os.path.exists(dir):
