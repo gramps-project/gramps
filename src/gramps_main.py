@@ -112,7 +112,7 @@ family_window = None
 nameArrow     = None
 deathArrow    = None
 dateArrow     = None
-pv            = {}
+canvas        = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
@@ -134,7 +134,8 @@ GIVEN       = "g"
 SURNAME     = "s"
 RELTYPE     = "d"
 PAD         = 3
-CANVASPAD   = 15
+CANVASPAD   = 20
+INDEX       = "i"
 
 #-------------------------------------------------------------------------
 #
@@ -785,7 +786,7 @@ def full_update():
     load_family()
     load_sources()
     load_places()
-    load_tree()
+    load_canvas()
 
 #-------------------------------------------------------------------------
 #
@@ -802,9 +803,9 @@ def update_display(changed):
     elif page == 1:
         load_family()
     elif page == 2:
-        load_sources()
+        load_canvas()
     elif page == 3:
-        load_tree()
+        load_sources()
     else:
         load_places()
 
@@ -817,7 +818,7 @@ def load_sources():
     source_list.clear()
     source_list.freeze()
 
-    current_row = source_list.get_data("i")
+    current_row = source_list.get_data(INDEX)
     if current_row == None:
         current_row = -1
 
@@ -833,7 +834,7 @@ def load_sources():
         source_list.select_row(current_row,0)
         source_list.moveto(current_row)
 
-    source_list.set_data("i",current_row)
+    source_list.set_data(INDEX,current_row)
     source_list.thaw()
 
 #-------------------------------------------------------------------------
@@ -843,7 +844,7 @@ def load_sources():
 #-------------------------------------------------------------------------
 def on_src_list_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        index = obj.get_data("i")
+        index = obj.get_data(INDEX)
         if index >= 0:
             source = obj.get_row_data(index)
             EditSource.EditSource(source,database,update_after_edit)
@@ -855,7 +856,7 @@ def on_src_list_button_press_event(obj,event):
 #-------------------------------------------------------------------------
 def on_place_list_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        index = obj.get_data("i")
+        index = obj.get_data(INDEX)
         if index >= 0:
             place = obj.get_row_data(index)
             EditPlace.EditPlace(place,database,update_after_edit)
@@ -866,7 +867,7 @@ def on_place_list_button_press_event(obj,event):
 #
 #-------------------------------------------------------------------------
 def on_list_select_row(obj,a,b,c):
-    obj.set_data("i",a)
+    obj.set_data(INDEX,a)
 
 #-------------------------------------------------------------------------
 #
@@ -901,7 +902,7 @@ def on_delete_place_clicked(obj):
     global pevent
     global fevent
     
-    index = obj.get_data("i")
+    index = obj.get_data(INDEX)
     if index == -1:
         return
 
@@ -984,7 +985,7 @@ def on_force_delete_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
-    index = obj.get_data("i")
+    index = obj.get_data(INDEX)
     if index != -1:
         source = obj.get_row_data(index)
         EditSource.EditSource(source,database,update_after_edit)
@@ -995,7 +996,7 @@ def on_edit_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_place_clicked(obj):
-    index = obj.get_data("i")
+    index = obj.get_data(INDEX)
     if index != -1:
         place = obj.get_row_data(index)
         EditPlace.EditPlace(place,database,update_after_edit)
@@ -1830,7 +1831,7 @@ def on_notebook1_switch_page(obj,junk,page):
     elif page == 1:
         load_family()
     elif page == 2:
-        load_tree()
+        load_canvas()
     elif page == 3:
         load_sources()
     elif page == 4:
@@ -1845,7 +1846,7 @@ def load_places():
     place_list.freeze()
     place_list.clear()
 
-    current_row = place_list.get_data("i")
+    current_row = place_list.get_data(INDEX)
     if current_row == None:
         current_row = -1
 
@@ -1872,72 +1873,8 @@ def load_places():
         place_list.select_row(current_row,0)
         place_list.moveto(current_row)
 
-    place_list.set_data("i",current_row)
+    place_list.set_data(INDEX,current_row)
     place_list.thaw()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_pv_button_press_event(obj,event):
-    if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        load_person(obj.get_data("p"))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_pv_n0_clicked(obj):
-    family = active_person.getMainFamily()
-    if family:
-        father = family.getFather()
-        if father:
-            change_active_person(father)
-            load_tree()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_pv_n1_clicked(obj):
-    family = active_person.getMainFamily()
-    if family:
-        mother = family.getMother()
-        if mother:
-            change_active_person(mother)
-            load_tree()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def childmenu (obj,event):
-    if not active_person:
-        return 1
-    
-    if event.type == GDK.BUTTON_PRESS and event.button == 3:
-        myMenu = GtkMenu()
-        for family in active_person.getFamilyList():
-            for child in family.getChildList():
-                menuitem = GtkMenuItem(Config.nameof(child))
-                myMenu.append(menuitem)
-                menuitem.set_data("person",child)
-                menuitem.connect("activate",on_childmenu_changed)
-                menuitem.show()
-        myMenu.popup(None,None,None,0,0)
-    elif event.type == GDK.ENTER_NOTIFY:
-        statusbar.set_status(_("Right clicking will allow you to choose a child"))
-        style = gtop.get_widget("canvas1")['style']
-        obj.set(fill_color=style.fg[STATE_SELECTED])
-    elif event.type == GDK.LEAVE_NOTIFY:
-        style = gtop.get_widget("canvas1")['style']
-        obj.set(fill_color=style.black)
-        modify_statusbar()
-    return 1
 
 #-------------------------------------------------------------------------
 #
@@ -1966,7 +1903,7 @@ def on_childmenu_changed(obj):
     person = obj.get_data("person")
     if person:
         change_active_person(person)
-        load_tree()
+        load_canvas()
     return 1
     
 #-------------------------------------------------------------------------
@@ -2325,20 +2262,21 @@ def find_tree(person,index,depth,list):
 canvas_items = []
 
 def load_canvas():
-    global canvas_items
-
+    global canvas_items 
+    
     if active_person == None:
         return
-    
+
     h = 0
     w = 0
 
-    canvas = gtop.get_widget("canvas1")
     cx1,cy1,cx2,cy2 = canvas.get_allocation()
+    canvas.set_scroll_region(cx1,cy1,cx2,cy2)
     root = canvas.root()
 
-    cw = (cx2-cx1-(2*CANVASPAD))
-
+    for i in canvas_items:
+        i.destroy()
+        
     style = canvas['style']
     font = style.font
 
@@ -2352,6 +2290,9 @@ def load_canvas():
             w = max(w,font.width("d. %s" % t.getDeath().getDate())+2*PAD)
             w = max(w,font.width("b. %s" % t.getBirth().getDate())+2*PAD)
 
+    cpad = max(h+4,CANVASPAD)
+    cw = (cx2-cx1-(2*cpad))
+
     if 5*w < cw and 24*h < cy2:
         gen = 31
         xdiv = 5.0
@@ -2364,9 +2305,8 @@ def load_canvas():
 
     for c in canvas_items:
         c.destroy()
-    canvas.set_scroll_region(cx1,cy1,cx2,cy2)
 
-    xpts = build_x_coords(cw/xdiv)
+    xpts = build_x_coords(cw/xdiv,cpad)
     ypts = build_y_coords(cy2/32.0)
 
     childcnt = 0
@@ -2374,21 +2314,26 @@ def load_canvas():
         for child in family.getChildList():
             childcnt = 1
             break
-            
+
+    a = GtkArrow(at=GTK.ARROW_LEFT)
+    cnv_button = GtkButton()
+    cnv_button.add(a)
+    a.show()
+    cnv_button.connect("clicked",on_arrow_left_clicked)
+        
     if childcnt != 0:
-        ypos = ypts[0]+h/2.0
-        item = root.add("line",
-                        points=[CANVASPAD,ypos,CANVASPAD/4.0,ypos],
-                        fill_color_gdk=style.black,
-                        width_pixels=3,
-                        arrow_shape_a=6,
-                        arrow_shape_b=6,
-                        arrow_shape_c=4,
-                        last_arrowhead=1
-                        )
-        item.connect('event',childmenu)
-        canvas_items = [item]
+        cnv_button.show()
+        item = root.add("widget",
+                        widget=cnv_button,
+                        x=cx1,
+                        y=ypts[0]+(h/2.0), #cy2/2.0, #+(h+PAD)/2.0,
+                        height=h,
+                        width=h,
+                        size_pixels=1,
+                        anchor=GTK.ANCHOR_WEST)
+        canvas_items = [item, cnv_button, a]
     else:
+        cnv_button.hide()
         canvas_items = []
 
     for i in range(gen):
@@ -2425,10 +2370,10 @@ def draw_canvas_line(root,x1,y1,x2,y2,h,w,data,style):
 #
 #
 #-------------------------------------------------------------------------
-def build_x_coords(xincr):
+def build_x_coords(xincr,cpad):
 
-    return [CANVASPAD] + [xincr+CANVASPAD]*2 + [xincr*2+CANVASPAD]*4 +\
-           [xincr*3+CANVASPAD]*8 + [xincr*4+CANVASPAD]*16
+    return [cpad] + [xincr+cpad]*2 + [xincr*2+cpad]*4 +\
+           [xincr*3+cpad]*8 + [xincr*4+cpad]*16
 
 #-------------------------------------------------------------------------
 #
@@ -2489,8 +2434,13 @@ def add_box(root,x,y,bwidth,bheight,person,style):
 #-------------------------------------------------------------------------
 def box_event(obj,event):
     if event.type == GDK._2BUTTON_PRESS:
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-            load_person(obj.get_data('p'))
+        if event.button == 1:
+            if event.state & GDK.SHIFT_MASK:
+                change_active_person(obj.get_data("p"))
+                load_canvas()
+            else:
+                load_person(obj.get_data('p'))
+            return 1
     elif event.type == GDK.ENTER_NOTIFY:
         canvas = gtop.get_widget("canvas1")
         obj.raise_to_top()
@@ -2517,16 +2467,21 @@ def box_event(obj,event):
                 y=2*h+(h/2))
     elif event.type == GDK.LEAVE_NOTIFY:
         canvas = gtop.get_widget("canvas1")
+        ch = obj.children()
+        length = len(ch)
+        if length <= 3:
+            return 1
         box = obj.children()[1]
         x,y,w,h = box.get_bounds()
         box.set(x1=x,y1=y,x2=w,y2=h/3)
         box2 = obj.children()[0]
         x,y,w,h1 = box2.get_bounds()
         box2.set(x1=x,y1=y,x2=w,y2=(h/3)+PAD)
-        obj.children()[4].destroy()
-        obj.children()[3].destroy()
+        if length > 4:
+            ch[4].destroy()
+        if length > 3:
+            ch[3].destroy()
         canvas.update_now()
-    return 1
         
 #-------------------------------------------------------------------------
 #
@@ -2549,71 +2504,6 @@ def line_event(obj,event):
         canvas = gtop.get_widget("canvas1")
         obj.set(fill_color_gdk=canvas['style'].black, width_pixels=2)
         modify_statusbar()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_tree():
-
-    load_canvas()
-    text = {}
-    tip = {}
-    for i in range(1,16):
-        text[i] = ("",None)
-        tip[i] = ""
-
-    load_tree_values(active_person,1,16,text,tip)
-
-    tips = GtkTooltips()
-    for i in range(1,16):
-        pv[i].set_text(text[i][0]) 
-	pv[i].set_position(0)
-        pv[i].set_data("p",text[i][1])
-       
-        if tip[i] != "":
-            tips.set_tip(pv[i],tip[i])
-        else:
-            tips.set_tip(pv[i],None)
-
-    if text[2] == "":
-        gtop.get_widget("ped_father_next").set_sensitive(0)
-    else:
-        gtop.get_widget("ped_father_next").set_sensitive(1)
-
-    if text[3] == "":
-        gtop.get_widget("ped_mother_next").set_sensitive(0)
-    else:
-        gtop.get_widget("ped_mother_next").set_sensitive(1)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_tree_values(person,index,max,pv_text,tip):
-    if person == None:
-        return
-    msg = Config.nameof(person)
-    
-    bdate = person.getBirth().getDate()
-    ddate = person.getDeath().getDate()
-    if bdate and ddate:
-        text = "%s\nb. %s\nd. %s" % (msg, bdate,ddate)
-    elif bdate and not ddate:
-        text = "%s\nb. %s" % (msg, bdate)
-    elif not bdate and ddate:
-        text = "%s\nb. %s" % (msg, ddate)
-    else:
-        text = msg
-    tip[index] = text
-    pv_text[index] = (msg,person)
-    if 2*index+1 < max:
-        family = person.getMainFamily()
-        if family != None:
-            load_tree_values(family.getFather(),2*index,max,pv_text,tip)
-            load_tree_values(family.getMother(),(2*index)+1,max,pv_text,tip)
 
 #-------------------------------------------------------------------------
 #
@@ -2977,6 +2867,17 @@ def menu_tools(obj,task):
     
 #-------------------------------------------------------------------------
 #
+#
+#
+#-------------------------------------------------------------------------
+def on_main_key_release_event(obj,event):
+    if event.keyval == GDK.Delete:
+        on_delete_person_clicked(obj)
+    elif event.keyval == GDK.Insert:
+        load_new_person(obj)
+    
+#-------------------------------------------------------------------------
+#
 # Main program
 #
 #-------------------------------------------------------------------------
@@ -2984,7 +2885,7 @@ def menu_tools(obj,task):
 def main(arg):
     global database, gtop
     global statusbar,notebook
-    global person_list, source_list, place_list,pv
+    global person_list, source_list, place_list, canvas
     global topWindow
     global nameArrow, dateArrow, deathArrow
     
@@ -3005,6 +2906,7 @@ def main(arg):
     statusbar   = gtop.get_widget("statusbar")
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
+    canvas      = gtop.get_widget("canvas1")
     source_list = gtop.get_widget("source_list")
     place_list  = gtop.get_widget("place_list")
     filter_list = gtop.get_widget("filter_list")
@@ -3028,9 +2930,6 @@ def main(arg):
     
     person_list.column_titles_active()
 
-    for box in range(1,16):
-        pv[box] = gtop.get_widget("pv%d" % box)
-
     gtop.signal_autoconnect({
         "delete_event"                      : delete_event,
         "destroy_passed_object"             : utils.destroy_passed_object,
@@ -3044,7 +2943,7 @@ def main(arg):
         "on_addperson_clicked"              : load_new_person,
         "on_apply_filter_clicked"           : on_apply_filter_clicked,
         "on_arrow_left_clicked"             : on_arrow_left_clicked,
-        "on_canvas1_size_request"           : on_canvas1_size_request,
+        "on_canvas1_event"                  : on_canvas1_event,
         "on_child_list_button_press_event"  : on_child_list_button_press_event,
         "on_child_list_select_row"          : on_child_list_select_row,
         "on_choose_parents_clicked"         : on_choose_parents_clicked, 
@@ -3079,12 +2978,10 @@ def main(arg):
         "on_person_list_click_column"       : on_person_list_click_column,
         "on_person_list_select_row"         : on_person_list_select_row,
         "on_place_list_button_press_event"  : on_place_list_button_press_event,
+        "on_main_key_release_event"         : on_main_key_release_event,
         "on_place_list_select_row"          : on_list_select_row,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
-        "on_pv_button_press_event"          : on_pv_button_press_event,
-        "on_pv_n0_clicked"                  : on_pv_n0_clicked,
-        "on_pv_n1_clicked"                  : on_pv_n1_clicked,
         "on_remove_child_clicked"           : on_remove_child_clicked,
         "on_reports_clicked"                : on_reports_clicked,
         "on_revert_activate"                : on_revert_activate,
@@ -3115,11 +3012,26 @@ def main(arg):
 
 #-------------------------------------------------------------------------
 #
-# Start it all
+#
 #
 #-------------------------------------------------------------------------
-def on_canvas1_size_request(obj,a):
-    load_canvas()
+ox1 = 0
+ox2 = 0
+oy1 = 0
+oy2 = 0
+
+def on_canvas1_event(obj,event):
+    global ox1,ox2,oy1,oy2
+
+    if event.type == GDK.EXPOSE:
+        cx1,cy1,cx2,cy2 = canvas.get_allocation()
+        if ox1 != cx1 or ox2 != cx2 or oy1 != cy1 or oy2 != cy2:
+            ox1 = cx1
+            ox2 = cx2
+            oy1 = cy1
+            oy2 = cy2
+            load_canvas()
+    return 0
 
 #-------------------------------------------------------------------------
 #
