@@ -38,9 +38,11 @@ except ImportError:
 
 import gobject
 import os
+from const import ErrorSchemaInvalid
 
 client = gconf.client_get_default()
 client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
+
 
 #-------------------------------------------------------------------------
 #
@@ -345,7 +347,10 @@ def get_bool(key):
     if val in (True,False):
         return val
     else:
-        return client.get_default_from_schema(key).get_bool()
+        val = client.get_default_from_schema(key)
+        if val == None:
+            raise ErrorSchemaInvalid, "No default value for key "+key
+        return val.get_bool()
 
 def set_bool(key,val):
     if val in (True,False):
@@ -359,7 +364,10 @@ def get_int(key,correct_tuple=None):
     if not correct_tuple or val in correct_tuple:
         return val
     else:
-        return client.get_default_from_schema(key).get_int()
+        val = client.get_default_from_schema(key)
+        if val == None:
+            raise ErrorSchemaInvalid, "No default value for key "+key
+        return val.get_int()
 
 def set_int(key,val,correct_tuple=None):
     if not correct_tuple or val in correct_tuple:
@@ -373,7 +381,10 @@ def get_string(key,test_func=None):
     if not test_func or test_func(val):
         return val
     else:
-        return client.get_default_from_schema(key).get_string()
+        val = client.get_default_from_schema(key)
+        if val == None:
+            raise ErrorSchemaInvalid, "No default value for key "+key
+        return val.get_string()
 
 def set_string(key,val,test_func=None):
     if not test_func or test_func(val):
@@ -398,4 +409,3 @@ def set_string_as_id_prefix(key,val):
 
 def sync():
     client.suggest_sync()
-

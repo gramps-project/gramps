@@ -1,3 +1,13 @@
+2005-03-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GrampsGconfKeys.py (get_bool,get_int,get_string): Raise
+	exception when default value could not be get from gconf schema
+	* src/const.py.in: Add custom exception "ErrorSchemaInvalid"
+	* src/GrampsMime.py (mime_type_is_defined): New method that returns
+	True/False
+	* src/gramps_main.py (__init__) Catch "ErrorSchemaInvalid" exception
+	and check for installed MIME-type. Show error because installation is
+	incomplete.
+	
 2005-03-17  Alex Roitman  <shura@gramps-project.org>
 	* acinclude.m4: Add macro for defining SHARED_MIME_DIR.
 	* configure.in: Use AM_SHARED_MIME macro.
