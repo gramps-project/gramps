@@ -214,7 +214,7 @@ class BareReportDialog:
         self.window = gtk.Dialog('GRAMPS')
         self.window.set_has_separator(gtk.FALSE)
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,1)
-        self.ok = self.window.add_button(gtk.STOCK_OK,0)
+        self.ok = self.window.add_button(_('_Generate report'),0)
 
         self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel.connect('clicked',self.on_cancel)
