@@ -1,4 +1,6 @@
 2003-06-19  Tim Waugh  <twaugh@redhat.com>
+	* Makefile.am, doc/Makefile.am, doc/omf.make, doc/xmldocs.make:
+	Fixes so that 'make distcheck' succeeds.
 	* src/WriteXML.py (write_xml_data): Use a stable order for writing
 	elements in XML.  This makes it useful to do revision control (RFE
 	748165).
