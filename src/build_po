@@ -3,5 +3,6 @@ if [ -f po/template.po ]
 then
     mv po/template.po po/template.po.bak
 fi
+
 ./get_strings -o po/template.po *.py */*.py *.glade */*.glade
 
