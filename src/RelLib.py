@@ -1077,9 +1077,13 @@ class Person:
         family = self.MainFamily
         if family:
             if family.Father:
-                family.Father.setAncestor(value)
+                # Don't waste time if the ancestor is already flagged.
+                # This will happen when cousins marry.
+                if not family.Father.ancestor:
+                    family.Father.setAncestor(value)
             if (family.Mother):
-                family.Mother.setAncestor(value)
+                if not family.Mother.ancestor:
+                    family.Mother.setAncestor(value)
 
     def getAncestor(self):
         return self.ancestor
