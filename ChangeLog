@@ -1,5 +1,6 @@
 2004-05-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/RelGraph.py: Menu for family options.
+	* src/plugins/RelGraph.py (_get_event_label): Typo.
 
 2004-05-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/RelGraph.py (_write_graph_record): Bug fixes.

@@ -718,7 +718,7 @@ def _get_event_label (self, event_id):
         date_obj = event.get_date_object()
         if date_obj.get_year_valid():
             if self.JustYear:
-                return "%i" % date_obj.get_year_valid()
+                return "%i" % date_obj.get_year()
             else:
                 return date_obj.get_date()
         elif self.PlaceCause:
