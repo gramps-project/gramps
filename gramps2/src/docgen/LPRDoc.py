@@ -322,7 +322,8 @@ class GnomePrintParagraph:
                     end_word = len(textlist)
 
         self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
-        self.height = nlines * self.fontstyle.get_size()
+        self.height = nlines * self.fontstyle.get_size() \
+                    + 2 * cm2u(self.style.get_padding())
     
     def get_lines(self):
         """
@@ -437,7 +438,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.__x, self.__y = self.write_paragraph(self.paragraph,
                                         self.__x, self.__y, 
                                         self.right_margin - self.left_margin)
-            self.__y = self.__advance_line(self.__y)
+            #self.__y = self.__advance_line(self.__y)
         self.paragraph = None
             
     def start_bold(self):
@@ -693,6 +694,9 @@ class LPRDoc(BaseDoc.BaseDoc):
             x = left_margin
             y = self.__y
 
+        if y != self.top_margin:
+            y = y - cm2u(paragraph.style.get_padding())
+
         # Loop over lines which were assembled by paragraph.format()
         for (start_piece,start_word,end_piece,end_word,avail_width) \
                                                     in paragraph.get_lines():
@@ -761,6 +765,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             x = left_margin
 
         x = x - cm2u(paragraph.style.get_left_margin())
+        y = y - cm2u(paragraph.style.get_padding())
         return (x,y)
 
     def __output_table(self):
