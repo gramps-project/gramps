@@ -41,6 +41,20 @@ from gettext import gettext as _
 # GNOME/GTK Modules 
 #
 #------------------------------------------------------------------------
+import gtk.gdk
+
+### FIXME ###
+# This is a dirty workaround for incomplete gnomeprint bindings.
+# Switching to local pygtk version before importing gnomeprint
+# (I have CVS version installed locally)
+import sys
+newpath = [
+    '/usr/local/lib/python2.3', 
+    '/usr/local/lib/python2.3/site-packages', 
+    '/usr/local/lib/python2.3/site-packages/gtk-2.0'
+    ]
+sys.path = newpath + sys.path
+### FIXME ###
 import gnomeprint, gnomeprint.ui
 
 #------------------------------------------------------------------------
@@ -335,6 +349,78 @@ class GnomePrintParagraph:
 
 #------------------------------------------------------------------------
 #
+# Photo class
+#
+#------------------------------------------------------------------------
+class GnomePrintPhoto:
+    """
+    A photo abstraction which provides the means for correct photo placement.
+    Way less complex that paragraph, but still useful. 
+    """
+    
+    def __init__(self,name,pos,x_size,y_size):
+        """
+        Creates a GnomePrintPhoto instance. 
+        """
+        self.name = name
+        self.alignment = pos
+        self.pixbuf = gtk.gdk.pixbuf_new_from_file(name)
+        self.height = self.pixbuf.get_height()
+        self.width = self.pixbuf.get_width()
+        max_size = cm2u(max(x_size,y_size))
+        self.scale_x = int( max_size * float(self.width)/max(self.height,self.width) )
+        self.scale_y = int( max_size * float(self.height)/max(self.height,self.width) )
+
+    def get_image(self):
+        """
+        Return the raw image of the photo.
+        """
+        return self.pixbuf.get_pixels()
+
+    def get_has_alpha(self):
+        """
+        Return has_alpha of the photo.
+        """
+        return self.pixbuf.get_has_alpha()
+
+    def get_rowstride(self):
+        """
+        Return the rowstride of the photo.
+        """
+        return self.pixbuf.get_rowstride()
+
+    def get_height(self,width=None):
+        """
+        Return the real height of the photo as it should appear on the page.
+        """
+        return self.scale_y
+    
+    def get_width(self):
+        """
+        Return the real width of the photo as it should appear on the page.
+        """
+        return self.scale_x
+
+    def get_min_width(self):
+        """
+        Return the minimum width of the photo as it should appear on the page.
+        """
+        return self.scale_x
+
+    def get_image_height(self):
+        """
+        Return the height of the photo in terms of image's pixels.
+        """
+        return self.height
+    
+    def get_image_width(self):
+        """
+        Return the width of the photo in terms of image's pixels.
+        """
+        return self.width
+
+#------------------------------------------------------------------------
+#
 # LPRDoc class
 #
 #------------------------------------------------------------------------
@@ -438,7 +524,6 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.__x, self.__y = self.write_paragraph(self.paragraph,
                                         self.__x, self.__y, 
                                         self.right_margin - self.left_margin)
-            #self.__y = self.__advance_line(self.__y)
         self.paragraph = None
             
     def start_bold(self):
@@ -485,6 +570,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__table_width = (self.right_margin - self.left_margin) * \
                             self.__tbl_style.get_width() / 100.0
         self.__cell_widths = []
+        self.__cell_styles = []
 
     def end_table(self):
         """Close the table environment"""
@@ -501,6 +587,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.cellnum = -1
         self.__span = 1
         self.__cell_widths.append([0] * self.__ncols)
+        self.__cell_styles.append([None] * self.__ncols)
         for cell in range(self.__ncols):
             self.__cell_widths[self.rownum][cell] = self.__table_width * \
                             self.__tbl_style.get_column_width(cell) / 100.0
@@ -517,11 +604,13 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__cell_data = []
         self.cellnum = self.cellnum + self.__span
         self.__span = span
+        self.__cell_styles[self.rownum][self.cellnum] = \
+                                    self.cell_styles[style_name]
         for __extra_cell in range(1,span):
             self.__cell_widths[self.rownum][self.cellnum] += \
                 self.__cell_widths[self.rownum][self.cellnum + __extra_cell]
             self.__cell_widths[self.rownum][self.cellnum + __extra_cell] = 0
- 
+
     def end_cell(self):
         """Prepares for next cell"""
         # append the cell text to the row data
@@ -530,8 +619,54 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def add_photo(self,name,pos,x,y):
         """Add photo to report"""
-        pass
 
+        photo = GnomePrintPhoto(name,pos,x,y)
+        if self.__in_cell:
+            # We're inside cell. Add photo to celldata
+            self.__cell_data.append(photo)
+        else:
+            # photo not in table: write it right away
+            self.__x, self.__y = self.write_photo(photo,
+                                        self.__x, self.__y, 
+                                        self.right_margin - self.left_margin)
+
+    def write_photo(self,photo,x,y,width):
+        """
+        Write the photo.
+
+        photo       - GnomePrintPhoto instance
+        x,y         - coordinates to start at
+        width       - allocated width
+        """
+
+        width = photo.get_width()
+        height = photo.get_height()
+
+        if y - height < self.bottom_margin:
+            self.end_page()
+            self.start_page()
+            y = self.__y
+
+        self.__pc.gsave()
+        self.__pc.translate(x,y-height)
+        self.__pc.scale(width,height)
+        
+        if photo.get_has_alpha():
+            self.__pc.rgbaimage(photo.get_image(), 
+                                photo.get_image_width(), 
+                                photo.get_image_height(), 
+                                photo.get_rowstride())
+        else:
+            self.__pc.rgbimage(photo.get_image(), 
+                                photo.get_image_width(), 
+                                photo.get_image_height(), 
+                                photo.get_rowstride())
+
+        self.__pc.grestore()
+        x = x
+        y = y - height
+        return (x,y)
+                                                                                
     def horizontal_line(self):
         self.__pc.moveto(self.__x, self.__y)
         self.__pc.lineto(self.right_margin, self.__y)
@@ -671,7 +806,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         
         paragraph   - GnomePrintParagraph instance
         x,y         - coordinates to start at
-        left_margin,right_margin - boundaries to obey
+        width       - allocated width
         """
         
         if not paragraph.get_piece_list():
@@ -714,6 +849,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             if first:
                 first = 0
                 x = x + cm2u(paragraph.style.get_first_indent())
+                y = y - paragraph.fontstyle.get_size()
 
             # Loop over pieces that constitute the line
             for piece_num in range(start_piece,end_piece+1):
@@ -780,6 +916,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                 if not self.__cell_widths[__row_num][__col]:
                     continue
 
+                padding = cm2u(self.__cell_styles[__row_num][__col].get_padding())
                 __max = 0
                 for paragraph in __row[__col]:
                     __min = paragraph.get_min_width()
@@ -788,6 +925,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
                     __max += paragraph.get_height(
                                         self.__cell_widths[__row_num][__col])
+                __max += 2 * padding
                 if __max > __max_vspace[__row_num]:
                     __max_vspace[__row_num] = __max
 
@@ -814,10 +952,16 @@ class LPRDoc(BaseDoc.BaseDoc):
                 if not self.__cell_widths[__row_num][__col]:
                     continue
                 self.__y = col_y
+                padding = cm2u(self.__cell_styles [__row_num][__col].get_padding())
                 for paragraph in __row[__col]:
-                    junk, self.__y = self.write_paragraph(paragraph,
-                                     __x, self.__y, 
-                                     self.__cell_widths[__row_num][__col])
+                    if paragraph.__class__.__name__ == 'GnomePrintPhoto':
+                        write_item = self.write_photo
+                    else:
+                        write_item = self.write_paragraph
+                    junk, self.__y = write_item(paragraph,
+                                     __x + padding, self.__y - padding, 
+                                     self.__cell_widths[__row_num][__col] \
+                                            - 2 * padding)
 
                 __x = __x + self.__cell_widths[__row_num][__col]    # set up margin for this row
             self.__y = col_y - __max_vspace[__row_num]
@@ -867,3 +1011,11 @@ Plugins.register_text_doc(
     style=1,
     ext=""
     )
+
+Plugins.register_book_doc(
+    _("Print..."),
+    LPRDoc,
+    1,
+    1,
+    1,
+    "")
