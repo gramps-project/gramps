@@ -30,11 +30,11 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import intl
 import const
 import utils
 from RelLib import *
 
+from intl import gettext
 _ = intl.gettext
 
 #-------------------------------------------------------------------------

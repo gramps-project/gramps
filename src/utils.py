@@ -188,7 +188,7 @@ else:
 #
 #
 #-------------------------------------------------------------------------
-def get_detail_flags(obj):
+def get_detail_flags(obj,priv=1):
     import Config
     
     detail = ""
@@ -197,7 +197,7 @@ def get_detail_flags(obj):
             detail = "N"
         if len(obj.getSourceRefList()) > 0:
             detail = detail + "S"
-        if obj.getPrivacy():
+        if priv and obj.getPrivacy():
             detail = detail + "P"
     return detail
 
@@ -206,7 +206,7 @@ def get_detail_flags(obj):
 #
 #
 #-------------------------------------------------------------------------
-def get_detail_text(obj):
+def get_detail_text(obj,priv=1):
     if obj.getNote() != "":
         details = "%s" % _("Note")
     else:
@@ -216,7 +216,7 @@ def get_detail_text(obj):
             details = _("Source")
         else:
             details = "%s, %s" % (details,_("Source"))
-    if obj.getPrivacy() == 1:
+    if priv and obj.getPrivacy() == 1:
         if details == "":
             details = _("Private")
         else:

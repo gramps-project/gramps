@@ -20,10 +20,18 @@
 
 #-------------------------------------------------------------------------
 #
+# standard python modules
+#
+#-------------------------------------------------------------------------
+import string
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import GDK
+import GTK
 import gnome.ui
 
 #-------------------------------------------------------------------------
@@ -34,6 +42,7 @@ import gnome.ui
 from RelLib import *
 import EditSource
 import utils
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -44,23 +53,81 @@ from intl import gettext
 _ = gettext
 
 class SourceView:
-    def __init__(self,db,source_list,update):
-        self.source_list = source_list
+    def __init__(self,db,glade,update):
+        self.glade = glade
         self.db = db
         self.update = update
+        self.source_list = glade.get_widget("source_list")
+        self.title_arrow = glade.get_widget("title_arrow")
+        self.id_arrow    = glade.get_widget("src_id_arrow")
+        self.author_arrow= glade.get_widget("author_arrow")
+        self.source_list.set_column_visibility(3,0)
+        self.source_list.set_column_visibility(4,0)
+        self.id_arrow.hide()
+        self.author_arrow.hide()
+        self.sort_map = [3,1,4,-1]
+        self.sort_dir = GTK.SORT_ASCENDING
+        self.sort_col = 3
+        self.sort_arrow = [self.title_arrow, self.id_arrow, self.author_arrow]
+        self.source_list.connect('click-column',self.click_column)
 
+    def click_column(self,obj,column):
+
+        new_col = self.sort_map[column]
+        if new_col == -1:
+            return
+
+        data = None
+        if len(obj.selection) == 1:
+            data = obj.get_row_data(obj.selection[0])
+        
+        obj.freeze()
+        if new_col == self.sort_col:
+            if self.sort_dir == GTK.SORT_ASCENDING:
+                self.sort_dir = GTK.SORT_DESCENDING
+            else:
+                self.sort_dir = GTK.SORT_ASCENDING
+        else:
+            self.sort_dir = GTK.SORT_ASCENDING
+
+        for a in self.sort_arrow:
+            a.hide()
+
+        a = self.sort_arrow[column]
+        a.show()
+        if self.sort_dir == GTK.SORT_ASCENDING:
+            a.set(GTK.ARROW_DOWN,2)
+        else:
+            a.set(GTK.ARROW_UP,2)
+            
+        obj.set_sort_type(self.sort_dir)
+        obj.set_sort_column(new_col)
+        self.sort_col = new_col
+        obj.sort()
+        if data:
+            row = obj.find_row_from_data(data)
+            obj.moveto(row)
+        obj.thaw()
+        
     def load_sources(self):
-        self.source_list.clear()
-        self.source_list.freeze()
 
         if len(self.source_list.selection) > 0:
             current_row = self.source_list.selection[0]
         else:
             current_row = 0
 
+        self.source_list.clear()
+        self.source_list.freeze()
+        self.source_list.set_column_visibility(1,Config.id_visible)
+
         index = 0
         for src in self.db.getSourceMap().values():
-            self.source_list.append([src.getTitle(),src.getAuthor()])
+            id = src.getId()
+            title = src.getTitle()
+            author = src.getAuthor()
+            stitle = string.upper(title)
+            sauthor = string.upper(author)
+            self.source_list.append([title,id,author,stitle,sauthor])
             self.source_list.set_row_data(index,src)
             index = index + 1
 
@@ -68,6 +135,7 @@ class SourceView:
             self.source_list.select_row(current_row,0)
             self.source_list.moveto(current_row)
 
+        self.source_list.sort()
         self.source_list.thaw()
     
     def on_button_press_event(self,obj,event):

@@ -74,7 +74,7 @@ class RevisionComment:
     def __init__(self,filename,save_file):
         self.filename = filename
         self.save = save_file
-        self.top = libglade.GladeXML(const.gladeFile, "revcom")
+        self.top = libglade.GladeXML(const.revisionFile, "revcom")
         self.top.signal_autoconnect({
             "on_savecomment_clicked" : self.on_savecomment_clicked,
             })
@@ -97,7 +97,7 @@ class RevisionSelect:
         self.vc = vc
         self.load = load
 
-        dialog = libglade.GladeXML(const.gladeFile, "revselect")
+        dialog = libglade.GladeXML(const.revisionFile, "revselect")
         dialog.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_loadrev_clicked"    : self.on_loadrev_clicked,

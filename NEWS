@@ -41,6 +41,10 @@ Version 0.6.0pre
 * Reordering GRAMPS' ids attempts to preserve the integer originally
   assigned to the object.
 * The person view can be sorted by GRAMPS id.
+* KWord format generated is now compatible with KWord 1.1. Images may
+  now be included in KWord documents (requires Python Imaging Library).
+  Tables are not working yet. I can figure out how to format a KWord
+  table.
 
 Version 0.5.1
 * Bug fixes

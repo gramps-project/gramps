@@ -27,8 +27,9 @@ from TextDoc import *
 from DrawDoc import *
 import gtk
 import Config
-import intl
-_ = intl.gettext
+
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
