@@ -48,6 +48,7 @@ topDialog = None
 glade_file = os.path.dirname(__file__) + os.sep + "webpage.glade"
 
 restrict = 1
+private = 1
 restrict_photos = 0
 no_photos = 0
 styles = StyleSheet()
@@ -90,10 +91,11 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,person,photos,restrict,link,list,dir_name,doc):
+    def __init__(self,person,photos,restrict,private,link,list,dir_name,doc):
         self.person = person
         self.doc = doc
         self.list = list
+        self.private = private
         self.alive = probably_alive(person) or restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.dir = dir_name
@@ -177,7 +179,7 @@ class IndividualPage:
         self.doc.start_paragraph("Data")
         if person:
             if person in self.list:
-                self.doc.start_link("i%s.html" % person.getId())
+                self.doc.start_link("%s.html" % person.getId())
             self.doc.write_text(person.getPrimaryName().getRegularName())
             if person in self.list:
                 self.doc.end_link()
@@ -215,7 +217,7 @@ class IndividualPage:
     #
     #--------------------------------------------------------------------
     def create_page(self):
-        filebase = "i%s.html" % self.person.getId()
+        filebase = "%s.html" % self.person.getId()
         self.doc.open("%s%s%s" % (self.dir,os.sep,filebase))
 
         photo_list = self.person.getPhotoList()
@@ -294,6 +296,8 @@ class IndividualPage:
         event_list = event_list + self.person.getEventList()
         event_list.sort(by_date)
         for event in event_list:
+            if event.getPrivacy():
+                continue
             name = _(event.getName())
             date = event.getDate()
             place = event.getPlace()
@@ -378,7 +382,7 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
-                self.doc.start_link("i%s.html" % spouse.getId())
+                self.doc.start_link("%s.html" % spouse.getId())
                 self.doc.write_text(spouse.getPrimaryName().getRegularName())
                 self.doc.end_link()
             else:
@@ -387,10 +391,9 @@ class IndividualPage:
             self.doc.end_cell()
             self.doc.end_row()
             
-            event_list = [ family.getMarriage(), family.getDivorce() ]
-            event_list = event_list + family.getEventList()
-            for event in event_list:
-                self.write_fam_fact(event)
+            for event in family.getEventList():
+                if event.getPrivacy() == 0:
+                    self.write_fam_fact(event)
 
             child_list = family.getChildList()
             if len(child_list) > 0:
@@ -410,7 +413,7 @@ class IndividualPage:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    self.doc.start_link("i%s.html" % child.getId())
+                    self.doc.start_link("%s.html" % child.getId())
                     self.doc.write_text(child.getPrimaryName().getRegularName())
                     self.doc.end_link()
                 self.doc.end_paragraph()
@@ -693,6 +696,7 @@ def on_ok_clicked(obj):
     templ_name = topDialog.get_widget("htmlTemplate").get_full_path(0)
 
     restrict = topDialog.get_widget("restrict").get_active()
+    privated = topDialog.get_widget("private").get_active()
     restrict_photos = topDialog.get_widget("restrict_photos").get_active()
     no_photos = topDialog.get_widget("nophotos").get_active()
     include_link = topDialog.get_widget("include_link").get_active()
@@ -732,8 +736,8 @@ def on_ok_clicked(obj):
 
     for person in ind_list:
         doc = HtmlLinkDoc(styles,templ_name)
-        idoc = IndividualPage(person,photos,restrict,include_link, \
-                              ind_list,dir_name,doc)
+        idoc = IndividualPage(person,photos,restrict,private,\
+                              include_link, ind_list,dir_name,doc)
         idoc.create_page()
         idoc.close()
         
@@ -760,7 +764,7 @@ def dump_index(person_list,styles,template,html_dir):
     person_list.sort(sort.by_last_name)
     for person in person_list:
         name = person.getPrimaryName().getName()
-        doc.start_link("i%s.html" % person.getId())
+        doc.start_link("%s.html" % person.getId())
         doc.write_text(name)
         doc.end_link()
         doc.newline()

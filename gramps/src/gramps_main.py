@@ -920,7 +920,10 @@ def read_file(filename):
         statusbar.set_status("")
         Config.save_last_file("")
 
+    active_person = None
     for person in database.getPersonMap().values():
+        if active_person == None:
+            active_person = person
         lastname = person.getPrimaryName().getSurname()
         if lastname and lastname not in const.surnames:
             const.surnames.append(lastname)
@@ -1469,11 +1472,8 @@ def sort_person_list():
                     person_list.set_foreground(i+1,evenfg)
         except OverflowError:
             pass
+    goto_active_person()
     person_list.thaw()
-    
-    if id2col.has_key(active_person):
-        row = person_list.find_row_from_data(id2col[active_person])
-        person_list.moveto(row)
     
 #-------------------------------------------------------------------------
 #
@@ -2279,7 +2279,10 @@ def load_database(name):
 
     Config.save_last_file(name)
     gtop.get_widget("filter").set_text("")
-    active_person = database.getDefaultPerson()
+    
+    person = database.getDefaultPerson()
+    if person:
+        active_person = person
     return 1
 
 #-------------------------------------------------------------------------
@@ -2371,10 +2374,11 @@ def goto_active_person():
             person_list.select_row(column,0)
             person_list.moveto(column)
     else:
-        person_list.select_row(0,0)
-        person_list.moveto(0)
-        person,alt = person_list.get_row_data(0)
-        change_active_person(person)	
+        if person_list.rows > 0:
+            person_list.select_row(0,0)
+            person_list.moveto(0)
+            person,alt = person_list.get_row_data(0)
+            change_active_person(person)	
     
 #-------------------------------------------------------------------------
 #
