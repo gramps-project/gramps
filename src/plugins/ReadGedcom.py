@@ -482,9 +482,10 @@ class GedcomParser:
                 mrel,frel = self.parse_ftw_relations(2)
                 child = self.db.findPerson(matches[2],self.pmap)
                 self.family.addChild(child)
-                if type != "":
-                    if child.getMainFamily() == self.family:
-                        child.setMainFamily(None)
+                if (mrel == "Birth" or mrel == "") and \
+                   (frel == "Birth" or frel == "") :
+                    child.setMainFamily(self.family)
+                else:
                     child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
