@@ -1,7 +1,8 @@
 2003-07-17  Tim Waugh  <twaugh@redhat.com>
-	* src/plugins/Ancestors.py: Include other names in the notes.
-	Include birth/marriage/death descriptions.  Change report name.
-	Include addresses.  Better generation headings.  Include nickname.
+	* src/plugins/Ancestors.py: Include grandchildren's birth dates in
+	abbreviated form.  Include other names in the notes.  Include
+	birth/marriage/death descriptions.  Change report name.  Include
+	addresses.  Better generation headings.  Include nickname.
 
 2003-07-16  Donald Peterson  <dpeterson@sigmaxi.org>
 	* doc/gramps-manual/C/figures/bookreport.png:
