@@ -29,7 +29,7 @@ _ = intl.gettext
 class MatchSndEx(Filter.Filter):
     "Names with same SoundEx code as ..."
 
-    def __init__(self,text,invert):
+    def __init__(self,text):
         self.sndex = soundex.soundex(text)
         Filter.Filter.__init__(self,text)
         
