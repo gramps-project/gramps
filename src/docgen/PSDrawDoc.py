@@ -313,6 +313,17 @@ class PSDrawDoc(BaseDoc.BaseDoc):
     def patch_text(self,text):
         return text.encode('iso-8859-1')
 
+    def write_at(self,style,text,x,y):
+        para_style = self.style_list[style]
+
+        x = x + self.lmargin
+        y = y + self.tmargin
+
+        self.f.write('gsave\n')
+        self.f.write('%f cm %f cm moveto\n' % self.translate(x,y))
+        self.f.write(self.fontdef(para_style))
+        self.f.write('(%s) show grestore\n' % text)
+
     def draw_bar(self,style,x1,y1,x2,y2):
         x1 = x1 + self.lmargin
         x2 = x2 + self.lmargin
@@ -320,6 +331,9 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         y2 = y2 + self.tmargin
 
         box_type = self.draw_styles[style]
+        fill_color = rgb_color(box_type.get_fill_color())
+        color = rgb_color(box_type.get_color())
+
         self.f.write('gsave\n')
         self.f.write("%f cm %f cm moveto\n" % self.translate(x1,y1))
         self.f.write("0 %f cm rlineto\n" % (y2-y1)) 
@@ -327,7 +341,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write("0  %f cm rlineto\n" % (y1-y2))
         self.f.write('closepath\n')
         self.f.write("%.4f setlinewidth\n" % box_type.get_line_width())
-        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(box_type.get_color()))
+        self.f.write('gsave %.4f %.4f %.4f setrgbcolor fill grestore\n' % fill_color)
+        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % color)
         self.f.write('grestore\n')
     
     def draw_box(self,style,text,x,y):

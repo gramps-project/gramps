@@ -1071,7 +1071,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         self.gpc.setfont(find_font_from_fontstyle(fontstyle))
         x = self.left_margin + cm2u(x)
-        y = self.top_margin - cm2u(y)
+        y = self.top_margin - cm2u(y) - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
         self.gpc.moveto(x,y)
         self.gpc.show(text)
 

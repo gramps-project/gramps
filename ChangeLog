@@ -1,3 +1,10 @@
+2005-02-17 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LPRDoc.py (write_at): Correct vertical offset.
+	* src/docgen/PdfDoc.py (write_at,draw_bar): Add functions.
+	* src/docgen/PSDrawDoc.py (write_at): Add function;
+	(draw_bar): Support for filling with color.
+	* src/ReportUtils.py (draw_legend): Correct vertical offset.
+
 2005-02-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditSource.py: commit events after deleting sources
 	* src/Marriage.py: disable buttons in readonly mode

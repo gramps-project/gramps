@@ -121,7 +121,7 @@ def draw_legend(doc, start_x, start_y, data):
         size = pt2cm(doc.get_style(pstyle).get_font().get_size())
         
         doc.draw_bar(format, start_x, start_y, start_x + (2*size), start_y + size)
-        doc.write_at(pstyle, legend, start_x + (3*size), start_y + (size*0.25))
+        doc.write_at(pstyle, legend, start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
         
 def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
