@@ -311,25 +311,25 @@ def exportData(database, filename, callback):
             if len(person.getAddressList()) > 0:
                 for address in person.getAddressList():
                     g.write('      <address%s">\n' % conf_priv(address))
-                    write_line(g,"date",address.getDateObj().getSaveDate(),5)
-                    write_line(g,"street",address.getStreet(),5)
-                    write_line(g,"city",address.getCity(),5)
-                    write_line(g,"state",address.getState(),5)
-                    write_line(g,"country",address.getCountry(),5)
-                    write_line(g,"postal",address.getPostal(),5)
+                    write_line(g,"date",address.getDateObj().getSaveDate(),4)
+                    write_line(g,"street",address.getStreet(),4)
+                    write_line(g,"city",address.getCity(),4)
+                    write_line(g,"state",address.getState(),4)
+                    write_line(g,"country",address.getCountry(),4)
+                    write_line(g,"postal",address.getPostal(),4)
                     if address.getNote() != "":
-                        writeNote(g,"note",address.getNote(),5)
-                    dump_source_ref(g,address.getSourceRef(),5)
+                        writeNote(g,"note",address.getNote(),4)
+                    dump_source_ref(g,address.getSourceRef(),4)
                     g.write('      </address>\n')
 
             if len(person.getAttributeList()) > 0:
                 for attr in person.getAttributeList():
                     if attr.getSourceRef() or attr.getNote():
                         g.write('      <attribute%s>\n' % conf_priv(attr))
-                        write_line(g,"attr_type",attr.getType(),5)
-                        write_line(g,"attr_value",attr.getValue(),5)
-                        dump_source_ref(g,attr.getSourceRef(),5)
-                        writeNote(g,"note",attr.getNote(),5)
+                        write_line(g,"attr_type",attr.getType(),4)
+                        write_line(g,"attr_value",attr.getValue(),4)
+                        dump_source_ref(g,attr.getSourceRef(),4)
+                        writeNote(g,"note",attr.getNote(),4)
                         g.write('      </attribute>\n')
                     else:
                         g.write('      <attribute type="%s">' % attr.getType())
@@ -385,17 +385,15 @@ def exportData(database, filename, callback):
                 g.write("/>\n")
 
             if len(family.getChildList()) > 0:
-                g.write("      <childlist>\n")
                 for person in family.getChildList():
-                    write_ref(g,"child",person,4)
-                g.write("      </childlist>\n")
+                    write_ref(g,"child",person,3)
             if len(family.getAttributeList()) > 0:
                 for attr in family.getAttributeList():
                     g.write('      <attribute>\n')
-                    write_line(g,"attr_type",attr.getType(),5)
-                    write_line(g,"attr_value",attr.getValue(),5)
-                    dump_source_ref(g,attr.getSourceRef(),5)
-                    writeNote(g,"note",attr.getNote(),5)
+                    write_line(g,"attr_type",attr.getType(),4)
+                    write_line(g,"attr_value",attr.getValue(),4)
+                    dump_source_ref(g,attr.getSourceRef(),4)
+                    writeNote(g,"note",attr.getNote(),4)
                     g.write('      </attribute>\n')
             writeNote(g,"note",family.getNote(),3)
             g.write("    </family>\n")
