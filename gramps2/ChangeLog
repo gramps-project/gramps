@@ -1,4 +1,9 @@
 2003-11-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsCfg.py: Add comment about SUSE naming of gconf
+	* src/Relationship.py: detect a RuntimeError exception that occurs
+	when we exceed the recursion depth limit. This occurs when a 
+	relationship loop is detected
+	* src/gramps_main.py: handle relationship loop message
 	* src/gramps.py: handle python versions with broken setlocale()
 	* src/po/Makefile.am: don't pass -v to msgfmt
 
