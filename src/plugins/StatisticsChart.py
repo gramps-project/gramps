@@ -46,14 +46,13 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from ReportUtils import pt2cm
 import const                # gender and report type names
 from RelLib import Person   # need Person internals for getting gender / gender name
-import Utils
-import Report
 import BaseDoc
-import GenericFilter
+import Report
+import ReportUtils
 import ReportOptions
+import GenericFilter
 from DateHandler import displayer as _dd
 
 #------------------------------------------------------------------------
@@ -95,137 +94,61 @@ class Extract:
 
     def __init__(self):
         """Methods for extracting statistical data from the database"""
+	# key, non-localized name, localized name, type method, data method
         self.extractors = {
-            'data_title':  (self.title, "Titles", _("Titles")),
-            'data_fname':  (self.forename, "Forenames", _("Forenames")),
-            'data_byear':  (self.birth_year, "Birth years", _("Birth years")),
-            'data_dyear':  (self.death_year, "Death years", _("Death years")),
-            'data_bmonth': (self.birth_month, "Birth months", _("Birth months")),
-            'data_dmonth': (self.death_month, "Death months", _("Death months")),
-            'data_dage':   (self.death_age, "Estimated ages at death", _("Estimated ages at death")),
-            #'data_mage':  (self.marriage_age, "Estimated (first) marriage ages", _("Estimated (first) marriage ages")),
+            'data_title':  ("Titles", _("Titles"),
+			    self.get_person, self.get_title),
+            'data_fname':  ("Forenames", _("Forenames"),
+			    self.get_person, self.get_forename),
+            'data_gender': ("Genders", _("Genders"),
+			    self.get_person, self.get_gender),
+            'data_byear':  ("Birth years", _("Birth years"),
+			     self.get_birth, self.get_year),
+            'data_dyear':  ("Death years", _("Death years"),
+			     self.get_death, self.get_year),
+            'data_bmonth': ("Birth months", _("Birth months"),
+			    self.get_birth, self.get_month),
+            'data_dmonth': ("Death months", _("Death months"),
+			    self.get_death, self.get_month),
+            'data_dcause': ("Causes of death", _("Causes of death"),
+			     self.get_death, self.get_cause),
+            'data_bplace': ("Birth places", _("Birth places"),
+			    self.get_birth, self.get_place),
+            'data_dplace': ("Death places", _("Death places"),
+			     self.get_death, self.get_place),
+            #'data_mplace': (self.marriage_place, "Marriage place", _("Marriage place")),
             #'data_fchild': (self.first_child_age, "Estimated ages for bearing the first child", _("Estimated ages for bearing the first child")),
             #'data_lchild': (self.last_child_age, "Estimated Ages for bearing the last child", _("Estimated Ages for bearing the last child")),
             #'data_ccount': (self.child_count, "Number of children", _("Number of children")),
-            #'data_dcause': (self.death_cause, "Cause of death", _("Cause of death")),
-            #'data_bplace': (self.birth_place, "Birth place", _("Birth place")),
-            #'data_mplace': (self.marriage_place, "Marriage place", _("Marriage place")),
-            #'data_dplace': (self.death_place, "Death place", _("Death place")),
-            'data_gender': (self.gender, "Genders", _("Genders"))
+            #'data_mage':  (self.marriage_age, "Estimated (first) marriage ages", _("Estimated (first) marriage ages")),
+            'data_dage':   ("Estimated ages at death", _("Estimated ages at death"),
+			    self.get_person, self.get_death_age),
+            'data_age':   ("Estimated ages", _("Estimated ages"),
+			    self.get_person, self.get_person_age)
         }
 
-    def estimate_age(self, db, person, date):
-        """Utility method to estimate person's age at given date:
-        person -- person whose age is to be estimated
-        date -- date at which the age should be estimated
-        This expects that Person's birth and the date argument are
-        using the same calendar and that between those two dates
-        there haven't been any calendar discontinuations."""
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = db.get_event_from_handle(birth_handle).get_date_object()
-            if not (date.get_year_valid() and birth.get_year_valid()):
-                return _("Missing date(s)")
-        else:
-            return _("Missing date(s)")
+    # ----------------- data extraction methods --------------------
+    # take an object and return a list of strings
 
-        age = date.get_year() - birth.get_year()
-        if date.get_month_valid() and birth.get_month_valid():
-            if date.get_month() < birth.get_month():
-                age -= 1
-            elif (date.get_month() == birth.get_month() and
-                  date.get_day_valid() and birth.get_day_valid() and
-                  date.get_day() < birth.get_day()):
-                age -= 1
-        if age >= 0:
-            return str(age)
-        else:
-            return _("Invalid date(s)")
-
-    def title(self, db, person):
+    def get_title(self, person):
+	"return title for given person"
         title = person.get_primary_name().get_title()
         if title:
             return [title]
         else:
-            return [_("Person's missing (preferred) title")]
+            return [_("(Preferred) title missing")]
     
-    def forename(self, db, person):
+    def get_forename(self, person):
+	"return forenames for given person"
         # because this returns list, other methods return list too
         firstnames = person.get_primary_name().get_first_name().strip()
         if firstnames:
             return [name.capitalize() for name in firstnames.split()]
         else:
-            return [_("Person's missing (preferred) forename")]
-
-    def birth_year(self, db, person):
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = db.get_event_from_handle(birth_handle).get_date_object()
-            year = birth.get_year()
-            if year:
-                return [str(year)]
-        return [_("Person's missing birth year")]
-
-    def death_year(self, db, person):
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = db.get_event_from_handle(death_handle).get_date_object()
-            year = death.get_year()
-            if year:
-                return [str(year)]
-        return [_("Person's missing death year")]
+            return [_("(Preferred) forename missing")]
         
-    def birth_month(self, db, person):
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = db.get_event_from_handle(birth_handle).get_date_object()
-            month = birth.get_month()
-            if month:
-                _dd._months[month]
-                return [_dd._months[month]]
-        return [_("Person's missing birth month")]
-
-    def death_month(self, db, person):
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = db.get_event_from_handle(death_handle).get_date_object()
-            month = death.get_month()
-            if month:
-                return [_dd._months[month]]
-        return [_("Person's missing death month")]
-
-    def death_age(self, db, person):
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = db.get_event_from_handle(death_handle).get_date_object()
-            return [self.estimate_age(db, person, death)]
-        return [_("Missing date(s)")]
-
-    def marriage_age(self, db, person):
-        return "Marriage age stat unimplemented"
-
-    def marriage_place(self, db, person):
-        return "Marriage place stat unimplemented"
-
-    def first_child_age(self, db, person):
-        return "First child bearing age stat unimplemented"
-
-    def last_child_age(self, db, person):
-        return "Last child bearing age stat unimplemented"
-
-    def child_count(self, db, person):
-        return "Child count stat unimplemented"
-
-    def death_cause(self, db, person):
-        return "Death cause stat unimplemented"
-
-    def death_place(self, db, person):
-        return "Death place stat unimplemented"
-
-    def birth_place(self, db, person):
-        return "Birth place stat unimplemented"
-        
-    def gender(self, db, person):
+    def get_gender(self, person):
+	"return gender for given person"
         # TODO: why there's no Person.getGenderName?
         # It could be used by getDisplayInfo & this...
         if person.gender == Person.male:
@@ -236,14 +159,120 @@ class Extract:
             gender = const.unknown
         return [gender]
 
-    def get_person_data(self, db, person, collect):
+    def get_year(self, event):
+	"return year for given event"
+	date = event.get_date_object()
+	if date:
+            year = date.get_year()
+            if year:
+                return [str(year)]
+        return [_("Date missing/inaccurate")]
+        
+    def get_month(self, event):
+	"return month for given event"
+	date = event.get_date_object()
+	if date:
+            month = date.get_month()
+            if month:
+                return [_dd._months[month]]
+        return [_("Date missing/inaccurate")]
+
+    def get_cause(self, event):
+	"return cause for given event"
+	cause = event.get_cause()
+	if cause:
+	    return [cause]
+        return [_("Cause missing")]
+
+    def get_place(self, event):
+	"return place for given event"
+	place_handle = event.get_place_handle()
+	if place_handle:
+            place = self.db.get_place_from_handle(place_handle).get_title()
+	    if place:
+		return [place]
+        return [_("Place missing")]
+    
+    def get_person_age(self, person):
+	"return age for given person, if alive"
+	death = self.get_death(person)
+	if not death:
+            return self.estimate_age(person)
+        return [_("Dead")]
+
+    def get_death_age(self, person):
+	"return age at death for given person, if dead"
+	death = self.get_death(person)
+	if death:
+            return self.estimate_age(person)
+        return [_("Alive")]
+
+    def marriage_age(self, person):
+        return "TODO: Marriage age stat unimplemented"
+
+    def marriage_place(self, person):
+        return "TODO: Marriage place stat unimplemented"
+
+    def first_child_age(self, person):
+        return "TODO: First child bearing age stat unimplemented"
+
+    def last_child_age(self, person):
+        return "TODO: Last child bearing age stat unimplemented"
+
+    def child_count(self, person):
+        return "TODO: Child count stat unimplemented"
+
+    # ------------------- utility methods -------------------------
+
+    def estimate_age(self, person):
+        "return estimated age (range) for given person or error message"
+        age = ReportUtils.estimate_age(self.db, person)
+        if age[0] < 0 or age[1] < 0:
+            # inadequate information
+            return [_("Missing information")]
+        if age[0] == age[1]:
+            # exact year
+            return [str(age[0])]
+        else:
+            # minimum and maximum
+            return [str(age[0]) + "-" + str(age[1])]
+
+    # ------------------- type methods -------------------------
+    # take db and person and return suitable gramps object(s)
+
+    def get_person(self, person):
+	"return person"
+	return person
+
+    def get_birth(self, person):
+	"return birth event for given person or None"
+        birth_handle = person.get_birth_handle()
+        if birth_handle:
+            return self.db.get_event_from_handle(birth_handle)
+	return None
+    
+    def get_death(self, person):
+	"return death event for given person or None"
+	death_handle = person.get_death_handle()
+        if death_handle:
+            return self.db.get_event_from_handle(death_handle)
+	return None
+
+    # ----------------- data collection methods --------------------
+
+    def get_person_data(self, person, collect):
         """Adds data from the database to 'collect' for the given person,
            using methods rom the 'collect' data dict tuple
         """
         for chart in collect:
             # get the information
-            extract_func = chart[2]
-            value = extract_func(db, person)
+            type_func = chart[2]
+	    data_func = chart[3]
+            obj = type_func(person)	# e.g. get_date()
+	    if obj:
+		value = data_func(obj)	# e.g. get_year()
+	    else:
+		value = [_("Information missing")]
             # list of information found
             for key in value:
                 if key in chart[1].keys():
@@ -270,14 +299,15 @@ class Extract:
 	- Dict of values with their counts
 	(- Method)
         """
-	
+	self.db = db	# store for methods
+
         data = []
         ext = self.extractors
         # initialize data
         for key in options:
             if options[key] and key in self.extractors:
                 # localized data title, value dict and method
-                data.append((ext[key][2], {}, ext[key][0]))
+                data.append((ext[key][1], {}, ext[key][2], ext[key][3]))
         
         # go through the people and collect data
         for person_handle in filter_func.apply(db, db.get_person_handles(sort_handles=False)):
@@ -288,25 +318,23 @@ class Extract:
                 continue
         
             # check whether birth year is within required range
-            birth_handle = person.get_birth_handle()
-            if birth_handle:
-                birth = db.get_event_from_handle(birth_handle).get_date_object()
+	    birth = self.get_birth(person).get_date_object()
+	    if birth:
                 if birth.get_year_valid():
                     year = birth.get_year()
                     if not (year >= year_from and year <= year_to):
                         continue
                 else:
                     # if death before range, person's out of range too...
-                    death_handle = person.get_death_handle()
-                    if death_handle:
-                        death = db.get_event_from_handle(death_handle).get_date_object()
+		    death = self.get_death(person).get_date_object()
+		    if death:
                         if death.get_year_valid() and death.get_year() < year_from:
                             continue
                         if not no_years:
                             # do not accept people who are not known to be in range
                             continue
 
-            self.get_person_data(db, person, data)
+            self.get_person_data(person, data)
         return data
 
 # GLOBAL: required so that we get access to _Extract.extractors[]
@@ -347,11 +375,18 @@ class StatisticsChart(Report.Report):
 
         # title needs both data extraction method name + gender name
         if gender == Person.male:
-            genderstr = _("men")
+            genders = _("men")
         elif gender == Person.female:
-            genderstr = _("women")
+            genders = _("women")
         else:
-            genderstr = None
+            genders = None
+
+        # needed for keyword based localization
+        mapping = {
+            'genders': genders,
+            'year_from': year_from,
+            'year_to': year_to
+	}
 
         # extract requested items from the database and count them
         tables = _Extract.collect_data(database, filterfun, options,
@@ -364,14 +399,15 @@ class StatisticsChart(Report.Report):
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
             # document heading
-            if genderstr:
-                heading = "%s (%s): %04d-%04d" % (table[0], genderstr, year_from, year_to)
+            mapping['title'] = table[0]
+            if genders:
+                heading = "%(genders)s born %(year_from)04d-%(year_to)04d: %(title)s" % mapping
             else:
-                heading = "%s: %04d-%04d" % (table[0], year_from, year_to)
+                heading = "Persons born %(year_from)04d-%(year_to)04d: %(title)s" % mapping
             self.data.append((heading, table[1], lookup))
+	    # DEBUG
 	    print heading
 	    print table[1]
-	    print lookup
 	
         self.setup()
 
@@ -437,13 +473,14 @@ class StatisticsChart(Report.Report):
         self.doc.start_page()
         
         for data in self.data:
-            self.output_chart(data[0], data[1], data[3])
+            self.output_chart(data[0], data[1], data[2])
             
         self.doc.end_page()    
 
 
     def output_chart(self, title, data, lookup):
-        
+
+        pt2cm = ReportUtils.pt2cm
         font = self.doc.style_list['SC-Text'].get_font()
 
         # set layout variables
@@ -536,16 +573,18 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                                 ["Do not include", "Include"], True)
         }
         for key in _Extract.extractors:
-            self.options_help[key] = ("=0/1", _Extract.extractors[key][1],
-                                ["Leave this data out", "Include chart with this data"],
+            self.options_help[key] = ("=0/1", _Extract.extractors[key][0],
+                                ["Leave char with this data out", "Include chart with this data"],
                                 True)
 
+				
     def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
             'filter'    : 0,
         }
     
+	
     def make_default_style(self, default_style):
         """Make the default output style for the Statistics report."""
         f = BaseDoc.FontStyle()
@@ -566,6 +605,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         p.set_description(_("The style used for the title of the page."))
         default_style.add_style("SC-Title",p)
 
+	
     def get_report_filters(self, person):
         """Set up the list of possible content filters."""
     
@@ -594,6 +634,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 
         return [all, des, ans, com]
 
+    
     def add_user_options(self, dialog):
         """
         Override the base class add_user_options task to add
@@ -649,12 +690,12 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 
         # List of available charts on a separate option tab
 	idx = 0
-	half = len(_Extract.extractors)/2
+	half = (len(_Extract.extractors)+1)/2
         hbox = gtk.HBox()
         vbox = gtk.VBox()
         self.charts = {}
         for key in _Extract.extractors:
-            check = gtk.CheckButton(_Extract.extractors[key][2])
+            check = gtk.CheckButton(_Extract.extractors[key][1])
             check.set_active(self.options_dict[key])
             self.charts[key] = check
 	    vbox.add(check)
@@ -667,6 +708,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 	dialog.add_frame_option("Chart Selection", "", hbox, tip)
         hbox.show_all()
 
+	
     def parse_user_options(self, dialog):
         """
         Parses the custom options that we have added.
