@@ -64,12 +64,13 @@ pycode_tgts = [('fevent', 0, 0), ('fattr', 0, 1)]
 #-------------------------------------------------------------------------
 class Marriage:
 
-    def __init__(self,family,db,callback):
+    def __init__(self,family,db,callback,update):
         """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.db = db
         self.path = db.getSavePath()
         self.cb = callback
+        self.update_fv = update
         self.pmap = {}
 
         for key in db.getPlaceKeys():
@@ -499,6 +500,7 @@ class Marriage:
         self.update_lists()
         if self.lists_changed:
             Utils.modified()
+        self.update_fv(self.family)
 
     def on_add_clicked(self,obj):
         import EventEdit

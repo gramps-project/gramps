@@ -171,7 +171,8 @@ class FamilyView:
                try:
                    if self.selected_spouse:
                        Marriage.Marriage(self.family,self.parent.db,
-                                         self.parent.new_after_edit)
+                                         self.parent.new_after_edit,
+                                         self.load_family)
                    else:
                        AddSpouse.AddSpouse(self.parent.db,self.person,
                                            self.load_family,
