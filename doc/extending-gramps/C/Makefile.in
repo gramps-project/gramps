@@ -10,7 +10,7 @@ ${MANDIR}/index.html: ${MANSRC}
 	
 install:
 	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
-	-${INSTALL} ${EG}/*.html ${GNOMEHELP}/${EG}/C
+	-${INSTALL} -m 644 ${EG}/*.html ${GNOMEHELP}/${EG}/C
 
 uninstall:
 	-rm -f ${GNOMEHELP}/${EG}/C/*.html
