@@ -438,6 +438,7 @@
 			  <property name="has_frame">True</property>
 			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
+			  <signal name="focus_out_event" handler="on_givenName_focus_out_event" last_modification_time="Tue, 24 Jun 2003 13:35:15 GMT"/>
 			</widget>
 			<packing>
 			  <property name="left_attach">2</property>
@@ -723,6 +724,7 @@
 			      <property name="active">False</property>
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
+			      <signal name="toggled" handler="on_gender_activate" last_modification_time="Tue, 24 Jun 2003 13:34:54 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -742,6 +744,7 @@
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
 			      <property name="group">genderMale</property>
+			      <signal name="toggled" handler="on_gender_activate" last_modification_time="Tue, 24 Jun 2003 13:34:29 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -761,6 +764,7 @@
 			      <property name="inconsistent">False</property>
 			      <property name="draw_indicator">True</property>
 			      <property name="group">genderMale</property>
+			      <signal name="toggled" handler="on_gender_activate" last_modification_time="Tue, 24 Jun 2003 13:34:11 GMT"/>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>

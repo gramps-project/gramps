@@ -1016,6 +1016,11 @@ class Person(Persistent):
         self.lds_endow = None
         self.lds_seal = None
 
+        # We hold a reference to the GrampsDB so that we can maintain
+        # its genderStats.  It doesn't get set here, but from
+        # GenderStats.count_person.
+        self.db = None
+
     def getDisplayInfo(self):
         if self.gender == Person.male:
             gender = const.male
@@ -1033,8 +1038,15 @@ class Person(Persistent):
     def setPrimaryName(self,name):
         """sets the primary name of the Person to the specified
         Name instance"""
+        db = self.db
+        if db:
+            db.genderStats.uncount_person (self)
+
         self.PrimaryName = name
 	
+        if db:
+            db.genderStats.count_person (self, db)
+
     def getPrimaryName(self):
         """returns the Name instance marked as the Person's primary name"""
         if not self.PrimaryName:
@@ -1093,7 +1105,14 @@ class Person(Persistent):
 
     def setGender(self,val) :
         """sets the gender of the Person"""
+        db = self.db
+        if db:
+            db.genderStats.uncount_person (self)
+
         self.gender = val
+
+        if db:
+            db.genderStats.count_person (self, db)
 
     def getGender(self) :
         """returns the gender of the Person"""
@@ -1937,6 +1956,70 @@ class SourceRef(Persistent):
         """Creates a unique instance of the current note"""
         self.comments = Note(self.comments.get())
 
+class GenderStats:
+    def __init__ (self):
+        self.stats = {}
+
+    def _get_key (self, person):
+        name = person.getPrimaryName ().getFirstName ()
+        return self._get_key_from_name (name)
+
+    def _get_key_from_name (self, name):
+        return name.split (' ')[0].replace ('?', '')
+
+    def name_stats (self, name):
+        if self.stats.has_key (name):
+            return self.stats[name]
+        return (0, 0, 0)
+
+    def count_person (self, person, db, undo = 0):
+        # Let the Person do their own counting later
+        person.db = db
+
+        name = self._get_key (person)
+        if not name:
+            return
+
+        gender = person.getGender ()
+        (male, female, unknown) = self.name_stats (name)
+        if not undo:
+            increment = 1
+        else:
+            increment = -1
+
+        if gender == Person.male:
+            male += increment
+        elif gender == Person.female:
+            female += increment
+        elif gender == Person.unknown:
+            unknown += increment
+
+        self.stats[name] = (male, female, unknown)
+        return
+
+    def uncount_person (self, person):
+        return self.count_person (person, None, undo = 1)
+
+    def guess_gender (self, name):
+        name = self._get_key_from_name (name)
+        if not name or not self.stats.has_key (name):
+            return Person.unknown
+
+        (male, female, unknown) = self.stats[name]
+        if unknown == 0:
+            if male and not female:
+                return Person.male
+            if female and not male:
+                return Person.female
+
+        if male > (2 * female):
+            return Person.male
+
+        if female > (2 * male):
+            return Person.female
+
+        return Person.unknown
+
 class GrampsDB(Persistent):
     """GRAMPS database object. This object is a base class for other
     objects."""
@@ -1958,6 +2041,7 @@ class GrampsDB(Persistent):
         self.placeMap = {}
         self.new()
         self.added_files = []
+        self.genderStats = GenderStats ()
 
     def get_added_media_objects(self):
         return self.added_files
@@ -2075,6 +2159,7 @@ class GrampsDB(Persistent):
         self.bookmarks = []
         self.path = ""
         self.place2title = {}
+        self.genderStats = GenderStats ()
 
     def getSurnames(self):
         return self.surnames
@@ -2130,6 +2215,7 @@ class GrampsDB(Persistent):
 
     def setPersonMap(self,map):
         """sets the map of gramps's IDs to Person instances"""
+        # Should recalculate self.genderStats here.
         self.personMap = map
 
     def getPlaceMap(self):
@@ -2219,6 +2305,7 @@ class GrampsDB(Persistent):
         return map.keys()
 
     def removePerson(self,id):
+        self.genderStats.uncount_person (self.personMap[id])
         del self.personMap[id]
         del self.personTable[id]
 
@@ -2229,6 +2316,7 @@ class GrampsDB(Persistent):
     def addPersonAs(self,person):
         self.personMap[person.getId()] = person
         self.personTable[person.getId()] = person.getDisplayInfo()
+        self.genderStats.count_person (person, self)
         return person.getId()
     
     def addPerson(self,person):
@@ -2241,6 +2329,7 @@ class GrampsDB(Persistent):
         self.personMap[index] = person
         self.personTable[index] = person.getDisplayInfo()
         self.pmapIndex = self.pmapIndex + 1
+        self.genderStats.count_person (person, self)
         return index
 
     def findPerson(self,idVal,map):
@@ -2259,6 +2348,7 @@ class GrampsDB(Persistent):
             person = Person()
             map[idVal] = self.addPerson(person)
             self.personTable[map[idVal]] = person.getDisplayInfo()
+            self.genderStats.count_person (person, self)
         return person
 
     def findPersonNoMap(self,val):
@@ -2272,6 +2362,7 @@ class GrampsDB(Persistent):
             self.personMap[val] = person
             self.pmapIndex = self.pmapIndex+1
             self.personTable[val] = person.getDisplayInfo()
+            self.genderStats.count_person (person, self)
         return person
 
     def addPersonNoMap(self,person,id):
@@ -2282,6 +2373,7 @@ class GrampsDB(Persistent):
         self.personMap[id] = person
         self.pmapIndex = self.pmapIndex+1
         self.personTable[id] = person.getDisplayInfo()
+        self.genderStats.count_person (person, self)
         return id
 
     def addSource(self,source):

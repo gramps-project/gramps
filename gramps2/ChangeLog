@@ -1,3 +1,10 @@
+2003-06-24  Tim Waugh  <twaugh@redhat.com>
+	* src/GrampsParser.py: Use access methods rather than poking directly.
+	* src/RelLib.py: Keep statistics on gender distribution among first
+	names so that it can be used for guessing.
+	* src/edit_person.glade: More event handlers.
+	* src/EditPerson.py: Guess gender when appropriate.
+
 2003-06-23  Tim Waugh  <twaugh@redhat.com>
 	* src/NoteEdit.py: Use automatic scrolling policy, to fix scrolling.
 
