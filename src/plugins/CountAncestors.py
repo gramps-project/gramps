@@ -23,22 +23,36 @@
 
 "View/Number of ancestors"
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
-import Utils
 from gettext import gettext as _
-
-from gnome.ui import *
-import gtk
-import gtk.glade
 from sets import Set
 
-def report(database,person):
-    try:
-        CountAncestors(database,person)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
+import gtk.glade
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import Utils
+import const
+import Report
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class CountAncestors:
     
     def __init__(self,database,person):
@@ -98,11 +112,13 @@ class CountAncestors:
 #
 #-------------------------------------------------------------------------
 from Plugins import register_report
-
 register_report(
-    report,
-    _("Number of ancestors"),
-    category=_("View"),
-    description=_("Counts number of ancestors of selected person")
+    name = 'count_ancestors',
+    category = const.CATEGORY_VIEW,
+    report_class = CountAncestors,
+    options_class = None,
+    modes = Report.MODE_GUI,
+    translated_name = _("Number of ancestors"),
+    status = _("Beta"),
+    description= _("Counts number of ancestors of selected person")
     )
-
