@@ -1,3 +1,7 @@
+2004-09-13 Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py (event_info): Prevent constructions like
+	"died in before 1901" by playing safe if the mode is not exact.
+
 2004-09-11 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReadGedcom.py (parse_person_event): Use TYPE field as
 	the description of the event, if the event already has a name.
