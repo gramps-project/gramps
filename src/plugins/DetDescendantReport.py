@@ -48,8 +48,17 @@ from QuestionDialog import ErrorDialog
 import Report
 import BaseDoc
 import ReportOptions
+import ReportUtils
 import const
 from DateHandler import displayer as _dd
+from NameDisplay import displayer as _nd
+
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
+EMPTY_ENTRY = "_____________"
 
 #------------------------------------------------------------------------
 #
@@ -102,19 +111,29 @@ class DetDescendantReport(Report.Report):
         self.childRef      = options_class.handler.options_dict['desref']
         self.addImages     = options_class.handler.options_dict['incphotos']
 
-        self.genIDs = {}
-        self.prevGenIDs= {}
-        self.genKeys = []
+        self.gen_handles = {}
+        self.prev_gen_handles= {}
+        self.gen_keys = []
+
+        if self.blankDate:
+            self.EMPTY_DATE = EMPTY_ENTRY
+        else:
+            self.EMPTY_DATE = ""
+
+        if self.blankPlace:
+            self.EMPTY_PLACE = EMPTY_ENTRY
+        else:
+            self.EMPTY_PLACE = ""
 
     def apply_filter(self,person_handle,index,cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
             return 
         self.map[index] = person_handle
 
-        if len(self.genKeys) < cur_gen:
-            self.genKeys.append([index])
+        if len(self.gen_keys) < cur_gen:
+            self.gen_keys.append([index])
         else: 
-            self.genKeys[cur_gen-1].append(index)
+            self.gen_keys[cur_gen-1].append(index)
 
         person = self.database.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
@@ -124,200 +143,60 @@ class DetDescendantReport(Report.Report):
                 ix = max(self.map.keys())
                 self.apply_filter(child_handle, ix+1, cur_gen+1)
 
-    def calcAge(self, ind):
-        """ Calulate age
-        APHRASE=
-            at the age of NUMBER UNIT(S)
-        UNIT= year | month | day
-        UNITS= years | months | days
-        null
-        """
+    def write_report(self):
+        self.apply_filter(self.start_person.get_handle(),1)
 
-        birth_handle = ind.get_birth_handle()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle).get_date_object()
-            birth_year_valid = birth.get_year_valid()
-        else:
-            birth_year_valid = None
-        death_handle = ind.get_death_handle()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle).get_date_object()
-            death_year_valid = death.get_year_valid()
-        else:
-            death_year_valid = None
+        name = self.start_person.get_primary_name().get_regular_name()
 
-        the_text = ""
-        if birth_year_valid and death_year_valid:
-            age = death.get_year() - birth.get_year()
-            units = 3                          # year
-            if birth.get_month_valid() and death.get_month_valid():
-                if birth.get_month() > death.get_month():
-                    age = age -1
-                if birth.get_day_valid() and death.get_day_valid():
-                    if birth.get_month() == death.get_month() and birth.get_day() > death.get_day():
-                        age = age -1
-                    if age == 0:
-                        age = death.get_month() - birth.get_month()   # calc age in months
-                        if birth.get_day() > death.get_day():
-                            age = age - 1
-                            units = 2                        # month
-                        if age == 0:
-                            age = death.get-day() + 31 - birth.get_day() # calc age in days
-                            units = 1            # day
-            if age > 1:
-                if units == 1:
-                    the_text = _(" at the age of %d days") % age
-                elif units == 2:
-                    the_text = _(" at the age of %d months") % age
-                else:
-                    the_text = _(" at the age of %d years") % age
+        spouseName = ""
+        for family_handle in self.start_person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            if self.start_person.get_gender() == RelLib.Person.MALE:
+                spouse_handle = family.get_mother_handle()
             else:
-                if units == 1:
-                    the_text = _(" at the age of %d day") % age
-                elif units == 2:
-                    the_text = _(" at the age of %d month") % age
-                else:
-                    the_text = _(" at the age of %d year") % age
-        return the_text
+                spouse_handle = family.get_father_handle()
+            if spouse_handle:
+                spouse = self.database.get_person_from_handle(spouse_handle)
+                spouseName = _nd.display(spouse)
 
-    def write_children(self, family):
-        """ List children
-            Statement formats:
-                Child of MOTHER and FATHER is:
-                Children of MOTHER and FATHER are:
+        self.doc.start_paragraph("DDR-Title")
+        if spouseName:
+            name = _("%(spouse_name)s and %(person_name)s") % {
+                    'spouse_name' : spouseName, 'person_name' : name }
 
-                NAME Born: DATE PLACE Died: DATE PLACE          f
-                NAME Born: DATE PLACE Died: DATE                e
-                NAME Born: DATE PLACE Died: PLACE               d
-                NAME Born: DATE PLACE                           c
-                NAME Born: DATE Died: DATE PLACE                b
-                NAME Born: DATE Died: DATE                      a
-                NAME Born: DATE Died: PLACE                     9
-                NAME Born: DATE                                 8
-                NAME Born: PLACE Died: DATE PLACE               7
-                NAME Born: PLACE Died: DATE                     6
-                NAME Born: PLACE Died: PLACE                    5
-                NAME Born: PLACE                                4
-                NAME Died: DATE                                 2
-                NAME Died: DATE PLACE                           3
-                NAME Died: PLACE                                1
-                NAME                                            0
-        """
+        title = _("Detailed Descendant Report for %(person_name)s") % {
+                    'person_name' : name }
+        self.doc.write_text(title)
+        self.doc.end_paragraph()
 
-        num_children = len(family.get_child_handle_list())
-        if num_children:
-            self.doc.start_paragraph("DDR-ChildTitle")
-            mother_handle = family.get_mother_handle()
-            if mother_handle:
-                mother = self.database.get_person_from_handle(mother_handle).get_primary_name().get_regular_name()
-            else:
-                mother = _("unknown")
-            father_handle = family.get_father_handle()
-            if father_handle:
-                father = self.database.get_person_from_handle(father_handle).get_primary_name().get_regular_name()
-            else:
-                father = _("unknown")
-            self.doc.start_bold()
-            if num_children == 1:
-                self.doc.write_text(_("Child of %s and %s is:") % (mother, father))
-            else:
-                self.doc.write_text(_("Children of %s and %s are:") % (mother, father))
-            self.doc.end_bold()
+        keys = self.map.keys()
+        keys.sort()
+        generation = 0
+        need_header = 1
+
+        for generation in xrange(len(self.gen_keys)):
+            if self.pgbrk and generation > 0:
+                self.doc.page_break()
+            self.doc.start_paragraph("DDR-Generation")
+            text = self.gen.get(generation+1,
+                        _("Generation %(generation_number)d") % {
+                                'generation_number' : generation })
+            self.doc.write_text(text)
             self.doc.end_paragraph()
+            if self.childRef:
+                self.prev_gen_handles = self.gen_handles.copy()
+                self.gen_handles.clear()
 
-            for child_handle in family.get_child_handle_list():
-                child = self.database.get_person_from_handle(child_handle)
-                self.doc.start_paragraph("DDR-ChildList")
-                name = child.get_primary_name().get_regular_name()
-                birth_handle = child.get_birth_handle()
-                death_handle = child.get_death_handle()
-                if self.childRef:
-                    if self.prevGenIDs.get(child_handle) != None:
-                        name= "[" + str(self.prevGenIDs.get(child_handle)) + "] "+ name
-
-                if birth_handle:
-                    birth = self.database.get_event_from_handle(birth_handle)
-                else:
-                    birth = None
-
-                if death_handle:
-                    death = self.database.get_event_from_handle(death_handle)
-                else:
-                    death = None
-
-                if birth and birth.get_date():
-                    if birth.get_place_handle():
-                        bplace = self.database.get_place_from_handle(birth.get_place_handle()).get_title()
-                        if death and death.get_date():
-                            if death.get_place_handle():
-                                dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                                self.doc.write_text(_("- %s Born: %s %s Died: %s %s") % \
-                                    (name, birth.get_date(), bplace,
-                                     death.get_date(), dplace))  # f
-                            else:
-                                self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
-                                    (name, birth.get_date(), bplace,
-                                     death.get_date()))                    # e
-                        elif death and death.get_place_handle():
-                            dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                            self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
-                                (name, birth.get_date(), bplace,
-                                 dplace))                   # d
-                        else:   self.doc.write_text(_("- %s Born: %s %s") % \
-                                    (name, birth.get_date(), bplace)) # c
-                    else:
-                        if death and death.get_date():
-                            if death.get_place_handle():
-                                dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                                self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
-                                    (name, birth.get_date(), death.get_date(), \
-                                     dplace))                    # b
-                            else:
-                                self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.get_date(), death.get_date())) # a
-                        elif death and death.get_place_handle():
-                            dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                            self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                (name, birth.get_date(), dplace)) # 9
-                        else:
-                            self.doc.write_text(_("- %s Born: %s") % \
-                                (name, birth.get_date()))               # 8
-                else:
-                    if birth and birth.get_place_handle():
-                        bplace = self.database.get_place_from_handle(birth.get_place_handle()).get_title()
-                        if death and death.get_date():
-                            if death.get_place_handle():
-                                dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                                self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
-                                    (name, bplace,                  \
-                                     death.get_date(), dplace))  # 7
-                            else:
-                                self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, bplace, death.get_date())) # 6
-                        elif death and death.get_place_handle():
-                            dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                            self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                (name, bplace, dplace)) # 5
-                        else:
-                            self.doc.write_text(_("- %s Born: %s") % \
-                                (name, bplace))             # 4
-                    else:
-                        if death and death.get_date():
-                            if death.get_place_handle():
-                                dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                                self.doc.write_text(_("- %s Died: %s %s") % \
-                                    (name, death.get_date(), dplace)) # 3
-                            else:
-                                self.doc.write_text(_("- %s Died: %s") % \
-                                    (name, death.get_date()))               # 2
-                        elif death and death.get_place_handle():
-                            dplace = self.database.get_place_from_handle(death.get_place_handle()).get_title()
-                            self.doc.write_text(_("- %s Died: %s") % \
-                                (name, dplace)) # 1
-                        else:
-                            self.doc.write_text(_("- %s") % name)          # 0
-
-                self.doc.end_paragraph()
+            for key in self.gen_keys[generation]:
+                person_handle = self.map[key]
+                person = self.database.get_person_from_handle(person_handle)
+                self.gen_handles[person_handle] = key
+                dupPerson = self.write_person(key)
+                if dupPerson == 0:		# Is this a duplicate ind record
+                    if self.listChildren:
+                        for family_handle in person.get_family_handle_list():
+                            family = self.database.get_family_from_handle(family_handle)
+                            self.write_children(family)
 
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
@@ -325,11 +204,11 @@ class DetDescendantReport(Report.Report):
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
         if self.addImages:
-            self.insert_images(person)
+            ReportUtils.insert_images(self.database,self.doc,person)
 
         self.doc.start_paragraph("DDR-First-Entry","%s." % str(key))
 
-        name = person.get_primary_name().get_regular_name()
+        name = _nd.display(person)
 
         if self.firstName:
             firstName = person.get_primary_name().get_first_name()
@@ -357,8 +236,22 @@ class DetDescendantReport(Report.Report):
         # Check birth record
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            self.write_birth(person)
-        self.write_death(person, firstName)
+            text = ReportUtils.born_str(self.database,person,"",
+                        self.EMPTY_DATE,self.EMPTY_PLACE)
+            if text:
+                self.doc.write_text(text)
+        if person.get_death_handle():
+            age,units = self.calc_age(person)
+            text = ReportUtils.died_str(self.database,person,firstName,
+                        self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
+            if text:
+                self.doc.write_text(text)
+
+        text = ReportUtils.buried_str(self.database,person,firstName,
+                    self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
+
         self.write_parents(person, firstName)
         self.write_marriage(person)
         self.doc.end_paragraph()
@@ -375,417 +268,163 @@ class DetDescendantReport(Report.Report):
 
         return 0		# Not duplicate person
 
-    def write_birth(self, person):
-        """ Check birth record
-            Statement formats name precedes this
-               was born on DATE.
-               was born on ________.
-               was born on Date in Place.
-               was born on ________ in PLACE.
-               was born in ____________.
-               was born in the year YEAR.
-               was born in PLACE.
-               was born in ____________.
-        """
-
-        birth_handle = person.get_birth_handle()
-        if birth_handle:
-            birth = self.database.get_event_from_handle(birth_handle)
-            date_obj = birth.get_date_object()
-            date_txt = birth.get_date()
-            if birth.get_place_handle():
-                place = self.database.get_place_from_handle(birth.get_place_handle()).get_title()
-                if place[-1:] == '.':
-                    place = place[:-1]
-            elif self.blankDate:
-                place = "______________"
-            else:
-                place = ""
-
-            if date_txt:
-                if date_obj.get_day_valid() and date_obj.get_month_valid() and \
-                        self.fullDate:
-                    if place:
-                        self.doc.write_text(_(" was born on %s in %s.") % (date_txt, place))
-                    else:
-                        self.doc.write_text(_(" was born on %s.") % date_txt )
-                elif place:
-                    self.doc.write_text(_(" was born in the year %s in %s.") % \
-                          (date_obj.get_year(), place))
-                else:
-                    self.doc.write_text(_(" was born in the year %s.") % date_obj.get_year())
-            elif place:
-                self.doc.write_text(_(" was born in %s.") % place)
-            else:
-                self.doc.write_text(_("."))
-
-    def write_death(self, person, firstName):
-        """ Write obit sentence
-        Statement format: DPHRASE APHRASE BPHRASE
-        DPHRASE=
-            FIRSTNAME died on FULLDATE in PLACE
-            FIRSTNAME died on FULLDATE
-            FIRSTNAME died in PLACE
-            FIRSTNAME died on FULLDATE in PLACE
-            FIRSTNAME died in YEAR in PLACE
-            FIRSTNAME died in YEAR
-
-        APHRASE=           see calcAge
-            at the age of NUMBER UNIT(S)
-            null
-
-            where
-            UNIT= year | month | day
-            UNITS= years | months | days
-
-        BPHRASE=
-            , and was buried on FULLDATE in PLACE.
-            , and was buried on FULLDATE.
-            , and was buried in PLACE.
-            .
-        """
-        t1 = ""
-        death_handle = person.get_death_handle()
-        if death_handle:
-            death = self.database.get_event_from_handle(death_handle)
-            date_obj = death.get_date_object()
-            date_txt = death.get_date()
-            place_handle = death.get_place_handle()
-            if place_handle:
-                place = self.database.get_place_from_handle(place_handle).get_title()
-                if place[-1:] == '.':
-                    place = place[:-1]
-            elif self.blankPlace:
-                place = "_____________"
-            else:
-                place = ""
-
-            if date_txt:
-                if date_obj.get_day() and date_obj.get_month() and \
-                            self.fullDate:
-                    fulldate = date_txt
-                elif date_obj.get_month() and self.fullDate:
-                    fulldate = "%s %s" % (date_obj.get_month(), date_obj.get_year())
-                else:
-                    fulldate = ""
-            elif self.blankDate:
-                fulldate = "_____________"
-            else:
-                fulldate = ""
-
-            if fulldate:
-                if place:
-                    t1 = _("  %s died on %s in %s") % (firstName, fulldate, place)
-                else:
-                    t1 = _("  %s died on %s") % (firstName, fulldate)
-            elif date_obj.get_year() > 0:
-                if place:
-                    t1 = _("  %s died in %s in %s") % (firstName, date_obj.get_year(), place)
-                else:
-                    t1 = _("  %s died in %s") % (firstName, date_obj.get_year())
-            elif place:
-                t1 = _("  %s died in %s") % (firstName, place)
-
-            if self.calcAgeFlag:
-                t1 = t1 + self.calcAge(person)
-
-        t2 = ""
-        event_list = person.get_event_list()
-        for event_handle in event_list:
-            if event_handle:
-                event = self.database.get_event_from_handle(event_handle)
-                if event.get_name() == "Burial":
-                    burial = event
-                    break
-        else:
-            burial = None
-
-        if burial:
-            place = ""
-            if burial.get_place_handle():
-                place = self.database.get_place_from_handle(burial.get_place_handle())
-            elif self.blankPlace:
-                place = "____________"
-            
-            if place[-1:] == '.':
-                place = place[:-1]
-
-            fulldate = ""
-            date_obj = burial.get_date_object()
-            if date_obj:
-                if date_obj.get_day_valid() and date_obj.get_month_valid() and \
-                                self.fullDate:
-                    fulldate = burial.get_date()
-            elif self.blankDate:
-                fulldate= "___________"
-
-            if fulldate and place:
-                t2 = _(" and %s was buried on %s in %s") % (firstName, fulldate, place)
-            elif fulldate and not place:
-                t2 = _(" and %s was buried on %s") % (firstName, fulldate)
-            elif not fulldate and place:
-                t2 = _(" and %s was buried in %s") % (firstName, place)
-
-        t = t1 + t2
-        if t:
-            self.doc.write_text(t)
-            self.doc.write_text(".")
-
     def write_parents(self, person, firstName):
-        """ Ouptut parents sentence
-        Statement format:
+        """ Ouptut parents sentence"""
 
-        FIRSTNAME is the son of FATHER and MOTHER.
-        FIRSTNAME is the son of FATHER.
-        FIRSTNAME is the son of MOTHER.
-        FIRSTNAME is the daughter of FATHER and MOTHER.
-        FIRSTNAME is the daughter of FATHER.
-        FIRSTNAME is the daughter of MOTHER.
-        """
-        ext_family_handle = person.get_main_parents_family_handle()
-        if ext_family_handle:
-            ext_family = self.database.get_family_from_handle(ext_family_handle)
-            father_handle = ext_family.get_father_handle()
-            if father_handle:
-                father = self.database.get_person_from_handle(father_handle).get_primary_name().get_regular_name()
-            else:
-                father = ""
-            mother_handle = ext_family.get_father_handle()
+        family_handle = person.get_main_parents_family_handle()
+        if family_handle:
+            family = self.database.get_family_from_handle(family_handle)
+            mother_handle = family.get_mother_handle()
+            father_handle = family.get_father_handle()
             if mother_handle:
-                mother = self.database.get_person_from_handle(mother_handle).get_primary_name().get_regular_name()
+                mother = self.database.get_person_from_handle(mother_handle)
+                mother_name = mother.get_primary_name().get_regular_name()
             else:
-                mother = ""
-
-            if father or mother:
-                if person.get_gender() == RelLib.Person.MALE:
-                    if father:
-                        if mother:
-                            self.doc.write_text(_(" %s is the son of %s and %s.") % \
-                                (firstName, father, mother))
-                        else:
-                            self.doc.write_text(_(" %s is the son of %s.") % \
-                                (firstName, father))
-                    else:
-                        self.doc.write_text(_(" %s is the son of %s.") % \
-                                (firstName, mother))
-                else:
-                    if father:
-                        if mother:
-                            self.doc.write_text(_(" %s is the daughter of %s and %s.") % \
-                                (firstName, father, mother))
-                        else:
-                            self.doc.write_text(_(" %s is the daughter of %s.") % \
-                                (firstName, father))
-                    else:
-                        self.doc.write_text(_(" %s is the daughter of %s.") % \
-                                (firstName, mother))
-
+                mother_name = ""
+            if father_handle:
+                father = self.database.get_person_from_handle(father_handle)
+                father_name = father.get_primary_name().get_regular_name()
+            else:
+                father_name = ""
+                
+            text = ReportUtils.child_str(person,firstName,
+                                father_name,mother_name,
+                                bool(person.get_death_handle()))
+            if text:
+                self.doc.write_text(text)
 
     def write_marriage(self, person):
-        """ Output marriage sentence
-        HE/SHE married SPOUSE on FULLDATE in PLACE.
-        HE/SHE married SPOUSE on FULLDATE.
-        HE/SHE married SPOUSE in PLACE.
-        HE/SHE married SPOUSE
+        """ Output marriage sentence"""
+
+        is_first = True
+        for family_handle in person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            spouse_handle = ReportUtils.find_spouse(person,family)
+            spouse = self.database.get_person_from_handle(spouse_handle)
+            marriage_event = ReportUtils.find_marriage(self.database,family)
+            text = ""
+            if marriage_event:
+                text = ReportUtils.married_str(self.database,person,spouse,
+                                            marriage_event,None,
+                                            self.EMPTY_DATE,self.EMPTY_PLACE,
+                                            is_first)
+            else:
+                text = ReportUtils.married_rel_str(self.database,person,family,
+                                            is_first)
+            if text:
+                self.doc.write_text(text)
+                is_first = False
+
+    def write_children(self, family):
+        """ List children.
         """
-        famList = person.get_family_handle_list()
-        for fam_num in range(len(famList)):
-            fam_id = famList[fam_num]
-            fam = self.database.get_family_from_handle(fam_id)
-            spouse = ""
-            t = ""
-            if person.get_gender() == RelLib.Person.MALE:
-                mother_handle = fam.get_mother_handle()
-                if mother_handle:
-                    spouse = self.database.get_person_from_handle(mother_handle).get_primary_name().get_regular_name()
-                if fam_num == 0:
-                    heshe = _(" He")
-                elif fam_num < len(famList)-1:
-                    heshe = _(",")
-                else:
-                    heshe = _(" and he")
-            else:
-                if fam_num == 0:
-                    heshe = _(" She")
-                elif fam_num < len(famList)-1:
-                    heshe = _(",")
-                else:
-                    heshe = _(" and she")
 
-                father_handle = fam.get_father_handle()
-                if father_handle:
-                    spouse = self.database.get_person_from_handle(father_handle).get_primary_name().get_regular_name()
+        if not family.get_child_handle_list():
+            return
 
-            for event_handle in fam.get_event_list():
-                if event_handle:
-                    event = self.database.get_event_from_handle(event_handle)
-                    if event.get_name() == "Marriage":
-                        marriage = event
-                        break
-            else:
-                marriage = None
+        mother_handle = family.get_mother_handle()
+        if mother_handle:
+            mother = self.database.get_person_from_handle(mother_handle)
+            mother_name = _nd.display(mother)
+        else:
+            mother_name = _("unknown")
 
-            fulldate = ""
-            place = ""
-            if marriage:
-                if marriage.get_place_handle():
-                    place = self.database.get_place_from_handle(marriage.get_place_handle()).get_title()
-                elif self.blankPlace:
-                    place = "____________"
+        father_handle = family.get_father_handle()
+        if father_handle:
+            father = self.database.get_person_from_handle(father_handle)
+            father_name = _nd.display(father)
+        else:
+            father_name = _("unknown")
 
-                date_obj = marriage.get_date_object()
-                if date_obj:
-                    if date_obj.get_year_valid():
-                        if date_obj.get_day_valid() and date_obj.get_month_valid() and \
-                                    self.fullDate:
-                            fulldate = marriage.get_date()
-                        elif self.blankDate:
-                            fulldate = "__________"
+        self.doc.start_paragraph("DDR-ChildTitle")
+        self.doc.start_bold()
+        self.doc.write_text(_("Children of %s and %s are:") % 
+                                        (mother_name,father_name))
+        self.doc.end_bold()
+        self.doc.end_paragraph()
 
-            if fam.get_relationship() == RelLib.Family.MARRIED:
-                if spouse:
-                    if not fulldate and not place:
-                        t = _("%s married %s") % (heshe, spouse)
-                    elif not fulldate and place:
-                        t = _("%s married %s in %s") % (heshe, spouse, place)
-                    elif fulldate and not place:
-                        t = _("%s married %s on %s") % (heshe, spouse, fulldate)
-                    else:
-                        t = _("%s married %s on %s in %s") % \
-                            (heshe, spouse, fulldate, place)
-                else:
-                    if not fulldate and not place:
-                        t = _("%s married") % heshe
-                    elif not fulldate and place:
-                        t = _("%s married in %s") % (heshe, place)
-                    elif fulldate and not place:
-                        t = _("%s married on %s") % (heshe, fulldate)
-                    else: 
-                        t = _("%s married on %s in %s") % \
-                            (heshe, fulldate, place)
-            else: # Not a marriage
-                if spouse != "":
-                    t = _("%s had a relationship with %s") % (heshe, spouse)
-                else:
-                    t = _("%s had a relationship with") % heshe
+        for child_handle in family.get_child_handle_list():
+            self.doc.start_paragraph("DDR-ChildList")
+            child = self.database.get_person_from_handle(child_handle)
+            child_name = _nd.display(child)
 
-            if t != "":
-                self.doc.write_text(t)
-                if fam_num == len(famList)-1:
-                    self.doc.write_text(".")
+            if self.childRef and self.prev_gen_handles.get(child_handle):
+                child_name = "[%s] %s" % (
+                            str(self.prev_gen_handles.get(child_handle)),
+                            child_name)
 
-    def write_mate(self, person):
+            text = ReportUtils.list_person_str(self.database,child,child_name)
+            self.doc.write_text(text)
+
+            self.doc.end_paragraph()
+
+    def write_mate(self, mate):
         """Output birth, death, parentage, marriage and notes information """
-
-        for fam_id in person.get_family_handle_list():
-            fam = self.database.get_family_from_handle(fam_id)
-            mate = ""
-            if person.get_gender() == RelLib.Person.MALE:
+        for family_handle in mate.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            person_name = ""
+            ind_handle = None
+            if mate.get_gender() == RelLib.Person.MALE:
+                ind_handle = family.get_mother_handle()
                 heshe = _("She")
-                mother_handle = fam.get_mother_handle()
-                if mother_handle:
-                    mate = self.database.get_person_from_handle(mother_handle)
-                    mateName = mate.get_primary_name().get_regular_name()
-                    mateFirstName = mate.get_primary_name().get_first_name()
             else:
                 heshe = _("He")
-                father_handle = fam.get_father_handle()
-                if father_handle:
-                    mate = self.database.get_person_from_handle(father_handle)
-                    mateName = mate.get_primary_name().get_regular_name()
-                    mateFirstName = mate.get_primary_name().get_first_name()
+                ind_handle = family.get_father_handle()
+            if ind_handle:
+                ind = self.database.get_person_from_handle(ind_handle)
+                person_name = _nd.display(ind)
+                firstName = ind.get_primary_name().get_first_name()
 
-            if mate:
+            if person_name:
                 if self.addImages:
-                    self.insert_images(mate)
+                    ReportUtils.insert_images(self.database,self.doc,ind)
 
                 self.doc.start_paragraph("DDR-Entry")
 
                 if not self.firstName:
-                    mateFirstName = heshe
+                    firstName = heshe
 
-                self.doc.write_text(mateName)
-                self.write_birth(mate)
-                self.write_death(mate, mateFirstName)
-                self.write_parents(mate, mateFirstName)
+                self.doc.write_text(person_name)
+
+                text = ReportUtils.born_str(self.database,ind,"",
+                    self.EMPTY_DATE,self.EMPTY_PLACE)
+                if text:
+                    self.doc.write_text(text)
+
+                age,units = self.calc_age(ind)
+                text = ReportUtils.died_str(self.database,ind,heshe,
+                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
+                if text:
+                    self.doc.write_text(text)
+                
+                text = ReportUtils.buried_str(self.database,ind,heshe,
+                        self.EMPTY_DATE,self.EMPTY_PLACE)
+                if text:
+                    self.doc.write_text(text)
+
+                self.write_parents(ind, firstName)
+
                 self.doc.end_paragraph()
 
+                if self.listChildren \
+                           and mate.get_gender() == RelLib.Person.MALE:
+                    self.write_children(family)
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
-    def insert_images(self, person):
-
-        photos = person.get_media_list()
-        for photo in photos :
-            object_handle = photo.get_reference_handle()
-            object = self.database.get_object_from_handle(object_handle)
-            if object.get_mime_type()[0:5] == "image":
-                file = object.get_path()
-                self.doc.add_media_object(file,"row",4.0,4.0)
-
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
-    def write_report(self):
-        self.cur_gen= 1
-        self.apply_filter(self.start_person.get_handle(),1)
-
-        name = self.start_person.get_primary_name().get_regular_name()
-
-        famList = self.start_person.get_family_handle_list()
-        spouseName= ""
-        if len(famList):
-            for fam_id in famList:
-                fam = self.database.get_family_from_handle(fam_id)
-                if self.start_person.get_gender() == RelLib.Person.MALE:
-                    mother_handle = fam.get_mother_handle()
-                    if mother_handle:
-                        spouseName = self.database.get_person_from_handle(mother_handle).get_primary_name().get_first_name()
-                else:
-                    father_handle = fam.get_father_handle()
-                    if father_handle:
-                        spouseName = self.database.get_person_from_handle(father_handle).get_primary_name().get_first_name()
-
-        self.doc.start_paragraph("DDR-Title")
-        if spouseName:
-            name = spouseName + _(" and ") + name
-
-        title = _("Detailed Descendant Report for %s") % name
-        self.doc.write_text(title)
-        self.doc.end_paragraph()
-
-        keys = self.map.keys()
-        keys.sort()
-        generation = 0
-        need_header = 1
-
-        for generation in xrange(len(self.genKeys)):
-            if self.pgbrk and generation > 0:
-                self.doc.page_break()
-            self.doc.start_paragraph("DDR-Generation")
-            t = _("%s Generation") % DetDescendantReport.gen[generation+1]
-            self.doc.write_text(t)
-            self.doc.end_paragraph()
-            if self.childRef:
-                self.prevGenIDs= self.genIDs.copy()
-                self.genIDs.clear()
-
-
-            for key in self.genKeys[generation]:
-                person_handle = self.map[key]
-                person = self.database.get_person_from_handle(person_handle)
-                self.genIDs[person_handle]= key
-                dupPerson= self.write_person(key)
-                if dupPerson == 0:		# Is this a duplicate ind record
-                    if self.listChildren:
-                        for family_handle in person.get_family_handle_list():
-                            family = self.database.get_family_from_handle(family_handle)
-                            self.write_children(family)
+    def calc_age(self,ind):
+        """
+        Calulate age. 
+        
+        Returns a tuple (age,units) where units is an integer representing
+        time units:
+            no age info:    0
+            years:          1
+            months:         2
+            days:           3
+        """
+        if self.calcAgeFlag:
+            return ReportUtils.old_calc_age(self.database,ind)
+        else:
+            return (0,0)
 
 #------------------------------------------------------------------------
 #
