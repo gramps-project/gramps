@@ -21,8 +21,6 @@
 "People who were adopted"
 
 import Filter
-import string
-import utils
 from RelLib import Person
 import intl
 _ = intl.gettext

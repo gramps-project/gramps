@@ -827,10 +827,12 @@ def goto_active_person():
         pos = id2col[active_person]
         column = person_list.find_row_from_data(pos)
         if column != -1:
+            person_list.unselect_all()
             person_list.select_row(column,0)
             person_list.moveto(column)
     else:
         if person_list.rows > 0:
+            person_list.unselect_all()
             person_list.select_row(0,0)
             person_list.moveto(0)
             person,alt = person_list.get_row_data(0)

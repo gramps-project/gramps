@@ -21,8 +21,6 @@
 "People with children"
 
 import Filter
-import string
-import utils
 import intl
 _ = intl.gettext
 

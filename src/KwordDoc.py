@@ -27,16 +27,15 @@ import os
 import gzip
 from TarFile import TarFile
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def sizes(val):
-    mm = val*10
-    inch = val/2.54
-    points = int(inch*72)
-    return (points,utils.fl2txt("%.6f",mm),utils.fl2txt("%.6f",inch))
+try:
+    import PIL.Image
+    no_pil = 0
+except:
+    no_pil = 1
+
+def points(val):
+    inch = float(val)/2.54
+    return (int(inch*72))
     
 #------------------------------------------------------------------------
 #
@@ -46,7 +45,7 @@ def sizes(val):
 class KwordDoc(TextDoc):
 
     def open(self,filename):
-        self.photolist = []
+        self.photo_list = []
         
         if filename[-4:] != ".kwd":
             self.filename = filename + ".kwd"
@@ -79,9 +78,11 @@ class KwordDoc(TextDoc):
         self.m.write('</about>\n')
         self.m.write('</document-info>\n')
 
-        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.f.write('<DOC editor="KWord" mime="application/x-kword" ')
-        self.f.write('syntaxVersion="1">\n')
+        self.f.write('<?xml version="1.0" encoding="UTF-8"?>')
+        self.f.write('<!DOCTYPE DOC >')
+        self.f.write('<DOC mime="application/x-kword" syntaxVersion="2" ')
+        self.f.write('editor="KWord" >\n')
+        self.mtime = time.time()
 
         if self.paper.name == "A3":
             self.f.write('<PAPER format="0" ')
@@ -98,49 +99,63 @@ class KwordDoc(TextDoc):
         else:
             self.f.write('<PAPER format="6" ')
 
-        self.f.write('ptWidth="%d" mmWidth ="%s" inchWidth ="%s" ' % sizes(self.width))
-        self.f.write('ptHeight="%d" mmHeight="%s" inchHeight="%s" ' % sizes(self.height))
+        self.f.write('width="%d" ' % points(self.width))
+        self.f.write('height="%d" ' % points(self.height))
         if self.orientation == PAPER_PORTRAIT:
             self.f.write('orientation="0" ')
         else:
             self.f.write('orientation="1" ')
         self.f.write('columns="1" ')
-        self.f.write('ptColumnspc="2" ')
-        self.f.write('mmColumnspc="1" ')
-        self.f.write('inchColumnspc="0.0393701" ')
+        self.f.write('columnspacing="2.83" ')
         self.f.write('hType="0" ')
         self.f.write('fType="0" ')
-        self.f.write('ptHeadBody="9" ')
-        self.f.write('ptFootBody="9" ')
-        self.f.write('mmHeadBody="3.5" ')
-        self.f.write('mmFootBody="3.5" ')
-        self.f.write('inchHeadBody="0.137795" ')
-        self.f.write('inchFootBody="0.137795">\n')
+        self.f.write('spHeadBody="9" ')
+        self.f.write('spFootBody="9">\n')
         self.f.write('<PAPERBORDERS ')
-        self.f.write('ptTop="%d" mmTop="%s" inchTop="%s" ' % sizes(self.tmargin))
-        self.f.write('ptRight="%d" mmRight="%s" inchRight="%s" ' % sizes(self.rmargin))
-        self.f.write('ptBottom="%d" mmBottom="%s" inchBottom="%s"\n' % sizes(self.bmargin))
-        self.f.write('ptLeft="%d" mmLeft="%s" inchLeft="%s"/>' % sizes(self.lmargin))
+        self.f.write('top="%d" ' % points(self.tmargin))
+        self.f.write('right="%d" ' % points(self.rmargin))
+        self.f.write('bottom="%d" ' % points(self.bmargin))
+        self.f.write('left="%d"/>' % points(self.lmargin))
         self.f.write('</PAPER>\n')
         self.f.write('<ATTRIBUTES processing="0" ')
         self.f.write('standardpage="1" ')
+        self.f.write('hasTOC="0" ')
         self.f.write('hasHeader="0" ')
         self.f.write('hasFooter="0" ')
         self.f.write('unit="mm"/>\n')
         self.f.write('<FRAMESETS>\n')
         self.f.write('<FRAMESET frameType="1" ')
         self.f.write('frameInfo="0" ')
-        self.f.write('removable="0" ')
-        self.f.write('visible="1" ')
         self.f.write('name="Frameset 1">\n')
-        self.f.write('<FRAME left="28" ')
-        self.f.write('top="42" ')
-        self.f.write('right="566" ')
-        self.f.write('bottom="798" ')
+        self.f.write('<FRAME left="%d" ' % points(self.lmargin))
+        self.f.write('top="%d" ' % points(self.tmargin))
+        self.f.write('right="%d" ' % points(self.width-self.rmargin))
+        self.f.write('bottom="%d" ' % points(self.height-self.bmargin))
         self.f.write('runaround="1" />\n')
 
     def close(self):
         self.f.write('</FRAMESET>\n')
+        for p in self.photo_list:
+            self.f.write('<FRAMESET frameType="2" frameInfo="0" ')
+            self.f.write('name="%s" visible="1">\n' % p[1])
+            self.f.write('<FRAME runaround="1" copy="0" newFrameBehaviour="1" ')
+            self.f.write('right="%d" ' % p[2])
+            self.f.write('left="0" ')
+            self.f.write('bottom="%d" ' % p[3])
+            self.f.write('top="0" ')
+            self.f.write('runaroundGap="2.8"/>\n')
+            self.f.write('<IMAGE keepAspectRatio="true">\n')
+            self.f.write('<KEY filename="%s" ' % p[1])
+            a = time.localtime(self.mtime)
+            self.f.write('msec="%d" ' % a[6])
+            self.f.write('second="%d" ' % a[5])
+            self.f.write('minute="%d" ' % a[4])
+            self.f.write('hour="%d" ' % a[3])
+            self.f.write('day="%d" ' % a[2])
+            self.f.write('month="%d" ' % a[1])
+            self.f.write('year="%d"/>\n' % a[0])
+            self.f.write('</IMAGE>\n')
+            self.f.write('</FRAMESET>\n')
         self.f.write('</FRAMESETS>\n')
         self.f.write('<STYLES>\n')
         for name in self.style_list.keys():
@@ -149,23 +164,22 @@ class KwordDoc(TextDoc):
 
             p = self.style_list[name]
 
-            padding = p.get_padding()
-            self.f.write('<OFOOT pt="%d" mm="%s" inch="%s"/>\n' % sizes(padding))
+            pad = points(p.get_padding())/2
+            self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
             if p.get_alignment() == PARA_ALIGN_CENTER:
-                self.f.write('<FLOW value="2"/>\n')
+                self.f.write('<FLOW value="center"/>\n')
             elif p.get_alignment() == PARA_ALIGN_JUSTIFY:
-                self.f.write('<FLOW value="3"/>\n')
+                self.f.write('<FLOW value="justify"/>\n')
             elif p.get_alignment() == PARA_ALIGN_RIGHT:
-                self.f.write('<FLOW value="1"/>\n')
+                self.f.write('<FLOW value="right"/>\n')
+            else:
+                self.f.write('<FLOW value="left"/>\n')
 
             first = p.get_first_indent()
             left = p.get_left_margin()
-
-            first = left+first
-            if first != 0:
-                self.f.write('<IFIRST pt="%d" mm="%s" inch="%s"/>\n' % sizes(first))
-            if left != 0:
-                self.f.write('<ILEFT pt="%d" mm="%s" inch="%s"/>\n' % sizes(left))
+            right = p.get_right_margin()
+            self.f.write('<INDENTS first="%d" ' % points(first))
+            self.f.write('left="%d" right="%d"/>\n' % (points(left),points(right)))
 
             font = p.get_font()
             self.f.write('<FORMAT>\n')
@@ -181,6 +195,7 @@ class KwordDoc(TextDoc):
                 self.f.write('<ITALIC value="1"/>\n')
             if font.get_underline():
                 self.f.write('<UNDERLINE value="1"/>\n')
+            self.f.write('</FORMAT>\n')
             if p.get_top_border():
                 self.f.write('<TOPBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
             if p.get_bottom_border():
@@ -189,31 +204,31 @@ class KwordDoc(TextDoc):
                 self.f.write('<RIGHTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
             if p.get_left_border():
                 self.f.write('<LEFTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
-            self.f.write('</FORMAT>\n')
             if left != 0:
-                self.f.write('<TABULATOR ptpos="%d" mmpos="%s" inchpos="%s"/>\n' % sizes(left))
+                self.f.write('<TABULATOR ptpos="%d" type="0"/>\n' % points(left))
             self.f.write('</STYLE>\n')
 
         self.f.write('</STYLES>\n')
         self.f.write('<PIXMAPS>\n')
         for file in self.photo_list:
-            self.f.write('<KEY key="%s" name="%s"/>\n' % file)
+            self.f.write('<KEY name="%s" filename="%s" ' % (file[1],file[1]))
+            a = time.localtime(self.mtime)
+            self.f.write('msec="%d" ' % a[6])
+            self.f.write('second="%d" ' % a[5])
+            self.f.write('minute="%d" ' % a[4])
+            self.f.write('hour="%d" ' % a[3])
+            self.f.write('day="%d" ' % a[2])
+            self.f.write('month="%d" ' % a[1])
+            self.f.write('year="%d"/>\n' % a[0])
         self.f.write('</PIXMAPS>\n')
-        self.f.write('<SERIALL>\n')
-        self.f.write('<SAMPLE>\n')
-        self.f.write('</SAMPLE>\n')
-        self.f.write('<DB>\n')
-        self.f.write('</DB>\n')
-        self.f.write('</SERIALL>\n')
         self.f.write('</DOC>\n')
 
-        mtime = time.time()
         tar = TarFile(self.filename)
-        tar.add_file("documentinfo.xml",mtime,self.m)
-        tar.add_file("maindoc.xml",mtime,self.f)
+        tar.add_file("documentinfo.xml",self.mtime,self.m)
+        tar.add_file("maindoc.xml",self.mtime,self.f)
         for file in self.photo_list:
             f = open(file[0],"r")
-            tar.add_file(file[1],mtime,f)
+            tar.add_file(file[1],self.mtime,f)
             f.close()
         tar.close()
 
@@ -239,10 +254,8 @@ class KwordDoc(TextDoc):
             self.font_face = "helvetica"
 
         if leader != None:
-            self.text = leader + chr(1)
-            txt = '<FORMAT id="1" pos="0" len="%d">\n' % len(leader)
-            txt = txt + '<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
-            txt = txt + '<FORMAT id="3" pos="%d">\n' % len(leader)
+            self.text = leader + '\t'
+            txt = '<FORMAT id="1" pos="0" len="%d">\n' % (len(leader)+1)
             txt = txt + '<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
             self.format_list.append(txt)
 
@@ -264,24 +277,23 @@ class KwordDoc(TextDoc):
         self.f.write('<LAYOUT>\n')
         self.f.write('<NAME value="%s"/>\n' % self.style_name)
 
-        padding = self.p.get_padding()
-        self.f.write('<OFOOT pt="%d" mm="%s" inch="%s"/>\n' % sizes(padding))
+        pad = points(self.p.get_padding())/2
+        self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
         
         if self.p.get_alignment() == PARA_ALIGN_CENTER:
-            self.f.write('<FLOW value="2"/>\n')
+            self.f.write('<FLOW value="center"/>\n')
         elif self.p.get_alignment() == PARA_ALIGN_JUSTIFY:
-            self.f.write('<FLOW value="3"/>\n')
+            self.f.write('<FLOW value="justify"/>\n')
         elif self.p.get_alignment() == PARA_ALIGN_RIGHT:
-            self.f.write('<FLOW value="1"/>\n')
+            self.f.write('<FLOW value="right"/>\n')
+        else:
+            self.f.write('<FLOW value="left"/>\n')
 
         first = self.p.get_first_indent()
         left = self.p.get_left_margin()
-        
-        first = left+first
-        if first != 0:
-            self.f.write('<IFIRST pt="%d" mm="%s" inch="%s"/>\n' % sizes(first))
-        if left != 0:
-            self.f.write('<ILEFT pt="%d" mm="%s" inch="%s"/>\n' % sizes(left))
+        right = self.p.get_right_margin()
+        self.f.write('<INDENTS first="%d" ' % points(first))
+        self.f.write('left="%d" right="%d"/>\n' % (points(left),points(right)))
 
         self.f.write('<FORMAT>\n')
         self.f.write('<FONT name="%s"/>\n' % self.font_face)
@@ -303,7 +315,7 @@ class KwordDoc(TextDoc):
             self.f.write('<LEFTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
         self.f.write('</FORMAT>\n')
         if left != 0:
-            self.f.write('<TABULATOR ptpos="%d" mmpos="%s" inchpos="%s"/>\n' % sizes(left))
+            self.f.write('<TABULATOR ptpos="%d" type="0"/>\n' % points(left))
         self.f.write('</LAYOUT>\n')
         self.f.write('</PARAGRAPH>\n')
 
@@ -311,7 +323,7 @@ class KwordDoc(TextDoc):
         self.bold_start = len(self.text)
         if self.bold_stop != self.bold_start:
             length = self.bold_stop - self.bold_start
-            txt = '<FORMAT id="1" pos="0" len="%d">\n' % length
+            txt = '<FORMAT id="1" pos="%d" len="%d">\n' % (self.bold_stop,length)
             txt = txt + '<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
             self.format_list.append(txt)
 
@@ -341,16 +353,35 @@ class KwordDoc(TextDoc):
         pass
 
     def add_photo(self,name,x,y):
-        pass
-#        index = len(self.photo_list)+1
-#        self.photo_list.append((name,'pictures/picture%d.jpeg' % index))
-#        txt = '<FORMAT id="2" pos="%d">\n' % len(self.text)
-#        txt = txt + '<FILENAME value="%s"/>\n</FORMAT>\n' % name
-#        
-#        self.bold_stop = len(self.text)
-#        self.format_list.append(txt)
-#
-#        self.text = self.text + chr(1)
+        if no_pil:
+            return
+
+        im = PIL.Image.open(name)
+        nx,ny = im.size
+
+        scale = float(nx)/float(ny)
+        x = points(x)
+        y = points(y)
+        
+        if scale > 1.0:
+            scale = 1.0/scale
+            act_width = x
+            act_height = y * scale
+        else:
+            act_width = x * scale
+            act_height = y
+
+        index = len(self.photo_list)+1
+        tag = 'pictures/picture%d.jpeg' % index
+        self.photo_list.append((name,tag,act_width,act_height))
+        txt = '<FORMAT id="6" pos="%d" len="1">\n' % len(self.text)
+        txt = txt + '<ANCHOR type="frameset" instance="%s"/>\n' % tag
+        txt = txt + '</FORMAT>\n'
+        
+        self.bold_stop = len(self.text)
+        self.format_list.append(txt)
+
+        self.text = self.text + '#'
     
     def horizontal_line(self):
         pass
@@ -397,7 +428,9 @@ if __name__ == "__main__":
     doc.end_paragraph()
 
     doc.start_paragraph("Normal")
-    doc.add_photo("/home/dona/dad.jpg",200,200)
+    doc.write_text("This is fun. ")
+    doc.add_photo("/home/dona/dad.jpg",2.0,2.0)
+    doc.write_text("So is this. ")
     doc.end_paragraph()
 
     doc.close()

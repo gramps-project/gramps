@@ -39,6 +39,7 @@ from latin_utf8  import latin_to_utf8
 
 cnvtxt = latin_to_ansel
 
+active_person = None
 topDialog = None
 db = None
 
@@ -219,9 +220,9 @@ def add_persons_sources(person):
             if sbase != None and sbase not in source_list:
                 source_list.append(sbase)
     for name in person.getNameList + [ person.getPrimaryName() ]:
-        if private and event.getPrivacy():
+        if private and name.getPrivacy():
             continue
-        for source_ref in event.getSourceRefList():
+        for source_ref in name.getSourceRefList():
             sbase = source_ref.getBase()
             if sbase != None and sbase not in source_list:
                 source_list.append(sbase)
@@ -240,9 +241,9 @@ def add_familys_sources(family):
             if sbase != None and sbase not in source_list:
                 source_list.append(sbase)
     for attr in family.getAttributeList():
-        if private and event.getPrivacy():
+        if private and attr.getPrivacy():
             continue
-        for source_ref in event.getSourceRefList():
+        for source_ref in attr.getSourceRefList():
             sbase = source_ref.getBase()
             if sbase != None and sbase not in source_list:
                 source_list.append(sbase)
@@ -460,7 +461,7 @@ def write_person(g,person):
             if attr.getNote() != "":
                 write_long_text(g,"NOTE",2,attr.getNote())
             for srcref in attr.getSourceRefList():
-                write_source_ref(g,2,srclist)
+                write_source_ref(g,2,srcref)
 
         for addr in person.getAddressList():
             if private and addr.getPrivacy():
@@ -637,7 +638,7 @@ def gedcom_date(date):
     elif date.range == -1:
         return "(%s)" % date.text
     else:
-        return ged_subdate(self.start)
+        return ged_subdate(date.start)
 
 #-------------------------------------------------------------------------
 #

@@ -91,7 +91,6 @@ class ReportPlugins:
             "destroy_passed_object"   : utils.destroy_passed_object
             })
 
-        top = self.dialog.get_widget("report")
         tree = self.dialog.get_widget("tree1")
         self.run_tool = None
         build_tree(tree,_reports,self.on_report_node_selected)
@@ -133,7 +132,6 @@ class ToolPlugins:
             "destroy_passed_object" : utils.destroy_passed_object
             })
 
-        top = self.dialog.get_widget("pluginsel")
         tree = self.dialog.get_widget("tree")
         self.run_tool = None
         build_tree(tree,_tools,self.on_node_selected)

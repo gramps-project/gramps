@@ -382,7 +382,6 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_record(self):
-        index = 0
         while 1:
 	    matches = self.get_next()
 

@@ -24,7 +24,6 @@ from RelLib import *
 import os
 import posixpath
 import re
-import sort
 import string
 import utils
 import intl
@@ -59,7 +58,6 @@ def report(database,person):
     missing_bday = 0
     males = 0
     females = 0
-    people = 0
     bytes = 0
     namelist = []
     

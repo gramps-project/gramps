@@ -31,7 +31,6 @@ import string
 import time
 import os
 from gnome.ui import *
-import sys
 
 import intl
 _ = intl.gettext
@@ -232,6 +231,7 @@ def loadRevision(database, file, filename, revision, callback=None):
 
 if __name__ == "__main__":
     import profile
+    import sys
     
     database = RelDataBase()
     t1 = time.time()

@@ -97,8 +97,6 @@ class TableReport:
         self.doc.close()
         
     def write_table_data(self,data):
-        length = len(data)
-
         self.doc.start_row()
         for item in data:
             self.doc.start_cell("data")
@@ -110,7 +108,6 @@ class TableReport:
         self.row = val + 2
         
     def write_table_head(self,data):
-        length = len(data)
         self.prev = 3
 
         self.doc.start_row()

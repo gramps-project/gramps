@@ -21,7 +21,6 @@
 "People with an event location of ..."
 
 import Filter
-import string
 import re
 import RelLib
 import intl

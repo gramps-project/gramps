@@ -20,7 +20,8 @@
 
 "Support for the dates"
 
-import re
+from re import IGNORECASE, compile
+
 import string
 import intl
 
@@ -43,11 +44,11 @@ class Date:
     from_str = _("(from|between|bet|bet.)")
     to_str = _("(and|to|-)")
     
-    efmt = re.compile(r"\s*(from|between|bet)\s+(.+)\s+(and|to)\s+(.+)\s*$",
-                      re.IGNORECASE)
+    efmt = compile(r"\s*(from|between|bet)\s+(.+)\s+(and|to)\s+(.+)\s*$",
+                      IGNORECASE)
 
-    fmt = re.compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
-                     re.IGNORECASE)
+    fmt = compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
+                     IGNORECASE)
 
     def __init__(self,source=None):
         if source:
@@ -317,22 +318,15 @@ class SingleDate:
     
     start = "^\s*" + modifiers + "?\s*"
     
-    fmt1 = re.compile(start + "(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$",
-                      re.IGNORECASE)
-    fmt2 = re.compile(start + "(\d+)\.?\s+(\S+)(\s+\d+)?\s*$",
-                      re.IGNORECASE)
-    quick= re.compile(start + "(\d+)?\s(\S\S\S)?\s(\d+)?",
-                      re.IGNORECASE)
-    fmt3 = re.compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
-                      re.IGNORECASE)
-    fmt7 = re.compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
-                      re.IGNORECASE)
-    fmt4 = re.compile(start + "(\S+)\s+(\d+)\s*$",
-                      re.IGNORECASE)
-    fmt5 = re.compile(start + "(\d+)\s*$",
-                      re.IGNORECASE)
-    fmt6 = re.compile(start + "(\S+)\s*$",
-                      re.IGNORECASE)
+    fmt1 = compile(start + "(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$", IGNORECASE)
+    fmt2 = compile(start + "(\d+)\.?\s+(\S+)(\s+\d+)?\s*$", IGNORECASE)
+    quick= compile(start + "(\d+)?\s(\S\S\S)?\s(\d+)?", IGNORECASE)
+    fmt3 = compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
+                      IGNORECASE)
+    fmt7 = compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$", IGNORECASE)
+    fmt4 = compile(start + "(\S+)\s+(\d+)\s*$", IGNORECASE)
+    fmt5 = compile(start + "(\d+)\s*$", IGNORECASE)
+    fmt6 = compile(start + "(\S+)\s*$", IGNORECASE)
 
     #--------------------------------------------------------------------
     #
@@ -499,14 +493,9 @@ class SingleDate:
             retval = _("BEFORE") + " " + retval
         elif self.mode == SingleDate.after:
             retval = _("AFTER") + " " + retval
-
+            
         return retval
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getFmt1(self):
 
         if self.month == -1 and self.day == -1 and self.year == -1 :

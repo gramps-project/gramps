@@ -21,8 +21,6 @@
 "People without a birth date"
 
 import Filter
-import string
-import utils
 import intl
 _ = intl.gettext
 
