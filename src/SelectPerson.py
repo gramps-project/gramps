@@ -53,7 +53,7 @@ from RelLib import Person
 #-------------------------------------------------------------------------
 class SelectPerson:
 
-    def __init__(self,db,title,flabel="",filter=None):
+    def __init__(self,db,title,flabel="",filter=None,parent_window=None):
 
         self.db = db
         self.filter = filter
@@ -90,6 +90,9 @@ class SelectPerson:
 
         self.redraw()
         self.top.show()
+
+        if parent_window:
+            self.top.set_transient_for(parent_window)
 
     def redraw_cb(self,obj):
         self.use_filter = self.filter_select.get_active()

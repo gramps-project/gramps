@@ -96,8 +96,11 @@ class EditPerson:
             
         self.load_obj = None
         self.top = gtk.glade.XML(const.editPersonFile, "editPerson","gramps")
+        self.window = self.get_widget("editPerson")
+        self.window.set_title("%s - GRAMPS" % _('Edit Person'))
+        
         self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,self.db,self)
+        self.gallery = ImageSelect.Gallery(person, self.path, self.icon_list,self.db,self,self.window)
 
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
@@ -110,9 +113,6 @@ class EditPerson:
         self.addr_delete_btn = self.top.get_widget('addr_delete_btn')
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
-        self.window = self.get_widget("editPerson")
-        self.window.set_title("%s - GRAMPS" % _('Edit Person'))
-        
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
@@ -759,25 +759,25 @@ class EditPerson:
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
         import AddrEdit
-        AddrEdit.AddressEditor(self,None,self.addr_edit_callback)
+        AddrEdit.AddressEditor(self,None,self.addr_edit_callback,self.window)
 
     def on_add_aka_clicked(self,obj):
         """Invokes the name editor to add a new name"""
         import NameEdit
-        NameEdit.NameEditor(self,None,self.name_edit_callback)
+        NameEdit.NameEditor(self,None,self.name_edit_callback,self.window)
 
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
         import UrlEdit
         pname = self.person.getPrimaryName().getName()
-        UrlEdit.UrlEditor(self,pname,None,self.url_edit_callback)
+        UrlEdit.UrlEditor(self,pname,None,self.url_edit_callback,self.window)
 
     def on_add_attr_clicked(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
         pname = self.person.getPrimaryName().getName()
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
-                                 self.attr_edit_callback)
+                                 self.attr_edit_callback,self.window)
 
     def on_up_clicked(self,obj):
         sel = obj.get_selection()
@@ -1059,13 +1059,14 @@ class EditPerson:
             attr = self.atree.get_object(iter)
             pname = self.person.getPrimaryName().getName()
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
-                                     self.attr_edit_callback)
+                                     self.attr_edit_callback,self.window)
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
         store,iter = self.ptree.get_selected()
         if iter:
-            AddrEdit.AddressEditor(self,self.ptree.get_object(iter),self.addr_edit_callback)
+            AddrEdit.AddressEditor(self,self.ptree.get_object(iter),
+                            self.addr_edit_callback,self.window)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -1073,7 +1074,7 @@ class EditPerson:
         if iter:
             pname = self.person.getPrimaryName().getName()
             url = self.wtree.get_object(iter)
-            UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback)
+            UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback,self.window)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -1236,7 +1237,7 @@ class EditPerson:
         import NameEdit
         store,iter = self.ntree.get_selected()
         if iter:
-            NameEdit.NameEditor(self,self.ntree.get_object(iter),self.name_edit_callback)
+            NameEdit.NameEditor(self,self.ntree.get_object(iter),self.name_edit_callback,self.window)
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
@@ -1474,7 +1475,7 @@ class EditPerson:
 
     def on_name_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.pname)
+        NoteEdit.NoteEditor(self.pname,self.window)
 
     def on_ldsbap_source_clicked(self,obj):
         import Sources
@@ -1486,7 +1487,7 @@ class EditPerson:
         
     def on_ldsbap_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_baptism)
+        NoteEdit.NoteEditor(self.lds_baptism,self.window)
 
     def on_ldsendow_source_clicked(self,obj):
         import Sources
@@ -1498,7 +1499,7 @@ class EditPerson:
 
     def on_ldsendow_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_endowment)
+        NoteEdit.NoteEditor(self.lds_endowment,self.window)
 
     def on_ldsseal_source_clicked(self,obj):
         import Sources
@@ -1510,7 +1511,7 @@ class EditPerson:
 
     def on_ldsseal_note_clicked(self,obj):
         import NoteEdit
-        NoteEdit.NoteEditor(self.lds_sealing)
+        NoteEdit.NoteEditor(self.lds_sealing,self.window)
 
     def load_person_image(self):
         photo_list = self.person.getPhotoList()

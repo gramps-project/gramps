@@ -42,7 +42,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class UrlEditor:
 
-    def __init__(self,parent,name,url,callback):
+    def __init__(self,parent,name,url,callback,parent_window=None):
         self.parent = parent
         self.url = url
         self.callback = callback
@@ -66,12 +66,14 @@ class UrlEditor:
             self.addr.set_text(url.get_path())
             self.priv.set_active(url.getPrivacy())
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_url_edit_ok_clicked" : self.on_url_edit_ok_clicked
-            })
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_url_edit_ok_clicked()
+        self.window.destroy()
 
-    def on_url_edit_ok_clicked(self,obj):
+    def on_url_edit_ok_clicked(self):
         des = self.des.get_text()
         addr = self.addr.get_text()
         priv = self.priv.get_active()
@@ -82,7 +84,6 @@ class UrlEditor:
         
         self.update_url(des,addr,priv)
         self.callback(self.url)
-        Utils.destroy_passed_object(obj)
 
     def update_url(self,des,addr,priv):
         if self.url.get_path() != addr:

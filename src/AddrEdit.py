@@ -52,7 +52,7 @@ class AddressEditor:
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self,parent,addr,callback):
+    def __init__(self,parent,addr,callback,parent_window=None):
         """
         Displays the dialog box.
 
@@ -108,12 +108,14 @@ class AddressEditor:
         date_stat = self.top.get_widget("date_stat")
         self.date_check = DateEdit(self.addr_start,date_stat)
 
-        self.top.signal_autoconnect({
-            "destroy_passed_object"   : Utils.destroy_passed_object,
-            "on_addr_edit_ok_clicked" : self.ok_clicked,
-            })
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_name_edit_ok_clicked()
+        self.window.destroy()
 
-    def ok_clicked(self,obj):
+    def ok_clicked(self):
         """
         Called when the OK button is pressed. Gets data from the
         form and updates the Address data structure.
@@ -135,7 +137,6 @@ class AddressEditor:
 
         self.update(date,street,city,state,country,postal,note,priv)
         self.callback(self.addr)
-        Utils.destroy_passed_object(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the

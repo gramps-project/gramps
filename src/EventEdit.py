@@ -121,7 +121,7 @@ class EventEditor:
                                            self.top.get_widget('del_src'))
 
         self.witnesstab = Witness.WitnessTab(self.witnesslist,self.parent,
-                                           self.top,self.wlist,
+                                           self.top,self.window,self.wlist,
                                            self.top.get_widget('add_witness'),
                                            self.top.get_widget('edit_witness'),
                                            self.top.get_widget('del_witness'))
@@ -153,10 +153,8 @@ class EventEditor:
 #            self.name_field.select_region(0, -1)
 
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked" : self.add_source,
             "on_del_src_clicked" : self.del_source,
-            "on_event_edit_ok_clicked" : self.on_event_edit_ok_clicked,
             })
 
         menu = gtk.Menu()
@@ -172,6 +170,12 @@ class EventEditor:
                 self.date_check.set_calendar(cobj())
             index = index + 1
         self.calendar.set_menu(menu)
+
+        self.window.set_transient_for(self.parent.window)
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_event_edit_ok_clicked()
+        self.window.destroy()
 
     def add_source(self,obj):
         pass
@@ -204,7 +208,7 @@ class EventEditor:
         else:
             return None
 
-    def on_event_edit_ok_clicked(self,obj):
+    def on_event_edit_ok_clicked(self):
 
         ename = self.name_field.get_text()
         self.date.set(self.date_field.get_text())

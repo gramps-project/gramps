@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,9 +40,10 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class NoteEditor:
     """Displays a simple text editor that allows a person to edit a note"""
-    def __init__(self,data):
+    def __init__(self,data,parent_window=None):
 
         self.data = data
+        self.parent_window = parent_window
         self.draw()
 
     def draw(self):
@@ -75,13 +76,10 @@ class NoteEditor:
         self.top.add_button(gtk.STOCK_OK,0)
         self.top.show_all()
         
+        if self.parent_window:
+            self.top.set_transient_for(self.parent_window)
         if self.top.run() == 0:
             self.on_save_note_clicked()
-        else:
-            self.cancel()
-
-    def cancel(self):
-        """Closes the window without saving the note"""
         self.top.destroy()
         
     def on_save_note_clicked(self):
@@ -92,5 +90,3 @@ class NoteEditor:
         if text != self.data.getNote():
             self.data.setNote(text)
             Utils.modified()
-        self.top.destroy()
-

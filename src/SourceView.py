@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  Donald N. Allingham
+# Copyright (C) 2001-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,6 +88,7 @@ class SourceView:
                                    gobject.TYPE_STRING)
         self.list.set_model(self.model)
         self.list.get_column(0).clicked()
+        self.topWindow = self.glade.get_widget("gramps")
 
     def change_db(self,db):
         self.db = db
@@ -117,12 +118,12 @@ class SourceView:
             store,iter = self.selection.get_selected()
             id = store.get_value(iter,1)
             source = self.db.getSource(id)
-            EditSource.EditSource(source,self.db,self.update_display)
+            EditSource.EditSource(source,self.db,self.topWindow,self.update_display)
             return 1
         return 0
 
     def on_add_clicked(self,obj):
-        EditSource.EditSource(RelLib.Source(),self.db,self.new_after_edit)
+        EditSource.EditSource(RelLib.Source(),self.db,self.topWindow,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
         
@@ -141,7 +142,7 @@ class SourceView:
                              'will remove it from the database and from all '
                              'records that reference it.'),
                            _('_Delete Source'),
-                           ans.query_response)
+                           ans.query_response,self.topWindow)
         else:
             self.db.removeSource(source.getId())
             Utils.modified()
@@ -191,7 +192,7 @@ class SourceView:
         if iter:
             id = list_store.get_value(iter,1)
             source = self.db.getSource(id)
-            EditSource.EditSource(source, self.db, self.update_display)
+            EditSource.EditSource(source, self.db, self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
         self.db.addSource(source)

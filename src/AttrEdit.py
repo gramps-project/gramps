@@ -54,7 +54,7 @@ class AttributeEditor:
     """
     Displays a dialog that allows the user to edit an attribute.
     """
-    def __init__(self,parent,attrib,title,list,callback):
+    def __init__(self,parent,attrib,title,list,callback,parent_window=None):
         """
         Displays the dialog box.
 
@@ -106,11 +106,16 @@ class AttributeEditor:
             self.note_field.get_buffer().set_text(attrib.getNote())
 
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_attr_edit_ok_clicked" : self.on_ok_clicked,
             "on_add_src_clicked" : self.add_source,
             "on_del_src_clicked" : self.del_source,
             })
+
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_ok_clicked()
+        self.window.destroy()
 
     def add_source(self,obj):
         pass
@@ -118,7 +123,7 @@ class AttributeEditor:
     def del_source(self,obj):
         pass
 
-    def on_ok_clicked(self,obj):
+    def on_ok_clicked(self):
         """
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
@@ -137,7 +142,6 @@ class AttributeEditor:
         self.attrib.setSourceRefList(self.srcreflist)
         self.update(type,value,note,priv)
         self.callback(self.attrib)
-        Utils.destroy_passed_object(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the
