@@ -541,7 +541,7 @@ class FamilyView:
                 DisplayTrace.DisplayTrace()
 
     def edit_marriage_callback(self,obj):
-        Marriage.Marriage(self.family,self.parent.db,
+        Marriage.Marriage(self.parent, self.family,self.parent.db,
                           self.parent.new_after_edit,
                           self.load_family)
 
@@ -560,7 +560,7 @@ class FamilyView:
            if self.person:
                try:
                    if self.selected_spouse:
-                       Marriage.Marriage(self.family,self.parent.db,
+                       Marriage.Marriage(self.parent,self.family,self.parent.db,
                                          self.parent.new_after_edit,
                                          self.load_family)
                    else:
@@ -625,7 +625,7 @@ class FamilyView:
         
         self.load_family(self.family)
         
-        Marriage.Marriage(self.family,self.parent.db,
+        Marriage.Marriage(self.parent,self.family,self.parent.db,
                           self.parent.new_after_edit,
                           self.load_family)
 

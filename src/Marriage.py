@@ -69,9 +69,14 @@ pycode_tgts = [('fevent', 0, 0), ('fattr', 0, 1)]
 #-------------------------------------------------------------------------
 class Marriage:
 
-    def __init__(self,family,db,callback,update):
+    def __init__(self,parent,family,db,callback,update):
         """Initializes the Marriage class, and displays the window"""
         self.family = family
+        self.parent = parent
+        if self.parent.wins_dict.has_key(family.get_id()):
+            self.parent.wins_dict[family.get_id()].present(None)
+            return
+        self.child_windows = []
         self.db = db
         self.path = db.get_save_path()
         self.cb = callback
@@ -126,10 +131,10 @@ class Marriage:
         father = self.db.find_person_from_id(family.get_father_id())
         mother = self.db.find_person_from_id(family.get_mother_id())
         
-        title = _("%s and %s") % (GrampsCfg.nameof(father),
+        self.title = _("%s and %s") % (GrampsCfg.nameof(father),
                                   GrampsCfg.nameof(mother))
 
-        Utils.set_title_label(self.top,title)
+        Utils.set_title_label(self.top,self.title)
         
         self.event_list = self.get_widget("marriageEventList")
 
@@ -251,7 +256,43 @@ class Marriage:
 
         self.redraw_event_list()
         self.redraw_attr_list()
+        self.add_itself_to_winsmenu()
         self.window.show()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def close(self,ok=0):
+        self.gallery.close(ok)
+        self.close_child_windows()
+        self.remove_itself_from_winsmenu()
+        self.window.destroy()
+
+    def add_itself_to_winsmenu(self):
+        self.parent.wins_dict[self.family.get_id()] = self
+        win_menu_label = self.title
+        if not win_menu_label.strip():
+            win_menu_label = _("New Relationship")
+        self.win_menu_item = gtk.MenuItem(win_menu_label)
+        self.win_menu_item.set_submenu(gtk.Menu())
+        self.win_menu_item.show()
+        self.parent.winsmenu.append(self.win_menu_item)
+        self.menu = self.win_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Marriage/Relationship Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_winsmenu(self):
+        del self.parent.wins_dict[self.family.get_id()]
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.win_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -284,7 +325,7 @@ class Marriage:
         if ord == None:
             ord = RelLib.LdsOrd()
             self.family.set_lds_sealing(ord)
-        Sources.SourceSelector(ord.get_source_references(),self)
+        Sources.SourceSelector(ord.get_source_references(),self,self.window)
 
     def lds_note_clicked(self,obj):
         import NoteEdit
@@ -292,7 +333,7 @@ class Marriage:
         if ord == None:
             ord = RelLib.LdsOrd()
             self.family.set_lds_sealing(ord)
-        NoteEdit.NoteEditor(ord)
+        NoteEdit.NoteEditor(ord,self,self.window)
 
     def on_up_clicked(self,obj):
         model,iter = self.etree.get_selected()
@@ -476,15 +517,14 @@ class Marriage:
             d.set(date)
             if Date.compare_dates(d,ord.get_date_object()) != 0 or \
                ord.get_temple() != temple or \
-               ord.get_place_id() != place.get_id() or \
+               (place and ord.get_place_id() != place.get_id()) or \
                ord.get_status() != self.seal_stat:
                 changed = 1
 
         return changed
 
     def cancel_callback(self):
-        self.gallery.close(0)
-        Utils.destroy_passed_object(self.quit)
+        self.close(0)
 
     def on_cancel_edit(self,obj):
 
@@ -497,8 +537,7 @@ class Marriage:
                        self.cancel_callback,
                        self.save)
         else:
-            self.gallery.close(0)
-	    Utils.destroy_passed_object(obj)
+            self.close(0)
 
     def on_delete_event(self,obj,b):
         self.on_cancel_edit(obj)
@@ -589,9 +628,6 @@ class Marriage:
                 ord.set_place_id(place.get_id())
                 Utils.modified()
 
-        self.gallery.close(1)
-        Utils.destroy_passed_object(self.get_widget("marriageEditor"))
-
         if self.lists_changed:
             self.family.set_source_reference_list(self.srcreflist)
             Utils.modified()
@@ -601,6 +637,8 @@ class Marriage:
             Utils.modified()
         self.update_fv(self.family)
         self.db.commit_family(self.family)
+
+        self.close(1)
 
     def event_edit_callback(self,event):
         """Birth and death events may not be in the map"""
@@ -612,7 +650,7 @@ class Marriage:
 
     def on_add_clicked(self,obj):
         import EventEdit
-        name = Utils.family_name(self.family)
+        name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.display_fevent,None,None,0,self.event_edit_callback,
                               const.defaultMarriageEvent)
@@ -623,7 +661,7 @@ class Marriage:
         if not iter:
             return
         event = self.etree.get_object(iter)
-        name = Utils.family_name(self.family)
+        name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.display_fevent,event,None,0,self.event_edit_callback)
 
@@ -649,10 +687,11 @@ class Marriage:
         self.cause_field.set_text(event.get_cause())
         self.name_field.set_label(const.display_fevent(event.get_name()))
         if len(event.get_source_references()) > 0:
-            psrc_id = event.get_source_references()[0].get_id()
+            psrc_ref = event.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_id()
             psrc = self.db.find_source_from_id(psrc_id)
-            self.event_src_field.set_text(psrc.get_base_id().get_title())
-            self.event_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
+            self.event_src_field.set_text(psrc.get_title())
+            self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
         else:
             self.event_src_field.set_text('')
             self.event_conf_field.set_text('')
@@ -667,10 +706,11 @@ class Marriage:
         self.attr_type.set_label(const.display_fattr(attr.get_type()))
         self.attr_value.set_text(attr.get_value())
         if len(attr.get_source_references()) > 0:
-            psrc_id = attr.get_source_references()[0].get_id()
+            psrc_ref = attr.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_id()
             psrc = self.db.find_source_from_id(psrc_id)
-            self.attr_src_field.set_text(psrc.get_base_id().get_title())
-            self.attr_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
+            self.attr_src_field.set_text(psrc.get_title())
+            self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
         else:
             self.attr_src_field.set_text('')
             self.attr_conf_field.set_text('')
@@ -683,8 +723,10 @@ class Marriage:
 
         attr = self.atree.get_object(iter)
 
-        father = self.family.get_father_id()
-        mother = self.family.get_mother_id()
+        father_id = self.family.get_father_id()
+        mother_id = self.family.get_mother_id()
+        father = self.db.find_person_from_id(father_id)
+        mother = self.db.find_person_from_id(mother_id)
         if father and mother:
             name = _("%s and %s") % (father.get_primary_name().get_name(),
                                          mother.get_primary_name().get_name())
@@ -702,8 +744,10 @@ class Marriage:
 
     def on_add_attr_clicked(self,obj):
         import AttrEdit
-        father = self.family.get_father_id()
-        mother = self.family.get_mother_id()
+        father_id = self.family.get_father_id()
+        mother_id = self.family.get_mother_id()
+        father = self.db.find_person_from_id(father_id)
+        mother = self.db.find_person_from_id(mother_id)
         if father and mother:
             name = _("%s and %s") % (father.get_primary_name().get_name(),
                                      mother.get_primary_name().get_name())
