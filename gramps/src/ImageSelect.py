@@ -511,14 +511,14 @@ class LocalMediaProperties:
 
 class GlobalMediaProperties:
 
-    def __init__(self,db,object):
+    def __init__(self,db,object,update):
         self.object = object
         self.alist = self.object.getAttributeList()[:]
         self.lists_changed = 0
         self.db = db
+        self.update = update
 
-        path = self.db.getSavePath()
-        fname = self.object.getPath()
+        self.path = self.db.getSavePath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_global")
         window = self.change_dialog.get_widget("change_global")
         descr_window = self.change_dialog.get_widget("description")
@@ -530,27 +530,45 @@ class GlobalMediaProperties:
         
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
-        pixmap.load_file(utils.thumb_path(path,self.object))
+        pixmap.load_file(utils.thumb_path(self.path,self.object))
 
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
+        self.makelocal = self.change_dialog.get_widget("makelocal")
 
-        if self.object.getLocal():
-            self.change_dialog.get_widget("path").set_text("<local>")
-        else:
-            self.change_dialog.get_widget("path").set_text(fname)
+        self.update_info()
+        
         self.change_dialog.get_widget("type").set_text(utils.get_mime_description(mtype))
         self.change_dialog.get_widget("notes").insert_defaults(object.getNote())
         self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked" : utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_apply_clicked" : self.on_apply_clicked,
-            "on_attr_list_select_row" : self.on_attr_list_select_row,
-            "on_add_attr_clicked": self.on_add_attr_clicked,
+            "on_cancel_clicked"      : utils.destroy_passed_object,
+            "on_ok_clicked"          : self.on_ok_clicked,
+            "on_apply_clicked"       : self.on_apply_clicked,
+            "on_attr_list_select_row": self.on_attr_list_select_row,
+            "on_add_attr_clicked"    : self.on_add_attr_clicked,
             "on_notebook_switch_page": self.on_notebook_switch_page,
+            "on_make_local_clicked"  : self.on_make_local_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
         self.redraw_attr_list()
+
+    def update_info(self):
+        fname = self.object.getPath()
+        if self.object.getLocal():
+            self.change_dialog.get_widget("path").set_text("<local>")
+            self.makelocal.set_sensitive(0)
+        else:
+            self.change_dialog.get_widget("path").set_text(fname)
+            self.makelocal.set_sensitive(1)
+
+    def on_make_local_clicked(self, obj):
+        name = RelImage.import_media_object(self.object.getPath(),
+                                            self.path,
+                                            self.object.getId())
+        self.object.setPath(name)
+        self.object.setLocal(1)
+        self.update_info()
+        self.update()
 
     def redraw_attr_list(self):
         utils.redraw_list(self.alist,self.attr_list,disp_attr)

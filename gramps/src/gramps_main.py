@@ -2129,7 +2129,7 @@ def on_edit_media_clicked(obj):
     if len(media_list.selection) <= 0:
         return
     object = media_list.get_row_data(media_list.selection[0])
-    ImageSelect.GlobalMediaProperties(database,object)
+    ImageSelect.GlobalMediaProperties(database,object,load_media)
 
 def on_delete_media_clicked(obj):
     if len(media_list.selection) <= 0:

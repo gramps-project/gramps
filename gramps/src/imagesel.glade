@@ -1676,7 +1676,7 @@
 	    <spacing>0</spacing>
 	    <child>
 	      <padding>0</padding>
-	      <expand>True</expand>
+	      <expand>False</expand>
 	      <fill>True</fill>
 	    </child>
 
@@ -1736,7 +1736,7 @@
 	    <homogeneous>False</homogeneous>
 	    <spacing>0</spacing>
 	    <child>
-	      <padding>0</padding>
+	      <padding>5</padding>
 	      <expand>False</expand>
 	      <fill>False</fill>
 	    </child>
@@ -1760,7 +1760,7 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button92</name>
+	      <name>makelocal</name>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
