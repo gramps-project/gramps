@@ -58,12 +58,13 @@ def runTool(database,active_person,callback,parent=None):
 
     try:
         trans = database.transaction_begin()
-        self.trans.set_batch(True)
+        trans.set_batch(True)
         checker = CheckIntegrity(database,parent,trans)
         checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
+        checker.check_events()
         database.transaction_commit(trans, _("Check Integrity"))
 
         errs = checker.build_report(0)
@@ -91,6 +92,9 @@ class CheckIntegrity:
         self.broken_links = []
         self.broken_parent_links = []
         self.fam_rel = []
+        self.invalid_events = []
+        self.invalid_birth_events = []
+        self.invalid_death_events = []
 
     def check_for_broken_family_links(self):
         self.broken_links = []
@@ -328,6 +332,47 @@ class CheckIntegrity:
                         family.set_mother_handle(father_handle)
                     self.db.commit_family(family,self.trans)
 
+    def check_events(self):
+        for key in self.db.get_person_handles(sort_handles=False):
+            person = self.db.get_person_from_handle(key)
+            birth_handle = person.get_birth_handle()
+            if birth_handle:
+                birth = self.db.get_event_from_handle(birth_handle)
+                if not birth:
+                    # The birth event referenced by the birth handle does not exist in the database
+                    person.set_birth_handle("")
+                    self.db.commit_person(person,self.trans)
+                    self.invalid_events.append(key)
+                else:
+                    if not birth.get_name() == "Birth":
+                        # Birth event was not of the type "Birth"
+                        birth.set_name("Birth");
+                        self.db.commit_event(birth,self.trans)
+                        self.invalid_birth_events.append(key)
+            death_handle = person.get_death_handle()
+            if death_handle:
+                death = self.db.get_event_from_handle(death_handle)
+                if not death:
+                    # The death event referenced by the death handle does not exist in the database
+                    person.set_death_handle("")
+                    self.db.commit_person(person,self.trans)
+                    self.invalid_events.append(key)
+                else:
+                    if not death.get_name() == "Death":
+                        # Death event was not of the type "Death"
+                        death.set_name("Death");
+                        self.db.commit_event(death,self.trans)
+                        self.invalid_death_events.append(key)
+            if person.get_event_list():
+                for event_handle in person.get_event_list():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if not event:
+                        # The event referenced by the person does not exist in the database
+                        #TODO: There is no better way?
+                        person.set_event_list( person.get_event_list().remove(event_handle))
+                        self.db.commit_person(person,self.trans)
+                        self.invalid_events.append(key)
+
     def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
@@ -337,8 +382,12 @@ class CheckIntegrity:
         blink = len(self.broken_links)
         plink = len(self.broken_parent_links)
         rel = len(self.fam_rel)
+        event_invalid = len(self.invalid_events)
+        birth_invalid = len(self.invalid_birth_events)
+        death_invalid = len(self.invalid_death_events)
+        person = birth_invalid + death_invalid
 
-        errors = blink + efam + photos + rel
+        errors = blink + efam + photos + rel + person + event_invalid
         
         if errors == 0:
             if cl:
@@ -406,6 +455,18 @@ class CheckIntegrity:
             self.text.write(_("1 missing media object was removed\n"))
         elif removed_photos > 1:
             self.text.write(_("%d missing media objects were removed\n") % removed_photos)
+        if event_invalid == 1:
+            self.text.write(_("1 invalid event reference was removed\n"))
+        elif event_invalid > 1:
+            self.text.write(_("%d invalid event references were removed\n") % event_invalid)
+        if birth_invalid == 1:
+            self.text.write(_("1 invalid birth event name was fixed\n"))
+        elif birth_invalid > 1:
+            self.text.write(_("%d invalid birth event names were fixed\n") % birth_invalid)
+        if death_invalid == 1:
+            self.text.write(_("1 invalid death event name was fixed\n"))
+        elif death_invalid > 1:
+            self.text.write(_("%d invalid death event names were fixed\n") % death_invalid)
 
         return errors
 

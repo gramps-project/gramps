@@ -3,6 +3,10 @@
 	* src/plugins/ChangeNames.py: new database callback scheme
 	* src/plugins/TestcaseGenerator.py: new database callback scheme
 
+	* src/plugins/TestcaseGenerator.py: Added generation of invalid
+	event references of persons
+	* src/plugins/Check.py: Check for invalid event references of persons
+
 2005-03-31  Don Allingham  <don@gramps-project.org>
 	* src/AddSpouse.py: new database callback scheme. This scheme
 	provides a registration mechanism to signal interested objects
