@@ -41,10 +41,12 @@ pkgpython_PYTHON = \
 	WritePkg.py\
 	WriteCD.py\
 	rel_ru.py\
-        eval.py\
+	eval.py\
 	leak.py\
-        SimpleBookTitle.py\
-        CustomBookText.py
+	SimpleBookTitle.py\
+	CustomBookText.py\
+	RelGraph.py\
+	rel_it.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
