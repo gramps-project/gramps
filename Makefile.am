@@ -1,13 +1,12 @@
 # copyright (C) 2000 Sun Microsystems, Inc.
 
-SUBDIRS = src doc omf-install
+SUBDIRS = src doc
 
-EXTRA_DIST =  autogen.sh gramps.spec.in 
+EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 
 bin_SCRIPTS = gramps
 
 grampsdocdir = $(datadir)/doc/gramps-$(VERSION)
-scrollkeeper_localstate_dir = $(localstatedir)/lib/scrollkeeper
 
 gramps: gramps.sh
 	cp gramps.sh gramps
@@ -17,10 +16,7 @@ dist-hook: gramps.spec
 
 # Build/rebuild the catalog
 install-data-hook:
-	rm -rf $(DESTDIR)$(scrollkeeper_localstate_dir)
-	$(mkinstalldirs) $(DESTDIR)$(scrollkeeper_localstate_dir)
 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
-#	scrollkeeper-rebuilddb -p $(DESTDIR)$(scrollkeeper_localstate_dir)
 
 # Remove generated files
 uninstall-local:

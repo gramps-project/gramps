@@ -218,40 +218,25 @@ fi
 
 AC_MSG_RESULT(ok)
 
-dnl ======================================================
-dnl == Modern documentation tools (scrollkeeper) checks
-dnl == We may need a more recent version (GNOME2 will use
-dnl == scrollkeeper > 0.3) but basic scrollkeeper instructions
-dnl == use 0.1.4 example so we'll just check for that
-dnl ======================================================
-SCROLLKEEPER_REQUIRED=0.1.4
-AC_SUBST(SCROLLKEEPER_REQUIRED)
-
-dnl First see that *some* version of scrollkeeper is installed
-dnl AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
-dnl if test x$SCROLLKEEPER_CONFIG = xno; then
-dnl  AC_MSG_ERROR(Couldn't find scrollkeeper-config.  Please install the scrollkeeper package.)
-dnl  DISABLE_SCROLLKEEPER=1
-dnl  AC_SUBST(DISABLE_SCROLLKEEPER)
-dnl fi
-
-DISABLE_SCROLLKEEPER=1
-AC_SUBST(DISABLE_SCROLLKEEPER)
-
-dnl ======================================================
-dnl == GNOME modified DTD's need jw, not db2html
-dnl ======================================================
-AC_PATH_PROG(JW, jw, no) 
-if test x$JW = xno; then
-  HAVE_JW="no"
-else
-  HAVE_JW="yes"
+dnl ====================================
+dnl = Begin tests for scrollkeeper
+dnl ====================================
+AC_PATH_PROG(SK_CONFIG,scrollkeeper-config,no)
+if test x$SK_CONFIG = xno; then
+  AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package: http://scrollkeeper.sourceforge.net)
 fi
-AC_SUBST(HAVE_JW)
+dnl ====================================
+dnl = End tests for scrollkeeper
+dnl ====================================
 
-dnl ======================================================
-dnl == end of modern doc tests
-dnl ======================================================
+dnl ===================================
+dnl Set localstatedir to /var/lib -- this is apparently not used 
+dnl     by anything besides scrollkeeper in our setup
+dnl ==================================
+localstatedir=/var/lib
+
+SCROLLKEEPER_BUILD_REQUIRED=0.3.5
+AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 
 AC_SUBST(BINSH)
 AC_SUBST(SWIG)
@@ -283,8 +268,5 @@ src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
-doc/extending-gramps/Makefile
-doc/extending-gramps/C/Makefile
-omf-install/Makefile
 gramps.spec
 gramps.sh])
