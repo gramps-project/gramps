@@ -930,7 +930,7 @@ class EditPerson:
         else:
             if surname.upper() != name.getSurname().upper():
                 changed = 1
-        if ntype != name.getType():
+        if ntype != const.InverseNameTypesMap[name.getType()]:
             changed = 1
         if given != name.getFirstName():
             changed = 1

@@ -1,3 +1,7 @@
+2003-06-13  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditPerson.py (did_data_change): When checking name type, 
+	compare translated strings (otherwise they always differ).
+
 2003-06-13  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: Removed the conflict of using pmap for two seperate
 	purposes - mapping places to iterators and places to keys. The place to
