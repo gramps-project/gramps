@@ -279,7 +279,15 @@ def on_close_marriage_editor(obj):
 
     relation = family_obj.type_field.entry.get_text()
     if const.save_frel(relation) != family_obj.family.getRelationship():
-        family_obj.family.setRelationship(const.save_frel(relation))
+        father = family_obj.family.getFather()
+        mother = family_obj.family.getMother()
+        if father.getGender() == mother.getGender():
+            family_obj.family.setRelationship("Partners")
+        else:
+            val = const.save_frel(relation)
+            if val == "Partners":
+                val = "Unknown"
+            family_obj.family.setRelationship(val)
         utils.modified()
 
     text = family_obj.notes_field.get_chars(0,-1)

@@ -123,6 +123,14 @@ class EditPerson:
         self.dplace = self.get_widget("deathPlace")
         self.is_male = self.get_widget("genderMale")
         self.is_female = self.get_widget("genderFemale")
+        self.event_note = self.get_widget("event_note")
+        self.event_source = self.get_widget("event_source")
+        self.addr_note = self.get_widget("addr_note")
+        self.addr_source = self.get_widget("addr_source")
+        self.attr_note = self.get_widget("attr_note")
+        self.attr_source = self.get_widget("attr_source")
+        self.name_note = self.get_widget("name_note")
+        self.name_source = self.get_widget("name_source")
 
         self.selectedIcon = -1
         
@@ -295,6 +303,11 @@ class EditPerson:
                 current_row = current_row - 1
             self.name_list.select_row(current_row,0)
             self.name_list.moveto(current_row,0)
+            self.name_note.set_sensitive(1)
+            self.name_source.set_sensitive(1)
+        else:
+            self.name_note.set_sensitive(0)
+            self.name_source.set_sensitive(0)
         self.name_list.set_data(INDEX,current_row)
         self.name_list.thaw()
 
@@ -356,6 +369,11 @@ class EditPerson:
                 current_row = current_row - 1
             self.attr_list.select_row(current_row,0)
             self.attr_list.moveto(current_row,0)
+            self.attr_note.set_sensitive(1)
+            self.attr_source.set_sensitive(1)
+        else:
+            self.attr_note.set_sensitive(0)
+            self.attr_source.set_sensitive(0)
         self.attr_list.set_data(INDEX,current_row)
         self.attr_list.thaw()
 
@@ -391,6 +409,11 @@ class EditPerson:
                 current_row = current_row - 1
             self.address_list.select_row(current_row,0)
             self.address_list.moveto(current_row,0)
+            self.addr_note.set_sensitive(1)
+            self.addr_source.set_sensitive(1)
+        else:
+            self.addr_note.set_sensitive(0)
+            self.addr_source.set_sensitive(0)
         self.address_list.set_data(INDEX,current_row)
         self.address_list.thaw()
 
@@ -426,6 +449,12 @@ class EditPerson:
                 current_row = current_row - 1
             self.event_list.select_row(current_row,0)
             self.event_list.moveto(current_row,0)
+            self.event_note.set_sensitive(1)
+            self.event_source.set_sensitive(1)
+        else:
+            self.event_note.set_sensitive(0)
+            self.event_source.set_sensitive(0)
+            
         self.event_list.set_data(INDEX,current_row)
         self.event_list.thaw()
 
@@ -799,8 +828,8 @@ def on_event_add_clicked(obj):
     if place not in const.places:
         const.places.append(place)
         const.places.sort()
-        edit_person_obj.get_widget("dp_place").set_popdown_strings(const.places)
-        edit_person_obj.get_widget("bp_place").set_popdown_strings(const.places)
+        edit_person_obj.get_widget("dp_combo").set_popdown_strings(const.places)
+        edit_person_obj.get_widget("bp_combo").set_popdown_strings(const.places)
         edit_person_obj.get_widget("eventPlace_combo").set_popdown_strings(const.places)
 
     edit_person_obj.person.addEvent(event)

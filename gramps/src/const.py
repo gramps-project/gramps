@@ -356,7 +356,7 @@ def save_fattr(st):
 
 _fr_e2l = {
     "Married"    : _("Married"),
-    "Common Law" : _("Common Law"),
+    "Unmarried"  : _("Unmarried"),
     "Partners"   : _("Partners"),
     "Unknown"    : _("Unknown")
 }

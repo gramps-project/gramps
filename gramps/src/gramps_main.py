@@ -255,6 +255,17 @@ def on_add_child_clicked(obj):
     selectChild = childWindow.get_widget("selectChild")
     addChildList = childWindow.get_widget("addChild")
     addChildList.set_column_visibility(1,Config.id_visible)
+
+    father = active_family.getFather()
+    if father != None:
+        fname = father.getPrimaryName().getName()
+        childWindow.get_widget("flabel").set_text(_("Relationship to %s") % fname)
+
+    mother = active_family.getMother()
+    if mother != None:
+        mname = mother.getPrimaryName().getName()
+        childWindow.get_widget("mlabel").set_text(_("Relationship to %s") % mname)
+
     redraw_child_list(2)
     selectChild.show()
 
@@ -307,6 +318,16 @@ def on_add_new_child_clicked(obj):
         surname = active_spouse.getPrimaryName().getSurname()
     else:
         surname = ""
+
+    father = active_family.getFather()
+    if father != None:
+        fname = father.getPrimaryName().getName()
+        newChildWindow.get_widget("flabel").set_text(_("Relationship to %s") % fname)
+
+    mother = active_family.getMother()
+    if mother != None:
+        mname = mother.getPrimaryName().getName()
+        newChildWindow.get_widget("mlabel").set_text(_("Relationship to %s") % mname)
 
     newChildWindow.get_widget("childSurname").set_text(surname)
     newChildWindow.get_widget("addChild").show()
@@ -382,7 +403,16 @@ def on_save_child_clicked(obj):
         active_family.addChild(select_child)
 		
         mrel = const.childRelations[childWindow.get_widget("mrel").get_text()]
+        mother = active_family.getMother()
+        if mother and mother.getGender() != Person.female:
+            if mrel == "Birth":
+                mrel = "Unknown"
+                
         frel = const.childRelations[childWindow.get_widget("frel").get_text()]
+        father = active_family.getFather()
+        if father and father.getGender() != Person.male:
+            if frel == "Birth":
+                frel = "Unknown"
 
         if mrel == "Birth" and frel == "Birth":
             family = select_child.getMainFamily()
@@ -931,12 +961,14 @@ def on_select_spouse_clicked(obj):
     active_person.addFamily(family)
     select_spouse.addFamily(family)
 
-    if active_person.getGender() == Person.male:
-        family.setFather(active_person)
+    if active_person == Person.male:
         family.setMother(select_spouse)
+        family.setFather(active_person)
     else:	
         family.setFather(select_spouse)
         family.setMother(active_person)
+
+    family.setRelationship(const.save_frel(obj.get_data("d").get_text()))
 
     select_spouse = None
     utils.destroy_passed_object(obj)
@@ -1051,26 +1083,51 @@ def on_editperson_clicked(obj):
 def add_spouse():
 
     spouseDialog = libglade.GladeXML(const.gladeFile, "spouseDialog")
+    spouseList = spouseDialog.get_widget("spouseList")
+    spouseDialog.get_widget("rel_combo").set_popdown_strings(const.familyRelations)
+    rel_type = spouseDialog.get_widget("rel_type")
+    rel_type.set_data("d",spouseList)
+    spouseDialog.get_widget("spouseDialog").set_data("d",rel_type)
+
     spouseDialog.signal_autoconnect({
         "on_spouseList_select_row" : on_spouseList_select_row,
         "on_select_spouse_clicked" : on_select_spouse_clicked,
+        "on_rel_type_changed" : on_rel_type_changed,
         "destroy_passed_object" : utils.destroy_passed_object
         })
 
-    spouseList = spouseDialog.get_widget("spouseList")
+    rel_type.set_text(_("Unknown"))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_rel_type_changed(obj):
 	
     nameList = database.getPersonMap().values()
     nameList.sort(sort.by_last_name)
+    spouse_list = obj.get_data("d")
+    spouse_list.clear()
+    spouse_list.freeze()
+    text = obj.get_text()
+
     gender = active_person.getGender()
+    if text == _("Partners"):
+        if gender == Person.male:
+            gender = Person.female
+        else:
+            gender = Person.male
 	
     index = 0
     for person in nameList:
 		
         if person.getGender() == gender:
             continue
-        spouseList.append([Config.nameof(person),birthday(person)])
-        spouseList.set_row_data(index,person)
+        spouse_list.append([person.getPrimaryName().getName(),birthday(person)])
+        spouse_list.set_row_data(index,person)
         index = index + 1
+    spouse_list.thaw()
 
 #-------------------------------------------------------------------------
 #
@@ -1636,7 +1693,10 @@ def load_family():
             menuitem.show()
             typeMenu.append(menuitem)
         for fam in family_types:
-            menuitem = GtkMenuItem("%s/%s" % (fam[2],fam[1]))
+            if active_person == fam[0].getFather():
+                menuitem = GtkMenuItem("%s/%s" % (fam[1],fam[2]))
+            else:
+                menuitem = GtkMenuItem("%s/%s" % (fam[2],fam[1]))
             menuitem.set_data("parents",fam[0])
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()
@@ -1645,6 +1705,16 @@ def load_family():
         gtop.get_widget("childtype").show()
     else:
         gtop.get_widget("childtype").hide()
+
+    fn = _("Father")
+    mn = _("Mother")
+
+    if active_parents and active_parents.getRelationship() == "Partners":
+        fn = _("Parent")
+        mn = _("Parent")
+
+    gtop.get_widget("editFather").children()[0].set_text(fn)
+    gtop.get_widget("editMother").children()[0].set_text(mn)
 
     change_parents(active_parents)
 
@@ -1768,7 +1838,9 @@ def load_tree():
 
     tips = GtkTooltips()
     for i in range(1,16):
-        pv[i].set_text(text[i])
+        pv[i].set_text(text[i]) 
+	pv[i].set_position(0)
+       
         if tip[i] != "":
             tips.set_tip(pv[i],tip[i])
         else:
@@ -1849,7 +1921,10 @@ def display_marriage(family):
             else:
                 for fam in child.getAltFamilyList():
                     if fam[0] == family:
-                        status = "%s/%s" % (fam[2],fam[1])
+                        if active_person == family.getFather():
+                            status = "%s/%s" % (fam[2],fam[1])
+                        else:
+                            status = "%s/%s" % (fam[1],fam[2])
 
             if Config.show_detail:
                 attr = ""

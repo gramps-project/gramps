@@ -1258,7 +1258,8 @@
 
 	  <widget>
 	    <class>GtkButton</class>
-	    <name>button103</name>
+	    <name>name_source</name>
+	    <tooltip>Edit source information for the highlighted name</tooltip>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
@@ -1286,7 +1287,8 @@
 
 	  <widget>
 	    <class>GtkButton</class>
-	    <name>button104</name>
+	    <name>name_note</name>
+	    <tooltip>Edit note information for the highlighted name</tooltip>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
@@ -1673,8 +1675,8 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button86</name>
-	      <tooltip>Choose source information</tooltip>
+	      <name>event_source</name>
+	      <tooltip>Edit source information for the highlighted event</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
@@ -1702,7 +1704,8 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>edit_note</name>
+	      <name>event_note</name>
+	      <tooltip>Edit note information for the highlighted event</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
@@ -2072,8 +2075,8 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button95</name>
-	      <tooltip>Choose source information</tooltip>
+	      <name>attr_source</name>
+	      <tooltip>Edit source information for the highlighted attribute</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
@@ -2101,7 +2104,8 @@
 
 	    <widget>
 	      <class>GtkButton</class>
-	      <name>button97</name>
+	      <name>attr_note</name>
+	      <tooltip>Edit note information for the highlighted attribute</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
@@ -2598,8 +2602,8 @@
 
 	  <widget>
 	    <class>GtkButton</class>
-	    <name>button91</name>
-	    <tooltip>Choose source information</tooltip>
+	    <name>addr_source</name>
+	    <tooltip>Edit source information for the highlighted address</tooltip>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
@@ -2627,7 +2631,8 @@
 
 	  <widget>
 	    <class>GtkButton</class>
-	    <name>button98</name>
+	    <name>addr_note</name>
+	    <tooltip>Edit note information for the highlighted address</tooltip>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
