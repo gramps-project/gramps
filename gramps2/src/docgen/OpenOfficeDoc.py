@@ -243,6 +243,9 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self._write_manifest()
         self._write_meta_file()
         self._write_zip()
+        if self.print_req:
+            os.environ["FILE"] = self.filename
+            os.system ('/usr/bin/oowriter "$FILE" &')
 
     def add_photo(self,name,pos,x_cm,y_cm):
 
@@ -617,5 +620,10 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 	self.f.write('</office:document-meta>\n')
 	self.f.close()
 
-Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")
+print_label = None
+if os.access ("/usr/bin/oowriter", os.X_OK):
+    print_label = _("Open in OpenOffice.org")
+
+Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,
+                          ".sxw",print_label)
 Plugins.register_book_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")

@@ -979,6 +979,10 @@ class TextDoc:
         self.cell_styles = {}
         self.name = ""
         self.photo_list = []
+        self.print_req = 0
+
+    def print_requested (self):
+        self.print_req = 1
 
     def set_owner(self,owner):
         """
@@ -1054,9 +1058,6 @@ class TextDoc:
 
     def close(self):
         "Closes the document"
-        pass
-
-    def print_report(self):
         pass
 
     def line_break(self):

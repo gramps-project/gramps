@@ -1274,6 +1274,8 @@ class TextReportDialog(ReportDialog):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,
                                self.template_name,self.orien)
+        if self.print_report.get_active ():
+            self.doc.print_requested ()
 
     #------------------------------------------------------------------------
     #

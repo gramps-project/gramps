@@ -126,6 +126,10 @@ class DrawDoc:
         self.style_list = styles.get_styles()
 	self.draw_styles = {}
         self.name = ""
+        self.print_req = 0
+
+    def print_requested (self):
+        self.print_req = 1
 
     def get_usable_width(self):
         return self.width - (self.rmargin + self.lmargin)

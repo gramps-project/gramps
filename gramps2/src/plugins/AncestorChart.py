@@ -257,8 +257,6 @@ class AncestorChartDialog(Report.DrawReportDialog):
             MyReport = AncestorChart(self.db, self.person, self.target_path,
                                      self.max_gen, self.doc, self.report_text)
             MyReport.write_report()
-            if self.print_report.get_active ():
-                self.doc.print_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
