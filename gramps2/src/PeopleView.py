@@ -119,12 +119,6 @@ class PeopleView:
         self.ptabs.show()
         self.clearing_tabs = 0
 
-        self.id2col  = {}
-        self.tab_list = []
-        self.alpha_page = {}
-        self.model2page = {}
-        self.model_used = {}
-
         self.default_list.clear()
 
         for page in self.pl_page[0:-1]:
@@ -137,7 +131,13 @@ class PeopleView:
         self.person_tree = self.pl_page[-1]
         self.person_list = self.pl_page[-1].tree
         self.person_model = self.pl_page[-1].model
-    
+
+        self.id2col  = {}
+        self.tab_list = []
+        self.alpha_page = {}
+        self.model2page = {self.default_list : 0}
+        self.model_used = {}
+
     def change_db(self,db):
         self.id2col = {}
 
