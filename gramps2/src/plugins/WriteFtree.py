@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Export to Web Family Tree"
 
 #-------------------------------------------------------------------------
@@ -36,6 +38,7 @@ from cStringIO import StringIO
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -88,6 +91,7 @@ class FtreeWriter:
             dic = {
                 "destroy_passed_object" : self.close,
                 "on_ok_clicked" : self.on_ok_clicked,
+                "on_help_clicked" : self.on_help_clicked,
                 }
 
             self.top = gtk.glade.XML(glade_file,"top","gramps")
@@ -140,6 +144,10 @@ class FtreeWriter:
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','export-data')
 
     def export(self, filename, cfilter, restrict ):
 
