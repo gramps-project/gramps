@@ -1,12 +1,12 @@
 # German translation for Gramps; Deutsche Übersetzung für Gramps.
-# Copyright (C) 2001-2002 Free Software Foundation, Inc.
-# Bernd Schandl <schandl@gmx.net>, 2001-2002.
+# Copyright (C) 2001-2003 Free Software Foundation, Inc.
+# Bernd Schandl <schandl@gmx.net>, 2001-2003.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Wed Feb 12 22:07:04 2003\n"
-"PO-Revision-Date: 2003-02-13 19:57+0100\n"
+"POT-Creation-Date: Thu Feb 13 18:46:40 2003\n"
+"PO-Revision-Date: 2003-02-15 06:15+0100\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2434,7 +2434,7 @@ msgid "<b>Active Person's Parents</b>"
 msgstr "<b>Eltern der aktuellen Person</b>"
 
 #: gramps.glade:1792
-msgid "<b>Spouse's  Parents</b>"
+msgid "<b>Spouse's Parents</b>"
 msgstr "<b>Eltern des (Ehe-)Partners</b>"
 
 #: gramps.glade:1847
@@ -2646,7 +2646,7 @@ msgid "New Relationship"
 msgstr "Neue Beziehung"
 
 #: gramps.glade:5793
-msgid "Add a Spouse or Create a New Relationhip"
+msgid "Add a Spouse or Create a New Relationship"
 msgstr "Neuen Partner oder neue Beziehung hinzufügen"
 
 #: gramps.glade:5834
