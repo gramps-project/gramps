@@ -4,6 +4,8 @@
 	* src/docgen/SvgDrawDoc.py: Change from Text/DrawDoc to BaseDoc
 
 2003-09-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/PdfDoc.py (make_color): Remove the first occurence -- 
+	was defined twice; (left_print): Remove print statement. 
 	* src/plugins/BookReport.py (BookList.save): Enable saving options 
 	which are lists; 
 	(BookParser.startElement, BookParser.endElement): Enable parsing 

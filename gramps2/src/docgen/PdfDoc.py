@@ -475,7 +475,6 @@ class PdfDoc(BaseDoc.BaseDoc):
         start_x = x 
 
         for text in lines:
-            print text, start_x, start_y
             s = String(start_x,
                        start_y,
                        str(text),
@@ -485,9 +484,6 @@ class PdfDoc(BaseDoc.BaseDoc):
                        fontName=self.pdf_set_font(font))
             self.drawing.add(s)
             start_y = start_y - size*1.2
-
-def make_color(c):
-    return Color(float(c[0])/255.0, float(c[1])/255.0, float(c[2])/255.0)
 
 #------------------------------------------------------------------------
 #
