@@ -85,11 +85,11 @@ class AttributeEditor:
         self.alist = list
 
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
-        self.type_field  = self.top.get_widget("attr_type")
         self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")
         self.note_field = self.top.get_widget("attr_note")
         self.attrib_menu = self.top.get_widget("attr_menu")
+        self.type_field  = self.attrib_menu.child
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
         self.sources_label = self.top.get_widget("sourcesAttr")
@@ -117,7 +117,7 @@ class AttributeEditor:
         l = self.top.get_widget("title")
         Utils.set_titles(self.window,l,title,_('Attribute Editor'))
 
-        AutoComp.AutoCombo(self.attrib_menu,list)
+        AutoComp.fill_combo(self.attrib_menu,list)
 
         if attrib != None:
             self.type_field.set_text(attrib.get_type())
