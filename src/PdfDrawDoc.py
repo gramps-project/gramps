@@ -36,8 +36,8 @@ def make_color(color):
 
 class PdfDrawDoc(DrawDoc):
 
-    def __init__(self,type,orientation):
-        DrawDoc.__init__(self,type,orientation)
+    def __init__(self,styles,type,orientation):
+        DrawDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -78,7 +78,7 @@ class PdfDrawDoc(DrawDoc):
     def draw_box(self,style,text,x,y):
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
-	p = self.paragraph_styles[para_name]
+	p = self.style_list[para_name]
 
 	w = box_style.get_width()*cm
         h = box_style.get_height()*cm

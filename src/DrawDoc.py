@@ -20,7 +20,32 @@
 
 from TextDoc import *
 
+import string
+import os
+import sys
+import xml.sax
+import xml.sax.saxutils
+import utils
 
+#-------------------------------------------------------------------------
+#
+# Try to abstract SAX1 from SAX2
+#
+#-------------------------------------------------------------------------
+if sys.version[0] != '1':
+    sax = 2
+else:
+    try:
+        import xml.sax.saxexts
+        sax = 1
+    except:
+        sax = 2
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class GraphicsStyle:
     def __init__(self,obj=None):
         if obj:
@@ -72,7 +97,7 @@ class GraphicsStyle:
 #
 #------------------------------------------------------------------------
 class DrawDoc:
-    def __init__(self,type,orientation=PAPER_PORTRAIT):
+    def __init__(self,styles,type,orientation=PAPER_PORTRAIT):
         self.orientation = orientation
         if orientation == PAPER_PORTRAIT:
             self.width = type.get_width()
@@ -85,9 +110,7 @@ class DrawDoc:
         self.lmargin = 2.54
         self.rmargin = 2.54
                 
-        self.font = FontStyle()
-        self.actfont = self.font
-        self.paragraph_styles = {}
+        self.style_list = styles.get_styles()
 	self.draw_styles = {}
         self.name = ""
 

@@ -21,25 +21,21 @@
 "Generate files/Ancestor Chart"
 
 import RelLib
+import Config
 import const
 import os
-import re
-import sort
 import string
 import utils
 
+from FontScale import string_width
+
 from TextDoc import *
 from DrawDoc import *
-from OpenDrawDoc import *
-try:
-    from PdfDrawDoc import *
-    no_pdf = 0
-except:
-    no_pdf = 1
+from StyleEditor import *
+import FindDoc
 
-from gtk import *
-from gnome.ui import *
 from libglade import *
+from gtk import *
 
 import intl
 _ = intl.gettext
@@ -51,6 +47,16 @@ _ = intl.gettext
 #------------------------------------------------------------------------
 active_person = None
 db = None
+styles = StyleSheet()
+style_sheet_list = None
+
+#------------------------------------------------------------------------
+#
+# pt2cm - convert points to centimeters
+#
+#------------------------------------------------------------------------
+def pt2cm(pt):
+    return (float(pt)/72.0)*2.54
 
 #------------------------------------------------------------------------
 #
@@ -59,71 +65,75 @@ db = None
 #------------------------------------------------------------------------
 class AncestorReport:
 
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def __init__(self,database,person,output,doc, max):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
         self.map = {}
+        self.text = {}
         self.database = database
         self.start = person
         self.max_generations = max
         self.output = output
-        self.width = 4.5
-        self.height = 1.25
-
-        start = self.doc.get_right_margin()
-        delta = self.doc.get_usable_width() - (self.width + 0.5)
-        delta = delta/3.0
-        uh = self.doc.get_usable_height()
-        ystart = self.doc.get_top_margin() - ((self.height+0.3)/2.0)
-        self.x = [start, start + delta, start + (2*delta), start + (3*delta)]
-        self.y = [ ystart + (uh/2.0),   ystart + (uh/4.0),
-                   ystart + 3*(uh/4.0), ystart + (uh/8.0),
-                   ystart + 3*(uh/8.0), ystart + 5*(uh/8.0),
-                   ystart + 7*(uh/8.0), 
-                   ystart + (uh/16.0),   ystart + 3*(uh/16.0),
-                   ystart + 5*(uh/16.0), ystart + 7*(uh/16.0),
-                   ystart + 9*(uh/16.0), ystart + 11*(uh/16.0),
-                   ystart + 13*(uh/16.0), ystart + 15*(uh/16.0)]
-
-    def setup(self):
-        f = FontStyle()
-        f.set_size(9)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        self.doc.add_paragraph_style("Normal",p)
+	self.box_width = 0
+	self.height = 0
+        self.lines = 0
         
-        g = GraphicsStyle()
-        g.set_height(self.height)
-        g.set_width(self.width)
-        g.set_paragraph_style("Normal")
-        g.set_shadow(1)
-        self.doc.add_draw_style("box",g)
-
-        g = GraphicsStyle()
-        self.doc.add_draw_style("line",g)
-
-        self.doc.open(self.output)
-        
-    def end(self):
-        self.doc.close()
-
+    #--------------------------------------------------------------------
+    #
+    # filter - traverse the ancestors recursively until either the end
+    # of a line is found, or until we reach the maximum number of 
+    # generations that we want to deal with
+    #
+    #--------------------------------------------------------------------
     def filter(self,person,index):
         if person == None or index >= 2**self.max_generations:
             return
         self.map[index] = person
-    
+	self.text[index] = [ person.getPrimaryName().getName() ]
+
+	birth = person.getBirth()
+        if birth.getDate() != "":
+            self.text[index].append("b. %s" % birth.getDate())
+	death = person.getDeath()
+        if death.getDate() != "":
+            self.text[index].append("d. %s" % death.getDate())
+	if Config.status_bar == 1:
+	    self.text[index].append("id: %s" % person.getId())
+	elif Config.status_bar == 2:
+            for attr in active_person.getAttributeList():
+                if attr.getType() == Config.attr_name:
+                    txt = "%s: %s" % (Config.attr_name,attr.getValue())
+		    self.text[index].append(txt)
+                    break
+
+        self.font = self.doc.style_list["Normal"].get_font()
+	for line in self.text[index]:
+	    self.box_width = max(self.box_width,string_width(self.font,line))
+
+	self.lines = max(self.lines,len(self.text[index]))    
+
         family = person.getMainFamily()
         if family != None:
             self.filter(family.getFather(),index*2)
             self.filter(family.getMother(),(index*2)+1)
 
+    #--------------------------------------------------------------------
+    #
+    # filter - Generate the actual report
+    #
+    #--------------------------------------------------------------------
     def write_report(self):
 
-        self.filter(self.start,1)
-        
-        generation = 0
-        need_header = 1
+	self.calc()
+	try:
+            self.doc.open(self.output)
+        except:
+            print "Document write failure"
 
         generation = 1
         done = 0
@@ -139,7 +149,56 @@ class AncestorReport:
                     self.print_page(index, generation, page)
                     page = page + 1
             generation = generation + 3
-            
+	try:
+	    self.doc.close()
+        except:
+            print "Document write failure"
+
+    #--------------------------------------------------------------------
+    #
+    # calc - calculate the maximum width that a box needs to be. From
+    # that and the page dimensions, calculate the proper place to put
+    # the elements on a page.
+    #
+    #--------------------------------------------------------------------
+    def calc(self):
+	width = 0
+        self.filter(self.start,1)
+
+        print self.lines
+	self.height = self.lines*pt2cm(1.2*self.font.get_size())
+	self.box_width = pt2cm(self.box_width+20)
+
+        start = self.doc.get_right_margin()
+	delta = (self.doc.get_usable_width() - (self.box_width + 0.5))/3.0
+        uh = self.doc.get_usable_height()
+
+        ystart = self.doc.get_top_margin() - ((self.height+0.3)/2.0)
+        self.x = [start, start + delta, start + (2*delta), start + (3*delta)]
+        self.y = [ ystart + (uh/2.0),   ystart + (uh/4.0),
+                   ystart + 3*(uh/4.0), ystart + (uh/8.0),
+                   ystart + 3*(uh/8.0), ystart + 5*(uh/8.0),
+                   ystart + 7*(uh/8.0), 
+                   ystart + (uh/16.0),   ystart + 3*(uh/16.0),
+                   ystart + 5*(uh/16.0), ystart + 7*(uh/16.0),
+                   ystart + 9*(uh/16.0), ystart + 11*(uh/16.0),
+                   ystart + 13*(uh/16.0), ystart + 15*(uh/16.0)]
+
+        g = GraphicsStyle()
+        g.set_height(self.height)
+        g.set_width(self.box_width)
+        g.set_paragraph_style("Normal")
+        g.set_shadow(1)
+        self.doc.add_draw_style("box",g)
+
+        g = GraphicsStyle()
+        self.doc.add_draw_style("line",g)
+
+    #--------------------------------------------------------------------
+    #
+    #
+    #
+    #--------------------------------------------------------------------
     def get_numbers(self,start,index,vals):
         if index > 4:
             return
@@ -148,30 +207,33 @@ class AncestorReport:
         self.get_numbers(start*2,index+1,vals)
         self.get_numbers((start*2)+1,index+1,vals)
 
+    #--------------------------------------------------------------------
+    #
+    #
+    #
+    #--------------------------------------------------------------------
     def print_page(self,start,generation, page):
         self.doc.start_page()
         self.draw_graph(1,start,0)
         self.doc.end_page()
 
+    #--------------------------------------------------------------------
+    #
+    #
+    #
+    #--------------------------------------------------------------------
     def draw_graph(self,index,start,level):
         if self.map.has_key(start) and index <= 15:
             person = self.map[start]
-            name = person.getPrimaryName().getRegularName()
+	    text = self.text[start]
 
-            birth = person.getBirth()
-            if birth and birth.getDate() != "":
-                name = name + "\nb. " + birth.getDate()
-
-            death = person.getDeath()
-            if death and death.getDate() != "":
-                name = name + "\nd. " + death.getDate()
-
+	    name = string.join(text,"\n")
             self.doc.draw_box("box",name,self.x[level],self.y[index-1])
 
             if index > 1:
                 old_index = int(index/2)-1
-                x1 = self.x[level-1]+(self.width/2.0)
                 x2 = self.x[level]
+                x1 = self.x[level-1]+(self.x[level]-self.x[level-1])/2.0
                 if index % 2 == 1:
                     y1 = self.y[old_index]+self.height
                 else:
@@ -191,6 +253,7 @@ class AncestorReport:
 def report(database,person):
     import PaperMenu
 
+    global style_sheet_list
     global active_person
     global topDialog
     global glade_file
@@ -207,16 +270,58 @@ def report(database,person):
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
+    FindDoc.get_draw_doc_menu(topDialog.get_widget("format"),0,option_switch)
 
-    if no_pdf == 1:
-        topDialog.get_widget("pdf").set_sensitive(0)
+    styles.clear()
+    f = FontStyle()
+    f.set_size(9)
+    f.set_type_face(FONT_SANS_SERIF)
+    p = ParagraphStyle()
+    p.set_font(f)
+    styles.add_style("Normal",p)
+
+    style_sheet_list = StyleSheetList("ancestor_chart.xml",styles)
+    build_menu(None)
 
     title = _("Ancestor Chart for %s") % name
     topDialog.get_widget("labelTitle").set_text(title)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
+        "on_style_edit_clicked" : on_style_edit_clicked,
         "on_save_clicked" : on_save_clicked
         })
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def build_menu(object):
+    menu = topDialog.get_widget("style_menu")
+
+    myMenu = GtkMenu()
+    for style in style_sheet_list.get_style_names():
+        menuitem = GtkMenuItem(style)
+        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
+        menuitem.show()
+        myMenu.append(menuitem)
+    menu.set_menu(myMenu)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def option_switch(obj):
+    pass
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def on_style_edit_clicked(obj):
+    StyleListDisplay(style_sheet_list,build_menu,None)
 
 #------------------------------------------------------------------------
 #
@@ -238,16 +343,13 @@ def on_save_clicked(obj):
         
     max_gen = topDialog.get_widget("generations").get_value_as_int()
 
-    if topDialog.get_widget("openoffice").get_active():
-        document = OpenDrawDoc(paper,orien)
-    else:
-        document = PdfDrawDoc(paper,orien)
+    item = topDialog.get_widget("format").get_menu().get_active()
+    format = item.get_data("name")
+    doc = FindDoc.make_draw_doc(styles,format,paper,orien)
 
-    MyReport = AncestorReport(db,active_person,outputName,document,max_gen)
+    MyReport = AncestorReport(db,active_person,outputName,doc,max_gen)
 
-    MyReport.setup()
     MyReport.write_report()
-    MyReport.end()
 
     utils.destroy_passed_object(obj)
 
@@ -257,8 +359,7 @@ def on_save_clicked(obj):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Produces a graphical ancestral tree")
-
+    return _("Produces a graphical ancestral tree graph")
 
 #------------------------------------------------------------------------
 #
