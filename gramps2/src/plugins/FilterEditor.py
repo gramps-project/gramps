@@ -59,8 +59,11 @@ _name2list = {
     _('Family event:')       : const.family_events,
     _('Personal attribute:') : const.personal_attributes,
     _('Family attribute:')   : const.family_attributes,
-    _('Relationship type:')  : const.family_relations,
 }
+
+_menulist = {
+    _('Relationship type:')  : const.family_relations,
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -103,11 +106,11 @@ class MyInteger(gtk.SpinButton):
 # MyFilters - Combo box with list of filters with a standard interface
 #
 #-------------------------------------------------------------------------
-class MyFilters(gtk.Combo):
+class MyFilters(gtk.ComboBox):
     
     def __init__(self,filters):
-        gtk.Combo.__init__(self)
-        
+        gtk.ComboBox.__init__(self)
+
         flist = []
         for f in filters:
             flist.append(f.get_name())
@@ -117,12 +120,12 @@ class MyFilters(gtk.Combo):
             self.set_sensitive(0)
         else:
             self.ok = 1
-        AutoComp.AutoCombo(self,flist)
+            AutoComp.fill_option_text(self,flist)
         self.show()
         
     def get_text(self):
         if self.ok:
-            return unicode(self.entry.get_text())
+            return unicode(AutoComp.get_option(self))
         else:
             return ""
 
@@ -140,7 +143,7 @@ class MyPlaces(gtk.Entry):
     def __init__(self,places):
         gtk.Entry.__init__(self)
         
-        self.comp = AutoComp.AutoEntry(self,places)
+        self.comp = AutoComp.fill_entry(self,places)
         self.show()
         
 #-------------------------------------------------------------------------
@@ -193,16 +196,33 @@ class MyID(gtk.HBox):
 #
 #
 #-------------------------------------------------------------------------
-class MySelect(gtk.Combo):
+class MySelect(gtk.ComboBoxEntry):
     
     def __init__(self,transtable):
-        gtk.Combo.__init__(self)
-        list = transtable.get_values()
-        list.sort()
-        self.set_popdown_strings(list)
-        self.set_value_in_list(1,0)
-        self.entry.set_editable(0)
-        self.transtable = transtable
+        gtk.ComboBoxEntry.__init__(self)
+        AutoComp.fill_combo(self,transtable.get_values())
+        self.show()
+        
+    def get_text(self):
+        return self.transtable.find_key(unicode(self.entry.get_text()))
+
+    def set_text(self,val):
+        self.entry.set_text(_(val))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MyListSelect(gtk.ComboBoxEntry):
+    
+    def __init__(self,data_list):
+        gtk.ComboBoxEntry.__init__(self)
+        new_list = []
+        for item in data_list:
+            new_list.append(item[0])
+        new_list.sort()
+        AutoComp.fill_combo(self,new_list)
         self.show()
         
     def get_text(self):
@@ -595,6 +615,9 @@ class EditRule:
                 elif _name2list.has_key(v1):
                     data =_name2list[v1]
                     t = MySelect(data)
+                elif _menulist.has_key(v1):
+                    data =_menulist[v1]
+                    t = MyListSelect(data)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 else:

@@ -1557,15 +1557,17 @@ class GenericFilterList:
         self.filter_list.append(filter)
         
     def load(self):
-        try:
-            parser = make_parser()
-            parser.setContentHandler(FilterParser(self))
-            if self.file[0:7] != "file://":
-                parser.parse("file://" + self.file)
-            else:
-                parser.parse(self.file)
-        except (IOError,OSError,SAXParseException):
-            pass
+       try:
+           parser = make_parser()
+           parser.setContentHandler(FilterParser(self))
+           if self.file[0:7] != "file://":
+               parser.parse("file://" + self.file)
+           else:
+               parser.parse(self.file)
+       except (IOError,OSError):
+           pass
+       except SAXParseException:
+           print "Parser error"
 
     def fix(self,line):
         l = line.strip()

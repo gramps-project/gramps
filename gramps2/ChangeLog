@@ -1,3 +1,12 @@
+2004-08-05  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AutoComp.py: switch over entirely to ComboBox for
+	autocompletion
+	* src/GenericFilter.py: support ComboBox
+	* src/TransTable.py: sort items on getting keys
+	* src/plugins/FilterEditor.py: support ComboBox
+	* src/plugins/SoundGen.py: support ComboBox
+	* src/plugins/soundex.glade: support ComboBox
+
 2004-08-04  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AttrEdit.py: use ComboBox
 	* src/NameEdit.py: use ComboBox
