@@ -21607,7 +21607,7 @@
   </child>
 </widget>
 
-<widget class="GtkDialog" id="select">
+<widget class="GtkDialog" id="select_person">
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
