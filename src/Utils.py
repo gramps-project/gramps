@@ -552,3 +552,4 @@ def build_string_optmenu(mapping, start_val):
     if start_index:
         myMenu.set_active(start_index)
     return myMenu
+

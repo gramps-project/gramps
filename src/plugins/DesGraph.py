@@ -45,6 +45,7 @@ from FontScale import string_width
 from DrawDoc import *
 from Report import *
 from TextDoc import *
+from SubstKeywords import SubstKeywords
 
 import intl
 _ = intl.gettext
@@ -86,25 +87,9 @@ class DescendantReport:
         for (p,x,y) in self.v:
 
             self.text[p] = []
-
-            n = p.getPrimaryName().getRegularName()
-            N = p.getPrimaryName().getName()
-            b = p.getBirth().getDate()
-            d = p.getDeath().getDate()
-            B = p.getBirth().getPlaceName()
-            D = p.getDeath().getPlaceName()
-            i = "%s" % p.getId()
-
+            subst = SubstKeywords(p)
             for line in self.display:
-                line = string.replace(line,"$n",n)
-                line = string.replace(line,"$N",N)
-                line = string.replace(line,"$b",b)
-                line = string.replace(line,"$B",B)
-                line = string.replace(line,"$d",d)
-                line = string.replace(line,"$D",D)
-                line = string.replace(line,"$i",i)
-                line = string.replace(line,"$$",'$')
-                self.text[p].append(line)
+                self.text[p].append(subst.replace(line))
 
             self.font = self.doc.style_list["Normal"].get_font()
             for line in self.text[p]:
