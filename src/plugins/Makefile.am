@@ -36,6 +36,7 @@ pkgdata_PYTHON = \
 	RelCalc.py\
 	ReorderIds.py\
 	SoundGen.py\
+	StatisticsChart.py\
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
