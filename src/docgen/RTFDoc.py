@@ -363,4 +363,4 @@ class RTFDoc(TextDoc.TextDoc):
             else:
                 self.text = self.text + i
 
-Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1)
+Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1,".rtf")

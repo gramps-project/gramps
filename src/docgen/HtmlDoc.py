@@ -412,4 +412,4 @@ class HtmlDoc(TextDoc.TextDoc):
             self.empty = 0
 	self.f.write(text)
 
-Plugins.register_text_doc(_("HTML"),HtmlDoc,1,0,1)
+Plugins.register_text_doc(_("HTML"),HtmlDoc,1,0,1,".html")

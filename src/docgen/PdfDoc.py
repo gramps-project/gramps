@@ -42,7 +42,7 @@ try:
     from reportlab.lib.colors import Color
     from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
     import reportlab.lib.styles
-except:
+except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
 
 #------------------------------------------------------------------------
@@ -99,7 +99,7 @@ class PdfDoc(TextDoc.TextDoc):
             pdf_style.fontSize = font.get_size()
             pdf_style.bulletFontSize = font.get_size()
             
-            if font.get_type_face() == FONT_SERIF:
+            if font.get_type_face() == TextDoc.FONT_SERIF:
                 if font.get_bold():
                     if font.get_italic():
                         pdf_style.fontName = "Times-BoldItalic"
@@ -122,7 +122,6 @@ class PdfDoc(TextDoc.TextDoc):
                     else:
                         pdf_style.fontName = "Helvetica"
             pdf_style.bulletFontName = pdf_style.fontName
-
 
             right = style.get_right_margin()*cm
             left = style.get_left_margin()*cm
@@ -278,19 +277,17 @@ class PdfDoc(TextDoc.TextDoc):
         self.image = 1
 
     def write_text(self,text):
-        text = string.replace(text,'&','&amp;');       # Must be first
-        text = string.replace(text,'<','&lt;');
-        text = string.replace(text,'>','&gt;');
-	self.text = self.text + text
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace('<','&lt;');
+        self.text =  self.text + text.replace('>','&gt;');
 
 #------------------------------------------------------------------------
 #
 # Convert an RGB color tulple to a Color instance
 #
 #------------------------------------------------------------------------
-def make_color(color):
-    return Color(float(color[0])/255.0, float(color[1])/255.0,
-                 float(color[2])/255.0)
+def make_color(c):
+    return Color(float(c[0])/255.0, float(c[1])/255.0, float(c[2])/255.0)
 
 #------------------------------------------------------------------------
 #
@@ -303,5 +300,6 @@ Plugins.register_text_doc(
     classref=PdfDoc,
     table=1,
     paper=1,
-    style=1
+    style=1,
+    ext="pdf"
     )

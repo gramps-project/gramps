@@ -86,13 +86,17 @@ class OptionDialog:
         self.xml.get_widget('option1').set_label(btnmsg1)
         self.xml.get_widget('option2').set_label(btnmsg2)
         self.top.show()
-        response = self.top.run()
-        if response == gtk.RESPONSE_NO:
+        self.response = self.top.run()
+        if self.response == gtk.RESPONSE_NO:
             if task1:
                 task1()
         else:
-            task2()
+            if task2:
+                task2()
         self.top.destroy()
+
+    def get_response(self):
+        return self.response
 
 class ErrorDialog:
     def __init__(self,msg1,msg2=""):

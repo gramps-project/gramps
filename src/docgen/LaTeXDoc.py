@@ -394,5 +394,6 @@ Plugins.register_text_doc(
     classref=LaTeXDoc,
     table=1,
     paper=1,
-    style=0
+    style=0,
+    ext=".tex"
     )

@@ -55,7 +55,7 @@ import GrampsCfg
 import PaperMenu
 
 from intl import gettext as _
-from QuestionDialog import  ErrorDialog
+from QuestionDialog import  ErrorDialog, OptionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -184,7 +184,8 @@ class ReportDialog:
         self.frame_names = []
         self.frames = {}
         self.format_menu = None
-
+        self.style_button = None
+        
         self.window = gtk.Dialog('GRAMPS')
         self.window.set_has_separator(gtk.FALSE)
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,1)
@@ -273,6 +274,12 @@ class ReportDialog:
         created when needed.  All subclasses should probably override
         this function."""
         return "basic_report.xml"
+
+    def get_default_basename(self):
+        """What should the default name be?
+        """
+        path = self.get_stylesheet_savefile()
+        return path.split('.')[0]
 
     def get_print_pagecount_map(self):
         """Return the data used to fill out the 'pagecount' option
@@ -445,8 +452,9 @@ class ReportDialog:
         self.output_notebook.set_current_page(self.notebook_page)
 
         # Does this report format use styles?
-        self.style_button.set_sensitive(obj.get_data("styles"))
-        self.style_menu.set_sensitive(obj.get_data("styles"))
+        if self.style_button:
+            self.style_button.set_sensitive(obj.get_data("styles"))
+            self.style_menu.set_sensitive(obj.get_data("styles"))
 
     #------------------------------------------------------------------------
     #
@@ -504,12 +512,9 @@ class ReportDialog:
         self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
         self.col += 1
         
-        self.target_fileentry.set_default_path(self.get_default_directory())
-        if self.get_target_is_directory():
-            self.target_fileentry.set_directory_entry(1)
-
-        self.target_fileentry.set_filename(self.get_default_directory())
-
+        path = self.get_default_directory()
+        self.target_fileentry.set_default_path(path)
+        
     def setup_format_frame(self):
         """Set up the format frame of the dialog.  This function
         relies on the make_doc_menu() function to do all the hard
@@ -522,6 +527,20 @@ class ReportDialog:
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
         self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
         self.col += 1
+
+        type = self.format_menu.get_menu().get_active()
+        ext = type.get_data('ext')
+        if ext == None:
+            ext = ""
+        if type:
+            path = self.get_default_directory()
+            if self.get_target_is_directory():
+                self.target_fileentry.set_filename(path)
+            else:
+                base = self.get_default_basename()
+                path = os.path.normpath("%s/%s%s" % (path,base,ext))
+                self.target_fileentry.set_filename(path)
+
 
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
@@ -872,6 +891,16 @@ class ReportDialog:
                         _("The filename that you gave is a directory.\n"
                           "You need to provide a valid filename."))
             return None
+
+        if os.path.isfile(self.target_path):
+            a = OptionDialog(_('File already exists'),
+                             _('You can choose to either overwrite the file, or change '
+                               'the selected filename.'),
+                             _('_Overwrite'),None,
+                             _('_Change filename'),None)
+                             
+            if a.get_response() == gtk.RESPONSE_YES:
+                return
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
         return 1
@@ -1112,7 +1141,7 @@ class DrawReportDialog(ReportDialog):
     def make_doc_menu(self):
         """Build a menu of document types that are appropriate for
         this drawing report."""
-        Plugins.get_draw_doc_menu(self.format_menu)
+        Plugins.get_draw_doc_menu(self.format_menu,self.doc_type_changed)
 
     def make_document(self):
         """Create a document of the type requested by the user."""

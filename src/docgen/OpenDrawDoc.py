@@ -557,4 +557,4 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-Plugins.register_draw_doc(_("OpenOffice/StarOffice 6"),OpenDrawDoc);
+Plugins.register_draw_doc(_("OpenOffice/StarOffice 6"),OpenDrawDoc,1,1,".sxd");
