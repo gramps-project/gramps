@@ -511,11 +511,13 @@ class LocalMediaProperties:
 
 class GlobalMediaProperties:
 
-    def __init__(self,object,path):
+    def __init__(self,db,object):
         self.object = object
         self.alist = self.object.getAttributeList()[:]
         self.lists_changed = 0
-        
+        self.db = db
+
+        path = self.db.getSavePath()
         fname = self.object.getPath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_global")
         window = self.change_dialog.get_widget("change_global")
@@ -544,6 +546,7 @@ class GlobalMediaProperties:
             "on_apply_clicked" : self.on_apply_clicked,
             "on_attr_list_select_row" : self.on_attr_list_select_row,
             "on_add_attr_clicked": self.on_add_attr_clicked,
+            "on_notebook_switch_page": self.on_notebook_switch_page,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
@@ -551,7 +554,30 @@ class GlobalMediaProperties:
 
     def redraw_attr_list(self):
         utils.redraw_list(self.alist,self.attr_list,disp_attr)
+
+    def display_refs(self):
+        ref = self.change_dialog.get_widget("refinfo")
+        for p in self.db.getPersonMap().values():
+            for o in p.getPhotoList():
+                if o.getReference() == self.object:
+                    ref.append([_("Person"),p.getId(),Config.nameof(p)])
+        for p in self.db.getFamilyMap().values():
+            for o in p.getPhotoList():
+                if o.getReference() == self.object:
+                    ref.append([_("Family"),p.getId(),utils.family_name(p)])
+        for p in self.db.getSourceMap().values():
+            for o in p.getPhotoList():
+                if o.getReference() == self.object:
+                    ref.append([_("Source"),p.getId(),p.getTitle()])
+        for p in self.db.getPlaceMap().values():
+            for o in p.getPhotoList():
+                if o.getReference() == self.object:
+                    ref.append([_("Place"),p.getId(),p.get_title()])
         
+    def on_notebook_switch_page(self,obj,junk,page):
+        if page == 3:
+            self.display_refs()
+            
     def on_apply_clicked(self, obj):
         text = self.change_dialog.get_widget("notes").get_chars(0,-1)
         desc = self.change_dialog.get_widget("description").get_text()
@@ -598,3 +624,65 @@ class GlobalMediaProperties:
 def disp_attr(attr):
     detail = utils.get_detail_flags(attr)
     return [const.display_pattr(attr.getType()),attr.getValue(),detail]
+
+
+class DeleteMediaQuery:
+
+    def __init__(self,media,db,update):
+        self.db = db
+        self.media = media
+        self.update = update
+        
+    def query_response(self,ans):
+        if ans == 1:
+            return
+        del self.db.getObjectMap()[self.media.getId()]
+        utils.modified()
+
+        for p in self.db.getPersonMap().values():
+            nl = []
+            change = 0
+            for photo in p.getPhotoList():
+                if photo.getReference() != self.media:
+                    nl.append(photo)
+                else:
+                    change = 1
+            if change:
+                p.setPhotoList(nl)
+
+        for p in self.db.getFamilyMap().values():
+            nl = []
+            change = 0
+            for photo in p.getPhotoList():
+                if photo.getReference() != self.media:
+                    nl.append(photo)
+                else:
+                    change = 1
+            if change:
+                p.setPhotoList(nl)
+
+        for p in self.db.getSourceMap().values():
+            nl = []
+            change = 0
+            for photo in p.getPhotoList():
+                if photo.getReference() != self.media:
+                    nl.append(photo)
+                else:
+                    change = 1
+            if change:
+                p.setPhotoList(nl)
+
+        for p in self.db.getPlaceMap().values():
+            nl = []
+            change = 0
+            for photo in p.getPhotoList():
+                if photo.getReference() != self.media:
+                    nl.append(photo)
+                else:
+                    change = 1
+            if change:
+                p.setPhotoList(nl)
+                
+        self.update(0)
+
+

@@ -45,13 +45,6 @@ import ImageSelect
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-MARRIAGE   = "m"
-
-#-------------------------------------------------------------------------
-#
 # Marriage class
 #
 #-------------------------------------------------------------------------
@@ -130,11 +123,6 @@ class Marriage:
         self.gid.set_text(family.getId())
         self.gid.set_editable(Config.id_edit)
         
-        # stored object data
-        top_window.set_data(MARRIAGE,self)
-        self.event_list.set_data(MARRIAGE,self)
-        self.attr_list.set_data(MARRIAGE,self)
-
         # set notes data
         self.notes_field.set_point(0)
         self.notes_field.insert_defaults(family.getNote())
@@ -244,15 +232,7 @@ class Marriage:
 
     def on_add_clicked(self,obj):
         import EventEdit
-        father = self.family.getFather()
-        mother = self.family.getMother()
-        if father and mother:
-            name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                     mother.getPrimaryName().getName())
-        elif father:
-            name = father.getPrimaryName().getName()
-        else:
-            name = mother.getPrimaryName().getName()
+        name = utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,None,None,0)
 
     def on_update_clicked(self,obj):
@@ -261,15 +241,7 @@ class Marriage:
             return
 
         event = obj.get_row_data(obj.selection[0])
-        father = self.family.getFather()
-        mother = self.family.getMother()
-        if father and mother:
-            name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                     mother.getPrimaryName().getName())
-        elif father:
-            name = father.getPrimaryName().getName()
-        else:
-            name = mother.getPrimaryName().getName()
+        name = utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,event,None,0)
 
     def on_delete_clicked(self,obj):
