@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu May 22 22:08:56 2003\n"
+"POT-Creation-Date: Fri May 23 11:17:06 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,16 +255,16 @@ msgstr ""
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr ""
 
-#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1475 revision.glade:131
+#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1480 revision.glade:131
 msgid "Open a database"
 msgstr ""
 
-#: DbPrompter.py:97 gramps_main.py:1523
+#: DbPrompter.py:97 gramps_main.py:1528
 msgid "Save database"
 msgstr ""
 
-#: DbPrompter.py:106 gramps_main.py:1124 gramps_main.py:1535
-#: gramps_main.py:1547
+#: DbPrompter.py:106 gramps_main.py:1129 gramps_main.py:1540
+#: gramps_main.py:1552
 msgid "No Comment Provided"
 msgstr ""
 
@@ -502,7 +502,7 @@ msgstr ""
 #: Plugins.py:455 Plugins.py:456 Plugins.py:457 Witness.py:71 const.py:171
 #: const.py:446 const.py:454 gramps.glade:3675 gramps.glade:3868
 #: gramps.glade:4290 gramps.glade:4470 gramps.glade:5946 gramps.glade:6192
-#: gramps_main.py:1721 plugins/WebPage.py:288
+#: gramps_main.py:1726 plugins/WebPage.py:288
 msgid "Unknown"
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgstr ""
 msgid "Place Name"
 msgstr ""
 
-#: PlaceView.py:147 gramps_main.py:618
+#: PlaceView.py:147 gramps_main.py:623
 msgid "Cannot merge people."
 msgstr ""
 
@@ -1093,17 +1093,17 @@ msgstr ""
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
 msgstr ""
 
-#: ReadXML.py:191 gramps_main.py:1177 plugins/Check.py:151
+#: ReadXML.py:191 gramps_main.py:1182 plugins/Check.py:151
 #: plugins/WriteCD.py:225 plugins/WritePkg.py:150
 msgid "Select file"
 msgstr ""
 
-#: ReadXML.py:220 gramps_main.py:1200 plugins/Check.py:168
+#: ReadXML.py:220 gramps_main.py:1205 plugins/Check.py:168
 #: plugins/WriteCD.py:247 plugins/WritePkg.py:173
 msgid "Media object could not be found"
 msgstr ""
 
-#: ReadXML.py:221 gramps_main.py:1201 plugins/Check.py:169
+#: ReadXML.py:221 gramps_main.py:1206 plugins/Check.py:169
 #: plugins/WriteCD.py:248 plugins/WritePkg.py:174
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr ""
@@ -1121,19 +1121,18 @@ msgid "The file has been moved or deleted"
 msgstr ""
 
 #: RelImage.py:71 RelImage.py:74 RelImage.py:139 RelImage.py:142
-#: docgen/AbiWord2Doc.py:71 docgen/AbiWord2Doc.py:74 docgen/AbiWordDoc.py:69
-#: docgen/AbiWordDoc.py:72 docgen/HtmlDoc.py:223 docgen/HtmlDoc.py:226
-#: docgen/HtmlDoc.py:334 docgen/HtmlDoc.py:337 docgen/LaTeXDoc.py:81
-#: docgen/LaTeXDoc.py:84 docgen/OpenDrawDoc.py:76 docgen/OpenOfficeDoc.py:81
-#: docgen/OpenOfficeDoc.py:343 docgen/OpenOfficeDoc.py:346
-#: docgen/OpenOfficeDoc.py:522 docgen/OpenOfficeDoc.py:525
-#: docgen/OpenOfficeDoc.py:558 docgen/OpenOfficeDoc.py:561
-#: docgen/PSDrawDoc.py:80 docgen/PSDrawDoc.py:83 docgen/PdfDoc.py:156
-#: docgen/PdfDoc.py:159 docgen/PdfDrawDoc.py:84 docgen/PdfDrawDoc.py:86
-#: docgen/RTFDoc.py:70 docgen/RTFDoc.py:73 docgen/SvgDrawDoc.py:82
-#: docgen/SvgDrawDoc.py:84 gramps_main.py:1231 gramps_main.py:1236
-#: gramps_main.py:1246 plugins/AncestorChart.py:113 plugins/DesGraph.py:210
-#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:534
+#: docgen/AbiWordDoc.py:69 docgen/AbiWordDoc.py:72 docgen/HtmlDoc.py:223
+#: docgen/HtmlDoc.py:226 docgen/HtmlDoc.py:334 docgen/HtmlDoc.py:337
+#: docgen/LaTeXDoc.py:81 docgen/LaTeXDoc.py:84 docgen/OpenDrawDoc.py:76
+#: docgen/OpenOfficeDoc.py:81 docgen/OpenOfficeDoc.py:343
+#: docgen/OpenOfficeDoc.py:346 docgen/OpenOfficeDoc.py:522
+#: docgen/OpenOfficeDoc.py:525 docgen/OpenOfficeDoc.py:558
+#: docgen/OpenOfficeDoc.py:561 docgen/PSDrawDoc.py:80 docgen/PSDrawDoc.py:83
+#: docgen/PdfDoc.py:156 docgen/PdfDoc.py:159 docgen/PdfDrawDoc.py:84
+#: docgen/PdfDrawDoc.py:86 docgen/RTFDoc.py:70 docgen/RTFDoc.py:73
+#: docgen/SvgDrawDoc.py:82 docgen/SvgDrawDoc.py:84 gramps_main.py:1236
+#: gramps_main.py:1241 gramps_main.py:1251 plugins/AncestorChart.py:113
+#: plugins/DesGraph.py:210 plugins/DesGraph.py:219 plugins/WriteGedcom.py:534
 #: plugins/WriteGedcom.py:539
 msgid "Could not create %s"
 msgstr ""
@@ -1429,7 +1428,7 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: SourceView.py:134 gramps_main.py:1312
+#: SourceView.py:134 gramps_main.py:1317
 msgid "Delete %s?"
 msgstr ""
 
@@ -2211,10 +2210,6 @@ msgstr ""
 msgid "_ID:"
 msgstr ""
 
-#: docgen/AbiWord2Doc.py:278
-msgid "AbiWord (version 1.9 or greater)"
-msgstr ""
-
 #: docgen/AbiWordDoc.py:339
 msgid "AbiWord (version 1.0.x)"
 msgstr ""
@@ -2268,10 +2263,6 @@ msgstr ""
 
 #: docgen/SvgDrawDoc.py:228
 msgid "SVG (Scalable Vector Graphics)"
-msgstr ""
-
-#: docgen/TextBufDoc.py:169
-msgid "Text Buffer Preview"
 msgstr ""
 
 #: edit_person.glade:34
@@ -2741,7 +2732,7 @@ msgstr ""
 msgid "_Export"
 msgstr ""
 
-#: gramps.glade:169 gramps_main.py:1492
+#: gramps.glade:169 gramps_main.py:1497
 msgid "_Revert"
 msgstr ""
 
@@ -3158,187 +3149,187 @@ msgstr ""
 msgid "Death date"
 msgstr ""
 
-#: gramps_main.py:124
+#: gramps_main.py:128
 msgid "GRAMPS is being run as the 'root' user."
 msgstr ""
 
-#: gramps_main.py:125
+#: gramps_main.py:129
 msgid "This account is not meant for normal appication use. Running user applications in the administrative account is rarely a wise idea, and can open up potential security risks."
 msgstr ""
 
-#: gramps_main.py:619
+#: gramps_main.py:624
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on a the desired person."
 msgstr ""
 
-#: gramps_main.py:641 gramps_main.py:1458 gramps_main.py:1999
+#: gramps_main.py:646 gramps_main.py:1463 gramps_main.py:2004
 msgid "Save Changes Made to the Database?"
 msgstr ""
 
-#: gramps_main.py:642 gramps_main.py:1459 gramps_main.py:2000
+#: gramps_main.py:647 gramps_main.py:1464 gramps_main.py:2005
 msgid "Unsaved changes exist in the current database. If you close without saving, the changes you have made will be lost."
 msgstr ""
 
-#: gramps_main.py:726
+#: gramps_main.py:731
 msgid "Create a New Database"
 msgstr ""
 
-#: gramps_main.py:727
+#: gramps_main.py:732
 msgid "Creating a new database will close the existing database, discarding any unsaved changes. You will then be prompted to create a new database"
 msgstr ""
 
-#: gramps_main.py:730
+#: gramps_main.py:735
 msgid "_Create New Database"
 msgstr ""
 
-#: gramps_main.py:822 gramps_main.py:849 gramps_main.py:1574
+#: gramps_main.py:827 gramps_main.py:854 gramps_main.py:1579
 msgid "Updating display - this may take a few seconds..."
 msgstr ""
 
-#: gramps_main.py:824 gramps_main.py:851 gramps_main.py:1576
-#: gramps_main.py:1839
+#: gramps_main.py:829 gramps_main.py:856 gramps_main.py:1581
+#: gramps_main.py:1844
 msgid "Updating display..."
 msgstr ""
 
-#: gramps_main.py:897
+#: gramps_main.py:902
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
 
-#: gramps_main.py:902
+#: gramps_main.py:907
 msgid "An autosave file was detected"
 msgstr ""
 
-#: gramps_main.py:903
+#: gramps_main.py:908
 msgid "GRAMPS has detected an autosave file for the selected database. This file is more recent than the last saved database. This typically happens when GRAMPS was unexpected shutdown before the data was saved. You may load this file to try to recover any missing data."
 msgstr ""
 
-#: gramps_main.py:909
+#: gramps_main.py:914
 msgid "_Load autosave file"
 msgstr ""
 
-#: gramps_main.py:911
+#: gramps_main.py:916
 msgid "Load _saved database"
 msgstr ""
 
-#: gramps_main.py:945 gramps_main.py:1221
+#: gramps_main.py:950 gramps_main.py:1226
 msgid "Database could not be opened"
 msgstr ""
 
-#: gramps_main.py:946 gramps_main.py:1222
+#: gramps_main.py:951 gramps_main.py:1227
 msgid "%s is not a directory."
 msgstr ""
 
-#: gramps_main.py:947
+#: gramps_main.py:952
 msgid "You should select a directory that contains a data.gramps file or a gramps.zodb file."
 msgstr ""
 
-#: gramps_main.py:1214
+#: gramps_main.py:1219
 msgid "Saving %s ..."
 msgstr ""
 
-#: gramps_main.py:1223
+#: gramps_main.py:1228
 msgid "The file you should attempt to open should be a directory that contains a data.gramps file or a gramps.zodb file."
 msgstr ""
 
-#: gramps_main.py:1232
+#: gramps_main.py:1237
 msgid "An error was detected while attempting to create the file. The operating system reported \"%s\""
 msgstr ""
 
-#: gramps_main.py:1237 gramps_main.py:1247
+#: gramps_main.py:1242 gramps_main.py:1252
 msgid "An error was detected while trying to create the file"
 msgstr ""
 
-#: gramps_main.py:1279
+#: gramps_main.py:1284
 msgid "autosaving..."
 msgstr ""
 
-#: gramps_main.py:1282
+#: gramps_main.py:1287
 msgid "autosave complete"
 msgstr ""
 
-#: gramps_main.py:1284
+#: gramps_main.py:1289
 msgid "autosave failed"
 msgstr ""
 
-#: gramps_main.py:1313
+#: gramps_main.py:1318
 msgid "Deleting the person will remove the person from from the database. The data can only be recovered by closing the database without saving changes. This change will become permanent after you save the database."
 msgstr ""
 
-#: gramps_main.py:1318
+#: gramps_main.py:1323
 msgid "_Delete Person"
 msgstr ""
 
-#: gramps_main.py:1448
+#: gramps_main.py:1453
 msgid "%(relationship)s of %(person)s"
 msgstr ""
 
-#: gramps_main.py:1488
+#: gramps_main.py:1493
 msgid "Revert to last saved database?"
 msgstr ""
 
-#: gramps_main.py:1489
+#: gramps_main.py:1494
 msgid "Reverting to the last saved database will cause all unsaved changes to be lost, and the last saved database will be loaded."
 msgstr ""
 
-#: gramps_main.py:1495
+#: gramps_main.py:1500
 msgid "Could Not Revert to the Previous Database."
 msgstr ""
 
-#: gramps_main.py:1496
+#: gramps_main.py:1501
 msgid "GRAMPS could not find a previous version of the database"
 msgstr ""
 
-#: gramps_main.py:1806 gramps_main.py:1816
+#: gramps_main.py:1811 gramps_main.py:1821
 msgid "Loading %s..."
 msgstr ""
 
-#: gramps_main.py:1931
+#: gramps_main.py:1936
 msgid "No Home Person has been set."
 msgstr ""
 
-#: gramps_main.py:1932
+#: gramps_main.py:1937
 msgid "The Home Person may be set from the Settings menu."
 msgstr ""
 
-#: gramps_main.py:1938
+#: gramps_main.py:1943
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1941
+#: gramps_main.py:1946
 msgid "Could Not Set a Bookmark."
 msgstr ""
 
-#: gramps_main.py:1942
+#: gramps_main.py:1947
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: gramps_main.py:1954
+#: gramps_main.py:1959
 msgid "Set %s as the Home Person"
 msgstr ""
 
-#: gramps_main.py:1955
+#: gramps_main.py:1960
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr ""
 
-#: gramps_main.py:1958
+#: gramps_main.py:1963
 msgid "_Set Home Person"
 msgstr ""
 
-#: gramps_main.py:2013 gramps_main.py:2017 gramps_main.py:2021
+#: gramps_main.py:2018 gramps_main.py:2022 gramps_main.py:2026
 msgid "Could not create database"
 msgstr ""
 
-#: gramps_main.py:2014 gramps_main.py:2018
+#: gramps_main.py:2019 gramps_main.py:2023
 msgid ""
 "The directory ~/.gramps/example could not be created.\n"
 msgstr ""
 
-#: gramps_main.py:2022
+#: gramps_main.py:2027
 msgid "The directory ~/.gramps/example could not be created."
 msgstr ""
 
-#: gramps_main.py:2029 gramps_main.py:2031
+#: gramps_main.py:2034 gramps_main.py:2036
 msgid "Example database not created"
 msgstr ""
 
@@ -3499,9 +3490,8 @@ msgid "Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:214 plugins/AncestorChart.py:427
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:464 plugins/FullFamily.py:105
-#: plugins/FullFamily.py:173 plugins/GraphViz.py:78 plugins/GraphViz.py:452
-#: plugins/TimeLine.py:316 plugins/TimeLine.py:465
+#: plugins/DesGraph.py:308 plugins/DesGraph.py:464 plugins/GraphViz.py:78
+#: plugins/GraphViz.py:452 plugins/TimeLine.py:316 plugins/TimeLine.py:465
 msgid "Graphical Reports"
 msgstr ""
 
@@ -3514,12 +3504,10 @@ msgid "Save Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:235 plugins/DesGraph.py:325
-#: plugins/FullFamily.py:126
 msgid "Display Format"
 msgstr ""
 
 #: plugins/AncestorChart.py:236 plugins/DesGraph.py:326
-#: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 
@@ -3537,13 +3525,13 @@ msgstr ""
 #: plugins/DescendReport.py:288 plugins/DetAncestralReport.py:976
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:570
 #: plugins/FtmStyleAncestors.py:881 plugins/FtmStyleDescendants.py:1275
-#: plugins/FullFamily.py:174 plugins/GraphViz.py:451
-#: plugins/IndivComplete.py:671 plugins/IndivSummary.py:504
-#: plugins/Summary.py:162 plugins/TimeLine.py:464 plugins/WebPage.py:1273
+#: plugins/GraphViz.py:451 plugins/IndivComplete.py:671
+#: plugins/IndivSummary.py:504 plugins/Summary.py:162 plugins/TimeLine.py:464
+#: plugins/WebPage.py:1273
 msgid "Beta"
 msgstr ""
 
-#: plugins/AncestorChart.py:429 plugins/FullFamily.py:175
+#: plugins/AncestorChart.py:429
 msgid "Produces a graphical ancestral tree graph"
 msgstr ""
 
@@ -4711,18 +4699,6 @@ msgstr ""
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr ""
 
-#: plugins/FullFamily.py:105 plugins/FullFamily.py:172
-msgid "Full Family Chart"
-msgstr ""
-
-#: plugins/FullFamily.py:109
-msgid "Full Family Chart for %s"
-msgstr ""
-
-#: plugins/FullFamily.py:114
-msgid "Save Full Family Chart"
-msgstr ""
-
 #: plugins/GraphViz.py:60 plugins/GraphViz.py:87
 msgid "Single (scaled)"
 msgstr ""
@@ -5884,7 +5860,7 @@ msgid "Debug"
 msgstr ""
 
 #: plugins/leak.py:80
-msgid ""
+msgid "Provide a window listing all uncollected objects"
 msgstr ""
 
 #: plugins/merge.glade:46
