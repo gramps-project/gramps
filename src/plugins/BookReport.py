@@ -19,6 +19,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#
+# Written by Alex Roitman, 
+# largely based on the TextDoc classes by Don Allingham
+#
+
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -64,14 +69,9 @@ import ListModel
 import GrampsCfg
 import Plugins
 import Report
+import TextDoc
 
-#def get_registered_item(name):
-#    the_item = None
-#    for item in Plugins._bkitems:
-#        if item[0] == name:
-#            the_item = item
-#    return the_item
-
+from QuestionDialog import WarningDialog
 #------------------------------------------------------------------------
 #
 # Book Item class
@@ -198,7 +198,7 @@ class Book:
         self.item_list.insert(index,item)
 
     def pop_item(self,index):
-        self.item_list.pop(index)
+        return self.item_list.pop(index)
 
     def get_item(self,index):
         return self.item_list[index]
@@ -264,7 +264,7 @@ class BookList:
         Adds or replaces a Book in the BookList. 
 
         name - name assocated with the Book to add or replace.
-        style - definition of the Book
+        book - definition of the Book
         """
         self.bookmap[name] = book
 
@@ -404,7 +404,7 @@ class BookListDisplay:
         self.top.run()
 
     def redraw(self):
-        """Redraws the list of books that are currently available"""
+        """Redraws the list of currently available books"""
         
         self.blist.model.clear()
         names = self.booklist.get_book_names()
@@ -521,13 +521,24 @@ class BookReportSelector:
             self.avail_tree.scroll_to_cell(path,col,1,1,0.0)
 
     def open_book(self,book):
+        if book.get_dbname() == self.db.getSavePath():
+            same_db = 1
+        else:
+            same_db = 0
+            WarningDialog(_('Different database'), _(
+                'This book was created with the references to database %s.\n'
+                'This makes references to the central person saved in the book invalid.\n\n' 
+                'Therefore, the central person for each item is being set ' 
+                'to the default person of the currently opened database.' )
+                % book.get_dbname() )
+            
         self.book.clear()
         self.bk_model.clear()
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
             item = BookItem(name)
             options = saved_item.get_options()
-            if not options[0]:
+            if not same_db or not options[0]:
                 options[0] = self.person.getId()
             item.set_options(options)
             item.set_style_name(saved_item.get_style_name())
@@ -537,6 +548,7 @@ class BookReportSelector:
             pname = self.db.getPerson(options[0])
             data.append(pname.getPrimaryName().getRegularName())
             self.bk_model.add(data)
+            
 
     def on_add_clicked(self,obj):
         store,iter = self.av_model.get_selected()
@@ -593,7 +605,7 @@ class BookReportSelector:
 	data = self.bk_model.get_data(iter,range(self.bk_ncols))
         row = self.bk_model.get_selected_row()
         item = self.book.get_item(row)
-        options_dialog =  item.get_dialog()
+        options_dialog = item.get_dialog()
         options = item.get_options()
         style_name = item.get_style_name() 
         opt_dlg = options_dialog(self.db,self.person,options,style_name)
@@ -680,7 +692,7 @@ class BookReportDialog(Report.ReportDialog):
         return _("Book Report")
 
     def get_header(self,name):
-        return _("Book Report")
+        return _("GRAMPS Book")
 
     def make_doc_menu(self):
         """Build a menu of document types that are appropriate for
@@ -830,4 +842,3 @@ register_report(
     author_name="Alex Roitman",
     author_email="shura@alex.neuro.umn.edu"
     )
-
