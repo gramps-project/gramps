@@ -82,6 +82,7 @@ class GrampsParser(handler.ContentHandler):
         self.source = None
         self.sourceRef = None
         self.is_import = is_import
+        self.in_address = 0
 
         self.resname = ""
         self.resaddr = "" 
@@ -157,6 +158,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_address(self,attrs):
+        self.in_address = 1
         self.address = Address()
         self.person.addAddress(self.address)
 
@@ -394,6 +396,14 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_attribute(self,tag):
         self.attribute.setValue(tag)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_address(self,tag):
+        self.in_address = 0
         
     #---------------------------------------------------------------------
     #
@@ -447,7 +457,10 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_date(self,tag):
         if tag:
-            self.event.getDateObj().quick_set(tag)
+            if self.in_address:
+                self.address.setDate(tag)
+            else:
+                self.event.getDateObj().quick_set(tag)
 
     #---------------------------------------------------------------------
     #
@@ -502,14 +515,6 @@ class GrampsParser(handler.ContentHandler):
         date.quick_set(tag)
         self.source.setDate(date)
         
-    def stop_date_start(self,tag):
-        date = self.address.getStartDateObj()
-        date.quick_set(tag)
-
-    def stop_date_stop(self,tag):
-        date = self.address.getStopDateObj()
-        date.quick_set(tag)
-
     def stop_street(self,tag):
         self.address.setStreet(tag)
 
@@ -705,7 +710,7 @@ class GrampsParser(handler.ContentHandler):
         self.person.addAlternateName(self.name)
 
     func_map = {
-        "address"    : (start_address, None),
+        "address"    : (start_address, stop_address),
         "aka"        : (start_name, stop_aka),
         "attribute"  : (start_attribute, stop_attribute),
         "bookmark"   : (start_bmark, None),
@@ -756,11 +761,9 @@ class GrampsParser(handler.ContentHandler):
         "sources"    : (start_sources, None),
         "spage"      : (None, stop_spage),
         "spubinfo"   : (None, stop_spubinfo),
-        "date_start" : (None, stop_date_start),
         "state"      : (None, stop_state),
         "stext"      : (None, stop_stext),
         "stitle"     : (None, stop_stitle),
-        "date_stop"  : (None, stop_date_stop),
         "street"     : (None, stop_street),
         "suffix"     : (None, stop_suffix),
         "title"      : (None, stop_title),

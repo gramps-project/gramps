@@ -101,12 +101,19 @@ def dump_my_event(g,name,event):
     if source:
         sourceRef = source.getBase()
         if sourceRef:
-            g.write("<sourceref ref=\"%d\">\n" % sourceRef.getId())
-            write_line(g,"spage",source.getPage())
-            writeNote(g,"scomments",source.getComments())
-            writeNote(g,"stext",source.getText())
-            write_line(g,"sdate",source.getDate().getSaveDate())
-            g.write("</sourceref>\n")
+            p = source.getPage()
+            c = source.getComments()
+            t = source.getText()
+            d = source.getDate().getSaveDate()
+            if p == "" and c == "" and t == "" and d == "":
+                g.write("<sourceref ref=\"%d\"/>\n" % sourceRef.getId())
+            else:
+                g.write("<sourceref ref=\"%d\">\n" % sourceRef.getId())
+                write_line(g,"spage",p)
+                writeNote(g,"scomments",c)
+                writeNote(g,"stext",t)
+                write_line(g,"sdate",c)
+                g.write("</sourceref>\n")
     g.write("</event>\n")
 
 #-------------------------------------------------------------------------
@@ -197,10 +204,8 @@ def exportData(database, filename, callback):
 
     g.write("<people")
     person = database.getDefaultPerson()
-    print person
     if person:
         g.write(" default=\"" + str(person.getId()) + "\"")
-        print str(person.getId())
     g.write(">\n")
 
     total = len(personList) + len(familyList)
@@ -239,12 +244,7 @@ def exportData(database, filename, callback):
             g.write("<addresses>\n")
             for address in person.getAddressList():
                 g.write('<address>\n')
-                g.write('<date_start>')
-                g.write(address.getStartDateObj().getSaveDate())
-                g.write('<date_start>\n')
-                g.write('<date_stop>')
-                g.write(address.getStopDateObj().getSaveDate())
-                g.write('<date_stop>\n')
+                write_line(g,"date",address.getDateObj().getSaveDate())
                 write_line(g,"street",address.getStreet())
                 write_line(g,"city",address.getCity())
                 write_line(g,"state",address.getState())
