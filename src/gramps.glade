@@ -18817,7 +18817,7 @@ Other</property>
 				  <property name="visible">True</property>
 				  <property name="history_id">webdir</property>
 				  <property name="max_saved">10</property>
-				  <property name="browse_dialog_title" translatable="yes">Select default report directory - GRAMPS</property>
+				  <property name="browse_dialog_title" translatable="yes">Select default Web Site directory - GRAMPS</property>
 				  <property name="directory_entry">True</property>
 				  <property name="modal">False</property>
 				  <property name="use_filechooser">False</property>
