@@ -214,8 +214,10 @@ class Gramps:
         self.spouse_combo= self.gtop.get_widget("spouse_combo")
         self.spouse_tab  = self.gtop.get_widget("spouse_tab")
         self.undolabel   = self.gtop.get_widget('undolabel')
+        self.redolabel   = self.gtop.get_widget('redolabel')
 
         self.db.set_undo_label(self.undolabel)
+        self.db.set_redo_label(self.redolabel)
         self.use_sidebar = GrampsCfg.get_view()
         self.sidebar_btn.set_active(self.use_sidebar)
 
