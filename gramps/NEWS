@@ -3,6 +3,8 @@ Version 0.6.2pre
 * Improved GEDCOM import/export. Gramps now passes the GEDCHK program
   and can now properly handle the quirks in names, notes, and parent/child
   relationships from PAF, Legacy, FTW, Brother's Keeper, and Family Origins.
+* After an Add Spouse, make the new spouse display in the Family View
+  interface.
 
 Version 0.6.1
 * Fixed Family View/Pedigree View button swap
