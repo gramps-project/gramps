@@ -125,7 +125,7 @@ translators  =  u'Radek Malcic - Czech\n' \
                u'Marcos Bedinelli - Brazilian-Portuguese\n' \
                u'Alex Roitman - Russian\n' \
                u'Jens Arvidsson - Swedish (Svenska)\n' \
-               u'Radu Bogden Mare - Romanian\n' \
+               u'Radu Bogdan Mare - Romanian\n' \
                u'Tino Meinen - Dutch' \
 
 #-------------------------------------------------------------------------
