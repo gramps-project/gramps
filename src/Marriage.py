@@ -99,8 +99,11 @@ class Marriage:
             "on_lds_src_clicked" : self.lds_src_clicked,
             "on_lds_note_clicked" : self.lds_note_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
+            "on_edit_photo_clicked" : self.gallery.on_edit_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_marriageAddBtn_clicked" : self.on_add_clicked,
+            "on_event_update_clicked" : self.on_event_update_clicked,
+            "on_attr_update_clicked" : self.on_update_attr_clicked,
             "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
             })
 
@@ -500,7 +503,7 @@ class Marriage:
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.save_pevent,None,None,0,self.cb)
 
-    def on_update_clicked(self,obj):
+    def on_event_update_clicked(self,obj):
         import EventEdit
         model,iter = self.etree.get_selected()
         if not iter:

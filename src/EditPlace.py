@@ -142,6 +142,7 @@ class EditPlace:
             "on_switch_page"            : self.on_switch_page,
             "on_addphoto_clicked"       : self.glry.on_add_photo_clicked,
             "on_deletephoto_clicked"    : self.glry.on_delete_photo_clicked,
+            "on_edit_photo_clicked"     : self.glry.on_edit_photo_clicked,
             "on_edit_properties_clicked": self.glry.popup_change_description,
             "on_add_url_clicked"        : self.on_add_url_clicked,
             "on_delete_url_clicked"     : self.on_delete_url_clicked,
