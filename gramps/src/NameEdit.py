@@ -48,7 +48,7 @@ class NameEditor:
     def __init__(self,parent,name):
         self.parent = parent
         self.name = name
-        self.top = libglade.GladeXML(const.editPersonFile, "name_edit")
+        self.top = libglade.GladeXML(const.dialogFile, "name_edit")
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
         self.title_field  = self.top.get_widget("alt_title")

@@ -21,12 +21,18 @@
 
 #-------------------------------------------------------------------------
 #
-# libraries
+# GNOME modules
 #
 #-------------------------------------------------------------------------
 import libglade
-import Utils
 import gtk
+
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+import Utils
 import const
 import GrampsCfg
 import intl
@@ -35,10 +41,12 @@ _ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
-# Make sure a database is opened
+# DbPrompter
 #
 #-------------------------------------------------------------------------
 class DbPrompter:
+    """Make sure a database is opened"""
+    
     def __init__(self,db,want_new):
         self.db = db
         self.want_new = want_new

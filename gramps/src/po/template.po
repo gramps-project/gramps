@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: Fri Apr 12 20:40:09 2002\n"
+"POT-Creation-Date: Sat Apr 13 16:30:41 2002\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr ""
 #: EditPerson.glade:3212 EditPerson.glade:4037 EditPerson.glade:4639
 #: gramps.glade:1757 gramps.glade:2253 imagesel.glade:1285 imagesel.glade:2286
 #: marriage.glade:938 marriage.glade:1349 places.glade:1216 places.glade:1721
-#: rule.glade:409 rule.glade:807 srcsel.glade:858 styles.glade:247
+#: rule.glade:456 rule.glade:854 srcsel.glade:858 styles.glade:247
 msgid "Delete"
 msgstr ""
 
@@ -74,20 +74,20 @@ msgstr ""
 msgid "Choose the Parents of %s"
 msgstr ""
 
-#: ChooseParents.py:172 ChooseParents.py:173 gramps_main.py:1544
-#: gramps_main.py:1545
+#: ChooseParents.py:172 ChooseParents.py:173 gramps_main.py:1554
+#: gramps_main.py:1555
 msgid "Parent"
 msgstr ""
 
 #: ChooseParents.py:175 gramps.glade:1899 gramps.glade:5112
-#: gramps_main.py:1548 mergedata.glade:518 mergedata.glade:1180
+#: gramps_main.py:1558 mergedata.glade:518 mergedata.glade:1180
 #: plugins/FamilyGroup.py:197 plugins/IndivSummary.py:283
 #: plugins/WebPage.py:246 plugins/WebPage.py:249
 msgid "Mother"
 msgstr ""
 
 #: ChooseParents.py:176 gramps.glade:1808 gramps.glade:4952
-#: gramps_main.py:1547 mergedata.glade:766 mergedata.glade:1478
+#: gramps_main.py:1557 mergedata.glade:766 mergedata.glade:1478
 #: plugins/FamilyGroup.py:184 plugins/IndivSummary.py:269
 #: plugins/WebPage.py:245 plugins/WebPage.py:248
 msgid "Father"
@@ -141,115 +141,115 @@ msgstr ""
 msgid "September"
 msgstr ""
 
-#: Date.py:108
-msgid "(from|between|bet|bet."
+#: Date.py:106
+msgid "(from|between|bet|bet.)"
 msgstr ""
 
-#: Date.py:109
-msgid "(and|to|-"
+#: Date.py:107
+msgid "(and|to|-)"
 msgstr ""
 
-#: Date.py:247 Date.py:273 Date.py:286
+#: Date.py:244 Date.py:270 Date.py:283
 msgid "from"
 msgstr ""
 
-#: Date.py:247 Date.py:273 Date.py:286 plugins/changetype.glade:152
+#: Date.py:244 Date.py:270 Date.py:283 plugins/changetype.glade:152
 msgid "to"
 msgstr ""
 
-#: Date.py:256 EditPerson.glade:6648 EventEdit.py:137 dialog.glade:512
+#: Date.py:253 EditPerson.glade:6648 EventEdit.py:137 dialog.glade:512
 msgid "Julian"
 msgstr ""
 
-#: Date.py:258 EditPerson.glade:6648 EventEdit.py:137 dialog.glade:512
+#: Date.py:255 EditPerson.glade:6648 EventEdit.py:137 dialog.glade:512
 msgid "Hebrew"
 msgstr ""
 
-#: Date.py:260 EditPerson.glade:6648 dialog.glade:512
+#: Date.py:257 EditPerson.glade:6648 dialog.glade:512
 msgid "French"
 msgstr ""
 
-#: Date.py:341 Date.py:358 Date.py:519
+#: Date.py:338 Date.py:355 Date.py:516
 msgid "about"
 msgstr ""
 
-#: Date.py:341 Date.py:548
+#: Date.py:338 Date.py:545
 msgid "abt"
 msgstr ""
 
-#: Date.py:342
+#: Date.py:339
 msgid "abt."
 msgstr ""
 
-#: Date.py:342
+#: Date.py:339
 msgid "est"
 msgstr ""
 
-#: Date.py:343
+#: Date.py:340
 msgid "est."
 msgstr ""
 
-#: Date.py:343 Date.py:360
+#: Date.py:340 Date.py:357
 msgid "circa"
 msgstr ""
 
-#: Date.py:344 Date.py:361
+#: Date.py:341 Date.py:358
 msgid "around"
 msgstr ""
 
-#: Date.py:344 Date.py:362 Date.py:521 Date.py:550
+#: Date.py:341 Date.py:359 Date.py:518 Date.py:547
 msgid "before"
 msgstr ""
 
-#: Date.py:345
+#: Date.py:342
 msgid "bef"
 msgstr ""
 
-#: Date.py:345
+#: Date.py:342
 msgid "bef."
 msgstr ""
 
-#: Date.py:346
+#: Date.py:343
 msgid "aft."
 msgstr ""
 
-#: Date.py:346 Date.py:363 Date.py:523 Date.py:552
+#: Date.py:343 Date.py:360 Date.py:520 Date.py:549
 msgid "after"
 msgstr ""
 
-#: Date.py:347
+#: Date.py:344
 msgid "aft"
 msgstr ""
 
-#: Date.py:357
+#: Date.py:354
 msgid "abt\\.?"
 msgstr ""
 
-#: Date.py:359
+#: Date.py:356
 msgid "est\\.?"
 msgstr ""
 
-#: Date.py:364
+#: Date.py:361
 msgid "aft\\.?"
 msgstr ""
 
-#: Date.py:365
+#: Date.py:362
 msgid "bef\\.?"
 msgstr ""
 
-#: Date.py:578 Date.py:606 Date.py:633 Date.py:662 Date.py:701
+#: Date.py:575 Date.py:603 Date.py:630 Date.py:659 Date.py:698
 msgid "ABOUT"
 msgstr ""
 
-#: Date.py:580 Date.py:608 Date.py:635 Date.py:665 Date.py:703
+#: Date.py:577 Date.py:605 Date.py:632 Date.py:662 Date.py:700
 msgid "BEFORE"
 msgstr ""
 
-#: Date.py:582 Date.py:610 Date.py:637 Date.py:667 Date.py:705
+#: Date.py:579 Date.py:607 Date.py:634 Date.py:664 Date.py:702
 msgid "AFTER"
 msgstr ""
 
-#: DbPrompter.py:79 gramps_main.py:730 gramps_main.py:1236 gramps_main.py:1247
+#: DbPrompter.py:79 gramps_main.py:730 gramps_main.py:1237 gramps_main.py:1249
 msgid "No Comment Provided"
 msgstr ""
 
@@ -267,28 +267,6 @@ msgstr ""
 
 #: EditPerson.glade:114
 msgid "Select information source"
-msgstr ""
-
-#: EditPerson.glade:188 EditPerson.glade:214 EditPerson.glade:458
-#: EditPerson.glade:484 EditPerson.glade:1275 EditPerson.glade:1301
-#: EditPerson.glade:1615 EditPerson.glade:1641 EditPerson.glade:1667
-#: EditPerson.glade:1693 EditPerson.glade:1719 EditPerson.glade:1823
-#: EditPerson.glade:2361 EditPerson.glade:2387 EditPerson.glade:2413
-#: EditPerson.glade:2439 EditPerson.glade:2491 EditPerson.glade:2954
-#: EditPerson.glade:2980 EditPerson.glade:3560 EditPerson.glade:3586
-#: EditPerson.glade:3612 EditPerson.glade:3638 EditPerson.glade:3664
-#: EditPerson.glade:3690 EditPerson.glade:3716 EditPerson.glade:4394
-#: EditPerson.glade:4420 gramps.glade:3727 gramps.glade:3753 gramps.glade:3779
-#: gramps.glade:3831 gramps.glade:4065 imagesel.glade:534 imagesel.glade:639
-#: imagesel.glade:691 imagesel.glade:818 imagesel.glade:1037
-#: imagesel.glade:1063 imagesel.glade:1533 imagesel.glade:1611
-#: imagesel.glade:1689 imagesel.glade:1782 imagesel.glade:2037
-#: imagesel.glade:2063 marriage.glade:557 marriage.glade:583
-#: marriage.glade:609 marriage.glade:635 marriage.glade:687
-#: marriage.glade:1103 marriage.glade:1129 places.glade:871 places.glade:897
-#: places.glade:923 places.glade:949 places.glade:1027 places.glade:1557
-#: places.glade:1583
-msgid ":"
 msgstr ""
 
 #: EditPerson.glade:240 EditPerson.glade:536 EditPerson.glade:2153
@@ -317,7 +295,7 @@ msgstr ""
 #: EditPerson.glade:325 EditPerson.glade:571 EditPerson.glade:2064
 #: EditPerson.glade:2760 EditPerson.glade:3195 EditPerson.glade:4020
 #: EditPerson.glade:4622 imagesel.glade:1269 imagesel.glade:2270
-#: marriage.glade:922 marriage.glade:1333 rule.glade:394 rule.glade:791
+#: marriage.glade:922 marriage.glade:1333 rule.glade:441 rule.glade:838
 #: srcsel.glade:843 styles.glade:232
 msgid "Edit"
 msgstr ""
@@ -344,7 +322,7 @@ msgstr ""
 msgid "female"
 msgstr ""
 
-#: EditPerson.glade:708 EditPerson.py:424 const.py:112 gramps.glade:6806
+#: EditPerson.glade:708 EditPerson.py:426 const.py:112 gramps.glade:6806
 #: plugins/FamilyGroup.py:379 plugins/IndivSummary.py:161
 #: plugins/WebPage.py:506
 msgid "unknown"
@@ -416,7 +394,7 @@ msgid "Identification"
 msgstr ""
 
 #: EditPerson.glade:1223 marriage.glade:230
-msgid "gramps ID"
+msgid "GRAMPS ID"
 msgstr ""
 
 #: EditPerson.glade:1356 GrampsCfg.py:95 GrampsCfg.py:101 gramps.glade:6223
@@ -441,7 +419,7 @@ msgstr ""
 #: gramps.glade:4701 gramps.glade:5001 gramps.glade:5160 gramps.glade:5526
 #: mergedata.glade:544 mergedata.glade:1699 plugins/IndivSummary.py:222
 #: plugins/WebPage.py:237 plugins/relcalc.glade:157 plugins/soundex.glade:143
-#: preferences.glade:1763 rule.glade:140 rule.glade:725
+#: preferences.glade:1763 rule.glade:140 rule.glade:772
 msgid "Name"
 msgstr ""
 
@@ -452,8 +430,8 @@ msgstr ""
 #: EditPerson.glade:2047 EditPerson.glade:2743 EditPerson.glade:3178
 #: EditPerson.glade:4003 EditPerson.glade:4605 gramps.glade:1729
 #: imagesel.glade:1253 imagesel.glade:2254 marriage.glade:906
-#: marriage.glade:1317 places.glade:1186 places.glade:1691 rule.glade:379
-#: rule.glade:775 srcsel.glade:828 styles.glade:217
+#: marriage.glade:1317 places.glade:1186 places.glade:1691 rule.glade:426
+#: rule.glade:822 srcsel.glade:828 styles.glade:217
 msgid "Add"
 msgstr ""
 
@@ -754,33 +732,33 @@ msgstr ""
 msgid "Internet Address Editor"
 msgstr ""
 
-#: EditPerson.py:399 GrampsCfg.py:61 const.py:125 gramps.glade:5081
+#: EditPerson.py:401 GrampsCfg.py:61 const.py:125 gramps.glade:5081
 #: gramps.glade:5240 gramps.glade:5656 gramps.glade:5721 gramps.glade:6656
 #: gramps.glade:6703
 msgid "None"
 msgstr ""
 
-#: EditPerson.py:416 EditSource.py:138
+#: EditPerson.py:418 EditSource.py:138
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
-#: EditPerson.py:755 EditPerson.py:764
+#: EditPerson.py:757 EditPerson.py:766
 msgid "Are you sure you want to abandon your changes?"
 msgstr ""
 
-#: EditPerson.py:1076
+#: EditPerson.py:1078
 msgid "Make the selected name the preferred name"
 msgstr ""
 
-#: EditPerson.py:1137 Marriage.py:367
+#: EditPerson.py:1139 Marriage.py:367
 msgid "GRAMPS ID value was not changed."
 msgstr ""
 
-#: EditPerson.py:1138
+#: EditPerson.py:1140
 msgid "%(grampsid)s is already used by %(person)s"
 msgstr ""
 
-#: EditPerson.py:1242
+#: EditPerson.py:1244
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -872,11 +850,11 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: GenericFilter.py:235 plugins/FilterEditor.py:39
+#: GenericFilter.py:235 plugins/FilterEditor.py:40
 msgid "Personal Event"
 msgstr ""
 
-#: GenericFilter.py:273 plugins/FilterEditor.py:40
+#: GenericFilter.py:273 plugins/FilterEditor.py:41
 msgid "Family Event"
 msgstr ""
 
@@ -885,7 +863,7 @@ msgid "Number of Relationships"
 msgstr ""
 
 #: GenericFilter.py:313 gramps.glade:4762 marriage.glade:161
-#: plugins/FilterEditor.py:43
+#: plugins/FilterEditor.py:44
 msgid "Relationship Type"
 msgstr ""
 
@@ -893,87 +871,87 @@ msgstr ""
 msgid "Number of Children"
 msgstr ""
 
-#: GenericFilter.py:427 plugins/FilterEditor.py:41
+#: GenericFilter.py:427 plugins/FilterEditor.py:42
 msgid "Personal Attribute"
 msgstr ""
 
-#: GenericFilter.py:448 plugins/FilterEditor.py:42
+#: GenericFilter.py:448 plugins/FilterEditor.py:43
 msgid "Family Attribute"
 msgstr ""
 
-#: GenericFilter.py:500
+#: GenericFilter.py:501
 msgid "Filter Name"
 msgstr ""
 
-#: GenericFilter.py:584
+#: GenericFilter.py:645
 msgid "Everyone"
 msgstr ""
 
-#: GenericFilter.py:585
+#: GenericFilter.py:646
 msgid "Has the Id"
 msgstr ""
 
-#: GenericFilter.py:586
+#: GenericFilter.py:647
 msgid "Has a name"
 msgstr ""
 
-#: GenericFilter.py:587
+#: GenericFilter.py:648
 msgid "Has the relationships"
 msgstr ""
 
-#: GenericFilter.py:588
+#: GenericFilter.py:649
 msgid "Has the death"
 msgstr ""
 
-#: GenericFilter.py:589
+#: GenericFilter.py:650
 msgid "Has the birth"
 msgstr ""
 
-#: GenericFilter.py:590
+#: GenericFilter.py:651
 msgid "Is the descendant of"
 msgstr ""
 
-#: GenericFilter.py:591
+#: GenericFilter.py:652
 msgid "Is an ancestor of"
 msgstr ""
 
-#: GenericFilter.py:592
+#: GenericFilter.py:653
 msgid "Is a female"
 msgstr ""
 
-#: GenericFilter.py:593
+#: GenericFilter.py:654
 msgid "Is a male"
 msgstr ""
 
-#: GenericFilter.py:594
+#: GenericFilter.py:655
 msgid "Has the personal event"
 msgstr ""
 
-#: GenericFilter.py:595
+#: GenericFilter.py:656
 msgid "Has the family event"
 msgstr ""
 
-#: GenericFilter.py:596
+#: GenericFilter.py:657
 msgid "Has the personal attribute"
 msgstr ""
 
-#: GenericFilter.py:597
+#: GenericFilter.py:658
 msgid "Has the family attribute"
 msgstr ""
 
-#: GenericFilter.py:598
+#: GenericFilter.py:659
 msgid "Matches the filter named"
 msgstr ""
 
-#: GenericFilter.py:723
+#: GenericFilter.py:799
 msgid "Local Filters"
 msgstr ""
 
-#: GenericFilter.py:738
+#: GenericFilter.py:814
 msgid "System Filters"
 msgstr ""
 
-#: GenericFilter.py:753
+#: GenericFilter.py:829
 msgid "Custom Filters"
 msgstr ""
 
@@ -1239,8 +1217,7 @@ msgstr ""
 
 #: Plugins.py:365 Plugins.py:376 const.py:126 const.py:401 const.py:409
 #: gramps.glade:5081 gramps.glade:5240 gramps.glade:5656 gramps.glade:5721
-#: gramps.glade:6656 gramps.glade:6703 gramps_main.py:1411 gramps_main.py:1416
-#: gramps_main.py:1642
+#: gramps.glade:6656 gramps.glade:6703 gramps_main.py:1444 gramps_main.py:1650
 msgid "Unknown"
 msgstr ""
 
@@ -1266,7 +1243,7 @@ msgid ""
 msgstr ""
 
 #: RelImage.py:74 RelImage.py:77 RelImage.py:142 RelImage.py:145
-#: gramps_main.py:751 gramps_main.py:755 gramps_main.py:763 gramps_main.py:767
+#: gramps_main.py:751 gramps_main.py:755 gramps_main.py:763
 #: plugins/WriteGedcom.py:408 plugins/WriteGedcom.py:413
 msgid "Could not create %s"
 msgstr ""
@@ -2092,7 +2069,7 @@ msgstr ""
 msgid "Names that contain a substring"
 msgstr ""
 
-#: gramps.glade:35 gramps_main.py:718 gramps_main.py:782 preferences.glade:173
+#: gramps.glade:35 gramps_main.py:718 gramps_main.py:778 preferences.glade:173
 msgid "GRAMPS"
 msgstr ""
 
@@ -2300,7 +2277,7 @@ msgstr ""
 msgid "Show persons that do not match the filtering rule"
 msgstr ""
 
-#: gramps.glade:868
+#: gramps.glade:868 rule.glade:318
 msgid "Invert"
 msgstr ""
 
@@ -2333,8 +2310,8 @@ msgstr ""
 msgid "Exchange active person and displayed spouse"
 msgstr ""
 
-#: gramps.glade:1516 gramps_main.py:1493 gramps_main.py:1518
-#: gramps_main.py:1915
+#: gramps.glade:1516 gramps_main.py:1502 gramps_main.py:1527
+#: gramps_main.py:1923
 msgid "Relationship"
 msgstr ""
 
@@ -2664,7 +2641,7 @@ msgid ""
 "Should this be loaded instead of the last saved version?"
 msgstr ""
 
-#: gramps_main.py:708 gramps_main.py:745
+#: gramps_main.py:709 gramps_main.py:745
 msgid "%s is not a directory"
 msgstr ""
 
@@ -2676,35 +2653,35 @@ msgstr ""
 msgid "Saving %s ..."
 msgstr ""
 
-#: gramps_main.py:799
+#: gramps_main.py:795
 msgid "autosaving..."
 msgstr ""
 
-#: gramps_main.py:802
+#: gramps_main.py:798
 msgid "autosave complete"
 msgstr ""
 
-#: gramps_main.py:804
+#: gramps_main.py:800
 msgid "autosave failed"
 msgstr ""
 
-#: gramps_main.py:813
+#: gramps_main.py:809
 msgid "You requested too many people to edit at the same time"
 msgstr ""
 
-#: gramps_main.py:842
+#: gramps_main.py:839
 msgid "Do you really wish to delete %s?"
 msgstr ""
 
-#: gramps_main.py:846
+#: gramps_main.py:842
 msgid "Currently, you can only delete one person at a time"
 msgstr ""
 
-#: gramps_main.py:1143
-msgid "Invalid move.  Children must be ordered by birth date."
+#: gramps_main.py:1141
+msgid "Invalid move. Children must be ordered by birth date."
 msgstr ""
 
-#: gramps_main.py:1189
+#: gramps_main.py:1188
 msgid "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 
@@ -2712,39 +2689,39 @@ msgstr ""
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr ""
 
-#: gramps_main.py:1491 gramps_main.py:1913
+#: gramps_main.py:1500 gramps_main.py:1921
 msgid "Preferred Relationship"
 msgstr ""
 
-#: gramps_main.py:1526
+#: gramps_main.py:1536
 msgid "No Relationship"
 msgstr ""
 
-#: gramps_main.py:1556
+#: gramps_main.py:1566
 msgid "Preferred Parents (%d of %d)"
 msgstr ""
 
-#: gramps_main.py:1559
+#: gramps_main.py:1568
 msgid "Preferred Parents"
 msgstr ""
 
-#: gramps_main.py:1562
+#: gramps_main.py:1571
 msgid "Alternate Parents (%d of %d)"
 msgstr ""
 
-#: gramps_main.py:1565
+#: gramps_main.py:1574
 msgid "No Parents"
 msgstr ""
 
-#: gramps_main.py:1854
+#: gramps_main.py:1862
 msgid "No default/home person has been set"
 msgstr ""
 
-#: gramps_main.py:1859
+#: gramps_main.py:1867
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1872
+#: gramps_main.py:1880
 msgid "Do you wish to set %s as the home person?"
 msgstr ""
 
@@ -2940,10 +2917,6 @@ msgstr ""
 msgid "Report Selection - GRAMPS"
 msgstr ""
 
-#: plugins.glade:146
-msgid "label63"
-msgstr ""
-
 #: plugins.glade:239
 msgid "Select a report from those available on the left."
 msgstr ""
@@ -2989,7 +2962,7 @@ msgstr ""
 #: plugins/AncestorChart.py:471 plugins/AncestorReport.py:404
 #: plugins/DescendReport.py:305 plugins/DetAncestralReport.py:634
 #: plugins/FamilyGroup.py:550 plugins/GraphViz.py:390
-#: plugins/IndivSummary.py:521 plugins/Summary.py:133 plugins/WebPage.py:1162
+#: plugins/IndivSummary.py:521 plugins/Summary.py:133 plugins/WebPage.py:1107
 msgid "Beta"
 msgstr ""
 
@@ -3211,7 +3184,7 @@ msgstr ""
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr ""
 
-#: plugins/DescendReport.py:96 plugins/GraphViz.py:86 plugins/WebPage.py:851
+#: plugins/DescendReport.py:96 plugins/GraphViz.py:86 plugins/WebPage.py:790
 #: plugins/WriteGedcom.py:318 plugins/WritePafPalm.py:570
 msgid "Descendants of %s"
 msgstr ""
@@ -3378,7 +3351,7 @@ msgstr ""
 msgid " at the age of %d %s"
 msgstr ""
 
-#: plugins/EventCmp.py:132 plugins/GraphViz.py:82 plugins/WebPage.py:847
+#: plugins/EventCmp.py:132 plugins/GraphViz.py:82 plugins/WebPage.py:786
 #: plugins/WriteGedcom.py:314 plugins/WritePafPalm.py:561
 msgid "Entire Database"
 msgstr ""
@@ -3424,24 +3397,24 @@ msgstr ""
 msgid "Creates a family group report, showing information on a set of parents and their children."
 msgstr ""
 
-#: plugins/FilterEditor.py:353
+#: plugins/FilterEditor.py:380
 msgid "Custom Filter Editor"
 msgstr ""
 
-#: plugins/FilterEditor.py:354 plugins/FilterEditor.py:367
+#: plugins/FilterEditor.py:381 plugins/FilterEditor.py:394
 #: plugins/RelCalc.py:437 plugins/Verify.py:292 plugins/soundgen.py:91
 msgid "Utilities"
 msgstr ""
 
-#: plugins/FilterEditor.py:355
+#: plugins/FilterEditor.py:382
 msgid "The Custom Filter Editor builds custom filters that can be used to select people included reports, exports, and other utilities."
 msgstr ""
 
-#: plugins/FilterEditor.py:366
+#: plugins/FilterEditor.py:393
 msgid "System Filter Editor"
 msgstr ""
 
-#: plugins/FilterEditor.py:368
+#: plugins/FilterEditor.py:395
 msgid "The System Filter Editor builds custom filters that can be used by anyone on the system to select people included reports, exports, and other utilities."
 msgstr ""
 
@@ -3469,7 +3442,7 @@ msgstr ""
 msgid "Graphviz File"
 msgstr ""
 
-#: plugins/GraphViz.py:90 plugins/WebPage.py:855 plugins/WriteGedcom.py:322
+#: plugins/GraphViz.py:90 plugins/WebPage.py:794 plugins/WriteGedcom.py:322
 #: plugins/WritePafPalm.py:566
 msgid "Ancestors of %s"
 msgstr ""
@@ -4026,73 +3999,77 @@ msgstr ""
 msgid "Facts and Events"
 msgstr ""
 
-#: plugins/WebPage.py:661
+#: plugins/WebPage.py:571
 msgid "Creating Web Pages"
 msgstr ""
 
-#: plugins/WebPage.py:661
+#: plugins/WebPage.py:571
 msgid "Generate HTML reports - GRAMPS"
 msgstr ""
 
-#: plugins/WebPage.py:671 plugins/WebPage.py:675
+#: plugins/WebPage.py:581 plugins/WebPage.py:585
 msgid "Family Tree Index"
 msgstr ""
 
-#: plugins/WebPage.py:696
+#: plugins/WebPage.py:619
+msgid "%s (continued)"
+msgstr ""
+
+#: plugins/WebPage.py:635
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
-#: plugins/WebPage.py:703 plugins/WebPage.py:707 plugins/WebPage.py:719
-#: plugins/WebPage.py:723
+#: plugins/WebPage.py:642 plugins/WebPage.py:646 plugins/WebPage.py:658
+#: plugins/WebPage.py:662
 msgid "Could not create the directory : %s"
 msgstr ""
 
-#: plugins/WebPage.py:784
+#: plugins/WebPage.py:723
 msgid "Include a link to the index page"
 msgstr ""
 
-#: plugins/WebPage.py:785 plugins/gedcomexport.glade:295
+#: plugins/WebPage.py:724 plugins/gedcomexport.glade:295
 #: plugins/pafexport.glade:296
 msgid "Do not include records marked private"
 msgstr ""
 
-#: plugins/WebPage.py:786
+#: plugins/WebPage.py:725
 msgid "Restrict information on living people"
 msgstr ""
 
-#: plugins/WebPage.py:787
+#: plugins/WebPage.py:726
 msgid "Do not use images"
 msgstr ""
 
-#: plugins/WebPage.py:788
+#: plugins/WebPage.py:727
 msgid "Do not use images for living people"
 msgstr ""
 
-#: plugins/WebPage.py:789
+#: plugins/WebPage.py:728
 msgid "Do not include comments and text in source information"
 msgstr ""
 
-#: plugins/WebPage.py:790
+#: plugins/WebPage.py:729
 msgid "Image subdirectory"
 msgstr ""
 
-#: plugins/WebPage.py:806
+#: plugins/WebPage.py:745
 msgid "Privacy Options"
 msgstr ""
 
-#: plugins/WebPage.py:822 plugins/WebPage.py:1160
+#: plugins/WebPage.py:761 plugins/WebPage.py:1105
 msgid "Generate Web Site"
 msgstr ""
 
-#: plugins/WebPage.py:822 plugins/WebPage.py:1161
+#: plugins/WebPage.py:761 plugins/WebPage.py:1106
 msgid "Web Page"
 msgstr ""
 
-#: plugins/WebPage.py:827
+#: plugins/WebPage.py:766
 msgid "Target Directory"
 msgstr ""
 
-#: plugins/WebPage.py:1163
+#: plugins/WebPage.py:1108
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 
@@ -4458,34 +4435,6 @@ msgstr ""
 msgid "Maximum span of years for all children"
 msgstr ""
 
-#: plugins/verify.glade:400
-msgid "8"
-msgstr ""
-
-#: plugins/verify.glade:425
-msgid "25"
-msgstr ""
-
-#: plugins/verify.glade:450
-msgid "3"
-msgstr ""
-
-#: plugins/verify.glade:475
-msgid "50"
-msgstr ""
-
-#: plugins/verify.glade:500 plugins/verify.glade:688
-msgid "17"
-msgstr ""
-
-#: plugins/verify.glade:525 plugins/verify.glade:575
-msgid "30"
-msgstr ""
-
-#: plugins/verify.glade:550
-msgid "90"
-msgstr ""
-
 #: plugins/verify.glade:609
 msgid "Women"
 msgstr ""
@@ -4498,16 +4447,8 @@ msgstr ""
 msgid "Maximum age to bear a child"
 msgstr ""
 
-#: plugins/verify.glade:713
-msgid "49"
-msgstr ""
-
 #: plugins/verify.glade:733 plugins/verify.glade:911
 msgid "Maximum number of children"
-msgstr ""
-
-#: plugins/verify.glade:764
-msgid "11"
 msgstr ""
 
 #: plugins/verify.glade:787
@@ -4520,18 +4461,6 @@ msgstr ""
 
 #: plugins/verify.glade:835
 msgid "Maximum age to father a child"
-msgstr ""
-
-#: plugins/verify.glade:866
-msgid "18"
-msgstr ""
-
-#: plugins/verify.glade:891
-msgid "65"
-msgstr ""
-
-#: plugins/verify.glade:942
-msgid "15"
 msgstr ""
 
 #: preferences.glade:19
@@ -4848,7 +4777,7 @@ msgstr ""
 msgid "Changed by"
 msgstr ""
 
-#: revision.glade:377 rule.glade:166 rule.glade:738
+#: revision.glade:377 rule.glade:166 rule.glade:785
 msgid "Comment"
 msgstr ""
 
@@ -4869,58 +4798,62 @@ msgid "Define Filter"
 msgstr ""
 
 #: rule.glade:246
-msgid "All rules must apply"
+msgid "Exactly one rule must apply"
 msgstr ""
 
 #: rule.glade:270
 msgid "At least one rule must apply"
 msgstr ""
 
-#: rule.glade:330 rule.glade:528
+#: rule.glade:294
+msgid "All rules must apply"
+msgstr ""
+
+#: rule.glade:377 rule.glade:575
 msgid "Rule"
 msgstr ""
 
-#: rule.glade:343 rule.glade:575
+#: rule.glade:390 rule.glade:622
 msgid "Values"
 msgstr ""
 
-#: rule.glade:420
+#: rule.glade:467
 msgid "Add Rule - GRAMPS"
 msgstr ""
 
-#: rule.glade:490
+#: rule.glade:537
 msgid "Add Rule"
 msgstr ""
 
-#: rule.glade:595
+#: rule.glade:642
 msgid "User Defined Filters - GRAMPS"
 msgstr ""
 
-#: rule.glade:662
+#: rule.glade:709
 msgid "User Defined Filters"
 msgstr ""
 
-#: rule.glade:767
+#: rule.glade:814
 msgid "Add a new filter"
 msgstr ""
 
-#: rule.glade:783
+#: rule.glade:830
 msgid "Edit the selected filter"
 msgstr ""
 
-#: rule.glade:799
+#: rule.glade:846
 msgid "Delete the selected filter"
 msgstr ""
 
-#: rule.glade:815
+#: rule.glade:862
 msgid "Display people matching the filter"
 msgstr ""
 
-#: rule.glade:823
+#: rule.glade:870
 msgid "Test"
 msgstr ""
 
-#: rule.glade:834
+#: rule.glade:881
 msgid "Test Filter - GRAMPS"
 msgstr ""
 

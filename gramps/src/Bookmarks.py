@@ -31,7 +31,7 @@ from gnome.ui import *
 
 #-------------------------------------------------------------------------
 #
-# Local modules
+# gramps modules
 #
 #-------------------------------------------------------------------------
 import Utils
@@ -40,8 +40,7 @@ _ = gettext
 
 #-------------------------------------------------------------------------
 #
-# Interface to gramps' bookmarks. Handles building the bookmarks menu
-# for the main window, and provides the bookmark editor.
+# Bookmarks
 #
 #-------------------------------------------------------------------------
 class Bookmarks :
@@ -165,6 +164,3 @@ class Bookmarks :
     def cancel_clicked(self,obj):
         """Closes the current window"""
         self.top.destroy()
-
-
-

@@ -44,7 +44,7 @@ class UrlEditor:
     def __init__(self,parent,name,url):
         self.parent = parent
         self.url = url
-        self.top = libglade.GladeXML(const.editPersonFile, "url_edit")
+        self.top = libglade.GladeXML(const.dialogFile, "url_edit")
         self.window = self.top.get_widget("url_edit")
         self.des  = self.top.get_widget("url_des")
         self.addr = self.top.get_widget("url_addr")

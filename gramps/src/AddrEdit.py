@@ -60,7 +60,7 @@ class AddressEditor:
         addr - The address that is to be edited
         """
         # Get the important widgets from the glade description
-        self.top = libglade.GladeXML(const.editPersonFile, "addr_edit")
+        self.top = libglade.GladeXML(const.dialogFile, "addr_edit")
         self.window = self.top.get_widget("addr_edit")
         self.addr_start = self.top.get_widget("address_start")
         self.street = self.top.get_widget("street")
@@ -102,7 +102,8 @@ class AddressEditor:
         else:
             self.srcreflist = []
 
-        self.date_check = DateEdit(self.addr_start,self.top.get_widget("date_stat"))
+        date_stat = self.top.get_widget("date_stat")
+        self.date_check = DateEdit(self.addr_start,date_stat)
 
         self.top.signal_autoconnect({
             "destroy_passed_object"   : Utils.destroy_passed_object,

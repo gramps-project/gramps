@@ -115,6 +115,13 @@ import time
 import getopt
 import tokenize
 import operator
+import re
+
+intRe = re.compile("^\d+$")
+
+_ignore = {
+    ':' : 0,
+    }
 
 # for selftesting
 try:
@@ -124,11 +131,8 @@ except ImportError:
     def _(s): return s
 
 __version__ = '1.4'
-
 default_keywords = ['_']
-
 EMPTYSTRING = ''
-
 
 import sys
 import string
@@ -143,6 +147,8 @@ class TranslatableStringParser(xmllib.XMLParser):
 
     def add_string(self, string):
         if string == "":
+            return
+        if _ignore.has_key(string):
             return
         entry = (self.filename, self.lineno)
         if self.strings.has_key(string):
@@ -172,7 +178,8 @@ class TranslatableStringParser(xmllib.XMLParser):
         self.data = self.data + data
 
     def translate_this_string(self):
-        self.add_string(self.data)
+        if not intRe.match(self.data):
+            self.add_string(self.data)
 
 	# this list should include all tags for which translation should occur
     end_label        = translate_this_string
