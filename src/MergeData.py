@@ -407,6 +407,18 @@ class MergePeople:
 
                 # copy children from source to target
 
+                for child in src_family.getChildList():
+                    if child not in tgt_family.getChildList():
+                        tgt_family.addChild(child)
+                        if child.getMainParents() == src_family:
+                            child.setMainParents(tgt_family)
+                        else:
+                            index = 0
+                            for fam in child.getParentList()[:]:
+                                if fam[0] == src_family:
+                                    child.getParentList()[index] = (tgt_family,fam[1],fam[2])
+                                index = index + 1
+                        
                 # delete the old source family
                 del self.db.getFamilyMap()[src_family.getId()]
 
@@ -433,9 +445,9 @@ class MergePeople:
                             child.setMainParents(tgt_family)
                         else:
                             index = 0
-                            for fam in child.getAltFamilies():
+                            for fam in child.getParentList()[:]:
                                 if fam[0] == src_family:
-                                    child.getAltFamilies()[index] = (tgt_family,fam[1],fam[2])
+                                    child.getParentList()[index] = (tgt_family,fam[1],fam[2])
                                 index = index + 1
 
                 # add family events from the old to the new
