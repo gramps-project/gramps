@@ -69,10 +69,9 @@ class ImageSelect:
     # window.
     #
     #---------------------------------------------------------------------
-    def __init__(self, path, prefix, db):
+    def __init__(self, path, db):
         self.path        = path;
         self.db          = db
-        self.prefix      = prefix;
 
     #-------------------------------------------------------------------------
     #
@@ -187,8 +186,8 @@ class ImageSelect:
 #
 #-------------------------------------------------------------------------
 class Gallery(ImageSelect):
-    def __init__(self, dataobj, path, prefix, icon_list, db):
-        ImageSelect.__init__(self, path, prefix, db)
+    def __init__(self, dataobj, path, icon_list, db):
+        ImageSelect.__init__(self, path, db)
 
         t = [
             ('STRING', 0, 0),
@@ -210,7 +209,6 @@ class Gallery(ImageSelect):
 
         # Remember arguments
         self.path      = path;
-        self.prefix    = prefix;
         self.dataobj   = dataobj;
         self.icon_list = icon_list;
 
@@ -500,6 +498,8 @@ class LocalMediaProperties:
         self.change_dialog.get_widget("notes").insert_defaults(photo.getNote())
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : utils.destroy_passed_object,
+            "on_up_clicked" : self.on_up_clicked,
+            "on_down_clicked" : self.on_down_clicked,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_apply_clicked" : self.on_apply_clicked,
             "on_attr_list_select_row" : self.on_attr_list_select_row,
@@ -508,6 +508,20 @@ class LocalMediaProperties:
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
         self.redraw_attr_list()
+
+    def on_up_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != 0:
+            obj.select_row(row-1,0)
+
+    def on_down_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != obj.rows-1:
+            obj.select_row(row+1,0)
 
     def redraw_attr_list(self):
         utils.redraw_list(self.alist,self.attr_list,disp_attr)
@@ -588,6 +602,8 @@ class GlobalMediaProperties:
         self.notes.insert_defaults(object.getNote())
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked"      : utils.destroy_passed_object,
+            "on_up_clicked"          : self.on_up_clicked,
+            "on_down_clicked"        : self.on_down_clicked,
             "on_ok_clicked"          : self.on_ok_clicked,
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_attr_list_select_row": self.on_attr_list_select_row,
@@ -598,6 +614,20 @@ class GlobalMediaProperties:
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
         self.redraw_attr_list()
+
+    def on_up_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != 0:
+            obj.select_row(row-1,0)
+
+    def on_down_clicked(self,obj):
+        if len(obj.selection) == 0:
+            return
+        row = obj.selection[0]
+        if row != obj.rows-1:
+            obj.select_row(row+1,0)
 
     def update_info(self):
         fname = self.object.getPath()

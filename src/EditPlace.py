@@ -67,9 +67,8 @@ class EditPlace:
             self.srcreflist = []
             
         self.top_window = libglade.GladeXML(const.placesFile,"placeEditor")
-        idval = "p%s" % place.getId()
         plwidget = self.top_window.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(place, self.path, idval, plwidget, db)
+        self.gallery = ImageSelect.Gallery(place, self.path, plwidget, db)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
         self.parish = self.top_window.get_widget("parish")

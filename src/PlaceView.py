@@ -45,8 +45,9 @@ class PlaceView:
         self.country_arrow = glade.get_widget("country_arrow")
         self.update_display= update
 
-        self.sort_arrow = [ self.place_arrow, self.place_id_arrow, self.parish_arrow,
-                            self.city_arrow, self.county_arrow, self.state_arrow,
+        self.sort_arrow = [ self.place_arrow, self.place_id_arrow,
+                            self.parish_arrow, self.city_arrow,
+                            self.county_arrow, self.state_arrow,
                             self.country_arrow ]
 
         self.place_list.set_column_visibility(7,0)

@@ -5,7 +5,6 @@ import intl
 import os
 import gtk
 import gnome.ui
-import const
 
 
 intl.textdomain("gramps")
