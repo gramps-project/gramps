@@ -1,3 +1,6 @@
+2004-08-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EdirPerson.py (__init__): Typos.
+
 2004-08-23  Jim Smart  <jim@jimsmart.org>
 	* src/PeopleModel.py: enhanced column_spouse
 	* src/RelLib.py: enhance probably_alive to check for "Cause
