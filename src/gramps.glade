@@ -1184,7 +1184,7 @@
 			  <child>
 			    <widget class="GtkCheckButton" id="invert">
 			      <property name="visible">True</property>
-			      <property name="tooltip" translatable="yes">Show persons that do not match the filtering rule</property>
+			      <property name="tooltip" translatable="yes">Show people that do not match the filtering rule</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">Invert</property>
 			      <property name="use_underline">True</property>
@@ -4656,7 +4656,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button90">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Reject changes and close</property>
+	      <property name="tooltip" translatable="yes">Abandon changes and close window</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-cancel</property>
@@ -4670,7 +4670,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button88">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">Accept and close</property>
+	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
 	      <property name="has_default">True</property>
 	      <property name="can_focus">True</property>
