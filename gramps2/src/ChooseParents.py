@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -121,11 +121,11 @@ class ChooseParents:
             self.father = None
 
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
-        self.top = self.glade.get_widget("familyDialog")
+        self.window = self.glade.get_widget("familyDialog")
 
         name = NameDisplay.displayer.display(self.person)
         self.title_text = _("Choose the Parents of %s") % name
-        Utils.set_titles(self.top,self.glade.get_widget('title'),
+        Utils.set_titles(self.window,self.glade.get_widget('title'),
                          self.title_text,_('Choose Parents'))
         
         self.mcombo = self.glade.get_widget("mcombo")
@@ -169,7 +169,8 @@ class ChooseParents:
             "on_prel_changed"          : self.parent_relation_changed,
             #"on_showallf_toggled"      : self.showallf_toggled,
             #"on_showallm_toggled"      : self.showallm_toggled,
-            #"destroy_passed_object"    : self.close,
+            "destroy_passed_object"    : self.close,
+            "on_save_parents_clicked"   : self.save_parents_clicked,
             "on_help_familyDialog_clicked"  : self.on_help_clicked,
             "on_familyDialog_delete_event" : self.on_delete_event,
             })
@@ -178,10 +179,7 @@ class ChooseParents:
         self.build_list(self.mcombo,mrel)
         self.build_list(self.fcombo,frel)
         
-        self.val = self.top.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.save_parents_clicked(None)
-        self.close(None)
+        self.window.show()
 
     def build_list(self,opt_menu,sel):
         cell = gtk.CellRendererText()
@@ -231,7 +229,7 @@ class ChooseParents:
     def close(self,obj):
         self.remove_itself_from_menu()
         self.close_child_windows()
-        self.top.destroy()
+        self.window.destroy()
         
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -257,7 +255,7 @@ class ChooseParents:
         self.win_menu_item.destroy()
 
     def present(self,obj):
-        self.top.present()
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -472,7 +470,7 @@ class ChooseParents:
             if self.person.get_handle() in (father_handle,mother_handle):
                 ErrorDialog(_("Error selecting a child"),
                             _("A person cannot be linked as his/her own parent"),
-                            self.top)
+                            self.window)
                 return
             self.family.add_child_handle(self.person.get_handle())
             self.family.set_relationship(self.type)
@@ -480,6 +478,7 @@ class ChooseParents:
             self.db.commit_family(self.family,trans)
         self.family_update(None)
         self.db.transaction_commit(trans,_("Choose Parents"))
+        self.close(None)
 
     def add_new_parent(self,epo,val):
         """Adds a new person to either the father list or the mother list,
@@ -550,6 +549,11 @@ class ChooseParents:
             self.db.commit_person(self.mother,trans)
         self.db.transaction_commit(trans,_("Choose Parents"))
 
+#-------------------------------------------------------------------------
+#
+# ModifyParents
+#
+#-------------------------------------------------------------------------
 class ModifyParents:
     def __init__(self, db, person, family_handle, family_update,
                  full_update, parent_window=None):
@@ -574,12 +578,12 @@ class ModifyParents:
         self.mother = self.db.get_person_from_handle(mid)
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
-        self.top = self.glade.get_widget("modparents")
+        self.window = self.glade.get_widget("modparents")
         self.title = self.glade.get_widget("title")
 
         name  = NameDisplay.displayer.display(self.person)
         title = _("Modify the Parents of %s") % name
-        Utils.set_titles(self.top, self.title, title, _("Modify Parents"))
+        Utils.set_titles(self.window, self.title, title, _("Modify Parents"))
         
         self.mother_rel = self.glade.get_widget("mrel")
         self.father_rel = self.glade.get_widget("frel")
@@ -629,7 +633,7 @@ class ModifyParents:
                 self.pref.set_active(False)
 
         if parent_window:
-            self.top.set_transient_for(parent_window)
+            self.window.set_transient_for(parent_window)
 
         self.fcombo = self.glade.get_widget('fcombo')
         self.mcombo = self.glade.get_widget('mcombo')
@@ -644,10 +648,10 @@ class ModifyParents:
         self.build_list(self.mcombo,self.orig_mrel)
         self.build_list(self.fcombo,self.orig_frel)
         
-        self.val = self.top.run()
+        self.val = self.window.run()
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()
-        self.top.destroy()
+        self.window.destroy()
 
     def build_list(self,opt_menu,sel):
         cell = gtk.CellRendererText()
@@ -661,7 +665,7 @@ class ModifyParents:
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-spec-par')
-        self.val = self.top.run()
+        self.val = self.window.run()
 
     def save_parents_clicked(self):
         """
@@ -669,8 +673,8 @@ class ModifyParents:
         of the main perosn.
         """
 
-        mother_rel = self.keys[self.mcombo.get_active()]
-        father_rel = self.keys[self.fcombo.get_active()]
+        mother_rel = self.mcombo.get_active()
+        father_rel = self.fcombo.get_active()
         mod = False
 
         fhandle = self.family.get_handle()
