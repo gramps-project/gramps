@@ -222,6 +222,9 @@ class GedcomParser:
         self.is_ftw = 0
         self.idswap = {}
         self.gid2id = {}
+        self.sid2id = {}
+        self.lid2id = {}
+        self.fid2id = {}
 
         self.f = open(file,"rU")
         self.filename = file
@@ -442,7 +445,7 @@ class GedcomParser:
             self.ignore_sub_junk(1)
 
     def parse_source(self,name,level):
-        self.source = self.db.find_source(name,self.smap, self.trans)
+        self.source = self.find_or_create_source(name[1:-1])
 
         note = ""
         while 1:
@@ -495,7 +498,7 @@ class GedcomParser:
                 if self.fam_count % UPDATE == 0 and self.window:
                     self.update(self.families_obj,str(self.fam_count))
                 self.fam_count = self.fam_count + 1
-                self.family = self.db.find_family_with_map(matches[1],self.fmap, self.trans)
+                self.family = self.find_or_create_family(matches[1])
                 self.parse_family()
                 if self.addr != None:
                     father = self.family.get_father_handle()
@@ -563,9 +566,50 @@ class GedcomParser:
             intid = Utils.create_id()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
-            self.db.add_person_as(person,self.trans)
+            self.db.add_person(person,self.trans)
             self.gid2id[gramps_id] = intid
         return person
+
+    def find_or_create_source(self,gramps_id):
+        source = RelLib.Source()
+        intid = self.sid2id.get(gramps_id)
+        if self.db.source_map.has_key(intid):
+            source.unserialize(self.db.source_map.get(intid))
+        else:
+            intid = Utils.create_id()
+            source.set_handle(intid)
+            source.set_gramps_id(gramps_id)
+            self.db.add_source(source,self.trans)
+            self.sid2id[gramps_id] = intid
+        return source
+
+    def find_or_create_place(self,gramps_id):
+        place = RelLib.Place()
+        intid = self.lid2id.get(gramps_id)
+        if self.db.place_map.has_key(intid):
+            place.unserialize(self.db.place_map.get(intid))
+        else:
+            intid = Utils.create_id()
+            place.set_handle(intid)
+            place.set_title(gramps_id)
+            place.set_gramps_id(self.db.find_next_place_gramps_id())
+            print place.get_gramps_id()
+            self.db.add_place(place,self.trans)
+            self.lid2id[gramps_id] = intid
+        return place
+
+    def find_or_create_family(self,gramps_id):
+        family = RelLib.Family()
+        intid = self.fid2id.get(gramps_id)
+        if self.db.family_map.has_key(intid):
+            family.unserialize(self.db.family_map.get(intid))
+        else:
+            intid = Utils.create_id()
+            family.set_handle(intid)
+            family.set_gramps_id(gramps_id)
+            self.db.add_family(family,self.trans)
+            self.fid2id[gramps_id] = intid
+        return family
 
     def parse_cause(self,event,level):
         while 1:
@@ -793,7 +837,7 @@ class GedcomParser:
                     self.person.set_lds_sealing(ord)
                 self.parse_ord(ord,2)
             elif matches[1] == "FAMS":
-                family = self.db.find_family_with_map(matches[2],self.fmap, self.trans)
+                family = self.find_or_create_family(matches[2])
                 self.person.add_family_handle(family.get_handle())
                 if note == "":
                     note = self.parse_optional_note(2)
@@ -802,7 +846,7 @@ class GedcomParser:
                 self.db.commit_family(family, self.trans)
             elif matches[1] == "FAMC":
                 type,note = self.parse_famc_type(2)
-                family = self.db.find_family_with_map(matches[2],self.fmap, self.trans)
+                family = self.find_or_create_family(matches[2])
                 
                 for f in self.person.get_parent_family_handle_list():
                     if f[0] == family.get_handle():
@@ -1115,18 +1159,13 @@ class GedcomParser:
             elif matches[1] == "DATE":
                 ord.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":
-                ord.set_family_handle(self.db.find_family_with_map(matches[2],self.fmap,self.trans))
+                ord.set_family_handle(self.find_or_create_family(matches[2]))
             elif matches[1] == "PLAC":
               try:
                 val = matches[2]
-                if self.placemap.has_key(val):
-                    place_handle = self.placemap[val]
-                else:
-                    place = RelLib.Place()
-                    place.set_title(matches[2])
-                    self.db.add_place(place, self.trans)
-                    place_handle = place.get_handle()
-                    self.placemap[val] = place_handle
+                place = self.find_or_create_place(matches[2])
+                place.set_title(matches[2])
+                place_handle = place.get_handle()
                 ord.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
               except NameError:
@@ -1172,14 +1211,9 @@ class GedcomParser:
                     event.set_description(val)
                     self.ignore_sub_junk(level+1)
                 else:
-                    if self.placemap.has_key(val):
-                        place_handle = self.placemap[val]
-                    else:
-                        place = RelLib.Place()
-                        place.set_title(matches[2])
-                        self.db.add_place(place, self.trans)
-                        place_handle = place.get_handle()
-                        self.placemap[val] = place_handle
+                    place = self.find_or_create_place(val)
+                    place_handle = place.get_handle()
+                    place.set_title(matches[2])
                     event.set_place_handle(place_handle)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
@@ -1221,21 +1255,16 @@ class GedcomParser:
             elif matches[1] == "SOUR":
                 event.add_source_reference(self.handle_source(matches,level+1))
             elif matches[1] == "FAMC":
-                family = self.db.find_family_with_map(matches[2],self.fmap,self.trans)
+                family = self.find_or_create_family(matches[2])
                 mrel,frel = self.parse_adopt_famc(level+1);
                 if self.person.get_main_parents_family_handle() == family.get_handle():
                     self.person.set_main_parent_family_handle(None)
                 self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
             elif matches[1] == "PLAC":
                 val = matches[2]
-                if self.placemap.has_key(val):
-                    place_handle = self.placemap[val]
-                else:
-                    place = RelLib.Place()
-                    place.set_title(matches[2])
-                    self.db.add_place(place, self.trans)
-                    place_handle = place.get_handle()
-                    self.placemap[val] = place_handle
+                place = self.find_or_create_place(val)
+                place_handle = place.get_handle()
+                place.set_title(matches[2])
                 event.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "TYPE":
@@ -1356,14 +1385,9 @@ class GedcomParser:
                 event.add_source_reference(self.handle_source(matches,level+1))
             elif matches[1] == "PLAC":
                 val = matches[2]
-                if self.placemap.has_key(val):
-                    place_handle = self.placemap[val]
-                else:
-                    place = RelLib.Place()
-                    place.set_title(matches[2])
-                    self.db.add_place(place, self.trans)
-                    place_handle = place.get_handle()
-                    self.placemap[val] = place_handle
+                place = self.find_or_create_place(val)
+                place_handle = place.get_handle()
+                place.set_title(matches[2])
                 event.set_place_handle(place_handle)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == 'OFFI':
@@ -1722,13 +1746,13 @@ class GedcomParser:
         if matches[2] and matches[2][0] != "@":
             self.localref = self.localref + 1
             ref = "gsr%d" % self.localref
-            s = self.db.find_source(ref,self.smap, self.trans)
+            s = self.find_or_create_source(ref)
             source_ref.set_base_handle(s.get_handle())
             s.set_title('Imported Source #%d' % self.localref)
             s.set_note(matches[2] + self.parse_continue_data(level))
             self.ignore_sub_junk(level+1)
         else:
-            source_ref.set_base_handle(self.db.find_source(matches[2],self.smap,self.trans).get_handle())
+            source_ref.set_base_handle(self.find_or_create_source(matches[2][1:-1]))
             self.parse_source_reference(source_ref,level)
         return source_ref
 
@@ -1761,7 +1785,7 @@ class GedcomParser:
                         self.db.remove_person_handle(pid,self.trans)
                         person.set_handle(new_key)
                         person.set_gramps_id(new_key)
-                        self.db.add_person_as(person,self.trans)
+                        self.db.add_person(person,self.trans)
                     # give up trying to use the refn as a key
                     else:
                         pass

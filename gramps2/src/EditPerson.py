@@ -484,13 +484,13 @@ class EditPerson:
             cnum = cnum + 1
             tree.append_column(column)
 
-    def lds_field(self,ord,combo,date,place):
+    def lds_field(self,lds_ord,combo,date,place):
         AutoComp.fill_combo(combo,_temple_names)
-        if not ord.is_empty():
-            stat = ord.get_status()
-            date.set_text(ord.get_date())
-            if ord.get_temple() != "":
-                name = const.lds_temple_to_abrev[ord.get_temple()]
+        if not lds_ord.is_empty():
+            stat = lds_ord.get_status()
+            date.set_text(lds_ord.get_date())
+            if lds_ord.get_temple() != "":
+                name = const.lds_temple_to_abrev[lds_ord.get_temple()]
             else:
                 name = ""
             combo.child.set_text(name)
@@ -499,9 +499,9 @@ class EditPerson:
             combo.child.set_text("")
 
         build_dropdown(place,self.place_list)
-        if ord and ord.get_place_handle():
-            ord_place = self.db.get_place_from_handle(ord.get_place_handle())
-            place.set_text(ord_place.get_title())
+        if lds_ord and lds_ord.get_place_handle():
+            lds_ord_place = self.db.get_place_from_handle(lds_ord.get_place_handle())
+            place.set_text(lds_ord_place.get_title())
         return stat
 
     def draw_lds(self):
@@ -793,8 +793,8 @@ class EditPerson:
         self.ntree.clear()
         self.nmap = {}
         for name in self.nlist:
-            iter = self.ntree.add([name.get_name(),_(name.get_type())],name)
-            self.nmap[str(name)] = iter
+            node = self.ntree.add([name.get_name(),_(name.get_type())],name)
+            self.nmap[str(name)] = node
         if self.nlist:
             self.ntree.select_row(0)
             Utils.bold_label(self.names_label)
@@ -807,8 +807,8 @@ class EditPerson:
         self.wtree.clear()
         self.wmap = {}
         for url in self.ulist:
-            iter = self.wtree.add([url.get_path(),url.get_description()],url)
-            self.wmap[str(url)] = iter
+            node = self.wtree.add([url.get_path(),url.get_description()],url)
+            self.wmap[str(url)] = node
             
         if len(self.ulist) > 0:
             self.web_go.set_sensitive(0)
@@ -827,8 +827,8 @@ class EditPerson:
         for addr in self.plist:
             location = "%s %s %s %s" % (addr.get_street(),addr.get_city(),
                                         addr.get_state(),addr.get_country())
-            iter = self.ptree.add([addr.get_date(),location],addr)
-            self.pmap[str(addr)] = iter
+            node = self.ptree.add([addr.get_date(),location],addr)
+            self.pmap[str(addr)] = node
         if self.plist:
             self.ptree.select_row(0)
             Utils.bold_label(self.addr_label)
@@ -840,8 +840,8 @@ class EditPerson:
         self.atree.clear()
         self.amap = {}
         for attr in self.alist:
-            iter = self.atree.add([const.display_pattr(attr.get_type()),attr.get_value()],attr)
-            self.amap[str(attr)] = iter
+            node = self.atree.add([const.display_pattr(attr.get_type()),attr.get_value()],attr)
+            self.amap[str(attr)] = node
         if self.alist:
             self.atree.select_row(0)
             Utils.bold_label(self.attr_label)
@@ -885,9 +885,9 @@ class EditPerson:
         for event_handle in self.elist:
             event = self.db.find_event_from_handle(event_handle)
             pname = place_title(self.db,event)
-            iter = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
+            node = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
                                     event.get_quote_date(),pname],event)
-            self.emap[str(event)] = iter
+            self.emap[str(event)] = node
         if self.elist:
             self.etree.select_row(0)
             Utils.bold_label(self.events_label)
@@ -939,16 +939,16 @@ class EditPerson:
 
     def on_up_clicked(self,obj):
         sel = obj.get_selection()
-        store,iter = sel.get_selected()
-        if iter:
-            row = store.get_path(iter)
+        store,node = sel.get_selected()
+        if node:
+            row = store.get_path(node)
             sel.select_path((row[0]-1))
 
     def on_down_clicked(self,obj):
         sel = obj.get_selection()
-        store,iter = sel.get_selected()
-        if iter:
-            row = store.get_path(iter)
+        store,node = sel.get_selected()
+        if node:
+            row = store.get_path(node)
             sel.select_path((row[0]+1))
 
     def on_event_add_clicked(self,obj):
@@ -996,33 +996,33 @@ class EditPerson:
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
-        store,iter = self.ntree.get_selected()
-        if iter:
-            self.nlist.remove(self.ntree.get_object(iter))
+        store,node = self.ntree.get_selected()
+        if node:
+            self.nlist.remove(self.ntree.get_object(node))
             self.lists_changed = 1
             self.redraw_name_list()
 
     def on_delete_url_clicked(self,obj):
         """Deletes the selected URL from the URL list"""
-        store,iter = self.wtree.get_selected()
-        if iter:
-            self.ulist.remove(self.wtree.get_object(iter))
+        store,node = self.wtree.get_selected()
+        if node:
+            self.ulist.remove(self.wtree.get_object(node))
             self.lists_changed = 1
             self.redraw_url_list()
 
     def on_delete_attr_clicked(self,obj):
         """Deletes the selected attribute from the attribute list"""
-        store,iter = self.atree.get_selected()
-        if iter:
-            self.alist.remove(self.atree.get_object(iter))
+        store,node = self.atree.get_selected()
+        if node:
+            self.alist.remove(self.atree.get_object(node))
             self.lists_changed = 1
             self.redraw_attr_list()
 
     def on_delete_addr_clicked(self,obj):
         """Deletes the selected address from the address list"""
-        store,iter = self.ptree.get_selected()
-        if iter:
-            self.plist.remove(self.ptree.get_object(iter))
+        store,node = self.ptree.get_selected()
+        if node:
+            self.plist.remove(self.ptree.get_object(node))
             self.lists_changed = 1
             self.redraw_addr_list()
 
@@ -1207,44 +1207,44 @@ class EditPerson:
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        store,iter = self.atree.get_selected()
-        if iter:
-            attr = self.atree.get_object(iter)
+        store,node = self.atree.get_selected()
+        if node:
+            attr = self.atree.get_object(node)
             pname = self.person.get_primary_name().get_name()
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
                                      self.attr_edit_callback,self.window)
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
-        store,iter = self.ptree.get_selected()
-        if iter:
-            AddrEdit.AddressEditor(self,self.ptree.get_object(iter),
+        store,node = self.ptree.get_selected()
+        if node:
+            AddrEdit.AddressEditor(self,self.ptree.get_object(node),
                             self.addr_edit_callback,self.window)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
-        store,iter = self.wtree.get_selected()
-        if iter:
+        store,node = self.wtree.get_selected()
+        if node:
             pname = self.person.get_primary_name().get_name()
-            url = self.wtree.get_object(iter)
+            url = self.wtree.get_object(node)
             UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback,self.window)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
 
-        store,iter = self.etree.get_selected()
-        if not iter:
+        store,node = self.etree.get_selected()
+        if not node:
             return
         pname = self.person.get_primary_name().get_name()
-        event = self.etree.get_object(iter)
+        event = self.etree.get_object(node)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,event,None,0,
                               self.event_edit_callback)
         
     def on_event_select_row(self,obj):
-        store,iter = obj.get_selected()
-        if iter:
-            row = store.get_path(iter)
+        store,node = obj.get_selected()
+        if node:
+            row = store.get_path(node)
             event = self.db.find_event_from_handle(self.elist[row[0]])
             self.event_date_field.set_text(event.get_date())
             self.event_place_field.set_text(place_title(self.db,event))
@@ -1274,9 +1274,9 @@ class EditPerson:
             self.event_edit_btn.set_sensitive(0)
 
     def on_addr_select_row(self,obj):
-        store,iter = self.ptree.get_selected()
-        if iter:
-            addr = self.ptree.get_object(iter)
+        store,node = self.ptree.get_selected()
+        if node:
+            addr = self.ptree.get_object(node)
             self.addr_start.set_text(addr.get_date())
             self.addr_street.set_text(addr.get_street())
             self.addr_city.set_text(addr.get_city())
@@ -1309,9 +1309,9 @@ class EditPerson:
             self.addr_edit_btn.set_sensitive(0)
 
     def on_name_select_row(self,obj):
-        store,iter = self.ntree.get_selected()
-        if iter:
-            name = self.ntree.get_object(iter)
+        store,node = self.ntree.get_selected()
+        if node:
+            name = self.ntree.get_object(node)
             self.alt_given_field.set_text(name.get_first_name())
             self.alt_title_field.set_text(name.get_title())
             self.alt_last_field.set_text(name.get_surname())
@@ -1342,9 +1342,9 @@ class EditPerson:
             self.name_edit_btn.set_sensitive(0)
 
     def on_web_select_row(self,obj):
-        store,iter = self.wtree.get_selected()
-        if iter:
-            url = self.wtree.get_object(iter)
+        store,node = self.wtree.get_selected()
+        if node:
+            url = self.wtree.get_object(node)
             path = url.get_path()
             self.web_url.set_text(path)
             self.web_description.set_text(url.get_description())
@@ -1360,9 +1360,9 @@ class EditPerson:
             self.web_edit_btn.set_sensitive(0)
             
     def on_attr_select_row(self,obj):
-        store,iter = self.atree.get_selected()
-        if iter:
-            attr = self.atree.get_object(iter)
+        store,node = self.atree.get_selected()
+        if node:
+            attr = self.atree.get_object(node)
             self.attr_type.set_text(const.display_pattr(attr.get_type()))
             self.attr_value.set_text(short(attr.get_value()))
             if len(attr.get_source_references()) > 0:
@@ -1398,9 +1398,9 @@ class EditPerson:
 
     def on_aka_update_clicked(self,obj):
         import NameEdit
-        store,iter = self.ntree.get_selected()
-        if iter:
-            NameEdit.NameEditor(self,self.ntree.get_object(iter),
+        store,node = self.ntree.get_selected()
+        if node:
+            NameEdit.NameEditor(self,self.ntree.get_object(node),
                                 self.name_edit_callback,self.window)
 
     def load_photo(self,photo):
@@ -1509,11 +1509,11 @@ class EditPerson:
         # change in ordering due to the new birth date
         family = self.person.get_main_parents_family_handle()
         if (family):
-            f = self.db.find_family_no_map(family,trans)
+            f = self.db.find_family_from_handle(family,trans)
             new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
             f.set_child_handle_list(new_order)
         for (family, rel1, rel2) in self.person.get_parent_family_handle_list():
-            f = self.db.find_family_no_map(family,trans)
+            f = self.db.find_family_from_handle(family,trans)
             new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
             f.set_child_handle_list(new_order)
     
@@ -1586,16 +1586,16 @@ class EditPerson:
 
         if self.lds_not_loaded == 0:
             self.check_lds()
-            ord = RelLib.LdsOrd(self.person.get_lds_baptism())
-            if not self.lds_baptism.are_equal(ord):
+            lds_ord = RelLib.LdsOrd(self.person.get_lds_baptism())
+            if not self.lds_baptism.are_equal(lds_ord):
                 self.person.set_lds_baptism(self.lds_baptism)
 
-            ord = RelLib.LdsOrd(self.person.get_lds_endowment())
-            if not self.lds_endowment.are_equal(ord):
+            lds_ord = RelLib.LdsOrd(self.person.get_lds_endowment())
+            if not self.lds_endowment.are_equal(lds_ord):
                 self.person.set_lds_endowment(self.lds_endowment)
 
-            ord = RelLib.LdsOrd(self.person.get_lds_sealing())
-            if not self.lds_sealing.are_equal(ord):
+            lds_ord = RelLib.LdsOrd(self.person.get_lds_sealing())
+            if not self.lds_sealing.are_equal(lds_ord):
                 self.person.set_lds_sealing(self.lds_sealing)
 
         if self.lists_changed:
@@ -1682,10 +1682,10 @@ class EditPerson:
         if media_list:
             ph = media_list[0]
             object_handle = ph.get_reference_handle()
-            object = self.db.get_object_from_handle(object_handle)
-            if self.load_obj != object.get_path():
-                if object.get_mime_type()[0:5] == "image":
-                    self.load_photo(object.get_path())
+            obj = self.db.get_object_from_handle(object_handle)
+            if self.load_obj != obj.get_path():
+                if obj.get_mime_type()[0:5] == "image":
+                    self.load_photo(obj.get_path())
                 else:
                     self.load_photo(None)
         else:
@@ -1843,8 +1843,8 @@ def place_title(db,event):
 def build_dropdown(entry,strings):
     store = gtk.ListStore(gobject.TYPE_STRING)
     for value in strings:
-        iter = store.append()
-        store.set(iter,0,value)
+        node = store.append()
+        store.set(node,0,value)
     completion = gtk.EntryCompletion()
     completion.set_text_column(0)
     completion.set_model(store)

@@ -1427,10 +1427,7 @@ class Gramps:
 
     def new_after_edit(self,epo,trans):
         if epo:
-            if epo.person.get_handle() == "":
-                self.db.add_person(epo.person,trans)
-            else:
-                self.db.add_person_no_map(epo.person,epo.person.get_handle(),trans)
+            self.db.add_person(epo.person,trans)
             self.change_active_person(epo.person)
             self.people_view.add_to_person_list(epo.person)
         if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:

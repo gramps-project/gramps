@@ -68,7 +68,6 @@ fmt7 = re.compile(_start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$", re.IGNORECASE)
 fmt4 = re.compile(_start+"(\S+)\s+(\d+)\s*$", re.IGNORECASE)
 fmt5 = re.compile(_start+"(\d+)\s*$", re.IGNORECASE)
 
-
 #-------------------------------------------------------------------------
 #
 # 

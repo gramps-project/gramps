@@ -422,7 +422,7 @@ class GrampsParser:
             intid = Utils.create_id()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
-            self.db.add_person_as(person,self.trans)
+            self.db.add_person(person,self.trans)
             self.gid2id[gramps_id] = intid
         return person
 
@@ -478,15 +478,13 @@ class GrampsParser:
 
     def start_sealed_to(self,attrs):
         id = self.map_gid(attrs['ref'])
-        self.ord.set_family_handle(self.db.find_family_no_map(id,self.trans))
+        self.ord.set_family_handle(self.db.find_family_from_handle(id,self.trans))
         
     def start_place(self,attrs):
-        self.placeobj = self.db.find_place_no_conflicts(attrs['ref'],
-                                                        self.lmap, self.trans)
-
+        self.placeobj = self.db.find_place_from_handle(attrs['ref'],self.trans)
+        
     def start_placeobj(self,attrs):
-        self.placeobj = self.db.find_place_no_conflicts(attrs['id'],
-                                                        self.lmap,self.trans)
+        self.placeobj = self.db.find_place_from_handle(attrs['id'],self.trans)
         title = attrs['title']
         if title == "":
             title = attrs['id']
@@ -637,18 +635,18 @@ class GrampsParser:
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.find_family_no_conflicts(attrs["id"],
-                                                       self.fmap,self.trans)
+        self.family = self.db.find_family_from_handle(attrs["id"],self.trans)
+        
         if attrs.has_key("type"):
-            self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],const.FAMILY_UNKNOWN))
+            self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
+                                                           const.FAMILY_UNKNOWN))
         if attrs.has_key("complete"):
             self.family.set_complete(int(attrs['complete']))
         else:
             self.family.set_complete(0)
 
     def start_childof(self,attrs):
-        family = self.db.find_family_no_conflicts(attrs["ref"],
-                                                  self.fmap,self.trans)
+        family = self.db.find_family_from_handle(attrs["ref"],self.trans)
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -686,8 +684,7 @@ class GrampsParser:
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
-        source = self.db.find_source_no_conflicts(attrs["ref"],
-                                                  self.smap,self.trans)
+        source = self.db.find_source_from_handle(attrs["ref"],self.trans)
         if attrs.has_key("conf"):
             self.source_ref.confidence = int(attrs["conf"])
         else:
@@ -717,13 +714,13 @@ class GrampsParser:
             self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
-        self.source = self.db.find_source_no_conflicts(attrs["id"],
-                                                       self.smap,self.trans)
+        self.source = self.db.find_source_from_handle(attrs["id"],self.trans)
 
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
-        id = self.db.find_object_no_conflicts(attrs['ref'],
-                                              self.media_file_map,self.trans).get_handle()
+        obj = self.db.find_object_from_handle(attrs['ref'],self.trans)
+        id = obj.get_handle()
+        
         self.objref.set_reference_handle(id)
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
@@ -739,9 +736,7 @@ class GrampsParser:
             self.placeobj.add_media_reference(self.objref)
 
     def start_object(self,attrs):
-        self.object = self.db.find_object_no_conflicts(attrs['id'],
-                                                       self.media_file_map,
-                                                       self.trans)
+        self.object = self.db.find_object_from_handle(attrs['id'],self.trans)
         self.object.set_mime_type(attrs['mime'])
         self.object.set_description(attrs['description'])
         src = attrs["src"]

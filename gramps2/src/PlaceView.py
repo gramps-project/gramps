@@ -60,6 +60,8 @@ column_names = [
     _('Latitude'),
     ]
 
+_HANDLE_COL = len(column_names)
+
 #-------------------------------------------------------------------------
 #
 # PlaceView class
@@ -70,7 +72,6 @@ class PlaceView:
     def __init__(self,parent,db,glade,update):
         self.parent = parent
         self.glade  = glade
-        self.db     = db
         self.list   = glade.get_widget("place_list")
         self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
@@ -79,7 +80,7 @@ class PlaceView:
 
         self.renderer = gtk.CellRendererText()
 
-        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
+        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
             
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
@@ -176,7 +177,7 @@ class PlaceView:
         EditPlace.EditPlace(self.parent,RelLib.Place(),self.new_place_after_edit)
 
     def new_place_after_edit(self,place):
-        self.db.add_place(place)
+        self.parent.db.add_place(place)
 
     def update_display(self,place):
         self.build_tree()
@@ -185,15 +186,15 @@ class PlaceView:
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
         
-        trans = self.db.start_transaction()
+        trans = self.parent.db.start_transaction()
         
         for place in mlist:
             used = 0
-            for key in self.db.get_person_keys():
-                p = self.db.get_person_from_handle(key)
+            for key in self.parent.db.get_person_keys():
+                p = self.parent.db.get_person_from_handle(key)
                 event_list = []
                 for e in [p.get_birth_handle(),p.get_death_handle()] + p.get_event_list():
-                    event = self.db.find_event_from_handle(e)
+                    event = self.parent.db.find_event_from_handle(e)
                     if event:
                         event_list.append(event)
                 if p.get_lds_baptism():
@@ -206,11 +207,11 @@ class PlaceView:
                     if event.get_place_handle() == place.get_handle():
                         used = 1
 
-            for fid in self.db.get_family_keys():
-                f = self.db.find_family_from_handle(fid)
+            for fid in self.parent.db.get_family_keys():
+                f = self.parent.db.find_family_from_handle(fid)
                 event_list = []
                 for e in f.get_event_list():
-                    event = self.db.find_event_from_handle(e)
+                    event = self.parent.db.find_event_from_handle(e)
                     if event:
                         event_list.append(event)
                 if f.get_lds_sealing():
@@ -220,7 +221,7 @@ class PlaceView:
                         used = 1
 
             if used == 1:
-                ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
+                ans = EditPlace.DeletePlaceQuery(place,self.parent.db,self.update_display)
                 QuestionDialog(_('Delete %s?') %  place.get_title(),
                                _('This place is currently being used by at least one '
                                  'record in the database. Deleting it will remove it '
@@ -229,9 +230,9 @@ class PlaceView:
                                _('_Delete Place'),
                                ans.query_response)
             else:
-                trans = self.db.start_transaction()
-                self.db.remove_place(place.get_handle(),trans)
-                self.db.add_transaction(trans,_("Delete Place (%s)") % place.title())
+                trans = self.parent.db.start_transaction()
+                self.parent.db.remove_place(place.get_handle(),trans)
+                self.parent.db.add_transaction(trans,_("Delete Place (%s)") % place.title())
                 self.build_tree()
 
     def on_edit_clicked(self,obj):
@@ -243,7 +244,7 @@ class PlaceView:
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
-        id = self.db.get_place_from_handle(store.get_value(iter,1))
+        id = self.parent.db.get_place_from_handle(store.get_value(iter,_HANDLE_COL))
         list.append(id)
 
     def merge(self):
@@ -258,5 +259,5 @@ class PlaceView:
             ErrorDialog(msg,msg2)
         else:
             import MergeData
-            MergeData.MergePlaces(self.db,mlist[0],mlist[1],self.build_tree)
+            MergeData.MergePlaces(self.parent.db,mlist[0],mlist[1],self.build_tree)
 

@@ -42,6 +42,8 @@ import const
 
 from QuestionDialog import QuestionDialog
 
+_HANDLE_COL = 5
+
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -131,7 +133,7 @@ class SourceView:
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.selection.get_selected()
-            id = store.get_value(iter,1)
+            id = store.get_value(iter,_HANDLE_COL)
             source = self.parent.db.get_source_from_handle(id)
             EditSource.EditSource(source,self.parent.db,self.parent,
                                   self.topWindow,self.update_display)
@@ -182,7 +184,7 @@ class SourceView:
         if not iter:
             return
         
-        id = store.get_value(iter,1)
+        id = store.get_value(iter,_HANDLE_COL)
         source = self.parent.db.get_source_from_handle(id)
 
         if self.is_used(source):
@@ -249,7 +251,7 @@ class SourceView:
     def on_edit_clicked(self,obj):
         list_store, iter = self.selection.get_selected()
         if iter:
-            id = list_store.get_value(iter,1)
+            id = list_store.get_value(iter,_HANDLE_COL)
             source = self.parent.db.get_source_from_handle(id)
             EditSource.EditSource(source, self.parent.db, self.parent,
                                   self.topWindow, self.update_display)

@@ -74,102 +74,32 @@ class GrampsDbBase:
         self.redolabel  = None
         self.modified   = 0
 
-    def set_undo_label(self,label):
-        self.undolabel = label
-        self.undolabel.set_sensitive(0)
+    def new(self):
+        """initializes the GrampsDB to empty values"""
 
-    def set_redo_label(self,label):
-        self.redolabel = label
-        self.redolabel.set_sensitive(0)
+        self.undoindex  = -1
+        self.translist  = [None] * _UNDO_SIZE
+        self.smap_index = 0
+        self.emap_index = 0
+        self.pmap_index = 0
+        self.fmap_index = 0
+        self.lmap_index = 0
+        self.omap_index = 0
+        self.default = None
+        self.owner = Researcher()
+        self.bookmarks = []
+        self.path = ""
+        self.place2title = {}
+        self.genderStats = GenderStats()
 
     def load(self,name,callback):
         assert(0,"Needs to be overridden in the derived class")
-
-    def find_next_gramps_id(self):
-        index = self.iprefix % self.pmap_index
-        while self.id_trans.get(str(index)):
-            self.pmap_index += 1
-            index = self.iprefix % self.pmap_index
-        self.pmap_index += 1
-        return index
-
-    def get_people_view_maps(self):
-        if self.metadata:
-            return (self.metadata.get('tp_iter'),
-                    self.metadata.get('tp_path'),
-                    self.metadata.get('p_iter'),
-                    self.metadata.get('p_path'),
-                    self.metadata.get('sname'))
-        else:
-            return (None,None,None,None,None)
-
-    def set_people_view_maps(self,maps):
-        if self.metadata:
-            self.metadata['tp_iter'] = maps[0]
-            self.metadata['tp_path'] = maps[1]
-            self.metadata['p_iter']  = maps[2]
-            self.metadata['p_path']  = maps[3]
-            self.metadata['sname']  = maps[4]
 
     def close(self):
         assert(0,"Needs to be overridden in the derived class")
         
     def is_open(self):
         return self.person_map != None
-
-    def get_added_media_objects(self):
-        return self.added_files
-
-    def clear_added_media_objects(self):
-        self.added_files = []
-        
-    def get_number_of_people(self):
-        return len(self.person_map)
-
-    def get_person_keys(self):
-        if self.person_map:
-            return self.person_map.keys()
-        else:
-            return []
-
-    def get_family_keys(self):
-        if self.family_map:
-            return self.family_map.keys()
-        else:
-            return []
-
-    def sort_by_name(self,f,s):
-        n1 = self.person_map.get(f)[2].sname
-        n2 = self.person_map.get(s)[2].sname
-        return cmp(n1,n2)
-
-    def sort_person_keys(self):
-        if self.person_map:
-            keys = self.person_map.keys()
-            keys.sort(self.sort_by_name)
-            return keys
-        else:
-            return []
-
-    def get_person_display(self,key):
-        data = self.person_map.get(key)
-
-        if data[2] == Person.male:
-            gender = const.male
-        elif data[2] == Person.female:
-            gender = const.female
-        else:
-            gender = const.unknown
-
-        return [ data[3].get_name(),
-                 data[1],
-                 gender,
-                 data[7],
-                 data[6],
-                 data[3].get_sort_name(),
-                 data[7],
-                 data[6],
-                 GrampsCfg.get_display_surname()(data[3])]
 
     def commit_person(self,person,transaction):
         handle = person.get_handle()
@@ -212,6 +142,350 @@ class GrampsDbBase:
             old_data = self.family_map.get(handle)
             transaction.add(FAMILY_KEY,handle,old_data)
         self.family_map[str(family.get_handle())] = family.serialize()
+
+    def find_next_gramps_id(self):
+        index = self.iprefix % self.pmap_index
+        while self.id_trans.get(str(index)):
+            self.pmap_index += 1
+            index = self.iprefix % self.pmap_index
+        self.pmap_index += 1
+        return index
+
+    def find_next_place_gramps_id(self):
+        index = self.pprefix % self.lmap_index
+        while self.id_trans.get(str(index)):
+            self.lmap_index += 1
+            index = self.pprefix % self.lmap_index
+        self.lmap_index += 1
+        return index
+
+    def find_next_event_gramps_id(self):
+        index = self.eprefix % self.emap_index
+        while self.id_trans.get(str(index)):
+            self.emap_index += 1
+            index = self.eprefix % self.emap_index
+        self.emap_index += 1
+        return index
+
+    def find_next_object_gramps_id(self):
+        index = self.oprefix % self.omap_index
+        while self.id_trans.get(str(index)):
+            self.omap_index += 1
+            index = self.oprefix % self.omap_index
+        self.omap_index += 1
+        return index
+
+    def find_next_source_gramps_id(self):
+        index = self.sprefix % self.smap_index
+        while self.source_map.get(str(index)):
+            self.smap_index += 1
+            index = self.sprefix % self.smap_index
+        self.fmap_index += 1
+        return index
+
+    def find_next_family_gramps_id(self):
+        index = self.fprefix % self.fmap_index
+        while self.family_map.get(str(index)):
+            self.fmap_index += 1
+            index = self.fprefix % self.fmap_index
+        self.fmap_index += 1
+        return index
+
+    def get_person_from_handle(self,val):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+
+        data = self.person_map.get(val)
+        if data:
+            person = Person()
+            person.unserialize(data)
+            return person
+        return None
+
+    def get_source_from_handle(self,val):
+        """finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, None is returned."""
+
+        data = self.source_map.get(val)
+        if data:
+            source = Source()
+            source.unserialize(data)
+            return source
+        return None
+
+    def get_object_from_handle(self,handle):
+        """finds an Object in the database from the passed gramps' ID.
+        If no such Object exists, None is returned."""
+        data = self.media_map.get(handle)
+        if data:
+            mobject = MediaObject()
+            mobject.unserialize(data)
+            return mobject
+        return None
+
+    def get_place_from_handle(self,handle):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, None is returned."""
+        data = self.place_map.get(handle)
+        if data:
+            place = Place()
+            place.unserialize(data)
+            return place
+        return None
+
+    def get_event_from_handle(self,handle):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, None is returned."""
+
+        data = self.event_map.get(handle)
+        if data:
+            event = Event()
+            event.unserialize(data)
+            return event
+        return None
+
+    def get_family_from_handle(self,handle):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, None is returned."""
+
+        data = self.family_map.get(str(handle))
+        if data:
+            family = Family()
+            family.unserialize(data)
+            return family
+        return None
+
+    def find_person_from_handle(self,val,trans):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+
+        person = Person()
+        data = self.person_map.get(val)
+        if data:
+            person.unserialize(data)
+        else:
+            person.set_handle(val)
+            if trans != None:
+                trans.add(PERSON_KEY, val, None)
+            self.person_map[val] = person.serialize()
+            self.genderStats.count_person (person, self)
+        return person
+
+    def find_source_from_handle(self,val,trans):
+        """finds a Source in the database from the passed gramps' ID.
+        If no such Source exists, a new Source is added to the database."""
+
+        source = Source()
+        if self.source_map.get(str(val)):
+            source.unserialize(self.source_map.get(str(val)))
+        else:
+            source.set_handle(val)
+            if trans != None:
+                trans.add(SOURCE_KEY,val,None)
+            self.source_map[str(val)] = source.serialize()
+            self.smap_index = self.smap_index + 1
+        return source
+
+    def find_event_from_handle(self,val):
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, a new Family is added to the database."""
+        data = self.event_map.get(str(val))
+        if data:
+            event = Event()
+            event.unserialize(data)
+            return event
+        else:
+            return None
+
+    def find_object_from_handle(self,handle,trans):
+        """finds an Object in the database from the passed gramps' ID.
+        If no such Object exists, a new Object is added to the database."""
+
+        obj = MediaObject()
+        if self.media_map.get(str(handle)):
+            obj.unserialize(self.media_map.get(str(handle)))
+        else:
+            obj.set_handle(handle)
+            self.add_object(obj,trans)
+        return obj
+
+    def find_place_from_handle(self,handle,trans):
+        """finds a Place in the database from the passed gramps' ID.
+        If no such Place exists, a new Place is added to the database."""
+
+        data = self.place_map.get(str(handle))
+        place = Place()
+        if not data:
+            place.handle = handle
+            if trans != None:
+                trans.add(PLACE_KEY,handle,None)
+            self.place_map[str(handle)] = place.serialize()
+            self.lmap_index = self.lmap_index + 1
+        else:
+            place.unserialize(data)
+        return place
+
+    def find_family_from_handle(self,val,trans):
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, a new Family is added to the database."""
+
+        family = Family()
+        data = self.family_map.get(str(val))
+        if data:
+            family.unserialize(data)
+        else:
+            family.handle = val
+            if trans:
+                trans.add(FAMILY_KEY,val,None)
+            self.family_map[str(val)] = family.serialize()
+            self.fmap_index = self.fmap_index + 1
+        return family
+
+    def add_person(self,person,trans):
+        """adds a Person to the database, assigning a gramps' ID"""
+        if person.get_gramps_id() == "":
+            person.set_gramps_id(self.find_next_gramps_id())
+        if person.get_handle() == "":
+            person.set_handle(Utils.create_id())
+        if trans != None:
+            trans.add(PERSON_KEY, person.get_handle(),None)
+        self.person_map[person.get_handle()] = person.serialize()
+        self.genderStats.count_person (person, self)
+        return person.get_handle()
+
+    def add_family(self,family,trans):
+        """adds a Person to the database, assigning a gramps' ID"""
+        if family.get_gramps_id() == "":
+            family.set_gramps_id(self.find_next_family_gramps_id())
+        if family.get_handle() == "":
+            family.set_handle(Utils.create_id())
+        if trans != None:
+            trans.add(FAMILY_KEY, family.get_handle(),None)
+        self.family_map[str(family.get_handle())] = family.serialize()
+        return family.get_handle()
+
+    def add_source(self,source,trans):
+        """adds a Source instance to the database, assigning it a gramps'
+        ID number"""
+        if source.get_handle() == "":
+            source.set_handle(Utils.create_id())
+        if source.get_gramps_id() == "":
+            source.set_gramps_id(self.find_next_source_gramps_id())
+        if trans != None:
+            trans.add(SOURCE_KEY,source.get_handle(),None)
+        self.source_map[str(source.get_handle())] = source.serialize()
+        return source.get_handle()
+
+    def add_event(self,event,trans):
+        """adds a Event instance to the database, assigning it a gramps'
+        ID number"""
+        if event.get_handle() == "":
+            event.set_handle(Utils.create_id())
+        if event.get_gramps_id() == "":
+            event.set_gramps_id(self.find_next_event_gramps_id())
+        if trans != None:
+            trans.add(EVENT_KEY,event.get_handle(),None)
+        self.event_map[str(event.get_handle())] = event.serialize()
+        return event.get_handle()
+
+    def add_place(self,place,trans):
+        """adds a Place instance to the database, assigning it a gramps'
+        ID number"""
+
+        if place.get_handle() == "":
+            index = Utils.create_id()
+            place.set_handle(index)
+        if place.get_gramps_id() == "":
+            place.set_gramps_id(self.find_next_place_gramps_id())
+        if trans != None:
+            trans.add(PLACE_KEY,place.get_handle(),None)
+        self.place_map[place.get_handle()] = place.serialize()
+        return place.get_handle()
+
+    def add_object(self,obj,trans):
+        """adds an Object instance to the database, assigning it a gramps'
+        ID number"""
+
+        index = obj.get_handle()
+        if index == "":
+            index = Utils.create_id()
+            obj.set_handle(index)
+        if obj.get_gramps_id() == "":
+            obj.set_gramps_id(self.find_next_object_gramps_id())
+        if trans != None:
+            trans.add(MEDIA_KEY,index,None)
+        self.media_map[str(index)] = obj.serialize()
+        self.added_files.append(obj)
+        return index
+
+    def get_people_view_maps(self):
+        if self.metadata:
+            return (self.metadata.get('tp_iter'),
+                    self.metadata.get('tp_path'),
+                    self.metadata.get('p_iter'),
+                    self.metadata.get('p_path'),
+                    self.metadata.get('sname'))
+        else:
+            return (None,None,None,None,None)
+
+    def set_people_view_maps(self,maps):
+        if self.metadata:
+            self.metadata['tp_iter'] = maps[0]
+            self.metadata['tp_path'] = maps[1]
+            self.metadata['p_iter']  = maps[2]
+            self.metadata['p_path']  = maps[3]
+            self.metadata['sname']  = maps[4]
+
+    def get_added_media_objects(self):
+        return self.added_files
+
+    def clear_added_media_objects(self):
+        self.added_files = []
+        
+    def get_number_of_people(self):
+        return len(self.person_map)
+
+    def get_person_keys(self):
+        if self.person_map:
+            return self.person_map.keys()
+        return []
+
+    def get_family_keys(self):
+        if self.family_map:
+            return self.family_map.keys()
+        return []
+
+    def sort_by_name(self,f,s):
+        n1 = self.person_map.get(f)[2].sname
+        n2 = self.person_map.get(s)[2].sname
+        return cmp(n1,n2)
+
+    def sort_person_keys(self):
+        if self.person_map:
+            keys = self.person_map.keys()
+            keys.sort(self.sort_by_name)
+            return keys
+        return []
+
+    def get_person_display(self,key):
+        data = self.person_map.get(key)
+
+        if data[2] == Person.male:
+            gender = const.male
+        elif data[2] == Person.female:
+            gender = const.female
+        else:
+            gender = const.unknown
+
+        return [ data[3].get_name(),
+                 data[1],
+                 gender,
+                 data[7],
+                 data[6],
+                 data[3].get_sort_name(),
+                 data[7],
+                 data[6],
+                 GrampsCfg.get_display_surname()(data[3])]
 
     def set_iprefix(self,val):
         if val:
@@ -267,24 +541,6 @@ class GrampsDbBase:
         else:
             self.eprefix = "E%04d"
             
-    def new(self):
-        """initializes the GrampsDB to empty values"""
-
-        self.undoindex  = -1
-        self.translist = [None] * _UNDO_SIZE
-        self.smap_index = 0
-        self.emap_index = 0
-        self.pmap_index = 0
-        self.fmap_index = 0
-        self.lmap_index = 0
-        self.omap_index = 0
-        self.default = None
-        self.owner = Researcher()
-        self.bookmarks = []
-        self.path = ""
-        self.place2title = {}
-        self.genderStats = GenderStats()
-
     def start_transaction(self,msg=""):
         return Transaction(msg,self.undodb)
 
@@ -316,34 +572,34 @@ class GrampsDbBase:
             (key, handle, data) = transaction.get_record(record_id)
             if key == PERSON_KEY:
                 if data == None:
-                    del self.person_map[handle]
+                    del self.person_map[str(handle)]
                 else:
-                    self.person_map[handle] = data
+                    self.person_map[str(handle)] = data
             elif key == FAMILY_KEY:
                 if data == None:
-                    del self.family_map[handle]
+                    del self.family_map[str(handle)]
                 else:
-                    self.family_map[handle] = data
+                    self.family_map[str(handle)] = data
             elif key == SOURCE_KEY:
                 if data == None:
-                    del self.source_map[handle]
+                    del self.source_map[str(handle)]
                 else:
-                    self.source_map[handle] = data
+                    self.source_map[str(handle)] = data
             elif key == EVENT_KEY:
                 if data == None:
-                    del self.event_map[handle]
+                    del self.event_map[str(handle)]
                 else:
-                    self.event_map[handle] = data
+                    self.event_map[str(handle)] = data
             elif key == PLACE_KEY:
                 if data == None:
-                    del self.place_map[handle]
+                    del self.place_map[str(handle)]
                 else:
-                    self.place_map[handle] = data
+                    self.place_map[str(handle)] = data
             elif key == MEDIA_KEY:
                 if data == None:
-                    del self.media_map[handle]
+                    del self.media_map[str(handle)]
                 else:
-                    self.media_map[handle] = data
+                    self.media_map[str(handle)] = data
 
         if self.undolabel:
             label = self.undolabel.get_children()[0]
@@ -355,6 +611,14 @@ class GrampsDbBase:
                 label.set_text(_("_Undo %s") % transaction.get_description())
                 self.undolabel.set_sensitive(1)
             label.set_use_underline(1)
+
+    def set_undo_label(self,label):
+        self.undolabel = label
+        self.undolabel.set_sensitive(0)
+
+    def set_redo_label(self,label):
+        self.redolabel = label
+        self.redolabel.set_sensitive(0)
 
     def get_surnames(self):
         assert(0,"Needs to be overridden in the derived class")
@@ -401,7 +665,7 @@ class GrampsDbBase:
         if self.metadata and self.metadata.has_key('default'):
             person = Person()
             handle = self.metadata['default']
-            data = self.person_map.get(handle)
+            data = self.person_map.get(str(handle))
             person.unserialize(data)
             return person
         return None
@@ -409,7 +673,7 @@ class GrampsDbBase:
     def get_person(self,handle):
         """returns a Person from a GRAMPS's ID"""
         p = Person()
-        data = self.person_map.get(handle)
+        data = self.person_map.get(str(handle))
         p.unserialize(data)
         return p
 
@@ -476,40 +740,11 @@ class GrampsDbBase:
     def remove_event_handle(self,handle,transaction):
         assert(0,"Needs to be overridden in the derived class")
 
-    def add_person_as(self,person,trans):
-        if trans != None:
-            trans.add(PERSON_KEY, person.get_handle(),None)
-        self.person_map[person.get_handle()] = person.serialize()
-        self.genderStats.count_person (person, self)
-        return person.get_handle()
-    
-    def add_person(self,person,trans):
-        """adds a Person to the database, assigning a gramps' ID"""
-        person.set_gramps_id(self.find_next_gramps_id())
-        person.set_handle(Utils.create_id())
-        if trans != None:
-            trans.add(PERSON_KEY, person.get_handle(),None)
-        self.person_map[person.get_handle()] = person.serialize()
-        self.genderStats.count_person (person, self)
-        return person.get_handle()
-
     def has_person_handle(self,val):    
         return self.person_map.has_key(str(val))
 
     def has_family_handle(self,val):            
         return self.family_map.has_key(str(val))
-
-    def get_person_from_handle(self,val):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
-
-        data = self.person_map.get(val)
-        if data:
-            person = Person()
-            person.unserialize(data)
-            return person
-        else:
-            return None
 
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
@@ -535,242 +770,14 @@ class GrampsDbBase:
             intid = Utils.create_id()
             person.set_handle(intid)
             person.set_gramps_id(val)
-            self.add_person_as(person,trans)
+            self.add_person(person,trans)
         return person
-
-    def find_person_from_handle(self,val,trans):
-        """finds a Person in the database from the passed gramps' ID.
-        If no such Person exists, a new Person is added to the database."""
-
-        person = Person()
-        data = self.person_map.get(val)
-        if data:
-            person.unserialize(data)
-        else:
-            person.set_handle(val)
-            if trans != None:
-                trans.add(PERSON_KEY, val, None)
-            self.person_map[val] = person.serialize()
-            self.genderStats.count_person (person, self)
-        return person
-
-    def add_person_no_map(self,person,handle,trans):
-        """adds a Person to the database if the gramps' ID is known"""
-        
-        person.set_handle(handle)
-        if trans != None:
-            trans.add(PERSON_KEY, handle, None)
-        self.person_map.set(handle,person.serialize())
-        self.genderStats.count_person (person, self)
-        return handle
-
-    def add_source(self,source,trans):
-        """adds a Source instance to the database, assigning it a gramps'
-        ID number"""
-        
-        index = self.sprefix % self.smap_index
-        while self.source_map.get(str(index)):
-            self.smap_index = self.smap_index + 1
-            index = self.sprefix % self.smap_index
-        source.set_handle(index)
-        if trans != None:
-            trans.add(SOURCE_KEY,index,None)
-        self.source_map[str(index)] = source.serialize()
-        self.smap_index = self.smap_index + 1
-        return index
-
-    def add_event(self,event,trans):
-        """adds a Event instance to the database, assigning it a gramps'
-        ID number"""
-        index = self.eprefix % self.emap_index
-        while self.event_map.get(str(index)):
-            self.emap_index += 1
-            index = self.eprefix % self.emap_index
-        event.set_handle(index)
-        if trans != None:
-            trans.add(EVENT_KEY,index,None)
-        self.event_map[str(index)] = event.serialize()
-        self.emap_index += 1
-        return index
-
-    def add_source_no_map(self,source,index,trans):
-        """adds a Source to the database if the gramps' ID is known"""
-        source.set_handle(index)
-        if trans != None:
-            trans.add(SOURCE_KEY,index,None)
-        self.source_map[str(index)] = source.serialize()
-        self.smap_index = self.smap_index + 1
-        return index
-
-    def add_event_no_map(self,event,index,trans):
-        """adds a Source to the database if the gramps' ID is known"""
-        event.set_handle(index)
-        if trans != None:
-            trans.add(EVENT_KEY,index,None)
-        self.event_map[str(index)] = event.serialize()
-        self.emap_index += 1
-        return index
-
-    def find_source(self,handle,map,trans):
-        """finds a Source in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Source exists, a new Source instance
-        is created.
-
-        handle - external ID number
-        map - map build by find_source of external to gramp's IDs"""
-        
-        if map.has_key(handle):
-            data = self.source_map.get(str(map[handle]))
-            source = Source()
-            source.unserialize(data)
-        else:
-            source = Source()
-            map[handle] = self.add_source(source,trans)
-        return source
-
-    def find_event(self,handle,map,trans):
-        """finds a Event in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Event exists, a new Event instance
-        is created.
-
-        handle - external ID number
-        map - map build by find_source of external to gramp's IDs"""
-        
-        event = Event()
-        if map.has_key(handle):
-            data = self.event_map.get(str(map[handle]))
-            event.unserialize(data)
-        else:
-            map[handle] = self.add_event(event,trans)
-        return event
-
-    def get_source_from_handle(self,val):
-        """finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, None is returned."""
-
-        data = self.source_map.get(str(val))
-        if data:
-            source = Source()
-            source.unserialize(data)
-            return source
-        else:
-            return None
-
-    def find_source_from_handle(self,val,trans):
-        """finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, a new Source is added to the database."""
-
-        source = Source()
-        if self.source_map.get(str(val)):
-            source.unserialize(self.source_map.get(str(val)))
-        else:
-            self.add_source_no_map(source,val,trans)
-        return source
-
-    def find_event_from_handle(self,val):
-        """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Family is added to the database."""
-        data = self.event_map.get(str(val))
-        if data:
-            event = Event()
-            event.unserialize(data)
-            return event
-        else:
-            return None
-
-    def add_object(self,obj,trans):
-        """adds an Object instance to the database, assigning it a gramps'
-        ID number"""
-        
-        index = self.oprefix % self.omap_index
-        while self.media_map.get(str(index)):
-            self.omap_index = self.omap_index + 1
-            index = self.oprefix % self.omap_index
-        obj.set_handle(index)
-        if trans != None:
-            trans.add(MEDIA_KEY,index,None)
-        self.media_map[str(index)] = obj.serialize()
-        self.omap_index = self.omap_index + 1
-        self.added_files.append(obj)
-        
-        return index
-
-    def find_object_no_conflicts(self,handle,map,trans):
-        """finds an Object in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Object exists, a new Object instance
-        is created.
-
-        handle - external ID number
-        map - map build by find_object of external to gramp's IDs"""
-        
-        handle = str(handle)
-        obj = MediaObject()
-        if map.has_key(handle):
-            obj.unserialize(self.media_map.get(str(map[handle])))
-        else:
-            if self.media_map.get(str(handle)):
-                map[handle] = self.add_object(obj,trans)
-            else:
-                map[handle] = self.add_object_no_map(obj,handle,trans)
-        return obj
-
-    def add_object_no_map(self,obj,index,trans):
-        """adds an Object to the database if the gramps' ID is known"""
-        index = str(index)
-        obj.set_handle(index)
-        if trans != None:
-            trans.add(MEDIA_KEY,index,None)
-        self.media_map[str(index)] = obj.serialize()
-        self.omap_index = self.omap_index + 1
-        self.added_files.append(obj)
-        return index
-
-    def get_object_from_handle(self,handle):
-        """finds an Object in the database from the passed gramps' ID.
-        If no such Object exists, None is returned."""
-
-        data = self.media_map.get(str(handle))
-        if data:
-            mobject = MediaObject()
-            mobject.unserialize(data)
-            return mobject
-        else:
-            return None
-
-    def find_object_from_handle(self,handle,trans):
-        """finds an Object in the database from the passed gramps' ID.
-        If no such Object exists, a new Object is added to the database."""
-
-        obj = MediaObject()
-        if self.media_map.get(str(handle)):
-            obj.unserialize(self.media_map.get(str(handle)))
-        else:
-            self.add_object_no_map(obj,handle,trans)
-        return obj
 
     def has_object_handle(self,handle):
         """finds an Object in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
 
         return self.media_map.get(str(handle)) != None
-
-    def add_place(self,place,trans):
-        """adds a Place instance to the database, assigning it a gramps'
-        ID number"""
-
-        index = self.pprefix % self.lmap_index
-        while self.place_map.get(str(index)):
-            self.lmap_index = self.lmap_index + 1
-            index = self.pprefix % self.lmap_index
-        place.set_handle(index)
-        if trans != None:
-            trans.add(PLACE_KEY,index,None)
-        self.place_map[str(index)] = place.serialize()
-        self.lmap_index = self.lmap_index + 1
-        return index
 
     def remove_object(self,handle,transaction):
         assert(0,"Needs to be overridden in the derived class")
@@ -783,88 +790,25 @@ class GrampsDbBase:
             trans.add(PLACE_KEY,place.get_handle(),None)
         self.place_map[str(place.get_handle())] = place.serialize()
         return place.get_handle()
-        
-    def find_place_no_conflicts(self,handle,map,trans):
-        """finds a Place in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Place exists, a new Place instance
-        is created.
-
-        handle - external ID number
-        map - map build by findPlace of external to gramp's IDs"""
-
-        if map.has_key(str(handle)):
-            place = Place()
-            data = self.place_map[str(map[handle])]
-            place.unserialize(data)
-        else:
-            place = Place()
-            if self.place_map.has_key(str(handle)):
-                map[handle] = self.add_place(place,trans)
-            else:
-                place.set_handle(str(handle))
-                map[str(handle)] = self.add_place_as(place,trans)
-            self.place_map[str(handle)] = place.serialize()
-        return place
-
-    def add_place_no_map(self,place,index,trans):
-        """adds a Place to the database if the gramps' ID is known"""
-
-        index = str(index)
-        place.set_handle(index)
-        if trans != None:
-            trans.add(PLACE_KEY,index,None)
-        self.place_map[str(index)] = place.serialize()
-        self.lmap_index = self.lmap_index + 1
-        return index
-
-    def find_place_from_handle(self,handle,trans):
-        """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, a new Place is added to the database."""
-
-        data = self.place_map.get(str(handle))
-        place = Place()
-        if not data:
-            place.handle = handle
-            if trans != None:
-                trans.add(PLACE_KEY,handle,None)
-            self.place_map[str(handle)] = place.serialize()
-            self.lmap_index = self.lmap_index + 1
-        else:
-            place.unserialize(data)
-        return place
-
-    def get_place_from_handle(self,handle):
-        """finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned."""
-
-        data = self.place_map.get(str(handle))
-        
-        if data:
-            place = Place()
-            place.unserialize(data)
-            return place
-        else:
-            return None
 
     def sortbyplace(self,f,s):
         return cmp(self.placesortmap[f], self.placesortmap[s])
 
     def sortbysource(self,f,s):
-        fp = self.source_map[f][1].upper()
-        sp = self.source_map[s][1].upper()
+        fp = self.source_map[f][2].upper()
+        sp = self.source_map[s][2].upper()
         return cmp(fp,sp)
 
     def sortbymedia(self,f,s):
-        fp = self.media_map[f][3].upper()
-        sp = self.media_map[s][3].upper()
+        fp = self.media_map[f][4].upper()
+        sp = self.media_map[s][4].upper()
         return cmp(fp,sp)
 
     def sort_place_keys(self):
         if self.place_map:
             self.placesortmap = {}
             for key in self.place_map.keys():
-                self.placesortmap[key] = self.place_map[key][1].upper()
+                self.placesortmap[key] = self.place_map[key][2].upper()
             keys = self.placesortmap.keys()
             keys.sort(self.sortbyplace)
             del self.placesortmap
@@ -942,68 +886,11 @@ class GrampsDbBase:
             index = self.fprefix % self.fmap_index
         self.fmap_index = self.fmap_index + 1
         family = Family()
-        family.set_handle(unicode(index))
+        family.set_handle(index)
         if trans != None:
             trans.add(FAMILY_KEY, index, None)
         self.family_map[str(index)] = family.serialize()
         return family
-
-    def new_family_no_map(self,handle,trans):
-        """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Family is added to the database."""
-
-        family = Family()
-        family.set_handle(handle)
-        if trans != None:
-            trans.add(FAMILY_KEY, handle, None)
-        self.family_map[str(handle)] = family.serialize()
-        self.fmap_index = self.fmap_index + 1
-        return family
-
-    def find_family_with_map(self,handle,map,trans):
-        """finds a Family in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Family exists, a new Family instance
-        is created.
-
-        handle - external ID number
-        map - map build by find_family_with_map of external to gramp's IDs"""
-
-        if map.has_key(handle):
-            family = Family()
-            data = self.family_map.get(str(map[handle]))
-            family.unserialize(data)
-        else:
-            family = self.new_family(trans)
-            map[handle] = family.get_handle()
-        return family
-
-    def find_family_no_map(self,val,trans):
-        """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Family is added to the database."""
-
-        family = Family()
-        data = self.family_map.get(str(val))
-        if data:
-            family.unserialize(data)
-        else:
-            family.handle = val
-            if trans:
-                trans.add(FAMILY_KEY,val,None)
-            self.family_map[str(val)] = family.serialize()
-            self.fmap_index = self.fmap_index + 1
-        return family
-
-    def find_family_from_handle(self,val):
-        """finds a Family in the database from the passed gramps' ID.
-        If no such Family exists, a new Family is added to the database."""
-        data = self.family_map.get(str(val))
-        if data:
-            family = Family()
-            family.unserialize(data)
-            return family
-        else:
-            return None
 
     def delete_family(self,family_handle,trans):
         """deletes the Family instance from the database"""
@@ -1012,45 +899,6 @@ class GrampsDbBase:
                 old_data = self.family_map.get(str(family_handle))
                 trans.add(FAMILY_KEY,family_handle,old_data)
             del self.family_map[str(family_handle)]
-
-    def find_family_no_conflicts(self,handle,map,trans):
-        """finds a Family in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Family exists, a new Family instance
-        is created.
-
-        handle - external ID number
-        map - map build by findFamily of external to gramp's IDs"""
-
-        if map.has_key(str(handle)):
-            family = Family()
-            family.unserialize(self.family_map.get(str(map[str(handle)])))
-        else:
-            if self.family_map.has_key(str(handle)):
-                family = self.new_family(trans)
-            else:
-                family = self.new_family_no_map(str(handle),trans)
-            map[handle] = family.get_handle()
-        return family
-
-    def find_source_no_conflicts(self,handle,map,trans):
-        """finds a Source in the database using the handle and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Source exists, a new Source instance
-        is created.
-
-        handle - external ID number
-        map - map build by findSource of external to gramp's IDs"""
-        
-        source = Source()
-        if map.has_key(handle):
-            source.unserialize(self.source_map.get(str(map[handle])))
-        else:
-            if self.source_map.get(str(handle)):
-                map[handle] = self.add_source(source,trans)
-            else:
-                map[handle] = self.add_source(source,trans)
-        return source
 
     def set_column_order(self,list):
         if self.metadata != None:
@@ -1178,4 +1026,5 @@ class Transaction:
                     print "PLACE %s change" % handle
                 else:
                     print "PLACE %s remove" % handle
+
 

@@ -82,7 +82,6 @@ class EditPlace:
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
-        self.gallery_ok = 0
         if place:
             self.srcreflist = place.get_source_references()
         else:
@@ -224,12 +223,12 @@ class EditPlace:
         self.top.show()
 
     def on_delete_event(self,obj,b):
-        self.glry.close(self.gallery_ok)
+        self.glry.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
 
     def close(self,obj):
-        self.glry.close(self.gallery_ok)
+        self.glry.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.top.destroy()
@@ -367,7 +366,6 @@ class EditPlace:
         if format != self.place.get_note_format():
             self.place.set_note_format(format)
 
-        self.gallery_ok = 1
         self.update_lists()
 
         trans = self.db.start_transaction()
@@ -486,7 +484,7 @@ class EditPlace:
                 if event and event.get_place_handle() == self.place:
                     pevent.append((p,event))
         for family_handle in self.db.get_family_keys():
-            f = self.db.find_family_from_handle(family_handle)
+            f = self.db.get_family_from_handle(family_handle)
             for event_handle in f.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place:
@@ -570,7 +568,7 @@ class DeletePlaceQuery:
                     self.db.commit_event(event,trans)
 
         for fid in self.db.get_family_keys():
-            f = self.db.find_family_from_handle(fid)
+            f = self.db.get_family_from_handle(fid)
             for event_handle in f.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place.get_handle():

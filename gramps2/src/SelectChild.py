@@ -186,7 +186,7 @@ class SelectChild:
         slist = {}
         for f in self.person.get_parent_family_handle_list():
             if f:
-                family = self.db.find_family_no_map(f[0])
+                family = self.db.find_family_from_handle(f[0])
                 if family.get_father_handle():
                     slist[family.get_father_handle()] = 1
                 elif family.get_mother_handle():
