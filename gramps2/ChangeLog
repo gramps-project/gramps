@@ -28,6 +28,13 @@
 	* src/sort.py: Remove file (obsolete). 
 	* src/plugins/TimeLine.py: Convert to db.
 
+	* src/EditPerson.py: Switch to Sort.py.
+	* src/FamilyView.py: Switch to Sort.py.
+	* src/RelLib.py: Remove unneeded import.
+	* src/plugins/DescendReport.py: Switch to Sort.py.
+	
+	* src/plugins/GraphViz.py: Convert to db.
+
 2004-05-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: Convert to db interface.
 	* src/plugins/DetAncestralReport.py: Translate string.
