@@ -61,7 +61,7 @@ class GrampsInMemDB(GrampsDbBase):
         a = {}
         for person_id in self.get_person_handles(sort_handles=False):
             p = self.get_person_from_handle(person_id)
-            a[p.get_primary_name().get_surname()] = 1
+            a[p.get_primary_name().get_group_as()] = 1
         vals = a.keys()
         vals.sort()
         return vals

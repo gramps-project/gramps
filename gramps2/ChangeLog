@@ -6,6 +6,10 @@
 	* src/NameEdit.py: support for patronymic names
 	* src/gramps.glade: NameEditor and EditPerson changes for
 	enhanced name support
+	* src/PeopleModel.py: sort based of "group as" value
+	* src/GrampsInMem.py: used "group as" value for surname list
+	* src/GrampsBSDDB.py: used "group as" value for surname list
+	* src/GrampsDbBase.py: accept "" and None for empty id values
 
 2004-09-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleModel.py: remove unused map

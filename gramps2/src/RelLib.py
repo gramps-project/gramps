@@ -30,12 +30,13 @@ __version__ = "$Revision$"
 # standard python modules
 #
 #-------------------------------------------------------------------------
+from gettext import gettext as _
 from re import compile
+
 import os
 import os.path
 import time
 import types
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -1855,34 +1856,70 @@ class Name(DataObj):
             self.sort_as = self.DEF
             self.display_as = self.DEF
 
-    def get_group_as(self):
-        if self.group_as:
-            return self.group_as
-        else:
-            return self.surname
-
     def set_group_as(self,name):
+        """
+        Sets the grouping name for a person. Normally, this is the person's
+        surname. However, some locales group equivalent names (e.g. Ivanova
+        and Ivanov in Russian are usually considered equivalent.
+        """
         if name == self.surname:
             self.group_as = ""
         else:
             self.group_as = name
 
+    def get_group_as(self):
+        """
+        Returns the grouping name, which is used to group equivalent surnames.
+        """
+        if self.group_as:
+            return self.group_as
+        else:
+            return self.surname
+
     def set_sort_as(self,value):
+        """
+        Specifies the sorting method for the specified name. Typically the
+        locale's default should be used. However, there may be names where
+        a specific sorting structure is desired for a name. 
+        """
         self.sort_as = value
 
     def get_sort_as(self):
+        """
+        Returns the selected sorting method for the name. The options are
+        DEF (default for the current locale), LNFN (last name, first name),
+        or FNLN (first name, last name).
+        """
         return self.sort_as 
 
     def set_display_as(self,value):
+        """
+        Specifies the display format for the specified name. Typically the
+        locale's default should be used. However, there may be names where
+        a specific display format is desired for a name. 
+        """
         self.display_as = value
 
     def get_display_as(self):
+        """
+        Returns the selected display format for the name. The options are
+        DEF (default for the current locale), LNFN (last name, first name),
+        or FNLN (first name, last name).
+        """
         return self.display_as
 
     def get_surname_prefix(self):
+        """
+        Returns the prefix (or article) of a surname. The prefix is not
+        used for sorting or grouping.
+        """
         return self.prefix
 
     def set_surname_prefix(self,val):
+        """
+        Sets the prefix (or article) of a surname. Examples of articles
+        would be 'de' or 'van'.
+        """
         self.prefix = val
 
     def set_type(self,type):
@@ -1944,60 +1981,76 @@ class Name(DataObj):
     def get_name(self):
         """returns a name string built from the components of the Name
         instance, in the form of surname, Firstname"""
-        
+
+        if self.patronymic:
+            first = "%s %s" % (self.first_name, self.patronymic)
+        else:
+            first = self.first_name
         if self.suffix:
             if self.prefix:
-                return "%s %s, %s %s" % (self.prefix, self.surname, self.first_name, self.suffix)
+                return "%s %s, %s %s" % (self.prefix, self.surname, first, self.suffix)
             else:
-                return "%s, %s %s" % (self.surname, self.first_name, self.suffix)
+                return "%s, %s %s" % (self.surname, first, self.suffix)
         else:
             if self.prefix:
-                return "%s %s, %s" % (self.prefix,self.surname, self.first_name)
+                return "%s %s, %s" % (self.prefix,self.surname, first)
             else:
-                return "%s, %s" % (self.surname, self.first_name)
+                return "%s, %s" % (self.surname, first)
 
     def get_upper_name(self):
         """returns a name string built from the components of the Name
         instance, in the form of surname, Firstname"""
         
+        if self.patronymic:
+            first = "%s %s" % (self.first_name, self.patronymic)
+        else:
+            first = self.first_name
         if self.suffix:
             if self.prefix:
-                return "%s %s, %s %s" % (self.prefix.upper(), self.surname.upper(), self.first_name, self.suffix)
+                return "%s %s, %s %s" % (self.prefix.upper(), self.surname.upper(), first, self.suffix)
             else:
-                return "%s, %s %s" % (self.surname.upper(), self.first_name, self.suffix)
+                return "%s, %s %s" % (self.surname.upper(), first, self.suffix)
         else:
             if self.prefix:
-                return "%s %s, %s" % (self.prefix.upper(), self.surname.upper(), self.first_name)
+                return "%s %s, %s" % (self.prefix.upper(), self.surname.upper(), first)
             else:
-                return "%s, %s" % (self.surname.upper(), self.first_name)
+                return "%s, %s" % (self.surname.upper(), first)
 
     def get_regular_name(self):
         """returns a name string built from the components of the Name
         instance, in the form of Firstname surname"""
+        if self.patronymic:
+            first = "%s %s" % (self.first_name, self.patronymic)
+        else:
+            first = self.first_name
         if (self.suffix == ""):
             if self.prefix:
-                return "%s %s %s" % (self.first_name, self.prefix, self.surname)
+                return "%s %s %s" % (first, self.prefix, self.surname)
             else:
-                return "%s %s" % (self.first_name, self.surname)
+                return "%s %s" % (first, self.surname)
         else:
             if self.prefix:
-                return "%s %s %s, %s" % (self.first_name, self.prefix, self.surname, self.suffix)
+                return "%s %s %s, %s" % (first, self.prefix, self.surname, self.suffix)
             else:
-                return "%s %s, %s" % (self.first_name, self.surname, self.suffix)
+                return "%s %s, %s" % (first, self.surname, self.suffix)
 
     def get_regular_upper_name(self):
         """returns a name string built from the components of the Name
         instance, in the form of Firstname surname"""
+        if self.patronymic:
+            first = "%s %s" % (self.first_name, self.patronymic)
+        else:
+            first = self.first_name
         if (self.suffix == ""):
             if self.prefix:
-                return "%s %s %s" % (self.first_name, self.prefix.upper(), self.surname.upper())
+                return "%s %s %s" % (first, self.prefix.upper(), self.surname.upper())
             else:
-                return "%s %s" % (self.first_name, self.surname.upper())
+                return "%s %s" % (first, self.surname.upper())
         else:
             if self.prefix:
-                return "%s %s %s, %s" % (self.first_name, self.prefix.upper(), self.surname.upper(), self.suffix)
+                return "%s %s %s, %s" % (first, self.prefix.upper(), self.surname.upper(), self.suffix)
             else:
-                return "%s %s, %s" % (self.first_name, self.surname.upper(), self.suffix)
+                return "%s %s, %s" % (first, self.surname.upper(), self.suffix)
 
     def are_equal(self,other):
         """compares to names to see if they are equal, return 0 if they

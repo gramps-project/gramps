@@ -244,7 +244,7 @@ class NameEditor:
             if self.name.get_group_as() != self.surname_field.get_text():
                 self.name.set_group_as("")
                 self.parent.lists_changed = 1
-        elif self.name.set_group_as() != self.group_as.get_text():
+        elif self.name.get_group_as() != self.group_as.get_text():
             self.name.set_group_as(self.group_as.get_text())
             self.parent.lists_changed = 1
         
