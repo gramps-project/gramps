@@ -1,3 +1,8 @@
+2003-09-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: update family view after a GEDCOM import
+	* src/plugins/TimeLine.py: draw grid after displaying text. Fixes
+	a problem with OpenOffice
+
 2003-09-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: fix typo
 
