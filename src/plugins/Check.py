@@ -62,6 +62,7 @@ class CheckIntegrity:
         self.bad_photo = []
         self.empty_family = []
         self.broken_links = []
+        self.broken_parent_links = []
         self.fam_rel = []
 
     #-------------------------------------------------------------------------
@@ -73,6 +74,17 @@ class CheckIntegrity:
         self.broken_links = []
         family_list = self.db.getFamilyMap().values()[:]
         for family in family_list:
+            father = family.getFather()
+            mother = family.getMother()
+
+            if father and family not in father.getFamilyList():
+                Utils.modified()
+                self.broken_parent_links.append((father,family))
+                father.addFamily(family)
+            if mother and family not in mother.getFamilyList():
+                Utils.modified()
+                self.broken_parent_links.append((mother,family))
+                mother.addFamily(family)
             for child in family.getChildList():
                 if family == child.getMainParents():
                     continue
@@ -153,6 +165,7 @@ class CheckIntegrity:
         photos = len(self.bad_photo)
         efam = len(self.empty_family)
         blink = len(self.broken_links)
+        plink = len(self.broken_parent_links)
         rel = len(self.fam_rel)
         
         errors = blink + efam + photos + rel
@@ -164,9 +177,9 @@ class CheckIntegrity:
         text = ""
         if blink > 0:
             if blink == 1:
-                text = text + _("1 broken family link was fixed\n")
+                text = text + _("1 broken child/family link was fixed\n")
             else:
-                text = text + _("%d broken family links were found\n") % blink
+                text = text + _("%d broken child/family links were found\n") % blink
             for c in self.broken_links:
                 cn = c[0].getPrimaryName().getName()
                 f = c[1].getFather()
@@ -180,6 +193,26 @@ class CheckIntegrity:
                     pn = m.getPrimaryName().getName()
                 text = text + '\t' + \
                        _("%s was removed from the family of %s\n") % (cn,pn)
+
+        if plink > 0:
+            if plink == 1:
+                text = text + _("1 broken spouse/family link was fixed\n")
+            else:
+                text = text + _("%d broken spouse/family links were found\n") % plink
+            for c in self.broken_parent_links:
+                cn = c[0].getPrimaryName().getName()
+                f = c[1].getFather()
+                m = c[1].getMother()
+                if f and m:
+                    pn = _("%s and %s") % (f.getPrimaryName().getName(),\
+                                           m.getPrimaryName().getName())
+                elif f:
+                    pn = f.getPrimaryName().getName()
+                else:
+                    pn = m.getPrimaryName().getName()
+                text = text + '\t' + \
+                       _("%s was restored to the family of %s\n") % (cn,pn)
+
         if efam == 1:
             text = text + _("1 empty family was found\n")
         elif efam > 1:

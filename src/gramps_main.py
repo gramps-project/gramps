@@ -901,7 +901,7 @@ class Gramps:
 
     def delete_person_response(self):
         for family in self.active_person.getFamilyList():
-            if self.active_person.getGender == Person.male:
+            if self.active_person == family.getFather():
                 if family.getMother() == None:
                     for child in family.getChildList():
                         child.removeAltFamily(family)
