@@ -1,5 +1,9 @@
+2004-12-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in: bump up the version.
+
 2004-12-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* NEWS: minor update for 1.1.2 release
+	* Release: Version 1.1.2 "Confuse-a-cat" released.
 
 2004-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/Makefile.am: Remove unneeded CLEANFILES, they're defined below.
