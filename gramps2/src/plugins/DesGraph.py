@@ -75,7 +75,7 @@ def pt2cm(pt):
 #------------------------------------------------------------------------
 class DescendantReport:
 
-    def __init__(self,database,display,person,output,doc):
+    def __init__(self,database,person,display,doc,output,newpage=0):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
         self.map = {}
@@ -86,6 +86,12 @@ class DescendantReport:
 	self.height = 0
         self.lines = 0
         self.display = display
+        self.newpage = newpage
+        if output:
+            self.standalone = 1
+            self.doc.open(output)
+        else:
+            self.standalone = 0
 
         plist = database.getPersonMap().values()
         self.layout = GraphLayout.DescendLine(plist,person)
@@ -99,7 +105,7 @@ class DescendantReport:
             for line in self.display:
                 self.text[p.getId()].append(subst.replace(line))
 
-            self.font = self.doc.style_list["Normal"].get_font()
+            self.font = self.doc.style_list["DG-Normal"].get_font()
             for line in self.text[p.getId()]:
                 new_width = FontScale.string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
@@ -207,19 +213,15 @@ class DescendantReport:
                     else:
                         l3.append((nx1,-ny2,-nx2,ny2))
             
-	try:
-            self.doc.open(self.output)
-        except:
-            Errors.ReportError(_("Could not create %s") % self.output)
+        if self.newpage:
+            self.doc.page_break()
 
         for r in range(len(self.pg)):
             for c in range(len(self.pg[r])):
                 self.print_page(self.pg[r][c],self.ln[r][c],r,c)
         
-	try:
-	    self.doc.close()
-        except:
-            Errors.ReportError(_("Could not create %s") % self.output)
+        if self.standalone:
+            self.doc.close()
 
     def calc(self):
         """calc - calculate the maximum width that a box needs to be. From
@@ -234,7 +236,7 @@ class DescendantReport:
         g = DrawDoc.GraphicsStyle()
         g.set_height(self.height)
         g.set_width(self.box_width)
-        g.set_paragraph_style("Normal")
+        g.set_paragraph_style("DG-Normal")
         g.set_shadow(1)
         self.doc.add_draw_style("box",g)
 
@@ -293,9 +295,24 @@ class DescendantReport:
 
         y = bottom + (self.doc.get_bottom_margin()/2.0)
         if r or c:
-            self.doc.write_at("Normal","(%d,%d)" % (r,c), right, y)
+            self.doc.write_at("DG-Normal","(%d,%d)" % (r,c), right, y)
         self.doc.end_page()
 
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def _make_default_style(default_style):
+    """Make the default output style for the Descendant Graph report."""
+    f = TextDoc.FontStyle()
+    f.set_size(9)
+    f.set_type_face(TextDoc.FONT_SANS_SERIF)
+    p = TextDoc.ParagraphStyle()
+    p.set_font(f)
+    p.set_description(_('The basic style used for the text display.'))
+    default_style.add_style("DG-Normal",p)
 
 #------------------------------------------------------------------------
 #
@@ -317,7 +334,7 @@ class DescendantReportDialog(Report.DrawReportDialog):
         return _("Save Descendant Graph")
 
     def get_stylesheet_savefile(self):
-        return "descendant_graph.xml"
+        return _style_file
 
     def get_report_generations(self):
         """Default to 10 generations, no page breaks."""
@@ -329,22 +346,15 @@ class DescendantReportDialog(Report.DrawReportDialog):
                 _("Allows you to customize the data in the boxes in the report"))
     
     def make_default_style(self):
-        """Make the default output style for the Ancestor Chart report."""
-        f = TextDoc.FontStyle()
-        f.set_size(9)
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Normal",p)
+        _make_default_style(self.default_style)
 
     def make_report(self):
         """Create the object that will produce the Descendant Graph.
         All user dialog has already been handled and the output file
         opened."""
         try:
-            MyReport = DescendantReport(self.db,self.report_text,
-                                        self.person, self.target_path, self.doc)
+            MyReport = DescendantReport(self.db, self.person, 
+                self.report_text, self.doc, self.target_path)
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
@@ -363,6 +373,114 @@ class DescendantReportDialog(Report.DrawReportDialog):
 #------------------------------------------------------------------------
 def report(database,person):
     DescendantReportDialog(database,person)
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "descendant_graph.xml"
+_style_name = "default" 
+
+_person_id = ""
+_disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
+_options = ( _person_id, _disp_format )
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class DescendantGraphBareDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        self.style_name = stl
+
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        self.disp_format = string.join(self.options[1],'\n')
+        self.new_person = None
+
+        self.extra_textbox.get_buffer().set_text(
+            self.disp_format,len(self.disp_format))
+        
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Descendant Graph"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Descendant Graph for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+    
+    def get_report_generations(self):
+        """No generations, no page breaks."""
+        return (0, 0)
+    
+    def get_report_extra_textbox_info(self):
+        """Label the textbox and provide the default contents."""
+        return (_("Display Format"), "$n\n%s $b\n%s $d" % (_BORN,_DIED),
+                _("Allows you to customize the data in the boxes in the report"))
+
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = ( self.person.getId(), self.report_text )
+        self.style_name = self.selected_style.get_name()
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Ancestor Chart using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        disp_format = options[1]
+        return DescendantReport(database, person, 
+                                   disp_format, doc, None, newpage )
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #
@@ -459,7 +577,7 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -472,3 +590,14 @@ register_report(
     author_email="dallingham@users.sourceforge.net"
     )
 
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Descendant Graph"), 
+    _("Graphics"),
+    DescendantGraphBareDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
+    )
