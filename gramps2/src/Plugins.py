@@ -507,9 +507,11 @@ def register_relcalc(func, languages):
     """Register a relationshp calculator"""
     import sys
     global _relcalc_task
-    
-    if os.environ["LANG"] in languages:
-        _relcalc_task = func
+
+    try:
+        if os.environ["LANG"] in languages:
+            _relcalc_task = func
+    pass
 
 def relationship_function():
     global _relcalc_task
