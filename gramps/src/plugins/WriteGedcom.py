@@ -649,7 +649,7 @@ class GedcomWriter:
                     for f in person.getParentList():
                         mrel = string.lower(f[1])
                         frel = string.lower(f[2])
-                        if mrel=="adopted" or mrel=="adopted":
+                        if mrel=="adopted" or frel=="adopted":
                             fam = f[0]
                             break
                     if fam:
@@ -675,7 +675,7 @@ class GedcomWriter:
                 for f in person.getParentList():
                     mrel = string.lower(f[1])
                     frel = string.lower(f[2])
-                    if mrel=="adopted" or mrel=="adopted":
+                    if mrel=="adopted" or frel=="adopted":
                         fam = f[0]
                         break
                 if fam:
