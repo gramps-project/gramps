@@ -310,7 +310,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE RELEASE VERSIONSTRING MSGFMT LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH SWIG PYTHON22 ZIP CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE CPP EGREP HAVE_PKG_CONFIG SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX P22_INCLUDES GNOMEINC GNOMELIB INTLLIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE RELEASE VERSIONSTRING MSGFMT LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH SWIG ZIP CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE CPP EGREP HAVE_PKG_CONFIG PYTHON_CPPFLAGS SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX GNOMEINC GNOMELIB INTLLIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1980,51 +1980,6 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-
-if test "$PYTHON_VERSION" != "2.2"
-then
-	# Extract the first word of "python2.2", so it can be a program name with args.
-set dummy python2.2; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PYTHON22+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $PYTHON22 in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PYTHON22="$PYTHON22" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PYTHON22="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  ;;
-esac
-fi
-PYTHON22=$ac_cv_path_PYTHON22
-
-if test -n "$PYTHON22"; then
-  echo "$as_me:$LINENO: result: $PYTHON22" >&5
-echo "${ECHO_T}$PYTHON22" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-else
-	PYTHON22=$PYTHON
-fi
 
 # Extract the first word of "zip", so it can be a program name with args.
 set dummy zip; ac_word=$2
@@ -3996,24 +3951,17 @@ echo "${ECHO_T}ok" >&6
 
 
 
-echo "$as_me:$LINENO: checking for headers required to compile python extensions" >&5
-echo $ECHO_N "checking for headers required to compile python extensions... $ECHO_C" >&6
-
-if test "$PYTHON22" != ""; then
-  py_prefix=`$PYTHON22 -c "import sys; print sys.prefix"`
-  py_exec_prefix=`$PYTHON22 -c "import sys; print sys.exec_prefix"`
-  P22_INCLUDES="-I${py_prefix}/include/python2.2"
-  if test "$py_prefix" != "$py_exec_prefix"; then
-    P22_INCLUDES="$P22_INCLUDES -I${py_exec_prefix}/include/python2.2"
-  fi
-  if test -f "${py_exec_prefix}/include/python2.2/Python.h"
-  then
-    INTLLIBS="${INTLLIBS}intl22.so "
-  fi
+echo "$as_me:$LINENO: checking for Python include directory" >&5
+echo $ECHO_N "checking for Python include directory... $ECHO_C" >&6
+if test "${gramps_cv_python_inc+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  gramps_cv_python_inc=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_inc()" 2>/dev/null`
 fi
+echo "$as_me:$LINENO: result: $gramps_cv_python_inc" >&5
+echo "${ECHO_T}$gramps_cv_python_inc" >&6
+PYTHON_CPPFLAGS="-I$gramps_cv_python_inc"
 
-echo "$as_me:$LINENO: result: ok" >&5
-echo "${ECHO_T}ok" >&6
 
 # Extract the first word of "scrollkeeper-config", so it can be a program name with args.
 set dummy scrollkeeper-config; ac_word=$2
@@ -4070,7 +4018,6 @@ else
 fi
 
 SCROLLKEEPER_BUILD_REQUIRED=0.3.5
-
 
 
 
@@ -4785,7 +4732,6 @@ s,@pyexecdir@,$pyexecdir,;t t
 s,@pkgpyexecdir@,$pkgpyexecdir,;t t
 s,@BINSH@,$BINSH,;t t
 s,@SWIG@,$SWIG,;t t
-s,@PYTHON22@,$PYTHON22,;t t
 s,@ZIP@,$ZIP,;t t
 s,@CC@,$CC,;t t
 s,@CFLAGS@,$CFLAGS,;t t
@@ -4804,11 +4750,11 @@ s,@CCDEPMODE@,$CCDEPMODE,;t t
 s,@CPP@,$CPP,;t t
 s,@EGREP@,$EGREP,;t t
 s,@HAVE_PKG_CONFIG@,$HAVE_PKG_CONFIG,;t t
+s,@PYTHON_CPPFLAGS@,$PYTHON_CPPFLAGS,;t t
 s,@SK_CONFIG@,$SK_CONFIG,;t t
 s,@SCROLLKEEPER_BUILD_REQUIRED@,$SCROLLKEEPER_BUILD_REQUIRED,;t t
 s,@GNOMEHELP@,$GNOMEHELP,;t t
 s,@GPREFIX@,$GPREFIX,;t t
-s,@P22_INCLUDES@,$P22_INCLUDES,;t t
 s,@GNOMEINC@,$GNOMEINC,;t t
 s,@GNOMELIB@,$GNOMELIB,;t t
 s,@INTLLIBS@,$INTLLIBS,;t t
