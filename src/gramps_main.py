@@ -1475,7 +1475,7 @@ class Gramps:
                                   "following dialog will let you select "
                                   "the new database."),
                                 self.topWindow)
-                        DbPrompter.DbPrompter(self,1,self.topWindow,filename)
+                        DbPrompter.NewNativeDbPrompter(self,self.topWindow,filename)
                         importData(self.db,filename)
                         self.import_tool_callback()
                         opened = 1
@@ -1531,9 +1531,12 @@ class Gramps:
                 opened = 0
                 for (importData,filter,mime_type) in Plugins._imports:
                     if filetype == mime_type or the_file == mime_type:
+                        print mime_type
+                        print "Keys before:", self.db.get_person_keys()
                         importData(self.db,filename)
                         self.import_tool_callback()
                         opened = 1
+                        print "Keys after:", self.db.get_person_keys()
                         break
                 if not opened:
                     ErrorDialog( _("Could not open file: %s") % filename,
