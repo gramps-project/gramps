@@ -71,6 +71,7 @@
 	    <last_modification_time>Sun, 11 Feb 2001 02:58:15 GMT</last_modification_time>
 	  </signal>
 	  <stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
       </widget>
     </widget>
@@ -88,7 +89,9 @@
 
       <widget>
 	<class>GtkLabel</class>
-	<name>label1</name>
+	<name>summaryTitle</name>
+	<width>400</width>
+	<height>16</height>
 	<label>Database Summary</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
@@ -116,6 +119,7 @@
       <widget>
 	<class>GnomeLess</class>
 	<name>textwindow</name>
+	<height>250</height>
 	<child>
 	  <padding>0</padding>
 	  <expand>True</expand>
