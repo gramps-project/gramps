@@ -181,6 +181,8 @@ class Gramps:
         self.tool_button  = self.gtop.get_widget("tools")
         self.remove_button  = self.gtop.get_widget("removebtn")
         self.edit_button  = self.gtop.get_widget("editbtn")
+        self.remove_item  = self.gtop.get_widget("remove_item")
+        self.edit_item  = self.gtop.get_widget("edit_item")
         self.sidebar = self.gtop.get_widget('side_event')
         self.filterbar = self.gtop.get_widget('filterbar')
 
@@ -188,6 +190,8 @@ class Gramps:
         self.report_button.set_sensitive(0)
         self.remove_button.set_sensitive(0)
         self.edit_button.set_sensitive(0)
+        self.remove_item.set_sensitive(0)
+        self.edit_item.set_sensitive(0)
 
         set_panel(self.sidebar)
         set_panel(self.gtop.get_widget('side_people'))
@@ -250,6 +254,7 @@ class Gramps:
         self.media_view  = MediaView.MediaView(self.db,self.gtop,self.update_display)
 
         self.add_button = self.gtop.get_widget('addbtn')
+        self.add_item = self.gtop.get_widget('add_item')
         self.backbtn = self.gtop.get_widget('back_btn')
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
         self.gomenuitem = self.gtop.get_widget("go1")
@@ -474,6 +479,8 @@ class Gramps:
         if self.views.get_current_page() == PERSON_VIEW:
             self.remove_button.set_sensitive(val)
             self.edit_button.set_sensitive(val)
+            self.remove_item.set_sensitive(val)
+            self.edit_item.set_sensitive(val)
         
     def back_clicked(self,obj,step=1):
         if self.hindex > 0:
@@ -566,6 +573,9 @@ class Gramps:
         self.add_button.set_sensitive(val)
         self.remove_button.set_sensitive(val)
         self.edit_button.set_sensitive(val)
+        self.add_item.set_sensitive(val)
+        self.remove_item.set_sensitive(val)
+        self.edit_item.set_sensitive(val)
             
     def on_show_plugin_status(self,obj):
         Plugins.PluginStatus()

@@ -8,7 +8,7 @@
   <!ENTITY custom SYSTEM "custom.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "0.9.4">
+  <!ENTITY appversion "0.9.5">
   <!ENTITY manrevision "2.3">
   <!ENTITY date "September 2003">
   <!ENTITY app "<application>GRAMPS</application>">

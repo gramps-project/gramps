@@ -51,7 +51,7 @@
 			  <accelerator key="N" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1230">
+			    <widget class="GtkImage" id="image1512">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-new</property>
 			      <property name="icon_size">1</property>
@@ -73,7 +73,7 @@
 			  <accelerator key="O" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1231">
+			    <widget class="GtkImage" id="image1513">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-open</property>
 			      <property name="icon_size">1</property>
@@ -95,7 +95,7 @@
 			  <accelerator key="S" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1232">
+			    <widget class="GtkImage" id="image1514">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-save</property>
 			      <property name="icon_size">1</property>
@@ -116,7 +116,7 @@
 			  <signal name="activate" handler="on_save_as_activate" last_modification_time="Tue, 01 Apr 2003 03:50:28 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1233">
+			    <widget class="GtkImage" id="image1515">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-save-as</property>
 			      <property name="icon_size">1</property>
@@ -150,7 +150,7 @@
 			  <property name="use_underline">True</property>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1234">
+			    <widget class="GtkImage" id="image1516">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -171,7 +171,7 @@
 			  <signal name="activate" handler="on_revert_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1235">
+			    <widget class="GtkImage" id="image1517">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-revert-to-saved</property>
 			      <property name="icon_size">1</property>
@@ -192,7 +192,7 @@
 			  <signal name="activate" handler="on_reload_plugins_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1236">
+			    <widget class="GtkImage" id="image1518">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-refresh</property>
 			      <property name="icon_size">1</property>
@@ -220,7 +220,7 @@
 			  <accelerator key="Q" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1237">
+			    <widget class="GtkImage" id="image1519">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-quit</property>
 			      <property name="icon_size">1</property>
@@ -247,6 +247,68 @@
 		    <widget class="GtkMenu" id="edit1_menu">
 
 		      <child>
+			<widget class="GtkImageMenuItem" id="add_item">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Add a new item</property>
+			  <property name="label" translatable="yes">_Add...</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="on_addbtn_clicked" last_modification_time="Fri, 10 Oct 2003 03:03:48 GMT"/>
+			  <accelerator key="Insert" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+			  <child internal-child="image">
+			    <widget class="GtkImage" id="image1520">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-add</property>
+			      <property name="icon_size">1</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkImageMenuItem" id="remove_item">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Remove the currently selected item</property>
+			  <property name="label" translatable="yes">_Remove</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="on_removebtn_clicked" last_modification_time="Fri, 10 Oct 2003 03:05:36 GMT"/>
+			  <accelerator key="Delete" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+			  <child internal-child="image">
+			    <widget class="GtkImage" id="image1521">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-remove</property>
+			      <property name="icon_size">1</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="edit_item">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Edit the selected item</property>
+			  <property name="label" translatable="yes">E_dit...</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="on_editbtn_clicked" last_modification_time="Fri, 10 Oct 2003 03:07:52 GMT"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="separator10">
+			  <property name="visible">True</property>
+			</widget>
+		      </child>
+
+		      <child>
 			<widget class="GtkImageMenuItem" id="find">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Find...</property>
@@ -255,7 +317,7 @@
 			  <accelerator key="F" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1238">
+			    <widget class="GtkImage" id="image1522">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-find</property>
 			      <property name="icon_size">1</property>
@@ -274,9 +336,10 @@
 			  <property name="label" translatable="yes">_Merge...</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_merge_activate"/>
+			  <accelerator key="M" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1239">
+			    <widget class="GtkImage" id="image1523">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -352,7 +415,7 @@
 			  <accelerator key="D" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1240">
+			    <widget class="GtkImage" id="image1524">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-index</property>
 			      <property name="icon_size">1</property>
@@ -374,7 +437,7 @@
 			  <accelerator key="B" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1241">
+			    <widget class="GtkImage" id="image1525">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-open</property>
 			      <property name="icon_size">1</property>
@@ -438,7 +501,7 @@
 			  <signal name="activate" handler="on_preferences1_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1242">
+			    <widget class="GtkImage" id="image1526">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-preferences</property>
 			      <property name="icon_size">1</property>
@@ -459,7 +522,7 @@
 			  <signal name="activate" handler="on_default_person_activate" last_modification_time="Sat, 16 Aug 2003 01:58:26 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1243">
+			    <widget class="GtkImage" id="image1527">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-home</property>
 			      <property name="icon_size">1</property>
@@ -494,7 +557,7 @@
 			  <accelerator key="F1" modifiers="0" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1244">
+			    <widget class="GtkImage" id="image1528">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-help</property>
 			      <property name="icon_size">1</property>
@@ -521,7 +584,7 @@
 			  <signal name="activate" handler="on_gramps_home_page_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1245">
+			    <widget class="GtkImage" id="image1529">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-jump-to</property>
 			      <property name="icon_size">1</property>
@@ -542,7 +605,7 @@
 			  <signal name="activate" handler="on_gramps_mailing_lists_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1246">
+			    <widget class="GtkImage" id="image1530">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-mail</property>
 			      <property name="icon_size">1</property>
@@ -596,7 +659,7 @@
 			  <signal name="activate" handler="on_about_activate" last_modification_time="Tue, 01 Apr 2003 03:44:24 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1247">
+			    <widget class="GtkImage" id="image1531">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-about</property>
 			      <property name="icon_size">1</property>
@@ -641,8 +704,9 @@
 		<widget class="button" id="button2">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Open file</property>
-		  <property name="label">gtk-open</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">Open</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-open</property>
 		  <signal name="clicked" handler="on_open_activate"/>
 		</widget>
 	      </child>
@@ -651,8 +715,9 @@
 		<widget class="button" id="button3">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Save file</property>
-		  <property name="label">gtk-save</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">Save</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-save</property>
 		  <signal name="clicked" handler="on_save_activate"/>
 		</widget>
 	      </child>
@@ -660,8 +725,9 @@
 	      <child>
 		<widget class="button" id="back_btn">
 		  <property name="visible">True</property>
-		  <property name="label">gtk-go-back</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">Back</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-go-back</property>
 		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_back_clicked" last_modification_time="Thu, 14 Aug 2003 02:19:55 GMT"/>
 		  <signal name="button_press_event" handler="on_back_pressed" last_modification_time="Tue, 19 Aug 2003 00:07:23 GMT"/>
@@ -674,8 +740,9 @@
 	      <child>
 		<widget class="button" id="fwd_btn">
 		  <property name="visible">True</property>
-		  <property name="label">gtk-go-forward</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">Forward</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-go-forward</property>
 		  <signal name="clicked" handler="on_fwd_clicked" last_modification_time="Thu, 14 Aug 2003 02:20:17 GMT"/>
 		  <signal name="button_press_event" handler="on_fwd_pressed" last_modification_time="Tue, 19 Aug 2003 00:27:51 GMT"/>
 		</widget>
@@ -685,7 +752,7 @@
 		<widget class="button" id="button97">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Make the Home Person the active person</property>
-		  <property name="label" translatable="yes">_Home</property>
+		  <property name="label" translatable="yes">Home</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-home</property>
 		  <signal name="clicked" handler="on_home_clicked"/>
@@ -722,8 +789,9 @@
 		<widget class="button" id="addbtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Add a new item</property>
-		  <property name="label">gtk-add</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">Add</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-add</property>
 		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_addbtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:19 GMT"/>
 		</widget>
@@ -736,8 +804,9 @@
 		<widget class="button" id="removebtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Remove the currently selected item</property>
-		  <property name="label">gtk-remove</property>
-		  <property name="use_stock">True</property>
+		  <property name="label" translatable="yes">Remove</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-remove</property>
 		  <signal name="clicked" handler="on_removebtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:33 GMT"/>
 		</widget>
 	      </child>
