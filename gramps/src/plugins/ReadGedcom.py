@@ -529,12 +529,12 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(self.family)
+                        self.share_note.append(self.family)
                         self.family.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.share_note(self.family)
+                        self.share_note.append(self.family)
                         self.family.setNoteObj(noteobj)
             else:
                 event = Event()
@@ -605,11 +605,11 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(self.person)
+                        self.share_note.append(self.person)
                         self.person.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
-                        self.share_note(self.person)
+                        self.share_note.append(self.person)
                         self.nmap[matches[2]] = noteobj
                         self.person.setNoteObj(noteobj)
 	    elif matches[1] == "SEX":
@@ -924,12 +924,12 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(address)
+                        self.share_note.append(address)
                         address.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.share_note(address)
+                        self.share_note.append(address)
                         address.setNoteObj(noteobj)
             else:
 	        self.barf(level+1)
@@ -1004,12 +1004,12 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(ord)
+                        self.share_note.append(ord)
                         ord.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.share_note(ord)
+                        self.share_note.append(ord)
                         ord.setNoteObj(noteobj)
             elif matches[1] == "STAT":
                 if const.lds_status.has_key(matches[2]):
@@ -1291,12 +1291,12 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(event)
+                        self.share_note.append(event)
                         event.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.share_note(event)
+                        self.share_note.append(event)
                         event.setNoteObj(noteobj)
             else:
 	        self.barf(level+1)
@@ -1332,12 +1332,12 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(source)
+                        self.share_note.append(source)
                         source.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.share_note(source)
+                        self.share_note.append(source)
                         source.setNoteObj(noteobj)
             else:
 	        self.barf(level+1)
@@ -1418,12 +1418,12 @@ class GedcomParser:
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.share_note(name)
+                        self.share_note.append(name)
                         name.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.share_note(name)
+                        self.share_note.append(name)
                         name.setNoteObj(noteobj)
             else:
 	        self.barf(level+1)
