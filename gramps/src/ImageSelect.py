@@ -254,18 +254,27 @@ class Gallery(ImageSelect):
             elif protocol != "":
                 import urllib
                 u = urllib.URLopener()
-                tfile,headers = u.retrieve(d)
+                try:
+                    tfile,headers = u.retrieve(d)
+                except IOError, msg:
+                    t = _("Counld not import %s") % d
+                    
+                    GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    return
                 mime = utils.get_mime_type(tfile)
                 photo = Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
                 photo.setLocal(1)
+                photo.setPath(tfile)
                 self.savephoto(photo)
                 try:
                     name = RelImage.import_media_object(tfile,self.path,photo.getId())
-                    photo.setPath(name)
+                    if name != None and name != "":
+                        photo.setPath(name)
                 except:
-                    GnomeErrorDialog(_("Could not import %s") % d)
+                    photo.setPath(tfile)
+                    w.drag_finish(context, TRUE, FALSE, time)
                     return
                 utils.modified()
             else:
@@ -274,7 +283,7 @@ class Gallery(ImageSelect):
                     for p in self.dataobj.getPhotoList():
                         if data.data == p.getReference().getId():
                             if index == icon_index or icon_index == -1:
-                                w.drag_finish(context, TRUE, FALSE, time)
+                                w.drag_finish(context, FALSE, FALSE, time)
                                 return
                             else:
                                 w.drag_finish(context, TRUE, FALSE, time)
