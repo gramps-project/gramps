@@ -674,7 +674,7 @@ class GedcomWriter:
 
                 self.dump_event_stats(event)
 
-            if self.adopt == ADOPT_EVENT and ad == 0 and len(person.getParentList()) != 0:
+            if self.adopt == ADOPT_EVENT and ad == 0 and len(person.getParentList()) > 1:
                 self.g.write('1 ADOP\n')
                 fam = None
                 for f in person.getParentList():

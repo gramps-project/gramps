@@ -80,6 +80,7 @@
 #
 #------------------------------------------------------------------------
 from TextDoc import *
+from re import sub
 import ImgManip
 try:
     import Plugins
@@ -116,7 +117,7 @@ class TexFont(TextDoc):
     
 #------------------------------------------------------------------------
 #
-# LaTeXDon
+# LaTeXDoc
 #
 #------------------------------------------------------------------------
 class LaTeXDoc(TextDoc):
@@ -627,19 +628,11 @@ class LaTeXDoc(TextDoc):
     def write_text(self,text):
         """Write the text to the file"""
 	if not self.in_listing:
-            # Quote unsafe characters.
-            text = string.replace(text,'\\','\\\\')
-            text = string.replace(text,'$','\\$')
-            text = string.replace(text,'&','\\&')
-            text = string.replace(text,'%','\\%')
-            text = string.replace(text,'#','\\#')
-            text = string.replace(text,'{','\\{')
-            text = string.replace(text,'}','\\}')
-            text = string.replace(text,'_','\\_')
-            text = string.replace(text,'^','\\verb+^+')
-            text = string.replace(text,'~','\\verb+~+')
 	    if text == '\n':
 	        text = '\\newline\n'
+            else:
+                # Quote unsafe characters.
+                text = sub('[\\$&%#{}_^~]',quote_fun,text)
         self.f.write(text)
 	if text:
 	    self.last_char_written = text[-1]
@@ -656,6 +649,17 @@ class LaTeXDoc(TextDoc):
 	self.write_text(href)
 	self.end_italic()
 	self.write_text(") ")
+
+def quote_fun(matchobj):
+    """Quote unsafe LaTeX characters"""
+    c = matchobj.group()
+    if c == '^':
+        return '\\verb+^+'
+    elif c == '~':
+        return '\\verb+~+'
+    else:
+        return '\\' + c
+
 
 #------------------------------------------------------------------------
 #
