@@ -145,6 +145,7 @@ def dump_ordinance(g,name,ord,index=1):
         write_date(g,dateobj,index+1)
     if ord.getTemple():
         g.write('%s<temple val="%s"/>\n' % (sp2,fix(ord.getTemple())))
+    write_ref(g,"place",ord.getPlace(),index+1)
     if ord.getStatus() != 0:
         g.write('%s<status val="%d"/>\n' % (sp2,ord.getStatus()))
     if ord.getFamily():
