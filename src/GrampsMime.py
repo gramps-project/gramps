@@ -42,7 +42,7 @@ def get_description(type):
         return _("unknown")
 
 def get_type(file):
-    """Returns the mime type of the specified file"
+    """Returns the mime type of the specified file"""
     try:
         return gnome.vfs.get_mime_type(file)
     except:

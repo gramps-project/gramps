@@ -70,7 +70,6 @@ import Bookmarks
 import GrampsCfg
 import EditPerson
 import Find
-import VersionControl
 import ReadXML
 
 #-------------------------------------------------------------------------
@@ -1150,10 +1149,6 @@ class Gramps:
         self.db.set_save_path(old_file)
         GrampsCfg.save_last_file(old_file)
 
-        if GrampsCfg.usevc:
-            vc = VersionControl.RcsVersionControl(path)
-            vc.checkin(filename,comment,not GrampsCfg.uncompress)
-
         filename = self.db.get_save_path()
         if filename[-1] == '/':
             filename = filename[:-1]
@@ -1361,11 +1356,6 @@ class Gramps:
             self.on_ok_button2_clicked(fileSelector)
         fileSelector.destroy()
 
-    def display_comment_box(self,filename):
-        """Displays a dialog box, prompting for a revison control comment"""
-        filename = os.path.normpath(os.path.abspath(filename))
-        VersionControl.RevisionComment(filename,self.save_file)
-    
     def on_person_list1_activate(self,obj):
         """Switches to the person list view"""
         self.views.set_current_page(PERSON_VIEW)
