@@ -72,15 +72,9 @@ def exportData(database, filename, callback):
         g.write(filename)
     except:
         from gnome.ui import GnomeErrorDialog
-        import traceback
-        
-        traceback.print_exc()
-        
-        fname = os.path.expanduser("~/gramps.err")
-        errfile = open(fname,"w")
-        traceback.print_exc(file=errfile)
-        errfile.close()
+        import DisplayTrace
 
+        DisplayTrace.DisplayTrace()
         GnomeErrorDialog(_("Failure writing %s, original file restored") % filename)
         shutil.copy(filename + ".bak", filename)
 
@@ -156,17 +150,14 @@ class XmlWriter:
 
         date = string.split(time.ctime(time.time()))
         owner = self.db.getResearcher()
-        personList = self.db.getPersonMap().values()
-        #personList.sort(sortById)
         familyList = self.db.getFamilyMap().values()
-        #familyList.sort(sortById)
-        sourceList = self.db.getSourceMap().values()
-        placeList = self.db.getPlaceMap().values()
-        #placeList.sort(sortById)
+        person_len = len(self.db.getPersonKeys())
+        family_len = len(familyList)
+        source_len = len(self.db.getSourceKeys())
+        place_len = len(self.db.getPlaceKeys())
         objList = self.db.getObjectMap().values()
-        #objList.sort(sortById)
         
-        total = len(personList) + len(familyList) + len(placeList) + len(sourceList)
+        total = person_len + family_len + place_len + source_len
 
         self.g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
         self.g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
@@ -174,10 +165,10 @@ class XmlWriter:
         self.g.write("  <header>\n")
         self.g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
         self.g.write(" version=\"" + const.version + "\"")
-        self.g.write(" people=\"%d\"" % (len(self.db.getPersonMap().values())))
-        self.g.write(" families=\"%d\"" % len(self.db.getFamilyMap().values()))
-        self.g.write(" sources=\"%d\"" % len(self.db.getSourceMap().values()))
-        self.g.write(" places=\"%d\"/>\n" % len(self.db.getPlaceMap().values()))
+        self.g.write(" people=\"%d\"" % person_len)
+        self.g.write(" families=\"%d\"" % family_len)
+        self.g.write(" sources=\"%d\"" % source_len)
+        self.g.write(" places=\"%d\"/>\n" % place_len)
         self.g.write("    <researcher>\n")
         self.write_line("resname",owner.getName(),3)
         self.write_line("resaddr",owner.getAddress(),3)
@@ -190,7 +181,7 @@ class XmlWriter:
         self.g.write("    </researcher>\n")
         self.g.write("  </header>\n")
 
-        if len(personList) > 0:
+        if person_len > 0:
             self.g.write("  <people")
             person = self.db.getDefaultPerson()
             if person:
@@ -200,7 +191,8 @@ class XmlWriter:
             delta = max(int(total/50),1)
 
             count = 0
-            for person in personList:
+            for key in self.db.getPersonKeys():
+                person = self.db.getPerson(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -270,7 +262,7 @@ class XmlWriter:
                 self.g.write("    </person>\n")
             self.g.write("  </people>\n")
 
-        if len(familyList) > 0:
+        if family_len > 0:
             self.g.write("  <families>\n")
             
             for family in familyList:
@@ -299,9 +291,10 @@ class XmlWriter:
                 self.g.write("    </family>\n")
             self.g.write("  </families>\n")
 
-        if len(sourceList) > 0:
+        if source_len > 0:
             self.g.write("  <sources>\n")
-            for source in sourceList:
+            for key in self.db.getSourceKeys():
+                source = self.db.getSource(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -316,9 +309,10 @@ class XmlWriter:
                 self.g.write("    </source>\n")
             self.g.write("  </sources>\n")
 
-        if len(placeList) > 0:
+        if place_len > 0:
             self.g.write("  <places>\n")
-            for place in placeList:
+            for key in self.db.getPlaceKeys():
+                place = self.db.getPlace(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1

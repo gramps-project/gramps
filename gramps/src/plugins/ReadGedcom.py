@@ -560,14 +560,15 @@ class GedcomParser:
 	        self.parse_family_event(event,2)
 
     def parse_note(self,matches,obj,level,old_note):
+        note = old_note
         if matches[2] and matches[2][0] == "@":
             if self.nmap.has_key(matches[2]):
                 self.share_note.append(obj)
-                self.family.setNoteObj(self.nmap[matches[2]])
+                obj.setNoteObj(self.nmap[matches[2]])
             else:
                 noteobj = Note()
                 self.nmap[matches[2]] = noteobj
-                self.share_note.append(self.family)
+                self.share_note.append(obj)
                 obj.setNoteObj(noteobj)
         else:
             if old_note:
