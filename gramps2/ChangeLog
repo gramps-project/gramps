@@ -1,5 +1,5 @@
 2003-12-07  Don Allingham  <dallingham@users.sourceforge.net>
-	* Version 0.98.0 -- the "Round me off" release.
+	* Version 0.98.0: the "Round me off" release.
 
 2003-12-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py (FamilyView.really_remove_spouse): remove the
