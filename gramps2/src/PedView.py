@@ -534,6 +534,7 @@ class PedigreeView:
                    self.y1 != y1 or self.y2 != y2:
                 self.x1 = x1; self.x2 = x2
                 self.y1 = y1; self.y2 = y2
+                self.canvas.set_size(x2,y2)
                 self.load_canvas(self.active_person)
         return 0
 
