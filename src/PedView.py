@@ -298,17 +298,23 @@ class PedigreeView:
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
 
-            childlist = []
-            for family in self.active_person.getFamilyList():
-                for child in family.getChildList():
-                    childlist.append(child)
+            def find_children(p):
+                childlist = []
+                for family in p.getFamilyList():
+                    for child in family.getChildList():
+                        childlist.append(child)
+                return childlist
 
+            childlist = find_children(self.active_person)
             if len(childlist) == 1:
                 self.load_canvas(childlist[0])
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child in childlist:
-                    menuitem = gtk.MenuItem(GrampsCfg.nameof(child))
+                    cname = GrampsCfg.nameof(child)
+                    if len(find_children(child)) > 0:
+                        cname = cname + " *"
+                    menuitem = gtk.MenuItem(cname)
                     myMenu.append(menuitem)
                     menuitem.set_data(_PERSON,child)
                     menuitem.connect("activate",self.on_childmenu_changed)
