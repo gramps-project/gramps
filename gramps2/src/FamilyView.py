@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
+
 # $Id$
 
 #-------------------------------------------------------------------------
@@ -81,6 +81,11 @@ class FamilyView:
             self.select_spouse_btn = self.top.get_widget('select_spouse2')
             self.remove_spouse_btn = self.top.get_widget('remove_spouse2')
             self.child_list = self.top.get_widget('chlist2')
+            self.ap_swap_arrow = "Right"
+            self.sp_swap_arrow = "Left"
+            self.ap_par_arrow = "Down"
+            self.sp_par_arrow = "Down"
+            self.child_arrow = "Up"
             if not already_init:
                 self.top.get_widget('add_parents2').connect('clicked',self.add_parents_clicked)
                 self.top.get_widget('del_parents2').connect('clicked',self.del_parents_clicked)
@@ -106,6 +111,11 @@ class FamilyView:
             self.select_spouse_btn = self.top.get_widget('select_spouse')
             self.remove_spouse_btn = self.top.get_widget('remove_spouse')
             self.child_list = self.top.get_widget('chlist')
+            self.ap_swap_arrow = "Down"
+            self.sp_swap_arrow = "Up"
+            self.ap_par_arrow = "Right"
+            self.sp_par_arrow = "Right"
+            self.child_arrow = "Left"
             if not already_init:
                 self.top.get_widget('add_parents').connect('clicked',self.add_parents_clicked)
                 self.top.get_widget('del_parents').connect('clicked',self.del_parents_clicked)
@@ -133,7 +143,8 @@ class FamilyView:
         if not already_init:
             column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
             self.ap_data.append_column(column)
-            self.ap_data.connect('button-press-event',self.edit_active_person)
+            self.ap_data.connect('button-press-event',self.ap_button_press)
+            self.ap_data.connect('key-press-event',self.ap_key_press)
 
         self.ap_parents_model = gtk.ListStore(gobject.TYPE_STRING)
         self.ap_parents.set_model(self.ap_parents_model)
@@ -141,7 +152,8 @@ class FamilyView:
         if not already_init:
             column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
             self.ap_parents.append_column(column)
-            self.ap_parents.connect('button-press-event',self.edit_ap_parents)
+            self.ap_parents.connect('button-press-event',self.ap_par_button_press)
+            self.ap_parents.connect('key-press-event',self.ap_par_key_press)
 
         self.sp_parents_model = gtk.ListStore(gobject.TYPE_STRING)
         self.sp_parents.set_model(self.sp_parents_model)
@@ -149,14 +161,16 @@ class FamilyView:
         if not already_init:
             column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
             self.sp_parents.append_column(column)
-            self.sp_parents.connect('button-press-event',self.edit_sp_parents)
+            self.sp_parents.connect('button-press-event',self.sp_par_button_press)
+            self.sp_parents.connect('key-press-event',self.sp_par_key_press)
 
         self.spouse_model = gtk.ListStore(gobject.TYPE_STRING)
         self.spouse_list.set_model(self.spouse_model)
         self.spouse_selection = self.spouse_list.get_selection()
         if not already_init:
             self.spouse_selection.connect('changed',self.spouse_changed)
-            self.spouse_list.connect('button-press-event',self.edit_relationship)
+            self.spouse_list.connect('button-press-event',self.sp_button_press)
+            self.spouse_list.connect('key-press-event',self.sp_key_press)
         
         if not already_init:
             column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
@@ -178,6 +192,7 @@ class FamilyView:
 
         if not already_init:
             self.child_list.connect('button-press-event',self.on_child_list_button_press)
+            self.child_list.connect('key-press-event',self.child_key_press)
 
             self.swap_btn.connect('clicked',self.spouse_swap)
             self.remove_spouse_btn.connect('clicked',self.remove_spouse)
@@ -195,11 +210,84 @@ class FamilyView:
                                   (_('Status'),100,-1), ('',0,-1) ])
         self.cadded[fv] = 1
         
-    def edit_active_person(self,obj,event):
+    def ap_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.person)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3 and self.person:
             self.build_ap_menu(event)
+
+    def ap_key_press(self,obj,event):
+        if event.keyval == gtk.gdk.keyval_from_name("Return") \
+                                    and not event.state:
+            self.parent.load_person(self.person)
+        elif event.keyval == gtk.gdk.keyval_from_name(self.ap_swap_arrow) \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.spouse_swap(obj)
+                
+    def sp_key_press(self,obj,event):
+        if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
+            if self.selected_spouse:
+                self.edit_marriage_callback(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Return") \
+                                    and event.state == gtk.gdk.SHIFT_MASK:
+            self.edit_spouse_callback(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name(self.sp_swap_arrow) \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.spouse_swap(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Delete") and not event.state:
+            self.remove_spouse(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
+            self.select_spouse(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Insert") \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.add_spouse(obj)
+
+    def ap_par_key_press(self,obj,event):
+        if self.person == None:
+            return
+        if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
+            self.edit_ap_relationships(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name(self.ap_par_arrow) \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.ap_parents_clicked(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Delete") and not event.state:
+            self.del_parents_clicked(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
+            self.add_parents_clicked(obj)
+
+    def sp_par_key_press(self,obj,event):
+        if self.person == None:
+            return
+        if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
+            self.edit_sp_relationships(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name(self.sp_par_arrow) \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.sp_parents_clicked(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Delete") and not event.state:
+            self.del_sp_parents(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
+            self.add_sp_parents(obj)
+
+    def child_key_press(self,obj,event):
+        model, iter = self.child_selection.get_selected()
+        if not iter:
+            return
+        id = self.child_model.get_value(iter,2)
+        if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
+            self.child_rel_by_id(id)
+        elif event.keyval == gtk.gdk.keyval_from_name("Return") \
+                                    and event.state == gtk.gdk.SHIFT_MASK:
+            self.edit_child_callback(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name(self.child_arrow) \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.child_back(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Delete") and not event.state:
+            self.remove_child_clicked(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
+            self.select_child_clicked(obj)
+        elif event.keyval == gtk.gdk.keyval_from_name("Insert") \
+                                    and event.state == gtk.gdk.CONTROL_MASK:
+            self.add_child_clicked(obj)
 
     def build_ap_menu(self,event):
         """Builds the menu with navigation for the active person box"""
@@ -298,7 +386,7 @@ class FamilyView:
             return
         id = self.child_model.get_value(iter,2)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.parent.load_person(self.parent.db.getPerson(id))
+            self.child_rel_by_id(id)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_child_menu(id,event)
 
@@ -348,6 +436,10 @@ class FamilyView:
         person = self.parent.db.getPerson(obj.get_data(Utils.OBJECT))
         SelectChild.EditRel(person,self.family,self.load_family)
         
+    def child_rel_by_id(self,id):
+        person = self.parent.db.getPerson(id)
+        SelectChild.EditRel(person,self.family,self.load_family)
+
     def spouse_changed(self,obj):
         model, iter = obj.get_selected()
         if not iter:
@@ -405,7 +497,7 @@ class FamilyView:
                           self.parent.new_after_edit,
                           self.load_family)
 
-    def edit_relationship(self,obj,event):
+    def sp_button_press(self,obj,event):
         if event.state & gtk.gdk.SHIFT_MASK and \
                     event.type == gtk.gdk.BUTTON_PRESS and \
                     event.button == 1 and self.selected_spouse:
@@ -887,7 +979,7 @@ class FamilyView:
     def edit_sp_relationships(self,obj):
         self.parent_editor(self.selected_spouse,self.sp_selection)
 
-    def edit_ap_parents(self,obj,event):
+    def ap_par_button_press(self,obj,event):
         if self.person == None:
             return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
@@ -906,7 +998,7 @@ class FamilyView:
                 family,m,r = plist[path[0]]
             self.build_parents_menu(family,event)
 
-    def edit_sp_parents(self,obj,event):
+    def sp_par_button_press(self,obj,event):
         if self.selected_spouse == None:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
                 self.build_nav_menu(event)

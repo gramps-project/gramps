@@ -1,3 +1,6 @@
+2003-11-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/FamilyView.py: Enable keyboard navigation in Family View. 
+
 2003-11-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsCfg.py: Add comment about SUSE naming of gconf
 	* src/Relationship.py: detect a RuntimeError exception that occurs
