@@ -14,7 +14,6 @@ Comment[nb]=Et slektsforskningsprogram
 Comment[ru]=Система исследования и анализа генеалогической информации
 Comment[de]=Ein Programm zur Ahnenforschung
 Comment[hu]=Örökléskutató és elemző program
-Exec=gramps
 Icon=gramps.png
 Terminal=false
 Type=Application

@@ -1,4 +1,5 @@
 2004-08-16  Tim Waugh  <twaugh@redhat.com>
+	* src/data/gramps.desktop: Fixed.
 	* src/data/Makefile.am: Fix 'distcheck' as much as possible.
 
 2004-08-15  Tim Waugh  <twaugh@redhat.com>
