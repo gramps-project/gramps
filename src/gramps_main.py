@@ -2335,50 +2335,199 @@ def change_parents(family):
         active_father = None
         active_mother = None
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+
+def find_tree(person,index,depth,list):
+
+    if depth > 5 or person == None:
+        return
+    family = person.getMainFamily()
+    list[index] = person
+    if family != None:
+        father = family.getFather()
+        if father != None:
+            find_tree(father,(2*index)+1,depth+1,list)
+        mother = family.getMother()
+        if mother != None:
+            find_tree(mother,(2*index)+2,depth+1,list)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+canvas_items = []
+old_gen = 0
+old_h = 0
+old_w = 0
 
 def load_canvas():
-    from GDK import *
+    global canvas_items
+    global old_gen,old_h,old_w
+
+    if active_person == None:
+        return
     
     canvas = gtop.get_widget("canvas1")
     cx1,cy1,cx2,cy2 = canvas.get_allocation()
-    canvas.set_scroll_region(cx1,cy1,cx2,cy2)
     root = canvas.root()
+    
+    h = 0
+    w = 0
 
-    for c in canvas.children():
-        canvas.remove(c)
-        
-    add_box(root,10,int(cy2/2.0)-15,active_person)
-    f = active_person.getMainFamily()
-    if f:
-        if f.getFather():
-            y = int(cy2/4.0)
-            pts = [125,int(cy2/2.0)-15,125,y,int(cx2/3.0),y]
-            root.add("line",points=pts,fill_color="black")
-            add_box(root,int(cx2/3.0),y-15,f.getFather())
-        if f.getMother():
-            pts = [125,int(cy2/2.0)+15,125,3*y,int(cx2/3.0),3*y]
-            root.add("line",points=pts,fill_color="black")
-            add_box(root,int(cx2/3.0),(3*y)-15,f.getMother())
+    style = canvas['style']
+    font = canvas['style'].font
 
-def add_box(root,x,y,person):
+    list = [None]*31
+    find_tree(active_person,0,1,list)
+    for t in list:
+        if t:
+            n = t.getPrimaryName().getName()
+            h = max(h,font.height(n)+6)
+            w = max(w,font.width(n)+6)
+            w = max(w,font.width("d. %s" % t.getDeath().getDate())+6)
+            w = max(w,font.width("b. %s" % t.getBirth().getDate())+6)
+
+    if 5*w < cx2 and 24*h < cy2:
+        gen = 31
+        xdiv = 5.0
+    elif 4*w < cx2 and 12*h < cy2:
+        gen = 15
+        xdiv = 4.0
+    else:
+        gen = 7
+        xdiv = 3.0
+
+    for c in canvas_items:
+        c.destroy()
+    canvas_items = []
+    canvas.set_scroll_region(cx1,cy1,cx2,cy2)
+
+    xincr = cx2/xdiv
+    yincr = cy2/32
+    
+    xfactor = [0] + [xincr]*2 + [xincr*2]*4 + [xincr*3] * 8 + [xincr*4] * 16
+    yfactor = [ yincr*16, yincr*8,yincr*24,yincr*4,yincr*12,yincr*20, yincr*28,
+                yincr*2, yincr*6,yincr*10,yincr*14,yincr*18,yincr*22,yincr*26,
+                yincr*30, yincr, yincr*3, yincr*5, yincr*7, yincr*9, yincr*11,
+                yincr*13, yincr*15, yincr*17, yincr*19, yincr*21, yincr*23,
+                yincr*25, yincr*27, yincr*29, yincr*31]
+
+    for i in range(31):
+        yfactor[i]=yfactor[i]
+
+    for i in range(gen):
+        if list[i]:
+            if i < int(gen/2):
+                startx = xfactor[i]+(w/2)
+                if list[(2*i)+1]:
+                    pts = [startx,yfactor[i],
+                           startx,yfactor[(i*2)+1]+(h/2),
+                           xfactor[(i*2)+1],yfactor[(i*2)+1]+(h/2)]
+                    item = root.add("line",points=pts,fill_color_gdk=style.black)
+                    canvas_items.append(item)
+                if list[(2*i)+2]:
+                    pts = [startx,yfactor[i]+h,
+                           startx,yfactor[(i*2)+2]+(h/2),
+                           xfactor[(i*2)+2],yfactor[(i*2)+2]+(h/2)]
+                    item = root.add("line",points=pts,fill_color_gdk=style.black)
+                    canvas_items.append(item)
+            add_box(root,xfactor[i],yfactor[i],w,h,list[i],style)
+                    
+    old_gen = gen
+    old_h = h
+    old_w = w
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def add_box(root,x,y,bwidth,bheight,person,style):
+    shadow = 3
+    xpad = 3
+
     name = person.getPrimaryName().getName()
     group = root.add("group",x=x,y=y)
-    fn = "-*-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
-    group.add("rect",x1=3,y1=3,x2=203,y2=33,fill_color="black")
-    group.add("rect",x1=0,y1=0,x2=200,y2=30,fill_color="white")
-    group.add("text",x=10,y=15,fill_color="black",font=fn,
-              text=name,anchor=ANCHOR_WEST)
+    canvas_items.append(group)
+    item = group.add("rect",
+                     x1=shadow,
+                     y1=shadow,
+                     x2=bwidth+shadow,
+                     y2=bheight+shadow,
+                     outline_color_gdk=style.dark[STATE_NORMAL],
+                     fill_color_gdk=style.dark[STATE_NORMAL])
+    canvas_items.append(item)
+    item = group.add("rect",
+                     x1=0,
+                     y1=0,
+                     x2=bwidth,
+                     y2=bheight,
+                     outline_color_gdk=style.white,
+                     fill_color_gdk=style.white)
+    canvas_items.append(item)
+    item = group.add("text",
+                     x=xpad,
+                     y=bheight/2.0,
+                     fill_color_gdk=style.text[STATE_NORMAL],
+                     font_gdk=style.font,
+                     text=name,
+                     anchor=ANCHOR_WEST)
+    canvas_items.append(item)
     group.connect('event',box_event)
     group.set_data('p',person)
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def box_event(obj,event):
     if event.type == GDK._2BUTTON_PRESS:
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             load_person(obj.get_data('p'))
     elif event.type == GDK.ENTER_NOTIFY:
-        obj.children()[2].set(fill_color="red")
+        canvas = gtop.get_widget("canvas1")
+        obj.raise_to_top()
+        box = obj.children()[1]
+        x,y,w,h = box.get_bounds()
+        box.set(x1=x,y1=y,x2=w,y2=h*3,
+                outline_color_gdk=canvas['style'].black)
+        box2 = obj.children()[0]
+        x,y,w,h1 = box2.get_bounds()
+        box2.set(x1=x,y1=y,x2=w,y2=(3*h)+3)
+        person = obj.get_data('p')
+        obj.add("text",
+                font_gdk=canvas['style'].font,
+                fill_color_gdk=canvas['style'].text[STATE_NORMAL],
+                text="b. %s" % person.getBirth().getDate(),
+                anchor=ANCHOR_WEST,
+                x=3,
+                y=h+(h/2))
+        obj.add("text",
+                font_gdk=canvas['style'].font,
+                fill_color_gdk=canvas['style'].text[STATE_NORMAL],
+                text="d. %s" % person.getDeath().getDate(),
+                anchor=ANCHOR_WEST,
+                x=3,
+                y=2*h+(h/2))
+
     elif event.type == GDK.LEAVE_NOTIFY:
-        obj.children()[2].set(fill_color="black")
+        canvas = gtop.get_widget("canvas1")
+        box = obj.children()[1]
+        x,y,w,h = box.get_bounds()
+        box.set(x1=x,y1=y,x2=w,y2=h/3,
+                outline_color_gdk=canvas['style'].white)
+        box2 = obj.children()[0]
+        x,y,w,h1 = box2.get_bounds()
+        box2.set(x1=x,y1=y,x2=w,y2=(h/3)+3)
+        obj.children()[4].destroy()
+        obj.children()[3].destroy()
+        canvas.update_now()
         
 #-------------------------------------------------------------------------
 #
@@ -3016,6 +3165,7 @@ def main(arg):
         "on_edit_source_clicked" : on_edit_source_clicked,
         "on_edit_place_clicked" : on_edit_place_clicked,
         "delete_event" : delete_event,
+        "on_canvas1_size_request": on_canvas1_size_request,
         "on_open_activate" : on_open_activate
         })	
 
@@ -3032,6 +3182,14 @@ def main(arg):
 
     database.setResearcher(Config.owner)
     mainloop()
+
+#-------------------------------------------------------------------------
+#
+# Start it all
+#
+#-------------------------------------------------------------------------
+def on_canvas1_size_request(obj,a):
+    load_canvas()
 
 #-------------------------------------------------------------------------
 #
