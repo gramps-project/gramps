@@ -99,10 +99,6 @@ class Gramps:
 
     def __init__(self,args):
 
-        self.pl_titles  = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
-                            (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
-                            ('',6,0), ('',7,0) ]
-
         self.program = gnome.program_init('gramps',const.version)
         self.program.set_property('app-libdir','%s/lib' % const.prefixdir)
         self.program.set_property('app-datadir','%s/share/gramps' % const.prefixdir)
@@ -730,7 +726,7 @@ class Gramps:
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
 
-            mlist = self.people_view.person_tree.get_selected_objects()
+            mlist = self.people_view.get_selected_objects()
 
             if len(mlist) != 2:
                 msg = _("Cannot merge people.")
@@ -1190,7 +1186,7 @@ class Gramps:
 
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
-        mlist = self.people_view.person_tree.get_selected_objects()
+        mlist = self.people_view.get_selected_objects()
         if mlist and self.active_person.get_id() == mlist[0]:
             self.load_person(self.active_person)
 
@@ -1211,7 +1207,7 @@ class Gramps:
     def delete_person_clicked(self,obj):
         cpage = self.views.get_current_page()
         if cpage == PERSON_VIEW:
-            mlist = self.people_view.person_tree.get_selected_objects()
+            mlist = self.people_view.get_selected_objects()
         else:
             mlist = [ self.active_person.get_id() ]
 
@@ -1265,7 +1261,7 @@ class Gramps:
         self.people_view.remove_from_history(self.active_person)
         self.db.remove_person_id(self.active_person.get_id())
         self.people_view.remove_from_person_list(self.active_person)
-        self.people_view.person_model.sort_column_changed()
+        #self.people_view.person_model.sort_column_changed()
 
         if self.hindex >= 0:
             self.active_person = self.db.get_person(self.history[self.hindex])
@@ -1494,17 +1490,21 @@ class Gramps:
         for p in plist:
             self.place_view.new_place_after_edit(p)
 
-    def update_after_edit(self,epo):
+    def update_after_edit(self,epo,change=1):
         if epo:
-            self.db.build_person_display(epo.person.get_id(),epo.original_id)
-            self.people_view.remove_from_person_list(epo.person,epo.original_id)
-            self.people_view.redisplay_person_list(epo.person)
+            if change:
+                print "change"
+                self.people_view.redisplay_person_list(epo.person)
+            else:
+                print "no change"
+                iter = self.people_view.person_model.get_iter((0,))
+                id = epo.person.get_id()
+                path = self.people_view.person_model.find_path(id)
+                self.people_view.person_model.row_changed(path,iter)
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):
         if person:
-            self.people_view.remove_from_person_list(person.get_id(),old_id)
-            self.db.build_person_display(person.get_id(),old_id)
             self.people_view.redisplay_person_list(person)
         self.update_display(0)
 

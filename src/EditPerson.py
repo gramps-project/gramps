@@ -79,10 +79,11 @@ class EditPerson:
         """Creates an edit window.  Associates a person with the window."""
 
         self.person = person
-        self.original_id = person.get_id()
+        self.orig_id = person.get_id()
+        self.orig_surname = person.get_primary_name().get_surname()
         self.parent = parent
-        if self.parent.child_windows.has_key(self.original_id):
-            self.parent.child_windows[self.original_id].present(None)
+        if self.parent.child_windows.has_key(self.orig_id):
+            self.parent.child_windows[self.orig_id].present(None)
             return
         self.db = db
         self.callback = callback
@@ -95,7 +96,7 @@ class EditPerson:
         self.update_death = 0
         self.pdmap = {}
         self.add_places = []
-        self.should_guess_gender = (self.original_id == '' and
+        self.should_guess_gender = (self.orig_id == '' and
                                     person.get_gender () ==
                                     RelLib.Person.unknown)
 
@@ -423,7 +424,7 @@ class EditPerson:
         self.window.destroy()
 
     def add_itself_to_winsmenu(self):
-        self.parent.child_windows[self.original_id] = self
+        self.parent.child_windows[self.orig_id] = self
         win_menu_label = GrampsCfg.nameof(self.person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
@@ -438,7 +439,7 @@ class EditPerson:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
-        del self.parent.child_windows[self.original_id]
+        del self.parent.child_windows[self.orig_id]
         self.menu_item.destroy()
         self.winsmenu.destroy()
         self.win_menu_item.destroy()
@@ -1043,7 +1044,7 @@ class EditPerson:
 
     def did_data_change(self):
         """Check to see if any of the data has changed from the
-        original record"""
+        orig record"""
 
         surname = unicode(self.surname_field.get_text())
         self.birth.set_date(unicode(self.bdate.get_text()))
@@ -1576,10 +1577,12 @@ class EditPerson:
             self.person.set_source_reference_list(self.srcreflist)
 
         self.update_lists()
-        if self.callback:
-            self.callback(self)
-
         self.db.commit_person(self.person)
+
+        if self.callback:
+            change = (self.orig_surname != surname) or (self.orig_id != idval)
+            self.callback(self,change)
+
         self.close(1)
 
     def get_place(self,field,makenew=0):
