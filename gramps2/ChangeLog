@@ -1,3 +1,12 @@
+2005-03-16  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/GenericFilter.py (HasTextMatchingSubstringOf): add checkboxes for case and
+	regexp matching; (HasTextMatchingRegexpOf) Added wrapper to use regexp matching
+	in HasTextMatchingSubstringOf
+	* src/gramps_main.py: Add new regular expression filter
+	* src/plugins/FilterEditor.py (EditRule:__init__): Treat params of new filter as boolean.
+	* TODO: Add parameter definition of Filter Rules to the filter itself, so
+	it can be removed from the filter editor and used by PeopleView.
+
 2005-03-16  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ScratchPad.py (ScratchPad): improved the generation of 
 	tooltip information for most object types.

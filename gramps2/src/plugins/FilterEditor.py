@@ -637,6 +637,10 @@ class EditRule:
                     t = MyListSelect(data)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
+                elif v == _('Case sensitive:'):
+                    t = MyBoolean(_('Use exact case of letters:'))
+                elif v == _('Regular-Expression matching:'):
+                    t = MyBoolean(_('Use regular expression'))
                 else:
                     t = MyEntry()
                 tlist.append(t)

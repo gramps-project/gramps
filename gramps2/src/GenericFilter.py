@@ -1825,27 +1825,45 @@ class IsWitness(Rule):
                         if w.get_type() == RelLib.Event.ID:
                             self.map.append(w.get_value())
 
+
 #-------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
 #-------------------------------------------------------------------------
 
-
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information"""
 
-    labels = [_('Substring:')]
+    labels = [_('Substring:'), _('Case sensitive:'), _('Regular-Expression matching:')]
 
     def prepare(self,db):
         self.db = db
+        self.person_map = {}
         self.event_map = {}
         self.source_map = {}
         self.family_map = {}
         self.place_map = {}
+        try:
+            if int(self.list[1]):
+                self.case_sensitive = True
+            else:
+                self.case_sensitive = False
+        except IndexError:
+            self.case_sensitive = False
+        try:
+            if int(self.list[2]):
+                self.regexp_match = True
+            else:
+                self.regexp_match = False
+        except IndexError:
+            self.regexp_match = False
         self.cache_sources()
 
     def reset(self):
+        self.person_map = {}
         self.event_map = {}
+        self.source_map = {}
         self.family_map = {}
+        self.place_map = {}
 
     def name(self):
         return 'Has text matching substring of'
@@ -1857,8 +1875,10 @@ class HasTextMatchingSubstringOf(Rule):
         return _('General filters')
 
     def apply(self,db,p_id):
+        if p_id in self.person_map:	# Cached by matching Source?
+            return self.person_map[p_id]
         p = db.get_person_from_handle(p_id)
-        if p.matches_string(self.list[0]):	# first match the person itself
+        if self.match_object(p):	# first match the person itself
             return 1
         for event_handle in p.get_event_list()+[p.get_birth_handle(), p.get_death_handle()]:
             if self.search_event(event_handle):	# match referenced events
@@ -1875,7 +1895,7 @@ class HasTextMatchingSubstringOf(Rule):
         if not family_handle in self.family_map:
             match = 0
             family = self.db.get_family_from_handle(family_handle)
-            if family.matches_string(self.list[0]):
+            if self.match_object(family):
                 match = 1
             else:
                 for event_handle in family.get_event_list():
@@ -1892,7 +1912,7 @@ class HasTextMatchingSubstringOf(Rule):
         if not event_handle in self.event_map:
             match = 0
             event = self.db.get_event_from_handle(event_handle)
-            if event.matches_string(self.list[0]):
+            if self.match_object(event):
                 match = 1
             else:
                 place_handle = event.get_place_handle()
@@ -1908,14 +1928,14 @@ class HasTextMatchingSubstringOf(Rule):
         # search inside the place and cache the result
         if not place_handle in self.place_map:
             place = self.db.get_place_from_handle(place_handle)
-            self.place_map[place_handle] = place.matches_string(self.list[0])
+            self.place_map[place_handle] = self.match_object(place)
         return self.place_map[place_handle]
 
     def cache_sources(self):
         # search all sources and match all referents of a matching source
         for source_handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(source_handle)
-            if source.matches_string(self.list[0]):
+            if self.match_object(source):
                 (person_list,family_list,event_list,
                     place_list,source_list,media_list
                     ) = get_source_referents(source_handle,self.db)
@@ -1927,6 +1947,31 @@ class HasTextMatchingSubstringOf(Rule):
                     self.event_map[handle] = 1
                 for handle in place_list:
                     self.place_map[handle] = 1
+
+    def match_object(self,object):
+        if self.regexp_match:
+            return object.matches_regexp(self.list[0],self.case_sensitive)
+        return object.matches_string(self.list[0],self.case_sensitive)
+
+#-------------------------------------------------------------------------
+# "HasTextMatchingRegexOf"
+#-------------------------------------------------------------------------
+class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
+    """This is wrapping HasTextMatchingSubstringOf to enable the regex_match parameter"""
+    def __init__(self,list):
+        HasTextMatchingSubstringOf.__init__(self,list)
+
+    def prepare(self,db):
+        self.db = db
+        self.person_map = {}
+        self.event_map = {}
+        self.source_map = {}
+        self.family_map = {}
+        self.place_map = {}
+        self.case_sensitive = False
+        self.regexp_match = True
+        self.cache_sources()
+
 
 #-------------------------------------------------------------------------
 #

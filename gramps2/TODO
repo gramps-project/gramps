@@ -19,4 +19,6 @@
   3 entries per page.
 * Add slideshow generation ability to web page generator
 * Enhance privacy handling
+* Add parameter definition of Filter Rules to the filter itself, so it can be
+  removed from the filter editor and used by PeopleView.
 * And a whole lot more....
