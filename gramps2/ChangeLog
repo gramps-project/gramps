@@ -1,3 +1,13 @@
+2004-05-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/WebPage.py: Clean up conversion to db. 
+	Switch to using Sort function. 
+	* src/plugins/CountAncestors.py: Add file, convert to db.
+	* src/plugins/count_anc.py: Remove file. 
+	* src/plugins/Summary.py: Convert to db.
+	* src/Makefile.am: Ship Sort.py instead of sort.py.
+	* src/plugins/Makefile.am: Ship CountAncestors.py 
+	instead of count_anc.py.
+
 2004-05-05  Don Allingham  <donaldallingham@users.sourceforge.net>
 	* src/plugins/ReadGedcom.py: commit after media object change
 	* src/gramps.glade: file chooser for image selector

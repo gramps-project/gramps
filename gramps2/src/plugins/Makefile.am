@@ -10,7 +10,7 @@ pkgpython_PYTHON = \
 	BookReport.py\
 	ChangeTypes.py\
 	Check.py\
-	count_anc.py\
+	CountAncestors.py\
 	Desbrowser.py\
 	DescendReport.py\
 	DesGraph.py\

@@ -53,7 +53,7 @@ import const
 import GrampsCfg
 import GenericFilter
 import Date
-import sort
+import Sort
 import Report
 import Errors
 from QuestionDialog import ErrorDialog
@@ -126,18 +126,13 @@ class IndividualPage:
         name = person.get_primary_name().get_regular_name()
         self.doc.set_title(_("Summary of %s") % name)
         self.doc.fix_title()
+        self.sort = Sort.Sort(self.db)
         
     #------------------------------------------------------------------------
     #
     # 
     #
     #------------------------------------------------------------------------
-    def by_date(self,a_id,b_id):
-        if not (a_id and b_id):
-            return 0
-        a = self.db.find_event_from_id(a_id)
-        b = self.db.find_event_from_id(b_id)
-        return Date.compare_dates(a.get_date_object(),b.get_date_object())
 
     #--------------------------------------------------------------------
     #
@@ -232,8 +227,8 @@ class IndividualPage:
         self.doc.start_paragraph("Data")
         if person_id:
             person = self.db.find_person_from_id(person_id)
-            if self.list.has_key(person.get_id()):
-                self.doc.start_link("%s.%s" % (person.get_id(),self.ext))
+            if self.list.has_key(person_id):
+                self.doc.start_link("%s.%s" % (person_id,self.ext))
                 self.doc.write_text(person.get_primary_name().get_regular_name())
                 self.doc.end_link()
             else:
@@ -323,7 +318,7 @@ class IndividualPage:
             if object.get_mime_type()[0:5] == "image":
                 src = object.get_path()
                 junk,ext = os.path.splitext(src)
-                base = '%s%s' % (object.get_id(),ext)
+                base = '%s%s' % (object_id,ext)
 
                 if os.path.isfile(src):
                     self.doc.start_paragraph("Data")
@@ -405,33 +400,16 @@ class IndividualPage:
            as private, creating a thumbnail and copying the original
            image to the directory."""
 
-        # build a list of the images to add, but skip the first image,
-        # since it has been used at the top of the page.
-        
-        my_list = []
-        for object_ref in self.person.get_media_list():
-            object = self.db.find_object_from_id(object_ref.get_reference_id())
-            if object.get_mime_type()[0:5] == "image":
-                if object_ref.get_privacy() == 0:
-                    my_list.append(object)
-            
-        # if no images were found, return
-        
-        if len(my_list) == 0:
-            return
-
-        self.doc.start_paragraph("Data")
-        self.doc.end_paragraph()
-
-        self.doc.start_paragraph("GalleryTitle")
-        self.doc.write_text(_("Gallery"))
-        self.doc.end_paragraph()
-
-        self.doc.start_table("gallery","IndTable")
         index = 0
-        for obj_id in my_list:
+        for object_ref in self.person.get_media_list():
+            obj_id = object_ref.get_reference_id()
+            obj = self.db.find_object_from_id(obj_id)
+            if obj.get_mime_type()[0:5] != "image":
+                continue
+            if object_ref.get_privacy():
+                continue
+
             try:
-                obj = self.db.find_object_from_id(obj_id)
                 src = obj.get_path()
                 junk,ext = os.path.splitext(src)
                 base = '%s%s' % (obj.get_id(),ext)
@@ -454,6 +432,18 @@ class IndividualPage:
                 if index == 0: 
                     index = 1
                     continue
+                elif index == 1:
+                    # If there's a second image then we need to start out
+                    # Gallery section and the table
+                    self.doc.start_paragraph("Data")
+                    self.doc.end_paragraph()
+
+                    self.doc.start_paragraph("GalleryTitle")
+                    self.doc.write_text(_("Gallery"))
+                    self.doc.end_paragraph()
+
+                    self.doc.start_table("gallery","IndTable")
+                    index = 2
 
                 description = obj.get_description()
 
@@ -470,19 +460,20 @@ class IndividualPage:
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.start_cell("NoteCell")
-                if description != "":
+                if description:
                     self.doc.start_paragraph("PhotoDescription")
                     self.doc.write_text(description)
                     self.doc.end_paragraph()
-                if obj.get_note() != "":
+                if obj.get_note():
                     self.doc.write_note(obj.get_note(),obj.get_note_format(),"PhotoNote")
-                elif obj.get_reference().get_note() != "":
-                    self.doc.write_note(obj.get_reference().get_note(),obj.get_reference().get_note_format(),"PhotoNote")
+                elif object_ref.get_note():
+                    self.doc.write_note(object_ref.get_note(),object_ref.get_note_format(),"PhotoNote")
                 self.doc.end_cell()
                 self.doc.end_row()
             except IOError:
                 pass
-        self.doc.end_table()
+        if index == 2:
+            self.doc.end_table()
         
     #--------------------------------------------------------------------
     #
@@ -497,7 +488,7 @@ class IndividualPage:
         
         event_id_list = [ self.person.get_birth_id(), self.person.get_death_id() ]
         event_id_list = event_id_list + self.person.get_event_list()
-        event_id_list.sort(self.by_date)
+        event_id_list.sort(self.sort.by_date)
         for event_id in event_id_list:
             if not event_id:
                 continue
@@ -711,6 +702,7 @@ class WebReport(Report.Report):
         self.depth = depth
         self.birth_dates = birth_dates
         self.year_only = year_only
+        self.sort = Sort.Sort(self.db)
 
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
@@ -814,7 +806,7 @@ class WebReport(Report.Report):
         doc.write_text(_("Family Tree Index"))
         doc.end_paragraph()
     
-        person_id_list.sort(self.db.sort_by_name)
+        person_id_list.sort(self.sort.by_last_name)
 
         a = {}
         for person_id in person_id_list:

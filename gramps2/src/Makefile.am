@@ -70,7 +70,7 @@ pkgpython_PYTHON = \
 	Report.py\
 	SelectChild.py\
 	SelectObject.py\
-	sort.py\
+	Sort.py\
 	soundex.py\
 	Sources.py\
 	SourceView.py\
