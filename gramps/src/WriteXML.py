@@ -271,13 +271,17 @@ def dump_location(g,loc):
 def write_attribute_list(g, list, indent=3):
     sp = '  ' * indent
     for attr in list:
-        g.write('%s<attribute%s>\n' % (sp,conf_priv(attr)))
-        write_line(g,"attr_type",attr.getType(),4)
-        write_line(g,"attr_value",attr.getValue(),4)
-        for s in attr.getSourceRefList():
-            dump_source_ref(g,s,indent+1)
-        write_note(g,"note",attr.getNote(),4)
-        g.write('%s</attribute>\n' % sp)
+        g.write('%s<attribute%s type="%s" value="%s"' % \
+                (sp,conf_priv(attr),attr.getType(),attr.getValue()))
+        slist = attr.getSourceRefList()
+        note = attr.getNote()
+        if note == "" and len(slist) == 0:
+            g.write('/>\n')
+        else:
+            for s in attr.getSourceRefList():
+                dump_source_ref(g,s,indent+1)
+            write_note(g,"note",attr.getNote(),4)
+            g.write('%s</attribute>\n' % sp)
 
 def write_photo_list(g,list,indent=3):
     sp = '  '*indent

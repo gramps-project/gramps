@@ -397,6 +397,7 @@ class Gallery(ImageSelect):
         else:
             pixmap.load_file(utils.find_icon(mtype))
 
+        self.change_dialog.get_widget("private").set_active(photo.getPrivacy())
         self.change_dialog.get_widget("gid").set_text(object.getId())
         self.change_dialog.get_widget("description").set_text(object.getDescription())
         if object.getLocal():
@@ -421,10 +422,12 @@ class Gallery(ImageSelect):
     def new_desc_apply_clicked(self, obj):
         photo = obj.get_data("p")
         top = obj.get_data('t')
+        priv = top.get_widget("private").get_active()
         text = top.get_widget("notes").get_chars(0,-1)
         note = photo.getNote()
-        if text != note:
+        if text != note or priv != photo.getPrivacy():
             photo.setNote(text)
+            photo.setPrivacy(priv)
             utils.modified()
 
     #-------------------------------------------------------------------------
