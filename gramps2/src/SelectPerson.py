@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,8 +17,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -57,12 +55,10 @@ class SelectPerson:
 
         self.renderer = gtk.CellRendererText()
         self.db = db
-        self.filter = filter
+        self.filter = filter 
         self.glade = gtk.glade.XML(const.gladeFile,"select_person","gramps")
         self.top = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
-        print self.top
-        print title_label
         self.filter_select = self.glade.get_widget('filter')
         self.plist =  self.glade.get_widget('plist')
         self.notebook =  self.glade.get_widget('notebook')
@@ -78,7 +74,7 @@ class SelectPerson:
         if filter:
             self.filter_select.set_label(flabel)
             self.filter_select.connect('toggled',self.redraw_cb)
-
+            self.filter_select.show()
             self.filter_select.set_active(1)
         else:
             self.filter_select.hide()
@@ -115,19 +111,21 @@ class SelectPerson:
         
     def redraw(self):
 
-        for person_id in self.db.sort_person_keys():
-            if self.use_filter and not self.filter(person_id):
+        return
+    
+        for key in self.db.sort_person_keys():
+            person = self.db.get_person(key)
+            if self.use_filter and not self.filter(person):
                 continue
                 
-            data = self.db.get_person_display(person_id)
-            person = self.db.find_person_from_id(person_id)
+            data = self.db.get_person_display(key)
             gender = person.get_gender()
-            if gender == RelLib.Person.male:
-                self.mmodel.add([data[0],data[1],data[3],data[5],data[6]],person_id)
-            elif gender == RelLib.Person.female:
-                self.fmodel.add([data[0],data[1],data[3],data[5],data[6]],person_id)
+            if gender == RelLib.Person.plist:
+                self.mmodel.add([data[0],data[1],data[3],data[5],data[6]],key)
+            elif gender == RelLib.Person.feplist:
+                self.fmodel.add([data[0],data[1],data[3],data[5],data[6]],key)
             else:
-                self.umodel.add([data[0],data[1],data[3],data[5],data[6]],person_id)
+                self.umodel.add([data[0],data[1],data[3],data[5],data[6]],key)
 
     def select_function(self,store,path,iter,id_list):
         id_list.append(self.model.get_value(iter,1))
@@ -143,7 +141,7 @@ class SelectPerson:
 
             idlist = self.get_selected_ids()
             if idlist and idlist[0]:
-                return_value = idlist[0]
+                return_value = self.db.get_person(idlist[0])
             else:
                 return_value = None
             self.top.destroy()

@@ -113,7 +113,7 @@ class Rule:
         for i in range(0,len(self.list)):
             if self.list[i]:
                 v.append('%s="%s"' % (_(self.labels[i]),_(self.list[i])))
-        return join(v,'; ')
+        return string.join(v,'; ')
 
 #-------------------------------------------------------------------------
 #

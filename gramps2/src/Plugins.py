@@ -25,7 +25,7 @@ plugins from specfied directories, build menus for the different categories,
 and provide dialog to select and execute plugins.
 
 Plugins are divided into several categories. This are: reports, tools,
-filters, importer, exporters, and document generators.
+importers, exporters, and document generators.
 """
 
 #-------------------------------------------------------------------------
