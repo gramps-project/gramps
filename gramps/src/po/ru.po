@@ -3,11 +3,12 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002.
 # 
+#, fuzzy 
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.3-snap20020330\n"
 "POT-Creation-Date: Fri Mar 15 07:51:16 2002\n"
-"PO-Revision-Date: 2002-04-02 16:51-0600\n"
+"PO-Revision-Date: 2002-04-08 10:58-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -658,7 +659,7 @@ msgstr "Интернет"
 
 #: EditPerson.glade:4518
 msgid "LDS Baptism"
-msgstr "Крещение АДС"
+msgstr "Крещение СПД"
 
 #: EditPerson.glade:4566 EditPerson.glade:4838 EditPerson.glade:5110
 #: marriage.glade:1738
@@ -677,9 +678,8 @@ msgid "Endowment"
 msgstr "Завещанное"
 
 #: EditPerson.glade:5062
-#, fuzzy
 msgid "Sealed to Parents"
-msgstr "Приписан к Родителям"
+msgstr "Присоединен к Родителям"
 
 #: EditPerson.glade:5136 gramps.glade:1736
 msgid "Parents"
@@ -687,7 +687,7 @@ msgstr "Родители"
 
 #: EditPerson.glade:5385 marriage.glade:1820
 msgid "LDS"
-msgstr "АСД"
+msgstr "СПД"
 
 #: EditPerson.glade:5400
 msgid "Alternate Name Editor - GRAMPS"
@@ -966,7 +966,7 @@ msgstr "Использование"
 
 #: GrampsCfg.py:105 preferences.glade:663
 msgid "Find"
-msgstr "Найти"
+msgstr "Поиск"
 
 #: GrampsCfg.py:106 preferences.glade:2234
 msgid "Report Preferences"
@@ -982,7 +982,7 @@ msgstr "Угадывание Дат"
 
 #: GrampsCfg.py:696 GrampsCfg.py:711
 msgid "No default format"
-msgstr "Нет формата-по-умолчанию"
+msgstr "Нет формата по умолчанию"
 
 #: ImageSelect.py:147
 msgid "That is not a valid file name."
@@ -999,7 +999,7 @@ msgstr "Не смогла импортировать %s"
 
 #: ImageSelect.py:429 MediaView.py:167
 msgid "View in the default viewer"
-msgstr "Просмотр в устройстве просмотра-по-умолчанию"
+msgstr "Просмотр в устройстве просмотра по умолчанию"
 
 #: ImageSelect.py:432 MediaView.py:169
 msgid "Edit with the GIMP"
@@ -1068,11 +1068,11 @@ msgstr "Горизонтально"
 
 #: PedView.py:346
 msgid "Doubleclick to edit, Shift-Doubleclick to make the active person"
-msgstr "Двойной клик - правка, Shift-двойной клик - сделать активным лицом"
+msgstr "Щелкнуть - правка, Shift-двойной щелчок - сделать активным лицом"
 
 #: PedView.py:362
 msgid "Double clicking will make %s the active person"
-msgstr "Двойной клик сделает %s активным лицом"
+msgstr "Двойной щелчок сделает %s активным лицом"
 
 #: PlaceView.py:142
 msgid "Exactly two places must be selected to perform a merge"
@@ -1515,7 +1515,7 @@ msgstr "Включить поддержку альтернативных календарей"
 
 #: config.glade:797
 msgid "LDS Extensions"
-msgstr "Расширения АСД"
+msgstr "Расширения СПД"
 
 #: config.glade:833
 msgid ""
@@ -1525,16 +1525,16 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS поддерживает Процедуры АСД, которые являются\n"
+"GRAMPS поддерживает Процедуры СПД, которые являются\n"
 "специальными типами событий связанных с Церковью Иисуса\n"
-"Христа Адвентистов Седьмого Дня.\n"
+"Христа Святых Последних Дней.\n"
 "\n"
 "Вы можете включить или выключить эту поддержку. Вы можете\n"
-"изменить эту настройку в будущем в диалоге Настройки."
+"изменить эту настройку в будущем в диалоге Настройки.СПД"
 
 #: config.glade:867
 msgid "Enable LDS Ordinance Support"
-msgstr "Включить Поддержку Процедур АСД"
+msgstr "Включить Поддержку Процедур СПД"
 
 #: config.glade:894
 msgid "Complete"
@@ -1569,7 +1569,8 @@ msgstr ""
 "Анализом) (Genealogical Research and Analysis Management Programming System) "
 "является персональной генеалогической программой.\n"
 "\n"
-"Перевод: Александр Ройтман"
+"\n"
+"Перевод: Александр Ройтман  <shura@alex.neuro.umn.edu>"
 
 #: const.py:115 const.py:233 gramps.glade:4991 gramps.glade:5186
 #: gramps.glade:5570 gramps.glade:5635 gramps.glade:6570 gramps.glade:6617
@@ -2021,11 +2022,11 @@ msgstr "_Новый Файл"
 
 #: gramps.glade:121
 msgid "Revert to last saved database"
-msgstr "Откатить к последнему варианту сохраненной базы данных"
+msgstr "Восстановить последний вариант сохраненной базы данных"
 
 #: gramps.glade:127
 msgid "_Revert"
-msgstr "От_катить"
+msgstr "_Восстановить"
 
 #: gramps.glade:135
 msgid "_Import"
@@ -2298,7 +2299,7 @@ msgid ""
 "Click column headers to sort. When sorted by birth date, drag and drop to "
 "reorder children."
 msgstr ""
-"Кликните на заголовки колонок для сортировки. При сортировке \n"
+"Щелкните на заголовки колонок для сортировки. При сортировке \n"
 "по дате рождения, упорядочьте детей посредством перетаскивания мышью."
 
 #: gramps.glade:2388
@@ -2597,12 +2598,12 @@ msgstr "Невозможная операция.  Дети должны быть упорядочены по дате рождения."
 msgid ""
 "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
-"Вы хотите потерять ваши изменения и откатить к последней сохраненной базе "
+"Вы хотите потерять ваши изменения и восстановить последнюю сохраненную базу "
 "данных?"
 
 #: gramps_main.py:1138
 msgid "Cannot revert to a previous database, since one does not exist"
-msgstr "Не могу откатить к предыдущей базе данных так как ее не существует"
+msgstr "Не могу восстановить предыдущую базу данных так как ее не существует"
 
 #: gramps_main.py:1738
 msgid "No default/home person has been set"
@@ -2713,9 +2714,8 @@ msgid "Modify the selected attribute"
 msgstr "Изменить выделенный атрибут"
 
 #: marriage.glade:1538
-#, fuzzy
 msgid "Spouse Sealing"
-msgstr ""
+msgstr "Соединение Супругов"
 
 #: mergedata.glade:19
 msgid "Merge Places - GRAMPS"
@@ -3039,8 +3039,8 @@ msgstr "Проверить и починить базу данных"
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
-"Проверяет базу данных на предмет целостности, поправляя ошибки по мере "
-"возможности"
+"Проверяет базу данных на предмет целостности, по мере возможности исправляя "
+"ошибки "
 
 #: plugins/DesGraph.py:311 plugins/DesGraph.py:426
 msgid "Descendant Graph"
@@ -3247,7 +3247,7 @@ msgstr "Не найдено соответствий"
 
 #: plugins/EventCmp.py:519
 msgid "Compare individual events"
-msgstr "Сравнить инливилуальные события"
+msgstr "Сравнить индивидуальные события"
 
 #: plugins/EventCmp.py:521
 msgid ""
@@ -3401,8 +3401,8 @@ msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
 msgstr ""
-"Просматривает всю базу данных в поиске индивидуальных единиц которые могут "
-"представять одно лицо."
+"Просматривает всю базу данных в поиске индивидуальных элементов которые могут "
+"представлять одно лицо."
 
 #: plugins/PatchNames.py:74
 msgid "%s will be extracted as a nickname from %s\n"
@@ -3735,7 +3735,7 @@ msgstr "Утилиты"
 
 #: plugins/RelCalc.py:438
 msgid "Calculates the relationship between two people"
-msgstr "Вычисляет отношение между двумя лицами"
+msgstr "Вычисляет отношения между двумя лицами"
 
 #: plugins/ReorderIds.py:105
 msgid "Reorder gramps IDs"
@@ -3744,7 +3744,7 @@ msgstr "Переупорядочить gramps ID номера"
 #: plugins/ReorderIds.py:107
 msgid "Reorders the gramps IDs according to gramps' default rules."
 msgstr ""
-"Переупорядочивает gramps ID номера в соответствии с правилами gramps по "
+"Переупорядочивает gramps ID номера в соответствии с правилами Gramps по "
 "умолчанию."
 
 #: plugins/Summary.py:92
@@ -4155,7 +4155,7 @@ msgstr "Лицо 2"
 
 #: plugins/merge.glade:408
 msgid "Match Threshold"
-msgstr "Степень Порог Соответствия"
+msgstr "Степень Порога Соответствия"
 
 #: plugins/merge.glade:451
 msgid "Use SoundEx codes for name matches"
@@ -4256,7 +4256,7 @@ msgstr "Имя использованное для вычисления кода SoundEx"
 
 #: plugins/soundgen.py:93
 msgid "Generate SoundEx codes"
-msgstr "Генерирует коды SoundEx"
+msgstr "Генерировать коды SoundEx"
 
 #: plugins/soundgen.py:95
 msgid "Generates SoundEx codes for names"
@@ -4488,7 +4488,7 @@ msgstr "Использовать листы"
 
 #: preferences.glade:947
 msgid "Always display the LDS ordinance tabs"
-msgstr "Всегда показывать листы процедур АСД"
+msgstr "Всегда показывать листы процедур СПД"
 
 #: preferences.glade:979
 msgid "Display attribute on Edit Person form"
@@ -4570,7 +4570,7 @@ msgstr "Календари"
 
 #: preferences.glade:1706
 msgid "Show calendar format selection menu"
-msgstr "Показать меню выбора формата календаря"
+msgstr "Показывать меню выбора формата календаря"
 
 #: preferences.glade:2255
 msgid "Preferred Text Format"
@@ -4618,15 +4618,15 @@ msgstr "Переноска Мышью из Внешнего Источника"
 
 #: preferences.glade:2588
 msgid "Make a reference to the object when the object is dropped"
-msgstr "Сделать ссылку на объект когда объект отпущен"
+msgstr "Делать ссылку на объект когда объект отпущен"
 
 #: preferences.glade:2610
 msgid "Make a local copy when the object is dropped"
-msgstr "Сделать локальную копию когда объект отпущен"
+msgstr "Делать локальную копию когда объект отпущен"
 
 #: preferences.glade:2632
 msgid "Display global properties editor when object is dropped"
-msgstr "Вывести редактор глобальных свойств когда объект отпущен"
+msgstr "Выводить редактор глобальных свойств когда объект отпущен"
 
 #: preferences.glade:2648
 msgid "Drag and Drop from an Internal Source"
@@ -4634,7 +4634,7 @@ msgstr "Переноска Мышью из Внутреннего Источника"
 
 #: preferences.glade:2674
 msgid "Display local properties editor when object is dropped"
-msgstr "Вывести редактор локальных свойств когда объект отпущен"
+msgstr "Выводить редактор локальных свойств когда объект отпущен"
 
 #: preferences.glade:2710
 msgid "GRAMPS ID prefixes"
@@ -4694,7 +4694,7 @@ msgstr "Открыть Базу Данных GRAMPS"
 
 #: revision.glade:187
 msgid "Revert to an older version from revision control"
-msgstr "Откатить к более старой версии из контроля ревизий"
+msgstr "Восстановить более старую версию из контроля ревизий"
 
 #: revision.glade:203
 msgid "Select an older revision - GRAMPS"
@@ -4702,7 +4702,7 @@ msgstr "Выбрать более старую ревизию - GRAMPS"
 
 #: revision.glade:285
 msgid "Revert to an older revision"
-msgstr "Откатить к более старой ревизии"
+msgstr "Восстановить более старую ревизию"
 
 #: revision.glade:338
 msgid "Revision"
@@ -4746,7 +4746,7 @@ msgstr "Коментарии"
 
 #: srcsel.glade:585
 msgid "Confidence"
-msgstr "Уверенность"
+msgstr "Достоверность"
 
 #: srcsel.glade:643
 msgid "Source Reference Selection - GRAMPS"
