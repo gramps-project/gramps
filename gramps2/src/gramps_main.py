@@ -1428,17 +1428,6 @@ class Gramps:
     def on_revert_activate(self,obj):
         pass
         
-    def on_save_as_activate(self,obj):
-        wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-        fileSelector = wFs.get_widget("fileselection")
-        fileSelector.set_title('%s - GRAMPS' % _('Save database'))
-        fileSelector.set_transient_for(self.topWindow)
-        fileSelector.show()
-        button = fileSelector.run()
-        if button == gtk.RESPONSE_OK:
-            self.on_ok_button2_clicked(fileSelector)
-        fileSelector.destroy()
-
     def on_person_list1_activate(self,obj):
         """Switches to the person list view"""
         self.views.set_current_page(PERSON_VIEW)
