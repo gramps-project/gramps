@@ -1935,6 +1935,9 @@ class GrampsDB(Persistent):
     def need_autosave(self):
         return 1
 
+    def getPersonLength(self):
+        return len(self.personTable)
+
     def getPersonKeys(self):
         return self.personTable.keys()
     

@@ -92,6 +92,7 @@ class PlaceView:
                                    gobject.TYPE_STRING)
         self.list.set_model(self.model)
         self.list.get_column(0).clicked()
+        self.selection = self.list.get_selection()
 
     def change_db(self,db):
         self.db = db
@@ -124,8 +125,11 @@ class PlaceView:
         self.list.set_model(self.model)
         self.list.get_column(0).clicked()
         
-    def merge(self):
+    def goto(self,id):
+        self.selection.unselect_all()
+        self.selection.select_iter(self.id2col[id])
 
+    def merge(self):
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
         

@@ -114,7 +114,11 @@ class MediaView:
         self.update = update
         self.list.connect('button-press-event',self.on_button_press_event)
         self.selection.connect('changed',self.on_select_row)
-        
+
+    def goto(self,id):
+        self.selection.unselect_all()
+        self.selection.select_iter(self.id2col[id])
+
     def change_db(self,db):
         self.db = db
 
@@ -214,23 +218,6 @@ class MediaView:
             self.id2col[id] = iter
             self.model.set(iter, 0, title, 1, id, 2, type, 3, path, 4, stitle)
 
-#        if index > 0:
-#            self.list.select_row(current_row,0)
-#            self.list.moveto(current_row)
-#            self.preview.show()
-#        else:
-#            self.mid.set_text("")
-#            self.mtype.set_text("")
-#            self.mdesc.set_text("")
-#            self.mpath.set_text("")
-#            self.mdetails.set_text("")
-#            self.preview.hide()
-
-#        if current_row < self.list.rows:
-#            self.list.moveto(current_row)
-#        else:
-#            self.list.moveto(0)
-#        self.list.thaw()
 
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""

@@ -82,7 +82,6 @@ class SourceView:
             column.set_min_width(title[2])
             self.list.append_column(column)
 
-        self.list.set_search_column(0)
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING)
@@ -92,13 +91,18 @@ class SourceView:
     def change_db(self,db):
         self.db = db
 
+    def goto(self,id):
+        self.list.get_selection().select_iter(self.map[id])
+
     def load_sources(self):
         self.model.clear()
-
+        self.map = {}
+        
         for key in self.db.getSourceKeys():
             val = self.db.getSourceDisplay(key)
                 
             iter = self.model.append()
+            self.map[val[1]] = iter
             self.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                            3, val[3], 4, val[4])
             self.list.connect('button-press-event',self.button_press)

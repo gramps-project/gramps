@@ -374,7 +374,11 @@ class Gramps:
     def row_changed(self,obj):
         mlist = self.person_tree.get_selected_objects()
         if mlist:
-            self.change_active_person(self.db.getPerson(mlist[0]))
+            try:
+                self.change_active_person(self.db.getPerson(mlist[0]))
+            except:
+                self.change_active_person(None)
+                self.person_tree.unselect()
 
     def on_show_plugin_status(self,obj):
         Plugins.PluginStatus()
@@ -436,35 +440,35 @@ class Gramps:
     def on_find_activate(self,obj):
         """Display the find box"""
         if self.views.get_current_page() == 4:
-            Find.FindPlace(self.active_person.getId(),self.find_goto_place,self.db)
+            Find.FindPlace(self.find_goto_place,self.db)
         elif self.views.get_current_page() == 3:
-            Find.FindSource(self.source_view.source_list,self.find_goto_source,self.db)
+            Find.FindSource(self.find_goto_source,self.db)
         elif self.views.get_current_page() == 5:
-            Find.FindMedia(self.media_view.media_list,self.find_goto_media,self.db)
+            Find.FindMedia(self.find_goto_media,self.db)
         else:
-            Find.FindPerson(self.person_list,self.find_goto_to,self.db)
+            Find.FindPerson(self.find_goto_person,self.db)
 
     def on_findname_activate(self,obj):
         """Display the find box"""
         pass
 
-    def find_goto_to(self,id):
+    def find_goto_person(self,id):
         """Find callback to jump to the selected person"""
         self.change_active_person(id)
         self.goto_active_person()
         self.update_display(0)
 
-    def find_goto_place(self,row):
+    def find_goto_place(self,id):
         """Find callback to jump to the selected place"""
-        self.place_view.moveto(row)
+        self.place_view.goto(id)
 
-    def find_goto_source(self,row):
+    def find_goto_source(self,id):
         """Find callback to jump to the selected source"""
-        self.source_view.moveto(row)
+        self.source_view.goto(id)
 
     def find_goto_media(self,row):
         """Find callback to jump to the selected media"""
-        self.media_view.moveto(row)
+        self.media_view.goto(row)
 
     def home_page_activate(self,obj):
         gnome.url_show(_HOMEPAGE)
@@ -499,7 +503,6 @@ class Gramps:
 
     def delete_event(self,widget, event):
         """Catch the destruction of the top window, prompt to save if needed"""
-        widget.hide()
         self.on_exit_activate(widget)
         return 1
 
@@ -681,8 +684,6 @@ class Gramps:
         dbname = obj.get_data("dbname")
         getoldrev = obj.get_data("getoldrev")
         filename = dbname.get_full_path(0)
-        print filename
-        
         Utils.destroy_passed_object(obj)
 
         if filename == "" or filename == None:
@@ -981,8 +982,9 @@ class Gramps:
         model.tree.scroll_to_cell(itpath,col,1,0.5,0.0)
             
     def change_active_person(self,person):
-        self.active_person = person
-        self.modify_statusbar()
+        if person != self.active_person:
+            self.active_person = person
+            self.modify_statusbar()
         if person:
             val = 1
         else:
@@ -1349,7 +1351,7 @@ class Gramps:
         else:
             self.clear_database(0)
 
-        self.status_text(_("Loading %s ...") % name)
+        self.status_text(_("Loading %s...") % name)
         if self.db.load(filename,self.load_progress) == 0:
             self.status_text('')
             return 0

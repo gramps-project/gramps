@@ -39,6 +39,7 @@ class SaveDialog:
         label2.set_text(msg2)
         label2.set_use_markup(gtk.TRUE)
 
+        self.top.show()
         response = self.top.run()
         if response == gtk.RESPONSE_NO:
             self.task1()
@@ -62,6 +63,7 @@ class QuestionDialog:
 
         self.xml.get_widget('okbutton').set_label(label)
 
+        self.top.show()
         response = self.top.run()
         if response == gtk.RESPONSE_ACCEPT:
             task()
@@ -83,6 +85,7 @@ class OptionDialog:
 
         self.xml.get_widget('option1').set_label(btnmsg1)
         self.xml.get_widget('option2').set_label(btnmsg2)
+        self.top.show()
         response = self.top.run()
         if response == gtk.RESPONSE_NO:
             if task1:
@@ -102,6 +105,7 @@ class ErrorDialog:
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(gtk.TRUE)
         label2.set_text(msg2)
+        self.top.show()
         self.top.run()
         self.top.destroy()
 
@@ -116,6 +120,7 @@ class WarningDialog:
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(gtk.TRUE)
         label2.set_text(msg2)
+        self.top.show()
         self.top.run()
         self.top.destroy()
 
@@ -130,6 +135,7 @@ class OkDialog:
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(gtk.TRUE)
         label2.set_text(msg2)
+        self.top.show()
         self.top.run()
         self.top.destroy()
 
