@@ -1119,9 +1119,9 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     #function to print text to a printer
     def do_print(self,dialog,job):
-        ggpc = gnomeprint.Context(dialog.get_config())
-        job.render(ggpc)
-        gpc.close()
+        self.gpc = gnomeprint.Context(dialog.get_config())
+        job.render(self.gpc)
+        self.gpc.close()
  
     #I believe this is a print preview
     def show_preview(self,dialog):
