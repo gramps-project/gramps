@@ -1308,7 +1308,7 @@ class GedcomParser:
                 event.add_source_reference(self.handle_source(matches,level+1))
             elif matches[1] == "PLAC":
                 val = matches[2]
-                n = string.strip(event.get_name())
+                n = event.get_name().strip()
                 if self.is_ftw and n in ["Occupation","Degree","SSN"]:
                     event.set_description(val)
                     self.ignore_sub_junk(level+1)

@@ -74,6 +74,7 @@ import ArgHandler
 import Exporter
 import RelImage
 import RecentFiles
+import NameDisplay
 
 from QuestionDialog import *
 
@@ -593,7 +594,8 @@ class Gramps:
                         haveit.append(pid)
                         person = self.db.get_person_from_handle(pid)
                         item = gtk.MenuItem("_%d. %s [%s]" % 
-                                            (num,person.get_primary_name().get_name(),
+                                            (num,
+                                             NameDisplay.displayer.display(person),
                                              person.get_gramps_id()))
                         item.connect("activate",self.bookmark_callback,
                                      person.get_handle())
@@ -628,7 +630,7 @@ class Gramps:
                 person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
                     (hotkey,
-                     person.get_primary_name().get_name(),
+                     NameDisplay.displayer.display(person),
                      person.get_gramps_id()))
                 item.connect("activate",self.back_clicked,num)
                 item.show()
@@ -658,7 +660,7 @@ class Gramps:
                 person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
                     (hotkey,
-                     person.get_primary_name().get_name(),
+                     NameDisplay.displayer.display(person),
                      person.get_gramps_id()))
                 item.connect("activate",self.fwd_clicked,num)
                 item.show()
@@ -1239,7 +1241,7 @@ class Gramps:
         for sel in mlist:
             p = self.db.get_person_from_handle(sel)
             self.active_person = p
-            name = GrampsCfg.get_nameof()(p) 
+            name = NameDisplay.displayer.display(p) 
 
             QuestionDialog(_('Delete %s?') % name,
                            _('Deleting the person will remove the person '
@@ -1371,7 +1373,7 @@ class Gramps:
             self.status_text("")
         else:
             if GrampsGconfKeys.get_statusbar() <= 1:
-                pname = GrampsCfg.get_nameof()(self.active_person)
+                pname = NameDisplay.displayer.display(self.active_person)
                 name = "[%s] %s" % (self.active_person.get_gramps_id(),pname)
             else:
                 name = self.display_relationship()
@@ -1383,7 +1385,7 @@ class Gramps:
         if not default_person:
             return u''
         try:
-            pname = GrampsCfg.get_nameof()(default_person)
+            pname = NameDisplay.displayer.display(default_person)
             (name,plist) = self.relationship.get_relationship(
                                     default_person,
                                     self.active_person)
@@ -1538,7 +1540,7 @@ class Gramps:
         if person == None:
             return _("Unknown")
         else:
-            return GrampsCfg.get_nameof()(person)
+            return NameDisplay.displayer.display(person)
 
     def status_text(self,text):
         self.statusbar.set_status(text)
@@ -1633,7 +1635,7 @@ class Gramps:
     def on_add_bookmark_activate(self,obj):
         if self.active_person:
             self.bookmarks.add(self.active_person.get_handle())
-            name = GrampsCfg.get_nameof()(self.active_person)
+            name = NameDisplay.displayer.display(self.active_person)
             self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:

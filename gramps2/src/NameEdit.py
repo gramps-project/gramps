@@ -38,6 +38,7 @@ import Utils
 import AutoComp
 import Sources
 import RelLib
+import NameDisplay
 
 from gettext import gettext as _
 
@@ -96,7 +97,7 @@ class NameEditor:
         else:
             self.srcreflist = []
 
-        full_name = parent.person.get_primary_name().get_name()
+        full_name = NameDisplay.displayer.display(parent)
 
         alt_title = self.top.get_widget("title")
 

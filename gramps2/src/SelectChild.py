@@ -45,6 +45,8 @@ import RelLib
 import const
 import Utils
 import PeopleModel
+import NameDisplay
+
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -90,20 +92,20 @@ class SelectChild:
             mother = self.db.get_person_from_handle(self.family.get_mother_handle())
 
             if father != None:
-                fname = father.get_primary_name().get_name()
+                fname = NameDisplay.displayer.display(father)
                 label = _("Relationship to %(father)s") % {
                     'father' : fname
                     }
                 self.xml.get_widget("flabel").set_text(label)
 
             if mother != None:
-                mname = mother.get_primary_name().get_name()
+                mname = NameDisplay.displayer.display(mother)
                 label = _("Relationship to %(mother)s") % {
                     'mother' : mname
                     }
                 self.xml.get_widget("mlabel").set_text(label)
         else:
-            fname = self.person.get_primary_name().get_name()
+            fname = NameDisplay.displayer.display(self.person)
             label = _("Relationship to %s") % fname
             
             if self.person.get_gender() == RelLib.Person.male:
@@ -243,7 +245,7 @@ class SelectChild:
         node = None
         for idval in person_list:
             person = self.db.get_person_from_handle(idval)
-            name = person.get_primary_name().get_name()
+            name = NameDisplay.displayer.display(person)
             if person.gender == RelLib.Person.male:
                 gender = _("male")
             elif person.gender == RelLib.Person.female:
@@ -409,7 +411,7 @@ class EditRel:
         self.mcombo = self.xml.get_widget('mrel_combo')
         self.fcombo = self.xml.get_widget('frel_combo')
 
-        name = child.get_primary_name().get_name()
+        name = NameDisplay.displayer.display(child)
         Utils.set_titles(self.top,self.xml.get_widget('title'),
                          _('Relationships of %s') % name)
 
@@ -417,7 +419,7 @@ class EditRel:
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
 
         if father:
-            fname = father.get_primary_name().get_name()
+            fname = NameDisplay.displayer.display(father)
             val = _("Relationship to %(father)s") % {
                 'father' : fname }
             self.fdesc.set_text('<b>%s</b>' % val)
@@ -428,7 +430,7 @@ class EditRel:
             self.fcombo.set_sensitive(0)
 
         if mother:
-            mname = mother.get_primary_name().get_name()
+            mname = NameDisplay.displayer.display(mother)
             val = _("Relationship to %(mother)s") % {
                 'mother' : mname }
             self.mdesc.set_text('<b>%s</b>' % val)

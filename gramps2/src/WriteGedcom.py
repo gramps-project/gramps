@@ -52,6 +52,8 @@ import GedcomInfo
 import Errors
 import ansel_utf8
 import Utils
+import NameDisplay
+
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -328,16 +330,16 @@ class GedcomWriterOptionBox:
         all.add_rule(GenericFilter.Everyone([]))
 
         des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % self.person.get_primary_name().get_name())
+        des.set_name(_("Descendants of %s") % NameDisplay.displayer.display(self.person))
         des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle(),1]))
 
         ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % self.person.get_primary_name().get_name())
+        ans.set_name(_("Ancestors of %s") % NameDisplay.displayer.display(self.person))
         ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle(),1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") %
-                         self.person.get_primary_name().get_name())
+                     NameDisplay.displayer.display(self.person))
         com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_handle()]))
 
         self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])

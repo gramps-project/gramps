@@ -52,8 +52,8 @@ import gnome
 import RelLib
 import const
 import Utils
-import GrampsCfg
 import PeopleModel
+import NameDisplay
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -117,8 +117,8 @@ class ChooseParents:
         self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
         self.top = self.glade.get_widget("familyDialog")
 
-        self.title_text = _("Choose the Parents of %s") % \
-                          GrampsCfg.get_nameof()(self.person)
+        name = NameDisplay.displayer.display(self.person)
+        self.title_text = _("Choose the Parents of %s") % name
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          self.title_text,_('Choose Parents'))
         
@@ -643,7 +643,8 @@ class ModifyParents:
         self.top = self.glade.get_widget("modparents")
         self.title = self.glade.get_widget("title")
 
-        title = _("Modify the Parents of %s") % GrampsCfg.get_nameof()(self.person)
+        name  = NameDisplay.displayer.display(self.person)
+        title = _("Modify the Parents of %s") % name
         Utils.set_titles(self.top, self.title, title, _("Modify Parents"))
         
         self.mother_rel = self.glade.get_widget("mrel")
@@ -676,13 +677,13 @@ class ModifyParents:
 
 
         if self.father:
-            fname = self.father.get_primary_name().get_name()
+            fname = NameDisplay.displayer.display(self.father)
             self.glade.get_widget("fname").set_text(fname)
         else:
             self.father_rel.set_sensitive(0)
             
         if self.mother:
-            mname = self.mother.get_primary_name().get_name()
+            mname = NameDisplay.displayer.display(self.mother)
             self.glade.get_widget("mname").set_text(mname)
         else:
             self.mother_rel.set_sensitive(0)

@@ -38,6 +38,7 @@ import const
 import Utils
 import RelLib
 import ListModel
+import NameDisplay
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -70,7 +71,7 @@ class WitnessTab:
                 handle = s.get_value()
                 if self.db.has_person_handle(handle):
                     person = self.db.get_person_from_handle(handle)
-                    n = person.get_primary_name().get_name()
+                    n = NameDisplay.displayer.sorted(person)
                     the_id = person.get_gramps_id()
                 else:
                     n = _('Unknown')

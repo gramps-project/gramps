@@ -47,6 +47,7 @@ import Utils
 import GrampsCfg
 import Sources
 import ImageSelect
+import NameDisplay
 
 from gettext import gettext as _
 
@@ -74,6 +75,7 @@ class EditPlace:
                 self.win_key = place.get_handle()
         else:
             self.win_key = self
+        self.name_display = NameDisplay.displayer.display
         self.place = place
         self.db = parent.db
         self.child_windows = {}
@@ -501,7 +503,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (GrampsCfg.get_nameof()(e[0]),e[0].get_handle(),_(e[1].get_name())))
+                msg = msg + ( t % (self.name_display(e[0]),e[0].get_handle(),_(e[1].get_name())))
 
         if len(fevent) > 0:
             any = 1
@@ -514,12 +516,12 @@ class EditPlace:
                 mother = e[0].get_mother_handle()
                 if father and mother:
                     fname = _("%(father)s and %(mother)s")  % {
-                                "father" : GrampsCfg.get_nameof()(father),
-                                "mother" : GrampsCfg.get_nameof()(mother) }
+                                "father" : self.name_display(father),
+                                "mother" : self.name_display(mother) }
                 elif father:
-                    fname = "%s" % GrampsCfg.get_nameof()(father)
+                    fname = self.name_display(father)
                 else:
-                    fname = "%s" % GrampsCfg.get_nameof()(mother)
+                    fname = self.name_display(mother)
 
                 msg = msg + ( t % (fname,e[0].get_handle(),_(e[1].get_name())))
 

@@ -43,6 +43,7 @@ import gnome
 #-------------------------------------------------------------------------
 import const
 import GrampsMime
+import NameDisplay
 import Date
 
 #-------------------------------------------------------------------------
@@ -94,29 +95,6 @@ def wasHistory_broken():
 # string if the person is None
 #
 #-------------------------------------------------------------------------
-def phonebook_name(person):
-    if person:
-        return person.get_primary_name().get_name()
-    else:
-        return u''
-
-def phonebook_upper_name(person):
-    if person:
-        return person.get_primary_name().get_upper_name()
-    else:
-        return u''
-
-def normal_name(person):
-    if person:
-        return person.get_primary_name().get_regular_name()
-    else:
-        return u''
-
-def upper_name(person):
-    if person:
-        return person.get_primary_name().get_regular_upper_name()
-    else:
-        return u''
 
 def family_name(family,db):
     """Builds a name for the family from the parents names"""
@@ -125,13 +103,13 @@ def family_name(family,db):
     father = db.get_person_from_handle(father_handle)
     mother = db.get_person_from_handle(mother_handle)
     if father and mother:
-        fname = father.get_primary_name().get_name()
-        mname = mother.get_primary_name().get_name()
+        fname = NameDisplay.displayer.display(father)
+        mname = NameDisplay.displayer.display(mother)
         name = _("%s and %s") % (fname,mname)
     elif father:
-        name = father.get_primary_name().get_name()
+        name = NameDisplay.displayer.display(father)
     else:
-        name = mother.get_primary_name().get_name()
+        name = NameDisplay.displayer.display(mother)
     return name
 
 def family_upper_name(family,db):

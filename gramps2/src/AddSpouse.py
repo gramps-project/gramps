@@ -51,10 +51,10 @@ import gnome
 import RelLib
 import const
 import Utils
-import GrampsCfg
 import PeopleModel
 import Date
 import Marriage
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -122,8 +122,9 @@ class AddSpouse:
         
         self.ok = self.glade.get_widget('spouse_ok')
         self.ok.set_sensitive(0)
-                     
-        title = _("Choose Spouse/Partner of %s") % GrampsCfg.get_nameof()(person)
+
+        name = NameDisplay.displayer.display(person)
+        title = _("Choose Spouse/Partner of %s") % name
 
         Utils.set_titles(self.glade.get_widget('spouseDialog'),
                          self.glade.get_widget('title'),title,
@@ -213,7 +214,7 @@ class AddSpouse:
         trans = self.db.transaction_begin()
         handle = self.db.add_person(person,trans)
 
-        n = person.get_primary_name().get_name()
+        n = NameDisplay.displayer.display(person)
         self.db.transaction_commit(trans,_('Add Person (%s)' % n))
         self.addperson(person)
         self.update_data(handle)

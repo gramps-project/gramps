@@ -30,7 +30,7 @@
 import RelLib
 import Utils
 import soundex
-import GrampsCfg
+import NameDisplay
 import ListModel
 import MergeData
 from gettext import gettext as _ 
@@ -617,7 +617,7 @@ class Merge:
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( GrampsCfg.get_nameof()(p),p.get_handle())
+    return "%s (%s)" % (NameDisplay.displayer.display(p),p.get_handle())
 
 def get_name_obj(person):
     if person:

@@ -60,6 +60,7 @@ import DateEdit
 import Date
 import DateHandler
 import TransTable
+import NameDisplay
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
 
@@ -120,6 +121,7 @@ class EditPerson:
         self.update_death = False
         self.pdmap = {}
         self.add_places = []
+        self.name_display = NameDisplay.displayer
         self.should_guess_gender = (person.get_gramps_id() == '' and
                                     person.get_gender () ==
                                     RelLib.Person.unknown)
@@ -548,7 +550,7 @@ class EditPerson:
 
     def add_itself_to_winsmenu(self):
         self.parent.child_windows[self.orig_handle] = self
-        win_menu_label = GrampsCfg.get_nameof()(self.person)
+        win_menu_label = self.name_display.display(self.person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
         self.win_menu_item = gtk.MenuItem(win_menu_label)
@@ -663,12 +665,12 @@ class EditPerson:
             m = self.db.get_person_from_handle(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
-                    'father' : GrampsCfg.get_nameof()(f),
-                    'mother' : GrampsCfg.get_nameof()(m) }
+                    'father' : self.name_display.display(f),
+                    'mother' : self.name_display.display(m) }
             elif f:
-                name = GrampsCfg.get_nameof()(f)
+                name = self.name_display.display(f)
             elif m:
-                name = GrampsCfg.get_nameof()(m)
+                name = self.name_display.display(m)
             else:
                 name = _("unknown")
             item = gtk.MenuItem(name)
@@ -1027,13 +1029,13 @@ class EditPerson:
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
         import UrlEdit
-        pname = self.person.get_primary_name().get_name()
+        pname = self.name_display.display(self.person)
         UrlEdit.UrlEditor(self,pname,None,self.url_edit_callback,self.window)
 
     def on_add_attr_clicked(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
-        pname = self.person.get_primary_name().get_name()
+        pname = self.name_display.display(self.person)
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
                                  self.attr_edit_callback,self.window)
 
@@ -1054,9 +1056,10 @@ class EditPerson:
     def on_event_add_clicked(self,obj):
         """Brings up the EventEditor for a new event"""
         import EventEdit
-        pname = self.person.get_primary_name().get_name()
+        pname = self.name_display.display(self.person)
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.personal_events,None,None,0,self.event_edit_callback)
+                              const.personal_events,None,None,0,
+                              self.event_edit_callback)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
@@ -1064,7 +1067,7 @@ class EditPerson:
         
         import EventEdit
         self.update_birth = True
-        pname = self.person.get_primary_name().get_name()
+        pname = self.name_display.display(self.person)
         event = self.birth
         event.set_date_object(Date.Date(self.birth_date_object))
         def_placename = unicode(self.bplace.get_text())
@@ -1082,7 +1085,7 @@ class EditPerson:
         
         import EventEdit
         self.update_death = True
-        pname = self.person.get_primary_name().get_name()
+        pname = self.name_display.display(self.person)
         event = self.death
         event.set_date_object(Date.Date(self.death_date_object))
         def_placename = unicode(self.dplace.get_text())
@@ -1310,7 +1313,7 @@ class EditPerson:
         store,node = self.atree.get_selected()
         if node:
             attr = self.atree.get_object(node)
-            pname = self.person.get_primary_name().get_name()
+            pname = self.name_display.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
                                      self.attr_edit_callback,self.window)
 
@@ -1325,7 +1328,7 @@ class EditPerson:
         import UrlEdit
         store,node = self.wtree.get_selected()
         if node:
-            pname = self.person.get_primary_name().get_name()
+            pname = self.name_display.display(self.person)
             url = self.wtree.get_object(node)
             UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback,self.window)
 
@@ -1335,7 +1338,7 @@ class EditPerson:
         store,node = self.etree.get_selected()
         if not node:
             return
-        pname = self.person.get_primary_name().get_name()
+        pname = self.name_display.display(self.person)
         event = self.etree.get_object(node)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.personal_events,event,None,0,
@@ -1556,7 +1559,7 @@ class EditPerson:
             if not person:
                 self.person.set_gramps_id(idval)
             else:
-                n = GrampsCfg.get_nameof()(person)
+                n = self.name_display.display(person)
                 msg1 = _("GRAMPS ID value was not changed.")
                 msg2 = _("You have attempted to change the GRAMPS ID to a value "
                          "of %(grampsid)s. This value is already used by %(person)s.") % {
@@ -1860,7 +1863,7 @@ class EditPerson:
 
     def write_primary_name(self):
         # initial values
-        name = '<span size="larger" weight="bold">%s</span>' % GrampsCfg.get_nameof()(self.person)
+        name = '<span size="larger" weight="bold">%s</span>' % self.name_display.display(self.person)
         self.get_widget("activepersonTitle").set_text(name)
         self.get_widget("activepersonTitle").set_use_markup(gtk.TRUE)
         self.suffix.set_text(self.pname.get_suffix())

@@ -41,8 +41,8 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import RelLib
 import Utils
-import GrampsCfg
 import ListModel
+import NameDisplay
 import const
 from gettext import gettext as _
 
@@ -77,8 +77,8 @@ class MergePeople:
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
 
-        fname = GrampsCfg.get_nameof()(person1)
-        mname = GrampsCfg.get_nameof()(person2)
+        fname = NameDisplay.displayer.display(person1)
+        mname = NameDisplay.displayer.display(person2)
 
         Utils.set_titles(self.top, self.glade.get_widget('title'),
                          _("Merge %s and %s") % (fname,mname),
@@ -87,13 +87,13 @@ class MergePeople:
         f1 = person1.get_main_parents_family_handle()
         f2 = person2.get_main_parents_family_handle()
         
-        name1 = GrampsCfg.get_nameof()(person1)
+        name1 = NameDisplay.displayer.display(person1)
         death1 = person1.get_death().get_date()
         dplace1 = self.place_name(person1.get_death())
         birth1 = person1.get_birth().get_date()
         bplace1 = self.place_name(person1.get_birth())
 
-        name2 = GrampsCfg.get_nameof()(person2)
+        name2 = NameDisplay.displayer.display(person2)
         death2 = person2.get_death().get_date()
         dplace2 = self.place_name(person2.get_death())
         birth2 = person2.get_birth().get_date()
@@ -193,7 +193,7 @@ class MergePeople:
             if spouse == None:
                 name = "unknown"
             else:
-                sname = GrampsCfg.get_nameof()(spouse)
+                sname = NameDisplay.displayer.display(spouse)
                 name = "%s [%s]" % (sname,spouse.get_handle())
             widget.add([name])
 
@@ -361,7 +361,7 @@ class MergePeople:
             self.db.remove_person(self.p2.get_handle())
             self.db.personMap[self.p1.get_handle()] = self.p1
         except:
-            print "%s is not in the person map!" % (GrampsCfg.get_nameof()(self.p2))
+            print "%s is not in the person map!" % (NameDisplay.displayer.display(self.p2))
         self.update(self.p1,self.p2,old_id)
         Utils.destroy_passed_object(self.top)
         
@@ -594,8 +594,8 @@ def compare_people(p1,p2):
                     if father1 == father2:
                         chance = chance + 1.0
                     else:
-                        fname1 = GrampsCfg.get_nameof()(father1)
-                        fname2 = GrampsCfg.get_nameof()(father2)
+                        fname1 = NameDisplay.displayer.display(father1)
+                        fname2 = NameDisplay.displayer.display(father2)
                         value = name_match(fname1,fname2)
                         if value != -1.0:
                             chance = chance + value
@@ -606,8 +606,8 @@ def compare_people(p1,p2):
                     if mother1 == mother2:
                         chance = chance + 1.0
                     else:
-                        mname1 = GrampsCfg.get_nameof()(mother1)
-                        mname2 = GrampsCfg.get_nameof()(mother2)
+                        mname1 = NameDisplay.displayer.display(mother1)
+                        mname2 = NameDisplay.displayer.display(mother2)
                         value = name_match(mname1,mname2)
                         if value != -1.0:
                             chance = chance + value
@@ -814,7 +814,7 @@ def ancestors_of(p1,lst):
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % (GrampsCfg.get_nameof()(p),p.get_handle())
+    return "%s (%s)" % (NameDisplay.displayer.display(p),p.get_handle())
 
 #-------------------------------------------------------------------------
 #

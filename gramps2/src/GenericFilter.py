@@ -49,6 +49,7 @@ import const
 import RelLib
 import Date
 import DateHandler
+import NameDisplay
 from TransTable import TransTable
 from gettext import gettext as _
 from Utils import for_each_ancestor
@@ -1330,7 +1331,8 @@ class SearchName(Rule):
     def apply(self,db,p_id):
         self.f = self.list[0]
         p = db.get_person_from_handle(p_id)
-        return self.f and string.find(p.get_primary_name().get_name().upper(),self.f.upper()) != -1
+        n = NameDisplay.displayer.display(p)
+        return self.f and string.find(n.upper(),self.f.upper()) != -1
     
 #-------------------------------------------------------------------------
 #

@@ -47,6 +47,7 @@ import RelLib
 import EditPerson
 import DateHandler
 import DisplayModels
+import NameDisplay
 
 from gettext import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
@@ -808,8 +809,8 @@ class FamilyView:
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
-            nap = GrampsCfg.get_nameof()(self.person)
-            nsp = GrampsCfg.get_nameof()(self.selected_spouse)
+            nap = NameDisplay.displayer.display(self.person)
+            nsp = NameDisplay.displayer.display(self.selected_spouse)
             QuestionDialog(_('Remove %s as a spouse of %s?') % (nsp,nap),
                            _('Removing a spouse removes the relationship between '
                              'the spouse and the active person. It does not '
@@ -897,7 +898,7 @@ class FamilyView:
         person = self.parent.db.get_person_from_handle(person_handle)
         self.parent.change_active_person(person)
 
-        n = person.get_primary_name().get_name()
+        n = NameDisplay.displayer.display(person)
         trans = self.parent.db.transaction_begin()
         self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Select Parents (%s)") % n)
@@ -926,22 +927,22 @@ class FamilyView:
 
         if bd and dd:
             n = "%s [%s]\n\t%s %s\n\t%s %s " % (
-                GrampsCfg.get_nameof()(self.person),
+                NameDisplay.displayer.display(self.person),
                 self.person.get_gramps_id(),
                 _BORN,DateHandler.displayer.display(bd.get_date_object()),
                 _DIED,DateHandler.displayer.display(dd.get_date_object()))
         elif bd:
             n = "%s [%s]\n\t%s %s" % (
-                GrampsCfg.get_nameof()(self.person),
+                NameDisplay.displayer.display(self.person),
                 self.person.get_gramps_id(),
                 _BORN,DateHandler.displayer.display(bd.get_date_object()))
         elif dd:
             n = "%s [%s]\n\t%s %s" % (
-                GrampsCfg.get_nameof()(self.person),
+                NameDisplay.displayer.display(self.person),
                 self.person.get_gramps_id(),
                 _DIED,DateHandler.displayer.display(dd.get_date_object()))
         else:
-            n = "%s [%s]" % (GrampsCfg.get_nameof()(self.person),
+            n = "%s [%s]" % (NameDisplay.displayer.display(self.person),
                              self.person.get_gramps_id())
 
         self.ap_model.clear()
@@ -982,7 +983,7 @@ class FamilyView:
                 else:
                     mdate = ""
                 v = "%s [%s]\n\t%s%s" % (
-                    GrampsCfg.get_nameof()(sp),
+                    NameDisplay.displayer.display(sp),
                     sp.get_gramps_id(),
                     const.family_relations[fm.get_relationship()][0], mdate)
                 self.spouse_model.set(node,0,v)
@@ -1042,7 +1043,7 @@ class FamilyView:
             
     def nameof(self,l,p,mode):
         if p:
-            n = GrampsCfg.get_nameof()(p)
+            n = NameDisplay.displayer.display(p)
             pid = p.get_gramps_id()
             return _("%s: %s [%s]\n\tRelationship: %s") % (l,n,pid,_(mode))
         else:
@@ -1058,7 +1059,7 @@ class FamilyView:
             self.family = self.parent.db.get_family_from_handle(flist[0])
         else:
             self.family = None
-        n = person.get_primary_name().get_name()
+        n = NameDisplay.display.displayer(person)
         self.parent.db.transaction_commit(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):
@@ -1221,7 +1222,7 @@ class FamilyView:
     def del_parents_clicked(self,obj):
         if len(self.person.get_parent_family_handle_list()) == 0:
             return
-        n = GrampsCfg.get_nameof()(self.person)
+        n = NameDisplay.displayer.display(self.person)
         QuestionDialog(_('Remove Parents of %s') % n,
                        _('Removing the parents of a person removes the person as a '
                          'child of the parents. The parents are not removed from the '
@@ -1236,7 +1237,7 @@ class FamilyView:
     def del_sp_parents(self,obj):
         if not self.selected_spouse or len(self.selected_spouse.get_parent_family_handle_list()) == 0:
             return
-        n = GrampsCfg.get_nameof()(self.selected_spouse)
+        n = NameDisplay.displayer.display(self.selected_spouse)
         QuestionDialog(_('Remove Parents of %s') % n,
                        _('Removing the parents of a person removes the person as a '
                          'child of the parents. The parents are not removed from the '

@@ -49,7 +49,7 @@ import gtk.glade
 import const
 import Utils
 import GrampsGconfKeys
-import GrampsCfg
+import NameDisplay
 import Plugins
 import RelLib
 import RelImage
@@ -1092,13 +1092,17 @@ class GlobalMediaProperties:
             p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Person"),p.get_gramps_id(),GrampsCfg.get_nameof()(p)])
+                    self.refmodel.add([_("Person"),
+                                       p.get_gramps_id(),
+                                       NameDisplay.displayer.display(p)])
                     any = 1
         for key in self.db.get_family_handles():
             p = self.db.get_family_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Family"),p.get_gramps_id(),Utils.family_name(p,self.db)])
+                    self.refmodel.add([_("Family"),
+                                       p.get_gramps_id(),
+                                       Utils.family_name(p,self.db)])
                     any = 1
         for key in self.db.get_source_handles():
             p = self.db.get_source_from_handle(key)

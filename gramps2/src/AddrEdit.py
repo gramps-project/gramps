@@ -51,6 +51,7 @@ import Date
 import RelLib
 import Sources
 import DateEdit
+import NameDisplay
 
 #-------------------------------------------------------------------------
 #
@@ -82,7 +83,7 @@ class AddressEditor:
         self.addr = addr
         self.callback = callback
         self.child_windows = {}
-        name = parent.person.get_primary_name().get_name()
+        name = NameDisplay.displayer.display(person)
         if name == ", ":
             text = _("Address Editor")
         else:
