@@ -5,6 +5,11 @@
 	* src/plugins/FamilyGroup.py: Switch from handle to id for spouse.
 	* src/plugins/SimpleBookTitle.py: Cleanups.
 
+	* src/GrampsInMemDB.py (get_person_from_gramps_id,
+	get_family_from_gramps_id,get_place_from_gramps_id,
+	get_source_from_gramps_id,get_object_from_gramps_id):
+	Unserialize tuple and return a proper GRAMPS object.
+
 2005-01-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: removal of more OptionMenus in favor
 	of ComboBoxes
