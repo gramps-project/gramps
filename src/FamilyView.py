@@ -1064,7 +1064,7 @@ class FamilyView:
             if f:
                 pname = f.getPrimaryName()
                 return (pname.getSurnamePrefix(),pname.getSurname())
-        return ""
+        return ("","")
 
     def no_name(self,val):
         return ("","")
@@ -1074,7 +1074,7 @@ class FamilyView:
             father = self.family.getFather()
             mother = self.family.getMother()
             if not father or not mother:
-                return ""
+                return ("","")
             fsn = father.getPrimaryName().getSurname()
             msn = mother.getPrimaryName().getSurname()
             if not father or not mother:

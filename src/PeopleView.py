@@ -31,7 +31,6 @@ from gettext import gettext as _
 # gtk
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
 

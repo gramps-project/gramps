@@ -875,7 +875,7 @@ class Gramps:
 
     def import_tool_callback(self):
         Utils.modified()
-        self.clear_person_tabs()
+        self.people_view.clear_person_tabs()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
         self.goto_active_person()
@@ -1485,7 +1485,7 @@ class Gramps:
         self.load_person(self.active_person)
 
     def update_person_list(self,person):
-        self.add_to_person_list(person,0)
+        self.people_view.add_to_person_list(person,0)
     
     def load_new_person(self,obj):
         self.active_person = RelLib.Person()
@@ -1616,6 +1616,7 @@ class Gramps:
                 return ""
         except:
             DisplayTrace.DisplayTrace()
+            return ""
 	
     def on_open_activate(self,obj):
         if Utils.wasModified():
