@@ -53,6 +53,7 @@ import RelImage
 import ListModel
 import SelectObject
 import GrampsMime
+import Sources
 
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
@@ -167,9 +168,9 @@ class ImageSelect:
 
         already_imported = None
 
-        trans = self.db.start_transactions()
+        trans = self.db.start_transaction()
         for o_id in self.db.get_object_keys():
-            o = self.db.try_to_find_object_from_id(o_id,trans)
+            o = self.db.try_to_find_object_from_id(o_id)
             if o.get_path() == filename:
                 already_imported = o
                 break
@@ -276,7 +277,7 @@ class Gallery(ImageSelect):
     def on_drag_begin(self,obj,context):
         if const.dnd_images:
             id = self.sel_obj.get_reference_id()
-            obj = self.db.try_to_find_object_from_id(id,None)
+            obj = self.db.try_to_find_object_from_id(id)
             mtype = obj.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),obj)
             pix = gtk.gdk.pixbuf_new_from_file(name)
@@ -362,7 +363,7 @@ class Gallery(ImageSelect):
 
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
-        self.db.add_object(photo)
+        self.db.add_object(photo,None)
         oref = RelLib.MediaRef()
         oref.set_reference_id(photo.get_id())
         self.dataobj.add_media_reference(oref)
@@ -370,7 +371,7 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
         oid = photo.get_reference_id()
-        object = self.db.try_to_find_object_from_id(oid,None)
+        object = self.db.try_to_find_object_from_id(oid)
         if self.canvas_list.has_key(oid):
             (grp,item,text,x,y) = self.canvas_list[oid]
             if x != self.cx or y != self.cy:
@@ -465,7 +466,7 @@ class Gallery(ImageSelect):
         return min(index,len(self.dataobj.get_media_list()))
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
-	if data and data.format == 8:
+        if data and data.format == 8:
             icon_index = self.get_index(w,x,y)
             d = string.strip(string.replace(data.data,'\0',' '))
             protocol,site,file, j,k,l = urlparse.urlparse(d)
@@ -484,7 +485,8 @@ class Gallery(ImageSelect):
                     photo.set_path(name)
                 self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
-                    GlobalMediaProperties(self.db,photo,None)
+                    GlobalMediaProperties(self.db,photo,None,
+                                                self,self.parent_window)
             elif protocol != "":
                 import urllib
                 u = urllib.URLopener()
@@ -499,7 +501,7 @@ class Gallery(ImageSelect):
                 photo.set_mime_type(mime)
                 photo.set_description(d)
                 photo.set_path(tfile)
-                self.db.add_object(photo)
+                self.db.add_object(photo,None)
                 oref = RelLib.MediaRef()
                 oref.set_reference_id(photo.get_id())
                 self.dataobj.add_media_reference(oref)
@@ -513,7 +515,8 @@ class Gallery(ImageSelect):
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
-                    GlobalMediaProperties(self.db,photo,None)
+                    GlobalMediaProperties(self.db,photo,None,
+                                                self,self.parent_window)
             else:
                 if self.db.has_object_id(data.data):
                     icon_index = self.get_index(w,x,y)
@@ -603,7 +606,7 @@ class Gallery(ImageSelect):
         
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
-        object = self.db.try_to_find_object_from_id(photo.get_reference_id(),None)
+        object = self.db.try_to_find_object_from_id(photo.get_reference_id())
         mtype = object.get_mime_type()
         progname = GrampsMime.get_application(mtype)
         
@@ -620,21 +623,20 @@ class Gallery(ImageSelect):
     def popup_view_photo(self, obj):
         """Open this picture in a picture viewer"""
         photo = obj.get_data('o')
-        Utils.view_photo(self.db.try_to_find_object_from_id(photo.get_reference_id(),
-                                                     None))
+        Utils.view_photo(self.db.try_to_find_object_from_id(photo.get_reference_id()))
     
     def popup_edit_photo(self, obj):
         """Open this picture in a picture editor"""
         photo = obj.get_data('o')
         if os.fork() == 0:
-            obj = self.db.try_to_find_object_from_id(photo.get_reference_id(),None)
+            obj = self.db.try_to_find_object_from_id(photo.get_reference_id())
             os.execvp(const.editor,[const.editor, obj.get_path()])
     
     def popup_convert_to_private(self, obj):
         """Copy this picture into gramps private database instead of
         leaving it as an external data object."""
         photo = obj.get_data('o')
-        object = self.db.try_to_find_object_from_id(photo.get_reference_id(),None)
+        object = self.db.try_to_find_object_from_id(photo.get_reference_id())
         name = RelImage.import_media_object(object.get_path(),self.path,
                                             object.get_id())
         object.set_path(name)
@@ -665,8 +667,7 @@ class LocalMediaProperties:
         self.child_windows = {}
         self.photo = photo
         self.db = parent.db
-        self.object = self.db.try_to_find_object_from_id(photo.get_reference_id(),
-                                                  None)
+        self.object = self.db.try_to_find_object_from_id(photo.get_reference_id())
         self.alist = photo.get_attribute_list()[:]
         self.lists_changed = 0
         
@@ -674,7 +675,8 @@ class LocalMediaProperties:
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_description","gramps")
 
         title = _('Media Reference Editor')
-        Utils.set_titles(self.change_dialog.get_widget('change_description'),
+        self.window = self.change_dialog.get_widget('change_description')
+        Utils.set_titles(self.window,
                          self.change_dialog.get_widget('title'), title)
         
         descr_window = self.change_dialog.get_widget("description")
@@ -695,6 +697,20 @@ class LocalMediaProperties:
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
         
+        self.slist  = self.change_dialog.get_widget("src_slist")
+        self.sources_label = self.change_dialog.get_widget("source_label")
+        if self.object:
+            self.srcreflist = self.photo.get_source_references()
+        else:
+            self.srcreflist = []
+    
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
+                                 self.change_dialog,
+                                 self.window, self.slist,
+                                 self.change_dialog.get_widget('add_src'),
+                                 self.change_dialog.get_widget('edit_src'),
+                                 self.change_dialog.get_widget('del_src'))
+
         descr_window.set_text(self.object.get_description())
         mtype = self.object.get_mime_type()
 
@@ -730,7 +746,6 @@ class LocalMediaProperties:
             "on_local_delete_event" : self.on_delete_event,
             })
         self.redraw_attr_list()
-        self.window = self.change_dialog.get_widget('change_description')
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
@@ -864,7 +879,17 @@ class LocalMediaProperties:
 #-------------------------------------------------------------------------
 class GlobalMediaProperties:
 
-    def __init__(self,db,object,update):
+    def __init__(self,db,object,update,parent,parent_window=None):
+        self.parent = parent
+        if object:
+            if self.parent.parent.child_windows.has_key(object.get_id()):
+                self.parent.parent.child_windows[object.get_id()].present(None)
+                return
+            else:
+                self.win_key = object.get_id()
+        else:
+            self.win_key = self
+        self.child_windows = {}
         self.object = object
         self.alist = self.object.get_attribute_list()[:]
         self.lists_changed = 0
@@ -875,9 +900,10 @@ class GlobalMediaProperties:
         self.path = self.db.get_save_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global","gramps")
 
-        title = _('Change global media object properties')
+        title = _('Media Properties Editor')
 
-        Utils.set_titles(self.change_dialog.get_widget('change_global'),
+        self.window = self.change_dialog.get_widget('change_global')
+        Utils.set_titles(self.window,
                          self.change_dialog.get_widget('title'),title)
         
         self.descr_window = self.change_dialog.get_widget("description")
@@ -901,6 +927,20 @@ class GlobalMediaProperties:
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
         
+        self.slist  = self.change_dialog.get_widget("src_list")
+        self.sources_label = self.change_dialog.get_widget("sourcesGlobal")
+        if self.object:
+            self.srcreflist = self.object.get_source_references()
+        else:
+            self.srcreflist = []
+    
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
+                                           self.change_dialog,
+                                           self.window, self.slist,
+                                           self.change_dialog.get_widget('gl_add_src'),
+                                           self.change_dialog.get_widget('gl_edit_src'),
+                                           self.change_dialog.get_widget('gl_del_src'))
+
         self.descr_window.set_text(self.object.get_description())
         mtype = self.object.get_mime_type()
         pb = gtk.gdk.pixbuf_new_from_file(Utils.thumb_path(self.path,self.object))
@@ -921,7 +961,7 @@ class GlobalMediaProperties:
                 self.flowed.set_active(1)
 
         self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked"      : Utils.destroy_passed_object,
+            "on_cancel_clicked"      : self.close,
             "on_up_clicked"          : self.on_up_clicked,
             "on_down_clicked"        : self.on_down_clicked,
             "on_ok_clicked"          : self.on_ok_clicked,
@@ -930,11 +970,52 @@ class GlobalMediaProperties:
             "on_notebook_switch_page": self.on_notebook_switch_page,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
-            "on_help_clicked" : self.on_help_clicked,
+            "on_help_clicked"        : self.on_help_clicked,
+            "on_global_delete_event" : self.on_delete_event,
             })
 
         self.redraw_attr_list()
         self.display_refs()
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.parent.parent.child_windows[self.win_key] = self
+        label = _('Media Object')
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Properties Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.parent.child_windows[self.win_key]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_up_clicked(self,obj):
         store,iter = self.atree.get_selected()
@@ -1119,7 +1200,7 @@ class DeleteMediaQuery:
                 self.db.commit_family(p,trans)
 
         for key in self.db.get_source_keys():
-            sid = self.db.try_to_find_source_from_id(key,trans)
+            sid = self.db.try_to_find_source_from_id(key)
             nl = []
             change = 0
             for photo in p.get_media_list():

@@ -467,6 +467,7 @@ class XmlWriter:
             
         for s in event.get_source_references():
             self.dump_source_ref(s,index+1)
+        self.write_media_list(event.get_media_list(),index+1)
         self.g.write("%s</event>\n" % sp)
 
     def dump_ordinance(self,name,ord,index=1):
@@ -689,11 +690,15 @@ class XmlWriter:
             if photo.get_privacy():
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()
-            if len(proplist) == 0 and photo.get_note() == "":
+            refslist = photo.get_source_references()
+            if len(proplist) == 0 and len(refslist) == 0 \
+                                    and photo.get_note() == "":
                 self.g.write("/>\n")
             else:
                 self.g.write(">\n")
                 self.write_attribute_list(proplist,indent+1)
+                for ref in refslist:
+                    self.dump_source_ref(ref,indent+1)
                 self.write_note("note",photo.get_note_object(),indent+1)
                 self.g.write('%s</objref>\n' % sp)
 

@@ -641,20 +641,24 @@ class GrampsParser:
             self.photo.add_source_reference(self.source_ref)
         elif self.ord:
             self.ord.add_source_reference(self.source_ref)
+        elif self.attribute:
+            self.attribute.add_source_reference(self.source_ref)
         elif self.object:
             self.object.add_source_reference(self.source_ref)
+        elif self.objref:
+            self.objref.add_source_reference(self.source_ref)
         elif self.event:
             self.event.add_source_reference(self.source_ref)
         elif self.address:
             self.address.add_source_reference(self.source_ref)
         elif self.name:
             self.name.add_source_reference(self.source_ref)
-        elif self.attribute:
-            self.attribute.add_source_reference(self.source_ref)
         elif self.placeobj:
             self.placeobj.add_source_reference(self.source_ref)
         elif self.family:
             self.family.add_source_reference(self.source_ref)
+        elif self.person:
+            self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
         self.source = self.db.find_source_no_conflicts(attrs["id"],
@@ -667,7 +671,9 @@ class GrampsParser:
         self.objref.set_reference_id(id)
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
-        if self.family:
+        if self.event:
+            self.event.add_media_reference(self.objref)
+        elif self.family:
             self.family.add_media_reference(self.objref)
         elif self.source:
             self.source.add_media_reference(self.objref)
