@@ -43,6 +43,7 @@ import gtk
 import gnome
 import gnome.ui
 import gtk.glade
+import gtk.gdk
 
 #-------------------------------------------------------------------------
 #
@@ -251,10 +252,7 @@ class Gramps:
         self.add_button = self.gtop.get_widget('addbtn')
         self.backbtn = self.gtop.get_widget('back_btn')
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
-        self.back = self.gtop.get_widget('back')
-        self.forward = self.gtop.get_widget('forward')
-        self.hist_gomenuitem = self.gtop.get_widget("history1")
-        self.histmenu = None
+        self.gomenuitem = self.gtop.get_widget("go1")
 
         self.gtop.signal_autoconnect({
             "on_back_clicked" : self.back_clicked,
@@ -341,9 +339,36 @@ class Gramps:
 
     def redraw_histmenu(self):
         """Create the history submenu of the Go menu"""
-        self.hist_gomenuitem.remove_submenu()
+
+        # Start a brand new menu and create static items: 
+        # back, forward, separator, home.
+        gomenu = gtk.Menu()
+
+        self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
+        self.back.connect("activate",self.back_clicked)
+        self.back.show()
+        gomenu.append(self.back)
+
+        self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
+        self.forward.connect("activate",self.fwd_clicked)
+        self.forward.show()
+        gomenu.append(self.forward)
+
+        item = gtk.MenuItem()
+        item.show()
+        gomenu.append(item)
+
+        item = gtk.ImageMenuItem(gtk.STOCK_HOME)
+        item.connect("activate",self.on_home_clicked)
+        item.show()
+        gomenu.append(item)
+
         if len(self.history) > 0:
-            self.histmenu = gtk.Menu()
+            # Draw separator
+            item = gtk.MenuItem()
+            item.show()
+            gomenu.append(item)
+
             pids = self.mhistory[:]
             pids.reverse()
             num = 0
@@ -358,12 +383,14 @@ class Gramps:
                         (num,person.getPrimaryName().getName(),pid))
                     item.connect("activate",self.bookmark_callback,person)
                     item.show()
-                    self.histmenu.append(item)
-                    self.hist_gomenuitem.set_submenu(self.histmenu)
-                    self.hist_gomenuitem.set_sensitive(1)
+                    gomenu.append(item)
                     num = num + 1
         else:
-            self.hist_gomenuitem.set_sensitive(0)
+            self.back.set_sensitive(0)
+            self.forward.set_sensitive(0)
+
+        self.gomenuitem.remove_submenu()
+        self.gomenuitem.set_submenu(gomenu)
 
     def build_backhistmenu(self):
         """Builds and displays the menu with the back portion of the history"""
@@ -778,6 +805,7 @@ class Gramps:
         self.history = []
         self.mhistory = []
         self.hindex = -1
+        self.redraw_histmenu()
 
         self.people_view.clear_person_tabs()
         
