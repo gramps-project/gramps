@@ -3741,7 +3741,7 @@ Unknown
 	<handler>on_show_toggled</handler>
 	<last_modification_time>Thu, 22 Mar 2001 00:44:07 GMT</last_modification_time>
       </signal>
-      <label>Show only those not currently a child in a family</label>
+      <label>Hide people not likely to be a child of this family</label>
       <active>True</active>
       <draw_indicator>True</draw_indicator>
       <child>

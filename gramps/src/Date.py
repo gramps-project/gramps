@@ -75,6 +75,15 @@ class Date:
     def getYear(self):
         return self.get_start_date().getYear()
 
+    def getHighYear(self):
+        if self.stop == None:
+            return self.start.getYear()
+        else:
+            return self.stop.getYear()
+
+    def getLowYear(self):
+        return self.start.getYear()
+
     def getMonth(self):
         return self.get_start_date().getMonth()
 
