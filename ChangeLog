@@ -1,4 +1,7 @@
 2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* NEWS: Update.
+
+2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py (draw_path,draw_bar): Set proper linewidth.
 	* doc/gramps-manual/C/usage.xml: Update.
 

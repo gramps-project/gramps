@@ -1,5 +1,13 @@
-Version 1.1.4 -- the "Successful encyclopedia salesman" release
-* Import from native GRDB format.
+Version 1.1.90 -- the "Successful encyclopedia salesman" release
+* Command line support for all imports and exports is back.
+* Exports to CD, package, and WFT are restored.
+* Support for read-only databases.
+* New type of Media Objects -- "Note only". Useful for storing overall notes,
+  e.g. "Descriptions of coat of arms" or "Immigration history".
+* Export used for "save and lay away" functionality;
+  "Save as" used for "save and continue editing" functionality (native formats
+  only).
+* Import from into native GRDB format.
 * GnomePrint backend supports shadows for the boxes.
 * Bug fixes.
 
