@@ -657,10 +657,24 @@ class EditPerson:
     def redraw_attr_list(self):
         """redraws the attribute list for the person"""
         self.atree.clear()
+        self.amap = {}
         for attr in self.alist:
-            self.atree.add([const.display_pattr(attr.getType()),attr.getValue()],attr)
+            iter = self.atree.add([const.display_pattr(attr.getType()),attr.getValue()],attr)
+            self.amap[str(attr)] = iter
         if self.alist:
             self.atree.select_row(0)
+
+    def event_edit_callback(self,event):
+        """Birth and death events may not be in the map"""
+        self.redraw_event_list()
+        try:
+            self.etree.select_iter(self.emap[str(event)])
+        except:
+            pass
+
+    def attr_edit_callback(self,attr):
+        self.redraw_attr_list()
+        self.atree.select_iter(self.amap[str(attr)])
 
     def redraw_event_list(self):
         """redraw_event_list - Update both the birth and death place combo
@@ -671,9 +685,11 @@ class EditPerson:
         and restore the value for the event *not* being edited."""
 
         self.etree.clear()
+        self.emap = {}
         for event in self.elist:
-            self.etree.add([const.display_pevent(event.getName()),event.getDescription(),
-                            event.getQuoteDate(),event.getPlaceName()],event)
+            iter = self.etree.add([const.display_pevent(event.getName()),event.getDescription(),
+                                    event.getQuoteDate(),event.getPlaceName()],event)
+            self.emap[str(event)] = iter
         if self.elist:
             self.etree.select_row(0)
 
@@ -722,7 +738,8 @@ class EditPerson:
         """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
         pname = self.person.getPrimaryName().getName()
-        AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes)
+        AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
+                                 self.attr_edit_callback)
 
     def on_up_clicked(self,obj):
         sel = obj.get_selection()
@@ -743,7 +760,7 @@ class EditPerson:
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,None,None,0,self.callback)
+                              const.save_fevent,None,None,0,self.event_edit_callback)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
@@ -763,7 +780,7 @@ class EditPerson:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,def_placename,1,
-                              self.callback)
+                              self.event_edit_callback)
 
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event
@@ -783,7 +800,7 @@ class EditPerson:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,def_placename,1,
-                              self.callback)
+                              self.event_edit_callback)
 
     def on_aka_delete_clicked(self,obj):
         """Deletes the selected name from the name list"""
@@ -999,7 +1016,8 @@ class EditPerson:
         if iter:
             attr = self.atree.get_object(iter)
             pname = self.person.getPrimaryName().getName()
-            AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes)
+            AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
+                                     self.attr_edit_callback)
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
@@ -1025,7 +1043,7 @@ class EditPerson:
         event = self.etree.get_object(iter)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_fevent,event,None,0,
-                              self.callback)
+                              self.event_edit_callback)
         
     def on_event_select_row(self,obj):
         store,iter = obj.get_selected()

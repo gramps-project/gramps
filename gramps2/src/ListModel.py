@@ -34,6 +34,7 @@ class ListModel:
 
         self.tree.set_rules_hint(gtk.TRUE)
         self.model = None
+        self.selection = None
         self.mode = mode
         self.new_model()
         self.data_index = l
@@ -80,7 +81,10 @@ class ListModel:
     def new_model(self):
         if self.model:
             self.cid = self.model.get_sort_column_id()
+            del self.model
+            del self.selection
         self.count = 0
+
         self.model = gtk.ListStore(*self.mylist)
         self.selection = self.tree.get_selection()
         self.selection.set_mode(self.mode)
@@ -164,6 +168,9 @@ class ListModel:
 
     def select_row(self,row):
         self.selection.select_path((row))
+
+    def select_iter(self,iter):
+        self.selection.select_iter(iter)
     
     def get_object(self,iter):
         return self.model.get_value(iter,self.data_index)

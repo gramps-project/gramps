@@ -54,7 +54,7 @@ class AttributeEditor:
     """
     Displays a dialog that allows the user to edit an attribute.
     """
-    def __init__(self,parent,attrib,title,list):
+    def __init__(self,parent,attrib,title,list,callback):
         """
         Displays the dialog box.
 
@@ -74,6 +74,7 @@ class AttributeEditor:
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
+        self.callback = callback
 
         self.window = self.top.get_widget("attr_edit")
         
@@ -135,7 +136,7 @@ class AttributeEditor:
 
         self.attrib.setSourceRefList(self.srcreflist)
         self.update(type,value,note,priv)
-        self.parent.redraw_attr_list()
+        self.callback(self.attrib)
         Utils.destroy_passed_object(obj)
 
     def check(self,get,set,data):
