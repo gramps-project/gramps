@@ -151,7 +151,6 @@ class DateDisplayES(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-from DateHandler import _lang_to_parser, _lang_to_display
-for lang_str in ('es_ES','es_ES.iso88591','es_ES.utf8','spanish'):
-    _lang_to_parser[lang_str] = DateParserES
-    _lang_to_display[lang_str] = DateDisplayES
+from DateHandler import add_format
+register_datehandler(('es_ES','spanish'),DateParserES, DateDisplayES)
+

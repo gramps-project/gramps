@@ -160,7 +160,6 @@ class DateDisplayRU(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-from DateHandler import _lang_to_parser, _lang_to_display
-for lang_str in ('ru_RU','ru_RU.koi8r','ru_RU.utf8','russian'):
-    _lang_to_parser[lang_str] = DateParserRU
-    _lang_to_display[lang_str] = DateDisplayRU
+from DateHandler import add_format
+register_datehandler(('ru_RU','russian'),DateParserRU, DateDisplayRU)
+    

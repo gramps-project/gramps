@@ -74,6 +74,14 @@ _lang_to_display = {
 #
 #-------------------------------------------------------------------------
 def create_parser():
+    """
+    Creates a new date parser class, based on the current locale.
+
+    @returns: DateParser class specific to the locale specific. If
+    no parser exists for the current locale, the English language
+    parser is returned.
+    @rtype: DateParser
+    """
     try:
         return _lang_to_parser[_lang]()
     except:
@@ -81,6 +89,14 @@ def create_parser():
         return DateParser.DateParser()
 
 def create_display():
+    """
+    Creates a new date displayer class, based on the current locale.
+
+    @returns: DateDisplay class specific to the locale specific. If
+    no parser exists for the current locale, the English language
+    parser is returned.
+    @rtype: DateDisplay
+    """
     try:
         val = GrampsGconfKeys.get_date_format(_lang_to_display[_lang].formats)
         return _lang_to_display[_lang](val)
@@ -89,6 +105,9 @@ def create_display():
         return DateDisplay.DateDisplay(3)
 
 def get_date_formats():
+    """
+    Returns the lists supported formats for date parsers and displayers
+    """
     try:
         return _lang_to_display[_lang].formats
     except:
@@ -96,16 +115,28 @@ def get_date_formats():
 
 def set_format(val):
     try:
-        _lang_to_display[_lang].format = val
+        _lang_to_display[_lang].formats = val
     except:
         pass
 
-def get_format():
-    try:
-        return _lang_to_display[_lang].format
-    except:
-        print "not found"
-        return 0
+def register_datehandler(locales,parse_class,display_class):
+    """
+    Registers the passed date parser class and date displayer
+    classes with the specfied language locales.
+
+    @param locales: tuple of strings containing language codes.
+        The character encoding is not included, so the langauge
+        should be in the form of fr_FR, not fr_FR.utf8
+    @type locales: tuple
+    @param parse_class: Class to be associated with parsing
+    @type parse_class: DateParse
+    @param display_class: Class to be associated with displaying
+    @type display_class: DateDisplay
+    """
+    for lang_str in locales:
+        _lang_to_parser[lang_str] = parse_class
+        _lang_to_display[lang_str] = display_class
+    
 
 #-------------------------------------------------------------------------
 #
@@ -115,3 +146,5 @@ def get_format():
 from Plugins import load_plugins
 from const import datesDir
 load_plugins(datesDir)
+
+print _lang_to_display[_lang].formats
