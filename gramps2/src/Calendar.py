@@ -542,8 +542,6 @@ def find_calendar(name):
         return None
 
 def calendar_names():
-    list = []
-    for n in _calendars.values():
-        list.append(n)
-    list.sort()
-    return list
+    dlist = _calendars.values():
+    dlist.sort()
+    return dlist

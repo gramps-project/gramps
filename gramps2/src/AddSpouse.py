@@ -256,7 +256,7 @@ class AddSpouse:
 
         if not self.active_family:
             self.active_family = RelLib.Family()
-            self.db.add_family(family,trans)
+            self.db.add_family(self.active_family,trans)
             self.person.add_family_handle(self.active_family.get_handle())
             self.db.commit_person(self.person,trans)
 
