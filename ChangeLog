@@ -1,3 +1,6 @@
+2003-12-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.desktop: Add russian strings. Set encoding line to UTF-8.
+
 2003-12-02  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add more docs.
 	* Makefile.am: No need for dist-hook.

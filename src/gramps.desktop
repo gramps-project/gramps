@@ -1,13 +1,15 @@
 [Desktop Entry]
-Encoding=Legacy-Mixed
+Encoding=UTF-8
 Name=GRAMPS Genealogy System
 Name[sv]=GRAMPS
 Name[no]=GRAMPS
 Name[nb]=GRAMPS
+Name[ru]=GRAMPS
 Comment=Manage genealogical information, perform genealogical research and analysis
-Comment[sv]=Ett sl�ktforskningsprogram
+Comment[sv]=Ett släktforskningsprogram
 Comment[no]=Et slektsforskningsprogram
 Comment[nb]=Et slektsforskningsprogram
+Comment[ru]=Система исследования и анализа генеалогической информации
 Exec=gramps
 Icon=gramps.png
 Terminal=false
