@@ -377,6 +377,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         #set paragraph variables so we know that we are in a paragraph
         self.paragraph = GnomePrintParagraph(self.style_list[style_name])
         self.__paragraph_text = ""
+        if leader:
+            self.__paragraph_text += leader + " "
         self.__paragraph_directive = ""
     
     def end_paragraph(self):
@@ -615,9 +617,11 @@ class LPRDoc(BaseDoc.BaseDoc):
     def __advance_line(self, y):
         new_y = y - _LINE_SPACING
         if y < self.bottom_margin:
+            x = self.__x
             self.end_page()
             self.start_page()
             new_y = self.__y
+            self.__x = x
         return new_y
 
     def write_paragraph(self,paragraph,x,y,left_margin,right_margin):
@@ -652,12 +656,6 @@ class LPRDoc(BaseDoc.BaseDoc):
             elif directive == _LINE_BREAK:
                 y = self.__advance_line()
                 x = self.__x
-                return
-            elif directive == _PAGE_BREAK:
-                self.end_page()
-                self.start_page()
-                x = self.__x
-                y = self.__y
                 return
 
             #all text will fit within the width provided
@@ -745,11 +743,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         #is table width larger than the width of the paper?
         if __min_table_width > (self.right_margin - self.left_margin):
             print "Table does not fit onto the page.\n"
-                   
+
         #for now we will assume left justification of tables
         #output data in table
-        __min_y=self.__y     #need to keep track of tallest column of 
-                             #text in each row
+
         for __row_num in range(len(self.__table_data)):
             __row = self.__table_data[__row_num]
             __x = self.left_margin         #reset so that x is at margin
@@ -757,23 +754,18 @@ class LPRDoc(BaseDoc.BaseDoc):
             if self.__y - __max_vspace[__row_num] < self.bottom_margin:
                 self.end_page()
                 self.start_page()
-                __min_y = self.__y
             
+            col_y = self.__y    # all columns start at the same height
             for __col in range(self.__ncols):
                 if not self.__cell_widths[__row_num][__col]:
                     continue
-                if not __row[__col]:
-                    continue
+                self.__y = col_y
                 for paragraph in __row[__col]:
-                    __nothing, __y = self.write_paragraph(paragraph,
+                    __nothing, self.__y = self.write_paragraph(paragraph,
                                      self.__x, self.__y, __x, 
                                      __x + self.__cell_widths[__row_num][__col])
 
                 __x = __x + self.__cell_widths[__row_num][__col]    # set up margin for this row
-                if __y < __min_y:     # if we go below current lowest 
-                   __min_y=__y        # column
-  
-            self.__y=__min_y          #reset so that we do not overwrite
 
     #function to print text to a printer
     def __do_print(self,dialog, job):
