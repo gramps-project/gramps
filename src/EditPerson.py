@@ -919,6 +919,7 @@ class EditPerson:
     def did_data_change(self):
         """Check to see if any of the data has changed from the
         original record"""
+
         surname = unicode(self.surname_field.get_text())
         if GrampsCfg.capitalize:
             surname = surname.upper()
@@ -1281,6 +1282,9 @@ class EditPerson:
 
         name = self.pname
 
+        self.birth.setDate(self.bdate.get_text())
+        self.birth.setPlace(self.get_place(self.bplace,1))
+
         if idval != self.person.getId():
             m = self.db.getPersonMap() 
             if not m.has_key(idval):
@@ -1341,9 +1345,6 @@ class EditPerson:
         for key in self.db.getPlaceKeys():
             p = self.db.getPlaceDisplay(key)
             self.pdmap[p[0]] = key
-
-        self.birth.setDate(self.bdate.get_text())
-        self.birth.setPlace(self.get_place(self.bplace,1))
 
         if not self.person.getBirth().are_equal(self.birth):
             self.person.setBirth(self.birth)

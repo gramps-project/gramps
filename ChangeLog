@@ -2,6 +2,7 @@
 	* src/gramps_main.py: pass list of filtered people to find dialog
 	* src/Find.py: pass list of filtered people to find dialog
 	* src/po/hu.po: set character set to ISO-8859-2, fix typo
+	* src/Date.py: Reset date if a empty text string is passed
 
 2003-09-20  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Hungarian translation

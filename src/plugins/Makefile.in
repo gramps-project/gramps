@@ -147,10 +147,10 @@ pkgpython_PYTHON = \
 	WritePkg.py\
 	WriteCD.py\
 	rel_ru.py\
-	eval.py\
+        eval.py\
 	leak.py\
-	SimpleBookTitle.py\
-	CustomBookText.py
+        SimpleBookTitle.py\
+        CustomBookText.py
 
 
 GLADEFILES = \
