@@ -31,67 +31,81 @@ _ = intl.gettext
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
-def runTool(database,active_person,callback):
+def runTool(db,active_person,callback):
     """Changed person, family, object, source, and place ids"""
-    
-    make_new_ids(database.getPersonMap(),database.iprefix)
-    make_new_ids(database.getFamilyMap(),database.fprefix)
-    make_new_ids(database.getObjectMap(),database.oprefix)
-    make_new_ids(database.getSourceMap(),database.sprefix)
-    make_new_ids(database.getPlaceMap(),database.pprefix)
-    Utils.modified()
-    callback(1)
+    ReorderIds(db,callback)
 
+class ReorderIds:
 
-def make_new_ids(data_map,prefix):
-    """Try to extract the old integer out of the id, and reuse it
-    if possible. Otherwise, blindly renumber those that can't."""
+    def __init__(self,db,callback):
+        self.db = db
 
-    dups = []
-    newids = []
+        self.reorder(db.getPersonMap(),db.iprefix,db.buildPersonDisplay)
+        self.reorder(db.getFamilyMap(),db.fprefix,None)
+        self.reorder(db.getObjectMap(),db.oprefix,None)
+        self.reorder(db.getSourceMap(),db.sprefix,db.buildSourceDisplay)
+        self.reorder(db.getPlaceMap(),db.pprefix,db.buildPlaceDisplay)
+        Utils.modified()
+        callback(1)
 
-    # search all ids in the map
-    for id in data_map.keys():
-
-        # attempt to extract integer, if we can't, treat it as a
-        # duplicate
+    def reorder(self,data_map,prefix,update):
+        """Try to extract the old integer out of the id, and reuse it
+        if possible. Otherwise, blindly renumber those that can't."""
         
-        match = _findint.match(id)
-        if match:
-            # get the integer, build the new id. Make sure it
-            # hasn't already been chosen. If it has, put this
-            # in the duplicate id list
+        dups = []
+        newids = []
+        key_list = []
+
+        # search all ids in the map
+
+        for x in data_map.keys():
+            key_list.append(x)
+
+        for id in key_list:
             
-            index = match.groups()[0]
-            newid = prefix % int(index)
-            if newid == id:
-                continue
-            elif data_map.has_key(newid):
-                dups.append(id)
+            # attempt to extract integer, if we can't, treat it as a
+            # duplicate
+
+            match = _findint.match(id)
+            if match:
+                # get the integer, build the new id. Make sure it
+                # hasn't already been chosen. If it has, put this
+                # in the duplicate id list
+
+                index = match.groups()[0]
+                newid = prefix % int(index)
+                if newid == id:
+                    continue
+                elif data_map.has_key(newid):
+                    dups.append(id)
+                else:
+                    newids.append(id)
+                    data = data_map[id]
+                    data.setId(newid)
+                    data_map[newid] = data
+                    del data_map[id]
+                    if update:
+                        update(newid,id)
             else:
-                newids.append(id)
-                data = data_map[id]
-                data.setId(newid)
-                data_map[newid] = data
-                del data_map[id]
-        else:
-            dups.append(id)
+                dups.append(id)
             
-    # go through the duplicates, looking for the first availble
-    # id that matches the new scheme.
+        # go through the duplicates, looking for the first availble
+        # id that matches the new scheme.
     
-    index = 0
-    for id in dups:
-        while 1:
-            newid = prefix % index
-            if newid not in newids:
-                break
-            index = index + 1
-        newids.append(newid)
-        data = data_map[id]
-        data.setId(newid)
-        data_map[newid] = data
-        del data_map[id]
+        index = 0
+        for id in dups:
+            while 1:
+                newid = prefix % index
+                if newid not in newids:
+                    break
+                index = index + 1
+            newids.append(newid)
+            data = data_map[id]
+            data.setId(newid)
+            data_map[newid] = data
+            if update:
+                update(newid,id)
+            del data_map[id]
     
 #-------------------------------------------------------------------------
 #
