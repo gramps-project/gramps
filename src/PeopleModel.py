@@ -42,6 +42,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+import accent
 
 #-------------------------------------------------------------------------
 #
@@ -266,7 +267,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if col == 0:
                 return iter
             elif col == COLUMN_NAME_SORT:
-                return iter.upper()
+                return accent.deaccent(iter.upper())
             else:
                 return u''            
         else:

@@ -112,12 +112,11 @@ class MediaView:
         self.list.connect('button-press-event',self.on_button_press_event)
         self.list.connect('key-press-event',self.key_press)
         self.selection.connect('changed',self.on_select_row)
-        if not (RelImage.is_pil() or RelImage.is_cnv() ):
+        if not RelImage.is_cnv():
 	    WarningDialog(_("Thumbnails not available")
                 ,_("There is no suitable tool to generate thumbnails for the images. "
                 "If you would like to enable this feature, "
-                "install Python Imaging Library (PIL), available at http://www.pythonware.com/products/pil/ "
-                "or ImageMagick, available at http://www.imagemagick.org/"))
+                "install ImageMagick, available at http://www.imagemagick.org/"))
         self.columns = []
         self.build_columns()
         self.build_tree()

@@ -92,7 +92,7 @@ class PeopleView:
         for column in self.columns:
             self.person_tree.remove_column(column)
             
-        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,weight=9)
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,weight=PeopleModel.COLUMN_BOLD)
         column.set_resizable(gtk.TRUE)        
         column.set_min_width(225)
         column.set_clickable(gtk.TRUE)
@@ -150,10 +150,7 @@ class PeopleView:
         self.person_model = PeopleModel.PeopleModel(db)
         if not maps[0]:
             self.build_tree()
-        if gtk.pygtk_version >= (2,3,92):
-            self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
-        else:
-            self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
         self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
 
@@ -264,10 +261,7 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        if gtk.pygtk_version >= (2,3,92):
-            self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
-        else:
-            self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
         self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
         
