@@ -4,6 +4,13 @@
 	* src/po/da.po: Add (replaces da_DK.po).
 	* configure.in, configure: Switch from da_DK to da in languages.
 
+	* src/docgen/Makefile.am, src/docgen/Makefile.in: Ship LPRDoc.py.
+	* src/plugins/GraphViz.py (dump_index): Remove utf8 to latin
+	conversion. Switch to FreeSans. 
+	* src/docgen/PdfDoc.py (draw_text, rotate_text): Fix encoding.
+	* src/plugins/WebPage.py: Add option for using only birth date.
+	* src/Date.py: Switch over to lowercase function names.
+
 2004-03-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py (do_print): Typos.
 
