@@ -358,6 +358,7 @@ def attach_places(values,combo,place):
             sel_child = c
         mymap[src] = c
 
+    combo.disable_activate()
     combo.list.clear_items(0,-1)
     combo.list.append_items(list)
     combo.list.select_child(sel_child)
