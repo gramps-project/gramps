@@ -1999,8 +1999,8 @@ fi
 echo "$as_me:$LINENO: result: ok" >&5
 echo "${ECHO_T}ok" >&6
 
-echo "$as_me:$LINENO: checking Python bindings for GNOME" >&5
-echo $ECHO_N "checking Python bindings for GNOME... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking Python bindings for gnome" >&5
+echo $ECHO_N "checking Python bindings for gnome... $ECHO_C" >&6
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -2019,9 +2019,9 @@ rm -f conftest.out conftest.py
 if test YES != "$has_pygnome"
 then
    { { echo "$as_me:$LINENO: error:
-**** The python bindings for GNOME 2.0 (gnome-python2) could not be found." >&5
+**** The python bindings for gnome 2.0 (gnome-python2) could not be found." >&5
 echo "$as_me: error:
-**** The python bindings for GNOME 2.0 (gnome-python2) could not be found." >&2;}
+**** The python bindings for gnome 2.0 (gnome-python2) could not be found." >&2;}
    { (exit 1); exit 1; }; }
 fi
 echo "$as_me:$LINENO: result: ok" >&5
@@ -2054,8 +2054,8 @@ fi
 echo "$as_me:$LINENO: result: ok" >&5
 echo "${ECHO_T}ok" >&6
 
-echo "$as_me:$LINENO: checking Python bindings for GNOME canvas" >&5
-echo $ECHO_N "checking Python bindings for GNOME canvas... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking Python bindings for gnome canvas" >&5
+echo $ECHO_N "checking Python bindings for gnome canvas... $ECHO_C" >&6
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -2073,16 +2073,16 @@ rm -f conftest.out conftest.py
 if test YES != "$has_canvas"
 then
    { { echo "$as_me:$LINENO: error:
-**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found." >&5
+**** The python bindings for gnome canvas (gnome-python2-canvas) could not be found." >&5
 echo "$as_me: error:
-**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found." >&2;}
+**** The python bindings for gnome canvas (gnome-python2-canvas) could not be found." >&2;}
    { (exit 1); exit 1; }; }
 fi
 echo "$as_me:$LINENO: result: ok" >&5
 echo "${ECHO_T}ok" >&6
 
-echo "$as_me:$LINENO: checking Python bindings for GNOME VFS" >&5
-echo $ECHO_N "checking Python bindings for GNOME VFS... $ECHO_C" >&6
+echo "$as_me:$LINENO: checking Python bindings for gnome vfs" >&5
+echo $ECHO_N "checking Python bindings for gnome vfs... $ECHO_C" >&6
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -2100,9 +2100,9 @@ rm -f conftest.out conftest.py
 if test YES != "$has_vfs"
 then
    { { echo "$as_me:$LINENO: error:
-**** The python bindings for GNOME canvas (gnome-python2-vfs) could not be found." >&5
+**** The python bindings for gnome canvas (gnome-python2-vfs) could not be found." >&5
 echo "$as_me: error:
-**** The python bindings for GNOME canvas (gnome-python2-vfs) could not be found." >&2;}
+**** The python bindings for gnome canvas (gnome-python2-vfs) could not be found." >&2;}
    { (exit 1); exit 1; }; }
 fi
 echo "$as_me:$LINENO: result: ok" >&5

@@ -113,30 +113,6 @@ class DbPrompter:
             self.filesel.set_filename(GrampsCfg.lastfile)
         return
     
-        wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.ok_button_clicked,
-            "destroy_passed_object": self.cancel_button_clicked,
-            })
-
-        self.fileSelector = wFs.get_widget("dbopen")
-        Utils.set_titles(self.fileSelector,wFs.get_widget('title'),
-                         _('Open a database'))
-
-        self.dbname = wFs.get_widget("dbname")
-        self.getoldrev = wFs.get_widget("getoldrev")
-        if GrampsCfg.db_dir:
-            self.dbname.set_default_path(GrampsCfg.db_dir)
-
-        if GrampsCfg.lastfile:
-            self.dbname.set_filename(GrampsCfg.lastfile)
-            self.dbname.gtk_entry().set_position(len(GrampsCfg.lastfile))
-        elif GrampsCfg.db_dir:
-            self.dbname.set_filename(GrampsCfg.db_dir)
-            self.dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
-            
-        self.getoldrev.set_sensitive(GrampsCfg.usevc)
-
     def cancel_button_clicked(self,obj):
         Utils.destroy_passed_object(obj)
         self.show()

@@ -777,9 +777,9 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
-        trans = self.start_transaction()
+        trans = self.db.start_transaction()
         place = self.get_place(1,trans)
-        self.add_transaction(trans)
+        self.db.add_transaction(trans)
         
         if date or temple or place:
             Utils.bold_label(self.lds_label)

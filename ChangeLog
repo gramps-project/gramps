@@ -1,3 +1,23 @@
+2004-04-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: remove VersionControl reference
+	* src/Marriage.py: fix transaction handling
+	* src/const.py.in: new glade file names
+	* src/edit_person.glade: merged into gramps.glade
+	* src/edit_person.gladep: removed
+	* src/filelist: removed
+	* src/gramps.glade: additions from old glade files
+	* src/marriage.glade: merged into gramps.glade
+	* src/marriage.gladep: removed
+	* src/places.glade: merged into gramps.glade
+	* src/places.gladep: removed
+	* src/preferences.glade: merged into gramps.glade
+	* src/preferences.gladep: removed
+	* src/revision.glade: merged into gramps.glade
+	* src/revision.gladep: removed
+	* src/select_person.glade: merged into gramps.glade
+	* src/srcsel.glade: merged into gramps.glade
+	* src/srcsel.gladep: removed
+
 2004-04-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/VersionControl.py: removed
 

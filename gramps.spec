@@ -1,5 +1,5 @@
 %define ver      1.1.0
-%define rel      0.CVS20040329
+%define rel      0.CVS20040405
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 
@@ -34,7 +34,7 @@ BuildRequires: desktop-file-utils >= 0.2.92
 
 %description
 gramps (Genealogical Research and Analysis Management Programming
-System) is a GNOME based genealogy program supporting a Python
+dlSystem) is a GNOME based genealogy program supporting a Python
 based plugin system.
 
 %prep
