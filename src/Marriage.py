@@ -198,8 +198,11 @@ class Marriage:
         if not event:
             return
         detail = get_detail_flags(event)
-        self.event_list.append([text,event.getQuoteDate(),
-                                event.getPlace().get_title(),detail])
+        if event.getPlace():
+            p = event.getPlace().get_title()
+        else:
+            p = ""
+        self.event_list.append([text,event.getQuoteDate(),p,detail])
         self.event_list.set_row_data(self.lines,event)
         self.lines = self.lines + 1
 
