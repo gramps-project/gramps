@@ -742,7 +742,7 @@
 	      <child>
 		<widget class="GtkScrolledWindow" id="scrolledwindow1">
 		  <property name="visible">True</property>
-		  <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
+		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
@@ -1865,7 +1865,7 @@
 	      <child>
 		<widget class="GtkScrolledWindow" id="scrolledwindow4">
 		  <property name="visible">True</property>
-		  <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
+		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
@@ -1916,7 +1916,7 @@
 	      <child>
 		<widget class="GtkScrolledWindow" id="scrolledwindow5">
 		  <property name="visible">True</property>
-		  <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
+		  <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 		  <property name="shadow_type">GTK_SHADOW_IN</property>
 		  <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
