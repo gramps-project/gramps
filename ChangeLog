@@ -1,3 +1,11 @@
+2005-01-02 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Add support for a semi-common 'dispf'.
+	* src/ReportOptions.py: Add support for a semi-common 'dispf'.
+	* src/Utils.py (cm2pt): Add function.
+	* src/plugins/AncestorChart.py: Convert to new scheme.
+	* src/plugins/AncestorChart2.py: Convert to new scheme.
+	* src/plugins/DesGraph.py: Convert to new scheme.
+
 2005-01-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: move strip_id from Utils
 	* src/GrampsCfg.py: use ComboBox for toolbar selection
