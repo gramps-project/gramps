@@ -94,6 +94,10 @@ UNDEF = -999999
 #
 #-------------------------------------------------------------------------
 class Date:
+    """
+    The core date handling class for GRAMPs. Supports partial dates,
+    date ranges, and alternate calendars.
+    """
     formatCode = 0
     entryCode = 0
     
@@ -480,7 +484,7 @@ class SingleDate:
             d = "-%02d" % self.day
         return "%s%s%s" % (y,m,d)
         
-    def get_fmt1(self):
+    def _format1(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -513,7 +517,7 @@ class SingleDate:
             retval = _("after") + ' ' + retval
         return retval
 
-    def get_fmt2(self):
+    def _format2(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.month != UNDEF and self.month != UNDEF:
@@ -543,7 +547,7 @@ class SingleDate:
 
         return retval
 
-    def get_fmt3(self):
+    def _format3(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -572,7 +576,7 @@ class SingleDate:
             retval = "%s %s" % (_("AFTER"),retval)
         return retval
 
-    def get_fmt10(self):
+    def _format10(self):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -601,7 +605,7 @@ class SingleDate:
 
         return retval
 
-    def get_mmddyyyy(self,sep):
+    def _get_mmddyyyy(self,sep):
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
             return ""
         elif self.day == UNDEF:
@@ -628,7 +632,7 @@ class SingleDate:
 
         return retval
 
-    def get_yyyymmdd(self,sep):
+    def _get_yyyymmdd(self,sep):
         retval = ""
         
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
@@ -658,16 +662,16 @@ class SingleDate:
 
         return retval
 
-    def get_fmt4(self):
-        return self.get_mmddyyyy("/")
+    def _format4(self):
+        return self._get_mmddyyyy("/")
 
-    def get_fmt5(self):
-        return self.get_mmddyyyy("-")
+    def _format5(self):
+        return self._get_mmddyyyy("-")
 
-    def get_fmt8(self):
-        return self.get_mmddyyyy(".")
+    def _format8(self):
+        return self._get_mmddyyyy(".")
 
-    def get_ddmmyyyy(self,sep):
+    def _get_ddmmyyyy(self,sep):
         retval = ""
         
         if self.month == UNDEF and self.day == UNDEF and self.year == UNDEF :
@@ -696,32 +700,32 @@ class SingleDate:
 
         return retval
 
-    def get_fmt6(self):
-        return self.get_ddmmyyyy("/")
+    def _format6(self):
+        return self._get_ddmmyyyy("/")
 
-    def get_fmt7(self):
-        return self.get_ddmmyyyy("-")
+    def _format7(self):
+        return self._get_ddmmyyyy("-")
 
-    def get_fmt9(self):
-        return self.get_ddmmyyyy(".")
+    def _format9(self):
+        return self._get_ddmmyyyy(".")
 
-    def get_fmt11(self):
-        return self.get_yyyymmdd("/")
+    def _format11(self):
+        return self._get_yyyymmdd("/")
 
-    def get_fmt12(self):
-        return self.get_yyyymmdd("-")
+    def _format12(self):
+        return self._get_yyyymmdd("-")
 
-    def get_fmt13(self):
-        return self.get_yyyymmdd(".")
+    def _format13(self):
+        return self._get_yyyymmdd(".")
 
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    fmtFunc = [ get_fmt1, get_fmt2, get_fmt3, get_fmt4, get_fmt5, get_fmt6,
-                get_fmt7, get_fmt8, get_fmt9, get_fmt10, get_fmt11, get_fmt12,
-                get_fmt13]
+    fmtFunc = [ _format1, _format2, _format3, _format4, _format5, _format6,
+                _format7, _format8, _format9, _format10, _format11, _format12,
+                _format13]
 
     def display_calendar(self,month_map):
         if self.year==UNDEF:

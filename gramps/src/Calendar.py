@@ -17,14 +17,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+"""
+Calendar conversion routines for GRAMPS. 
 
-#-------------------------------------------------------------------
-#
-# The original algorithms for this module came from Scott E. Lee's
-# C implementation. The original C source can be found at Scott's
-# web site at http://www.scottlee.com
-#
-#-------------------------------------------------------------------
+The original algorithms for this module came from Scott E. Lee's
+C implementation. The original C source can be found at Scott's
+web site at http://www.scottlee.com
+"""
 
 _FR_SDN_OFFSET         = 2375474
 _FR_DAYS_PER_4_YEARS   = 1461
@@ -51,9 +50,9 @@ _SUNDAY   = 0
 _MONDAY   = 1
 _TUESDAY  = 2
 _WEDNESDAY= 3
-_THURSDAY = 4
+#_THURSDAY = 4
 _FRIDAY   = 5
-_SATURDAY = 6
+#_SATURDAY = 6
 
 _NOON = (18 * _HALAKIM_PER_HOUR)
 _AM3_11_20 = ((9 * _HALAKIM_PER_HOUR) + 204)
