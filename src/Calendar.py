@@ -457,7 +457,7 @@ class Calendar:
         if match != None:
             matches = match.groups()
             mode = self.set_mode_value(matches[0])
-            if Calendar.entryCode == 2:
+            if Calendar.ENTRYCODE == 2:
                 month = self.set_value(matches[2])
                 year = self.set_value(matches[1])
             else:
@@ -469,11 +469,11 @@ class Calendar:
         if match != None:
             matches = match.groups()
             mode = self.set_mode_value(matches[0])
-            if Calendar.entryCode == 0:
+            if Calendar.ENTRYCODE == 0:
                 month = self.set_value(matches[1])
                 day = self.set_value(matches[2])
                 year = self.set_value(matches[3])
-            elif Calendar.entryCode == 1:
+            elif Calendar.ENTRYCODE == 1:
                 month = self.set_value(matches[2])
                 day = self.set_value(matches[1])
                 year = self.set_value(matches[3])
