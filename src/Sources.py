@@ -188,7 +188,11 @@ def on_sourceok_clicked(obj):
     current_source_ref.setComments(comments)
 
     if src_edit.update:
-        src_edit.update.set_text(current_source_ref.getBase().getTitle())
+        if current_source_ref.getBase():
+            val = current_source_ref.getBase().getTitle()
+        else:
+            val = ""
+        src_edit.update.set_text(val)
         
     utils.modified()
     utils.destroy_passed_object(obj)
