@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -18,10 +18,11 @@
 
 <!-- ================ Usage ================================ -->
   <sect1 id="gramps-usage"> 
-    <title>Használat</title> 
-    <para>Mint a való életben, a 
-    &app;ben is általában többféle módja van annak, hogy valamit megcsináljon.
-    A különböző lehetőségeket az alábbi sorok ismertetik.</para> 
+    <title>Usage</title> 
+    <para>As commonly encountered in everyday life, in
+    &app; there is usually more than one way to
+    accomplish something. The alternatives to some actions will therefore 
+    be listed as appropriate.</para> 
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="new-db"> 
@@ -166,6 +167,15 @@
      in the database, and it will be in the consistent state. Use this option
      if the replacement is readily available. 
      </para></listitem>
+
+     <listitem>
+     <para>To automatically use the selection made in this dialog for 
+     all missing media files, check the <guilabel>Use this selection for all 
+     missing media files</guilabel> box. This will remember your choice
+     and use it for all media files missing during this import, so that no 
+     further dialogs will be presented. Use this option if you anticipate 
+     many missing files and want to deal with all of them in the same manner.
+     </para></listitem>
     
      </itemizedlist>	
 
@@ -178,7 +188,7 @@
       <para>Exporting allows you to share any portion of your &app; database 
       with other researchers as well as to make your database completely 
       portable to another computer. Currently, &app; 
-      can export data  to three different formats: CD, GEDCOM, &app; package, 
+      can export data  to four different formats: CD, GEDCOM, &app; package, 
       and Web Family Tree. All of these are available as items of
       <menuchoice><guimenu>File</guimenu>  
       <guisubmenu>Export</guisubmenu></menuchoice> submenu.</para>
@@ -218,7 +228,7 @@
       <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
       records marked private</guilabel> to disable the output of private
       records. Check <guilabel>Restrict data on living people</guilabel>
-      to limit living people's data to family ties. With this option, 
+      to limit living people''s data to family ties. With this option, 
       information concerning birth, death, addresses, various events, 
       etc. will be omitted in the exported GEDCOM file. If this option is selected, 
       you can further choose whether to use the word "Living" as first name, exclude
@@ -296,6 +306,15 @@
      if the replacement is readily available. 
      </para></listitem>
     
+     <listitem>
+     <para>To automatically use the selection made in this dialog for 
+     all missing media files, check the <guilabel>Use this selection for all 
+     missing media files</guilabel> box. This will remember your choice
+     and use it for all media files missing during this export, so that no 
+     further dialogs will be presented. Use this option if you anticipate 
+     many missing files and want to deal with all of them in the same manner.
+     </para></listitem>
+
      </itemizedlist>	
 
     </sect2>
@@ -375,10 +394,10 @@
         <title>To Specify Parents</title> 
 	<para>To specify parents of an active person, first switch to the 
 	Family View (<xref linkend="family-fig"/>). Then click the 
-	<guibutton>+</guibutton> button on the right of the active person's
+	<guibutton>+</guibutton> button on the right of the active person''s
 	parents list box. Select the parents from two lists and specify the
-	parents' relationships to the active person using menus at the bottom. 
-	You can also specify parents' relationship to each other. 
+	parents'' relationships to the active person using menus at the bottom. 
+	You can also specify parents'' relationship to each other. 
 	If necessary, you can add a person to the list by clicking the 
 	<guibutton>Add...</guibutton> button. </para>
 	
@@ -389,12 +408,12 @@
 	the <guilabel>Show all</guilabel> box for each list. 
 	</para>
 	
-	<para>To specify parents of the active person's spouse, switch to the 
+	<para>To specify parents of the active person''s spouse, switch to the 
 	Family View and then click the <guibutton>+</guibutton> button on the 
-	right of the spouse's parents list box. To edit information about 
+	right of the spouse''s parents list box. To edit information about 
 	parents already present in the database, move the mouse over 
-	the corresponding parents' box and double-click. All these functions can
-        also be performed by right-clicking on the parents' box and selecting
+	the corresponding parents'' box and double-click. All these functions can
+        also be performed by right-clicking on the parents'' box and selecting
         an appropriate item from the context menu. </para>
       </sect3>
 
@@ -409,7 +428,7 @@
 	</para>
 
 	<para> If using the third button, select a child from the list and 
-	specify	the child's relationship with father and mother using menus 
+	specify	the child''s relationship with father and mother using menus 
 	at the bottom. If necessary, you can add a person to the list by 
 	clicking the <guibutton>Add...</guibutton> button. By default, &app; will
 	limit the lists to people who could possibly be the child (judged
@@ -438,7 +457,8 @@
         invoke the <guilabel>Edit Person</guilabel> Dialog 
 	(<xref linkend="edit-pers-fig"/>). Then, select the 
 	<guilabel>Gallery</guilabel> tab, and click the 
-	<guibutton>Add...</guibutton> button to invoke the <guilabel>Select a media 
+	<guibutton>Add from file...</guibutton> button to invoke 
+    the <guilabel>Select a media 
 	object</guilabel> dialog. Type the filename or select a file with the 
 	image, then provide a title for that image. To prevent the file from
 	being copied into your database directory, check the <guilabel>Do not
@@ -449,8 +469,8 @@
 	switch to the Family View (<xref linkend="family-fig"/>) and then
 	double-click on the Spouse box invoke the <guilabel>Marriage/Relationship 
 	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add...</guibutton> button to add 
-        an image. </para>
+	tab and click the <guibutton>Add from file...</guibutton> button to add 
+    an image. </para>
 
 	<para> To add images related to a source or a place, first switch to 
 	the Sources View (<xref linkend="sources-fig"/>) or Places 
@@ -459,14 +479,14 @@
 	or click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
 	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
 	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add...</guibutton> button to add 
+	tab and click the <guibutton>Add from file...</guibutton> button to add 
         an image. </para>
 
 	<para> Finally, to add images that are generally related to the 
 	database but not limited to any person, relationship, source, or place 
 	in particular, switch to the Media View (<xref linkend="media-fig"/>). 
 	Then click the <guibutton>Add</guibutton> icon on the toolbar to 
-        add an image. 
+    add an image. 
 	If you have already added any images to any individual galleries, 
 	you will also find them listed in the Media View. </para>
 
@@ -596,7 +616,7 @@
 	
 	<para>
 	The <guilabel>Gender</guilabel> radio buttons offer
-	the choice of person's gender between <guilabel>male</guilabel>,
+	the choice of person''s gender between <guilabel>male</guilabel>,
 	<guilabel>female</guilabel>, and <guilabel>unknown</guilabel>. 
 	The buttons <guibutton>Source...</guibutton> and 
 	<guibutton>Note...</guibutton> allow adding or modifying the data about 
@@ -612,7 +632,7 @@
 	</para>
 	
 	<para>Finally, the <guilabel>Information is complete</guilabel> check
-	button provides the way to mark whether this person's record is 
+	button provides the way to mark whether this person''s record is 
 	complete or 
 	not. </para>
 		</listitem></varlistentry>
@@ -760,6 +780,17 @@
 	naturally fit into the Parameter-Value pairs available to Attributes. 
 	To add a note or modify existing notes simply edit the text in the 
 	text entry field.
+    </para>
+    
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -782,7 +813,7 @@
 	the sources related to the person and controls allowing its modification. 
     These could be any general sources which refer to the person but do not 
     describe specifically any event.
-    For example, Aunt Martha's memoirs may mention her great grandson Paul,
+    For example, Aunt Martha''s memoirs may mention her great grandson Paul,
     so the researcher may assume that this person (Paul) existed and cite 
     the memoirs as the source for this assumption. NOTE: sources documenting
     specific events are better filed in relation to those events, under the
@@ -823,9 +854,11 @@
 	generic &app; icon is displayed instead. Note that the first available
 	image in the gallery will be also displayed in the
 	<guilabel>Image</guilabel> area in the <guilabel>General</guilabel> 
-	tab. The buttons <guibutton>Add...</guibutton>,
+	tab. The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
 	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
 	to this person. Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
@@ -833,7 +866,7 @@
 
 	<para>Note: removing a media object from a person's gallery does not 
         remove it from the database. It only removes the reference to that 
-        object from this person's record. 
+        object from this person''s record. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1019,7 +1052,7 @@
 	internal &app; ID number which identifies this relationship in 
 	the database. 
 	Finally, the <guilabel>Information is complete</guilabel> check
-	button provides the way to mark whether this relationship's record is 
+	button provides the way to mark whether this relationship''s record is 
 	complete or not. </para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1069,6 +1102,18 @@
 	Attributes. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
 	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
+	</para>
+
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1079,7 +1124,7 @@
 	the sources related to the relationship and controls allowing its 
     modification. These could be any general sources which refer to the 
     relationship but do not describe specifically any event.
-    For example, Aunt Martha's memoirs may mention that her great grandson Paul 
+    For example, Aunt Martha''s memoirs may mention that her great grandson Paul 
     was married, so the researcher may assume that this relationship (between 
     Paul and his wife) existed and cite the memoirs as the source for this 
     assumption. NOTE: sources documenting specific events such as marriages 
@@ -1106,10 +1151,13 @@
 	modification of such. The central part shows the list of all such media objects. 
 	For media object which are valid image files previews of images are 
 	displayed. For other objects such as audio files, movie files, etc., a 
-	generic &app; icon is displayed instead. The buttons 
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Remove</guibutton> allow	you to correspondingly add, modify, 
-	and remove a media object reference to this relationship. 
+	generic &app; icon is displayed instead. 
+    The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
+	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
+	to this relationship. 
 	Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
@@ -1179,9 +1227,9 @@
 		<varlistentry><term><guilabel>General</guilabel></term>
 		<listitem><para>The  
 	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the source: its title, author, and publication
-	information. This information can be typed in the appropriate 
-	text entry fields. 
+	information about the source: its title, author, abbreviated title, 
+    and publication	information. 
+    This information can be typed in the appropriate text entry fields. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1192,6 +1240,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the source. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1205,10 +1264,13 @@
 	such media objects. For media object which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-	The buttons <guibutton>Add...</guibutton>,
+    The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
 	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this source. Note that the <guibutton>Edit...</guibutton> and 
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
+	to this source.
+    Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
@@ -1309,6 +1371,17 @@
 	the place. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
 	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1336,10 +1409,13 @@
 	such media objects. For media objects which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-	The buttons <guibutton>Add...</guibutton>, 
+    The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
 	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this source. Note that the <guibutton>Edit...</guibutton> and 
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
+	to this place. 
+    Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
@@ -1463,6 +1539,17 @@
 	not naturally fit into the Parameter-Value pairs available to 
 	Attributes. To add a note or modify existing notes simply edit the 
 	text in the text entry field. </para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1558,6 +1645,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the event. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1679,7 +1777,7 @@
 		<listitem><para>The 
 	<guilabel>Sources</guilabel> tab displays information about sources 
 	relevant to this name and controls allowing its modification. 
-	The central part displays the list of all such sources' references 
+	The central part displays the list of all such sources'' references 
 	stored in the database. The buttons <guibutton>Add...</guibutton>, 
 	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
 	allow you to correspondingly add, modify, and remove a source reference  
@@ -1695,6 +1793,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the name. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1773,8 +1882,19 @@
 		<varlistentry><term><guilabel>Note</guilabel></term>
 		<listitem>
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the attribute . To add a note or modify existing notes simply edit the 
+	the attribute. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1823,7 +1943,8 @@
 		<listitem><para>The 
 	<guilabel>General</guilabel> tab allows editing of the most general
 	information about the address: date, street address, city or county, 
-	state or province, country, and the postal code. The information can 
+	state or province, country, the postal code, and the phone number. 
+    The information can 
 	be typed in the appropriate text entry fields. 
 	Check the <guilabel>Private record</guilabel> box to mark this address 
 	record as private. This will give you a chance to omit this address 
@@ -1853,6 +1974,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the address. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1893,13 +2025,13 @@
 	<variablelist>
 		<varlistentry><term>Person from the database</term>
 		<listitem><para> 
-	If the person's data are stored in a database, check <guilabel>Person 
+	If the person''s data are stored in a database, check <guilabel>Person 
 	is in the database</guilabel> box. Then click the 
         <guibutton>Select</guibutton> button to evoke <guilabel>Select
         Person</guilabel> dialog. Choose the person from that dialog and 
         click the <guibutton>OK</guibutton> button. The <guilabel>Person</guilabel> 
         text field will display the name of the person you selected. 
-        Note: even though the person's name is displayed in the 
+        Note: even though the person''s name is displayed in the 
         <guilabel>Person</guilabel> field, it is not available for direct
         editing. 
 	</para></listitem></varlistentry>
@@ -2014,17 +2146,17 @@
 	
 	<listitem><para>To make the currently selected parents the active family
 	(thereby making father the active person and mother the selected
-	spouse), click the right-arrow button to the right of the active person's
-	parents box. Alternatively, right-click into the active person's parents 
+	spouse), click the right-arrow button to the right of the active person''s
+	parents box. Alternatively, right-click into the active person''s parents 
         box and select 
         <guilabel>Make the selected parents the active family</guilabel> item 
         from the context menu. 
         </para></listitem> 
 	
-	<listitem><para>To make the currently selected spouse's parents 
+	<listitem><para>To make the currently selected spouse''s parents 
 	the active family (thereby making father the active person and mother 
 	the selected spouse), click the right-arrow button to the right of the 
-	spouse's parents box. Alternatively, right-click into the spouse's parents 
+	spouse''s parents box. Alternatively, right-click into the spouse''s parents 
         box and select 
         <guilabel>Make the selected parents the active family</guilabel> item 
         from the context menu. </para></listitem>
@@ -2135,7 +2267,7 @@
 	person from anywhere in the database, choose 
 	<menuchoice><guimenu>Bookmarks</guimenu>
 	<guisubmenu>Go to bookmark</guisubmenu>
-	<guimenuitem><replaceable>Person's name</replaceable></guimenuitem>
+	<guimenuitem><replaceable>Person''s name</replaceable></guimenuitem>
 	</menuchoice>. </para>
 	
 	<para> You can manage your bookmarks by choosing 
@@ -2236,7 +2368,7 @@
 	and graphs. Most of the options are common among graphical reports, 
 	therefore they will be described only once, at the end of this 
 	section. The few options which are specific to a given report will be 
-	described directly in that report's entry.</para>
+	described directly in that report''s entry.</para>
 
 	<para>The following graphical reports are currently 
 	available in &app;: </para>
@@ -2248,6 +2380,15 @@
 	ancestors of the Active person. Specific options include 
 	the number of generations considered and the format of the displayed 
 	entries. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Ancestor Chart (Wall Chart)</term>
+	<listitem><para>This report is similar to the Ancestor Chart report. 
+    It provides more options which make it useful for generating huge charts
+    suitable for a poster or a wall chart. These options include the ability
+    to compress the report (getting rid of an empty space) and the option
+    to fit the whole chart onto a single page. In the latter case, the
+    contents of the chart is scaled down appropriately. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Descendant Graph</term>
@@ -2279,7 +2420,13 @@
 
 	<para>Common options for graphical reports are the filename of the
 	output, the format of the output, selected style, page size and 
-	orientation. </para>
+	orientation. Optionally, the reports can be immediately opened
+    with the default application (set in the main GNOME 
+    <menuchoice><guimenu>Desktop Preferenes</guimenu>
+    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Preferred 
+    Applications</replaceable></guimenuitem></menuchoice> dialog). 
+    </para>
 
       </sect3>
 
@@ -2290,7 +2437,7 @@
 	text. Most of the options are common among text reports, 
 	therefore they will be described only once, at the end of this 
 	section. The options which are specific to a given report will be 
-	described directly in that report's entry.</para>
+	described directly in that report''s entry.</para>
 	
 	<para>The following text reports are currently 
 	available in &app;:</para>
@@ -2303,8 +2450,8 @@
 	special way which is an established standard called Ahnentafel. 
 	The active person is given number 1. His or her father and mother 
 	have numbers 2 and 3, respectively. This rule holds for every person 
-	while going back in generations: father's parents are numbered 4 and 5, 
-	and mother's parents are numbered 6 and 7, fathers always numbered 
+	while going back in generations: father''s parents are numbered 4 and 5, 
+	and mother''s parents are numbered 6 and 7, fathers always numbered 
 	with even and mothers with odd numbers. Therefore, for any person 
 	having number N in this tree, the numbers of father and mother 
 	are 2N and 2N+1, respectively. 
@@ -2386,7 +2533,14 @@
 	output, the format of the output, selected style, page size and 
 	orientation. For HTML reports, there is no page information. 
 	Instead, HTML options include the choice of the HTML template, 
-	either available in &app; or a custom template defined by you. </para>
+	either available in &app; or a custom template defined by you. 
+    Optionally, the reports can be immediately opened
+    with the default application (set in the main GNOME 
+    <menuchoice><guimenu>Desktop Preferenes</guimenu>
+    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Preferred 
+    Applications</replaceable></guimenuitem></menuchoice> dialog). 
+    </para>
 
       </sect3>
 
@@ -2568,7 +2722,7 @@
  	<varlistentry><term>Interactive descendant browser</term>
 	<listitem><para>This tool builds a tree with the active person being 
 	the root. Children branch from their parents in the usual manner. 
-	Use this tool for a quick glance of a person's descendants. 
+	Use this tool for a quick glance of a person''s descendants. 
 	</para></listitem>
 	</varlistentry>
 
@@ -2591,7 +2745,7 @@
 	fixing the problems it can. Specifically, the tool is checking for:</para>
 	<itemizedlist>
 		<listitem><para>Broken family links. These are the cases when 
-		a person's record refers to a family while the family's record 
+		a person''s record refers to a family while the family''s record 
 		does not refer to that person, and vice versa.
 		</para></listitem>
 
@@ -2617,7 +2771,7 @@
 
  	<varlistentry><term>Extract information from names</term>
 	<listitem><para>This tool searches the entire database and attempts 
-	to extract titles and nicknames that may be embedded in a person's 
+	to extract titles and nicknames that may be embedded in a person''s 
 	<guilabel>Given name</guilabel> field. 
 	</para></listitem>
 	</varlistentry>
@@ -2724,7 +2878,7 @@
         of the currently edited filter. Clicking <guibutton>Cancel</guibutton>
         will abort adding the rule to the filter. </para>
         
-        <para> Note that a filter you've already designed may be used as a rule
+        <para> Note that a filter you''ve already designed may be used as a rule
 	for another filter. This gives you nearly infinite flexibility in
 	custom-tailoring your selection criteria that can be later used in 
 	most of the exports, reports and some of the tools (such as comparing
