@@ -369,7 +369,7 @@
         pouvez ajouter une personne à la liste en cliquant le bouton <guibutton>Ajouter...</guibutton>. 
 	&app; filtrera la liste affichée selon le type de relation. 
 	Les relations "mariés", "non mariés", "relation inconnue" et "autre relation"
-	afficheront seulement les personnes du sexe opposé à la personne active. 
+	afficheront seulement les personnes du sexe opposé à la personne active.
 	La relation "partenaire" proposera seulement les personnes de même sexe que la 
 	personne active. &app; ne proposera aussi que les personnes qui peuvent
 	être en relation avec la personne active, selon les dates de naisance et de décès. 
@@ -569,7 +569,7 @@
 
 	<para> Le haut de la fenêtre présente le nom de la personne dont les données
 	sont en modification. La partie principale de la fenêtre présente des onglets
-	correspondant à chaque catégorie d'information disponible. 
+	correspondant à chaque catégorie d'information disponible.
 	Cliquez sur le nom de l'onglet pour faire apparare son contenu et donc
 	permettre l'accès à ses données. 
 	Le bas de la fenêtre contient les boutons
@@ -709,7 +709,7 @@
 	<!-- ==== End of Figure ==== -->
 
 	<para>L'onglet <guilabel>Attributs</guilabel> affiche les valeurs
-	d'attributs de l'individu et permet leur modification. 
+	d'attributs de l'individu et permet leur modification.
 	Un attribut est en fait n'inmporte quelle couple Paramètre-Valeur.
 	Par exemple, on peut décider de coder la générosité des personnes
 	dans la valeur d'un attribut. Cela donnera pour certains "Générosité-Enorme", 
@@ -808,7 +808,7 @@
 	<!-- ==== End of Figure ==== -->
 
 	<para>L'onglet <guilabel>Sources</guilabel> affiche les sources d'information
-	de l'individu et permet leur modification.
+	sur l'individu et permet leur modification.
 	Les sources sont liées à la personne mais pas spécifiquement à un évènement.
 	Par exemple, le journal personnel de Tante Marthe peut mentionner son
 	arrière-petit-fils Paul. Dans ce cas, Paul aura comme source ce journal.
@@ -847,7 +847,7 @@
 	<!-- ==== End of Figure ==== -->
 
 	<para>L'onglet <guilabel>Galerie</guilabel> affiche les données des objets multimédias
-	de l'individu et permet leur modification. La partie centrale de la fenêtre montre
+	associés à l'individu et permet leur modification. La partie centrale de la fenêtre montre
 	tous les objets multimédias conservés dans la base de données.
 	Les objets qui sont des fichiers-images valides sont représentés par
 	une vignette. Les autres comme des enregistrements sonores ou video sont
@@ -896,10 +896,10 @@
 	sélectionnée s'il y a lieu. Les boutons
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
 	et <guibutton>Supprimer</guibutton> permettent respectivement l'ajout, 
-	la modification et la suppression d'une adresse. Le bouton <guibutton>Go</guibutton> 
+	la modification et la suppression d'une adresse. Le bouton <guibutton>Aller à</guibutton>
 	permet d'ouvrir une page Internet avec votre navigateur favori. 
 	Notez que les boutons <guibutton>Afficher...</guibutton>, 
-	<guibutton>Supprimer</guibutton> et <guibutton>Go</guibutton> 
+	<guibutton>Supprimer</guibutton> et <guibutton>Aller à</guibutton>
 	ne sont disponibles que lors de la sélection d'une adresse dans la liste. 
 	</para>
 
@@ -978,7 +978,7 @@
         formats de dates. Les seuls formats délicats sont 
 	XX/XX/XX ou XX-XX-XX à cause de l'ambigüité entre le jour et le mois. 
 	L'interprétation de ce type de formats est configurée
-	dans le dialogue <guilabel>Getting Started</guilabel> et peut aussi être
+	dans le dialogue de <guilabel>Premier lancement</guilabel> et peut aussi être
 	changé dans le dialogue <guilabel>Préférences</guilabel>. </para> </listitem>
 
 	<listitem><para>En plus des dates exactes, &app; 
@@ -1446,10 +1446,10 @@
 	sélectionnée s'il y a lieu. Les boutons
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
 	et <guibutton>Supprimer</guibutton> permettent respectivement l'ajout, 
-	la modification et la suppression d'une adresse. Le bouton <guibutton>Go</guibutton> 
-	permet d'ouvrir une page Internet avec votre navigateur favori. 
-	Notez que les boutons <guibutton>Afficher...</guibutton>, 
-	<guibutton>Supprimer</guibutton> et <guibutton>Go</guibutton>
+	la modification et la suppression d'une adresse. Le bouton <guibutton>Aller à</guibutton>
+	permet d'ouvrir une page Internet avec votre navigateur favori.
+	Notez que les boutons <guibutton>Afficher...</guibutton>,
+	<guibutton>Supprimer</guibutton> et <guibutton>Aller à</guibutton>
 	ne sont disponibles que lors de la sélection d'une adresse dans la liste. 
 	</para>
 		</listitem></varlistentry>
@@ -1473,14 +1473,14 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-media"> 
-        <title>Edit Media Data</title> 
-	<para> Pour changer les propriétés d'un Média, allez dans la vue Médias et 
+        <title>Modification des propriétés d'un objet multimedia</title>
+	<para> Pour changer les propriétés d'un objet multimedia, allez dans la vue Médias et
 	sélectionnez celui que vous voulez. Double-cliquez ou cliquer sur
 	le bouton <guibutton>Editer</guibutton> dans la barre d'outils pour
 	afficher le dialogue <guilabel>Changer les propriétés globales du Média</guilabel> : </para>
 
  	<!-- ==== Figure: Edit Media Properties dialog ==== -->
-	<figure id="edit-media-fig"> 
+	<figure id="edit-media-fig">
 	<title>Dialogue Changer les propriétés globales du Média</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-media.png" format="PNG"/></imageobject>
@@ -1535,8 +1535,8 @@
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
 	et <guibutton>Supprimer</guibutton> permettent respectivement l'ajout, 
 	la modification et la suppression d'un attribut. 
-	Notez que les boutons <guibutton>Afficher...</guibutton>, 
-	<guibutton>Supprimer</guibutton> et <guibutton>Go</guibutton> 
+	Notez que les boutons <guibutton>Afficher...</guibutton> et
+	<guibutton>Supprimer</guibutton>
 	ne sont disponibles que lors de la sélection d'un attribut dans la liste. 
 	</para>
 
@@ -1573,7 +1573,7 @@
 	de la base de données concernés.
 	Elle peut être triée par n'importe quelle colonne, en cliquant sur
 	son en-tête : 
-	<guilabel>Type</guilabel>, <guilabel>Objet</guilabel> or
+	<guilabel>Type</guilabel>, <guilabel>Objet</guilabel> ou
 	<guilabel>Valeur</guilabel>. On ne peut pas modifier les liens
 	des objets de la base de données vers les objets multimédias dans ce dialogue. Il faut
 	ouvrir l'objet contenant la référence (par exemple un évènement de naissance)
@@ -1585,23 +1585,23 @@
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-ev"> 
-        <title>Modification d'Evènements</title> 
-	<para> Les évènements sont modifiés dans le dialogue 
-	<guilabel>Affichage d'un évènement</guilabel> : </para> 
+      <sect3 id="adv-ev">
+        <title>Modification d'Evènements</title>
+	<para> Les évènements sont modifiés dans le dialogue
+	<guilabel>Affichage d'un évènement</guilabel> : </para>
 
  	<!-- ==== Figure: Event Editor dialog ==== -->
-	<figure id="edit-ev-fig"> 
-	<title>Dialogue d'Affichage d'un Evènement</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<figure id="edit-ev-fig">
+	<title>Dialogue d'Affichage d'un Evènement</title>
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/edit-ev.png" format="PNG"/></imageobject>
-	<textobject> 
+	<textobject>
 	<phrase>Montre le dialogue d'Affichage d'un Evènement. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
 	<para> Le haut de la fenêtre contient le nom de la personne dont
-	un évènement est en cours de modification. 
+	un évènement est en cours de modification.
 	La partie principale de la fenêtre montre des onglets présentant
 	différentes informations. 
 	La partie du bas contient les boutons 
@@ -1822,9 +1822,9 @@
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-at"> 
-        <title>Edit Attributes</title> 
-	<para> Attributes are edited through the following 
-	<guilabel>Attribute Editor</guilabel> dialog: </para>
+        <title>Modification des Attributs</title>
+	<para> Les attributs sont modifiés avec le dialogue
+	<guilabel>Affichage des Attributs</guilabel> </para>
 
  	<!-- ==== Figure: Attribute Editor dialog ==== -->
 	<figure id="edit-at-fig"> 
@@ -2281,23 +2281,23 @@
 	<para> De façon semblable à la personne de Cujus, vous pouvez définir
 	des signets pour faciliter la navigation. Pour mettre un signet sur une personne,
 	rendez-la active par le moyen que vous voulez, puis choisissez
-	<menuchoice><guimenu>Annuaire</guimenu>
+	<menuchoice><guimenu>Signets</guimenu>
 	<guimenuitem>Ajouter un signet</guimenuitem></menuchoice>. Pour aller vers
-	cette personne, sélectionnez 
-	<menuchoice><guimenu>Annuaire</guimenu>
+	cette personne, sélectionnez
+	<menuchoice><guimenu>Signets</guimenu>
 	<guisubmenu>Aller à un signet</guisubmenu>
 	<guimenuitem><replaceable>Nom de la Personne</replaceable></guimenuitem>
 	</menuchoice>. </para>
-	
+
 	<para> Vous pouvez gérer vos signets en choisissant
-	<menuchoice><guimenu>Annuaire</guimenu>
-	<guimenuitem>Modifier les signets...</guimenuitem></menuchoice>. Ceci lance 
-	le dialogue suivant <guilabel>Afficher l'Annuaire</guilabel> avec la
+	<menuchoice><guimenu>Signets</guimenu>
+	<guimenuitem>Gérer les signets...</guimenuitem></menuchoice>. Ceci lance
+	le dialogue suivant <guilabel>Gérer les Signets</guilabel> avec la
 	liste des signets et les contrôle pour la modifier. </para>
-	
+
  	<!-- ==== Figure: Edit Bookmarks dialog ==== -->
-	<figure id="edit-bm-fig"> 
-	<title>Dialogue Afficher l'Annuaire</title> 
+	<figure id="edit-bm-fig">
+	<title>Dialogue de gestion des Signets</title>
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-bm.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -2478,7 +2478,7 @@
 
 	<variablelist>
 
-	<varlistentry><term>Edition Ahnentafel</term>
+	<varlistentry><term>Edition Ahnentafel (Sosa - Stradonitz, Eyzinger)</term>
 	<listitem><para>Cette édition présente la personne active
 	et ses ancêtres avec leurs données de naissance et décès. 
 	Chaque personne reçoit un numéro suivant un schéma appelé

@@ -80,7 +80,7 @@
 
           </variablelist>
 
-        </sect3> 
+        </sect3>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-event">
@@ -154,11 +154,11 @@
           </para></listitem>
           </varlistentry>
           </variablelist>
-        </sect3>
+	</sect3>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-family">
-        <title>Filtres Famillex</title>
+        <title>Filtres Familiaux</title>
         <para>Cette catégorie comprend les règles suivantes qui sélectionnent
 	les personnes d'après leurs relations familiales : </para>
           <variablelist>

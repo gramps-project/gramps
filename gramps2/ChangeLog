@@ -1,3 +1,9 @@
+2004-02-05  Michel Guitel  <michel.guitel@free.fr>
+	* doc/gramps-manual/fr/cmdline.xml: Update.
+	* doc/gramps-manual/fr/filtref.xml: Update.
+	* doc/gramps-manual/fr/mainwin.xml: Update.
+	* doc/gramps-manual/fr/usage.xml: Update.
+
 2004-02-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/template.po: Update translation template.
 	* doc/gramps-manual/ru/filtref.xml: Update.
