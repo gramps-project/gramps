@@ -1,3 +1,8 @@
+2003-06-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/WriteGedcom.py: support different end of line characters
+	* src/GedcomInfo.py: support different end of line characters
+	* src/data/gedcom.xml: indicate cr-lf for Windows based tools
+
 2003-06-27  Tim Waugh  <twaugh@redhat.com>
 	* src/PlaceView.py: Fix removal of unreferenced places.
 	* src/plugins/WebPage.py: Make source links work.
