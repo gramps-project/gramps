@@ -29,6 +29,11 @@ import Errors
 import ImgManip
 from gettext import gettext as _
 
+_H = 'Helvetica'
+_HB = 'Helvetica-Bold'
+_T = 'Times-Roman'
+_TB = 'Times-Bold'
+
 #------------------------------------------------------------------------
 #
 # ReportLab python/PDF modules
@@ -41,6 +46,7 @@ try:
     from reportlab.lib.units import cm
     from reportlab.lib.colors import Color
     from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
+    from reportlab.graphics.shapes import *
     import reportlab.lib.styles
 except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
@@ -301,6 +307,189 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = text.replace('&lt;/super&gt;','</super></font>')
         self.text =  self.text + text.replace('\n','<br>')
 
+    def print_report(self):
+        return run_print_dialog (self.filename)
+
+    def start_page(self,orientation=None):
+        self.drawing = Drawing(self.get_usable_width()*cm, self.get_usable_height()*cm)
+
+    def end_page(self):
+	self.story.append(self.drawing)
+
+    def draw_line(self,style,x1,y1,x2,y2):
+        y1 = self.get_usable_height() - y1
+        y2 = self.get_usable_height() - y2
+
+        stype = self.draw_styles[style]
+        if stype.get_line_style() == BaseDoc.SOLID:
+            line_array = None
+        else:
+            line_array = [2,4]
+            
+        self.drawing.add(Line(x1*cm,y1*cm,x2*cm,y2*cm,
+                              strokeWidth=stype.get_line_width(),
+                              strokeDashArray=line_array))
+
+    def draw_bar(self,style,x1,y1,x2,y2):
+        pass
+
+    def draw_path(self,style,path):
+        stype = self.draw_styles[style]
+        color = make_color(stype.get_fill_color())
+        y = self.get_usable_height()*cm
+        
+        if stype.get_line_style() == BaseDoc.SOLID:
+            line_array = None
+        else:
+            line_array = [2,4]
+
+        p = Path(strokeWidth=stype.get_line_width(),
+                 strokeDashArray=line_array,
+                 fillColor=color,
+                 strokeColor=make_color(stype.get_color()))
+         
+        point = path[0]
+        p.moveTo(point[0]*cm,y-point[1]*cm)
+        for point in path[1:]:
+            p.lineTo(point[0]*cm,y-point[1]*cm)
+        p.closePath()
+        self.drawing.add(p)
+
+    def draw_box(self,style,text,x,y):
+        y = self.get_usable_height() - y
+
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+	p = self.style_list[para_name]
+
+	w = box_style.get_width()*cm
+        h = box_style.get_height()*cm
+
+ 	if box_style.get_shadow():
+            col = make_color((0xc0,0xc0,0xc0))
+            r = Rect((x+0.2)*cm,(y-0.2)*cm-h,w,h,
+                     fillColor=col,
+                     strokeColor=col)
+            self.drawing.add(r)
+            
+        self.drawing.add(Rect((x)*cm,(y*cm)-h,w,h,
+                              strokeWidth=box_style.get_line_width(),
+                              fillColor=box_style.get_fill_color(),
+                              strokeColor=box_style.get_color()))
+
+        size = p.get_font().get_size()
+
+        x = x + 0.2
+	if text != "":
+            lines = text.split('\n')
+            self.left_print(lines,p.get_font(),x*cm,y*cm - size)
+            
+    def draw_text(self,style,text,x,y):
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+ 	font = p.get_font()
+        size = font.get_size()
+        s = String(x*cm,
+                   (self.get_usable_height()*cm)-(y*cm),
+                   str(text),
+                   strokeColor=make_color(font.get_color()),
+                   fillColor=make_color(font.get_color()),
+                   fontName=self.pdf_set_font(font),
+                   fontSize=size)
+        self.drawing.add(s)
+
+    def pdf_set_font(self,font):
+        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            if font.get_bold():
+                return _HB
+            else:
+                return _H
+        else:
+            if font.get_bold():
+                return _TB
+            else:
+                return _T
+
+    def rotate_text(self,style,text,x,y,angle):
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+ 	font = p.get_font()
+        size = font.get_size()
+        yt = (self.get_usable_height()*cm) - (y*cm) 
+
+        yval = 0
+        g = Group()
+        for line in text:
+            s = String(0,yval,str(line),
+                       fontName=self.pdf_set_font(font),
+                       fontSize=size,
+                       strokeColor=make_color(font.get_color()),
+                       fillColor=make_color(font.get_color()),
+                       textAnchor='middle')
+            yval -= size
+            g.add(s)
+            
+        g.translate(x*cm,yt)
+        g.rotate(-angle)
+        self.drawing.add(g)
+
+    def center_text(self,style,text,x,y):
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+ 	font = p.get_font()
+        yt = (self.get_usable_height()*cm) - (y*cm) 
+
+        s = String(x*cm,
+                   yt,
+                   str(text),
+                   fontName=self.pdf_set_font(font),
+                   fontSize=font.get_size(),
+                   strokeColor=make_color(font.get_color()),
+                   fillColor=make_color(font.get_color()),
+                   textAnchor='middle')
+        self.drawing.add(s)
+
+    def center_print(self,lines,font,x,y,w,h):
+
+        l = len(lines)
+        size = font.get_size()
+        start_y = (y + h/2.0 + l/2.0 + l) - ((l*size) + ((l-1)*0.2))/2.0
+        start_x = (x + w/2.0)
+
+        for text in lines:
+            s = String(startx, start_y,
+                       str(line),
+                       fontName=self.pdf_set_font(font),
+                       fontSize=font.get_size(),
+                       strokeColor=make_color(font.get_color()),
+                       fillColor=make_color(font.get_color()),
+                       )
+            self.drawing.add(String(start_x,start_y,str(text)))
+            start_y = start_y - size*1.2
+
+    def left_print(self,lines,font,x,y):
+        l = len(lines)
+        size = font.get_size()
+        start_y = self.get_usable_height() - (y*cm)
+        start_x = x * cm
+
+        for text in lines:
+            s = String(start_x,
+                       start_y,
+                       str(text),
+                       fontSize=size,
+                       strokeColor=make_color(font.get_color()),
+                       fillColor=make_color(font.get_color()),
+                       fontName=self.pdf_set_font(font))
+            self.drawing.add(s)
+            start_y = start_y - size*1.2
+
+def make_color(c):
+    return Color(float(c[0])/255.0, float(c[1])/255.0, float(c[2])/255.0)
+
 #------------------------------------------------------------------------
 #
 # Convert an RGB color tulple to a Color instance
@@ -314,6 +503,14 @@ def make_color(c):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
+
+Plugins.register_draw_doc(
+    _("PDF"),
+    PdfDoc,
+    1,
+    1,
+    ".pdf"
+    )
 
 Plugins.register_text_doc(
     name=_("PDF"),

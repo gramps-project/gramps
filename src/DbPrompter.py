@@ -93,7 +93,10 @@ class DbPrompter:
             "on_ok_button1_clicked": self.save_ok_button_clicked,
             "destroy_passed_object": self.cancel_button_clicked,
             })
-        wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Save database'))
+        if self.new:
+            wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Create database'))
+        else:
+            wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Save database'))
 
     def save_ok_button_clicked(self,obj):
         filename = obj.get_filename().encode('iso8859-1')
@@ -119,8 +122,14 @@ class DbPrompter:
         self.getoldrev = wFs.get_widget("getoldrev")
         if GrampsCfg.db_dir:
             self.dbname.set_default_path(GrampsCfg.db_dir)
+
+        if GrampsCfg.lastfile:
+            self.dbname.set_filename(GrampsCfg.lastfile)
+            self.dbname.gtk_entry().set_position(len(GrampsCfg.lastfile))
+        elif GrampsCfg.db_dir:
             self.dbname.set_filename(GrampsCfg.db_dir)
             self.dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
+            
         self.getoldrev.set_sensitive(GrampsCfg.usevc)
 
     def cancel_button_clicked(self,obj):
