@@ -47,6 +47,7 @@ app_gramps_xml      = "application/x-gramps-xml"
 app_gedcom          = "application/x-gedcom"
 app_gramps_package  = "application/x-gramps-package"
 app_geneweb         = "application/x-geneweb"
+app_vcard           = ["text/x-vcard","text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
