@@ -1,7 +1,8 @@
 * File Open
 
-  - File Open
-  - Revision Control
+  - File Open - new XML database
+  - File Open - open existing database
+  - File Open - open previous revision
 
 * Importing
 
@@ -81,12 +82,52 @@
   - Edit only spouse's parents' relationship (multiple parents)
   - Edit selected spouse's parents' relationship (only parents)
   - Edit selected spouse's parents' relationship (multiple parents)
+  - Add button adds new person as active person
+  - Edit button edits active person
+  - Remove button removes active person
 
 * Pedigree View
 
+  - Navigation (left, no children - no menu)
+  - Navigation (left, only child)
+  - Navigation (left, multiple children)
+  - Navigation (right, father side)
+  - Navigation (right, mother side)
+  - View with 3 generations
+  - View with 4 generations
+  - View with 5 generations
+  - Rollover expands person information
+    o Name only
+    o Name, birth
+    o Name, death
+    o Name, birth and death
+  - Non birth relationships shown via dotted line
+  - Solid line double click for quick selection
+  - Add/Edit/Remove buttons disabled
+
 * Source View
 
+  - Add button 
+  - Edit button
+  - Remove Button
+  - Sort (click on columns)
+  - Double-click to edit
+  - Right context menu
+    o Add
+    o Edit
+    o Remove
+
 * Place View
+
+  - Add button 
+  - Edit button
+  - Remove Button
+  - Sort (click on columns)
+  - Double-click to edit
+  - Right context menu
+    o Add
+    o Edit
+    o Remove
 
 * Media View 
 
@@ -109,3 +150,5 @@
   - View
 
   - Go
+
+* History
