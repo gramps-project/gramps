@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+from math import cos,sin,pi
+
 #------------------------------------------------------------------------
 #
 # gramps modules
@@ -182,11 +184,62 @@ class DrawDoc:
     def center_text(self,style,text,x1,y1):
         pass
 
+    def rotate_text(self,style,text,x,y,angle):
+        pass
+    
     def draw_line(self,style,x1,y1,x2,y2):
 	pass
 
-    def draw_wedge(self, style, centerx, centery, radius, start_angle, end_angle):
-        pass
+    def draw_wedge(self, style, centerx, centery, radius, start_angle,
+                   end_angle, short_radius=0):
+
+        while end_angle < start_angle:
+            end_angle += 360
+
+        p = []
+        
+        degreestoradians = pi/180.0
+        radiansdelta = degreestoradians/2
+        sangle = start_angle*degreestoradians
+        eangle = end_angle*degreestoradians
+        while eangle<sangle:
+            eangle = eangle+2*pi
+        angle = sangle
+
+        if short_radius == 0:
+            p.append((centerx,centery))
+        else:
+            origx = (centerx + cos(angle)*short_radius)
+            origy = (centery + sin(angle)*short_radius)
+            p.append((origx, origy))
+            
+        while angle<eangle:
+            x = centerx + cos(angle)*radius
+            y = centery + sin(angle)*radius
+            p.append((x,y))
+            angle = angle+radiansdelta
+        x = centerx + cos(eangle)*radius
+        y = centery + sin(eangle)*radius
+        p.append((x,y))
+
+        if short_radius:
+            x = centerx + cos(eangle)*short_radius
+            y = centery + sin(eangle)*short_radius
+            p.append((x,y))
+
+            angle = eangle
+            while angle>=sangle:
+                x = centerx + cos(angle)*short_radius
+                y = centery + sin(angle)*short_radius
+                p.append((x,y))
+                angle = angle-radiansdelta
+        self.draw_path(style,p)
+
+        delta = (eangle - sangle)/2.0
+        rad = short_radius + (radius-short_radius)/2.0
+
+        return ( (centerx + cos(sangle+delta) * rad),
+                 (centery + sin(sangle+delta) * rad))
     
     def start_path(self,style,x,y):
         pass

@@ -24,6 +24,7 @@
 #
 #-------------------------------------------------------------------------
 import string
+from math import pi, cos, sin, fabs
 
 #-------------------------------------------------------------------------
 #
@@ -35,6 +36,7 @@ from intl import gettext as _
 import TextDoc
 import DrawDoc
 import Errors
+import FontScale
 
 #-------------------------------------------------------------------------
 #
@@ -88,13 +90,57 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         self.f.write('"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
         self.f.write('<svg width="%5.2fcm" height="%5.2fcm" ' % (self.width,self.height))
         self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
-        if self.orientation != TextDoc.PAPER_PORTRAIT:
-            self.f.write('<g transform="rotate(-90); ')
-            self.f.write(' translate(-%5.2fcm,0)">\n' % self.height)
+
+    def rotate_text(self,style,text,x,y,angle):
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+        size = font.get_size()
+
+        height = size*(len(text))
+        width = 0
+        for line in text:
+            width = max(width,FontScale.string_width(font,line))
+
+        rangle = -((pi/180.0) * angle)
+
+        centerx,centery = units((x+self.lmargin,y+self.tmargin))
+
+        yh = 0
+        for line in text:
+            xw = FontScale.string_width(font,line)
             
+            xpos = (centerx - (xw/2.0)) 
+            ypos = (centery) 
+            xd = 0
+            yd = yh
+#            xd = yh * sin(-rangle)
+ #           yd = yh * cos(-rangle)
+            
+            print centerx, centery, xpos, ypos, angle, line
+
+            self.f.write('<text ')
+            self.f.write('x="%4.2f" y="%4.2f" ' % (xpos+xd,ypos+yd))
+#            self.f.write('transform="rotate(%d) ' % angle)
+#            self.f.write(' translate(%.8f,%.8f)" ' % (-xpos,-ypos))
+            self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
+            if font.get_bold():
+                self.f.write('font-weight:"bold";')
+            if font.get_italic():
+                self.f.write('font-style:"italic";')
+            self.f.write('font-size:%d; ' % size)
+            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+                self.f.write('font-family:sans-serif;')
+            else:
+                self.f.write('font-family:serif;')
+            self.f.write('">')
+            self.f.write(line)
+            self.f.write('</text>\n')
+            yh += size
+                           
     def end_page(self):
-        if self.orientation != TextDoc.PAPER_PORTRAIT:
-            self.f.write('</g>\n')
         self.f.write('</svg>\n')
         self.f.close()
     
@@ -118,7 +164,7 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         point = path[0]
         self.f.write('<polygon fill="#%02x%02x%02x"' % stype.get_fill_color())
         self.f.write(' style="stroke:#%02x%02x%02x; ' % stype.get_color())
-        self.f.write(' stroke-width=%.2fpt;"' % stype.get_line_width())
+        self.f.write(' stroke-width:%.2fpt;"' % stype.get_line_width())
         self.f.write(' points="%.2f,%.2f' % units((point[0]+self.lmargin,point[1]+self.tmargin)))
         for point in path[1:]:
             self.f.write(' %.2f,%.2f' % units((point[0]+self.lmargin,point[1]+self.tmargin)))
