@@ -82,6 +82,8 @@ class AttributeEditor:
         self.priv = self.top.get_widget("priv")
         self.sources_label = self.top.get_widget("sourcesAttr")
         self.notes_label = self.top.get_widget("noteAttr")
+        self.flowed = self.top.get_widget("attr_flowed")
+        self.preform = self.top.get_widget("attr_preform")
         self.callback = callback
         self.alist = list
 
@@ -112,9 +114,13 @@ class AttributeEditor:
             self.value_field.set_text(attrib.getValue())
             self.priv.set_active(attrib.getPrivacy())
 
-            self.note_field.get_buffer().set_text(attrib.getNote())
             if attrib.getNote():
+                self.note_field.get_buffer().set_text(attrib.getNote())
                 Utils.bold_label(self.notes_label)
+            	if attrib.getNoteFormat() == 1:
+                    self.preform.set_active(1)
+            	else:
+                    self.flowed.set_active(1)
 
         self.top.signal_autoconnect({
             "on_add_src_clicked" : self.add_source,
@@ -151,6 +157,7 @@ class AttributeEditor:
 
         buf = self.note_field.get_buffer()
         note = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        format = self.preform.get_active()
         priv = self.priv.get_active()
 
         if not type in self.alist:
@@ -165,7 +172,7 @@ class AttributeEditor:
             self.parent.alist.append(self.attrib)
 
         self.attrib.setSourceRefList(self.srcreflist)
-        self.update(type,value,note,priv)
+        self.update(type,value,note,format,priv)
         self.callback(self.attrib)
 
     def check(self,get,set,data):
@@ -175,12 +182,13 @@ class AttributeEditor:
             set(data)
             self.parent.lists_changed = 1
             
-    def update(self,type,value,note,priv):
+    def update(self,type,value,note,format,priv):
         """Compares the data items, and updates if necessary"""
         ntype = const.save_pattr(type)
         self.check(self.attrib.getType,self.attrib.setType,ntype)
         self.check(self.attrib.getValue,self.attrib.setValue,value)
         self.check(self.attrib.getNote,self.attrib.setNote,note)
+        self.check(self.attrib.getNoteFormat,self.attrib.setNoteFormat,format)
         self.check(self.attrib.getPrivacy,self.attrib.setPrivacy,priv)
 
     def on_switch_page(self,obj,a,page):

@@ -117,6 +117,8 @@ class EventEditor:
         self.calendar = self.top.get_widget("calendar")
         self.sources_label = self.top.get_widget("sourcesEvent")
         self.notes_label = self.top.get_widget("notesEvent")
+        self.flowed = self.top.get_widget("eventflowed")
+        self.preform = self.top.get_widget("eventpreform")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
 
         if GrampsCfg.calendar:
@@ -156,6 +158,13 @@ class EventEditor:
             self.priv.set_active(event.getPrivacy())
             
             self.note_field.get_buffer().set_text(event.getNote())
+            if event.getNote():
+            	self.note_field.get_buffer().set_text(event.getNote())
+                Utils.bold_label(self.notes_label)
+            	if event.getNoteFormat() == 1:
+                    self.preform.set_active(1)
+            	else:
+                    self.flowed.set_active(1)
         else:
             if def_event:
                 self.name_field.set_text(def_event)
@@ -235,6 +244,7 @@ class EventEditor:
         buf = self.note_field.get_buffer()
 
         enote = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        eformat = self.preform.get_active()
         edesc = self.descr_field.get_text()
         epriv = self.priv.get_active()
 
@@ -251,11 +261,11 @@ class EventEditor:
             self.event.set_witness_list(self.witnesslist)
             self.parent.elist.append(self.event)
         
-        self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
+        self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,epriv,ecause)
         self.parent.redraw_event_list()
         self.callback(self.event)
 
-    def update_event(self,name,date,place,desc,note,priv,cause):
+    def update_event(self,name,date,place,desc,note,format,priv,cause):
         if self.event.getPlace() != place:
             self.event.setPlace(place)
             self.parent.lists_changed = 1
@@ -270,6 +280,10 @@ class EventEditor:
 
         if self.event.getNote() != note:
             self.event.setNote(note)
+            self.parent.lists_changed = 1
+
+        if self.event.getNoteFormat() != format:
+            self.event.setNoteFormat(format)
             self.parent.lists_changed = 1
 
         dobj = self.event.getDateObj()
