@@ -823,7 +823,6 @@ def on_person_list_select_row(obj,row,b,c):
 # orientation, and then call apply_filter to redraw the list
 #
 #-------------------------------------------------------------------------
-
 def on_person_list_click_column(obj,column):
     change_sort(column)
 
@@ -1049,6 +1048,7 @@ def child_change_sort(clist,column,arrow):
 
 def sort_child_list(clist):
     clist.freeze()
+    clist.sort()
     clist.sort()
     if ListColors.get_enable():
         try:
@@ -1617,7 +1617,8 @@ def display_marriage(family):
             active_spouse = family.getFather()
             
         child_list = family.getChildList()
-        # List is already sorted by birth date
+        child_list.sort(sort.by_birthdate)
+
         attr = ""
         for child in child_list:
             status = _("Unknown")
