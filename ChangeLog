@@ -1,3 +1,9 @@
+2004-11-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: use Steve Swales' method for handling 
+	locale determination
+	* src/GrampsBSDDB.py: added remove_object task
+	* src/MediaView.py: Handle drag and drop better
+
 2004-11-30 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 

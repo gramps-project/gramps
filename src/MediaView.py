@@ -77,7 +77,6 @@ class MediaView:
         self.parent = parent
         self.db = db
         self.list = glade.get_widget("media_list")
-        #self.list.set_property('fixed-height-mode',True)
         self.mid = glade.get_widget("mid")
         self.mtype = glade.get_widget("mtype")
         self.mdesc = glade.get_widget("mdesc")
@@ -86,33 +85,49 @@ class MediaView:
         self.preview = glade.get_widget("preview")
         self.topWindow = glade.get_widget("gramps")
         self.renderer = gtk.CellRendererText()
-
-        # self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.db))
         self.model = DisplayModels.MediaModel(self.db)
 
         self.selection = self.list.get_selection()
-
         self.list.set_model(self.model)
 
-        t = [ ('STRING', 0, 0),
-              ('text/plain',0,0),
-              ('text/uri-list',0,2),
-              ('application/x-rootwin-drop',0,1)]
+        DND_TARGETS = [
+            ('STRING', 0, 0),
+            ('text/plain',0,0),
+            ('text/uri-list',0,2),
+            ('application/x-rootwin-drop',0,1)]
 
-        self.list.drag_source_set(gtk.gdk.BUTTON1_MASK|gtk.gdk.BUTTON3_MASK,
-                                  t,gtk.gdk.ACTION_COPY)
-        self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                t,gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE)
+        self.list.enable_model_drag_source(
+            gtk.gdk.BUTTON1_MASK,
+            DND_TARGETS,
+            gtk.gdk.ACTION_DEFAULT|gtk.gdk.ACTION_COPY
+            )
 
+        self.list.drag_source_set(
+            gtk.gdk.BUTTON1_MASK|gtk.gdk.BUTTON3_MASK,
+            DND_TARGETS,
+            gtk.gdk.ACTION_COPY
+            )
 
-        self.list.connect("drag_data_received", self.on_drag_data_received)
-        self.list.connect("drag_data_get", self.on_drag_data_get)
-        self.list.connect("drag_begin", self.on_drag_begin)
+        self.list.enable_model_drag_dest(
+            DND_TARGETS,
+            gtk.gdk.ACTION_DEFAULT
+            )
+        self.list.drag_dest_set(
+            gtk.DEST_DEFAULT_ALL,
+            DND_TARGETS,
+            gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE
+            )
 
-        self.update = update
+        self.list.connect("drag-data-received", self.on_drag_data_received)
+        self.list.connect("drag-data-get", self.on_drag_data_get)
+        self.list.connect("drag-begin", self.on_drag_begin)
+        self.list.connect("drag-drop", self.on_drag_drop)
+
         self.list.connect('button-press-event',self.on_button_press_event)
         self.list.connect('key-press-event',self.key_press)
+
         self.selection.connect('changed',self.on_select_row)
+        self.update = update
         self.columns = []
         self.build_columns()
         self.build_tree()
@@ -146,9 +161,7 @@ class MediaView:
         self.build_tree()
 
     def build_tree(self):
-        #self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
         self.model = DisplayModels.MediaModel(self.parent.db)
-            
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
 
@@ -269,6 +282,9 @@ class MediaView:
     def update_display(self,mobj):
         self.model.update_row_by_handle(mobj.get_handle())
 
+    def add_to_display(self,mobj):
+        self.model.add_row_by_handle(mobj.get_handle())
+
     def on_edit_clicked(self,obj):
         """Edit the properties of an existing media object in the media list"""
 
@@ -310,7 +326,7 @@ class MediaView:
 
     def is_object_used(self,mobj):
         mhandle = mobj.get_handle()
-        for family_handle in self.db.get_family_handles(sort_handles=False):
+        for family_handle in self.db.get_family_handles():
             p = self.db.get_family_from_handle(family_handle)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mhandle:
@@ -332,6 +348,11 @@ class MediaView:
                     return True
         return False
 
+    def on_drag_drop(self, tree, context, x, y, time):
+        self.list.emit_stop_by_name('drag-drop')
+        self.list.drag_get_data(context,context.targets[-1],time)
+        return 1
+
     def on_drag_begin(self,obj,context):
         store,node = self.selection.get_selected()
         if not node:
@@ -342,7 +363,7 @@ class MediaView:
             image = self.db.get_thumbnail_image(obj.get_handle())
             context.set_icon_pixbuf(image,0,0)
 
-    def on_drag_data_get(self,w, context, selection_data, info, time):
+    def on_drag_data_get(self, w, context, selection_data, info, time):
         if info == 1:
             return
 
@@ -353,8 +374,9 @@ class MediaView:
         selection_data.set(selection_data.target, 8, handle)	
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
-        print "on_drag_data_received"
         import urlparse
+
+        self.list.emit_stop_by_name('drag-data-received')
         if data and data.format == 8:
             d = string.strip(string.replace(data.data,'\0',' '))
             protocol,site,name, j,k,l = urlparse.urlparse(d)
@@ -372,7 +394,7 @@ class MediaView:
 
                 self.db.commit_media_object(photo,trans)
                 self.db.transaction_commit(trans,_("Add Media Object"))
-                
+                self.build_tree()
                 if GrampsGconfKeys.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,
                                                       self.update_display,
