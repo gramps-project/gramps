@@ -274,9 +274,12 @@ class PeopleView:
     def delete_person(self,person):
         node = person.get_handle()
         top = person.get_primary_name().get_group_name()
-        if len(self.person_model.sname_sub[top]) == 1:
-            path = self.person_model.on_get_path(top)
-            self.person_model.row_deleted(path)
+        try:
+            if len(self.person_model.sname_sub[top]) == 1:
+                path = self.person_model.on_get_path(top)
+                self.person_model.row_deleted(path)
+        except:
+            pass
         path = self.person_model.on_get_path(node)
         self.person_model.row_deleted(path)
 

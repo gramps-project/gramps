@@ -4,6 +4,8 @@
 	* src/gedcomimport.glade: allow default when selecting override
 	* src/gramps_main.py: don't lose track of active person after
 	a cancelled Add Person
+	* src/PeopleView.py: handle changing of surnames if the surname
+	needs to be removed from the list
 
 2004-10-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: increase cachesize
