@@ -47,6 +47,7 @@ _sel_mode = gtk.SELECTION_MULTIPLE
 #-------------------------------------------------------------------------
 import PeopleModel
 import Filter
+import ColumnOrder
 
 #-------------------------------------------------------------------------
 #
@@ -63,38 +64,33 @@ class PeopleView:
         self.person_tree = self.parent.gtop.get_widget("person_tree")
         self.person_tree.set_rules_hint(gtk.TRUE)
         
-        renderer = gtk.CellRendererText()
-    
-        column_n = gtk.TreeViewColumn(_('Name'),  renderer,text=0)
-        column_n.set_resizable(gtk.TRUE)        
-        column_n.set_clickable(gtk.TRUE)
-        column_n.set_min_width(225)
-        self.person_tree.append_column(column_n)
+        self.renderer = gtk.CellRendererText()
 
-        column_i = gtk.TreeViewColumn(_('ID'),  renderer,text=1)
-        column_i.set_resizable(gtk.TRUE)
-        column_i.set_clickable(gtk.TRUE)
-        column_i.set_min_width(75)
-        self.person_tree.append_column(column_i)
-        
-        column_g = gtk.TreeViewColumn(_('Gender'),  renderer,text=2)
-        column_g.set_resizable(gtk.TRUE)
-        column_g.set_clickable(gtk.TRUE)
-        column_g.set_min_width(75)
-        self.person_tree.append_column(column_g)
-
-        column_b = gtk.TreeViewColumn(_('Birth Date'),  renderer,text=3)
-        column_b.set_resizable(gtk.TRUE)
-        column_b.set_clickable(gtk.TRUE)
-        column_b.set_min_width(150)
-        self.person_tree.append_column(column_b)
-
-        column_d = gtk.TreeViewColumn(_('Death Date'),  renderer,text=4)
-        column_d.set_resizable(gtk.TRUE)
-        column_d.set_clickable(gtk.TRUE)
-        column_d.set_min_width(150)
-        self.person_tree.append_column(column_d)
+        self.columns = []
+        self.build_columns()
         self.build_tree()
+
+    def build_columns(self):
+        for column in self.columns:
+            self.person_tree.remove_column(column)
+            
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        self.person_tree.append_column(column)
+        self.columns = [column]
+
+        for pair in self.parent.db.get_column_order():
+            if not pair[0]:
+                continue
+            name = ColumnOrder.column_names[pair[1]]
+            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column.set_resizable(gtk.TRUE)
+            column.set_clickable(gtk.TRUE)
+            column.set_min_width(75)
+            self.columns.append(column)
+            self.person_tree.append_column(column)
 
     def build_tree(self):
         self.person_tree.set_model(None)
@@ -128,6 +124,7 @@ class PeopleView:
                 self.person_tree.unselect()
 
     def change_db(self,db):
+        self.build_columns()
         self.build_tree()
 
     def clear(self):

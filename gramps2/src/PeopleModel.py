@@ -15,10 +15,6 @@ def unique(mylist):
 def callback(foo):
     pass
 
-class JunkIter(gtk.TreeIter):
-    def __init__(self):
-        pass
-
 class PeopleModel(gtk.GenericTreeModel):
 
     def __init__(self,db):
@@ -26,12 +22,20 @@ class PeopleModel(gtk.GenericTreeModel):
         gtk.GenericTreeModel.__init__(self)
         self.db = db
         self.rebuild_data()
-        
+
         self.connect('row-inserted',self.on_row_inserted)
         self.connect('row-deleted',self.on_row_deleted)
+        self.fmap = [
+            self.column_name,
+            self.column_id,
+            self.column_gender,
+            self.column_birth_day,
+            self.column_birth_place,
+            self.column_death_day,
+            self.column_death_place,
+            ]
 
     def rebuild_data(self):
-        print "rebuild"
         self.top_iter2path = {}
         self.top_path2iter = {}
         self.iter2path = {}
@@ -116,26 +120,7 @@ class PeopleModel(gtk.GenericTreeModel):
             else:
                 return ''
         else:
-            data = self.db.person_map[str(iter)]
-            if col==0:
-                return str(data[2].get_name())
-            elif col == 1:
-                return str(data[0])
-            elif col == 2:
-                if data[1]:
-                    return "male"
-                else:
-                    return "female"
-            elif col == 3:
-                if data[5]:
-                    return self.db.find_event_from_id(data[5]).get_date()
-                else:
-                    return u""
-            elif col == 4:
-                if data[6]:
-                    return self.db.find_event_from_id(data[6]).get_date()
-                else:
-                    return u""
+            return self.fmap[col](self.db.person_map[str(iter)])
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
@@ -181,3 +166,40 @@ class PeopleModel(gtk.GenericTreeModel):
         if path:
             return path[0]
         return None
+
+    def column_name(self,data):
+        return unicode(data[2].get_name())
+
+    def column_id(self,data):
+        return unicode(data[0])
+
+    def column_gender(self,data):
+        return _GENDER[data[1]]
+
+    def column_birth_day(self,data):
+        if data[6]:
+            return self.db.find_event_from_id(data[6]).get_date()
+        else:
+            return u""
+
+    def column_death_day(self,data):
+        if data[5]:
+            return self.db.find_event_from_id(data[5]).get_date()
+        else:
+            return u""
+        
+    def column_birth_place(self,data):
+        if data[6]:
+            place_id = self.db.find_event_from_id(data[5]).get_place_id()
+            if place_id:
+                return self.db.find_place_from_id(place_id).get_title()
+        return u""
+
+    def column_death_place(self,data):
+        if data[5]:
+            place_id = self.db.find_event_from_id(data[5]).get_place_id()
+            if place_id:
+                return self.db.find_place_from_id(place_id).get_title()
+        return u""
+
+_GENDER = [ _('female'), _('male'), _('unknown') ]
