@@ -109,8 +109,8 @@ pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
 # This is the src/po level Makefile configuration
-EXTRA_DIST = ${POFILES}
-CLEANFILES = ${MOFILES}
+EXTRA_DIST = $(POFILES) template.po
+CLEANFILES = $(MOFILES)
 
 SUFFIXES = .po .mo
 subdir = src/po
@@ -159,7 +159,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile
+all-am: Makefile all-local
 
 installdirs:
 
@@ -224,32 +224,32 @@ mostlyclean-am: mostlyclean-generic
 
 uninstall-am: uninstall-info-am uninstall-local
 
-.PHONY: all all-am check check-am clean clean-generic distclean \
-	distclean-generic distdir dvi dvi-am info info-am install \
-	install-am install-data install-data-am install-data-local \
-	install-exec install-exec-am install-info install-info-am \
-	install-man install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic uninstall uninstall-am \
-	uninstall-info-am uninstall-local
+.PHONY: all all-am all-local check check-am clean clean-generic \
+	distclean distclean-generic distdir dvi dvi-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-exec install-exec-am install-info \
+	install-info-am install-man install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	uninstall uninstall-am uninstall-info-am uninstall-local
 
 
-all: ${MOFILES}
+all-local: $(MOFILES)
 
-install-data-local:
-	for lang in ${LANGUAGES}; do \
-	   ${INSTALL} -d ${prefix}/share/locale/$$lang; \
-	   ${INSTALL} -d ${prefix}/share/locale/$$lang/LC_MESSAGES; \
-	   ${INSTALL_DATA} $$lang.mo ${prefix}/share/locale/$$lang/LC_MESSAGES/${PACKAGE}.mo; \
+install-data-local: 
+	for lang in $(LANGUAGES); do \
+	   $(INSTALL) -d $(DESTDIR)$(prefix)/share/locale/$$lang; \
+	   $(INSTALL) -d $(DESTDIR)$(prefix)/share/locale/$$lang/LC_MESSAGES; \
+	   $(INSTALL_DATA) $$lang.mo $(DESTDIR)$(prefix)/share/locale/$$lang/LC_MESSAGES/$(PACKAGE).mo; \
 	done	
 
 uninstall-local:
-	for lang in ${LANGUAGES}; do \
-	   rm -f ${prefix}/share/locale/$$lang/LC_MESSAGES/gramps.mo; \
+	for lang in $(LANGUAGES); do \
+	   rm -f $(DESTDIR)$(prefix)/share/locale/$$lang/LC_MESSAGES/gramps.mo; \
 	done
 
 .po.mo:
-	${MSGFMT} -v $< -o $@
+	$(MSGFMT) -v $< -o $@
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

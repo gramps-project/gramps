@@ -63,7 +63,7 @@ EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 
-pkgdatadir = ${datadir}/@PACKAGE@/data/templates
+pkgdatadir = $(datadir)/@PACKAGE@/data/templates
 AMTAR = @AMTAR@
 AWK = @AWK@
 BINSH = @BINSH@
@@ -110,8 +110,13 @@ pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
 # This is the src/data/templates level Makefile
-pkgdata_DATA := ${wildcard *.tpkg} templates.xml
-EXTRA_DIST = ${pkgdata_DATA}
+pkgdata_DATA = marble.tpkg \
+	     pink_marble.tpkg \
+	     sepia.tpkg \
+	     sky_border.tpkg \
+	     templates.xml
+
+EXTRA_DIST = $(pkgdata_DATA)
 subdir = src/data/templates
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =

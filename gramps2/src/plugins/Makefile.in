@@ -13,10 +13,6 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
-
-# This is the src/plugins level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all .py files individually
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -67,7 +63,7 @@ EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 
-pkgdatadir = ${datadir}/@PACKAGE@/plugins
+pkgdatadir = $(datadir)/@PACKAGE@/plugins
 AMTAR = @AMTAR@
 AWK = @AWK@
 BINSH = @BINSH@
@@ -114,6 +110,10 @@ pkgpythondir = @pkgpythondir@/plugins
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
+# This is the src/plugins level Makefile for Gramps
+# We could use GNU make's ':=' syntax for nice wildcard use,
+# but that is not necessarily portable.
+# If not using GNU make, then list all .py files individually
 pkgpython_PYTHON = \
 	AncestorChart.py\
 	AncestorReport.py\
@@ -127,6 +127,8 @@ pkgpython_PYTHON = \
 	DetDescendantReport.py\
 	EventCmp.py\
 	FamilyGroup.py\
+	FtmStyleAncestors.py\
+	FtmStyleDescendants.py\
 	FilterEditor.py\
 	GraphViz.py\
 	IndivComplete.py\
@@ -134,6 +136,7 @@ pkgpython_PYTHON = \
 	Merge.py\
 	PatchNames.py\
 	ReadGedcom.py\
+	ReadPkg.py\
 	ReadNative.py\
 	RelCalc.py\
 	ReorderIds.py\
@@ -143,7 +146,11 @@ pkgpython_PYTHON = \
 	Verify.py\
 	WebPage.py\
 	WriteGedcom.py\
-	WritePkg.py
+	WritePkg.py\
+	WriteCD.py\
+	rel_ru.py\
+        eval.py\
+	leak.py
 
 
 GLADEFILES = \
@@ -159,17 +166,21 @@ GLADEFILES = \
 	relcalc.glade\
 	soundex.glade\
 	summary.glade\
-	verify.glade
+	verify.glade\
+	cdexport.glade\
+	eval.glade\
+	leak.glade
 
 
-pkgdata_DATA = ${GLADEFILES}
-dist_pkgdata_DATA = ${pkgdata_DATA} 
+dist_pkgdata_DATA = $(GLADEFILES)
+
+GRAMPS_PY_MODPATH = "../:../docgen"
 subdir = src/plugins
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 DIST_SOURCES =
 py_compile = $(top_srcdir)/py-compile
-DATA = $(dist_pkgdata_DATA) $(pkgdata_DATA)
+DATA = $(dist_pkgdata_DATA)
 
 DIST_COMMON = $(dist_pkgdata_DATA) $(pkgpython_PYTHON) Makefile.am \
 	Makefile.in
@@ -222,24 +233,6 @@ uninstall-dist_pkgdataDATA:
 	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
 	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
 	done
-pkgdataDATA_INSTALL = $(INSTALL_DATA)
-install-pkgdataDATA: $(pkgdata_DATA)
-	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	@list='$(pkgdata_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
-	done
-
-uninstall-pkgdataDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(pkgdata_DATA)'; for p in $$list; do \
-	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
-	done
 tags: TAGS
 TAGS:
 
@@ -274,7 +267,7 @@ check: check-am
 all-am: Makefile $(DATA)
 
 installdirs:
-	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir) $(DESTDIR)$(pkgdatadir) $(DESTDIR)$(pkgdatadir)
+	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir) $(DESTDIR)$(pkgdatadir)
 
 install: install-am
 install-exec: install-exec-am
@@ -316,8 +309,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dist_pkgdataDATA install-pkgdataDATA \
-	install-pkgpythonPYTHON
+install-data-am: install-dist_pkgdataDATA install-pkgpythonPYTHON
 
 install-exec-am:
 
@@ -336,20 +328,23 @@ mostlyclean: mostlyclean-am
 mostlyclean-am: mostlyclean-generic
 
 uninstall-am: uninstall-dist_pkgdataDATA uninstall-info-am \
-	uninstall-pkgdataDATA uninstall-pkgpythonPYTHON
+	uninstall-pkgpythonPYTHON
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am info info-am install \
 	install-am install-data install-data-am \
 	install-dist_pkgdataDATA install-exec install-exec-am \
-	install-info install-info-am install-man install-pkgdataDATA \
+	install-info install-info-am install-man \
 	install-pkgpythonPYTHON install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	uninstall uninstall-am uninstall-dist_pkgdataDATA \
-	uninstall-info-am uninstall-pkgdataDATA \
-	uninstall-pkgpythonPYTHON
+	uninstall-info-am uninstall-pkgpythonPYTHON
 
+
+pycheck: 
+	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
+	pychecker $(pkgpython_PYTHON));
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
