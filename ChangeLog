@@ -1,3 +1,17 @@
+2004-06-22  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py (parse_args): Switch from 'tgz' to 'gpkg'
+	for Gramps package; (handle_args): Use separate dir for all 
+	import-produced files; (cl_export): Convert media objects export
+	to the database interface. 
+	* src/ReadXML.py (importData): Copy all local (with respect to
+	the old XML way) media object files into <database>.images dir 
+	(created if did not previously exist). Change objects' paths
+	accordingly; (GrampsParser.start_object): Do not modify path
+	in the parser. This way we know that the objects are local.
+	* src/RelLib.py (get_event_keys): Add method to GrampsDB class.
+	* src/plugins/WritePkg.py (PackageWriter.export): 
+	Convert missing media handling to the database interface.
+
 2004-06-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/gramps.keys, src/data/mime: Add package and GEDCOM.
 	* src/PedView.py: Fix anchors. Switch from storing person objects

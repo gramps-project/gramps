@@ -90,6 +90,11 @@ class ArgHandler:
         self.parse_args()
         self.handle_args()
 
+    #-------------------------------------------------------------------------
+    #
+    # Argument parser: sorts out given arguments
+    #
+    #-------------------------------------------------------------------------
     def parse_args(self):
         """
         Fill in lists with open, exports, imports, and actions options.
@@ -146,7 +151,7 @@ class ArgHandler:
                         continue
                 elif outfname[-3:].upper() == "GED":
                     outformat = 'gedcom'
-                elif outfname[-3:].upper() == "TGZ":
+                elif outfname[-4:].upper() == "GPKG":
                     outformat = 'gramps-pkg'
                 elif outfname[-3:].upper() == "WFT":
                     outformat = 'wft'
@@ -173,6 +178,12 @@ class ArgHandler:
                     continue
                 self.actions.append(action)
             
+    #-------------------------------------------------------------------------
+    #
+    # Overall argument handler: 
+    # sorts out the sequence and details of operations
+    #
+    #-------------------------------------------------------------------------
     def handle_args(self):
         """
         Depending on the given arguments, import or open data, launch
@@ -224,18 +235,33 @@ class ArgHandler:
            
         if self.imports:
             self.parent.cl = bool(self.exports or self.actions)
-            # Create file for imported database(s)
-            self.imp_db_path = os.path.expanduser("~/.gramps/import_db" )
-            # remove if it exists
-            if os.path.isdir(self.imp_db_path):
-                os.removedirs(self.imp_db_path)
-            elif os.path.isfile(self.imp_db_path):
-                os.remove(self.imp_db_path)
+
+            # Create dir for imported database(s)
+            self.impdir_path = os.path.expanduser("~/.gramps/import" )
+            self.imp_db_path = os.path.expanduser("~/.gramps/import/import_db.grdb" )
+            if not os.path.isdir(self.impdir_path):
+                try:
+                    os.mkdir(self.impdir_path,0700)
+                except:
+                    print "Could not create import directory %s. Exiting." \
+                        % self.impdir_path 
+                    os._exit(1)
+            elif not os.access(self.impdir_path,os.W_OK):
+                print "Import directory %s is not writable. Exiting." \
+                    % self.impdir_path 
+                os._exit(1)
+            # and clean it up before use
+            files = os.listdir(self.impdir_path) ;
+            for fn in files:
+                if os.path.isfile(os.path.join(self.impdir_path,fn)):
+                    os.remove(os.path.join(self.impdir_path,fn))
+
             self.parent.load_database(self.imp_db_path)
 
             for imp in self.imports:
-                print "Importing: file %s, format %s." % imp #(imp[0],imp[1])
+                print "Importing: file %s, format %s." % imp
                 self.cl_import(imp[0],imp[1])
+
         elif len(self.args) > 1:
             print "No data was given -- will launch interactive session."
             print "To use in the command-line mode,", \
@@ -244,7 +270,7 @@ class ArgHandler:
 
         if self.parent.cl:
             for expt in self.exports:
-                print "Exporting: file %s, format %s." % expt #(expt[0],expt[1])
+                print "Exporting: file %s, format %s." % expt
                 self.cl_export(expt[0],expt[1])
 
             for action in self.actions:
@@ -263,6 +289,11 @@ class ArgHandler:
             DbPrompter.DbPrompter(self.parent,0,self.parent.topWindow)
 
 
+    #-------------------------------------------------------------------------
+    #
+    # Import handler
+    #
+    #-------------------------------------------------------------------------
     def cl_import(self,filename,format):
         """
         Command-line import routine. Try to import filename using the format.
@@ -330,6 +361,11 @@ class ArgHandler:
         if not self.parent.cl:
             return self.parent.post_load(self.imp_db_path)
 
+    #-------------------------------------------------------------------------
+    #
+    # Export handler
+    #
+    #-------------------------------------------------------------------------
     def cl_export(self,filename,format):
         """
         Command-line export routine. 
@@ -370,9 +406,9 @@ class ArgHandler:
             try:
                 # Write media files first, since the database may be modified 
                 # during the process (i.e. when removing object)
-                ObjectMap = self.parent.db.get_object_map()
-                for ObjectId in ObjectMap.keys():
-                    oldfile = ObjectMap[ObjectId].get_path()
+                for m_id in self.parent.db.get_object_keys():
+                    mobject = self.parent.db.try_to_find_object_from_id(m_id)
+                    oldfile = mobject.get_path()
                     base = os.path.basename(oldfile)
                     if os.path.isfile(oldfile):
                         g = open(oldfile,"rb")
@@ -414,6 +450,11 @@ class ArgHandler:
             print "Invalid format: %s" % format
             os._exit(1)
 
+    #-------------------------------------------------------------------------
+    #
+    # Action handler
+    #
+    #-------------------------------------------------------------------------
     def cl_action(self,action):
         """
         Command-line action routine. Try to perform specified action.

@@ -109,36 +109,49 @@ class PackageWriter:
         #--------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.find_family_from_id(ObjectId)
+            mobj = self.db.try_to_find_object_from_id(m_id)
             for p_id in self.db.get_family_keys():
                 p = self.db.find_family_from_id(p_id)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == m_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
+                self.db.commit_family(p,None)
             for key in self.db.get_person_keys():
                 p = self.db.try_to_find_person_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == m_id:
                         nl.remove(o) 
+                        print key
                 p.set_media_list(nl)
+                self.db.commit_person(p,None)
             for key in self.db.get_source_keys():
                 p = self.db.try_to_find_source_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == m_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
+                self.db.commit_source(p,None)
             for key in self.db.get_place_id_keys():
                 p = self.db.try_to_find_place_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
-                    if o.get_reference() == mobj:
+                    if o.get_reference_id() == m_id:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            self.db.remove_object(ObjectId)
+                self.db.commit_place(p,None)
+            for key in self.db.get_event_keys():
+                p = self.db.find_event_from_id(key)
+                nl = p.get_media_list()
+                for o in nl:
+                    if o.get_reference_id() == m_id:
+                        nl.remove(o) 
+                p.set_media_list(nl)
+                self.db.commit_event(p,None)
+            self.db.remove_object(m_id,None)
 
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -170,8 +183,9 @@ class PackageWriter:
         
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
-        for ObjectId in self.db.get_object_keys():
-            oldfile = self.db.try_to_find_object_from_id(ObjectId).get_path()
+        for m_id in self.db.get_object_keys():
+            mobject = self.db.try_to_find_object_from_id(m_id)
+            oldfile = mobject.get_path()
             base = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 g = open(oldfile,"rb")
@@ -181,7 +195,7 @@ class PackageWriter:
                 # File is lost => ask what to do
                 if missmedia_action == 0:
                     mmd = MissingMediaDialog(_("Media object could not be found"),
-    	            _("%(file_name)s is referenced in the database, but no longer exists. " 
+                    _("%(file_name)s is referenced in the database, but no longer exists. " 
                             "The file may have been deleted or moved to a different location. " 
                             "You may choose to either remove the reference from the database, " 
                             "keep the reference to the missing file, or select a new file." 
