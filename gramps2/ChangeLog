@@ -13,7 +13,8 @@
 	* src/plugins/IndivSummary.py: Register options as a tuple.
 	* src/plugins/SimpleBookTitle.py: Register options as a tuple.
 	* src/plugins/FamilyGroup.py: Enable book functionality.
-	Check whether family exists before accessing it. 
+	Check whether family exists before accessing it.
+	* src/plugins/DetAncestralReport.py: Enable book functionality.
 
 2003-07-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ImageSelect.py: eliminate recursive error loop when a thumbnail

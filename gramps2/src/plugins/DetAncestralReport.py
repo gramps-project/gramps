@@ -28,8 +28,10 @@ import Errors
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
 
-from Report import *
-from TextDoc import *
+import Report
+#from Report import *
+import TextDoc
+#from TextDoc import *
 
 import gtk
 import gnome.ui
@@ -39,27 +41,36 @@ import gnome.ui
 #
 #
 #------------------------------------------------------------------------
-class DetAncestorReport(Report):
+class DetAncestorReport(Report.Report):
 
     #--------------------------------------------------------------------
     #
     #
     #
     #--------------------------------------------------------------------
-    def __init__(self,database,person,output,max,pgbrk,doc):
+    def __init__(self,database,person,max,pgbrk,rptOpt,doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
         self.max_generations = max
         self.pgbrk = pgbrk
+        self.rptOpt = rptOpt
         self.doc = doc
+        self.newpage = newpage
         self.genIDs = {}
         self.prevGenIDs= {}
 
-        try:
-            self.doc.open(output)
-        except IOError,msg:
-            ErrorDialog(_("Could not open %s") % output + "\n" + msg)
+        if output:
+            self.standalone = 1
+            try:
+                self.doc.open(output)
+            except IOError,msg:
+                ErrorDialog(_("Could not open %s") % output + "\n" + msg)
+        else:
+            self.standalone = 0
+
+    def setup(self):
+        pass
 
     #--------------------------------------------------------------------
     #
@@ -607,10 +618,13 @@ class DetAncestorReport(Report):
     #
     #
     #--------------------------------------------------------------------
-    def write_report(self, rptOpt):
+    def write_report(self):
+        if self.newpage:
+            self.doc.page_break()
 
         self.filter(self.start,1)
         #rptOpt= reportOptions()
+        rptOpt = self.rptOpt
 
         name = self.start.getPrimaryName().getRegularName()
         self.doc.start_paragraph("Title")
@@ -649,16 +663,70 @@ class DetAncestorReport(Report):
                 if rptOpt.addImages == reportOptions.Yes:
                     self.append_images(person, rptOpt.imageAttrTag)
 
-        self.doc.close()
+        if self.standalone:
+            self.doc.close()
 
 #------------------------------------------------------------------------
 #
 #
 #
 #------------------------------------------------------------------------
-class DetAncestorReportDialog(TextReportDialog):
+def _make_default_style(default_style):
+    """Make the default output style for the Detailed Ancestral Report"""
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(1)
+    para.set(pad=0.5)
+    default_style.add_style("Title",para)
+
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set_header_level(2)
+    para.set(pad=0.5)
+    default_style.add_style("Generation",para)
+
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    #para.set_header_level(3)
+    para.set_left_margin(0.0)   # in centimeters
+    para.set(pad=0.5)
+    default_style.add_style("ChildTitle",para)
+
+    font = TextDoc.FontStyle()
+    font.set(face=TextDoc.FONT_SANS_SERIF,size=9)
+    para = TextDoc.ParagraphStyle()
+    para.set_font(font)
+    para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+    default_style.add_style("ChildList",para)
+
+    para = TextDoc.ParagraphStyle()
+    para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+    default_style.add_style("NoteHeader",para)
+
+    para = TextDoc.ParagraphStyle()
+    para.set(first_indent=0.5,lmargin=0.0,pad=0.25)
+    default_style.add_style("Entry",para)
+
+    table = TextDoc.TableStyle()
+    table.set_width(1000)
+    table.set_columns(3)
+    table.set_column_width(1,"30%")
+    #self.default_style.add_style("Images",table)
+
+#------------------------------------------------------------------------
+#
+#
+#
+#------------------------------------------------------------------------
+class DetAncestorReportDialog(Report.TextReportDialog):
     def __init__(self,database,person):
-        TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #
@@ -688,52 +756,7 @@ class DetAncestorReportDialog(TextReportDialog):
     #
     #------------------------------------------------------------------------
     def make_default_style(self):
-        """Make the default output style for the Detailed Ancestral Report"""
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=16,bold=1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set(pad=0.5)
-        self.default_style.add_style("Title",para)
-
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=14,italic=1)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(2)
-        para.set(pad=0.5)
-        self.default_style.add_style("Generation",para)
-
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=10,italic=0, bold=0)
-        para = ParagraphStyle()
-        para.set_font(font)
-        #para.set_header_level(3)
-        para.set_left_margin(0.0)   # in centimeters
-        para.set(pad=0.5)
-        self.default_style.add_style("ChildTitle",para)
-
-        font = FontStyle()
-        font.set(face=FONT_SANS_SERIF,size=9)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-        self.default_style.add_style("ChildList",para)
-
-        para = ParagraphStyle()
-        para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
-        self.default_style.add_style("NoteHeader",para)
-
-        para = ParagraphStyle()
-        para.set(first_indent=0.5,lmargin=0.0,pad=0.25)
-        self.default_style.add_style("Entry",para)
-
-        table = TableStyle()
-        table.set_width(1000)
-        table.set_columns(3)
-        table.set_column_width(1,"30%")
-        #self.default_style.add_style("Images",table)
+        _make_default_style(self.default_style)
 
     #------------------------------------------------------------------------
     #
@@ -745,22 +768,9 @@ class DetAncestorReportDialog(TextReportDialog):
         Report.  All user dialog has already been handled and the
         output file opened."""
         try:
-            MyReport = DetAncestorReport(self.db, self.person, self.target_path,
-                                         self.max_gen, self.pg_brk, self.doc)
-
-            rptOpt= reportOptions()
-            rptOpt.firstName= self.firstName
-            rptOpt.fullDate= self.fullDate
-            rptOpt.listChildren= self.listChildren
-            rptOpt.includeNotes= self.includeNotes
-            rptOpt.blankPlace= self.blankPlace
-            rptOpt.blankDate= self.blankDate
-            rptOpt.calcAgeFlag= self.calcAgeFlag
-            rptOpt.dupPersons= self.dupPersons
-            rptOpt.childRef= self.childRef
-            rptOpt.addImages= self.addImages
-            
-            MyReport.write_report(rptOpt)
+            MyReport = DetAncestorReport(self.db, self.person, 
+                self.max_gen, self.pg_brk, self.rptOpt, self.doc, self.target_path )
+            MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
@@ -835,7 +845,7 @@ class DetAncestorReportDialog(TextReportDialog):
         """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
 
         # call the parent task to handle normal options
-        ReportDialog.parse_report_options_frame(self)
+        Report.ReportDialog.parse_report_options_frame(self)
 
         # get values from the widgets
         if self.first_name_option.get_active():
@@ -888,15 +898,280 @@ class DetAncestorReportDialog(TextReportDialog):
         else:
             self.addImages = reportOptions.No
 
+        rptOpt = reportOptions()
+        rptOpt.firstName= self.firstName
+        rptOpt.fullDate= self.fullDate
+        rptOpt.listChildren= self.listChildren
+        rptOpt.includeNotes= self.includeNotes
+        rptOpt.blankPlace= self.blankPlace
+        rptOpt.blankDate= self.blankDate
+        rptOpt.calcAgeFlag= self.calcAgeFlag
+        rptOpt.dupPersons= self.dupPersons
+        rptOpt.childRef= self.childRef
+        rptOpt.addImages= self.addImages
+        self.rptOpt = rptOpt
+    
 #*** End of change
 
 #------------------------------------------------------------------------
 #
-#
+# Standalone report function
 #
 #------------------------------------------------------------------------
 def report(database,person):
     DetAncestorReportDialog(database,person)
+
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "det_ancestor_report.xml"
+_style_name = "default" 
+
+_person_id = ""
+_max_gen = 10
+_pg_brk = 0
+_first_name = 0
+_full_date = 1
+_list_children = 1
+_include_notes = 1
+_place = 0
+_date = 1
+_age = 1
+_dup_persons = 1
+_child_ref = 1
+_images = 0
+
+_options = ( _person_id, _max_gen, _pg_brk, 
+   _first_name, _full_date, _list_children, _include_notes, 
+   _place, _date, _age, _dup_persons, _child_ref, _images )
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class DetAncestorBareReportDialog(Report.BareReportDialog):
+    def __init__(self,database,person,opt,stl):
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+
+        self.max_gen = int(self.options[1]) 
+        self.pg_brk = int(self.options[2])
+        self.first_name = int(self.options[3]) 
+        self.full_date = int(self.options[4])
+        self.list_children = int(self.options[5]) 
+        self.include_notes = int(self.options[6])
+        self.place = int(self.options[7]) 
+        self.date = int(self.options[8]) 
+        self.age = int(self.options[9])
+        self.dup_persons = int(self.options[10]) 
+        self.child_ref = int(self.options[11])
+        self.images = int(self.options[12])
+
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        def make_default_style(self):
+            _make_default_style(self.default_style)
+
+        self.style_name = stl
+        self.new_person = None
+
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Detailed Ancestral Report"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Detailed Ancestral Report for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+
+    def add_user_options(self):
+        # Create a GTK Checkbox widgets
+
+        # Pronoun instead of first name
+        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
+        self.first_name_option.set_active(self.first_name)
+
+        # Full date usage
+        self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
+        self.full_date_option.set_active(self.full_date)
+
+        # Children List
+        self.list_children_option = gtk.CheckButton(_("List children"))
+        self.list_children_option.set_active(self.list_children)
+
+        # Print notes
+        self.include_notes_option = gtk.CheckButton(_("Include notes"))
+        self.include_notes_option.set_active(self.include_notes)
+
+        # Replace missing Place with ___________
+        self.place_option = gtk.CheckButton(_("Replace Place with ______"))
+        self.place_option.set_active(self.place)
+
+        # Replace missing dates with __________
+        self.date_option = gtk.CheckButton(_("Replace Dates with ______"))
+        self.date_option.set_active(self.date)
+
+        # Add "Died at the age of NN" in text
+        self.age_option = gtk.CheckButton(_("Compute age"))
+        self.age_option.set_active(self.age)
+
+        # Omit duplicate persons, occurs when distant cousins marry
+        self.dupPersons_option = gtk.CheckButton(_("Omit duplicate ancestors"))
+        self.dupPersons_option.set_active(self.dup_persons)
+
+        #Add descendant reference in child list
+        self.childRef_option = gtk.CheckButton(_("Add descendant reference in child list"))
+        self.childRef_option.set_active(self.child_ref)
+
+        #Add photo/image reference
+        self.image_option = gtk.CheckButton(_("Include Photo/Images from Gallery"))
+        self.image_option.set_active(self.images)
+
+        # Add new options. The first argument is the tab name for grouping options.
+        # if you want to put everyting in the generic "Options" category, use
+        # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
+
+        self.add_frame_option('Content','',self.first_name_option)
+        self.add_frame_option('Content','',self.full_date_option)
+        self.add_frame_option('Content','',self.list_children_option)
+        self.add_frame_option('Content','',self.include_notes_option)
+        self.add_frame_option('Content','',self.place_option)
+        self.add_frame_option('Content','',self.date_option)
+        self.add_frame_option('Content','',self.age_option)
+        self.add_frame_option('Content','',self.dupPersons_option)
+        self.add_frame_option('Content','',self.childRef_option)
+        self.add_frame_option('Content','',self.image_option)
+
+    def parse_report_options_frame(self):
+        """Parse the report options frame of the dialog.  Save the user selected choices for later use."""
+
+        # call the parent task to handle normal options
+        Report.BareReportDialog.parse_report_options_frame(self)
+
+        # get values from the widgets
+        if self.first_name_option.get_active():
+            self.first_name = reportOptions.Yes
+        else:
+            self.first_name = reportOptions.No
+
+        if self.full_date_option.get_active():
+            self.full_date = reportOptions.Yes
+        else:
+            self.full_date = reportOptions.No
+
+        if self.list_children_option.get_active():
+            self.list_children = reportOptions.Yes
+        else:
+            self.list_children = reportOptions.No
+
+        if self.include_notes_option.get_active():
+            self.include_notes = reportOptions.Yes
+        else:
+            self.include_notes = reportOptions.No
+
+        if self.place_option.get_active():
+            self.place = reportOptions.Yes
+        else:
+            self.place = reportOptions.No
+
+        if self.date_option.get_active():
+            self.date = reportOptions.Yes
+        else:
+            self.date = reportOptions.No
+
+        if self.age_option.get_active():
+            self.age = reportOptions.Yes
+        else:
+            self.age = reportOptions.No
+
+        if self.dupPersons_option.get_active():
+            self.dup_persons = reportOptions.Yes
+        else:
+            self.dup_persons = reportOptions.No
+
+        if self.childRef_option.get_active():
+            self.child_ref = reportOptions.Yes
+        else:
+            self.child_ref = reportOptions.No
+
+        if self.image_option.get_active():
+            self.images = reportOptions.Yes
+        else:
+            self.images = reportOptions.No
+
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = [ self.person.getId(), self.max_gen, self.pg_brk, 
+            self.first_name, self.full_date, self.list_children, 
+            self.include_notes, self.place, self.date, self.age, 
+            self.dup_persons, self.child_ref, self.images ]
+        self.style_name = self.selected_style.get_name() 
+
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Detailed Ancestral Report using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        max_gen = int(options[1])
+        pg_brk = int(options[2])
+        rptOpt = reportOptions()
+        rptOpt.firstName = int(options[3]) 
+        rptOpt.fullDate = int(options[4])
+        rptOpt.listChildren = int(options[5]) 
+        rptOpt.includeNotes = int(options[6])
+        rptOpt.blankPlace = int(options[7]) 
+        rptOpt.blankDate = int(options[8]) 
+        rptOpt.calcAgeFlag = int(options[9])
+        rptOpt.dupPersons = int(options[10]) 
+        rptOpt.childRef = int(options[11])
+        rptOpt.addImages = int(options[12])
+        return DetAncestorReport(database, person,
+            max_gen, pg_brk, rptOpt, doc, None, newpage)
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #
@@ -963,14 +1238,7 @@ def get_xpm_image():
 #
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
-
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -983,14 +1251,26 @@ register_report(
     author_email="bdegrasse1@attbi.com"
     )
 
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Detailed Ancestral Report"), 
+    _("Text"),
+    DetAncestorBareReportDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
+   )
+
 #------------------------------------------------------------------------
 #
 #
 #
 #------------------------------------------------------------------------
 class reportOptions:
-    Yes=1
-    No= 0
+    Yes = 1
+    No = 0
 
     def __init__(self):
         ### Initialize report options###
