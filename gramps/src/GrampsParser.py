@@ -91,6 +91,7 @@ class GrampsParser(handler.ContentHandler):
         self.source_ref = None
         self.attribute = None
         self.placeobj = None
+        self.locations = 0
         self.place_map = {}
 
         self.resname = ""
@@ -161,6 +162,7 @@ class GrampsParser(handler.ContentHandler):
     def start_placeobj(self,attrs):
         self.placeobj = self.db.findPlaceNoMap(u2l(attrs['id']))
         self.placeobj.set_title(u2l(attrs['title']))
+        self.locations = 0
 
     #---------------------------------------------------------------------
     #
@@ -177,11 +179,12 @@ class GrampsParser(handler.ContentHandler):
             loc.set_county(u2l(attrs['county']))
         if attrs.has_key('country'):
             loc.set_country(u2l(attrs['country']))
-        if attrs.has_key('type'):
+        if self.locations > 0:
             self.placeobj.add_alternate_locations(loc)
         else:
             self.placeobj.set_main_location(loc)
-
+        self.locations = self.locations + 1
+        
     #---------------------------------------------------------------------
     #
     #
@@ -427,8 +430,8 @@ class GrampsParser(handler.ContentHandler):
     def start_photo(self,attrs):
         photo = Photo()
         for key in attrs.keys():
-            if key == "descrip":
-                photo.setDescription(u2l(attrs["descrip"]))
+            if key == "descrip" or key == "description":
+                photo.setDescription(u2l(attrs[key]))
             elif key == "src":
                 src = u2l(attrs["src"])
                 if src[0] != os.sep:

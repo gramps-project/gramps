@@ -304,7 +304,7 @@ def exportData(database, filename, callback):
                     if fileroot == path[0:l]:
                         path = path[l+1:]
                 g.write('      <img src="%s"' % fix(path) )
-                g.write(' descrip="%s"' % fix(photo.getDescription()))
+                g.write(' description="%s"' % fix(photo.getDescription()))
                 proplist = photo.getPropertyList()
                 if proplist:
                     for key in proplist.keys():
@@ -393,7 +393,7 @@ def exportData(database, filename, callback):
                     if fileroot == path[0:l]:
                         path = path[l+1:]
                 g.write("      <img src=\"" + fix(path) + "\"")
-                g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+                g.write(" description=\""  + fix(photo.getDescription()) + "\"")
                 proplist = photo.getPropertyList()
                 if proplist:
                     for key in proplist.keys():
@@ -432,7 +432,7 @@ def exportData(database, filename, callback):
                     if fileroot == path[0:l]:
                         path = path[l+1:]
                 g.write("      <img src=\"" + fix(path) + "\"")
-                g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+                g.write(" description=\""  + fix(photo.getDescription()) + "\"")
                 proplist = photo.getPropertyList()
                 if proplist:
                     for key in proplist.keys():
@@ -464,7 +464,7 @@ def exportData(database, filename, callback):
                 country = fix(loc.get_country())
                 county = fix(loc.get_county())
                 if city or state or country or county:
-                    g.write('      <location type="alternate"')
+                    g.write('      <location')
                     g.write(' city="%s" county="%s"' % (city,county))
                     g.write(' state="%s" country="%s"/>\n' % (state,country))
             for photo in place.getPhotoList():
@@ -474,7 +474,7 @@ def exportData(database, filename, callback):
                     if fileroot == path[0:l]:
                         path = path[l+1:]
                 g.write("      <img src=\"" + fix(path) + "\"")
-                g.write(" descrip=\""  + fix(photo.getDescription()) + "\"")
+                g.write(" description=\""  + fix(photo.getDescription()) + "\"")
                 proplist = photo.getPropertyList()
                 if proplist:
                     for key in proplist.keys():

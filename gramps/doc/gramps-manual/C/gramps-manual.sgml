@@ -842,7 +842,45 @@
       </screenshot>
     </figure>
     <para>
-    FIXME: This section should describe the pedegree view.
+    Moving the mouse over a displayed name will display additional
+    information about a person, including their date of birth and date
+    of death. Double-clicking the box will display the <interface>Edit
+    Person</interface> dialog box for the person. Holding down the
+    Shift key while double-clicking will will make that person the
+    active person.
+    </para>
+    <para>
+    Navigation around the tree can be accomplished several
+    ways. Clicking on the arrow next to the active person will display
+    a menu listing the children of the active person. Selecting a
+    person from this list will change the active person to the
+    selected child, effectively shifting the pedegree view to the
+    left, or down one generation. Clicking one of the arrow buttons on
+    the left side of the screen will make the select either the active
+    person's father (top button) or mother (bottom button),
+    effectively shifting the pedegree view to the right, or up one
+    generation. If the active person does not have any children, then
+    the button on the left hand side of the screen will not
+    appear. Similarly, if the active person does have a father or
+    mother, the corresponding button on the right hand side of the
+    screen will not appear.
+    </para>
+    <figure id="navfigure-fig">
+      <title>Navigation</title>
+      <screenshot>
+	<screeninfo>Navigation</screeninfo>
+	<graphic fileref="pedegreesel" format="png" srccredit="Don Allingham">
+        </graphic>
+      </screenshot>
+    </figure>
+    <para>
+    As a quick short cut, double clicking on a line between two people
+    will make the person on the right hand side of the line the active
+    person. <xref linkend="navfigure-fig"> shows navigation using this
+    method. When the mouse is over one of the lines connecting
+    individuals, the line widens and becomes highlighted. In this
+    case, double-clcking on the line would make Hjalmar Smith the
+    active person.
     </para>
   </sect1>
 
@@ -868,7 +906,9 @@
       </screenshot>
     </figure>
     <para>
-    From this screen you are able to Add, Edit, and Delete sources.
+    From this screen you are able to Add and Edit sources. Currently,
+    deleting of sources is not available. This will be implemented in
+    a future version.
     </para>
   </sect1>
 
@@ -928,6 +968,16 @@
       allow you to quickly jump to a person, making that person the
       active person. This allows you to avoid searching for them
       everytime you want to add/change something in their information.
+      </para>
+      <figure id="gotobookmark">
+        <title>Using Bookmarks</title>
+        <screenshot>
+	  <screeninfo>Using Bookmarks</screeninfo>
+  	  <graphic fileref="gotobookmark" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      <para>
       Choosing
         <menuchoice>
 	  <guimenu>Bookmarks</guimenu>
@@ -941,11 +991,29 @@
       Choosing
         <menuchoice>
 	  <guimenu>Bookmarks</guimenu>
+	  <guimenuitem>Go to Bookmark</guimenuitem>
+        </menuchoice>
+      displays a submenu which allows you to choose a person who was
+      previously bookmarked. Selecting a person from this menu will
+      make that person the active person.
+      </para>
+      <para>
+      Choosing
+        <menuchoice>
+	  <guimenu>Bookmarks</guimenu>
 	  <guimenuitem>Edit Bookmarks</guimenuitem>
         </menuchoice>
       displays a dialog box that allows you to reorder or delete
       bookmarks in the list.
       </para>
+      <figure id="editbookmark">
+        <title>Editing Bookmarks</title>
+        <screenshot>
+	  <screeninfo>Editing Bookmarks</screeninfo>
+  	  <graphic fileref="editbookmarks" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
     </sect2>
   </sect1>
 
@@ -1181,7 +1249,7 @@
         </screenshot>
       </figure>
       <para>
-      This allows you to set the default directory for your database,
+      This allows you to set the default directories for your databases,
       reports, and Web Sites.
       </para>
     </sect2>
@@ -1335,82 +1403,94 @@ appear in every gramps generated file.
         </graphic>
       </screenshot>
     </figure>
-    <sect2 id="analysis">
+    <variablelist>
       <title>Analysis and Exploration</title>
-      <itemizedlist>
+      <varlistentry>
+        <term>Compare individual events</term>
         <listitem>
 	  <para>
-	  <guilabel>Compare individual events</guilabel> &mdash; Aids
-	  in the analysis of data by allowing the development of
+	  Aids in the analysis of data by allowing the development of
 	  custom filters that can be applied to the database to find
 	  similar events.
           </para>
         </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Interactive descendant browser</term>
 	<listitem>
 	  <para>
-	  <guilabel>Interactive descendant browser</guilabel> &mdash;
 	  Provides a browsable hierarchy based on the active person.
 	  </para>
 	</listitem>
-      </itemizedlist>
-    </sect2>
-    <sect2 id="dataprocessing">
+      </varlistentry>
+    </variablelist>
+    <variablelist>
       <title>Data Processing</title>
-      <itemizedlist>
+      <varlistentry>
+        <term>Check and repair database</term>
         <listitem>
 	  <para>
-	  <guilabel>Check and repair database</guilabel> &mdash;
 	  Checks the database for integrity problems, fixing the
 	  problems that it can.
 	  </para>
 	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Extract information from names</term>
 	<listitem>
 	  <para>
-	  <guilabel>Extract information from names</guilabel> &mdash;
 	  Searches the entire database and attempts to extract titles
 	  and nicknames that may be embedded in a person's given name
 	  field.
 	  </para>
 	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Merge people</term>
 	<listitem>
 	  <para>
-	  <guilabel>Merge people</guilabel> &mdash; Searches the
-	  entire database, looking for individual entries that may
-	  represent the same person.
+	  Searches the entire database, looking for individual entries
+	  that may represent the same person.
 	  </para>
 	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Rename personal event types</term>
 	<listitem>
 	  <para>
-	  <guilabel>Rename personal event types</guilabel> &mdash;
 	  Allows all the events of a certain name to be renamed to a
 	  new name.
 	  </para>
 	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Reorder gramps ID's</term>
 	<listitem>
 	  <para>
-	  <guilabel>Reorder gramps ID's</guilabel> &mdash; Reorders the
-	  gramps ID's according to gramps' default rules.
+	  Reorders the gramps ID's according to gramps' default rules.
 	  </para>
 	</listitem>
-      </itemizedlist>
-    </sect2>
-    <sect2 id="reports_utilities">
+      </varlistentry>
+    </variablelist>
+    <variablelist>
       <title>Utilities</title>
-      <itemizedlist>
+      <varlistentry>
+        <term>Generate SoundEx codes</term>
         <listitem>
 	  <para>
-	  <guilabel>Generate SoundEx codes</guilabel> &mdash;
 	  Generates SoundEx codes for names.
 	  </para>
 	</listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Relationship calculator</term>
 	<listitem>
 	  <para>
-	  <guilabel>Relationship calculator</guilabel> &mdash;
 	  Calulates the relationship between two people.
 	  </para>
 	</listitem>
-      </itemizedlist>
-    </sect2>
+      </varlistentry>
+    </variablelist>
   </sect1>
 
  <!-- ============= Bugs ================================== 
@@ -1436,7 +1516,7 @@ appear in every gramps generated file.
     </para>
     <para>
     This manual was written by Don Allingham
-    (<email>donaldallingham@home.com</email>), Larry Allingham
+    (<email>dallingham@users.sourceforge.net</email>), Larry Allingham
     (<email>llkla@erinet.com</email>), and Shawn Ann Griffith
     (<email>shawnann1@home.com</email>).
     </para>
