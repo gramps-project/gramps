@@ -64,7 +64,8 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class MediaView:
-    def __init__(self,db,glade,update):
+    def __init__(self,parent,db,glade,update):
+        self.parent = parent
         self.db = db
         self.list = glade.get_widget("media_list")
         self.mid = glade.get_widget("mid")

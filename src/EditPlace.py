@@ -65,15 +65,24 @@ pycode_tgts = [('url', 0, 0)]
 class EditPlace:
 
     def __init__(self,parent,place,func=None,parent_window=None):
+        self.parent = parent
+        if place.get_id():
+            if self.parent.child_windows.has_key(place.get_id()):
+                self.parent.child_windows[place.get_id()].present(None)
+                return
+            else:
+                self.win_key = place.get_id()
+        else:
+            self.win_key = self
         self.place = place
         self.db = parent.db
-        self.parent = parent
+        self.child_windows = {}
         self.callback = func
         self.path = parent.db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
-	self.gallery_ok = 0
+        self.gallery_ok = 0
         if place:
             self.srcreflist = place.get_source_references()
         else:
@@ -180,7 +189,10 @@ class EditPlace:
             "on_delete_loc_clicked"     : self.on_delete_loc_clicked,
             "on_update_loc_clicked"     : self.on_update_loc_clicked,
             "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_help_clicked" : self.on_help_clicked,
+            "on_help_clicked"           : self.on_help_clicked,
+            "on_delete_event"           : self.on_delete_event,
+            "on_cancel_clicked"         : self.close,
+            "on_apply_clicked"          : self.on_place_apply_clicked,
             })
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
@@ -207,16 +219,56 @@ class EditPlace:
         self.display_references()
         if parent_window:
             self.top.set_transient_for(parent_window)
-        self.val = self.top.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_place_apply_clicked()
+        self.add_itself_to_menu()
+        self.top.show()
+
+    def on_delete_event(self,obj,b):
         self.glry.close(self.gallery_ok)
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.glry.close(self.gallery_ok)
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.top.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows.values():
+            child_window.close(None)
+        self.child_windows = {}
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        if not self.place.get_title():
+            label = _("New Place")
+        else:
+            label = self.place.get_title()
+        if not label.strip():
+            label = _("New Place")
+        label = "%s: %s" % (_('Place'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+        self.winsmenu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Place Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.menu_item.destroy()
+        self.winsmenu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.top.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.top.run()
 
     def build_columns(self,tree,list):
         cnum = 0
@@ -288,12 +340,12 @@ class EditPlace:
             setf(text)
             Utils.modified()
     
-    def on_place_apply_clicked(self):
+    def on_place_apply_clicked(self,obj):
 
         note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                  self.note_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
-	mloc = self.place.get_main_location()
+        mloc = self.place.get_main_location()
 
         self.set(self.city,mloc.get_city,mloc.set_city)
         self.set(self.parish,mloc.get_parish,mloc.set_parish)
@@ -320,11 +372,13 @@ class EditPlace:
             self.place.set_note_format(format)
             Utils.modified()
 
-	self.gallery_ok = 1
+        self.gallery_ok = 1
         self.update_lists()
 
         if self.callback:
             self.callback(self.place)
+
+        self.close(obj)
 
     def on_switch_page(self,obj,a,page):
         if page == 4 and self.not_loaded:
@@ -428,12 +482,15 @@ class EditPlace:
         msg = ""
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for event in [p.get_birth(), p.get_death()] + p.get_event_list():
-                if event.get_place_id() == self.place:
+            for event_id in [p.get_birth_id(), p.get_death_id()] + p.get_event_list():
+                event = self.db.find_event_from_id(event_id)
+                if event and event.get_place_id() == self.place:
                     pevent.append((p,event))
-        for f in self.db.get_family_id_map().values():
-            for event in f.get_event_list():
-                if event.get_place_id() == self.place:
+        for family_id in self.db.get_family_keys():
+            f = self.db.find_family_from_id(family_id)
+            for event_id in f.get_event_list():
+                event = self.db.find_event_from_id(event_id)
+                if event and event.get_place_id() == self.place:
                     fevent.append((f,event))
                     
         any = 0
@@ -457,8 +514,8 @@ class EditPlace:
                 mother = e[0].get_mother_id()
                 if father and mother:
                     fname = _("%(father)s and %(mother)s")  % {
-		    	    "father" : GrampsCfg.nameof(father),
-			    "mother" : GrampsCfg.nameof(mother) }
+                                "father" : GrampsCfg.nameof(father),
+                                "mother" : GrampsCfg.nameof(mother) }
                 elif father:
                     fname = "%s" % GrampsCfg.nameof(father)
                 else:
