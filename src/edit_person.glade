@@ -3525,13 +3525,14 @@
 		      <property name="justification">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap_mode">GTK_WRAP_WORD</property>
 		      <property name="cursor_visible">True</property>
-		      <property name="pixels_above_lines">12</property>
-		      <property name="pixels_below_lines">12</property>
-		      <property name="pixels_inside_wrap">12</property>
-		      <property name="left_margin">12</property>
-		      <property name="right_margin">12</property>
-		      <property name="indent">0</property>
-		      <property name="text" translatable="yes"></property>
+		      <property name="pixels_above_lines">6</property>
+		      <property name="pixels_below_lines">0</property>
+		      <property name="pixels_inside_wrap">0</property>
+		      <property name="left_margin">6</property>
+		      <property name="right_margin">6</property>
+		      <property name="indent">6</property>
+		      <property name="text" translatable="yes">kjhkjh
+kjhkjhk</property>
 		    </widget>
 		  </child>
 		</widget>
@@ -3580,8 +3581,9 @@
 		  <child>
 		    <widget class="GtkRadioButton" id="flowed">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Multiple spaces, tabs, and single line breaks are replaced with single spaces. Two consecutive line breaks mark a new paragraph.</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">Flo_wed</property>
+		      <property name="label" translatable="yes">_Flowed</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="active">True</property>
@@ -3601,8 +3603,9 @@
 		  <child>
 		    <widget class="GtkRadioButton" id="preform">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Formatting is preserved, except for the leading whitespace. Multiple spaces, tabs, and all line breaks are honored.</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">Pre_formatted</property>
+		      <property name="label" translatable="yes">_Preformatted</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="active">False</property>
