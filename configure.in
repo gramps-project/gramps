@@ -266,6 +266,7 @@ dnl Checks for library functions.
 AC_OUTPUT(Makefile \
 	src/Makefile\
 	src/plugins/Makefile\
+	src/docgen/Makefile\
 	src/filters/Makefile\
 	src/data/Makefile\
 	gramps.sh)
