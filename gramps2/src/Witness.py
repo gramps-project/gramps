@@ -116,20 +116,22 @@ class WitnessEditor:
         self.show_witness.signal_autoconnect({
             "ok_clicked"   : self.ok_clicked,
             "on_toggled"   : self.on_toggled,
-            "on_id_changed" : self.on_id_changed,
             "cancel_clicked" : self.cancel_clicked,
             })
 
         self.name = self.show_witness.get_widget("name")
-        self.id = self.show_witness.get_widget("id")
+        self.select = self.show_witness.get_widget("select")
+        self.select.connect('clicked',self.choose)
         self.ok = self.show_witness.get_widget("ok")
         self.in_db = self.show_witness.get_widget("in_db")
         self.comment = self.show_witness.get_widget("comment")
 
         if self.ref:
             if self.ref.get_type():
-                self.id.set_text(self.ref.get_value())
                 self.in_db.set_active(1)
+                self.idval = self.ref.get_value()
+                person = self.db.getPerson(self.idval)
+                self.name.set_text(person.getPrimaryName().getRegularName())
             else:
                 self.name.set_text(self.ref.get_value())
                 self.in_db.set_active(0)
@@ -140,33 +142,27 @@ class WitnessEditor:
                          self.show_witness.get_widget('title'),
                          _('Witness Editor'))
 
-    def on_id_changed(self,obj):
-        self.check_valid_id()
+    def choose(self,obj):
+        import SelectPerson
+        sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
+        new_person = sel_person.run()
+        if new_person:
+            self.new_person = new_person
+            self.idval = new_person.getId()
+            new_name = new_person.getPrimaryName().getRegularName()
+	    if new_name:
+                self.name.set_text(new_name)
         
-    def check_valid_id(self):
-        if self.in_db.get_active():
-            id = self.id.get_text()
-            if self.db.getPersonMap().has_key(id):
-                person = self.db.getPerson(id)
-                self.name.set_text(person.getPrimaryName().getName())
-                self.ok.set_sensitive(1)
-            else:
-                self.ok.set_sensitive(0)
-        else:
-            self.ok.set_sensitive(1)
 
     def on_toggled(self,obj):
         if self.in_db.get_active():
             self.name.set_editable(0)
             self.name.set_sensitive(0)
-            self.id.set_editable(1)
-            self.id.set_sensitive(1)
+            self.select.set_sensitive(1)
         else:
             self.name.set_editable(1)
             self.name.set_sensitive(1)
-            self.id.set_editable(0)
-            self.id.set_sensitive(0)
-        self.check_valid_id()
+            self.select.set_sensitive(0)
         
     def cancel_clicked(self,obj):
         self.show_witness.get_widget('witness_edit').destroy()
@@ -180,7 +176,7 @@ class WitnessEditor:
             self.parent.list.append(self.ref)
 
         if self.in_db.get_active():
-            self.ref.set_value(self.id.get_text())
+            self.ref.set_value(self.idval)
         else:
             self.ref.set_value(self.name.get_text())
 
