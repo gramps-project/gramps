@@ -46,6 +46,7 @@ db = None
 callback = None
 glade_file = None
 clear_data = 0
+is_ftw = 0
 
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "tiff", "pcx" ]
@@ -647,8 +648,14 @@ class GedcomParser:
                 self.parse_person_event(event,2)
 	    elif matches[1] == "EVEN":
                 event = Event()
-                self.person.addEvent(event)
 	        self.parse_person_event(event,2)
+                if string.strip(event.getName()) == "SSN":
+                    attr = Attribute()
+                    attr.setType("Social Security Number")
+                    attr.setValue(event.getDescription())
+                    self.person.addAttribute(attr)
+                else:
+                    self.person.addEvent(event)
             else:
                 event = Event()
                 try:
@@ -930,17 +937,22 @@ class GedcomParser:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "PLAC":
                 val = matches[2]
-                place = None
-                for p in self.db.getPlaceMap().values():
-                    if val == p.get_title():
-                        place = p
-                        break
+                n = string.strip(event.getName())
+                if is_ftw and n in ["Occupation","Degree","SSN"]:
+                    event.setDescription(val)
+                    self.ignore_sub_junk(level+1)
                 else:
-                    place = Place()
-                    place.set_title(matches[2])
-                    self.db.addPlace(place)
-                event.setPlace(place)
-                self.ignore_sub_junk(level+1)
+                    place = None
+                    for p in self.db.getPlaceMap().values():
+                        if val == p.get_title():
+                            place = p
+                            break
+                    else:
+                        place = Place()
+                        place.set_title(matches[2])
+                        self.db.addPlace(place)
+                    event.setPlace(place)
+                    self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
                 info = matches[2] + self.parse_continue_data(level+1)
                 if note == "":
@@ -1168,6 +1180,8 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_header_source(self):
+        global is_ftw
+        
         while 1:
 	    matches = self.get_next()
 
@@ -1177,6 +1191,8 @@ class GedcomParser:
 	    elif matches[1] == "SOUR":
                 if self.created_obj.get_text() == "":
                     self.update(self.created_obj,matches[2])
+                if matches[2] == "FTW":
+                    is_ftw = 1
    	    elif matches[1] == "NAME":
                 self.update(self.created_obj,matches[2])
    	    elif matches[1] == "VERS":
