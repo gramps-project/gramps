@@ -56,7 +56,7 @@ except:
 #-------------------------------------------------------------------------
 def importData(database, filename, callback):
 
-    filename = os.path.normpath(filename).encode('iso8859-1')
+    filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
     database.smap = {}
     database.pmap = {}
