@@ -29,7 +29,6 @@ install:
 	-${INSTALL} doc/${GM}/C/${GM}/*.html ${GNOMEHELP}/${GM}/C
 	-${INSTALL} doc/${GM}/C/${GM}/*.png ${GNOMEHELP}/${GM}/C
 	-${INSTALL} doc/${EG}/C/${EG}/*.html ${GNOMEHELP}/${EG}/C
-	-${INSTALL} doc/${EG}/C/${EG}/*.png ${GNOMEHELP}/${EG}/C
 	${INSTALL} gramps.sh ${bindir}/gramps
 	${INSTALL} doc/gramps.dtd ${sharedir}
 	-${INSTALL} example/gramps/*.jpg ${sharedir}/example/gramps
