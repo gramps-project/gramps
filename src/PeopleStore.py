@@ -23,7 +23,7 @@
 # GNOME
 #
 #-------------------------------------------------------------------------
-from gobject import TYPE_STRING, TYPE_PYOBJECT, TYPE_INT
+from gobject import TYPE_STRING, TYPE_INT
 import gtk
 import pango
 
@@ -41,6 +41,9 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 _BCOL = 8
 _IDCOL = 1
+
+_TOP_FONT=pango.WEIGHT_ULTRABOLD
+_TEXT_FONT=pango.WEIGHT_NORMAL
 
 #-------------------------------------------------------------------------
 #
@@ -79,10 +82,7 @@ class PeopleStore:
             renderer = gtk.CellRendererText()
             renderer.set_fixed_height_from_font(1)
             if name[0] != '':
-                if cnum == 0:
-                    column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
-                else:
-                    column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
+                column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
                 column.set_min_width(name[2])
                 column.set_resizable(gtk.TRUE)
                 column.set_clickable(gtk.TRUE)
@@ -199,11 +199,14 @@ class PeopleStore:
         iter_parent = self.model.iter_parent (iter)
         self.model.remove(iter)
         if iter_parent and not self.model.iter_has_child (iter_parent):
-            name = self.model.get_value(iter_parent,0)
+            name = unicode(self.model.get_value(iter_parent,0))
             self.model.remove (iter_parent)
-            del self.tree_roots[name]
-            del self.tree_open[name]
-            del self.tree_list[name]
+            if self.tree_roots.has_key(name):
+                del self.tree_roots[name]
+            if self.tree_open.has_key(name):
+                del self.tree_open[name]
+            if self.tree_list.has_key(name):
+                del self.tree_list[name]
         self.count = self.count - 1
         
     def get_row(self,iter):
@@ -227,7 +230,7 @@ class PeopleStore:
             self.model.set_value(iter,col,object)
             col = col + 1
         self.model.set_value(iter,_IDCOL,info)
-        self.model.set_value(iter,_BCOL,pango.WEIGHT_NORMAL)
+        self.model.set_value(iter,_BCOL,_TOP_FONT)
         if select:
             self.selection.select_iter(iter)
         return iter
@@ -274,7 +277,7 @@ class PeopleStore:
             self.tree_list[name] = []
             self.model.set_value(top,0,name)
             self.model.set_value(top,5,name.upper())
-            self.model.set_value(top,_BCOL,pango.WEIGHT_BOLD)
+            self.model.set_value(top,_BCOL,_TOP_FONT)
             self.tree_roots[name] = top
 
         if self.tree_open[name] or select:
@@ -283,7 +286,7 @@ class PeopleStore:
             for object in data[:-1]:
                 self.model.set_value(iter,col,object)
                 col = col + 1
-            self.model.set_value(iter,_BCOL,pango.WEIGHT_NORMAL)
+            self.model.set_value(iter,_BCOL,_TEXT_FONT)
             if select:
                 self.sel_iter = iter
                 self.selection.select_iter(self.sel_iter)
@@ -297,7 +300,7 @@ class PeopleStore:
         for object in data:
             self.model.set_value(iter,col,object)
             col = col + 1
-        self.model.set_value(iter,_BCOL,pango.WEIGHT_NORMAL)
+        self.model.set_value(iter,_BCOL,_TEXT_FONT)
         if select:
             self.sel_iter = iter
         return iter
@@ -309,7 +312,7 @@ class PeopleStore:
         for object in data:
             self.model.set_value(iter,col,object)
             col = col + 1
-        self.model.set_value(iter,_BCOL,pango.WEIGHT_NORMAL)
+        self.model.set_value(iter,_BCOL,_TEXT_FONT)
         self.selection.select_iter(iter)
 
     def center_selected(self):
