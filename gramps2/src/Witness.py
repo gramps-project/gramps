@@ -119,15 +119,23 @@ class WitnessEditor:
             "on_id_changed" : self.on_id_changed,
             "cancel_clicked" : self.cancel_clicked,
             })
+
         self.name = self.show_witness.get_widget("name")
         self.id = self.show_witness.get_widget("id")
         self.ok = self.show_witness.get_widget("ok")
         self.in_db = self.show_witness.get_widget("in_db")
         self.comment = self.show_witness.get_widget("comment")
+
         if self.ref:
-            self.name.set_text(self.ref.get_value())
+            if self.ref.get_type():
+                self.id.set_text(self.ref.get_value())
+                self.in_db.set_active(1)
+            else:
+                self.name.set_text(self.ref.get_value())
+                self.in_db.set_active(0)
             self.comment.get_buffer().set_text(self.ref.get_comment())
 
+        self.on_toggled(None)
         Utils.set_titles(self.show_witness.get_widget('witness_edit'),
                          self.show_witness.get_widget('title'),
                          _('Witness Editor'))
@@ -136,19 +144,28 @@ class WitnessEditor:
         self.check_valid_id()
         
     def check_valid_id(self):
-        id = self.id.get_text()
-        if self.db.getPersonMap().has_key(id):
-            person = self.db.getPerson(id)
-            self.name.set_text(person.getPrimaryName().getName())
-            self.ok.set_sensitive(1)
+        if self.in_db.get_active():
+            id = self.id.get_text()
+            if self.db.getPersonMap().has_key(id):
+                person = self.db.getPerson(id)
+                self.name.set_text(person.getPrimaryName().getName())
+                self.ok.set_sensitive(1)
+            else:
+                self.ok.set_sensitive(0)
         else:
-            self.ok.set_sensitive(0)
+                self.ok.set_sensitive(1)
 
     def on_toggled(self,obj):
         if self.in_db.get_active():
             self.name.set_editable(0)
+            self.name.set_sensitive(0)
+            self.id.set_editable(1)
+            self.id.set_sensitive(1)
         else:
             self.name.set_editable(1)
+            self.name.set_sensitive(1)
+            self.id.set_editable(0)
+            self.id.set_sensitive(0)
         self.check_valid_id()
         
     def cancel_clicked(self,obj):
