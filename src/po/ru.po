@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.1\n"
-"POT-Creation-Date: Wed Apr 16 10:37:11 2003\n"
-"PO-Revision-Date: 2003-04-16 10:45-0500\n"
+"POT-Creation-Date: Wed Apr 16 12:06:31 2003\n"
+"PO-Revision-Date: 2003-04-17 12:36-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -5510,7 +5510,7 @@ msgid "Unknown gender for %s.\n"
 msgstr "Неизвестен пол %s.\n"
 
 #: plugins/Verify.py:211
-msgid "Ambigous gender for %s.\n"
+msgid "Ambiguous gender for %s.\n"
 msgstr "Неясен пол %s.\n"
 
 #: plugins/Verify.py:219
