@@ -66,13 +66,15 @@ class NameEditor:
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
         self.title_field  = self.top.get_widget("alt_title")
-        self.surname_field = self.top.get_widget("alt_last")
         self.suffix_field = self.top.get_widget("alt_suffix")
+        self.combo = self.top.get_widget("alt_surname_list")
+        self.surname_field = self.top.get_widget("alt_last")
+
+        AutoComp.fill_combo(self.combo,self.parent.db.get_surnames())
+
         self.type_field = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
         self.slist = self.top.get_widget('slist')
-        slist = self.top.get_widget("alt_surname_list")
-        self.combo = AutoComp.AutoCombo(slist,self.parent.db.get_surnames())
         self.priv = self.top.get_widget("priv")
         self.sources_label = self.top.get_widget("sourcesName")
         self.notes_label = self.top.get_widget("noteName")
@@ -81,8 +83,7 @@ class NameEditor:
 
         types = const.NameTypesMap.get_values()
         types.sort()
-        self.type_field.set_popdown_strings(types)
-        self.typecomp = AutoComp.AutoEntry(self.type_field.entry,types)
+        AutoComp.fill_combo(self.type_field,types)
 
         if self.name:
             self.srcreflist = self.name.get_source_references()

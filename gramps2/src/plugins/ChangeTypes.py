@@ -59,10 +59,11 @@ class ChangeTypes:
         glade_file = "%s/%s" % (base,"changetype.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
-        self.auto1 = AutoComp.AutoCombo(self.glade.get_widget("original"),
-                                        const.personalEvents)
-        self.auto2 = AutoComp.AutoCombo(self.glade.get_widget("new"),
-                                        const.personalEvents)
+        self.auto1 = self.glade.get_widget("original")
+        self.auto2 = self.glade.get_widget("new")
+        
+        AutoComp.fill_combo(self.auto1,const.personalEvents)
+        AutoComp.fill_combo(self.auto2,const.personalEvents)
 
         Utils.set_titles(self.glade.get_widget('top'),
                          self.glade.get_widget('title'),
@@ -75,8 +76,8 @@ class ChangeTypes:
     
     def on_apply_clicked(self,obj):
         modified = 0
-        original = unicode(self.glade.get_widget("original_text").get_text())
-        new = unicode(self.glade.get_widget("new_text").get_text())
+        original = unicode(self.auto1.child.get_text())
+        new = unicode(self.auto2.child..get_text())
 
         for person_handle in self.db.get_person_keys():
             person = self.db.try_to_find_person_from_handle(person_handle)

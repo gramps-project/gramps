@@ -1,3 +1,10 @@
+2004-08-04  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AttrEdit.py: use ComboBox
+	* src/NameEdit.py: use ComboBox
+	* src/gramps.glade: use ComboBox
+	* src/plugins/ChangeTypes.py: use ComboBox
+	* src/plugins/changetype.glade: use ComboBox
+
 2004-08-03  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/WriteXML.py: always write the default location for a place
 	* src/EditPerson.py: don't for write of multimedia objects if 
