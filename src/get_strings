@@ -147,16 +147,16 @@ class GladeExtractor:
     def __init__(self,msgs):
         self.strings = msgs
 
-    def add_string(self, string, lineno):
-        if string == "":
+    def add_string(self, str, lineno):
+        if str.strip() == "":
             return
-        if _ignore.has_key(string):
+        if _ignore.has_key(str):
             return
         entry = (self.file, lineno)
-        if self.strings.has_key(string):
-            self.strings[string][entry] = 0
+        if self.strings.has_key(str):
+            self.strings[str][entry] = 0
         else:
-            self.strings[string] = {entry: 0}
+            self.strings[str] = {entry: 0}
 
     def parse(self,file):
         self.p = make_parser()

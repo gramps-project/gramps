@@ -4,8 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: Tue Feb 11 21:17:51 2003\n"
+"Project-Id-Version: GRAMPS VERSION\n"
+"POT-Creation-Date: Wed Feb 12 22:07:04 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,7 +237,7 @@ msgstr ""
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr ""
 
-#: DbPrompter.py:99 gramps_main.py:730 gramps_main.py:983 gramps_main.py:995
+#: DbPrompter.py:99 gramps_main.py:735 gramps_main.py:988 gramps_main.py:1000
 msgid "No Comment Provided"
 msgstr ""
 
@@ -329,7 +329,7 @@ msgid "unknown"
 msgstr ""
 
 #: EditPerson.py:802 EditPerson.py:813 Marriage.py:399 gramps_main.py:497
-#: gramps_main.py:943
+#: gramps_main.py:948
 msgid "Abandon Changes"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgstr ""
 #: FamilyView.py:412 Plugins.py:404 Plugins.py:405 Plugins.py:406
 #: Plugins.py:418 Plugins.py:419 Plugins.py:420 const.py:137 const.py:412
 #: const.py:420 gramps.glade:3534 gramps.glade:3729 gramps.glade:4283
-#: gramps.glade:4489 gramps.glade:6211 gramps.glade:6477 gramps_main.py:1156
+#: gramps.glade:4489 gramps.glade:6211 gramps.glade:6477 gramps_main.py:1161
 #: plugins/WebPage.py:288
 msgid "Unknown"
 msgstr ""
@@ -977,7 +977,7 @@ msgid ""
 msgstr ""
 
 #: RelImage.py:70 RelImage.py:73 RelImage.py:134 RelImage.py:137
-#: gramps_main.py:751 gramps_main.py:755 gramps_main.py:763
+#: gramps_main.py:756 gramps_main.py:760 gramps_main.py:768
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
 #: plugins/DesGraph.py:219 plugins/WriteGedcom.py:486
 #: plugins/WriteGedcom.py:491
@@ -2370,7 +2370,7 @@ msgid "<b>Children</b>"
 msgstr ""
 
 #: gramps.glade:1889
-msgid "Make the selected child the active family"
+msgid "Make the selected child the active person"
 msgstr ""
 
 #: gramps.glade:1915
@@ -2621,85 +2621,85 @@ msgid ""
 "Do you wish to save the changes?"
 msgstr ""
 
-#: gramps_main.py:547
+#: gramps_main.py:552
 msgid "Do you want to close the current database and create a new one?"
 msgstr ""
 
-#: gramps_main.py:548
+#: gramps_main.py:553
 msgid "New Database"
 msgstr ""
 
-#: gramps_main.py:676
+#: gramps_main.py:681
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
 
-#: gramps_main.py:681
+#: gramps_main.py:686
 msgid "Autosave File"
 msgstr ""
 
-#: gramps_main.py:709 gramps_main.py:745
+#: gramps_main.py:714 gramps_main.py:750
 msgid "%s is not a directory"
 msgstr ""
 
-#: gramps_main.py:712
+#: gramps_main.py:717
 msgid "Loading %s ..."
 msgstr ""
 
-#: gramps_main.py:738
+#: gramps_main.py:743
 msgid "Saving %s ..."
 msgstr ""
 
-#: gramps_main.py:797
+#: gramps_main.py:802
 msgid "autosaving..."
 msgstr ""
 
-#: gramps_main.py:800
+#: gramps_main.py:805
 msgid "autosave complete"
 msgstr ""
 
-#: gramps_main.py:802
+#: gramps_main.py:807
 msgid "autosave failed"
 msgstr ""
 
-#: gramps_main.py:829
+#: gramps_main.py:834
 msgid "Do you really wish to delete %s?"
 msgstr ""
 
-#: gramps_main.py:831
+#: gramps_main.py:836
 msgid "Delete Person"
 msgstr ""
 
-#: gramps_main.py:940
+#: gramps_main.py:945
 msgid "Do you wish to abandon your changes and revert to the last saved database?"
 msgstr ""
 
-#: gramps_main.py:945
+#: gramps_main.py:950
 msgid "Cannot revert to a previous database, since one does not exist"
 msgstr ""
 
-#: gramps_main.py:1247
+#: gramps_main.py:1252
 msgid "Loading %s..."
 msgstr ""
 
-#: gramps_main.py:1342
+#: gramps_main.py:1347
 msgid "No default/home person has been set"
 msgstr ""
 
-#: gramps_main.py:1348
+#: gramps_main.py:1353
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1351
+#: gramps_main.py:1356
 msgid "Bookmark could not be set because no one was selected"
 msgstr ""
 
-#: gramps_main.py:1363
+#: gramps_main.py:1368
 msgid "Do you wish to set %s as the home person?"
 msgstr ""
 
-#: gramps_main.py:1365
+#: gramps_main.py:1370
 msgid "Set Home Person"
 msgstr ""
 
@@ -4161,7 +4161,7 @@ msgid "Timeline"
 msgstr ""
 
 #: plugins/TimeLine.py:315
-msgid "TimeLine File"
+msgid "Timeline File"
 msgstr ""
 
 #: plugins/TimeLine.py:337
@@ -4173,7 +4173,7 @@ msgid "Generates a timeline graph."
 msgstr ""
 
 #: plugins/TimeLine.py:446
-msgid "TimeLine Graph"
+msgid "Timeline Graph"
 msgstr ""
 
 #: plugins/Verify.py:290

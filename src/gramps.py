@@ -1,5 +1,11 @@
 #! /usr/bin/python -O
 
+import const
+import sys
+import os
+import locale
+import intl
+
 #-------------------------------------------------------------------------
 #
 # Cope with versioned pygtk installation.
@@ -11,41 +17,17 @@ try:
 except ImportError:
     pass
 
+import gtk
+
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
 #
 #-------------------------------------------------------------------------
-import os
-import locale
-import gtk.glade
-import intl
-
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
 else:
     loc = "locale"
-
-
-intl.bindtextdomain("gramps",loc)
-intl.bind_textdomain_codeset("gramps",'UTF-8')
-intl.textdomain("gramps")
-locale.setlocale(locale.LC_NUMERIC,"C")
-
-#-------------------------------------------------------------------------
-#
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-import sys
-
-#-------------------------------------------------------------------------
-#
-# GNOME/GTK libraries
-#
-#-------------------------------------------------------------------------
-import gtk
-import gnome.ui
 
 #-------------------------------------------------------------------------
 #
@@ -53,11 +35,17 @@ import gnome.ui
 #
 #-------------------------------------------------------------------------
 import gramps_main 
+import const
 
 if len(sys.argv) > 1:
     arg = sys.argv[1]
 else:
     arg = None
+
+intl.bindtextdomain("gramps",loc)
+intl.bind_textdomain_codeset("gramps",'UTF-8')
+intl.textdomain("gramps")
+locale.setlocale(locale.LC_NUMERIC,"C")
 
 try:
     import StartupDialog

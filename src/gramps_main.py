@@ -41,6 +41,7 @@ from intl import gettext as _
 #-------------------------------------------------------------------------
 import gobject
 import gtk
+import gnome
 import gnome.ui
 import gtk.glade
 
@@ -49,7 +50,6 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-#from RelLib import *
 import RelLib
 import PedView
 import MediaView
@@ -527,19 +527,24 @@ class Gramps:
     
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
-        import gnome.help
-	url = gnome.help.file_find_file("gramps-manual","gramps-manual.sgml")
-        if url:
-            url = "gnome-help:"+url
-            gnome.help.goto(url)
+
+        WarningDialog('HELP currently not available')
+#	url = gnome.help_display_with_doc_id(self.program,
+#                                             "",
+#                                             "gramps-manual.sgml",
+#                                             "")
+#         if url:
+#             url = "gnome-help:"+url
+#             gnome.help.goto(url)
 
     def on_writing_extensions_activate(self,obj):
         """Display the Extending GRAMPS manual"""
-        import gnome.help
-        url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
-        if url:
-            url = "gnome-help:"+url
-            gnome.help.goto(url)
+        WarningDialog('HELP currently not available')
+#        import gnome.help
+#         url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
+#         if url:
+#             url = "gnome-help:"+url
+#             gnome.help.goto(url)
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
@@ -1431,5 +1436,8 @@ def set_panel(obj):
 #
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
+    import gnome
+    import sys
+
     Gramps(None)
     gtk.mainloop()
