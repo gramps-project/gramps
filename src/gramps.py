@@ -23,7 +23,6 @@ if os.environ.has_key("GRAMPSI18N"):
 else:
     loc = "/usr/share/locale"
 
-gtk.glade.bindtextdomain("gramps",loc)
 intl.bindtextdomain("gramps",loc)
 intl.bind_textdomain_codeset("gramps",'UTF-8')
 intl.textdomain("gramps")

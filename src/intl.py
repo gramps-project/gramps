@@ -23,6 +23,7 @@ Abstracts the i18n library, providing a non-translated fallback if
 everything else fails.
 """
 import sys
+import gtk
 
 ver = sys.version[0:3]
 _trans = None
@@ -57,6 +58,7 @@ except:
         return foo.textdomain(s)
     
     def bindtextdomain(s,x):
+        gtk.glade.bindtextdomain(s,x)
         return foo.bindtextdomain(s,x)
 
     def null(s):
