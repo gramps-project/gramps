@@ -1663,7 +1663,7 @@ AbiWord
 	  <class>GtkEntry</class>
 	  <child_name>GnomeEntry:entry</child_name>
 	  <name>entry2</name>
-	  <tooltip>The default directory for the output of the  Web Site report generators</tooltip>
+	  <tooltip>The default directory for the output of the Web Site report generators</tooltip>
 	  <can_focus>True</can_focus>
 	  <signal>
 	    <name>changed</name>

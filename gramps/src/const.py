@@ -219,7 +219,7 @@ _pe_e2l = {
     "Elected"               : _("Elected"),
     "Emigration"            : _("Emigration"),
     "Graduation"            : _("Graduation"),
-    "Military Service"      : _("_MILT"), 
+    "Military Service"      : _("Military Service"), 
     "Naturalization"        : _("Naturalization"),
     "Occupation"            : _("Occupation"),
     "Probate"               : _("Probate"),
@@ -297,15 +297,81 @@ def save_pattr(st):
     else:
         return st
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 familyConstantAttributes = {
     }
 
-familyConstantRelations = [
-    "Married",
-    "Common Law",
-    "Partners",
-    "Unknown"
-]
+_fa_e2l = {
+    }
+
+_fa_l2e = {}
+for a in _fa_e2l.keys():
+    _fa_l2e[_fa_e2l[a]] = a
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def display_fattr(st):
+    if _fa_e2l.has_key(st):
+        return _fa_e2l[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def save_fattr(st):
+    if _fa_l2e.has_key(st):
+        return _fa_l2e[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+
+_fr_e2l = {
+    "Married"    : _("Married"),
+    "Common Law" : _("Common Law"),
+    "Partners"   : _("Partners"),
+    "Unknown"    : _("Unknown")
+}
+
+_fr_l2e = {}
+for a in _fa_e2l.keys():
+    _fa_l2e[_fa_e2l[a]] = a
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def display_frel(st):
+    if _fr_e2l.has_key(st):
+        return _fr_e2l[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def save_frel(st):
+    if _fr_l2e.has_key(st):
+        return _fr_l2e[st]
+    else:
+        return st
 
 #-------------------------------------------------------------------------
 #
@@ -343,11 +409,32 @@ def initialize_personal_attribute_list():
     p.sort()
     return p
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def initialize_family_attribute_list():
+    p = []
+    for event in familyConstantAttributes.keys():
+        p.append(_fa_e2l[event])
+    p.sort()
+    return p
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def initialize_family_relation_list():
+    p = []
+    for event in _fr_e2l.keys():
+        p.append(_fr_e2l[event])
+    p.sort()
+    return p
+
 personalEvents = initialize_personal_event_list()
 personalAttributes = initialize_personal_attribute_list()
 marriageEvents = initialize_marriage_event_list()
-
-familyAttributes = familyConstantAttributes.keys()
-familyAttributes.sort()
-
-familyRelations = familyConstantRelations
+familyAttributes = initialize_family_attribute_list()
+familyRelations = initialize_family_relation_list()

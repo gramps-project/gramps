@@ -120,7 +120,7 @@ class Marriage:
         self.load_images()
 
         self.type_field.set_popdown_strings(const.familyRelations)
-        self.type_field.entry.set_text(family.getRelationship())
+        self.type_field.entry.set_text(const.display_frel(family.getRelationship()))
         
         # stored object data
         top_window.set_data(MARRIAGE,self)
@@ -159,7 +159,8 @@ class Marriage:
                     detail = "N"
                 if attr.getSourceRef():
                     detail = detail + "S"
-            self.attr_list.append([attr.getType(),attr.getValue(),details])
+            self.attr_list.append([const.display_fattr(attr.getType()),\
+                                   attr.getValue(),details])
             self.attr_list.set_row_data(self.attr_index,attr)
             self.attr_index = self.attr_index + 1
 
@@ -276,8 +277,8 @@ def on_close_marriage_editor(obj):
     family_obj = obj.get_data(MARRIAGE)
 
     relation = family_obj.type_field.entry.get_text()
-    if relation != family_obj.family.getRelationship():
-        family_obj.family.setRelationship(relation)
+    if const.save_frel(relation) != family_obj.family.getRelationship():
+        family_obj.family.setRelationship(const.save_frel(relation))
         utils.modified()
 
     text = family_obj.notes_field.get_chars(0,-1)
@@ -671,7 +672,7 @@ def on_attr_list_select_row(obj,row,b,c):
     family_obj = obj.get_data(MARRIAGE)
     attr = obj.get_row_data(row)
 
-    family_obj.attr_type.set_text(attr.getType())
+    family_obj.attr_type.set_text(const.display_fattr(attr.getType()))
     family_obj.attr_value.set_text(attr.getValue())
 
 #-------------------------------------------------------------------------
@@ -686,7 +687,7 @@ def on_update_attr_clicked(obj):
 
     family_obj = obj.get_data(MARRIAGE)
     attr = obj.get_row_data(row)
-    attr.setType(family_obj.attr_type.get_text())
+    attr.setType(const.save_fattr(family_obj.attr_type.get_text()))
     attr.setValue(family_obj.attr_value.get_text())
 
     family_obj.redraw_attr_list()
@@ -721,7 +722,7 @@ def on_add_attr_clicked(obj):
 
     attr = Attribute()
     name = family_obj.attr_type.get_text()
-    attr.setType(name)
+    attr.setType(const.save_fattr(name))
     attr.setValue(family_obj.attr_value.get_text())
 
     if name not in const.familyAttributes:
