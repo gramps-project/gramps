@@ -144,6 +144,8 @@ comments     = _("GRAMPS (Genealogical Research and Analysis "
 authors      = [
     "Donald N. Allingham",
     "Alexander Roitman",
+    "Richard Taylor",
+    "Martin Hawlisch",
     "Tim Waugh",
     "Donald A. Peterson", 
     "David Hampton",
