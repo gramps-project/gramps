@@ -128,7 +128,6 @@ class PluginDialog:
         self.db = db
         self.active = active
         self.update = None
-        self.noparent = 0
         self.imap = {}
         self.msg = msg
         
@@ -208,15 +207,9 @@ class PluginDialog:
 
         if self.run_tool:
             if self.update:
-                if self.noparent:
-                    self.run_tool(self.db,self.active,self.update)
-                else:
-                    self.run_tool(self.db,self.active,self.update,self.parent)
+                self.run_tool(self.db,self.active,self.update,self.parent)
             else:
-                if self.noparent:
-                    self.run_tool(self.db,self.active)
-                else:
-                    self.run_tool(self.db,self.active,self.parent)
+                self.run_tool(self.db,self.active)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
@@ -304,7 +297,6 @@ class ReportPlugins(PluginDialog):
         PluginDialog.__init__(self,parent,db,active,_reports,_("Report Selection"),
                         _("Select a report from those available on the left."),
                         _("_Generate"), _("Generate selected report"))
-        self.noparent = 1
 
 #-------------------------------------------------------------------------
 #
@@ -324,7 +316,6 @@ class ToolPlugins(PluginDialog):
                         _("Select a tool from those available on the left."),
                         _("_Run"), _("Run selected tool"))
         self.update = update
-        self.noparent = 0
 
 #-------------------------------------------------------------------------
 #
