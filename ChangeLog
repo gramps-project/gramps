@@ -1,3 +1,15 @@
+2004-02-22  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetAncestralReport.py: Translation corrections.
+	Change "was" to "is".
+	* src/plugins/DetDescendantReport.py: Translation corrections.
+	Change "was" to "is".
+	* src/plugins/FtmStyleAncestors.py (print_more_about): 
+	Translate event names. Add description.
+	* src/plugins/FtmStyleDescendants.py (print_more_about, 
+	print_more_about_families): Translate event names. Add description.
+	* src/po/de.po: Change Priesterweihe to Ordination.
+	* src/plugins/FamilyGroup.py: Translation corrections.
+
 2004-02-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ImageSelect.py: Corrections.
 	* src/RelLib.py: Corrections. 

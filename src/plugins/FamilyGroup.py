@@ -271,7 +271,7 @@ class FamilyGroup:
         self.doc.end_row()
 
         families = len(person.get_family_id_list())
-        self.dump_child_event('FGR-TextChild1','Birth',person.get_birth())
+        self.dump_child_event('FGR-TextChild1',_('Birth'),person.get_birth())
         if families == 0:
             self.dump_child_event('FGR-TextChild2',_('Death'),person.get_death())
         else:

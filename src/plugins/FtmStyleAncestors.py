@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -517,21 +517,23 @@ class FtmAncestorReport(Report.Report):
 
             self.doc.start_paragraph('FTA-Details')
             if date and place:
-                self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s') % {
-                    'event_name' : event.get_name(),
+                self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s. ') % {
+                    'event_name' : _(event.get_name()),
                     'date' : event.get_date(),
                     'endnotes' : self.endnotes(event),
                     'place' : event.get_place_name() })
             elif date:
-                self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s') % {
-                    'event_name' : event.get_name(),
+                self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s. ') % {
+                    'event_name' : _(event.get_name()),
                     'endnotes' : self.endnotes(event),
                     'date' : event.get_date()})
             else:
-                self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s') % {
-                    'event_name' : event.get_name(),
+                self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s. ') % {
+                    'event_name' : _(event.get_name()),
                     'endnotes' : self.endnotes(event),
                     'place' : event.get_place_name() })
+            if event.get_description():
+                self.doc.write_text(event.get_description())
             self.doc.end_paragraph()
 
     def print_spouse(self,person):
