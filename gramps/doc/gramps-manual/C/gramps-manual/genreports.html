@@ -7,7 +7,7 @@
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.59"><LINK
 REL="HOME"
-TITLE="gramps User Manual"
+TITLE="GRAMPS User Manual"
 HREF="index.html"><LINK
 REL="PREVIOUS"
 TITLE="Customization"
@@ -33,7 +33,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->gramps User Manual</TH
+>GRAMPS User Manual</TH
 ></TR
 ><TR
 ><TD
@@ -73,11 +73,11 @@ NAME="GENREPORTS"
 ><P
 >    <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > can produce a wide variety of
-    reports. New report generators can be written by the user without
+    reports. A new report generator can be written by the user without
     modifying the main program. For this reason, there may be more
-    reports available than are documented by this manual
+    reports available than are documented by this manual.
     </P
 ><DIV
 CLASS="FIGURE"
@@ -95,21 +95,21 @@ SRC="reportsel.png"></P
 ><P
 >    Unlike many genealogy programs, <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 >
     does not directly print reports. Instead,
     <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > produces reports in formats that
     are understood by other programs.  These formats include
     OpenOffice, AbiWord, PDF, and HTML, among others. This allows the
     generated reports to be modified after they are generated, stored
-    for use later, or emailed to another person.
+    for use at a later time, or e-mailed to another person.
     </P
 ><P
 >    After selecting the report you would like generated there are
-    option you must select.  In the Save As option specify your file
+    options you must select.  In the Save As option specify your file
     name (use /full path/filename to specify a different directory
     than in your Default Report Directory preference in the
     preferences).  The next step is to select the Report Format.
@@ -123,13 +123,12 @@ CLASS="GUIBUTTON"
     Selecting one of those options you can then change the font (font
     face, size, color, and options) for each Paragraph Style along
     with the Paragraph Options (Alignment, background color, margins,
-    and morders).  Once you are satisfied with the style you are ready
+    and dorders).  Once you are satisfied with the style you are ready
     to proceed with the generation of your report.  The next step is
     to choose the options (if any for that specific report) and then
-    Choose the Templete (for HTML format only) and click OK.  Your
+    Choose the Template (for HTML format only) and click OK.  Your
     report will now be in default report directory (unless otherwise
-    specified) for you to view the program you specified the report to
-    be generated for.
+    specified). 
     </P
 ><DIV
 CLASS="SECT2"
@@ -149,39 +148,39 @@ NAME="HTMLTEMPLATES"
 ><P
 >      To solve this problem, <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > allows
       the user to specify a template to be used for generating HTML
       files.  At the time the report is generated, if HTML is selected
       as the target format, the user can select an HTML template to be
       used.  Since the template is chosen at report generation time, a
       different template may be chosen each time, allowing the user to
-      change the appearence of the generated files at any time.
+      change the appearance of the generated files at any time.
       Nearly any existing HTML file can be used as an HTML template
       for <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 >.
       </P
 ><P
 >      When a file has been established as the HTML template file,
       <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > uses the template for each
       file that it generates. <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > starts
-      each file by copying data from the template until it reaches an
-      HTML comment uses as a marker.  At that point,
+      each file by copying data from the template until it reaches the
+      HTML comment, which it uses as a marker.  At that point,
       <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > inserts its data into the
       output file. <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > the continues
       reading the until it reaches a second comment that tells it to
       resume copying from the template.
@@ -189,7 +188,7 @@ CLASS="APPLICATION"
 ><P
 >      <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > uses the string
       <TT
 CLASS="FUNCTION"
@@ -203,7 +202,7 @@ CLASS="FUNCTION"
       should resume copying data from the template.  The effect is
       that <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > will create a new
       document, replacing everything between the <TT
 CLASS="FUNCTION"
@@ -224,7 +223,7 @@ CLASS="FUNCTION"
 >      If no HTML template is specified, or if the specified template
       cannot be read, <TT
 CLASS="APPLICATION"
->gramps</TT
+>GRAMPS</TT
 > will use a
       default, predefined template.
       </P
@@ -253,14 +252,14 @@ This is a simple template.  This text will appear in the html output.
 &#60;/P&#62;
 &#60;!-- START --&#62;
 &#60;P&#62;
-This is where gramps will place its report information. Any 
+This is where GRAMPS will place its report information. Any 
 information between the two comments, including this paragraph,
-will not appear in the gramps generated output.
+will not appear in the GRAMPS generated output.
 &#60;/P&#62;
 &#60;!-- STOP --&#62;
 &#60;P&#62;
 This text, since it appears after the stop comment, will also
-appear in every gramps generated file.
+appear in every GRAMPS generated file.
 &#60;/P&#62;
 &#60;/BODY&#62;
 &#60;/HTML&#62;
