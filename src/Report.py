@@ -420,7 +420,7 @@ class BareReportDialog:
         choose from."""
 
         # Styles Frame
-        label = gtk.Label("%s:" % _("Styles"))
+        label = gtk.Label("%s:" % _("Style"))
         label.set_alignment(0.0,0.5)
 
         self.style_menu = gtk.OptionMenu()

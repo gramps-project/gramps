@@ -34,6 +34,7 @@ import time
 from QuestionDialog import ErrorDialog, WarningDialog
 import TarFile
 
+_title_string = _("Import from GRAMPS package")
 #-------------------------------------------------------------------------
 #
 #
@@ -52,7 +53,7 @@ class ReadPkg:
         self.db = database
         self.callback = cb
         
-        self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS package"))
+        self.top = gtk.FileSelection("%s - GRAMPS" % _title_string)
         self.top.hide_fileop_buttons()
         self.top.ok_button.connect('clicked', self.on_ok_clicked)
         self.top.cancel_button.connect('clicked', self.close_window)
@@ -63,10 +64,10 @@ class ReadPkg:
         
     def show_display(self):
         self.window = gtk.Window()
-        self.window.set_title(_("Import from GRAMPS package"))
+        self.window.set_title(_title_string)
         vbox = gtk.VBox()
         self.window.add(vbox)
-        label = gtk.Label(_("Import from GRAMPS package"))
+        label = gtk.Label(_title_string)
         vbox.add(label)
         adj = gtk.Adjustment(lower=0,upper=100)
         self.progress_bar = gtk.ProgressBar(adj)
@@ -137,4 +138,4 @@ class ReadPkg:
 #------------------------------------------------------------------------
 from Plugins import register_import
 
-register_import(readData,_("Import from GRAMPS package"))
+register_import(readData,"%s..." % _title_string)

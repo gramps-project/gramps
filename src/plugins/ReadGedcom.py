@@ -69,6 +69,8 @@ UPDATE = 25
 db = None
 callback = None
 
+_title_string = _("Import from GEDCOM")
+
 def nocnv(s):
     return unicode(s)
 
@@ -1732,7 +1734,7 @@ def readData(database,active_person,cb):
     db = database
     callback = cb
     
-    file_top = gtk.FileSelection("%s - GRAMPS" % _("Import from GEDCOM"))
+    file_top = gtk.FileSelection("%s - GRAMPS" % _title_string)
     file_top.hide_fileop_buttons()
     file_top.ok_button.connect('clicked', on_ok_clicked)
     file_top.cancel_button.connect('clicked', Utils.destroy_passed_object)
@@ -1775,6 +1777,4 @@ if __name__ == "__main__":
     
 else:
     from Plugins import register_import
-    register_import(readData,_("Import from GEDCOM"))
-
-    
+    register_import(readData,"%s..." % _title_string)
