@@ -76,7 +76,8 @@ class GrampsParser(handler.ContentHandler):
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
-
+        self.tlist = []
+        
         self.use_p = 0
         self.in_note = 0
         self.in_old_attr = 0
@@ -115,7 +116,6 @@ class GrampsParser(handler.ContentHandler):
         self.name = None
         self.tempDefault = None
         self.owner = Researcher()
-        self.data = ""
 	self.func_list = [None]*50
 	self.func_index = 0
 	self.func = None
@@ -401,12 +401,12 @@ class GrampsParser(handler.ContentHandler):
         self.source_ref = SourceRef()
         source = self.db.findSourceNoMap(u2l(attrs["ref"]))
         self.source_ref.setBase(source)
-        if self.address:
+        if self.event:
+            self.event.setSourceRef(self.source_ref)
+        elif self.address:
             self.address.setSourceRef(self.source_ref)
         elif self.name:
             self.name.setSourceRef(self.source_ref)
-        elif self.event:
-            self.event.setSourceRef(self.source_ref)
         elif self.attribute:
             self.attribute.setSourceRef(self.source_ref)
         elif self.placeobj:
@@ -967,9 +967,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def startElement(self,tag,attrs):
 
-        self.func_list[self.func_index] = (self.func,self.data)
+        self.func_list[self.func_index] = (self.func,self.tlist)
         self.func_index = self.func_index + 1
-        self.data = ""
+        self.tlist = []
 
         try:
 	    f,self.func = GrampsParser.func_map[tag]
@@ -988,13 +988,13 @@ class GrampsParser(handler.ContentHandler):
     def endElement(self,tag):
 
         if self.func:
-            self.func(self,self.data)
+            self.func(self,string.join(self.tlist))
         self.func_index = self.func_index - 1    
-        self.func,self.data = self.func_list[self.func_index]
+        self.func,self.tlist = self.func_list[self.func_index]
 
     def characters(self, data):
         if self.func:
-            self.data = self.data + data
+            self.tlist.append(data)
 
 #-------------------------------------------------------------------------
 #
