@@ -33,7 +33,7 @@ class ListModel:
         self.new_model()
         self.selection = self.tree.get_selection()
         self.selection.set_mode(mode)
-
+        self.mode = mode
         self.data_index = l
 
         self.cids = []
@@ -87,6 +87,21 @@ class ListModel:
     def get_selected(self):
         return self.selection.get_selected()
 
+    def get_selected_objects(self):
+        if self.mode == gtk.SELECTION_SINGLE:
+            store,iter = self.selection.get_selected()
+            if iter:
+                return [self.model.get_value(iter,self.data_index)]
+            else:
+                return []
+        else:
+            mlist = []
+            self.selection.selected_foreach(self.blist,mlist)
+            return mlist
+
+    def blist(self,store,path,iter,list):
+        list.append(self.model.get_value(iter,self.data_index))
+
     def clear(self):
         self.model.clear()
 
@@ -112,6 +127,7 @@ class ListModel:
         self.model.set_value(iter,col,info)
         if select:
             self.selection.select_iter(iter)
+        return iter
 
     def add_and_select(self,data,info=None):
         iter = self.model.append()
