@@ -23,6 +23,10 @@ import gnome.mime
 import string
 import os
 import const
+import intl
+
+_ = intl.gettext
+
 _modifiedFlag  = 0
 
 LISTOBJ = "s"
