@@ -104,7 +104,9 @@ def scale_image(path,size):
     try:
         image1 = gtk.gdk.pixbuf_new_from_file(path)
     except:
-        WarningDialog(_("Could not load image file %s") % path)
+        WarningDialog(_("Cannot display %s") % path,
+                      _('GRAMPS is not able to display the image file. '
+                        'This may be cause by a corrupt file.'))
         return gtk.gdk.pixbuf_new_from_file(const.icon)
     
     width  = image1.get_width()
@@ -114,7 +116,9 @@ def scale_image(path,size):
     try:
         return image1.scale_simple(int(scale*width), int(scale*height), gtk.gdk.INTERP_BILINEAR)
     except:
-        WarningDialog(_("Could not load image file %s") % path)
+        WarningDialog(_("Cannot display %s") % path,
+                      _('GRAMPS is not able to display the image file. '
+                        'This may be cause by a corrupt file.'))
         return gtk.gdk.pixbuf_new_from_file(const.icon)
 
 #-------------------------------------------------------------------------

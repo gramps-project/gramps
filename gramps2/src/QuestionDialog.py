@@ -68,7 +68,7 @@ class QuestionDialog:
         self.top.destroy()
 
 class OptionDialog:
-    def __init__(self,msg1,msg2,label1,task1,label2,task2):
+    def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2):
         self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog")
         self.top = self.xml.get_widget('optiondialog')
         self.top.set_title('')
@@ -81,9 +81,12 @@ class OptionDialog:
         label2.set_text(msg2)
         label2.set_use_markup(gtk.TRUE)
 
+        self.xml.get_widget('option1').set_label(btnmsg1)
+        self.xml.get_widget('option2').set_label(btnmsg2)
         response = self.top.run()
         if response == gtk.RESPONSE_NO:
-            task1()
+            if task1:
+                task1()
         else:
             task2()
         self.top.destroy()
@@ -103,24 +106,16 @@ class ErrorDialog:
         self.top.destroy()
 
 class WarningDialog:
-    def __init__(self,msg):
-        title = '%s - GRAMPS' % _('Warning')
+    def __init__(self,msg1,msg2=""):
         
-        self.top = gtk.Dialog()
-        self.top.set_title(title)
-        label = gtk.Label(msg)
-        label.show()
-        hbox = gtk.HBox()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_DIALOG_WARNING,gtk.ICON_SIZE_DIALOG)
-        hbox.set_spacing(10)
-        hbox.pack_start(image)
-        hbox.add(label)
-        self.top.vbox.pack_start(hbox)
-        self.top.set_default_size(300,150)
-        self.top.add_button(gtk.STOCK_OK,0)
-        self.top.set_response_sensitive(0,gtk.TRUE)
-        self.top.show_all()
+        self.xml = gtk.glade.XML(const.errdialogsFile,"warndialog")
+        self.top = self.xml.get_widget('warndialog')
+        
+        label1 = self.xml.get_widget('label1')
+        label2 = self.xml.get_widget('label2')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
+        label2.set_text(msg2)
         self.top.run()
         self.top.destroy()
 

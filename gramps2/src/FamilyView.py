@@ -586,8 +586,8 @@ class FamilyView:
             list.insert(row,obj)
 
             if (birth_dates_in_order(list) == 0):
-                msg = _("Invalid move. Children must be ordered by birth date.")
-                WarningDialog(msg)
+                WarningDialog(_("Attempt to Reorder Children Failed"),
+                              _("Children must be ordered by their birth dates."))
                 return
             self.family.setChildList(list)
             self.load_family()
