@@ -153,6 +153,9 @@ grampslib.so: grampslib_wrap.c
 trans: po/template.po
 	./build_po
 
+check: 
+	pychecker $(pkgpython_PYTHON)
+
 install-data-local:
 	${INSTALL} -d ${prefix}/share/pixmaps
 	${INSTALL_DATA} gramps.png ${prefix}/share/pixmaps

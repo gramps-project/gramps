@@ -997,9 +997,6 @@ class Gramps:
     def on_revert_activate(self,obj):
         
         if self.db.getSavePath() != "":
-            msg = _("Do you wish to abandon your changes and "
-                    "revert to the last saved database?")
-
             QuestionDialog(_('Revert to last saved database?'),
                            _('Reverting to the last saved database '
                              'will cause all unsaved changes to be lost, and '
@@ -1007,8 +1004,6 @@ class Gramps:
                            _('Revert'),
                            self.revert_query)
         else:
-            msg = _("Cannot revert to a previous database, since "
-                    "one does not exist")
             WarningDialog(_('Could Not Revert to the Previous Database.'),
                           _('GRAMPS could not find a previous version of '
                             'the database'))
@@ -1431,8 +1426,6 @@ class Gramps:
     def on_default_person_activate(self,obj):
         if self.active_person:
             name = self.active_person.getPrimaryName().getRegularName()
-            msg = _("Do you wish to set %s as the home person?") % name
-
             QuestionDialog(_('Set %s as the Home Person') % name,
                            _('Once a Home Person is defined, pressing the '
                              'Home button on the toolbar will make the home '
@@ -1507,7 +1500,5 @@ def set_panel(obj):
 #
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
-    import gnome
-
     Gramps(None)
     gtk.mainloop()

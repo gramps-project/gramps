@@ -13,6 +13,10 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
+# This is the src/docgen level Makefile for Gramps
+# Use GNU make's ':=' syntax for nice wildcard use.
+# If not using GNU make, then list all .py files individually
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -104,15 +108,26 @@ ZIP = @ZIP@
 am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
+
 pkgpyexecdir = @pkgpyexecdir@/docgen
 pkgpythondir = @pkgpythondir@/docgen
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-# This is the src/docgen level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all .py files individually
-pkgpython_PYTHON := ${wildcard *.py}
+pkgpython_PYTHON = \
+	AbiWordDoc.py\
+	HtmlDoc.py\
+	KwordDoc.py\
+	LaTeXDoc.py\
+	OpenDrawDoc.py\
+	OpenOfficeDoc.py\
+	OpenSpreadSheet.py\
+	PdfDoc.py\
+	PdfDrawDoc.py\
+	PSDrawDoc.py\
+	RTFDoc.py\
+	SvgDrawDoc.py
+
 subdir = src/docgen
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =

@@ -405,6 +405,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
         font.set_bold(1)
         para = TextDoc.ParagraphStyle()
         para.set_font(font)
+        para.set_description(_("The style used for the title of the page."))
         self.default_style.add_style('Title',para)
     
         font = TextDoc.FontStyle()
@@ -413,6 +414,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
         font.set_bold(0)
         para = TextDoc.ParagraphStyle()
         para.set_font(font)
+        para.set_description(_('The basic style used for the text display.'))
         self.default_style.add_style('Normal',para)
     
         font = TextDoc.FontStyle()
@@ -421,6 +423,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
         font.set_bold(1)
         para = TextDoc.ParagraphStyle()
         para.set_font(font)
+        para.set_description(_('The style used for the text related to the children.'))
         self.default_style.add_style('ChildText',para)
     
         font = TextDoc.FontStyle()
@@ -429,6 +432,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
         font.set_bold(1)
         para = TextDoc.ParagraphStyle()
         para.set_font(font)
+        para.set_description(_("The style used for the parent's name"))
         self.default_style.add_style('ParentName',para)
 
     #------------------------------------------------------------------------

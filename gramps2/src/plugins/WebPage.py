@@ -959,7 +959,6 @@ class WebReportDialog(Report.ReportDialog):
         p = TextDoc.ParagraphStyle()
         p.set(align=TextDoc.PARA_ALIGN_CENTER,font=font)
         p.set_description(_("The style used for the title of the page."))
-
         self.default_style.add_style("Title",p)
         
         font = TextDoc.FontStyle()

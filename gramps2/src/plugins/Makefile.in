@@ -13,6 +13,10 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
+# This is the src/plugins level Makefile for Gramps
+# Use GNU make's ':=' syntax for nice wildcard use.
+# If not using GNU make, then list all .py files individually
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -105,17 +109,60 @@ ZIP = @ZIP@
 am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
+
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-# This is the src/plugins level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all .py files individually
-pkgpython_PYTHON := ${wildcard *.py}
+pkgpython_PYTHON = \
+	AncestorChart.py\
+	AncestorReport.py\
+	ChangeTypes.py\
+	Check.py\
+	count_anc.py\
+	Desbrowser.py\
+	DescendReport.py\
+	DesGraph.py\
+	DetAncestralReport.py\
+	DetDescendantReport.py\
+	EventCmp.py\
+	FamilyGroup.py\
+	FilterEditor.py\
+	GraphViz.py\
+	IndivComplete.py\
+	IndivSummary.py\
+	Merge.py\
+	PatchNames.py\
+	ReadGedcom.py\
+	ReadNative.py\
+	RelCalc.py\
+	ReorderIds.py\
+	soundgen.py\
+	Summary.py\
+	TimeLine.py\
+	Verify.py\
+	WebPage.py\
+	WriteGedcom.py\
+	WritePkg.py
 
-GLADEFILES := ${wildcard *.glade}
+
+GLADEFILES = \
+	changetype.glade\
+	desbrowse.glade\
+	eventcmp.glade\
+	gedcomexport.glade\
+	gedcomimport.glade\
+	merge.glade\
+	pafexport.glade\
+	patchnames.glade\
+	pkgexport.glade\
+	readgedcom.glade\
+	relcalc.glade\
+	soundex.glade\
+	summary.glade\
+	verify.glade
+
 
 pkgdata_DATA = ${GLADEFILES}
 dist_pkgdata_DATA = ${pkgdata_DATA} 

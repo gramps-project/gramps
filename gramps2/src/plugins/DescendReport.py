@@ -145,6 +145,7 @@ class DescendantReportDialog(Report.TextReportDialog):
         p = TextDoc.ParagraphStyle()
         p.set_header_level(1)
         p.set_font(f)
+        p.set_description(_("The style used for the title of the page."))
         self.default_style.add_style("Title",p)
 
         f = TextDoc.FontStyle()
@@ -152,6 +153,7 @@ class DescendantReportDialog(Report.TextReportDialog):
             p = TextDoc.ParagraphStyle()
             p.set_font(f)
             p.set_left_margin(max(10.0,float(i-1)))
+            p.set_description(_("The style used for the level %d display.") % i)
             self.default_style.add_style("Level%d" % i,p)
 
     def make_report(self):

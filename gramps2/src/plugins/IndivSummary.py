@@ -342,6 +342,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
         p = TextDoc.ParagraphStyle()
         p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
         p.set_font(font)
+        p.set_description(_("The style used for the title of the page."))
         self.default_style.add_style("Title",p)
         
         font = TextDoc.FontStyle()
@@ -351,6 +352,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
         font.set_italic(1)
         p = TextDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_description(_("The style used category labels."))
         self.default_style.add_style("TableTitle",p)
         
         font = TextDoc.FontStyle()
@@ -359,12 +361,14 @@ class IndivSummaryDialog(Report.TextReportDialog):
         font.set_size(12)
         p = TextDoc.ParagraphStyle()
         p.set_font(font)
+        p.set_description(_("The style used for the spouse's name."))
         self.default_style.add_style("Spouse",p)
     
         font = TextDoc.FontStyle()
         font.set_size(12)
         p = TextDoc.ParagraphStyle()
         p.set_font(font)
+        para.set_description(_('The basic style used for the text display.'))
         self.default_style.add_style("Normal",p)
     
     def setup_report_options(self):
