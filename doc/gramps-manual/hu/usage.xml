@@ -18,11 +18,10 @@
 
 <!-- ================ Usage ================================ -->
   <sect1 id="gramps-usage"> 
-    <title>Usage</title> 
-    <para>As commonly encountered in everyday life, in
-    &app; there is usually more than one way to
-    accomplish something. The alternatives to some actions will therefore 
-    be listed as appropriate.</para> 
+    <title>Használat</title> 
+    <para>Mint a való életben, a 
+    &app;ben is általában többféle módja van annak, hogy valamit megcsináljon.
+    A különböző lehetőségeket az alábbi sorok ismertetik.</para> 
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="new-db"> 

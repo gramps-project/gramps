@@ -55,14 +55,14 @@
     <copyright> <year>2003</year> <holder>Alex Roitman</holder> </copyright> 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
 
-<!-- translators: uncomment this:
+<!-- translators: uncomment this: -->
 
   <copyright>
-   <year>2002</year>
-   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+   <year>2004</year>
+   <holder>Gergely Egyeki (Hungarian Translation)</holder>
   </copyright>
 
-   -->
+
 <!-- An address can be added to the publisher information.  If a role is 
      not specified, the publisher/author is the same for all versions of the 
      document.  -->
@@ -92,18 +92,18 @@
       </author> 
       
 <!-- This is appropriate place for other contributors: translators,
-     maintainers,  etc. Commented out by default.
+     maintainers,  etc. Commented out by default.-->
      
       <othercredit role="translator">
-		<firstname>Latin</firstname> 
-		<surname>Translator 1</surname> 
+		<firstname>Gergely</firstname> 
+		<surname>Egyeki</surname> 
 		<affiliation> 
-	  		<orgname>Latin Translation Team</orgname> 
-	  		<address> <email>translator@gnome.org</email> </address> 
+<!--	  		<orgname>Hunarian Translation Team</orgname> -->
+	  		<address> <email>egeri@elte.hu</email> </address> 
 		</affiliation>
-		<contrib>Latin translation</contrib>
+		<contrib>Hungarian Translation</contrib>
       </othercredit>
--->
+
     </authorgroup>
 
 <!-- According to GNU FDL, revision history is mandatory if you are -->

@@ -18,9 +18,9 @@
 
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
-    <title>Main Window</title> 
-    <para>When you open a database (either existing or brand new), 
-    the following window is displayed.</para>
+    <title>Fő ablak</title> 
+    <para>Amikor megnyit egy adatbázist (akár újat, akár egy már létezőt), 
+    a következő ablak jelenik meg.</para>
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
