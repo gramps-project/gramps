@@ -4,6 +4,12 @@
 	* src/gramps_main.py (delete_person_response): Object/handle mixups,
 	remove unneeded commits.
 
+	* src/gramps_main.py (undo_callback,redo_callback): Minor
+	improvements, (read_file): Always re-initialize Undo and Redo items
+	to insensitive blanks after new database load; (post_load): Set up
+	database's callbacks for Undo and Redo after load.
+	* src/gramps.glade: Make Redo label non-stock to allow label change.
+
 2005-03-29  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py (on_object_select_row): fixed the drop of 
 	text into TextView widgets.
