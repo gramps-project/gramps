@@ -11,17 +11,9 @@
   store the results in a file that can be emailed. Have the start of
   this with the gramps.err file, but most users don't realize that 
   this file has been created. Some type of notification is needed.
-* Allow an image to be dropped onto the image box on the first tab of
-  the EditPerson dialog. This would make that image the first in the
-  photo list as well.
 * Speed up the reading of the database. The python XML routines are not
   as fast as I would like, and it can take a minute or so to read a
   large database. This is way too slow.
-* GEDCOM import should use the GEDCOM ID values as the GRAMPS ids if the
-  current database is empty. This would help us in the future if we want
-  to do an incremental update. Having the GEDCOM ID and the gramps ID
-  match up would be a good indication that these are the same people.
-  For example, @F001@ would become F001.
 * Finish the generic load of revision control interfaces to allow a
   revision control plugin system. Most of the work is already done.
 * Extend the gramps package exporting to export to a ISO-9660 CD-ROM
@@ -35,4 +27,9 @@
   Python 2.0 provides a zip interface, so this may need to hold off until 
   the move is made to Python 2.0.
 * Sort all lists
+* Implement a "Preferred Family" concept for each person. Currently, the 
+  alternate family/main family is kind of awkward, since the main family
+  must now be the birth family. Many people would view an adopted family
+  as the main family.
+* Startup tips.
 * And a whole lot more....
