@@ -32,7 +32,6 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-import GrampsCfg
 import BaseDoc
 import Report
 import Errors

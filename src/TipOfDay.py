@@ -34,7 +34,7 @@ class TipOfDay:
         
         tp = TipParser()
         tip_list = tp.get()
-        use.set_active(GrampsCfg.usetips)
+        use.set_active(GrampsCfg.get_usetips())
 
         index = 0
         rval = 0
@@ -46,7 +46,7 @@ class TipOfDay:
             else:
                 index += 1
         
-        GrampsCfg.set_bool("/apps/gramps/use-tips",use.get_active())
+        GrampsCfg.client.set_bool("/apps/gramps/use-tips",use.get_active())
         top.destroy()
 
 class TipParser:

@@ -621,7 +621,7 @@ class Merge:
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( GrampsCfg.nameof(p),p.get_id())
+    return "%s (%s)" % ( GrampsCfg.get_nameof()(p),p.get_id())
 
 def get_name_obj(person):
     if person:

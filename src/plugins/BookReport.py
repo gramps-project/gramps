@@ -67,7 +67,6 @@ from RelLib import Person
 import const
 import Utils
 import ListModel
-import GrampsCfg
 import Plugins
 import Report
 import BaseDoc

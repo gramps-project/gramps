@@ -119,7 +119,7 @@ class ChooseParents:
         self.top = self.glade.get_widget("familyDialog")
 
         self.title_text = _("Choose the Parents of %s") % \
-                          GrampsCfg.nameof(self.person)
+                          GrampsCfg.get_nameof()(self.person)
         Utils.set_titles(self.top,self.glade.get_widget('title'),
                          self.title_text,_('Choose Parents'))
         
@@ -665,7 +665,7 @@ class ModifyParents:
         self.top = self.glade.get_widget("modparents")
         self.title = self.glade.get_widget("title")
 
-        title = _("Modify the Parents of %s") % GrampsCfg.nameof(self.person)
+        title = _("Modify the Parents of %s") % GrampsCfg.get_nameof()(self.person)
         Utils.set_titles(self.top, self.title, title, _("Modify Parents"))
         
         self.mother_rel = self.glade.get_widget("mrel")

@@ -70,7 +70,7 @@ class DispBox:
         self.person = person
         self.root = root
 
-        self.name = GrampsCfg.nameof(person)
+        self.name = GrampsCfg.get_nameof()(person)
         birth_id = self.person.get_birth_id()
         death_id = self.person.get_death_id()
         if birth_id:
@@ -230,7 +230,7 @@ class PedigreeView:
                 else:
                     death = u""
                     
-                for n in [GrampsCfg.nameof(t[0]), u'%s %s' % (_BORN,birth),
+                for n in [GrampsCfg.get_nameof()(t[0]), u'%s %s' % (_BORN,birth),
                           u'%s %s' % (_DIED,death)]:
                     try:
                         a.set_text(n,len(n))
@@ -380,7 +380,7 @@ class PedigreeView:
                 myMenu = gtk.Menu()
                 for child_id in childlist:
                     child = self.parent.db.try_to_find_person_from_id(child_id)
-                    cname = GrampsCfg.nameof(child)
+                    cname = GrampsCfg.get_nameof()(child)
                     menuitem = gtk.MenuItem(None)
                     if find_children(self.parent.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
@@ -472,7 +472,7 @@ class PedigreeView:
         elif event.type == gtk.gdk.ENTER_NOTIFY:
             obj.set(fill_color_gdk=style.bg[gtk.STATE_SELECTED],
                     width_pixels=4)
-            name = GrampsCfg.nameof(person)
+            name = GrampsCfg.get_nameof()(person)
             msg = _("Double clicking will make %s the active person") % name
             self.sb.set_status(msg)
         elif event.type == gtk.gdk.LEAVE_NOTIFY:
@@ -587,7 +587,7 @@ class PedigreeView:
                 item.set_submenu(gtk.Menu())
                 sp_menu = item.get_submenu()
 
-            sp_item = gtk.MenuItem(GrampsCfg.nameof(spouse))
+            sp_item = gtk.MenuItem(GrampsCfg.get_nameof()(spouse))
             sp_item.set_data(_PERSON,sp_id)
             sp_item.connect("activate",self.on_childmenu_changed)
             sp_item.show()
@@ -618,7 +618,7 @@ class PedigreeView:
                     item.set_submenu(gtk.Menu())
                     sib_menu = item.get_submenu()
 
-                sib_item = gtk.MenuItem(GrampsCfg.nameof(sib))
+                sib_item = gtk.MenuItem(GrampsCfg.get_nameof()(sib))
                 sib_item.set_data(_PERSON,sib_id)
                 sib_item.connect("activate",self.on_childmenu_changed)
                 sib_item.show()
@@ -644,9 +644,9 @@ class PedigreeView:
                 child_menu = item.get_submenu()
 
             if find_children(self.parent.db,child):
-                label = gtk.Label('<b><i>%s</i></b>' % GrampsCfg.nameof(child))
+                label = gtk.Label('<b><i>%s</i></b>' % GrampsCfg.get_nameof()(child))
             else:
-                label = gtk.Label(GrampsCfg.nameof(child))
+                label = gtk.Label(GrampsCfg.get_nameof()(child))
 
             child_item = gtk.MenuItem(None)
             label.set_use_markup(gtk.TRUE)
@@ -678,9 +678,9 @@ class PedigreeView:
                 par_menu = item.get_submenu()
 
             if find_parents(self.parent.db,par):
-                label = gtk.Label('<b><i>%s</i></b>' % GrampsCfg.nameof(par))
+                label = gtk.Label('<b><i>%s</i></b>' % GrampsCfg.get_nameof()(par))
             else:
-                label = gtk.Label(GrampsCfg.nameof(par))
+                label = gtk.Label(GrampsCfg.get_nameof()(par))
 
             par_item = gtk.MenuItem(None)
             label.set_use_markup(gtk.TRUE)

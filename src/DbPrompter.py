@@ -46,7 +46,6 @@ import gnome
 #-------------------------------------------------------------------------
 import Utils
 import const
-import GrampsCfg
 import QuestionDialog
 import Plugins
 

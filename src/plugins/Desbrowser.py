@@ -119,7 +119,7 @@ class DesBrowse:
     def add_to_tree(self,parent_id,sib_id,person_id):
         item_id = self.model.insert_after(parent_id,sib_id)
         person = self.db.try_to_find_person_from_id(person_id)
-        self.model.set(item_id,0,GrampsCfg.nameof(person))
+        self.model.set(item_id,0,GrampsCfg.get_nameof()(person))
         self.model.set(item_id,1,person_id)
         prev_id = None
         for family_id in person.get_family_id_list():

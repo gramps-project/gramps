@@ -480,11 +480,11 @@ class Gallery(ImageSelect):
                 (root,ext) = os.path.splitext(basename)
                 photo.set_description(root)
                 self.savephoto(photo)
-                if GrampsCfg.mediaref == 0:
+                if GrampsCfg.get_media_reference() == 0:
                     name = RelImage.import_media_object(name,self.path,photo.get_id())
                     photo.set_path(name)
                 self.parent.lists_changed = 1
-                if GrampsCfg.globalprop:
+                if GrampsCfg.get_media_global():
                     GlobalMediaProperties(self.db,photo,None,
                                                 self,self.parent_window)
             elif protocol != "":
@@ -514,7 +514,7 @@ class Gallery(ImageSelect):
                     return
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
-                if GrampsCfg.globalprop:
+                if GrampsCfg.get_media_global():
                     GlobalMediaProperties(self.db,photo,None,
                                                 self,self.parent_window)
             else:
@@ -544,7 +544,7 @@ class Gallery(ImageSelect):
                     self.dataobj.add_media_reference(oref)
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
-                    if GrampsCfg.globalprop:
+                    if GrampsCfg.get_media_global():
                         LocalMediaProperties(oref,self.path,self,self.parent_window)
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
@@ -1068,7 +1068,7 @@ class GlobalMediaProperties:
             p = self.db.get_person(key)
             for o in p.get_media_list():
                 if o.get_reference_id() == self.object.get_id():
-                    self.refmodel.add([_("Person"),p.get_id(),GrampsCfg.nameof(p)])
+                    self.refmodel.add([_("Person"),p.get_id(),GrampsCfg.get_nameof()(p)])
                     any = 1
         for key in self.db.get_family_keys():
             p = self.db.find_family_from_id(key)

@@ -129,21 +129,21 @@ class Gramps:
         self.hindex = -1
                 
         self.db = RelLib.GrampsDB()
-        self.db.set_iprefix(GrampsCfg.iprefix)
-        self.db.set_oprefix(GrampsCfg.oprefix)
-        self.db.set_fprefix(GrampsCfg.fprefix)
-        self.db.set_sprefix(GrampsCfg.sprefix)
-        self.db.set_pprefix(GrampsCfg.pprefix)
+        self.db.set_iprefix(GrampsCfg.get_iprefix())
+        self.db.set_oprefix(GrampsCfg.get_oprefix())
+        self.db.set_fprefix(GrampsCfg.get_fprefix())
+        self.db.set_sprefix(GrampsCfg.get_sprefix())
+        self.db.set_pprefix(GrampsCfg.get_pprefix())
 
-        GrampsCfg.loadConfig(self.pref_callback)
+        GrampsCfg.loadConfig()
 
-        if GrampsCfg.get_bool('/apps/gramps/betawarn') == 0:
+        if GrampsCfg.get_betawarn() == 0:
             WarningDialog(_("Use at your own risk"),
                           _("This is an unstable development version of GRAMPS. "
                             "It is intended as a technology preview. Do not trust your "
                             "family database to this development version. This version may "
                             "contain bugs which could corrupt your database."))
-            GrampsCfg.set_bool('/apps/gramps/betawarn',1)
+            GrampsCfg.client.set_bool('/apps/gramps/betawarn',1)
         
 
         self.RelClass = Plugins.relationship_class
@@ -156,19 +156,26 @@ class Gramps:
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
+        GrampsCfg.client.notify_add("/apps/gramps",self.pref_callback)
         self.topWindow.show()
 
-        if GrampsCfg.usetips:
+        if GrampsCfg.get_usetips():
             TipOfDay.TipOfDay()
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
-    def pref_callback(self,val):
+    def pref_callback(self,client,cnxn_id,entry,data):
+        self.db.set_iprefix(GrampsCfg.get_iprefix())
+        self.db.set_fprefix(GrampsCfg.get_fprefix())
+        self.db.set_sprefix(GrampsCfg.get_sprefix())
+        self.db.set_oprefix(GrampsCfg.get_oprefix())
+        self.db.set_pprefix(GrampsCfg.get_pprefix())
+
         self.modify_statusbar()
         self.family_view.init_interface()
         self.update_display(1)
         self.goto_active_person()
-        self.toolbar.set_style(GrampsCfg.toolbar)
+        self.toolbar.set_style(GrampsCfg.get_toolbar())
 
     def init_interface(self):
         """Initializes the GLADE interface, and gets references to the
@@ -246,7 +253,7 @@ class Gramps:
         self.build_plugin_menus()
         self.init_filters()
 
-        self.toolbar.set_style(GrampsCfg.toolbar)
+        self.toolbar.set_style(GrampsCfg.get_toolbar())
         self.views.set_show_tabs(0)
 
         self.family_view = FamilyView.FamilyView(self)
@@ -350,9 +357,9 @@ class Gramps:
         self.find_source = None
         self.find_media = None
 
-        if GrampsCfg.defaultview == 0:
+        if GrampsCfg.get_default_view() == 0:
             self.views.set_current_page(PERSON_VIEW)
-        elif GrampsCfg.familyview == 0:
+        elif GrampsCfg.get_family_view() == 0:
             self.views.set_current_page(FAMILY_VIEW1)
         else:
             self.views.set_current_page(FAMILY_VIEW2)
@@ -1212,7 +1219,7 @@ class Gramps:
         for sel in mlist:
             p = self.db.get_person(sel)
             self.active_person = p
-            name = GrampsCfg.nameof(p) 
+            name = GrampsCfg.get_nameof()(p) 
 
             QuestionDialog(_('Delete %s?') % name,
                            _('Deleting the person will remove the person '
@@ -1328,8 +1335,8 @@ class Gramps:
         if self.active_person == None:
             self.status_text("")
         else:
-            if GrampsCfg.status_bar <= 1:
-                pname = GrampsCfg.nameof(self.active_person)
+            if GrampsCfg.get_statusbar() <= 1:
+                pname = GrampsCfg.get_nameof()(self.active_person)
                 name = "[%s] %s" % (self.active_person.get_gramps_id(),pname)
             else:
                 name = self.display_relationship()
@@ -1341,7 +1348,7 @@ class Gramps:
         if not default_person:
             return u''
         try:
-            pname = GrampsCfg.nameof(default_person)
+            pname = GrampsCfg.get_nameof()(default_person)
             (name,plist) = self.relationship.get_relationship(
                                     default_person,
                                     self.active_person)
@@ -1379,7 +1386,7 @@ class Gramps:
 
     def on_family_activate(self,obj):
         """Switches to the family view"""
-        if GrampsCfg.familyview == 0:
+        if GrampsCfg.get_family_view() == 0:
             self.on_family1_activate(obj)
         else:
             self.on_family2_activate(obj)
@@ -1501,7 +1508,7 @@ class Gramps:
         if person == None:
             return _("Unknown")
         else:
-            return GrampsCfg.nameof(person)
+            return GrampsCfg.get_nameof()(person)
 
     def load_progress(self,value):
         self.statusbar.set_progress_percentage(value)
@@ -1587,7 +1594,7 @@ class Gramps:
     def on_add_bookmark_activate(self,obj):
         if self.active_person:
             self.bookmarks.add(self.active_person.get_id())
-            name = GrampsCfg.nameof(self.active_person)
+            name = GrampsCfg.get_nameof()(self.active_person)
             self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:

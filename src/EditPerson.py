@@ -295,7 +295,7 @@ class EditPerson:
         self.lds_endowment = RelLib.LdsOrd(self.person.get_lds_endowment())
         self.lds_sealing = RelLib.LdsOrd(self.person.get_lds_sealing())
 
-        if GrampsCfg.uselds \
+        if GrampsCfg.get_uselds() \
                         or (not self.lds_baptism.is_empty()) \
                         or (not self.lds_endowment.is_empty()) \
                         or (not self.lds_sealing.is_empty()):
@@ -448,7 +448,7 @@ class EditPerson:
 
     def add_itself_to_winsmenu(self):
         self.parent.child_windows[self.orig_id] = self
-        win_menu_label = GrampsCfg.nameof(self.person)
+        win_menu_label = GrampsCfg.get_nameof()(self.person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
         self.win_menu_item = gtk.MenuItem(win_menu_label)
@@ -563,12 +563,12 @@ class EditPerson:
             m = self.db.try_to_find_person_from_id(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
-                    'father' : GrampsCfg.nameof(f),
-                    'mother' : GrampsCfg.nameof(m) }
+                    'father' : GrampsCfg.get_nameof()(f),
+                    'mother' : GrampsCfg.get_nameof()(m) }
             elif f:
-                name = GrampsCfg.nameof(f)
+                name = GrampsCfg.get_nameof()(f)
             elif m:
-                name = GrampsCfg.nameof(m)
+                name = GrampsCfg.get_nameof()(m)
             else:
                 name = _("unknown")
             item = gtk.MenuItem(name)
@@ -1454,7 +1454,7 @@ class EditPerson:
             if not person:
                 self.person.set_gramps_id(idval)
             else:
-                n = GrampsCfg.nameof(person)
+                n = GrampsCfg.get_nameof()(person)
                 msg1 = _("GRAMPS ID value was not changed.")
                 msg2 = _("You have attempted to change the GRAMPS ID to a value "
                          "of %(grampsid)s. This value is already used by %(person)s.") % {
@@ -1738,7 +1738,7 @@ class EditPerson:
 
     def write_primary_name(self):
         # initial values
-        name = '<span size="larger" weight="bold">%s</span>' % GrampsCfg.nameof(self.person)
+        name = '<span size="larger" weight="bold">%s</span>' % GrampsCfg.get_nameof()(self.person)
         self.get_widget("activepersonTitle").set_text(name)
         self.get_widget("activepersonTitle").set_use_markup(gtk.TRUE)
         self.suffix.set_text(self.pname.get_suffix())

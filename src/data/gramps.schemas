@@ -220,7 +220,7 @@
         <applyto>/apps/gramps/last-file</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Last XML database GRAMPS has worked with</short>
           <long>Full pathname of the last XML database GRAMPS has worked with.</long>
@@ -232,7 +232,7 @@
         <applyto>/apps/gramps/recent-file</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Last GRDB database GRAMPS has worked with</short>
           <long>Full pathname of the last GRDB database GRAMPS has worked with.</long>
@@ -300,7 +300,7 @@
         <applyto>/apps/gramps/report-directory</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default>./</default>
         <locale name="C">
           <short>Default report directory</short>
           <long>Full pathname of the default report directory.</long>
@@ -312,7 +312,7 @@
         <applyto>/apps/gramps/researcher-addr</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher street address</short>
           <long>Researcher stret address.</long>
@@ -324,7 +324,7 @@
         <applyto>/apps/gramps/researcher-city</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher city</short>
           <long>Researcher city.</long>
@@ -336,7 +336,7 @@
         <applyto>/apps/gramps/researcher-country</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher country</short>
           <long>Researcher country.</long>
@@ -348,7 +348,7 @@
         <applyto>/apps/gramps/researcher-email</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher email address</short>
           <long>Researcher email address.</long>
@@ -360,7 +360,7 @@
         <applyto>/apps/gramps/researcher-name</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher name</short>
           <long>Researcher name.</long>
@@ -372,7 +372,7 @@
         <applyto>/apps/gramps/researcher-phone</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher phone</short>
           <long>Researcher phone.</long>
@@ -384,7 +384,7 @@
         <applyto>/apps/gramps/researcher-postal</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher postal code</short>
           <long>Researcher postal code.</long>
@@ -396,7 +396,7 @@
         <applyto>/apps/gramps/researcher-state</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default></default>
         <locale name="C">
           <short>Researcher state</short>
           <long>Researcher state.</long>
@@ -527,7 +527,7 @@
         <applyto>/apps/gramps/website-directory</applyto>
         <owner>gramps</owner>
         <type>string</type>
-        <default>""</default>
+        <default>./</default>
         <locale name="C">
           <short>Default website directory</short>
           <long>Full pathname of the default website directory.</long>

@@ -141,8 +141,8 @@ class Marriage:
         else:
             mother = None
         
-        self.title = _("%s and %s") % (GrampsCfg.nameof(father),
-                                  GrampsCfg.nameof(mother))
+        self.title = _("%s and %s") % (GrampsCfg.get_nameof()(father),
+                                  GrampsCfg.get_nameof()(mother))
 
         Utils.set_title_label(self.top,self.title)
         
@@ -202,7 +202,7 @@ class Marriage:
         frel = const.display_frel(family.get_relationship())
         self.type_field.entry.set_text(frel)
         self.gid.set_text(family.get_id())
-        self.gid.set_editable(GrampsCfg.id_edit)
+        self.gid.set_editable(GrampsCfg.get_id_edit())
 
         self.lds_temple.set_popdown_strings(_temple_names)
 

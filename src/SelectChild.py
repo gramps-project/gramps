@@ -45,7 +45,6 @@ import RelLib
 import const
 import Utils
 import PeopleModel
-import GrampsCfg
 from RelLib import Person
 from QuestionDialog import ErrorDialog
 

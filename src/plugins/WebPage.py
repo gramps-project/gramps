@@ -1233,7 +1233,7 @@ class WebReportDialog(Report.ReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return GrampsCfg.web_dir
+        return GrampsCfg.get_web_dir()
     
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -1243,7 +1243,7 @@ class WebReportDialog(Report.ReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        GrampsCfg.web_dir = value
+        GrampsCfg.save_web_dir(value)
     
     def make_default_style(self):
         """Make the default output style for the Web Pages Report."""
