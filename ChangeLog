@@ -1,3 +1,6 @@
+2004-06-21  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/gramps.keys, src/data/mime: Add package and GEDCOM.
+
 2004-06-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version number. 
 	* src/gramps.py: Pass complete argument string. 

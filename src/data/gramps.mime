@@ -1,3 +1,8 @@
 application/x-gramps
 	ext: grdb
 
+application/x-gramps-package
+	ext: gpkg
+
+application/x-gedcom
+	ext: ged gedcom GED GEDCOM
