@@ -188,6 +188,9 @@ def loadConfig(call):
     global web_dir
     global db_dir
     global status_bar
+    global mediaref
+    global globalprop
+    global localprop
 
     _callback = call
     lastfile = get_string("/gramps/data/LastFile")
