@@ -449,12 +449,14 @@ class EditPerson:
         self.window.show()
 
     def on_edit_date_birth_clicked(self,obj):
-        ErrorDialog("Not implemented yet",
-                    "The Date Editor has not been implemented yet")
+        date_dialog = DateEdit.DateEditorDialog(self.bdate_check.checkval)
+        the_date = date_dialog.get_date()
+        print "The date was built as follows:", the_date
 
     def on_edit_date_death_clicked(self,obj):
-        ErrorDialog("Not implemented yet",
-                    "The Date Editor has not been implemented yet")
+        date_dialog = DateEdit.DateEditorDialog(self.ddate_check.checkval)
+        the_date = date_dialog.get_date()
+        print "The date was built as follows:", the_date
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():

@@ -215,7 +215,7 @@ class Date:
            QUAL_ESTIMATED  = estimated
            QUAL_CALCULATED = calculated
         """
-        return self.modifier
+        return self.quality
 
     def set_quality(self,val):
         """
