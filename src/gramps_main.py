@@ -77,6 +77,8 @@ import RelImage
 import RecentFiles
 import NameDisplay
 
+from GrampsMime import mime_type_is_defined
+
 from QuestionDialog import *
 
 from bsddb import db
@@ -131,21 +133,39 @@ class Gramps:
                 
         self.db = GrampsBSDDB.GrampsBSDDB()
 
-        GrampsCfg.loadConfig()
-
-        if GrampsKeys.get_betawarn() == 0:
-            WarningDialog(_("Use at your own risk"),
-                          _("This is an unstable development version of GRAMPS. "
-                            "It is intended as a technology preview. Do not trust your "
-                            "family database to this development version. This version may "
-                            "contain bugs which could corrupt your database."))
-            GrampsKeys.save_betawarn(1)
-            GrampsKeys.sync()
-
-        self.RelClass = PluginMgr.relationship_class
-        self.relationship = self.RelClass(self.db)
-        self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
-        self.init_interface()
+        try:
+            GrampsCfg.loadConfig()
+                
+    
+            if GrampsKeys.get_betawarn() == 0:
+                WarningDialog(_("Use at your own risk"),
+                              _("This is an unstable development version of GRAMPS. "
+                                "It is intended as a technology preview. Do not trust your "
+                                "family database to this development version. This version may "
+                                "contain bugs which could corrupt your database."))
+                GrampsKeys.save_betawarn(1)
+                GrampsKeys.sync()
+    
+            self.RelClass = PluginMgr.relationship_class
+            self.relationship = self.RelClass(self.db)
+            self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
+        
+            self.init_interface()
+            
+        except const.ErrorSchemaInvalid, val:
+            ErrorDialog(_("Configuration error"),
+                        val + _("\n\nPossibly the installation of GRAMPS was incomplete."
+                          " Make sure the GConf schema of GRAMPS is properly installed."))
+            gtk.main_quit()
+            return
+            
+        if not mime_type_is_defined(const.app_gramps):
+            ErrorDialog(_("Configuration error"),
+                        _("A definition for the MIME-type %s could not be found"
+                          "\n\nPossibly the installation of GRAMPS was incomplete."
+                          " Make sure the MIME-types of GRAMPS are properly installed.") % const.app_gramps)
+            gtk.main_quit()
+            return
 
         ArgHandler.ArgHandler(self,args)
 

@@ -51,3 +51,11 @@ def get_type(file):
         return get_mime_type(file)
     except:
         return _('unknown')
+
+def mime_type_is_defined(type):
+    """"Return True if a description for a mime type exists"""
+    try:
+        type = get_mime_type(file)
+        return True
+    except:
+        return False
