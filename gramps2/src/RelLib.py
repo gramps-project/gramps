@@ -42,7 +42,9 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Date import Date, SingleDate, compare_dates, not_too_old
+import Date
+import DateParser
+import DateHandler
 import GrampsCfg
 import const
 import Utils
@@ -548,7 +550,9 @@ class Person(PrimaryObject,SourceNote):
 	for ev_handle in self.event_list:
             ev = db.get_event_from_handle(ev_handle)
             if ev.name in ["Cause Of Death", "Burial", "Cremation"]:
-                return 0
+                return False
+
+        return True
 
         if self.birth_handle:
             birth = db.get_event_from_handle(self.birth_handle)
@@ -812,10 +816,12 @@ class Event(PrimaryObject,DataObj):
 
         PrimaryObject.__init__(self,source)
         DataObj.__init__(self,source)
-        
+
+        self.dd = DateHandler.create_display()
+        self.dp = DateHandler.create_parser()
         if source:
             self.place = source.place
-            self.date = Date(source.date)
+            self.date = Date.Date(source.date)
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
@@ -917,7 +923,7 @@ class Event(PrimaryObject,DataObj):
         if (self.name != other.name or self.place != other.place or
             self.description != other.description or self.cause != other.cause or
             self.private != other.private or
-            compare_dates(self.get_date_object(),other.get_date_object()) or
+            self.get_date_object() != other.get_date_object() or
             len(self.get_source_references()) != len(other.get_source_references())):
             return 0
 
@@ -978,33 +984,29 @@ class Event(PrimaryObject,DataObj):
 
     def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
-        if not self.date:
-            self.date = Date()
-        self.date.set(date)
+        self.date = self.dp.parse(date)
 
     def get_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return self.date.get_date()
-        return ""
+            return self.dd.display(self.date)
+        return u""
 
     def get_preferred_date(self) :
         """returns a string representation of the date of the Event instance"""
-        if self.date:
-            return self.date.get_date()
-        return ""
+        return self.get_date()
 
     def get_quote_date(self) :
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
         if self.date:
-            return self.date.get_quote_date()
-        return ""
+            return self.dd.quote_display(self.date)
+        return u""
 
     def get_date_object(self):
         """returns the Date object associated with the Event"""
         if not self.date:
-            self.date = Date()
+            self.date = Date.Date()
        	return self.date
 
     def set_date_object(self,date):
@@ -1355,9 +1357,12 @@ class LdsOrd(SourceNote):
     def __init__(self,source=None):
         """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
+        self.dp = DateHandler.create_parser()
+        self.dd = DateHandler.create_display()
+        
         if source:
             self.famc = source.famc
-            self.date = Date(source.date)
+            self.date = Date.Date(source.date)
             self.temple = source.temple
             self.status = source.status
             self.place = source.place
@@ -1397,19 +1402,20 @@ class LdsOrd(SourceNote):
     def set_date(self, date) :
         """attempts to sets the date of the ordinance"""
         if not self.date:
-            self.date = Date()
-        self.date.set(date)
+            self.date = Date.Date()
+        self.dp.set_date(self.date,date)
 
     def get_date(self) :
         """returns a string representation of the date of the ordinance"""
         if self.date:
-            return self.date.get_date()
-        return ""
+            print self.dd
+            return self.dd.display(self.date)
+        return u""
 
     def get_date_object(self):
         """returns the Date object associated with the ordinance"""
         if not self.date:
-            self.date = Date()
+            self.date = Date.Date()
        	return self.date
 
     def set_date_object(self,date):
@@ -1443,7 +1449,7 @@ class LdsOrd(SourceNote):
             self.place != other.place or
             self.status != other.status or
             self.temple != other.temple or
-            compare_dates(self.get_date_object(),other.get_date_object()) or
+            self.get_date_object() != other.get_date_object() or
             len(self.get_source_references()) != len(other.get_source_references())):
             return 0
 
@@ -1724,7 +1730,7 @@ class Address(DataObj):
             self.state = source.state
             self.country = source.country
             self.postal = source.postal
-            self.date = Date(source.date)
+            self.date = Date.Date(source.date)
             self.phone = source.phone
         else:
             self.street = ""
@@ -1732,7 +1738,7 @@ class Address(DataObj):
             self.state = ""
             self.country = ""
             self.postal = ""
-            self.date = Date()
+            self.date = Date.Date()
             self.phone = ""
 
     def set_date(self,text):
@@ -2073,14 +2079,14 @@ class SourceRef:
             self.confidence = source.confidence
             self.ref = source.ref
             self.page = source.page
-            self.date = Date(source.date)
+            self.date = Date.Date(source.date)
             self.comments = Note(source.comments.get())
             self.text = source.text
         else:
             self.confidence = CONF_NORMAL
             self.ref = None
             self.page = ""
-            self.date = Date()
+            self.date = Date.Date()
             self.comments = Note()
             self.text = ""
 
@@ -2141,7 +2147,7 @@ class SourceRef:
         if self.ref and other.ref:
             if self.page != other.page:
                 return 0
-            if compare_dates(self.date,other.date) != 0:
+            if self.date != other.date:
                 return 0
             if self.get_text() != other.get_text():
                 return 0

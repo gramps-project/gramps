@@ -50,10 +50,6 @@ import GenericFilter
 import const
 import Utils
 import Date
-import Calendar
-import Julian
-import Hebrew
-import FrenchRepublic
 import GedcomInfo
 import Errors
 import ansel_utf8
@@ -87,15 +83,15 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _calmap = {
-    Hebrew.Hebrew.NAME : (_hmonth, '@#HEBREW@'),
-    FrenchRepublic.FrenchRepublic.NAME : (_fmonth, '@#FRENCH R@'),
-    Julian.Julian.NAME : (_month, '@#JULIAN@'),
+    Date.CAL_HEBREW : (_hmonth, '@#HEBREW@'),
+    Date.CAL_FRENCH : (_fmonth, '@#FRENCH R@'),
+    Date.CAL_JULIAN : (_month, '@#JULIAN@'),
     }
 
 _caldef = {
-    Calendar.ABOUT : "ABT",
-    Calendar.BEFORE : "BEF",
-    Calendar.AFTER : "AFT",
+    Date.MOD_ABOUT : "ABT",
+    Date.MOD_BEFORE : "BEF",
+    Date.MOD_AFTER : "AFT",
     }
 
 #-------------------------------------------------------------------------
@@ -222,39 +218,29 @@ def sort_by_gramps_id(first,second):
 #
 #
 #-------------------------------------------------------------------------
-def make_date(subdate):
+def make_date(subdate,calendar,mode):
     retval = ""
-    day = subdate.get_day()
-    mon = subdate.get_month()
-    year = subdate.get_year()
-    mode = subdate.get_mode_val()
-    day_valid = subdate.get_day_valid()
-    mon_valid = subdate.get_month_valid()
-    year_valid = subdate.get_year_valid()
+    (day,mon,year,sl) = subdate
     
-    if _calmap.has_key(subdate.calendar.NAME):
-        (mmap,prefix) = _calmap[subdate.calendar.NAME]
-    else:
-        mmap = _month
-        prefix = ""
+    (mmap,prefix) = _calmap.get(calendar,(_month,""))
         
-    if not day_valid:
+    if day == 0:
         try:
-            if not mon_valid:
+            if mon == 0:
                 retval = '%d' % year
-            elif not year_valid:
+            elif year == 0:
                 retval = '(%s)' % mmap[mon]
             else:
                 retval = "%s %d" % (mmap[mon],year)
         except IndexError:
             print "Month index error - %d" % mon
             retval = '%d' % year
-    elif not mon_valid:
+    elif mon == 0:
         retval = '%d' % year
     else:
         try:
             month = mmap[mon]
-            if not year_valid:
+            if year == 0:
                 retval = "(%d %s)" % (day,month)
             else:
                 retval = "%d %s %d" % (day,month,year)
@@ -284,63 +270,6 @@ def fmtline(text,limit,level,endl):
         new_text.append(text)
     app = "%s%d CONC " % (endl,level+1)
     return string.join(new_text,app)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def gedcom_date(date):
-    if date.range == 1:
-        s1 = ged_subdate(date.get_start_date())
-        s2 = ged_subdate(date.get_stop_date())
-        return "BET %s AND %s" % (s1,s2)
-    elif date.range == -1:
-        return "(%s)" % date.text
-    else:
-        return ged_subdate(date.start)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def ged_subdate(date):
-    if not date.getValid():
-        return ""
-    elif not date.getDayValid():
-        try:
-            if not date.getMonthValid():
-                retval = str(date.year)
-            elif not date.getYearValid():
-                retval = "(%s)" % Date.SingleDate.emname[date.month]
-            else:
-                retval = "%s %d" % (Date.SingleDate.emname[date.month],date.year)
-        except IndexError:
-            print "Month index error - %d" % date.month
-            retval = str(date.year)
-    elif not date.getMonthValid():
-        retval = str(date.year)
-    else:
-        try:
-            month = Date.SingleDate.emname[date.month]
-            if not date.getYearValid():
-                retval = "(%d %s)" % (date.day,month)
-            else:
-                retval = "%d %s %d" % (date.day,month,date.year)
-        except IndexError:
-            print "Month index error - %d" % date.month
-            retval = str(date.year)
-
-    if date.mode == Date.SingleDate.about:
-        retval = "ABT %s"  % retval
-
-    if date.mode == Date.SingleDate.before:
-        retval = "BEF %s" % retval
-    elif date.mode == Date.SingleDate.after:
-        retval = "AFT %s" % retval
-
-    return retval
 
 #-------------------------------------------------------------------------
 #
@@ -1191,11 +1120,16 @@ class GedcomWriter:
         if val:
             self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
         elif not date.is_empty ():
-            if date.is_range():
-                val = "FROM %s TO %s" % (make_date(start),
-                                         make_date(date.get_stop_date()))
+            cal = date.get_calendar()
+            mod = date.get_modifier()
+            if date.get_modifier() == Date.MOD_SPAN:
+                val = "FROM %s TO %s" % (make_date(start,cal,mod),
+                                         make_date(date.get_stop_date(),cal,mod))
+            elif date.get_modifier() == Date.MOD_RANGE:
+                val = "BET %s AND %s" % (make_date(start,cal,mod),
+                                         make_date(date.get_stop_date(),cal,mod))
             else:
-                val = make_date(start)
+                val = make_date(start,cal,mod)
             self.writeln("%s %s" % (prefix,val))
 
     def write_person_name(self,name,nick):

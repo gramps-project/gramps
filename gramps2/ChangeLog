@@ -1,3 +1,31 @@
+2004-09-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Calendar.py: removed
+	* src/Gregorian.py: removed
+	* src/Hebrew.py: removed
+	* src/Julian.py: removed
+	* src/calendars/Islamic.py: removed
+	* src/calendars/Persian.py: removed
+	* src/calendars/Makefile.am: removed
+	* src/Date.py: New, simpler date structure
+	* src/DateHandler.py: Start of a class to abstract and select
+	parser and display functions based off locale
+	* src/DateParser.py: base date parsing class (US English)
+	* src/DateDisplay.py: base date display class (US English)
+	* src/DateEdit.py: handle new date method
+	* src/EditPerson.py: handle new date method
+	* src/EventEdit.py: handle new date method
+	* src/GrampsCfg.py: removed redundant options due to new date class
+	* src/StartupDialog.py: removed redundant options due to new date class
+	* src/Makefile.am: handle file changes
+	* src/Sort.py: handle new date method
+	* src/ReadGedcom.py: handle new date method
+	* src/ReadXML.py: handle new date method
+	* src/WriteGedcom.py: handle new date method
+	* src/WriteXML.py: handle new date method
+	* src/RelLib.py: handle new date method
+	* src/gramps_main.py: handle new date method
+	* src/gramps.glade: handle new date method
+	
 2004-09-14  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Fixed SF bug #1009695.
 	* src/docgen/PSDrawDoc.py (PSDrawDoc.__init__): Fixed base method

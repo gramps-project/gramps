@@ -25,41 +25,60 @@
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
-#-------------------------------------------------------------------------
-#
-# python modules
-#
-#-------------------------------------------------------------------------
-from re import IGNORECASE, compile
-import string
-import time
-
-#-------------------------------------------------------------------------
-#
-# gramps modules
-#
-#-------------------------------------------------------------------------
-import Calendar
-import Gregorian
-import Julian
-import Hebrew
-import FrenchRepublic
-import Errors
-
-from gettext import gettext as _
+from CalSdn import *
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-UNDEF = -999999
 
-_calendar_val = [
-    Gregorian.Gregorian,
-    Julian.Julian,
-    Hebrew.Hebrew,
-    FrenchRepublic.FrenchRepublic,
+MOD_NONE       = 0
+MOD_BEFORE     = 1
+MOD_AFTER      = 2
+MOD_ABOUT      = 3
+MOD_RANGE      = 4
+MOD_SPAN       = 5
+MOD_TEXTONLY   = 6
+
+QUAL_NONE      = 0
+QUAL_ESTIMATED = 1
+QUAL_CALCULATED= 2
+
+CAL_GREGORIAN  = 0
+CAL_JULIAN     = 1
+CAL_HEBREW     = 2
+CAL_FRENCH     = 3
+CAL_PERSIAN    = 4
+CAL_ISLAMIC    = 5
+
+EMPTY = (0,0,0,False)
+
+_POS_DAY  = 0
+_POS_MON  = 1
+_POS_YR   = 2
+_POS_SL   = 3
+_POS_RDAY = 4
+_POS_RMON = 5
+_POS_RYR  = 6
+_POS_RSL  = 7
+
+_calendar_convert = [
+    gregorian_sdn,
+    julian_sdn,
+    hebrew_sdn,
+    french_sdn,
+    persian_sdn,
+    islamic_sdn,
+    ]
+
+_calendar_change = [
+    gregorian_ymd,
+    julian_ymd,
+    hebrew_ymd,
+    french_ymd,
+    persian_ymd,
+    islamic_ymd,
     ]
 
 #-------------------------------------------------------------------------
@@ -70,408 +89,349 @@ _calendar_val = [
 class Date:
     """
     The core date handling class for GRAMPs. Supports partial dates,
-    date ranges, and alternate calendars.
+    compound dates and alternate calendars.
     """
-    formatCode = 0
-    
-    fstr = _("(from|between|bet|bet.)")
-    tstr = _("(and|to|-)")
-    
-    fmt = compile("\s*%s\s+(.+)\s+%s\s+(.+)\s*$" % (fstr,tstr),IGNORECASE)
-    fmt1 = compile("\s*([^-]+)\s*-\s*([^-]+)\s*$",IGNORECASE)
+
+    calendar_names = ["Gregorian",
+                      "Julian",
+                      "Hebrew",
+                      "French Republican",
+                      "Persian",
+                      "Islamic"]
 
     def __init__(self,source=None):
+        """
+        Creates a new Date instance.
+        """
         if source:
-            self.start = SingleDate(source.start)
-            if source.stop:
-                self.stop = SingleDate(source.stop)
-            else:
-                self.stop = None
-            self.range = source.range
-            self.text = source.text
             self.calendar = source.calendar
+            self.modifier = source.modifier
+            self.quality  = source.quality
+            self.dateval  = source.dateval
+            self.text     = source.text
+            self.sortval  = source.sortval
+            self.comment  = source.comment
         else:
-            self.start = SingleDate()
-            self.stop = None
-            self.range = 0
-            self.text = ""
-            self.calendar = Gregorian.Gregorian()
+            self.calendar = CAL_GREGORIAN
+            self.modifier = MOD_TEXTONLY
+            self.quality  = QUAL_NONE
+            self.dateval  = EMPTY
+            self.text     = u""
+            self.sortval  = 0
+            self.comment  = u""
 
+    def __cmp__(self,other):
+        """
+        Comparison function. Allows the usage of equality tests.
+        This allows you do run statements like 'date1 <= date2'
+        """
+        return cmp(self.sortval,other.sortval)
+
+    def __str__(self):
+        """
+        Produces a string representation of the Date object. If the
+        date is not valid, the text representation is displayed. If
+        the date is a range or a span, a string in the form of
+        'YYYY-MM-DD - YYYY-MM-DD' is returned. Otherwise, a string in
+        the form of 'YYYY-MM-DD' is returned.
+        """
+        if self.quality == QUAL_ESTIMATED:
+            qual = "est "
+        elif self.quality == QUAL_CALCULATED:
+            qual = "calc "
+        else:
+            qual = ""
+
+        if self.modifier == MOD_BEFORE:
+            pref = "bef "
+        elif self.modifier == MOD_AFTER:
+            pref = "aft "
+        elif self.modifier == MOD_ABOUT:
+            pref = "abt "
+        else:
+            pref = ""
+            
+        if self.modifier == MOD_TEXTONLY:
+            val = self.text
+        elif self.modifier == MOD_RANGE or self.modifier == MOD_SPAN:
+            val = "%04d-%02d-%02d - %04d-%02d-%02d" % (
+                self.dateval[_POS_YR],self.dateval[_POS_MON],self.dateval[_POS_DAY],
+                self.dateval[_POS_RYR],self.dateval[_POS_RMON],self.dateval[_POS_RDAY])
+        else:
+            val = "%04d-%02d-%02d" % (
+                self.dateval[_POS_YR],self.dateval[_POS_MON],self.dateval[_POS_DAY])
+        return "%s%s%s" % (qual,pref,val)
+
+    def get_sort_value(self):
+        """
+        Returns the sort value of Date object. If the value is a
+        text string, 0 is returned. Otherwise, the calculated sort
+        date is returned. The sort date is rebuilt on every assignment.
+
+        The sort value is an integer representing the value. A date of
+        March 5, 1990 would have the value of 19900305.
+        """
+        return self.sortval
+
+    def get_modifier(self):
+        """
+        Returns an integer indicating the calendar selected. The valid
+        values are:
+        
+           MOD_NONE       = no modifier (default)
+           MOD_BEFORE     = before
+           MOD_AFTER      = after
+           MOD_ABOUT      = about
+           MOD_RANGE      = date range
+           MOD_SPAN       = date span
+           MOD_TEXTONLY   = text only
+        """
+        return self.modifier
+
+    def set_comment(self,comment):
+        """
+        Sets the comment for the date.
+        """
+        self.comment = comment
+
+    def get_comment(self):
+        """
+        Returns the associated comment.
+        """
+        return self.comment
+
+    def set_modifier(self,val):
+        """
+        Sets the modifier for the date.
+        """
+        self.modifier = val
+
+    def get_quality(self):
+        """
+        Returns an integer indicating the calendar selected. The valid
+        values are:
+        
+           QUAL_NONE       = normal (default)
+           QUAL_ESTIMATED  = estimated
+           QUAL_CALCULATED = calculated
+        """
+        return self.modifier
+
+    def set_quality(self,val):
+        """
+        Sets the quality selected for the date.
+        """
+        self.quality = val
+    
     def get_calendar(self):
+        """
+        Returns an integer indicating the calendar selected. The valid
+        values are:
+
+           CAL_GREGORIAN  - Gregorian calendar
+           CAL_JULIAN     - Julian calendar
+           CAL_HEBREW     - Hebrew (Jewish) calendar
+           CAL_FRENCH     - French Republican calendar
+           CAL_PERSIAN    - Persian calendar
+           CAL_ISLAMIC    - Islamic calendar
+        """
         return self.calendar
 
     def set_calendar(self,val):
-        self.calendar = val()
-        self.start.convert_to(val)
-        if self.stop:
-            self.stop.convert_to(val)
-
-    def set_calendar_obj(self,val):
+        """
+        Sets the calendar selected for the date.
+        """
         self.calendar = val
-        self.start.convert_to_obj(val)
-        if self.stop:
-            self.stop.convert_to_obj(val)
-
-    def set_calendar_val(self,integer):
-        val = _calendar_val[integer]
-        self.calendar = val()
-        self.start.convert_to(val)
-        if self.stop:
-            self.stop.convert_to(val)
 
     def get_start_date(self):
-        return self.start
+        """
+        Returns a tuple representing the start date. If the date is a
+        compound date (range or a span), it is the first part of the
+        compound date. If the date is a text string, a tuple of
+        (0,0,0,False) is returned. Otherwise, a date of (DD,MM,YY,slash)
+        is returned. If slash is True, then the date is in the form of 1530/1.
+        """
+        if self.modifier == MOD_TEXTONLY:
+            val = EMPTY
+        else:
+            val = self.dateval[0:4]
+        return val
 
     def get_stop_date(self):
-        if self.stop == None:
-            self.stop = SingleDate()
-            self.stop.calendar = self.calendar
-        return self.stop
-
-    def get_low_year(self):
-        return self.start.get_year()
-        
-    def get_high_year(self):
-        if self.stop == None:
-            return self.start.get_year()
+        """
+        Returns a tuple representing the second half of a compound date. 
+        If the date is not a compound date, (including text strings) a tuple
+        of (0,0,0,False) is returned. Otherwise, a date of (DD,MM,YY,slash)
+        is returned. If slash is True, then the date is in the form of 1530/1.
+        """
+        if self.modifier == MOD_RANGE or self.modifier == MOD_SPAN:
+            val = self.dateval[4:8]
         else:
-            return self.stop.get_year()
+            val = EMPTY
+        return val
+
+    def _get_low_item(self,index):
+        if self.modifier == MOD_TEXTONLY:
+            val = 0
+        else:
+            val = self.dateval[index]
+        return val
+
+    def _get_low_item_valid(self,index):
+        if self.modifier == MOD_TEXTONLY:
+            val = False
+        else:
+            val = self.dateval[index] != 0
+        return val
+        
+    def _get_high_item(self,index):
+        if self.modifier == MOD_SPAN or self.modifier == MOD_RANGE:
+            val = self.dateval[index]
+        else:
+            val = 0
+        return val
 
     def get_year(self):
-        return self.start.year
+        """
+        Returns the year associated with the date. If the year is
+        not defined, a zero is returned. If the date is a compound
+        date, the lower date year is returned.
+        """
+        return self._get_low_item(_POS_YR)
 
     def get_year_valid(self):
-        return self.start.year != UNDEF
+        return self._get_low_item_valid(_POS_YR)
 
     def get_month(self):
-        if self.start.month == UNDEF:
-            return UNDEF
-        return self.start.month
+        """
+        Returns the month associated with the date. If the month is
+        not defined, a zero is returned. If the date is a compound
+        date, the lower date month is returned.
+        """
+        return self._get_low_item(_POS_MON)
 
     def get_month_valid(self):
-        return self.start.month != UNDEF
+        return self._get_low_item_valid(_POS_MON)
 
     def get_day(self):
-        return self.start.day
+        """
+        Returns the day of the month associated with the date. If
+        the day is not defined, a zero is returned. If the date is
+        a compound date, the lower date day is returned.
+        """
+        return self._get_low_item(_POS_DAY)
 
     def get_day_valid(self):
-        return self.start.day != UNDEF
+        return self._get_low_item_valid(_POS_DAY)
 
     def get_valid(self):
         """ Returns true if any part of the date is valid"""
-        return self.start.year != UNDEF or self.start.month != UNDEF or self.start.day != UNDEF
+        return self.modifier != MOD_TEXTONLY
 
     def get_incomplete(self):
-        return self.range == 0 and self.start.year == UNDEF or \
-               self.start.month == UNDEF or self.start.day == UNDEF
+        pass
 
     def get_stop_year(self):
-        if self.stop == None:
-            self.stop = SingleDate()
-            self.stop.calendar = self.calendar
-        return self.stop.year
+        """
+        Returns the day of the year associated with the second
+        part of a compound date. If the year is not defined, a zero
+        is returned. 
+        """
+        return self._get_high_item(_POS_RYR)
 
     def get_stop_month(self):
-        if self.stop == None:
-            self.stop = SingleDate()
-            self.stop.calendar = self.calendar
-        return self.stop.month+1
+        """
+        Returns the month of the month associated with the second
+        part of a compound date. If the month is not defined, a zero
+        is returned. 
+        """
+        return self._get_high_item(_POS_RMON)
 
     def get_stop_day(self):
-        if self.stop == None:
-            self.stop = SingleDate()
-            self.stop.calendar = self.calendar
-        return self.stop.day
+        """
+        Returns the day of the month associated with the second
+        part of a compound date. If the day is not defined, a zero
+        is returned. 
+        """
+        return self._get_high_item(_POS_RDAY)
 
     def get_text(self):
+        """
+        Returns the text value associated with an invalid date.
+        """
         return self.text
 
-    def greater_than(self,other):
-        return compare_dates(self,other) > 0
+    def set(self,quality,modifier,calendar,value):
+        """
+        Sets the date to the specified value. Parameters are:
 
-    def less_than(self,other):
-        return compare_dates(self,other) < 0
+        quality  - The date quality for the date (see get_quality
+                   for more information)
+        modified - The date modifier for the date (see get_modifier
+                   for more information)
+        calendar - The calendar associated with the date (see
+                   get_calendar for more information).
+        value    - A tuple representing the date information. For a
+                   non-compound date, the format is (DD,MM,YY,slash)
+                   and for a compound date the tuple stores data as
+                   (DD,MM,YY,slash1,DD,MM,YY,slash2)
 
-    def equal_to(self,other):
-        return compare_dates(self,other) == 0
+        The sort value is recalculated.
+        """
+        self.quality = quality
+        self.modifier = modifier
+        self.calendar = calendar
+        self.dateval = value
+        year = max(value[_POS_YR],1)
+        month = max(value[_POS_MON],1)
+        day = max(value[_POS_DAY],1)
+        self.sortval = _calendar_convert[calendar](year,month,day)
 
-    def set(self,text):
-        if text.strip() == "":
-            self.start = SingleDate()
-            self.stop = None
-            self.range = 0
-            self.text = ""
-            self.calendar = Gregorian.Gregorian()
+    def convert_calendar(self,calendar):
+        """
+        Converts the date from the current calendar to the specified
+        calendar.
+        """
+        if calendar == self.calendar:
             return
-        
-        try:
-            match = Date.fmt.match(text)
-            if match:
-                matches = match.groups()
-                self.start.set(matches[1])
-		self.range = 0
-                if self.stop == None:
-                    self.stop = SingleDate()
-                self.stop.calendar = self.calendar
-                self.stop.set(matches[3])
-                self.range = 1
-                return
-            
-            match = Date.fmt1.match(text)
-            if match:
-                matches = match.groups()
-                self.start.set(matches[0])
-		self.range = 0
-                if self.stop == None:
-                    self.stop = SingleDate()
-                self.stop.calendar = self.calendar
-                self.stop.set(matches[1])
-                self.range = 1
-                return
+        (y,m,d) = _calendar_change[calendar](self.sortval)
+        if self.is_compound():
+            ry = max(self.dateval[_POS_RYR],1)
+            rm = max(self.dateval[_POS_RMON],1)
+            rd = max(self.dateval[_POS_RDAY],1)
+            sdn = _calendar_convert[self.calendar](ry,rm,rd)
+            (ny,nm,nd) = _calendar_change[calendar](sdn)
+            self.dateval = (d,m,y,self.dateval[_POS_SL],
+                            nd,nm,ny,self.dateval[_POS_RSL])
+        else:
+            self.dateval = (d,m,y,self.dateval[_POS_SL])
+        self.calendar = calendar
 
-            self.start.set(text)
-            self.range = 0
-        except Errors.DateError:
-            if text != "":
-                self.range = -1
-            self.text = text
+    def set_as_text(self,text):
+        """
+        Sets the day to a text string, and assigns the sort value
+        to zero.
+        """
+        self.modifier = MOD_TEXTONLY
+        self.text = text
+        self.sortval = 0
 
-    def set_text(self,text):
-        self.range = -1
+    def set_text_value(self,text):
+        """
+        Sets the day to a text string, and assigns the sort value
+        to zero.
+        """
         self.text = text
 
-    def set_range(self,val):
-        self.range = val
-    
-    def get_date(self):
-        if self.range == 0:
-            return self.start.get_date()
-        elif self.range == -1:
-            return self.text
-        else:
-            return _("from %(start_date)s to %(stop_date)s") % {
-                'start_date' : self.start.get_date(),
-                'stop_date' : self.stop.get_date() }
-
-    def get_quote_date(self):
-        if self.range == 0:
-            return self.start.get_quote_date()
-        elif self.range == -1:
-            if self.text:
-                return '"%s"' % self.text
-            else:
-                return ''
-        else:
-            return _("from %(start_date)s to %(stop_date)s") % {
-                'start_date' : self.start.get_quote_date(),
-                'stop_date' : self.stop.get_quote_date() }
-
     def is_empty(self):
-        s = self.start
-        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not self.text
-
-    def is_valid(self):
-        if self.range == -1:
-            return 0
-        elif self.range:
-            return self.start.get_valid() and self.stop.get_valid()
-        return self.start.get_valid()
-    
-    def is_range(self):
-        return self.range == 1
+        """
+        Returns True if the date is a date range or a date span.
+        """
+        return self.modifier == MOD_TEXTONLY
         
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-class SingleDate:
-    "Date handling"
+    def is_compound(self):
+        """
+        Returns True if the date is a date range or a date span.
+        """
+        return self.modifier == MOD_RANGE or self.modifier == MOD_SPAN
 
-    def __init__(self,source=None):
-        if source:
-            self.month = source.month
-            self.day = source.day
-            self.year = source.year
-            self.mode = source.mode
-            self.calendar = source.calendar
-        else:
-            self.month = UNDEF
-            self.day = UNDEF
-            self.year = UNDEF
-            self.mode = Calendar.EXACT
-            self.calendar = Gregorian.Gregorian()
-
-    def set_mode(self,val):
-        self.mode = self.calendar.set_mode_value(val)
-
-    def set_month(self,val):
-        if val > 14 or val < 0:
-            self.month = UNDEF
-        else:
-            self.month = val
-
-    def set_month_val(self,s):
-        self.month = self.calendar.set_value(s)
-
-    def set_day_val(self,s):
-        self.day = self.calendar.set_value(s)
-
-    def set_year_val(self,s):
-        if s:
-            self.year = self.calendar.set_value(s)
-        else:
-            self.year = UNDEF
-
-    def get_month(self):
-        return self.month
-
-    def get_month_valid(self):
-        return self.month != UNDEF
-
-    def set_day(self,val):
-        self.day = val
-
-    def get_day(self):
-	return self.day
-
-    def get_day_valid(self):
-	return self.day != UNDEF
-
-    def set_year(self,val):
-        self.year = val
-
-    def get_year(self):
-        return self.year
-
-    def get_year_valid(self):
-        return self.year != UNDEF
-
-    def get_valid(self):
-        """ Returns true if any part of the date is valid"""
-        if self.year == UNDEF and self.month == UNDEF and self.day == UNDEF:
-            return 1
-        return self.calendar.check(self.year,self.month,self.day)
-
-    def set_month_str(self,text):
-        self.calendar.set_month_string(text)
-
-    def get_month_str(self):
-	return self.calendar.month(self.month)
-
-    def get_iso_date(self):
-        if self.year == UNDEF:
-            y = "????"
-        else:
-            y = "%04d" % self.year
-        if self.month == UNDEF:
-            if self.day == UNDEF:
-                m = ""
-            else:
-                m = "-??"
-        else:
-            m = "-%02d" % (self.month)
-        if self.day == UNDEF:
-            d = ''
-        else:
-            d = "-%02d" % self.day
-        return "%s%s%s" % (y,m,d)
-        
-
-    def get_date(self):
-        return self.calendar.display(self.year, self.month, self.day, self.mode)
-
-    def get_quote_date(self):
-        if self.year == UNDEF and self.month == UNDEF and self.day == UNDEF:
-            return ""
-        else:
-            return self.calendar.quote_display(self.year, self.month, self.day, self.mode)
-
-    def set_iso_date(self,v):
-        data = string.split(v)
-        if len(data) > 1:
-            self.set_mode(data[0])
-            v = data[1]
-        
-        vals = string.split(v,'-')
-        self.set_year_val(vals[0])
-        if len(vals) > 1:
-            try:
-                self.set_month_val(int(vals[1]))
-            except:
-                self.month = UNDEF
-        else:
-            self.month = UNDEF
-        if len(vals) > 2:
-            self.set_day_val(vals[2])
-        else:
-            self.day = UNDEF
-        
-    def get_mode_val(self):
-        return self.mode
-
-    def set_mode_val(self,val):
-        self.mode = val
-    
-    def set(self,text):
-        self.year, self.month, self.day, self.mode = self.calendar.set(text)
-        
-    def convert_to(self,val):
-        sdn = self.calendar.get_sdn(self.year, self.month, self.day)
-        self.calendar = val()
-        (self.year, self.month, self.day) = self.calendar.get_ymd(sdn)
-
-    def convert_to_obj(self,val):
-        sdn = self.calendar.get_sdn(self.year, self.month, self.day)
-        self.calendar = val
-        (self.year, self.month, self.day) = self.calendar.get_ymd(sdn)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def not_too_old(date):
-    time_struct = time.localtime(time.time())
-    current_year = time_struct[0]
-    if date.year != UNDEF and current_year - date.year > 110:
-        return 0
-    return 1
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def compare_dates(f,s):
-    if f.calendar.NAME != s.calendar.NAME:
-        return 1
-    if f.range == -1 and s.range == -1:
-        return cmp(f.text,s.text)
-    if f.range == -1 or s.range == -1:
-        return -1
-    if f.range != s.range:
-        return 1
-    
-    first = f.get_start_date()
-    second = s.get_start_date()
-    if first.mode != second.mode:
-        return 1
-    elif first.year != second.year:
-        return cmp(first.year,second.year)
-    elif first.month != second.month:
-        return cmp(first.month,second.month)
-    elif first.day != second.day:
-        return cmp(first.day,second.day)
-    elif f.range == 1:
-        first = f.get_stop_date()
-        second = s.get_stop_date()
-        if first.mode != second.mode:
-            return 1
-        elif first.year != second.year:
-            return cmp(first.year,second.year)
-        elif first.month != second.month:
-            return cmp(first.month,second.month)
-        else:
-            return cmp(first.day,second.day)
-    return 0

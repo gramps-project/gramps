@@ -1,5 +1,5 @@
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins data po calendars
+SUBDIRS = docgen plugins data po 
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -22,12 +22,15 @@ gdir_PYTHON = \
 	AutoComp.py\
 	BaseDoc.py\
 	Bookmarks.py\
-	Calendar.py\
+	CalSdn.py\
 	ColumnOrder.py\
 	ChooseParents.py\
 	const.py\
 	DateEdit.py\
 	Date.py\
+	DateParser.py\
+	DateHandler.py\
+	DateDisplay.py\
 	DbPrompter.py\
 	DisplayModels.py\
 	DisplayTrace.py\
@@ -38,7 +41,6 @@ gdir_PYTHON = \
 	EventEdit.py\
 	FamilyView.py\
 	FontScale.py\
-	FrenchRepublic.py\
 	GedcomInfo.py\
 	GenericFilter.py\
 	GrampsCfg.py\
@@ -50,11 +52,8 @@ gdir_PYTHON = \
 	gramps_main.py\
 	gramps.py\
 	GraphLayout.py\
-	Gregorian.py\
-	Hebrew.py\
 	ImageSelect.py\
 	ImgManip.py\
-	Julian.py\
 	latin_ansel.py\
 	latin_utf8.py\
 	ListModel.py\

@@ -52,6 +52,7 @@ import Julian
 import FrenchRepublic
 import Hebrew
 import Date
+import DateParser
 from ansel_utf8 import ansel_to_utf8
 import latin_utf8 
 import Utils
@@ -115,7 +116,8 @@ headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 snameRegexp= re.compile(r"/([^/]*)/([^/]*)")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
-fromtoRegexp = re.compile(r"\s*(FROM|BET)\s+@#D([^@]+)@\s*(.*)\s+(AND|TO)\s+@#D([^@]+)@\s*(.*)$")
+rangeRegexp = re.compile(r"\s*BET\s+@#D([^@]+)@\s*(.*)\s+AND\s+@#D([^@]+)@\s*(.*)$")
+spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 
 #-------------------------------------------------------------------------
 #
@@ -204,6 +206,7 @@ class GedcomParser:
     BadFile = "Not a GEDCOM file"
 
     def __init__(self, dbase, file, window):
+        self.dp = DateParser.DateParser()
         self.db = dbase
         self.person = None
         self.fmap = {}
@@ -1418,8 +1421,7 @@ class GedcomParser:
                 source.set_page(matches[2] + self.parse_continue_data(level+1))
             elif matches[1] == "DATA":
                 date,text = self.parse_source_data(level+1)
-                d = Date.Date()
-                d.set(date)
+                d = self.dp.parse(date)
                 source.set_date(d)
                 source.set_text(text)
             elif matches[1] in ["OBJE","REFN","TEXT"]:
@@ -1711,40 +1713,67 @@ class GedcomParser:
     def extract_date(self,text):
         dateobj = Date.Date()
         try:
-            match = fromtoRegexp.match(text)
+            match = rangeRegexp.match(text)
             if match:
                 (cal1,data1,cal2,data2) = match.groups()
                 if cal1 != cal2:
                     pass
                 
                 if cal1 == "FRENCH R":
-                    dateobj.set_calendar(FrenchRepublic.FrenchRepublic)
+                    cal = Date.CAL_FRENCH
                 elif cal1 == "JULIAN":
-                    dateobj.set_calendar(Julian.Julian)
+                    cal = Date.CAL_JULIAN
                 elif cal1 == "HEBREW":
-                    dateobj.set_calendar(Hebrew.Hebrew)
-                dateobj.get_start_date().set(data1)
-                dateobj.get_stop_date().set(data2)
-                dateobj.set_range(1)
+                    cal = Date.CAL_HEBREW
+                else:
+                    cal = Date.CAL_GREGORIAN
+                    
+                start = self.dp.parse(data1)
+                stop =  self.dp.parse(data2)
+                dateobj.set(Date.QUAL_NONE, Date.MOD_RANGE, cal,
+                            start.get_start_date() + stop.get_start_date())
+                print dateobj
+                return dateobj
+
+            match = spanRegexp.match(text)
+            if match:
+                (cal1,data1,cal2,data2) = match.groups()
+                if cal1 != cal2:
+                    pass
+                
+                if cal1 == "FRENCH R":
+                    cal = Date.CAL_FRENCH
+                elif cal1 == "JULIAN":
+                    cal = Date.CAL_JULIAN
+                elif cal1 == "HEBREW":
+                    cal = Date.CAL_HEBREW
+                else:
+                    cal = Date.CAL_GREGORIAN
+                    
+                start = self.dp.parse(data1)
+                stop =  self.dp.parse(data2)
+                dateobj.set(Date.QUAL_NONE, Date.MOD_SPAN, cal,
+                            start.get_start_date() + stop.get_start_date())
+                print dateobj
                 return dateobj
         
             match = calRegexp.match(text)
             if match:
                 (abt,cal,data) = match.groups()
+                dateobj = self.dp.parse("%s %s" % (abt, data))
                 if cal == "FRENCH R":
-                    dateobj.set_calendar(FrenchRepublic.FrenchRepublic)
+                    dateobj.set_calendar(Date.CAL_FRENCH)
                 elif cal == "JULIAN":
-                    dateobj.set_calendar(Julian.Julian)
+                    dateobj.set_calendar(Date.CAL_JULIAN)
                 elif cal == "HEBREW":
-                    dateobj.set_calendar(Hebrew.Hebrew)
-                dateobj.set(data)
-                if abt:
-                    dateobj.get_start_date().setMode(abt)
+                    dateobj.set_calendar(Date.CAL_HEBREW)
+                print dateobj
+                return dateobj
             else:
-                dateobj.set(text)
-        except:
-            dateobj.set_text(text)
-        return dateobj
+                print text, self.dp.parse(text)
+                return self.dp.parse(text)
+        except IOError:
+            return self.dp.set_text(text)
 
     def handle_source(self,matches,level):
         source_ref = RelLib.SourceRef()

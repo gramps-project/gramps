@@ -39,12 +39,12 @@ import time
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
-import Calendar
 import Date
 import GrampsMime
 import RelLib
 import const
 import Utils
+import DateHandler
 
 #-------------------------------------------------------------------------
 #
@@ -287,6 +287,7 @@ class GrampsParser:
         self.gid2oid = {}
         self.gid2sid = {}
         self.change = change
+        self.dp = DateHandler.create_parser()
         
         self.ord = None
         self.objref = None
@@ -723,7 +724,7 @@ class GrampsParser:
     def start_people(self,attrs):
         if attrs.has_key('home'):
             self.home = attrs['home']
-        if attrs.has_key("default"):
+        elif attrs.has_key("default"):
             self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
@@ -955,58 +956,110 @@ class GrampsParser:
 
     def start_daterange(self,attrs):
         if self.source_ref:
-            d = self.source_ref.get_date()
+            dv = self.source_ref.get_date()
         elif self.ord:
-            d = self.ord.get_date_object()
+            dv = self.ord.get_date_object()
         elif self.address:
-            d = self.address.get_date_object()
+            dv = self.address.get_date_object()
         else:
-            d = self.event.get_date_object()
+            dv = self.event.get_date_object()
 
-        if attrs.has_key("calendar"):
-            d.set_calendar_val(int(attrs['calendar']))
+        start = attrs['start'].split('-')
+        stop  = attrs['stop'].split('-')
+
+        try:
+            y = int(start[0])
+        except ValueError:
+            y = 0
+
+        try:
+            m = int(start[1])
+        except:
+            m = 0
+
+        try:
+            d = int(start[2])
+        except:
+            d = 0
+
+        try:
+            ry = int(stop[0])
+        except:
+            ry = 0
+
+        try:
+            rm = int(stop[1])
+        except:
+            rm = 0
+
+        try:
+            rd = int(stop[2])
+        except:
+            rd = 0
 
         if attrs.has_key("cformat"):
-            d.set_calendar(Calendar.find_calendar(attrs['calendar']))
+            cal = Date.Date.calendar.index(attrs['calendar'])
+        else:
+            cal = Date.CAL_GREGORIAN
 
-        d.get_start_date().set_iso_date(attrs['start'])
-        d.get_stop_date().set_iso_date(attrs['stop'])
-        d.range = 1
-        
+        dv.set(Date.QUAL_NONE,Date.MOD_RANGE,cal,(d,m,y,False,rd,rm,ry,False))
+
     def start_dateval(self,attrs):
         if self.source_ref:
-            d = self.source_ref.get_date()
+            dv = self.source_ref.get_date()
         elif self.ord:
-            d = self.ord.get_date_object()
+            dv = self.ord.get_date_object()
         elif self.address:
-            d = self.address.get_date_object()
+            dv = self.address.get_date_object()
         else:
-            d = self.event.get_date_object()
+            dv = self.event.get_date_object()
 
-        if attrs.has_key("calendar"):
-            d.set_calendar_val(int(attrs['calendar']))
+        start = attrs['val'].split('-')
+
+        try:
+            y = int(start[0])
+        except:
+            y = 0
+
+        try:
+            m = int(start[1])
+        except:
+            m = 0
+
+        try:
+            d = int(start[2])
+        except:
+            d = 0
 
         if attrs.has_key("cformat"):
-            d.set_calendar(Calendar.find_calendar(attrs['cformat']))
-
-        d.get_start_date().set_iso_date(attrs['val'])
-        
-        if attrs.has_key("type"):
-            d.get_start_date().set_mode(attrs['type'])
+            cal = Date.Date.calendar.index(attrs['calendar'])
         else:
-            d.get_start_date().set_mode(None)
+            cal = Date.CAL_GREGORIAN
+
+        if attrs.has_key('type'):
+            val = attrs['type']
+            if val == "about":
+                mod = Date.MOD_ABOUT
+            elif val == "after":
+                mod = Date.MOD_AFTER
+            else:
+                mod = Date.MOD_BEFORE
+        else:
+            mod = Date.MOD_NONE
+        
+        dv.set(Date.QUAL_NONE,mod,cal,(d,m,y,False))
 
     def start_datestr(self,attrs):
         if self.source_ref:
-            d = self.source_ref.get_date()
+            dv = self.source_ref.get_date()
         elif self.ord:
-            d = self.ord.get_date_object()
+            dv = self.ord.get_date_object()
         elif self.address:
-            d = self.address.get_date_object()
+            dv = self.address.get_date_object()
         else:
-            d = self.event.get_date_object()
+            dv = self.event.get_date_object()
 
-        d.set(attrs['val'])
+        dv.set_as_text(attrs['val'])
 
     def start_created(self,attrs):
         if attrs.has_key('sources'):
