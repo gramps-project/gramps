@@ -86,7 +86,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
                 else:
                     font_name = "/Helvetica"
         
-        return "%s findfont %d scalefont setfont\n" % (font_name,font.get_size())
+        return "%s find-latin-font %d scalefont setfont\n" % (font_name,font.get_size())
 
     def translate(self,x,y):
         return (x,self.height-y)
@@ -115,6 +115,19 @@ class PSDrawDoc(BaseDoc.BaseDoc):
             self.f.write('%%Orientation: Portrait\n')
         self.f.write('%%EndComments\n')
         self.f.write('/cm { 28.34 mul } def\n')
+        self.f.write('% build iso-latin-1 version of a font\n')
+        self.f.write('/font-to-iso-latin-1 {	% <font> font-to-iso-latin-1 <font>\n')
+        self.f.write('%% reencode for iso latin1; from the 2nd edition red book, sec 5.6.1\n')
+        self.f.write('dup length dict begin {1 index /FID ne {def} {pop pop} ifelse} forall\n')
+        self.f.write('/Encoding ISOLatin1Encoding def currentdict end\n')
+        self.f.write('dup /FontName get 80 string cvs (-ISOLatin1) concatstrings cvn \n')
+        self.f.write('exch definefont\n')
+        self.f.write('} def\n')
+        self.f.write('\n')
+        self.f.write('/find-latin-font {	% <name> find-latin-font <font>\n')
+        self.f.write('findfont font-to-iso-latin-1\n')
+        self.f.write('} def\n')
+        
         self.filename = filename
 
     def close(self):
@@ -140,6 +153,15 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('showpage\n')
         self.f.write('%%PageTrailer\n')
 
+    def encode_text(self,p,text):
+        fdef = self.fontdef(p)
+        try:
+            orig = unicode(text)
+            new_text = orig.encode('iso-8859-1')
+        except:
+            new_text = "?"
+        return (new_text,fdef)
+
     def center_text(self,style,text,x,y):
         x += self.lmargin
         y += self.tmargin
@@ -148,10 +170,12 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
 
+        (text,fdef) = self.encode_text(p,text)
+
         self.f.write('gsave\n')
         self.f.write('%.4f %.4f %.4f setrgbcolor\n' % rgb_color(stype.get_color()))
-        self.f.write(self.fontdef(p))
-        self.f.write('(%s) dup stringwidth pop -2 div ' % text.encode('iso-8859-1'))
+        self.f.write(fdef)
+        self.f.write('(%s) dup stringwidth pop -2 div ' % text)
         self.f.write('%.4f cm add %.4f cm moveto ' % self.translate(x,y))
         self.f.write('show\n')
         self.f.write('grestore\n')
@@ -232,8 +256,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
 
         size = font.get_size()
 
+        (new_text,fdef) = self.encode_text(p,text[0])
+
         self.f.write('gsave\n')
-        self.f.write(self.fontdef(p))
+        self.f.write(fdef)
         self.f.write('%4.2f cm %4.2f cm translate\n' % self.translate(x,y))
         self.f.write('%4.2f rotate\n' % -angle)
 
@@ -321,7 +347,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 	p = self.style_list[para_name]
-        text = self.patch_text(text)
+        (junk,fdef) = self.encode_text(p,text)
         
         bh = box_style.get_height()
         bw = box_style.get_width()
@@ -354,7 +380,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('%.4f setlinewidth\n' % box_style.get_line_width())
         self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(box_style.get_color()))
 	if text != "":
-            self.f.write(self.fontdef(p))
+            (text,fdef) = self.encode_text(p,text)
+            self.f.write(fdef)
             lines = string.split(text,'\n')
             nlines = len(lines)
             mar = 10/28.35
