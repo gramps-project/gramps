@@ -1,6 +1,9 @@
 2004-02-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/VersionControl.py: Call win.run to prevent exit from killing the
 	window before the data is saved.
+	* configure.in, configure: Don't ship Hungarian manual (unfinished).
+	* doc/gramps-manual/Makefile.am, doc/gramps-manual/Makefile.in:
+	Don't ship Hungarian manual.
 
 2004-02-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/ru/custom.xml: Update.
