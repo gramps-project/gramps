@@ -1,50 +1,40 @@
-prefix		= @prefix@
-exec_prefix	= @exec_prefix@
-bindir 		= @bindir@
-datadir		= @datadir@/@PACKAGE@
-INSTALL		= @INSTALL@
-sharedir        = ${prefix}/share/gramps
-GNOMEHELP       = ${prefix}/share/gnome/help
-GM		= gramps-manual
-EG		= extending-gramps
+include Makefile.comm
 
-@SET_MAKE@
+ifeq (${DB2HTML},)
+DOCS = 
+else
+DOCS = doc/${GM}/C doc/${EG}/C
+endif
+
+# Append ${DOCS} to the next line to generate documentation
+DIRS = src src/plugins src/docgen src/filters src/data ${DOCS}
 
 all:
-	(cd src; ${MAKE} all)
-	(cd src/plugins; ${MAKE} all)
-	(cd src/docgen; ${MAKE} all)
-	(cd src/filters; ${MAKE} all)
-	(cd src/data; ${MAKE} all)
+	@ for dir in ${DIRS}; do \
+	  echo "Making all in $$dir"; \
+	  (cd $$dir; ${MAKE} all); \
+	done
 
 install:
-	(cd src; ${MAKE} install)
-	(cd src/plugins; ${MAKE} install)
-	(cd src/docgen; ${MAKE} install)
-	(cd src/filters; ${MAKE} install)
-	(cd src/data; ${MAKE} install)
+	@ for dir in ${DIRS}; do \
+	  echo "Making install in $$dir"; \
+	  (cd $$dir; ${MAKE} install); \
+	done
 	-${INSTALL} -d ${bindir}
-	-${INSTALL} -d ${GNOMEHELP}/${GM}/C
-	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
-	-${INSTALL} doc/${GM}/C/${GM}/*.html ${GNOMEHELP}/${GM}/C
-	-${INSTALL} doc/${GM}/C/${GM}/*.png ${GNOMEHELP}/${GM}/C
-	-${INSTALL} doc/${EG}/C/${EG}/*.html ${GNOMEHELP}/${EG}/C
 	${INSTALL} gramps.sh ${bindir}/gramps
 	${INSTALL} doc/gramps.dtd ${sharedir}
 	chmod +x ${bindir}/gramps
 
 uninstall:
-	(cd src; ${MAKE} uninstall)
-	(cd src/plugins; ${MAKE} uninstall)
-	(cd src/docgen; ${MAKE} uninstall)
-	(cd src/filters; ${MAKE} uninstall)
-	(cd src/data; ${MAKE} uninstall)
+	@ for dir in ${DIRS}; do \
+	  echo "Making uninstall in $$dir"; \
+	  (cd $$dir; ${MAKE} uninstall); \
+	done
 	rm ${bindir}/gramps
 
 clean:
-	(cd src; ${MAKE} clean)
-	(cd src/plugins; ${MAKE} clean)
-	(cd src/docgen; ${MAKE} clean)
-	(cd src/filters; ${MAKE} clean)
-	(cd src/data; ${MAKE} clean)
+	@ for dir in ${DIRS}; do \
+	  echo "Making clean in $$dir"; \
+	  (cd $$dir; ${MAKE} clean); \
+	done
 	rm -f core *~ config.cache config.log config.status
