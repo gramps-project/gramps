@@ -982,9 +982,10 @@ class DetDescendantBareReportDialog(Report.BareReportDialog):
         self.child_ref = int(self.options[11])
         self.images = int(self.options[12])
 
+        self.style_name = stl
+
         Report.BareReportDialog.__init__(self,database,self.person)
 
-        self.style_name = stl
         self.new_person = None
 
         self.window.run()

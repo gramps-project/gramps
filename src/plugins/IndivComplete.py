@@ -556,12 +556,13 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
             self.person = self.db.getPerson(self.options[0])
         else:
             self.person = person
+        self.style_name = stl
+
         Report.BareReportDialog.__init__(self,database,self.person)
 
         self.max_gen = int(self.options[1])
         self.pg_brk = int(self.options[2])
         self.filter_num = int(self.options[3])
-        self.style_name = stl
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)

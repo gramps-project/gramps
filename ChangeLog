@@ -7,6 +7,21 @@
 	Call setup() to obtain complete style information.
 	* src/plugins/IndivComplete.py (IndivComplete.__init__): Likewise.
 	* src/plugins/IndivSummary.py (IndivSummary.__init__): Likewise.
+	* src/Report.py (BareReportDialog.build_style_menu): 
+	Initialize menu to self.style_name;
+	(ReportDialog.__init__): Set self.style_name to "default" 
+	for standalone reports. 
+	* src/plugins/DetDescendantReport.py: Define self.style_name before 
+	calling Report.BareReportDialog.__init__().
+	* src/plugins/AncestorReport.py: Likewise. 
+	* src/plugins/Ancestors.py: Likewise. 
+	* src/plugins/DescendReport.py: Likewise. 
+	* src/plugins/FtmStyleAncestors.py: Likewise. 
+	* src/plugins/FtmStyleDescendants.py: Likewise. 
+	* src/plugins/IndivComplete.py: Likewise. 
+	* src/plugins/IndivSummary.py: Likewise. 
+	* src/plugins/FamilyGroup.py: Likewise. 
+	* src/plugins/DetAncestralReport.py: Likewise. 
 
 2003-07-10  Tim Waugh  <twaugh@redhat.com>
 	* src/Relationship.py: Fix '[...]teenth' relationship name typos.
