@@ -2,15 +2,12 @@
 
 SUBDIRS = src doc example
 
-EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS FAQ
+EXTRA_DIST = autogen.sh gramps.spec.in gramps.spec COPYING-DOCS FAQ
 
 bin_SCRIPTS = gramps
 
 gramps: gramps.sh
 	cp gramps.sh gramps
-
-dist-hook: gramps.spec
-	cp gramps.spec $(distdir)
 
 .PHONY: pycheck trans
 	
