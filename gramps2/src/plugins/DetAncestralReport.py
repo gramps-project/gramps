@@ -82,7 +82,7 @@ class DetAncestorReport(Report.Report):
         person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             self.filter(family.get_father_handle(),index*2)
             self.filter(family.get_mother_handle(),(index*2)+1)
 
@@ -406,7 +406,7 @@ class DetAncestorReport(Report.Report):
         famList = person.get_family_handle_list()
         if len(famList) > 0:
             for fam_id in famList:
-                fam = self.database.find_family_from_handle(fam_id)
+                fam = self.database.get_family_from_handle(fam_id)
                 buried = None
                 if buried:
                     date = buried.get_date_object().get_start_date()
@@ -445,7 +445,7 @@ class DetAncestorReport(Report.Report):
         """
         ext_family_handle = person.get_main_parents_family_handle()
         if ext_family_handle:
-            ext_family = self.database.find_family_from_handle(ext_family_handle)
+            ext_family = self.database.get_family_from_handle(ext_family_handle)
             if ext_family.get_father_handle():
                 father_obj = self.database.get_person_from_handle(ext_family.get_father_handle())
                 father = father_obj.get_primary_name().get_regular_name()
@@ -497,7 +497,7 @@ class DetAncestorReport(Report.Report):
             fam_num= 0
             endOfSent= ""
             for fam_id in famList:
-                fam = self.database.find_family_from_handle(fam_id)
+                fam = self.database.get_family_from_handle(fam_id)
                 fam_num= fam_num + 1
                 spouse= ""
                 t= ""
@@ -579,7 +579,7 @@ class DetAncestorReport(Report.Report):
         famList = mate.get_family_handle_list()
         if len(famList) > 0:
             for fam_id in famList:
-                fam = self.database.find_family_from_handle(fam_id)
+                fam = self.database.get_family_from_handle(fam_id)
                 person= ""
                 if mate.get_gender() == RelLib.Person.male:
                     if fam.get_mother_handle():
@@ -680,7 +680,7 @@ class DetAncestorReport(Report.Report):
                          rptOpt.listChildren == reportOptions.Yes and  \
                          len(person.get_family_handle_list()) > 0:
                     family_handle = person.get_family_handle_list()[0]
-                    family = self.database.find_family_from_handle(family_handle)
+                    family = self.database.get_family_from_handle(family_handle)
                     self.write_children(family, rptOpt)
 
                 #if rptOpt.addImages == reportOptions.Yes:

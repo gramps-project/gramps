@@ -321,7 +321,7 @@ class XmlWriter:
 
             familyList.sort ()            
             for key in self.db.get_family_handles():
-                family = self.db.find_family_from_handle(key)
+                family = self.db.get_family_from_handle(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1

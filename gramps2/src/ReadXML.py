@@ -177,7 +177,7 @@ def importData(database, filename, callback=None,cl=0):
 #         # File is lost => remove all references and the object itself
 #         mobj = database.find_object_from_handle(NewMediaID)
 #         for fid in database.get_family_handles():
-#             p = database.find_family_from_handle(fid)
+#             p = database.get_family_from_handle(fid)
 #             nl = p.get_media_list()
 #             for o in nl:
 #                 if o.get_reference() == mobj:

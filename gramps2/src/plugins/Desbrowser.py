@@ -123,7 +123,7 @@ class DesBrowse:
         self.model.set(item_id,1,person_handle)
         prev_id = None
         for family_handle in person.get_family_handle_list():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
                 prev_id = self.add_to_tree(item_id,prev_id,child_handle)
         return item_id

@@ -246,7 +246,7 @@ class AddSpouse:
 
         # don't do anything if the marriage already exists
         for f in self.person.get_family_handle_list():
-            fam = self.db.find_family_from_handle(f)
+            fam = self.db.get_family_from_handle(f)
             if spouse_id == fam.get_mother_handle() or \
                    spouse_id == fam.get_father_handle():
                 Utils.destroy_passed_object(obj)

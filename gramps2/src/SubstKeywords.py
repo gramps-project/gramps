@@ -98,7 +98,7 @@ class SubstKeywords:
 
         if person.get_family_handle_list():
             f_id = person.get_family_handle_list()[0]
-            f = database.find_family_from_handle(f_id)
+            f = database.get_family_from_handle(f_id)
             father_handle = f.get_father_handle()
             mother_handle = f.get_mother_handle()
             if father_handle == person_handle:

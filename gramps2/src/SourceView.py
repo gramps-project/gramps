@@ -223,7 +223,7 @@ class SourceView:
                 if sref.get_base_handle() == source.get_handle():
                     return 1
         for p_id in self.parent.db.get_family_handles():
-            p = self.parent.db.find_family_from_handle(p_id)
+            p = self.parent.db.get_family_from_handle(p_id)
             for v_id in p.get_event_list():
                 v = self.parent.db.find_event_from_handle(v_id)
                 if v:

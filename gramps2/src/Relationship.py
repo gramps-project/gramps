@@ -170,7 +170,7 @@ class RelationshipCalculator:
         pmap[person.get_handle()] = index
 
         family_handle = person.get_main_parents_family_handle()
-        family = self.db.find_family_from_handle(family_handle)
+        family = self.db.get_family_from_handle(family_handle)
         if family != None:
             father = self.db.get_person_from_handle(family.get_father_handle())
             mother = self.db.get_person_from_handle(family.get_mother_handle())
@@ -239,7 +239,7 @@ class RelationshipCalculator:
         
     def is_spouse(self,orig,other):
         for f in orig.get_family_handle_list():
-            family = self.db.find_family_from_handle(f)
+            family = self.db.get_family_from_handle(f)
             if family:
                 if other == family.get_father_handle() or other == family.get_mother_handle():
                     return 1

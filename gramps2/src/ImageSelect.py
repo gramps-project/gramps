@@ -1063,7 +1063,7 @@ class GlobalMediaProperties:
                     self.refmodel.add([_("Person"),p.get_handle(),GrampsCfg.get_nameof()(p)])
                     any = 1
         for key in self.db.get_family_handles():
-            p = self.db.find_family_from_handle(key)
+            p = self.db.get_family_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Family"),p.get_handle(),Utils.family_name(p,self.db)])
@@ -1183,7 +1183,7 @@ class DeleteMediaQuery:
                 self.db.commit_person(p,trans)
 
         for fid in self.db.get_family_handles():
-            p = self.db.find_family_from_handle(fid)
+            p = self.db.get_family_from_handle(fid)
             nl = []
             change = 0
             for photo in p.get_media_list():

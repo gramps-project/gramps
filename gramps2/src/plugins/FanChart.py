@@ -167,7 +167,7 @@ class FanChart:
         person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             self.filter(family.get_father_handle(),index*2)
             self.filter(family.get_mother_handle(),(index*2)+1)
 

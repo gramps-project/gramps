@@ -94,7 +94,7 @@ class CheckIntegrity:
     def check_for_broken_family_links(self):
         self.broken_links = []
         for family_handle in self.db.get_family_handles():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if father_handle:
@@ -233,7 +233,7 @@ class CheckIntegrity:
 
     def cleanup_empty_families(self,automatic):
         for family_handle in self.db.get_family_handles():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             if not family.get_father_handle() and not family.get_mother_handle():
                 self.empty_family.append(family_handle)
                 self.delete_empty_family(family_handle)
@@ -247,7 +247,7 @@ class CheckIntegrity:
 
     def check_parent_relationships(self):
         for key in self.db.get_family_handles():
-            family = self.db.find_family_from_handle(key)
+            family = self.db.get_family_from_handle(key)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
             if father_handle:
@@ -317,7 +317,7 @@ class CheckIntegrity:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
             for (person_handle,family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 cn = person.get_primary_name().get_name()
                 f = self.db.get_person_from_handle(family.get_father_handle())
                 m = self.db.get_person_from_handle(family.get_mother_handle())
@@ -340,7 +340,7 @@ class CheckIntegrity:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for (person_handle,family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 cn = person.get_primary_name().get_name()
                 f = self.db.get_person_from_handle(family.get_father_handle())
                 m = self.db.get_person_from_handle(family.get_mother_handle())

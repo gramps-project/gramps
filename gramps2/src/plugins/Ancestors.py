@@ -181,7 +181,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def family (self, family_handle, already_described):
         ret = []
-        family = self.database.find_family_from_handle(family_handle)
+        family = self.database.get_family_from_handle(family_handle)
         if not family:
             return ret
         father_handle = family.get_father_handle ()
@@ -226,8 +226,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 people.extend (self.family (family_handle, already_described))
 
             if thisgen > 2 and len (mfamily_handles):
-                for self.gp in [self.database.find_family_from_handle(mfamily_handles[0]).get_father_handle (),
-                                self.database.find_family_from_handle(mfamily_handles[0]).get_mother_handle ()]:
+                for self.gp in [self.database.get_family_from_handle(mfamily_handles[0]).get_father_handle (),
+                                self.database.get_family_from_handle(mfamily_handles[0]).get_mother_handle ()]:
                     if self.gp:
                         break
 
@@ -249,8 +249,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 self.doc.start_paragraph ("AR-Heading")
                 family_handles = pfamily_handles
                 family_handles.extend (mfamily_handles)
-                for self.gp in [self.database.find_family_from_handle(family_handles[0]).get_father_handle (),
-                                self.database.find_family_from_handle(family_handles[0]).get_mother_handle ()]:
+                for self.gp in [self.database.get_family_from_handle(family_handles[0]).get_father_handle (),
+                                self.database.get_family_from_handle(family_handles[0]).get_mother_handle ()]:
                     if self.gp:
                         break
 
@@ -272,13 +272,13 @@ class ComprehensiveAncestorsReport (Report.Report):
                 next_pfamily_handles = []
                 next_mfamily_handles = []
                 for family_handle in family_handles:
-                    family = self.database.find_family_from_handle(family_handle)
+                    family = self.database.get_family_from_handle(family_handle)
                     father_handle = family.get_father_handle ()
                     father = self.database.get_person_from_handle(father_handle)
                     if father:
                         already_described.append (father_handle)
                         father_family_handle = father.get_main_parents_family_handle ()
-                        father_family = self.database.find_family_from_handle(father_family_handle)
+                        father_family = self.database.get_family_from_handle(father_family_handle)
                         if father_family:
                             next_pfamily_handles.append (father_family_handle)
 
@@ -287,7 +287,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     if mother:
                         already_described.append (mother_handle)
                         mother_family_handle = mother.get_main_parents_family_handle ()
-                        mother_family = self.database.find_family_from_handle(mother_family_handle)
+                        mother_family = self.database.get_family_from_handle(mother_family_handle)
                         if mother_family:
                             next_mfamily_handles.append (mother_family_handle)
 
@@ -332,7 +332,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     from_family_father = from_family_mother = None
 
                 for family_handle in person.get_family_handle_list ():
-                    family = self.database.find_family_from_handle(family_handle)
+                    family = self.database.get_family_from_handle(family_handle)
                     for partner_id in [family.get_father_handle (),
                                     family.get_mother_handle ()]:
                         partner = self.database.get_person_from_handle(partner_id)
@@ -536,7 +536,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         family_handle = person.get_main_parents_family_handle ()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             fathername = mothername = None
             father_handle = family.get_father_handle ()
             if father_handle:
@@ -681,7 +681,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         first_marriage = 1
         ret = ''
         for family_handle in person.get_family_handle_list ():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle ()
             mother = self.database.get_person_from_handle(mother_handle)
             for spouse_id in [family.get_father_handle (), mother_handle]:

@@ -127,7 +127,7 @@ class DescendantReport:
         
         childlist = []
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
                 childlist.append(child_handle)
 

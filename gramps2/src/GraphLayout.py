@@ -56,7 +56,7 @@ class DescendLine(GraphLayout):
             
         person = self.database.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
                 self.space_for(child_handle,level+1.0,pos)
                 pos = pos + max(self.depth(child_handle),1)
@@ -67,7 +67,7 @@ class DescendLine(GraphLayout):
     def depth(self,person_handle,val=0):
         person = self.database.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             clist = family.get_child_handle_list()
             val = val + len(clist)
             for child_handle in clist:
