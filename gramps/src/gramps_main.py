@@ -212,11 +212,33 @@ def on_contents_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_remove_child_clicked(obj):
+    global active_family
+    
     if not active_family or not active_child:
         return
 
     active_family.removeChild(active_child)
     active_child.setMainFamily(None)
+    if len(active_family.getChildList()) == 0:
+        if active_family.getFather() == None:
+            p = active_family.getMother()
+            p.removeFamily(active_family)
+            database.deleteFamily(active_family)
+            flist = active_person.getFamilyList()
+            if len(flist) > 0:
+                active_family = flist[0]
+            else:
+                active_family = None
+        elif active_family.getMother() == None:
+            p = active_family.getFather()
+            p.removeFamily(active_family)
+            database.deleteFamily(active_family)
+            flist = active_person.getFamilyList()
+            if len(flist) > 0:
+                active_family = flist[0]
+            else:
+                active_family = None
+
     utils.modified()
     load_family()
 
@@ -323,11 +345,11 @@ def redraw_child_list(filter):
             slist.append(c)
             
     for person in person_list:
-        if person.getMainFamily() == active_person.getMainFamily():
-            continue
-        if person in slist:
-            continue
         if filter:
+            if person.getMainFamily() == active_person.getMainFamily():
+                continue
+            if person in slist:
+                continue
             if person.getMainFamily() != None:
                 continue
             
@@ -400,15 +422,27 @@ def on_add_new_child_clicked(obj):
     else:
         surname = ""
 
-    father = active_family.getFather()
-    if father != None:
-        fname = father.getPrimaryName().getName()
-        newChildWindow.get_widget("flabel").set_text(_("Relationship to %s") % fname)
+    if active_family:
+        father = active_family.getFather()
+        if father != None:
+            fname = father.getPrimaryName().getName()
+            label = _("Relationship to %s") % fname
+            newChildWindow.get_widget("flabel").set_text(label)
 
-    mother = active_family.getMother()
-    if mother != None:
-        mname = mother.getPrimaryName().getName()
-        newChildWindow.get_widget("mlabel").set_text(_("Relationship to %s") % mname)
+        mother = active_family.getMother()
+        if mother != None:
+            mname = mother.getPrimaryName().getName()
+            label = _("Relationship to %s") % mname
+            newChildWindow.get_widget("mlabel").set_text(label)
+    else:
+        fname = active_person.getPrimaryName().getName()
+        label = _("Relationship to %s") % fname
+        if active_person.getGender() == Person.male:
+            newChildWindow.get_widget("flabel").set_text(label)
+            newChildWindow.get_widget("mcombo").set_sensitive(0)
+        else:
+            newChildWindow.get_widget("mlabel").set_text(label)
+            newChildWindow.get_widget("fcombo").set_sensitive(0)
 
     newChildWindow.get_widget("childSurname").set_text(surname)
     newChildWindow.get_widget("addChild").show()
@@ -1306,17 +1340,18 @@ def on_delete_parents_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def delete_spouse():
-    import Check
     global active_family
 
     if active_person == active_family.getFather():
         person = active_family.getMother()
+        active_family.setMother(None)
     else:
         person = active_family.getFather()
+        active_family.setFather(None)
 
     if person:
         person.removeFamily(active_family)
-        
+    
     if len(active_family.getChildList()) == 0:
         active_person.removeFamily(active_family)
         database.deleteFamily(active_family)
@@ -1324,16 +1359,10 @@ def delete_spouse():
             active_family = active_person.getFamilyIndex(0)
         else:
             active_family = None
-    else:	
-        active_family.setMother(None)
 
     load_family()
     utils.modified()
 
-    checker = Check.CheckIntegrity(database)
-    checker.cleanup_empty_families(1)
-    checker.check_for_broken_family_links()
-    
 #-------------------------------------------------------------------------
 #
 #
