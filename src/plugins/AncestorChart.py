@@ -168,10 +168,10 @@ class AncestorChart:
         g.set_paragraph_style("AC-Normal")
         g.set_shadow(1)
         g.set_fill_color((255,255,255))
-        self.doc.add_draw_style("box",g)
+        self.doc.add_draw_style("AC-box",g)
 
         g = BaseDoc.GraphicsStyle()
-        self.doc.add_draw_style("line",g)
+        self.doc.add_draw_style("AC-line",g)
         if self.standalone:
             self.doc.init()
 
@@ -193,7 +193,7 @@ class AncestorChart:
 	    text = self.text[start]
 
 	    name = string.join(text,"\n")
-            self.doc.draw_box("box",name,self.x[level],self.y[index-1])
+            self.doc.draw_box("AC-box",name,self.x[level],self.y[index-1])
 
             if index > 1:
                 old_index = int(index/2)-1
@@ -205,8 +205,8 @@ class AncestorChart:
                     y1 = self.y[old_index]
                     
                 y2 = self.y[index-1]+(self.height/2.0)
-                self.doc.draw_line("line",x1,y1,x1,y2)
-                self.doc.draw_line("line",x1,y2,x2,y2)
+                self.doc.draw_line("AC-line",x1,y1,x1,y2)
+                self.doc.draw_line("AC-line",x1,y2,x2,y2)
             self.draw_graph(index*2,start*2,level+1)
             self.draw_graph((index*2)+1,(start*2)+1,level+1)
         

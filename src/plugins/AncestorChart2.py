@@ -323,7 +323,7 @@ class AncestorChart:
         g.set_paragraph_style("AC2-Normal")
         g.set_shadow(1,0.2/self.scale)
         g.set_fill_color((255,255,255))
-        self.doc.add_draw_style("box",g)
+        self.doc.add_draw_style("AC2-box",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("AC2-Title")
@@ -331,10 +331,10 @@ class AncestorChart:
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         g.set_width(self.doc.get_usable_width())
-        self.doc.add_draw_style("title",g)
+        self.doc.add_draw_style("AC2-title",g)
 
         g = BaseDoc.GraphicsStyle()
-        self.doc.add_draw_style("line",g)
+        self.doc.add_draw_style("AC2-line",g)
         if self.standalone:
             self.doc.init()
 
@@ -342,7 +342,7 @@ class AncestorChart:
 
         self.doc.start_page()
         if self.title and self.force_fit:
-            self.doc.center_text('title',self.title,self.doc.get_usable_width()/2,0)
+            self.doc.center_text('AC2-title',self.title,self.doc.get_usable_width()/2,0)
         phys_y = 0
         for y in range(starty,stopy):
             phys_x = 0
@@ -352,10 +352,10 @@ class AncestorChart:
                     if type(value) == types.TupleType:
                         (person,index) = value
                         text = string.join(self.text[index],"\n")
-                        self.doc.draw_box("box",text,phys_x*self.delta,
+                        self.doc.draw_box("AC2-box",text,phys_x*self.delta,
                                           phys_y*self.box_height+self.offset)
                     elif value == 2:
-                        self.doc.draw_line("line",
+                        self.doc.draw_line("AC2-line",
                                            phys_x*self.delta+self.box_width*0.5,
                                            phys_y*self.box_height+self.offset,
                                            phys_x*self.delta+self.box_width*0.5,
@@ -365,21 +365,21 @@ class AncestorChart:
                         x2 = (phys_x+1)*self.delta
                         y1 = phys_y*self.box_height+self.offset+self.box_height/2
                         y2 = (phys_y+1)*self.box_height+self.offset
-                        self.doc.draw_line("line",x1,y1,x1,y2)
-                        self.doc.draw_line("line",x1,y1,x2,y1)
+                        self.doc.draw_line("AC2-line",x1,y1,x1,y2)
+                        self.doc.draw_line("AC2-line",x1,y1,x2,y1)
                     elif value == 3:
                         x1 = phys_x*self.delta+self.box_width*0.5
                         x2 = (phys_x+1)*self.delta
                         y1 = (phys_y)*self.box_height+self.offset+self.box_height/2
                         y2 = (phys_y)*self.box_height+self.offset
-                        self.doc.draw_line("line",x1,y1,x1,y2)
-                        self.doc.draw_line("line",x1,y1,x2,y1)
+                        self.doc.draw_line("AC2-line",x1,y1,x1,y2)
+                        self.doc.draw_line("AC2-line",x1,y1,x2,y1)
                         
                 phys_x +=1
             phys_y += 1
                     
         if not self.force_fit:
-            self.doc.draw_text('box',
+            self.doc.draw_text('AC2-box',
                                '(%d,%d)' % (colx+1,coly+1),
                                self.doc.get_usable_width()+0.5,
                                self.doc.get_usable_height()+0.75)
@@ -523,15 +523,16 @@ def report(database,person):
 # Set up sane defaults for the book_item
 #
 #------------------------------------------------------------------------
-_style_file = "ancestor_chart.xml"
+_style_file = "ancestor_chart2.xml"
 _style_name = "default" 
 
 _person_id = ""
 _max_gen = 10
 _disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
 _compress = 1
-_title = None
-_options = ( _person_id, _max_gen, _disp_format, _compress, _title )
+_scale = 1
+_title = ""
+_options = ( _person_id, _max_gen, _disp_format, _title, _compress, _scale)
 
 #------------------------------------------------------------------------
 #
@@ -554,17 +555,20 @@ class AncestorChartBareDialog(Report.BareReportDialog):
 
         self.max_gen = int(self.options[1])
         self.disp_format = string.join(self.options[2],'\n')
-        self.do_compress = int(self.options[3])
-        if self.options[4] is not None:
-            self.the_title = self.options[4]
+        if self.options[3]:
+            self.the_title = self.options[3]
         else:
             self.the_title = self.get_the_title(self.person)
+        self.do_compress = int(self.options[4])
+        self.do_scale = int(self.options[5])
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
         self.extra_textbox.get_buffer().set_text(
             self.disp_format,len(self.disp_format))
         self.compress.set_active(self.do_compress)
+        self.scale.set_active(self.do_scale)
+        self.scale.set_sensitive(self.do_compress)
         self.title.set_text(self.the_title)
         
         self.window.run()
@@ -583,6 +587,11 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         self.compress.set_active(1)
         self.compress.show()
         self.add_option('',self.compress)
+        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
+        self.scale.set_active(1)
+        self.scale.set_sensitive(1)
+        self.scale.show()
+        self.add_option('',self.scale)
 
     def get_title(self):
         """The window title for this dialog"""
@@ -616,6 +625,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         # Call base class
         Report.BareReportDialog.parse_report_options_frame (self)
         self.do_compress = self.compress.get_active()
+        self.do_scale = self.scale.get_active()
         self.the_title = self.title.get_text()
 
     def on_center_person_change_clicked(self,obj):
@@ -647,7 +657,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.options = ( self.person.get_id(), self.max_gen, self.report_text, 
-                        self.do_compress, self.the_title )
+                        self.the_title, self.do_compress, self.do_scale )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -663,14 +673,15 @@ def write_book_item(database,person,doc,options,newpage=0):
             person = database.get_person(options[0])
         max_gen = int(options[1])
         disp_format = options[2]
-        compress = int(options[3])
-        if options[4] is not None:
-            title = options[4]
+        if options[3]:
+            title = options[3]
         else:
             title = ""
+        compress = int(options[4])
+        scale = int(options[5])
         return AncestorChart(database, person, max_gen,
                                    disp_format, doc, None, 
-                                   1, compress, title, newpage )
+                                   scale, compress, title, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
