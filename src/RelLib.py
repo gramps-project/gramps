@@ -1075,12 +1075,16 @@ class MediaObject(PrimaryObject,SourceNote):
             self.mime = source.mime
             self.desc = source.desc
             self.thumb = source.thumb
+            self.date = Date.Date(source.date)
+            self.place = source.place
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
         else:
             self.path = ""
             self.mime = ""
             self.desc = ""
+            self.date = None
+            self.place = u""
             self.thumb = None
 
     def serialize(self):
@@ -1097,7 +1101,7 @@ class MediaObject(PrimaryObject,SourceNote):
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
                 self.desc, self.attrlist, self.source_list, self.note,
-                self.change)
+                self.change, self.date, self.place)
 
     def unserialize(self,data):
         """
@@ -1105,8 +1109,37 @@ class MediaObject(PrimaryObject,SourceNote):
         back into the data in an Event structure.
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.attrlist, self.source_list, self.note, self.change) = data
+         self.attrlist, self.source_list, self.note, self.change,
+         self.date, self.place) = data
     
+    def set_place_handle(self,place):
+        """sets the Place instance of the Event"""
+        self.place = place
+
+    def get_place_handle(self):
+        """returns the Place instance of the Event"""
+        return self.place 
+
+    def get_date(self) :
+        """returns a string representation of the date of the Event instance"""
+        if self.date:
+            return display.display(self.date)
+        return u""
+
+    def get_date_object(self):
+        """returns the Date object associated with the Event"""
+        if not self.date:
+            self.date = Date.Date()
+       	return self.date
+
+    def set_date(self, date) :
+        """attempts to sets the date of the Event instance"""
+        self.date = parser.parse(date)
+
+    def set_date_object(self,date):
+        """sets the Date object associated with the Event"""
+        self.date = date
+
     def set_mime_type(self,type):
         self.mime = type
 
@@ -1548,10 +1581,12 @@ class MediaRef(SourceNote):
             self.note = Note(source.note)
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
+            self.rect = source.rect
         else:
             self.private = 0
             self.ref = None
             self.note = None
+            self.rect = None
 
     def set_privacy(self,val):
         """Sets or clears the privacy flag of the data"""
@@ -1560,6 +1595,14 @@ class MediaRef(SourceNote):
     def get_privacy(self):
         """Returns the privacy level of the data"""
         return self.private
+
+    def set_rectangle(self,coord):
+        """Sets subection of an image"""
+        self.rect = coord
+
+    def get_rectangle(self):
+        """Returns the subsection of an image"""
+        return self.rect
 
     def set_reference_handle(self,obj_id):
         self.ref = obj_id

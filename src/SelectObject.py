@@ -72,7 +72,7 @@ class SelectObject:
         self.top = self.glade.get_widget('select_object')
         title_label = self.glade.get_widget('object_title')
         self.object_tree = self.glade.get_widget('object_tree')
-        self.object_handle = self.glade.get_widget('object_handle')
+        self.object_handle = self.glade.get_widget('object_id')
         self.object_type = self.glade.get_widget('object_type')
         self.object_desc = self.glade.get_widget('object_desc')
         self.object_path = self.glade.get_widget('object_path')
@@ -126,7 +126,7 @@ class SelectObject:
             if not pexists:
                 fexists = 0
         
-        self.object_handle.set_text(obj.get_handle())
+        self.object_handle.set_text(obj.get_gramps_id())
         self.object_type.set_text(the_type)
         self.object_desc.set_text(obj.get_description())
         if len(path) == 0 or fexists == 0:
