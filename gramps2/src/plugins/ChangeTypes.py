@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,9 +38,9 @@ import AutoComp
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,person,callback):
+def runTool(database,person,callback,parent=None):
     try:
-        ChangeTypes(database,person)
+        ChangeTypes(database,person,parent)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -51,7 +51,7 @@ def runTool(database,person,callback):
 #
 #-------------------------------------------------------------------------
 class ChangeTypes:
-    def __init__(self,db,person):
+    def __init__(self,db,person,parent):
         self.person = person
         self.db = db
 
@@ -78,12 +78,17 @@ class ChangeTypes:
         original = unicode(self.glade.get_widget("original_text").get_text())
         new = unicode(self.glade.get_widget("new_text").get_text())
 
-        for person in self.db.get_person_id_map().values():
-            for event in person.get_event_list():
+        for person_id in self.db.get_person_keys():
+            person = self.db.find_person_from_id(person_id)
+            for event_id in person.get_event_list():
+                if not event_id:
+                    continue
+                event = self.db.find_event_from_id(event_id)
                 if event.get_name() == original:
                     event.set_name(new)
                     modified = modified + 1
                     Utils.modified()
+                    self.db.commit_event(event)
 
         if modified == 1:
             msg = _("1 event record was modified")
