@@ -28,7 +28,7 @@ import tempfile
 import string
 import zipfile
 import time
-from math import pi, cos, sin
+from math import pi, cos, sin, fabs
 
 #-------------------------------------------------------------------------
 #
@@ -86,11 +86,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
         except IOError,msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") % self.content_xml, msg)
-            raise Errors.ReportError(errmsg)
+            raise Errors.ReportError(_("Could not create %s") % self.content_xml, msg)
         except:
-            raise Errors.ReportError("Could not create %s" % self.content_xml)
-
+            raise Errors.ReportError(_("Could not create %s") % self.content_xml)
 
     def init(self):
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -776,9 +774,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('<draw:text-box draw:style-name="%s" ' % style)
         self.f.write('draw:layer="layout" svg:width="%.3fcm" ' % wcm)
         self.f.write('svg:height="%.3fpt" ' % hcm)
-        self.f.write('draw:transform="rotate (%.8f) ' % rangle)
+        self.f.write('draw:transform="')
+        self.f.write('rotate (%.8f) ' % rangle)
         xloc = x-((wcm/2.0)*cos(-rangle))
-        yloc = y-((hcm)*sin(-rangle))-(hcm/2.0)
+        yloc = y-((hcm)*sin(-rangle))-oneline
         self.f.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
         self.f.write('>')
         self.f.write('<text:p text:style-name="X%s">' % pname)
@@ -786,7 +785,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('<text:span text:style-name="F%s">\n' % pname)
         self.write_text(string.join(text,'\n'))
         self.f.write('</text:span>\n</text:p>\n</draw:text-box>\n')
-
+        
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
 
@@ -807,6 +806,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         
         self.f.write('svg:x="%d" svg:y="%d" ' % (x,y))
         self.f.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
+        self.f.write('draw:z-index="0" ')
         self.f.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.f.write('svg:height="%.4fcm" ' % (maxy-miny))
         
