@@ -1445,32 +1445,6 @@
 			      </child>
 
 			      <child>
-				<widget class="GtkButton" id="add_parents">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">Adds a new set of parents to the active person</property>
-				  <property name="can_focus">True</property>
-				  <property name="relief">GTK_RELIEF_NORMAL</property>
-
-				  <child>
-				    <widget class="GtkImage" id="image91">
-				      <property name="visible">True</property>
-				      <property name="stock">gtk-add</property>
-				      <property name="icon_size">4</property>
-				      <property name="xalign">0.5</property>
-				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
-				      <property name="ypad">0</property>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkButton" id="ap_parents_btn">
 				  <property name="visible">True</property>
 				  <property name="tooltip" translatable="yes">Make the active person's family the active family</property>
@@ -1481,6 +1455,36 @@
 				    <widget class="GtkImage" id="image87">
 				      <property name="visible">True</property>
 				      <property name="stock">gtk-go-forward</property>
+				      <property name="icon_size">4</property>
+				      <property name="xalign">0.5</property>
+				      <property name="yalign">0.5</property>
+				      <property name="xpad">0</property>
+				      <property name="ypad">0</property>
+				    </widget>
+				  </child>
+				</widget>
+				<packing>
+				  <property name="padding">10</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
+
+			      <child>
+				<placeholder/>
+			      </child>
+
+			      <child>
+				<widget class="GtkButton" id="add_parents">
+				  <property name="visible">True</property>
+				  <property name="tooltip" translatable="yes">Adds a new set of parents to the active person</property>
+				  <property name="can_focus">True</property>
+				  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+				  <child>
+				    <widget class="GtkImage" id="image91">
+				      <property name="visible">True</property>
+				      <property name="stock">gtk-add</property>
 				      <property name="icon_size">4</property>
 				      <property name="xalign">0.5</property>
 				      <property name="yalign">0.5</property>
@@ -1520,10 +1524,6 @@
 				  <property name="expand">False</property>
 				  <property name="fill">False</property>
 				</packing>
-			      </child>
-
-			      <child>
-				<placeholder/>
 			      </child>
 			    </widget>
 			    <packing>
@@ -1606,32 +1606,6 @@
 			      </child>
 
 			      <child>
-				<widget class="GtkButton" id="add_spparents">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">Adds a new set of parents to the selected spouse</property>
-				  <property name="can_focus">True</property>
-				  <property name="relief">GTK_RELIEF_NORMAL</property>
-
-				  <child>
-				    <widget class="GtkImage" id="image89">
-				      <property name="visible">True</property>
-				      <property name="stock">gtk-add</property>
-				      <property name="icon_size">4</property>
-				      <property name="xalign">0.5</property>
-				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
-				      <property name="ypad">0</property>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="padding">0</property>
-				  <property name="expand">False</property>
-				  <property name="fill">False</property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkButton" id="sp_parents_btn">
 				  <property name="visible">True</property>
 				  <property name="tooltip" translatable="yes">Make the selected spouse's family the active family</property>
@@ -1642,6 +1616,36 @@
 				    <widget class="GtkImage" id="image88">
 				      <property name="visible">True</property>
 				      <property name="stock">gtk-go-forward</property>
+				      <property name="icon_size">4</property>
+				      <property name="xalign">0.5</property>
+				      <property name="yalign">0.5</property>
+				      <property name="xpad">0</property>
+				      <property name="ypad">0</property>
+				    </widget>
+				  </child>
+				</widget>
+				<packing>
+				  <property name="padding">10</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
+
+			      <child>
+				<placeholder/>
+			      </child>
+
+			      <child>
+				<widget class="GtkButton" id="add_spparents">
+				  <property name="visible">True</property>
+				  <property name="tooltip" translatable="yes">Adds a new set of parents to the selected spouse</property>
+				  <property name="can_focus">True</property>
+				  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+				  <child>
+				    <widget class="GtkImage" id="image89">
+				      <property name="visible">True</property>
+				      <property name="stock">gtk-add</property>
 				      <property name="icon_size">4</property>
 				      <property name="xalign">0.5</property>
 				      <property name="yalign">0.5</property>
@@ -1681,10 +1685,6 @@
 				  <property name="expand">False</property>
 				  <property name="fill">False</property>
 				</packing>
-			      </child>
-
-			      <child>
-				<placeholder/>
 			      </child>
 			    </widget>
 			    <packing>

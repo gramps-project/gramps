@@ -130,8 +130,7 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
 	uninstall-recursive check-recursive installcheck-recursive
 DIST_COMMON = README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
 	Makefile.in NEWS TODO aclocal.m4 configure configure.in \
-	gramps.sh.in gramps.spec.in install-sh missing mkinstalldirs \
-	py-compile
+	gramps.sh.in gramps.spec.in install-sh py-compile
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 

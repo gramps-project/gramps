@@ -178,7 +178,8 @@ class EditSource:
         title = self.title.get_text()
         author = self.author.get_text()
         pubinfo = self.pubinfo.get_text()
-        note = self.notes_buffer.get_text()
+        note = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                          self.notes_buffer.get_end_iter(),gtk.FALSE)
     
         if author != self.source.getAuthor():
             self.source.setAuthor(author)
