@@ -2,6 +2,7 @@
 	* src/ImageSelect.py: eliminate recursive error loop when a thumbnail
 	cannot be created.
 	* src/plugins/ReorderIds.py: handle IDs better when reordering
+	* src/dialog.glade: witness changes
 
 2003-07-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py (BookReportSelector.__init__): 
