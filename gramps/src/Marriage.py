@@ -174,7 +174,7 @@ class Marriage:
             thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
         else:
             thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
-        RelImage.check_thumb(src,thumb,const.thumbScale)
+        RelImage.check_thumb(photo.getPath(),thumb,const.thumbScale)
         self.photo_list.append(thumb,photo.getDescription())
 
     #-------------------------------------------------------------------------
@@ -528,12 +528,29 @@ def on_add_photo_clicked(obj):
     imageSelect = libglade.GladeXML(const.imageselFile,"imageSelect")
     imageSelect.signal_autoconnect({
         "on_savephoto_clicked" : on_savephoto_clicked,
+        "on_name_changed" : on_name_changed,
         "destroy_passed_object" : utils.destroy_passed_object
         })
     imageSelect.get_widget("imageSelect").set_data(MARRIAGE,marriage_obj)
     imageSelect.get_widget("imageSelect").show()
 
+    marriage_obj.fname = image_select.get_widget("fname")
+    marriage_obj.add_image = image_select.get_widget("image")
+    marriage_obj.external = image_select.get_widget("private")
+
     marriage_obj.imageSelect = imageSelect
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_name_changed(obj):
+    edit_person = obj.get_data(MARRIAGE_OBJ)
+    file = edit_person.fname.get_text()
+    if os.path.isfile(file):
+        image = RelImage.scale_image(file,const.thumbScale)
+        edit_person.add_image.load_imlib(image)
 
 #-------------------------------------------------------------------------
 #
@@ -555,6 +572,18 @@ def on_savephoto_clicked(obj):
     name = RelImage.import_photo(filename,marriage_obj.path,prefix)
     if name == None:
         return
+
+    if marriage_obj.external.get_active() == 1:
+        if os.path.isfile(filename):
+            name = filename
+            thumb = "%s%s.thumb.jpg" % (path,os.sep,os.path.basename(filename))
+            RelImage.mk_thumb(filename,thumb,const.thumbScale)
+        else:
+            return
+    else:
+        name = RelImage.import_photo(filename,marriage_obj.path,prefix)
+        if name == None:
+            return
         
     photo = Photo()
     photo.setPath(name)
