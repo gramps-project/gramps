@@ -274,7 +274,7 @@ PACKAGE_STRING='gramps 1.1.1'
 PACKAGE_BUGREPORT='gramps-bugs@lists.sourceforge.net'
 
 ac_unique_file="src/gramps.py"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot GCONF_SCHEMA_CONFIG_SOURCE GCONF_SCHEMA_FILE_DIR GCONF_SCHEMAS_INSTALL_TRUE GCONF_SCHEMAS_INSTALL_FALSE RELEASE VERSIONSTRING MSGFMT MSGCONV ICONV LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH PKG_CONFIG PYGTK_CFLAGS PYGTK_LIBS SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot GCONF_SCHEMA_CONFIG_SOURCE GCONF_SCHEMA_FILE_DIR GCONF_SCHEMAS_INSTALL_TRUE GCONF_SCHEMAS_INSTALL_FALSE RELEASE VERSIONSTRING MSGFMT MSGCONV ICONV LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH PKG_CONFIG PYGTK_CFLAGS PYGTK_LIBS SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -889,7 +889,7 @@ esac
     else
       echo "$as_me: WARNING: no configuration information is in $ac_dir" >&2
     fi
-    cd $ac_popdir
+    cd "$ac_popdir"
   done
 fi
 
@@ -1247,7 +1247,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-am__api_version="1.8"
+am__api_version="1.7"
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
   if test -f $ac_dir/install-sh; then
@@ -1410,6 +1410,7 @@ _ACEOF
 program_transform_name=`echo $program_transform_name | sed -f conftest.sed`
 rm conftest.sed
 
+
 # expand $ac_aux_dir to an absolute path
 am_aux_dir=`cd $ac_aux_dir && pwd`
 
@@ -1421,31 +1422,6 @@ else
   am_missing_run=
   { echo "$as_me:$LINENO: WARNING: \`missing' script is too old or missing" >&5
 echo "$as_me: WARNING: \`missing' script is too old or missing" >&2;}
-fi
-
-if mkdir -p --version . >/dev/null 2>&1 && test ! -d ./--version; then
-  # Keeping the `.' argument allows $(mkdir_p) to be used without
-  # argument.  Indeed, we sometimes output rules like
-  #   $(mkdir_p) $(somedir)
-  # where $(somedir) is conditionally defined.
-  # (`test -n '$(somedir)' && $(mkdir_p) $(somedir)' is a more
-  # expensive solution, as it forces Make to start a sub-shell.)
-  mkdir_p='mkdir -p -- .'
-else
-  # On NextStep and OpenStep, the `mkdir' command does not
-  # recognize any option.  It will interpret all options as
-  # directories to create, and then abort because `.' already
-  # exists.
-  for d in ./-p ./--version;
-  do
-    test -d $d && rmdir $d
-  done
-  # $(mkinstalldirs) is defined by Automake if mkinstalldirs exists.
-  if test -f "$ac_aux_dir/mkinstalldirs"; then
-    mkdir_p='$(mkinstalldirs)'
-  else
-    mkdir_p='$(install_sh) -d'
-  fi
 fi
 
 for ac_prog in gawk mawk nawk awk
@@ -1526,7 +1502,7 @@ else
 fi
 rmdir .tst 2>/dev/null
 
-# test to see if srcdir already configured
+ # test to see if srcdir already configured
 if test "`cd $srcdir && pwd`" != "`pwd`" &&
    test -f $srcdir/config.status; then
   { { echo "$as_me:$LINENO: error: source directory already configured; run \"make distclean\" there first" >&5
@@ -1699,9 +1675,7 @@ fi;
 echo "${ECHO_T}Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation" >&6
 
   if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
-    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas/'
-  else
-    GCONF_SCHEMA_FILE_DIR=$GCONF_SCHEMA_FILE_DIR
+    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas'
   fi
 
 
@@ -1902,7 +1876,6 @@ echo "$as_me: error: too old" >&2;}
    { (exit 1); exit 1; }; }
 fi
 
-      am_display_PYTHON=$PYTHON
     else
       # Otherwise, try each interpreter until we find one that satisfies
       # VERSION.
@@ -1912,9 +1885,13 @@ if test "${am_cv_pathless_PYTHON+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
 
-	for am_cv_pathless_PYTHON in python python2 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 none; do
-	  test "$am_cv_pathless_PYTHON" = none && break
-	  prog="import sys, string
+	for am_cv_pathless_PYTHON in python python2 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 : ; do
+          if test "$am_cv_pathless_PYTHON" = : ; then
+            { { echo "$as_me:$LINENO: error: no suitable Python interpreter found" >&5
+echo "$as_me: error: no suitable Python interpreter found" >&2;}
+   { (exit 1); exit 1; }; }
+	  fi
+          prog="import sys, string
 # split strings by '.' and convert to numeric.  Append some zeros
 # because we need at least 4 digits for the hex conversion.
 minver = map(int, string.split('2.2', '.')) + [0, 0, 0]
@@ -1929,15 +1906,12 @@ sys.exit(sys.hexversion < minverhex)"
   break
 fi
 
-	done
+        done
 fi
 echo "$as_me:$LINENO: result: $am_cv_pathless_PYTHON" >&5
 echo "${ECHO_T}$am_cv_pathless_PYTHON" >&6
       # Set $PYTHON to the absolute path of $am_cv_pathless_PYTHON.
-      if test "$am_cv_pathless_PYTHON" = none; then
-	PYTHON=:
-      else
-        # Extract the first word of "$am_cv_pathless_PYTHON", so it can be a program name with args.
+      # Extract the first word of "$am_cv_pathless_PYTHON", so it can be a program name with args.
 set dummy $am_cv_pathless_PYTHON; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -1976,16 +1950,9 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-      fi
       am_display_PYTHON=$am_cv_pathless_PYTHON
     fi
 
-
-  if test "$PYTHON" = :; then
-      { { echo "$as_me:$LINENO: error: no suitable Python interpreter found" >&5
-echo "$as_me: error: no suitable Python interpreter found" >&2;}
-   { (exit 1); exit 1; }; }
-  else
 
 
   echo "$as_me:$LINENO: checking for $am_display_PYTHON version" >&5
@@ -2053,10 +2020,6 @@ echo "${ECHO_T}$am_cv_python_pyexecdir" >&6
 
 
   pkgpyexecdir=\${pyexecdir}/$PACKAGE
-
-
-
-  fi
 
 
 # Extract the first word of "sh", so it can be a program name with args.
@@ -3089,7 +3052,6 @@ s,@install_sh@,$install_sh,;t t
 s,@STRIP@,$STRIP,;t t
 s,@ac_ct_STRIP@,$ac_ct_STRIP,;t t
 s,@INSTALL_STRIP_PROGRAM@,$INSTALL_STRIP_PROGRAM,;t t
-s,@mkdir_p@,$mkdir_p,;t t
 s,@AWK@,$AWK,;t t
 s,@SET_MAKE@,$SET_MAKE,;t t
 s,@am__leading_dot@,$am__leading_dot,;t t
@@ -3290,11 +3252,6 @@ esac
   *) ac_INSTALL=$ac_top_builddir$INSTALL ;;
   esac
 
-  if test x"$ac_file" != x-; then
-    { echo "$as_me:$LINENO: creating $ac_file" >&5
-echo "$as_me: creating $ac_file" >&6;}
-    rm -f "$ac_file"
-  fi
   # Let's still pretend it is `configure' which instantiates (i.e., don't
   # use $as_me), people would be surprised to read:
   #    /* config.h.  Generated by config.status.  */
@@ -3333,6 +3290,12 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
 	 fi;;
       esac
     done` || { (exit 1); exit 1; }
+
+  if test x"$ac_file" != x-; then
+    { echo "$as_me:$LINENO: creating $ac_file" >&5
+echo "$as_me: creating $ac_file" >&6;}
+    rm -f "$ac_file"
+  fi
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF
   sed "$ac_vpsub

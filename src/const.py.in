@@ -453,21 +453,20 @@ def save_attr(st):
 #
 #-------------------------------------------------------------------------
 
-_frel2def = {
-    _("Married")  : _("A legal or common-law relationship between a husband and wife"),
-    _("Unmarried"): _("No legal or common-law relationship between man and woman"),
-    _("Partners") : _("An established relationship between members of the same sex"),
-    _("Unknown")  : _("Unknown relationship between a man and woman"),
-    _("Other")    : _("An unspecified relationship between a man and woman")
-}
+FAMILY_MARRIED     = 0
+FAMILY_UNMARRIED   = 1
+FAMILY_CIVIL_UNION = 2
+FAMILY_UNKNOWN     = 3
+FAMILY_OTHER       = 4
 
-family_relations = TransTable({
-    "Married"   : _("Married"),  
-    "Unmarried" : _("Unmarried"),
-    "Partners"  : _("Partners"),
-    "Unknown"   : _("Unknown"),
-    "Other"     : _("Other"),
-    })
+
+family_relations = [
+    (_("Married"),     _("A legal or common-law relationship between a husband and wife")),
+    (_("Unmarried"),   _("No legal or common-law relationship between man and woman")),
+    (_("Civil Union"), _("An established relationship between members of the same sex")),
+    (_("Unknown"),     _("Unknown relationship between a man and woman")),
+    (_("Other"),       _("An unspecified relationship between a man and woman"))
+]
 
 #-------------------------------------------------------------------------
 #
@@ -539,22 +538,11 @@ def init_family_attribute_list():
     p.sort()
     return p
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def init_family_relation_list():
-    p = family_relations.get_values()
-    p.sort()
-    return p
-
 personalEvents = init_personal_event_list()
 personalAttributes = init_personal_attribute_list()
 marriageEvents = init_marriage_event_list()
 defaultMarriageEvent = family_events.find_value("Marriage")
 familyAttributes = init_family_attribute_list()
-familyRelations = init_family_relation_list()
 places = []
 surnames = []
 
