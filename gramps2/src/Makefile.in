@@ -35,7 +35,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src
-DIST_COMMON = README $(dist_pkgdata_DATA) $(pkgpython_PYTHON) \
+DIST_COMMON = README $(dist_pkgdata_DATA) $(gdir_PYTHON) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/const.py.in AUTHORS ChangeLog NEWS
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -52,8 +52,8 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	install-recursive installcheck-recursive installdirs-recursive \
 	pdf-recursive ps-recursive uninstall-info-recursive \
 	uninstall-recursive
-am__installdirs = "$(DESTDIR)$(pkgpythondir)" "$(DESTDIR)$(pkgdatadir)"
-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
+am__installdirs = "$(DESTDIR)$(gdirdir)" "$(DESTDIR)$(pkgdatadir)"
+gdirPYTHON_INSTALL = $(INSTALL_DATA)
 py_compile = $(top_srcdir)/py-compile
 dist_pkgdataDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(dist_pkgdata_DATA)
@@ -150,7 +150,8 @@ MOSTLYCLEANFILES =
 # We only want optimized byte-compiled (.pyo) versions, no .pyc
 # In principle, this is handled by PYCFILES and PYOFILES, but
 # they don't seem to work so we edited the py-compile script instead
-pkgpython_PYTHON = \
+gdirdir = $(DESTDIR)$(prefix)/share/gramps
+gdir_PYTHON = \
 	AddMedia.py\
 	AddrEdit.py\
 	AddSpouse.py\
@@ -160,11 +161,13 @@ pkgpython_PYTHON = \
 	BaseDoc.py\
 	Bookmarks.py\
 	Calendar.py\
+	ColumnOrder.py\
 	ChooseParents.py\
 	const.py\
 	DateEdit.py\
 	Date.py\
 	DbPrompter.py\
+	DisplayModels.py\
 	DisplayTrace.py\
 	EditPerson.py\
 	EditPlace.py\
@@ -178,6 +181,7 @@ pkgpython_PYTHON = \
 	GedcomInfo.py\
 	GenericFilter.py\
 	GrampsCfg.py\
+	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\
 	GraphLayout.py\
@@ -218,6 +222,7 @@ pkgpython_PYTHON = \
 	StyleEditor.py\
 	SubstKeywords.py\
 	TarFile.py\
+	TipOfDay.py\
 	TransTable.py\
 	UrlEdit.py\
 	Utils.py\
@@ -242,6 +247,7 @@ GRAPHICS = \
 	edit.png\
 	family48.png\
 	good.png\
+	home.png\
 	gramps.png\
 	logo.png\
 	media.png\
@@ -253,7 +259,7 @@ GRAPHICS = \
 
 
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) 
 all: all-recursive
 
 .SUFFIXES:
@@ -289,28 +295,28 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 const.py: $(top_builddir)/config.status $(srcdir)/const.py.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 uninstall-info-am:
-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
+install-gdirPYTHON: $(gdir_PYTHON)
 	@$(NORMAL_INSTALL)
-	test -z "$(pkgpythondir)" || $(mkdir_p) "$(DESTDIR)$(pkgpythondir)"
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	test -z "$(gdirdir)" || $(mkdir_p) "$(DESTDIR)$(gdirdir)"
+	@list='$(gdir_PYTHON)'; dlist=''; for p in $$list; do\
 	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
 	  if test -f $$b$$p; then \
 	    d=`echo $$p | sed -e 's,^.*/,,'`; \
 	    dlist="$$dlist $$d"; \
-	    echo " $(pkgpythonPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgpythondir)/$$d'"; \
-	    $(pkgpythonPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpythondir)/$$d"; \
+	    echo " $(gdirPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(gdirdir)/$$d'"; \
+	    $(gdirPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(gdirdir)/$$d"; \
 	  else :; fi; \
 	done; \
 	test -z "$$dlist" || \
-	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(pkgpythondir)" $$dlist
+	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(gdirdir)" $$dlist
 
-uninstall-pkgpythonPYTHON:
+uninstall-gdirPYTHON:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	@list='$(gdir_PYTHON)'; dlist=''; for p in $$list; do\
 	  d=`echo $$p | sed -e 's,^.*/,,'`; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$$d"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}c"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}o"; \
+	  rm -f "$(DESTDIR)$(gdirdir)/$$d"; \
+	  rm -f "$(DESTDIR)$(gdirdir)/$${d}c"; \
+	  rm -f "$(DESTDIR)$(gdirdir)/$${d}o"; \
 	done
 install-dist_pkgdataDATA: $(dist_pkgdata_DATA)
 	@$(NORMAL_INSTALL)
@@ -495,7 +501,7 @@ check: check-recursive
 all-am: Makefile $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(pkgpythondir)" "$(DESTDIR)$(pkgdatadir)"; do \
+	for dir in "$(DESTDIR)$(gdirdir)" "$(DESTDIR)$(pkgdatadir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-recursive
@@ -541,8 +547,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-dist_pkgdataDATA \
-	install-pkgpythonPYTHON
+install-data-am: install-dist_pkgdataDATA install-gdirPYTHON
 
 install-exec-am:
 
@@ -568,8 +573,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-dist_pkgdataDATA uninstall-info-am \
-	uninstall-local uninstall-pkgpythonPYTHON
+uninstall-am: uninstall-dist_pkgdataDATA uninstall-gdirPYTHON \
+	uninstall-info-am
 
 uninstall-info: uninstall-info-recursive
 
@@ -577,16 +582,15 @@ uninstall-info: uninstall-info-recursive
 	clean clean-generic clean-recursive ctags ctags-recursive \
 	distclean distclean-generic distclean-recursive distclean-tags \
 	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-data-local \
+	install-am install-data install-data-am \
 	install-dist_pkgdataDATA install-exec install-exec-am \
-	install-info install-info-am install-man \
-	install-pkgpythonPYTHON install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic maintainer-clean-recursive \
-	mostlyclean mostlyclean-generic mostlyclean-recursive pdf \
-	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-dist_pkgdataDATA uninstall-info-am uninstall-local \
-	uninstall-pkgpythonPYTHON
+	install-gdirPYTHON install-info install-info-am install-man \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	maintainer-clean-recursive mostlyclean mostlyclean-generic \
+	mostlyclean-recursive pdf pdf-am ps ps-am tags tags-recursive \
+	uninstall uninstall-am uninstall-dist_pkgdataDATA \
+	uninstall-gdirPYTHON uninstall-info-am
 
 
 # In principle the following rule slightly  violates the automake/autoconf 
@@ -602,17 +606,7 @@ pycheck:
 	for d in $(SUBDIRS) ; do \
           (cd $$d; make pycheck); \
 	done;
-	pychecker $(pkgpython_PYTHON)
-
-install-data-local:
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
-	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-
-uninstall-local:
-	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
-	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
+	pychecker $(gdir_PYTHON)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-gramps">
+    <comment xml:lang="en">GRAMPS database</comment>
+    <glob pattern="*.grdb"/>
+  </mime-type>
+  <mime-type type="application/x-gedcom">
+    <comment xml:lang="en">GEDCOM</comment>
+    <glob pattern="*.ged"/>
+  </mime-type>
+</mime-info>

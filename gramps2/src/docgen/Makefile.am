@@ -2,7 +2,9 @@
 # Use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all .py files individually
 
-pkgpython_PYTHON = \
+docgendir=$(DESTDIR)$(prefix)/share/gramps/docgen
+
+docgen_PYTHON = \
 	AbiWord2Doc.py\
 	AsciiDoc.py\
 	HtmlDoc.py\
@@ -15,9 +17,6 @@ pkgpython_PYTHON = \
 	RTFDoc.py\
 	SvgDrawDoc.py\
 	LPRDoc.py
-
-pkgpyexecdir = @pkgpyexecdir@/docgen
-pkgpythondir = @pkgpythondir@/docgen
 
 GRAMPS_PY_MODPATH = "../"
 

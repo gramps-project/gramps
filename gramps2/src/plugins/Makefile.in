@@ -14,6 +14,11 @@
 
 @SET_MAKE@
 
+# This is the src/plugins level Makefile for Gramps
+# We could use GNU make's ':=' syntax for nice wildcard use,
+# but that is not necessarily portable.
+# If not using GNU make, then list all .py files individually
+
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -34,7 +39,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src/plugins
-DIST_COMMON = $(dist_pkgdata_DATA) $(pkgpython_PYTHON) \
+DIST_COMMON = $(dist_pkgdata_DATA) $(pkgdata_PYTHON) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -44,8 +49,8 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
-am__installdirs = "$(DESTDIR)$(pkgpythondir)" "$(DESTDIR)$(pkgdatadir)"
-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
+am__installdirs = "$(DESTDIR)$(pkgdatadir)" "$(DESTDIR)$(pkgdatadir)"
+pkgdataPYTHON_INSTALL = $(INSTALL_DATA)
 py_compile = $(top_srcdir)/py-compile
 dist_pkgdataDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(dist_pkgdata_DATA)
@@ -128,12 +133,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-
-# This is the src/plugins level Makefile for Gramps
-# We could use GNU make's ':=' syntax for nice wildcard use,
-# but that is not necessarily portable.
-# If not using GNU make, then list all .py files individually
-pkgpython_PYTHON = \
+pkgdata_PYTHON = \
 	AncestorChart.py\
 	AncestorChart2.py\
 	AncestorReport.py\
@@ -236,28 +236,28 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 uninstall-info-am:
-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
+install-pkgdataPYTHON: $(pkgdata_PYTHON)
 	@$(NORMAL_INSTALL)
-	test -z "$(pkgpythondir)" || $(mkdir_p) "$(DESTDIR)$(pkgpythondir)"
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	test -z "$(pkgdatadir)" || $(mkdir_p) "$(DESTDIR)$(pkgdatadir)"
+	@list='$(pkgdata_PYTHON)'; dlist=''; for p in $$list; do\
 	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
 	  if test -f $$b$$p; then \
 	    d=`echo $$p | sed -e 's,^.*/,,'`; \
 	    dlist="$$dlist $$d"; \
-	    echo " $(pkgpythonPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgpythondir)/$$d'"; \
-	    $(pkgpythonPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpythondir)/$$d"; \
+	    echo " $(pkgdataPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgdatadir)/$$d'"; \
+	    $(pkgdataPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgdatadir)/$$d"; \
 	  else :; fi; \
 	done; \
 	test -z "$$dlist" || \
-	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(pkgpythondir)" $$dlist
+	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(pkgdatadir)" $$dlist
 
-uninstall-pkgpythonPYTHON:
+uninstall-pkgdataPYTHON:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	@list='$(pkgdata_PYTHON)'; dlist=''; for p in $$list; do\
 	  d=`echo $$p | sed -e 's,^.*/,,'`; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$$d"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}c"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}o"; \
+	  rm -f "$(DESTDIR)$(pkgdatadir)/$$d"; \
+	  rm -f "$(DESTDIR)$(pkgdatadir)/$${d}c"; \
+	  rm -f "$(DESTDIR)$(pkgdatadir)/$${d}o"; \
 	done
 install-dist_pkgdataDATA: $(dist_pkgdata_DATA)
 	@$(NORMAL_INSTALL)
@@ -314,7 +314,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(pkgpythondir)" "$(DESTDIR)$(pkgdatadir)"; do \
+	for dir in "$(DESTDIR)$(pkgdatadir)" "$(DESTDIR)$(pkgdatadir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -359,7 +359,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dist_pkgdataDATA install-pkgpythonPYTHON
+install-data-am: install-dist_pkgdataDATA install-pkgdataPYTHON
 
 install-exec-am:
 
@@ -386,19 +386,18 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-dist_pkgdataDATA uninstall-info-am \
-	uninstall-pkgpythonPYTHON
+	uninstall-pkgdataPYTHON
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am \
 	install-dist_pkgdataDATA install-exec install-exec-am \
-	install-info install-info-am install-man \
-	install-pkgpythonPYTHON install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am \
+	install-info install-info-am install-man install-pkgdataPYTHON \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-dist_pkgdataDATA uninstall-info-am \
-	uninstall-pkgpythonPYTHON
+	uninstall-pkgdataPYTHON
 
 
 pycheck: 
