@@ -1253,7 +1253,8 @@ class GedcomWriter:
             self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_comments()))
         
     def fid(self,id):
-        return id
+        family = self.db.get_family_from_handle (id)
+        return family.get_gramps_id ()
  
     def prefn(self,person):
         match = _get_int.search(person.get_gramps_id())

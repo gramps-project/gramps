@@ -2,6 +2,7 @@
 
 	* src/WriteGedcom.py (GedcomWriter.export_data): Write individuals
 	out in GRAMPS ID order.
+	(GedcomWriter.fid): Use GRAMPS ID not DB handle.
 
 	* src/ReadXML.py (GrampsParser.start_object): Set GRAMPS ID.
 
