@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.8.1_cvs\n"
 "POT-Creation-Date: Sun Nov 24 08:27:08 2002\n"
-"PO-Revision-Date: 2002-12-04 16:45+0100\n"
+"PO-Revision-Date: 2002-12-18 14:58+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -272,8 +272,8 @@ msgstr ""
 "gramps ou envoyer un email à l'attention de gramps-users@lists.sourceforge."
 "net\n"
 "\n"
-"Veuillez, svp, indiquer la distribution utilisée et joindre votre adresse email "
-"pour un supplément d'information éventuel\n"
+"Veuillez, svp, indiquer la distribution utilisée et joindre votre adresse "
+"email pour un supplément d'information éventuel\n"
 
 #: DisplayTrace.py:70
 msgid "Internal Error - GRAMPS"
@@ -3190,19 +3190,19 @@ msgstr "%s est né(e) en l'an %s. "
 
 #: plugins/AncestorReport.py:150
 msgid "He died on %s in %s"
-msgstr "il mourut en %s à %s"
+msgstr "il mourut le %s à %s"
 
 #: plugins/AncestorReport.py:153
 msgid "He died on %s"
-msgstr "il mourut en %s"
+msgstr "il mourut le %s"
 
 #: plugins/AncestorReport.py:156
 msgid "She died on %s in %s"
-msgstr "elle mourut en %s à %s"
+msgstr "elle mourut le %s à %s"
 
 #: plugins/AncestorReport.py:159
 msgid "She died on %s"
-msgstr "elle mourut en %s"
+msgstr "elle mourut le %s"
 
 #: plugins/AncestorReport.py:163
 msgid "He died in the year %s in %s"
@@ -3459,7 +3459,7 @@ msgstr "- %s"
 #: plugins/DetAncestralReport.py:521 plugins/DetDescendantReport.py:218
 #: plugins/DetDescendantReport.py:460 plugins/DetDescendantReport.py:528
 msgid "He"
-msgstr "Lui"
+msgstr "Il"
 
 #: plugins/DetAncestralReport.py:206 plugins/DetAncestralReport.py:457
 #: plugins/DetAncestralReport.py:519 plugins/DetDescendantReport.py:220
@@ -3502,11 +3502,11 @@ msgstr "."
 
 #: plugins/DetAncestralReport.py:339 plugins/DetDescendantReport.py:353
 msgid "  %s died on %s in %s"
-msgstr "  %s mourut en %s à %s"
+msgstr "  %s mourut le %s à %s"
 
 #: plugins/DetAncestralReport.py:340 plugins/DetDescendantReport.py:354
 msgid "  %s died on %s"
-msgstr "  %s mourut en %s"
+msgstr "  %s mourut le %s"
 
 #: plugins/DetAncestralReport.py:343 plugins/DetDescendantReport.py:357
 msgid "  %s died in %s in %s"
@@ -3578,7 +3578,7 @@ msgstr "  %s épousa %s le %s à %s"
 
 #: plugins/DetAncestralReport.py:495 plugins/DetDescendantReport.py:506
 msgid "  %s married in %s"
-msgstr "  %s se maria le %s"
+msgstr "  %s se maria en %s"
 
 #: plugins/DetAncestralReport.py:497 plugins/DetDescendantReport.py:508
 msgid "  %s married on %s"
