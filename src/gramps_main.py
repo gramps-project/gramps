@@ -2430,6 +2430,8 @@ def box_event(obj,event):
     if event.type == GDK._2BUTTON_PRESS:
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             load_person(obj.get_data('p'))
+    elif event.type == GDK.BUTTON_PRESS and event.button == 3:
+        on_arrow_left_clicked(obj)
     elif event.type == GDK.ENTER_NOTIFY:
         canvas = gtop.get_widget("canvas1")
         obj.raise_to_top()
@@ -2455,7 +2457,6 @@ def box_event(obj,event):
                 anchor=ANCHOR_WEST,
                 x=PAD,
                 y=2*h+(h/2))
-
     elif event.type == GDK.LEAVE_NOTIFY:
         canvas = gtop.get_widget("canvas1")
         box = obj.children()[1]
@@ -2468,6 +2469,7 @@ def box_event(obj,event):
         obj.children()[4].destroy()
         obj.children()[3].destroy()
         canvas.update_now()
+    return 1
         
 #-------------------------------------------------------------------------
 #
