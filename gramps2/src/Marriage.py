@@ -280,8 +280,8 @@ class Marriage:
         if family.get_note():
             self.notes_buffer.set_text(family.get_note())
             Utils.bold_label(self.notes_label)
-    	    if family.get_note_format() == 1:
-    	    	self.preform.set_active(1)
+            if family.get_note_format() == 1:
+                self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
 
@@ -696,6 +696,7 @@ class Marriage:
                               const.family_events,None,None,
                               0,self.event_edit_callback,
                               const.defaultMarriageEvent,
+                              self.db.readonly,
                               self.update_sources)
 
     def on_event_update_clicked(self,obj):
@@ -706,8 +707,9 @@ class Marriage:
         event = self.etree.get_object(node)
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.family_events,event,
-                              None,0,self.event_edit_callback,
+                              const.family_events,event,None,
+                              0,self.event_edit_callback,None,
+                              self.db.readonly,
                               self.update_sources)                              
 
     def on_delete_clicked(self,obj):

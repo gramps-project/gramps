@@ -5,6 +5,9 @@
 
 	* src/DbPrompter.py (ImportDbPrompter.chooser): Typo.
 
+	* src/Marriage.py (on_add_clicked,on_event_update_clicked): Typos.
+	* src/AddSpouse.py (select_spouse_clicked): Typo.
+
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.
 	* src/EditPerson.py (on_add_addr_clicked): Typos.

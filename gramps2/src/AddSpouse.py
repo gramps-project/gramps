@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -264,7 +264,7 @@ class AddSpouse:
         if self.person.get_gender() == RelLib.Person.MALE:
             self.active_family.set_mother_handle(spouse.get_handle())
             self.active_family.set_father_handle(self.person.get_handle())
-        else:	
+        else:
             self.active_family.set_father_handle(spouse.get_handle())
             self.active_family.set_mother_handle(self.person.get_handle())
 
@@ -277,7 +277,8 @@ class AddSpouse:
         self.update(self.active_family)
         m = Marriage.Marriage(self.parent, self.active_family,
                               self.parent.db, self.parent.new_after_edit,
-                              self.parent.family_view.load_family)
+                              self.parent.family_view.load_family,
+                              self.parent.source_view.build_tree)
         m.on_add_clicked()
 
     def relation_type_changed(self,obj):
