@@ -108,6 +108,18 @@ class SourceNote:
         else:
             return self.note.get() 
 
+    def setNoteFormat(self,val):
+        """Set the note's format to the given value"""
+        if self.note:
+            self.note.setFormat(val)
+
+    def getNoteFormat(self):
+        """Return the current note's format"""
+        if self.note == None:
+            return 0
+        else:
+            return self.note.getFormat()
+
     def setNoteObj(self,obj):
         """Change the note object instance to obj"""
         self.note = obj
@@ -680,6 +692,18 @@ class ObjectRef:
             return ""
         else:
             return self.note.get() 
+
+    def setNoteFormat(self,val):
+        """Set the note's format to the given value"""
+        if self.note:
+            self.note.setFormat(val)
+
+    def getNoteFormat(self):
+        """Return the current note's format"""
+        if self.note == None:
+            return 0
+        else:
+            return self.note.getFormat()
 
     def setNoteObj(self,obj):
         """Change the note object instance to obj"""
@@ -1911,6 +1935,14 @@ class Source:
     def getNote(self):
         """returns the text of the note attached to the Source"""
         return self.note.get()
+
+    def setNoteFormat(self,val):
+        """Set the note's format to the given value"""
+        self.note.setFormat(val)
+
+    def getNoteFormat(self):
+        """Return the current note's format"""
+        return self.note.getFormat()
 
     def setNoteObj(self,obj):
         """sets the Note instance attached to the Source"""

@@ -119,6 +119,8 @@ class EditPerson:
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.notes_field = self.get_widget("personNotes")
+        self.flowed = self.get_widget("flowed")
+        self.preform = self.get_widget("preform")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
         self.event_cause_field = self.get_widget("eventCause")
@@ -298,8 +300,12 @@ class EditPerson:
         
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
-        self.notes_buffer.set_text(person.getNote())
         if person.getNote():
+            self.notes_buffer.set_text(person.getNote())
+            if person.getNoteObj().getFormat() == 1:
+                self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
             Utils.bold_label(self.notes_label)
 
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
@@ -1016,6 +1022,8 @@ class EditPerson:
         unknown = self.is_unknown.get_active()
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
+        flowed = self.flowed.get_active()
+        preform = self.preform.get_active()
         idval = self.gid.get_text()
 
         changed = 0
@@ -1075,6 +1083,10 @@ class EditPerson:
         elif unknown and self.person.getGender() != RelLib.Person.unknown:
             changed = 1
         if text != self.person.getNote() or self.lists_changed:
+            changed = 1
+        if flowed and self.person.getNoteFormat() != 0:
+            changed = 1
+        elif preform and self.person.getNoteFormat() != 1 :
             changed = 1
 
         if self.lds_not_loaded == 0:
@@ -1495,6 +1507,13 @@ class EditPerson:
         if text != self.person.getNote():
             self.person.setNote(text)
             Utils.modified()
+
+        flowed = self.flowed.get_active()
+        preform = self.preform.get_active()
+        if flowed and self.person.getNoteFormat() != 0:
+            self.person.setNoteFormat(0)
+        elif preform and self.person.getNoteFormat() != 1 :
+            self.person.setNoteFormat(1)
 
         if self.complete.get_active() != self.person.getComplete():
             self.person.setComplete(self.complete.get_active())
