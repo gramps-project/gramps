@@ -131,6 +131,8 @@ class EditPerson:
         self.name_note = self.get_widget("name_note")
         self.name_source = self.get_widget("name_source")
 
+        self.elist = person.getEventList()[:]
+
         self.selectedIcon = -1
         
         self.top_window.signal_autoconnect({
@@ -140,9 +142,9 @@ class EditPerson:
             "on_name_source_clicked" : on_name_source_clicked,
             "on_birth_note_clicked" : on_birth_note_clicked,
             "on_birth_source_clicked" : on_birth_source_clicked,
-            "on_eventAddBtn_clicked" : on_event_add_clicked,
-            "on_eventDeleteBtn_clicked" : on_event_delete_clicked,
-            "on_nameList_select_row" : on_name_list_select_row,
+            "on_event_add_clicked" : on_event_add_clicked,
+            "on_event_delete_clicked" : on_event_delete_clicked,
+            "on_name_list_select_row" : on_name_list_select_row,
             "on_browse_clicked": on_browse_clicked,
             "on_web_list_select_row" : on_web_list_select_row,
             "on_attr_list_select_row" : on_attr_list_select_row,
@@ -159,8 +161,8 @@ class EditPerson:
             "on_update_address_clicked" : on_update_address_clicked,
             "on_delete_address_clicked" : on_delete_address_clicked,
             "on_add_address_clicked" : on_add_address_clicked,
-            "on_eventUpdateBtn_clicked" : on_event_update_clicked,
-            "on_eventList_select_row" : on_event_select_row,
+            "on_event_update_clicked" : on_event_update_clicked,
+            "on_event_select_row" : on_event_select_row,
             "on_editperson_switch_page" : on_switch_page,
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_makeprimary_clicked" : on_primary_photo_clicked,
@@ -422,7 +424,7 @@ class EditPerson:
         self.event_list.clear()
 
         self.event_index = 0
-        for event in self.person.getEventList():
+        for event in self.elist:
             attr = ""
             if Config.show_detail:
                 if event.getNote() != "":
@@ -486,6 +488,13 @@ class EditPerson:
     def load_photo(self,photo):
         self.get_widget("personPix").load_file(photo)
 
+    #-------------------------------------------------------------------------
+    #
+    #
+    #
+    #-------------------------------------------------------------------------
+    def update_events(self):
+        self.person.setEventList(self.elist)
 
 #-------------------------------------------------------------------------
 #
@@ -819,14 +828,13 @@ def on_event_delete_clicked(obj):
     if row < 0:
         return
     
-    list = edit_person_obj.person.getEventList()
-    del list[row]
+    del edit_person_obj.elist[row]
 
-    if row > len(list)-1:
+    if row > len(edit_person_obj.elist)-1:
         obj.set_data(INDEX,row-1)
         
     edit_person_obj.redraw_event_list()
-    utils.modified()
+    edit_person_obj.events_changed = 1
 
 #-------------------------------------------------------------------------
 #
@@ -945,25 +953,28 @@ def on_primary_photo_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def update_event(event,name,date,place,desc,note):
+    changed = 0
     if event.getPlace() != place:
         event.setPlace(place)
-        utils.modified()
+        changed = 1
         
     if event.getName() != const.save_pevent(name):
         event.setName(const.save_pevent(name))
-        utils.modified()
+        changed = 1
         
     if event.getDescription() != desc:
         event.setDescription(desc)
-        utils.modified()
+        changed = 1
 
     if event.getNote() != note:
         event.setNote(note)
-        utils.modified()
+        changed = 1
 
     if event.getDate() != date:
         event.setDate(date)
-        utils.modified()
+        changed = 1
+
+    return changed
     
 #-------------------------------------------------------------------------
 #
@@ -1011,7 +1022,7 @@ def on_apply_person_clicked(obj):
     edit_person_obj = obj.get_data(EDITPERSON)
     person = edit_person_obj.person
     
-    surname = edit_person_obj.surname.get_text()
+    surname = edit_person_obj.surname_field.get_text()
     suffix = edit_person_obj.suffix.get_text()
     given = edit_person_obj.given.get_text()
     nick = edit_person_obj.nick.get_text()
@@ -1103,8 +1114,11 @@ def on_apply_person_clicked(obj):
         person.setNote(text)
         utils.modified()
 
+    edit_person_obj.update_events()
+    if edit_person_obj.events_changed:
+        utils.modified()
+        
     utils.destroy_passed_object(obj)
-
     edit_person_obj.callback(edit_person_obj)
 
 #-------------------------------------------------------------------------
@@ -1470,9 +1484,11 @@ def on_event_edit_apply_clicked(obj):
 
     if event == None:
         event = Event()
-        ee.parent.person.addEvent(event)
+        ee.parent.elist.append(event)
         
-    update_event(event,ename,edate,eplace,edesc,enote)
+    if update_event(event,ename,edate,eplace,edesc,enote):
+        ee.parent.events_changed = 1
+        
     ee.parent.redraw_event_list()
 
 #-------------------------------------------------------------------------

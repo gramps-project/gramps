@@ -49,11 +49,20 @@ class Date:
     fmt = re.compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
                      re.IGNORECASE)
 
-    def __init__(self):
-	self.start = SingleDate()
-	self.stop = None
-        self.range = 0
-        self.text = ""
+    def __init__(self,source=None):
+        if source:
+            self.start = SingleDate(source.start)
+            if source.start:
+                self.stop = SingleDate(source.stop)
+            else:
+                self.stop = None
+            self.range = source.range
+            self.text = source.text
+        else:
+            self.start = SingleDate()
+            self.stop = None
+            self.range = 0
+            self.text = ""
 
     def get_start_date(self):
         return self.start
@@ -312,11 +321,17 @@ class SingleDate:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self):
-        self.month = -1
-        self.day = -1
-        self.year = -1
-        self.mode = SingleDate.exact
+    def __init__(self,source=None):
+        if source:
+            self.month = source.month
+            self.day = source.day
+            self.year = source.year
+            self.mode = source.mode
+        else:
+            self.month = -1
+            self.day = -1
+            self.year = -1
+            self.mode = SingleDate.exact
 
     #--------------------------------------------------------------------
     #
