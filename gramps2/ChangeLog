@@ -1,3 +1,8 @@
+2003-06-19  Tim Waugh  <twaugh@redhat.com>
+	* src/WriteXML.py (write_xml_data): Use a stable order for writing
+	elements in XML.  This makes it useful to do revision control (RFE
+	748165).
+
 2003-06-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: keep focus on correct family after a new
 	child is added
