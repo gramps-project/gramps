@@ -21,8 +21,7 @@
 "People who have images"
 
 import Filter
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class HavePhotos(Filter.Filter):
     "People who have images"

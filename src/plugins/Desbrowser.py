@@ -34,10 +34,8 @@ import os
 #------------------------------------------------------------------------
 from RelLib import *
 import Utils
-import intl
+from intl import gettext as _
 import GrampsCfg
-
-_ = intl.gettext
 
 #------------------------------------------------------------------------
 #

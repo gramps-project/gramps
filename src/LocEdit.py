@@ -34,8 +34,7 @@ import const
 import Utils
 from RelLib import *
 
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

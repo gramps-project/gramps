@@ -21,8 +21,7 @@
 import os
 import string
 import Plugins
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 from TextDoc import *
 from DrawDoc import *

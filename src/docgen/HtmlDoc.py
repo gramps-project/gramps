@@ -31,8 +31,7 @@ import const
 
 from TextDoc import *
 
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)",
                               re.DOTALL|re.IGNORECASE|re.MULTILINE)

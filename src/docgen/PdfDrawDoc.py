@@ -24,8 +24,7 @@ import string
 from TextDoc import *
 from DrawDoc import *
 import Plugins
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 try:
     from reportlab.pdfgen import canvas

@@ -44,9 +44,7 @@ import gtk.glade
 from RelLib import *
 
 import Utils
-import intl
-_ = intl.gettext
-
+from intl import gettext as _
 
 db = None
 glade_file = None

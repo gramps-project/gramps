@@ -23,8 +23,7 @@
 from RelLib import *
 import os
 import Utils
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 from gnome.ui import *
 import gtk

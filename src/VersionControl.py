@@ -44,8 +44,7 @@ import gtk.glade
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

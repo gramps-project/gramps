@@ -27,8 +27,8 @@ class ListModel:
         l = len(dlist)
         self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
 
+        self.tree.set_rules_hint(gtk.TRUE)
         self.new_model()
-
         self.selection = self.tree.get_selection()
 
         self.data_index = l
@@ -39,10 +39,13 @@ class ListModel:
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_min_width(name[2])
             if name[0] == '':
-                column.set_clickable(gtk.TRUE)
                 column.set_visible(gtk.FALSE)
             else:
                 column.set_resizable(gtk.TRUE)
+            if name[1] == -1:
+                column.set_clickable(gtk.FALSE)
+            else:
+                column.set_clickable(gtk.TRUE)
             cnum = cnum + 1
             self.tree.append_column(column)
             
@@ -57,7 +60,7 @@ class ListModel:
             num = num + 1
             
         self.connect_model()
-        self.column.clicked()
+        self.model.set_sort_column_id(0,gtk.SORT_ASCENDING)
         
         if select_func:
             self.selection.connect('changed',select_func)
@@ -70,7 +73,7 @@ class ListModel:
 
     def connect_model(self):
         self.tree.set_model(self.model)
-        self.column.clicked()
+        self.model.set_sort_column_id(0,gtk.SORT_ASCENDING)
         
     def get_selected(self):
         return self.selection.get_selected()
@@ -91,13 +94,15 @@ class ListModel:
     def get_object(self,iter):
         return self.model.get_value(iter,self.data_index)
         
-    def add(self,data,info=None):
+    def add(self,data,info=None,select=0):
         iter = self.model.append()
         col = 0
         for object in data:
             self.model.set_value(iter,col,object)
             col = col + 1
         self.model.set_value(iter,col,info)
+        if select:
+            self.selection.select_iter(iter)
 
     def add_and_select(self,data,info=None):
         iter = self.model.append()

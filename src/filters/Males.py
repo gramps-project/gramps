@@ -22,8 +22,7 @@
 
 import Filter
 from RelLib import Person
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class Males(Filter.Filter):
     "Males"

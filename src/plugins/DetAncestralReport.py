@@ -24,9 +24,7 @@
 import RelLib
 import os
 import sort
-import intl
-
-_ = intl.gettext
+from intl import gettext as _
 
 from Report import *
 from TextDoc import *

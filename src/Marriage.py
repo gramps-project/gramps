@@ -131,7 +131,7 @@ class Marriage:
         self.gallery.load_images()
 
         etitles = [(_('Event'),0,150),(_('Date'),1,150),(_('Place'),2,150)]
-        atitles = [(_('Attribute'),0,150),(_('Value'),1,150)]
+        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
 
         self.etree = ListModel.ListModel(self.event_list, etitles,
                                          self.on_select_row,
@@ -306,20 +306,18 @@ class Marriage:
         data = str(('fattr',self.family.getId(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
     def update_lists(self):
         self.family.setEventList(self.elist)
         self.family.setAttributeList(self.alist)
 
     def redraw_attr_list(self):
-        for data in self.alist:
-            self.atree.add([data.getName(),data.getValue()],data)
+        self.atree.clear()
+        for attr in self.alist:
+            d = [const.display_fattr(attr.getType()),attr.getValue()]
+            self.atree.add(d,attr)
 
     def redraw_event_list(self):
+        self.etree.clear()
         for data in self.elist:
             self.etree.add([data.getName(),data.getQuoteDate(),data.getPlaceName()],data)
 
@@ -558,23 +556,4 @@ class Marriage:
         else:
             name = mother.getPrimaryName().getName()
         AttrEdit.AttributeEditor(self,None,name,const.familyAttributes)
-
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def disp_attr(attr):
-    return [const.display_fattr(attr.getType()),attr.getValue()]
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def disp_event(event):
-    return [const.display_fevent(event.getName()),
-            event.getQuoteDate(),
-            event.getPlaceName()]
 

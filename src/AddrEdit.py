@@ -41,8 +41,7 @@ import RelLib
 import Sources
 
 from DateEdit import DateEdit
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

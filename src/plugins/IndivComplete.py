@@ -37,9 +37,7 @@ from TextDoc import *
 from StyleEditor import *
 from Report import *
 import GenericFilter
-import intl
-
-_ = intl.gettext
+from intl import gettext as _
 
 #------------------------------------------------------------------------
 #

@@ -60,6 +60,14 @@ PyIntl_bindtextdomain(PyObject* self,PyObject*args)
 }
 
 static PyObject*
+PyIntl_bind_textdomain_codeset(PyObject* self,PyObject*args)
+{
+  char *domain,*dirname;
+  if(!PyArg_ParseTuple(args,"zz",&domain,&dirname))return 0;
+  return PyString_FromString(bind_textdomain_codeset(domain,dirname));
+}
+
+static PyObject*
 PyIntl_setlocale(PyObject* self,PyObject* args)
 {
   int category;
@@ -120,6 +128,7 @@ static struct PyMethodDef PyIntl_Methods[] = {
   {"dcgettext",(PyCFunction)PyIntl_dcgettext,1},
   {"textdomain",(PyCFunction)PyIntl_textdomain,1},
   {"bindtextdomain",(PyCFunction)PyIntl_bindtextdomain,1},
+  {"bind_textdomain_codeset",(PyCFunction)PyIntl_bind_textdomain_codeset,1},
   {"setlocale",(PyCFunction)PyIntl_setlocale,1},
   {"localeconv",(PyCFunction)PyIntl_localeconv,0},
   {NULL, NULL}

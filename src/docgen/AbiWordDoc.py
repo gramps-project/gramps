@@ -34,8 +34,7 @@ from latin_utf8 import latin_to_utf8
 import string
 import Plugins
 import ImgManip
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

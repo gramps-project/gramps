@@ -27,11 +27,9 @@ import string
 import time
 import const
 import Utils
-import intl
 import Date
 import re
-
-_ = intl.gettext
+from intl import gettext as _
 
 import gtk
 import gnome.ui

@@ -30,7 +30,8 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -56,11 +57,11 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
+papersize      = "%s/papersize.xml" % rootDir
 good_xpm       = "%s/good.png" % rootDir
 bad_xpm        = "%s/bad.png" % rootDir
 caution_xpm    = "%s/caution.png" % rootDir
 
-papersize      = "%s/papersize.xml" % rootDir
 system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
 icon           = "%s/gramps.xpm" % rootDir
@@ -99,7 +100,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "GRAMPS"
-version      = "0.9.0-pre5"
+version      = "0.9.0-pre6"
 copyright    = "© 2001-2002 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton","Donald A. Peterson"]
 comments     = _("GRAMPS (Genealogical Research and Analysis "

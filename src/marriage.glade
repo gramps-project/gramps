@@ -10,6 +10,7 @@
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
+  <property name="default_width">550</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="has_separator">True</property>
@@ -871,15 +872,26 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkTreeView" id="marriageEventList">
-		      <property name="width_request">500</property>
-		      <property name="height_request">250</property>
+		    <widget class="GtkScrolledWindow" id="scrolledwindow25">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="headers_visible">True</property>
-		      <property name="rules_hint">False</property>
-		      <property name="reorderable">False</property>
-		      <property name="enable_search">True</property>
+		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="shadow_type">GTK_SHADOW_NONE</property>
+		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+		      <child>
+			<widget class="GtkTreeView" id="marriageEventList">
+			  <property name="width_request">500</property>
+			  <property name="height_request">250</property>
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="headers_visible">True</property>
+			  <property name="rules_hint">False</property>
+			  <property name="reorderable">False</property>
+			  <property name="enable_search">True</property>
+			</widget>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>

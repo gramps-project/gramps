@@ -49,8 +49,7 @@ import gtk
 import const
 from RelLib import *
 import Date
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

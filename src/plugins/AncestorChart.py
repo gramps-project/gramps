@@ -31,8 +31,7 @@ from SubstKeywords import SubstKeywords
 
 import gtk
 
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 #------------------------------------------------------------------------
 #

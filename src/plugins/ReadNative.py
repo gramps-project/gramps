@@ -22,11 +22,9 @@
 
 from ReadXML import *
 import Utils
-import intl
+from intl import gettext as _
 import gtk
 import const
-
-_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
