@@ -35,7 +35,7 @@ import gtk
 import BaseDoc
 import Report
 import Errors
-import Calendar
+import Date
 
 from QuestionDialog import ErrorDialog
 from SubstKeywords import SubstKeywords
@@ -206,7 +206,7 @@ class FanChart:
         birth_handle = person.get_birth_handle()
         if birth_handle:
             b = self.database.get_event_from_handle(birth_handle).get_date_object().get_year()
-            if b == Calendar.UNDEF:
+            if b == 0:
                 b = ""
         else:
             b = ""
@@ -214,7 +214,7 @@ class FanChart:
         death_handle = person.get_death_handle()
         if death_handle:
             d = self.database.get_event_from_handle(death_handle).get_date_object().get_year()
-            if d == Calendar.UNDEF:
+            if d == 0:
                 d = ""
         else:
             d = ""

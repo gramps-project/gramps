@@ -50,7 +50,6 @@ import gtk.glade
 #------------------------------------------------------------------------
 import RelLib
 import Utils
-import Gregorian
 
 from gettext import gettext as _
 
@@ -117,8 +116,8 @@ class Verify:
             event = self.db.get_event_from_handle(event_handle)
             dateObj = event.get_date_object()
             if dateObj:
-                if dateObj.get_calendar().NAME != Gregorian.Gregorian.NAME:
-                    dateObj.set_calendar(Gregorian.Gregorian)
+                if dateObj.get_calendar() != Date.CAL_GREGORIAN:
+                    dateObj.set_calendar(Date.CAL_GREGORIAN)
                 year = dateObj.get_year()
         return year
 

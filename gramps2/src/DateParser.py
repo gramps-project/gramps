@@ -58,6 +58,7 @@ class DateParser:
 
     # determine the code set returned by nl_langinfo
     _codeset = locale.nl_langinfo(locale.CODESET)
+    _fmt_parse = re.compile(".*%(\S).*%(\S).*%(\S).*")
 
     # RFC-2822 only uses capitalized English abbreviated names, no locales.
     _rfc_days = ('Sun','Mon','Tue','Wed','Thu','Fri','Sat')
@@ -245,6 +246,13 @@ class DateParser:
             Date.CAL_HEBREW    : self._parse_hebrew,
             Date.CAL_ISLAMIC   : self._parse_islamic,
             }
+
+        fmt = locale.nl_langinfo(locale.D_FMT)
+        match = self._fmt_parse.match(fmt.lower())
+        if match:
+            self.dmy = (match.groups() == ('d','m','y'))
+        else:
+            self.dmy = True
         
     def _get_int(self,val):
         """
@@ -321,12 +329,6 @@ class DateParser:
         if subparser == None:
             subparser = self._parse_greg_julian
             
-        try:
-            value = time.strptime(text)
-            return (value[2],value[1],value[0],False)
-        except ValueError:
-            pass
-
         value = subparser(text)
         if value != Date.EMPTY:
             return value
@@ -356,8 +358,12 @@ class DateParser:
         match = self._numeric.match(text)
         if match:
             groups = match.groups()
-            m = self._get_int(groups[1])
-            d = self._get_int(groups[3])
+            if self.dmy:
+                m = self._get_int(groups[3])
+                d = self._get_int(groups[1])
+            else:
+                m = self._get_int(groups[1])
+                d = self._get_int(groups[3])
             y = self._get_int(groups[4])
             if gregorian_valid((d,m)):
                 return (d,m,y,False)
