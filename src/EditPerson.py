@@ -528,11 +528,14 @@ class EditPerson:
         flist = [self.person.get_main_parents_family_id()]
         for (fam,mrel,frel) in self.person.get_parent_family_id_list():
             flist.append(fam)
-        for fam in flist:
+        for fam_id in flist:
+            fam = self.db.find_family_from_id(fam_id)
             if fam == None:
                 continue
-            f = fam.get_father_id()
-            m = fam.get_mother_id()
+            f_id = fam.get_father_id()
+            m_id = fam.get_mother_id()
+            f = self.db.find_person_from_id(f_id)
+            m = self.db.find_person_from_id(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     'father' : GrampsCfg.nameof(f),
@@ -1223,10 +1226,11 @@ class EditPerson:
             self.event_cause_field.set_text(event.get_cause())
             self.event_descr_field.set_text(short(event.get_description()))
             if len(event.get_source_references()) > 0:
-                psrc_id = event.get_source_references()[0].get_base_id()
+                psrc_ref = event.get_source_references()[0]
+                psrc_id = psrc_ref.get_base_id()
                 psrc = self.db.find_source_from_id(psrc_id)
-                self.event_src_field.set_text(short(psrc.get_base_id().get_title()))
-                self.event_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
+                self.event_src_field.set_text(short(psrc.get_title()))
+                self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
                 self.event_src_field.set_text('')
                 self.event_conf_field.set_text('')
@@ -1255,10 +1259,11 @@ class EditPerson:
             self.addr_postal.set_text(addr.get_postal_code())
             self.addr_phone.set_text(addr.get_phone())
             if len(addr.get_source_references()) > 0:
-                psrc_id = addr.get_source_references()[0].get_base_id()
+                psrc_ref = addr.get_source_references()[0]
+                psrc_id = psrc_ref.get_base_id()
                 psrc = self.db.find_source_from_id(psrc_id)
-                self.addr_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
-                self.addr_src_field.set_text(short(psrc.get_base_id().get_title()))
+                self.addr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
+                self.addr_src_field.set_text(short(psrc.get_title()))
             else:
                 self.addr_src_field.set_text('')
                 self.addr_conf_field.set_text('')
@@ -1335,10 +1340,11 @@ class EditPerson:
             self.attr_type.set_text(const.display_pattr(attr.get_type()))
             self.attr_value.set_text(short(attr.get_value()))
             if len(attr.get_source_references()) > 0:
-                psrc_id = attr.get_source_references()[0].get_base_id()
+                psrc_ref = attr.get_source_references()[0]
+                psrc_id = psrc_ref.get_base_id()
                 psrc = self.db.find_source_from_id(psrc_id)
-                self.attr_src_field.set_text(short(psrc.get_base_id().get_title()))
-                self.attr_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
+                self.attr_src_field.set_text(short(psrc.get_title()))
+                self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
                 self.attr_src_field.set_text('')
                 self.attr_conf_field.set_text('')

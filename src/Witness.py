@@ -28,6 +28,7 @@
 import gobject
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -89,10 +90,10 @@ class WitnessTab:
         if iter:
             objs = self.model.get_selected_objects()
             src = objs[0]
-            WitnessEditor(src,self.db,self.update_clist,self)
+            WitnessEditor(src,self.db,self,self.update_clist,self.window)
 
     def add_clicked(self,obj):
-        WitnessEditor(None,self.db,self.update_clist,self,self.window)
+        WitnessEditor(None,self.db,self,self.update_clist,self.window)
 
     def add_ref(self,inst,ref):
         self.parent.lists_changed = 1
@@ -113,7 +114,7 @@ class WitnessTab:
 #-------------------------------------------------------------------------
 class WitnessEditor:
 
-    def __init__(self,ref,database,update=None,parent=None,parent_window=None):
+    def __init__(self,ref,database,parent,update=None,parent_window=None):
 
         self.db = database
         self.parent = parent
@@ -122,6 +123,10 @@ class WitnessEditor:
         self.show_witness = gtk.glade.XML(const.dialogFile, "witness_edit","gramps")
         self.show_witness.signal_autoconnect({
             "on_toggled"   : self.on_toggled,
+            "on_witness_edit_delete_event"   : self.on_delete_event,
+            "on_cancel_witness_clicked"   : self.close,
+            "on_help_witness_clicked"   : self.on_help_clicked,
+            "on_ok_witness_clicked"   : self.ok_clicked,
             })
 
         self.window = self.show_witness.get_widget('witness_edit')
@@ -136,7 +141,7 @@ class WitnessEditor:
             if self.ref.get_type():
                 self.in_db.set_active(1)
                 self.idval = self.ref.get_value()
-                person = self.db.get_person(self.idval)
+                person = self.db.find_person_from_id(self.idval)
                 self.name.set_text(person.get_primary_name().get_regular_name())
             else:
                 self.name.set_text(self.ref.get_value())
@@ -150,10 +155,32 @@ class WitnessEditor:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
-            self.ok_clicked()
+        self.parent.parent.child_windows.append(self)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
         self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent_menu_item = gtk.MenuItem(_('Witness Editor'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.parent.menu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-complete')
 
     def choose(self,obj):
         import SelectPerson
@@ -163,8 +190,8 @@ class WitnessEditor:
             self.new_person = new_person
             self.idval = new_person.get_id()
             new_name = new_person.get_primary_name().get_regular_name()
-	    if new_name:
-                self.name.set_text(new_name)
+        if new_name:
+            self.name.set_text(new_name)
         
     def on_toggled(self,obj):
         if self.in_db.get_active():
@@ -176,7 +203,7 @@ class WitnessEditor:
             self.name.set_sensitive(1)
             self.select.set_sensitive(0)
         
-    def ok_clicked(self):
+    def ok_clicked(self,obj):
         if not self.ref:
             if self.in_db.get_active():
                 self.ref = RelLib.Witness(RelLib.Event.ID)
@@ -186,10 +213,13 @@ class WitnessEditor:
 
         if self.in_db.get_active():
             self.ref.set_value(self.idval)
+            self.ref.set_type(RelLib.Event.ID)
         else:
             self.ref.set_value(unicode(self.name.get_text()))
+            self.ref.set_type(RelLib.Event.NAME)
 
         c = self.comment.get_buffer()
         self.ref.set_comment(unicode(c.get_text(c.get_start_iter(),c.get_end_iter(),gtk.FALSE)))
         if self.update:
             self.update()
+        self.close(obj)

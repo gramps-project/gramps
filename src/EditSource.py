@@ -49,15 +49,17 @@ from gettext import gettext as _
 
 class EditSource:
 
-    def __init__(self,source,db,parent_window=None,func=None):
+    def __init__(self,source,db,parent,parent_window=None,func=None):
         self.source = source
         self.db = db
+        self.parent = parent
+        self.child_windows = []
         self.callback = func
         self.path = db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
-	self.gallery_ok = 0
+        self.gallery_ok = 0
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
         self.top = self.top_window.get_widget("sourceEditor")
@@ -90,7 +92,7 @@ class EditSource:
             self.notes_buffer.set_text(source.get_note())
             Utils.bold_label(self.notes_label)
             if source.get_note_format() == 1:
-            	self.preform.set_active(1)
+                self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
 
@@ -105,6 +107,9 @@ class EditSource:
             "on_editphoto_clicked"     : self.gallery.on_edit_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_sourceEditor_help_clicked" : self.on_help_clicked,
+            "on_sourceEditor_ok_clicked" : self.on_source_apply_clicked,
+            "on_sourceEditor_cancel_clicked" : self.close,
+            "on_sourceEditor_delete_event" : self.on_delete_event,
             })
 
         if self.source.get_id() == "":
@@ -115,21 +120,57 @@ class EditSource:
             self.top.set_transient_for(parent_window)
 
         self.display_references()
+        if parent_window:
+            self.top.set_transient_for(parent_window)
+        self.parent.child_windows.append(self)
+        self.add_itself_to_menu()
         self.top.show()
-        self.val = self.top.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_source_apply_clicked()
-        self.top.destroy()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.top.run()
 
     def close(self,obj):
         self.gallery.close(self.gallery_ok)
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.top.destroy()
         
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def add_itself_to_menu(self):
+        if not self.source:
+            label = _("New Source")
+        else:
+            label = self.source.get_title()
+        if not label.strip():
+            label = _("New Source")
+        label = "%s: %s" % (_('Source'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.menu.append(self.parent_menu_item)
+        self.menu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Source Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.top.present()
+
     def display_references(self):
         p_event_list = []
         p_attr_list = []
@@ -148,7 +189,12 @@ class EditSource:
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             name = GrampsCfg.nameof(p)
-            for v in p.get_event_list() + [p.get_birth(), p.get_death()]:
+            birth_event = self.db.find_event_from_id(p.get_birth_id())
+            death_event = self.db.find_event_from_id(p.get_death_id())
+            for v_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
+                v = self.db.find_event_from_id(v_id)
+                if not v:
+                    continue
                 for sref in v.get_source_references():
                     if sref.get_base_id() == self.source.get_id():
                         p_event_list.append((name,v.get_name()))
@@ -170,8 +216,10 @@ class EditSource:
                 if sref.get_base_id() == self.source.get_id():
                     m_list.append(name)
         for p in self.db.get_family_id_map().values():
-            f = p.get_father_id()
-            m = p.get_mother_id()
+            f_id = p.get_father_id()
+            m_id = p.get_mother_id()
+            f = self.db.find_person_from_id(f_id)
+            m = self.db.find_person_from_id(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.nameof(f),
@@ -180,7 +228,10 @@ class EditSource:
                 name = GrampsCfg.nameof(f)
             else:
                 name = GrampsCfg.nameof(m)
-            for v in p.get_event_list():
+            for v_id in p.get_event_list():
+                v = self.db.find_event_from_id(v_id)
+                if not v:
+                    continue
                 for sref in v.get_source_references():
                     if sref.get_base_id() == self.source.get_id():
                         f_event_list.append((name,v.get_name()))
@@ -235,7 +286,7 @@ class EditSource:
             
         self.ref_not_loaded = 0
 
-    def on_source_apply_clicked(self):
+    def on_source_apply_clicked(self,obj):
 
         title = unicode(self.title.get_text())
         author = unicode(self.author.get_text())
@@ -269,14 +320,14 @@ class EditSource:
             self.source.set_note_format(format)
             Utils.modified()
 
-	if self.lists_changed:
+        if self.lists_changed:
             Utils.modified()
         
-	self.gallery_ok = 1
-        self.close(None)
+        self.gallery_ok = 1
 
         if self.callback:
             self.callback(self.source)
+        self.close(obj)
 
     def on_switch_page(self,obj,a,page):
         if page == 2 and self.not_loaded:

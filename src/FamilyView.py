@@ -467,7 +467,7 @@ class FamilyView:
             return
         child = self.parent.db.get_person(self.child_model.get_value(iter,2))
         try:
-            EditPerson.EditPerson(child, self.parent.db, self.spouse_after_edit)
+            EditPerson.EditPerson(self.parent, child, self.parent.db, self.spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -536,7 +536,7 @@ class FamilyView:
     def edit_spouse_callback(self,obj):
         if self.selected_spouse:
             try:
-                EditPerson.EditPerson(self.selected_spouse, self.parent.db, self.spouse_after_edit)
+                EditPerson.EditPerson(self.parent, self.selected_spouse, self.parent.db, self.spouse_after_edit)
             except:
                 DisplayTrace.DisplayTrace()
 
@@ -564,7 +564,7 @@ class FamilyView:
                                          self.parent.new_after_edit,
                                          self.load_family)
                    else:
-                       AddSpouse.AddSpouse(self.parent.db,self.person,
+                       AddSpouse.AddSpouse(self.parent,self.parent.db,self.person,
                                            self.load_family,
                                            self.parent.people_view.redisplay_person_list,
                                            self.family)
@@ -575,7 +575,7 @@ class FamilyView:
         if not self.person:
             return
         try:
-            AddSpouse.AddSpouse(self.parent.db, self.person,
+            AddSpouse.AddSpouse(self.parent, self.parent.db, self.person,
                                 self.load_family,
                                 self.parent.people_view.redisplay_person_list)
         except:
@@ -588,7 +588,7 @@ class FamilyView:
         else:
             person.set_gender(RelLib.Person.male)
         try:
-            EditPerson.EditPerson(person, self.parent.db, self.new_spouse_after_edit)
+            EditPerson.EditPerson(self.parent, person, self.parent.db, self.new_spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -648,7 +648,7 @@ class FamilyView:
         person.get_primary_name().set_surname_prefix(name[0])
 
         try:
-            EditPerson.EditPerson(person, self.parent.db, self.new_child_after_edit)
+            EditPerson.EditPerson(self.parent, person, self.parent.db, self.new_child_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1175,7 +1175,7 @@ class FamilyView:
         if not person:
             return
         try:
-            ChooseParents.ChooseParents(self.parent.db,person,None,
+            ChooseParents.ChooseParents(self.parent, self.parent.db,person,None,
                                         self.load_family,
                                         self.parent.full_update)
         except:

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ class AddSpouse:
     family with the passed person as one spouse, and another person to
     be selected.
     """
-    def __init__(self,db,person,update,addperson,family=None):
+    def __init__(self,parent,db,person,update,addperson,family=None):
         """
         Displays the AddSpouse dialog box.
 
@@ -74,6 +74,7 @@ class AddSpouse:
         update - function that updates the family display
         addperson - function that adds a person to the person view
         """
+        self.parent = parent
         self.db = db
         self.update = update
         self.person = person
@@ -152,7 +153,7 @@ class AddSpouse:
 
         person = RelLib.Person()
         person.set_gender(gen)
-        EditPerson.EditPerson(person,self.db,self.update_list)
+        EditPerson.EditPerson(self.parent,person,self.db,self.update_list)
 
     def update_list(self,epo):
         """

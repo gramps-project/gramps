@@ -5548,6 +5548,7 @@
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
   <property name="has_separator">False</property>
+  <signal name="delete_event" handler="on_sourceEditor_delete_event" last_modification_time="Sat, 21 Feb 2004 02:58:41 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox11">
@@ -5570,6 +5571,7 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-6</property>
+	      <signal name="clicked" handler="on_sourceEditor_cancel_clicked" last_modification_time="Sat, 21 Feb 2004 02:59:20 GMT"/>
 	    </widget>
 	  </child>
 
@@ -5584,6 +5586,7 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-5</property>
+	      <signal name="clicked" handler="on_sourceEditor_ok_clicked" last_modification_time="Sat, 21 Feb 2004 02:59:36 GMT"/>
 	    </widget>
 	  </child>
 

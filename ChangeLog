@@ -1,3 +1,19 @@
+2004-02-20  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditPerson.py: Corrections.
+	* src/EditSource.py: Use parent class. Use windows menu.
+	* src/ImageSelect.py: Corrections.
+	* src/Sources.py: Corrections.
+	* src/gramps.glade: Add handlers.
+	* src/NoteEdit.py: Corrections. 
+	* src/dialog.glade: Add handler. 
+	* src/Witness.py: Corrections. 
+	* src/RelLib.py: Include witnesses in comparing events. 
+	* src/FamilyView.py: Pass parent on to child classes.
+	* src/AddSpouse.py: Pass parent on to EditPerson.
+	* src/ChooseParents.py: Pass parent on to EditPerson.
+	* src/gramps_main.py: Pass Gramps class to child classes.
+	* src/MergeData.py: Pass parent on to EditPerson.
+
 2004-02-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPerson.py: Use parent class. Add/remove itself from/to
 	the Windows menu.
