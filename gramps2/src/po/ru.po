@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 1.0.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-01-27 10:37-0600\n"
-"Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
+"PO-Revision-Date: 2004-01-27 23:18-0500\n"
+"Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1311,7 +1311,7 @@ msgstr "С заполненными записями"
 
 #: GenericFilter.py:1435
 msgid "Has the personal event"
-msgstr "С личными событиеми"
+msgstr "С личными событиями"
 
 #: GenericFilter.py:1436
 msgid "Has the family event"
@@ -2109,7 +2109,7 @@ msgstr "Параметры документа"
 
 #: Report.py:428
 msgid "Center Person"
-msgstr "Центральное цицо"
+msgstr "Центральное лицо"
 
 #: Report.py:440
 msgid "C_hange"
@@ -2612,7 +2612,9 @@ msgstr "GRAMPS (Программная система управления ге�
 
 #: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr "Александр Ройтман\nАлександр Богдашевский"
+msgstr ""
+"Александр Ройтман\n"
+"Александр Богдашевский"
 
 #: const.py:172
 #: const.py:284
@@ -2625,7 +2627,7 @@ msgstr "Александр Ройтман\nАлександр Богдашевс
 #: gramps.glade:7833
 #: gramps.glade:8004
 msgid "Adopted"
-msgstr "Приемный"
+msgstr "Приёмный"
 
 #: const.py:173
 #: gramps.glade:4565
@@ -2920,8 +2922,7 @@ msgstr "Фамилия в браке"
 msgid "Other Name"
 msgstr "Другое имя"
 
-# LDS
-# !!!FIXME!!!
+# LDS, смерть наступила от года до 8 лет
 #: const.py:861
 msgid "Child"
 msgstr ""
@@ -2947,12 +2948,12 @@ msgstr ""
 msgid "Completed"
 msgstr ""
 
-# LDS? !!!FIXME!!!
+# LDS, смерть наступила до года
 #: const.py:862
 msgid "Infant"
 msgstr ""
 
-# LDS? !!FIXME!!!
+# LDS, мертворождённый
 #: const.py:862
 #: const.py:868
 msgid "Stillborn"
@@ -4395,7 +4396,7 @@ msgstr "Удалить выделенного ребёнка"
 #: gramps.glade:2258
 #: gramps.glade:2999
 msgid "<b>Family</b>"
-msgstr "<b>Семьи</b>"
+msgstr "<b>Семья</b>"
 
 #: gramps.glade:3046
 msgid "<b>Pedigree</b>"
@@ -8631,11 +8632,12 @@ msgstr "_Люди"
 
 #: preferences.glade:1051
 msgid "_Family view"
-msgstr "_Семьи"
+msgstr "_Семья"
 
+# !!!FIXME!!!
 #: preferences.glade:1072
 msgid "<b>Family view style</b>"
-msgstr "<b>Стиль вида Семьи</b>"
+msgstr "<b>Стиль вида Семья</b>"
 
 #: preferences.glade:1097
 msgid "Left to right"
