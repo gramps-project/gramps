@@ -35,8 +35,10 @@ _ = intl.gettext
 try:
     import PIL.Image
     no_pil = 0
+    print "pil ok"
 except:
     no_pil = 1
+    print "pil bad"
 
 #-------------------------------------------------------------------------
 #
@@ -60,10 +62,6 @@ def import_media_object(filename,path,base):
             GnomeErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
         except:
             GnomeErrorDialog(_("Could not create %s") % thumb)
-        
-        path = "%s/%s" % (thumb,base)
-        
-        mk_thumb(filename,path,const.thumbScale)
         
         try:
             path = "%s/%s" % (thumb,base)
@@ -129,11 +127,13 @@ def mk_thumb(source,dest,size):
 
     if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
+        print cmd
         os.system(cmd)
     else:
         try:
             im = PIL.Image.open(source)
             im.thumbnail((size,size))
+            print "save",source,dest
             im.save(dest,"JPEG")
         except:
             pass

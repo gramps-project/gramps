@@ -262,6 +262,7 @@ class Gallery(ImageSelect):
                     GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = utils.get_mime_type(tfile)
+                print mime
                 photo = Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
