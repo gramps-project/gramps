@@ -903,7 +903,7 @@ def on_event_select_row(obj,row,b,c):
     epo = obj.get_data(EDITPERSON)
     epo.event_date_field.set_text(": %s" % event.getDate())
     epo.event_place_field.set_text(": %s" % event.getPlace())
-    epo.event_name_field.set_label(": %s" % const.display_pevent(event.getName()))
+    epo.event_name_field.set_label(const.display_pevent(event.getName()))
     epo.event_descr_field.set_text(": %s" % event.getDescription())
     epo.event_details_field.set_text(": %s" % get_detail_text(event))
 
