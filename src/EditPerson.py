@@ -275,9 +275,9 @@ class EditPerson:
             if Config.show_detail:
                 if name.getNote() != "":
                     attr = "N"
-                if name.getSourceRef():
+                if name.getSourceRef().getBase():
                     attr = attr + "S"
-            self.name_list.append([name.getName()])
+            self.name_list.append([name.getName(),attr])
             self.name_list.set_row_data(self.name_index,name)
             self.name_index = self.name_index + 1
 
@@ -335,7 +335,7 @@ class EditPerson:
             if Config.show_detail:
                 if attr.getNote() != "":
                     detail = "N"
-                if attr.getSourceRef():
+                if attr.getSourceRef().getBase():
                     detail = detail + "S"
             self.attr_list.append([attr.getType(),attr.getValue(),detail])
             self.attr_list.set_row_data(self.attr_index,attr)
@@ -368,7 +368,7 @@ class EditPerson:
             if Config.show_detail:
                 if address.getNote() != "":
                     detail = "N"
-                if address.getSourceRef():
+                if address.getSourceRef().getBase():
                     detail = detail + "S"
             location = address.getCity() + " " + address.getState() + " " + \
                        address.getCountry()
@@ -404,7 +404,7 @@ class EditPerson:
             if Config.show_detail:
                 if event.getNote() != "":
                     attr = "N"
-                if event.getSourceRef():
+                if event.getSourceRef().getBase():
                     attr = attr + "S"
             self.event_list.append([event.getName(),event.getQuoteDate(),\
                                     event.getPlace(),attr])

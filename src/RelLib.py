@@ -462,7 +462,7 @@ class Event:
         self.date = Date()
         self.description = ""
         self.name = ""
-        self.source_ref = None
+        self.source_ref = SourceRef()
         self.note = Note()
 
     def set(self,name,date,place,description):
