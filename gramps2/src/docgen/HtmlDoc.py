@@ -333,6 +333,14 @@ class HtmlDoc(BaseDoc.BaseDoc):
         self.f.close()
         self.write_support_files()
 
+        if self.print_req:
+            import grampslib
+
+            apptype = 'text/html'
+            prog = grampslib.default_application_command(apptype)
+            os.environ["FILE"] = self.filename
+            os.system ('%s "$FILE" &' % prog)
+
     def write_support_files(self):
         if self.map:
             for name in self.map.keys():
@@ -457,4 +465,21 @@ class HtmlDoc(BaseDoc.BaseDoc):
             self.empty = 0
 	self.f.write(text)
 
-Plugins.register_text_doc(_("HTML"),HtmlDoc,1,0,1,".html")
+#------------------------------------------------------------------------
+#
+# Register the document generator with the GRAMPS plugin system
+#
+#------------------------------------------------------------------------
+
+try:
+    import grampslib
+    import Utils
+
+    prog = grampslib.default_application_command("text/html")
+    desc = grampslib.default_application_name("text/html")
+    if Utils.search_for(prog):
+        print_label=_("Open in %s") % desc
+except:
+    print_label = None
+
+Plugins.register_text_doc(_("HTML"),HtmlDoc,1,0,1,".html", print_label)

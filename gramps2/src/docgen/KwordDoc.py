@@ -476,4 +476,10 @@ class KwordDoc(BaseDoc.BaseDoc):
 
 	self.text = self.text + text
 
+#------------------------------------------------------------------------
+#
+# Register the document generator with the GRAMPS plugin system
+#
+#------------------------------------------------------------------------
+
 Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1,".kwd")

@@ -26,6 +26,7 @@
 #
 #------------------------------------------------------------------------
 import string
+import os
 
 #------------------------------------------------------------------------
 #
@@ -123,6 +124,14 @@ class RTFDoc(BaseDoc.BaseDoc):
     def close(self):
         self.f.write('}\n')
         self.f.close()
+
+        if self.print_req:
+            import grampslib
+
+            apptype = 'application/rtf'
+            prog = grampslib.default_application_command(apptype)
+            os.environ["FILE"] = self.filename
+            os.system ('%s "$FILE" &' % prog)
 
     #--------------------------------------------------------------------
     #
@@ -402,4 +411,20 @@ class RTFDoc(BaseDoc.BaseDoc):
         self.text = self.text.replace('<super>','{{\*\updnprop5801}\up10 ')
         self.text = self.text.replace('</super>','}')
 
-Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1,".rtf")
+#------------------------------------------------------------------------
+#
+# Register the document generator with the GRAMPS plugin system
+#
+#------------------------------------------------------------------------
+try:
+    import grampslib
+    import Utils
+
+    prog = grampslib.default_application_command("application/rtf")
+    desc = grampslib.default_application_name("application/rtf")
+    if Utils.search_for(prog):
+        print_label=_("Open in %s") % desc
+except:
+    print_label = None
+
+Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1,".rtf", print_label)
