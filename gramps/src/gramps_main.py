@@ -960,6 +960,7 @@ class Gramps:
         self.remove_from_person_list(p1,old_id)
         self.remove_from_person_list(p2)
         self.redisplay_person_list(p1)
+        self.update_display(0)
     
     def on_delete_parents_clicked(self,obj):
         if not self.active_parents:

@@ -195,6 +195,8 @@ class GedcomParser:
 
         self.trans = string.maketrans('','')
         self.delc = self.trans[0:31]
+
+        self.trans2 = self.trans[0:127] + ('?' * 128)
         
         self.file_obj = window.get_widget("file")
         self.encoding_obj = window.get_widget("encoding")
@@ -261,11 +263,14 @@ class GedcomParser:
 
     def get_next(self):
         if self.backoff == 0:
-            next_line = self.f.readline()
-            if next_line == '':
+            next_line = string.strip(self.f.readline())
+            self.text = string.translate(next_line,self.trans,self.delc)
+            if self.text == '':
                 raise UNEXPECTED_EOF
-            self.text = self.cnv(string.strip(next_line))
-            self.text = string.translate(self.text,self.trans,self.delc)
+            try:
+                self.text = self.cnv(self.text)
+            except:
+                self.text = string.translate(self.text,self.trans2)
             
             self.index = self.index + 1
             l = string.split(self.text, None, 2)

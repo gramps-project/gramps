@@ -22,7 +22,7 @@ import sys
 
 if sys.version[0] != '1':
     def utf8_to_latin(s):
-        return s.encode('latin-1','replace')
+        return s.encode('iso-8859-1','replace')
 
     def latin_to_utf8(s):
         return s

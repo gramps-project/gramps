@@ -30,7 +30,6 @@ import sys
 # GNOME/GTK libraries
 #
 #-------------------------------------------------------------------------
-import GdkImlib
 import gtk
 import gnome.ui
 import gnome.config
