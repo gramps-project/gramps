@@ -760,7 +760,7 @@ class FilterParser(handler.ContentHandler):
                     pass
             self.gfilter_list.add(self.f)
         elif tag == "rule":
-            name = attrs['class']
+            name = _(attrs['class'])
             self.a = []
             self.cname = tasks[name]
         elif tag == "arg":
@@ -774,6 +774,12 @@ class FilterParser(handler.ContentHandler):
     def characters(self, data):
         pass
 
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 SystemFilters = None
 CustomFilters = None
 

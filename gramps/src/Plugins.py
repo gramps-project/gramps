@@ -35,12 +35,12 @@ filters, importer, exporters, and document generators.
 import GdkImlib
 import gtk
 import libglade
-
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import traceback
 import os
 import sys
 from re import compile
@@ -245,9 +245,9 @@ class PluginStatus:
             error = str(msgs[0])
             if error[0:11] == "exceptions.":
                 error = error[11:]
-            msg = msgs[1]
-            info.write("%s\n\t%s: %s\n\n" % (file,error,msg) )
-
+            info.write("%s\t%s\n" % (file,error) )
+            traceback.print_exception(msgs[0],msgs[1],msgs[2],None,info)
+            info.write('\n')
         info.seek(0)
         window.show_string(info.read())
         self.top.run_and_close()
