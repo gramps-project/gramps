@@ -139,30 +139,38 @@ class NameEditor:
                     self.flowed.set_active(1)
             self.display_as.set_active(name.get_display_as())
             self.sort_as.set_active(name.get_display_as())
-            self.group_as.set_text(name.get_group_as())
+            grp_as = name.get_group_as()
+            if grp_as:
+                self.group_as.set_text(name.get_group_as())
+            else:
+                self.group_as.set_text(name.get_surname())
         else:
             self.display_as.set_active(0)
             self.sort_as.set_active(0)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
+        self.surname_field.connect('changed',self.update_group_as)
         self.add_itself_to_menu()
-        self.surname_field.connect('changed',self.on_family_changed)
         self.window.show()
 
+    def update_group_as(self,obj):
+        if not self.group_over.get_active():
+            if self.name.get_group_as() != self.name.get_surname():
+                val = self.name.get_group_as()
+            else:
+                val = self.db.get_name_group_mapping(self.surname_field.get_text())
+            self.group_as.set_text(val)
+        
     def on_group_over_toggled(self,obj):
         if obj.get_active():
             self.group_as.set_sensitive(gtk.TRUE)
             self.group_as.set_editable(gtk.TRUE)
         else:
-            self.group_as.set_text(self.surname_field.get_text())
+            self.group_as.set_text(self.db.get_name_group_mapping(self.surname_field.get_text()))
             self.group_as.set_sensitive(gtk.FALSE)
             self.group_as.set_editable(gtk.FALSE)
 
-    def on_family_changed(self,obj):
-        if self.group_over.get_active() == gtk.FALSE:
-            self.group_as.set_text(self.surname_field.get_text())
-            
     def on_delete_event(self,*obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
@@ -232,6 +240,9 @@ class NameEditor:
         
         self.name.set_source_reference_list(self.srcreflist)
 
+        grp_as = self.group_as.get_text()
+        srn = self.surname_field.get_text()
+
         if self.name.get_display_as() != self.display_as.get_active():
             self.name.set_display_as(self.display_as.get_active())
             self.parent.lists_changed = 1
@@ -241,13 +252,25 @@ class NameEditor:
             self.parent.lists_changed = 1
 
         if self.group_over.get_active() == gtk.FALSE:
-            if self.name.get_group_as() != self.surname_field.get_text():
-                self.name.set_group_as("")
-                self.parent.lists_changed = 1
-        elif self.name.get_group_as() != self.group_as.get_text():
-            self.name.set_group_as(self.group_as.get_text())
+            self.name.set_group_as("")
             self.parent.lists_changed = 1
-        
+        elif self.name.get_group_as() != grp_as:
+            if grp_as not in self.db.get_name_group_keys():
+                from QuestionDialog import QuestionDialog2
+                q = QuestionDialog2(_("Group all people with the same name?"),
+                                    _("You have the choice of grouping all people with the "
+                                      "name of %(surname)s with the name of %(group_name)s, or "
+                                      "just mapping this particular name.") % {'surname' : srn, 'group_name':grp_as},
+                                    _("Group all"),
+                                    _("Group this name only"))
+                val = q.run()
+                if val:
+                    self.name.set_group_as("")
+                    self.db.set_name_group_mapping(srn,grp_as)
+                else:
+                    self.name.set_group_as(grp_as)
+            self.parent.lists_changed = 1
+
         self.update_name(first,last,suffix,title,mtype,note,format,priv)
         self.parent.lists_changed = 1
 

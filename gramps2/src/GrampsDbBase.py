@@ -97,6 +97,7 @@ class GrampsDbBase:
         self.event_map  = None
         self.eventnames = None
         self.metadata   = None
+        self.name_group = None
         self.undo_callback = None
         self.redo_callback = None
         self.modified   = 0
@@ -108,6 +109,7 @@ class GrampsDbBase:
         self.bookmarks = []
         self.path = ""
         self.place2title = {}
+        self.name_groups = {}
 
     def load(self,name,callback):
         """
@@ -553,6 +555,25 @@ class GrampsDbBase:
             obj.set_gramps_id(self.find_next_object_gramps_id())
         self.commit_media_object(obj,transaction)
         return index
+
+    def get_name_group_mapping(self,name):
+        """
+        Returns the default grouping name for a surname
+        """
+        return self.name_group.get(str(name),name)
+
+    def get_name_group_keys(self):
+        """
+        Returns the defined names that have been assigned to a default grouping
+        """
+        return [unicode(k) for k in self.name_group.keys()]
+
+    def set_name_group_mapping(self,name,group):
+        """
+        Sets the default grouping name for a surname. Needs to be overridden in the
+        derived class.
+        """
+        assert False, "Needs to be overridden in the derived class"
 
     def get_people_view_maps(self):
         """

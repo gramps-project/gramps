@@ -29,7 +29,7 @@ from GrampsDbBase import *
 from bsddb import dbshelve, db
 
 def find_surname(key,data):
-    return str(data[3].get_group_as())
+    return str(data[3].get_surname())
 
 def find_idmap(key,data):
     return str(data[1])
@@ -77,6 +77,10 @@ class GrampsBSDDB(GrampsDbBase):
         self.surnames.set_flags(db.DB_DUP)
         self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
 
+        self.name_group = db.DB(self.env)
+        self.name_group.set_flags(db.DB_DUP)
+        self.name_group.open(name, "name_group", db.DB_HASH, flags=db.DB_CREATE)
+
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(name, "idtrans", db.DB_HASH, flags=db.DB_CREATE)
@@ -119,6 +123,7 @@ class GrampsBSDDB(GrampsDbBase):
         return 1
 
     def close(self):
+        self.name_group.close()
         self.person_map.close()
         self.family_map.close()
         self.place_map.close()
@@ -153,6 +158,13 @@ class GrampsBSDDB(GrampsDbBase):
         self.env        = None
         self.metadata   = None
 
+    def set_name_group_mapping(self,name,group):
+        name = str(name)
+        if not group and self.name_group.has_key(name):
+            self.name_group.delete(name)
+        else:
+            self.name_group[name] = group
+            
     def get_surname_list(self):
         names = self.surnames.keys()
         a = {}

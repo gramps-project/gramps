@@ -62,7 +62,6 @@ CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
 
-
 #-------------------------------------------------------------------------
 #
 # Class definitions
@@ -101,9 +100,16 @@ class PrimaryObject:
             self.change = 0
 
     def get_change_time(self):
+        """
+        Returns the time that the data was last changed. The value in the format
+        returned by the time.time() command.
+        """
         return self.change
 
     def get_change_display(self):
+        """
+        Returns a string representation of the last change time.
+        """
         if self.change:
             return time.asctime(time.localtime(self.change))
         else:
@@ -1868,6 +1874,12 @@ class Name(DataObj):
             self.group_as = name
 
     def get_group_as(self):
+        """
+        Returns the grouping name, which is used to group equivalent surnames.
+        """
+        return self.group_as
+
+    def get_group_name(self):
         """
         Returns the grouping name, which is used to group equivalent surnames.
         """

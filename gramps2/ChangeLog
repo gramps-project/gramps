@@ -1,3 +1,19 @@
+2004-09-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: change 0 to False
+	* src/EditPerson.py: copy current name info to name editor when invoking
+	* src/GrampsBSDDB.py: provide default name to group mapping 
+	* src/GrampsDbBase.py: provide default name to group mapping 
+	* src/GrampsInMemDB.py: provide default name to group mapping 
+	* src/NameEdit.py: prompt for making name mapping override the default
+	or purely for the active name
+	* src/PeopleModel.py: handle name grouping
+	* src/PeopleView.py: handle name grouping
+	* src/QuestionDialog.py: Add QuestionDialog2 to allow two answers to
+	a dialog (instead of one being cancel)
+	* src/RelLib.py: grouping documentation
+	* src/gramps.glade: move button on EditPerson dialog
+	* src/gramps_main.py: goto active person after a redisplay
+
 2004-09-29 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/TipOfDay.py: Be tolerant to whitespace; allow markup in
 	the tips, enable random sequence of tips on each startup.

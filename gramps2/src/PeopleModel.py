@@ -73,17 +73,17 @@ class PeopleModel(gtk.GenericTreeModel):
         self.visible = {}
         self.top_visible = {}
         
-        maps = self.db.get_people_view_maps()
-        if maps[0] != None and len(maps[0]) != 0:
-            self.top_path2iter = maps[0]
-            self.iter2path = maps[1]
-            self.path2iter = maps[2]
-            self.sname_sub = maps[3]
-        else:
-            self.rebuild_data()
+#        maps = self.db.get_people_view_maps()
+#        print 
+#        if maps[0] != None and len(maps[0]) != 0:
+#            self.top_path2iter = maps[0]
+#            self.iter2path = maps[1]
+#            self.path2iter = maps[2]
+#            self.sname_sub = maps[3]
+#        else:
+        self.rebuild_data()
 
     def rebuild_data(self):
-
         self.top_path2iter = []
         self.iter2path = {}
         self.path2iter = {}
@@ -97,25 +97,29 @@ class PeopleModel(gtk.GenericTreeModel):
         for person_handle in self.db.get_person_handles(sort_handles=False):
 
             person = self.db.get_person_from_handle(person_handle)
-            surname = unicode(person.get_primary_name().get_group_as())
+            grp_as = person.get_primary_name().get_group_as()
+            sn = person.get_primary_name().get_surname()
+            if grp_as:
+                surname = grp_as
+            else:
+                surname = self.db.get_name_group_mapping(sn)
 
             if self.sname_sub.has_key(surname):
                 self.sname_sub[surname].append(person_handle)
             else:
                 self.sname_sub[surname] = [person_handle]
 
-        name_list = self.db.get_surname_list()
-        for name in name_list:
-            if self.sname_sub.has_key(name):
-                self.top_path2iter.append(name)
-                val = 0
-                entries = self.sname_sub[name]
-                entries.sort(self.byname)
-                for person_handle in entries:
-                    tpl = (name,val)
-                    self.iter2path[person_handle] = tpl
-                    self.path2iter[tpl] = person_handle
-                    val += 1
+        self.top_path2iter = self.sname_sub.keys()
+        self.top_path2iter.sort()
+        for name in self.top_path2iter:
+            val = 0
+            entries = self.sname_sub[name]
+            entries.sort(self.byname)
+            for person_handle in entries:
+                tpl = (name,val)
+                self.iter2path[person_handle] = tpl
+                self.path2iter[tpl] = person_handle
+                val += 1
         self.db.set_people_view_maps(self.get_maps())
 
     def get_maps(self):
@@ -141,14 +145,13 @@ class PeopleModel(gtk.GenericTreeModel):
 	levels) for a particular node.'''
         try:
             return (self.top_path2iter.index(node),)
-        except ValueError:
+        except:
             (surname,index) = self.iter2path[node]
             return (self.top_path2iter.index(surname),index)
 
     def on_get_column_type(self,index):
          # return column data-type, from table
-         t = COLUMN_DEFS[index][COLUMN_DEF_TYPE]
-         return t
+         return COLUMN_DEFS[index][COLUMN_DEF_TYPE]
 
     def on_get_iter(self, path):
         try:
@@ -213,8 +216,8 @@ class PeopleModel(gtk.GenericTreeModel):
         if node == None:
             return len(self.sname_sub)
         if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
-            return gtk.TRUE
-        return gtk.FALSE
+            return True
+        return False
 
     def on_iter_n_children(self,node):
         if node == None:
@@ -228,7 +231,6 @@ class PeopleModel(gtk.GenericTreeModel):
         if node == None:
             return self.top_path2iter[n]
         try:
-            path = self.top_path2iter.index(node)
             return self.path2iter[(node,n)]
         except:
             return None
