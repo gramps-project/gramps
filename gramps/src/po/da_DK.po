@@ -681,7 +681,7 @@ msgstr "Ingen"
 
 #: EditPerson.py:418 EditSource.py:138
 msgid "%(father)s and %(mother)s"
-msgstr "%(fader)s and %(moder)s"
+msgstr "%(father)s and %(mother)s"
 
 #: EditPerson.py:739 EditPerson.py:741 EditPerson.py:751 EditPerson.py:753
 #: Marriage.py:351 Marriage.py:354 gramps_main.py:411 gramps_main.py:415
@@ -3877,15 +3877,11 @@ msgstr ""
 
 #: plugins/RelCalc.py:66
 msgid "%(p1)s is the first cousin twice removed of %(p2)s."
-msgstr ""
-"%(p1)s er enten barnebarn af en fætter/kusine til %(p2)s eller også er det "
-"omvendt."
+msgstr "%(p1)s er enten barnebarn af en fætter/kusine til %(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:69
 msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
-msgstr ""
-"%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af en fætter/kusine til %(p2)"
-"s eller også er det omvendt."
+msgstr "%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af en fætter/kusine til %(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:73
 msgid "%(p1)s is the second cousin of %(p2)s."
@@ -3905,9 +3901,7 @@ msgstr ""
 
 #: plugins/RelCalc.py:82
 msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
-msgstr ""
-"%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næstsøskendebarn til %"
-"(p2)s eller også er det omvendt."
+msgstr "%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næstsøskendebarn til %(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:86
 msgid "%(p1)s is the third cousin of %(p2)s."
@@ -3949,9 +3943,7 @@ msgstr ""
 
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-msgstr ""
-"%(p1)s er enten tip-(%(removed)d - 3)-oldebarn af et næst-(%(level)d - 1)-"
-"søskendebarn til %(p2)s eller også er det omvendt."
+msgstr "%(p1)s er enten et næst-(%(level)d - 1)-søskendebarns tip-(%(removed)d - 3)-oldebarn af %(p2)s eller også er det omvendt."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
