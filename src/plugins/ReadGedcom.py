@@ -871,9 +871,9 @@ class GedcomParser:
                         pass
             elif matches[1] in ["AFN","RFN","_UID"]:
                 attr = RelLib.Attribute()
-                attr.setType(matches[1])
-                attr.setValue(matches[2])
-                self.person.addAttribute(attr)
+                attr.set_type(matches[1])
+                attr.set_value(matches[2])
+                self.person.add_attribute(attr)
             elif matches[1] in ["CHAN","ASSO","ANCI","DESI","RIN"]:
                 self.ignore_sub_junk(2)
             else:
@@ -1097,7 +1097,7 @@ class GedcomParser:
             elif matches[1] == "TEMP":
                 value = extract_temple(matches)
                 if value:
-                    ord.setTemple(value)
+                    ord.set_temple(value)
             elif matches[1] == "DATE":
                 ord.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":

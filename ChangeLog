@@ -1,3 +1,6 @@
+2004-06-18  Jason Salaz <whatsizbucket@users.sourceforge.net>
+	* src/plugins/ReadGedcom.py Fixed typos preventing import. (i.e. set_type instead of SetType, etc.)
+
 2004-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: fix index for place map
 	* src/FamilyView.py: include person ID's
