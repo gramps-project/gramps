@@ -12,6 +12,9 @@
 	* src/Utils.py (for_each_ancestor): Switch from Person to handle.
 	* src/GenericFilter.py (for_each_ancestor): Pass db instance.
 
+	* src/plugins/GraphViz.py: Support for graphical report
+	if dot was found on the system.
+
 2005-01-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPlace.py (EditPlace.display_references):
 	Fix event and object references.
