@@ -37,7 +37,7 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, ErrorDialog
 
 import EditPlace
 import Utils
@@ -68,10 +68,10 @@ _column_headers = [
 class PlaceView:
     
     def __init__(self,db,glade,update):
-        self.db = db
-        self.glade = glade
-        self.list    = glade.get_widget("place_list")
-        self.update_display= update
+        self.db     = db
+        self.glade  = glade
+        self.list   = glade.get_widget("place_list")
+        self.update = update
 
         self.active = None
 
@@ -130,11 +130,11 @@ class PlaceView:
     def merge(self):
         if len(self.place_list.selection) != 2:
             msg = _("Exactly two places must be selected to perform a merge")
-            gnome.ui.GnomeErrorDialog(msg)
+            ErrorDialog(msg)
         else:
             import MergeData
             p1 = self.place_list.get_row_data(self.place_list.selection[0])
-            p2 = self.place_list.get_row_data(self.place_list.selection[1])
+            P2 = self.place_list.get_row_data(self.place_list.selection[1])
             p1 = self.db.getPlace(p1)
             p2 = self.db.getPlace(p2)
             MergeData.MergePlaces(self.db,p1,p2,self.load_places)
@@ -148,38 +148,36 @@ class PlaceView:
             EditPlace.EditPlace(self,place,self.update_display)
             return 1
 
-    def insert_place(self,place):
-        self.place_list.append(place.getDisplayInfo())
-        self.place_list.set_row_data(self.place_list.rows-1,place.getId())
+#    def insert_place(self,place):
+#        self.place_list.append(place.getDisplayInfo())
+#        self.place_list.set_row_data(self.place_list.rows-1,place.getId())
         
     def new_place_after_edit(self,place):
         self.db.addPlace(place)
         self.update(0)
 
     def update_display(self,place):
-        self.db.buildPlaceDisplay(place.getId())
+        if place:
+            self.db.buildPlaceDisplay(place.getId())
         self.update(0)
 
     def on_add_place_clicked(self,obj):
         EditPlace.EditPlace(self,Place(),self.new_place_after_edit)
 
-    def moveto(self,row):
-        self.place_list.unselect_all()
-        self.place_list.select_row(row,0)
-        self.place_list.moveto(row)
+#    def moveto(self,row):
+#        self.place_list.unselect_all()
+#        self.place_list.select_row(row,0)
+#        self.place_list.moveto(row)
         
     def on_delete_clicked(self,obj):
-        if len(obj.selection) == 0:
+        store,iter = self.selection.get_selected()
+        if not iter:
             return
-        elif len(obj.selection) > 1:
-            msg = _("Currently, you can only delete one place at a time")
-            gnome.ui.GnomeErrorDialog(msg)
-            return
-        else:
-            index = obj.selection[0]
+        
+        id = store.get_value(iter,1)
 
         used = 0
-        place = self.db.getPlace(obj.get_row_data(index))
+        place = self.db.getPlace(id)
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)
             event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
@@ -208,8 +206,8 @@ class PlaceView:
                            _('Delete Place'),ans.query_response,
                            _('Keep Place'))
         else:
-            obj.remove(index)
             self.db.removePlace(place.getId())
+            self.update(0)
             Utils.modified()
 
     def on_edit_clicked(self,obj):

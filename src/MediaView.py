@@ -42,7 +42,7 @@ import ImageSelect
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, ErrorDialog
 import Utils
 import os
 import GrampsCfg
@@ -325,7 +325,7 @@ class MediaView:
                 except IOError, msg:
                     t = _("Could not import %s") % d
                     
-                    gnome.ui.GnomeErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
+                    ErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = Utils.get_mime_type(tfile)
                 photo = Photo()

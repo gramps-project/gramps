@@ -41,8 +41,8 @@ import const
 import GrampsCfg
 from RelLib import *
 from Date import SingleDate
-from intl import gettext
-_ = gettext
+from intl import gettext as _
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -71,11 +71,10 @@ def exportData(database, filename, callback):
         g = XmlWriter(database,callback,0,compress)
         g.write(filename)
     except:
-        from gnome.ui import GnomeErrorDialog
         import DisplayTrace
 
         DisplayTrace.DisplayTrace()
-        GnomeErrorDialog(_("Failure writing %s, original file restored") % filename)
+        ErrorDialog(_("Failure writing %s, original file restored") % filename)
         shutil.copy(filename + ".bak", filename)
 
 #-------------------------------------------------------------------------

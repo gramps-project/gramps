@@ -32,7 +32,7 @@ import string
 #
 #-------------------------------------------------------------------------
 import gtk
-#from gnome.ui import GnomeErrorDialog, GnomeWarningDialog
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -42,9 +42,7 @@ import gtk
 import const
 import Utils
 import ImgManip
-from intl import gettext
-_ = gettext
-
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +53,7 @@ def import_media_object(filename,path,base):
     import shutil
 
     if not os.path.exists(filename):
-        GnomeErrorDialog(_("Could not import %s\nThe file has been moved or deleted") % filename)
+        ErrorDialog(_("Could not import %s\nThe file has been moved or deleted") % filename)
         return ""
 
     ext = os.path.splitext(filename)[1]
@@ -71,23 +69,23 @@ def import_media_object(filename,path,base):
             if not os.path.exists(thumb):
                 os.mkdir(thumb)
         except IOError,msg:
-            GnomeErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
+            ErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
             return ""
         except:
-            GnomeErrorDialog(_("Could not create %s") % thumb)
+            ErrorDialog(_("Could not create %s") % thumb)
             return ""
         
         try:
             path = "%s/%s.jpg" % (thumb,base)
             mk_thumb(filename,path,const.thumbScale)
         except:
-            GnomeErrorDialog(_("Error creating the thumbnail : %s"))
+            ErrorDialog(_("Error creating the thumbnail : %s"))
             return ""
 
         try:
             shutil.copy(filename,name)
         except IOError,msg:
-            GnomeErrorDialog(_("Error copying %s") % filename + "\n" + msg)
+            ErrorDialog(_("Error copying %s") % filename + "\n" + msg)
             return ""
 
     else:
@@ -136,10 +134,10 @@ def mk_thumb(source,dest,size):
         if not os.path.exists(dir):
             os.mkdir(dir)
     except IOError,msg:
-        GnomeErrorDialog(_("Could not create %s") % dir + "\n" + str(msg))
+        ErrorDialog(_("Could not create %s") % dir + "\n" + str(msg))
         return
     except:
-        GnomeErrorDialog(_("Could not create %s") % dir)
+        ErrorDialog(_("Could not create %s") % dir)
         return
 
     if os.path.exists(dest):
@@ -147,11 +145,11 @@ def mk_thumb(source,dest,size):
             os.remove(dest)
         except IOError,msg:
             errmsg = _("Could not replace %s") % dir
-            GnomeErrorDialog(errmsg + "\n" + msg)
+            ErrorDialog(errmsg + "\n" + msg)
             return
 
     if not os.path.exists(source):
-        GnomeErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % source)
+        ErrorDialog(_("Could not create a thumbnail for %s\nThe file has been moved or deleted") % source)
 
     try:
         img = ImgManip.ImgManip(source)
@@ -159,7 +157,7 @@ def mk_thumb(source,dest,size):
     except:
         import sys
         msg = "%s\n%s %s" % (source,sys.exc_type,sys.exc_value)
-        GnomeErrorDialog(_("Could not create a thumbnail for %s") % msg)
+        ErrorDialog(_("Could not create a thumbnail for %s") % msg)
         return
 
 #-------------------------------------------------------------------------

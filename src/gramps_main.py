@@ -56,7 +56,7 @@ from SourceView import SourceView
 from MediaView import MediaView
 from FamilyView import FamilyView
 
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, ErrorDialog
 
 import DisplayTrace
 import Filter
@@ -350,7 +350,7 @@ class Gramps:
         elif cpage == 3:
             self.source_view.on_add_clicked(obj)
         elif cpage == 4:
-            self.place_view.on_add_clicked(obj)
+            self.place_view.on_add_place_clicked(obj)
 
     def remove_button_clicked(self,obj):
         cpage = self.notebook.get_current_page()
@@ -475,7 +475,7 @@ class Gramps:
         if page == 0:
             if len(self.person_list.selection) != 2:
                 msg = _("Exactly two people must be selected to perform a merge")
-                gnome.ui.GnomeErrorDialog(msg)
+                ErrorDialog(msg)
             else:
                 import MergeData
                 p1 = self.person_list.get_row_data(self.person_list.selection[0])
@@ -897,10 +897,10 @@ class Gramps:
                 os.mkdir(filename)
             except (OSError,IOError), msg:
                 emsg = _("Could not create %s") % filename + "\n" + str(msg)
-                gnome.ui.GnomeErrorDialog(emsg)
+                ErrorDialog(emsg)
                 return
             except:
-                gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename)
+                ErrorDialog(_("Could not create %s") % filename)
                 return
         
         old_file = filename
@@ -909,7 +909,7 @@ class Gramps:
             self.db.save(filename,self.load_progress)
         except (OSError,IOError), msg:
             emsg = _("Could not create %s") % filename + "\n" + str(msg)
-            gnome.ui.GnomeErrorDialog(emsg)
+            ErrorDialog(emsg)
             return
 
         self.db.setSavePath(old_file)
@@ -1526,7 +1526,7 @@ class Gramps:
                                              self.bookmark_callback)
 
     def displayError(self,msg):
-        gnome.ui.GnomeErrorDialog(msg)
+        ErrorDialog(msg)
         self.statusbar.set_status("")
 
     def apply_filter(self):
@@ -1555,7 +1555,7 @@ class Gramps:
             self.change_active_person(temp)
             self.update_display(0)
         else:
-            gnome.ui.GnomeErrorDialog(_("No default/home person has been set"))
+            ErrorDialog(_("No default/home person has been set"))
 
     def on_add_bookmark_activate(self,obj):
         if self.active_person:

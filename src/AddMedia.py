@@ -43,7 +43,7 @@ _ = gettext
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gnome.ui import GnomeErrorDialog
+from QuestionDialog import ErrorDialog
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -103,7 +103,7 @@ class AddMediaObject:
         
         if os.path.exists(filename) == 0:
             msgstr = _("%s is not a valid file name or does not exist.")
-            GnomeErrorDialog(msgstr % filename)
+            ErrorDialog(msgstr % filename)
             return
 
         type = Utils.get_mime_type(filename)

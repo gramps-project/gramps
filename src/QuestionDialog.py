@@ -18,8 +18,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import gnome.ui
 import gtk
+import gnome.ui
+from intl import gettext as _
 
 class QuestionDialog:
     def __init__(self,title,msg,blabel1,task1,blabel2,task2=None):
@@ -57,5 +58,27 @@ class QuestionDialog:
     def my_task2(self):
         if self.task2:
             self.task2()
+        self.top.destroy()
+
+class ErrorDialog:
+    def __init__(self,msg):
+        title = '%s - GRAMPS' % _('Error')
+        
+        self.top = gtk.Dialog()
+        self.top.set_title(title)
+        label = gtk.Label(msg)
+        label.show()
+        hbox = gtk.HBox()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_DIALOG_ERROR,gtk.ICON_SIZE_DIALOG)
+        hbox.set_spacing(10)
+        hbox.pack_start(image)
+        hbox.add(label)
+        self.top.vbox.pack_start(hbox)
+        self.top.set_default_size(300,150)
+        self.top.add_button(gtk.STOCK_OK,0)
+        self.top.set_response_sensitive(0,gtk.TRUE)
+        self.top.show_all()
+        self.top.run()
         self.top.destroy()
         

@@ -404,7 +404,7 @@ class DeletePlaceQuery:
         self.update = update
         
     def query_response(self):
-        del self.db.getPlaceMap()[self.place.getId()]
+        self.db.removePlace(self.place.getId())
         Utils.modified()
 
         for key in self.db.getPersonKeys():
@@ -416,4 +416,5 @@ class DeletePlaceQuery:
             for event in f.getEventList():
                 if event.getPlace() == self.place:
                     event.setPlace(None)
-        self.update(0)
+
+        self.update(None)
