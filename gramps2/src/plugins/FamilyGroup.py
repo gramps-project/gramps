@@ -294,7 +294,8 @@ class FamilyGroup:
             self.doc.end_cell()
             self.doc.start_cell('FGR-TextContentsEnd',2)
             self.doc.start_paragraph('FGR-Normal')
-            self.doc.write_text(spouse.getPrimaryName().getRegularName())
+            if spouse:
+                self.doc.write_text(spouse.getPrimaryName().getRegularName())
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
