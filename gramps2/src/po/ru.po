@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.1\n"
-"POT-Creation-Date: Sun Apr 13 22:43:06 2003\n"
-"PO-Revision-Date: 2003-04-13 23:34-0500\n"
+"POT-Creation-Date: Wed Apr 16 10:37:11 2003\n"
+"PO-Revision-Date: 2003-04-16 10:45-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,14 +24,15 @@ msgstr "Данное имя файла не найдено."
 #: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:206 FamilyView.py:138
 #: SelectChild.py:105 gramps_main.py:103 plugins/FilterEditor.py:130
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
-#: plugins/RelCalc.py:326 plugins/TimeLine.py:336 plugins/WebPage.py:274
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:326 plugins/TimeLine.py:336
+#: plugins/WebPage.py:274
 msgid "Name"
 msgstr "Имя"
 
 #: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:825
 #: MediaView.py:75 PlaceView.py:60 SelectChild.py:105 SourceView.py:68
 #: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:103
-#: plugins/RelCalc.py:326
+#: plugins/PatchNames.py:136 plugins/RelCalc.py:326
 msgid "ID"
 msgstr "ID Номер"
 
@@ -310,7 +311,7 @@ msgstr "Место"
 
 #: EditPerson.py:194 EditSource.py:159 ImageSelect.py:619 ImageSelect.py:742
 #: ImageSelect.py:825 Marriage.py:143 marriage.glade:853
-#: plugins/FilterEditor.py:130
+#: plugins/FilterEditor.py:130 plugins/PatchNames.py:142
 msgid "Value"
 msgstr "Значение"
 
@@ -323,6 +324,7 @@ msgid "Address"
 msgstr "Адрес"
 
 #: EditPerson.py:206 ImageSelect.py:825 MediaView.py:76
+#: plugins/PatchNames.py:139
 msgid "Type"
 msgstr "Тип"
 
@@ -506,7 +508,7 @@ msgstr ""
 
 #: FamilyView.py:227
 msgid "_Remove Spouse"
-msgstr "Удалить супруга"
+msgstr "_Удалить супруга"
 
 #: FamilyView.py:385
 msgid ""
@@ -545,7 +547,7 @@ msgstr ""
 
 #: FamilyView.py:470 FamilyView.py:485
 msgid "_Remove Parents"
-msgstr "Удалить Родителей"
+msgstr "_Удалить Родителей"
 
 #: FamilyView.py:579
 msgid "Attempt to Reorder Children Failed"
@@ -972,7 +974,7 @@ msgstr ""
 "отношения, уже используется"
 
 #: MediaView.py:75 SourceView.py:68 Sources.py:77 Sources.py:160
-#: plugins/TimeLine.py:347
+#: plugins/PatchNames.py:168 plugins/TimeLine.py:347
 msgid "Title"
 msgstr "Титул"
 
@@ -1002,7 +1004,7 @@ msgstr ""
 
 #: MediaView.py:250
 msgid "_Delete Media Object?"
-msgstr "Уничтожить Медиа-Объект?"
+msgstr "У_ничтожить Медиа-Объект?"
 
 #: MediaView.py:319
 msgid "Image import failed"
@@ -1090,7 +1092,7 @@ msgstr ""
 
 #: PlaceView.py:198
 msgid "_Delete Place"
-msgstr "Уничтожить Место"
+msgstr "У_ничтожить Место"
 
 #: Plugins.py:81
 msgid "No description was provided"
@@ -1481,7 +1483,7 @@ msgstr ""
 
 #: SourceView.py:138
 msgid "_Delete Source"
-msgstr "Уничтожить Источник"
+msgstr "У_ничтожить Источник"
 
 #: Sources.py:59
 msgid "Source Reference Selection"
@@ -1768,25 +1770,25 @@ msgstr "Первые шаги с GRAMPS"
 
 #: config.glade:1392
 msgid "_MM/DD/YYYY (United States)"
-msgstr "ММ/ДД/ГГГГ (Американский)"
+msgstr "_ММ/ДД/ГГГГ (Американский)"
 
 #: config.glade:1410
 msgid "_DD/MM/YYYY (European)"
-msgstr "ДД/ММ/ГГГГ (Европейский)"
+msgstr "_ДД/ММ/ГГГГ (Европейский)"
 
 #: config.glade:1429
 msgid "_YYYY-MM-DD (ISO)"
-msgstr "ГГГГ-ММ-ДД (ISO)"
+msgstr "_ГГГГ-ММ-ДД (ISO)"
 
 #: config.glade:1526
 msgid "_Enable support for alternate calendars"
 msgstr ""
-"Включить поддержку альтернативных "
+"_Включить поддержку альтернативных "
 "календарей"
 
 #: config.glade:1616
 msgid "_Enable LDS ordinance support"
-msgstr "Включить поддержку процедур LDS"
+msgstr "_Включить поддержку процедур LDS"
 
 #: const.py:108
 msgid ""
@@ -2102,24 +2104,24 @@ msgstr "Принять изменения и закрыть окно"
 
 #: dialog.glade:120
 msgid "_Event type:"
-msgstr "Тип события:"
+msgstr "Тип _события:"
 
 #: dialog.glade:148 dialog.glade:1866 edit_person.glade:304
 #: edit_person.glade:4046 srcsel.glade:166
 msgid "_Date:"
-msgstr "Дата:"
+msgstr "_Дата:"
 
 #: dialog.glade:176
 msgid "De_scription:"
-msgstr "Описание:"
+msgstr "_Описание:"
 
 #: dialog.glade:204 edit_person.glade:4161
 msgid "_Place:"
-msgstr "Место:"
+msgstr "_Место:"
 
 #: dialog.glade:232
 msgid "_Cause:"
-msgstr "Причина:"
+msgstr "При_чина:"
 
 #: dialog.glade:259 dialog.glade:2053
 msgid "Selects the calendar format for display"
@@ -2133,7 +2135,7 @@ msgstr "Французский"
 #: dialog.glade:478 dialog.glade:1055 dialog.glade:2034 dialog.glade:2654
 #: imagesel.glade:578
 msgid "_Private record"
-msgstr "Личная запись"
+msgstr "_Личная запись"
 
 #: dialog.glade:504 dialog.glade:1164 dialog.glade:2258 dialog.glade:3296
 #: edit_person.glade:1192 gramps.glade:4828 imagesel.glade:1560
@@ -2151,7 +2153,7 @@ msgstr "<b>Общее</b>"
 #: places.glade:1100 places.glade:1251 places.glade:1537 rule.glade:193
 #: rule.glade:880 srcsel.glade:831 styles.glade:138
 msgid "_Add..."
-msgstr "Добавить..."
+msgstr "_Добавить..."
 
 #: dialog.glade:585 dialog.glade:788 dialog.glade:1245 dialog.glade:2339
 #: dialog.glade:3378 edit_person.glade:1746 edit_person.glade:2295
@@ -2162,7 +2164,7 @@ msgstr "Добавить..."
 #: places.glade:1553 rule.glade:211 rule.glade:899 srcsel.glade:847
 #: styles.glade:150
 msgid "_Edit..."
-msgstr "Правка..."
+msgstr "_Правка..."
 
 #: dialog.glade:601 dialog.glade:804 dialog.glade:1261 dialog.glade:2355
 #: dialog.glade:3394 edit_person.glade:1765 edit_person.glade:2314
@@ -2172,7 +2174,7 @@ msgstr "Правка..."
 #: places.glade:1131 places.glade:1283 places.glade:1639 rule.glade:229
 #: rule.glade:934 srcsel.glade:864 styles.glade:162
 msgid "_Delete"
-msgstr "Уничтожить"
+msgstr "У_ничтожить"
 
 #: dialog.glade:652 dialog.glade:1312 dialog.glade:2406 dialog.glade:3445
 #: gramps.glade:2176 places.glade:1182
@@ -2190,31 +2192,31 @@ msgstr "<b>Свидетели</b>"
 
 #: dialog.glade:998
 msgid "_Attribute:"
-msgstr "Атрибут:"
+msgstr "_Атрибут:"
 
 #: dialog.glade:1026
 msgid "_Value:"
-msgstr "Значение:"
+msgstr "_Значение:"
 
 #: dialog.glade:1494 places.glade:147 preferences.glade:1448
 msgid "_City:"
-msgstr "Город:"
+msgstr "_Город:"
 
 #: dialog.glade:1522 places.glade:203
 msgid "C_ounty:"
-msgstr "Область/Район/Уезд:"
+msgstr "_Область/Район/Уезд:"
 
 #: dialog.glade:1550 dialog.glade:1977
 msgid "Cou_ntry:"
-msgstr "Страна:"
+msgstr "_Страна:"
 
 #: dialog.glade:1579 places.glade:175
 msgid "_State:"
-msgstr "Государство/Республика:"
+msgstr "Госу_дарство/Республика:"
 
 #: dialog.glade:1608 places.glade:315
 msgid "Church _parish:"
-msgstr "Церковный приход:"
+msgstr "Церковный _приход:"
 
 #: dialog.glade:1794 dialog.glade:2531 dialog.glade:2778 gramps.glade:4602
 #: marriage.glade:48
@@ -2223,23 +2225,23 @@ msgstr "Принять и закрыть"
 
 #: dialog.glade:1921
 msgid "_City/County:"
-msgstr "Город/Область:"
+msgstr "_Город/Область:"
 
 #: dialog.glade:1949
 msgid "_State/Province"
-msgstr "Штат/Провинция"
+msgstr "_Штат/Провинция"
 
 #: dialog.glade:2005 preferences.glade:1532
 msgid "_ZIP/Postal code:"
-msgstr "Индекс/Почтовый код:"
+msgstr "_Индекс/Почтовый код:"
 
 #: dialog.glade:2591
 msgid "_Web address:"
-msgstr "Web адрес:"
+msgstr "_Web адрес:"
 
 #: dialog.glade:2619
 msgid "_Description:"
-msgstr "Описание:"
+msgstr "_Описание:"
 
 #: dialog.glade:2764 gramps.glade:4588 marriage.glade:34
 msgid "Reject changes and close"
@@ -2247,48 +2249,48 @@ msgstr "Отвергнуть измемения и закрыть"
 
 #: dialog.glade:2850 edit_person.glade:129 gramps.glade:5345
 msgid "_Given name:"
-msgstr "Имя:"
+msgstr "_Имя:"
 
 #: dialog.glade:2878 edit_person.glade:154 gramps.glade:5212
 msgid "_Family name:"
-msgstr "Фамилия:"
+msgstr "_Фамилия:"
 
 #: dialog.glade:2906 edit_person.glade:204
 msgid "Suffi_x:"
-msgstr "Суффикс:"
+msgstr "Суффи_кс:"
 
 #: dialog.glade:2934
 msgid "T_ype:"
-msgstr "Тип:"
+msgstr "Т_ип:"
 
 #: dialog.glade:2962 edit_person.glade:229 gramps.glade:4674
 #: imagesel.glade:235 imagesel.glade:1434 places.glade:119 srcsel.glade:296
 msgid "_Title:"
-msgstr "Титул:"
+msgstr "_Титул:"
 
 #: dialog.glade:2991
 msgid "P_rivate record"
-msgstr "Личная запись"
+msgstr "Ли_чная запись"
 
 #: dialog.glade:3011 edit_person.glade:179
 msgid "Family _prefix:"
-msgstr "Фамильная приставка:"
+msgstr "Фамильная _приставка:"
 
 #: dialog.glade:3627 preferences.glade:2402
 msgid "_Person:"
-msgstr "Лицо:"
+msgstr "_Лицо:"
 
 #: dialog.glade:3655 rule.glade:289
 msgid "_Comment:"
-msgstr "Коментарий:"
+msgstr "_Коментарий:"
 
 #: dialog.glade:3748
 msgid "Person is in the _database"
-msgstr "Лицо в базе данных"
+msgstr "Лицо в базе _данных"
 
 #: dialog.glade:3771 edit_person.glade:880
 msgid "_ID:"
-msgstr "ID:"
+msgstr "_ID:"
 
 #: docgen/AbiWordDoc.py:321
 msgid "AbiWord"
@@ -2358,11 +2360,11 @@ msgstr "Принять изменения и закрыть диалог"
 
 #: edit_person.glade:254
 msgid "_Nickname:"
-msgstr "Краткое имя:"
+msgstr "К_раткое имя:"
 
 #: edit_person.glade:279
 msgid "T_ype"
-msgstr "Тип"
+msgstr "Т_ип"
 
 #: edit_person.glade:372
 msgid "Invoke birth event editor"
@@ -2438,15 +2440,15 @@ msgstr "<b>Предпочитаемое имя</b>"
 
 #: edit_person.glade:721 gramps.glade:5298
 msgid "_male"
-msgstr "мужчина"
+msgstr "_мужчина"
 
 #: edit_person.glade:739
 msgid "fema_le"
-msgstr "женщина"
+msgstr "_женщина"
 
 #: edit_person.glade:758
 msgid "_unknown"
-msgstr "неизвестно"
+msgstr "_неизвестно"
 
 #: edit_person.glade:786 mergedata.glade:603 mergedata.glade:1252
 msgid "<b>Birth</b>"
@@ -2462,7 +2464,7 @@ msgstr "<b>Идентификация</b>"
 
 #: edit_person.glade:926 edit_person.glade:4636
 msgid "Pla_ce:"
-msgstr "Место:"
+msgstr "Ме_сто:"
 
 #: edit_person.glade:993 mergedata.glade:669 mergedata.glade:1276
 msgid "<b>Death</b>"
@@ -2470,11 +2472,11 @@ msgstr "<b>Смерть</b>"
 
 #: edit_person.glade:1017 edit_person.glade:4253
 msgid "D_ate:"
-msgstr "Дата:"
+msgstr "Д_ата:"
 
 #: edit_person.glade:1045
 msgid "Plac_e:"
-msgstr "Место:"
+msgstr "Мест_о:"
 
 #: edit_person.glade:1110
 msgid "Invoke death event editor"
@@ -2615,7 +2617,7 @@ msgstr ""
 
 #: edit_person.glade:3560
 msgid "_Remove"
-msgstr "Удалить"
+msgstr "_Удалить"
 
 #: edit_person.glade:3599 gramps.glade:5037 marriage.glade:1392
 #: places.glade:1335
@@ -2641,7 +2643,7 @@ msgstr "Пойти на данную web-страницу"
 
 #: edit_person.glade:3874 places.glade:1605
 msgid "_Go"
-msgstr "Пойти"
+msgstr "_Иди"
 
 #: edit_person.glade:3907
 msgid "Delete selected reference"
@@ -2657,7 +2659,7 @@ msgstr "<b>LDS крещение</b>"
 
 #: edit_person.glade:4074
 msgid "LDS _temple:"
-msgstr "Храм LDS:"
+msgstr "_Храм LDS:"
 
 #: edit_person.glade:4143 edit_person.glade:4442 edit_person.glade:4618
 #: marriage.glade:1689
@@ -2670,23 +2672,23 @@ msgstr "<b>Завещанное</b>"
 
 #: edit_person.glade:4282
 msgid "LDS te_mple:"
-msgstr "Храм LDS:"
+msgstr "Х_рам LDS:"
 
 #: edit_person.glade:4310 preferences.glade:2458
 msgid "P_lace:"
-msgstr "Место:"
+msgstr "М_есто:"
 
 #: edit_person.glade:4479
 msgid "Dat_e:"
-msgstr "Дата:"
+msgstr "Дат_а:"
 
 #: edit_person.glade:4550
 msgid "LD_S temple:"
-msgstr "Храм LDS:"
+msgstr "Храм LD_S:"
 
 #: edit_person.glade:4704
 msgid "Pa_rents:"
-msgstr "Родители:"
+msgstr "Ро_дители:"
 
 #: edit_person.glade:4754
 msgid "<b>Sealed to parents</b>"
@@ -2698,7 +2700,7 @@ msgstr "<b>LDS</b>"
 
 #: errdialogs.glade:160
 msgid "Close _without saving"
-msgstr "Закрыть без сохранения"
+msgstr "Закрыть _без сохранения"
 
 #: filters/After.py:54
 msgid "People with an event after ..."
@@ -2793,135 +2795,135 @@ msgstr "GRAMPS"
 
 #: gramps.glade:39
 msgid "_File"
-msgstr "Файл"
+msgstr "_Файл"
 
 #: gramps.glade:48
 msgid "_New"
-msgstr "Новый"
+msgstr "_Новый"
 
 #: gramps.glade:70
 msgid "_Open..."
-msgstr "Открыть..."
+msgstr "_Открыть..."
 
 #: gramps.glade:92
 msgid "_Save"
-msgstr "Сохранить"
+msgstr "_Сохранить"
 
 #: gramps.glade:114
 msgid "Save _As..."
-msgstr "Сохранить Как..."
+msgstr "Сохранить _Как..."
 
 #: gramps.glade:141
 msgid "_Import"
-msgstr "Импорт"
+msgstr "_Импорт"
 
 #: gramps.glade:149
 msgid "_Export"
-msgstr "Экспорт"
+msgstr "_Экспорт"
 
 #: gramps.glade:169 gramps_main.py:1046
 msgid "_Revert"
-msgstr "Откатить"
+msgstr "О_ткатить"
 
 #: gramps.glade:190
 msgid "Re_load plugins"
-msgstr "Перезагрузить добавления"
+msgstr "Пере_загрузить добавления"
 
 #: gramps.glade:217
 msgid "_Quit"
-msgstr "Выход"
+msgstr "_Выйти"
 
 #: gramps.glade:242
 msgid "_Edit"
-msgstr "Правка"
+msgstr "_Правка"
 
 #: gramps.glade:251
 msgid "_Find..."
-msgstr "Найти..."
+msgstr "_Поиск..."
 
 #: gramps.glade:273 plugins/merge.glade:126
 msgid "_Merge"
-msgstr "Слияние"
+msgstr "_Слияние"
 
 #: gramps.glade:298
 msgid "_View"
-msgstr "Просмотр"
+msgstr "Про_смотр"
 
 #: gramps.glade:307
 msgid "_Sidebar"
-msgstr "Боковая панель"
+msgstr "_Боковая панель"
 
 #: gramps.glade:317
 msgid "_Filter"
-msgstr "Фильтр"
+msgstr "_Фильтр"
 
 #: gramps.glade:331
 msgid "_Bookmarks"
-msgstr "Закладки"
+msgstr "_Закладки"
 
 #: gramps.glade:340
 msgid "_Add bookmark"
-msgstr "Добавить закладку"
+msgstr "_Добавить закладку"
 
 #: gramps.glade:362
 msgid "_Edit bookmarks"
-msgstr "Правка закладок"
+msgstr "_Правка закладок"
 
 #: gramps.glade:390
 msgid "_Go to bookmark"
-msgstr "Пойти к закладке"
+msgstr "_Иди к закладке"
 
 #: gramps.glade:402
 msgid "_Reports"
-msgstr "Отчеты"
+msgstr "_Отчеты"
 
 #: gramps.glade:410
 msgid "_Tools"
-msgstr "Инструменты"
+msgstr "_Инструменты"
 
 #: gramps.glade:418
 msgid "_Settings"
-msgstr "Установки"
+msgstr "_Установки"
 
 #: gramps.glade:427
 msgid "Prefere_nces"
-msgstr "Настройки"
+msgstr "_Настройки"
 
 #: gramps.glade:448
 msgid "_Default Person"
-msgstr "Лицо По Умолчанию"
+msgstr "Лицо По _Умолчанию"
 
 #: gramps.glade:473
 msgid "_Help"
-msgstr "Справка"
+msgstr "_Справка"
 
 #: gramps.glade:482
 msgid "_User manual"
-msgstr "Руководство пользователя"
+msgstr "Руководство _пользователя"
 
 #: gramps.glade:509
 msgid "GRAMPS _home page"
-msgstr "Домашняя страница GRAMPS"
+msgstr "_Домашняя страница GRAMPS"
 
 #: gramps.glade:530
 msgid "GRAMPS _mailing lists"
-msgstr "Списки рассылки GRAMPS"
+msgstr "Списки _рассылки GRAMPS"
 
 #: gramps.glade:551
 msgid "_Report a bug"
-msgstr "Сообщить об Ошибке"
+msgstr "Заполнить сооб_щение об ошибке"
 
 #: gramps.glade:566
 msgid "_Show plugin status"
-msgstr "Показать стасус добавлений"
+msgstr "_Показать стасус добавлений"
 
 #: gramps.glade:575
 msgid "_Open example database"
-msgstr "Открыть пример базы данных"
+msgstr "От_крыть пример базы данных"
 
 #: gramps.glade:584
 msgid "_About"
-msgstr "О программе"
+msgstr "_О программе"
 
 #: gramps.glade:634
 msgid "Open file"
@@ -3020,7 +3022,7 @@ msgstr "Обратить"
 
 #: gramps.glade:1241
 msgid "_Apply"
-msgstr "Применить"
+msgstr "_Применить"
 
 #: gramps.glade:1357
 msgid "<b>People</b>"
@@ -3167,7 +3169,7 @@ msgstr "<b>Медиа</b>"
 
 #: gramps.glade:2889 marriage.glade:127
 msgid "_Relationship type:"
-msgstr "Тип отношений:"
+msgstr "Тип _отношений:"
 
 #: gramps.glade:2980
 msgid "Relationship definition\n"
@@ -3175,15 +3177,15 @@ msgstr "Определение отношений\n"
 
 #: gramps.glade:3137
 msgid "_Father's relationship to child:"
-msgstr "Отношение отца к ребенку:"
+msgstr "Отношение _отца к ребенку:"
 
 #: gramps.glade:3165
 msgid "_Mother's relationship to child:"
-msgstr "Отношение матери к ребенку:"
+msgstr "Отношение _матери к ребенку:"
 
 #: gramps.glade:3193
 msgid "_Parents' relationship to each other:"
-msgstr "Отношение родителей между собой:"
+msgstr "Отношение _родителей между собой:"
 
 #: gramps.glade:3221 gramps.glade:6249
 msgid "<b>Father</b>"
@@ -3191,7 +3193,7 @@ msgstr "<b>Отец</b>"
 
 #: gramps.glade:3268 gramps.glade:4078
 msgid "_Show all"
-msgstr "Показать всех"
+msgstr "По_казать всех"
 
 #: gramps.glade:3303 gramps.glade:6273
 msgid "<b>Mother</b>"
@@ -3203,7 +3205,7 @@ msgstr "<b>Отношения</b>"
 
 #: gramps.glade:3421
 msgid "Show _all"
-msgstr "Показать всех"
+msgstr "Показать _всех"
 
 #: gramps.glade:4505
 msgid "Relationship to father:"
@@ -3215,11 +3217,11 @@ msgstr "Отношение к матери:"
 
 #: gramps.glade:4702
 msgid "_Author:"
-msgstr "Автор:"
+msgstr "_Автор:"
 
 #: gramps.glade:4730
 msgid "_Publication information:"
-msgstr "Информация о публикациях:"
+msgstr "Информация о _публикациях:"
 
 #: gramps.glade:5082 imagesel.glade:1944 places.glade:1742
 msgid "<b>References</b>"
@@ -3231,31 +3233,31 @@ msgstr "Пол:"
 
 #: gramps.glade:5316
 msgid "_female"
-msgstr "женщина"
+msgstr "_женщина"
 
 #: gramps.glade:5544
 msgid "_Open an existing database"
-msgstr "Открыть существующую базу данных"
+msgstr "_Открыть существующую базу данных"
 
 #: gramps.glade:5563
 msgid "Create a new _XML database"
-msgstr "Создать новую базу данных XML"
+msgstr "Создать новую базу данных _XML"
 
 #: gramps.glade:5582
 msgid "Create a new _ZODB database"
-msgstr "Создать новую базу данных ZODB"
+msgstr "Создать новую базу данных _ZODB"
 
 #: gramps.glade:5758
 msgid "_Relationship:"
-msgstr "Отношение:"
+msgstr "_Отношение:"
 
 #: gramps.glade:6003
 msgid "Relation_ship:"
-msgstr "Отношение:"
+msgstr "Отно_шение:"
 
 #: gramps.glade:6438
 msgid "_Text:"
-msgstr "Текст:"
+msgstr "_Текст:"
 
 #: gramps_main.py:104
 msgid "Death date"
@@ -3322,7 +3324,7 @@ msgstr ""
 
 #: gramps_main.py:562
 msgid "_Create New Database"
-msgstr "Создать Новую Базу Данных"
+msgstr "_Создать Новую Базу Данных"
 
 #: gramps_main.py:642 gramps_main.py:669 gramps_main.py:1128
 msgid "Updating display - this may take a few seconds..."
@@ -3369,11 +3371,12 @@ msgstr ""
 #: gramps_main.py:729
 msgid "_Load autosave file"
 msgstr ""
-"Загрузить автоматически сохраненный файл"
+"_Загрузить автоматически сохраненный "
+"файл"
 
 #: gramps_main.py:731
 msgid "Load _saved database"
-msgstr "Загрузить сохраненную базу данных"
+msgstr "Загрузить со_храненную базу данных"
 
 #: gramps_main.py:765 gramps_main.py:803
 msgid "Database could not be opened"
@@ -3445,7 +3448,7 @@ msgstr ""
 
 #: gramps_main.py:899
 msgid "_Delete Person"
-msgstr "Уничтожить Лицо"
+msgstr "У_ничтожить Лицо"
 
 #: gramps_main.py:1042
 msgid "Revert to last saved database?"
@@ -3521,7 +3524,7 @@ msgstr ""
 
 #: gramps_main.py:1495
 msgid "_Set Home Person"
-msgstr "Установить Лицо По Умолчанию"
+msgstr "У_становить Лицо По Умолчанию"
 
 #: gramps_main.py:1540 gramps_main.py:1544 gramps_main.py:1548
 msgid "Could not create database"
@@ -3541,7 +3544,7 @@ msgstr "Пример базы данных не создан"
 
 #: imagesel.glade:206
 msgid "_File:"
-msgstr "Файл:"
+msgstr "_Файл:"
 
 #: imagesel.glade:287
 msgid "Select an image"
@@ -3549,7 +3552,7 @@ msgstr "Выбрать изображение"
 
 #: imagesel.glade:320
 msgid "_Do not make a local copy"
-msgstr "Не делать локальной копии"
+msgstr "_Не делать локальной копии"
 
 #: imagesel.glade:553 imagesel.glade:1299
 msgid "Object type:"
@@ -3567,7 +3570,7 @@ msgstr "Копирует объект в базу данных"
 
 #: imagesel.glade:1511
 msgid "_Make a local copy"
-msgstr "Сделать локальную копию"
+msgstr "С_делать локальную копию"
 
 #: imagesel.glade:1760
 msgid "Creates a new attribute from the above data"
@@ -3577,7 +3580,7 @@ msgstr ""
 
 #: marriage.glade:217
 msgid "_GRAMPS ID:"
-msgstr "GRAMPS ID номер:"
+msgstr "_GRAMPS ID:"
 
 #: marriage.glade:743
 msgid "Add new event for this marriage"
@@ -3611,11 +3614,11 @@ msgstr "Место 2"
 
 #: mergedata.glade:283
 msgid "_Merge and close"
-msgstr "Слить и закрыть"
+msgstr "_Слить и закрыть"
 
 #: mergedata.glade:296
 msgid "Merge and _edit"
-msgstr "Слияние и правка"
+msgstr "Слияние и _правка"
 
 #: mergedata.glade:804 mergedata.glade:1300
 msgid "<b>Parents</b>"
@@ -3662,15 +3665,15 @@ msgstr ""
 
 #: places.glade:231
 msgid "Co_untry:"
-msgstr "Страна:"
+msgstr "Ст_рана:"
 
 #: places.glade:259
 msgid "_Longitude:"
-msgstr "Долгота:"
+msgstr "Дол_гота:"
 
 #: places.glade:287
 msgid "L_atitude:"
-msgstr "Широта:"
+msgstr "Ш_ирота:"
 
 #: places.glade:578
 msgid "County:"
@@ -3885,7 +3888,7 @@ msgid "Rename personal event types"
 msgstr "Переименовать типы личных событий"
 
 #: plugins/ChangeTypes.py:104 plugins/Check.py:227 plugins/Merge.py:554
-#: plugins/PatchNames.py:158 plugins/ReorderIds.py:122
+#: plugins/PatchNames.py:209 plugins/ReorderIds.py:122
 msgid "Database Processing"
 msgstr "Обработка Базы Данных"
 
@@ -3916,10 +3919,6 @@ msgid "%d broken child/family links were found\n"
 msgstr ""
 "Было найдено %d нарушенных семейных "
 "связей\n"
-
-#: plugins/Check.py:169
-msgid "%s was removed from the family of %s\n"
-msgstr "%s был(а) удален(а) из семьи %s\n"
 
 #: plugins/Check.py:173
 msgid "1 broken spouse/family link was fixed\n"
@@ -4445,7 +4444,7 @@ msgid "Custom Filter Editor"
 msgstr "Редактор Фильтров По Заказу"
 
 #: plugins/FilterEditor.py:398 plugins/FilterEditor.py:411
-#: plugins/RelCalc.py:452 plugins/Verify.py:302 plugins/soundgen.py:95
+#: plugins/RelCalc.py:452 plugins/Verify.py:417 plugins/soundgen.py:95
 msgid "Utilities"
 msgstr "Утилиты"
 
@@ -4777,35 +4776,32 @@ msgstr ""
 "индивидуальных единиц которые могут "
 "представлять одно лицо."
 
-#: plugins/PatchNames.py:101
-msgid "%s will be extracted as a nickname from %s\n"
-msgstr ""
-"%s будет выделено из %s в качестве краткого "
-"имени\n"
-
-#: plugins/PatchNames.py:106
-msgid "%s will be extracted as a title from %s\n"
-msgstr ""
-"%s будет выделено из %s в качестве титула\n"
-
-#: plugins/PatchNames.py:120
-msgid "Name and title extraction tool"
-msgstr "Инструмент извлечения имен и титулов"
-
-#: plugins/PatchNames.py:124
+#: plugins/PatchNames.py:103
 msgid "No modifications made"
 msgstr "Не сделано никаких изменений"
 
-#: plugins/PatchNames.py:125
+#: plugins/PatchNames.py:104
 msgid "No titles or nicknames were found"
 msgstr ""
 "Титулы или краткие имена не были найдены"
 
-#: plugins/PatchNames.py:157
+#: plugins/PatchNames.py:125
+msgid "Name and title extraction tool"
+msgstr "Инструмент извлечения имен и титулов"
+
+#: plugins/PatchNames.py:133
+msgid "Select"
+msgstr "Выбрать"
+
+#: plugins/PatchNames.py:158
+msgid "Nickname"
+msgstr "Краткое имя"
+
+#: plugins/PatchNames.py:208
 msgid "Extract information from names"
 msgstr "Выделить информацию из имен"
 
-#: plugins/PatchNames.py:159
+#: plugins/PatchNames.py:210
 msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
@@ -5381,206 +5377,370 @@ msgstr "Генерирует график временной линии"
 msgid "Timeline Graph"
 msgstr "График Временной Линии"
 
-#: plugins/Verify.py:83 plugins/Verify.py:282
+#: plugins/Verify.py:85 plugins/Verify.py:397
 msgid "Database Verify"
 msgstr "Проверить Базу Данных"
 
-#: plugins/Verify.py:117
-msgid "Baptized before birth: %s born %d, baptized %d.\n"
+#: plugins/Verify.py:120
+msgid ""
+"Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
-"Крещение до рождения: %s рожден(а) %d, "
-"крещен(а) %d.\n"
+"Крещение до рождения: %(male_name)s родился "
+"%(byear)d, крестился %(bapyear)d.\n"
 
-#: plugins/Verify.py:119
-msgid "Baptized late: %s born %d, baptized %d.\n"
+#: plugins/Verify.py:123
+msgid ""
+"Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
-"Позднее крещение: %s рожден(а) %d, крещен(а) "
-"%d.\n"
+"Крещение до рождения: %(female_name)s родилась "
+"%(byear)d, крестилась %(bapyear)d.\n"
 
-#: plugins/Verify.py:122
-msgid "Buried before death: %s died %d, buried %d.\n"
+#: plugins/Verify.py:127
+msgid "Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
-"Похоронен(а) до смерти: %s умер(ла) %d, "
-"похоронен(а) %d.\n"
-
-#: plugins/Verify.py:124
-msgid "Buried late: %s died %d, buried %d.\n"
-msgstr ""
-"Поздние похоронены: %s умер(ла) %d, "
-"похоронен(а) %d.\n"
-
-#: plugins/Verify.py:126
-msgid "Died before birth: %s born %d, died %d.\n"
-msgstr ""
-"Смерть до рождения: %s рожден(а) %d, умер(ла) "
-"%d.\n"
-
-#: plugins/Verify.py:128
-msgid "Died before birth: %s baptized %d, died %d.\n"
-msgstr ""
-"Смерть до рожднния: %s крещен(а) %d, умер(ла) "
-"%d.\n"
+"Позднее крещение: %(male_name)s родился %(byear)d, "
+"крестился %(bapyear)d.\n"
 
 #: plugins/Verify.py:130
-msgid "Buried before birth: %s born %d, died %d.\n"
+msgid "Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n"
 msgstr ""
-"Похороны до рождения: %s рожден(а) %d, "
-"умер(ла) %d.\n"
+"Позднее крещение: %(female_name)s родилась %(byear)d, "
+"крестилась %(bapyear)d.\n"
 
-#: plugins/Verify.py:132
-msgid "Buried before birth: %s baptized %d, died %d.\n"
+#: plugins/Verify.py:135
+msgid ""
+"Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
-"Похороны до рождения: %s крещен(а) %d, "
-"умер(ла) %d.\n"
+"Похоронен до смерти: %(male_name)s умер %(dyear)d, "
+"похоронен %(buryear)d.\n"
+
+#: plugins/Verify.py:138
+msgid ""
+"Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr ""
+"Похоронена до смерти: %(female_name)s умерла "
+"%(dyear)d, похоронена %(buryear)d.\n"
 
 #: plugins/Verify.py:142
-msgid "Old age: %s born %d, died %d, at the age of %d.\n"
+msgid "Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n"
 msgstr ""
-"Большой возраст: %s рожден(а) %d, умер(ла) %d, в "
-"возрасте %d.\n"
+"Поздние похороны: %(male_name)s умер %(dyear)d, "
+"похоронен %(buryear)d.\n"
 
-#: plugins/Verify.py:146
-msgid "mother "
-msgstr "мать "
+#: plugins/Verify.py:145
+msgid "Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n"
+msgstr ""
+"Поздние похороны: %(female_name)s умерла %(dyear)d, "
+"похоронена %(buryear)d.\n"
 
-#: plugins/Verify.py:149 plugins/Verify.py:160 plugins/Verify.py:166
-msgid " was a widow "
-msgstr " была вдовой "
+#: plugins/Verify.py:149
+msgid "Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n"
+msgstr ""
+"Умер до рождения: %(male_name)s родился %(byear)d, "
+"умер %(dyear)d.\n"
 
-#: plugins/Verify.py:151
-msgid "father "
-msgstr "отец "
-
-#: plugins/Verify.py:154
-msgid " was a widower "
-msgstr " был вдовцом "
+#: plugins/Verify.py:152
+msgid "Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n"
+msgstr ""
+"Умерла до рождения: %(female_name)s родилась "
+"%(byear)d, умерла %(dyear)d.\n"
 
 #: plugins/Verify.py:156
+msgid ""
+"Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgstr ""
+"Умер до крещения: %(male_name)s крестился %(bapyear)d, "
+"умер %(dyear)d.\n"
+
+#: plugins/Verify.py:159
+msgid ""
+"Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n"
+msgstr ""
+"Умерла до крещния: %(female_name)s крестилась "
+"%(bapyear)d, умерла %(dyear)d.\n"
+
+#: plugins/Verify.py:163
+msgid ""
+"Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n"
+msgstr ""
+"Похоронен до рождения: %(male_name)s родился "
+"%(byear)d, похоронен %(buryear)d.\n"
+
+#: plugins/Verify.py:166
+msgid ""
+"Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n"
+msgstr ""
+"Похоронена до рождения: %(female_name)s родилась "
+"%(byear)d, похоронена %(buryear)d.\n"
+
+#: plugins/Verify.py:170
+msgid ""
+"Buried before baptism: %(male_name)s baptized %(bapyear)d, buried "
+"%(buryear)d.\n"
+msgstr ""
+"Похоронен до крещения: %s(male_name) крестился "
+"%(bapyear)d, похоронен %(buryear)d.\n"
+
+#: plugins/Verify.py:173
+msgid ""
+"Buried before baptism: %(female_name)s baptized %(bapyear)d, buried "
+"%(buryear)d.\n"
+msgstr ""
+"Похоронена до крещения: %(female_name)s "
+"крестилась %(bapyear)d, похоронена %(buryear)d.\n"
+
+#: plugins/Verify.py:185
+msgid ""
+"Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of "
+"%(ageatdeath)d.\n"
+msgstr ""
+"Большой возраст: %(male_name)s родился %(byear)d, "
+"умер %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
+
+#: plugins/Verify.py:188
+msgid ""
+"Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of "
+"%(ageatdeath)d.\n"
+msgstr ""
+"Большой возраст: %(female_name)s родилась %(byear)d, "
+"умерла %(dyear)d, в возрасте %(ageatdeath)d лет.\n"
+
+#: plugins/Verify.py:205
 msgid "Unknown gender for %s.\n"
 msgstr "Неизвестен пол %s.\n"
 
-#: plugins/Verify.py:157 plugins/Verify.py:163
-msgid "parent "
-msgstr "родитель "
-
-#: plugins/Verify.py:162
+#: plugins/Verify.py:211
 msgid "Ambigous gender for %s.\n"
 msgstr "Неясен пол %s.\n"
 
-#: plugins/Verify.py:170
+#: plugins/Verify.py:219
 msgid "Multiple parentage for %s.\n"
 msgstr "Более двух родителей у %s.\n"
 
-#: plugins/Verify.py:176
-msgid "Married often: %s married %d times.\n"
+#: plugins/Verify.py:226
+msgid "Married often: %(male_name)s married %(nfam)d times.\n"
 msgstr ""
-"Много браков: %s был женат (была замужем) %d "
+"Женат много раз: %(male_name)s был женат %(nfam)d "
 "раз.\n"
 
-#: plugins/Verify.py:178
-msgid "Old and unmarried: %s died unmarried, at the age of %d years.\n"
+#: plugins/Verify.py:229
+msgid "Married often: %(female_name)s married %(nfam)d times.\n"
 msgstr ""
-"Пожилой(ая) и не женат (не замужем): %s "
-"умер(ла) неженатым (незамужней), в возрасте "
-"%d лет.\n"
+"Замужем много раз: %(female_name)s была замужем "
+"%(nfam)d раз.\n"
 
-#: plugins/Verify.py:191
+#: plugins/Verify.py:233
+msgid ""
+"Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)d "
+"years.\n"
+msgstr ""
+"Пожилой и неженат: %(male_name)s умер неженатым, "
+"в возрасте %(ageatdeath)d лет.\n"
+
+#: plugins/Verify.py:236
+msgid ""
+"Old and unmarried: %(female_name)s died unmarried, at the age of "
+"%(ageatdeath)d years.\n"
+msgstr ""
+"Пожилая и не замужем: %(female_name)s умерла "
+"незамужней, в возрасте %(ageatdeath)d лет.\n"
+
+#: plugins/Verify.py:250
 msgid "Homosexual marriage: %s in family %s.\n"
-msgstr "Гомосексуальный брак: %s  в семье %s.\n"
+msgstr "Гомосексуальный брак: %s в семье %s.\n"
 
-#: plugins/Verify.py:193
+#: plugins/Verify.py:252
 msgid "Female husband: %s in family %s.\n"
 msgstr "Муж женского пола: %s в семье %s.\n"
 
-#: plugins/Verify.py:195
+#: plugins/Verify.py:254
 msgid "Male wife: %s in family %s.\n"
 msgstr "Жена мужского пола: %s в семье %s.\n"
 
-#: plugins/Verify.py:203
+#: plugins/Verify.py:262
 msgid "Husband and wife with the same surname: %s in family %s, and %s.\n"
 msgstr ""
 "Муж и жена с одинаковой фамилией: %s в семье "
 "%s, и %s.\n"
 
-#: plugins/Verify.py:221
-msgid "Married before birth: %s born %d, married %d to %s.\n"
-msgstr ""
-"Брак до рождения: %s рожден(а) %d, женат на "
-"(замужем за) %s в %d.\n"
-
-#: plugins/Verify.py:224
-msgid "Young marriage: %s married at age %d to %s.\n"
-msgstr ""
-"Ранний брак: %s в возрасте %d женат на "
-"(замужем за) %s.\n"
-"\n"
-
-#: plugins/Verify.py:226
-msgid "Old marriage: %s married at age %d to %s.\n"
-msgstr ""
-"Поздний брак: %s в %d женился на (вышла замуж "
-"за) %s.\n"
-
-#: plugins/Verify.py:228
-msgid "Married after death: %s died %d, married %d to %s.\n"
-msgstr ""
-"Брак после смерти: %s умер(ла) %d, женат на "
-"(замужем за) %s в %d.\n"
-
-#: plugins/Verify.py:230
+#: plugins/Verify.py:281
 msgid ""
-"Marriage before birth from previous family: %s married %d to %s, previous "
-"birth %d.\n"
+"Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to "
+"%(spouse)s.\n"
 msgstr ""
-"Брак до рождения в предыдущей семье: %s "
-"женат на (замужем за) %s в %d, предыдущее "
-"рождение в %d.\n"
+"Женат до рождения: %(male_name)s рожден %(byear)d, "
+"женился %(maryear)d на %(spouse)s.\n"
 
-#: plugins/Verify.py:238
-msgid "Long widowhood: %s %s %d years before, family %s.\n"
-msgstr "Долгое вдовство: %s %s %d лет до семьи %s.\n"
-
-#: plugins/Verify.py:243
-msgid "Long widowhood: %s %s %d years.\n"
-msgstr "Долгое вдовство: %s %s %d лет.\n"
-
-#: plugins/Verify.py:257
-msgid "Old %s: %s at age of %d in family %s had a child %s.\n"
+#: plugins/Verify.py:284
+msgid ""
+"Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to "
+"%(spouse)s.\n"
 msgstr ""
-"Позднее %s: %s в возрасте %d в семье %s стал(а) "
-"отцом (матерью) ребенка %s.\n"
+"Замужем до рождения: %(female_name)s рождена "
+"%(byear)d, вышла замуж %(maryear)d за %(spouse)s.\n"
 
-#: plugins/Verify.py:259
-msgid "Unborn %s: %s born %d, in family %s had a child %s born %d.\n"
+#: plugins/Verify.py:289
+msgid ""
+"Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
-"Нерожденный(ые) %s: %s рожден(а) %d, в семье %s "
-"имел(а) ребенка %s, рожденного %d.\n"
+"Ранний брак: %(male_name)s женился на %(spouse)s в "
+"возрасте %(marage)d лет.\n"
 
-#: plugins/Verify.py:262
-msgid "Young %s: %s at the age of %d in family %s had a child %s.\n"
+#: plugins/Verify.py:292
+msgid ""
+"Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
-"Ранний(ие) %s: %s в возрасте %d лет в семье %s "
-"стал(а) отцом (матерью) ребенка %s.\n"
+"Ранний брак: %(female_name)s вышла замуж за %(spouse)s "
+"в возрасте %(marage)d.\n"
 
-#: plugins/Verify.py:266 plugins/Verify.py:268 plugins/Verify.py:270
-msgid "Dead %s: %s died %d, but in family %s had a child %s born %d.\n"
+#: plugins/Verify.py:296
+msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
-"Умерший(ие) %s: %s умер(ла) в %d, но в семье %s "
-"имел(а) ребенка %s, рожденного  %d.\n"
+"Поздняя женитьба: %(male_name)s женился на %(spouse)s "
+"в возрасте %(marage)d лет.\n"
 
-#: plugins/Verify.py:275
+#: plugins/Verify.py:299
+msgid ""
+"Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n"
+msgstr ""
+"Поздняя женитьба: %(female_name)s вышла замуж за "
+"%(spouse)s в возрасте %(marage)d лет.\n"
+
+#: plugins/Verify.py:303
+msgid ""
+"Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to "
+"%(spouse)s.\n"
+msgstr ""
+"Женился после смерти: %(male_name)s умер %(dyear)d, "
+"женился на %(spouse)s в %(maryear)d.\n"
+
+#: plugins/Verify.py:306
+msgid ""
+"Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to "
+"%(spouse)s.\n"
+msgstr ""
+"Вышла замуж после смерти: %(female_name)s умерла "
+"%(dyear)d, вышла замуж за %(spouse)s в %(maryear)d.\n"
+
+#: plugins/Verify.py:310
+msgid ""
+"Marriage before birth from previous family: %(male_name)s married %(maryear)d "
+"to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+msgstr ""
+"Брак до рождения в предыдущей семье: "
+"%(male_name)s женился на %(spouse)s в %(maryear)d, "
+"предыдущее рождение %(prev_cbyear)d.\n"
+
+#: plugins/Verify.py:313
+msgid ""
+"Marriage before birth from previous family: %(female_name)s married "
+"%(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n"
+msgstr ""
+"Брак до рождения в предыдущей семье: "
+"%(female_name)s вышла замуж за %(spouse)s в %(maryear)d, "
+"предыдущее рождение %(prev_cbyear)d.\n"
+
+#: plugins/Verify.py:323
+msgid "Long widowhood: %s was a widower %d years before, family %s.\n"
+msgstr ""
+"Долгое вдовство: %s быд вдоцом %d лет до "
+"семьи %s.\n"
+
+#: plugins/Verify.py:325
+msgid "Long widowhood: %s was a widow %d years before, family %s.\n"
+msgstr ""
+"Долгое вдовство: %s была вдовой %d лет до "
+"семьи %s.\n"
+
+#: plugins/Verify.py:331
+msgid "Long widowhood: %s was a widower %d years.\n"
+msgstr "Долгое вдовство: %s был вдоцом %d лет.\n"
+
+#: plugins/Verify.py:333
+msgid "Long widowhood: %s was a widow %d years.\n"
+msgstr "Долгое вдовство: %s была вдовой %d лет.\n"
+
+#: plugins/Verify.py:348
+msgid ""
+"Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child "
+"%(child)s.\n"
+msgstr ""
+"Позднее отцовство: %(male_name)s в возрасте %(bage)d "
+"в семье %(fam)s стал отцом ребенка %(child)s.\n"
+
+#: plugins/Verify.py:351
+msgid ""
+"Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child "
+"%(child)s.\n"
+msgstr ""
+"Позднее материнство: %(female_name)s в возрасте "
+"%(bage)d в семье %(fam)s родила ребенка %(child)s.\n"
+
+#: plugins/Verify.py:355
+msgid ""
+"Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child "
+"%(child)s born %(cbyear)d.\n"
+msgstr ""
+"Нерожденный отец: %(male_name)s рожден %(byear)d, в "
+"семье %(fam)s имел ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
+
+#: plugins/Verify.py:358
+msgid ""
+"Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child "
+"%(child)s born %(cbyear)d.\n"
+msgstr ""
+"Нерожденная мать: %(female_name)s рождена %(byear)d, в "
+"семье %(fam)s имела ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
+
+#: plugins/Verify.py:363
+msgid ""
+"Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a "
+"child %(child)s.\n"
+msgstr ""
+"Молодой отец: %(male_name)s в возрасте %(bage)d лет в "
+"семье %(fam)s стал отцом ребенка %(child)s.\n"
+
+#: plugins/Verify.py:366
+msgid ""
+"Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a "
+"child %(child)s.\n"
+msgstr ""
+"Молодая мать: %(female_name)s в возрасте %(bage)d лет "
+"в семье %(fam)s родила ребенка %(child)s.\n"
+
+#: plugins/Verify.py:371 plugins/Verify.py:378
+msgid ""
+"Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child "
+"%(child)s born %(cbyear)d.\n"
+msgstr ""
+"Мертвый отец: %(male_name)s умер в %(dyear)d, но в "
+"семье %(fam)s имел ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
+
+#: plugins/Verify.py:374 plugins/Verify.py:381
+msgid ""
+"Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a "
+"child %(child)s born %(cbyear)d.\n"
+msgstr ""
+"Мертвая мать: %(female_name)s умерла в %(dyear)d, но в "
+"семье %(fam)s имела ребенка %(child)s, рожденного "
+"%(cbyear)d.\n"
+
+#: plugins/Verify.py:387
 msgid "ERRORS:\n"
 msgstr "ОШИБКИ:\n"
 
-#: plugins/Verify.py:277
+#: plugins/Verify.py:389
 msgid "WARNINGS:\n"
 msgstr "ПРЕДУПРЕЖДЕНИЯ:\n"
 
-#: plugins/Verify.py:301
+#: plugins/Verify.py:416
 msgid "Verify the database"
 msgstr "Проверить базу данных"
 
-#: plugins/Verify.py:303
+#: plugins/Verify.py:418
 msgid "List exceptions to assertions or checks about the database"
 msgstr ""
 "Перечислить исключения в проверках базы "
@@ -5816,11 +5976,11 @@ msgstr ""
 
 #: plugins/changetype.glade:245
 msgid "_Original event type:"
-msgstr "Изначальный тип события:"
+msgstr "_Изначальный тип события:"
 
 #: plugins/changetype.glade:270
 msgid "_New event type:"
-msgstr "Новый тип события:"
+msgstr "_Новый тип события:"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
@@ -5875,7 +6035,7 @@ msgstr "Формат"
 
 #: plugins/eventcmp.glade:482 plugins/gedcomexport.glade:157
 msgid "_Filter:"
-msgstr "Фильтр:"
+msgstr "_Фильтр:"
 
 #: plugins/eventcmp.glade:507
 msgid ""
@@ -5888,7 +6048,7 @@ msgstr ""
 
 #: plugins/eventcmp.glade:532
 msgid "_Custom filter editor"
-msgstr "Редактор фильтров по заказу"
+msgstr "Редактор фильтров по _заказу"
 
 #: plugins/gedcomexport.glade:105 plugins/pkgexport.glade:97
 msgid "Export GEDCOM"
@@ -5896,7 +6056,7 @@ msgstr "Экспорт GEDCOM"
 
 #: plugins/gedcomexport.glade:185
 msgid "_Target:"
-msgstr "Назначение:"
+msgstr "_Назначение:"
 
 #: plugins/gedcomexport.glade:223
 msgid "Standard GEDCOM 5.5"
@@ -5904,7 +6064,7 @@ msgstr "Стандарт GEDCOM 5.5"
 
 #: plugins/gedcomexport.glade:243
 msgid "_Copyright:"
-msgstr "Копирайт (Copyright):"
+msgstr "_Копирайт:"
 
 #: plugins/gedcomexport.glade:280
 msgid "Standard Copyright"
@@ -5934,19 +6094,19 @@ msgstr "<b>Параметры</b>"
 #: plugins/gedcomexport.glade:393
 msgid "_Do not include records marked private"
 msgstr ""
-"Не включать записи помеченные как личные"
+"_Не включать записи помеченные как личные"
 
 #: plugins/gedcomexport.glade:415
 msgid "_Restrict data on living people"
-msgstr "Ограничить данные о живущих лицах"
+msgstr "О_граничить данные о живущих лицах"
 
 #: plugins/gedcomexport.glade:437
 msgid "_ANSEL"
-msgstr "ANSEL"
+msgstr "_ANSEL"
 
 #: plugins/gedcomexport.glade:459
 msgid "_UNICODE"
-msgstr "UNICODE"
+msgstr "_UNICODE"
 
 #: plugins/gedcomexport.glade:577
 msgid "Sources:"
@@ -6022,31 +6182,21 @@ msgstr "Параметры"
 msgid "Restrict data on living people"
 msgstr "Ограничить данные о живущих лицах"
 
-#: plugins/patchnames.glade:40
-msgid "_Accept changes and close"
-msgstr "Принять изменения и закрыть"
-
-#: plugins/patchnames.glade:105
+#: plugins/patchnames.glade:50
 msgid ""
 "Below is a list of the nicknames and titles that GRAMPS can extract from the "
-"\ncurrent database. If you accept the changes, GRAMPS will modify your "
-"database as \n"
-"specified below. If you do not approve of these changes, you should select \n"
-"'Cancel', and your database will not be altered.\n"
-"\n"
-"Should the following changes be made?"
+"\ncurrent database. If you accept the changes, GRAMPS will modify the "
+"entries\nthat have been selected."
 msgstr ""
 "Ниже приведен список кратких имен и "
 "титулов которые GRAMPS может\n"
 "извлечь из текущей базы данных. Если вы "
 "примете изменения, GRAMPS\n"
-"изменит вашу базу данных в соответствии с "
-"нижеследующим. Если вы\n"
-"не одобряете эти изменения, выберете "
-"'Отменить' и ваша база данных не будет "
-"изменена.\n"
-"\n"
-"Произвести нижеследующие изменения?"
+"изменит выбранные записи."
+
+#: plugins/patchnames.glade:106
+msgid "_Accept changes and close"
+msgstr "_Принять изменения и закрыть"
 
 #: plugins/relcalc.glade:90
 msgid "Select a person to determine the relationship"
@@ -6164,11 +6314,11 @@ msgstr ""
 
 #: preferences.glade:240
 msgid "A_utosave interval:"
-msgstr "Интервал автосохранения:"
+msgstr "Интервал а_втосохранения:"
 
 #: preferences.glade:289
 msgid "D_efault database directory:"
-msgstr "Каталог базы данных по умолчанию:"
+msgstr "Каталог базы данных по у_молчанию:"
 
 #: preferences.glade:317
 msgid "minutes"
@@ -6192,16 +6342,16 @@ msgstr ""
 
 #: preferences.glade:400
 msgid "_Capitalize family names"
-msgstr "Заглавные буквы для фамилий"
+msgstr "_Заглавные буквы для фамилий"
 
 #: preferences.glade:421
 msgid "_Do not compress XML data file"
-msgstr "Не сжимать XML файл данных"
+msgstr "_Не сжимать XML файл данных"
 
 #: preferences.glade:443
 msgid "_Automatically load last database"
 msgstr ""
-"Автоматически загружать последнюю базу "
+"_Автоматически загружать последнюю базу "
 "данных"
 
 #: preferences.glade:512
@@ -6210,12 +6360,12 @@ msgstr "<b>Контроль изменений</b>"
 
 #: preferences.glade:537
 msgid "_Use revision control"
-msgstr "Использовать контроль ревизий"
+msgstr "_Использовать контроль ревизий"
 
 #: preferences.glade:559
 msgid "_Prompt for comment on save"
 msgstr ""
-"Запрашивать комментарий при сохранении"
+"За_прашивать комментарий при сохранении"
 
 #: preferences.glade:657
 msgid "<b>Find</b>"
@@ -6223,7 +6373,7 @@ msgstr "<b>Поиск</b>"
 
 #: preferences.glade:682
 msgid "_Enable autocompletion"
-msgstr "Включить автодополнение"
+msgstr "_Включить автодополнение"
 
 #: preferences.glade:750
 msgid "<b>Toolbar</b>"
@@ -6235,38 +6385,38 @@ msgstr "<b>Панель статуса</b>"
 
 #: preferences.glade:799
 msgid "Display only _icons"
-msgstr "Показывать только пиктограммы"
+msgstr "Показывать только п_иктограммы"
 
 #: preferences.glade:821
 msgid "Display only _text"
-msgstr "Показывать только текст"
+msgstr "Показывать только _текст"
 
 #: preferences.glade:844
 msgid "_Display icons and text"
-msgstr "Показывать пиктограммы и текст"
+msgstr "Показ_ывать пиктограммы и текст"
 
 #: preferences.glade:867
 msgid "_Active person's name only"
-msgstr "Только имя активного лица"
+msgstr "Только имя _активного лица"
 
 #: preferences.glade:889
 msgid "Active person's name and _GRAMPS ID"
-msgstr "Имя и GRAMPS ID номер активного лица"
+msgstr "Имя и _GRAMPS ID активного лица"
 
 #: preferences.glade:912
 msgid "Active person's _relationship to Home Person (English only)"
 msgstr ""
-"Отношение активного лица к Лицу По "
+"Отно_шение активного лица к Лицу По "
 "Умолчанию (только английский язык)"
 
 #: preferences.glade:984
 msgid "_Always display the LDS ordinance tabs"
-msgstr "Всегда показывать листы процедур LDS"
+msgstr "_Всегда показывать листы процедур LDS"
 
 #: preferences.glade:1007
 msgid "_Show index numbers in child list"
 msgstr ""
-"Показывать индексационные номера в "
+"По_казывать индексационные номера в "
 "списке детей"
 
 #: preferences.glade:1028
@@ -6275,20 +6425,20 @@ msgstr "<b>Просмотр</b>"
 
 #: preferences.glade:1100
 msgid "_Date format:"
-msgstr "Формат Дат:"
+msgstr "Формат _дат:"
 
 #: preferences.glade:1128
 msgid "_Name format:"
-msgstr "Формат Имен:"
+msgstr "Формат _имен:"
 
 #: preferences.glade:1179
 msgid "D_ate format:"
-msgstr "Формат Дат:"
+msgstr "Формат д_ат:"
 
 #: preferences.glade:1230
 msgid "_Show calendar format selection menu"
 msgstr ""
-"Показывать меню выбора формата календаря"
+"По_казывать меню выбора формата календаря"
 
 #: preferences.glade:1251
 msgid "<b>Display formats</b>"
@@ -6304,27 +6454,27 @@ msgstr "<b>Календари</b>"
 
 #: preferences.glade:1392 rule.glade:264
 msgid "_Name:"
-msgstr "Имя:"
+msgstr "_Имя:"
 
 #: preferences.glade:1420
 msgid "_Address:"
-msgstr "Адрес:"
+msgstr "_Адрес:"
 
 #: preferences.glade:1476
 msgid "_State/Province:"
-msgstr "Штат/Провинция:"
+msgstr "_Штат/Провинция:"
 
 #: preferences.glade:1504
 msgid "_Country:"
-msgstr "Страна:"
+msgstr "_Страна:"
 
 #: preferences.glade:1560
 msgid "_Phone:"
-msgstr "Телефон:"
+msgstr "Теле_фон:"
 
 #: preferences.glade:1588
 msgid "_Email:"
-msgstr "Эл.почта:"
+msgstr "_Эл.почта:"
 
 #: preferences.glade:1792
 msgid "<b>Researcher information</b>"
@@ -6332,15 +6482,15 @@ msgstr "<b>Информация об исследователе</b>"
 
 #: preferences.glade:1864
 msgid "Preferred _text format:"
-msgstr "Предпочитаемый формат текста:"
+msgstr "Предпочитаемый _текстовый формат:"
 
 #: preferences.glade:1914
 msgid "Preferred _graphical format:"
-msgstr "Предпочитаемый графический формат:"
+msgstr "Предпочитаемый _графический формат:"
 
 #: preferences.glade:1964
 msgid "Preferred _paper size:"
-msgstr "Предпочитаемый размер бумаги:"
+msgstr "Предпочитаемый размер _бумаги:"
 
 #: preferences.glade:2002
 msgid "Letter"
@@ -6352,7 +6502,7 @@ msgstr "А4"
 
 #: preferences.glade:2030
 msgid "_Default report directory:"
-msgstr "Каталог отчетов по умолчанию:"
+msgstr "Каталог отчетов по _умолчанию:"
 
 #: preferences.glade:2060 preferences.glade:2122
 msgid "Select default report directory - GRAMPS"
@@ -6367,7 +6517,7 @@ msgstr ""
 
 #: preferences.glade:2092
 msgid "Default _web site directory:"
-msgstr "Каталог Web сайтов по умолчанию:"
+msgstr "Каталог _web сайтов по умолчанию:"
 
 #: preferences.glade:2129
 msgid "The default directory for the output of the Web Site report generators"
@@ -6382,25 +6532,25 @@ msgstr "<b>Настройки отчетов</b>"
 #: preferences.glade:2222
 msgid "Make a _reference to the object when the object is dropped"
 msgstr ""
-"Делать ссылку на объект когда объект "
+"Делать _ссылку на объект когда объект "
 "отпущен"
 
 #: preferences.glade:2245
 msgid "Make a local _copy when the object is dropped"
 msgstr ""
-"Делать локальную копию когда объект "
+"Делать локальную _копию когда объект "
 "отпущен"
 
 #: preferences.glade:2269
 msgid "Display _global properties editor when object is dropped"
 msgstr ""
-"Показывать редактор глобальных свойств "
+"Показывать редактор _глобальных свойств "
 "когда объект отпущен"
 
 #: preferences.glade:2292
 msgid "Display _local properties editor when object is dropped"
 msgstr ""
-"Показывать редактор локальных свойств "
+"Показывать редактор _локальных свойств "
 "когда объект отпущен"
 
 #: preferences.glade:2313
@@ -6416,15 +6566,15 @@ msgstr ""
 
 #: preferences.glade:2430
 msgid "_Family:"
-msgstr "Семья:"
+msgstr "_Семья:"
 
 #: preferences.glade:2486
 msgid "_Source:"
-msgstr "Источники:"
+msgstr "_Источники:"
 
 #: preferences.glade:2514
 msgid "_Media object:"
-msgstr "Медиа-объект:"
+msgstr "_Медиа-объект:"
 
 #: preferences.glade:2546
 msgid "I"
@@ -6458,11 +6608,12 @@ msgstr "<b>Префиксы GRAMPS ID номеров</b>"
 #: preferences.glade:2702
 msgid "_Allow internal GRAMPS ID numbers to be edited"
 msgstr ""
-"Разрешить правку внутренних GRAMPS ID номеров"
+"_Разрешить правку внутренних GRAMPS ID "
+"номеров"
 
 #: preferences.glade:2771
 msgid "_Family name guessing:"
-msgstr "Угадывание фамилии:"
+msgstr "Угадывание _фамилии:"
 
 #: preferences.glade:2799
 msgid "<b>Customization</b>"
@@ -6470,12 +6621,12 @@ msgstr "<b>Настройки</b>"
 
 #: revision.glade:104
 msgid "_Database:"
-msgstr "База данных"
+msgstr "База _данных"
 
 #: revision.glade:162
 msgid "_Revert to an older version from revision control"
 msgstr ""
-"Откатить к более старой версии из "
+"О_ткатить к более старой версии из "
 "контроля ревизий"
 
 #: revision.glade:400
@@ -6492,16 +6643,17 @@ msgstr "<b>Список правил</b>"
 
 #: rule.glade:358
 msgid "All _rules must apply"
-msgstr "Все правила должны выполняться"
+msgstr "Все _правила должны выполняться"
 
 #: rule.glade:379
 msgid "At least _one rule must apply"
 msgstr ""
-"Хотя бы одно правило должно выполняться"
+"Хотя бы _одно правило должно выполняться"
 
 #: rule.glade:401
 msgid "E_xactly one rule must apply"
-msgstr "Ровно одно правило должно выполняться"
+msgstr ""
+"Ро_вно одно правило должно выполняться"
 
 #: rule.glade:422
 msgid "Rule operations:"
@@ -6510,7 +6662,7 @@ msgstr "Опреации над правилами:"
 #: rule.glade:447
 msgid "_Return values that do not match the filter rules (invert)"
 msgstr ""
-"Возвращать значения не удовлетворяющие "
+"_Возвращать значения не удовлетворяющие "
 "правилам фильтра (обратить)"
 
 #: rule.glade:467
@@ -6535,7 +6687,7 @@ msgstr "Изменить выделенный фильтр"
 
 #: rule.glade:915
 msgid "_Test..."
-msgstr "Проверка..."
+msgstr "_Проверка..."
 
 #: rule.glade:931
 msgid "Delete the selected filter"
@@ -6543,19 +6695,19 @@ msgstr "Уничтожить выделенный фильтр"
 
 #: srcsel.glade:110
 msgid "_Confidence:"
-msgstr "Достоверность:"
+msgstr "_Достоверность:"
 
 #: srcsel.glade:138
 msgid "_Volume/Film/Page:"
-msgstr "Том/Пленка/Страница:"
+msgstr "Т_ом/Пленка/Страница:"
 
 #: srcsel.glade:194
 msgid "Te_xt:"
-msgstr "Текст:"
+msgstr "Те_кст:"
 
 #: srcsel.glade:221
 msgid "Co_mments:"
-msgstr "Коментарии:"
+msgstr "Ко_ментарии:"
 
 #: srcsel.glade:248
 msgid "Publication information:"
@@ -6573,7 +6725,7 @@ msgstr "Создает новый источник"
 
 #: srcsel.glade:390
 msgid "_New..."
-msgstr "Новый..."
+msgstr "_Новый..."
 
 #: srcsel.glade:632
 msgid "<b>Source selection</b>"
@@ -6591,7 +6743,7 @@ msgstr ""
 
 #: styles.glade:286
 msgid "Style _name:"
-msgstr "Название стиля:"
+msgstr "На_звание стиля:"
 
 #: styles.glade:446
 msgid "<b>Description</b>"
@@ -6607,15 +6759,15 @@ msgstr "Выбрать цвет"
 
 #: styles.glade:540
 msgid "_Bold"
-msgstr "Жирный"
+msgstr "_Жирный"
 
 #: styles.glade:561
 msgid "_Italic"
-msgstr "Курсив"
+msgstr "_Курсив"
 
 #: styles.glade:582
 msgid "_Underline"
-msgstr "Подчеркнутый"
+msgstr "Под_черкнутый"
 
 #: styles.glade:602
 msgid "<b>Type face</b>"
@@ -6631,12 +6783,12 @@ msgstr "<b>Цвет</b>"
 
 #: styles.glade:724
 msgid "_Roman (Times, serif)"
-msgstr "Римский (Таймс, с засечками)"
+msgstr "_Римский (Таймс, с засечками)"
 
 #: styles.glade:745
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
-"Швейцарский (Ариал,Гельветика, без "
+"_Швейцарский (Ариал,Гельветика, без "
 "засечек)"
 
 #: styles.glade:772
@@ -6645,47 +6797,47 @@ msgstr "<b>Параметры шрифта</b>"
 
 #: styles.glade:819
 msgid "R_ight:"
-msgstr "Правый край:"
+msgstr "П_равый край:"
 
 #: styles.glade:847
 msgid "L_eft:"
-msgstr "Левый край:"
+msgstr "Л_евый край:"
 
 #: styles.glade:875
 msgid "_Padding:"
-msgstr "Запас:"
+msgstr "_Запас:"
 
 #: styles.glade:1039
 msgid "_Left"
-msgstr "Левый край"
+msgstr "_Левый край"
 
 #: styles.glade:1060
 msgid "Le_ft"
-msgstr "Левый край"
+msgstr "Ле_вый край"
 
 #: styles.glade:1081
 msgid "_Right"
-msgstr "Правый край"
+msgstr "_Правый край"
 
 #: styles.glade:1103
 msgid "_Justify"
-msgstr "Оба края"
+msgstr "О_ба края"
 
 #: styles.glade:1125
 msgid "_Center"
-msgstr "Центр"
+msgstr "_Центр"
 
 #: styles.glade:1147
 msgid "Ri_ght"
-msgstr "Правый край"
+msgstr "Пр_авый край"
 
 #: styles.glade:1168
 msgid "_Bottom"
-msgstr "Низ"
+msgstr "_Низ"
 
 #: styles.glade:1189
 msgid "_Top"
-msgstr "Верх"
+msgstr "_Верх"
 
 #: styles.glade:1209
 msgid "<b>Background</b>"
@@ -6706,6 +6858,30 @@ msgstr "<b>Выравнивание</b>"
 #: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
+
+#~ msgid "%s was removed from the family of %s\n"
+#~ msgstr "%s был(а) удален(а) из семьи %s\n"
+
+#~ msgid "%s will be extracted as a nickname from %s\n"
+#~ msgstr "%s будет выделено из %s в качестве краткого имени\n"
+
+#~ msgid "%s will be extracted as a title from %s\n"
+#~ msgstr "%s будет выделено из %s в качестве титула\n"
+
+#~ msgid "mother "
+#~ msgstr "мать "
+
+#~ msgid " was a widow "
+#~ msgstr " была вдовой "
+
+#~ msgid "father "
+#~ msgstr "отец "
+
+#~ msgid " was a widower "
+#~ msgstr " был вдовцом "
+
+#~ msgid "parent "
+#~ msgstr "родитель "
 
 #~ msgid "LDS extenstions"
 #~ msgstr "Расширения LDS"
