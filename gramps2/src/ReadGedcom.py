@@ -48,9 +48,6 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import Errors
 import RelLib
-import Julian
-import FrenchRepublic
-import Hebrew
 import Date
 import DateParser
 from ansel_utf8 import ansel_to_utf8

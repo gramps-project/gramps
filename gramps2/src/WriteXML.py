@@ -49,7 +49,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Gregorian
 import RelLib 
 import Date
 
