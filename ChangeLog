@@ -1,3 +1,6 @@
+2005-01-02 Guillaume Pratte <guillaumep@soireevideo.org>
+	* src/po/fr.po : Update from the STABLE branch.
+
 2005-01-31 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py: Finish up with actual MALE, FEMALE, and UNKNOWN
         attributes of the Person class.
