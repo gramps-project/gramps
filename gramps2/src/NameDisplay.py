@@ -74,9 +74,9 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         if name.display_as == RelLib.Name.FNLN:
-            return self._lnfn(name)
-        else:
             return self._fnln(name)
+        else:
+            return self._lnfn(name)
 
     def sorted_name(self,name):
         """
@@ -89,7 +89,7 @@ class NameDisplay:
         @returns: Returns the L{RelLib.Name} string representation
         @rtype: str
         """
-        if name.sort_as == RelLib.Name.FNLN:
+        if name.get_sort_as() == RelLib.Name.FNLN:
             return self._fnln(name)
         else:
             return self._lnfn(name)

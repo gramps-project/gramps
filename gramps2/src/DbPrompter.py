@@ -38,6 +38,11 @@ import gtk.glade
 import gobject
 import gnome
 
+try:
+    from gnomevfs import get_mime_type
+except:
+    from gnome.vfs import get_mime_type
+    
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -174,7 +179,7 @@ class ExistingDbPrompter:
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
-            filetype = gnome.vfs.get_mime_type(filename)
+            filetype = get_mime_type(filename)
             (the_path,the_file) = os.path.split(filename)
             choose.destroy()
             if open_native(self.parent,filename,filetype):
@@ -269,7 +274,7 @@ class ImportDbPrompter:
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
-            filetype = gnome.vfs.get_mime_type(filename)
+            filetype = get_mime_type(filename)
 #   FIXME: Uncomment when we have grdb importer
 #
 #            if filetype == 'application/x-gramps':
