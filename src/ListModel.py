@@ -247,8 +247,9 @@ class ListModel:
         return 0
 
     def find(self,info):
-        iter = self.idmap[info]
-        self.selection.select_iter(iter)
+        if info in self.idmap.keys():
+            iter = self.idmap[info]
+            self.selection.select_iter(iter)
 
     def cleanup(self):
         pass
