@@ -20,6 +20,7 @@
 
 import string
 import os
+import sys
 import xml.sax
 import xml.sax.saxutils
 import utils
@@ -29,12 +30,14 @@ import utils
 # Try to abstract SAX1 from SAX2
 #
 #-------------------------------------------------------------------------
-try:
-    import xml.sax.saxexts
-    sax = 1
-except:
+if sys.version[0] != '1':
     sax = 2
-
+else:
+    try:
+        import xml.sax.saxexts
+        sax = 1
+    except:
+        sax = 2
 
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
