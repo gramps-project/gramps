@@ -113,8 +113,9 @@ comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "genealogy program.")
 authors      = [
     "Donald N. Allingham",
-    "Donald A. Peterson", 
     "Alexander Roitman",
+    "Tim Waugh",
+    "Donald A. Peterson", 
     "David Hampton",
     ]
 
