@@ -85,23 +85,23 @@ def report(database,person):
         if name.getSurname() not in namelist:
             namelist.append(name.getSurname())
             
-    text = "Individuals\n"
+    text = _("Individuals") + "\n"
     text = text + "----------------------------\n"
-    text = text + "Number of individuals : %d\n" % len(personList)
-    text = text + "Males : %d\n" % males
-    text = text + "Females : %d\n" % females
-    text = text + "Individuals with incomplete names : %d\n" % incomp_names
-    text = text + "Individuals missing birth dates : %d\n" % missing_bday
-    text = text + "Disconnected individuals : %d\n" % disconnected
-    text = text + "\nPhotos and files\n"
+    text = text + "%s : %d\n" % (_("Number of individuals"),len(personList))
+    text = text + "%s : %d\n" % (_("Males"),males)
+    text = text + "%s : %d\n" % (_("Females"),females)
+    text = text + "%s : %d\n" % (_("Individuals with incomplete names"),incomp_names)
+    text = text + "%s : %d\n" % (_("Individuals missing birth dates"),missing_bday)
+    text = text + "%s : %d\n" % (_("Disconnected individuals"),disconnected)
+    text = text + "\n%s\n" % _("Photos and files")
     text = text + "----------------------------\n"
-    text = text + "Individuals with photos : %d\n" % with_photos
-    text = text + "Total number of photos : %d\n" % total_photos
-    text = text + "Total size of photos : %d bytes\n" % bytes
-    text = text + "\nFamily Information\n"
+    text = text + "%s : %d\n" % (_("Individuals with photos"),with_photos)
+    text = text + "%s : %d\n" % (_("Total number of photos"),total_photos)
+    text = text + "%s : %d %s\n" % (_("Total size of photos"),_("bytes"),bytes)
+    text = text + "\n%s\n" % _("Family Information")
     text = text + "----------------------------\n"
-    text = text + "Number of families : %d\n" % len(familyList)
-    text = text + "Unique surnames : %d\n" % len(namelist)
+    text = text + "%s : %d\n" % (_("Number of families"),len(familyList))
+    text = text + "%s : %d\n" % (_("Unique surnames"),len(namelist))
     
     
     top = topDialog.get_widget("summary")
