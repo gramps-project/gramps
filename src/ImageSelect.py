@@ -276,7 +276,7 @@ class Gallery(ImageSelect):
         if const.dnd_images:
             handle = self.sel_obj.get_reference_handle()
             media_obj = self.db.get_object_from_handle(handle)
-            pix = self.db.get_thumbnail_image(media_obj.get_path())
+            pix = ImgManip.get_thumbnail_image(media_obj.get_path())
             context.set_icon_pixbuf(pix,0,0)
 
     def item_event(self, widget, event=None):

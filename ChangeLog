@@ -1,4 +1,7 @@
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/ImageSelect.py (Gallery.on_drag_begin): tiny fix to correct image dnd
+
+2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py (ScratchPadListView.register_wrapper_classes,
 	ScratchPadName): added support for Names
 	* src/EditPerson.py (EditPerson.__init__, EditPerson.name_drag_data_get,
