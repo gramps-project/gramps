@@ -37,6 +37,7 @@ import pango
 #-------------------------------------------------------------------------
 import GrampsCfg
 from gettext import gettext as _
+import Relationship
 
 _PAD       = 3
 _CANVASPAD = 3
@@ -44,7 +45,16 @@ _PERSON    = "p"
 _BORN = _('b.')
 _DIED = _('d.')
 
+#-------------------------------------------------------------------------
+#
+# DispBox class
+#
+#-------------------------------------------------------------------------
 class DispBox:
+    """
+    This class handles the person box, including its expanded and
+    shrunk states, as well as the callbacks for events occurring in the box.
+    """
 
     def __init__(self,root,style,x,y,w,h,person,db,change,edit):
         shadow = _PAD
@@ -108,7 +118,7 @@ class DispBox:
                                       fill_color_gdk=style.text[gtk.STATE_NORMAL],
                                       font=font, anchor=gtk.ANCHOR_WEST)
         self.group.connect('event',self.group_event)
-        self.group.set_data(_PERSON,person)
+        self.group.set_data(_PERSON,person.get_id())
 
     def cleanup(self):
         self.shadow.destroy()
@@ -277,7 +287,7 @@ class PedigreeView:
 
         gen_no = 1
         if self.anchor:
-            gn = get_distance(self.anchor,self.active_person)
+            gn = get_distance(self.parent.db,self.anchor,self.active_person)
             if gn == None:
                 self.remove_anchor()
             else:
@@ -384,7 +394,7 @@ class PedigreeView:
                     label.set_alignment(0,0)
                     menuitem.add(label)
                     myMenu.append(menuitem)
-                    menuitem.set_data(_PERSON,child)
+                    menuitem.set_data(_PERSON,child_id)
                     menuitem.connect("activate",self.on_childmenu_changed)
                     menuitem.show()
                 myMenu.popup(None,None,None,0,0)
@@ -394,7 +404,8 @@ class PedigreeView:
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
 
-        person = obj.get_data(_PERSON)
+        person_id = obj.get_data(_PERSON)
+        person = self.parent.db.try_to_find_person_from_id(person_id)
         if person:
             self.load_canvas(person)
         return 1
@@ -405,7 +416,7 @@ class PedigreeView:
            to the button."""
 
         button,arrow = self.make_arrow_button(gtk.ARROW_RIGHT,self.change_to_parent)
-        button.set_data(_PERSON,parent)
+        button.set_data(_PERSON,parent.get_id())
 
         item = self.root.add(gnome.canvas.CanvasWidget, widget=button, x=x, y=y+(h/2),
                              height=h, width=h, size_pixels=1,
@@ -418,7 +429,8 @@ class PedigreeView:
         """Callback to right pointing arrow button. Gets the person
            attached to the button and change the root person to that
            person, redrawing the view."""
-        person = obj.get_data(_PERSON)
+        person_id = obj.get_data(_PERSON)
+        person = self.parent.db.try_to_find_person_from_id(person_id)
         if self.active_person:
             self.active_person = person
         self.load_canvas(person)
@@ -432,7 +444,7 @@ class PedigreeView:
         item = self.root.add(gnome.canvas.CanvasLine, width_pixels=2,
                              points=pts, line_style=ls,
                              fill_color_gdk=style.fg[gtk.STATE_NORMAL])
-        item.set_data(_PERSON,data)
+        item.set_data(_PERSON,data.get_id())
         item.connect("event",self.line_event)
         self.canvas_items.append(item)
 
@@ -453,7 +465,8 @@ class PedigreeView:
     def line_event(self,obj,event):
         """Catch X events over a line and respond to the ones we care about"""
 
-        person = obj.get_data(_PERSON)
+        person_id = obj.get_data(_PERSON)
+        person = self.parent.db.try_to_find_person_from_id(person_id)
         style = self.canvas.get_style()
 
         if event.type == gtk.gdk._2BUTTON_PRESS:
@@ -511,9 +524,78 @@ class PedigreeView:
     def build_nav_menu(self,event):
         """Builds the menu with navigation."""
         
+        # FIXME: need to get a person on whom the click was made,
+        # not the active person!!!
+        person = self.active_person
+
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+
+        # Go over spouses and build their menu
+        item = gtk.MenuItem(_("Spouses"))
+        fam_list = person.get_family_id_list()
+        no_spouses = 1
+        for fam_id in fam_list:
+            family = self.parent.db.find_family_from_id(fam_id)
+            if family.get_father_id() == person.get_id():
+                sp_id = family.get_mother_id()
+            else:
+                sp_id = family.get_father_id()
+            spouse = self.parent.db.try_to_find_person_from_id(sp_id)
+            if not spouse:
+                continue
+
+            if no_spouses:
+                no_spouses = 0
+                item.set_submenu(gtk.Menu())
+                sp_menu = item.get_submenu()
+
+            sp_item = gtk.MenuItem(GrampsCfg.nameof(spouse))
+            sp_item.set_data(_PERSON,sp_id)
+            sp_item.connect("activate",self.on_childmenu_changed)
+            sp_item.show()
+            sp_menu.append(sp_item)
+
+        if no_spouses:
+            item.set_sensitive(0)
+
+        item.show()
+        menu.append(item)
+        
+        # Go over siblings and build their menu
+        item = gtk.MenuItem(_("Siblings"))
+        pfam_list = person.get_parent_family_id_list()
+        no_siblings = 1
+        for (f,mrel,frel) in pfam_list:
+            fam = self.parent.db.find_family_from_id(f)
+            sib_list = fam.get_child_id_list()
+            for sib_id in sib_list:
+                if sib_id == person.get_id():
+                    continue
+                sib = self.parent.db.try_to_find_person_from_id(sib_id)
+                if not sib:
+                    continue
+
+                if no_siblings:
+                    no_siblings = 0
+                    item.set_submenu(gtk.Menu())
+                    sib_menu = item.get_submenu()
+
+                sib_item = gtk.MenuItem(GrampsCfg.nameof(sib))
+                sib_item.set_data(_PERSON,sib_id)
+                sib_item.connect("activate",self.on_childmenu_changed)
+                sib_item.show()
+                sib_menu.append(sib_item)
+
+        if no_siblings:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
+            (None,None,0),
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
@@ -523,8 +605,7 @@ class PedigreeView:
             (_("Set anchor"),self.on_anchor_set,1),
             (_("Remove anchor"),self.on_anchor_removed,1),
         ]
-        menu = gtk.Menu()
-        menu.set_title(_('People Menu'))
+
         for stock_id,callback,sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
@@ -544,7 +625,7 @@ class PedigreeView:
 # Function to determine distance between people
 #
 #-------------------------------------------------------------------------
-def get_distance(orig_person,other_person):
+def get_distance(db,orig_person,other_person):
     """
     Returns a number of generations representing distance between two people.
     
@@ -567,23 +648,21 @@ def get_distance(orig_person,other_person):
     if orig_person == other_person:
         return 0
 
-    return 0
-    # FIX THIS
-
     try:
-        apply_filter(orig_person,0,firstList,firstMap)
-        apply_filter(other_person,0,secondList,secondMap)
+        r = Relationship.RelationshipCalculator(db)
+        r.apply_filter(orig_person,0,firstList,firstMap)
+        r.apply_filter(other_person,0,secondList,secondMap)
     except RuntimeError,msg:
         return None
     
-    for person in firstList:
-        if person in secondList:
-            new_rank = firstMap[person.get_id()]
+    for person_id in firstList:
+        if person_id in secondList:
+            new_rank = firstMap[person_id]
             if new_rank < rank:
                 rank = new_rank
-                common = [ person ]
+                common = [ person_id ]
             elif new_rank == rank:
-                common.append(person)
+                common.append(person_id)
 
     if not common:
         return None
@@ -593,9 +672,9 @@ def get_distance(orig_person,other_person):
 
     length = len(common)
     
-    person = common[0]
-    secondRel = secondMap[person.get_id()]
-    firstRel = firstMap[person.get_id()]
+    person_id = common[0]
+    secondRel = secondMap[person_id]
+    firstRel = firstMap[person_id]
     if firstRel == None or secondRel == None:
         return None
     return firstRel-secondRel

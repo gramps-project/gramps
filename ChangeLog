@@ -1,5 +1,8 @@
 2004-06-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/gramps.keys, src/data/mime: Add package and GEDCOM.
+	* src/PedView.py: Fix anchors. Switch from storing person objects
+	to their IDs. Start on building Spouses and Siblings submenus
+	in the context menu.
 
 2004-06-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version number. 
