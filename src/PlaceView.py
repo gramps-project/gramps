@@ -93,6 +93,9 @@ class PlaceView:
         self.place_list.set_sort_column(self.sort_map[self.sort_col])
         self.place_list.set_sort_type(self.sort_dir)
 
+    def change_db(self,db):
+        self.db = db
+
     def load_places(self):
         """Rebuilds the entire place view. This can be very time consuming
         on large databases, and should only be called when absolutely
@@ -105,23 +108,12 @@ class PlaceView:
 
         self.place_list.freeze()
         self.place_list.clear()
-
         self.place_list.set_column_visibility(1,GrampsCfg.id_visible)
-        
+
         index = 0
-        u = string.upper
-        for src in self.db.getPlaceMap().values():
-            title = src.get_title()
-            id = src.getId()
-            mloc = src.get_main_location()
-            city = mloc.get_city()
-            county = mloc.get_county()
-            state = mloc.get_state()
-            parish = mloc.get_parish()
-            country = mloc.get_country()
-            self.place_list.append([title,id,parish,city,county,state,country,
-                                    u(title), u(parish), u(city),
-                                    u(county),u(state), u(country)])
+        for key in self.db.getPlaceKeys():
+            src = self.db.getPlaceMap()[key]
+            self.place_list.append(src.getDisplayInfo())
             self.place_list.set_row_data(index,src)
             index = index + 1
 
@@ -194,18 +186,7 @@ class PlaceView:
         obj.thaw()
 
     def insert_place(self,place):
-        title = place.get_title()
-        id = place.getId()
-        mloc = place.get_main_location()
-        city = mloc.get_city()
-        county = mloc.get_county()
-        state = mloc.get_state()
-        parish = mloc.get_parish()
-        country = mloc.get_country()
-        u = string.upper
-        self.place_list.append([title,id,parish,city,county,state,country,
-                                u(title), u(parish), u(city),
-                                u(county),u(state), u(country)])
+        self.place_list.append(place.getDisplayInfo())
         self.place_list.set_row_data(self.place_list.rows-1,place)
         
     def new_place_after_edit(self,place):
@@ -231,7 +212,7 @@ class PlaceView:
         self.place_list.select_row(row,0)
         self.place_list.moveto(row)
         
-    def on_delete_place_clicked(self,obj):
+    def on_delete_clicked(self,obj):
         if len(obj.selection) == 0:
             return
         elif len(obj.selection) > 1:

@@ -44,7 +44,10 @@ def build_sort_name(n):
     """Builds a name from a RelLib.Name instance that is suitable for
     use as a sort key in a GtkCList. The name is converted to upper case
     to provide for case-insenstive sorting"""
-    return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
+    if n.Surname:
+        return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
+    else:
+        return "%s" % chr(255)
 
 def build_sort_date(n):
     """Builds a date from a Date.Date instance that is suitable for

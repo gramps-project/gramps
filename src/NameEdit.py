@@ -57,7 +57,7 @@ class NameEditor:
         self.type_field = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
         slist = self.top.get_widget("alt_surname_list")
-        self.combo = AutoComp.AutoCombo(slist,const.surnames)
+        self.combo = AutoComp.AutoCombo(slist,self.parent.db.getSurnames())
         self.priv = self.top.get_widget("priv")
 
         types = const.NameTypesMap.keys()
@@ -138,9 +138,7 @@ class NameEditor:
         
         if self.name.getSurname() != last:
             self.name.setSurname(last)
-            if last not in const.surnames:
-                const.surnames.append(last)
-                const.surnames.sort()
+            self.parent.db.addSurname(last)
             self.parent.lists_changed = 1
 
         if self.name.getSuffix() != suffix:

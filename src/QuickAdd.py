@@ -41,7 +41,7 @@ class QuickAdd:
         self.window.editable_enters(self.xml.get_widget("given"))
         self.window.editable_enters(self.xml.get_widget("surname"))
         self.c = AutoComp.AutoCombo(self.xml.get_widget("surnameCombo"),
-                                    const.surnames)
+                                    self.db.getSurnames())
 
     def close(self,obj):
         surname = self.xml.get_widget("surname").get_text()

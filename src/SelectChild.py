@@ -244,7 +244,7 @@ class NewChild:
         self.surname = self.xml.get_widget("surname")
         self.given = self.xml.get_widget("childGiven")
         if GrampsCfg.autocomp:
-            self.comp = AutoComp.AutoEntry(self.surname,const.surnames)
+            self.comp = AutoComp.AutoEntry(self.surname,self.db.getSurnames())
 
         self.surname.set_text(self.update_surname(2))
 
