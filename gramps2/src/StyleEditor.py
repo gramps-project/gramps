@@ -41,6 +41,7 @@ import Utils
 import const
 import TextDoc
 import ListModel
+from intl import gettext as _
 
 class StyleListDisplay:
     """

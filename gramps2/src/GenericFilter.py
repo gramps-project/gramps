@@ -297,7 +297,7 @@ class IsMale(Rule):
         return 'Is a male'
 
     def apply(self,db,p):
-        return p.getGender() == Person.Person.male
+        return p.getGender() == RelLib.Person.male
 
 #-------------------------------------------------------------------------
 #
