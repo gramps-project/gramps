@@ -225,11 +225,11 @@ class Gramps:
         self.use_filter = GrampsCfg.get_filter()
         self.filter_btn.set_active(self.use_filter)
 
-        self.child_model = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING,
-                                         gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                         gobject.TYPE_STRING, gobject.TYPE_STRING, 
-                                         gobject.TYPE_STRING,
-                                        )
+        self.child_model = gtk.ListStore(
+            gobject.TYPE_INT, gobject.TYPE_STRING, gobject.TYPE_STRING,
+            gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING, 
+            gobject.TYPE_STRING,
+            )
 
         self.build_plugin_menus()
         self.init_filters()
@@ -239,11 +239,11 @@ class Gramps:
 
         self.family_view = FamilyView(self)
 
-        self.pedigree_view = PedigreeView(self.canvas,
-                                          self.modify_statusbar,
-                                          self.statusbar,
-                                          self.change_active_person,
-                                          self.load_person)
+        self.pedigree_view = PedigreeView(
+            self.canvas, self.modify_statusbar, self.statusbar,
+            self.change_active_person, self.load_person
+            )
+        
         self.place_view  = PlaceView(self.db,self.gtop,self.update_display)
         self.source_view = SourceView(self.db,self.gtop,self.update_display)
         self.media_view  = MediaView(self.db,self.gtop,self.update_display)
@@ -306,18 +306,18 @@ class Gramps:
             "on_source_list_button_press" : self.source_view.button_press,
             "on_sources_activate" : self.on_sources_activate,
             "on_tools_clicked" : self.on_tools_clicked,
-            "on_gramps_home_page_activate" : self.on_gramps_home_page_activate,
-            "on_gramps_report_bug_activate" : self.on_gramps_report_bug_activate,
-            "on_gramps_mailing_lists_activate" : self.on_gramps_mailing_lists_activate,
+            "on_gramps_home_page_activate" : self.home_page_activate,
+            "on_gramps_report_bug_activate" : self.report_bug_activate,
+            "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
             "on_writing_extensions_activate" : self.on_writing_extensions_activate,
             })	
 
         self.enable_sidebar(self.use_sidebar)
         self.enable_filter(self.use_filter)
-
-        WarningDialog("This is a non-stable, prerelease version of GRAMPS.\n"
-                      "Significant bugs may exist in this version, so please "
-                      "use at your own risk.")
+        
+#       WarningDialog("This is a non-stable, prerelease version of GRAMPS.\n"
+#                     "Significant bugs may exist in this version, so please "
+#                     "use at your own risk.")
 
     def change_alpha_page(self,obj,junk,page):
         self.person_tree = self.pl_page[page]
@@ -458,13 +458,13 @@ class Gramps:
         """Find callback to jump to the selected media"""
         self.media_view.moveto(row)
 
-    def on_gramps_home_page_activate(self,obj):
+    def home_page_activate(self,obj):
         gnome.url_show(_HOMEPAGE)
 
-    def on_gramps_mailing_lists_activate(self,obj):
+    def mailing_lists_activate(self,obj):
         gnome.url_show(_MAILLIST)
 
-    def on_gramps_report_bug_activate(self,obj):
+    def report_bug_activate(self,obj):
         gnome.url_show(_BUGREPORT)
 
     def on_merge_activate(self,obj):
@@ -1311,7 +1311,7 @@ class Gramps:
         display.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         tree = gtk.TreeView()
         tree.show()
-        display.add_with_viewport(tree)
+        display.add(tree)
         display.show()
         model = ListModel.ListModel(tree,pl_titles,self.row_changed,
                                     self.alpha_event,_sel_mode)

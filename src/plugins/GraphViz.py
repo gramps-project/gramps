@@ -328,7 +328,7 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
     # Hash people in a dictionary for faster inclusion checking.
     person_dict = {}
     for p in person_list:
-        person_dict[p] = 1
+        person_dict[p.getId()] = 1
 
     for person in person_list:
         pid = string.replace(person.getId(),'-','_')
@@ -337,8 +337,8 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
             mother   = family.getMother()
             fadopted = frel != _("Birth")
             madopted = mrel != _("Birth")
-            if show_families and (person_dict.has_key(father) or
-                                  person_dict.has_key(mother)):
+            if show_families and (person_dict.has_key(father.getId()) or
+                                  person_dict.has_key(mother.getId())):
                 # Link to the family node.
                 famid = string.replace(family.getId(),'-','_')
                 file.write('p%s -> f%s ['  % (pid, famid))
@@ -351,7 +351,7 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
                 file.write('];\n')
             else:
                 # Link to the parents' nodes directly.
-                if father and person_dict.has_key(father):
+                if father and person_dict.has_key(father.getId()):
                     fid = string.replace(father.getId(),'-','_')
                     file.write('p%s -> p%s ['  % (pid, fid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %
@@ -361,7 +361,7 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
                     else:
                         file.write('style=solid')
                     file.write('];\n')
-                if mother and person_dict.has_key(mother):
+                if mother and person_dict.has_key(mother.getId()):
                     mid = string.replace(mother.getId(),'-','_')
                     file.write('p%s -> p%s ['  % (pid, mid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %
