@@ -1,3 +1,7 @@
+2005-02-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/NavWebPage.py: add the ability to have notes
+	attached to the Introduction and Home pages
+
 2005-02-27  Julio Sanchez  <jsanchez@users.sourceforge.net>
 	* src/MergeData.py: partial set of changes to handle new API
 
