@@ -301,9 +301,17 @@ class FamilyView:
             self.clear()
             return
 
-        n = "%s\n\tb. %s\n\td. %s " % (GrampsCfg.nameof(self.person),
-                                      self.person.getBirth().getDate(),
-                                      self.person.getDeath().getDate())
+        bd = self.person.getBirth().getDate()
+        dd = self.person.getDeath().getDate()
+
+        if bd and dd:
+            n = "%s\n\tb. %s\n\td. %s " % (GrampsCfg.nameof(self.person),bd,dd)
+        elif bd:
+            n = "%s\n\tb. %s" % (GrampsCfg.nameof(self.person),bd)
+        elif dd:
+            n = "%s\n\td. %s" % (GrampsCfg.nameof(self.person),dd)
+        else:
+            n = GrampsCfg.nameof(self.person)
 
         self.ap_model.clear()
         self.ap_data.get_selection().set_mode(gtk.SELECTION_NONE)
