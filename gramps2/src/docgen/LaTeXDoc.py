@@ -74,7 +74,14 @@ class LaTeXDoc(TextDoc.TextDoc):
             self.filename = filename + ".tex"
         else:
             self.filename = filename
-        self.f = open(self.filename,"w")
+
+        try:
+            self.f = open(self.filename,"w")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
 
         # Font size control seems to be limited. For now, ignore
         # any style constraints, and use 12pt has the default

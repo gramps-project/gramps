@@ -64,7 +64,14 @@ class RTFDoc(TextDoc.TextDoc):
         else:
             self.filename = filename
 
-        self.f = open(self.filename,"w")
+        try:
+            self.f = open(self.filename,"w")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
+
         self.f.write('{\\rtf1\\ansi\\ansicpg1252\\deff0\n')
         self.f.write('{\\fonttbl\n')
         self.f.write('{\\f0\\froman\\fcharset0\\fprq0 Times New Roman;}\n')

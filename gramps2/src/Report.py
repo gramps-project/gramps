@@ -451,6 +451,12 @@ class ReportDialog:
         
         self.output_notebook.set_current_page(self.notebook_page)
 
+        if not self.get_target_is_directory():
+            fname = self.target_fileentry.get_full_path(0)
+            (path,ext) = os.path.splitext(fname)
+            fname = path + obj.get_data('ext')
+            self.target_fileentry.set_filename(fname)
+
         # Does this report format use styles?
         if self.style_button:
             self.style_button.set_sensitive(obj.get_data("styles"))

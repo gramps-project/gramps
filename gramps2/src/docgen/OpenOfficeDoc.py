@@ -77,8 +77,11 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         try:
             self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.content_xml, msg)
+            raise Errors.ReportError(errmsg)
         except:
-            raise Errors.ReportError("Could not create %s" % self.filename)
+            raise Errors.ReportError("Could not create %s" % self.content_xml)
 
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
@@ -333,7 +336,14 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         
     def _write_styles_file(self):
         self.styles_xml = tempfile.mktemp()
-	self.f = open(self.styles_xml,"wb")
+
+        try:
+            self.f = open(self.styles_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError((_("Could not create %s") % self.styles_xml)
         
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
@@ -505,7 +515,15 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 
     def _write_manifest(self):
         self.manifest_xml = tempfile.mktemp()
-	self.f = open(self.manifest_xml,"wb")
+
+        try:
+            self.f = open(self.manifest_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.manifest_xml, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.manifest_xml)
+
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
@@ -533,7 +551,15 @@ class OpenOfficeDoc(TextDoc.TextDoc):
     def _write_meta_file(self):
         name = self.name
         self.meta_xml = tempfile.mktemp()
-	self.f = open(self.meta_xml,"wb")
+
+        try:
+            self.f = open(self.meta_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.meta_xml, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.meta_xml)
+
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')

@@ -106,9 +106,9 @@ class ErrorDialog:
         
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % str(msg1))
         label1.set_use_markup(gtk.TRUE)
-        label2.set_text(msg2)
+        label2.set_text(str(msg2))
         self.top.show()
         self.top.run()
         self.top.destroy()

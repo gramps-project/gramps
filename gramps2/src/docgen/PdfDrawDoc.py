@@ -78,7 +78,12 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 	    self.f.setAuthor(self.name)
 
     def close(self):
-	self.f.save()
+        try:
+            self.f.save()
+        except IOError,msg:
+            raise Errors.ReportError(_("Could not create %s") % self.filename,msg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
 
     def start_paragraph(self,style_name):
 	pass

@@ -72,6 +72,9 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         try:
             self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
         except:
             raise Errors.ReportError("Could not create %s" % self.filename)
 

@@ -141,7 +141,7 @@ def importData(database, filename, cb=None):
         g = GedcomParser(database,filename,statusTop)
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
-        ErrorDialog(_("%s could not be opened\n") % filename + str(msg))
+        ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
         return
     except:
         Utils.destroy_passed_object(statusWindow)
@@ -154,12 +154,12 @@ def importData(database, filename, cb=None):
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
         errmsg = _("%s could not be opened\n") % filename
-        ErrorDialog(errmsg + str(msg))
+        ErrorDialog(errmsg,str(msg))
         return
     except Errors.GedcomError, val:
-        msg = str(val)
+        (m1,m2) = val.messages()
         Utils.destroy_passed_object(statusWindow)
-        ErrorDialog(msg)
+        ErrorDialog(m1,m2)
         return
     except:
         import DisplayTrace

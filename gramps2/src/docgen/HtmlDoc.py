@@ -217,7 +217,14 @@ class HtmlDoc(TextDoc.TextDoc):
 
         self.base = os.path.dirname(self.filename)
 
-        self.f = open(self.filename,"w")
+        try:
+            self.f = open(self.filename,"w")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
+
         if self.meta:
             match = t_keyword_line_re.match(self.file_header)
             if match:
@@ -319,9 +326,15 @@ class HtmlDoc(TextDoc.TextDoc):
                 if name == 'template.html':
                     continue
                 fname = '%s/%s' % (self.base,name)
-                f = open(fname, 'wb')
-                f.write(self.map[name].read())
-                f.close()
+                try:
+                    f = open(fname, 'wb')
+                    f.write(self.map[name].read())
+                    f.close()
+                except IOError,msg:
+                    errmsg = "%s\n%s" % (_("Could not create %s") % fname, msg)
+                    raise Errors.ReportError(errmsg)
+                except:
+                    raise Errors.ReportError(_("Could not create %s") % fname)
             
     def add_photo(self,name,pos,x,y):
         self.empty = 0
