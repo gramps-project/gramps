@@ -24,9 +24,9 @@ install-data-local:
 	$(INSTALL_DATA) gramps.applications $(DESTDIR)$(prefix)/share/application-registry
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime/packages
 	$(INSTALL_DATA) gramps.xml $(DESTDIR)$(prefix)/share/mime/packages
-	update-mime-database $(DESTDIR)$(prefix)/share/mime
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime-info
 	$(INSTALL_DATA) gramps.keys gramps.mime $(DESTDIR)$(prefix)/share/mime-info
+	update-mime-database $(DESTDIR)$(prefix)/share/mime
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png

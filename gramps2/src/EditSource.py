@@ -218,7 +218,7 @@ class EditSource:
                     if sref.get_base_id() == self.source.get_id():
                         p_addr_list.append((name,v.get_street()))
         for object_id in self.db.get_object_keys():
-            object = self.db.try_to_find_object_from_id(object_id,None)
+            object = self.db.try_to_find_object_from_id(object_id)
             name = object.get_description()
             for sref in object.get_source_references():
                 if sref.get_base_id() == self.source.get_id():
@@ -228,9 +228,9 @@ class EditSource:
             f_id = family.get_father_id()
             m_id = family.get_mother_id()
             if f_id:
-                f = self.db.try_to_find_person_from_id(f_id,None)
+                f = self.db.try_to_find_person_from_id(f_id)
             if m_id:
-                m = self.db.try_to_find_person_from_id(m_id,None)
+                m = self.db.try_to_find_person_from_id(m_id)
             if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.nameof(f),
