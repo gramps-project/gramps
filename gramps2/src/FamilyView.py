@@ -113,7 +113,6 @@ class FamilyView:
         self.add_spouse_btn.connect('clicked',self.add_spouse)
         self.spouse_list.connect('button-press-event',self.edit_releationship)
 
-
         self.child_list.set_model(self.child_model)
         self.child_list.set_search_column(0)
         self.child_selection = self.child_list.get_selection()
@@ -269,6 +268,7 @@ class FamilyView:
 
         self.selected_spouse = None
         self.spouse_model.clear()
+        self.child_model.clear()
         splist = self.person.getFamilyList()
         f = None
         first_family = None

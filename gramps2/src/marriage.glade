@@ -783,6 +783,20 @@
 			  <property name="visible">True</property>
 			  <property name="layout_style">GTK_BUTTONBOX_DEFAULT_STYLE</property>
 			  <property name="spacing">2</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkVBox" id="vbox36">
+			  <property name="border_width">5</property>
+			  <property name="visible">True</property>
+			  <property name="homogeneous">True</property>
+			  <property name="spacing">0</property>
 
 			  <child>
 			    <widget class="GtkButton" id="button112">
@@ -804,6 +818,15 @@
 				</widget>
 			      </child>
 			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <placeholder/>
 			  </child>
 
 			  <child>
@@ -826,6 +849,11 @@
 				</widget>
 			      </child>
 			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
 			  </child>
 			</widget>
 			<packing>
@@ -1205,6 +1233,20 @@
 			  <property name="visible">True</property>
 			  <property name="layout_style">GTK_BUTTONBOX_DEFAULT_STYLE</property>
 			  <property name="spacing">2</property>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkVBox" id="vbox37">
+			  <property name="border_width">5</property>
+			  <property name="visible">True</property>
+			  <property name="homogeneous">True</property>
+			  <property name="spacing">0</property>
 
 			  <child>
 			    <widget class="GtkButton" id="button110">
@@ -1212,7 +1254,7 @@
 			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <signal name="clicked" handler="on_up_clicked" object="attr_list"/>
+			      <signal name="clicked" handler="on_attr_up_clicked" last_modification_time="Wed, 20 Nov 2002 04:42:10 GMT"/>
 
 			      <child>
 				<widget class="GtkArrow" id="arrow1">
@@ -1226,6 +1268,15 @@
 				</widget>
 			      </child>
 			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <placeholder/>
 			  </child>
 
 			  <child>
@@ -1234,7 +1285,7 @@
 			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <signal name="clicked" handler="on_down_clicked" object="attr_list"/>
+			      <signal name="clicked" handler="on_attr_down_clicked" last_modification_time="Wed, 20 Nov 2002 04:42:25 GMT"/>
 
 			      <child>
 				<widget class="GtkArrow" id="arrow2">
@@ -1248,6 +1299,11 @@
 				</widget>
 			      </child>
 			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
 			  </child>
 			</widget>
 			<packing>

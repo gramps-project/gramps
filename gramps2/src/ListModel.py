@@ -81,6 +81,13 @@ class ListModel:
     def remove(self,iter):
         self.model.remove(iter)
         
+    def get_row(self,iter):
+        row = self.model.get_path(iter)
+        return row[0]
+
+    def select_row(self,row):
+        self.selection.select_path((row))
+    
     def get_object(self,iter):
         return self.model.get_value(iter,self.data_index)
         

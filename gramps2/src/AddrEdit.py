@@ -89,16 +89,14 @@ class AddressEditor:
             self.country.set_text(self.addr.getCountry())
             self.postal.set_text(self.addr.getPostal())
             self.priv.set_active(self.addr.getPrivacy())
-            self.note_field.set_point(0)
-            self.note_field.insert_defaults(self.addr.getNote())
-            self.note_field.set_word_wrap(1)
+            self.note_field.get_buffer().set_text(self.addr.getNote())
         else:
             self.srcreflist = []
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,
                                            self.top, self.slist,
-                                           self.top.get_widget('add_btn'),
-                                           self.top.get_widget('del_btn'))
+                                           self.top.get_widget('add_src'),
+                                           self.top.get_widget('del_src'))
 
         date_stat = self.top.get_widget("date_stat")
         self.date_check = DateEdit(self.addr_start,date_stat)
@@ -119,14 +117,15 @@ class AddressEditor:
         state = self.state.get_text()
         country = self.country.get_text()
         postal = self.postal.get_text()
-        note = self.note_field.get_chars(0,-1)
+        b = self.note_field.get_buffer()
+        note = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
         priv = self.priv.get_active()
         
         if self.addr == None:
             self.addr = RelLib.Address()
             self.parent.plist.append(self.addr)
         self.addr.setSourceRefList(self.srcreflist)
-            
+
         self.update(date,street,city,state,country,postal,note,priv)
         self.parent.redraw_addr_list()
         Utils.destroy_passed_object(obj)
