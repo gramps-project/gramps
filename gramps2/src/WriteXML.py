@@ -198,9 +198,8 @@ class XmlWriter:
 
         date = string.split(time.ctime(time.time()))
         owner = self.db.get_researcher()
-        familyList = self.db.get_family_handles()
         person_len = self.db.get_number_of_people()
-        family_len = len(familyList)
+        family_len = len(self.db.get_family_handles())
         source_len = len(self.db.get_source_handles())
         place_len = len(self.db.get_place_handles())
         objList = self.db.get_media_object_handles()
@@ -325,9 +324,15 @@ class XmlWriter:
         if family_len > 0:
             self.g.write("  <families>\n")
 
-            familyList.sort ()            
-            for key in self.db.get_family_handles():
-                family = self.db.get_family_from_handle(key)
+            keys = self.db.get_family_handles()
+            sorted_keys = []
+            for key in keys:
+                 family = self.db.get_family_from_handle(key)
+                 tuple = (family.get_gramps_id (), family)
+                 sorted_keys.append (tuple)
+
+            sorted_keys.sort ()
+            for (gramps_id, family) in sorted_keys:
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -548,7 +553,7 @@ class XmlWriter:
             rel = family.get_relationship()
             comp = family.get_complete_flag()
             sp = "  " * index
-            self.g.write('%s<family id="%s"' % (sp,family.get_handle()))
+            self.g.write('%s<family id="%s"' % (sp,family.get_gramps_id()))
             if comp:
                 self.g.write(' complete="1"')
             if rel != "":
