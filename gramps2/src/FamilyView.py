@@ -689,7 +689,7 @@ class FamilyView:
         sel_data.set(sel_data.target, bits_per, data)
 
     def north_american(self,val):
-        if self.person.getGender() == Person.male:
+        if self.person.getGender() == RelLib.Person.male:
             return self.person.getPrimaryName().getSurname()
         elif self.family:
             f = self.family.getFather()

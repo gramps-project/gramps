@@ -1,3 +1,7 @@
+2003-06-16  Tim Waugh  <twaugh@redhat.com>
+	* src/FamilyView.py (north_american): Fixed traceback when adding
+	a new child in the family view.
+
 2003-06-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleAncestors.py, src/plugins/FtmStyleDescendants.py:
 	Remove options_dialog function -- it is not nedded anymore. 
