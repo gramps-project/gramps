@@ -136,20 +136,12 @@ class PeopleView:
     def remove_from_person_list(self,person,old_id=None):
         """Remove the selected person from the list. A person object is expected,
         not an ID"""
-        person_id = person.get_id()
-        if old_id:
-            del_id = old_id
+        print old_id, person.get_id()
+        if old_id == None or person.get_id() == old_id:
+            path = self.person_model.find_path(person.get_id())
+            self.person_model.row_deleted(path)
         else:
-            del_id = person_id
-
-        if self.id2col.has_key(del_id):
-            (model,iter) = self.id2col[del_id]
-            if iter:
-                model.remove(iter)
-            del self.id2col[del_id]
-            
-            if person == self.parent.active_person:
-                self.parent.active_person = None
+            self.person_model.rebuild_data()
     
     def remove_from_history(self,person,old_id=None):
         """Removes a person from the history list"""
@@ -182,45 +174,7 @@ class PeopleView:
         self.goto_active_person()
 
     def add_to_person_list(self,person,change):
-        key = person.get_id()
-        val = self.parent.db.get_person_display(key)
-        pg = unicode(val[5])
-        pg = pg[0]
-        model = None
-        if self.DataFilter.compare(person):
-
-            if pg and pg != '@':
-                if not self.alpha_page.has_key(pg):
-                    self.create_new_panel(pg)
-                model = self.alpha_page[pg]
-            else:
-                model = self.default_list
-
-            if val[3]:
-                bdate = self.parent.db.find_event_from_id(val[3]).get_date()
-            else:
-                bdate = ""
-                
-            if val[4]:
-                ddate = self.parent.db.find_event_from_id(val[4]).get_date()
-            else:
-                ddate = ""
-
-            iter = model.add([val[0],val[1],val[2],bdate,ddate,val[5],
-                              val[6],val[7],val[8]],1)
-
-            self.id2col[key] = (model,iter)
-
-        if change:
-            self.parent.change_active_person(person)
-
-        try:
-            self.goto_active_person()
-        except:
-            print "goto failed"
-        
-        if model:
-            model.enable_sort()
+        self.rebuild_data()
 
     def goto_active_person(self,first=0):
         if not self.parent.active_person:
@@ -288,7 +242,4 @@ class PeopleView:
         menu.popup(None,None,None,event.button,event.time)
         
     def redisplay_person_list(self,person):
-        self.person_model.rebuild_data()
-
-    def update_person_list(self,person,old_id):
         self.person_model.rebuild_data()

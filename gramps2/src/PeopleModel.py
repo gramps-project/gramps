@@ -31,6 +31,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.connect('row-deleted',self.on_row_deleted)
 
     def rebuild_data(self):
+        print "rebuild"
         self.top_iter2path = {}
         self.top_path2iter = {}
         self.iter2path = {}
@@ -68,7 +69,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def on_row_deleted(self,obj,path):
         self.rebuild_data()
-            
+
     def find_path(self,iter):
         if self.top_iter2path.has_key(iter):
             return self.top_iter2path[iter]
