@@ -232,7 +232,7 @@
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Gettin Started Window</title> 
+	<title>&app; Getting Started Window</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/druid.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -484,8 +484,10 @@
 	  Family names and breaks the people list into sublists based on the 
 	  first letter of their name. The alphabetical tabs are displayed in 
 	  the bottom part of the <application>&app;</application> window. 
-	  The last tab, "Other," stands for unidentified characters -- all 
-	  the entries not assigned to any other tab end up in "Others."</para> 
+	  The last tab, <guilabel>Other</guilabel>, stands for unidentified 
+	  characters -- all the entries not assigned to any other tab end up 
+	  in <guilabel>Other</guilabel>. In particular, people with no family 
+	  name will appear under this category.</para> 
         </sect4>
 
       </sect3>
