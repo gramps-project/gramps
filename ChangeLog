@@ -1,4 +1,11 @@
 2003-12-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/de: Add directory for German manual 
+	translation to CVS.
+	* doc/gramps-manual/de/Makefile.am, Makefile.in: Add to CVS.
+	* doc/gramps-manual/de/*.xml, *.omf, figures/*.png: Add to CVS.
+	* doc/gramps-manual/Makefile.am: Add de to the SUBDIR list.
+	* configure.in: Add doc/gramps-manual/de/Makefile to AC_CONFIG_FILES.
+
 	* doc/gramps-manual/ru: Add directory with russian manual 
 	translation to CVS.
 	* doc/gramps-manual/ru/Makefile.am, 
