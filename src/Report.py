@@ -79,7 +79,6 @@ _template_map = {
     _user_template : None
     }
 
-
 #-------------------------------------------------------------------------
 #
 # Support for printing generated files
@@ -190,11 +189,13 @@ class BareReportDialog:
     frame_pad = 5
     border_pad = 6
 
-    def __init__(self,database,person):
+    def __init__(self,database,person,options={}):
         """Initialize a dialog to request that the user select options
         for a basic *bare* report."""
 
         # Save info about who the report is about.
+        self.option_store = options
+            
         self.db = database
         self.person = person
         self.output_notebook = None
@@ -367,7 +368,7 @@ class BareReportDialog:
         para.set(pad=0.5)
         self.default_style.add_style("Title",para)
 
-    def build_style_menu(self):
+    def build_style_menu(self,default=None):
         """Build a menu of style sets that are available for use in
         this report.  This menu will always have a default style
         available, and will have any other style set name that the
@@ -375,8 +376,12 @@ class BareReportDialog:
         created here instead of inline with the rest of the style
         frame, because it must be recreated to reflect any changes
         whenever the user closes the style editor dialog."""
+        
+        if default is None:
+            default = self.style_name
+            
         style_sheet_map = self.style_sheet_list.get_style_sheet_map()
-        myMenu = Utils.build_string_optmenu(style_sheet_map, self.style_name)
+        myMenu = Utils.build_string_optmenu(style_sheet_map, default)
         self.style_menu.set_menu(myMenu)
 
     #------------------------------------------------------------------------
@@ -465,7 +470,8 @@ class BareReportDialog:
                                                        self.default_style)
 
         # Now build the actual menu.
-        self.build_style_menu()
+        style = self.option_store.get('style',self.default_style.get_name())
+        self.build_style_menu(style)
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -524,7 +530,7 @@ class BareReportDialog:
             l.set_alignment(0.0,0.5)
             table.attach(l,1,2,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
             table.attach(self.filter_combo,2,3,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-            menu = GenericFilter.build_filter_menu(local_filters)
+            menu = GenericFilter.build_filter_menu(local_filters,self.option_store.get('filter',''))
 
             self.filter_combo.set_menu(menu)
             self.filter_menu = menu
@@ -652,7 +658,10 @@ class BareReportDialog:
         retrieves a value whether or not the menu is displayed on the
         screen.  The subclass will know whether this menu was enabled.
         This is for simplicity of programming."""
-        self.selected_style = self.style_menu.get_menu().get_active().get_data("d")
+        item = self.style_menu.get_menu().get_active()
+        self.selected_style = item.get_data("d")
+        style_name = item.get_data('l')
+        self.option_store['style'] = style_name
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the
@@ -674,6 +683,7 @@ class BareReportDialog:
 
         if self.filter_combo:
             self.filter = self.filter_menu.get_active().get_data("filter")
+            self.option_store['filter'] = self.filter.get_name()
         else:
             self.filter = None
 
@@ -768,12 +778,12 @@ class ReportDialog(BareReportDialog):
     dialog for a stand-alone report.
     """
 
-    def __init__(self,database,person):
+    def __init__(self,database,person,options={}):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
-        BareReportDialog.__init__(self,database,person)
+        BareReportDialog.__init__(self,database,person,options)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
@@ -1058,8 +1068,10 @@ class ReportDialog(BareReportDialog):
         l.set_alignment(0.0,0.5)
         self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
 
-        PaperMenu.make_paper_menu(self.papersize_menu)
-        PaperMenu.make_orientation_menu(self.orientation_menu)
+        PaperMenu.make_paper_menu(self.papersize_menu,
+                                  self.option_store.get('paper',GrampsCfg.paper_preference))
+        PaperMenu.make_orientation_menu(self.orientation_menu,
+                                        self.option_store.get('orientation',BaseDoc.PAPER_PORTRAIT))
 
         # The optional pagecount stuff.
         if pagecount_map:
@@ -1115,6 +1127,10 @@ class ReportDialog(BareReportDialog):
         
         self.template_combo.set_popdown_strings(template_list)
         self.template_combo.entry.set_editable(0)
+
+        def_template = self.option_store.get('default_template','')
+        if def_template in template_list:
+            self.template_combo.entry.set_text(def_template)
         self.template_combo.entry.connect('changed',self.html_file_enable)
         
         self.html_table.attach(self.template_combo,2,3,1,2)
@@ -1123,6 +1139,9 @@ class ReportDialog(BareReportDialog):
         self.html_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
         self.html_fileentry = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
         self.html_fileentry.set_sensitive(0)
+        user_template = self.option_store.get('user_template','')
+        if os.path.isfile(user_template):
+            self.html_fileentry.set_filename(user_template)
         self.html_table.attach(self.html_fileentry,2,3,2,3)
 
 
@@ -1172,6 +1191,8 @@ class ReportDialog(BareReportDialog):
         is displayed on the screen.  The subclass will know which ones
         it has enabled.  This is for simplicity of programming."""
         self.paper = self.papersize_menu.get_menu().get_active().get_data("i")
+        self.option_store['paper'] = self.paper.get_name()
+
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
             try:
                 h = float(self.pheight.get_text())
@@ -1188,6 +1209,8 @@ class ReportDialog(BareReportDialog):
                 self.paper.set_width(21.0)
         
         self.orien = self.orientation_menu.get_menu().get_active().get_data("i")
+        self.option_store['orientation'] = self.orien
+
         if self.pagecount_menu == None:
             self.pagecount = 0
         else:
@@ -1204,8 +1227,12 @@ class ReportDialog(BareReportDialog):
         if _template_map.has_key(text):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
+                self.option_store['default_template'] = text
+                self.option_store['user_template'] = ''
             else:
                 self.template_name = "%s/%s" % (const.template_dir,_template_map[text])
+                self.option_store['default_template'] = text
+                self.option_store['user_template'] = self.template_name
         else:
             self.template_name = None
 
@@ -1243,11 +1270,11 @@ class ReportDialog(BareReportDialog):
 class TextReportDialog(ReportDialog):
     """A class of ReportDialog customized for text based reports."""
 
-    def __init__(self,database,person):
+    def __init__(self,database,person,options={}):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
-        ReportDialog.__init__(self,database,person)
+        ReportDialog.__init__(self,database,person, options)
 
     #------------------------------------------------------------------------
     #
@@ -1296,11 +1323,11 @@ class TextReportDialog(ReportDialog):
 
 class DrawReportDialog(ReportDialog):
     """A class of ReportDialog customized for drawing based reports."""
-    def __init__(self,database,person):
+    def __init__(self,database,person,opt={}):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
-        ReportDialog.__init__(self,database,person)
+        ReportDialog.__init__(self,database,person,opt)
 
     #------------------------------------------------------------------------
     #
@@ -1348,7 +1375,15 @@ class TemplateParser(handler.ContentHandler):
         
         if tag == "template":
             self.data[attrs['title']] = attrs['file']
+
             
+        
+#-----------------------------------------------------------------------
+#
+# Initialization
+#
+#-----------------------------------------------------------------------
+
 try:
     parser = make_parser()
     spath = const.template_dir

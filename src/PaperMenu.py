@@ -31,7 +31,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import BaseDoc
-import GrampsCfg
 import const
 import Utils
 from gettext import gettext as _
@@ -58,7 +57,7 @@ paper_sizes = []
 # make_paper_menu
 #
 #-------------------------------------------------------------------------
-def make_paper_menu(main_menu):
+def make_paper_menu(main_menu,default=""):
 
     index = 0
     myMenu = gtk.Menu()
@@ -68,7 +67,7 @@ def make_paper_menu(main_menu):
         menuitem.set_data("i",paper)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsCfg.paper_preference:
+        if default == name:
             myMenu.set_active(index)
         index = index + 1
     main_menu.set_menu(myMenu)
@@ -78,17 +77,21 @@ def make_paper_menu(main_menu):
 # make_orientation_menu
 #
 #-------------------------------------------------------------------------
-def make_orientation_menu(main_menu):
+def make_orientation_menu(main_menu,value=0):
 
     myMenu = gtk.Menu()
     menuitem = gtk.MenuItem(_("Portrait"))
     menuitem.set_data("i",BaseDoc.PAPER_PORTRAIT)
     menuitem.show()
+    if value == BaseDoc.PAPER_PORTRAIT:
+        menuitem.select()
     myMenu.append(menuitem)
 
     menuitem = gtk.MenuItem(_("Landscape"))
     menuitem.set_data("i",BaseDoc.PAPER_LANDSCAPE)
     menuitem.show()
+    if value == BaseDoc.PAPER_LANDSCAPE:
+        menuitem.select()
     myMenu.append(menuitem)
 
     main_menu.set_menu(myMenu)
