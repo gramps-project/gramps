@@ -106,7 +106,8 @@ def on_apply_clicked(obj):
     yngdad = int(verifySettings.get_widget("yngdad").get_text())
     wedder = int(verifySettings.get_widget("wedder").get_text())
     lngwdw = int(verifySettings.get_widget("lngwdw").get_text())
-   
+    estimate_age = verifySettings.get_widget("estimate").get_active()
+
     oldunm = 99  # maximum age at death for unmarried person 
 
     error = cStringIO.StringIO()
@@ -116,6 +117,7 @@ def on_apply_clicked(obj):
         idstr = person.getPrimaryName().getName() + " (" + person.getId() + ")"
 	
 	# individual checks
+        ageatdeath = 0
 	byear = get_year( person.getBirth() )
 	bapyear = 0
 	dyear = get_year( person.getDeath() )
@@ -178,47 +180,38 @@ def on_apply_clicked(obj):
 	    if person.getGender() == RelLib.Person.female:
 	    	error.write( _("Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %(buryear)d.\n") % { 
 			'female_name' : idstr, 'bapyear' : bapyear, 'buryear' : buryear } )
-	if byear == 0:
-	    byear = bapyear  # guess baptism = birth
-	if dyear == 0:
-	    dyear = buryear  # guess burial = death
-	if byear>0 and dyear>0:
-	    ageatdeath = dyear - byear
-	else:
-	    ageatdeath = 0
+        if byear == 0 and estimate_age:
+            byear = bapyear  # guess baptism = birth
+        if dyear == 0 and estimate_age:
+            dyear = buryear  # guess burial = death
+        if byear>0 and dyear>0:
+            ageatdeath = dyear - byear
+        else:
+            ageatdeath = 0
         if ageatdeath > oldage:
-	    if person.getGender() == RelLib.Person.male:
-	    	warn.write( _("Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
-			'male_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
-	    if person.getGender() == RelLib.Person.female:
-	    	warn.write( _("Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
-			'female_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
+            if person.getGender() == RelLib.Person.male:
+                warn.write( _("Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
+                    'male_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
+            if person.getGender() == RelLib.Person.female:
+                warn.write( _("Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
+                    'female_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
 	    
 	# gender checks
 
-#FIXME
 	if person.getGender() == RelLib.Person.female:
-#	    parstr = _("mother ")
 	    oldpar = oldmom
 	    yngpar = yngmom
-#	    waswidstr = _(" was a widow ")
 	if person.getGender() == RelLib.Person.male:
-#	    parstr = _("father ")
 	    oldpar = olddad
 	    yngpar = yngdad
-#	    waswidstr = _(" was a widower ")
 	if (person.getGender() != RelLib.Person.female) and (person.getGender() != RelLib.Person.male):
 	    warn.write( _("Unknown gender for %s.\n") % idstr )
-#	    parstr = _("parent ")
 	    oldpar = olddad
 	    yngpar = yngdad
-#	    waswidstr = _(" was a widow ")
 	if (person.getGender() == RelLib.Person.female) and (person.getGender() == RelLib.Person.male):
 	    error.write( _("Ambiguous gender for %s.\n") % idstr )
-#	    parstr = _("parent ")
 	    oldpar = olddad
 	    yngpar = yngdad
-#	    waswidstr = _(" was a widow ")
 	    
 	# multiple parentage check
 	if( len( person.getParentList() ) > 1 ):
@@ -264,13 +257,15 @@ def on_apply_clicked(obj):
 	       spouse = family.getFather()
 	    if spouse != None:
 	        if person.getGender() == RelLib.Person.male and \
-		   person.getPrimaryName().getSurname() == spouse.getPrimaryName().getSurname():
-		    warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % ( idstr,family.getId(), spouse.getPrimaryName().getName() ) )
+                       person.getPrimaryName().getSurname() == spouse.getPrimaryName().getSurname():
+		    warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % (
+                        idstr,family.getId(), spouse.getPrimaryName().getName() ) )
 	        sdyear = get_year( spouse.getDeath() )
 		if sdyear == 0:
 		    sdyear = 0  # burial year
 		maryear = get_year( family.getMarriage() )
-		if maryear == 0:   #  estimate marriage year
+
+		if maryear == 0 and estimate_age:   #  estimate marriage year
 		    cnum=0
 		    for child in family.getChildList():
 		        cnum = cnum + 1
