@@ -128,12 +128,14 @@ class IndivSummary(Report.Report):
             if not place:
                 return
             else:
-                val = place + ". " + description
+                text = '%s. %s' % (place,description)
         else:
             if not place:
-                val = date + ". " + description
+                text = '%s. %s' % (date,description)
             else:
-                val = date + " in " + place + ". " +  description
+                text = _('%(date)s in %(place)s.') % { 'date' : date,
+                                                      'place' : place }
+                text = '%s %s' % (text,description)
 
         self.d.start_row()
         self.d.start_cell("IVS-NormalCell")
@@ -144,7 +146,7 @@ class IndivSummary(Report.Report):
 
         self.d.start_cell("IVS-NormalCell")
         self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(val)
+        self.d.write_text(text)
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()

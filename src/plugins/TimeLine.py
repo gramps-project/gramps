@@ -49,7 +49,6 @@ import BaseDoc
 import GenericFilter
 import Errors
 import Date
-import FontScale
 import Sort
 from QuestionDialog import ErrorDialog
 
@@ -323,7 +322,7 @@ class TimeLine:
         for p_id in self.plist:
             p = self.db.get_person_from_handle(p_id)
             n = p.get_primary_name().get_name()
-            size = max(FontScale.string_width(font,n),size)
+            size = max(self.d.string_width(font,n),size)
         return pt2cm(size)
 
 

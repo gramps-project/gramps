@@ -111,7 +111,13 @@ class RelGraphDialog(Report.ReportDialog):
     report_options = {}
 
     def __init__(self,database,person):
-        Report.ReportDialog.__init__(self,database,person,self.report_options)
+        print "here"
+	Report.ReportDialog.__init__(self,database,person,self.report_options)
+
+    def get_default_basename(self):
+        """What should the default name be?
+        """
+        return "relationship_graph.dot"
 
     def get_title(self):
         """The window title for this dialog"""

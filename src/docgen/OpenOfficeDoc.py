@@ -876,7 +876,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         if box_style.get_width():
             sw = box_style.get_width()
         else:
-            sw = FontScale.string_width(font,text)*1.3
+            sw = pt2cm(FontScale.string_width(font,text))*1.3
 
 
 	self.f.write('<draw:text-box draw:style-name="%s" ' % style)
@@ -962,6 +962,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	    self.f.write(text)
             self.f.write('</text:p>\n')
         self.f.write('</draw:text-box>\n')
+
+#------------------------------------------------------------------------
+#
+# point to centimeter convertion
+#
+#------------------------------------------------------------------------
+def pt2cm(val):
+    return (float(val)/28.3465)
 
 #--------------------------------------------------------------------------
 #

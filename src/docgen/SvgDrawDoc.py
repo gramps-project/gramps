@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +37,6 @@ import Plugins
 from gettext import gettext as _
 import BaseDoc
 import Errors
-import FontScale
 
 #-------------------------------------------------------------------------
 #
@@ -91,14 +92,14 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
 
         width = 0
         for line in text:
-            width = max(width,FontScale.string_width(font,line))
+            width = max(width,self.string_width(font,line))
 
 #        rangle = -((pi/180.0) * angle)
         centerx,centery = units((x+self.lmargin,y+self.tmargin))
 
         yh = 0
         for line in text:
-            xw = FontScale.string_width(font,line)
+            xw = self.string_width(font,line)
             
             xpos = (centerx - (xw/2.0)) 
             ypos = (centery) 

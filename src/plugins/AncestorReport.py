@@ -226,7 +226,7 @@ class AncestorReport(Report.Report):
                                         t = _(", and was buried in the year %s.") % \
                                             date.get_date()
                             else:
-                                t = _(" and was buried in %s." % place)
+                                t = _(" and was buried in %s.") % place
                         self.doc.write_text(t)
                     else:
                         self.doc.write_text(".")

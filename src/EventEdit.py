@@ -346,8 +346,8 @@ class EventEditor:
                 self.event.set_place_handle("")
                 self.parent.lists_changed = 1
         
-        if self.event.get_name() != self.trans(name):
-            self.event.set_name(self.trans(name))
+        if self.event.get_name() != self.trans.find_key(name):
+            self.event.set_name(self.trans.find_key(name))
             self.parent.lists_changed = 1
         
         if self.event.get_description() != desc:

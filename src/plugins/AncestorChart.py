@@ -45,7 +45,6 @@ import gtk
 import BaseDoc
 import Report
 import Errors
-import FontScale
 from QuestionDialog import ErrorDialog
 from SubstKeywords import SubstKeywords
 from gettext import gettext as _
@@ -107,7 +106,8 @@ class AncestorChart:
 
         self.font = self.doc.style_list["AC-Normal"].get_font()
         for line in self.text[index]:
-            self.box_width = max(self.box_width,FontScale.string_width(self.font,line))
+            this_box_width = self.doc.string_width(self.font,line)
+            self.box_width = max(self.box_width,this_box_width)
 
         self.lines = max(self.lines,len(self.text[index]))    
 

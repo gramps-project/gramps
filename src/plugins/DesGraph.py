@@ -42,7 +42,6 @@ import gtk
 #
 #------------------------------------------------------------------------
 import GraphLayout
-import FontScale
 import Report
 import BaseDoc
 import Errors
@@ -109,7 +108,7 @@ class DescendantReport:
 
             self.font = self.doc.style_list["DG-Normal"].get_font()
             for line in self.text[p_id]:
-                new_width = FontScale.string_width(self.font,line)
+                new_width = self.doc.string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
 
             self.lines = max(self.lines,len(self.text[p_id]))

@@ -29,7 +29,6 @@ import BaseDoc
 import Plugins
 import Errors
 import ImgManip
-import FontScale
 import GrampsMime
 from gettext import gettext as _
 
@@ -454,7 +453,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         fc = make_color(font.get_color())
         fnt = self.pdf_set_font(font)
         if p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
-            twidth = ((FontScale.string_width(font,enc(text)))/2.0)*cm
+            twidth = ((self.string_width(font,enc(text)))/2.0)*cm
             xcm = (stype.get_width() - x) - twidth
         else:
             xcm = x * cm
