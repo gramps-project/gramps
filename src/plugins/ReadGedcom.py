@@ -752,7 +752,9 @@ class GedcomParser:
 	        self.barf(level+1)
 
         if form == "url":
-            url = Url(file,title)
+            url = Url()
+            url.set_path(file)
+            url.set_description(title)
             self.person.addUrl(url)
         elif form in photo_types:
             path = find_file(file,self.dir_path)

@@ -245,18 +245,21 @@ def sortById(first,second):
 def write_long_text(g,tag,level,note):
     prefix = "%d %s" % (level,tag)
     textlines = string.split(note,'\n')
-    for line in textlines:
-        while len(line) > 0:
-            if len(line) > 70:
-                g.write("%s %s\n" % (prefix,line[0:70]))
-                line = line[70:]
-            else:
-                g.write("%s %s\n" % (prefix,line))
-                line = ""
-            if len(line) > 0:
-                prefix = "%d CONC" % (level + 1)
-            else:
-                prefix = "%d CONT" % (level + 1)
+    if len(note) == 0:
+        g.write("%s\n" % prefix)
+    else:
+        for line in textlines:
+            while len(line) > 0:
+                if len(line) > 70:
+                    g.write("%s %s\n" % (prefix,line[0:70]))
+                    line = line[70:]
+                else:
+                    g.write("%s %s\n" % (prefix,line))
+                    line = ""
+                if len(line) > 0:
+                    prefix = "%d CONC" % (level + 1)
+                else:
+                    prefix = "%d CONT" % (level + 1)
     
 #-------------------------------------------------------------------------
 #
