@@ -47,7 +47,6 @@ _sel_mode = gtk.SELECTION_SINGLE
 #
 #-------------------------------------------------------------------------
 import PeopleModel
-import Filter
 import GenericFilter
 import const
 
@@ -115,7 +114,7 @@ class PeopleView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            #column.set_clickable(gtk.TRUE)
+            column.set_clickable(gtk.TRUE)
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
             column.set_sort_column_id(index)
@@ -166,9 +165,6 @@ class PeopleView:
             self.sort_model = gtk.TreeModelSort(self.person_model)
         self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
-        
-    def clear(self):
-        pass
 
     def remove_from_person_list(self,person,old_id=None):
         """Remove the selected person from the list. A person object is expected,

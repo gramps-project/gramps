@@ -42,6 +42,7 @@ import string
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 _t = type(u'')
 
@@ -289,3 +290,4 @@ class AutoEntry(AutoCompBase):
                 gtk.Editable.select_region(entry,self.l, -1)
                 return
 
+    
