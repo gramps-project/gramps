@@ -285,7 +285,9 @@ class EditPerson:
         types = const.NameTypesMap.keys()
         types.sort()
         self.ntype_field.set_popdown_strings(types)
+        print types
         self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
+        print self.ntype_field.entry.get_text()
         self.write_primary_name()
         
         if person.getGender() == Person.male:

@@ -20,6 +20,8 @@ PyIntl_gettext(PyObject* self,PyObject *args)
   if (!PyArg_ParseTuple(args,"z",&in))
     return 0;
 
+  if (*in == '\0')
+    return PyString_FromString("");
   return PyString_FromString(gettext(in));
 }
 

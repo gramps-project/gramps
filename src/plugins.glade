@@ -143,7 +143,7 @@
 	    <class>GtkLabel</class>
 	    <child_name>CTree:title</child_name>
 	    <name>label63</name>
-	    <label>label63</label>
+	    <label></label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>0.5</xalign>
