@@ -1,7 +1,22 @@
+2003-07-20  Don Allingham  <dallingham@users.sourceforge.net>
+
+	* src/plugins/ReadGedcom.py: handle sources attached to a person (not
+	to an event), handle the PAF/FTW _MARNM extension.
+
 2003-07-20  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Include source notes.  Adjusted default
 	styles.
 
+2003-07-19  Don Allingham  <dallingham@users.sourceforge.net>
+        * src/Sources.py: use textview instead of entry for page information
+        * src/srcsel.glade: use textview instead of entry for page information
+	* src/plugins/WriteGedcom.py: Allow for multi-line PAGE information for
+	as source.
+	* src/gramps.glade: parent relationship editor has an indicator to
+	mark the parents as the preferred parents for reporting and display
+	* src/ChooseParents.py: parent relationship editor has an indicator to
+	mark the parents as the preferred parents for reporting and display
+	
 2003-07-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/OpenOfficeDoc.py (_write_styles_file): Switch paragraph
 	alignment to "start" and "end" (was "left and "right").
