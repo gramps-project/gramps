@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000, 2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -942,21 +944,21 @@ lds_status = {
     }
 
 lds_baptism = [
-    "<No Status>",  "Child",     "Cleared",    "Completed",
-    "Infant",       "Pre-1970",  "Qualified",  "Stillborn",
-    "Submitted",    "Uncleared",
+    _("<No Status>"),  _("Child"),     _("Cleared"),    _("Completed"),
+    _("Infant"),       _("Pre-1970"),  _("Qualified"),  _("Stillborn"),
+    _("Submitted"),    _("Uncleared"),
     ]
 
 lds_csealing = [
-    "<No Status>",  "BIC",       "Cleared",    "Completed",
-    "DNS",          "Pre-1970",  "Qualified",  "Stillborn",
-    "Submitted",    "Uncleared",
+    _("<No Status>"),  _("BIC"),       _("Cleared"),    _("Completed"),
+    _("DNS"),          _("Pre-1970"),  _("Qualified"),  _("Stillborn"),
+    _("Submitted"),    _("Uncleared"),
     ]
 
 lds_ssealing = [
-    "<No Status>",  "Canceled",  "Cleared",    "Completed",
-    "DNS",          "Pre-1970",  "Qualified",  "DNS/CAN",
-    "Submitted",    "Uncleared",
+    _("<No Status>"),  _("Canceled"),  _("Cleared"),    _("Completed"),
+    _("DNS"),          _("Pre-1970"),  _("Qualified"),  _("DNS/CAN"),
+    _("Submitted"),    _("Uncleared"),
     ]
 
     
