@@ -1309,7 +1309,7 @@ class DeleteMediaQuery:
         self.db.remove_object(self.media.get_handle(),trans)
         self.db.transaction_commit(trans,_("Remove Media Object"))
         if self.update:
-            self.update()
+            self.update(self.media.get_handle())
 
 def build_dropdown(entry,strings):
     store = gtk.ListStore(str)

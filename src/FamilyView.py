@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +19,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 # $Id$
+
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -48,9 +55,13 @@ import DateHandler
 import DisplayModels
 import NameDisplay
 
-from gettext import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
 _BORN = _('b.')
 _DIED = _('d.')
 
@@ -843,7 +854,7 @@ class FamilyView:
 
             for handle in [father_id, mother_id]:
                 if handle:
-                    p = self.parent.db.find_person_from_handle(handle)
+                    p = self.parent.db.get_person_from_handle(handle)
                     p.remove_family_handle(self.family.get_handle())
                     self.parent.db.commit_person(p,trans)
 
@@ -1327,12 +1338,12 @@ class FamilyView:
                 father_handle = fam.get_father_handle()
                 mother_handle = fam.get_mother_handle()
                 if father_handle == None and mother_handle:
-                    mother = self.parent.db.find_person_from_handle(mother_handle)
+                    mother = self.parent.db.get_person_from_handle(mother_handle)
                     mother.remove_family_handle(fam)
                     self.parent.db.commit_person(mother,trans)
                     self.parent.db.remove_family(fam,trans)
                 elif mother_handle == None and father_handle:
-                    father = self.parent.db.find_person_from_handle(father_handle)
+                    father = self.parent.db.get_person_from_handle(father_handle)
                     father.remove_family_handle(fam,trans)
                     self.parent.db.commit_person(father,trans)
                     self.parent.db.remove_family(fam,trans)

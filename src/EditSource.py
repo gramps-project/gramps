@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,13 @@
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -39,8 +46,6 @@ import ImageSelect
 import ListModel
 import RelLib
 import NameDisplay
-
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -483,7 +488,7 @@ class DelSrcQuery:
                 self.db.commit_family(p,trans)
 
         for p_id in self.db.get_media_object_handles():
-            p = self.db.get_object_from_handle(p_id,trans)
+            p = self.db.get_object_from_handle(p_id)
             if self.delete_source(p):
                 self.db.commit_media_object(p,trans)
 
@@ -494,4 +499,4 @@ class DelSrcQuery:
 
         self.db.remove_source(self.source.get_handle(),trans)
         self.db.transaction_commit(trans,_("Delete Source (%s)") % self.source.get_title())
-        self.update()
+        self.update(self.source.get_handle())
