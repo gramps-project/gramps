@@ -172,11 +172,11 @@ class GrampsBSDDB(GrampsDbBase):
         return vals
 
     def remove_person(self,handle,transaction):
-        self.genderStats.uncount_person (self.person_map[handle])
+        person = self.get_person_from_handle(handle)
+        self.genderStats.uncount_person (person)
         if transaction != None:
-            old_data = self.person_map.get(handle)
-            transaction.add(PERSON_KEY,handle,old_data)
-        self.person_map.delete(handle)
+            transaction.add(PERSON_KEY,handle,person.serialize())
+        self.person_map.delete(str(handle))
 
     def remove_source(self,handle,transaction):
         if transaction != None:
@@ -200,7 +200,7 @@ class GrampsBSDDB(GrampsDbBase):
         if transaction != None:
             old_data = self.place_map.get(handle)
             transaction.add(PLACE_KEY,handle,old_data)
-        self.place_map.delete(handle)
+        self.place_map.delete(str(handle))
 
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
