@@ -31,6 +31,9 @@
 2003-09-01  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/Makefile.am: Removed reference to PdfDrawDoc.py.
 
+2003-08-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PdfDoc.py (left_print): Don't convert to cm.
+
 2003-08-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/PdfDoc.py (page_break): Minor cleanup; 
 	(end_page): Was defined twice -- remove the first occurence. 
