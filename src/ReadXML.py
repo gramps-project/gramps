@@ -535,6 +535,7 @@ class GrampsParser:
     def parse(self,file,use_trans=True):
         if use_trans:
             self.trans = self.db.transaction_begin()
+            self.trans.set_batch(True)
         else:
             self.trans = None
         p = ParserCreate()
@@ -560,6 +561,9 @@ class GrampsParser:
         del p
         if use_trans:
             self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
+        else:
+            self.db.run_person_rebuild_callbacks()
+            self.db.run_family_rebuild_callbacks()
 
     def start_lds_ord(self,attrs):
         atype = attrs['type']

@@ -57,10 +57,8 @@ import DateHandler
 #-------------------------------------------------------------------------
 class NameEditor:
 
-    def __init__(self,parent,name,callback,parent_window=None,
-                 update_sources=None):
+    def __init__(self,parent,name,callback,parent_window=None):
 
-        self.update_sources = update_sources
         self.parent = parent
         self.db = self.parent.db
         if name:
@@ -132,8 +130,7 @@ class NameEditor:
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             self.top.get_widget('add_src'), self.top.get_widget('edit_src'),
-            self.top.get_widget('del_src'), self.db.readonly,
-            self.update_sources)
+            self.top.get_widget('del_src'), self.db.readonly)
         
         self.note_buffer = self.note_field.get_buffer()
         
@@ -352,8 +349,9 @@ class NameEditor:
             self.parent.lists_changed = 1
         
     def on_switch_page(self,obj,a,page):
-        text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                self.note_buffer.get_end_iter(),False))
+        start = self.note_buffer.get_start_iter()
+        stop = self.note_buffer.get_end_iter()
+        text = unicode(self.note_buffer.get_text(start, stop, False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

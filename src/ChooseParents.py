@@ -67,15 +67,13 @@ class ChooseParents:
     Displays the Choose Parents dialog box, allowing the parents
     to be edited.
     """
-    def __init__(self,parent,db,person,family,family_update,full_update):
+    def __init__(self,parent,db,person,family):
         """
         Creates a ChoosePerson dialog box.
 
         db - database associated the person
         person - person whose parents we are selecting
         family - current family
-        family_update - task that updates the family display
-        full_update - task that updates the main display 
         """
         self.parent = parent
         self.db = db
@@ -85,8 +83,6 @@ class ChooseParents:
             self.family = self.db.get_family_from_handle(family.get_handle())
         else:
             self.family = None
-        self.family_update = family_update
-        self.full_update = full_update
         self.old_type = ""
         self.type = ""
         self.parent_selected = 0
@@ -476,7 +472,6 @@ class ChooseParents:
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
             self.db.commit_family(self.family,trans)
-        self.family_update(None)
         self.db.transaction_commit(trans,_("Choose Parents"))
         self.close(None)
 
@@ -505,7 +500,6 @@ class ChooseParents:
             self.mother_list.expand_row(top_path,0)
             self.mother_selection.select_path(path)
             self.mother_list.scroll_to_cell(path,None,1,0.5,0)
-        self.full_update()
         
     def add_parent_clicked(self,obj):
         """Called with the Add New Person button is pressed. Calls the QuickAdd
@@ -555,22 +549,17 @@ class ChooseParents:
 #
 #-------------------------------------------------------------------------
 class ModifyParents:
-    def __init__(self, db, person, family_handle, family_update,
-                 full_update, parent_window=None):
+    def __init__(self, db, person, family_handle, parent_window=None):
         """
         Creates a ChoosePerson dialog box.
 
         db - database associated the person
         person - person whose parents we are selecting
         family - current family
-        family_update - task that updates the family display
-        full_update - task that updates the main display 
         """
         self.db = db
         self.person = person
         self.family = self.db.get_family_from_handle(family_handle)
-        self.family_update = family_update
-        self.full_update = full_update
 
         fid = self.family.get_father_handle()
         mid = self.family.get_mother_handle()
@@ -698,5 +687,3 @@ class ModifyParents:
             trans = self.db.transaction_begin()
             self.db.commit_person(self.person,trans)
             self.db.transaction_commit(trans,_("Modify Parents"))
-            if self.family_update:
-                self.family_update(None)

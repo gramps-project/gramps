@@ -1,3 +1,29 @@
+2005-03-31  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: new database callback scheme. This scheme
+	provides a registration mechanism to signal interested objects
+	when database commits occur. The eliminates most of all callback
+	functions tied to interface windows.
+	* src/AddrEdit.py: new database callback scheme
+	* src/AttrEdit.py: new database callback scheme
+	* src/ChooseParents.py: new database callback scheme
+	* src/EditPerson.py: new database callback scheme
+	* src/EditPlace.py: new database callback scheme
+	* src/EditSource.py: new database callback scheme
+	* src/EventEdit.py: new database callback scheme
+	* src/FamilyView.py: new database callback scheme
+	* src/GrampsBSDDB.py: new database callback scheme
+	* src/GrampsDbBase.py: new database callback scheme
+	* src/GrampsInMemDB.py: new database callback scheme
+	* src/Marriage.py: new database callback scheme
+	* src/NameEdit.py: new database callback scheme
+	* src/PeopleView.py: new database callback scheme 
+	* src/PlaceView.py: new database callback scheme
+	* src/ReadGedcom.py: new database callback scheme
+	* src/ReadXML.py: new database callback scheme
+	* src/SourceView.py: new database callback scheme
+	* src/Sources.py: new database callback scheme
+	* src/gramps_main.py: new database callback scheme
+
 2005-03-31  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py (upgrade): Delegate particular versioned
 	upgrades to separate methods; provide upgrade_5 method.

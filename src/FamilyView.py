@@ -95,6 +95,19 @@ class FamilyView:
         self.cadded = [ 0, 0 ]
         self.in_drag = False
         self.init_interface()
+        self.change_db()
+
+    def change_db(self):
+        self.parent.db.add_family_callbacks(
+            'family_view', self.update_callback, self.update_callback,
+            self.update_callback, self.load_family)
+
+        self.parent.db.add_person_callbacks(
+            'family_view', self.update_callback, self.update_callback,
+            self.update_callback, self.load_family)
+
+    def update_callback(self,handle):
+        self.load_family()
 
     def set_widgets(self,val):
         already_init = self.cadded[val]
@@ -551,13 +564,13 @@ class FamilyView:
     def child_rel(self,obj):
         handle = obj.get_data('o')
         person = self.parent.db.get_person_from_handle(handle)
-        ChooseParents.ModifyParents(self.parent.db, person, self.family.get_handle(),
-                                    None,self.load_family)
+        ChooseParents.ModifyParents(self.parent.db, person,
+                                    self.family.get_handle())
         
     def child_rel_by_id(self,handle):
         person = self.parent.db.get_person_from_handle(handle)
-        ChooseParents.ModifyParents(self.parent.db, person, self.family.get_handle(),
-                                    None,self.load_family)
+        ChooseParents.ModifyParents(self.parent.db, person,
+                                    self.family.get_handle())
 
     def spouse_changed(self,obj):
         if self.in_drag:
@@ -684,45 +697,35 @@ class FamilyView:
 
     def spouse_after_edit(self,epo,val):
         ap = self.parent.active_person
-        if epo:
-            #trans = self.parent.db.transaction_begin()
-            #self.parent.db.commit_person(epo.person,trans)
-            #n = epo.person.get_primary_name().get_regular_name()
-            #self.parent.db.transaction_commit(trans,_("Add Spouse (%s)") % n)
-            self.parent.people_view.remove_from_person_list(epo.person)
-            self.parent.people_view.redisplay_person_list(epo.person)
-
         self.parent.active_person = ap
-        self.load_family()
         
     def new_spouse_after_edit(self,epo,val):
 
-        #self.parent.db.add_person(epo.person,trans)
+        new_person = epo.person
+        old_person = self.person
         trans = self.parent.db.transaction_begin()
-        self.family = RelLib.Family()
-        self.parent.db.add_family(self.family,trans)
+        fhandle = self.parent.db.create_id()
+        family = RelLib.Family()
+        family.set_handle(fhandle)
+        family.set_gramps_id(self.parent.db.find_next_family_gramps_id())
 
-        self.parent.people_view.add_to_person_list(epo.person,0)
-        self.person.add_family_handle(self.family.get_handle())
-        epo.person.add_family_handle(self.family.get_handle())
-
-        self.parent.db.commit_person(epo.person,trans)
-        self.parent.db.commit_person(self.person,trans)
+        old_person.add_family_handle(fhandle)
+        new_person.add_family_handle(fhandle)
 
         if self.person.get_gender() == RelLib.Person.MALE:
-            self.family.set_mother_handle(epo.person.get_handle())
-            self.family.set_father_handle(self.person.get_handle())
+            family.set_mother_handle(epo.person.get_handle())
+            family.set_father_handle(self.person.get_handle())
         else:
-            self.family.set_father_handle(epo.person.get_handle())
-            self.family.set_mother_handle(self.person.get_handle())
+            family.set_father_handle(epo.person.get_handle())
+            family.set_mother_handle(self.person.get_handle())
 
-        self.parent.db.commit_family(self.family,trans)
-        self.load_family(self.family)
-
+        self.parent.db.commit_person(new_person,trans)
+        self.parent.db.commit_person(old_person,trans)
+        self.parent.db.commit_family(family,trans)
         self.parent.db.transaction_commit(trans,_("Add Spouse"))
-        m = Marriage.Marriage(
-            self.parent,self.family,self.parent.db, self.parent.new_after_edit,
-            self.load_family, self.parent.source_view.build_tree)
+        self.family = family
+        self.person = old_person
+        m = Marriage.Marriage(self.parent,self.family,self.parent.db)
 
         m.on_add_clicked()
 
@@ -764,8 +767,6 @@ class FamilyView:
 
         self.family.add_child_handle(person)
         person.add_parent_family_handle(self.family.get_handle(),"Birth","Birth")
-        self.parent.update_person_list(person)
-        self.load_family(self.family)
         self.parent.db.commit_person(person,trans)
         self.parent.db.commit_family(self.family,trans)
         self.parent.db.transaction_commit(trans,_("Modify family"))
@@ -788,7 +789,9 @@ class FamilyView:
 
         trans = self.parent.db.transaction_begin()
         self.family.add_child_handle(epo.person.get_handle())
-        epo.person.add_parent_family_handle(self.family.get_handle(),RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        epo.person.add_parent_family_handle(self.family.get_handle(),
+                                            RelLib.Person.CHILD_REL_BIRTH,
+                                            RelLib.Person.CHILD_REL_BIRTH)
         self.parent.db.commit_person(epo.person,trans)
         self.parent.db.commit_family(self.family,trans)
         self.parent.db.transaction_commit(trans,_("Add Child to Family"))
@@ -831,8 +834,6 @@ class FamilyView:
             self.parent.db.commit_family(self.family,trans)
         n = child.get_primary_name().get_regular_name()
         self.parent.db.transaction_commit(trans,_("Remove Child (%s)") % n)
-        
-        self.load_family()
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
@@ -878,11 +879,6 @@ class FamilyView:
             if len(self.person.get_family_handle_list()) > 0:
                 handle = self.person.get_family_handle_list()[0]
                 family = self.parent.db.find_family_from_handle(handle,trans)
-                self.load_family(family)
-            else:
-                self.load_family(self.family)
-        else:
-            self.load_family(self.family)
 
         person_id = self.person.get_handle()
         self.person = self.parent.db.get_person_from_handle(person_id)
@@ -961,7 +957,6 @@ class FamilyView:
         self.select_spouse_btn.set_sensitive(mode)
         
     def load_family(self,family=None):
-
         self.set_buttons()
         if self.parent.active_person:
             handle = self.parent.active_person.get_handle()
@@ -1338,8 +1333,6 @@ class FamilyView:
 
         try:
             ChooseParents.ModifyParents(self.parent.db,person,parents,
-                                        self.load_family,
-                                        self.parent.full_update,
                                         self.parent.topWindow)
         except:
             DisplayTrace.DisplayTrace()
@@ -1351,9 +1344,7 @@ class FamilyView:
             ChooseParents.ChooseParents(self.parent,
                                         self.parent.db,
                                         person,
-                                        None,
-                                        self.load_family,
-                                        self.parent.full_update)
+                                        None)
         except:
             DisplayTrace.DisplayTrace()
         

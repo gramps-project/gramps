@@ -211,13 +211,7 @@ class AddSpouse:
         been closed.
         """
         person = epo.person
-        trans = self.db.transaction_begin()
-        handle = self.db.add_person(person,trans)
-
-        n = NameDisplay.displayer.display(person)
-        self.db.transaction_commit(trans,_('Add Person (%s)' % n))
-        self.addperson(person)
-        self.update_data(handle)
+        self.update_data(person.get_handle())
         
         self.slist = PeopleModel.PeopleModel(self.db)
         self.slist.rebuild_data()
@@ -227,8 +221,6 @@ class AddSpouse:
         top_path = self.slist.on_get_path(person.get_primary_name().get_surname())
         self.spouse_list.expand_row(top_path,0)
         self.selection.select_path(path)
-        #self.spouse_list.scroll_to_cell(path,None,1,0.5,0)
-        #self.slist.center_selected()
 
     def select_spouse_clicked(self,obj):
         """
@@ -298,10 +290,7 @@ class AddSpouse:
 
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
-        m = Marriage.Marriage(self.parent, self.active_family,
-                              self.parent.db, self.parent.new_after_edit,
-                              self.parent.family_view.load_family,
-                              self.parent.source_view.build_tree)
+        m = Marriage.Marriage(self.parent, self.active_family, self.parent.db)
         m.on_add_clicked()
 
     def relation_type_changed(self,obj):
@@ -311,8 +300,9 @@ class AddSpouse:
         return person.get_gender() != self.sgender
 
     def likely_filter(self, person):
+        print self.sgender
         if person.get_gender() == self.sgender:
-            return 0
+            return False
 
         pd_id = person.get_death_handle()
         pb_id = person.get_birth_handle()

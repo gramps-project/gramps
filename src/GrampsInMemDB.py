@@ -142,9 +142,10 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
+        if transaction and not transaction.batch:
+            self.run_person_delete_callbacks([handle])
         del self.id_trans[person.get_gramps_id()]
         del self.person_map[handle]
-        self.run_person_delete_callbacks(handle)
 
     def remove_source(self,handle,transaction):
         if self.readonly:
@@ -153,6 +154,8 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.source_map.get(str(handle))
             transaction.add(SOURCE_KEY,handle,old_data)
+        if transaction and not transaction.batch:
+            self.run_source_delete_callbacks([handle])
         del self.sid_trans[source.get_gramps_id()]
         del self.source_map[str(handle)]
 
@@ -163,6 +166,8 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.place_map.get(str(handle))
             transaction.add(PLACE_KEY,handle,old_data)
+        if transaction and not transaction.batch:
+            self.run_person_delete_callbacks([handle])
         del self.pid_trans[place.get_gramps_id()]
         del self.place_map[str(handle)]
 
@@ -183,6 +188,8 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.family_map.get(str(handle))
             transaction.add(FAMILY_KEY,handle,old_data)
+        if transaction and not transaction.batch:
+            self.run_family_delete_callbacks([str(handle)])
         del self.fid_trans[family.get_gramps_id()]
         del self.family_map[str(handle)]
 

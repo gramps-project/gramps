@@ -464,6 +464,7 @@ class GedcomParser:
 
         if use_trans:
             self.trans = self.db.transaction_begin()
+            self.trans.set_batch(True)
         else:
             self.trans = None
         t = time.time()
@@ -490,6 +491,9 @@ class GedcomParser:
 
         if use_trans:
             self.db.transaction_commit(self.trans,_("GEDCOM import"))
+        else:
+            self.db.run_person_rebuild_callbacks()
+            self.db.run_family_rebuild_callbacks()
         
         if self.window:
             self.infomsg("\n%s" % msg)

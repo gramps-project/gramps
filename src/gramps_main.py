@@ -323,10 +323,8 @@ class Gramps:
             self.change_active_person, self.load_person
             )
         
-        self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop,
-                                               self.update_display)
-        self.source_view = SourceView.SourceView(self,self.db,self.gtop,
-                                                 self.update_display)
+        self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop)
+        self.source_view = SourceView.SourceView(self,self.db,self.gtop)
         self.media_view  = MediaView.MediaView(self,self.db,self.gtop,
                                                self.update_display)
 
@@ -499,11 +497,11 @@ class Gramps:
             p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
         self.place_view.change_db(self.db)
+        self.family_view.change_db()
         self.people_view.change_db(self.db)
         self.people_view.apply_filter()
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
-        self.family_view.load_family()
 
     def exit_and_undo(self,*args):
         self.db.abort_changes()
@@ -1117,6 +1115,7 @@ class Gramps:
         if Utils.wasHistory_broken():
             self.clear_history()
             Utils.clearHistory_broken()
+        self.family_view.change_db()
         self.people_view.change_db(self.db)
         self.people_view.apply_filter()
         if not self.active_person:
@@ -1132,8 +1131,6 @@ class Gramps:
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
             self.people_view.apply_filter()
-        elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
-            self.family_view.load_family()
         elif page == PEDIGREE_VIEW:
             self.pedigree_view.load_canvas(self.active_person)
 
@@ -1327,13 +1324,14 @@ class Gramps:
                     else:
                         # File is lost => ask what to do
                         if missmedia_action == 0:
-                            mmd = MissingMediaDialog(_("Media object could not be found"),
-                                    _("%(file_name)s is referenced in the database, but no longer exists. " 
-                                        "The file may have been deleted or moved to a different location. " 
-                                        "You may choose to either remove the reference from the database, " 
-                                        "keep the reference to the missing file, or select a new file." 
-                                        ) % { 'file_name' : oldfile },
-                                    remove_clicked, leave_clicked, select_clicked)
+                            mmd = MissingMediaDialog(
+                                _("Media object could not be found"),
+                                _("%(file_name)s is referenced in the database, but no longer exists. " 
+                                  "The file may have been deleted or moved to a different location. " 
+                                  "You may choose to either remove the reference from the database, " 
+                                  "keep the reference to the missing file, or select a new file." 
+                                  ) % { 'file_name' : oldfile },
+                                remove_clicked, leave_clicked, select_clicked)
                             missmedia_action = mmd.default_action
                         elif missmedia_action == 1:
                             remove_clicked()
@@ -1351,9 +1349,6 @@ class Gramps:
     def load_active_person(self,obj):
         self.load_person(self.active_person)
 
-    def update_person_list(self,person):
-        self.people_view.add_to_person_list(person,0)
-    
     def load_new_person(self,obj):
         person = RelLib.Person()
         try:
@@ -1439,8 +1434,6 @@ class Gramps:
         self.people_view.remove_from_person_list(person)
         self.people_view.remove_from_history(handle)
         self.db.remove_person(handle, trans)
-        self.people_view.delete_person(person)
-        self.people_view.person_model.rebuild_data()
 
         if self.hindex >= 0:
             self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
@@ -1453,8 +1446,6 @@ class Gramps:
 
     def merge_update(self):
         self.redraw_histmenu()
-        self.people_view.build_tree()
-        self.update_display(0)
     
     def goto_active_person(self):
         self.people_view.goto_active_person()
@@ -1536,7 +1527,6 @@ class Gramps:
     def on_import_activate(self,obj):
         prompter = DbPrompter.ImportDbPrompter(self,self.topWindow)
         prompter.chooser()
-        self.update_display()
 
     def on_saveas_activate(self,obj):
         prompter = DbPrompter.NewSaveasDbPrompter(self,self.topWindow)
@@ -1625,42 +1615,11 @@ class Gramps:
 
     def new_after_edit(self,epo,val):
         self.active_person = epo.person
-        self.people_view.build_tree()
-        self.family_view.load_family()
-        self.place_view.build_tree()
-        self.source_view.build_tree()
-        self.update_display(0)
         self.goto_active_person()
         
-    def update_after_newchild(self,family,person,plist):
-        self.family_view.load_family(family)
-        self.people_view.redisplay_person_list(person)
-        for p in plist:
-            self.place_view.new_place_after_edit(p)
-
     def update_after_edit(self,epo,change=1):
-        self.active_person = epo.person
-        pn = self.active_person.get_primary_name()
-
-        mapname = self.db.get_name_group_mapping(pn.get_group_name())
-
-        if epo.orig_surname in [pn.get_group_name(), mapname ]:
-            self.people_view.build_tree()
-        elif change:
-            self.people_view.update_person_list(epo.person)
-        else:
-            self.people_view.redisplay_person_list(epo.person)
-        self.family_view.load_family()
-        self.place_view.build_tree()
-        self.source_view.build_tree()
-        self.update_display(0)
         self.goto_active_person()
         
-    def update_after_merge(self,person,old_id):
-        if person:
-            self.people_view.redisplay_person_list(person)
-        self.update_display(0)
-
     def load_person(self,person):
         if person:
             try:
@@ -1714,6 +1673,7 @@ class Gramps:
         if callback:
             callback(_('Building Person list...'))
         self.people_view.change_db(self.db)
+        self.family_view.change_db()
         if callback:
             callback(_('Building Place list...'))
         self.place_view.change_db(self.db)

@@ -61,9 +61,7 @@ from QuestionDialog import WarningDialog, ErrorDialog
 class EventEditor:
 
     def __init__(self,parent,name,elist,trans,event,def_placename,
-                 read_only, cb, def_event=None, noedit=False,
-                 redraw_main_source_list=None):
-        self.redraw_main_source_list = redraw_main_source_list
+                 read_only, cb, def_event=None, noedit=False):
         self.parent = parent
         self.db = self.parent.db
         if event:
@@ -170,7 +168,7 @@ class EventEditor:
         self.sourcetab = Sources.SourceTab(
             self.srcreflist, self, self.top, self.window, self.slist,
             add_src, self.top.get_widget('edit_src'), del_src,
-            self.db.readonly, self.redraw_main_source_list )
+            self.db.readonly)
 
         add_witness = self.top.get_widget('add_witness')
         add_witness.set_sensitive(not noedit)
