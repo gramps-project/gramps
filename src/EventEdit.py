@@ -171,7 +171,7 @@ class EventEditor:
                 self.place_field.set_text(def_placename)
             else:
                 place_id = event.get_place_id()
-                if place_id:
+                if not place_id:
                     place_name = u""
                 else:
                     place_name = self.db.try_to_find_place_from_id(place_id).get_title()
@@ -333,9 +333,9 @@ class EventEditor:
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
         self.db.add_transaction(trans,_("Edit Event"))
+        self.close(obj,1)
         self.parent.redraw_event_list()
         self.callback(self.event)
-        self.close(obj,1)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause,trans):
         if place:
