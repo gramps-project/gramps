@@ -489,7 +489,7 @@ class ChooseParents:
 
 
 class ModifyParents:
-    def __init__(self,db,person,family,family_update,full_update,parent_window=None):
+    def __init__(self,db,person,family_id,family_update,full_update,parent_window=None):
         """
         Creates a ChoosePerson dialog box.
 
@@ -501,12 +501,12 @@ class ModifyParents:
         """
         self.db = db
         self.person = person
-        self.family = family
+        self.family = self.db.find_family_from_id(family_id)
         self.family_update = family_update
         self.full_update = full_update
         
-        self.father = self.family.get_father_id()
-        self.mother = self.family.get_mother_id()
+        self.father = self.db.find_person_from_id(self.family.get_father_id())
+        self.mother = self.db.find_person_from_id(self.family.get_mother_id())
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")
@@ -523,7 +523,7 @@ class ModifyParents:
         self.orig_mrel = _("Birth")
         self.orig_frel = _("Birth")
         for (f,mr,fr) in self.person.get_parent_family_id_list():
-            if f == self.family:
+            if f == self.family.get_id():
                 self.orig_mrel = _(mr)
                 self.orig_frel = _(fr)
 
@@ -588,8 +588,8 @@ class ModifyParents:
         mod = 0
 
         if mother_rel != self.orig_mrel or father_rel != self.orig_frel:
-            self.person.remove_parent_family_id(self.family)
-            self.person.add_parent_family_id(self.family,mother_rel,father_rel)
+            self.person.remove_parent_family_id(self.family.get_id())
+            self.person.add_parent_family_id(self.family.get_id(),mother_rel,father_rel)
             mod = 1
             Utils.modified()
 
@@ -599,7 +599,7 @@ class ModifyParents:
             plist = self.person.get_parent_family_id_list()
             if make_pref:
                 if self.family != plist[0]:
-                    self.person.set_main_parent_family_id(self.family)
+                    self.person.set_main_parent_family_id(self.family.get_id())
                     Utils.modified()
                     mod = 1
             else:

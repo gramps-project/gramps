@@ -160,18 +160,22 @@ class RelationshipCalculator:
     def __init__(self,db):
         self.db = db
 
-    def apply_filter(self,person_id,index,plist,pmap):
-        if person_id == None:
-            return
-        plist.append(person_id)
-        pmap[person_id] = index
+    def set_db(self,db):
+        self.db = db
 
-        person = self.db.find_person_from_id(person_id)
+    def apply_filter(self,person,index,plist,pmap):
+        if person == None:
+            return
+        plist.append(person.get_id())
+        pmap[person.get_id()] = index
+
         family_id = person.get_main_parents_family_id()
         family = self.db.find_family_from_id(family_id)
         if family != None:
-            self.apply_filter(family.get_father_id(),index+1,plist,pmap)
-            self.apply_filter(family.get_mother_id(),index+1,plist,pmap)
+            father = self.db.find_person_from_id(family.get_father_id())
+            mother = self.db.find_person_from_id(family.get_mother_id())
+            self.apply_filter(father,index+1,plist,pmap)
+            self.apply_filter(mother,index+1,plist,pmap)
 
     def get_cousin(self,level,removed):
         if removed > len(_removed_level)-1 or level>len(_level_name)-1:
@@ -254,7 +258,7 @@ class RelationshipCalculator:
         secondList = []
         common = []
         rank = 9999999
-        
+
         if orig_person == None:
             return ("undefined",[])
 
@@ -265,11 +269,11 @@ class RelationshipCalculator:
             return ("spouse",[])
 
         try:
-            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
-            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+            self.apply_filter(orig_person,0,firstList,firstMap)
+            self.apply_filter(other_person,0,secondList,secondMap)
         except RuntimeError,msg:
             return (_("Relationship loop detected"),None)
-    
+
         for person_id in firstList:
             if person_id in secondList:
                 new_rank = firstMap[person_id]
@@ -286,7 +290,7 @@ class RelationshipCalculator:
             person_id = common[0]
             secondRel = firstMap[person_id]
             firstRel = secondMap[person_id]
-            
+
         if firstRel == -1:
             return ("",[])
         elif firstRel == 0:
@@ -337,8 +341,8 @@ class RelationshipCalculator:
             return ('', [])
         
         try:
-            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
-            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+            self.apply_filter(orig_person,0,firstList,firstMap)
+            self.apply_filter(other_person,0,secondList,secondMap)
         except RuntimeError,msg:
             return (_("Relationship loop detected"),None)
     
