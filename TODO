@@ -29,4 +29,5 @@
 * Replace ListModel with the TreeModel
 * Work out BookReport dialog so that resize is not necessary
 * Work out name capitalization options
+* Make Date parsing locale dependent, like relationship calculator
 * And a whole lot more....
