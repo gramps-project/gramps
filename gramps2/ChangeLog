@@ -1,4 +1,7 @@
 2004-07-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/const.py.in: fix relationship types
+
+2004-07-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: broke out support for database class to 
 	make it easier to support multiple backends in the future
 	* src/RelLib.py: broke out support for database class to 
