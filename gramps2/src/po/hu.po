@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Mon Jan 19 14:10:17 2004\n"
-"PO-Revision-Date: 2004-02-02 11:50+0100\n"
+"PO-Revision-Date: 2004-02-04 09:17+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1248,7 +1248,7 @@ msgstr "Héber"
 
 #: ImageSelect.py:390
 msgid "Thumbnail %s could not be found"
-msgstr "%s bemutatókép nem található"
+msgstr "%s bélyegkép nem található"
 
 #: ImageSelect.py:493 RelImage.py:56
 msgid "Could not import %s"
@@ -1335,7 +1335,7 @@ msgstr "Megnevezés"
 
 #: MediaView.py:125
 msgid "Thumbnails not available"
-msgstr "Bemutatókép nem lehetséges"
+msgstr "Bélyegkép nem elérhető"
 
 #: MediaView.py:126
 msgid ""
@@ -1344,7 +1344,7 @@ msgid ""
 "available at http://www.pythonware.com/products/pil/ or ImageMagick, "
 "available at http://www.imagemagick.org/"
 msgstr ""
-"Nincsen használható eszköz a bemutatókép létrehozásához. Ha használni "
+"Nincsen megfelelő program a bélyegkép létrehozásához. Ha használni "
 "szeretné ezt a funkciót akkor telepítse a Python Imaging Library -t (PIL), "
 "elérhető a http://www.pythonware.com/products/pil/ címen vagy használja az "
 "ImageMagick-et, letölthető a http://www.imagemagick.org/ címről."
@@ -1627,7 +1627,7 @@ msgstr "%s nem hozható létre"
 
 #: RelImage.py:81
 msgid "Error creating the thumbnail: %s"
-msgstr "Bemutatókép létrehozási hiba : %s"
+msgstr "Bélyegkép létrehozási hiba : %s"
 
 #: RelImage.py:91
 msgid "Error copying %s"
@@ -1651,7 +1651,7 @@ msgstr "%s nem helyezhető át"
 
 #: RelImage.py:162 RelImage.py:170
 msgid "Could not create a thumbnail for %s"
-msgstr "Nem lehet létrehozni bemutatóképet %s részére"
+msgstr "Nem lehet létrehozni bélyegképet %s részére"
 
 #: RelImage.py:163
 msgid "The file has been moved or deleted."
@@ -6500,7 +6500,7 @@ msgstr "%s a köztes családtag."
 
 #: plugins/RelCalc.py:123
 msgid "Their common ancestors are %s and %s."
-msgstr "%s és %s a közös ősök."
+msgstr "%s és %s a köztes családtagok."
 
 #: plugins/RelCalc.py:128
 msgid "Their common ancestors are : "
@@ -6528,7 +6528,7 @@ msgstr "Egy csomóban mutassa a családot"
 
 #: plugins/RelGraph.py:212
 msgid "The main individual is shown along with their spouses in a stack."
-msgstr "Egy egyén a házastársaival jelenik meg egy csoportban."
+msgstr "Az egyén a házastársaival jelenik meg egy csoportban."
 
 #: plugins/RelGraph.py:222
 msgid "Include IDs"
@@ -6540,7 +6540,7 @@ msgstr "Egyéni és családi ID-k hozzáadása."
 
 #: plugins/RelGraph.py:246
 msgid "Place/cause when no date"
-msgstr "Helyek/okok amikor nincsen dátum"
+msgstr "Dátum nélküli Helyek/okok"
 
 #: plugins/RelGraph.py:251
 msgid ""
@@ -6691,7 +6691,7 @@ msgstr "Nézet"
 
 #: plugins/Summary.py:164
 msgid "Provides a summary of the current database"
-msgstr "A jelenlegi adatbázisról egy összesítő"
+msgstr "Összesítőt készít a jelenlegi adatbázisról"
 
 #: plugins/TimeLine.py:321
 msgid "The style used for the person's name."
