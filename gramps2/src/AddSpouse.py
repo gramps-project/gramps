@@ -218,7 +218,7 @@ class AddSpouse:
                 sgender = const.male
             else:
                 sgender = const.female
-            
+
         self.entries = []
         self.slist.clear()
         self.slist.new_model()
@@ -260,9 +260,7 @@ class AddSpouse:
                         # 100 years from spouse deathdate 
                         if abs(pdday.getYear() - dday.getYear()) > 100:
                             continue
-
             self.slist.add([data[0],data[1],data[3],data[5],data[6]],key,person==key)
-
         self.slist.connect_model()
 
     def on_show_toggled(self,obj):

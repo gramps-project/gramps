@@ -266,7 +266,7 @@ class FamilyView:
     def spouse_swap(self,obj):
         if self.selected_spouse:
             self.parent.active_person = self.selected_spouse
-            self.load_family()
+            self.load_family(self.family)
 
     def ap_parents_clicked(self,obj):
         self.change_families(self.person)
@@ -331,9 +331,14 @@ class FamilyView:
         self.child_model.clear()
         self.sp_parents_model.clear()
         splist = self.person.getFamilyList()
-        f = None
-        first_family = None
-        first_spouse = None
+
+        if len(splist) > 1:
+            self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
+        else:
+            self.spouse_selection.set_mode(gtk.SELECTION_NONE)
+
+        flist = {}
+
         for f in splist:
             if not f:
                 continue
@@ -343,19 +348,8 @@ class FamilyView:
                 sp = f.getFather()
 
             iter = self.spouse_model.append()
-            if f == family:
-                first_spouse = sp
-                first_family = f
-            elif first_spouse == None:
-                first_spouse = sp
-                first_family = f
+            flist[f.getId()] = iter
                 
-            if len(splist) > 1:
-                self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
-                self.spouse_selection.select_path(0)
-            else:
-                self.spouse_selection.set_mode(gtk.SELECTION_NONE)
-
             if sp:
                 if f.getMarriage():
                     mdate = " - %s" % f.getMarriage().getDate()
@@ -367,11 +361,19 @@ class FamilyView:
             else:
                 self.spouse_model.set(iter,0,"unknown\n")
 
-        if first_family:
-            self.display_marriage(first_family)
+        if family in splist:
+            self.display_marriage(family)
+            iter = flist[family.getId()]
+            self.spouse_selection.select_iter(iter)
+        elif len(flist) > 0:
+            f = splist[0]
+            iter = flist[f.getId()]
+            self.spouse_selection.select_iter(iter)
+            self.display_marriage(f)
+        else:
+            self.display_marriage(None)
 
         self.update_list(self.ap_parents_model,self.ap_parents,self.person)
-        self.family = first_family
 
     def update_list(self,model,tree,person):
         model.clear()

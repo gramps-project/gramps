@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,10 +34,8 @@ class ListModel:
 
         self.tree.set_rules_hint(gtk.TRUE)
         self.model = None
-        self.new_model()
-        self.selection = self.tree.get_selection()
-        self.selection.set_mode(mode)
         self.mode = mode
+        self.new_model()
         self.data_index = l
         self.count = 0
         self.cid = None
@@ -84,9 +82,14 @@ class ListModel:
             self.cid = self.model.get_sort_column_id()
         self.count = 0
         self.model = gtk.ListStore(*self.mylist)
-
+        self.selection = self.tree.get_selection()
+        self.selection.set_mode(self.mode)
+        self.sel_iter = None
+        
     def connect_model(self):
         self.tree.set_model(self.model)
+        if self.sel_iter:
+            self.selection.select_iter(self.sel_iter)
         if self.cid:
             self.model.set_sort_column_id(self.cid[0],self.cid[1])
         self.sort()
@@ -165,18 +168,6 @@ class ListModel:
     def get_object(self,iter):
         return self.model.get_value(iter,self.data_index)
         
-    def add(self,data,info=None,select=0):
-        self.count = self.count + 1
-        iter = self.model.append()
-        col = 0
-        for object in data:
-            self.model.set_value(iter,col,object)
-            col = col + 1
-        self.model.set_value(iter,col,info)
-        if select:
-            self.selection.select_iter(iter)
-        return iter
-
     def insert(self,position,data,info=None,select=0):
         self.count = self.count + 1
         iter = self.model.insert(position)
@@ -192,6 +183,18 @@ class ListModel:
     def get_data(self,iter,cols):
         return [ self.model.get_value(iter,c) for c in cols ]
     
+    def add(self,data,info=None,select=0):
+        self.count = self.count + 1
+        iter = self.model.append()
+        col = 0
+        for object in data:
+            self.model.set_value(iter,col,object)
+            col = col + 1
+        self.model.set_value(iter,col,info)
+        if select:
+            self.sel_iter = iter
+        return iter
+
     def add_and_select(self,data,info=None):
         self.count = self.count + 1
         iter = self.model.append()
@@ -204,8 +207,9 @@ class ListModel:
 
     def center_selected(self):
         model,iter = self.selection.get_selected()
-        path = model.get_path(iter)
-        self.tree.scroll_to_cell(path,None,gtk.TRUE,0.5,0.5)
+        if iter:
+            path = model.get_path(iter)
+            self.tree.scroll_to_cell(path,None,gtk.TRUE,0.5,0.5)
         
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

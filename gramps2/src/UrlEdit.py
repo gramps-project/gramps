@@ -52,8 +52,13 @@ class UrlEditor:
         self.priv = self.top.get_widget("priv")
         title_label = self.top.get_widget("title")
 
-        Utils.set_titles(self.window,title_label,
-                         _('Internet Address Editor for %s') % name,
+        if name == ", ":
+            etitle =_('Internet Address Editor')
+        else:
+            etitle =_('Internet Address Editor for %s') % name,
+            
+
+        Utils.set_titles(self.window,title_label, etitle,
                          _('Internet Address Editor'))
         if url != None:
             self.des.set_text(url.get_description())

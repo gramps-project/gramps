@@ -83,8 +83,12 @@ class EventEditor:
         self.window = self.top.get_widget("event_edit")
         title_label = self.top.get_widget('title')
 
-        Utils.set_titles(self.window,title_label,
-                         _('Event Editor for %s') % name,
+        if name == ", ":
+            etitle = _('Event Editor')
+        else:
+            etitle = _('Event Editor for %s') % name
+
+        Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))
         
         self.name_field  = self.top.get_widget("eventName")

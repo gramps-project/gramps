@@ -75,7 +75,10 @@ class NameEditor:
 
         alt_title = self.top.get_widget("title")
 
-        tmsg = _("Alternate Name Editor for %s") % full_name
+        if full_name == ", ":
+            tmsg = _("Alternate Name Editor")
+        else:
+            tmsg = _("Alternate Name Editor for %s") % full_name
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Alternate Name Editor'))
 
