@@ -822,7 +822,7 @@ class GrampsPreferences:
         nameof = _name_format_list[active_name][1]
         display_name = _name_format_list[active_name][2]
         display_surname = _name_format_list[active_name][3]
-        client.set_int("/apps/gramps/nameFormat",active_name)
+        client.set_int("/apps/gramps/name-format",active_name)
 
         format_menu = self.top.get_widget("lastnamegen").get_menu()
         lastnamegen = format_menu.get_active().get_data(DATA)
