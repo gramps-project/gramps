@@ -1,4 +1,11 @@
 2004-04-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/choose.glade: merged into gramps.glade
+	* src/styles.glade: merged into gramps.glade
+	* src/dialog.glade: merged into gramps.glade
+	* src/styles.glade: merged into gramps.glade
+	* src/imagesel.glade: merged into gramps.glade
+	* src/errdialogs.glade: merged into gramps.glade
+	* src/gramps.glade: merged from other files
 	* src/RelLib.py: add_source takes an transaction
 	* src/ReadGedcom.py: drop add_surname
 
