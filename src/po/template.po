@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-07-03 13:36-0600\n"
+"POT-Creation-Date: 2001-07-03 14:47-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1652,6 +1652,10 @@ msgstr ""
 msgid "Merge People"
 msgstr ""
 
+#: glade.c:1273
+msgid "Military Service"
+msgstr ""
+
 #: glade.c:1229
 msgid "Month Day, Year"
 msgstr ""
@@ -2392,7 +2396,7 @@ msgid "The default directory for the output of many report generators"
 msgstr ""
 
 #: glade.c:1081
-msgid "The default directory for the output of the  Web Site report generators"
+msgid "The default directory for the output of the Web Site report generators"
 msgstr ""
 
 #: glade.c:1391
@@ -2592,10 +2596,6 @@ msgstr ""
 
 #: glade.c:1161
 msgid "_Import"
-msgstr ""
-
-#: glade.c:1273
-msgid "_MILT"
 msgstr ""
 
 #: glade.c:1164
