@@ -671,6 +671,7 @@ class GrampsParser:
             if self.name.getType() == "":
                 self.name.setType("Birth Name")
             self.person.setPrimaryName (self.name)
+            self.person.getPrimaryName().build_sort_name()
             self.name = None
 
     def stop_ref(self,tag):
@@ -882,7 +883,6 @@ class GrampsParser:
         if self.name.getType() == "":
             self.name.setType("Also Known As")
         self.name = None
-
 
     def startElement(self,tag,attrs):
 

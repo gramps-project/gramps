@@ -154,8 +154,9 @@ class FindPerson(FindBase):
         task - function to call to change the active person"""
         
         FindBase.__init__(self,task,_("Find Person"),db,valid_map)
-        self.list = db.personTable.values()
-        self.list.sort()
+        self.list = []
+        for val in db.sortPersonKeys():
+            self.list.append(db.getPersonDisplay(val))
 
     def get_value(self,id):
         return self.db.getPerson(id)

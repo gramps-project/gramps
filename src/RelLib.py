@@ -858,7 +858,6 @@ class Address(DataObj):
         """returns the postal code of the Address"""
         return self.postal
 
-
 class Name(DataObj):
     """Provides name information about a person. A person may have more
     that one name throughout his or her life."""
@@ -874,6 +873,7 @@ class Name(DataObj):
             self.Title = source.Title
             self.type = source.type
             self.Prefix = source.Prefix
+            self.sname = source.sname
         else:
             self.FirstName = ""
             self.Surname = ""
@@ -881,6 +881,7 @@ class Name(DataObj):
             self.Title = ""
             self.type = "Birth Name"
             self.Prefix = ""
+            self.sname = '@'
 
     def getSurnamePrefix(self):
         return self.Prefix
@@ -896,18 +897,30 @@ class Name(DataObj):
         """returns the type of the Name instance"""
         return self.type
 
+    def build_sort_name(self):
+        if self.Surname:
+            self.sname = "%-25s%-30s%s" % (self.Surname.upper(),self.FirstName.upper(),self.Suffix.upper())
+        else:
+            self.sname = "@"
+
     def setFirstName(self,name):
         """sets the given name for the Name instance"""
         self.FirstName = name
+        self.build_sort_name()
 
     def setSurname(self,name):
         """sets the surname (or last name) for the Name instance"""
         self.Surname = name
+        self.build_sort_name()
 
     def setSuffix(self,name):
         """sets the suffix (such as Jr., III, etc.) for the Name instance"""
         self.Suffix = name
+        self.build_sort_name()
 
+    def getSortName(self):
+        return self.sname
+    
     def getFirstName(self):
         """returns the given name for the Name instance"""
         return self.FirstName
@@ -1123,7 +1136,7 @@ class Person(SourceNote):
         dday = self.getDeath().getDateObj()
         return [ GrampsCfg.display_name(self),self.id,gender,
                  bday.getQuoteDate(), dday.getQuoteDate(),
-                 sort.build_sort_name(self.getPrimaryName()),
+                 self.getPrimaryName().getSortName(),
                  sort.build_sort_date(bday),sort.build_sort_date(dday),
                  GrampsCfg.display_surname(self.PrimaryName)]
                                           
@@ -2145,7 +2158,6 @@ class GrampsDB:
     def __init__(self):
         """creates a new GrampsDB"""
         self.surnames = []
-        self.personTable = {}
         self.personMap = {}
         self.placeTable = {}
         self.placeMap = {}
@@ -2180,36 +2192,34 @@ class GrampsDB:
         return 1
 
     def getPersonLength(self):
-        return len(self.personTable)
+        return len(self.personMap)
 
     def getPersonKeys(self):
-        return self.personTable.keys()
+        return self.personMap.keys()
 
     def sortbyname(self,f,s):
-        return cmp(self.personTable[f][5],self.personTable[s][5])
+        n1 = self.personMap[f].PrimaryName.sname
+        n2 = self.personMap[s].PrimaryName.sname
+        return cmp(n1,n2)
 
     def sortPersonKeys(self):
-        keys = self.personTable.keys()
+        keys = self.personMap.keys()
         if type(keys) == type([]):
             keys.sort(self.sortbyname)
         return keys
 
     def getPersonDisplay(self,key):
-        return self.personTable[key]
+        return self.personMap[key].getDisplayInfo()
 
     def buildPersonDisplay(self,nkey,okey=None):
-        if nkey != okey and okey != None:
-            del self.personTable[okey]
         person = self.personMap[nkey]
-        self.personTable[nkey] = person.getDisplayInfo()
         self.addSurname(person.getPrimaryName().getSurname())
 
     def rebuildPersonTable(self):
-        for key in self.personTable.keys():
-            self.personTable[key] = self.personMap[key].getDisplayInfo()
+        pass
         
     def buildPlaceDisplay(self,nkey,okey=None):
-        if nkey != okey and okey != None:
+        if okey and nkey != okey:
             del self.placeTable[okey]
         self.placeTable[nkey] = self.placeMap[nkey].getDisplayInfo()
         
@@ -2274,7 +2284,6 @@ class GrampsDB:
 
         self.surnames = []
         self.personMap = {}
-        self.personTable = {}
         self.sourceMap = {}
         self.sourceTable = {}
         self.placeMap  = {}
@@ -2395,7 +2404,7 @@ class GrampsDB:
         """returns a list of all Attribute types assocated with Person
         instances in the database"""
         map = {}
-        for key in self.personTable.keys():
+        for key in self.personMap.keys():
             person = self.personMap[key]
             for attr in person.getAttributeList():
                 map[attr.getType()] = 1
@@ -2434,7 +2443,6 @@ class GrampsDB:
     def removePerson(self,id):
         self.genderStats.uncount_person (self.personMap[id])
         del self.personMap[id]
-        del self.personTable[id]
 
     def removeSource(self,id):
         del self.sourceMap[id]
@@ -2442,7 +2450,6 @@ class GrampsDB:
 
     def addPersonAs(self,person):
         self.personMap[person.getId()] = person
-        self.personTable[person.getId()] = person.getDisplayInfo()
         self.genderStats.count_person (person, self)
         return person.getId()
     
@@ -2454,7 +2461,6 @@ class GrampsDB:
             index = self.iprefix % self.pmapIndex
         person.setId(index)
         self.personMap[index] = person
-        self.personTable[index] = person.getDisplayInfo()
         self.pmapIndex = self.pmapIndex + 1
         self.genderStats.count_person (person, self)
         return index
@@ -2474,7 +2480,6 @@ class GrampsDB:
         else:
             person = Person()
             map[idVal] = self.addPerson(person)
-            self.personTable[map[idVal]] = person.getDisplayInfo()
             self.genderStats.count_person (person, self)
         return person
 
@@ -2488,7 +2493,6 @@ class GrampsDB:
             person.id = val
             self.personMap[val] = person
             self.pmapIndex = self.pmapIndex+1
-            self.personTable[val] = person.getDisplayInfo()
             self.genderStats.count_person (person, self)
         return person
 
@@ -2499,7 +2503,6 @@ class GrampsDB:
         person.setId(id)
         self.personMap[id] = person
         self.pmapIndex = self.pmapIndex+1
-        self.personTable[id] = person.getDisplayInfo()
         self.genderStats.count_person (person, self)
         return id
 
