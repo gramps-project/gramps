@@ -520,21 +520,7 @@ def on_name_list_select_row(obj,row,b,c):
     epo.alt_last_field.set_text(name.getSurname())
     epo.alt_suffix_field.set_text(name.getSuffix())
 
-    if name.getNote() != "":
-        details = "%s" % _("Note")
-    else:
-        details = ""
-    if name.getSourceRef().getBase() != None:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if name.getPrivacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    epo.name_details_field.set_text(details)
+    epo.name_details_field.set_text(get_detail_text(name))
 
 #-------------------------------------------------------------------------
 #
@@ -567,22 +553,7 @@ def on_attr_list_select_row(obj,row,b,c):
 
     epo.attr_type.set_label(const.display_pattr(attr.getType()))
     epo.attr_value.set_text(attr.getValue())
-
-    if attr.getNote() != "":
-        details = "%s" % _("Note")
-    else:
-        details = ""
-    if attr.getSourceRef().getBase() != None:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if attr.getPrivacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    epo.attr_details_field.set_text(details)
+    epo.attr_details_field.set_text(get_detail_text(attr))
 
 #-------------------------------------------------------------------------
 #
@@ -595,32 +566,17 @@ def on_address_list_select_row(obj,row,b,c):
     obj.set_data(INDEX,row)
 
     epo = obj.get_data(EDITPERSON)
-    addr = obj.get_row_data(row)
+    a = obj.get_row_data(row)
 
     epo.address_label.set_label("%s %s %s" % \
-                                (addr.getCity(),addr.getState(),addr.getCountry()))
-    epo.address_start.set_text(addr.getDate())
-    epo.address_street.set_text(addr.getStreet())
-    epo.address_city.set_text(addr.getCity())
-    epo.address_state.set_text(addr.getState())
-    epo.address_country.set_text(addr.getCountry())
-    epo.address_postal.set_text(addr.getPostal())
-
-    if addr.getNote() != "":
-        details = "%s" % _("Note")
-    else:
-        details = ""
-    if addr.getSourceRef().getBase() != None:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if addr.getPrivacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    epo.addr_details_field.set_text(details)
+                                (a.getCity(),a.getState(),a.getCountry()))
+    epo.address_start.set_text(a.getDate())
+    epo.address_street.set_text(a.getStreet())
+    epo.address_city.set_text(a.getCity())
+    epo.address_state.set_text(a.getState())
+    epo.address_country.set_text(a.getCountry())
+    epo.address_postal.set_text(a.getPostal())
+    epo.addr_details_field.set_text(get_detail_text(a))
 
 #-------------------------------------------------------------------------
 #
@@ -856,22 +812,7 @@ def on_event_select_row(obj,row,b,c):
     epo.event_place_field.set_text(event.getPlace())
     epo.event_name_field.set_label(const.display_pevent(event.getName()))
     epo.event_descr_field.set_text(event.getDescription())
-
-    if event.getNote() != "":
-        details = "%s" % _("Note")
-    else:
-        details = ""
-    if event.getSourceRef().getBase() != None:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if event.getPrivacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    epo.event_details_field.set_text(details)
+    epo.event_details_field.set_text(get_detail_text(event))
 
 #-------------------------------------------------------------------------
 #
@@ -2059,3 +2000,25 @@ def get_detail_flags(obj):
         if obj.getPrivacy():
             detail = detail + "P"
     return detail
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_text(obj):
+    if obj.getNote() != "":
+        details = "%s" % _("Note")
+    else:
+        details = ""
+    if obj.getSourceRef().getBase() != None:
+        if details == "":
+            details = _("Source")
+        else:
+            details = "%s, %s" % (details,_("Source"))
+    if obj.getPrivacy() == 1:
+        if details == "":
+            details = _("Private")
+        else:
+            details = "%s, %s" % (details,_("Private"))
+    return details

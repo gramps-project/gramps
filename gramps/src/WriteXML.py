@@ -84,6 +84,22 @@ def dump_event(g,event,index=1):
 #
 #
 #-------------------------------------------------------------------------
+def conf_priv(obj):
+    if obj.getConfidence() != 2:
+        cnf = ' conf="%d" ' % obj.getConfidence()
+    else:
+        cnf = ''
+    if obj.getPrivacy() != 0:
+        priv = ' priv="%d"' % obj.getPrivacy()
+    else:
+        priv = ''
+    return "%s%s" % (cnf,priv)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def dump_my_event(g,name,event,index=1):
     if not event:
         return
@@ -96,8 +112,7 @@ def dump_my_event(g,name,event,index=1):
         return
 
     sp = "  " * index
-    g.write('%s<event type="%s" conf="%d" priv="%d">\n' % \
-            (sp,fix(name),event.getConfidence(),event.getPrivacy()))
+    g.write('%s<event type="%s"%s>\n' % (sp,fix(name),conf_priv(event)))
     write_line(g,"date",date,index+1)
     write_line(g,"place",place,index+1)
     write_line(g,"description",description,index+1)
@@ -122,9 +137,9 @@ def dump_source_ref(g,source_ref,index=1):
             d = source_ref.getDate().getSaveDate()
             g.write("  " * index)
             if p == "" and c == "" and t == "" and d == "":
-                g.write("<sourceref ref=\"%s\"/>\n" % source.getId())
+                g.write('<sourceref ref="%s"/>\n' % source.getId())
             else:
-                g.write("<sourceref ref=\"%s\">\n" % source.getId())
+                g.write('<sourceref ref="%s">\n' % source.getId())
                 write_line(g,"spage",p,index+1)
                 writeNote(g,"scomments",c,index+1)
                 writeNote(g,"stext",t,index+1)
@@ -188,8 +203,7 @@ def write_force_line(g,label,value,indent=1):
 #-------------------------------------------------------------------------
 def dump_name(g,label,name,index=1):
     sp = "  "*index
-    g.write('%s<%s conf="%s" priv="%s">\n' % \
-            (sp,label,name.getConfidence(),name.getPrivacy()))
+    g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
     write_line(g,"first",name.getFirstName(),index+1)
     write_line(g,"last",name.getSurname(),index+1)
     write_line(g,"suffix",name.getSuffix(),index+1)
@@ -295,8 +309,7 @@ def exportData(database, filename, callback):
         if len(person.getAddressList()) > 0:
             g.write("      <addresses>\n")
             for address in person.getAddressList():
-                g.write('        <address conf="%d" priv="%d">\n' % \
-                        (address.getConfidence(), address.getPrivacy()))
+                g.write('        <address%s">\n' % conf_priv(address))
                 write_line(g,"date",address.getDateObj().getSaveDate(),5)
                 write_line(g,"street",address.getStreet(),5)
                 write_line(g,"city",address.getCity(),5)
@@ -313,9 +326,7 @@ def exportData(database, filename, callback):
             g.write("      <attributes>\n")
             for attr in person.getAttributeList():
                 if attr.getSourceRef() or attr.getNote():
-                    g.write('        <attribute conf="%d" priv="%d">\n' % \
-                            (attr.getConfidence(),attr.getPrivacy()))
-
+                    g.write('        <attribute%s>\n' % conf_priv(attr))
                     write_line(g,"attr_type",attr.getType(),5)
                     write_line(g,"attr_value",attr.getValue(),5)
                     dump_source_ref(g,attr.getSourceRef(),5)
