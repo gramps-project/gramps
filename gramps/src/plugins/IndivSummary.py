@@ -350,7 +350,7 @@ def report(database,person):
     name = person.getPrimaryName().getRegularName()
     label = topDialog.get_widget("labelTitle")
     
-    label.set_text("Individual Summary for " + name)
+    label.set_text(_("Individual Summary for %s") % name)
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))

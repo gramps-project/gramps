@@ -4,7 +4,7 @@ bindir 		= @bindir@
 datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
 sharedir        = ${prefix}/share/gramps
-GNOMEHELP       = @GNOMEHELP@/share/gnome/help
+GNOMEHELP       = ${prefix}/share/gnome/help
 GM		= gramps-manual
 EG		= extending-gramps
 
