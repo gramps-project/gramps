@@ -222,12 +222,27 @@ def on_remove_child_clicked(obj):
     utils.modified()
     load_family()
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 def on_add_sp_clicked(obj):
     add_spouse()
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 def on_edit_sp_clicked(obj):
     marriage_edit(active_family)
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
 def on_delete_sp_clicked(obj):
     delete_spouse()
     
@@ -460,31 +475,8 @@ def on_choose_parents_clicked(obj):
         select_father = None
 
     family_window = libglade.GladeXML(const.gladeFile,"familyDialog")
-    family_window.signal_autoconnect({
-        "on_motherList_select_row" : on_motherList_select_row,
-        "on_fatherList_select_row" : on_fatherList_select_row,
-        "on_save_parents_clicked" : on_save_parents_clicked,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
     familyDialog = family_window.get_widget("familyDialog")
 	
-    fatherList = family_window.get_widget("fatherList")
-    fatherList.append(["unknown",""])
-    fatherList.set_row_data(0,None)
-
-    fatherName = family_window.get_widget("fatherName")
-    fatherName.set_text(Config.nameof(select_father))
-    fatherList.set_data("father_text",fatherName)
-
-    motherList = family_window.get_widget("motherList")
-    motherList.append(["unknown",""])
-    motherList.set_row_data(0,None)
-
-    motherName = family_window.get_widget("motherName")
-    motherName.set_text(Config.nameof(select_mother))
-    motherList.set_data("mother_text",motherName)
-
     if active_parents == active_person.getMainFamily():
         family_window.get_widget("mrel").set_text(_("Birth"))
         family_window.get_widget("frel").set_text(_("Birth"))
@@ -498,6 +490,56 @@ def on_choose_parents_clicked(obj):
             family_window.get_widget("mrel").set_text(_("Unknown"))
             family_window.get_widget("frel").set_text(_("Unknown"))
 
+    fcombo = family_window.get_widget("prel_combo")
+    prel = family_window.get_widget("prel")
+            
+    prel.set_data("o",family_window)
+    fcombo.set_popdown_strings(const.familyRelations)
+
+    family_window.signal_autoconnect({
+        "on_motherList_select_row" : on_motherList_select_row,
+        "on_fatherList_select_row" : on_fatherList_select_row,
+        "on_save_parents_clicked" : on_save_parents_clicked,
+        "on_prel_changed" : on_prel_changed,
+        "destroy_passed_object" : utils.destroy_passed_object
+        })
+
+    text = _("Choose the Parents of %s") % Config.nameof(active_person)
+    family_window.get_widget("chooseTitle").set_text(text)
+    prel.set_text(active_parents.getRelationship())
+    familyDialog.show()
+    
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def on_prel_changed(obj):
+
+    family_window = obj.get_data("o")
+    type = obj.get_text()
+
+    fatherName = family_window.get_widget("fatherName")
+    fatherName.set_text(Config.nameof(select_father))
+    motherName = family_window.get_widget("motherName")
+    motherName.set_text(Config.nameof(select_mother))
+
+    fatherList = family_window.get_widget("fatherList")
+    motherList = family_window.get_widget("motherList")
+
+    fatherList.freeze()
+    motherList.freeze()
+    fatherList.clear()
+    motherList.clear()
+
+    fatherList.append(["unknown",""])
+    fatherList.set_row_data(0,None)
+    fatherList.set_data("father_text",fatherName)
+
+    motherList.append(["unknown",""])
+    motherList.set_row_data(0,None)
+    motherList.set_data("mother_text",motherName)
+
     people = database.getPersonMap().values()
     people.sort(sort.by_last_name)
     father_index = 1
@@ -505,6 +547,13 @@ def on_choose_parents_clicked(obj):
     for person in people:
         if person == active_person:
             continue
+        elif type == "Partners":
+            fatherList.append([utils.phonebook_name(person),birthday(person)])
+            fatherList.set_row_data(father_index,person)
+            father_index = father_index + 1
+            motherList.append([utils.phonebook_name(person),birthday(person)])
+            motherList.set_row_data(mother_index,person)
+            mother_index = mother_index + 1
         elif person.getGender() == Person.male:
             fatherList.append([utils.phonebook_name(person),birthday(person)])
             fatherList.set_row_data(father_index,person)
@@ -514,7 +563,15 @@ def on_choose_parents_clicked(obj):
             motherList.set_row_data(mother_index,person)
             mother_index = mother_index + 1
 
-    familyDialog.show()
+    if type == "Partners":
+        family_window.get_widget("mlabel").set_text(_("Parent"))
+        family_window.get_widget("flabel").set_text(_("Parent"))
+    else:
+        family_window.get_widget("mlabel").set_text(_("Mother"))
+        family_window.get_widget("flabel").set_text(_("Father"))
+
+    motherList.thaw()
+    fatherList.thaw()
 
 #-------------------------------------------------------------------------
 #
@@ -890,7 +947,7 @@ def change_family_type(family,mrel,frel):
                     fam[0] = family
                     found = 1
             if found == 0:
-                active_person.addAltFamily(family,type)
+                active_person.addAltFamily(family,mrel,frel)
     else:
         for fam in active_person.getAltFamilyList():
             if family == fam[0]:
@@ -917,13 +974,27 @@ def on_save_parents_clicked(obj):
     global active_mother
     global active_family
 
+    mrel = family_window.get_widget("mrel").get_text()
+    frel = family_window.get_widget("frel").get_text()
+    type = family_window.get_widget("prel").get_text()
+
     if select_father or select_mother:
+        if select_mother.getGender() == Person.male and \
+           select_father.getGender() == Person.female:
+            x = select_mother
+            select_mother = select_father
+            select_father = x
+            type = "Unknown"
+        elif select_mother.getGender() != select_father.getGender():
+            if type == "Partners":
+                type = "Unknown"
+        else:
+            type = "Partners"
         family = find_family(select_father,select_mother)
     else:    
         family = None
 
-    mrel = family_window.get_widget("mrel").get_text()
-    frel = family_window.get_widget("frel").get_text()
+    family.setRelationship(type)
 
     change_family_type(family,mrel,frel)
 
@@ -1481,6 +1552,18 @@ def on_notebook1_switch_page(obj,junk,page):
 #
 #
 #-------------------------------------------------------------------------
+def on_pv_button_press_event(obj,event):
+    if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        person = obj.get_data("p")
+        if person == None:
+            return
+        load_person(person)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_pv_n0_clicked(obj):
     family = active_person.getMainFamily()
     if family:
@@ -1706,16 +1789,6 @@ def load_family():
     else:
         gtop.get_widget("childtype").hide()
 
-    fn = _("Father")
-    mn = _("Mother")
-
-    if active_parents and active_parents.getRelationship() == "Partners":
-        fn = _("Parent")
-        mn = _("Parent")
-
-    gtop.get_widget("editFather").children()[0].set_text(fn)
-    gtop.get_widget("editMother").children()[0].set_text(mn)
-
     change_parents(active_parents)
 
     if active_person:
@@ -1785,6 +1858,16 @@ def change_parents(family):
     global active_father
     global active_mother
     
+    fn = _("Father")
+    mn = _("Mother")
+
+    if active_parents and active_parents.getRelationship() == "Partners":
+        fn = _("Parent")
+        mn = _("Parent")
+
+    gtop.get_widget("editFather").children()[0].set_text(fn)
+    gtop.get_widget("editMother").children()[0].set_text(mn)
+
     fv_father = gtop.get_widget("fv_father")
     fv_mother = gtop.get_widget("fv_mother")
     father_next = gtop.get_widget("father_next")
@@ -1822,6 +1905,7 @@ def change_parents(family):
         active_father = None
         active_mother = None
 
+
 #-------------------------------------------------------------------------
 #
 #
@@ -1831,15 +1915,16 @@ def load_tree():
     text = {}
     tip = {}
     for i in range(1,16):
-        text[i] = ""
+        text[i] = ("",None)
         tip[i] = ""
 
     load_tree_values(active_person,1,16,text,tip)
 
     tips = GtkTooltips()
     for i in range(1,16):
-        pv[i].set_text(text[i]) 
+        pv[i].set_text(text[i][0]) 
 	pv[i].set_position(0)
+        pv[i].set_data("p",text[i][1])
        
         if tip[i] != "":
             tips.set_tip(pv[i],tip[i])
@@ -1864,18 +1949,20 @@ def load_tree():
 def load_tree_values(person,index,max,pv_text,tip):
     if person == None:
         return
-    pv_text[index] = Config.nameof(person)
+    msg = Config.nameof(person)
+    
     bdate = person.getBirth().getDate()
     ddate = person.getDeath().getDate()
     if bdate and ddate:
-        text = pv_text[index] + "\nb. " + bdate + "\n" + "d. " +  ddate
+        text = msg + "\nb. " + bdate + "\n" + "d. " +  ddate
     elif bdate and not ddate:
-        text = pv_text[index] + "\nb. " + bdate
+        text = msg + "\nb. " + bdate
     elif not bdate and ddate:
-        text = pv_text[index] + "\nd. " + ddate
+        text = msg + "\nd. " + ddate
     else:
-        text = pv_text[index]
+        text = msg
     tip[index] = text
+    pv_text[index] = (msg,person)
     if 2*index+1 < max:
         family = person.getMainFamily()
         if family != None:
@@ -2321,6 +2408,7 @@ def main(arg):
         "on_addperson_clicked" : on_addperson_clicked,
         "on_delete_person_clicked" : on_delete_person_clicked,
         "on_preferences_activate" : on_preferences_activate,
+        "on_pv_button_press_event" : on_pv_button_press_event,
         "on_edit_bookmarks_activate" : on_edit_bookmarks_activate,
         "on_edit_active_person" : on_edit_active_person,
         "on_edit_spouse_clicked" : on_edit_spouse_clicked,

@@ -1,6 +1,6 @@
-# French Translation for Gramps
+# Gramps French translation
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Laurent Protois <laurent.protois@free.fr>, 201.
+# Laurent Protois <laurent.protois@free.fr>, 2001.
 #
 msgid ""
 msgstr ""
@@ -34,32 +34,32 @@ msgstr "%P %%"
 #: glade.c:1479
 #, c-format
 msgid "%d broken family images were found\n"
-msgstr "%d Des liens avec des photos de familles ont été perdus\n"
+msgstr "%d liens avec des photos de familles ont été perdus\n"
 
 #: glade.c:1475
 #, c-format
 msgid "%d broken family links were found\n"
-msgstr "%d Des liens familiaux ont été perdus\n"
+msgstr "%d liens familiaux ont été perdus\n"
 
 #: glade.c:1481
 #, c-format
 msgid "%d broken personal images were found\n"
-msgstr "%d Des liens avec des photos individuelles ont été perdus\n"
+msgstr "%d liens avec des photos individuelles ont été perdus\n"
 
 #: glade.c:1477
 #, c-format
 msgid "%d empty families were found\n"
-msgstr "%d Il existe des familles vides\n"
+msgstr "%d familles vides sont présentes\n"
 
 #: glade.c:1555
 #, c-format
 msgid "%d nicknames were extracted\n"
-msgstr "%d Extraction de surnoms\n"
+msgstr "%d surnoms ont été extraits\n"
 
 #: glade.c:1557
 #, c-format
 msgid "%d titles were extracted"
-msgstr "%d Extraction de titres"
+msgstr "%d titres ont été extraits"
 
 #: glade.c:1452
 #, c-format
@@ -70,37 +70,37 @@ msgstr "%s Génération"
 #: glade.c:1561
 #, c-format
 msgid "%s could not be opened\n"
-msgstr "%s Ouverture impossible\n"
+msgstr "%s ouverture impossible\n"
 
 #: glade.c:1404 glade.c:1409
 #, c-format
 msgid "%s is a corrupt file"
-msgstr "%s Fichier corrompu"
+msgstr "%s fichier corrompu"
 
 #: glade.c:1375 glade.c:1379
 #, c-format
 msgid "%s is not a directory"
-msgstr "%s Ce n'est pas un répertoire"
+msgstr "%s n'est pas un répertoire"
 
 #: glade.c:1455
 #, c-format
 msgid "%s was born in the year %s in %s. "
-msgstr "%s Né(e) en l'an %s à %s. "
+msgstr "%s est né(e) en l'an %s à %s. "
 
 #: glade.c:1456
 #, c-format
 msgid "%s was born in the year %s. "
-msgstr "%s Né(e) en l'an %s. "
+msgstr "%s est né(e) en l'an %s. "
 
 #: glade.c:1453
 #, c-format
 msgid "%s was born on %s in %s. "
-msgstr "%s Né(e) le %s à %s. "
+msgstr "%s est né(e) le %s à %s. "
 
 #: glade.c:1454
 #, c-format
 msgid "%s was born on %s. "
-msgstr "%s Né(e) le %s. "
+msgstr "%s est né(e) le %s. "
 
 #: glade.c:19
 msgid "(Recommended only for English)"
@@ -164,7 +164,7 @@ msgstr "A4"
 
 #: glade.c:1337 glade.c:1340 glade.c:1343 glade.c:1346
 msgid "ABT"
-msgstr "Env"
+msgstr "Vers"
 
 #: glade.c:1330 glade.c:1339 glade.c:1342 glade.c:1345 glade.c:1348
 msgid "AFTER"
@@ -344,11 +344,11 @@ msgstr "Avril"
 
 #: glade.c:106
 msgid "Attribute"
-msgstr "Qualité"
+msgstr "Attribut"
 
 #: glade.c:109
 msgid "Attributes"
-msgstr "Qualités"
+msgstr "Attributs"
 
 #: glade.c:1298
 msgid "August"
@@ -634,11 +634,11 @@ msgid "DD. Month Year"
 msgstr "JJ. Mois Années"
 
 #: glade.c:1237
-msgid "DD/MM/YYYY"
+msgid "DD.MM.YYYY"
 msgstr "JJ.MM.AAAA"
 
 #: glade.c:1234
-msgid "DD.MM.YYYY"
+msgid "DD/MM/YYYY"
 msgstr "JJ/MM/AAAA"
 
 #: glade.c:1240
@@ -896,7 +896,7 @@ msgstr "Dix-huitième"
 
 #: glade.c:1270
 msgid "Elected"
-msgstr "Elu"
+msgstr "Election"
 
 #: glade.c:1431
 msgid "Eleventh"
@@ -1055,7 +1055,7 @@ msgstr "Filtre"
 
 #: glade.c:1421
 msgid "First"
-msgstr "Premier"
+msgstr "Première"
 
 #: glade.c:409 glade.c:1550
 msgid "First Person"
@@ -1425,7 +1425,7 @@ msgstr "Aide pas encore prête"
 
 #: glade.c:609
 msgid "Home"
-msgstr "Maison"
+msgstr "de Cujus"
 
 #: glade.c:612
 msgid "Identification"
@@ -1574,7 +1574,7 @@ msgstr "MOI Jour, Année"
 
 #: glade.c:657
 msgid "Make Primary"
-msgstr "Make Primary"
+msgstr "Mettre en premier"
 
 #: glade.c:660
 msgid "Make the active person the default person"
@@ -1626,7 +1626,7 @@ msgstr "Publication du mariage"
 
 #: glade.c:1252
 msgid "Marriage Settlement"
-msgstr "Célébration du mariage"
+msgstr "Contrat de mariage"
 
 #: glade.c:1527
 msgid "Marriage date"
@@ -2052,7 +2052,7 @@ msgstr "Information de publication"
 
 #: glade.c:884
 msgid "Qualifier"
-msgstr "Qualification"
+msgstr "Qualificatif"
 
 #: glade.c:1368
 msgid "RTF"
@@ -2084,7 +2084,7 @@ msgstr "Editions"
 
 #: glade.c:902
 msgid "Researcher"
-msgstr "Recherche"
+msgstr "Chercheur"
 
 #: glade.c:905
 msgid "Researcher Information"
@@ -2096,7 +2096,7 @@ msgstr "Résidence"
 
 #: glade.c:908
 msgid "Restrict data on living people"
-msgstr "Restreindre au personne vivante"
+msgstr "Restreindre les informations sur les personnes vivantes"
 
 #: glade.c:911
 msgid "Restrict information on living people"
@@ -2184,7 +2184,7 @@ msgstr ""
 
 #: glade.c:1422
 msgid "Second"
-msgstr "Second"
+msgstr "Seconde"
 
 #: glade.c:955 glade.c:1551
 msgid "Second Person"
