@@ -50,7 +50,10 @@ class EventEditor:
         self.parent = parent
         self.event = event
         self.trans = trans
-        self.srcreflist = self.event.getSourceRefList()
+        if event:
+            self.srcreflist = self.event.getSourceRefList()
+        else:
+            self.srcreflist = []
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
