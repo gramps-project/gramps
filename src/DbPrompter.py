@@ -51,7 +51,7 @@ import Plugins
 import GrampsBSDDB
 import GrampsXMLDB
 import GrampsGEDDB
-import GrampsCfg
+import GrampsGconfKeys
 
 #-------------------------------------------------------------------------
 #
@@ -162,11 +162,11 @@ class ExistingDbPrompter:
         
         # Suggested folder: try last open file, last import, last export, 
         # then home.
-        default_dir = os.path.split(GrampsCfg.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(GrampsGconfKeys.get_lastfile())[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsCfg.get_last_import_dir()
+            default_dir = GrampsGconfKeys.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = GrampsCfg.get_last_export_dir()
+            default_dir = GrampsGconfKeys.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -177,7 +177,7 @@ class ExistingDbPrompter:
             filetype = gnome.vfs.get_mime_type(filename)
 
             (the_path,the_file) = os.path.split(filename)
-            GrampsCfg.save_last_import_dir(the_path)
+            GrampsGconfKeys.save_last_import_dir(the_path)
 
             if filetype == const.app_gramps:
                 choose.destroy()
@@ -274,11 +274,11 @@ class ImportDbPrompter:
         
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = GrampsCfg.get_last_import_dir()
+        default_dir = GrampsGconfKeys.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = os.path.split(GrampsCfg.get_lastfile())[0] + os.path.sep
+            default_dir = os.path.split(GrampsGconfKeys.get_lastfile())[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsCfg.get_last_export_dir()
+            default_dir = GrampsGconfKeys.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 
@@ -295,7 +295,7 @@ class ImportDbPrompter:
 #                return 1
 
             (the_path,the_file) = os.path.split(filename)
-            GrampsCfg.save_last_import_dir(the_path)
+            GrampsGconfKeys.save_last_import_dir(the_path)
             for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
@@ -351,11 +351,11 @@ class NewNativeDbPrompter:
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
-        default_dir = os.path.split(GrampsCfg.get_lastfile())[0] + os.path.sep
+        default_dir = os.path.split(GrampsGconfKeys.get_lastfile())[0] + os.path.sep
         if len(default_dir)<=1:
-            default_dir = GrampsCfg.get_last_import_dir()
+            default_dir = GrampsGconfKeys.get_last_import_dir()
         if len(default_dir)<=1:
-            default_dir = GrampsCfg.get_last_export_dir()
+            default_dir = GrampsGconfKeys.get_last_export_dir()
         if len(default_dir)<=1:
             default_dir = '~/'
 

@@ -45,7 +45,7 @@ import ReadXML
 import GrampsMime
 import DbPrompter
 import QuestionDialog
-import GrampsCfg
+import GrampsGconfKeys
 
 #-------------------------------------------------------------------------
 #
@@ -307,8 +307,8 @@ class ArgHandler:
 
         if self.imports:
             self.parent.import_tool_callback()
-        elif GrampsCfg.get_lastfile() and GrampsCfg.get_autoload():
-            if self.auto_save_load(GrampsCfg.get_lastfile()) == 0:
+        elif GrampsGconfKeys.get_lastfile() and GrampsGconfKeys.get_autoload():
+            if self.auto_save_load(GrampsGconfKeys.get_lastfile()) == 0:
                 DbPrompter.DbPrompter(self.parent,0)
         else:
             DbPrompter.DbPrompter(self.parent,0)

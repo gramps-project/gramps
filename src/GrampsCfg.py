@@ -40,29 +40,18 @@ import gtk.glade
 import gnome
 import gnome.ui
 
-#
-# SUSE calls the gconf module "gnome.gconf"
-#
-try:
-    import gconf
-except ImportError:
-    import gnome.gconf
-    gconf = gnome.gconf
-
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import GrampsGconfKeys
 import RelLib
 import const
 import Utils
 import PaperMenu
 import Plugins
 import DateHandler
-
-client = gconf.client_get_default()
-client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
 
 #-------------------------------------------------------------------------
 #
@@ -78,22 +67,6 @@ _surname_styles = [
     _("None"),
     _("Combination of mother's and father's surname"),
     _("Icelandic style"),
-    ]
-
-_date_format_list = [
-    _("Month Day, Year"),
-    _("MON Day, Year"),
-    _("Day MON Year"),
-    _("MM/DD/YYYY"),
-    _("MM-DD-YYYY"),
-    _("DD/MM/YYYY"),
-    _("DD-MM-YYYY"),
-    _("MM.DD.YYYY"),
-    _("DD.MM.YYYY"),
-    _("DD. Month Year"),
-    _("YYYY/MM/DD"),
-    _("YYYY-MM-DD"),
-    _("YYYY.MM.DD"),
     ]
 
 _name_format_list = [
@@ -118,301 +91,24 @@ panellist = [
       ( _("Data Guessing"), 9)]),
     ]
 
-#-------------------------------------------------------------------------
-#
-# Functions to obtain values from gconf keys
-#           and store values into gconf keys
-#
-# All gramps keys should be accessed through these functions!
-#
-#-------------------------------------------------------------------------
-
-# interface keys
-def get_default_view():
-    return get_int("/apps/gramps/interface/defaultview",(0,1))
-
-def save_default_view(val):
-    set_int("/apps/gramps/interface/defaultview",val,(0,1))
-
-def get_family_view():
-    return get_int("/apps/gramps/interface/familyview",(0,1))
-
-def save_family_view(val):
-    set_int("/apps/gramps/interface/familyview",val,(0,1))
-
-def get_filter():
-    return get_bool("/apps/gramps/interface/filter")
-
-def save_filter(val):
-    set_bool("/apps/gramps/interface/filter",val)
-
-def get_index_visible():
-    return get_bool("/apps/gramps/interface/index-visible")
-
-def save_index_visible(val):
-    set_bool("/apps/gramps/interface/index-visible",val)
-
-def get_statusbar():
-    return get_int("/apps/gramps/interface/statusbar",(0,1,2))
-
-def save_statusbar(val):
-    set_int("/apps/gramps/interface/statusbar",val,(0,1,2))
-
-def get_toolbar():
-    return get_int("/apps/gramps/interface/toolbar",(0,1,2,3,5))
-
-def save_toolbar(val):
-    set_int("/apps/gramps/interface/toolbar",val,(0,1,2,3,5))
-
-def get_toolbar_on():
-    return get_bool("/apps/gramps/interface/toolbar-on")
-
-def save_toolbar_on(val):
-    set_bool("/apps/gramps/interface/toolbar-on",val)
-
-def get_view():
-    return get_bool("/apps/gramps/interface/view")
-
-def save_view(val):
-    set_bool("/apps/gramps/interface/view",val)
-
-# paths keys
-def get_lastfile():
-    return get_string("/apps/gramps/paths/recent-file")
-
-def save_last_file(val):
-    set_string("/apps/gramps/paths/recent-file",val)
-
-def get_last_import_dir():
-    return get_string("/apps/gramps/paths/recent-import-dir")
-
-def save_last_import_dir(val):
-    set_string_as_path("/apps/gramps/paths/recent-import-dir",val)
-
-def get_last_export_dir():
-    return get_string("/apps/gramps/paths/recent-export-dir")
-
-def save_last_export_dir(val):
-    set_string_as_path("/apps/gramps/paths/recent-export-dir",val)
-
-def get_report_dir():
-    return get_string("/apps/gramps/paths/report-directory")
-
-def save_report_dir(val):
-    set_string_as_path("/apps/gramps/paths/report-directory",val)
-
-def get_web_dir():
-    return get_string("/apps/gramps/paths/website-directory")
-
-def save_web_dir(val):
-    set_string_as_path("/apps/gramps/paths/website-directory",val)
-
-# behavior keys
-def get_startup():
-    return get_int("/apps/gramps/behavior/startup",(0,1))
-
-def save_startup(val):
-    set_int("/apps/gramps/behavior/startup",val,(0,1))
-
-def get_screen_size_checked():
-    return get_bool("/apps/gramps/interface/size-checked")
-
-def save_screen_size_checked(val):
-    set_bool("/apps/gramps/interface/size-checked",val)
-
-def get_autoload():
-    return get_bool("/apps/gramps/behavior/autoload")
-
-def save_autoload(val):
-    set_bool("/apps/gramps/behavior/autoload",val)
-
-def get_betawarn():
-    return get_bool("/apps/gramps/behavior/betawarn")
-
-def save_betawarn(val):
-    set_bool("/apps/gramps/behavior/betawarn",val)
-
-def get_media_reference():
-    return get_bool("/apps/gramps/behavior/make-reference")
-
-def save_media_reference(val):
-    set_bool("/apps/gramps/behavior/make-reference",val)
-
-def get_media_global():
-    return get_bool("/apps/gramps/behavior/media-global")
-
-def save_media_global(val):
-    set_bool("/apps/gramps/behavior/media-global",val)
-
-def get_media_local():
-    return get_bool("/apps/gramps/behavior/media-local")
-
-def save_media_local(val):
-    set_bool("/apps/gramps/behavior/media-local",val)
-
-def get_lastnamegen():
-    return get_int("/apps/gramps/behavior/surname-guessing",
-                        range(len(_surname_styles)))
-
-def save_lastnamegen(val):
-    set_int("/apps/gramps/behavior/surname-guessing",val,
-                        range(len(_surname_styles)))
-
-def get_uselds():
-    return get_bool("/apps/gramps/behavior/use-lds")
-
-def save_uselds(val):
-    set_bool("/apps/gramps/behavior/use-lds",val)
-
-def get_usetips():
-    return get_bool("/apps/gramps/behavior/use-tips")
-
-def save_usetips(val):
-    set_bool("/apps/gramps/behavior/use-tips",val)
-
-# preferences keys
-def get_person_id_prefix():
-    return get_string("/apps/gramps/preferences/iprefix")
-
-def get_event_id_prefix():
-    return get_string("/apps/gramps/preferences/iprefix")
-
-def save_iprefix(val):
-    set_string_as_id_prefix("/apps/gramps/preferences/iprefix",val)
-
-def get_object_id_prefix():
-    return get_string("/apps/gramps/preferences/oprefix")
-
-def save_oprefix(val):
-    set_string_as_id_prefix("/apps/gramps/preferences/oprefix",val)
-
-def get_source_id_prefix():
-    return get_string("/apps/gramps/preferences/sprefix")
-
-def save_sprefix(val):
-    set_string_as_id_prefix("/apps/gramps/preferences/sprefix",val)
-
-def save_eprefix(val):
-    set_string_as_id_prefix("/apps/gramps/preferences/eprefix",val)
-
-def get_place_id_prefix():
-    return get_string("/apps/gramps/preferences/pprefix")
-
-def save_pprefix(val):
-    set_string_as_id_prefix("/apps/gramps/preferences/pprefix",val)
-
-def get_family_id_prefix():
-    return get_string("/apps/gramps/preferences/fprefix")
-
-def save_fprefix(val):
-    set_string_as_id_prefix("/apps/gramps/preferences/fprefix",val)
-
-def get_paper_preference():
-    return get_string("/apps/gramps/preferences/paper-preference")
-
-def save_paper_preference(val):
-    set_string("/apps/gramps/preferences/paper-preference",val)
-
-def get_output_preference():
-    return get_string("/apps/gramps/preferences/output-preference")
-
-def save_output_preference(val):
-    set_string("/apps/gramps/preferences/output-preference",val)
-
-def get_goutput_preference():
-    return get_string("/apps/gramps/preferences/goutput-preference")
-
-def save_goutput_preference(val):
-    set_string("/apps/gramps/preferences/goutput-preference",val)
-
-def get_use_tips():
-    return get_bool("/apps/gramps/preferences/use-tips")
-
-def save_use_tips(val):
-    set_bool("/apps/gramps/preferences/use-tips",val)
-
-def get_date_format():
-    return get_int("/apps/gramps/preferences/date-format",
-                        range(len(_date_format_list)))
-
-def save_date_format(val):
-    set_int("/apps/gramps/preferences/date-format",val,
-                        range(len(_date_format_list)))
-
-def get_name_format():
-    return get_int("/apps/gramps/preferences/name-format",
-                        range(len(_name_format_list)))
-
-def save_name_format(val):
-    set_int("/apps/gramps/preferences/name-format",val,
-                        range(len(_name_format_list)))
-
-# researcher keys
-def get_researcher_name():
-    return get_string("/apps/gramps/researcher/researcher-name")
-
-def save_researcher_name(val):
-    set_string("/apps/gramps/researcher/researcher-name",val)
-
-def get_researcher_addr():
-    return get_string("/apps/gramps/researcher/researcher-addr")
-
-def save_researcher_addr(val):
-    set_string("/apps/gramps/researcher/researcher-addr",val)
-
-def get_researcher_city():
-    return get_string("/apps/gramps/researcher/researcher-city")
-
-def save_researcher_city(val):
-    set_string("/apps/gramps/researcher/researcher-city",val)
-
-def get_researcher_state():
-    return get_string("/apps/gramps/researcher/researcher-state")
-
-def save_researcher_state(val):
-    set_string("/apps/gramps/researcher/researcher-state",val)
-
-def get_researcher_country():
-    return get_string("/apps/gramps/researcher/researcher-country")
-
-def save_researcher_country(val):
-    set_string("/apps/gramps/researcher/researcher-country",val)
-
-def get_researcher_postal():
-    return get_string("/apps/gramps/researcher/researcher-postal")
-
-def save_researcher_postal(val):
-    set_string("/apps/gramps/researcher/researcher-postal",val)
-
-def get_researcher_phone():
-    return get_string("/apps/gramps/researcher/researcher-phone")
-
-def save_researcher_phone(val):
-    set_string("/apps/gramps/researcher/researcher-phone",val)
-
-def get_researcher_email():
-    return get_string("/apps/gramps/researcher/researcher-email")
-
-def save_researcher_email(val):
-    set_string("/apps/gramps/researcher/researcher-email",val)
 
 # Not exactly gconf keys, but the functions directly dependent on them
 def get_nameof():
-    return _name_format_list[get_name_format()][1]
+    return _name_format_list[GrampsGconfKeys.get_name_format(_name_format_list)][1]
 
 def get_display_name():
-    return _name_format_list[get_name_format()][2]
+    return _name_format_list[GrampsGconfKeys.get_name_format(_name_format_list)][2]
 
 def get_display_surname():
-    return _name_format_list[get_name_format()][3]
+    return _name_format_list[GrampsGconfKeys.get_name_format(_name_format_list)][3]
 
 def get_toolbar_style():
-    saved_toolbar = get_toolbar()
+    saved_toolbar = GrampsGconfKeys.get_toolbar()
     if saved_toolbar in range(4):
         return saved_toolbar
     else:
         try:
-            gnome_toolbar_str = client.get_string("/desktop/gnome/interface/toolbar_style")
+            gnome_toolbar_str = GrampsGconfKeys.client.get_string("/desktop/gnome/interface/toolbar_style")
             gnome_toolbar = eval("gtk.TOOLBAR_%s" % 
                         gnome_toolbar_str.replace('-','_').upper())
         except:
@@ -420,71 +116,8 @@ def get_toolbar_style():
         return gnome_toolbar
 
 def set_calendar_date_format():
-    DateHandler.set_format(get_date_format())
-
-#-------------------------------------------------------------------------
-#
-# Low-level grabbing and saving keys with error checking.
-#
-#-------------------------------------------------------------------------
-def get_bool(key):
-    try:
-        val = client.get_bool(key)
-    except gobject.GError:
-        val = None
-    if val in (True,False):
-        return val
-    else:
-        return client.get_default_from_schema(key).get_bool()
-
-def set_bool(key,val):
-    if val in (True,False):
-        client.set_bool(key,val)
-
-def get_int(key,correct_tuple=None):
-    try:
-        val = client.get_int(key)
-    except gobject.GError:
-        val = None
-    if not correct_tuple or val in correct_tuple:
-        return val
-    else:
-        return client.get_default_from_schema(key).get_int()
-
-def set_int(key,val,correct_tuple=None):
-    if not correct_tuple or val in correct_tuple:
-        client.set_int(key,val)
-
-def get_string(key,test_func=None):
-    try:
-        val = client.get_string(key)
-    except gobject.GError:
-        val = None
-    if not test_func or test_func(val):
-        return val
-    else:
-        return client.get_default_from_schema(key).get_string()
-
-def set_string(key,val,test_func=None):
-    if not test_func or test_func(val):
-        client.set_string(key,val)
-
-def set_string_as_path(key,val):
-    if not val:
-        val = client.get_default_from_schema(key).get_string()
-    else:
-        val = os.path.normpath(val) + os.sep
-    client.set_string(key,val)
-
-def set_string_as_id_prefix(key,val):
-    if not val:
-        val = client.get_default_from_schema(key).get_string()
-    else:
-        try:
-            junk = val % 1
-        except:
-            val = client.get_default_from_schema(key).get_string()
-    client.set_string(key,val)
+    format_list = DateHandler.get_date_formats()
+    DateHandler.set_format(GrampsGconfKeys.get_date_format(format_list))
 
 #-------------------------------------------------------------------------
 #
@@ -512,23 +145,20 @@ def loadConfig():
     make_path(os.path.expanduser("~/.gramps/plugins"))
     make_path(os.path.expanduser("~/.gramps/templates"))
     
-def sync():
-    client.suggest_sync()
-    
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
 def get_researcher():
-    n = get_researcher_name()
-    a = get_researcher_addr()
-    c = get_researcher_city()
-    s = get_researcher_state()
-    ct = get_researcher_country()
-    p = get_researcher_postal()
-    ph = get_researcher_phone()
-    e = get_researcher_email()
+    n = GrampsGconfKeys.get_researcher_name()
+    a = GrampsGconfKeys.get_researcher_addr()
+    c = GrampsGconfKeys.get_researcher_city()
+    s = GrampsGconfKeys.get_researcher_state()
+    ct = GrampsGconfKeys.get_researcher_country()
+    p = GrampsGconfKeys.get_researcher_postal()
+    ph = GrampsGconfKeys.get_researcher_phone()
+    e = GrampsGconfKeys.get_researcher_email()
 
     owner = RelLib.Researcher()
     owner.set(n,a,c,s,ct,p,ph,e)
@@ -570,7 +200,7 @@ class ConfigEntry(ConfigWidget):
 
     def set(self):
         val = unicode(self.w.get_text())
-        client.set_string(self.tag,val)
+        GrampsGconfKeys.client.set_string(self.tag,val)
 
 class ConfigInt(ConfigWidget):
 
@@ -597,7 +227,7 @@ class ConfigInt(ConfigWidget):
 
     def set(self):
         val = self.w.get_value_as_int()
-        client.set_int(self.tag,val)
+        GrampsGconfKeys.client.set_int(self.tag,val)
 
 class ConfigCheckbox(ConfigWidget):
     
@@ -613,7 +243,7 @@ class ConfigCheckbox(ConfigWidget):
 
     def set(self):
         val = self.w.get_active()
-        client.set_bool(self.tag,val)
+        GrampsGconfKeys.client.set_bool(self.tag,val)
         
 
 class ConfigFile(ConfigWidget):
@@ -633,7 +263,7 @@ class ConfigFile(ConfigWidget):
 
     def set(self):
         val = self.w.get_full_path(0)
-        client.set_string(self.tag,val)
+        GrampsGconfKeys.client.set_string(self.tag,val)
         
 
 def add_text(category,panel,frame,config_tag,label,default):
@@ -703,88 +333,88 @@ class GrampsPreferences:
     def build(self):
 
         auto = self.top.get_widget("autoload")
-        auto.set_active(get_autoload())
-        auto.connect('toggled',lambda obj: save_autoload(obj.get_active()))
+        auto.set_active(GrampsGconfKeys.get_autoload())
+        auto.connect('toggled',lambda obj: GrampsGconfKeys.save_autoload(obj.get_active()))
 
         lds = self.top.get_widget("uselds")
-        lds.set_active(get_uselds())
-        lds.connect('toggled',lambda obj: save_uselds(obj.get_active()))
+        lds.set_active(GrampsGconfKeys.get_uselds())
+        lds.connect('toggled',lambda obj: GrampsGconfKeys.save_uselds(obj.get_active()))
 
         mr = self.top.get_widget("mediaref")
         mc = self.top.get_widget("mediacopy")
-        if get_media_reference():
+        if GrampsGconfKeys.get_media_reference():
             mr.set_active(1)
         else:
             mc.set_active(1)
         mr.connect('toggled',lambda obj: save_media_reference(obj.get_active()))
 
         dg = self.top.get_widget("globalprop")
-        dg.set_active(get_media_global())
-        dg.connect('toggled',lambda obj: save_media_global(obj.get_active()))
+        dg.set_active(GrampsGconfKeys.get_media_global())
+        dg.connect('toggled',lambda obj: GrampsGconfKeys.save_media_global(obj.get_active()))
 
         dl = self.top.get_widget("localprop")
-        dl.set_active(get_media_local())
-        dl.connect('toggled',lambda obj: save_media_local(obj.get_active()))
+        dl.set_active(GrampsGconfKeys.get_media_local())
+        dl.connect('toggled',lambda obj: GrampsGconfKeys.save_media_local(obj.get_active()))
 
         index_vis = self.top.get_widget("show_child_id")
-        index_vis.set_active(get_index_visible())
-        index_vis.connect('toggled',lambda obj: save_index_visible(obj.get_active()))
+        index_vis.set_active(GrampsGconfKeys.get_index_visible())
+        index_vis.connect('toggled',lambda obj: GrampsGconfKeys.save_index_visible(obj.get_active()))
 
         ipr = self.top.get_widget("iprefix")
-        ipr.set_text(get_person_id_prefix())
-        ipr.connect('changed',lambda obj: save_iprefix(obj.get_text()))
+        ipr.set_text(GrampsGconfKeys.get_person_id_prefix())
+        ipr.connect('changed',lambda obj: GrampsGconfKeys.save_iprefix(obj.get_text()))
         opr = self.top.get_widget("oprefix")
-        opr.set_text(get_object_id_prefix())
-        opr.connect('changed',lambda obj: save_oprefix(obj.get_text()))
+        opr.set_text(GrampsGconfKeys.get_object_id_prefix())
+        opr.connect('changed',lambda obj: GrampsGconfKeys.save_oprefix(obj.get_text()))
         fpr = self.top.get_widget("fprefix")
-        fpr.set_text(get_family_id_prefix())
-        fpr.connect('changed',lambda obj: save_fprefix(obj.get_text()))
+        fpr.set_text(GrampsGconfKeys.get_family_id_prefix())
+        fpr.connect('changed',lambda obj: GrampsGconfKeys.save_fprefix(obj.get_text()))
         spr = self.top.get_widget("sprefix")
-        spr.set_text(get_source_id_prefix())
-        spr.connect('changed',lambda obj: save_sprefix(obj.get_text()))
+        spr.set_text(GrampsGconfKeys.get_source_id_prefix())
+        spr.connect('changed',lambda obj: GrampsGconfKeys.save_sprefix(obj.get_text()))
         ppr = self.top.get_widget("pprefix")
-        ppr.set_text(get_place_id_prefix())
-        ppr.connect('changed',lambda obj: save_pprefix(obj.get_text()))
+        ppr.set_text(GrampsGconfKeys.get_place_id_prefix())
+        ppr.connect('changed',lambda obj: GrampsGconfKeys.save_pprefix(obj.get_text()))
 
         sb2 = self.top.get_widget("stat2")
         sb3 = self.top.get_widget("stat3")
-        if get_statusbar() == 0 or get_statusbar() == 1:
+        if GrampsGconfKeys.get_statusbar() == 0 or GrampsGconfKeys.get_statusbar() == 1:
             sb2.set_active(1)
         else:
             sb3.set_active(1)
         sb2.connect('toggled',
-                lambda obj: save_statusbar(2-obj.get_active()))
+                lambda obj: GrampsGconfKeys.save_statusbar(2-obj.get_active()))
 
         toolbarmenu = self.top.get_widget("tooloptmenu")
-        toolbarmenu.set_history(get_toolbar())
-        toolbarmenu.connect('changed',lambda obj: save_toolbar(obj.get_history()))
+        toolbarmenu.set_history(GrampsGconfKeys.get_toolbar())
+        toolbarmenu.connect('changed',lambda obj: GrampsGconfKeys.save_toolbar(obj.get_history()))
 
         pvbutton = self.top.get_widget('pvbutton')
         fvbutton = self.top.get_widget('fvbutton')
-        if get_default_view() == 0:
+        if GrampsGconfKeys.get_default_view() == 0:
             pvbutton.set_active(1)
         else:
             fvbutton.set_active(1)
-        fvbutton.connect('toggled',lambda obj: save_default_view(obj.get_active()))
+        fvbutton.connect('toggled',lambda obj: GrampsGconfKeys.save_default_view(obj.get_active()))
 
         familyview1 = self.top.get_widget('familyview1')
         familyview2 = self.top.get_widget('familyview2')
-        if get_family_view() == 0:
+        if GrampsGconfKeys.get_family_view() == 0:
             familyview1.set_active(1)
         else:
             familyview2.set_active(1)
-        familyview2.connect('toggled',lambda obj: save_family_view(obj.get_active()))
+        familyview2.connect('toggled',lambda obj: GrampsGconfKeys.save_family_view(obj.get_active()))
 
         usetips = self.top.get_widget('usetips')
-        usetips.set_active(get_usetips())
-        usetips.connect('toggled',lambda obj: save_usetips(obj.get_active()))
+        usetips.set_active(GrampsGconfKeys.get_usetips())
+        usetips.connect('toggled',lambda obj: GrampsGconfKeys.save_usetips(obj.get_active()))
 
         paper_obj = self.top.get_widget("paper_size")
         menu = gtk.Menu()
         choice = 0
         for index in range(0,len(PaperMenu.paper_sizes)):
             name = PaperMenu.paper_sizes[index].get_name()
-            if name == get_paper_preference():
+            if name == GrampsGconfKeys.get_paper_preference():
                 choice = index
             item = gtk.MenuItem(name)
             item.set_data(DATA,name)
@@ -793,7 +423,7 @@ class GrampsPreferences:
         menu.set_active(choice)
         paper_obj.set_menu(menu)
         paper_obj.connect("changed", 
-                    lambda obj: save_paper_preference(obj.get_menu().get_active().get_data(DATA)))
+                    lambda obj: GrampsGconfKeys.save_paper_preference(obj.get_menu().get_active().get_data(DATA)))
 
         lastnamegen_obj = self.top.get_widget("lastnamegen")
         menu = gtk.Menu()
@@ -804,16 +434,16 @@ class GrampsPreferences:
             item.set_data(DATA,index)
             item.show()
             menu.append(item)
-        menu.set_active(get_lastnamegen())
+        menu.set_active(GrampsGconfKeys.get_lastnamegen(_surname_styles))
         lastnamegen_obj.set_menu(menu)
         lastnamegen_obj.connect("changed", 
-                    lambda obj: save_lastnamegen(obj.get_menu().get_active().get_data(DATA)))
+                    lambda obj: GrampsGconfKeys.save_lastnamegen(obj.get_menu().get_active().get_data(DATA)),_surname_styles)
 
         self.osubmenu = gtk.Menu()
         choice = 0
         index = 0
         for name in [ _("No default format") ] + Plugins.get_text_doc_list():
-            if name == get_output_preference():
+            if name == GrampsGconfKeys.get_output_preference():
                 choice = index
             item = gtk.MenuItem(name)
             item.set_data(DATA,name)
@@ -823,13 +453,13 @@ class GrampsPreferences:
         self.osubmenu.set_active(choice)
         self.ofmt.set_menu(self.osubmenu)
         self.ofmt.connect("changed", 
-                    lambda obj: save_output_preference(obj.get_menu().get_active().get_data(DATA)))
+                    lambda obj: GrampsGconfKeys.save_output_preference(obj.get_menu().get_active().get_data(DATA)))
 
         self.gsubmenu = gtk.Menu()
         choice = 0
         index = 0
         for name in [ _("No default format") ] + Plugins.get_draw_doc_list():
-            if name == get_goutput_preference():
+            if name == GrampsGconfKeys.get_goutput_preference():
                 choice = index
             item = gtk.MenuItem(name)
             item.set_data(DATA,name)
@@ -839,7 +469,7 @@ class GrampsPreferences:
         self.gsubmenu.set_active(choice)
         self.gfmt.set_menu(self.gsubmenu)
         self.gfmt.connect("changed", 
-                    lambda obj: save_goutput_preference(obj.get_menu().get_active().get_data(DATA)))
+                    lambda obj: GrampsGconfKeys.save_goutput_preference(obj.get_menu().get_active().get_data(DATA)))
 
         date_option = self.top.get_widget("date_format")
         date_menu = gtk.Menu()
@@ -849,10 +479,16 @@ class GrampsPreferences:
             item.set_data(INDEX,index)
             item.show()
             date_menu.append(item)
-        date_menu.set_active(get_date_format())
+        try:
+            # Technically, a selected format might me out of range
+            # for this locale's format list. 
+            date_menu.set_active(GrampsGconfKeys.get_date_format(dlist))
+        except:
+            pass
+
         date_option.set_menu(date_menu)
         date_option.connect("changed",
-                    lambda obj: save_date_format(obj.get_menu().get_active().get_data(INDEX)))
+                    lambda obj: GrampsGconfKeys.save_date_format(obj.get_menu().get_active().get_data(INDEX),dlist))
 
         name_option = self.top.get_widget("name_format")
         name_menu = gtk.Menu()
@@ -862,42 +498,42 @@ class GrampsPreferences:
             item.set_data(INDEX,index)
             item.show()
             name_menu.append(item)
-        name_menu.set_active(get_name_format())
+        name_menu.set_active(GrampsGconfKeys.get_name_format(_name_format_list))
         name_option.set_menu(name_menu)
         name_option.connect("changed", 
-                    lambda obj: save_name_format(obj.get_menu().get_active().get_data(INDEX)))
+                    lambda obj: GrampsGconfKeys.save_name_format(obj.get_menu().get_active().get_data(INDEX),_name_format_list))
 
         resname = self.top.get_widget("resname")
-        resname.set_text(get_researcher_name())
-        resname.connect('changed',lambda obj: save_researcher_name(obj.get_text()))
+        resname.set_text(GrampsGconfKeys.get_researcher_name())
+        resname.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_name(obj.get_text()))
         resaddr = self.top.get_widget("resaddr")
-        resaddr.set_text(get_researcher_addr())
-        resaddr.connect('changed',lambda obj: save_researcher_addr(obj.get_text()))
+        resaddr.set_text(GrampsGconfKeys.get_researcher_addr())
+        resaddr.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_addr(obj.get_text()))
         rescity = self.top.get_widget("rescity")
-        rescity.set_text(get_researcher_city())
-        rescity.connect('changed',lambda obj: save_researcher_city(obj.get_text()))
+        rescity.set_text(GrampsGconfKeys.get_researcher_city())
+        rescity.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_city(obj.get_text()))
         resstate = self.top.get_widget("resstate")
-        resstate.set_text(get_researcher_state())
-        resstate.connect('changed',lambda obj: save_researcher_state(obj.get_text()))
+        resstate.set_text(GrampsGconfKeys.get_researcher_state())
+        resstate.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_state(obj.get_text()))
         rescountry = self.top.get_widget("rescountry")
-        rescountry.set_text(get_researcher_country())
-        rescountry.connect('changed',lambda obj: save_researcher_country(obj.get_text()))
+        rescountry.set_text(GrampsGconfKeys.get_researcher_country())
+        rescountry.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_country(obj.get_text()))
         respostal = self.top.get_widget("respostal")
-        respostal.set_text(get_researcher_postal())
-        respostal.connect('changed',lambda obj: save_researcher_postal(obj.get_text()))
+        respostal.set_text(GrampsGconfKeys.get_researcher_postal())
+        respostal.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_postal(obj.get_text()))
         resphone = self.top.get_widget("resphone")
-        resphone.set_text(get_researcher_phone())
-        resphone.connect('changed',lambda obj: save_researcher_phone(obj.get_text()))
+        resphone.set_text(GrampsGconfKeys.get_researcher_phone())
+        resphone.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_phone(obj.get_text()))
         resemail = self.top.get_widget("resemail")
-        resemail.set_text(get_researcher_email())
-        resemail.connect('changed',lambda obj: save_researcher_email(obj.get_text()))
+        resemail.set_text(GrampsGconfKeys.get_researcher_email())
+        resemail.connect('changed',lambda obj: GrampsGconfKeys.save_researcher_email(obj.get_text()))
 
         repdir = self.top.get_widget("repdir").gtk_entry()
-        repdir.set_text(get_report_dir())
-        repdir.connect('changed',lambda obj: save_report_dir(obj.get_text()))
+        repdir.set_text(GrampsGconfKeys.get_report_dir())
+        repdir.connect('changed',lambda obj: GrampsGconfKeys.save_report_dir(obj.get_text()))
         webdir = self.top.get_widget("htmldir").gtk_entry()
-        webdir.set_text(get_web_dir())
-        webdir.connect('changed',lambda obj: save_web_dir(obj.get_text()))
+        webdir.set_text(GrampsGconfKeys.get_web_dir())
+        webdir.connect('changed',lambda obj: GrampsGconfKeys.save_web_dir(obj.get_text()))
 
     def build_ext(self):
         self.c = {}

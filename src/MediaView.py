@@ -43,7 +43,7 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import Utils
-import GrampsCfg
+import GrampsGconfKeys
 import const
 import ImageSelect
 import RelImage
@@ -374,7 +374,7 @@ class MediaView:
                 photo.set_description(description)
                 trans = self.db.transaction_begin()
                 self.db.add_object(photo,trans)
-                if GrampsCfg.get_media_reference() == 0:
+                if GrampsGconfKeys.get_media_reference() == 0:
                     name = RelImage.import_media_object(name,
                                                         self.db.get_save_path(),
                                                         photo.get_handle())
@@ -384,7 +384,7 @@ class MediaView:
                 self.db.commit_media_object(photo,trans)
                 self.db.transaction_commit(trans,_("Add Media Object"))
                 
-                if GrampsCfg.get_media_global():
+                if GrampsGconfKeys.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,
                                                       self.update_display,
                                                       self,self.topWindow)
@@ -418,7 +418,7 @@ class MediaView:
                 self.db.commit_media_object(photo,trans)
                 self.db.transaction_commit(trans,_("Add Media Object"))
                 
-                if GrampsCfg.get_media_global():
+                if GrampsGconfKeys.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,None,
                                                 self,self.topWindow)
 

@@ -48,6 +48,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
+import GrampsGconfKeys
 import GrampsCfg
 import Plugins
 import RelLib
@@ -471,11 +472,11 @@ class Gallery(ImageSelect):
                 (root,ext) = os.path.splitext(basename)
                 photo.set_description(root)
                 self.savephoto(photo)
-                if GrampsCfg.get_media_reference() == 0:
+                if GrampsGconfKeys.get_media_reference() == 0:
                     name = RelImage.import_media_object(name,self.path,photo.get_handle())
                     photo.set_path(name)
                 self.parent.lists_changed = 1
-                if GrampsCfg.get_media_global():
+                if GrampsGconfKeys.get_media_global():
                     GlobalMediaProperties(self.db,photo,None,
                                                 self,self.parent_window)
             elif protocol != "":
@@ -505,7 +506,7 @@ class Gallery(ImageSelect):
                     return
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
-                if GrampsCfg.get_media_global():
+                if GrampsGconfKeys.get_media_global():
                     GlobalMediaProperties(self.db,photo,None,
                                                 self,self.parent_window)
             else:
@@ -535,7 +536,7 @@ class Gallery(ImageSelect):
                     self.dataobj.add_media_reference(oref)
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
-                    if GrampsCfg.get_media_global():
+                    if GrampsGconfKeys.get_media_global():
                         LocalMediaProperties(oref,self.path,self,self.parent_window)
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
