@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 AC_INIT(src/gramps.py)
 AM_INIT_AUTOMAKE(gramps, 0.9.3)
-RELEASE=CVS-$(date +%G%m%d)
+RELEASE=0.CVS$(date +%G%m%d)
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
