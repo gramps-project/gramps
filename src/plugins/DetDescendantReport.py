@@ -66,26 +66,20 @@ class DetDescendantReport(Report):
     #
     #
     #--------------------------------------------------------------------
-    def filter(self,person,index, cur_gen):
-        #print "Filter index= ", index, cur_gen
-        if person == None or self.cur_gen > self.max_generations:
-            return index
+    def apply_filter(self,person,index,cur_gen=1):
+        if person == None or cur_gen > self.max_generations:
+            return 
         self.map[index] = person
-        #print "Filter: ", index, person.getPrimaryName()
+
         if len(self.genKeys) < cur_gen:
             self.genKeys.append([index])
-        else: self.genKeys[cur_gen-1].append(index)
-        #print "genKeys: ", self.genKeys
+        else: 
+            self.genKeys[cur_gen-1].append(index)
 
-        if person.getFamilyList() != None:
-            familyList= person.getFamilyList()
-            for family in familyList:
-                if family != None:
-                    if len(family.getChildList()) > 0:
-                        for child in family.getChildList():
-                            index= self.filter(child, index+1, cur_gen+1)
-            return index
-        return index
+        for family in person.getFamilyList():
+            for child in family.getChildList():
+                ix = max(self.map.keys())
+                self.apply_filter(child, ix+1, cur_gen+1)
 
     def write_children(self, family, rptOptions):
         """ List children
@@ -608,8 +602,7 @@ class DetDescendantReport(Report):
     def write_report(self, rptOpt):
 
         self.cur_gen= 1
-        self.filter(self.start,1, 1)
-        #rptOpt= reportOptions()
+        self.apply_filter(self.start,1)
 
         name = self.start.getPrimaryName().getRegularName()
 

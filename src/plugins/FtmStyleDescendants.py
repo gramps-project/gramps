@@ -79,7 +79,7 @@ class FtmDescendantReport(Report.Report):
 
     def apply_filter(self,person,index,generation=1):
 
-        if person == None or generation >= self.max_generations:
+        if person == None or generation > self.max_generations:
             return
 
         self.anc_map[index] = person
@@ -211,7 +211,8 @@ class FtmDescendantReport(Report.Report):
                 self.print_notes(person)
                 self.print_more_about(person)
                 self.print_more_about_families(person)
-                self.print_children(person)
+                if generation < self.max_generations:
+                    self.print_children(person)
 
         self.write_endnotes()
         self.doc.close()
@@ -399,7 +400,8 @@ class FtmDescendantReport(Report.Report):
                 for (ind,p) in self.anc_map.items():
                     if p == child:
                         index = ind
-		if first:
+
+                if first:
                     first = 0
                     self.doc.start_paragraph('SubEntry')
                     if spouse:
