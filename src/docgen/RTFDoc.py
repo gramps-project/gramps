@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,9 +25,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import string
 import os
-import GrampsMime
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -38,8 +37,7 @@ import BaseDoc
 import PluginMgr
 import ImgManip
 import Errors
-
-from gettext import gettext as _
+import GrampsMime
 
 #------------------------------------------------------------------------
 #
@@ -114,8 +112,8 @@ class RTFDoc(BaseDoc.BaseDoc):
         self.f.write('\\margt%d' % twips(self.tmargin))
         self.f.write('\\margb%d' % twips(self.bmargin))
         self.f.write('\\widowctl\n')
-	self.in_table = 0
-	self.text = ""
+        self.in_table = 0
+        self.text = ""
 
     #--------------------------------------------------------------------
     #
@@ -154,7 +152,7 @@ class RTFDoc(BaseDoc.BaseDoc):
         self.opened = 0
         p = self.style_list[style_name]
 
-	# build font information
+        # build font information
 
         f = p.get_font()
         size = f.get_size()*2
@@ -171,9 +169,9 @@ class RTFDoc(BaseDoc.BaseDoc):
         if f.get_italic():
             self.font_type = self.font_type + "\\i"
 
-	# build paragraph information
+        # build paragraph information
 
-	if not self.in_table:
+        if not self.in_table:
             self.f.write('\\pard')
         if p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
             self.f.write('\\qr')
@@ -218,7 +216,7 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def end_paragraph(self):
-	if not self.in_table:
+        if not self.in_table:
             self.f.write(self.text)
             if self.opened:
                 self.f.write('}')
@@ -259,8 +257,8 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def start_table(self,name,style_name):
-	self.in_table = 1
-	self.tbl_style = self.table_styles[style_name]
+        self.in_table = 1
+        self.tbl_style = self.table_styles[style_name]
 
     #--------------------------------------------------------------------
     #
@@ -268,7 +266,7 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def end_table(self):
-	self.in_table = 0
+        self.in_table = 0
 
     #--------------------------------------------------------------------
     #
@@ -280,10 +278,10 @@ class RTFDoc(BaseDoc.BaseDoc):
     #--------------------------------------------------------------------
     def start_row(self):
         self.contents = []
-	self.cell = 0
-	self.prev = 0
-	self.cell_percent = 0.0
-	self.f.write('\\trowd\n')
+        self.cell = 0
+        self.prev = 0
+        self.cell_percent = 0.0
+        self.f.write('\\trowd\n')
 
     #--------------------------------------------------------------------
     #
@@ -292,11 +290,11 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def end_row(self):
-	self.f.write('{')
-	for line in self.contents:
-	    self.f.write(line)
+        self.f.write('{')
+        for line in self.contents:
+            self.f.write(line)
             self.f.write('\\cell ')
-	self.f.write('}\\pard\\intbl\\row\n')
+        self.f.write('}\\pard\\intbl\\row\n')
 
     #--------------------------------------------------------------------
     #
@@ -308,22 +306,22 @@ class RTFDoc(BaseDoc.BaseDoc):
     #
     #--------------------------------------------------------------------
     def start_cell(self,style_name,span=1):
-	s = self.cell_styles[style_name]
-	self.remain = span -1
-	if s.get_top_border():
-	    self.f.write('\\clbrdrt\\brdrs\\brdrw10\n')
-	if s.get_bottom_border():
-	    self.f.write('\\clbrdrb\\brdrs\\brdrw10\n')
-	if s.get_left_border():
-	    self.f.write('\\clbrdrl\\brdrs\\brdrw10\n')
-	if s.get_right_border():
-	    self.f.write('\\clbrdrr\\brdrs\\brdrw10\n')
-	table_width = float(self.get_usable_width())
-	for cell in range(self.cell,self.cell+span):
-	    self.cell_percent = self.cell_percent + float(self.tbl_style.get_column_width(cell))
-	cell_width = twips((table_width * self.cell_percent)/100.0)
-	self.f.write('\\cellx%d\\pard\intbl\n' % cell_width)
-	self.cell = self.cell+1
+        s = self.cell_styles[style_name]
+        self.remain = span -1
+        if s.get_top_border():
+            self.f.write('\\clbrdrt\\brdrs\\brdrw10\n')
+        if s.get_bottom_border():
+            self.f.write('\\clbrdrb\\brdrs\\brdrw10\n')
+        if s.get_left_border():
+            self.f.write('\\clbrdrl\\brdrs\\brdrw10\n')
+        if s.get_right_border():
+            self.f.write('\\clbrdrr\\brdrs\\brdrw10\n')
+        table_width = float(self.get_usable_width())
+        for cell in range(self.cell,self.cell+span):
+            self.cell_percent = self.cell_percent + float(self.tbl_style.get_column_width(cell))
+        cell_width = twips((table_width * self.cell_percent)/100.0)
+        self.f.write('\\cellx%d\\pard\intbl\n' % cell_width)
+        self.cell = self.cell+1
 
     #--------------------------------------------------------------------
     #
@@ -365,15 +363,15 @@ class RTFDoc(BaseDoc.BaseDoc):
         act_width = twips(act_width)
         act_height = twips(act_height)
 
-	self.f.write('{\*\shppict{\\pict\\jpegblip')
+        self.f.write('{\*\shppict{\\pict\\jpegblip')
         self.f.write('\\picwgoal%d\\pichgoal%d\n' % (act_width,act_height))
-	index = 1
-	for i in buf:
-	    self.f.write('%02x' % ord(i))
-	    if index%32==0:
-	        self.f.write('\n')
-	    index = index+1
-	self.f.write('}}\\par\n')
+        index = 1
+        for i in buf:
+            self.f.write('%02x' % ord(i))
+            if index%32==0:
+                self.f.write('\n')
+            index = index+1
+        self.f.write('}}\\par\n')
     
     def write_note(self,text,format,style_name):
         if format == 1:
@@ -385,7 +383,7 @@ class RTFDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(string.split(line))
+                line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
@@ -429,6 +427,6 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype, RTFDoc, 1, 0, 1, ".rtf", print_label)
+    PluginMgr.register_text_doc(mtype, RTFDoc, 1, 1, 1, ".rtf", print_label)
 except:
-    PluginMgr.register_text_doc(_('RTF document'), RTFDoc, 1, 0, 1, ".rtf", None)
+    PluginMgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, 1, ".rtf", None)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@ import BaseDoc
 from latin_utf8 import latin_to_utf8
 
 import time
-import string
 import cStringIO
 import gzip
 import os
@@ -290,8 +289,8 @@ class KwordDoc(BaseDoc.BaseDoc):
 
     def end_paragraph(self):
         if self.frameset_flg == 0:
-			self.f.write('<FRAMESET>\n')
-			self.frameset_flg= 1
+            self.f.write('<FRAMESET>\n')
+            self.frameset_flg= 1
 
         if self.bold_start != 0 and self.bold_stop != len(self.text):
             txt = '<FORMAT>\n<FONT name="%s"/>\n</FORMAT>\n' % self.font_face
@@ -454,7 +453,7 @@ class KwordDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(string.split(line))
+                line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
@@ -477,7 +476,7 @@ class KwordDoc(BaseDoc.BaseDoc):
             text = text.replace('&lt;/super&gt;','')
             self.format_list.append(txt)
 
-	self.text = self.text + text
+        self.text = self.text + text
 
 #------------------------------------------------------------------------
 #
@@ -495,7 +494,6 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    PluginMgr.register_text_doc(mtype, KwordDoc, 1, 0, 1, ".kwd", print_label)
+    PluginMgr.register_text_doc(mtype, KwordDoc, 1, 1, 1, ".kwd", print_label)
 except:
-    PluginMgr.register_text_doc(_('KWord'), KwordDoc, 1, 0, 1, ".kwd", print_label)
-
+    PluginMgr.register_text_doc(_('KWord'), KwordDoc, 1, 1, 1, ".kwd", print_label)
