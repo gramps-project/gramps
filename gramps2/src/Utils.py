@@ -163,22 +163,6 @@ def get_detail_text(obj,priv=1):
 
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-def build_confidence_menu(menu):
-    myMenu = gtk.Menu()
-    index = 0
-    for name in const.confidence:
-        item = gtk.MenuItem(name)
-        item.set_data("a",index)
-        item.show()
-        myMenu.append(item)
-        index = index + 1
-    menu.set_menu(myMenu)
-
-#-------------------------------------------------------------------------
-#
 # 
 #
 #-------------------------------------------------------------------------
@@ -238,18 +222,6 @@ def view_photo(photo):
     
     if os.fork() == 0:
         os.execvp(args[0],args)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def strip_id(text):
-    index = text.rfind('[')
-    if (index > 0):
-        text = text[:index]
-        text = text.rstrip()
-    return text
 
 def nautilus_icon(icon,mime_type):
     import GrampsGconfKeys

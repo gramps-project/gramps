@@ -321,7 +321,6 @@ class SourceEditor:
                          _('Source Information'))
         
         self.showSource.signal_autoconnect({
-            "on_source_changed"     : self.on_source_changed,
             "on_add_src_clicked"    : self.add_src_clicked,
             "on_help_srcDisplay_clicked"   : self.on_help_clicked,
             "on_ok_srcDisplay_clicked"   : self.on_sourceok_clicked,
@@ -329,25 +328,26 @@ class SourceEditor:
             "on_sourceDisplay_delete_event"  : self.on_delete_event,
             })
         self.source_field = self.get_widget("sourceList")
+
+        # setup menu
         self.title_menu = self.get_widget("source_title")
-        self.title_menu.set_data("o",self)
+        cell = gtk.CellRendererText()
+        self.title_menu.pack_start(cell,True)
+        self.title_menu.add_attribute(cell,'text',0)
+        self.title_menu.connect('changed',self.on_source_changed)
         self.conf_menu = self.get_widget("conf")
         self.private = self.get_widget("priv")
         self.ok = self.get_widget("ok")
-        Utils.build_confidence_menu(self.conf_menu)
-        self.conf_menu.set_history(srcref.get_confidence_level())
-        self.list = []
+        self.conf_menu.set_active(srcref.get_confidence_level())
 
-        self.title_menu.list.select_item(0)
-        self.title_menu.list.remove_items(self.title_menu.list.get_selection())
-        
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
         self.date_entry_field = self.get_widget("sdate")
 
         if self.source_ref:
-            self.active_source = self.db.get_source_from_handle(self.source_ref.get_base_handle())
+            handle = self.source_ref.get_base_handle()
+            self.active_source = self.db.get_source_from_handle(handle)
             self.date_obj = self.source_ref.get_date()
             self.date_entry_field.set_text(DateHandler.displayer.display(self.date_obj))
             self.private.set_active(self.source_ref.get_privacy())
@@ -425,7 +425,6 @@ class SourceEditor:
         return self.showSource.get_widget(name)
 
     def draw(self,sel = None):
-        self.title_menu.list.remove_items(self.list)
         if self.source_ref:
             spage = self.get_widget("spage")
             spage.get_buffer().set_text(self.source_ref.get_page())
@@ -446,28 +445,29 @@ class SourceEditor:
 
         keys = self.db.get_source_handles()
         keys.sort(self.db._sortbysource)
-        
+
+        store = gtk.ListStore(gobject.TYPE_STRING)
+
         sel_child = None
-        self.list = []
         self.active_source = sel
+        index = 0
+        sel_index = 0
+        self.handle_list = []
         for src_id in keys:
             src = self.db.get_source_from_handle(src_id)
-            l = gtk.Label("%s [%s]" % (src.get_title(),src.get_gramps_id()))
-            l.show()
-            l.set_alignment(0,0.5)
-            c = gtk.ListItem()
-            c.add(l)
-            c.set_data("s",src)
-            c.show()
-            self.list.append(c)
-            if self.active_source == src:
-                sel_child = c
+            title = src.get_title()
+            gid = src.get_gramps_id()
+            handle = src.get_handle()
+            store.append(row=["%s [%s]" % (title,gid)])
+            self.handle_list.append(handle)
+            if sel and sel.get_handle() == src_id:
+                sel_index = index
+            index += 1
+        self.title_menu.set_model(store)
 
-        if len(self.list) > 0:
-            self.title_menu.list.append_items(self.list)
+        if index > 0:
             self.title_menu.set_sensitive(1)
-            if sel_child:
-                self.title_menu.list.select_child(sel_child)
+            self.title_menu.set_active(sel_index)
         else:
             self.title_menu.set_sensitive(0)
 
@@ -476,7 +476,7 @@ class SourceEditor:
         if self.active_source != self.db.get_source_from_handle(self.source_ref.get_base_handle()):
             self.source_ref.set_base_handle(self.active_source.get_handle())
         
-        conf = self.get_widget("conf").get_menu().get_active().get_data('a')
+        conf = self.get_widget("conf").get_active()
 
         buf = self.get_widget("scomment").get_buffer()
         comments = unicode(buf.get_text(buf.get_start_iter(),
@@ -503,14 +503,11 @@ class SourceEditor:
         self.close(obj)
 
     def on_source_changed(self,obj):
-        sel = obj.list.get_selection()
-        if sel:
-            self.active_source = sel[0].get_data("s")
-            
-            if self.active_source:
-                self.author_field.set_text(self.active_source.get_author())
-                self.pub_field.set_text(self.active_source.get_publication_info())
-            self.set_button()
+        handle = self.handle_list[obj.get_active()]
+        self.active_source = self.db.get_source_from_handle(handle)
+        self.author_field.set_text(self.active_source.get_author())
+        self.pub_field.set_text(self.active_source.get_publication_info())
+        self.set_button()
 
     def update_display(self,source):
         self.db.add_source(source)
