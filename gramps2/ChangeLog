@@ -16,6 +16,7 @@
 	* src/PlaceView.py (key_press): Add function.
 	* src/SourceView.py (key_press): Add function.
 	* src/plugins/WebPage.py: Add tab with index page options.
+	* src/sort: Typos. 
 
 2004-02-13  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Update
