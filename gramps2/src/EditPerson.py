@@ -284,8 +284,7 @@ class EditPerson:
 
         types = const.NameTypesMap.keys()
         types.sort()
-        self.ntype_field.set_popdown_strings(types)
-        self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
+        self.autotype = AutoComp.AutoCombo(self.ntype_field,types)
         self.write_primary_name()
         
         if person.getGender() == RelLib.Person.male:
