@@ -39,7 +39,7 @@ import GTK
 import gtk
 import gnome.ui
 import libglade
-from gnome.config import *
+import gnome.config
 
 #-------------------------------------------------------------------------
 #
@@ -228,10 +228,10 @@ def loadConfig(call):
     lastfile = get_string("/gramps/data/LastFile")
     usetabs = get_bool("/gramps/config/UseTabs")
     uselds = get_bool("/gramps/config/UseLDS")
-    ac = get_bool("/gramps/config/DisableAutoComplete")
-    mediaref = get_bool("/gramps/config/MakeReference")
-    globalprop = get_bool("/gramps/config/DisplayGlobal")
-    localprop = get_bool("/gramps/config/DisplayLocal")
+    ac = get_bool("/gramps/config/DisableAutoComplete",0)
+    mediaref = get_bool("/gramps/config/MakeReference",1)
+    globalprop = get_bool("/gramps/config/DisplayGlobal",1)
+    localprop = get_bool("/gramps/config/DisplayLocal",1)
     calendar = get_bool("/gramps/config/ShowCalendar")
     usevc = get_bool("/gramps/config/UseVersionControl")
     vc_comment = get_bool("/gramps/config/UseComment")
@@ -241,7 +241,7 @@ def loadConfig(call):
     index_visible = get_bool("/gramps/config/IndexVisible")
     show_detail = get_bool("/gramps/config/ShowDetail")
     status_bar = get_int("/gramps/config/StatusBar")
-    t = get_int("/gramps/config/ToolBar")
+    t = get_int("/gramps/config/ToolBar",2)
     if t == 0:
         toolbar = 2
     else:
@@ -250,7 +250,7 @@ def loadConfig(call):
     attr_name = get_string("/gramps/config/DisplayAttrName")
     
     hide_altnames = get_bool("/gramps/config/DisplayAltNames")
-    autoload = get_bool("/gramps/config/autoLoad")
+    autoload = get_bool("/gramps/config/autoLoad",0)
     autosave_int = get_int("/gramps/config/autoSaveInterval")
     dateFormat = get_int("/gramps/config/dateFormat")
     dateEntry = get_int("/gramps/config/dateEntry")
@@ -323,60 +323,12 @@ def loadConfig(call):
     if attr_name == None:
         attr_name = ""
 
-    if autoload == None:
-        autoload = 1
-    if autosave_int == None:
-        autosave_int = 0
-    if mediaref == None:
-        mediaref = 1
-    if globalprop == None:
-        globalprop = 1
-    if localprop == None:
-        localprop =1 
-    if usetabs == None:
-        usetabs = 0
-    if uselds == None:
-        uselds = 0
-    if ac == None:
-        autocomp = 1
-    else:
-        autocomp = not ac
+    autocomp = not ac
         
-    if calendar == None:
-        calendar = 0
-    if usevc == None:
-        usevc = 0
-    if vc_comment == None:
-        vc_comment = 0
-    if uncompress == None:
-        uncompress = 0
-    if id_visible == None:
-        id_visible = 0
-    if id_edit == None:
-        id_edit = 0
-    if index_visible == None:
-        index_visible = 0
-    if show_detail == None:
-        show_detail = 0
-    if status_bar == None:
-        status_bar = 0
-    if toolbar == None:
-        toolbar = 2
-    if hide_altnames == None:
-        hide_altnames = 0
-    if dateFormat == None:
-        dateFormat = 0
-    if dateEntry == None:
-        dateEntry = 0
-
     set_format_code(dateFormat)
     Date.entryCode = dateEntry
 
-    if lastnamegen == None or lastnamegen == 0:
-        lastnamegen = 0
-
-    if _name_format == None or _name_format == 0:
-        _name_format = 0
+    if _name_format == 0:
         nameof = Utils.normal_name
     else:
         nameof = Utils.phonebook_name
@@ -386,6 +338,33 @@ def loadConfig(call):
     make_path(os.path.expanduser("~/.gramps/plugins"))
     make_path(os.path.expanduser("~/.gramps/templates"))
 
+def get_string(value,defval=""):
+    v = gnome.config.get_string(value)
+    if v == None:
+        return defval
+    else:
+        return v
+
+def get_bool(key,defval=0):
+    v = gnome.config.get_bool(key)
+    if v:
+        return v
+    else:
+        return defval
+
+def get_int(key,defval=0):
+    v = gnome.config.get_int(key)
+    if v:
+        return v
+    else:
+        return defval
+
+def set_bool(key,value):
+    gnome.config.set_bool(key,value)
+
+def set_string(key,value):
+    gnome.config.set_string(key,value)
+    
 #-------------------------------------------------------------------------
 #
 # 
