@@ -25,12 +25,12 @@ import re
 import intl
 import Utils
 
-_ = intl.gettext
+from intl import gettext as _
 
 import gtk
 import gtk.glade
-from gnome.ui import *
-
+import gnome.ui
+from QuestionDialog import OkDialog
 
 _title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
 _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
@@ -57,7 +57,7 @@ class PatchNames:
         self.db = db
         self.title_list = []
         self.nick_list = []
-        
+
         for key in self.db.getPersonKeys():
         
             person = self.db.getPerson(key)
@@ -72,6 +72,7 @@ class PatchNames:
                 self.nick_list.append((key,groups[0],groups[1]))
 
         msg = ""
+
         if len(self.nick_list) > 0 or len(self.title_list) > 0:
             for (id,name,nick) in self.nick_list:
                 p = self.db.getPerson(id)
@@ -93,7 +94,7 @@ class PatchNames:
                 })
             self.top.get_widget("textwindow").show_string(msg)
         else:
-            GnomeOkDialog(_("No titles or nicknames were found"))
+            OkDialog(_("No titles or nicknames were found"))
             self.cb(0)
 
     def on_ok_clicked(self,obj):

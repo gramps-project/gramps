@@ -28,9 +28,8 @@ import gtk.glade
 
 import const
 import Utils
-import intl
-
-_ = intl.gettext
+from intl import gettext as _
+from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
 #
@@ -79,7 +78,7 @@ class ChangeTypes:
         else:
             msg = _("%d event records were modified") % modified
             
-        gnome.ui.GnomeOkDialog(msg)
+        OkDialog(msg)
         Utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------

@@ -22,14 +22,14 @@
 
 import RelLib
 import Utils
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 import os
 
 import gnome.ui
 import gtk
 import gtk.glade
+from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
 #
@@ -145,7 +145,7 @@ class CheckIntegrity:
         errors = blink + efam + photos + rel
         
         if errors == 0:
-            gnome.ui.GnomeOkDialog(_("No errors were found"))
+            OkDialog(_("No errors were found"))
             return
 
         text = ""

@@ -1007,21 +1007,6 @@ class GrampsPreferences:
         phone = self.top.get_widget("resphone").get_text()
         email = self.top.get_widget("resemail").get_text()
         
-        Sorter.set_enable(self.top.get_widget("enableColors").get_active())
-        set_bool("/gramps/color/enableColors",Sorter.get_enable())
-        
-        Sorter.oddfg = self.top.get_widget(ODDFGCOLOR).get_i16()
-        Sorter.oddbg = self.top.get_widget(ODDBGCOLOR).get_i16()
-        Sorter.evenfg = self.top.get_widget(EVENFGCOLOR).get_i16()
-        Sorter.evenbg = self.top.get_widget(EVENBGCOLOR).get_i16()
-        Sorter.ancestorfg = self.top.get_widget(ANCESTORFGCOLOR).get_i16()
-        
-        save_config_color(ODDFGCOLOR,Sorter.oddfg)
-        save_config_color(ODDBGCOLOR,Sorter.oddbg)
-        save_config_color(EVENFGCOLOR,Sorter.evenfg)
-        save_config_color(EVENBGCOLOR,Sorter.evenbg)
-        save_config_color(ANCESTORFGCOLOR,Sorter.ancestorfg)
-        
         set_string("/gramps/researcher/name",name)
         set_string("/gramps/researcher/addr",addr)
         set_string("/gramps/researcher/city",city)
