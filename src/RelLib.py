@@ -35,6 +35,7 @@ import os
 import os.path
 import types
 from gettext import gettext as _
+import cPickle
 
 #-------------------------------------------------------------------------
 #
@@ -63,6 +64,8 @@ SOURCE_KEY     = 2
 EVENT_KEY      = 3
 MEDIA_KEY      = 4
 PLACE_KEY      = 5
+
+UNDO_SIZE      = 1000
 
 #-------------------------------------------------------------------------
 #
@@ -533,7 +536,7 @@ class Location:
             self.phone = ""
 
     def is_empty(self):
-        return self.city=="" and self.county=="" and self.state=="" and self.country=="" and self.postal=="" and self.phone==""
+        return not self.city and not self.county and not self.state and not self.country and not self.postal and not self.phone
         
     def set_city(self,data):
         """sets the city name of the Location object"""
@@ -2656,7 +2659,8 @@ class GrampsDB:
     def new(self):
         """initializes the GrampsDB to empty values"""
 
-        self.translist = []
+        self.undoindex  = -1
+        self.translist = [None] * UNDO_SIZE
         self.smap_index = 0
         self.emap_index = 0
         self.pmap_index = 0
@@ -2671,11 +2675,16 @@ class GrampsDB:
         self.genderStats = GenderStats ()
 
     def start_transaction(self,msg=""):
-        return Transaction(msg)
+        return Transaction(msg,self.undodb)
 
     def add_transaction(self,transaction,msg):
         transaction.set_description(msg)
-        self.translist.append(transaction)
+        self.undoindex += 1
+        if self.undoindex == UNDO_SIZE:
+            self.translist = transaction[0:-1] + [ transaction ]
+        else:
+            self.translist[self.undoindex] = transaction
+            
         if self.undolabel:
             self.undolabel.set_sensitive(1)
             label = self.undolabel.get_children()[0]
@@ -2683,13 +2692,15 @@ class GrampsDB:
             label.set_use_underline(1)
 
     def undo(self):
-        if len(self.translist) == 0:
+        if self.undoindex == -1:
             return
-        transaction = self.translist.pop()
+        transaction = self.translist[self.undoindex]
 
-        subitems = transaction.get_data()
+        self.undoindex -= 1
+        subitems = transaction.get_recnos()
         subitems.reverse()
-        for (key, gid, data) in subitems:
+        for record_id in subitems:
+            (key, gid, data) = transaction.get_record(record_id)
             if key == PERSON_KEY:
                 if data == None:
                     del self.person_map[gid]
@@ -2723,11 +2734,11 @@ class GrampsDB:
 
         if self.undolabel:
             label = self.undolabel.get_children()[0]
-            if len(self.translist) == 0:
+            if self.undoindex == -1:
                 label.set_text(_("_Undo"))
                 self.undolabel.set_sensitive(0)
             else:
-                transaction = self.translist[-1]
+                transaction = self.translist[self.undoindex]
                 label.set_text(_("_Undo %s") % transaction.get_description())
                 self.undolabel.set_sensitive(1)
             label.set_use_underline(1)
@@ -3542,8 +3553,11 @@ class GrampsDB:
 #-------------------------------------------------------------------------
 class Transaction:
 
-    def __init__(self,msg):
+    def __init__(self,msg,db):
         self.data = []
+        self.db = db
+        self.first = None
+        self.last = None
 
     def get_description(self):
         return self.msg
@@ -3552,16 +3566,22 @@ class Transaction:
         self.msg = msg
 
     def add(self, type, gid, data):
-        self.data.append((type, gid, data))
+        self.last = self.db.append(cPickle.dumps((type,gid,data),1))
+        if self.first == None:
+            self.first = self.last
 
-    def get_data(self):
-        return self.data
+    def get_recnos(self):
+        return range (self.first, self.last+1)
+
+    def get_record(self,id):
+        return cPickle.loads(self.db[id])
 
     def __len__(self):
         return len(self.data)
 
     def display(self):
-        for (key,gid,val) in self.data:
+        for record in self.get_recnos():
+            (key,gid,val) = self.get_record(record)
             if key == PERSON_KEY:
                 if val:
                     print "PERSON %s change" % gid
@@ -3592,3 +3612,4 @@ class Transaction:
                     print "PLACE %s change" % gid
                 else:
                     print "PLACE %s remove" % gid
+

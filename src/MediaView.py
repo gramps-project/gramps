@@ -312,7 +312,7 @@ class MediaView:
         else:
             trans = self.db.start_transaction()
             self.db.remove_object(mobj.get_id(),trans)
-            self.db.add_transaction(trans)
+            self.db.add_transaction(trans,_("Remove Media Object"))
             self.build_tree()
 
     def is_object_used(self,mobj):
@@ -384,7 +384,7 @@ class MediaView:
                         photo.set_path(name)
 
                 self.db.commit_media_object(photo,trans)
-                self.db.add_transaction(trans)
+                self.db.add_transaction(trans,_("Add Media Object"))
                 
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media)
@@ -416,7 +416,7 @@ class MediaView:
                     return
 
                 self.db.commit_media_object(photo,trans)
-                self.db.add_transaction(trans)
+                self.db.add_transaction(trans,_("Add Media Object"))
                 
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,None)

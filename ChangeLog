@@ -1,4 +1,9 @@
 2004-05-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ImageSelect.py: undo messages
+	* src/MediaView.py: undo messages
+	* src/RelLib.py: use db for undo status
+
+2004-05-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* various: undo messages
 
 2004-05-18  Don Allingham  <dallingham@users.sourceforge.net>
