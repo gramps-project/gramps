@@ -1,3 +1,7 @@
+2004-10-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsCfg.py: eliminate unused options
+	* src/gramps.glade: eliminate unused options
+
 2004-10-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: add dbopen task to provide access to the 
 	db object
