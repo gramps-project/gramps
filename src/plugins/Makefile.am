@@ -35,6 +35,7 @@ pkgdata_PYTHON = \
 	ReadPkg.py\
 	RelCalc.py\
 	ReorderIds.py\
+	ScratchPad.py\
 	SoundGen.py\
 	StatisticsChart.py\
 	Summary.py\
@@ -80,7 +81,8 @@ GLADEFILES = \
 	leak.glade\
 	book.glade\
 	writeftree.glade\
-	genewebexport.glade
+	genewebexport.glade\
+	scratchpad.glade
 
 dist_pkgdata_DATA = $(GLADEFILES)
 

@@ -101,6 +101,7 @@ gdir_PYTHON = \
 	TarFile.py\
 	TipOfDay.py\
 	TransTable.py\
+	TreeTips.py\
 	UrlEdit.py\
 	Utils.py\
 	Witness.py\
