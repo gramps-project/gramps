@@ -1,4 +1,13 @@
 2005-02-19  Don Allingham  <dallingham@users.sourceforge.net>
+
+	* src/ChooseParents.py: readonly fixes
+	* src/EditPerson.py: readonly fixes
+	* src/EditPlace.py: readonly fixes
+	* src/EditSource.py: readonly fixes
+	* src/FamilyView.py: readonly fixes
+	* src/ImageSelect.py: readonly fixes
+	* src/Marriage.py: readonly fixes
+	
 	* src/EditPerson.py: add privacy marker
 	* src/GrampBSDDB.py: record database version, handle person privacy flag
 	* src/RelLIb.py: Privacy flag for person (inherit from DataObj instead of SourceNote)

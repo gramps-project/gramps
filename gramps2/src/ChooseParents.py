@@ -635,9 +635,11 @@ class ModifyParents:
         self.family = self.db.get_family_from_handle(family_handle)
         self.family_update = family_update
         self.full_update = full_update
-        
-        self.father = self.db.get_person_from_handle(self.family.get_father_handle())
-        self.mother = self.db.get_person_from_handle(self.family.get_mother_handle())
+
+        fid = self.family.get_father_handle()
+        mid = self.family.get_mother_handle()
+        self.father = self.db.get_person_from_handle(fid)
+        self.mother = self.db.get_person_from_handle(mid)
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")
@@ -699,6 +701,11 @@ class ModifyParents:
 
         if parent_window:
             self.top.set_transient_for(parent_window)
+
+        self.glade.get_widget('fcombo').set_sensitive(False)
+        self.glade.get_widget('mcombo').set_sensitive(False)
+        self.glade.get_widget('ok').set_sensitive(False)
+            
         self.val = self.top.run()
         if self.val == gtk.RESPONSE_OK:
             self.save_parents_clicked()

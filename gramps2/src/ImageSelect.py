@@ -895,13 +895,17 @@ class GlobalMediaProperties:
             self.date_object = Date.Date()
             
         self.path = self.db.get_save_path()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global","gramps")
+        self.change_dialog = gtk.glade.XML(const.imageselFile,
+                                           "change_global","gramps")
 
+        mode = not self.db.readonly
+        
         title = _('Media Properties Editor')
 
         self.window = self.change_dialog.get_widget('change_global')
         self.date_entry = self.change_dialog.get_widget('date')
-
+        self.date_entry.set_editable(mode)
+        
         self.pdmap = {}
         self.add_places = []
         for key in self.db.get_place_handles():
@@ -909,6 +913,8 @@ class GlobalMediaProperties:
             self.pdmap[p[0]] = key
 
         self.place = self.change_dialog.get_widget('place')
+        self.place.set_editable(mode)
+        
         self.place_list = self.pdmap.keys()
         self.place_list.sort()
         build_dropdown(self.place,self.place_list)
@@ -925,11 +931,19 @@ class GlobalMediaProperties:
                          self.change_dialog.get_widget('title'),title)
         
         self.descr_window = self.change_dialog.get_widget("description")
+        self.descr_window.set_editable(mode)
+        
         self.notes = self.change_dialog.get_widget("notes")
-        self.date_check = DateEdit.DateEdit(self.date_object,
-                                            self.date_entry,
-                                            self.change_dialog.get_widget("date_edit"),
-                                            self.window)
+        self.notes.set_editable(mode)
+
+        self.date_edit = self.change_dialog.get_widget("date_edit")
+        self.date_edit.set_sensitive(mode)
+        
+        self.date_check = DateEdit.DateEdit(
+            self.date_object,
+            self.date_entry,
+            self.date_edit,
+            self.window)
         
         self.pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
@@ -942,7 +956,9 @@ class GlobalMediaProperties:
         self.notes_label = self.change_dialog.get_widget("notesGlobal")
         self.refs_label = self.change_dialog.get_widget("refsGlobal")
         self.flowed = self.change_dialog.get_widget("global_flowed")
+        self.flowed.set_sensitive(mode)
         self.preform = self.change_dialog.get_widget("global_preform")
+        self.preform.set_sensitive(mode)
 
         titles = [(_('Attribute'),0,150),(_('Value'),1,100)]
 
@@ -1001,6 +1017,10 @@ class GlobalMediaProperties:
             "on_help_clicked"        : self.on_help_clicked,
             "on_global_delete_event" : self.on_delete_event,
             })
+
+
+        for name in ['gl_del_src','gl_add_src','add_attr','del_attr','ok']:
+            self.change_dialog.get_widget(name).set_sensitive(mode)
 
         self.redraw_attr_list()
         self.display_refs()
