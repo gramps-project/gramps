@@ -242,13 +242,13 @@ class KwordDoc(TextDoc):
                 self.f.write('<ITALIC value="1"/>\n')
             if font.get_underline():
                 self.f.write('<UNDERLINE value="1"/>\n')
-            if para.get_top_border():
+            if p.get_top_border():
                 self.f.write('<TOPBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
-            if para.get_bottom_border():
+            if p.get_bottom_border():
                 self.f.write('<BOTTOMBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
-            if para.get_right_border():
+            if p.get_right_border():
                 self.f.write('<RIGHTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
-            if para.get_left_border():
+            if p.get_left_border():
                 self.f.write('<LEFTBORDER red="0" green="0" blue="0" style="0" width="1"/>\n')
             self.f.write('</FORMAT>\n')
             if left != 0:
