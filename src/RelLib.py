@@ -2249,7 +2249,7 @@ class GrampsDB(Persistent):
         else:
             place = Place()
             map[idVal] = self.addPlace(place)
-            self.placeTable[map[idVal]] = p.getDisplayInfo()
+            self.placeTable[map[idVal]] = place.getDisplayInfo()
         return place
 
     def addPlaceNoMap(self,place,index):

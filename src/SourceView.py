@@ -108,7 +108,7 @@ class SourceView:
         data = None
         if len(obj.selection) == 1:
             id = obj.get_row_data(obj.selection[0])
-            data = self.db.getSourceMap()[data]
+            data = self.db.getSourceMap()[id]
         
         obj.freeze()
         if new_col == self.scol:
