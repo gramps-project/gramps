@@ -153,10 +153,6 @@ class FtreeWriter:
                 ErrorDialog(m1,m2)
                 return
             
-        self.flist = {}
-        for key in self.plist.keys():
-            p = self.db.getPerson(key)
-
         name_map = {}
         id_map = {}
         id_name = {}
@@ -177,6 +173,7 @@ class FtreeWriter:
                     nn = "%s%d" % (n,count)
                     if not name_map.has_key(nn):
                         break;
+                    count += 1
                 name_map[nn] = key
                 id_map[key] = nn
             else:
