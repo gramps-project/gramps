@@ -522,6 +522,16 @@ def set_titles(window,title,t,msg=None):
     else:
         window.set_title('%s - GRAMPS' % t)
 
+def gfloat(val):
+    try:
+        return float(val)
+    except:
+        try:
+            return float(val.subst('.',','))
+        except:
+            return float(val.subst(',','.'))
+    return 0.0
+                  
 #-------------------------------------------------------------------------
 #
 #  Roman numbers

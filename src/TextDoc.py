@@ -63,6 +63,7 @@ __version__ = "Revision:$"
 #
 #-------------------------------------------------------------------------
 import os
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -776,9 +777,9 @@ class StyleSheetList:
                 f.write('underline="%d" ' % font.get_underline())
                 f.write('color="#%02x%02x%02x"/>\n' % font.get_color())
                 f.write('<para ')
-                rm = float(p.get_right_margin())
-                lm = float(p.get_left_margin())
-                fi = float(p.get_first_indent())
+                rm = Utils.gfloat(p.get_right_margin())
+                lm = Utils.gfloat(p.get_left_margin())
+                fi = Utils.gfloat(p.get_first_indent())
                 f.write('rmargin="%.3f" ' % rm)
                 f.write('lmargin="%.3f" ' % lm)
                 f.write('first="%.3f" ' % fi)

@@ -33,6 +33,7 @@ import gtk
 import TextDoc
 import GrampsCfg
 import const
+import Utils
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -110,8 +111,8 @@ class PageSizeParser(handler.ContentHandler):
     def startElement(self,tag,attrs):
         if tag == "page":
             name = attrs['name']
-            height = float(attrs['height'])
-            width = float(attrs['width'])
+            height = Utils.gfloat(attrs['height'])
+            width = Utils.gfloat(attrs['width'])
             self.paper_list.append(TextDoc.PaperStyle(name,height,width))
 
 #-------------------------------------------------------------------------
