@@ -249,6 +249,7 @@ class MergePeople:
                 self.p1.addUrl(xdata)
 
         self.id2 = self.glade.get_widget("id2")
+        old_id = self.p1.getId()
         if self.id2.get_active():
             self.p1.setId(self.p2.getId())
             
@@ -320,10 +321,11 @@ class MergePeople:
             self.p1.setNote(old_note + self.p2.getNote())
 
         try:
-            del self.db.getPersonMap()[self.p2.getId()]
+            self.db.removePerson(self.p2.getId())
+            self.db.buildPersonDisplay(self.p1.getId(),old_id)
         except:
             print "%s is not in the person map!" % (GrampsCfg.nameof(self.p2))
-        self.update(self.p1,self.p2)
+        self.update(self.p1,self.p2,old_id)
         Utils.destroy_passed_object(self.top)
         
     def find_family(self,family):
@@ -335,8 +337,7 @@ class MergePeople:
             mother = self.p1
 
         for myfamily in self.family_list:
-            if myfamily.getFather() == father and \
-               myfamily.getMother() == mother:
+            if myfamily.getFather() == father and myfamily.getMother() == mother:
                 return myfamily
         return None
 
@@ -804,6 +805,7 @@ class MergePlaces:
     def on_merge_places_clicked(self,obj):
         t2active = self.glade.get_widget("title2").get_active()
 
+        old_id = self.p1.getId()
         if t2active:
             self.p1.set_title(self.p2.get_title())
         elif self.glade.get_widget("title3").get_active():
@@ -846,7 +848,9 @@ class MergePlaces:
             for event in f.getEventList():
                 if event.getPlace() == self.p2:
                     event.setPlace(self.p1)
-        del self.db.getPlaceMap()[self.p2.getId()]
+        self.db.removePlace(self.p2.getId())
+        self.db.buildPlaceDisplay(self.p1.getId(),old_id)
+        
         self.update()
         Utils.modified()
         Utils.destroy_passed_object(obj)

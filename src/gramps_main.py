@@ -403,8 +403,7 @@ class Gramps:
                 p2 = self.person_list.get_row_data(self.person_list.selection[1])
                 p1 = self.db.getPerson(p1)
                 p2 = self.db.getPerson(p2)
-                MergeData.MergePeople(self.db,p1,p2,self.merge_update,
-                                      self.update_after_edit)
+                MergeData.MergePeople(self.db,p1,p2,self.merge_update,self.update_after_edit)
         elif page == 4:
             self.place_view.merge()
 
@@ -947,8 +946,8 @@ class Gramps:
                 self.active_person = self.db.getPerson(p)
         self.person_list.thaw()
     
-    def merge_update(self,p1,p2):
-        self.remove_from_person_list(p1)
+    def merge_update(self,p1,p2,old_id):
+        self.remove_from_person_list(p1,old_id)
         self.remove_from_person_list(p2)
         self.redisplay_person_list(p1)
     
@@ -1429,6 +1428,13 @@ class Gramps:
             self.redisplay_person_list(epo.person)
         for p in plist:
             self.place_view.new_place_after_edit(p)
+        self.update_display(0)
+
+    def update_after_merge(self,person,old_id):
+        if epo:
+            print person,old_id
+            self.remove_from_person_list(person,old_id)
+            self.redisplay_person_list(person)
         self.update_display(0)
 
     def redisplay_person_list(self,person):
