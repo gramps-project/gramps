@@ -33,7 +33,7 @@ try:
     if StartupDialog.need_to_run():
         StartupDialog.StartupDialog(gramps_main.main,arg)
     else:
-        gramps_main.main(arg)
+        gramps_main.Gramps(arg)
 except:
     traceback.print_exc()
         

@@ -80,38 +80,27 @@ class Gramps:
 
     def __init__(self,arg):
 
-        self.DataFilter    = Filter.Filter("")
-        self.active_child  = None
+        self.DataFilter = Filter.Filter("")
+        self.active_child = None
         self.active_family = None
         self.active_father = None
         self.active_mother = None
-        self.active_parents= None
+        self.active_parents = None
         self.active_person = None
         self.active_spouse = None
-        self.alt2col = {}
         self.bookmarks = None
-        self.cDateArrow = None
-        self.cGenderArrow = None
-        self.cIDArrow = None
-        self.cNameArrow = None
-        self.c_birth_date  = 4
+        self.c_birth_date = 4
         self.c_birth_order = 0
-        self.c_details     = 6
-        self.c_gender      = 3
-        self.c_id          = 2
-        self.c_name        = 1
+        self.c_details = 6
+        self.c_gender = 3
+        self.c_id = 2
+        self.c_name = 1
         self.c_sort_column = self.c_birth_order
         self.c_sort_direct = GTK.SORT_ASCENDING
+        self.sort_column = 0
+        self.sort_direct = GTK.SORT_ASCENDING
         self.id2col = {}
-        self.media_view = None
-        self.pedigree_view = None
-        self.place_view = None
-        self.preview = None
-        self.sort_column = None
-        self.sort_direct = None
-        self.source_view = None
-        self.toolbar = None
-
+        self.alt2col = {}
 
         gtk.rc_parse(const.gtkrcFile)
 
@@ -128,16 +117,11 @@ class Gramps:
         Filter.load_filters(const.filtersDir)
         Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
 
-        self.sort_column   = 0
-        self.sort_direct   = GTK.SORT_ASCENDING
-
         (self.sort_column,self.sort_direct) = GrampsCfg.get_sort_cols("person",self.sort_column,self.sort_direct)
 
         GrampsCfg.loadConfig(self.full_update)
 
         self.gtop = libglade.GladeXML(const.gladeFile, "gramps")
-        self.toolbar = self.gtop.get_widget("toolbar1")
-        self.toolbar.set_style(GrampsCfg.toolbar)
 
         self.statusbar   = self.gtop.get_widget("statusbar")
         self.topWindow   = self.gtop.get_widget("gramps")
@@ -150,17 +134,40 @@ class Gramps:
         self.dateArrow   = self.gtop.get_widget("dateSort")
         self.deathArrow  = self.gtop.get_widget("deathSort")
         self.merge_button= self.gtop.get_widget("merge")
+        self.cNameArrow  = self.gtop.get_widget("cNameSort")
+        self.cGenderArrow= self.gtop.get_widget("cGenderSort")
+        self.cIDArrow    = self.gtop.get_widget("cIDSort")
+        self.cDateArrow  = self.gtop.get_widget("cDateSort")
+        self.canvas      = self.gtop.get_widget("canvas1")
+        self.child_list  = self.gtop.get_widget("child_list")
+        self.toolbar = self.gtop.get_widget("toolbar1")
+        self.spouse_menu = self.gtop.get_widget("fv_spouse")
+        self.person_text = self.gtop.get_widget("fv_person")
+        self.spouse_text = self.gtop.get_widget("fv_spouse1")
+        self.filter_text = self.gtop.get_widget('filter')
+        self.filter_inv  = self.gtop.get_widget("invert")
+        self.qual_label  = self.gtop.get_widget("qual")
+        self.child_type  = self.gtop.get_widget("childtype")
+        self.spouse_tab  = self.gtop.get_widget("lab_or_list")
+        self.spouse_edit = self.gtop.get_widget("edit_sp")
+        self.spouse_del  = self.gtop.get_widget("delete_sp")
+        
+        export_menu = self.gtop.get_widget("export1")
+        import_menu = self.gtop.get_widget("import1")
+        report_menu = self.gtop.get_widget("reports_menu")
+        tools_menu  = self.gtop.get_widget("tools_menu")
 
         self.col_map = [ 5, 1, 2, 6, 7 ]
         self.col_arr = [ self.nameArrow, self.idArrow, self.genderArrow,
                          self.dateArrow, self.deathArrow]
 
-        Plugins.build_report_menu(self.gtop.get_widget("reports_menu"),self.menu_report)
-        Plugins.build_tools_menu(self.gtop.get_widget("tools_menu"),self.menu_tools)
-        Plugins.build_export_menu(self.gtop.get_widget("export1"),self.export_callback)
-        Plugins.build_import_menu(self.gtop.get_widget("import1"),self.import_callback)
+        self.toolbar.set_style(GrampsCfg.toolbar)
+
+        Plugins.build_report_menu(report_menu,self.menu_report)
+        Plugins.build_tools_menu(tools_menu,self.menu_tools)
+        Plugins.build_export_menu(export_menu,self.export_callback)
+        Plugins.build_import_menu(import_menu,self.import_callback)
     
-        self.canvas = self.gtop.get_widget("canvas1")
         self.pedigree_view = PedigreeView(self.canvas,
                                           self.modify_statusbar,
                                           self.statusbar,
@@ -170,17 +177,13 @@ class Gramps:
         self.source_view = SourceView(self.database,self.gtop,self.update_display)
         self.media_view  = MediaView(self.database,self.gtop,self.update_display)
 
-        self.cNameArrow  = self.gtop.get_widget("cNameSort")
-        self.cGenderArrow= self.gtop.get_widget("cGenderSort")
-        self.cIDArrow    = self.gtop.get_widget("cIDSort")
-        self.cDateArrow  = self.gtop.get_widget("cDateSort")
         self.person_list.set_column_visibility(5,0)
         self.person_list.set_column_visibility(6,0)
         self.person_list.set_column_visibility(7,0)
-        fw = self.gtop.get_widget('filter')
-        self.filter_list.set_menu(Filter.build_filter_menu(self.on_filter_name_changed,fw))
+        menu = Filter.build_filter_menu(self.on_filter_name_changed,self.filter_text)
+        self.filter_list.set_menu(menu)
     
-        fw.set_sensitive(0)
+        self.filter_text.set_sensitive(0)
 
         # set the window icon 
         self.topWindow.set_icon(gtk.GtkPixmap(self.topWindow,const.icon))
@@ -279,7 +282,6 @@ class Gramps:
         self.database.set_fprefix(GrampsCfg.fprefix)
         self.database.set_sprefix(GrampsCfg.sprefix)
         self.database.set_pprefix(GrampsCfg.pprefix)
-        self.child_list = self.gtop.get_widget("child_list")
         self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
         self.child_list.set_column_justification(self.c_birth_order,GTK.JUSTIFY_RIGHT)
         
@@ -540,10 +542,9 @@ class Gramps:
         self.alt2col = {}
         self.person_list.clear()
         self.notebook.set_show_tabs(GrampsCfg.usetabs)
-        clist = self.gtop.get_widget("child_list")
-        clist.set_column_visibility(self.c_details,GrampsCfg.show_detail)
-        clist.set_column_visibility(self.c_id,GrampsCfg.id_visible)
-        clist.set_column_visibility(self.c_birth_order,GrampsCfg.index_visible)
+        self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
+        self.child_list.set_column_visibility(self.c_id,GrampsCfg.id_visible)
+        self.child_list.set_column_visibility(self.c_birth_order,GrampsCfg.index_visible)
         self.apply_filter()
         self.load_family()
         self.source_view.load_sources()
@@ -1222,35 +1223,32 @@ class Gramps:
         if not self.active_person:
             return
         if len(self.active_person.getFamilyList()) > 1:
-            spouse = self.gtop.get_widget("fv_spouse").get_menu().get_active().get_data("person")
+            spouse = self.spouse_menu.get_menu().get_active().get_data("person")
         else:
-            spouse = self.gtop.get_widget("fv_spouse1").get_data("person")
+            spouse = self.spouse_text.get_data("person")
 
         if spouse:
             self.change_active_person(spouse)
             self.load_family()
 
     def on_apply_filter_clicked(self,obj):
-        invert_filter = self.gtop.get_widget("invert").get_active()
-        qualifer = self.gtop.get_widget("filter").get_text()
-        menu = self.gtop.get_widget("filter_list").get_menu()
-        class_init = menu.get_active().get_data("function")
+        invert_filter = self.filter_inv.get_active()
+        qualifer = self.filter_text.get_text()
+        class_init = self.filter_list.get_menu().get_active().get_data("function")
         self.DataFilter = class_init(qualifer)
         self.DataFilter.set_invert(invert_filter)
         self.apply_filter()
 
     def on_filter_name_changed(self,obj):
-        qlabel = self.gtop.get_widget("qual")
         filter = obj.get_data("filter")
         if obj.get_data("qual"):
-            qlabel.show()
-            qlabel.set_sensitive(1)
-            qlabel.set_text(obj.get_data("label"))
+            self.qual_label.show()
+            self.qual_label.set_sensitive(1)
+            self.qual_label.set_text(obj.get_data("label"))
             filter.show()
         else:
-            qlabel.hide()
+            self.qual_label.hide()
             filter.hide()
-        
         filter.set_sensitive(obj.get_data("qual"))
 
     def on_spouselist_changed(self,obj):
@@ -1332,7 +1330,7 @@ class Gramps:
         family_types = []
         main_family = None
 
-        self.gtop.get_widget("fv_person").set_text(GrampsCfg.nameof(self.active_person))
+        self.person_text.set_text(GrampsCfg.nameof(self.active_person))
 
         if self.active_person:
             main_family = self.active_person.getMainFamily()
@@ -1362,10 +1360,10 @@ class Gramps:
                 menuitem.connect("activate",self.on_current_type_changed)
                 menuitem.show()
                 typeMenu.append(menuitem)
-            self.gtop.get_widget("childtype").set_menu(typeMenu)
-            self.gtop.get_widget("childtype").show()
+            self.child_type.set_menu(typeMenu)
+            self.child_type.show()
         else:
-            self.gtop.get_widget("childtype").hide()
+            self.child_type.hide()
 
         self.change_parents(self.active_parents)
 
@@ -1393,35 +1391,32 @@ class Gramps:
                     if family and f == family:
                         opt_index = index
                     index = index + 1
-                self.gtop.get_widget("fv_spouse").set_menu(myMenu)
-                self.gtop.get_widget("fv_spouse").set_history(opt_index)
-                self.gtop.get_widget("lab_or_list").set_page(1)
-                self.gtop.get_widget("edit_sp").set_sensitive(1)
-                self.gtop.get_widget("delete_sp").set_sensitive(1)
+                self.spouse_menu.set_menu(myMenu)
+                self.spouse_menu.set_history(opt_index)
+                self.spouse_tab.set_page(1)
+                self.spouse_edit.set_sensitive(1)
+                self.spouse_del.set_sensitive(1)
             elif number_of_families == 1:
-                self.gtop.get_widget("lab_or_list").set_page(0)
+                self.spouse_tab.set_page(0)
                 f = self.active_person.getFamilyList()[0]
                 if self.active_person != f.getFather():
                     spouse = f.getFather()
                 else:
                     spouse = f.getMother()
                 self.active_spouse = spouse
-                fv_spouse1 = self.gtop.get_widget("fv_spouse1")
-                fv_spouse1.set_text(GrampsCfg.nameof(spouse))
-                fv_spouse1.set_data("person",spouse)
-                fv_spouse1.set_data("family",self.active_person.getFamilyList()[0])
-                self.gtop.get_widget("edit_sp").set_sensitive(1)
-                self.gtop.get_widget("delete_sp").set_sensitive(1)
+                self.spouse_text.set_text(GrampsCfg.nameof(spouse))
+                self.spouse_text.set_data("person",spouse)
+                self.spouse_text.set_data("family",self.active_person.getFamilyList()[0])
+                self.spouse_edit.set_sensitive(1)
+                self.spouse_del.set_sensitive(1)
             else:
-                self.gtop.get_widget("lab_or_list").set_page(0)
-                self.gtop.get_widget("fv_spouse1").set_text("")
-                fv_spouse1 = self.gtop.get_widget("fv_spouse1")
-                fv_spouse1.set_text("")
-                fv_spouse1.set_data("person",None)
-                fv_spouse1.set_data("family",None)
+                self.spouse_tab.set_page(0)
+                self.spouse_text.set_text("")
+                self.spouse_text.set_data("person",None)
+                self.spouse_text.set_data("family",None)
                 self.active_spouse = None
-                self.gtop.get_widget("edit_sp").set_sensitive(0)
-                self.gtop.get_widget("delete_sp").set_sensitive(0)
+                self.spouse_edit.set_sensitive(0)
+                self.spouse_del.set_sensitive(0)
 
             if number_of_families > 0:
                 if family:
@@ -1431,7 +1426,7 @@ class Gramps:
             else:
                 self.display_marriage(None)
         else:
-            fv_spouse1 = self.gtop.get_widget("fv_spouse1").set_text("")
+            self.spouse_text.set_text("")
             self.display_marriage(None)
         
     def change_parents(self,family):
@@ -1484,16 +1479,15 @@ class Gramps:
     def display_marriage(self,family):
 
         self.active_family = family
-        clist = self.gtop.get_widget("child_list")
         fv_prev = self.gtop.get_widget("fv_prev")
         
-        clist.clear()
+        self.child_list.clear()
         self.active_child = None
         
         i = 0
-        clist.set_sort_type(self.c_sort_direct)
-        clist.set_sort_column(self.c_sort_column)
-        clist.set_reorderable(self.c_sort_column == self.c_birth_order)
+        self.child_list.set_sort_type(self.c_sort_direct)
+        self.child_list.set_sort_column(self.c_sort_column)
+        self.child_list.set_reorderable(self.c_sort_column == self.c_birth_order)
 
         if family != None:
             if self.active_person.getGender() == Person.male:
@@ -1539,17 +1533,22 @@ class Gramps:
                     if len(child.getPhotoList()) > 0:
                         attr = attr + "P"
 
-                clist.append(["%2d"%(i+1),GrampsCfg.nameof(child),child.getId(),\
-                              gender,Utils.birthday(child),status,attr])
-                clist.set_row_data(i,child)
+                self.child_list.append(["%2d"%(i+1),
+                                        GrampsCfg.nameof(child),
+                                        child.getId(),
+                                        gender,
+                                        Utils.birthday(child),
+                                        status,
+                                        attr])
+                self.child_list.set_row_data(i,child)
                 i=i+1
                 if i != 0:
                     fv_prev.set_sensitive(1)
-                    clist.select_row(0,0)
+                    self.child_list.select_row(0,0)
                 else:	
                     fv_prev.set_sensitive(0)
-            clist.set_data("f",family)
-            self.sort_child_list(clist)
+            self.child_list.set_data("f",family)
+            self.sort_child_list(self.child_list)
         else:
             fv_prev.set_sensitive(0)
 		
