@@ -1874,8 +1874,6 @@ echo "${ECHO_T}no" >&6
 fi
 
 
-PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
-
 if test "$PYTHON_VERSION" != "2.2"
 then
 	# Extract the first word of "python2.2", so it can be a program name with args.
@@ -3637,11 +3635,18 @@ fi
 GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
 GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
+pygtk_require="try:
+    import pygtk
+    pygtk.require('2.0')
+except ImportError:
+    pass
+"
+
 
 echo "$as_me:$LINENO: checking Python bindings for gtk" >&5
 echo $ECHO_N "checking Python bindings for gtk... $ECHO_C" >&6
-
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gobject
     f = open("conftest.out", "w")
@@ -3652,7 +3657,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -3671,7 +3675,6 @@ echo "${ECHO_T}ok" >&6
 
 echo "$as_me:$LINENO: checking Python bindings for GNOME" >&5
 echo $ECHO_N "checking Python bindings for GNOME... $ECHO_C" >&6
-
 cat > conftest.py <<EOF
 try:
     import gnome, gnome.ui
@@ -3683,7 +3686,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-
 $PYTHON conftest.py
 has_pygnome=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -3700,8 +3702,8 @@ echo "${ECHO_T}ok" >&6
 
 echo "$as_me:$LINENO: checking Python bindings for gconf" >&5
 echo $ECHO_N "checking Python bindings for gconf... $ECHO_C" >&6
-
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gconf
     f = open("conftest.out", "w")
@@ -3712,7 +3714,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-
 $PYTHON conftest.py
 has_gconf=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -3729,8 +3730,8 @@ echo "${ECHO_T}ok" >&6
 
 echo "$as_me:$LINENO: checking Python bindings for GNOME canvas" >&5
 echo $ECHO_N "checking Python bindings for GNOME canvas... $ECHO_C" >&6
-
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gnome.canvas
     f = open("conftest.out", "w")
@@ -3741,7 +3742,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-
 $PYTHON conftest.py
 has_canvas=`cat conftest.out`
 rm -f conftest.out conftest.py
@@ -3758,8 +3758,8 @@ echo "${ECHO_T}ok" >&6
 
 echo "$as_me:$LINENO: checking Python bindin for glade" >&5
 echo $ECHO_N "checking Python bindin for glade... $ECHO_C" >&6
-
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gtk.glade
     f = open("conftest.out", "w")
@@ -3770,7 +3770,6 @@ except ImportError:
     f.write("NO")
     f.close()
 EOF
-
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py

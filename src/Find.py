@@ -35,6 +35,11 @@ import string
 # Gnome modules
 #
 #-------------------------------------------------------------------------
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gtk
 from gnome.ui import *
 

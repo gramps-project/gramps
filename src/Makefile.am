@@ -7,6 +7,7 @@ CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
 CLEANFILES = ${INTLLIBS}
 MOSTLYCLEANFILES = 
+INTLLIBS= intl22.so
 
 # What are the PYTHON scripts for this package that need to be handled?
 #
@@ -25,7 +26,6 @@ pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
 
 EXTRA_DIST = grampslib.i
 
-
 all: ${INTLLIBS} grampslib.so
 
 DIST_SOURCES = intl.c
@@ -36,8 +36,7 @@ dist_pkgdata_DATA = ${pkgdata_DATA}
 intl22.so: intl.c
 	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ intl.c
 
-grampslib.so: grampslib.i
-	$(SWIG) -python grampslib.i 
+grampslib.so: grampslib_wrap.c
 	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 

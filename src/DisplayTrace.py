@@ -32,6 +32,11 @@ import sys
 # GTK/GNOME modules
 #
 #-------------------------------------------------------------------------
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gtk.glade
 
 #-------------------------------------------------------------------------

@@ -2,7 +2,6 @@
 <paper>
   <page name="Letter" height="27.94" width="21.59"/>
   <page name="Legal" height="35.56" width="21.59"/>
-  <page name="Banana" height="42.0" width="29.7"/>
   <page name="A3" height="42.0" width="29.7"/>
   <page name="A4" height="29.7" width="21.0"/>
   <page name="A5" height="21.0" width="14.8"/>

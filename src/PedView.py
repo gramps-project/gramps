@@ -22,13 +22,27 @@ _PAD       = 3
 _CANVASPAD = 3
 _PERSON    = "p"
 
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gtk
 import gtk.gdk
 import gnome.canvas
 import pango
 
+#-------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#-------------------------------------------------------------------------
 import GrampsCfg
-
 from intl import gettext as _
 
 class DispBox:
@@ -140,10 +154,10 @@ class PedigreeView:
            as the root person of the tree."""
 
         for i in self.canvas_items:
-            i.destroy()
+            self.i.destroy()
         for i in self.boxes:
             i.cleanup()
-
+            
         if person is not self.active_person:
             del self.presel_descendants[:]
             self.active_person = person
@@ -195,7 +209,6 @@ class PedigreeView:
         xpts = self.build_x_coords(cw/xdiv,_CANVASPAD+h)
         ypts = self.build_y_coords((ch-h)/32.0, h)
 
-        self.canvas_items = []
         for family in self.active_person.getFamilyList():
             if len(family.getChildList()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,

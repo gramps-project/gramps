@@ -39,6 +39,11 @@ from intl import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+try:
+    import pygtk; pygtk.require('2.0')
+except ImportError: # not set up for parallel install
+    pass 
+
 import gobject
 import gtk
 import gnome.ui
