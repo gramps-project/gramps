@@ -47,7 +47,7 @@ import const
 import ImageSelect
 import RelImage
 
-from QuestionDialog import QuestionDialog, ErrorDialog
+from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -119,6 +119,12 @@ class MediaView:
         self.update = update
         self.list.connect('button-press-event',self.on_button_press_event)
         self.selection.connect('changed',self.on_select_row)
+        if not (RelImage.is_pil() or RelImage.is_cnv() ):
+	    WarningDialog(_("Thumbnails not available")
+                ,_("There is no suitable tool to generate thumbnails for the images. "
+                "If you would like to enable this feature, "
+                "install Python Imaging Library (PIL), available at http://www.pythonware.com/products/pil/ "
+                "or ImageMagick, available http://www.imagemagick.org/"))
 
     def goto(self,id):
         self.selection.unselect_all()
