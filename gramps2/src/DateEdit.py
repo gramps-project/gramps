@@ -160,6 +160,7 @@ class DateEdit:
         if the_date:
             self.date_obj.copy(the_date)
             self.text_obj.set_text(self.dd.display(self.date_obj))
+            self.check()
             print "The date was built as follows:", self.date_obj
         else:
             print "Cancel was pressed, date not changed."
