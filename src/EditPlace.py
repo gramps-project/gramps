@@ -50,13 +50,15 @@ import Sources
 
 _ = intl.gettext
 
+_DEFHTTP = "http://gramps.sourceforge.net"
+
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-INDEX  = "i"
-PLACE  = "p"
+_INDEX  = "i"
+_PLACE  = "p"
 
 class EditPlace:
 
@@ -134,18 +136,18 @@ class EditPlace:
             })
 
         self.top = self.top_window.get_widget("placeEditor")
-        self.top.set_data(PLACE,self)
+        self.top.set_data(_PLACE,self)
 
         if self.place.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
-        self.web_list.set_data(PLACE,self)
-        self.web_list.set_data(INDEX,-1)
+        self.web_list.set_data(_PLACE,self)
+        self.web_list.set_data(_INDEX,-1)
         self.redraw_url_list()
 
-        self.loc_list.set_data(PLACE,self)
-        self.loc_list.set_data(INDEX,-1)
+        self.loc_list.set_data(_PLACE,self)
+        self.loc_list.set_data(_INDEX,-1)
         self.redraw_location_list()
 
     #-------------------------------------------------------------------------
@@ -171,6 +173,7 @@ class EditPlace:
         else:
             self.web_url.set_sensitive(0)
             self.web_url.set_label("")
+            self.web_url.set_url(_DEFHTTP)
             self.web_description.set_text("")
 
     #---------------------------------------------------------------------
@@ -216,7 +219,7 @@ class EditPlace:
 #-----------------------------------------------------------------------------
 def on_place_apply_clicked(obj):
 
-    edit = obj.get_data(PLACE)
+    edit = obj.get_data(_PLACE)
     title = edit.title.get_text()
     city = edit.city.get_text()
     county = edit.county.get_text()
@@ -274,7 +277,7 @@ def on_place_apply_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_switch_page(obj,a,page):
-    src = obj.get_data(PLACE)
+    src = obj.get_data(_PLACE)
     if page == 3 and src.not_loaded:
         src.not_loaded = 0
         src.load_images()
@@ -285,7 +288,7 @@ def on_switch_page(obj,a,page):
 #
 #-------------------------------------------------------------------------
 def on_photo_select_icon(obj,iconNumber,event):
-    obj.get_data(PLACE).selectedIcon = iconNumber
+    obj.get_data(_PLACE).selectedIcon = iconNumber
 
 #-------------------------------------------------------------------------
 #
@@ -293,7 +296,8 @@ def on_photo_select_icon(obj,iconNumber,event):
 #
 #-------------------------------------------------------------------------
 def on_delete_photo_clicked(obj):
-    epo = obj.get_data(PLACE)
+    epo = obj.get_data(_PLACE)
+    print epo
     icon = epo.selectedIcon
 
     if icon != -1:
@@ -307,7 +311,7 @@ def on_delete_photo_clicked(obj):
 #-------------------------------------------------------------------------
 def on_add_photo_clicked(obj):
 
-    edit_place = obj.get_data(PLACE)
+    edit_place = obj.get_data(_PLACE)
     image_select = libglade.GladeXML(const.imageselFile,"imageSelect")
     edit_place.isel = image_select
 
@@ -320,7 +324,7 @@ def on_add_photo_clicked(obj):
     edit_place.fname = image_select.get_widget("fname")
     edit_place.add_image = image_select.get_widget("image")
     edit_place.external = image_select.get_widget("private")
-    image_select.get_widget("imageSelect").set_data(PLACE,edit_place)
+    image_select.get_widget("imageSelect").set_data(_PLACE,edit_place)
     image_select.get_widget("imageSelect").show()
 
 #-------------------------------------------------------------------------
@@ -329,7 +333,7 @@ def on_add_photo_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_savephoto_clicked(obj):
-    edit_place_obj = obj.get_data(PLACE)
+    edit_place_obj = obj.get_data(_PLACE)
     image_select = edit_place_obj.isel
     
     filename = image_select.get_widget("photosel").get_full_path(0)
@@ -366,7 +370,7 @@ def on_savephoto_clicked(obj):
 #-------------------------------------------------------------------------
 def on_photolist_button_press_event(obj,event):
 
-    myobj = obj.get_data(PLACE)
+    myobj = obj.get_data(_PLACE)
     icon = myobj.selectedIcon
     if icon == -1:
         return
@@ -476,7 +480,7 @@ def on_apply_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_name_changed(obj):
-    edit_person = obj.get_data(PLACE)
+    edit_person = obj.get_data(_PLACE)
     file = edit_person.fname.get_text()
     if os.path.isfile(file):
         image = RelImage.scale_image(file,const.thumbScale)
@@ -488,9 +492,9 @@ def on_name_changed(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_url_clicked(obj):
-    row = obj.get_data(INDEX)
+    row = obj.get_data(_INDEX)
     if row >= 0:
-        UrlEditor(obj.get_data(PLACE),obj.get_row_data(row))
+        UrlEditor(obj.get_data(_PLACE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -498,9 +502,9 @@ def on_update_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_loc_clicked(obj):
-    row = obj.get_data(INDEX)
+    row = obj.get_data(_INDEX)
     if row >= 0:
-        LocationEditor(obj.get_data(PLACE),obj.get_row_data(row))
+        LocationEditor(obj.get_data(_PLACE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -508,7 +512,7 @@ def on_update_loc_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_url_clicked(obj):
-    epo = obj.get_data(PLACE)
+    epo = obj.get_data(_PLACE)
     if utils.delete_selected(obj,epo.ulist):
         epo.lists_changed = 1
         epo.redraw_url_list()
@@ -519,7 +523,7 @@ def on_delete_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_loc_clicked(obj):
-    epo = obj.get_data(PLACE)
+    epo = obj.get_data(_PLACE)
     if utils.delete_selected(obj,epo.llist):
         epo.lists_changed = 1
         epo.redraw_location_list()
@@ -530,7 +534,7 @@ def on_delete_loc_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_url_clicked(obj):
-    UrlEditor(obj.get_data(PLACE),None)
+    UrlEditor(obj.get_data(_PLACE),None)
 
 #-------------------------------------------------------------------------
 #
@@ -538,7 +542,7 @@ def on_add_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_loc_clicked(obj):
-    LocationEditor(obj.get_data(PLACE),None)
+    LocationEditor(obj.get_data(_PLACE),None)
 
 #-------------------------------------------------------------------------
 #
@@ -546,7 +550,7 @@ def on_add_loc_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_source_clicked(obj):
-    epo = obj.get_data(PLACE)
+    epo = obj.get_data(_PLACE)
     Sources.SourceEditor(epo.sref,epo.db,epo.source_field)
 
 #-------------------------------------------------------------------------
@@ -614,14 +618,24 @@ def on_url_edit_ok_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_web_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
+    obj.set_data(_INDEX,row)
 
-    epo = obj.get_data(PLACE)
+    epo = obj.get_data(_PLACE)
     url = obj.get_row_data(row)
 
-    epo.web_url.set_label(url.get_path())
-    epo.web_url.set_url(url.get_path())
-    epo.web_description.set_text(url.get_description())
+    if url == None:
+        epo.web_url.set_label("")
+        epo.web_url.set_url(_DEFHTTP)
+        epo.web_url.set_sensitive(0)
+        epo.web_description.set_text("")
+    else:
+        path = url.get_path()
+        if path == "":
+            path = _DEFHTTP
+        epo.web_url.set_label(path)
+        epo.web_url.set_url(path)
+        epo.web_url.set_sensitive(1)
+        epo.web_description.set_text(url.get_description())
 
 #-------------------------------------------------------------------------
 #
@@ -631,9 +645,9 @@ def on_web_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_loc_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
+    obj.set_data(_INDEX,row)
 
-    epo = obj.get_data(PLACE)
+    epo = obj.get_data(_PLACE)
     loc = obj.get_row_data(row)
 
     epo.loc_city.set_text(loc.get_city())
