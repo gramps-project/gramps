@@ -55,7 +55,10 @@ pkgdata_PYTHON = \
 	rel_fi.py\
 	rel_fr.py\
 	rel_no.py\
-	rel_sv.py
+	rel_sv.py\
+	ImportGeneWeb.py\
+	WriteGeneWeb.py
+	
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
@@ -74,7 +77,8 @@ GLADEFILES = \
 	eval.glade\
 	leak.glade\
 	book.glade\
-	writeftree.glade
+	writeftree.glade\
+	genewebexport.glade
 
 dist_pkgdata_DATA = $(GLADEFILES)
 

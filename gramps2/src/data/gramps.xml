@@ -16,4 +16,8 @@
     <comment xml:lang="en">GRAMPS XML database</comment>
     <glob pattern="*.gramps"/>
   </mime-type>
+  <mime-type type="application/x-geneweb">
+    <comment xml:lang="en">GeneWeb source file</comment>
+    <glob pattern="*.gw"/>
+  </mime-type>
 </mime-info>
