@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -178,7 +178,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.f.write(' style:vertical-rel="paragraph-content"')
         self.f.write(' style:horizontal-pos="left"')
-        self.f.write(' style:horizontal-rel="paragraph-contnet"')
+        self.f.write(' style:horizontal-rel="paragraph-content"')
         self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
@@ -194,7 +194,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
         self.f.write(' style:vertical-rel="paragraph-content"')
         self.f.write(' style:horizontal-pos="right"')
-        self.f.write(' style:horizontal-rel="paragraph-contnet"')
+        self.f.write(' style:horizontal-rel="paragraph-content"')
         self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
@@ -252,7 +252,9 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
-        self.photo_list.append((name,act_width,act_height))
+        photo_list_item = (name,act_width,act_height)
+        if not photo_list_item in photo_list:
+            self.photo_list.append(photo_list_item)
 
         base = os.path.basename(name)
         tag = string.replace(base,'.','_')
