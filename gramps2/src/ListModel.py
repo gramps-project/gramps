@@ -65,8 +65,6 @@ class ListModel:
             if name[0] != '':
                 self.tree.append_column(column)
 
-        if self.cids[0] != -1:
-            self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
         self.connect_model()
         
         if select_func:
@@ -97,7 +95,12 @@ class ListModel:
         self.tree.set_model(self.model)
         if self.sel_iter:
             self.selection.select_iter(self.sel_iter)
-        if self.cid:
+
+        # if the sort column has not been defined (val[0] == -2), set
+        # the sort column to the first column
+        
+        val = self.model.get_sort_column_id()
+        if val[0] == -2 and self.cid:
             self.model.set_sort_column_id(self.cid[0],self.cid[1])
         self.sort()
 

@@ -2728,6 +2728,14 @@ class GrampsDB(Persistent):
             self.placeTable[val] = place.getDisplayInfo()
         return place
 
+    def sortbyplace(self,f,s):
+        return cmp(self.placeTable[f][7],self.placeTable[s][7])
+
+    def sortPlaceKeys(self):
+        keys = self.placeTable.keys()
+        keys.sort(self.sortbyplace)
+        return keys
+
     def getPlaceKeys(self):
         return self.placeTable.keys()
 
