@@ -232,7 +232,6 @@ class PluginDialog:
         key_list.reverse()
         
         prev = None
-        self.ilist = []
         for key in key_list:
             data = item_hash[key]
             node = self.store.insert_after(None,prev)

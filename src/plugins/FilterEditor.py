@@ -26,6 +26,7 @@ import gtk
 import gtk.glade
 import string
 import os
+import gobject
 
 import const
 import GenericFilter
@@ -42,6 +43,112 @@ _name2list = {
     _('Relationship type:')  : const.familyRelations,
 }
 
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MyInteger(gtk.SpinButton):
+
+    def __init__(self,min,max):
+        gtk.SpinButton.__init__(self)
+        self.set_adjustment(gtk.Adjustment(min,min,max,1))
+        self.show()
+
+    def get_text(self):
+        return str(self.get_value())
+
+    def set_text(self,val):
+        self.set_value(val)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MyFilters(gtk.Combo):
+    
+    def __init__(self,filters):
+        gtk.Combo.__init__(self)
+        
+        flist = []
+        for f in filters:
+            flist.append(f.get_name())
+        flist.sort()
+        if len(flist) == 0:
+            self.ok = 0
+            self.set_sensitive(0)
+        else:
+            self.ok = 1
+        AutoComp.AutoCombo(self,flist)
+        self.show()
+        
+    def get_text(self):
+        if self.ok:
+            return self.entry.get_text()
+        else:
+            return ""
+
+    def set_text(self,val):
+        self.entry.set_text(val)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MyPlaces(gtk.Combo):
+    
+    def __init__(self,places):
+        gtk.Combo.__init__(self)
+        
+        AutoComp.AutoCombo(self,places)
+        self.show()
+        
+    def get_text(self):
+        return self.entry.get_text()
+
+    def set_text(self,val):
+        self.entry.set_text(val)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MySelect(gtk.Combo):
+    
+    def __init__(self,list):
+        gtk.Combo.__init__(self)
+        list.sort()
+        self.set_popdown_strings(list)
+        self.set_value_in_list(1,0)
+        self.entry.set_editable(0)
+        self.show()
+        
+    def get_text(self):
+        return self.entry.get_text()
+
+    def set_text(self,val):
+        self.entry.set_text(val)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class MyEntry(gtk.Entry):
+    
+    def __init__(self):
+        gtk.Entry.__init__(self)
+        self.show()
+        
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 class FilterEditor:
     def __init__(self,filterdb,db):
         self.db = db
@@ -167,7 +274,7 @@ class FilterEditor:
         self.ok.set_sensitive(len(name) != 0)
     
     def select_row(self,obj):
-        store,iter = self.clist.get_selected()
+        store,iter = self.rlist.get_selected()
         if iter:
             self.edit_btn.set_sensitive(1)
             self.del_btn.set_sensitive(1)
@@ -206,15 +313,15 @@ class FilterEditor:
         self.top.destroy()
         
     def on_add_clicked(self,obj):
-        self.edit_rule(None)
+        self.edit_rule2(None,_('Add Rule'))
 
     def on_edit_clicked(self,obj):
         store,iter = self.rlist.get_selected()
         if iter:
             d = self.rlist.get_object(iter)
-            self.edit_rule(d)
+            self.edit_rule2(d,_('Edit Rule'))
 
-    def edit_rule(self,val):
+    def edit_rule2(self,val,label):
         self.pmap = {}
         self.add_places = []
 
@@ -222,19 +329,19 @@ class FilterEditor:
             self.pmap[p.get_title()] = p
 
         self.active_rule = val
-        self.rule = gtk.glade.XML(const.filterFile,'add_rule')
-        self.rule_top = self.rule.get_widget('add_rule')
-        self.frame = self.rule.get_widget('values')
-        self.rname = self.rule.get_widget('rule_name')
+        self.rule = gtk.glade.XML(const.filterFile,'rule_editor')
+        self.rule_top = self.rule.get_widget('rule_editor')
+        self.valuebox = self.rule.get_widget('valuebox')
+        self.rname = self.rule.get_widget('ruletree')
+        self.rule_name = self.rule.get_widget('rulename')
 
-        Utils.set_titles(self.rule_top, self.rule.get_widget('title'),
-                         _('Add rule'))
+        Utils.set_titles(self.rule_top, self.rule.get_widget('title'),label)
 
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(0)
         self.notebook.set_show_border(0)
         self.notebook.show()
-        self.frame.add(self.notebook)
+        self.valuebox.add(self.notebook)
         self.page_num = 0
         self.page = []
         self.name2page = {}
@@ -248,7 +355,10 @@ class FilterEditor:
             vallist = []
             tlist = []
             self.page.append((name,cname,vallist,tlist))
-            table = gtk.Table(2,len(arglist))
+            table = gtk.Table(3,len(arglist))
+            table.set_border_width(6)
+            table.set_col_spacings(6)
+            table.set_row_spacings(6)
             table.show()
             pos = 0
             l2 = gtk.Label(name)
@@ -266,53 +376,97 @@ class FilterEditor:
                 l.set_alignment(1,0.5)
                 l.show()
                 if v == 'Place:':
-                    t = gtk.Combo()
-                    AutoComp.AutoCombo(t,self.pmap.keys())
-                    tlist.append(t.entry)
+                    t = MyPlaces(self.pmap.keys())
+                elif v == 'Number of generations:':
+                    t = MyInteger(1,32)
                 elif v == 'Filter name:':
-                    t = gtk.Combo()
-                    flist = []
-                    for f in self.filterdb.get_filters():
-                        flist.append(f.get_name())
-                    flist.sort()
-                    AutoComp.AutoCombo(t,flist)
-                    tlist.append(t.entry)
+                    t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
-                    t = gtk.Combo()
-                    _name2list[v1].sort()
-                    t.set_popdown_strings(_name2list[v1])
-                    t.set_value_in_list(1,0)
-                    t.entry.set_editable(0)
-                    tlist.append(t.entry)
+                    t = MySelect(_name2list[v1])
                 else:
-                    t = gtk.Entry()
-                    tlist.append(t)
-                t.show()
-                table.attach(l,0,1,pos,pos+1,gtk.FILL,0,5,5)
-                table.attach(t,1,2,pos,pos+1,gtk.EXPAND|gtk.FILL,0,5,5)
+                    t = MyEntry()
+                tlist.append(t)
+                table.attach(l,1,2,pos,pos+1,gtk.FILL,0,5,5)
+                table.attach(t,2,3,pos,pos+1,gtk.EXPAND|gtk.FILL,0,5,5)
                 pos = pos + 1
             self.notebook.append_page(table,gtk.Label(name))
             self.name2page[name] = self.page_num
             self.page_num = self.page_num + 1
         self.page_num = 0
-        self.rname.disable_activate()
-        self.rname.list.clear_items(0,-1)
-        self.rname.list.append_items(list)
-        for v in map.keys():
-            self.rname.set_item_string(map[_(v)],_(v))
+        self.store = gtk.TreeStore(gobject.TYPE_STRING)
+        self.selection = self.rname.get_selection()
+        col = gtk.TreeViewColumn(_('Rule Name'),gtk.CellRendererText(),text=0)
+        self.rname.append_column(col)
+        self.rname.set_model(self.store)
 
+        prev = None
+        last_top = None
+
+        top_level = {}
+        top_node = {}
+
+        #
+        # If editing a rule, get the name so that we can select it later
+        #
+        sel_node = None
         if self.active_rule:
-            page = self.name2page[self.active_rule.name()]
-            self.rname.entry.set_text(self.active_rule.name())
+            sel_name = self.active_rule.name()
+        else:
+            sel_name = ""
+            
+        for v in map.keys():
+            filter = GenericFilter.tasks[v]([None])
+            category = filter.category()
+            if top_level.has_key(category):
+                top_level[category].append(v)
+            else:
+                top_level[category] = [v]
+                top_node[category] = self.store.insert_after(None,last_top)
+                last_top = top_node[category]
+                self.store.set(last_top,0,category)
+
+            node = self.store.insert_after(top_node[category],prev)
+            self.store.set(node,0,v)
+
+            #
+            # if this is an edit rule, save the node
+            if v == sel_name:
+                sel_node = node
+
+        if sel_node:
+            self.selection.select_iter(sel_node)
+            page = self.name2page[sel_name]
             self.notebook.set_current_page(page)
+            self.display_values(sel_name)
             (n,c,v,t) = self.page[page]
             r = self.active_rule.values()
             for i in range(0,len(t)):
                 t[i].set_text(r[i])
-
-        self.rname.entry.connect('changed',self.rule_changed)
+            
+        self.selection.connect('changed', self.on_node_selected)
         self.rule.get_widget('ok').connect('clicked',self.rule_ok)
         self.rule.get_widget('cancel').connect('clicked',self.rule_cancel)
+
+    def on_node_selected(self,obj):
+        """Updates the informational display on the right hand side of
+        the dialog box with the description of the selected report"""
+
+        store,iter = self.selection.get_selected()
+        if iter:
+            try:
+                key = store.get_value(iter,0)
+                self.display_values(key)
+            except:
+                self.valuebox.set_sensitive(0)
+                self.rule_name.set_text(_('No rule selected'))
+
+    def display_values(self,key):
+        page = self.name2page[key]
+        self.notebook.set_current_page(page)
+        self.valuebox.set_sensitive(1)
+        self.rule_name.set_text(key)
+        filter = GenericFilter.tasks[key]([None])
+        self.rule.get_widget('description').set_text(filter.description())
 
     def on_delete_clicked(self,obj):
         store,iter = self.rlist.get_selected()
@@ -321,28 +475,24 @@ class FilterEditor:
             self.filter.delete_rule(filter)
             self.draw_rules()
 
-    def rule_changed(self,obj):
+    def rule_ok(self,obj):
+        name = self.rule_name.get_text()
         try:
-            page = self.name2page[obj.get_text()]
-            self.notebook.set_current_page(page)
+            page = self.name2page[name]
+            (n,c,v,t) = self.page[page]
+            value_list = []
+            for x in t:
+                value_list.append(x.get_text())
+            new_rule = c(value_list)
+            store,iter = self.rlist.get_selected()
+            if iter:
+                rule = self.rlist.get_object(iter)
+                self.filter.delete_rule(rule)
+            self.filter.add_rule(new_rule)
+            self.draw_rules()
+            self.rule_top.destroy()
         except:
             pass
-
-    def rule_ok(self,obj):
-        name = self.rname.entry.get_text()
-        page = self.name2page[name]
-        (n,c,v,t) = self.page[page]
-        value_list = []
-        for x in t:
-            value_list.append(x.get_text())
-        new_rule = c(value_list)
-        store,iter = self.rlist.get_selected()
-        if iter:
-            rule = self.rlist.get_object(iter)
-            self.filter.delete_rule(rule)
-        self.filter.add_rule(new_rule)
-        self.draw_rules()
-        self.rule_top.destroy()
                                
     def rule_cancel(self,obj):
         self.rule_top.destroy()
@@ -356,9 +506,7 @@ class ShowResults:
         Utils.set_titles(self.top, self.glade.get_widget('title'),
                          _('Filter Test'))
         
-        self.glade.signal_autoconnect({
-            'on_close_clicked' : self.close,
-            })
+        self.glade.signal_autoconnect({'on_close_clicked' : self.close})
 
         n = ""
         for p in plist:
@@ -368,7 +516,7 @@ class ShowResults:
             
     def close(self,obj):
         self.top.destroy()
-        
+
 #-------------------------------------------------------------------------
 #
 #
