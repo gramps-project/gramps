@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -471,6 +471,7 @@ class Marriage:
         return changed
 
     def cancel_callback(self):
+        self.gallery.close(0)
         Utils.destroy_passed_object(self.quit)
 
     def on_cancel_edit(self,obj):
@@ -484,7 +485,8 @@ class Marriage:
                        self.cancel_callback,
                        self.save)
         else:
-            Utils.destroy_passed_object(obj)
+            self.gallery.close(0)
+	    Utils.destroy_passed_object(obj)
 
     def on_delete_event(self,obj,b):
         self.on_cancel_edit(obj)
@@ -575,6 +577,7 @@ class Marriage:
                 ord.setPlace(place)
                 Utils.modified()
 
+        self.gallery.close(1)
         Utils.destroy_passed_object(self.get_widget("marriageEditor"))
 
         if self.lists_changed:
