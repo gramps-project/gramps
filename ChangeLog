@@ -1,6 +1,8 @@
 2004-08-22  Tim Waugh  <twaugh@redhat.com>
 	* src/WriteXML.py (write_xml_data): Fixed typo causing XML export to
 	omit all place definitions.
+	(XmlWriter.write_xml_data): Sort person handles before writing.
+
 	* src/RelLib.py (probably_alive): Fixed typo (bug #1012347).
 
 2004-08-21  Alex Roitman  <shura@alex.neuro.umn.edu>
