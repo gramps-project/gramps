@@ -562,8 +562,10 @@ class GrampsParser:
         if use_trans:
             self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
         else:
-            self.db.run_person_rebuild_callbacks()
-            self.db.run_family_rebuild_callbacks()
+            self.db.emit('person-rebuild')
+            self.db.emit('family-rebuild')
+            self.db.emit('place-rebuild')
+            self.db.emit('source-rebuild')
 
     def start_lds_ord(self,attrs):
         atype = attrs['type']

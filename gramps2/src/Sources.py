@@ -432,7 +432,7 @@ class SourceEditor:
         self.sourceDisplay.show()
 
     def rebuild_menu(self,handle_list):
-        self.build_source_menu()
+        self.build_source_menu(handle_list[0])
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -510,9 +510,12 @@ class SourceEditor:
             self.author_field.set_text("")
             self.pub_field.set_text("")
         self.active_source = sel
-        self.build_source_menu()
+        if sel:
+            self.build_source_menu(sel.get_handle())
+        else:
+            self.build_source_menu(None)
 
-    def build_source_menu(self):
+    def build_source_menu(self,selected_handle):
         keys = self.db.get_source_handles()
         keys.sort(self.db._sortbysource)
 
@@ -526,10 +529,9 @@ class SourceEditor:
             src = self.db.get_source_from_handle(src_id)
             title = src.get_title()
             gid = src.get_gramps_id()
-            handle = src.get_handle()
             store.append(row=["%s [%s]" % (title,gid)])
-            self.handle_list.append(handle)
-            if self.active_source and self.active_source.get_handle() == src_id:
+            self.handle_list.append(src_id)
+            if selected_handle == src_id:
                 sel_index = index
             index += 1
         self.title_menu.set_model(store)

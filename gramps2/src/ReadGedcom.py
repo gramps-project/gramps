@@ -87,6 +87,12 @@ rel_types = (RelLib.Person.CHILD_REL_BIRTH,
              RelLib.Person.CHILD_REL_UNKWN,
              RelLib.Person.CHILD_REL_NONE)
 
+pedi_type = {
+    'birth'  : RelLib.Person.CHILD_REL_BIRTH,
+    'adopted': RelLib.Person.CHILD_REL_ADOPT,
+    'foster' : RelLib.Person.CHILD_REL_FOST,
+    }
+
 #-------------------------------------------------------------------------
 #
 # GEDCOM events to GRAMPS events conversion
@@ -492,8 +498,10 @@ class GedcomParser:
         if use_trans:
             self.db.transaction_commit(self.trans,_("GEDCOM import"))
         else:
-            self.db.run_person_rebuild_callbacks()
-            self.db.run_family_rebuild_callbacks()
+            self.db.emit('person-rebuild')
+            self.db.emit('family-rebuild')
+            self.db.emit('place-rebuild')
+            self.db.emit('source-rebuild')
         
         if self.window:
             self.infomsg("\n%s" % msg)
@@ -819,6 +827,8 @@ class GedcomParser:
 
                 for f in child.get_parent_family_handle_list():
                     if f[0] == self.family.get_handle():
+                        child.change_parent_family_handle(self.family.get_handle(),
+                                                          mrel, frel)
                         break
                 else:
                     if mrel in rel_types and frel in reltypes:
@@ -826,8 +836,7 @@ class GedcomParser:
                     else:
                         if child.get_main_parents_family_handle() == self.family:
                             child.set_main_parent_family_handle(None)
-                    child.add_parent_family_handle(self.family.get_handle(),mrel,frel)
-                    self.db.commit_person(child, self.trans)
+                self.db.commit_person(child, self.trans)
             elif matches[1] == "NCHI":
                 a = RelLib.Attribute()
                 a.set_type("Number of Children")
@@ -974,10 +983,9 @@ class GedcomParser:
                         break
                 else:
                     if ftype in rel_types:
-                        if self.person.get_main_parents_family_handle() == None:
-                            self.person.set_main_parent_family_handle(handle)
-                        else:
-                            self.person.add_parent_family_handle(handle,RelLib.Person.CHILD_REL_UNKWN,RelLib.Person.CHILD_REL_UNKWN)
+                        self.person.add_parent_family_handle(handle,
+                                                             RelLib.Person.CHILD_REL_BIRTH,
+                                                             RelLib.Person.CHILD_REL_BIRTH)
                     else:
                         if self.person.get_main_parents_family_handle() == handle:
                             self.person.set_main_parent_family_handle(None)
@@ -1098,16 +1106,16 @@ class GedcomParser:
         return None
         
     def parse_famc_type(self,level):
-        ftype = ""
+        ftype = RelLib.Person.CHILD_REL_BIRTH
         note = ""
         while 1:
             matches = self.get_next()
 
             if int(matches[0]) < level:
                 self.backup()
-                return (ftype.capitalize(),note)
+                return (ftype,note)
             elif matches[1] == "PEDI":
-                ftype = matches[2]
+                ftype = pedi_type.get(matches[2],RelLib.Person.UNKNOWN)
             elif matches[1] == "SOUR":
                 source_ref = self.handle_source(matches,level+1)
                 self.person.get_primary_name().add_source_reference(source_ref)

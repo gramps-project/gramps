@@ -1,4 +1,9 @@
 2005-04-02  Don Allingham  <don@gramps-project.org>
+	* src/ReadGedcom.py: emit proper signals to notify of a database 
+	rebuild, handle parent/child relationships better - eliminate
+	string types
+	* src/ReadXML.py: emit proper signals to notify of a database rebuild
+	* src/Sources.py: select just added handle after an addition
 	* src/SourceView.py: fix multiple selection problem.
 
 2005-04-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
