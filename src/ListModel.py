@@ -25,29 +25,7 @@ class ListModel:
     def __init__(self,tree,dlist):
         self.tree = tree
         l = len(dlist)
-        if l == 1:
-            self.model = gtk.ListStore(TYPE_STRING)
-        elif l == 2:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING)
-        elif l == 3:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING, TYPE_STRING)
-        elif l == 4:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING)
-        elif l == 5:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING, TYPE_STRING)
-        elif l == 6:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING, TYPE_STRING, TYPE_STRING)
-        elif l == 7:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING)
-        elif l == 8:
-            self.model = gtk.ListStore(TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING, TYPE_STRING, TYPE_STRING,
-                                       TYPE_STRING, TYPE_STRING)
+        self.model = gtk.ListStore(*[TYPE_STRING]*l)
 
         self.selection = self.tree.get_selection()
         self.tree.set_model(self.model)

@@ -1426,7 +1426,6 @@ def disp_url(url):
 #
 #-------------------------------------------------------------------------
 def disp_attr(attr):
-    detail = Utils.get_detail_flags(attr)
     return [const.display_pattr(attr.getType()),attr.getValue()]
 
 #-------------------------------------------------------------------------
@@ -1444,7 +1443,6 @@ def disp_addr(addr):
 #
 #-------------------------------------------------------------------------
 def disp_event(event):
-    attr = Utils.get_detail_flags(event)
     return [const.display_pevent(event.getName()),event.getDescription(),
             event.getQuoteDate(),event.getPlaceName()]
 

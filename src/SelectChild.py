@@ -121,21 +121,21 @@ class SelectChild:
         bday = self.person.getBirth().getDateObj()
         dday = self.person.getDeath().getDateObj()
 
-        slist = []
+        slist = {}
         for f in self.person.getParentList():
             if f:
                 if f[0].getFather():
-                    slist.append(f[0].getFather())
+                    slist[f[0].getFather().getId()] = 1
                 elif f[0].getMother():
-                    slist.append(f[0].getMother())
+                    slist[f[0].getMother().getId()] = 1
                 for c in f[0].getChildList():
-                    slist.append(c)
+                    slist[c.getId()] = 1
             
         person_list = []
         for key in self.db.getPersonKeys():
             person = self.db.getPerson(key)
             if filter:
-                if person in slist or person.getMainParents():
+                if slist.has_key(key) or person.getMainParents():
                     continue
             
                 pdday = person.getDeath().getDateObj()
@@ -167,10 +167,10 @@ class SelectChild:
                         if pdday.getLowYear() > dday.getHighYear() + 150:
                             continue
         
-            person_list.append(person)
+            person_list.append(person.getId())
 
-        for person in person_list:
-            dinfo = self.db.getPersonDisplay(id)
+        for idval in person_list:
+            dinfo = self.db.getPersonDisplay(idval)
             rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
             self.refmodel.add(rdata)
 

@@ -62,6 +62,7 @@ from intl import gettext as _
 
 _IMAGEX = 140
 _IMAGEY = 150
+_PAD = 5
 
 #-------------------------------------------------------------------------
 #
@@ -77,9 +78,12 @@ class ImageSelect:
         self.path        = path;
         self.db          = db
         self.dataobj     = None
-        self.parent      =  parent
-        self.canvas_list = []
-        
+        self.parent      = parent
+        self.canvas_list = {}
+        self.item_map = {}
+        self.item_map = {}
+        self.p_map = {}
+
     def add_thumbnail(self, photo):
         "should be overrridden"
         pass
@@ -189,6 +193,13 @@ class ImageSelect:
         """Save the photo in the dataobj object - must be overridden"""
     	pass
 
+_drag_targets = [
+    ('STRING', 0, 0),
+    ('text/plain',0,0),
+    ('text/uri-list',0,2),
+    ('application/x-rootwin-drop',0,1)]
+
+
 #-------------------------------------------------------------------------
 #
 # Gallery class - This class handles all the logic underlying a
@@ -200,22 +211,15 @@ class Gallery(ImageSelect):
     def __init__(self, dataobj, path, icon_list, db, parent):
         ImageSelect.__init__(self, path, db, parent)
 
-        t = [
-            ('STRING', 0, 0),
-            ('text/plain',0,0),
-            ('text/uri-list',0,2),
-            ('application/x-rootwin-drop',0,1)]
-
         if path:
-            icon_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, t,
+            icon_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, _drag_targets,
                                     gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+            icon_list.connect('event',self.item_event)
             icon_list.connect("drag_data_received",
                               self.on_photolist_drag_data_received)
-            icon_list.drag_source_set(gtk.gdk.BUTTON1_MASK|gtk.gdk.BUTTON3_MASK,t,
-                                      gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
             icon_list.connect("drag_data_get",
                               self.on_photolist_drag_data_get)
-        
+
         # Remember arguments
         self.path      = path;
         self.dataobj   = dataobj;
@@ -226,24 +230,60 @@ class Gallery(ImageSelect):
         self.selectedIcon = -1
         self.x = 0
         self.y = 0
+        self.remember_x = -1
+        self.remember_y = -1
+        self.button = None
+        self.drag_item = None
+        self.sel = None
+        self.photo = None
+
+    def on_canvas1_event(self,obj,event):
+        """Handle resize events over the canvas, redrawing if the size changes"""
 
     def item_event(self, widget, event=None):
 
+        if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
+            if widget.drag_check_threshold(self.remember_x,self.remember_y,event.x,event.y):
+                self.drag_item = widget.get_item_at(self.remember_x,self.remember_y)
+                if self.drag_item:
+                    context = widget.drag_begin(_drag_targets,
+                                                gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
+                                                self.button, event)
+            return gtk.TRUE
         photo = widget.get_data('obj')
+        
         if event.type == gtk.gdk.BUTTON_PRESS:
             if event.button == 1:
                 # Remember starting position.
+
+                item = widget.get_item_at(event.x,event.y)
+                if item:
+                    (i,t,b,self.photo) = self.p_map[item]
+                    style = self.iconlist.get_style()
+                    t.set(fill_color_gdk=style.fg[gtk.STATE_SELECTED])
+                    b.set(fill_color_gdk=style.bg[gtk.STATE_SELECTED])
+                    if self.sel:
+                        (i,t,b,photo) = self.p_map[self.sel]
+                        t.set(fill_color_gdk=style.fg[gtk.STATE_NORMAL])
+                        b.set(fill_color_gdk=style.bg[gtk.STATE_NORMAL])
+                        
+                    self.sel = item
+
                 self.remember_x = event.x
                 self.remember_y = event.y
+                self.button = event.button
                 return gtk.TRUE
 
             elif event.button == 3:
-                self.show_popup(photo)
+                item = widget.get_item_at(event.x,event.y)
+                if item:
+                    (i,t,b,self.photo) = self.p_map[item]
+                    self.show_popup(self.photo)
                 return gtk.TRUE
-
+        elif event.type == gtk.gdk.BUTTON_RELEASE:
+            self.button = 0
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             #Change the item's color.
-            print photo,self.path,self
             LocalMediaProperties(photo,self.path,self)
             return gtk.TRUE
 
@@ -258,13 +298,8 @@ class Gallery(ImageSelect):
 
                 return gtk.TRUE
             
-        elif event.type == gtk.gdk.ENTER_NOTIFY:
-            # Make the outline wide.
-            return gtk.TRUE
-
-        elif event.type == gtk.gdk.LEAVE_NOTIFY:
-            # Make the outline thin.
-            return gtk.TRUE
+        if event.type == gtk.gdk.EXPOSE:
+            self.load_images()
 
         return gtk.FALSE
 
@@ -279,58 +314,79 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
         object = photo.getReference()
-        name = Utils.thumb_path(self.db.getSavePath(),object)
-        description = object.getDescription()
-        if len(description) > 20:
-            description = "%s..." % description[0:20]
-
-        image = gtk.gdk.pixbuf_new_from_file(name)
-        x = image.get_width()
-        y = image.get_height()
-
-        grp = self.root.add(gnome.canvas.CanvasGroup,x=self.cx,y=self.cy)
-        grp.connect('event',self.item_event)
-        grp.set_data('obj',photo)
-
-        xloc = (_IMAGEX-x)/2
-        yloc = (_IMAGEX-y)/2
-
-        item = grp.add(gnome.canvas.CanvasPixbuf,
-                       pixbuf=image,
-                       x=xloc,
-                       y=yloc)
-        text = grp.add(gnome.canvas.CanvasText,
-                       x=_IMAGEX/2,
-                       y=_IMAGEX,
-                       anchor=gtk.ANCHOR_CENTER,
-                       text=description)
+        oid = object.getId()
         
-        self.cx = 10 + _IMAGEX + self.cx
-        if self.cx + 10 + _IMAGEX > self.x:
-            self.cx = 10
-            self.cy = self.cy + 10 + _IMAGEY
+        if self.canvas_list.has_key(oid):
+            (grp,item,text,bg,x,y) = self.canvas_list[oid]
+            if x != self.cx or y != self.cy:
+                grp.move(self.cx-x,self.cy-y)
+        else:
+            name = Utils.thumb_path(self.db.getSavePath(),object)
+            description = object.getDescription()
+            if len(description) > 20:
+                description = "%s..." % description[0:20]
+
+            image = gtk.gdk.pixbuf_new_from_file(name)
+            x = image.get_width()
+            y = image.get_height()
+
+            grp = self.root.add(gnome.canvas.CanvasGroup,x=self.cx,y=self.cy)
+
+            xloc = (_IMAGEX-x)/2
+            yloc = (_IMAGEY-y)/2
+
+            bg = grp.add(gnome.canvas.CanvasRect,
+                         x1=0,
+                         x2=_IMAGEX,
+                         y2=_IMAGEY,
+                         y1=_IMAGEY-20)
+            
+            item = grp.add(gnome.canvas.CanvasPixbuf,
+                           pixbuf=image,
+                           x=xloc,
+                           y=yloc)
+            
+            text = grp.add(gnome.canvas.CanvasText,
+                           x=_IMAGEX/2,
+                           y=_IMAGEX,
+                           anchor=gtk.ANCHOR_CENTER,
+                           text=description)
+
+
+            self.item_map[item] = oid
+            self.item_map[text] = oid
+            self.item_map[grp] = oid
+            self.item_map[bg] = oid
+            
+            self.p_map[item] = (item,text,bg,photo)
+            self.p_map[text] = (item,text,bg,photo)
+            self.p_map[grp] = (item,text,bg,photo)
+            self.p_map[bg] = (item,text,bg,photo)
                             
-        item.show()
-        text.show()
-        self.canvas_list.append(grp)
-        self.canvas_list.append(item)
-        self.canvas_list.append(text)
+            item.show()
+            text.show()
+            bg.show()
+            
+        self.canvas_list[oid] = (grp,item,text,bg,self.cx,self.cy)
+
+        if self.cx + _PAD + _IMAGEX > self.x:
+            self.cx = _PAD
+            self.cy = self.cy + _PAD + _IMAGEY
+        else:
+            self.cx = _PAD + self.cx + _IMAGEX
         
     def load_images(self):
         """clears the currentImages list to free up any cached 
         Imlibs.  Then add each photo in the place's list of photos to the 
         photolist window."""
 
-        for item in self.canvas_list:
-            item.destroy()
-
         self.pos = 0
-        self.cx = 10
-        self.cy = 10
+        self.cx = _PAD
+        self.cy = _PAD
         
         (self.x,self.y) = self.iconlist.get_size()
 
-        self.max = (self.x)/(_IMAGEX+10)
+        self.max = (self.x)/(_IMAGEX+_PAD)
 
         for photo in self.dataobj.getPhotoList():
             self.add_thumbnail(photo)
@@ -345,13 +401,12 @@ class Gallery(ImageSelect):
         self.selectedIcon = iconNumber
 
     def get_index(self,obj,x,y):
-        x_offset = x/(_IMAGEX+10)
-        y_offset = y/(_IMAGEY+10)
-        index = (y_offset*self.max)+x_offset
+        x_offset = x/(_IMAGEX+_PAD)
+        y_offset = y/(_IMAGEY+_PAD)
+        index = (y_offset*(1+self.max))+x_offset
         return min(index,len(self.dataobj.getPhotoList()))
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
-        print "receive",w
 	if data and data.format == 8:
             icon_index = self.get_index(w,x,y)
             d = string.strip(string.replace(data.data,'\0',' '))
@@ -441,20 +496,14 @@ class Gallery(ImageSelect):
                     if GrampsCfg.globalprop:
                         LocalMediaProperties(oref,self.path,self)
                     Utils.modified()
-            #w.drag_finish(context, 1, 0, time)
-	else:
-            pass
-            #w.drag_finish(context, 0, 0, time)
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
-        print "drag data get",w
         if info == 1:
             return
-        if self.selectedIcon != -1:
-            ref = self.dataobj.getPhotoList()[self.selectedIcon]
-            id = ref.getReference().getId()
-            selection_data.set(selection_data.target, 8, id)	
-
+        id = self.item_map[self.drag_item]
+        selection_data.set(selection_data.target, 8, id)
+        self.drag_item = None
+        
     def on_add_photo_clicked(self, obj):
         """User wants to add a new photo.  Create a dialog to find out
         which photo they want."""
@@ -479,7 +528,6 @@ class Gallery(ImageSelect):
     def show_popup(self, photo):
         """Look for right-clicks on a picture and create a popup
         menu of the available actions."""
-
         
         menu = gtk.Menu()
         item = gtk.TearoffMenuItem()
