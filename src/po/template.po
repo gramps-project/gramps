@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Tue Feb  3 21:41:23 2004\n"
+"POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1584,19 +1584,6 @@ msgstr ""
 msgid "Relationship loop detected"
 msgstr ""
 
-#: ReorderIds.py:125 plugins/ReorderIds.py:129
-msgid "Reorder gramps IDs"
-msgstr ""
-
-#: ReorderIds.py:126 plugins/ChangeTypes.py:106 plugins/Check.py:373
-#: plugins/Merge.py:554 plugins/PatchNames.py:209 plugins/ReorderIds.py:130
-msgid "Database Processing"
-msgstr ""
-
-#: ReorderIds.py:127 plugins/ReorderIds.py:131
-msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr ""
-
 #: Report.py:77
 msgid "Default Template"
 msgstr ""
@@ -2769,10 +2756,6 @@ msgstr ""
 
 #: docgen/KwordDoc.py:499
 msgid "KWord"
-msgstr ""
-
-#: docgen/LPRDoc.py:230
-msgid "LPR"
 msgstr ""
 
 #: docgen/LaTeXDoc.py:429
@@ -4619,6 +4602,11 @@ msgstr ""
 msgid "Rename personal event types"
 msgstr ""
 
+#: plugins/ChangeTypes.py:106 plugins/Check.py:373 plugins/Merge.py:554
+#: plugins/PatchNames.py:209 plugins/ReorderIds.py:130
+msgid "Database Processing"
+msgstr ""
+
 #: plugins/ChangeTypes.py:107
 msgid "Allows all the events of a certain name to be renamed to a new name"
 msgstr ""
@@ -4786,7 +4774,7 @@ msgstr ""
 msgid "Generates a graph of descendants of the active person"
 msgstr ""
 
-#: plugins/DesGraph.py:588 plugins/FanChart.py:463 plugins/Partition.py:222
+#: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
 msgstr ""
 
@@ -6005,21 +5993,6 @@ msgstr ""
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr ""
 
-#: plugins/Partition.py:221
-msgid "Partitions"
-msgstr ""
-
-#: plugins/Partition.py:223
-msgid "Export"
-msgstr ""
-
-#: plugins/Partition.py:224
-msgid ""
-"This program partitions individuals in a database into disjoint partitions.\n"
-"A partition is composed of people related by one or more multiple relations.\n"
-"There should be no known relationship between people in different partitions."
-msgstr ""
-
 #: plugins/PatchNames.py:103
 msgid "No modifications made"
 msgstr ""
@@ -6190,6 +6163,14 @@ msgstr ""
 
 #: plugins/RelGraph.py:251
 msgid "When no birth, marriage, or death date is available, the correspondent place field (or cause field when blank) will be used."
+msgstr ""
+
+#: plugins/ReorderIds.py:129
+msgid "Reorder gramps IDs"
+msgstr ""
+
+#: plugins/ReorderIds.py:131
+msgid "Reorders the gramps IDs according to gramps' default rules."
 msgstr ""
 
 #: plugins/SimpleBookTitle.py:128
