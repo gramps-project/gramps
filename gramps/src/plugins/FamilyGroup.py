@@ -411,7 +411,7 @@ def report(database,person):
     para = ParagraphStyle()
     para.set_font(font)
     styles.add_style('ParentName',para)
-    style_sheet_list = StyleSheetList("family_group",styles)
+    style_sheet_list = StyleSheetList("family_group.xml",styles)
     build_menu(None)
 
     frame = topDialog.get_widget("spouse")
@@ -468,12 +468,14 @@ def build_menu(object):
 #------------------------------------------------------------------------
 def option_switch(obj):
     val = obj.get_data("paper")
+    st = obj.get_data("styles")
     notebook = topDialog.get_widget("option_notebook")
     
     if val == 1:
         notebook.set_page(0)
     else:
         notebook.set_page(1)
+    topDialog.get_widget("style_frame").set_sensitive(st)
     
 #------------------------------------------------------------------------
 #
