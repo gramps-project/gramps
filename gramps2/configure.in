@@ -282,6 +282,5 @@ doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
 example/Makefile
 example/gramps/Makefile
-omf-install/Makefile
 gramps.spec
 gramps.sh])

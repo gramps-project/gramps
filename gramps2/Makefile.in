@@ -110,7 +110,7 @@ pkgpythondir = @pkgpythondir@
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-SUBDIRS = src doc omf-install example
+SUBDIRS = src doc example
 
 EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 
