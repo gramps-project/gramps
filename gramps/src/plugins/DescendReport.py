@@ -131,7 +131,7 @@ class DescendantReport:
 #------------------------------------------------------------------------
 class DescendantReportDialog(TextReportDialog):
     def __init__(self,person,database):
-        ReportDialog.__init__(self,database,person)
+        TextReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #

@@ -657,7 +657,7 @@ class ReportDialog:
 #
 #------------------------------------------------------------------------
 class TextReportDialog(ReportDialog):
-    def __init__(self,database,person,filename):
+    def __init__(self,database,person,filename="basicreport.glade"):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
@@ -715,11 +715,11 @@ class TextReportDialog(ReportDialog):
 #
 #------------------------------------------------------------------------
 class DrawReportDialog(ReportDialog):
-    def __init__(self,database,person,filename):
+    def __init__(self,database,person,filename="basicreport.glade"):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
-        ReportDialog.__init__self,database,person,filename()
+        ReportDialog.__init__(self,database,person,filename)
 
     #------------------------------------------------------------------------
     #

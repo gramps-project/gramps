@@ -246,7 +246,7 @@ class AncestorChart:
 #------------------------------------------------------------------------
 class AncestorChartDialog(DrawReportDialog):
     def __init__(self,database,person):
-        ReportDialog.__init__(self,database,person)
+        DrawReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #
