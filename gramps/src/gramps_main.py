@@ -273,7 +273,7 @@ def redraw_child_list(filter):
         if filter and person.getMainFamily() != None:
             continue
         addChildList.append([utils.phonebook_name(person),birthday(person),\
-                             str(person.getId())])
+                             person.getId()])
         addChildList.set_row_data(index,person)
         index = index + 1
         
@@ -1258,7 +1258,7 @@ def modify_statusbar():
     else:
         pname = Config.nameof(active_person)
         if Config.status_bar == 1:
-            name = "[%s] %s" % (str(active_person.getId()),pname)
+            name = "[%s] %s" % (active_person.getId(),pname)
         elif Config.status_bar == 2:
             name = pname
             for attr in active_person.getAttributeList():
@@ -1859,7 +1859,7 @@ def display_marriage(family):
                 if len(child.getPhotoList()) > 0:
                     attr = attr + "P"
 
-            clist.append([Config.nameof(child),str(child.getId()),\
+            clist.append([Config.nameof(child),child.getId(),\
                           gender,birthday(child),status,attr])
             clist.set_row_data(i,child)
             i=i+1
@@ -2011,7 +2011,7 @@ def apply_filter():
                 gender = const.female
             bday = person.getBirth().getQuoteDate()
             dday = person.getDeath().getQuoteDate()
-            clistadd([gname(name,alt),str(person.getId()), gender,bday, dday],\
+            clistadd([gname(name,alt),person.getId(), gender,bday, dday],\
                      person)
         i = i + 1
 

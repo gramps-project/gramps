@@ -177,7 +177,7 @@ class IndividualPage:
         self.doc.start_paragraph("Data")
         if person:
             if person in self.list:
-                self.doc.start_link("i%s.html" % str(person.getId()))
+                self.doc.start_link("i%s.html" % person.getId())
             self.doc.write_text(person.getPrimaryName().getRegularName())
             if person in self.list:
                 self.doc.end_link()
@@ -215,7 +215,7 @@ class IndividualPage:
     #
     #--------------------------------------------------------------------
     def create_page(self):
-        filebase = "i%d.html" % (self.person.getId())
+        filebase = "i%s.html" % self.person.getId()
         self.doc.open("%s%s%s" % (self.dir,os.sep,filebase))
 
         photo_list = self.person.getPhotoList()
@@ -378,7 +378,7 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
-                self.doc.start_link("i%s.html" % str(spouse.getId()))
+                self.doc.start_link("i%s.html" % spouse.getId())
                 self.doc.write_text(spouse.getPrimaryName().getRegularName())
                 self.doc.end_link()
             else:
@@ -410,7 +410,7 @@ class IndividualPage:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    self.doc.start_link("i%s.html" % str(child.getId()))
+                    self.doc.start_link("i%s.html" % child.getId())
                     self.doc.write_text(child.getPrimaryName().getRegularName())
                     self.doc.end_link()
                 self.doc.end_paragraph()
@@ -760,8 +760,7 @@ def dump_index(person_list,styles,template,html_dir):
     person_list.sort(sort.by_last_name)
     for person in person_list:
         name = person.getPrimaryName().getName()
-        id = person.getId()
-        doc.start_link("i%s.html" % str(person.getId()))
+        doc.start_link("i%s.html" % person.getId())
         doc.write_text(name)
         doc.end_link()
         doc.newline()

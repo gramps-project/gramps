@@ -101,7 +101,7 @@ class EditSource:
         self.top = self.top_window.get_widget("sourceEditor")
         self.top.set_data(SOURCE,self)
 
-        if self.source.getId() == -1:
+        if self.source.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -242,7 +242,7 @@ def on_savephoto_clicked(obj):
     if os.path.exists(filename) == 0:
         return
 
-    prefix = "s" + str(edit_source_obj.source.getId())
+    prefix = "s%s" % edit_source_obj.source.getId()
     if edit_source_obj.external.get_active() == 1:
         if os.path.isfile(filename):
             name = filename
@@ -313,7 +313,7 @@ def on_convert_to_private(obj):
     edit_source_obj = obj.get_data("m")
     photo = edit_source_obj.source.getPhotoList()[edit_source_obj.selectedIcon]
 
-    prefix = "i" + str(edit_source_obj.source.getId())
+    prefix = "i%s" % edit_source_obj.source.getId()
     name = RelImage.import_photo(photo.getPath(),edit_source_obj.path,prefix)
 
     photo.setPath(name)
