@@ -299,9 +299,11 @@ def _make_default_style(default_style):
 #
 #------------------------------------------------------------------------
 class FanChartDialog(Report.DrawReportDialog):
+
+    report_options = {}
     
     def __init__(self,database,person):
-        Report.DrawReportDialog.__init__(self,database,person)
+        Report.DrawReportDialog.__init__(self,database,person,self.report_options)
 
     def get_title(self):
         """The window title for this dialog"""
@@ -381,9 +383,7 @@ class FanChartBareDialog(Report.BareReportDialog):
         self.style_name = stl
 
         Report.BareReportDialog.__init__(self,database,self.person)
-
         self.new_person = None
-        
         self.window.run()
 
     #------------------------------------------------------------------------
