@@ -66,6 +66,7 @@ class EventEditor:
         self.callback = cb
         self.plist = []
         self.pmap = {}
+        self.elist = list
         
         for key in self.parent.db.getPlaceKeys():
             p = self.parent.db.getPlaceDisplay(key)
@@ -156,9 +157,6 @@ class EventEditor:
                 self.place_field.set_text(def_placename)
         self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
 
-#        if not read_only:
-#            self.name_field.select_region(0, -1)
-
         self.top.signal_autoconnect({
             "on_add_src_clicked" : self.add_source,
             "on_del_src_clicked" : self.del_source,
@@ -233,6 +231,13 @@ class EventEditor:
         enote = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
         edesc = self.descr_field.get_text()
         epriv = self.priv.get_active()
+
+        if not ename in self.elist:
+            WarningDialog(_('New event type created'),
+                          _('The "%s" event type has been added to this database.\n'
+                            'It will now appear in the event menus for this database') % ename)
+            self.elist.append(ename)
+            self.elist.sort()
 
         if self.event == None:
             self.event = RelLib.Event()

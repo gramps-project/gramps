@@ -46,6 +46,7 @@ import Utils
 import Sources
 import AutoComp
 import RelLib
+from QuestionDialog import WarningDialog
 
 from gettext import gettext as _
 
@@ -82,6 +83,7 @@ class AttributeEditor:
         self.sources_label = self.top.get_widget("sourcesAttr")
         self.notes_label = self.top.get_widget("noteAttr")
         self.callback = callback
+        self.alist = list
 
         self.window = self.top.get_widget("attr_edit")
         
@@ -150,6 +152,13 @@ class AttributeEditor:
         buf = self.note_field.get_buffer()
         note = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
         priv = self.priv.get_active()
+
+        if not type in self.alist:
+            WarningDialog(_('New attribute type created'),
+                          _('The "%s" attribute type has been added to this database.\n'
+                            'It will now appear in the attribute menus for this database') % type)
+            self.alist.append(type)
+            self.alist.sort()
 
         if self.attrib == None:
             self.attrib = RelLib.Attribute()
