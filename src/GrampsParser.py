@@ -153,6 +153,10 @@ class GrampsParser:
         self.placeobj = self.db.findPlaceNoMap(u2l(attrs['id']))
         self.placeobj.set_title(u2l(attrs['title']))
         self.locations = 0
+        if self.num_places > 0:
+            if self.callback != None and self.count % self.increment == 0:
+                self.callback(float(self.count)/float(self.entries))
+            self.count = self.count + 1
 
     def start_location(self,attrs):
         loc = Location()
@@ -337,6 +341,10 @@ class GrampsParser:
             self.placeobj.addSourceRef(self.source_ref)
 
     def start_source(self,attrs):
+        if self.num_srcs > 0:
+            if self.callback != None and self.count % self.increment == 0:
+                self.callback(float(self.count)/float(self.entries))
+            self.count = self.count + 1
         self.source = self.db.findSourceNoMap(u2l(attrs["id"]))
 
     def start_objref(self,attrs):
@@ -455,7 +463,16 @@ class GrampsParser:
         d.set(u2l(attrs['val']))
 
     def start_created(self,attrs):
-        self.entries = int(attrs["people"]) + int(attrs["families"])
+        if attrs.has_key('sources'):
+            self.num_srcs = int(attrs['sources'])
+        else:
+            self.num_srcs = 0
+        if attrs.has_key('places'):
+            self.num_places = int(attrs['places'])
+        else:
+            self.num_places = 0
+        self.entries = int(attrs["people"]) + int(attrs["families"]) + \
+                       self.num_places + self.num_srcs
 
     def start_pos(self,attrs):
         self.person.position = (int(attrs["x"]), int(attrs["y"]))
