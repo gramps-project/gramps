@@ -63,6 +63,8 @@ class PeopleModel(gtk.GenericTreeModel):
         if not self.db.is_open():
             return
 
+        import time
+        t = time.time()
         for person_id in self.db.get_person_keys():
             
             person = self.db.find_person_from_id(person_id)
@@ -91,6 +93,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     self.path2iter[tpl] = person_id
                     val += 1
                 sval += 1
+        print time.time() - t
 
     def byname(self,f,s):
         n1 = self.db.person_map.get(str(f))[2].get_sort_name()

@@ -89,27 +89,31 @@ class CheckIntegrity:
 
     def check_for_broken_family_links(self):
         self.broken_links = []
-        for key in self.db.get_family_id_map().keys():
-            family = self.db.get_family_id(key)
-            father = family.get_father_id()
-            mother = family.get_mother_id()
+        for family_id in self.db.get_family_keys():
+            family = self.db.find_family_from_id(family_id)
+            father = self.db.find_family_from_id(family.get_father_id())
+            mother = self.db.find_family_from_id(family.get_mother_id())
 
-            if father and family not in father.get_family_id_list():
+            if father and family_id not in father.get_family_id_list():
                 Utils.modified()
                 self.broken_parent_links.append((father,family))
-                father.add_family_id(family)
-            if mother and family not in mother.get_family_id_list():
+                father.add_family_id(family_id)
+                self.db.commit_person(father)
+            if mother and family_id not in mother.get_family_id_list():
                 Utils.modified()
                 self.broken_parent_links.append((mother,family))
-                mother.add_family_id(family)
-            for child in family.get_child_id_list():
+                mother.add_family_id(family_id)
+                self.db.commit_person(mother)
+            for child_id in family.get_child_id_list():
+                child = self.db.find_person_from_id(child_id)
                 if family == child.get_main_parents_family_id():
                     continue
                 for family_type in child.get_parent_family_id_list():
-                    if family_type[0] == family:
+                    if family_type[0] == family_id:
                         break
                 else:
-                    family.remove_child_id(child)
+                    family.remove_child_id(child_id)
+                    self.db.commit_family(family)
                     Utils.modified()
                     self.broken_links.append((child,family))
 
@@ -118,45 +122,64 @@ class CheckIntegrity:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            for p in self.db.get_family_id_map().values():
+            for person_id in self.db.get_family_keys():
+                p = self.db.find_family_from_id(person_id)
                 nl = p.get_media_list()
+                changed = 0
                 for o in nl:
                     if o.get_reference_id() == ObjectId:
-                        nl.remove(o) 
-                p.set_media_list(nl)
+                        changed = 1
+                        nl.remove(o)
+                if changed:
+                    p.set_media_list(nl)
+                    self.db.commit_person(p)
+                    
             for key in self.db.get_person_keys():
-                p = self.db.get_person(key)
+                p = self.db.find_person_from_id(key)
                 nl = p.get_media_list()
+                changed = 0
                 for o in nl:
                     if o.get_reference_id() == ObjectId:
-                        nl.remove(o) 
-                p.set_media_list(nl)
+                        changed = 1
+                        nl.remove(o)
+                if changed:
+                    p.set_media_list(nl)
+                    self.db.commit_person(p)
+                    
             for key in self.db.get_source_keys():
-                p = self.db.get_source(key)
+                p = self.db.find_source_from_id(key)
                 nl = p.get_media_list()
+                changed = 0
                 for o in nl:
                     if o.get_reference_id() == ObjectId:
-                        nl.remove(o) 
-                p.set_media_list(nl)
+                        changed = 1
+                        nl.remove(o)
+                if changed:
+                    p.set_media_list(nl)
+                    self.db.commit_source(p)
+                
             for key in self.db.get_place_id_keys():
                 p = self.db.get_place_id(key)
                 nl = p.get_media_list()
+                changed = 0
                 for o in nl:
                     if o.get_reference_id() == ObjectId:
-                        nl.remove(o) 
-                p.set_media_list(nl)
+                        changed = 1
+                        nl.remove(o)
+                if changed:
+                    p.set_media_list(nl)
+                    self.db.commit_place(p)
             self.removed_photo.append(ObjectId)
             self.db.remove_object(ObjectId) 
             Utils.modified()
     
         def leave_clicked():
-            self.bad_photo.append(ObjectMap[ObjectId])
-
+            self.bad_photo.append(ObjectId)
 
         def select_clicked():
             # File is lost => select a file to replace the lost one
             def fs_close_window(obj):
-                self.bad_photo.append(ObjectMap[ObjectId])
+                self.bad_photo.append(ObjectId)
 
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
@@ -166,9 +189,9 @@ class CheckIntegrity:
                         shutil.copystat(name,photo_name)
                     except:
                         pass
-                    self.replaced_photo.append(ObjectMap[ObjectId])
+                    self.replaced_photo.append(ObjectId)
                 else:
-                    self.bad_photo.append(ObjectMap[ObjectId])
+                    self.bad_photo.append(ObjectId)
 
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
@@ -178,14 +201,15 @@ class CheckIntegrity:
             fs_top.destroy()
 
         #-------------------------------------------------------------------------
-        ObjectMap = self.db.get_object_map()
-        for ObjectId in ObjectMap.keys():
-            photo_name = ObjectMap[ObjectId].get_path()
+        
+        for ObjectId in self.db.get_object_keys():
+            obj = self.db.find_object_from_id(ObjectId)
+            photo_name = obj.get_path()
             if not os.path.isfile(photo_name):
                 if cl:
                     print "Warning: media file %s was not found." \
                         % os.path.basename(photo_name)
-                    self.bad_photo.append(ObjectMap[ObjectId])
+                    self.bad_photo.append(ObjectId)
                 else:
                     if missmedia_action == 0:
                         mmd = MissingMediaDialog(_("Media object could not be found"),
@@ -204,8 +228,8 @@ class CheckIntegrity:
                         select_clicked()
 
     def cleanup_empty_families(self,automatic):
-        for key in self.db.get_family_id_map().keys():
-            family = self.db.get_family_id(key)
+        for key in self.db.get_family_keys():
+            family = self.db.find_family_from_id(key)
             if family.get_father_id() == None and family.get_mother_id() == None:
                 Utils.modified()
                 self.empty_family.append(family)
@@ -213,28 +237,32 @@ class CheckIntegrity:
 
     def delete_empty_family(self,family):
         for key in self.db.get_person_keys():
-            child = self.db.get_person(key)
+            child = self.db.find_person_from_id(key)
             child.remove_parent_family_id(family.get_id())
             child.remove_family_id(family.get_id())
         self.db.delete_family(family.get_id())
 
     def check_parent_relationships(self):
-        for key in self.db.get_family_id_map().keys():
-            family = self.db.get_family_id(key)
-            father = family.get_father_id()
-            mother = family.get_mother_id()
+        for key in self.db.get_family_keys():
+            family = self.db.find_family_from_id(key)
+            mother_id = family.get_mother_id()
+            father_id = family.get_father_id()
+            father = self.db.find_family_from_id(father_id)
+            mother = self.db.find_family_from_id(mother_id)
             type = family.get_relationship()
 
             if not father and not mother:
                 continue
             elif father == None:
                 if mother.get_gender() == RelLib.Person.male:
-                    family.set_father_id(mother)
+                    family.set_father_id(mother_id)
                     family.set_mother_id(None)
+                    self.db.commit_family(family)
             elif mother == None:
                 if father.get_gender() == RelLib.Person.female:
-                    family.set_mother_id(father)
+                    family.set_mother_id(father_id)
                     family.set_father_id(None)
+                    self.db.commit_family(family)
             else:
                 fgender = father.get_gender()
                 mgender = mother.get_gender()
@@ -242,16 +270,19 @@ class CheckIntegrity:
                     if fgender == mgender and fgender != RelLib.Person.unknown:
                         family.set_relationship("Partners")
                         self.fam_rel.append(family)
+                        self.db.commit_family(family)
                     elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
-                        family.set_father_id(mother)
-                        family.set_mother_id(father)
+                        family.set_father_id(mother_id)
+                        family.set_mother_id(father_id)
                         self.fam_rel.append(family)
+                        self.db.commit_family(family)
                 elif fgender != mgender:
                     family.set_relationship("Unknown")
                     self.fam_rel.append(family)
                     if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
-                        family.set_father_id(mother)
-                        family.set_mother_id(father)
+                        family.set_father_id(mother_id)
+                        family.set_mother_id(father_id)
+                    self.db.commit_family(family)
 
     def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)
@@ -281,8 +312,8 @@ class CheckIntegrity:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
             for c in self.broken_links:
                 cn = c[0].get_primary_name().get_name()
-                f = c[1].get_father_id()
-                m = c[1].get_mother_id()
+                f = self.db.find_person_from_id(c[1].get_father_id())
+                m = self.db.find_person_from_id(c[1].get_mother_id())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())
@@ -302,8 +333,8 @@ class CheckIntegrity:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for c in self.broken_parent_links:
                 cn = c[0].get_primary_name().get_name()
-                f = c[1].get_father_id()
-                m = c[1].get_mother_id()
+                f = self.db.find_person_from_id(c[1].get_father_id())
+                m = self.db.find_person_from_id(c[1].get_mother_id())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())

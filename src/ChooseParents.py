@@ -80,8 +80,11 @@ class ChooseParents:
         self.parent = parent
         self.db = db
         self.child_windows = {}
-        self.person = person
-        self.family = family
+        self.person = self.db.find_person_from_id(person.get_id())
+        if family:
+            self.family = self.db.find_family_from_id(family.get_id())
+        else:
+            self.family = None
         self.family_update = family_update
         self.full_update = full_update
         self.old_type = ""
@@ -281,7 +284,7 @@ class ChooseParents:
                     if self.dday and pbday.get_low_year()+10 > self.dday.get_high_year():
                         return 0
                 
-        if self.dday and dday.get_year_valid():
+        if self.dday and self.dday.get_year_valid():
             if pbday and pbday.get_year_valid():
                 # reject if parents deathday + 3 < childs birth date 
                 if pdday and self.bday and pdday.get_high_year()+3 < self.bday.get_low_year():
@@ -353,8 +356,16 @@ class ChooseParents:
         for family_id in self.db.get_family_keys():
             family = self.db.find_family_from_id(family_id)
             if family.get_father_id() == father_id and family.get_mother_id() == mother_id:
+                trans = self.db.start_transaction()
+                family.add_child_id(self.person.get_id())
+                self.db.commit_family(family,trans)
+                self.db.add_transaction(trans)
                 return family
             elif family.get_father_id() == mother_id and family.get_mother_id() == father_id:
+                trans = self.db.start_transaction()
+                family.add_child_id(self.person.get_id())
+                self.db.commit_family(family,trans)
+                self.db.add_transaction(trans)
                 return family
 
         trans = self.db.start_transaction()
@@ -364,13 +375,13 @@ class ChooseParents:
         family.add_child_id(self.person.get_id())
 
         if father_id:
-            father = self.db.find_person_from_id(father_id)
-            father.add_family_id(family.get_id())
-            self.db.commit_person(father,trans)
+            self.father = self.db.find_person_from_id(father_id)
+            self.father.add_family_id(family.get_id())
+            self.db.commit_person(self.father,trans)
         if mother_id:
-            mother = self.db.find_person_from_id(mother_id)
-            mother.add_family_id(family.get_id())
-            self.db.commit_person(mother,trans)
+            self.mother = self.db.find_person_from_id(mother_id)
+            self.mother.add_family_id(family.get_id())
+            self.db.commit_person(self.mother,trans)
 
         self.db.commit_family(family,trans)
         self.db.add_transaction(trans)
@@ -498,8 +509,10 @@ class ChooseParents:
             self.family = None
 
         if self.family:
+            self.family.add_child_id(self.person.get_id())
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
+            self.db.commit_family(self.family)
         self.family_update(None)
         self.close(obj)
 
@@ -548,10 +561,11 @@ class ChooseParents:
         Changes the family type of the specified family. If the family
         is None, the the relationship type shoud be deleted.
         """
-        if self.person not in family.get_child_id_list():
+        family_id = family.get_id()
+        if self.person.get_id() not in family.get_child_id_list():
             family.add_child_id(self.person.get_id())
         for fam in self.person.get_parent_family_id_list():
-            if family == fam[0]:
+            if family_id == fam[0]:
                 if mother_rel == fam[1] and father_rel == fam[2]:
                     return
                 if mother_rel != fam[1] or father_rel != fam[2]:

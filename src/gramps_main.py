@@ -1302,13 +1302,13 @@ class Gramps:
         self.people_view.goto_active_person(first)
             
     def change_active_person(self,person,force=0):
-        self.active_person = person
         if person == None:
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
         elif self.active_person == None or \
                person.get_id() != self.active_person.get_id():
+            self.active_person = self.db.find_person_from_id(person.get_id())
             self.modify_statusbar()
             self.set_buttons(1)
             if person:
@@ -1334,6 +1334,7 @@ class Gramps:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
         else:
+            self.active_person = self.db.find_person_from_id(person.get_id())
             self.set_buttons(1)
         
     def modify_statusbar(self):
