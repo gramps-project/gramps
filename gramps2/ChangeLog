@@ -1,6 +1,7 @@
 2003-08-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FilterEditor.py: support for selecting a person
 	from a list to get the GRAMPS ID value
+	* src/plugins/FilterEditor.py: handle Add/Edit of rules correctly
 
 2003-08-10  Tim Waugh  <twaugh@redhat.com>
 	* configure.in: Use 0.CVS[date] for RELEASE.  '-' is not allowed in
