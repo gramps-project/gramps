@@ -364,30 +364,6 @@
 	</widget>
 
 	<widget>
-	  <class>GtkEntry</class>
-	  <name>eventDate</name>
-	  <can_focus>True</can_focus>
-	  <editable>True</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
-	  <child>
-	    <left_attach>1</left_attach>
-	    <right_attach>2</right_attach>
-	    <top_attach>1</top_attach>
-	    <bottom_attach>2</bottom_attach>
-	    <xpad>3</xpad>
-	    <ypad>3</ypad>
-	    <xexpand>True</xexpand>
-	    <yexpand>False</yexpand>
-	    <xshrink>False</xshrink>
-	    <yshrink>False</yshrink>
-	    <xfill>True</xfill>
-	    <yfill>False</yfill>
-	  </child>
-	</widget>
-
-	<widget>
 	  <class>GtkScrolledWindow</class>
 	  <name>scrolledwindow21</name>
 	  <width>400</width>
@@ -550,6 +526,61 @@
 	    <xfill>True</xfill>
 	    <yfill>False</yfill>
 	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkHBox</class>
+	  <name>hbox27</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+	  <child>
+	    <left_attach>1</left_attach>
+	    <right_attach>2</right_attach>
+	    <top_attach>1</top_attach>
+	    <bottom_attach>2</bottom_attach>
+	    <xpad>3</xpad>
+	    <ypad>3</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>True</yfill>
+	  </child>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <name>eventDate</name>
+	    <can_focus>True</can_focus>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text></text>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkOptionMenu</class>
+	    <name>calendar</name>
+	    <visible>False</visible>
+	    <tooltip>Selects the calendar format for display</tooltip>
+	    <can_focus>True</can_focus>
+	    <items>Gregorian
+Julian
+Hebrew
+French
+</items>
+	    <initial_choice>0</initial_choice>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
 	</widget>
       </widget>
     </widget>

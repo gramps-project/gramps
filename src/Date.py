@@ -29,7 +29,23 @@ _ = gettext
 
 #-------------------------------------------------------------------------
 #
-# 
+# Calendar Mappings
+#
+#-------------------------------------------------------------------------
+GREGORIAN = 0
+JULIAN = 1
+HEBREW = 2
+FRENCH = 3
+
+_index2cal = [ _("Gregorian"), _("Julian"), _("Hebrew"), _("French Republican") ]
+_cal2index = { _("Gregorian") : 0,
+               _("Julian") : 1,
+               _("Hebrew") : 2,
+               _("French Republican"): 3 }
+
+#-------------------------------------------------------------------------
+#
+# Date class
 #
 #-------------------------------------------------------------------------
 class Date:
@@ -59,11 +75,19 @@ class Date:
                 self.stop = None
             self.range = source.range
             self.text = source.text
+            self.calendar = source.calendar
         else:
             self.start = SingleDate()
             self.stop = None
             self.range = 0
             self.text = ""
+            self.calendar = GREGORIAN
+
+    def get_calendar(self):
+        return self.calendar
+
+    def set_calendar(self,val):
+        self.calendar = val
 
     def get_start_date(self):
         return self.start
@@ -106,6 +130,9 @@ class Date:
             self.stop = SingleDate()
         return self.get_stop_date().getDay()
 
+    def getText(self):
+        return self.text
+
     def greater_than(self,other):
         return compare_dates(self,other) > 0
 
@@ -115,11 +142,6 @@ class Date:
     def equal_to(self,other):
         return compare_dates(self,other) == 0
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def set(self,text):
         match = Date.fmt.match(text)
         try:
@@ -137,24 +159,19 @@ class Date:
             self.range = -1
             self.text = text
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
+    def set_range(self,val):
+        self.range = val
+
     def getDate(self):
 	if self.range == 0:
 	    return _func(self.start)
         elif self.range == -1:
             return self.text
 	else:
-	    return "%s %s %s %s" % ( _("from"),_func(self.start),_("to"), _func(self.stop))
+            d1 = _func(self.start)
+            d2 = _func(self.stop)
+	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getQuoteDate(self):
 	if self.range == 0:
 	    return _func(self.start)
@@ -164,16 +181,15 @@ class Date:
             else:
                 return ''
 	else:
-	    return "%s %s %s %s" % ( _("from"),_func(self.start),_("to"), _func(self.stop))
+            d1 = _func(self.start)
+            d2 = _func(self.stop)
+	    return "%s %s %s %s" % ( _("from"),d1,_("to"), d2)
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getSaveDate(self):
 	if self.range == 1:
-	    return "FROM " + self.start.getSaveDate() + " TO " + self.stop.getSaveDate()
+            d1 = self.start.getSaveDate()
+            d2 = self.stop.getSaveDate()
+	    return "FROM %s TO %s" % (d1,d2)
         elif self.range == -1:
             return self.text
 	else:
@@ -192,16 +208,11 @@ class Date:
             return 1
 
     def isRange(self):
-        if self.range == -1:
-            return 0
-        else:
+        if self.range == 1:
             return 1
+        else:
+            return 0
         
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def quick_set(self,text):
         try:
             match = Date.efmt.match(text)
@@ -455,14 +466,27 @@ class SingleDate:
         except KeyError:
             self.month = -1
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def getMonthStr(self):
 	return SingleDate.mname[self.month]
 
+    def getIsoDate(self):
+        if self.year == -1:
+            y = "?"
+        else:
+            y = "%04d" % self.year
+        if self.month == -1:
+            if self.day == -1:
+                m = ""
+            else:
+                m = "-?"
+        else:
+            m = "-%02d" % (self.month+1)
+        if self.day == -1:
+            d = ''
+        else:
+            d = "-%02d" % self.day
+        return "%s%s%s" % (y,m,d)
+        
     #--------------------------------------------------------------------
     #
     # 
@@ -493,9 +517,9 @@ class SingleDate:
             retval = "ABT %s"  % retval
 
         if self.mode == SingleDate.before:
-            retval = _("BEFORE") + " " + retval
+            retval = "BEFORE" + " " + retval
         elif self.mode == SingleDate.after:
-            retval = _("AFTER") + " " + retval
+            retval = "AFTER" + " " + retval
             
         return retval
 
@@ -831,6 +855,33 @@ class SingleDate:
         function = SingleDate.fmtFunc[Date.formatCode]
         return function(self)
     
+    def setIsoDate(self,v):
+        data = string.split(v)
+        if len(data) > 1:
+            self.setMode(data[0])
+            v = data[1]
+        
+        vals = string.split(v,'-')
+        if vals[0] == '?':
+            self.year = -1
+        else:
+            self.year = int(vals[0])
+        if len(vals) > 1 and vals[1] != '?':
+            self.month = int(vals[1])-1
+        else:
+            self.month = -1
+        if len(vals) > 2:
+            self.day = int(vals[2])
+        else:
+            self.day = -1
+        
+
+    def getModeVal(self):
+        return self.mode
+
+    def setModeVal(self,val):
+        self.mode = val
+    
     #--------------------------------------------------------------------
     #
     # 
@@ -839,12 +890,14 @@ class SingleDate:
     def getMode(self,val):
         if val == None:
             self.mode = SingleDate.exact
-        elif string.lower(val)[0:3] == "bef":
+        elif string.lower(val)[0:2] == "be":
             self.mode = SingleDate.before
-        elif string.lower(val)[0:3] == "aft":
+        elif string.lower(val)[0:2] == "af":
             self.mode = SingleDate.after
-        else:
+        elif string.lower(val)[0:2] == "ab":
             self.mode = SingleDate.about
+        else:
+            self.mode = SingleDate.exact
         
     #--------------------------------------------------------------------
     #

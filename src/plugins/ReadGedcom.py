@@ -166,6 +166,7 @@ class GedcomParser:
         self.placemap = {}
         self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
         self.broken_conc = 0
+        self.is_ftw = 0
 
         self.f = open(file,"r")
         self.index = 0
