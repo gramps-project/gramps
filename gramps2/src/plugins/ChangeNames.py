@@ -79,6 +79,7 @@ class ChangeNames:
             return
         self.win_key = self.__class__
         self.trans = db.transaction_begin()
+        self.trans.set_batch(True)
         self.name_list = []
 
         for name in self.db.get_surname_list():

@@ -1,3 +1,8 @@
+2005-04-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/Check.py: new database callback scheme; Use Utils.family_name.
+	* src/plugins/ChangeNames.py: new database callback scheme
+	* src/plugins/TestcaseGenerator.py: new database callback scheme
+
 2005-03-31  Don Allingham  <don@gramps-project.org>
 	* src/AddSpouse.py: new database callback scheme. This scheme
 	provides a registration mechanism to signal interested objects

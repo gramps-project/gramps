@@ -124,7 +124,8 @@ class TestcaseGenerator:
         self.max_person_count = generate_max_persons
 
         self.trans = self.db.transaction_begin()
-
+        self.trans.set_batch(True)
+        
         if generate_bugs:
             self.generate_broken_relations()
 
