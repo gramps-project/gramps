@@ -804,7 +804,7 @@
 		  <property name="tooltip" translatable="yes">Run a tool</property>
 		  <property name="label" translatable="yes">Tools</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-execute</property>
+		  <property name="icon">tools.png</property>
 		  <signal name="clicked" handler="on_tools_clicked"/>
 		</widget>
 	      </child>
