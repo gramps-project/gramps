@@ -95,8 +95,6 @@ childWindow   = None
 new_child_win = None
 add_child_win = None
 bookmarks     = None
-pevent        = []
-fevent        = []
 
 id2col        = {}
 alt2col       = {}
@@ -948,9 +946,6 @@ def on_delete_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_place_clicked(obj):
-    global pevent
-    global fevent
-    
     index = obj.get_data(INDEX)
     if index == -1:
         return
@@ -961,11 +956,11 @@ def on_delete_place_clicked(obj):
     for p in database.getPersonMap().values():
         for event in [p.getBirth(), p.getDeath()] + p.getEventList():
             if event.getPlace() == place:
-                pevent.append(p,event)
+                pevent.append((p,event))
     for f in database.getFamilyMap().values():
         for event in f.getEventList():
             if event.getPlace() == place:
-                fevent.append(f,event)
+                fevent.append((f,event))
 
     if len(pevent) > 0 or len(fevent) > 0:
         msg = []
