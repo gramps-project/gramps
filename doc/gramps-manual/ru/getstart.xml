@@ -23,7 +23,7 @@
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
-    <title>Запуск &app;</title>
+    <title>Запуск GRAMPS</title>
     <para>Вы можете запустить &app; следующими способами:</para> 
     <variablelist>
     <varlistentry>
@@ -54,7 +54,7 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>Первый запуск &app;</title>
+      <title>Первый запуск GRAMPS</title>
     <para> 
     Когда программа запущена в первый раз, &app; выводит свой диалог Первые Шаги.
     Следуйте указаниям, проводящим Вас через разделы: 
@@ -65,7 +65,7 @@
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>Окно Первые Шаги &app;: Информация об исследователе</title> 
+	<title>Окно Первые Шаги GRAMPS: Информация об исследователе</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
