@@ -351,7 +351,7 @@ class SurnameListPage(BasePage):
 #------------------------------------------------------------------------
 class IntroductionPage(BasePage):
 
-    def __init__(self, db, title, html_dir):
+    def __init__(self, db, title, html_dir, note_id):
         BasePage.__init__(self,title)
         page_name = os.path.join(html_dir,"introduction.html")
 
@@ -360,6 +360,20 @@ class IntroductionPage(BasePage):
                             db.get_researcher().get_name())
 
 	of.write('<h3>%s</h3>\n' % _('Introduction'))
+
+        if note_id:
+            obj = db.get_object_from_gramps_id(note_id)
+            if not obj:
+                print "%s object not found" % note_id
+            else:
+                note_obj = obj.get_note_object()
+                text = note_obj.get()
+                if note_obj.get_format():
+                    of.write('<pre>\n%s\n</pre>\n' % text)
+                else:
+                    of.write('<p>')
+                    of.write('</p><p>'.join(text.split('\n')))
+                    of.write('</p>')
 
         self.display_footer(of)
         of.close()
@@ -371,7 +385,7 @@ class IntroductionPage(BasePage):
 #------------------------------------------------------------------------
 class HomePage(BasePage):
 
-    def __init__(self, db, title, html_dir):
+    def __init__(self, db, title, html_dir, note_id):
         BasePage.__init__(self,title)
         page_name = os.path.join(html_dir,"index.html")
 
@@ -380,6 +394,28 @@ class HomePage(BasePage):
                             db.get_researcher().get_name())
 
 	of.write('<h3>%s</h3>\n' % _('Home'))
+
+        if note_id:
+            obj = db.get_object_from_gramps_id(note_id)
+
+            if obj.get_mime_type()[0:5] == "image":
+                newpath = obj.gramps_id + os.path.splitext(obj.get_path())[1]
+                shutil.copyfile(obj.get_path(),
+                                os.path.join(html_dir,newpath))
+                of.write('<div align="center">\n')
+                of.write('<img border="0" ')
+                of.write('src="%s" />' % newpath)
+                of.write('</div>\n')
+
+            note_obj = obj.get_note_object()
+            if note_obj:
+                text = note_obj.get()
+                if note_obj.get_format():
+                    of.write('<pre>\n%s\n</pre>\n' % text)
+                else:
+                    of.write('<p>')
+                    of.write('</p><p>'.join(text.split('\n')))
+                    of.write('</p>')
 
         self.display_footer(of)
         of.close()
@@ -666,7 +702,8 @@ class IndividualPage(BasePage):
         
 	of.write('<h4>%s</h4>\n' % _("Relationships"))
 	of.write('<hr>\n')
-	of.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
+	of.write('<table class="infolist" cellpadding="0" ')
+        of.write('cellspacing="0" border="0">\n')
 
         if parent_list:
             for (family_handle,mrel,frel) in parent_list:
@@ -841,6 +878,8 @@ class WebReport(Report.Report):
         HTMLtreed
         HTMLidxt
         HTMLidxbirth
+        HTMLintronote
+        HTMLhomenote
         yearso
         """
         self.database = database
@@ -864,6 +903,8 @@ class WebReport(Report.Report):
         self.title = options_class.handler.options_dict['HTMLtitle']
         self.separate_alpha = options_class.handler.options_dict['HTMLsplita']
         self.depth = options_class.handler.options_dict['HTMLtreed']
+        self.intro_id = options_class.handler.options_dict['HTMLintronote']
+        self.home_id = options_class.handler.options_dict['HTMLhomenote']
         self.sort = Sort.Sort(self.database)
 
     def get_progressbar_data(self):
@@ -908,9 +949,9 @@ class WebReport(Report.Report):
                 ErrorDialog(_("Could not create the directory: %s") % \
                             image_dir_name)
                 return
-    
-        ind_list = self.filter.apply(self.database,
-                                     self.database.get_person_handles(sort_handles=False))
+
+        ind_list = self.database.get_person_handles(sort_handles=False)
+        ind_list = self.filter.apply(self.database,ind_list)
         progress_steps = len(ind_list)
         if len(ind_list) > 1:
             progress_steps = progress_steps+1
@@ -919,10 +960,12 @@ class WebReport(Report.Report):
 
         self.write_css(dir_name)
 
-        HomePage(self.database,self.title,dir_name)
+        HomePage(self.database,self.title,dir_name,self.home_id)
         ContactPage(self.database,self.title,dir_name)
         DownloadPage(self.database,self.title,dir_name)
-        IntroductionPage(self.database,self.title,dir_name)
+        
+        IntroductionPage(self.database,self.title,dir_name,
+                         self.intro_id)
         
         place_list = sets.Set()
         source_list = sets.Set()
@@ -991,6 +1034,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
             'HTMLext'           : 'html',
             'HTMLtreed'         : 3,
             'HTMLidxt'          : '',
+            'HTMLintronote'     : '',
+            'HTMLhomenote'      : '',
             'HTMLidxbirth'      : 0,
             'HTMLplaceidx'      : 0,
             'HTMLyearso'        : 1,
@@ -1072,6 +1117,12 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.imgdir = gtk.Entry()
         self.imgdir.set_text(self.options_dict['HTMLimagedir'])
 
+        self.intro_note = gtk.Entry()
+        self.intro_note.set_text(self.options_dict['HTMLintronote'])
+
+        self.home_note = gtk.Entry()
+        self.home_note.set_text(self.options_dict['HTMLhomenote'])
+
         self.title = gtk.Entry()
         self.title.set_text(self.options_dict['HTMLtitle'])
 
@@ -1091,6 +1142,12 @@ class WebReportOptions(ReportOptions.ReportOptions):
         dialog.add_option(imgdir_msg,self.imgdir)
         dialog.add_option(ext_msg,self.ext)
 
+        title = _("Text")
+        dialog.add_frame_option(title,_('Home Note ID'),
+                                self.home_note)
+        dialog.add_frame_option(title,_('Introduction Note ID'),
+                                self.intro_note)
+
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
         dialog.add_frame_option(title,None,self.restrict_living)
@@ -1107,6 +1164,8 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.options_dict['HTMLincpriv'] = int(not self.no_private.get_active())
         self.options_dict['HTMLimagedir'] = unicode(self.imgdir.get_text())
         self.options_dict['HTMLtitle'] = unicode(self.title.get_text())
+        self.options_dict['HTMLintronote'] = unicode(self.intro_note.get_text())
+        self.options_dict['HTMLhomenote'] = unicode(self.home_note.get_text())
 
         #html_ext = unicode(self.ext.entry.get_text().strip())
         html_ext = ".html"
