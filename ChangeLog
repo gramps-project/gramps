@@ -1,3 +1,7 @@
+2003-12-03  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/ReadGedcom.py (parse_source): Stop TEXT messing
+	up the title; add ABBR to the note field (was ignored).
+
 2003-12-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleView.py (PeopleView.clear_person_tabs): initialize
 	the model2page map with the default list, instead of clearing it.

@@ -469,11 +469,12 @@ class GedcomParser:
                     note = "%s\n%s %s%s" % (note,matches[1],matches[2],d)
                 else:
                     note = "%s %s%s" % (matches[1],matches[2],d)
-                title = matches[2] + d
-                title = string.replace(title,'\n',' ')
-                self.source.setTitle(title)
             elif matches[1] == "ABBR":
-                pass
+                d = self.parse_continue_data(level+1)
+                if note:
+                    note = "%s\n%s %s%s" % (note,matches[1],matches[2],d)
+                else:
+                    note = "%s %s%s" % (matches[1],matches[2],d)
             else:
                 if note:
                     note = "%s\n%s %s" % (note,matches[1],matches[2])
