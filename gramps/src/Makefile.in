@@ -5,7 +5,8 @@ datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
-CFLAGS          = -fPIC -shared -O @PYTHON_INCLUDES@
+CFLAGS          = -fPIC -shared -O @PYTHON_INCLUDES@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
+LDFLAGS         = @LDFLAGS@ -L@libdir@ @LIBS@
 LANG            = sv de fr es
 
 @SET_MAKE@
@@ -15,7 +16,7 @@ all:    intl.so
 	${pycomp} *.py
 
 intl.so: intl.c
-	$(CC) $(CFLAGS) -o intl.so intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o intl.so intl.c
 
 install:
 	${INSTALL} -d ${datadir}
