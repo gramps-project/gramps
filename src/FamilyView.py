@@ -159,7 +159,11 @@ class FamilyView:
             self.display_marriage(self.person.getFamilyList()[row[0]])
             
     def edit_relationship(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+        if event.state & gtk.gdk.SHIFT_MASK and \
+           event.type == gtk.gdk.BUTTON_PRESS and \
+           event.button == 1 and self.selected_spouse:
+            self.parent.load_person(self.selected_spouse)
+        elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
            if self.person:
                try:
                    if self.selected_spouse:
@@ -342,11 +346,11 @@ class FamilyView:
                 first_spouse = sp
                 first_family = f
                 
-                if len(splist) > 1:
-                    self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
-                    self.spouse_selection.select_iter(iter)
-                else:
-                    self.spouse_selection.set_mode(gtk.SELECTION_NONE)
+            if len(splist) > 1:
+                self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
+                self.spouse_selection.select_iter(iter)
+            else:
+                self.spouse_selection.set_mode(gtk.SELECTION_NONE)
 
             if sp:
                 if f.getMarriage():

@@ -41,6 +41,8 @@ import RelLib
 import const
 import Utils
 import ListModel
+import GrampsCfg
+from RelLib import Person
 
 #-------------------------------------------------------------------------
 #
@@ -57,6 +59,11 @@ class SelectChild:
         self.add_person = add_person
         self.xml = gtk.glade.XML(const.gladeFile,"select_child")
     
+        if person:
+            self.default_name = person.getPrimaryName().getSurname().upper()
+        else:
+            self.default_name = ""
+
         self.xml.signal_autoconnect({
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
@@ -164,10 +171,22 @@ class SelectChild:
         
             person_list.append(person.getId())
 
+        iter = None
         for idval in person_list:
             dinfo = self.db.getPersonDisplay(idval)
             rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
-            self.refmodel.add(rdata)
+            new_iter = self.refmodel.add(rdata)
+            names = dinfo[0].split(',')
+            if len(names):
+                ln = names[0].upper()
+                if self.default_name and ln == self.default_name and not iter:
+                    iter = new_iter
+
+        if iter:
+            self.refmodel.selection.select_iter(iter)
+            path = self.refmodel.model.get_path(iter)
+            col = self.add_child.get_column(0)
+            self.add_child.scroll_to_cell(path,col,1,0.5,0.0)
 
     def on_save_child_clicked(self,obj):
         store,iter = self.refmodel.selection.get_selected()
@@ -213,7 +232,18 @@ class SelectChild:
         class to create a new person."""
         
         import QuickAdd
-        QuickAdd.QuickAdd(self.db,"male",self.add_new_parent)
+
+        autoname = GrampsCfg.lastnamegen
+        
+        if autoname == 0:
+            name = self.north_american(0)
+        elif autoname == 2:
+            name = self.latin_american(0)
+        elif autoname == 3:
+            name = self.icelandic(0)
+        else:
+            name = ""
+        QuickAdd.QuickAdd(self.db,"male",self.add_new_parent, name)
 
     def add_new_parent(self,person):
         """Adds a new person to either the father list or the mother list,
@@ -223,3 +253,49 @@ class SelectChild:
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
         self.refmodel.add_and_select(rdata)
         self.add_person(person)
+
+    def north_american(self,val):
+        if self.person.getGender() == Person.male:
+            return self.person.getPrimaryName().getSurname()
+        elif self.family:
+            f = self.family.getFather()
+            if f:
+                return f.getPrimaryName().getSurname()
+        return ""
+
+    def no_name(self,val):
+        return ""
+
+    def latin_american(self,val):
+        if self.family:
+            father = self.family.getFather()
+            mother = self.family.getMother()
+            if not father or not mother:
+                return ""
+            fsn = father.getPrimaryName().getSurname()
+            msn = mother.getPrimaryName().getSurname()
+            if not father or not mother:
+                return ""
+            try:
+                return "%s %s" % (fsn.split()[0],msn.split()[0])
+            except:
+                return ""
+        else:
+            return ""
+
+    def icelandic(self,val):
+        fname = ""
+        if self.person.getGender() == Person.male:
+            fname = self.person.getPrimaryName().getFirstName()
+        elif self.family:
+            f = self.family.getFather()
+            if f:
+                fname = f.getPrimaryName().getFirstName()
+        if fname:
+            fname = string.split(fname)[0]
+        if val == 0:
+            return "%ssson" % fname
+        elif val == 1:
+            return "%sdóttir" % fname
+        else:
+            return ""
