@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -47,6 +49,7 @@ class NameEditor:
 
     def __init__(self,parent,name,callback,parent_window=None):
         self.parent = parent
+        self.db = self.parent.db
         self.name = name
         self.callback = callback
         self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
@@ -61,6 +64,8 @@ class NameEditor:
         slist = self.top.get_widget("alt_surname_list")
         self.combo = AutoComp.AutoCombo(slist,self.parent.db.getSurnames())
         self.priv = self.top.get_widget("priv")
+        self.sources_label = self.top.get_widget("sourcesName")
+        self.notes_label = self.top.get_widget("noteName")
 
         types = const.NameTypesMap.keys()
         types.sort()
@@ -83,7 +88,7 @@ class NameEditor:
 
         Utils.set_titles(self.window, alt_title, tmsg, _('Alternate Name Editor'))
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist, self.parent,
+        self.sourcetab = Sources.SourceTab(self.srcreflist, self,
                                            self.top, self.window, self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
@@ -91,6 +96,10 @@ class NameEditor:
         
         self.note_buffer = self.note_field.get_buffer()
         
+        self.top.signal_autoconnect({
+            "on_switch_page" : self.on_switch_page
+            })
+
         if name != None:
             self.given_field.set_text(name.getFirstName())
             self.surname_field.set_text(name.getSurname())
@@ -99,6 +108,8 @@ class NameEditor:
             self.type_field.entry.set_text(_(name.getType()))
             self.priv.set_active(name.getPrivacy())
             self.note_buffer.set_text(name.getNote())
+            if name.getNote():
+                Utils.bold_label(self.notes_label)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -165,4 +176,10 @@ class NameEditor:
             self.name.setPrivacy(priv)
             self.parent.lists_changed = 1
         
-    
+    def on_switch_page(self,obj,a,page):
+        text = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
+                                self.note_buffer.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)

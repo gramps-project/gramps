@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 import pickle
 
 #-------------------------------------------------------------------------
@@ -112,6 +114,7 @@ class Marriage:
             "on_event_update_clicked" : self.on_event_update_clicked,
             "on_attr_update_clicked" : self.on_update_attr_clicked,
             "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
+            "on_switch_page" : self.on_switch_page
             })
 
         title = _("%s and %s") % (GrampsCfg.nameof(family.getFather()),
@@ -143,7 +146,14 @@ class Marriage:
         self.lds_status = self.get_widget("lds_status")
         self.lds_place = self.get_widget("lds_place")
         self.slist = self.get_widget("slist")
-        
+        self.sources_label = self.get_widget("sourcesMarriage")
+        self.gallery_label = self.get_widget("galleryMarriage")
+        self.sources_label = self.get_widget("sourcesMarriage")
+        self.events_label = self.get_widget("eventsMarriage")
+        self.attr_label = self.get_widget("attrMarriage")
+        self.notes_label = self.get_widget("notesMarriage")
+        self.lds_label = self.get_widget("ldsMarriage")
+
         self.elist = family.getEventList()[:]
         self.alist = family.getAttributeList()[:]
         self.lists_changed = 0
@@ -208,6 +218,8 @@ class Marriage:
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
         self.notes_buffer.set_text(family.getNote())
+        if family.getNote():
+            Utils.bold_label(self.notes_label)
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top,self.window,self.slist,
@@ -368,6 +380,9 @@ class Marriage:
             self.amap[str(attr)] = iter
         if self.alist:
             self.atree.select_row(0)
+            Utils.bold_label(self.attr_label)
+        else:
+            Utils.unbold_label(self.attr_label)
 
     def redraw_event_list(self):
         self.etree.clear()
@@ -377,6 +392,9 @@ class Marriage:
             self.emap[str(data)] = iter
         if self.elist:
             self.etree.select_row(0)
+            Utils.bold_label(self.events_label)
+        else:
+            Utils.unbold_label(self.events_label)
 
     def get_widget(self,name):
         return self.top.get_widget(name)
@@ -648,3 +666,11 @@ class Marriage:
         obj = list[src]
         list.remove(obj)
         list.insert(dest,obj)
+
+    def on_switch_page(self,obj,a,page):
+        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                self.notes_buffer.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)

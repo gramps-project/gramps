@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 from string import strip
 
 #-------------------------------------------------------------------------
@@ -57,6 +59,7 @@ class EventEditor:
     def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb,
                  def_event=None):
         self.parent = parent
+        self.db = self.parent.db
         self.event = event
         self.trans = trans
         self.callback = cb
@@ -104,6 +107,9 @@ class EventEditor:
         self.event_menu = self.top.get_widget("personalEvents")
         self.priv = self.top.get_widget("priv")
         self.calendar = self.top.get_widget("calendar")
+        self.sources_label = self.top.get_widget("sourcesEvent")
+        self.notes_label = self.top.get_widget("notesEvent")
+        self.witnesses_label = self.top.get_widget("witnessesEvent")
 
         if GrampsCfg.calendar:
             self.calendar.show()
@@ -114,13 +120,13 @@ class EventEditor:
             self.event_menu.set_sensitive(0)
             self.date_field.grab_focus()
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top,self.window,self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
-        self.witnesstab = Witness.WitnessTab(self.witnesslist,self.parent,
+        self.witnesstab = Witness.WitnessTab(self.witnesslist,self,
                                            self.top,self.window,self.wlist,
                                            self.top.get_widget('add_witness'),
                                            self.top.get_widget('edit_witness'),
@@ -155,6 +161,7 @@ class EventEditor:
         self.top.signal_autoconnect({
             "on_add_src_clicked" : self.add_source,
             "on_del_src_clicked" : self.del_source,
+            "on_switch_page" : self.on_switch_page,
             })
 
         menu = gtk.Menu()
@@ -263,3 +270,11 @@ class EventEditor:
         if self.event.getPrivacy() != priv:
             self.event.setPrivacy(priv)
             self.parent.lists_changed = 1
+
+    def on_switch_page(self,obj,a,page):
+        buf = self.note_field.get_buffer()
+        text = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)

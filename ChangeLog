@@ -1,3 +1,27 @@
+2003-11-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Utils.py (bold_label, unbold label): Add functions.
+	* src/EditPerson.py (bold_label, unbold label): Remove functions; 
+	Call them from Utils in every instance.
+	* src/ImageSelect.py (Gallery.load_images): Change label upon load.
+	* src/Sources.py (SourceTab.redraw): Change label upon redraw.
+	* src/AddrEdit.py (__init__): Find sources label from XML;
+	(on_switch_page): Add function.
+	* src/AttrEdit.py (__init__): Find sources label from XML;
+	(on_switch_page): Add function.
+	* src/dialog.glade: Set meaningful label ids, remove bold markup.
+	* src/EditPlace.py (__init__): Find soucre label from XML.
+	* src/places.glade: Set meaningful label ids, remove bold markup.
+	* src/Marriage.py (__init__): Find soucre label from XML;
+	(on_switch_page): Add function.
+	* src/marriage.glade: Set meaningful label ids, remove bold markup.
+	* src/EditSource.py (__init__): Find soucre label from XML.
+	* src/gramps.glade: Set meaningful label ids, remove bold markup.
+	* src/EventEdit.py: (__init__): Find soucre label from XML;
+	(on_switch_page): Add function.
+	* src/Witness.py (WitnessTab.redraw): Change label upon redraw.
+	* src/NameEdit.py: (__init__): Find soucre label from XML;
+	(on_switch_page): Add function.
+
 2003-11-12  Tim Waugh  <twaugh@redhat.com>
 	* src/WriteXML.py: Fix ID sorting so that RCS versioning is useful
 	again (broken in last WriteXML change).

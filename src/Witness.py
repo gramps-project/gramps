@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -73,6 +75,10 @@ class WitnessTab:
                 self.model.add([n,s.get_value()],s)
             else:
                 self.model.add([s.get_value(),''],s)
+        if self.list:
+            Utils.bold_label(self.parent.witnesses_label)
+        else:
+            Utils.unbold_label(self.parent.witnesses_label)
 
     def update_clist(self):
         self.redraw()
