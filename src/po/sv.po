@@ -6,40 +6,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.9.3\n"
-"POT-Creation-Date: Thu Aug  7 07:27:56 2003\n"
-"PO-Revision-Date: 2003-08-14 19:54+0200\n"
+"POT-Creation-Date: Thu Sep 18 22:31:51 2003\n"
+"PO-Revision-Date: 2003-09-20 14:26+0200\n"
 "Last-Translator: Jens Arvidsson <jya@sverige.nu>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: AddMedia.py:103 ImageSelect.py:148
+#: AddMedia.py:87 ImageSelect.py:107
+msgid "Select a media object"
+msgstr "Välj ett medieobjekt"
+
+#: AddMedia.py:105 ImageSelect.py:157
 msgid "Cannot import %s"
 msgstr "Kan inte importera %s"
 
-#: AddMedia.py:104 ImageSelect.py:149
+#: AddMedia.py:106 ImageSelect.py:158
 msgid "The filename supplied could not be found."
 msgstr "Det angivna filnamet kunde inte hittas."
 
-#: AddSpouse.py:86 ChooseParents.py:54 EditPerson.py:209 FamilyView.py:146
-#: SelectChild.py:116 SelectPerson.py:76 gramps_main.py:101
-#: plugins/BookReport.py:594 plugins/FilterEditor.py:130
+#: AddSpouse.py:86 ChooseParents.py:54 EditPerson.py:209 FamilyView.py:189
+#: SelectChild.py:117 SelectPerson.py:76 gramps_main.py:109
+#: plugins/BookReport.py:610 plugins/FilterEditor.py:312
 #: plugins/IndivComplete.py:395 plugins/IndivSummary.py:232
-#: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:340
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:381
 #: plugins/WebPage.py:293
 msgid "Name"
 msgstr "Namn"
 
-#: AddSpouse.py:86 ChooseParents.py:54 FamilyView.py:146 ImageSelect.py:851
-#: MediaView.py:75 PlaceView.py:60 SelectChild.py:116 SelectPerson.py:76
-#: SourceView.py:68 Sources.py:77 Sources.py:161 Witness.py:54
-#: gramps_main.py:101 plugins/PatchNames.py:136 plugins/RelCalc.py:87
+#: AddSpouse.py:86 ChooseParents.py:54 FamilyView.py:189 ImageSelect.py:858
+#: MediaView.py:75 PlaceView.py:60 SelectChild.py:117 SelectObject.py:86
+#: SelectPerson.py:76 SourceView.py:68 Sources.py:75 Sources.py:166
+#: Witness.py:55 gramps_main.py:109 plugins/PatchNames.py:136
+#: plugins/RelCalc.py:87
 msgid "ID"
 msgstr "ID"
 
-#: AddSpouse.py:86 ChooseParents.py:54 FamilyView.py:147 SelectChild.py:116
-#: SelectPerson.py:76 gramps_main.py:102
+#: AddSpouse.py:86 ChooseParents.py:54 FamilyView.py:190 SelectChild.py:117
+#: SelectPerson.py:76 gramps_main.py:110
 msgid "Birth date"
 msgstr "Födelsedatum"
 
@@ -51,12 +56,12 @@ msgstr "Välj maka/make/partner till %s"
 msgid "Choose Spouse/Partner"
 msgstr "Välj maka/make/partner"
 
-#: AddSpouse.py:111 const.py:488 const.py:496 plugins/FamilyGroup.py:302
-#: plugins/FamilyGroup.py:304
+#: AddSpouse.py:111 const.py:491 const.py:499 plugins/FamilyGroup.py:303
+#: plugins/FamilyGroup.py:305
 msgid "Married"
 msgstr "Gift"
 
-#: AddSpouse.py:219 const.py:490 const.py:498
+#: AddSpouse.py:219 const.py:493 const.py:501
 msgid "Partners"
 msgstr "Partner"
 
@@ -209,11 +214,11 @@ msgid "Choose Parents"
 msgstr "Välj föräldrar"
 
 #: ChooseParents.py:126 ChooseParents.py:127 ChooseParents.py:497
-#: ChooseParents.py:498 SelectChild.py:112 SelectChild.py:114 const.py:166
-#: gramps.glade:3618 gramps.glade:3811 gramps.glade:4255 gramps.glade:4435
-#: gramps.glade:5888 gramps.glade:6134 gramps.glade:6729 gramps.glade:6900
-#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:152 plugins/GraphViz.py:371
-#: plugins/GraphViz.py:372
+#: ChooseParents.py:498 SelectChild.py:113 SelectChild.py:115 const.py:168
+#: gramps.glade:4477 gramps.glade:4670 gramps.glade:5114 gramps.glade:5294
+#: gramps.glade:6745 gramps.glade:6991 gramps.glade:7586 gramps.glade:7757
+#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:153 plugins/GraphViz.py:395
+#: plugins/GraphViz.py:396
 msgid "Birth"
 msgstr "Födelse"
 
@@ -222,15 +227,15 @@ msgstr "Födelse"
 msgid "Parent"
 msgstr "Förälder"
 
-#: ChooseParents.py:216 ChooseParents.py:519 FamilyView.py:551
-#: plugins/FamilyGroup.py:198 plugins/IndivComplete.py:206
+#: ChooseParents.py:216 ChooseParents.py:519 FamilyView.py:728
+#: plugins/FamilyGroup.py:199 plugins/IndivComplete.py:206
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:430
 #: plugins/IndivSummary.py:279 plugins/WebPage.py:311 plugins/WebPage.py:314
 msgid "Father"
 msgstr "Fader"
 
-#: ChooseParents.py:292 ChooseParents.py:518 FamilyView.py:552
-#: plugins/FamilyGroup.py:211 plugins/IndivComplete.py:214
+#: ChooseParents.py:292 ChooseParents.py:518 FamilyView.py:729
+#: plugins/FamilyGroup.py:212 plugins/IndivComplete.py:214
 #: plugins/IndivComplete.py:216 plugins/IndivComplete.py:435
 #: plugins/IndivSummary.py:293 plugins/WebPage.py:312 plugins/WebPage.py:315
 msgid "Mother"
@@ -256,16 +261,20 @@ msgstr "(och|till|-)"
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr "från %(start_date)s till %(stop_date)s"
 
-#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1485 revision.glade:131
+#: DbPrompter.py:67 DbPrompter.py:122 gramps_main.py:1746 revision.glade:131
 msgid "Open a database"
 msgstr "Öppna en databas"
 
-#: DbPrompter.py:97 gramps_main.py:1533
+#: DbPrompter.py:100
+msgid "Create database"
+msgstr "Skapa databas"
+
+#: DbPrompter.py:102 gramps_main.py:1797
 msgid "Save database"
 msgstr "Spara databas"
 
-#: DbPrompter.py:106 gramps_main.py:1127 gramps_main.py:1545
-#: gramps_main.py:1557
+#: DbPrompter.py:111 gramps_main.py:1371 gramps_main.py:1814
+#: gramps_main.py:1826
 msgid "No Comment Provided"
 msgstr "Ingen kommentar tillgänglig"
 
@@ -287,11 +296,11 @@ msgstr ""
 msgid "Internal Error"
 msgstr "Internt fel"
 
-#: EditPerson.py:114
+#: EditPerson.py:100
 msgid "Edit Person"
 msgstr "Redigera person"
 
-#: EditPerson.py:189 EditPerson.py:215 EditPlace.py:104 const.py:388
+#: EditPerson.py:189 EditPerson.py:215 EditPlace.py:104 const.py:391
 #: plugins/pafexport.glade:217
 msgid "Description"
 msgstr "Beskrivning"
@@ -305,18 +314,18 @@ msgstr "Händelse"
 msgid "Date"
 msgstr "Datum"
 
-#: EditPerson.py:190 ImageSelect.py:872 Marriage.py:146
+#: EditPerson.py:190 ImageSelect.py:879 Marriage.py:146
 #: filters/EventPlace.py:69 marriage.glade:361
 msgid "Place"
 msgstr "Ort"
 
-#: EditPerson.py:197 EditSource.py:159 ImageSelect.py:637 ImageSelect.py:768
-#: ImageSelect.py:851 Marriage.py:147 marriage.glade:853
-#: plugins/FilterEditor.py:130 plugins/PatchNames.py:142
+#: EditPerson.py:197 EditSource.py:164 ImageSelect.py:644 ImageSelect.py:775
+#: ImageSelect.py:858 Marriage.py:147 marriage.glade:853
+#: plugins/FilterEditor.py:312 plugins/PatchNames.py:142
 msgid "Value"
 msgstr "Värde"
 
-#: EditPerson.py:197 ImageSelect.py:637 ImageSelect.py:768 Marriage.py:147
+#: EditPerson.py:197 ImageSelect.py:644 ImageSelect.py:775 Marriage.py:147
 msgid "Attribute"
 msgstr "Attribut"
 
@@ -324,8 +333,8 @@ msgstr "Attribut"
 msgid "Address"
 msgstr "Adress"
 
-#: EditPerson.py:209 ImageSelect.py:851 MediaView.py:76
-#: plugins/BookReport.py:594 plugins/BookReport.py:595
+#: EditPerson.py:209 ImageSelect.py:858 MediaView.py:76 SelectObject.py:87
+#: plugins/BookReport.py:610 plugins/BookReport.py:611
 #: plugins/PatchNames.py:139
 msgid "Type"
 msgstr "Typ"
@@ -334,17 +343,17 @@ msgstr "Typ"
 msgid "Path"
 msgstr "Sökväg"
 
-#: EditPerson.py:405 GrampsCfg.py:62 const.py:171 gramps.glade:3706
-#: gramps.glade:3899 gramps.glade:4321 gramps.glade:4501 gramps.glade:5976
-#: gramps.glade:6222 gramps.glade:6795 gramps.glade:6966
+#: EditPerson.py:405 GrampsCfg.py:62 const.py:173 gramps.glade:4565
+#: gramps.glade:4758 gramps.glade:5180 gramps.glade:5360 gramps.glade:6833
+#: gramps.glade:7079 gramps.glade:7652 gramps.glade:7823
 msgid "None"
 msgstr "Inga"
 
-#: EditPerson.py:422 EditSource.py:141
+#: EditPerson.py:422 EditSource.py:146
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s och %(mother)s"
 
-#: EditPerson.py:430 choose.glade:218 const.py:136 plugins/Check.py:274
+#: EditPerson.py:430 choose.glade:218 const.py:138 plugins/Check.py:274
 #: plugins/FamilyGroup.py:653 plugins/IndivComplete.py:276
 #: plugins/IndivSummary.py:172 plugins/WebPage.py:567 select_person.glade:218
 msgid "unknown"
@@ -362,15 +371,15 @@ msgstr "Om du stänger utan att spara, så kommer de ändringar du gjort förloras"
 msgid "Save Changes to %s?"
 msgstr "Spara Ändringar till %s?"
 
-#: EditPerson.py:1231
+#: EditPerson.py:1232
 msgid "Make the selected name the preferred name"
 msgstr "Gör det valda namnet till förstahandsnamn"
 
-#: EditPerson.py:1293 Marriage.py:444
+#: EditPerson.py:1294 Marriage.py:444
 msgid "GRAMPS ID value was not changed."
 msgstr "GRAMPS-ID:t har inte ändrats."
 
-#: EditPerson.py:1294
+#: EditPerson.py:1295
 msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
@@ -378,11 +387,11 @@ msgstr ""
 "Du har försökt ändra GRAMPS-ID:t till värdet %(grampsid)s. Det här värdet "
 "används redan av %(person)s."
 
-#: EditPerson.py:1410
+#: EditPerson.py:1411
 msgid "Problem changing the gender"
 msgstr "Problem vid ändring av kön"
 
-#: EditPerson.py:1411
+#: EditPerson.py:1412
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -418,7 +427,7 @@ msgstr "Internetadressredigerare för %s"
 msgid "Internet Address Editor"
 msgstr "Internetadressredigerare"
 
-#: EditPlace.py:383 gramps.glade:784
+#: EditPlace.py:383 gramps.glade:905
 msgid "People"
 msgstr "Personer"
 
@@ -430,43 +439,43 @@ msgstr "%s [%s]: händelse %s\n"
 msgid "Families"
 msgstr "Familjer"
 
-#: EditSource.py:62
+#: EditSource.py:61
 msgid "Source Editor"
 msgstr "Källredigerare"
 
-#: EditSource.py:159
+#: EditSource.py:164
 msgid "Object"
 msgstr "Objekt"
 
-#: EditSource.py:159
+#: EditSource.py:164
 msgid "Source Type"
 msgstr "Källtyp"
 
-#: EditSource.py:164
+#: EditSource.py:169
 msgid "Individual Events"
 msgstr "Personhändelser"
 
-#: EditSource.py:168
+#: EditSource.py:173
 msgid "Individual Attributes"
 msgstr "Personattribut"
 
-#: EditSource.py:172
+#: EditSource.py:177
 msgid "Individual Names"
 msgstr "Personnamn"
 
-#: EditSource.py:175
+#: EditSource.py:180
 msgid "Family Events"
 msgstr "Familjehändelser"
 
-#: EditSource.py:179
+#: EditSource.py:184
 msgid "Family Attributes"
 msgstr "Familjeattribut"
 
-#: EditSource.py:183 GrampsCfg.py:97 plugins/Summary.py:109
+#: EditSource.py:188 GrampsCfg.py:97 plugins/Summary.py:109
 msgid "Media Objects"
 msgstr "Medieobjekt"
 
-#: EditSource.py:186 gramps.glade:972
+#: EditSource.py:191 gramps.glade:1093
 msgid "Places"
 msgstr "Orter"
 
@@ -478,59 +487,88 @@ msgstr "Händelseredigerare"
 msgid "Event Editor for %s"
 msgstr "Händelseredigerare för %s"
 
-#: FamilyView.py:51 PedView.py:43 plugins/AncestorChart.py:53
-#: plugins/DesGraph.py:53 plugins/DescendReport.py:51
+#: FamilyView.py:52 PedView.py:43 plugins/AncestorChart.py:52
+#: plugins/DesGraph.py:52 plugins/DescendReport.py:51
 msgid "b."
 msgstr "f."
 
-#: FamilyView.py:52 PedView.py:44 plugins/AncestorChart.py:54
-#: plugins/DesGraph.py:54 plugins/DescendReport.py:52
+#: FamilyView.py:53 PedView.py:44 plugins/AncestorChart.py:53
+#: plugins/DesGraph.py:53 plugins/DescendReport.py:52
 msgid "d."
 msgstr "d."
 
-#: FamilyView.py:147 gramps_main.py:101 plugins/IndivComplete.py:406
+#: FamilyView.py:190 gramps_main.py:109 plugins/IndivComplete.py:406
 #: plugins/IndivSummary.py:246 plugins/WebPage.py:303 plugins/WebPage.py:305
 #: plugins/WebPage.py:307
 msgid "Gender"
 msgstr "Kön"
 
-#: FamilyView.py:148
+#: FamilyView.py:191
 msgid "Status"
 msgstr "Status"
 
-#: FamilyView.py:167 FamilyView.py:631 FamilyView.py:643
+#: FamilyView.py:209 gramps_main.py:531
+msgid "Add Bookmark"
+msgstr "Lägg till bokmärke"
+
+#: FamilyView.py:212 FamilyView.py:233 FamilyView.py:256 FamilyView.py:279
+#: PedView.py:443 gramps_main.py:539
+msgid "People Menu"
+msgstr "Personmeny"
+
+#: FamilyView.py:253 FamilyView.py:276 FamilyView.py:829 FamilyView.py:860
+msgid "Add parents"
+msgstr "Lägg till föräldrar"
+
+#: FamilyView.py:305
+msgid "Child Menu"
+msgstr "Barnmeny"
+
+#: FamilyView.py:324
+msgid "Make the selected child an active person"
+msgstr "Gör det valda barnet till aktiv person"
+
+#: FamilyView.py:325 FamilyView.py:828 FamilyView.py:859
 msgid "Edit the child/parent relationships"
 msgstr "Redigera relation mellan barn/förälder"
 
-#: FamilyView.py:168
+#: FamilyView.py:326
 msgid "Edit the selected child"
 msgstr "Redigera det valda barnet"
 
-#: FamilyView.py:169
+#: FamilyView.py:327
 msgid "Remove the selected child"
 msgstr "Ta bort det valda barnet"
 
-#: FamilyView.py:201
+#: FamilyView.py:358
+msgid "Spouse Menu"
+msgstr "Maka/make-meny"
+
+#: FamilyView.py:377
+msgid "Make the selected spouse an active person"
+msgstr "Gör den valda makan/maken till aktiv person"
+
+#: FamilyView.py:378
 msgid "Edit relationship"
 msgstr "Redigera släktskap"
 
-#: FamilyView.py:202
+#: FamilyView.py:379
 msgid "Remove the selected spouse"
 msgstr "Tar bort den valda makan/maken"
 
-#: FamilyView.py:203
+#: FamilyView.py:380
 msgid "Edit the selected spouse"
 msgstr "Redigera den valda makan/maken"
 
-#: FamilyView.py:204
+#: FamilyView.py:381
 msgid "Set the selected spouse as the preferred spouse"
 msgstr "Ställ in den valda makan/maken som föredragen maka/make"
 
-#: FamilyView.py:394
+#: FamilyView.py:571
 msgid "Remove %s as a spouse of %s?"
 msgstr "Ta bort %s som maka/make till %s?"
 
-#: FamilyView.py:395
+#: FamilyView.py:572
 msgid ""
 "Removing a spouse removes the relationship between the spouse and the active "
 "person. It does not remove the spouse from the database"
@@ -538,11 +576,11 @@ msgstr ""
 "Att ta bort en maka/make tar bort relationen mellan maken/makan och den "
 "aktiva personen. Det tar inte bort makan/maken från databasen"
 
-#: FamilyView.py:398
+#: FamilyView.py:575
 msgid "_Remove Spouse"
 msgstr "_Ta bort maka/make"
 
-#: FamilyView.py:568
+#: FamilyView.py:745
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
@@ -550,28 +588,40 @@ msgstr ""
 "%s: %s\n"
 "\tSläktskap: %s"
 
-#: FamilyView.py:570
+#: FamilyView.py:747
 msgid "%s: unknown"
 msgstr "%s: okänd"
 
-#: FamilyView.py:605 Plugins.py:440 Plugins.py:441 Plugins.py:442
-#: Plugins.py:462 Plugins.py:463 Plugins.py:464 Witness.py:71 const.py:172
-#: const.py:491 const.py:499 gramps.glade:3728 gramps.glade:3921
-#: gramps.glade:4343 gramps.glade:4523 gramps.glade:5998 gramps.glade:6244
-#: gramps.glade:6817 gramps.glade:6988 gramps_main.py:1725
+#: FamilyView.py:782 Plugins.py:436 Plugins.py:437 Plugins.py:438
+#: Plugins.py:458 Plugins.py:459 Plugins.py:460 Witness.py:72 const.py:174
+#: const.py:494 const.py:502 gramps.glade:4587 gramps.glade:4780
+#: gramps.glade:5202 gramps.glade:5382 gramps.glade:6855 gramps.glade:7101
+#: gramps.glade:7674 gramps.glade:7845 gramps_main.py:2005
 #: plugins/WebPage.py:307
 msgid "Unknown"
 msgstr "Okänd"
 
-#: FamilyView.py:632 FamilyView.py:644
+#: FamilyView.py:808
+msgid "Parents Menu"
+msgstr "Föräldrameny"
+
+#: FamilyView.py:827 FamilyView.py:858
+msgid "Make the selected parents the active family"
+msgstr "Gör de valda föräldrarna till aktiv familj"
+
+#: FamilyView.py:830 FamilyView.py:861
 msgid "Remove parents"
 msgstr "Ta bort föräldrar"
 
-#: FamilyView.py:702 FamilyView.py:717
+#: FamilyView.py:839
+msgid "Spouse Parents Menu"
+msgstr "Meny för maka/makes föräldrar"
+
+#: FamilyView.py:923 FamilyView.py:938
 msgid "Remove Parents of %s"
 msgstr "Ta bort föräldrarna till %s"
 
-#: FamilyView.py:703 FamilyView.py:718
+#: FamilyView.py:924 FamilyView.py:939
 msgid ""
 "Removing the parents of a person removes the person as a child of the "
 "parents. The parents are not removed from the database, and the relationship "
@@ -581,15 +631,15 @@ msgstr ""
 "föräldrarna. Föräldrarna tas inte bort från databasen, och relationen mellan "
 "föräldrarna tas inte bort."
 
-#: FamilyView.py:707 FamilyView.py:722
+#: FamilyView.py:928 FamilyView.py:943
 msgid "_Remove Parents"
 msgstr "_Ta bort föräldrar"
 
-#: FamilyView.py:816
+#: FamilyView.py:1042
 msgid "Attempt to Reorder Children Failed"
 msgstr "Försök att ordna om barn misslyckades"
 
-#: FamilyView.py:817
+#: FamilyView.py:1043
 msgid "Children must be ordered by their birth dates."
 msgstr "Barn måste sorteras efter födelsedatum."
 
@@ -601,7 +651,7 @@ msgstr "Alla personer"
 msgid "Qualifier"
 msgstr "Sökvillkor"
 
-#: Filter.py:82 VersionControl.py:304
+#: Filter.py:82 GenericFilter.py:102 VersionControl.py:304 rule.glade:1255
 msgid "No description"
 msgstr "Beskrivning saknas"
 
@@ -625,204 +675,360 @@ msgstr "Sök efter källa"
 msgid "Find Media Object"
 msgstr "Sök efter medieobjekt"
 
-#: FrenchRepublic.py:69
+#: FrenchRepublic.py:70
 msgid "French Republican"
 msgstr "Franska republikanska"
 
-#: GenericFilter.py:135 GenericFilter.py:168 GenericFilter.py:234
-#: GenericFilter.py:274 GenericFilter.py:349 GenericFilter.py:390
-#: GenericFilter.py:460 GenericFilter.py:505 GenericFilter.py:586
-#: gramps.glade:2497 imagesel.glade:529 imagesel.glade:1275
-#: mergedata.glade:468 mergedata.glade:1060
+#: GenericFilter.py:99
+msgid "Miscellaneous filters"
+msgstr "Diverse filter"
+
+#: GenericFilter.py:131 GenericFilter.py:156 GenericFilter.py:175
+#: GenericFilter.py:783 GenericFilter.py:1085
+msgid "General filters"
+msgstr "Allmänna filter"
+
+#: GenericFilter.py:134
+msgid "Matches everyone in the database"
+msgstr "Matchar alla i databasen"
+
+#: GenericFilter.py:147 GenericFilter.py:192 GenericFilter.py:282
+#: GenericFilter.py:327 GenericFilter.py:411 GenericFilter.py:456
+#: GenericFilter.py:554 GenericFilter.py:606 GenericFilter.py:700
+#: choose.glade:536 gramps.glade:3354 imagesel.glade:527 imagesel.glade:1271
+#: mergedata.glade:468 mergedata.glade:1060 plugins/FilterEditor.py:457
 msgid "ID:"
 msgstr "ID:"
 
-#: GenericFilter.py:206 GenericFilter.py:312 GenericFilter.py:433
-#: GenericFilter.py:548 GenericFilter.py:625 GenericFilter.py:945
-#: GenericFilter.py:968
+#: GenericFilter.py:153
+msgid "Matches the person with a specified GRAMPS ID"
+msgstr "Matchar person med ett angivet GRAMPS-ID"
+
+#: GenericFilter.py:178
+msgid "Matches all females"
+msgstr "Matchar alla kvinnor"
+
+#: GenericFilter.py:192 GenericFilter.py:241 GenericFilter.py:456
+#: GenericFilter.py:512 plugins/FilterEditor.py:463
+msgid "Inclusive:"
+msgstr "Inkluderande:"
+
+#: GenericFilter.py:203 GenericFilter.py:250 GenericFilter.py:293
+#: GenericFilter.py:342 GenericFilter.py:417
+msgid "Descendant filters"
+msgstr "Ättlingafilter"
+
+#: GenericFilter.py:206
+msgid "Matches all descendants for the specified person"
+msgstr "Matchar alla ättlingar för den angivna personen"
+
+#: GenericFilter.py:241 GenericFilter.py:370 GenericFilter.py:512
+#: GenericFilter.py:656 GenericFilter.py:746 GenericFilter.py:1115
+#: GenericFilter.py:1138 plugins/FilterEditor.py:459
 msgid "Filter name:"
 msgstr "Namn för filter:"
 
-#: GenericFilter.py:234 GenericFilter.py:274 GenericFilter.py:460
-#: GenericFilter.py:505
+#: GenericFilter.py:253
+msgid "Matches people that are descendants of someone matched by a filter"
+msgstr "Matchar personer som är ättlingar till någon som matchas av ett filter"
+
+#: GenericFilter.py:282 GenericFilter.py:327 GenericFilter.py:554
+#: GenericFilter.py:606 plugins/FilterEditor.py:455
 msgid "Number of generations:"
 msgstr "Antal generationer:"
 
-#: GenericFilter.py:665 GenericFilter.py:706 GenericFilter.py:796
-#: GenericFilter.py:830 edit_person.glade:1872 edit_person.glade:3661
+#: GenericFilter.py:296
+msgid ""
+"Matches people that are descendants of a specified person not more than N "
+"generations away"
+msgstr ""
+"Matchar personer som är ättlingar till en angiven person mindre än N "
+"generationer bort"
+
+#: GenericFilter.py:338
+msgid ""
+"Matches people that are descendants of a specified person at least N "
+"generations away"
+msgstr ""
+"Matchar personer som är ättlingar till en angiven person minst N "
+"generationer bort"
+
+#: GenericFilter.py:381
+msgid "Matches the person that is a child of someone matched by a filter"
+msgstr "Matchar den person som är barn till någon som matchas av ett filter"
+
+#: GenericFilter.py:384 GenericFilter.py:670 GenericFilter.py:903
+#: GenericFilter.py:1147
+msgid "Family filters"
+msgstr "Familjefilter"
+
+#: GenericFilter.py:420
+msgid ""
+"Matches people that are descendants or the spouse of a descendant of a "
+"specified person"
+msgstr ""
+"Matchar personer som är ättlingar eller maka/make till en ättling "
+"till en angiven person"
+
+#: GenericFilter.py:467
+msgid "Matches people that are ancestors of a specified person"
+msgstr "Matchar personer som är anor till en angiven person"
+
+#: GenericFilter.py:470 GenericFilter.py:525 GenericFilter.py:569
+#: GenericFilter.py:621 GenericFilter.py:710 GenericFilter.py:756
+msgid "Ancestral filters"
+msgstr "Anfilter"
+
+#: GenericFilter.py:521
+msgid "Matches people that are ancestors of of someone matched by a filter"
+msgstr "Matchar personer som är anor till någon som matchas av ett filter"
+
+#: GenericFilter.py:565
+msgid ""
+"Matches people that are ancestors of a specified person not more than N "
+"generations away"
+msgstr ""
+"Matchar personer som är anor till en angiven person mindre än N "
+"generationer bort"
+
+#: GenericFilter.py:617
+msgid ""
+"Matches people that are ancestors of a specified person at least N "
+"generations away"
+msgstr ""
+"Matchar personer som är anor till en angiven person minst N "
+"generationer bort"
+
+#: GenericFilter.py:667
+msgid "Matches the person that is a parent of someone matched by a filter"
+msgstr ""
+"Matchar personer som är en förälder till någon som matchas av ett "
+"filter"
+
+#: GenericFilter.py:706
+msgid "Matches people that have a common ancestor with a specified person"
+msgstr "Matchar personer som har en ana gemensam med en angiven person"
+
+#: GenericFilter.py:752
+msgid ""
+"Matches people that have a common ancestor with someone matched by a filter"
+msgstr ""
+"Matchar personer som har en ana gemensam med någon som matchas av ett "
+"filter"
+
+#: GenericFilter.py:786
+msgid "Matches all males"
+msgstr "Matchar alla män"
+
+#: GenericFilter.py:799 GenericFilter.py:846 GenericFilter.py:948
+#: GenericFilter.py:988 edit_person.glade:1872 edit_person.glade:3661
 #: marriage.glade:409 places.glade:1395
 msgid "Description:"
 msgstr "Beskrivning:"
 
-#: GenericFilter.py:665 GenericFilter.py:706 GenericFilter.py:796
-#: GenericFilter.py:830 edit_person.glade:1920 marriage.glade:1501
+#: GenericFilter.py:799 GenericFilter.py:846 GenericFilter.py:948
+#: GenericFilter.py:988 edit_person.glade:1920 marriage.glade:1501
 #: mergedata.glade:534 mergedata.glade:717 mergedata.glade:1108
-#: mergedata.glade:1156
+#: mergedata.glade:1156 plugins/FilterEditor.py:453
 msgid "Place:"
 msgstr "Ort:"
 
-#: GenericFilter.py:665 GenericFilter.py:706 GenericFilter.py:796
-#: GenericFilter.py:830 edit_person.glade:1968 edit_person.glade:2834
+#: GenericFilter.py:799 GenericFilter.py:846 GenericFilter.py:948
+#: GenericFilter.py:988 edit_person.glade:1968 edit_person.glade:2834
 #: marriage.glade:313 marriage.glade:1453 mergedata.glade:558
 #: mergedata.glade:693 mergedata.glade:1084 mergedata.glade:1132
 msgid "Date:"
 msgstr "Datum:"
 
-#: GenericFilter.py:665 plugins/FilterEditor.py:38
+#: GenericFilter.py:799 plugins/FilterEditor.py:55
 msgid "Personal event:"
 msgstr "Personlig händelse:"
 
-#: GenericFilter.py:706 plugins/FilterEditor.py:39
+#: GenericFilter.py:813
+msgid "Matches the person with a personal event of a particular value"
+msgstr ""
+"Matchar den person som har en personlig händelse med ett visst värde"
+
+#: GenericFilter.py:816 GenericFilter.py:863 GenericFilter.py:965
+#: GenericFilter.py:1005
+msgid "Event filters"
+msgstr "Händelsefilter"
+
+#: GenericFilter.py:846 plugins/FilterEditor.py:56
 msgid "Family event:"
 msgstr "Familjehändelse:"
 
-#: GenericFilter.py:746
+#: GenericFilter.py:860
+msgid "Matches the person with a family event of a particular value"
+msgstr "Matchar den person som har en familjehändelse med ett visst värde"
+
+#: GenericFilter.py:892
 msgid "Number of relationships:"
 msgstr "Antal relationer:"
 
-#: GenericFilter.py:747 plugins/FilterEditor.py:42
+#: GenericFilter.py:893 plugins/FilterEditor.py:59
 msgid "Relationship type:"
 msgstr "Typ av relation:"
 
-#: GenericFilter.py:748
+#: GenericFilter.py:894
 msgid "Number of children:"
 msgstr "Antal barn:"
 
-#: GenericFilter.py:864 GenericFilter.py:886 edit_person.glade:2452
-#: imagesel.glade:836 imagesel.glade:1595
+#: GenericFilter.py:900
+msgid "Matches the person who has a particular relationship"
+msgstr "Matchar den person som har en viss släktskap"
+
+#: GenericFilter.py:962
+msgid "Matches the person with a birth of a particular value"
+msgstr "Matchar den person som har en födelse med ett visst värde"
+
+#: GenericFilter.py:1002
+msgid "Matches the person with a death of a particular value"
+msgstr "Matchar den person som har en död med ett visst värde"
+
+#: GenericFilter.py:1028 GenericFilter.py:1050 edit_person.glade:2452
+#: imagesel.glade:832 imagesel.glade:1589
 msgid "Value:"
 msgstr "Värde:"
 
-#: GenericFilter.py:864 plugins/FilterEditor.py:40
+#: GenericFilter.py:1028 plugins/FilterEditor.py:57
 msgid "Personal attribute:"
 msgstr "Personattribut:"
 
-#: GenericFilter.py:886 plugins/FilterEditor.py:41
+#: GenericFilter.py:1050 plugins/FilterEditor.py:58
 msgid "Family attribute:"
 msgstr "Familjeattribut:"
 
-#: GenericFilter.py:912 edit_person.glade:1308
-msgid "Suffix:"
-msgstr "Suffix:"
-
-#: GenericFilter.py:912 edit_person.glade:1332
-msgid "Family name:"
-msgstr "Filnamn:"
-
-#: GenericFilter.py:912 edit_person.glade:1356
-msgid "Given name:"
-msgstr "Förnamn:"
-
-#: GenericFilter.py:912 edit_person.glade:1380 gramps.glade:2591
-#: imagesel.glade:695
+#: GenericFilter.py:1076 choose.glade:630 edit_person.glade:1380
+#: gramps.glade:3448 imagesel.glade:693
 msgid "Title:"
 msgstr "Titel:"
 
-#: GenericFilter.py:1135
+#: GenericFilter.py:1076 edit_person.glade:1308
+msgid "Suffix:"
+msgstr "Suffix:"
+
+#: GenericFilter.py:1076 edit_person.glade:1332
+msgid "Family name:"
+msgstr "Filnamn:"
+
+#: GenericFilter.py:1076 edit_person.glade:1356
+msgid "Given name:"
+msgstr "Förnamn:"
+
+#: GenericFilter.py:1082
+msgid "Matches the person with a specified (partial) name"
+msgstr "Matchar den person som har ett angivet (del)namn"
+
+#: GenericFilter.py:1144
+msgid "Matches the person married to someone matching a filter"
+msgstr "Matchar den person som är gift med någon som matchar ett filter"
+
+#: GenericFilter.py:1291
 msgid "Everyone"
 msgstr "Alla"
 
-#: GenericFilter.py:1136
+#: GenericFilter.py:1292
 msgid "Has the Id"
 msgstr "Har id:t"
 
-#: GenericFilter.py:1137
+#: GenericFilter.py:1293
 msgid "Has a name"
 msgstr "Har ett namn"
 
-#: GenericFilter.py:1138
+#: GenericFilter.py:1294
 msgid "Has the relationships"
 msgstr "Har släktskapen"
 
-#: GenericFilter.py:1139
+#: GenericFilter.py:1295
 msgid "Has the death"
 msgstr "Har dödsdata"
 
-#: GenericFilter.py:1140
+#: GenericFilter.py:1296
 msgid "Has the birth"
 msgstr "Har födelsedata"
 
-#: GenericFilter.py:1141
+#: GenericFilter.py:1297
 msgid "Is a descendant of"
 msgstr "Är en ättling till %s"
 
-#: GenericFilter.py:1142
+#: GenericFilter.py:1298
 msgid "Is a descendant family member of"
 msgstr "Är en ättling eller partner till en ättling till"
 
-#: GenericFilter.py:1143
+#: GenericFilter.py:1299
 msgid "Is a descendant of filter match"
 msgstr "Är en ättling till filterträff"
 
-#: GenericFilter.py:1144
+#: GenericFilter.py:1300
 msgid "Is a descendant of person not more than N generations away"
 msgstr "Är en ättling till person mindre än N generationer bort"
 
-#: GenericFilter.py:1146
+#: GenericFilter.py:1302
 msgid "Is a descendant of person at least N generations away"
 msgstr "Är en ättling till person minst N generationer bort"
 
-#: GenericFilter.py:1148
+#: GenericFilter.py:1304
 msgid "Is a child of filter match"
 msgstr "Är ett barn till filterträff"
 
-#: GenericFilter.py:1149
+#: GenericFilter.py:1305
 msgid "Is an ancestor of"
 msgstr "Är en ana till"
 
-#: GenericFilter.py:1150
+#: GenericFilter.py:1306
 msgid "Is an ancestor of filter match"
 msgstr "Är en ana till filterträff"
 
-#: GenericFilter.py:1151
+#: GenericFilter.py:1307
 msgid "Is an ancestor of person not more than N generations away"
 msgstr "Är en ana till en person mindre än N generationer bort"
 
-#: GenericFilter.py:1153
+#: GenericFilter.py:1309
 msgid "Is an ancestor of person at least N generations away"
 msgstr "Är en ana till en person minst N generationer bort"
 
-#: GenericFilter.py:1155
+#: GenericFilter.py:1311
 msgid "Is a parent of filter match"
 msgstr "Är en förälder till filterträff"
 
-#: GenericFilter.py:1156
+#: GenericFilter.py:1312
 msgid "Has a common ancestor with"
 msgstr "Har en ana gemensam med"
 
-#: GenericFilter.py:1157
+#: GenericFilter.py:1313
 msgid "Has a common ancestor with filter match"
 msgstr "Har en ana gemensam med filterträff"
 
-#: GenericFilter.py:1159
+#: GenericFilter.py:1315
 msgid "Is a female"
 msgstr "Är en kvinna"
 
-#: GenericFilter.py:1160
+#: GenericFilter.py:1316
 msgid "Is a male"
 msgstr "Är en man"
 
-#: GenericFilter.py:1161
+#: GenericFilter.py:1317
 msgid "Has the personal event"
 msgstr "Har den personliga händelsen"
 
-#: GenericFilter.py:1162
+#: GenericFilter.py:1318
 msgid "Has the family event"
 msgstr "Har familjehändelsen"
 
-#: GenericFilter.py:1163
+#: GenericFilter.py:1319
 msgid "Has the personal attribute"
 msgstr "Har det personliga attributet"
 
-#: GenericFilter.py:1164
+#: GenericFilter.py:1320
 msgid "Has the family attribute"
 msgstr "Har familjeattributet"
 
-#: GenericFilter.py:1165
+#: GenericFilter.py:1321
 msgid "Matches the filter named"
 msgstr "Matchar filtret benämnt"
 
-#: GenericFilter.py:1166
+#: GenericFilter.py:1322
 msgid "Is spouse of filter match"
 msgstr "Är maka/make till filterträff"
 
@@ -958,71 +1164,67 @@ msgstr "Forskarinformation"
 msgid "Data Guessing"
 msgstr "Gissning av data"
 
-#: GrampsCfg.py:633 GrampsCfg.py:648
+#: GrampsCfg.py:649 GrampsCfg.py:664
 msgid "No default format"
 msgstr "Inget standardformat valt"
 
-#: Gregorian.py:53 dialog.glade:269 dialog.glade:2059
+#: Gregorian.py:53 dialog.glade:269 dialog.glade:2060
 msgid "Gregorian"
 msgstr "Gregoriansk"
 
-#: Hebrew.py:89 dialog.glade:285 dialog.glade:2075
+#: Hebrew.py:89 dialog.glade:285 dialog.glade:2076
 msgid "Hebrew"
 msgstr "Judisk"
 
-#: ImageSelect.py:107
-msgid "Select a media object"
-msgstr "Välj ett medieobjekt"
-
-#: ImageSelect.py:372
+#: ImageSelect.py:380
 msgid "Thumbnail %s could not be found"
 msgstr "Miniatyrbilden %s kunde inte öppnas"
 
-#: ImageSelect.py:462 RelImage.py:56
+#: ImageSelect.py:470 RelImage.py:56
 msgid "Could not import %s"
 msgstr "Kunde inte importera %s"
 
-#: ImageSelect.py:562 MediaView.py:181
+#: ImageSelect.py:570 MediaView.py:181
 msgid "Media Object"
 msgstr "Medieobjekt"
 
-#: ImageSelect.py:567
+#: ImageSelect.py:575
 msgid "Open in %s"
 msgstr "Öppna i %s"
 
-#: ImageSelect.py:570 MediaView.py:185
+#: ImageSelect.py:578 MediaView.py:185
 msgid "Edit with the GIMP"
 msgstr "Redigera med GIMP"
 
-#: ImageSelect.py:572 MediaView.py:187
+#: ImageSelect.py:580 MediaView.py:187
 msgid "Edit Object Properties"
 msgstr "Redigera egenskaper för objekt"
 
-#: ImageSelect.py:575 MediaView.py:190
+#: ImageSelect.py:583 MediaView.py:190
 msgid "Convert to local copy"
 msgstr "Gör om till lokal kopia"
 
-#: ImageSelect.py:626
+#: ImageSelect.py:633
 msgid "Change local media object properties"
 msgstr "Ändra egenskaper för lokalt medieobjekt"
 
-#: ImageSelect.py:754
+#: ImageSelect.py:761
 msgid "Change global media object properties"
 msgstr "Ändra egenskaper för globalt medieobjekt"
 
-#: ImageSelect.py:858 plugins/EventCmp.py:306
+#: ImageSelect.py:865 plugins/EventCmp.py:306
 msgid "Person"
 msgstr "Person"
 
-#: ImageSelect.py:862 gramps.glade:831
+#: ImageSelect.py:869 gramps.glade:952
 msgid "Family"
 msgstr "Familj"
 
-#: ImageSelect.py:867 Utils.py:195 Utils.py:197
+#: ImageSelect.py:874 Utils.py:195 Utils.py:197
 msgid "Source"
 msgstr "Källa"
 
-#: Julian.py:52 dialog.glade:277 dialog.glade:2067
+#: Julian.py:52 dialog.glade:277 dialog.glade:2068
 msgid "Julian"
 msgstr "Juliansk"
 
@@ -1048,10 +1250,11 @@ msgid ""
 "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr "GRAMPS-ID:t som du valde för den här relationen används redan."
 
-#: MediaView.py:75 SourceView.py:68 Sources.py:77 Sources.py:161
-#: plugins/BookReport.py:676 plugins/BookReport.py:749
-#: plugins/PatchNames.py:168 plugins/SimpleBookTitle.py:359
-#: plugins/TimeLine.py:351
+#: MediaView.py:75 SelectObject.py:86 SourceView.py:68 Sources.py:75
+#: Sources.py:166 plugins/BookReport.py:678 plugins/BookReport.py:695
+#: plugins/BookReport.py:768 plugins/PatchNames.py:168
+#: plugins/SimpleBookTitle.py:302 plugins/SimpleBookTitle.py:566
+#: plugins/TimeLine.py:437 plugins/TimeLine.py:579
 msgid "Title"
 msgstr "Titel"
 
@@ -1071,7 +1274,7 @@ msgstr ""
 "Imaging Library (PIL), tillgänglig från http://www.pythonware.com/products/"
 "pil/ eller ImageMagick, tillgänglig från http://www.imagemagick.org/"
 
-#: MediaView.py:163
+#: MediaView.py:163 SelectObject.py:140
 msgid "The file no longer exists"
 msgstr "Filen finns inte längre"
 
@@ -1079,11 +1282,11 @@ msgstr "Filen finns inte längre"
 msgid "View in the default viewer"
 msgstr "Visa i standardvisaren"
 
-#: MediaView.py:256
+#: MediaView.py:257
 msgid "Delete Media Object?"
 msgstr "Ta bort medieobjekt?"
 
-#: MediaView.py:257
+#: MediaView.py:258
 msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
@@ -1092,11 +1295,11 @@ msgstr ""
 "kommer det att tas bort från databasen, och från alla poster som refererar "
 "till det."
 
-#: MediaView.py:261
+#: MediaView.py:262
 msgid "_Delete Media Object"
 msgstr "_Ta bort medieobjekt"
 
-#: MediaView.py:343
+#: MediaView.py:344
 msgid "Image import failed"
 msgstr "Bildimport misslyckades"
 
@@ -1124,7 +1327,7 @@ msgstr "Redigerare för alternativa namn"
 msgid "Alternate Name Editor for %s"
 msgstr "Redigerare för alternativa namn för %s"
 
-#: NoteEdit.py:50 NoteEdit.py:57
+#: NoteEdit.py:51 NoteEdit.py:58
 msgid "Edit Note"
 msgstr "Redigera anteckningar"
 
@@ -1136,11 +1339,11 @@ msgstr "Stående"
 msgid "Landscape"
 msgstr "Liggande"
 
-#: PaperMenu.py:127 PaperMenu.py:139
+#: PaperMenu.py:127 PaperMenu.py:140
 msgid "Custom Size"
 msgstr "Anpassad storlek"
 
-#: PedView.py:381
+#: PedView.py:391
 msgid "Double clicking will make %s the active person"
 msgstr "Om du dubbelklickar blir %s den aktiva personen"
 
@@ -1152,19 +1355,25 @@ msgstr "Socken eller församling"
 msgid "Place Name"
 msgstr "Ortnamn"
 
-#: PlaceView.py:149 gramps_main.py:624
-msgid "Cannot merge people."
-msgstr "Kan inte slå samman personer."
+#: PlaceView.py:149
+msgid "Cannot merge places."
+msgstr "Kan inte slå samman orter."
 
 #: PlaceView.py:150
-msgid "Exactly two people must be selected to perform a merge."
-msgstr "Exakt två personer måste vara valda för att kunna slås ihop."
+msgid ""
+"Exactly two places must be selected to perform a merge. A second place can "
+"be selected by holding down the control key while clicking on a the desired "
+"place."
+msgstr ""
+"Exakt två orter måste vara valda för att kunna slås ihop. En andra ort "
+"kan väljas genom att trycka på ctrl-tangenten medan man klickar på den "
+"önskade orten."
 
-#: PlaceView.py:206 SourceView.py:139 gramps_main.py:1322
+#: PlaceView.py:208 SourceView.py:140 gramps_main.py:1569
 msgid "Delete %s?"
 msgstr "Ta bort %s?"
 
-#: PlaceView.py:207
+#: PlaceView.py:209
 msgid ""
 "This place is currently being used by at least one record in the database. "
 "Deleting it will remove it from the database and remove it from all records "
@@ -1174,7 +1383,7 @@ msgstr ""
 "den kommer den att tas bort från databasen och från alla poster som "
 "refererar till den."
 
-#: PlaceView.py:211
+#: PlaceView.py:213
 msgid "_Delete Place"
 msgstr "_Ta bort Ort"
 
@@ -1182,27 +1391,27 @@ msgstr "_Ta bort Ort"
 msgid "No description was provided"
 msgstr "Det finns ingen beskrivning"
 
-#: Plugins.py:263
+#: Plugins.py:262
 msgid "Report Selection"
 msgstr "Val av rapport"
 
-#: Plugins.py:279
+#: Plugins.py:278
 msgid "Tool Selection"
 msgstr "Val av verktyg"
 
-#: Plugins.py:295
+#: Plugins.py:294
 msgid "Plugin status"
 msgstr "Status för insticksmoduler"
 
-#: Plugins.py:307
+#: Plugins.py:303
 msgid "All modules were successfully loaded."
 msgstr "Alla moduler lästes in utan problem."
 
-#: Plugins.py:309
+#: Plugins.py:305
 msgid "The following modules could not be loaded:"
 msgstr "Följande insticksmoduler kunde inte laddas"
 
-#: Plugins.py:437 Plugins.py:459
+#: Plugins.py:433 Plugins.py:455
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 
@@ -1223,17 +1432,17 @@ msgid "The file is probably either corrupt or not a valid GRAMPS database."
 msgstr ""
 "Filen är antagligen antingen felaktig eller inte en giltig GRAMPS-databas."
 
-#: ReadXML.py:194 gramps_main.py:1180 plugins/Check.py:171
+#: ReadXML.py:194 gramps_main.py:1424 plugins/Check.py:171
 #: plugins/WriteCD.py:225 plugins/WritePkg.py:150
 msgid "Select file"
 msgstr "Välj fil"
 
-#: ReadXML.py:226 gramps_main.py:1203 plugins/Check.py:188
+#: ReadXML.py:226 gramps_main.py:1447 plugins/Check.py:188
 #: plugins/WriteCD.py:247 plugins/WritePkg.py:173
 msgid "Media object could not be found"
 msgstr "Medieobjektet kunde inte återfinnas"
 
-#: ReadXML.py:227 gramps_main.py:1204 plugins/Check.py:189
+#: ReadXML.py:227 gramps_main.py:1448 plugins/Check.py:189
 #: plugins/WriteCD.py:248 plugins/WritePkg.py:174
 msgid ""
 "%(file_name)s is referenced in the database, but no longer exists. The file "
@@ -1262,17 +1471,14 @@ msgstr "Filen har flyttats eller tagits bort"
 #: docgen/AbiWord2Doc.py:71 docgen/AbiWord2Doc.py:74 docgen/AbiWordDoc.py:70
 #: docgen/AbiWordDoc.py:73 docgen/HtmlDoc.py:223 docgen/HtmlDoc.py:226
 #: docgen/HtmlDoc.py:336 docgen/HtmlDoc.py:339 docgen/LaTeXDoc.py:83
-#: docgen/LaTeXDoc.py:86 docgen/OpenDrawDoc.py:77 docgen/OpenOfficeDoc.py:82
-#: docgen/OpenOfficeDoc.py:359 docgen/OpenOfficeDoc.py:362
-#: docgen/OpenOfficeDoc.py:547 docgen/OpenOfficeDoc.py:550
-#: docgen/OpenOfficeDoc.py:583 docgen/OpenOfficeDoc.py:586
-#: docgen/PSDrawDoc.py:104 docgen/PSDrawDoc.py:107 docgen/PdfDoc.py:156
-#: docgen/PdfDoc.py:159 docgen/PdfDrawDoc.py:91 docgen/PdfDrawDoc.py:93
-#: docgen/RTFDoc.py:71 docgen/RTFDoc.py:74 docgen/SvgDrawDoc.py:84
-#: docgen/SvgDrawDoc.py:86 gramps_main.py:1231 gramps_main.py:1236
-#: gramps_main.py:1246 plugins/AncestorChart.py:116 plugins/DesGraph.py:213
-#: plugins/DesGraph.py:222 plugins/WriteGedcom.py:565
-#: plugins/WriteGedcom.py:570
+#: docgen/LaTeXDoc.py:86 docgen/OpenOfficeDoc.py:89 docgen/OpenOfficeDoc.py:91
+#: docgen/OpenOfficeDoc.py:464 docgen/OpenOfficeDoc.py:468
+#: docgen/OpenOfficeDoc.py:673 docgen/OpenOfficeDoc.py:677
+#: docgen/OpenOfficeDoc.py:711 docgen/OpenOfficeDoc.py:715
+#: docgen/PSDrawDoc.py:103 docgen/PSDrawDoc.py:106 docgen/PdfDoc.py:167
+#: docgen/RTFDoc.py:71 docgen/RTFDoc.py:74 docgen/SvgDrawDoc.py:83
+#: docgen/SvgDrawDoc.py:85 gramps_main.py:1477 gramps_main.py:1482
+#: gramps_main.py:1492 plugins/WriteGedcom.py:566 plugins/WriteGedcom.py:571
 msgid "Could not create %s"
 msgstr "Kunde inte skapa %s"
 
@@ -1463,7 +1669,7 @@ msgstr "Stilmallsredigerare"
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
-#: Report.py:523 plugins/FilterEditor.py:70 plugins/pafexport.glade:127
+#: Report.py:523 plugins/FilterEditor.py:251 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Filter"
 
@@ -1479,7 +1685,7 @@ msgstr "Sidbrytning mellan generationer"
 msgid "Save Report As"
 msgstr "Spara rapport som"
 
-#: Report.py:874 Report.py:950 docgen/PSDrawDoc.py:383
+#: Report.py:874 Report.py:952 docgen/PSDrawDoc.py:382
 msgid "Print a copy"
 msgstr "Skriv ut ett ex"
 
@@ -1495,60 +1701,60 @@ msgstr "Katalog"
 msgid "Filename"
 msgstr "Filnamn"
 
-#: Report.py:956
+#: Report.py:958
 msgid "Output Format"
 msgstr "Format för utdata"
 
-#: Report.py:1015 Report.py:1017
+#: Report.py:1017 Report.py:1019
 msgid "Paper Options"
 msgstr "Alternativ för papper"
 
-#: Report.py:1026
+#: Report.py:1028 plugins/SimpleBookTitle.py:338
 msgid "Size"
 msgstr "Storlek"
 
-#: Report.py:1031
+#: Report.py:1033
 msgid "Height"
 msgstr "Höjd"
 
-#: Report.py:1039 Report.py:1055 styles.glade:903 styles.glade:927
+#: Report.py:1041 Report.py:1057 styles.glade:903 styles.glade:927
 #: styles.glade:951
 msgid "cm"
 msgstr "cm"
 
-#: Report.py:1043
+#: Report.py:1045
 msgid "Orientation"
 msgstr "Orientering"
 
-#: Report.py:1047
+#: Report.py:1049
 msgid "Width"
 msgstr "Bredd"
 
-#: Report.py:1067
+#: Report.py:1069
 msgid "Page Count"
 msgstr "Sidantal"
 
-#: Report.py:1093 Report.py:1098
+#: Report.py:1095 Report.py:1100
 msgid "HTML Options"
 msgstr "HTML-alternativ"
 
-#: Report.py:1100 plugins/eventcmp.glade:192
+#: Report.py:1102 plugins/eventcmp.glade:192
 msgid "Template"
 msgstr "Mall"
 
-#: Report.py:1119
+#: Report.py:1121
 msgid "User Template"
 msgstr "Användarmall"
 
-#: Report.py:1122
+#: Report.py:1124
 msgid "Choose File"
 msgstr "Välj fil"
 
-#: Report.py:1143
+#: Report.py:1145
 msgid "Invalid file name"
 msgstr "Ogiltigt filnamn"
 
-#: Report.py:1144
+#: Report.py:1146
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
@@ -1556,50 +1762,50 @@ msgstr ""
 "Filnamnet som du angav är en katalog.\n"
 "Du måste ange ett giltigt filnamn."
 
-#: Report.py:1149
+#: Report.py:1151
 msgid "File already exists"
 msgstr "Filen finns redan"
 
-#: Report.py:1150
+#: Report.py:1152
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen, eller att ändra det\n"
 "filnamn som valts."
 
-#: Report.py:1152
+#: Report.py:1154
 msgid "_Overwrite"
 msgstr "_Skriv över"
 
-#: Report.py:1153
+#: Report.py:1155
 msgid "_Change filename"
 msgstr "_Ändra filnamn"
 
-#: SelectChild.py:78
+#: SelectChild.py:79
 msgid "Add Child to Family"
 msgstr "Lägg till barn i familj"
 
-#: SelectChild.py:88 SelectChild.py:337
+#: SelectChild.py:89 SelectChild.py:338
 msgid "Relationship to %(father)s"
 msgstr "Släktskap till %(father)s"
 
-#: SelectChild.py:95 SelectChild.py:348
+#: SelectChild.py:96 SelectChild.py:349
 msgid "Relationship to %(mother)s"
 msgstr "Släktskap till %(mother)s"
 
-#: SelectChild.py:101 plugins/RelCalc.py:82
+#: SelectChild.py:102 plugins/RelCalc.py:82
 msgid "Relationship to %s"
 msgstr "Släktskap med %s"
 
-#: SelectChild.py:330
+#: SelectChild.py:331
 msgid "Relationships of %s"
 msgstr "Släktskap för %s"
 
-#: SelectChild.py:342
+#: SelectChild.py:343
 msgid "Relationship to father"
 msgstr "Släktskap till fader"
 
-#: SelectChild.py:353
+#: SelectChild.py:354
 msgid "Relationship to mother"
 msgstr "Släktskap till moder"
 
@@ -1607,7 +1813,7 @@ msgstr "Släktskap till moder"
 msgid "Author"
 msgstr "Författare"
 
-#: SourceView.py:140
+#: SourceView.py:141
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all records that reference it."
@@ -1615,7 +1821,7 @@ msgstr ""
 "Den här källan används för närvarande. Om du raderar den, så kommer den att "
 "tas bort från databasen, och från alla poster som refererar till den."
 
-#: SourceView.py:143
+#: SourceView.py:144
 msgid "_Delete Source"
 msgstr "_Ta bort källa"
 
@@ -1623,7 +1829,7 @@ msgstr "_Ta bort källa"
 msgid "Source Reference Selection"
 msgstr "Urval av källreferenser"
 
-#: Sources.py:234
+#: Sources.py:239
 msgid "Source Information"
 msgstr "Källinformation"
 
@@ -1673,13 +1879,13 @@ msgstr ""
 "inte tänker skapa GEDCOM-filer kan du lämna detta tomt."
 
 #: StartupDialog.py:156 edit_person.glade:1236 edit_person.glade:2016
-#: edit_person.glade:2500 edit_person.glade:2906 gramps.glade:5781
-#: gramps.glade:6049 marriage.glade:433 marriage.glade:901 mergedata.glade:402
-#: mergedata.glade:1036 plugins/soundex.glade:89 rule.glade:601
+#: edit_person.glade:2500 edit_person.glade:2906 gramps.glade:6638
+#: gramps.glade:6906 marriage.glade:433 marriage.glade:901 mergedata.glade:402
+#: mergedata.glade:1036 plugins/soundex.glade:89 rule.glade:578
 msgid "Name:"
 msgstr "Namn:"
 
-#: StartupDialog.py:157 edit_person.glade:2858 plugins/Ancestors.py:429
+#: StartupDialog.py:157 edit_person.glade:2858 plugins/Ancestors.py:450
 msgid "Address:"
 msgstr "Adress:"
 
@@ -1827,7 +2033,7 @@ msgstr "Ändrad av"
 msgid "Revision"
 msgstr "Revidering"
 
-#: VersionControl.py:118 plugins/FilterEditor.py:70
+#: VersionControl.py:118 plugins/FilterEditor.py:251
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -1839,7 +2045,7 @@ msgstr "Kunde inte hämta version"
 msgid "RCS"
 msgstr "RCS"
 
-#: Witness.py:54
+#: Witness.py:55
 msgid "Witness"
 msgstr "Vittne"
 
@@ -1863,15 +2069,38 @@ msgstr "Islamsk"
 msgid "Persian"
 msgstr "Persisk"
 
-#: choose.glade:128 const.py:135 select_person.glade:128
+#: choose.glade:128 const.py:137 select_person.glade:128
 msgid "female"
 msgstr "kvinna"
 
-#: choose.glade:173 const.py:134 select_person.glade:173
+#: choose.glade:173 const.py:136 select_person.glade:173
 msgid "male"
 msgstr "man"
 
-#: const.py:109
+#: choose.glade:379 gramps.glade:3197 imagesel.glade:140 imagesel.glade:467
+#: imagesel.glade:1211
+msgid "<b>Preview</b>"
+msgstr "<b>Förhandsgranskning</b>"
+
+#: choose.glade:415 gramps.glade:3233
+msgid "Details:"
+msgstr "Detaljer:"
+
+#: choose.glade:486 gramps.glade:3304 imagesel.glade:503 imagesel.glade:1247
+msgid "Path:"
+msgstr "Sökväg:"
+
+#: choose.glade:511 edit_person.glade:1404 edit_person.glade:1944
+#: edit_person.glade:2428 gramps.glade:3329 imagesel.glade:808
+#: imagesel.glade:1636 marriage.glade:337 marriage.glade:925
+msgid "Type:"
+msgstr "Typ:"
+
+#: choose.glade:655 gramps.glade:3473 plugins/gedcomimport.glade:209
+msgid "<b>Information</b>"
+msgstr "<b>Information</b>"
+
+#: const.py:111
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -1879,282 +2108,286 @@ msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) är "
 "ett genealogiprogram för privatpersoner."
 
-#: const.py:123
+#: const.py:125
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Jens Arvidsson"
 
-#: const.py:167 const.py:286 gramps.glade:3640 gramps.glade:3833
-#: gramps.glade:4277 gramps.glade:4457 gramps.glade:5910 gramps.glade:6156
-#: gramps.glade:6751 gramps.glade:6922
+#: const.py:169 const.py:289 gramps.glade:4499 gramps.glade:4692
+#: gramps.glade:5136 gramps.glade:5316 gramps.glade:6767 gramps.glade:7013
+#: gramps.glade:7608 gramps.glade:7779
 msgid "Adopted"
 msgstr "Adopterad"
 
-#: const.py:168 gramps.glade:3662 gramps.glade:3855 gramps.glade:4299
-#: gramps.glade:4479 gramps.glade:5932 gramps.glade:6178 gramps.glade:6773
-#: gramps.glade:6944
+#: const.py:170 gramps.glade:4521 gramps.glade:4714 gramps.glade:5158
+#: gramps.glade:5338 gramps.glade:6789 gramps.glade:7035 gramps.glade:7630
+#: gramps.glade:7801
 msgid "Stepchild"
 msgstr "Styvbarn"
 
-#: const.py:169
+#: const.py:171
 msgid "Sponsored"
 msgstr "Fadder"
 
-#: const.py:170 gramps.glade:3684 gramps.glade:3877 gramps.glade:5954
-#: gramps.glade:6200
+#: const.py:172 gramps.glade:4543 gramps.glade:4736 gramps.glade:6811
+#: gramps.glade:7057
 msgid "Foster"
 msgstr "Fosterbarn"
 
-#: const.py:173 const.py:492 const.py:500 gramps.glade:1328
+#: const.py:175 const.py:495 const.py:503 gramps.glade:1449
 #: mergedata.glade:218
 msgid "Other"
 msgstr "Annat"
 
-#: const.py:182 srcsel.glade:448
+#: const.py:184 srcsel.glade:446
 msgid "Very High"
 msgstr "Mycket hög"
 
-#: const.py:183 plugins/Merge.py:115 srcsel.glade:440
+#: const.py:185 plugins/Merge.py:115 srcsel.glade:438
 msgid "High"
 msgstr "Hög"
 
-#: const.py:184 srcsel.glade:432
+#: const.py:186 srcsel.glade:430
 msgid "Normal"
 msgstr "Normal"
 
-#: const.py:185 plugins/Merge.py:107 srcsel.glade:424
+#: const.py:187 plugins/Merge.py:107 srcsel.glade:422
 msgid "Low"
 msgstr "Låg"
 
-#: const.py:186 srcsel.glade:416
+#: const.py:188 srcsel.glade:414
 msgid "Very Low"
 msgstr "Mycket låg"
 
-#: const.py:206
+#: const.py:208
+msgid "Alternate Marriage"
+msgstr "Alternativt giftermål"
+
+#: const.py:209
 msgid "Annulment"
 msgstr "Annulering"
 
-#: const.py:207 const.py:301
+#: const.py:210 const.py:304
 msgid "Divorce Filing"
 msgstr "Begäran om skilsmässa"
 
-#: const.py:208
+#: const.py:211
 msgid "Divorce"
 msgstr "Skilsmässa"
 
-#: const.py:209
+#: const.py:212
 msgid "Engagement"
 msgstr "Förlovning"
 
-#: const.py:210
+#: const.py:213
 msgid "Marriage Contract"
 msgstr "Äktenskapskontrakt"
 
-#: const.py:211
+#: const.py:214
 msgid "Marriage License"
 msgstr "Äktenskapslicens"
 
-#: const.py:212
+#: const.py:215
 msgid "Marriage Settlement"
 msgstr "Äktenskapsförord"
 
-#: const.py:213
+#: const.py:216
 msgid "Marriage"
 msgstr "Äktenskap"
 
-#: const.py:287
+#: const.py:290
 msgid "Alternate Birth"
 msgstr "Alternativ födelse"
 
-#: const.py:288
+#: const.py:291
 msgid "Alternate Death"
 msgstr "Alternativ död"
 
-#: const.py:289
+#: const.py:292
 msgid "Adult Christening"
 msgstr "Vuxendop"
 
-#: const.py:290
+#: const.py:293
 msgid "Baptism"
 msgstr "Dop"
 
-#: const.py:291
+#: const.py:294
 msgid "Bar Mitzvah"
 msgstr "Bar mitsva"
 
-#: const.py:292
+#: const.py:295
 msgid "Bas Mitzvah"
 msgstr "Bat mitsva"
 
-#: const.py:293
+#: const.py:296
 msgid "Blessing"
 msgstr "Välsignelse"
 
-#: const.py:294
+#: const.py:297
 msgid "Burial"
 msgstr "Begravning"
 
-#: const.py:295
+#: const.py:298
 msgid "Cause Of Death"
 msgstr "Dödsorsak"
 
-#: const.py:296
+#: const.py:299
 msgid "Census"
 msgstr "Folkräkning"
 
-#: const.py:297
+#: const.py:300
 msgid "Christening"
 msgstr "Dop"
 
-#: const.py:298
+#: const.py:301
 msgid "Confirmation"
 msgstr "Konfirmation"
 
-#: const.py:299
+#: const.py:302
 msgid "Cremation"
 msgstr "Kremering"
 
-#: const.py:300
+#: const.py:303
 msgid "Degree"
 msgstr "Examen"
 
-#: const.py:302
+#: const.py:305
 msgid "Education"
 msgstr "Utbildning"
 
-#: const.py:303
+#: const.py:306
 msgid "Elected"
 msgstr "Vald"
 
-#: const.py:304
+#: const.py:307
 msgid "Emigration"
 msgstr "Emigration"
 
-#: const.py:305
+#: const.py:308
 msgid "First Communion"
 msgstr "Första nattvarden"
 
-#: const.py:306
+#: const.py:309
 msgid "Immigration"
 msgstr "Immigration"
 
-#: const.py:307
+#: const.py:310
 msgid "Graduation"
 msgstr "Examen"
 
-#: const.py:308
+#: const.py:311
 msgid "Medical Information"
 msgstr "Medicisk information"
 
-#: const.py:309
+#: const.py:312
 msgid "Military Service"
 msgstr "Militärtjänst"
 
-#: const.py:310
+#: const.py:313
 msgid "Naturalization"
 msgstr "Nytt medborgarskap"
 
-#: const.py:311
+#: const.py:314
 msgid "Nobility Title"
 msgstr "Adelstitel"
 
-#: const.py:312
+#: const.py:315
 msgid "Number of Marriages"
 msgstr "Antal äktenskap"
 
-#: const.py:313
+#: const.py:316
 msgid "Occupation"
 msgstr "Yrke"
 
-#: const.py:314
+#: const.py:317
 msgid "Ordination"
 msgstr "Prästvigsel"
 
-#: const.py:315
+#: const.py:318
 msgid "Probate"
 msgstr "Bouppteckning"
 
-#: const.py:316
+#: const.py:319
 msgid "Property"
 msgstr "Egenskap"
 
-#: const.py:317
+#: const.py:320
 msgid "Religion"
 msgstr "Religion"
 
-#: const.py:318
+#: const.py:321
 msgid "Residence"
 msgstr "Bostad"
 
-#: const.py:319
+#: const.py:322
 msgid "Retirement"
 msgstr "Pensionering"
 
-#: const.py:320
+#: const.py:323
 msgid "Will"
 msgstr "Testamente"
 
-#: const.py:387
+#: const.py:390
 msgid "Caste"
 msgstr "Kast"
 
-#: const.py:389
+#: const.py:392
 msgid "Identification Number"
 msgstr "Identifikationsnummer"
 
-#: const.py:390
+#: const.py:393
 msgid "National Origin"
 msgstr "Ursprungsland"
 
-#: const.py:391
+#: const.py:394
 msgid "Social Security Number"
 msgstr "Personnummer"
 
-#: const.py:430
+#: const.py:433
 msgid "Number of Children"
 msgstr "Antal barn"
 
-#: const.py:488
+#: const.py:491
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "Ett registrerat eller samboförhållande mellan man och kvinna"
 
-#: const.py:489
+#: const.py:492
 msgid "No legal or common-law relationship between man and woman"
 msgstr ""
 "Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
 
-#: const.py:489 const.py:497
+#: const.py:492 const.py:500
 msgid "Unmarried"
 msgstr "Ogift"
 
-#: const.py:490
+#: const.py:493
 msgid "An established relationship between members of the same sex"
 msgstr "Ett samboförhållande mellan två personer av samma kön"
 
-#: const.py:491
+#: const.py:494
 msgid "Unknown relationship between a man and woman"
 msgstr "Okänd relation mellan man och kvinna"
 
-#: const.py:492
+#: const.py:495
 msgid "An unspecified relationship between a man and woman"
 msgstr "Ett ospecificerat förhållande mellan en man och en kvinna"
 
-#: const.py:516
+#: const.py:519
 msgid "No definition available"
 msgstr "Definition saknas"
 
-#: const.py:961 const.py:968
+#: const.py:964 const.py:971
 msgid "Also Known As"
 msgstr "Alias"
 
-#: const.py:962 const.py:969
+#: const.py:965 const.py:972
 msgid "Birth Name"
 msgstr "Namn vid födseln"
 
-#: const.py:963 const.py:970
+#: const.py:966 const.py:973
 msgid "Married Name"
 msgstr "Namn som gift"
 
-#: const.py:964 const.py:971
+#: const.py:967 const.py:974
 msgid "Other Name"
 msgstr "Alternativt namn"
 
@@ -2162,8 +2395,8 @@ msgstr "Alternativt namn"
 msgid "Close window without changes"
 msgstr "Stäng fönster utan att spara ändringar"
 
-#: dialog.glade:50 dialog.glade:1791 dialog.glade:2526 dialog.glade:2773
-#: edit_person.glade:48 gramps.glade:4673 marriage.glade:49
+#: dialog.glade:50 dialog.glade:1791 dialog.glade:2527 dialog.glade:2774
+#: edit_person.glade:48 gramps.glade:5531 marriage.glade:49
 msgid "Accept changes and close window"
 msgstr "Spara ändringar och stäng fönster"
 
@@ -2172,7 +2405,7 @@ msgid "_Event type:"
 msgstr "_Händelsetyp:"
 
 #: dialog.glade:147 dialog.glade:1861 edit_person.glade:303
-#: edit_person.glade:4049 srcsel.glade:164
+#: edit_person.glade:4049 srcsel.glade:162
 msgid "_Date:"
 msgstr "_Datum:"
 
@@ -2188,65 +2421,65 @@ msgstr "_Ort:"
 msgid "_Cause:"
 msgstr "_Orsak:"
 
-#: dialog.glade:258 dialog.glade:2048
+#: dialog.glade:258 dialog.glade:2049
 msgid "Selects the calendar format for display"
 msgstr "Väljer kalenderformat att visa"
 
-#: dialog.glade:293 dialog.glade:2083
+#: dialog.glade:293 dialog.glade:2084
 msgid "French"
 msgstr "Fransk"
 
-#: dialog.glade:477 dialog.glade:1052 dialog.glade:2029 dialog.glade:2649
-#: imagesel.glade:578
+#: dialog.glade:477 dialog.glade:1052 dialog.glade:2030 dialog.glade:2650
+#: imagesel.glade:576
 msgid "_Private record"
 msgstr "_Privat post"
 
-#: dialog.glade:503 dialog.glade:1161 dialog.glade:2253 dialog.glade:3289
-#: edit_person.glade:1195 gramps.glade:4899 imagesel.glade:1560
+#: dialog.glade:503 dialog.glade:1161 dialog.glade:2254 dialog.glade:3290
+#: edit_person.glade:1195 gramps.glade:5756 imagesel.glade:1554
 #: marriage.glade:278 mergedata.glade:378 mergedata.glade:1228
 #: places.glade:512 places.glade:542 plugins/verify.glade:553
 msgid "<b>General</b>"
 msgstr "<b>Allmänt</b>"
 
-#: dialog.glade:569 dialog.glade:772 dialog.glade:1227 dialog.glade:2319
-#: dialog.glade:3356 edit_person.glade:1731 edit_person.glade:2280
+#: dialog.glade:569 dialog.glade:772 dialog.glade:1227 dialog.glade:2320
+#: dialog.glade:3357 edit_person.glade:1731 edit_person.glade:2280
 #: edit_person.glade:2692 edit_person.glade:3322 edit_person.glade:3528
-#: edit_person.glade:3806 gramps.glade:2897 gramps.glade:3323
-#: gramps.glade:4133 gramps.glade:5020 imagesel.glade:981 imagesel.glade:1763
+#: edit_person.glade:3806 gramps.glade:3756 gramps.glade:4182
+#: gramps.glade:4992 gramps.glade:5877 imagesel.glade:977 imagesel.glade:1757
 #: marriage.glade:745 marriage.glade:1140 marriage.glade:1328 places.glade:898
-#: places.glade:1100 places.glade:1251 places.glade:1538 rule.glade:193
-#: rule.glade:880 srcsel.glade:845 styles.glade:138
+#: places.glade:1100 places.glade:1251 places.glade:1538 rule.glade:194
+#: rule.glade:857 srcsel.glade:841 styles.glade:138
 msgid "_Add..."
 msgstr "_Lägg till..."
 
-#: dialog.glade:584 dialog.glade:787 dialog.glade:1242 dialog.glade:2334
-#: dialog.glade:3371 edit_person.glade:1749 edit_person.glade:2298
+#: dialog.glade:584 dialog.glade:787 dialog.glade:1242 dialog.glade:2335
+#: dialog.glade:3372 edit_person.glade:1749 edit_person.glade:2298
 #: edit_person.glade:2710 edit_person.glade:3340 edit_person.glade:3545
-#: edit_person.glade:3823 gramps.glade:5036 imagesel.glade:997
-#: imagesel.glade:1779 marriage.glade:761 marriage.glade:1156
+#: edit_person.glade:3823 gramps.glade:5893 imagesel.glade:993
+#: imagesel.glade:1773 marriage.glade:761 marriage.glade:1156
 #: marriage.glade:1344 places.glade:914 places.glade:1115 places.glade:1267
-#: places.glade:1554 rule.glade:211 rule.glade:899 srcsel.glade:861
+#: places.glade:1554 rule.glade:212 rule.glade:876 srcsel.glade:857
 #: styles.glade:150
 msgid "_Edit..."
 msgstr "_Redigera..."
 
-#: dialog.glade:600 dialog.glade:803 dialog.glade:1258 dialog.glade:2350
-#: dialog.glade:3387 edit_person.glade:1768 edit_person.glade:2317
+#: dialog.glade:600 dialog.glade:803 dialog.glade:1258 dialog.glade:2351
+#: dialog.glade:3388 edit_person.glade:1768 edit_person.glade:2317
 #: edit_person.glade:2729 edit_person.glade:3359 edit_person.glade:3913
-#: gramps.glade:5056 imagesel.glade:1015 imagesel.glade:1797
+#: gramps.glade:5913 imagesel.glade:1011 imagesel.glade:1791
 #: marriage.glade:779 marriage.glade:1174 marriage.glade:1362 places.glade:931
-#: places.glade:1131 places.glade:1284 places.glade:1641 rule.glade:229
-#: rule.glade:934 srcsel.glade:878 styles.glade:162
+#: places.glade:1131 places.glade:1284 places.glade:1641 rule.glade:230
+#: rule.glade:911 srcsel.glade:874 styles.glade:162
 msgid "_Delete"
 msgstr "_Ta bort"
 
-#: dialog.glade:651 dialog.glade:1309 dialog.glade:2401 dialog.glade:3438
-#: gramps.glade:2231 places.glade:1182
+#: dialog.glade:651 dialog.glade:1309 dialog.glade:2402 dialog.glade:3439
+#: gramps.glade:3088 places.glade:1182
 msgid "<b>Sources</b>"
 msgstr "<b>Källor</b>"
 
-#: dialog.glade:705 dialog.glade:1361 dialog.glade:2454 dialog.glade:3491
-#: gramps.glade:4950 places.glade:1034
+#: dialog.glade:705 dialog.glade:1361 dialog.glade:2455 dialog.glade:3492
+#: gramps.glade:5807 places.glade:1034
 msgid "<b>Note</b>"
 msgstr "<b>Notis</b>"
 
@@ -2262,7 +2495,7 @@ msgstr "_Attribut:"
 msgid "_Value:"
 msgstr "_Värde:"
 
-#: dialog.glade:1491 places.glade:146 preferences.glade:1445
+#: dialog.glade:1491 places.glade:146 preferences.glade:1583
 msgid "_City:"
 msgstr "_Stad:"
 
@@ -2270,7 +2503,7 @@ msgstr "_Stad:"
 msgid "C_ounty:"
 msgstr "_Län:"
 
-#: dialog.glade:1547 dialog.glade:1972
+#: dialog.glade:1547 dialog.glade:1973
 msgid "Cou_ntry:"
 msgstr "_Land:"
 
@@ -2286,76 +2519,76 @@ msgstr "Socken eller _församling:"
 msgid "Add_ress:"
 msgstr "Ad_ress:"
 
-#: dialog.glade:1916
+#: dialog.glade:1917
 msgid "_City/County:"
 msgstr "S_tad/Kommun:"
 
-#: dialog.glade:1944
+#: dialog.glade:1945
 msgid "_State/Province"
 msgstr "_Stat/Provins"
 
-#: dialog.glade:2000 preferences.glade:1529
+#: dialog.glade:2001 preferences.glade:1667
 msgid "_ZIP/Postal code:"
 msgstr "_Postnummer:"
 
-#: dialog.glade:2586
+#: dialog.glade:2587
 msgid "_Web address:"
 msgstr "_Webbadress:"
 
-#: dialog.glade:2614
+#: dialog.glade:2615
 msgid "_Description:"
 msgstr "_Beskrivning:"
 
-#: dialog.glade:2759 edit_person.glade:34 gramps.glade:4659 marriage.glade:35
+#: dialog.glade:2760 edit_person.glade:34 gramps.glade:5518 marriage.glade:35
 msgid "Abandon changes and close window"
 msgstr "Avbryt ändringar och stäng fönster"
 
-#: dialog.glade:2843 edit_person.glade:128 gramps.glade:5416
+#: dialog.glade:2844 edit_person.glade:128 gramps.glade:6273
 msgid "_Given name:"
 msgstr "_Förnamn:"
 
-#: dialog.glade:2871 edit_person.glade:153 gramps.glade:5283
+#: dialog.glade:2872 edit_person.glade:153 gramps.glade:6140
 msgid "_Family name:"
 msgstr "Efternamn:"
 
-#: dialog.glade:2899 edit_person.glade:203
+#: dialog.glade:2900 edit_person.glade:203
 msgid "Suffi_x:"
 msgstr "Suffi_x:"
 
-#: dialog.glade:2927 edit_person.glade:278
+#: dialog.glade:2928 edit_person.glade:278
 msgid "T_ype:"
 msgstr "T_yp"
 
-#: dialog.glade:2955 edit_person.glade:228 gramps.glade:4745
-#: imagesel.glade:235 imagesel.glade:1434 places.glade:118 srcsel.glade:294
+#: dialog.glade:2956 edit_person.glade:228 gramps.glade:5602
+#: imagesel.glade:233 imagesel.glade:1428 places.glade:118 srcsel.glade:292
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: dialog.glade:2984
+#: dialog.glade:2985
 msgid "P_rivate record"
 msgstr "P_rivat post"
 
-#: dialog.glade:3004 edit_person.glade:178
+#: dialog.glade:3005 edit_person.glade:178
 msgid "Family _prefix:"
 msgstr "_Prefix för familj"
 
-#: dialog.glade:3620 preferences.glade:2399
+#: dialog.glade:3621 preferences.glade:2537
 msgid "_Person:"
 msgstr "_Person:"
 
-#: dialog.glade:3648 rule.glade:289
+#: dialog.glade:3649 rule.glade:290
 msgid "_Comment:"
 msgstr "_Kommentar:"
 
-#: dialog.glade:3700
+#: dialog.glade:3701
 msgid "Person is in the _database"
 msgstr "Personen finns i _databasen"
 
-#: dialog.glade:3765
+#: dialog.glade:3766
 msgid "Choose a person from the database"
 msgstr "Välj en person ur databasen"
 
-#: dialog.glade:3767
+#: dialog.glade:3768
 msgid "_Select"
 msgstr "_Välj"
 
@@ -2384,7 +2617,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: docgen/KwordDoc.py:241 docgen/KwordDoc.py:245
-#: plugins/DetAncestralReport.py:67 plugins/DetDescendantReport.py:68
+#: plugins/DetAncestralReport.py:68 plugins/DetDescendantReport.py:69
 msgid "Could not open %s"
 msgstr "Kunde inte öppna %s "
 
@@ -2392,31 +2625,31 @@ msgstr "Kunde inte öppna %s "
 msgid "KWord"
 msgstr "KWord"
 
-#: docgen/LaTeXDoc.py:414 docgen/LaTeXDoc.py:423
+#: docgen/LaTeXDoc.py:414
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: docgen/OpenDrawDoc.py:600
-msgid "OpenOffice.org Draw"
-msgstr "OpenOffice.org Ritning"
-
-#: docgen/OpenOfficeDoc.py:625
+#: docgen/OpenOfficeDoc.py:928 docgen/OpenOfficeDoc.py:936
 msgid "Open in OpenOffice.org"
 msgstr "Öppna i OpenOffice.org"
 
-#: docgen/OpenOfficeDoc.py:627 docgen/OpenOfficeDoc.py:629
+#: docgen/OpenOfficeDoc.py:930 docgen/OpenOfficeDoc.py:932
 msgid "OpenOffice.org Writer"
 msgstr "OpenOffice.org Skrivning"
 
-#: docgen/PSDrawDoc.py:382
+#: docgen/OpenOfficeDoc.py:938
+msgid "OpenOffice.org Draw"
+msgstr "OpenOffice.org Ritning"
+
+#: docgen/PSDrawDoc.py:381 plugins/GraphViz.py:154
 msgid "PostScript"
 msgstr "PostScript"
 
-#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:51
+#: docgen/PdfDoc.py:57
 msgid "The ReportLab modules are not installed"
 msgstr "Insticksprogrammen för ReportLab är inte installerade"
 
-#: docgen/PdfDoc.py:319 docgen/PdfDoc.py:328 docgen/PdfDrawDoc.py:301
+#: docgen/PdfDoc.py:537 docgen/PdfDoc.py:545 docgen/PdfDoc.py:554
 msgid "PDF"
 msgstr "PDF"
 
@@ -2424,7 +2657,7 @@ msgstr "PDF"
 msgid "Rich Text Format (RTF)"
 msgstr "Rich Text Format (RTF)"
 
-#: docgen/SvgDrawDoc.py:270
+#: docgen/SvgDrawDoc.py:269
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
@@ -2494,7 +2727,7 @@ msgstr "<b>Kön</b>"
 msgid "<b>Preferred name</b>"
 msgstr "<b>Förstahandsnamn</b>"
 
-#: edit_person.glade:721 gramps.glade:5369
+#: edit_person.glade:721 gramps.glade:6226
 msgid "_male"
 msgstr "_man"
 
@@ -2551,12 +2784,6 @@ msgstr "Säkerhet:"
 msgid "Family prefix:"
 msgstr "Prefix för familj:"
 
-#: edit_person.glade:1404 edit_person.glade:1944 edit_person.glade:2428
-#: gramps.glade:2472 imagesel.glade:812 imagesel.glade:1642 marriage.glade:337
-#: marriage.glade:925
-msgid "Type:"
-msgstr "Typ:"
-
 #: edit_person.glade:1428
 msgid "<b>Alternate name</b>"
 msgstr "<b>Alternativa namn</b>"
@@ -2606,8 +2833,8 @@ msgstr "Ta bort den valda händelsen"
 msgid "<b>Events</b>"
 msgstr "<b>Händelser</b>"
 
-#: edit_person.glade:2404 edit_person.glade:2775 imagesel.glade:907
-#: imagesel.glade:1067 imagesel.glade:1690 imagesel.glade:1849
+#: edit_person.glade:2404 edit_person.glade:2775 imagesel.glade:903
+#: imagesel.glade:1063 imagesel.glade:1684 imagesel.glade:1843
 #: marriage.glade:973 marriage.glade:1213
 msgid "<b>Attributes</b>"
 msgstr "<b>Attribut</b>"
@@ -2620,7 +2847,7 @@ msgstr "Skapa ett nytt attribut"
 msgid "Edit the selected attribute"
 msgstr "Redigera det valda attributet"
 
-#: edit_person.glade:2726 imagesel.glade:1012 imagesel.glade:1794
+#: edit_person.glade:2726 imagesel.glade:1008 imagesel.glade:1788
 #: marriage.glade:1171
 msgid "Delete the selected attribute"
 msgstr "Ta bort det valda attributet"
@@ -2649,12 +2876,12 @@ msgstr "Ta bort den valda adressen"
 msgid "Enter miscellaneous relevant data and documentation"
 msgstr "Skriv in diverse relevant data och dokumentation"
 
-#: edit_person.glade:3458 imagesel.glade:777 imagesel.glade:1900
+#: edit_person.glade:3458 imagesel.glade:773 imagesel.glade:1894
 #: marriage.glade:1264
 msgid "<b>Notes</b>"
 msgstr "<b>Notiser</b>"
 
-#: edit_person.glade:3525 gramps.glade:5017 marriage.glade:1325
+#: edit_person.glade:3525 gramps.glade:5874 marriage.glade:1325
 msgid "Place new media object in this gallery"
 msgstr "Placera nytt medieobjekt i detta galleri"
 
@@ -2662,7 +2889,7 @@ msgstr "Placera nytt medieobjekt i detta galleri"
 msgid "Edit the properties of the selected object"
 msgstr "Redigera egenskaperna för det valda objektet"
 
-#: edit_person.glade:3560 gramps.glade:5053 marriage.glade:1359
+#: edit_person.glade:3560 gramps.glade:5910 marriage.glade:1359
 msgid "Remove selected object from this gallery only"
 msgstr "Ta bort det valda objektet från detta galleri enbart"
 
@@ -2670,7 +2897,7 @@ msgstr "Ta bort det valda objektet från detta galleri enbart"
 msgid "_Remove"
 msgstr "_Ta bort"
 
-#: edit_person.glade:3602 gramps.glade:5108 marriage.glade:1394
+#: edit_person.glade:3602 gramps.glade:5965 marriage.glade:1394
 #: places.glade:1336
 msgid "<b>Gallery</b>"
 msgstr "<b>Fotoalbum</b>"
@@ -2691,7 +2918,7 @@ msgstr "Lägg till en internetreferens om den här personen"
 msgid "Go to this web page"
 msgstr "Gå till denna webbsida"
 
-#: edit_person.glade:3877 places.glade:1607
+#: edit_person.glade:3877 gramps.glade:332 places.glade:1607
 msgid "_Go"
 msgstr "_Gå till"
 
@@ -2724,7 +2951,7 @@ msgstr "<b>Begåvning</b>"
 msgid "LDS te_mple:"
 msgstr "SDH-te_mpel:"
 
-#: edit_person.glade:4313 preferences.glade:2455
+#: edit_person.glade:4313 preferences.glade:2593
 msgid "P_lace:"
 msgstr "_Ort:"
 
@@ -2853,12 +3080,13 @@ msgid "Names that match a regular expression"
 msgstr "Namn som överenstämmer med ett reguljärt uttryck"
 
 #: filters/RegExMatch.py:52 filters/SubString.py:43
-#: plugins/AncestorReport.py:521 plugins/Ancestors.py:1091
-#: plugins/CustomBookText.py:389 plugins/DescendReport.py:415
-#: plugins/DetAncestralReport.py:1253 plugins/DetDescendantReport.py:1262
-#: plugins/FamilyGroup.py:766 plugins/FtmStyleAncestors.py:1040
-#: plugins/FtmStyleDescendants.py:1449 plugins/IndivComplete.py:825
-#: plugins/IndivSummary.py:638
+#: plugins/AncestorReport.py:522 plugins/Ancestors.py:1112
+#: plugins/CustomBookText.py:390 plugins/DescendReport.py:416
+#: plugins/DetAncestralReport.py:1254 plugins/DetDescendantReport.py:1263
+#: plugins/FamilyGroup.py:766 plugins/FtmStyleAncestors.py:1041
+#: plugins/FtmStyleDescendants.py:1450 plugins/IndivComplete.py:825
+#: plugins/IndivSummary.py:638 plugins/SimpleBookTitle.py:302
+#: plugins/SimpleBookTitle.py:303 plugins/SimpleBookTitle.py:304
 msgid "Text"
 msgstr "Text"
 
@@ -2898,7 +3126,7 @@ msgstr "_Import"
 msgid "_Export"
 msgstr "_Exportera"
 
-#: gramps.glade:169 gramps_main.py:1502
+#: gramps.glade:169 gramps_main.py:1771
 msgid "_Revert"
 msgstr "_Återställ"
 
@@ -2934,245 +3162,249 @@ msgstr "_Sidopanel"
 msgid "_Filter"
 msgstr "_Filter"
 
-#: gramps.glade:332
+#: gramps.glade:341
+msgid "Go back in history"
+msgstr "Gå bakåt i historik"
+
+#: gramps.glade:342
+msgid "_Back"
+msgstr "_Bakåt"
+
+#: gramps.glade:364
+msgid "Go forward in history"
+msgstr "Gå framåt i historik"
+
+#: gramps.glade:365
+msgid "_Forward"
+msgstr "_Framåt"
+
+#: gramps.glade:393 gramps.glade:781
+msgid "_Home"
+msgstr "_Hem"
+
+#: gramps.glade:421
+msgid "_History"
+msgstr "_Historik"
+
+#: gramps.glade:433
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: gramps.glade:341
+#: gramps.glade:442
 msgid "_Add bookmark"
 msgstr "_Lägg till bokmärke"
 
-#: gramps.glade:363
+#: gramps.glade:464
 msgid "_Edit bookmarks..."
 msgstr "_Redigera bokmärken..."
 
-#: gramps.glade:391
+#: gramps.glade:492
 msgid "_Go to bookmark"
 msgstr "_Gå till bokmärke"
 
-#: gramps.glade:403
+#: gramps.glade:504
 msgid "_Reports"
 msgstr "_Rapporter"
 
-#: gramps.glade:411
+#: gramps.glade:512
 msgid "_Tools"
 msgstr "_Verktyg"
 
-#: gramps.glade:419
+#: gramps.glade:520
 msgid "_Settings"
 msgstr "_Alternativ"
 
-#: gramps.glade:428
+#: gramps.glade:529
 msgid "Prefere_nces..."
 msgstr "_Inställningar..."
 
-#: gramps.glade:449
-msgid "_Default Person"
-msgstr "_Förvald person"
+#: gramps.glade:550
+msgid "_Home person..."
+msgstr "_Hemperson..."
 
-#: gramps.glade:474
+#: gramps.glade:575
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: gramps.glade:483
+#: gramps.glade:584
 msgid "_User manual"
 msgstr "_Användarmanual"
 
-#: gramps.glade:510
+#: gramps.glade:612
 msgid "GRAMPS _home page"
 msgstr "GRAMPS _hemsida"
 
-#: gramps.glade:531
+#: gramps.glade:633
 msgid "GRAMPS _mailing lists"
 msgstr "GRAMPS _sändlistor"
 
-#: gramps.glade:552
+#: gramps.glade:654
 msgid "_Report a bug"
 msgstr "_Rapportera ett programfel"
 
-#: gramps.glade:567
+#: gramps.glade:669
 msgid "_Show plugin status..."
 msgstr "_Visa status för insticksprogram..."
 
-#: gramps.glade:576
+#: gramps.glade:678
 msgid "_Open example database"
 msgstr "_Öppna exempeldatabas"
 
-#: gramps.glade:585
+#: gramps.glade:687
 msgid "_About"
 msgstr "_Omkring"
 
-#: gramps.glade:635
+#: gramps.glade:736
 msgid "Open file"
 msgstr "Öppna fil"
 
-#: gramps.glade:636
-msgid "Open"
-msgstr "Öppna"
-
-#: gramps.glade:646
+#: gramps.glade:746
 msgid "Save file"
 msgstr "Spara fil"
 
-#: gramps.glade:647
-msgid "Save"
-msgstr "Spara"
-
-#: gramps.glade:657
+#: gramps.glade:780
 msgid "Make the Home Person the active person"
 msgstr "Gör hempersonen till aktiv person"
 
-#: gramps.glade:658
-msgid "Home"
-msgstr "Hem"
-
-#: gramps.glade:668
+#: gramps.glade:791
 msgid "Generate reports"
 msgstr "Skapa rapporter"
 
-#: gramps.glade:669
+#: gramps.glade:792
 msgid "Reports"
 msgstr "Rapporter"
 
-#: gramps.glade:683
+#: gramps.glade:806
 msgid "Run a tool"
 msgstr "Kör ett verktyg"
 
-#: gramps.glade:684
+#: gramps.glade:807
 msgid "Tools"
 msgstr "Verktyg"
 
-#: gramps.glade:694
+#: gramps.glade:817
 msgid "Add a new item"
 msgstr "Lägg till ett nytt objekt"
 
-#: gramps.glade:695
-msgid "Add"
-msgstr "Lägg till"
-
-#: gramps.glade:709
+#: gramps.glade:831
 msgid "Remove the currently selected item"
 msgstr "Ta bort det objekt som för tillfället är valt"
 
-#: gramps.glade:710
-msgid "Remove"
-msgstr "Ta bort"
-
-#: gramps.glade:720
+#: gramps.glade:841
 msgid "Edit the selected item"
 msgstr "Redigera det valda objektet"
 
-#: gramps.glade:721
+#: gramps.glade:842 gramps_main.py:535 plugins/BookReport.py:812
 msgid "Edit"
 msgstr "Redigera"
 
-#: gramps.glade:878
+#: gramps.glade:999
 msgid "Pedigree"
 msgstr "Antavla"
 
-#: gramps.glade:925 plugins/Ancestors.py:132 plugins/IndivComplete.py:316
+#: gramps.glade:1046 plugins/Ancestors.py:134 plugins/IndivComplete.py:316
 #: plugins/WebPage.py:211
 msgid "Sources"
 msgstr "Källor"
 
-#: gramps.glade:1019
+#: gramps.glade:1140
 msgid "Media"
 msgstr "Media"
 
-#: gramps.glade:1081
+#: gramps.glade:1202
 msgid "Filter:"
 msgstr "Filter:"
 
-#: gramps.glade:1134
+#: gramps.glade:1255
 msgid "Qualifier:"
 msgstr "Bestämning:"
 
-#: gramps.glade:1187
+#: gramps.glade:1308
 msgid "Show people that do not match the filtering rule"
 msgstr "Visa personer som inte matchar filtreringsregeln"
 
-#: gramps.glade:1189
+#: gramps.glade:1310
 msgid "Invert"
 msgstr "Invertera"
 
-#: gramps.glade:1244
+#: gramps.glade:1365
 msgid "_Apply"
 msgstr "_Verkställ"
 
-#: gramps.glade:1360
+#: gramps.glade:1481
 msgid "<b>People</b>"
 msgstr "<b>Personer</b>"
 
-#: gramps.glade:1389
+#: gramps.glade:1510 gramps.glade:2948
 msgid "Exchange the current spouse with the active person"
 msgstr "Växla den aktuella makan/maken med den aktiva personen"
 
-#: gramps.glade:1454
+#: gramps.glade:1575 gramps.glade:2718
 msgid "Adds a new person to the database and to a new relationship"
 msgstr "Lägger till en ny person i databasen och till en ny relation"
 
-#: gramps.glade:1480
+#: gramps.glade:1601 gramps.glade:2744
 msgid ""
 "Selects an existing person from the database and adds to a new relationship"
 msgstr "Väljer en befintlig person ur databasen och lägger till en ny relation"
 
-#: gramps.glade:1506
+#: gramps.glade:1627 gramps.glade:2770
 msgid "Removes the currently selected spouse"
 msgstr "Tar bort den för tillfället valda makan/maken"
 
-#: gramps.glade:1548
+#: gramps.glade:1669 gramps.glade:2860
 msgid "Make the active person's family the active family"
 msgstr "Gör den aktiva personens familj till aktiv familj"
 
-#: gramps.glade:1574
+#: gramps.glade:1695 gramps.glade:2886
 msgid "Adds a new set of parents to the active person"
 msgstr "Lägger till en ny uppsättning föräldrar till den aktiva personen"
 
-#: gramps.glade:1600
+#: gramps.glade:1721 gramps.glade:2912
 msgid "Deletes the selected parents from the active person"
 msgstr "Tar bort de valda föräldrarna från den aktiva personen"
 
-#: gramps.glade:1645 gramps.glade:1919
+#: gramps.glade:1766 gramps.glade:2040 gramps.glade:2369 gramps.glade:2399
 msgid "Double-click to edit the relationship to the selected parents"
 msgstr "Dubbelklicka för att redigera de valda föräldrarna"
 
-#: gramps.glade:1672
+#: gramps.glade:1793 gramps.glade:2600
 msgid "Make the selected spouse's family the active family"
 msgstr "Gör den valda makans/makens familj till aktiv familj"
 
-#: gramps.glade:1698
+#: gramps.glade:1819 gramps.glade:2626
 msgid "Adds a new set of parents to the selected spouse"
 msgstr "Lägger till en ny uppsättning föräldrar till den valda makan/maken"
 
-#: gramps.glade:1724
+#: gramps.glade:1845 gramps.glade:2652
 msgid "Deletes the selected parents from the selected spouse"
 msgstr " Tar bort de valda föräldrarna från den valda makan/maken"
 
-#: gramps.glade:1760
+#: gramps.glade:1881 gramps.glade:2306
 msgid "<b>Children</b>"
 msgstr "<b>Barn</b>"
 
-#: gramps.glade:1784
+#: gramps.glade:1905 gramps.glade:2806
 msgid "<b>Active person</b>"
 msgstr "<b>Aktiv person</b>"
 
-#: gramps.glade:1808
+#: gramps.glade:1929 gramps.glade:2830
 msgid "<b>Active person's parents</b>"
 msgstr "<b>Föräldrar till aktiv person</b>"
 
-#: gramps.glade:1832
+#: gramps.glade:1953 gramps.glade:2688
 msgid "<b>Relationship</b>"
 msgstr "<b>Släktskap</b>"
 
-#: gramps.glade:1856
+#: gramps.glade:1977 gramps.glade:2570
 msgid "<b>Spouse's parents</b>"
 msgstr "<b>Maka/makes föräldrar</b>"
 
-#: gramps.glade:1949
+#: gramps.glade:2070 gramps.glade:2429
 msgid "Double-click to edit the active person"
 msgstr "Dubbelklicka för att redigera den aktiva personen"
 
-#: gramps.glade:1979
+#: gramps.glade:2100 gramps.glade:2285
 msgid ""
 "Double-click to edit the relationship information, Shift-click to edit the "
 "person"
@@ -3180,15 +3412,15 @@ msgstr ""
 "Dubbelklicka för att redigera relationsinformation, klicka medan du håller "
 "ned skift för att redigera person"
 
-#: gramps.glade:2006
+#: gramps.glade:2127 gramps.glade:2456
 msgid "Make the selected child the active person"
 msgstr "Gör det valda barnet till aktiv person"
 
-#: gramps.glade:2032
+#: gramps.glade:2153 gramps.glade:2482
 msgid "Adds a new child to the database and to the current family"
 msgstr "Lägger till ett nytt barn i databasen och i den aktuella familjen"
 
-#: gramps.glade:2058
+#: gramps.glade:2179 gramps.glade:2508
 msgid ""
 "Selects an existing person from the database and adds as a child to the "
 "current family"
@@ -3196,43 +3428,27 @@ msgstr ""
 "Väljer en befintlig person i databasen och lägger till som barn i den "
 "aktuella familjen"
 
-#: gramps.glade:2084
+#: gramps.glade:2205 gramps.glade:2534
 msgid "Deletes the selected child from the selected family"
 msgstr "Tar bort det valda barnet från den valda familjen"
 
-#: gramps.glade:2126
+#: gramps.glade:2247 gramps.glade:2983
 msgid "<b>Family</b>"
 msgstr "<b>Familj</b>"
 
-#: gramps.glade:2173
+#: gramps.glade:3030
 msgid "<b>Pedigree</b>"
 msgstr "<b>Antavla</b>"
 
-#: gramps.glade:2289
+#: gramps.glade:3146
 msgid "<b>Places</b>"
 msgstr "<b>Orter</b>"
 
-#: gramps.glade:2340 imagesel.glade:142 imagesel.glade:469 imagesel.glade:1215
-msgid "<b>Preview</b>"
-msgstr "<b>Förhandsgranskning</b>"
-
-#: gramps.glade:2376
-msgid "Details:"
-msgstr "Detaljer:"
-
-#: gramps.glade:2447 imagesel.glade:505 imagesel.glade:1251
-msgid "Path:"
-msgstr "Sökväg:"
-
-#: gramps.glade:2616 plugins/gedcomimport.glade:209
-msgid "<b>Information</b>"
-msgstr "<b>Information</b>"
-
-#: gramps.glade:2688
+#: gramps.glade:3545
 msgid "<b>Media</b>"
 msgstr "<b>Media</b>"
 
-#: gramps.glade:2912
+#: gramps.glade:3771
 msgid ""
 "Check to show all people in the list.  Uncheck to get the list filtered by "
 "birth and death dates."
@@ -3240,99 +3456,99 @@ msgstr ""
 "Markera för att visa alla personer i listan. Avmarkera för att få listan "
 "filtrerad på födelse- och dödsdatum."
 
-#: gramps.glade:2914 gramps.glade:3339 gramps.glade:4149
+#: gramps.glade:3773 gramps.glade:4198 gramps.glade:5008
 msgid "_Show all"
 msgstr "_Visa alla"
 
-#: gramps.glade:2960 marriage.glade:126
+#: gramps.glade:3819 marriage.glade:126
 msgid "_Relationship type:"
 msgstr "_Typ av släktskap:"
 
-#: gramps.glade:3051
+#: gramps.glade:3910
 msgid "Relationship definition\n"
 msgstr "Släktskapsdefinition\n"
 
-#: gramps.glade:3208
+#: gramps.glade:4067
 msgid "_Father's relationship to child:"
 msgstr "_Faders släktskap till barn:"
 
-#: gramps.glade:3236
+#: gramps.glade:4095
 msgid "_Mother's relationship to child:"
 msgstr "_Moders släktskapen till barn:"
 
-#: gramps.glade:3264
+#: gramps.glade:4123
 msgid "_Parents' relationship to each other:"
 msgstr "F_öräldrars släktskap till varandra:"
 
-#: gramps.glade:3292 gramps.glade:6319
+#: gramps.glade:4151 gramps.glade:7176
 msgid "<b>Father</b>"
 msgstr "<b>Fader</b>"
 
-#: gramps.glade:3374 gramps.glade:6343
+#: gramps.glade:4233 gramps.glade:7200
 msgid "<b>Mother</b>"
 msgstr "<b>Moder</b>"
 
-#: gramps.glade:3398
+#: gramps.glade:4257
 msgid "<b>Relationships</b>"
 msgstr "<b>Släktskap</b>"
 
-#: gramps.glade:3492
+#: gramps.glade:4351
 msgid "Show _all"
 msgstr "Visa _alla"
 
-#: gramps.glade:4576
+#: gramps.glade:5435
 msgid "Relationship to father:"
 msgstr "Släktskap till fader:"
 
-#: gramps.glade:4600
+#: gramps.glade:5459
 msgid "Relationship to mother:"
 msgstr "Släktskap till moder:"
 
-#: gramps.glade:4773
+#: gramps.glade:5630
 msgid "_Author:"
 msgstr "_Författare:"
 
-#: gramps.glade:4801
+#: gramps.glade:5658
 msgid "_Publication information:"
 msgstr "_Publiceringsinformation:"
 
-#: gramps.glade:5153 imagesel.glade:1944 places.glade:1744
+#: gramps.glade:6010 imagesel.glade:1938 places.glade:1744
 msgid "<b>References</b>"
 msgstr "<b>Referenser</b>"
 
-#: gramps.glade:5313
+#: gramps.glade:6170
 msgid "Gender:"
 msgstr "Kön:"
 
-#: gramps.glade:5387
+#: gramps.glade:6244
 msgid "_female"
 msgstr "_kvinna"
 
-#: gramps.glade:5615
+#: gramps.glade:6472
 msgid "_Open an existing database"
 msgstr "_Öppna en befintlig databas"
 
-#: gramps.glade:5634
+#: gramps.glade:6491
 msgid "Create a new _XML database"
 msgstr "Skapa en ny _XML-databas"
 
-#: gramps.glade:5653
+#: gramps.glade:6510
 msgid "Create a new _ZODB database"
 msgstr "Skapa en ny _ZODB-databas"
 
-#: gramps.glade:5828
+#: gramps.glade:6685
 msgid "_Relationship:"
 msgstr "_Släktskap:"
 
-#: gramps.glade:6073
+#: gramps.glade:6930
 msgid "Relation_ship:"
 msgstr "S_läktskap:"
 
-#: gramps.glade:6366
+#: gramps.glade:7223
 msgid "<b>Preference</b>"
 msgstr "<b>Föredraget val</b>"
 
-#: gramps.glade:6389
+#: gramps.glade:7246
 msgid ""
 "Indicates that the parents should be used as the preferred parents for "
 "reporting and display purposes"
@@ -3340,23 +3556,23 @@ msgstr ""
 "Indikerar att föräldrarna bör användas som föredragna föräldrar för\n"
 "rapport- och visningssyften"
 
-#: gramps.glade:6391
+#: gramps.glade:7248
 msgid "Use as preferred parents"
 msgstr "Använd som föredragna föräldrar"
 
-#: gramps.glade:6552
+#: gramps.glade:7409
 msgid "_Text:"
 msgstr "_Text:"
 
-#: gramps_main.py:102
+#: gramps_main.py:110
 msgid "Death date"
 msgstr "Dödsdatum"
 
-#: gramps_main.py:123
+#: gramps_main.py:131
 msgid "GRAMPS is being run as the 'root' user."
 msgstr "GRAMPS körs som 'rot'-användare."
 
-#: gramps_main.py:124
+#: gramps_main.py:132
 msgid ""
 "This account is not meant for normal appication use. Running user "
 "applications in the administrative account is rarely a wise idea, and can "
@@ -3366,7 +3582,19 @@ msgstr ""
 "användarprogram med administratörskontot är sällan en god idé, och kan "
 "innebära potentiella säkerhetsrisker."
 
-#: gramps_main.py:625
+#: gramps_main.py:405
+msgid "Back Menu"
+msgstr "Bakåtmeny"
+
+#: gramps_main.py:434
+msgid "Forward Menu"
+msgstr "Framåtmeny"
+
+#: gramps_main.py:736
+msgid "Cannot merge people."
+msgstr "Kan inte slå samman personer."
+
+#: gramps_main.py:737
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on a the desired "
@@ -3376,11 +3604,11 @@ msgstr ""
 "kan väljas genom att trycka på ctrl-tangenten medan man klickar på den "
 "önskade personen."
 
-#: gramps_main.py:647 gramps_main.py:1468 gramps_main.py:2006
+#: gramps_main.py:759 gramps_main.py:1733 gramps_main.py:2293
 msgid "Save Changes Made to the Database?"
 msgstr "Spara ändringar som gjorts i databasen?"
 
-#: gramps_main.py:648 gramps_main.py:1469 gramps_main.py:2007
+#: gramps_main.py:760 gramps_main.py:1734 gramps_main.py:2294
 msgid ""
 "Unsaved changes exist in the current database. If you close without saving, "
 "the changes you have made will be lost."
@@ -3388,11 +3616,11 @@ msgstr ""
 "Osparade ändringar finns i den aktuella databasen. Om du stänger den utan "
 "att spara, kommer de ändringar du har gjort att kastas."
 
-#: gramps_main.py:736
+#: gramps_main.py:848
 msgid "Create a New Database"
 msgstr "Skapa en ny databas"
 
-#: gramps_main.py:737
+#: gramps_main.py:849
 msgid ""
 "Creating a new database will close the existing database, discarding any "
 "unsaved changes. You will then be prompted to create a new database"
@@ -3401,19 +3629,19 @@ msgstr ""
 "osparade ändringar kastas. Du får sedan en fråga om huruvida du vill skapa "
 "en ny databas"
 
-#: gramps_main.py:740
+#: gramps_main.py:852
 msgid "_Create New Database"
 msgstr "_Skapa ny databas"
 
-#: gramps_main.py:852 gramps_main.py:1584
+#: gramps_main.py:969 gramps_main.py:1864
 msgid "Updating display - this may take a few seconds..."
 msgstr "Uppdaterar display - detta kan ta några sekunder..."
 
-#: gramps_main.py:854 gramps_main.py:1586 gramps_main.py:1841
+#: gramps_main.py:971 gramps_main.py:1866 gramps_main.py:2128
 msgid "Updating display..."
 msgstr "Uppdaterar display..."
 
-#: gramps_main.py:900
+#: gramps_main.py:1016
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
@@ -3421,11 +3649,11 @@ msgstr ""
 "Det finns en autosparfil för %s. \n"
 "Ska den användas istället för den senast sparade versionen?"
 
-#: gramps_main.py:905
+#: gramps_main.py:1021
 msgid "An autosave file was detected"
 msgstr "En autosparad fil har upptäckts"
 
-#: gramps_main.py:906
+#: gramps_main.py:1022
 msgid ""
 "GRAMPS has detected an autosave file for the selected database. This file is "
 "more recent than the last saved database. This typically happens when GRAMPS "
@@ -3437,23 +3665,23 @@ msgstr ""
 "stängdes oväntat innan data sparades. Du kanske vill läsa in den här filen "
 "för att försöka återställa saknade data."
 
-#: gramps_main.py:912
+#: gramps_main.py:1028
 msgid "_Load autosave file"
 msgstr "_Läs in autosparad fil"
 
-#: gramps_main.py:914
+#: gramps_main.py:1030
 msgid "Load _saved database"
 msgstr "Läs in _sparad databas"
 
-#: gramps_main.py:948 gramps_main.py:1222
+#: gramps_main.py:1066 gramps_main.py:1468
 msgid "Database could not be opened"
 msgstr "Databasen kunde inte öppnas"
 
-#: gramps_main.py:949 gramps_main.py:1223
+#: gramps_main.py:1067 gramps_main.py:1469
 msgid "%s is not a directory."
 msgstr "%s är inte en katalog."
 
-#: gramps_main.py:950 gramps_main.py:1224
+#: gramps_main.py:1068 gramps_main.py:1470
 msgid ""
 "You should select a directory that contains a data.gramps file or a gramps."
 "zodb file."
@@ -3461,11 +3689,11 @@ msgstr ""
 "Du bör välja en katalog som innehåller en data.gramps-fil eller en gramps."
 "zodb-fil."
 
-#: gramps_main.py:1215
+#: gramps_main.py:1459
 msgid "Saving %s ..."
 msgstr "Sparar %s ..."
 
-#: gramps_main.py:1232
+#: gramps_main.py:1478
 msgid ""
 "An error was detected while attempting to create the file. The operating "
 "system reported \"%s\""
@@ -3473,23 +3701,23 @@ msgstr ""
 "Ett fel upptäcktes vid försök att skapa filen. Operativsystemet rapporterade "
 "\"%s\""
 
-#: gramps_main.py:1237 gramps_main.py:1247
+#: gramps_main.py:1483 gramps_main.py:1493
 msgid "An error was detected while trying to create the file"
 msgstr "Ett fel upptäcktes vid försök att skapa filen"
 
-#: gramps_main.py:1284
+#: gramps_main.py:1530
 msgid "autosaving..."
 msgstr "autosparar..."
 
-#: gramps_main.py:1287
+#: gramps_main.py:1533
 msgid "autosave complete"
 msgstr "autospar färdigt"
 
-#: gramps_main.py:1291
+#: gramps_main.py:1537
 msgid "autosave failed"
 msgstr "autospar misslyckades"
 
-#: gramps_main.py:1323
+#: gramps_main.py:1570
 msgid ""
 "Deleting the person will remove the person from the database. The data can "
 "only be recovered by closing the database without saving changes. This "
@@ -3499,19 +3727,19 @@ msgstr ""
 "endast återställas genom att stänga databasen utan att spara ändringar. "
 "Denna ändring blir permanent efter att du sparat databasen."
 
-#: gramps_main.py:1328
+#: gramps_main.py:1575
 msgid "_Delete Person"
 msgstr "_Ta bort person"
 
-#: gramps_main.py:1458
+#: gramps_main.py:1723
 msgid "%(relationship)s of %(person)s"
 msgstr "%(relationship)s för %(person)s"
 
-#: gramps_main.py:1498
+#: gramps_main.py:1767
 msgid "Revert to last saved database?"
 msgstr "Återställ till senast sparade databas?"
 
-#: gramps_main.py:1499
+#: gramps_main.py:1768
 msgid ""
 "Reverting to the last saved database will cause all unsaved changes to be "
 "lost, and the last saved database will be loaded."
@@ -3520,43 +3748,43 @@ msgstr ""
 "osparade ändringar förloras, och den senast sparade databasen kommer att "
 "läsas in."
 
-#: gramps_main.py:1505
+#: gramps_main.py:1774
 msgid "Could Not Revert to the Previous Database."
 msgstr "Kunde inte återgå till den föregående databasen."
 
-#: gramps_main.py:1506
+#: gramps_main.py:1775
 msgid "GRAMPS could not find a previous version of the database"
 msgstr "GRAMPS kunde inte hitta en tidigare version av databasen"
 
-#: gramps_main.py:1810 gramps_main.py:1820
+#: gramps_main.py:2097 gramps_main.py:2107
 msgid "Loading %s..."
 msgstr "Läser in %s ..."
 
-#: gramps_main.py:1934
+#: gramps_main.py:2221
 msgid "No Home Person has been set."
 msgstr "Ingen standard-/hemperson har valts."
 
-#: gramps_main.py:1935
+#: gramps_main.py:2222
 msgid "The Home Person may be set from the Settings menu."
 msgstr "Hempersonen kan ställas in från Alternativmenyn."
 
-#: gramps_main.py:1941
+#: gramps_main.py:2228
 msgid "%s has been bookmarked"
 msgstr "%s har lagts till i bokmärkena"
 
-#: gramps_main.py:1944
+#: gramps_main.py:2231
 msgid "Could Not Set a Bookmark"
 msgstr "Kunde inte ställa in ett bokmärke."
 
-#: gramps_main.py:1945
+#: gramps_main.py:2232
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Inget bokmärke kunde läggas till eftersom ingen hade valts."
 
-#: gramps_main.py:1957
+#: gramps_main.py:2244
 msgid "Set %s as the Home Person"
 msgstr "Ställ in %s som hemperson"
 
-#: gramps_main.py:1958
+#: gramps_main.py:2245
 msgid ""
 "Once a Home Person is defined, pressing the Home button on the toolbar will "
 "make the home person the active person."
@@ -3564,63 +3792,62 @@ msgstr ""
 "När en hemperson väl är definierad, så blir hempersonen den aktiva personen "
 "när man trycker på hemknappen."
 
-#: gramps_main.py:1961
+#: gramps_main.py:2248
 msgid "_Set Home Person"
 msgstr "_Ställ in hemperson"
 
-#: gramps_main.py:1973
+#: gramps_main.py:2260
 msgid "A person must be selected to export"
 msgstr "En person måste vara vald för att kunna exportera."
 
-#: gramps_main.py:1974
+#: gramps_main.py:2261
 msgid ""
 "Exporting requires that an active person be selected. Please select a person "
 "and try again."
 msgstr ""
-"Vid export krävs att en aktiv person är vald. Välj en person och försök "
-"igen."
+"Vid export krävs att en aktiv person är vald. Välj en person och försök igen."
 
-#: gramps_main.py:2020 gramps_main.py:2024 gramps_main.py:2028
+#: gramps_main.py:2307 gramps_main.py:2311 gramps_main.py:2315
 msgid "Could not create database"
 msgstr "Kunde inte skapa databas"
 
-#: gramps_main.py:2021 gramps_main.py:2025 gramps_main.py:2029
+#: gramps_main.py:2308 gramps_main.py:2312 gramps_main.py:2316
 msgid "The directory ~/.gramps/example could not be created."
 msgstr "Katalogen ~/.gramps/example kunde inte skapas."
 
-#: gramps_main.py:2042 gramps_main.py:2044
+#: gramps_main.py:2329 gramps_main.py:2331
 msgid "Example database not created"
 msgstr "Exempeldatabas skapades inte."
 
-#: imagesel.glade:206
+#: imagesel.glade:204
 msgid "_File:"
 msgstr "_Fil:"
 
-#: imagesel.glade:287
+#: imagesel.glade:285
 msgid "Select an image"
 msgstr "Välj en bild"
 
-#: imagesel.glade:320
+#: imagesel.glade:318
 msgid "_Do not make a local copy"
 msgstr "Skapa _inte lokal kopia"
 
-#: imagesel.glade:553 imagesel.glade:1299
+#: imagesel.glade:551 imagesel.glade:1295
 msgid "Object type:"
 msgstr "Objekttyp:"
 
-#: imagesel.glade:978
+#: imagesel.glade:974
 msgid "Creates a new object attribute from the above data"
 msgstr "Skapar ett nytt objektattribut från ovanstående data"
 
-#: imagesel.glade:1509
+#: imagesel.glade:1503
 msgid "Copies the object into the database"
 msgstr "Kopierar objektet till databasen"
 
-#: imagesel.glade:1511
+#: imagesel.glade:1505
 msgid "_Make a local copy"
 msgstr "_Skapa lokal kopia"
 
-#: imagesel.glade:1760
+#: imagesel.glade:1754
 msgid "Creates a new attribute from the above data"
 msgstr "Skapar nytt attribut från ovanstående data"
 
@@ -3744,7 +3971,7 @@ msgstr "Välj en rapport från de tillgängliga till vänster."
 msgid "Status:"
 msgstr "Status:"
 
-#: plugins.glade:257 srcsel.glade:270
+#: plugins.glade:257 srcsel.glade:268
 msgid "Author:"
 msgstr "Författare:"
 
@@ -3752,399 +3979,423 @@ msgstr "Författare:"
 msgid "Author's email:"
 msgstr "Författares e-post:"
 
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:429
-msgid "Ancestor Chart"
-msgstr "Grafisk Antavla"
-
-#: plugins/AncestorChart.py:217 plugins/AncestorChart.py:430
-#: plugins/DesGraph.py:311 plugins/DesGraph.py:467 plugins/FanChart.py:280
-#: plugins/FanChart.py:353 plugins/GraphViz.py:80 plugins/GraphViz.py:501
-#: plugins/TimeLine.py:316 plugins/TimeLine.py:465
-msgid "Graphical Reports"
-msgstr "Grafer"
-
-#: plugins/AncestorChart.py:221
-msgid "Ancestor Chart for %s"
-msgstr "Grafisk antavla för %s"
-
-#: plugins/AncestorChart.py:226
-msgid "Save Ancestor Chart"
-msgstr "Spara grafisk antavla"
-
-#: plugins/AncestorChart.py:238 plugins/DesGraph.py:328
-msgid "Display Format"
-msgstr "Visningsformat"
-
-#: plugins/AncestorChart.py:239 plugins/DesGraph.py:329
-msgid "Allows you to customize the data in the boxes in the report"
-msgstr "Låter dig anpassa innehållet i rapportens rutor"
-
-#: plugins/AncestorChart.py:248 plugins/AncestorReport.py:407
-#: plugins/Ancestors.py:755 plugins/Ancestors.py:771 plugins/Ancestors.py:777
-#: plugins/DesGraph.py:338 plugins/FamilyGroup.py:617
-#: plugins/FtmStyleAncestors.py:748 plugins/FtmStyleAncestors.py:753
-#: plugins/FtmStyleAncestors.py:758 plugins/FtmStyleAncestors.py:763
-#: plugins/FtmStyleDescendants.py:1157 plugins/FtmStyleDescendants.py:1162
-#: plugins/FtmStyleDescendants.py:1167 plugins/FtmStyleDescendants.py:1172
+#: plugins/AncestorChart.py:225 plugins/AncestorReport.py:408
+#: plugins/Ancestors.py:776 plugins/Ancestors.py:792 plugins/Ancestors.py:798
+#: plugins/DesGraph.py:315 plugins/FamilyGroup.py:617 plugins/FanChart.py:283
+#: plugins/FtmStyleAncestors.py:749 plugins/FtmStyleAncestors.py:754
+#: plugins/FtmStyleAncestors.py:759 plugins/FtmStyleAncestors.py:764
+#: plugins/FtmStyleDescendants.py:1158 plugins/FtmStyleDescendants.py:1163
+#: plugins/FtmStyleDescendants.py:1168 plugins/FtmStyleDescendants.py:1173
 #: plugins/IndivComplete.py:685 plugins/IndivSummary.py:614
 msgid "The basic style used for the text display."
 msgstr "Grundläggande stil som används för textvisning."
 
-#: plugins/AncestorChart.py:431 plugins/AncestorReport.py:511
-#: plugins/Ancestors.py:1081 plugins/DescendReport.py:405
-#: plugins/DetAncestralReport.py:1242 plugins/DetDescendantReport.py:1251
-#: plugins/FamilyGroup.py:758 plugins/FtmStyleAncestors.py:1030
-#: plugins/FtmStyleDescendants.py:1439 plugins/GraphViz.py:500
+#: plugins/AncestorChart.py:239 plugins/AncestorChart.py:342
+#: plugins/AncestorChart.py:556 plugins/AncestorChart.py:567
+msgid "Ancestor Chart"
+msgstr "Grafisk Antavla"
+
+#: plugins/AncestorChart.py:239 plugins/AncestorChart.py:557
+#: plugins/DesGraph.py:329 plugins/DesGraph.py:586 plugins/FanChart.py:308
+#: plugins/FanChart.py:462 plugins/GraphViz.py:80 plugins/GraphViz.py:525
+#: plugins/TimeLine.py:397 plugins/TimeLine.py:658
+msgid "Graphical Reports"
+msgstr "Grafer"
+
+#: plugins/AncestorChart.py:243
+msgid "Ancestor Chart for %s"
+msgstr "Grafisk antavla för %s"
+
+#: plugins/AncestorChart.py:248
+msgid "Save Ancestor Chart"
+msgstr "Spara grafisk antavla"
+
+#: plugins/AncestorChart.py:260 plugins/AncestorChart.py:358
+#: plugins/DesGraph.py:346 plugins/DesGraph.py:440
+msgid "Display Format"
+msgstr "Visningsformat"
+
+#: plugins/AncestorChart.py:261 plugins/AncestorChart.py:359
+#: plugins/DesGraph.py:347 plugins/DesGraph.py:441
+msgid "Allows you to customize the data in the boxes in the report"
+msgstr "Låter dig anpassa innehållet i rapportens rutor"
+
+#: plugins/AncestorChart.py:346
+msgid "Ancestor Chart for GRAMPS Book"
+msgstr "Antavelrapport för GRAMPS-bok"
+
+#: plugins/AncestorChart.py:558 plugins/AncestorReport.py:512
+#: plugins/Ancestors.py:1102 plugins/DescendReport.py:406
+#: plugins/DetAncestralReport.py:1243 plugins/DetDescendantReport.py:1252
+#: plugins/FamilyGroup.py:758 plugins/FtmStyleAncestors.py:1031
+#: plugins/FtmStyleDescendants.py:1440 plugins/GraphViz.py:524
 #: plugins/IndivComplete.py:817 plugins/IndivSummary.py:627
-#: plugins/Summary.py:162 plugins/TimeLine.py:464 plugins/WebPage.py:1373
+#: plugins/Summary.py:162 plugins/TimeLine.py:657 plugins/WebPage.py:1373
 msgid "Beta"
 msgstr "Beta"
 
-#: plugins/AncestorChart.py:432
+#: plugins/AncestorChart.py:559
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Skapar en grafisk antavla"
 
-#: plugins/AncestorReport.py:83 plugins/AncestorReport.py:238
-msgid "Ahnentafel Report for %s"
-msgstr "Antavlerapport i textformat för %s"
+#: plugins/AncestorChart.py:568 plugins/DesGraph.py:597
+#: plugins/FanChart.py:470 plugins/TimeLine.py:667
+msgid "Graphics"
+msgstr "Grafik"
 
-#: plugins/AncestorReport.py:96 plugins/DetAncestralReport.py:641
-#: plugins/DetDescendantReport.py:649
+#: plugins/AncestorReport.py:84 plugins/AncestorReport.py:239
+msgid "Ahnentafel Report for %s"
+msgstr "Antavelrapport i textformat för %s"
+
+#: plugins/AncestorReport.py:97 plugins/DetAncestralReport.py:642
+#: plugins/DetDescendantReport.py:650
 msgid "%s Generation"
 msgstr "%s Generationen"
 
-#: plugins/AncestorReport.py:125
+#: plugins/AncestorReport.py:126
 msgid "%s was born on %s in %s. "
 msgstr "%s föddes den %s i %s. "
 
-#: plugins/AncestorReport.py:128
+#: plugins/AncestorReport.py:129
 msgid "%s was born on %s. "
 msgstr "%s föddes den %s. "
 
-#: plugins/AncestorReport.py:132
+#: plugins/AncestorReport.py:133
 msgid "%s was born in the year %s in %s. "
 msgstr "%s föddes år %s i %s. "
 
-#: plugins/AncestorReport.py:135
+#: plugins/AncestorReport.py:136
 msgid "%s was born in the year %s. "
 msgstr "%s föddes år %s. "
 
-#: plugins/AncestorReport.py:160
+#: plugins/AncestorReport.py:161
 msgid "He died on %s in %s"
 msgstr "Han dog den %s i %s"
 
-#: plugins/AncestorReport.py:163
+#: plugins/AncestorReport.py:164
 msgid "He died on %s"
 msgstr "Han dog den %s"
 
-#: plugins/AncestorReport.py:166
+#: plugins/AncestorReport.py:167
 msgid "She died on %s in %s"
 msgstr "Hon dog den %s i %s"
 
-#: plugins/AncestorReport.py:169
+#: plugins/AncestorReport.py:170
 msgid "She died on %s"
 msgstr "hon dog den %s"
 
-#: plugins/AncestorReport.py:173
+#: plugins/AncestorReport.py:174
 msgid "He died in the year %s in %s"
 msgstr "Han dog år %s i %s"
 
-#: plugins/AncestorReport.py:176
+#: plugins/AncestorReport.py:177
 msgid "He died in the year %s"
 msgstr "Han dog år %s"
 
-#: plugins/AncestorReport.py:179
+#: plugins/AncestorReport.py:180
 msgid "She died in the year %s in %s"
 msgstr "Hon dog år %s i %s"
 
-#: plugins/AncestorReport.py:182
+#: plugins/AncestorReport.py:183
 msgid "She died in the year %s"
 msgstr "Hon dog år %s"
 
-#: plugins/AncestorReport.py:195
+#: plugins/AncestorReport.py:196
 msgid ", and was buried on %s in %s."
 msgstr ", och begravdes den %s i %s."
 
-#: plugins/AncestorReport.py:198
+#: plugins/AncestorReport.py:199
 msgid ", and was buried on %s."
 msgstr ", och begravdes den %s."
 
-#: plugins/AncestorReport.py:202
+#: plugins/AncestorReport.py:203
 msgid ", and was buried in the year %s in %s."
 msgstr ", och begravdes år %s i %s."
 
-#: plugins/AncestorReport.py:205
+#: plugins/AncestorReport.py:206
 msgid ", and was buried in the year %s."
 msgstr ", och begravdes år %s."
 
-#: plugins/AncestorReport.py:208
+#: plugins/AncestorReport.py:209
 msgid " and was buried in %s."
 msgstr " och begravdes den %s."
 
-#: plugins/AncestorReport.py:234 plugins/AncestorReport.py:330
-#: plugins/AncestorReport.py:509 plugins/AncestorReport.py:520
+#: plugins/AncestorReport.py:235 plugins/AncestorReport.py:331
+#: plugins/AncestorReport.py:510 plugins/AncestorReport.py:521
 msgid "Ahnentafel Report"
-msgstr "Antavlerapport i textformat"
+msgstr "Antavelrapport i textformat"
 
-#: plugins/AncestorReport.py:234 plugins/AncestorReport.py:510
-#: plugins/Ancestors.py:807 plugins/Ancestors.py:1080
-#: plugins/DescendReport.py:132 plugins/DescendReport.py:404
-#: plugins/DetAncestralReport.py:1243 plugins/DetDescendantReport.py:1252
-#: plugins/FamilyGroup.py:356 plugins/FamilyGroup.py:757
-#: plugins/FtmStyleAncestors.py:783 plugins/FtmStyleAncestors.py:1029
-#: plugins/FtmStyleDescendants.py:1192 plugins/FtmStyleDescendants.py:1438
+#: plugins/AncestorReport.py:235 plugins/AncestorReport.py:511
+#: plugins/Ancestors.py:828 plugins/Ancestors.py:1101
+#: plugins/DescendReport.py:133 plugins/DescendReport.py:405
+#: plugins/DetAncestralReport.py:1244 plugins/DetDescendantReport.py:1253
+#: plugins/FamilyGroup.py:357 plugins/FamilyGroup.py:757
+#: plugins/FtmStyleAncestors.py:784 plugins/FtmStyleAncestors.py:1030
+#: plugins/FtmStyleDescendants.py:1193 plugins/FtmStyleDescendants.py:1439
 #: plugins/IndivComplete.py:471 plugins/IndivComplete.py:818
 #: plugins/IndivSummary.py:338 plugins/IndivSummary.py:628
 msgid "Text Reports"
 msgstr "Textrapporter"
 
-#: plugins/AncestorReport.py:243
+#: plugins/AncestorReport.py:244
 msgid "Save Ahnentafel Report"
-msgstr "Spara Antavlerapport"
+msgstr "Spara Antavelrapport"
 
-#: plugins/AncestorReport.py:334
+#: plugins/AncestorReport.py:335
 msgid "Ahnentafel Report for GRAMPS Book"
-msgstr "Antavlerapport i textformat för GRAMPS-bok"
+msgstr "Antavelrapport i textformat för GRAMPS-bok"
 
-#: plugins/AncestorReport.py:393 plugins/Ancestors.py:740
-#: plugins/DescendReport.py:293 plugins/FamilyGroup.py:608
-#: plugins/FtmStyleAncestors.py:733 plugins/FtmStyleDescendants.py:1142
+#: plugins/AncestorReport.py:394 plugins/Ancestors.py:761
+#: plugins/DescendReport.py:294 plugins/FamilyGroup.py:608
+#: plugins/FtmStyleAncestors.py:734 plugins/FtmStyleDescendants.py:1143
 #: plugins/IndivComplete.py:659 plugins/IndivSummary.py:588
-#: plugins/SimpleBookTitle.py:97 plugins/TimeLine.py:399
+#: plugins/SimpleBookTitle.py:120 plugins/TimeLine.py:342
 #: plugins/WebPage.py:997
 msgid "The style used for the title of the page."
 msgstr "Stil som används för sidans titel"
 
-#: plugins/AncestorReport.py:402 plugins/Ancestors.py:750
-#: plugins/FtmStyleAncestors.py:743 plugins/FtmStyleDescendants.py:1152
+#: plugins/AncestorReport.py:403 plugins/Ancestors.py:771
+#: plugins/FtmStyleAncestors.py:744 plugins/FtmStyleDescendants.py:1153
 msgid "The style used for the generation header."
 msgstr "Stil som används för generationsrubriken."
 
-#: plugins/AncestorReport.py:512
+#: plugins/AncestorReport.py:513
 msgid "Produces a textual ancestral report"
 msgstr "Skapar en antavla i textformat"
 
-#: plugins/Ancestors.py:116 plugins/FtmStyleAncestors.py:84
+#: plugins/Ancestors.py:118 plugins/FtmStyleAncestors.py:85
 #: plugins/GraphViz.py:109 plugins/IndivComplete.py:708
-#: plugins/TimeLine.py:367 plugins/WebPage.py:970 plugins/WriteFtree.py:110
+#: plugins/TimeLine.py:364 plugins/WebPage.py:970 plugins/WriteFtree.py:114
 #: plugins/WriteGedcom.py:393
 msgid "Ancestors of %s"
 msgstr "Anor för %s"
 
-#: plugins/Ancestors.py:121
+#: plugins/Ancestors.py:123
 msgid "Generation 1"
 msgstr "Generation 1"
 
-#: plugins/Ancestors.py:201
+#: plugins/Ancestors.py:203
 msgid "Their children:"
 msgstr "Deras barn:"
 
-#: plugins/Ancestors.py:335
+#: plugins/Ancestors.py:230
+msgid "%(name)s's maternal %(grandparents)s"
+msgstr "%(grandparents)s på mödernet till (name)s"
+
+#: plugins/Ancestors.py:254
+msgid "%(name)s's %(parents)s"
+msgstr "%(parent)s till %(name)s"
+
+#: plugins/Ancestors.py:258
+msgid "%(name)s's paternal %(grandparents)s"
+msgstr "%(grandparents)s på fädernet till (name)s"
+
+#: plugins/Ancestors.py:356
 msgid "(no photo)"
 msgstr "(inget foto)"
 
-#: plugins/Ancestors.py:350
+#: plugins/Ancestors.py:371
 msgid " (mentioned above)."
 msgstr " (omnämnd ovan)."
 
-#: plugins/Ancestors.py:405
+#: plugins/Ancestors.py:426
 msgid " on %(specific_date)s"
 msgstr "vid %(specific_date)s"
 
-#: plugins/Ancestors.py:408
+#: plugins/Ancestors.py:429
 msgid " in %(month_or_year)s"
 msgstr " i %(month_or_year)s"
 
-#: plugins/Ancestors.py:413
+#: plugins/Ancestors.py:434
 msgid " in %(place)s"
 msgstr "i %(place)s"
 
-#: plugins/Ancestors.py:447
+#: plugins/Ancestors.py:468
 msgid " b. %(date)s"
 msgstr "f. %(date)s"
 
-#: plugins/Ancestors.py:453
+#: plugins/Ancestors.py:474
 msgid " d. %(date)s)"
 msgstr "d. %(date)s)"
 
-#: plugins/Ancestors.py:462
+#: plugins/Ancestors.py:483
 msgid "born"
 msgstr "född"
 
-#: plugins/Ancestors.py:471
+#: plugins/Ancestors.py:492
 msgid "died"
 msgstr "död"
 
-#: plugins/Ancestors.py:478
+#: plugins/Ancestors.py:499
 msgid "She is the daughter of "
 msgstr "Hon är dotter till "
 
-#: plugins/Ancestors.py:480
+#: plugins/Ancestors.py:501
 msgid "He is the son of "
 msgstr "Han är son till "
 
-#: plugins/Ancestors.py:497 plugins/FtmStyleAncestors.py:712
-#: plugins/FtmStyleDescendants.py:1116
+#: plugins/Ancestors.py:518 plugins/FtmStyleAncestors.py:713
+#: plugins/FtmStyleDescendants.py:1117
 msgid "She is the daughter of %(mother)s."
 msgstr "Hon är dotter till %(mother)s."
 
-#: plugins/Ancestors.py:500 plugins/FtmStyleAncestors.py:688
-#: plugins/FtmStyleDescendants.py:1092
+#: plugins/Ancestors.py:521 plugins/FtmStyleAncestors.py:689
+#: plugins/FtmStyleDescendants.py:1093
 msgid "He is the son of %(mother)s."
 msgstr "Han är son till %(mother)s. "
 
-#: plugins/Ancestors.py:504 plugins/FtmStyleAncestors.py:719
-#: plugins/FtmStyleDescendants.py:1123
+#: plugins/Ancestors.py:525 plugins/FtmStyleAncestors.py:720
+#: plugins/FtmStyleDescendants.py:1124
 msgid "She is the daughter of %(father)s."
 msgstr "Hon är dotter till %(father)s."
 
-#: plugins/Ancestors.py:507 plugins/FtmStyleAncestors.py:695
-#: plugins/FtmStyleDescendants.py:1099
+#: plugins/Ancestors.py:528 plugins/FtmStyleAncestors.py:696
+#: plugins/FtmStyleDescendants.py:1100
 msgid "He is the son of %(father)s."
 msgstr "Han är son till %(father)s. "
 
-#: plugins/Ancestors.py:512 plugins/FtmStyleAncestors.py:704
-#: plugins/FtmStyleDescendants.py:1108
+#: plugins/Ancestors.py:533 plugins/FtmStyleAncestors.py:705
+#: plugins/FtmStyleDescendants.py:1109
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr "Hon är dotter till %(father)s och %(mother)s."
 
-#: plugins/Ancestors.py:516 plugins/FtmStyleAncestors.py:680
-#: plugins/FtmStyleDescendants.py:1084
+#: plugins/Ancestors.py:537 plugins/FtmStyleAncestors.py:681
+#: plugins/FtmStyleDescendants.py:1085
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr "Han är son till %(father)s och %(mother)s"
 
-#: plugins/Ancestors.py:539
+#: plugins/Ancestors.py:560
 msgid "Mrs."
 msgstr "Fru"
 
-#: plugins/Ancestors.py:541
+#: plugins/Ancestors.py:562
 msgid "Miss"
 msgstr "Fröken"
 
-#: plugins/Ancestors.py:543
+#: plugins/Ancestors.py:564
 msgid "Mr."
 msgstr "Herr"
 
-#: plugins/Ancestors.py:545
+#: plugins/Ancestors.py:566
 msgid "(gender unknown)"
 msgstr "(kön obekant)"
 
-#: plugins/Ancestors.py:593
+#: plugins/Ancestors.py:614
 msgid " (unknown)"
 msgstr " (okänd)"
 
-#: plugins/Ancestors.py:624
+#: plugins/Ancestors.py:645
 msgid ", and they had a child named "
 msgstr ", och de hade ett barn vid namn "
 
-#: plugins/Ancestors.py:626
+#: plugins/Ancestors.py:647
 msgid ", and they had %d children: "
 msgstr ", och de hade %d barn: "
 
-#: plugins/Ancestors.py:638
+#: plugins/Ancestors.py:659
 msgid " and "
 msgstr "och "
 
-#: plugins/Ancestors.py:645
+#: plugins/Ancestors.py:666
 msgid "  She later married %(name)s"
 msgstr "  Hon gifte sig senare med %(name)s"
 
-#: plugins/Ancestors.py:648
+#: plugins/Ancestors.py:669
 msgid "  He later married %(name)s"
 msgstr "  Han gifte sig senare med %(name)s"
 
-#: plugins/Ancestors.py:658
+#: plugins/Ancestors.py:679
 msgid "  She married %(name)s"
 msgstr "  Hon gifte sig med %(name)s"
 
-#: plugins/Ancestors.py:661
+#: plugins/Ancestors.py:682
 msgid "  He married %(name)s"
 msgstr "  Han gifte sig med %(name)s"
 
-#: plugins/Ancestors.py:675
+#: plugins/Ancestors.py:696
 msgid "  Note about their name: "
 msgstr "  Notis om deras namn: "
 
-#: plugins/Ancestors.py:708
+#: plugins/Ancestors.py:729
 msgid "More about %(name)s:"
 msgstr "Mer om %(name)s:"
 
-#: plugins/Ancestors.py:759
+#: plugins/Ancestors.py:780
 msgid "Text style for missing photo."
 msgstr "Textstil för saknat foto."
 
-#: plugins/Ancestors.py:766
+#: plugins/Ancestors.py:787
 msgid "Style for details about a person."
 msgstr "Stil för detaljer om en person."
 
-#: plugins/Ancestors.py:782
+#: plugins/Ancestors.py:803
 msgid "Introduction to the children."
 msgstr "Introduktion till barnen."
 
-#: plugins/Ancestors.py:806 plugins/Ancestors.py:919 plugins/Ancestors.py:1079
-#: plugins/Ancestors.py:1090
+#: plugins/Ancestors.py:827 plugins/Ancestors.py:940 plugins/Ancestors.py:1100
+#: plugins/Ancestors.py:1111
 msgid "Comprehensive Ancestors Report"
-msgstr "Antavlerapport"
+msgstr "Antavelrapport"
 
-#: plugins/Ancestors.py:811
+#: plugins/Ancestors.py:832
 msgid "Ancestors for %s"
 msgstr "Anor för %s"
 
-#: plugins/Ancestors.py:816 plugins/DetAncestralReport.py:743
-#: plugins/FtmStyleAncestors.py:792
+#: plugins/Ancestors.py:837 plugins/DetAncestralReport.py:744
+#: plugins/FtmStyleAncestors.py:793
 msgid "Save Ancestor Report"
-msgstr "Spara antavlerapport"
+msgstr "Spara antavelrapport"
 
-#: plugins/Ancestors.py:826 plugins/Ancestors.py:930
+#: plugins/Ancestors.py:847 plugins/Ancestors.py:951
 msgid "Cite sources"
 msgstr "Citera källor"
 
-#: plugins/Ancestors.py:923
+#: plugins/Ancestors.py:944
 msgid "Comprehensive Ancestors Report for GRAMPS Book"
-msgstr "Antavlerapport för GRAMPS-bok"
+msgstr "Antavelrapport för GRAMPS-bok"
 
-#: plugins/Ancestors.py:1082
+#: plugins/Ancestors.py:1103
 msgid "Produces a detailed ancestral report."
-msgstr "Skapar en detaljerad antavlerapport"
+msgstr "Skapar en detaljerad antavelrapport"
 
-#: plugins/BookReport.py:478
+#: plugins/BookReport.py:494
 msgid "Available Books"
 msgstr "Tillgängliga böcker"
 
-#: plugins/BookReport.py:491
+#: plugins/BookReport.py:507
 msgid "Book List"
 msgstr "Boklista"
 
-#: plugins/BookReport.py:582 plugins/BookReport.py:857
-#: plugins/BookReport.py:1005
+#: plugins/BookReport.py:598 plugins/BookReport.py:936
+#: plugins/BookReport.py:1085
 msgid "Book Report"
 msgstr "Bokrapport"
 
-#: plugins/BookReport.py:585
+#: plugins/BookReport.py:601
 msgid "New Book"
 msgstr "Ny bok"
 
-#: plugins/BookReport.py:588
+#: plugins/BookReport.py:604
 msgid "Available items"
 msgstr "Tillgängliga objekt"
 
-#: plugins/BookReport.py:591
+#: plugins/BookReport.py:607
 msgid "Current book"
 msgstr "Aktuell bok"
 
-#: plugins/BookReport.py:595
+#: plugins/BookReport.py:611
 msgid "Item name"
 msgstr "Objektnamn"
 
-#: plugins/BookReport.py:596
+#: plugins/BookReport.py:612
 msgid "Center person"
 msgstr "Centrera person"
 
-#: plugins/BookReport.py:642
+#: plugins/BookReport.py:658
 msgid "Different database"
 msgstr "Annan databas"
 
-#: plugins/BookReport.py:642
+#: plugins/BookReport.py:658
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4160,23 +4411,35 @@ msgstr ""
 "Därför ställs centralpersonen för varje objekt in till den aktiva personen i "
 "den för tillfället öppna databasen."
 
-#: plugins/BookReport.py:677
+#: plugins/BookReport.py:679 plugins/BookReport.py:696
 msgid "Not Applicable"
 msgstr "Ej tillämpbart"
 
-#: plugins/BookReport.py:860
+#: plugins/BookReport.py:806
+msgid "Setup"
+msgstr "Inställningar"
+
+#: plugins/BookReport.py:816
+msgid "Book Menu"
+msgstr "Bokmeny"
+
+#: plugins/BookReport.py:839
+msgid "Available Items Menu"
+msgstr "Tillgängliga objekt-meny"
+
+#: plugins/BookReport.py:939
 msgid "GRAMPS Book"
 msgstr "GRAMPS-bok"
 
-#: plugins/BookReport.py:1006
+#: plugins/BookReport.py:1086
 msgid "Books"
 msgstr "Böcker"
 
-#: plugins/BookReport.py:1007
+#: plugins/BookReport.py:1087
 msgid "Unstable"
 msgstr "Instabil"
 
-#: plugins/BookReport.py:1008
+#: plugins/BookReport.py:1088
 msgid "Creates a book containing several reports."
 msgstr "Skapar en bok som innehåller flera rapporter."
 
@@ -4302,55 +4565,60 @@ msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt"
 
-#: plugins/CustomBookText.py:106
+#: plugins/CustomBookText.py:107
 msgid "The style used for the first portion of the custom text."
 msgstr "Stil som används för den första delen av den anpassade texten."
 
-#: plugins/CustomBookText.py:115
+#: plugins/CustomBookText.py:116
 msgid "The style used for the middle portion of the custom text."
 msgstr "Stil som används för mittendelen av den anpassade texten."
 
-#: plugins/CustomBookText.py:124
+#: plugins/CustomBookText.py:125
 msgid "The style used for the last portion of the custom text."
 msgstr "Stil som används för den sista delen av den anpassade texten."
 
-#: plugins/CustomBookText.py:186 plugins/CustomBookText.py:388
+#: plugins/CustomBookText.py:187 plugins/CustomBookText.py:389
 msgid "Custom Text"
 msgstr "Anpassad text"
 
-#: plugins/CustomBookText.py:190
+#: plugins/CustomBookText.py:191
 msgid "Custom Text for GRAMPS Book"
 msgstr "Anpassad text för GRAMPS-bok"
 
-#: plugins/CustomBookText.py:221
+#: plugins/CustomBookText.py:222
 msgid "Initial Text"
 msgstr "Inledande text"
 
-#: plugins/CustomBookText.py:222
+#: plugins/CustomBookText.py:223
 msgid "Middle Text"
 msgstr "Mittentext"
 
-#: plugins/CustomBookText.py:223
+#: plugins/CustomBookText.py:224
 msgid "Final Text"
 msgstr "Avslutande text"
 
-#: plugins/DesGraph.py:311 plugins/DesGraph.py:466
+#: plugins/DesGraph.py:329 plugins/DesGraph.py:424 plugins/DesGraph.py:585
+#: plugins/DesGraph.py:596
 msgid "Descendant Graph"
 msgstr "Grafisk stamtavla"
 
-#: plugins/DesGraph.py:314
+#: plugins/DesGraph.py:332
 msgid "Descendant Graph for %s"
 msgstr "Grafisk stamtavla för %s"
 
-#: plugins/DesGraph.py:317
+#: plugins/DesGraph.py:335
 msgid "Save Descendant Graph"
 msgstr "Spara stamtavla"
 
-#: plugins/DesGraph.py:468 plugins/DescendReport.py:406
-msgid "Generates a list of descendants of the active person"
-msgstr "Skapar en lista över den aktuella personens ättlingar"
+#: plugins/DesGraph.py:428
+msgid "Descendant Graph for GRAMPS Book"
+msgstr "Grafisk Stamtavla för GRAMPS-bok"
 
-#: plugins/DesGraph.py:469 plugins/FanChart.py:354
+#: plugins/DesGraph.py:587
+msgid "Generates a graph of descendants of the active person"
+msgstr "Skapar en grafisk stamtavla för den aktiva personen"
+
+#: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
 msgstr "Alfa"
 
@@ -4370,375 +4638,379 @@ msgstr "Analys och undersökning"
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Skapar en bläddringsbar lista baserad på den aktiva personen"
 
-#: plugins/DescendReport.py:93 plugins/FtmStyleDescendants.py:112
+#: plugins/DescendReport.py:94 plugins/FtmStyleDescendants.py:113
 #: plugins/GraphViz.py:105 plugins/IndivComplete.py:704
-#: plugins/TimeLine.py:363 plugins/WriteFtree.py:106
+#: plugins/TimeLine.py:360 plugins/WriteFtree.py:110
 #: plugins/WriteGedcom.py:389
 msgid "Descendants of %s"
 msgstr "Ättlingar till %s"
 
-#: plugins/DescendReport.py:132 plugins/DescendReport.py:228
-#: plugins/DescendReport.py:403 plugins/DescendReport.py:414
+#: plugins/DescendReport.py:133 plugins/DescendReport.py:229
+#: plugins/DescendReport.py:404 plugins/DescendReport.py:415
 msgid "Descendant Report"
-msgstr "Stamtavlerapport"
+msgstr "Stamtavelrapport"
 
-#: plugins/DescendReport.py:136
+#: plugins/DescendReport.py:137
 msgid "Descendant Report for %s"
-msgstr "Stamtavlerapport för %s"
+msgstr "Stamtavelrapport för %s"
 
-#: plugins/DescendReport.py:141 plugins/DetDescendantReport.py:751
+#: plugins/DescendReport.py:142 plugins/DetDescendantReport.py:752
 msgid "Save Descendant Report"
-msgstr "Spara stamtavlerapport"
+msgstr "Spara stamtavelrapport"
 
-#: plugins/DescendReport.py:232
+#: plugins/DescendReport.py:233
 msgid "Descendant Report for GRAMPS Book"
-msgstr "Stamtavlerapport för GRAMPS-bok"
+msgstr "Stamtavelrapport för GRAMPS-bok"
 
-#: plugins/DescendReport.py:301
+#: plugins/DescendReport.py:302
 msgid "The style used for the level %d display."
 msgstr "Stil som används för visning av nivå %s."
 
-#: plugins/DetAncestralReport.py:122 plugins/DetDescendantReport.py:127
+#: plugins/DescendReport.py:407
+msgid "Generates a list of descendants of the active person"
+msgstr "Skapar en lista över den aktuella personens ättlingar"
+
+#: plugins/DetAncestralReport.py:123 plugins/DetDescendantReport.py:128
 msgid "Child of %s and %s is:"
 msgstr "Barn till %s och %s är:"
 
-#: plugins/DetAncestralReport.py:123 plugins/DetDescendantReport.py:128
+#: plugins/DetAncestralReport.py:124 plugins/DetDescendantReport.py:129
 msgid "Children of %s and %s are:"
 msgstr "Barn till %s och %s är:"
 
-#: plugins/DetAncestralReport.py:140 plugins/DetDescendantReport.py:147
+#: plugins/DetAncestralReport.py:141 plugins/DetDescendantReport.py:148
 msgid "- %s Born: %s %s Died: %s %s"
 msgstr "- %s Född: %s %s Död: %s %s"
 
-#: plugins/DetAncestralReport.py:144 plugins/DetAncestralReport.py:148
-#: plugins/DetDescendantReport.py:151 plugins/DetDescendantReport.py:155
+#: plugins/DetAncestralReport.py:145 plugins/DetAncestralReport.py:149
+#: plugins/DetDescendantReport.py:152 plugins/DetDescendantReport.py:156
 msgid "- %s Born: %s %s Died: %s"
 msgstr "- %s Född: %s %s Död: %s"
 
-#: plugins/DetAncestralReport.py:151 plugins/DetDescendantReport.py:158
+#: plugins/DetAncestralReport.py:152 plugins/DetDescendantReport.py:159
 msgid "- %s Born: %s %s"
 msgstr "- %s Född: %s %s"
 
-#: plugins/DetAncestralReport.py:156 plugins/DetAncestralReport.py:171
-#: plugins/DetDescendantReport.py:163 plugins/DetDescendantReport.py:178
+#: plugins/DetAncestralReport.py:157 plugins/DetAncestralReport.py:172
+#: plugins/DetDescendantReport.py:164 plugins/DetDescendantReport.py:179
 msgid "- %s Born: %s Died: %s %s"
 msgstr "- %s Född: %s Död: %s %s"
 
-#: plugins/DetAncestralReport.py:160 plugins/DetAncestralReport.py:163
-#: plugins/DetAncestralReport.py:175 plugins/DetAncestralReport.py:178
-#: plugins/DetDescendantReport.py:167 plugins/DetDescendantReport.py:170
-#: plugins/DetDescendantReport.py:182 plugins/DetDescendantReport.py:185
+#: plugins/DetAncestralReport.py:161 plugins/DetAncestralReport.py:164
+#: plugins/DetAncestralReport.py:176 plugins/DetAncestralReport.py:179
+#: plugins/DetDescendantReport.py:168 plugins/DetDescendantReport.py:171
+#: plugins/DetDescendantReport.py:183 plugins/DetDescendantReport.py:186
 msgid "- %s Born: %s Died: %s"
 msgstr "- %s Född: %s Död: %s"
 
-#: plugins/DetAncestralReport.py:165 plugins/DetAncestralReport.py:180
-#: plugins/DetDescendantReport.py:172 plugins/DetDescendantReport.py:187
+#: plugins/DetAncestralReport.py:166 plugins/DetAncestralReport.py:181
+#: plugins/DetDescendantReport.py:173 plugins/DetDescendantReport.py:188
 msgid "- %s Born: %s"
 msgstr "- %s Född: %s"
 
-#: plugins/DetAncestralReport.py:185 plugins/DetDescendantReport.py:192
+#: plugins/DetAncestralReport.py:186 plugins/DetDescendantReport.py:193
 msgid "- %s Died: %s %s"
 msgstr "- %s Död: %s %s"
 
-#: plugins/DetAncestralReport.py:188 plugins/DetAncestralReport.py:191
-#: plugins/DetDescendantReport.py:195 plugins/DetDescendantReport.py:198
+#: plugins/DetAncestralReport.py:189 plugins/DetAncestralReport.py:192
+#: plugins/DetDescendantReport.py:196 plugins/DetDescendantReport.py:199
 msgid "- %s Died: %s"
 msgstr "- %s Dog: %s"
 
-#: plugins/DetAncestralReport.py:193 plugins/DetDescendantReport.py:200
+#: plugins/DetAncestralReport.py:194 plugins/DetDescendantReport.py:201
 msgid "- %s"
 msgstr "- %s"
 
-#: plugins/DetAncestralReport.py:211 plugins/DetAncestralReport.py:458
-#: plugins/DetAncestralReport.py:530 plugins/DetDescendantReport.py:218
-#: plugins/DetDescendantReport.py:460 plugins/DetDescendantReport.py:527
-#: plugins/FtmStyleAncestors.py:404 plugins/FtmStyleAncestors.py:414
-#: plugins/FtmStyleAncestors.py:425 plugins/FtmStyleAncestors.py:434
-#: plugins/FtmStyleAncestors.py:444 plugins/FtmStyleAncestors.py:453
-#: plugins/FtmStyleAncestors.py:462 plugins/FtmStyleAncestors.py:469
-#: plugins/FtmStyleAncestors.py:480 plugins/FtmStyleAncestors.py:488
-#: plugins/FtmStyleAncestors.py:497 plugins/FtmStyleAncestors.py:504
-#: plugins/FtmStyleAncestors.py:513 plugins/FtmStyleAncestors.py:519
-#: plugins/FtmStyleAncestors.py:526 plugins/FtmStyleDescendants.py:799
-#: plugins/FtmStyleDescendants.py:809 plugins/FtmStyleDescendants.py:820
-#: plugins/FtmStyleDescendants.py:829 plugins/FtmStyleDescendants.py:839
-#: plugins/FtmStyleDescendants.py:848 plugins/FtmStyleDescendants.py:857
-#: plugins/FtmStyleDescendants.py:865 plugins/FtmStyleDescendants.py:876
-#: plugins/FtmStyleDescendants.py:884 plugins/FtmStyleDescendants.py:893
-#: plugins/FtmStyleDescendants.py:901 plugins/FtmStyleDescendants.py:910
-#: plugins/FtmStyleDescendants.py:917 plugins/FtmStyleDescendants.py:925
+#: plugins/DetAncestralReport.py:212 plugins/DetAncestralReport.py:459
+#: plugins/DetAncestralReport.py:531 plugins/DetDescendantReport.py:219
+#: plugins/DetDescendantReport.py:461 plugins/DetDescendantReport.py:528
+#: plugins/FtmStyleAncestors.py:405 plugins/FtmStyleAncestors.py:415
+#: plugins/FtmStyleAncestors.py:426 plugins/FtmStyleAncestors.py:435
+#: plugins/FtmStyleAncestors.py:445 plugins/FtmStyleAncestors.py:454
+#: plugins/FtmStyleAncestors.py:463 plugins/FtmStyleAncestors.py:470
+#: plugins/FtmStyleAncestors.py:481 plugins/FtmStyleAncestors.py:489
+#: plugins/FtmStyleAncestors.py:498 plugins/FtmStyleAncestors.py:505
+#: plugins/FtmStyleAncestors.py:514 plugins/FtmStyleAncestors.py:520
+#: plugins/FtmStyleAncestors.py:527 plugins/FtmStyleDescendants.py:800
+#: plugins/FtmStyleDescendants.py:810 plugins/FtmStyleDescendants.py:821
+#: plugins/FtmStyleDescendants.py:830 plugins/FtmStyleDescendants.py:840
+#: plugins/FtmStyleDescendants.py:849 plugins/FtmStyleDescendants.py:858
+#: plugins/FtmStyleDescendants.py:866 plugins/FtmStyleDescendants.py:877
+#: plugins/FtmStyleDescendants.py:885 plugins/FtmStyleDescendants.py:894
+#: plugins/FtmStyleDescendants.py:902 plugins/FtmStyleDescendants.py:911
+#: plugins/FtmStyleDescendants.py:918 plugins/FtmStyleDescendants.py:926
 msgid "He"
 msgstr "Han"
 
-#: plugins/DetAncestralReport.py:213 plugins/DetAncestralReport.py:464
-#: plugins/DetAncestralReport.py:528 plugins/DetDescendantReport.py:220
-#: plugins/DetDescendantReport.py:466 plugins/DetDescendantReport.py:521
-#: plugins/FtmStyleAncestors.py:539 plugins/FtmStyleAncestors.py:549
-#: plugins/FtmStyleAncestors.py:560 plugins/FtmStyleAncestors.py:578
-#: plugins/FtmStyleAncestors.py:587 plugins/FtmStyleAncestors.py:596
-#: plugins/FtmStyleAncestors.py:603 plugins/FtmStyleAncestors.py:613
-#: plugins/FtmStyleAncestors.py:621 plugins/FtmStyleAncestors.py:630
-#: plugins/FtmStyleAncestors.py:637 plugins/FtmStyleAncestors.py:646
-#: plugins/FtmStyleAncestors.py:652 plugins/FtmStyleAncestors.py:659
-#: plugins/FtmStyleDescendants.py:938 plugins/FtmStyleDescendants.py:948
-#: plugins/FtmStyleDescendants.py:959 plugins/FtmStyleDescendants.py:968
-#: plugins/FtmStyleDescendants.py:978 plugins/FtmStyleDescendants.py:987
-#: plugins/FtmStyleDescendants.py:996 plugins/FtmStyleDescendants.py:1004
-#: plugins/FtmStyleDescendants.py:1014 plugins/FtmStyleDescendants.py:1022
-#: plugins/FtmStyleDescendants.py:1031 plugins/FtmStyleDescendants.py:1039
-#: plugins/FtmStyleDescendants.py:1048 plugins/FtmStyleDescendants.py:1055
-#: plugins/FtmStyleDescendants.py:1063
+#: plugins/DetAncestralReport.py:214 plugins/DetAncestralReport.py:465
+#: plugins/DetAncestralReport.py:529 plugins/DetDescendantReport.py:221
+#: plugins/DetDescendantReport.py:467 plugins/DetDescendantReport.py:522
+#: plugins/FtmStyleAncestors.py:540 plugins/FtmStyleAncestors.py:550
+#: plugins/FtmStyleAncestors.py:561 plugins/FtmStyleAncestors.py:579
+#: plugins/FtmStyleAncestors.py:588 plugins/FtmStyleAncestors.py:597
+#: plugins/FtmStyleAncestors.py:604 plugins/FtmStyleAncestors.py:614
+#: plugins/FtmStyleAncestors.py:622 plugins/FtmStyleAncestors.py:631
+#: plugins/FtmStyleAncestors.py:638 plugins/FtmStyleAncestors.py:647
+#: plugins/FtmStyleAncestors.py:653 plugins/FtmStyleAncestors.py:660
+#: plugins/FtmStyleDescendants.py:939 plugins/FtmStyleDescendants.py:949
+#: plugins/FtmStyleDescendants.py:960 plugins/FtmStyleDescendants.py:969
+#: plugins/FtmStyleDescendants.py:979 plugins/FtmStyleDescendants.py:988
+#: plugins/FtmStyleDescendants.py:997 plugins/FtmStyleDescendants.py:1005
+#: plugins/FtmStyleDescendants.py:1015 plugins/FtmStyleDescendants.py:1023
+#: plugins/FtmStyleDescendants.py:1032 plugins/FtmStyleDescendants.py:1040
+#: plugins/FtmStyleDescendants.py:1049 plugins/FtmStyleDescendants.py:1056
+#: plugins/FtmStyleDescendants.py:1064
 msgid "She"
 msgstr "Hon"
 
-#: plugins/DetAncestralReport.py:226 plugins/DetDescendantReport.py:233
+#: plugins/DetAncestralReport.py:227 plugins/DetDescendantReport.py:234
 msgid " is the same person as [%s]."
 msgstr " är samma person som [%s]."
 
-#: plugins/DetAncestralReport.py:244 plugins/DetDescendantReport.py:251
+#: plugins/DetAncestralReport.py:245 plugins/DetDescendantReport.py:252
 msgid "Notes for %s"
 msgstr "Anteckningar för %s"
 
-#: plugins/DetAncestralReport.py:281 plugins/DetDescendantReport.py:288
+#: plugins/DetAncestralReport.py:282 plugins/DetDescendantReport.py:289
 msgid " was born on %s in %s."
 msgstr " föddes den %s i %s."
 
-#: plugins/DetAncestralReport.py:283 plugins/DetDescendantReport.py:290
+#: plugins/DetAncestralReport.py:284 plugins/DetDescendantReport.py:291
 msgid " was born on %s."
 msgstr " föddes den %s."
 
-#: plugins/DetAncestralReport.py:285 plugins/DetDescendantReport.py:292
+#: plugins/DetAncestralReport.py:286 plugins/DetDescendantReport.py:293
 msgid " was born in the year %s in %s."
 msgstr " föddes år %s i %s."
 
-#: plugins/DetAncestralReport.py:288 plugins/DetDescendantReport.py:295
+#: plugins/DetAncestralReport.py:289 plugins/DetDescendantReport.py:296
 msgid " was born in the year %s."
 msgstr " föddes år %s."
 
-#: plugins/DetAncestralReport.py:290 plugins/DetDescendantReport.py:297
+#: plugins/DetAncestralReport.py:291 plugins/DetDescendantReport.py:298
 msgid " was born in %s."
 msgstr " föddes i %s."
 
-#: plugins/DetAncestralReport.py:292 plugins/DetAncestralReport.py:295
-#: plugins/DetDescendantReport.py:299 plugins/DetDescendantReport.py:302
+#: plugins/DetAncestralReport.py:293 plugins/DetAncestralReport.py:296
+#: plugins/DetDescendantReport.py:300 plugins/DetDescendantReport.py:303
 msgid "."
 msgstr "."
 
-#: plugins/DetAncestralReport.py:346 plugins/DetDescendantReport.py:353
+#: plugins/DetAncestralReport.py:347 plugins/DetDescendantReport.py:354
 msgid "  %s died on %s in %s"
 msgstr "  %s dog den %s i %s"
 
-#: plugins/DetAncestralReport.py:347 plugins/DetDescendantReport.py:354
+#: plugins/DetAncestralReport.py:348 plugins/DetDescendantReport.py:355
 msgid "  %s died on %s"
 msgstr "  %s dog den %s"
 
-#: plugins/DetAncestralReport.py:350 plugins/DetDescendantReport.py:357
+#: plugins/DetAncestralReport.py:351 plugins/DetDescendantReport.py:358
 msgid "  %s died in %s in %s"
 msgstr "  %s dog den %s i %s"
 
-#: plugins/DetAncestralReport.py:351 plugins/DetAncestralReport.py:353
-#: plugins/DetDescendantReport.py:358 plugins/DetDescendantReport.py:360
+#: plugins/DetAncestralReport.py:352 plugins/DetAncestralReport.py:354
+#: plugins/DetDescendantReport.py:359 plugins/DetDescendantReport.py:361
 msgid "  %s died in %s"
 msgstr "  %s dog den %s"
 
-#: plugins/DetAncestralReport.py:381 plugins/DetDescendantReport.py:388
+#: plugins/DetAncestralReport.py:382 plugins/DetDescendantReport.py:389
 msgid "  And %s was buried on %s in %s."
 msgstr " Och %s begravdes den %s i %s."
 
-#: plugins/DetAncestralReport.py:383 plugins/DetDescendantReport.py:390
+#: plugins/DetAncestralReport.py:384 plugins/DetDescendantReport.py:391
 msgid "  And %s was buried on %s."
 msgstr " Och %s begravdes den %s."
 
-#: plugins/DetAncestralReport.py:385 plugins/DetDescendantReport.py:392
+#: plugins/DetAncestralReport.py:386 plugins/DetDescendantReport.py:393
 msgid "  And %s was buried in %s."
 msgstr " Och %s begravdes den %s."
 
-#: plugins/DetAncestralReport.py:415 plugins/DetDescendantReport.py:422
+#: plugins/DetAncestralReport.py:416 plugins/DetDescendantReport.py:423
 msgid " %s was the son of %s and %s."
 msgstr " %s var son till %s och  %s. "
 
-#: plugins/DetAncestralReport.py:418 plugins/DetAncestralReport.py:421
-#: plugins/DetDescendantReport.py:425 plugins/DetDescendantReport.py:428
+#: plugins/DetAncestralReport.py:419 plugins/DetAncestralReport.py:422
+#: plugins/DetDescendantReport.py:426 plugins/DetDescendantReport.py:429
 msgid " %s was the son of %s."
 msgstr " %s var son till %s. "
 
-#: plugins/DetAncestralReport.py:426 plugins/DetDescendantReport.py:433
+#: plugins/DetAncestralReport.py:427 plugins/DetDescendantReport.py:434
 msgid " %s was the daughter of %s and %s."
 msgstr " %s är dotter till %s och %s."
 
-#: plugins/DetAncestralReport.py:429 plugins/DetAncestralReport.py:432
-#: plugins/DetDescendantReport.py:436 plugins/DetDescendantReport.py:439
+#: plugins/DetAncestralReport.py:430 plugins/DetAncestralReport.py:433
+#: plugins/DetDescendantReport.py:437 plugins/DetDescendantReport.py:440
 msgid " %s was the daughter of %s."
 msgstr " %s är dotter till %s"
 
-#: plugins/DetAncestralReport.py:460 plugins/DetAncestralReport.py:466
-#: plugins/DetDescendantReport.py:462 plugins/DetDescendantReport.py:468
+#: plugins/DetAncestralReport.py:461 plugins/DetAncestralReport.py:467
+#: plugins/DetDescendantReport.py:463 plugins/DetDescendantReport.py:469
 msgid ","
 msgstr ","
 
-#: plugins/DetAncestralReport.py:461 plugins/DetDescendantReport.py:463
+#: plugins/DetAncestralReport.py:462 plugins/DetDescendantReport.py:464
 msgid "and he"
 msgstr "och han"
 
-#: plugins/DetAncestralReport.py:467 plugins/DetDescendantReport.py:469
+#: plugins/DetAncestralReport.py:468 plugins/DetDescendantReport.py:470
 msgid "and she"
 msgstr "och hon"
 
-#: plugins/DetAncestralReport.py:493 plugins/DetDescendantReport.py:495
+#: plugins/DetAncestralReport.py:494 plugins/DetDescendantReport.py:496
 msgid "  %s married %s"
 msgstr "  %s gifte sig med %s"
 
-#: plugins/DetAncestralReport.py:495 plugins/DetDescendantReport.py:497
+#: plugins/DetAncestralReport.py:496 plugins/DetDescendantReport.py:498
 msgid "  %s married %s in %s"
 msgstr "  %s gifte sig med %s i %s"
 
-#: plugins/DetAncestralReport.py:497 plugins/DetDescendantReport.py:499
+#: plugins/DetAncestralReport.py:498 plugins/DetDescendantReport.py:500
 msgid "  %s married %s on %s"
 msgstr "  %s gifte sig med %s den %s"
 
-#: plugins/DetAncestralReport.py:498 plugins/DetDescendantReport.py:500
+#: plugins/DetAncestralReport.py:499 plugins/DetDescendantReport.py:501
 msgid "  %s married %s on %s in %s"
 msgstr "  %s gifte sig med %s den %s i %s"
 
-#: plugins/DetAncestralReport.py:502 plugins/DetDescendantReport.py:504
+#: plugins/DetAncestralReport.py:503 plugins/DetDescendantReport.py:505
 msgid "  %s married"
 msgstr "  %s gifte sig med"
 
-#: plugins/DetAncestralReport.py:504 plugins/DetDescendantReport.py:506
+#: plugins/DetAncestralReport.py:505 plugins/DetDescendantReport.py:507
 msgid "  %s married in %s"
 msgstr "  %s gifte sig %s"
 
-#: plugins/DetAncestralReport.py:506 plugins/DetDescendantReport.py:508
+#: plugins/DetAncestralReport.py:507 plugins/DetDescendantReport.py:509
 msgid "  %s married on %s"
 msgstr "  %s gifte sig den %s"
 
-#: plugins/DetAncestralReport.py:508 plugins/DetDescendantReport.py:509
+#: plugins/DetAncestralReport.py:509 plugins/DetDescendantReport.py:510
 msgid "  %s married on %s in %s"
 msgstr "  %s gifte sig den %s i %s"
 
-#: plugins/DetAncestralReport.py:627 plugins/DetAncestralReport.py:738
+#: plugins/DetAncestralReport.py:628 plugins/DetAncestralReport.py:739
 msgid "Detailed Ancestral Report for %s"
 msgstr "Detaljerad antavla för %s"
 
-#: plugins/DetAncestralReport.py:734 plugins/DetDescendantReport.py:742
+#: plugins/DetAncestralReport.py:735 plugins/DetDescendantReport.py:743
 msgid "Gramps - Ahnentafel Report"
-msgstr "Gramps - Antavlerapport i textformat"
+msgstr "Gramps - Antavelrapport i textformat"
 
-#: plugins/DetAncestralReport.py:785 plugins/DetAncestralReport.py:1005
-#: plugins/DetDescendantReport.py:794 plugins/DetDescendantReport.py:1015
+#: plugins/DetAncestralReport.py:786 plugins/DetAncestralReport.py:1006
+#: plugins/DetDescendantReport.py:795 plugins/DetDescendantReport.py:1016
 msgid "Use first names instead of pronouns"
 msgstr "Använd förnamn i stället för pronomen"
 
-#: plugins/DetAncestralReport.py:789 plugins/DetAncestralReport.py:1009
-#: plugins/DetDescendantReport.py:798 plugins/DetDescendantReport.py:1019
+#: plugins/DetAncestralReport.py:790 plugins/DetAncestralReport.py:1010
+#: plugins/DetDescendantReport.py:799 plugins/DetDescendantReport.py:1020
 msgid "Use full dates instead of only the year"
 msgstr "Använd fullständiga datum i stället för enbart årtal"
 
-#: plugins/DetAncestralReport.py:793 plugins/DetAncestralReport.py:1013
-#: plugins/DetDescendantReport.py:802 plugins/DetDescendantReport.py:1023
+#: plugins/DetAncestralReport.py:794 plugins/DetAncestralReport.py:1014
+#: plugins/DetDescendantReport.py:803 plugins/DetDescendantReport.py:1024
 msgid "List children"
 msgstr "Lista barn"
 
-#: plugins/DetAncestralReport.py:797 plugins/DetAncestralReport.py:1017
-#: plugins/DetDescendantReport.py:806 plugins/DetDescendantReport.py:1027
+#: plugins/DetAncestralReport.py:798 plugins/DetAncestralReport.py:1018
+#: plugins/DetDescendantReport.py:807 plugins/DetDescendantReport.py:1028
 msgid "Include notes"
 msgstr "Inkludera noteringar"
 
-#: plugins/DetAncestralReport.py:801 plugins/DetAncestralReport.py:1021
-#: plugins/DetDescendantReport.py:810 plugins/DetDescendantReport.py:1031
+#: plugins/DetAncestralReport.py:802 plugins/DetAncestralReport.py:1022
+#: plugins/DetDescendantReport.py:811 plugins/DetDescendantReport.py:1032
 msgid "Replace Place with ______"
 msgstr "Byt ut ort mot ______"
 
-#: plugins/DetAncestralReport.py:805 plugins/DetAncestralReport.py:1025
-#: plugins/DetDescendantReport.py:814 plugins/DetDescendantReport.py:1035
+#: plugins/DetAncestralReport.py:806 plugins/DetAncestralReport.py:1026
+#: plugins/DetDescendantReport.py:815 plugins/DetDescendantReport.py:1036
 msgid "Replace Dates with ______"
 msgstr "Byt ut datum mot ______"
 
-#: plugins/DetAncestralReport.py:809 plugins/DetAncestralReport.py:1029
-#: plugins/DetDescendantReport.py:818 plugins/DetDescendantReport.py:1039
+#: plugins/DetAncestralReport.py:810 plugins/DetAncestralReport.py:1030
+#: plugins/DetDescendantReport.py:819 plugins/DetDescendantReport.py:1040
 msgid "Compute age"
 msgstr "Beräkna ålder"
 
-#: plugins/DetAncestralReport.py:813 plugins/DetAncestralReport.py:1033
-#: plugins/DetDescendantReport.py:1043
+#: plugins/DetAncestralReport.py:814 plugins/DetAncestralReport.py:1034
+#: plugins/DetDescendantReport.py:1044
 msgid "Omit duplicate ancestors"
 msgstr "Utelämna dubblerade anor"
 
-#: plugins/DetAncestralReport.py:817 plugins/DetAncestralReport.py:1037
-#: plugins/DetDescendantReport.py:826 plugins/DetDescendantReport.py:1047
+#: plugins/DetAncestralReport.py:818 plugins/DetAncestralReport.py:1038
+#: plugins/DetDescendantReport.py:827 plugins/DetDescendantReport.py:1048
 msgid "Add descendant reference in child list"
 msgstr "Lägg till ättlingareferens i barnlista"
 
-#: plugins/DetAncestralReport.py:821 plugins/DetAncestralReport.py:1041
-#: plugins/DetDescendantReport.py:830 plugins/DetDescendantReport.py:1051
+#: plugins/DetAncestralReport.py:822 plugins/DetAncestralReport.py:1042
+#: plugins/DetDescendantReport.py:831 plugins/DetDescendantReport.py:1052
 msgid "Include Photo/Images from Gallery"
 msgstr "Inkludera foton/bilder från galleri"
 
-#: plugins/DetAncestralReport.py:991 plugins/DetAncestralReport.py:1241
-#: plugins/DetAncestralReport.py:1252
+#: plugins/DetAncestralReport.py:992 plugins/DetAncestralReport.py:1242
+#: plugins/DetAncestralReport.py:1253
 msgid "Detailed Ancestral Report"
 msgstr "Detaljerad antavla"
 
-#: plugins/DetAncestralReport.py:995
+#: plugins/DetAncestralReport.py:996
 msgid "Detailed Ancestral Report for GRAMPS Book"
 msgstr "Detaljerad anrapport för GRAMPS-bok"
 
-#: plugins/DetAncestralReport.py:1244
+#: plugins/DetAncestralReport.py:1245
 msgid "Produces a detailed ancestral report"
-msgstr "Skapar en detaljerad antavlerapport"
+msgstr "Skapar en detaljerad antavelrapport"
 
-#: plugins/DetAncestralReport.py:1361 plugins/DetDescendantReport.py:1370
+#: plugins/DetAncestralReport.py:1362 plugins/DetDescendantReport.py:1371
 msgid " at the age of %d days"
 msgstr " i en ålder av %d dagar"
 
-#: plugins/DetAncestralReport.py:1363 plugins/DetDescendantReport.py:1372
+#: plugins/DetAncestralReport.py:1364 plugins/DetDescendantReport.py:1373
 msgid " at the age of %d months"
 msgstr " i en ålder av %d månader"
 
-#: plugins/DetAncestralReport.py:1365 plugins/DetDescendantReport.py:1374
+#: plugins/DetAncestralReport.py:1366 plugins/DetDescendantReport.py:1375
 msgid " at the age of %d years"
 msgstr " i en ålder av %d år"
 
-#: plugins/DetAncestralReport.py:1368 plugins/DetDescendantReport.py:1377
+#: plugins/DetAncestralReport.py:1369 plugins/DetDescendantReport.py:1378
 msgid " at the age of %d day"
 msgstr " i en ålder av %d dag"
 
-#: plugins/DetAncestralReport.py:1370 plugins/DetDescendantReport.py:1379
+#: plugins/DetAncestralReport.py:1371 plugins/DetDescendantReport.py:1380
 msgid " at the age of %d month"
 msgstr " i en ålder av %d month"
 
-#: plugins/DetAncestralReport.py:1372 plugins/DetDescendantReport.py:1381
+#: plugins/DetAncestralReport.py:1373 plugins/DetDescendantReport.py:1382
 msgid " at the age of %d year"
 msgstr " i en ålder av %d år"
 
-#: plugins/DetDescendantReport.py:636 plugins/DetDescendantReport.py:746
+#: plugins/DetDescendantReport.py:637 plugins/DetDescendantReport.py:747
 msgid "Detailed Descendant Report for %s"
 msgstr "Detaljerad stamtavla för %s"
 
-#: plugins/DetDescendantReport.py:822
+#: plugins/DetDescendantReport.py:823
 msgid "Omit duplicate people"
 msgstr "Utelämna dubblerade personer"
 
-#: plugins/DetDescendantReport.py:1001 plugins/DetDescendantReport.py:1250
-#: plugins/DetDescendantReport.py:1261
+#: plugins/DetDescendantReport.py:1002 plugins/DetDescendantReport.py:1251
+#: plugins/DetDescendantReport.py:1262
 msgid "Detailed Descendant Report"
 msgstr "Detaljerad stamtavla"
 
-#: plugins/DetDescendantReport.py:1005
+#: plugins/DetDescendantReport.py:1006
 msgid "Detailed Descendant Report for GRAMPS Book"
-msgstr "Detaljerad stamtavlerapport för GRAMPS-bok"
+msgstr "Detaljerad stamtavelrapport för GRAMPS-bok"
 
-#: plugins/DetDescendantReport.py:1253
+#: plugins/DetDescendantReport.py:1254
 msgid "Produces a detailed descendant report"
-msgstr "Skapar en detaljerad stamtavlerapport"
+msgstr "Skapar en detaljerad stamtavelrapport"
 
 #: plugins/EventCmp.py:144
 msgid "Event comparison filter selection"
 msgstr "Markering i jämförelsefilter för händelser"
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:101
-#: plugins/IndivComplete.py:712 plugins/TimeLine.py:359 plugins/WebPage.py:958
-#: plugins/WriteFtree.py:102 plugins/WriteGedcom.py:385
+#: plugins/IndivComplete.py:712 plugins/TimeLine.py:356 plugins/WebPage.py:958
+#: plugins/WriteFtree.py:106 plugins/WriteGedcom.py:385
 msgid "Entire Database"
 msgstr "Hela databasen"
 
@@ -4750,8 +5022,8 @@ msgstr "Inga träffar upptäcktes"
 msgid "Event Comparison"
 msgstr "Jämförelse av händelser"
 
-#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:170
-#: plugins/FamilyGroup.py:273 plugins/FamilyGroup.py:275
+#: plugins/EventCmp.py:306 plugins/FamilyGroup.py:171
+#: plugins/FamilyGroup.py:274 plugins/FamilyGroup.py:276
 msgid "Death"
 msgstr "Död"
 
@@ -4767,35 +5039,35 @@ msgstr ""
 "Hjälper vid analys av data genom att man kan skapa anpassade filter som kan "
 "användas mot databasen för att hitta liknande händelser"
 
-#: plugins/FamilyGroup.py:132
+#: plugins/FamilyGroup.py:133
 msgid "Husband"
 msgstr "Make"
 
-#: plugins/FamilyGroup.py:134
+#: plugins/FamilyGroup.py:135
 msgid "Wife"
 msgstr "Maka"
 
-#: plugins/FamilyGroup.py:291 plugins/FamilyGroup.py:381
+#: plugins/FamilyGroup.py:292 plugins/FamilyGroup.py:382
 #: plugins/FamilyGroup.py:496
 msgid "Spouse"
 msgstr "Maka/make"
 
-#: plugins/FamilyGroup.py:316 plugins/FamilyGroup.py:356
+#: plugins/FamilyGroup.py:317 plugins/FamilyGroup.py:357
 #: plugins/FamilyGroup.py:476 plugins/FamilyGroup.py:756
 #: plugins/FamilyGroup.py:765
 msgid "Family Group Report"
 msgstr "Rapport för familjegrupp"
 
-#: plugins/FamilyGroup.py:333 plugins/IndivComplete.py:288
+#: plugins/FamilyGroup.py:334 plugins/IndivComplete.py:288
 #: plugins/IndivSummary.py:185 plugins/WebPage.py:583
 msgid "Children"
 msgstr "Barn"
 
-#: plugins/FamilyGroup.py:360
+#: plugins/FamilyGroup.py:361
 msgid "Family Group Report for %s"
 msgstr "Rapport för familjegruppen %s"
 
-#: plugins/FamilyGroup.py:365
+#: plugins/FamilyGroup.py:366
 msgid "Save Family Group Report"
 msgstr "Spara rapport för familjegrupp"
 
@@ -4819,52 +5091,93 @@ msgstr ""
 "Skapar en rapport för familjegrupp, som visar information om en\n"
 "uppsättning föräldrar och deras barn."
 
-#: plugins/FanChart.py:181
+#: plugins/FanChart.py:187
 msgid "Five Generation Fan Chart for %s"
 msgstr "Antavla i fem generationer i halvcirkelformat för %s"
 
-#: plugins/FanChart.py:280 plugins/FanChart.py:352
+#: plugins/FanChart.py:293
+msgid "The style used for the title."
+msgstr "Stil som används för titeln"
+
+#: plugins/FanChart.py:308 plugins/FanChart.py:396 plugins/FanChart.py:461
+#: plugins/FanChart.py:469
 msgid "Fan Chart"
 msgstr "Antavla i halvcirkelformat"
 
-#: plugins/FanChart.py:284
+#: plugins/FanChart.py:312
 msgid "Fan Chart for %s"
 msgstr "Antavla i halvcirkelformat för %s"
 
-#: plugins/FanChart.py:289
+#: plugins/FanChart.py:317
 msgid "Save Fan Chart"
 msgstr "Spara antavla i halvcirkelformat"
 
-#: plugins/FanChart.py:355
+#: plugins/FanChart.py:400
+msgid "Fan Chart for GRAMPS Book"
+msgstr "Antavla i halvcirkelformat för GRAMPS-bok"
+
+#: plugins/FanChart.py:464
 msgid "Produces a five generation fan chart"
 msgstr "Skapar en antavla i fem generationer i halvcirkelformat"
 
-#: plugins/FilterEditor.py:59
+#: plugins/FilterEditor.py:158
+msgid "Select..."
+msgstr "Välj..."
+
+#: plugins/FilterEditor.py:164
+msgid "Select person from a list"
+msgstr "Välj person från lista"
+
+#: plugins/FilterEditor.py:170
+msgid "Select Person"
+msgstr "Välj person"
+
+#: plugins/FilterEditor.py:186
+msgid "Not a valid person"
+msgstr "Inte en giltig person"
+
+#: plugins/FilterEditor.py:240
 msgid "User defined filters"
 msgstr "Användardefinierade filter"
 
-#: plugins/FilterEditor.py:126
+#: plugins/FilterEditor.py:308
 msgid "Define filter"
 msgstr "Definiera filter"
 
-#: plugins/FilterEditor.py:231
-msgid "Add rule"
+#: plugins/FilterEditor.py:391
+msgid "Add Rule"
 msgstr "Lägg till regel"
 
-#: plugins/FilterEditor.py:357
+#: plugins/FilterEditor.py:397
+msgid "Edit Rule"
+msgstr "Redigera regel"
+
+#: plugins/FilterEditor.py:464
+msgid "Include original person"
+msgstr "Inkludera ursprunglig person"
+
+#: plugins/FilterEditor.py:477
+msgid "Rule Name"
+msgstr "Namn på regel"
+
+#: plugins/FilterEditor.py:540 rule.glade:1213
+msgid "No rule selected"
+msgstr "Ingen regel vald"
+
+#: plugins/FilterEditor.py:590
 msgid "Filter Test"
 msgstr "Filtertest"
 
-#: plugins/FilterEditor.py:397
+#: plugins/FilterEditor.py:628
 msgid "Custom Filter Editor"
 msgstr "Redigerare för anpassade filter"
 
-#: plugins/FilterEditor.py:398 plugins/FilterEditor.py:411
+#: plugins/FilterEditor.py:629 plugins/FilterEditor.py:642
 #: plugins/RelCalc.py:160 plugins/Verify.py:417 plugins/soundgen.py:95
 msgid "Utilities"
 msgstr "Verktyg"
 
-#: plugins/FilterEditor.py:399
+#: plugins/FilterEditor.py:630
 msgid ""
 "The Custom Filter Editor builds custom filters that can be used to select "
 "people included in reports, exports, and other utilities."
@@ -4872,11 +5185,11 @@ msgstr ""
 "Redigeraren för anpassade filter bygger anpassade filter som kan användas "
 "för att välja personer från rapporter, exporter och andra verktyg."
 
-#: plugins/FilterEditor.py:410
+#: plugins/FilterEditor.py:641
 msgid "System Filter Editor"
 msgstr "Redigerare för systemfilter"
 
-#: plugins/FilterEditor.py:412
+#: plugins/FilterEditor.py:643
 msgid ""
 "The System Filter Editor builds custom filters that can be used by anyone on "
 "the system to select people included in reports, exports, and other "
@@ -4886,105 +5199,105 @@ msgstr ""
 "som helst på systemet för att välja personer från rapporter, exporter och "
 "andra verktyg."
 
-#: plugins/FtmStyleAncestors.py:97 plugins/FtmStyleDescendants.py:123
+#: plugins/FtmStyleAncestors.py:98 plugins/FtmStyleDescendants.py:124
 msgid "Generation No. %d"
 msgstr "Generation nr. %d"
 
-#: plugins/FtmStyleAncestors.py:133
+#: plugins/FtmStyleAncestors.py:134
 msgid "born %(date)s in %(place)s%(endnotes)s"
 msgstr "född %(date)s i %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:139
+#: plugins/FtmStyleAncestors.py:140
 msgid "born %(date)s%(endnotes)s"
 msgstr "född %(date)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:145
+#: plugins/FtmStyleAncestors.py:146
 msgid "born in %(place)s%(endnotes)s"
 msgstr "född i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:165
+#: plugins/FtmStyleAncestors.py:166
 msgid "died %(date)s in %(place)s%(endnotes)s."
 msgstr "död %(date)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:171
+#: plugins/FtmStyleAncestors.py:172
 msgid "died %(date)s%(endnotes)s."
 msgstr "död %(date)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:177
+#: plugins/FtmStyleAncestors.py:178
 msgid "died in %(place)s%(endnotes)s."
 msgstr "död i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:202 plugins/FtmStyleDescendants.py:235
+#: plugins/FtmStyleAncestors.py:203 plugins/FtmStyleDescendants.py:236
 msgid "Endnotes"
 msgstr "Avslutande notiser"
 
-#: plugins/FtmStyleAncestors.py:221 plugins/FtmStyleDescendants.py:254
+#: plugins/FtmStyleAncestors.py:222 plugins/FtmStyleDescendants.py:255
 msgid "Text:"
 msgstr "Te_xt:"
 
-#: plugins/FtmStyleAncestors.py:228 plugins/FtmStyleDescendants.py:261
+#: plugins/FtmStyleAncestors.py:229 plugins/FtmStyleDescendants.py:262
 msgid "Comments:"
 msgstr "Kommentarer:"
 
-#: plugins/FtmStyleAncestors.py:258 plugins/FtmStyleDescendants.py:291
+#: plugins/FtmStyleAncestors.py:259 plugins/FtmStyleDescendants.py:292
 msgid "Notes for %(person)s:"
 msgstr "Anteckningar för %(person)s"
 
-#: plugins/FtmStyleAncestors.py:273 plugins/FtmStyleAncestors.py:294
-#: plugins/FtmStyleDescendants.py:306 plugins/FtmStyleDescendants.py:327
+#: plugins/FtmStyleAncestors.py:274 plugins/FtmStyleAncestors.py:295
+#: plugins/FtmStyleDescendants.py:307 plugins/FtmStyleDescendants.py:328
 msgid "More about %(person_name)s:"
 msgstr "Mer om %(person_name)s:"
 
-#: plugins/FtmStyleAncestors.py:278 plugins/FtmStyleDescendants.py:311
+#: plugins/FtmStyleAncestors.py:279 plugins/FtmStyleDescendants.py:312
 msgid "Name %(count)d: %(name)s%(endnotes)s"
 msgstr "Namn %(count)d: %(name)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:301 plugins/FtmStyleDescendants.py:333
-#: plugins/FtmStyleDescendants.py:376
+#: plugins/FtmStyleAncestors.py:302 plugins/FtmStyleDescendants.py:334
+#: plugins/FtmStyleDescendants.py:377
 msgid "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
 msgstr "%(event_name)s: %(date)s, %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:307 plugins/FtmStyleDescendants.py:339
-#: plugins/FtmStyleDescendants.py:382
+#: plugins/FtmStyleAncestors.py:308 plugins/FtmStyleDescendants.py:340
+#: plugins/FtmStyleDescendants.py:383
 msgid "%(event_name)s: %(date)s%(endnotes)s"
 msgstr "%(event_name)s: %(date)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:312 plugins/FtmStyleDescendants.py:344
-#: plugins/FtmStyleDescendants.py:387
+#: plugins/FtmStyleAncestors.py:313 plugins/FtmStyleDescendants.py:345
+#: plugins/FtmStyleDescendants.py:388
 msgid "%(event_name)s: %(place)s%(endnotes)s"
 msgstr "%(event_name)s: %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleAncestors.py:337 plugins/FtmStyleDescendants.py:734
+#: plugins/FtmStyleAncestors.py:338 plugins/FtmStyleDescendants.py:735
 msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Han gifte sig %(date)s i %(place)s%(endnotes)s med %(spouse)s."
 
-#: plugins/FtmStyleAncestors.py:343 plugins/FtmStyleDescendants.py:740
+#: plugins/FtmStyleAncestors.py:344 plugins/FtmStyleDescendants.py:741
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr "Hon gifte sig %(date)s i %(place)s%(endnotes)s med %(spouse)s."
 
-#: plugins/FtmStyleAncestors.py:350 plugins/FtmStyleDescendants.py:747
+#: plugins/FtmStyleAncestors.py:351 plugins/FtmStyleDescendants.py:748
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
 msgstr "Han gifte sig %(date)s%(endnotes)s med %(spouse)s."
 
-#: plugins/FtmStyleAncestors.py:355 plugins/FtmStyleAncestors.py:366
-#: plugins/FtmStyleDescendants.py:752 plugins/FtmStyleDescendants.py:763
+#: plugins/FtmStyleAncestors.py:356 plugins/FtmStyleAncestors.py:367
+#: plugins/FtmStyleDescendants.py:753 plugins/FtmStyleDescendants.py:764
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hon gifte sig i %(place)s%(endnotes)s med %(spouse)s."
 
-#: plugins/FtmStyleAncestors.py:361 plugins/FtmStyleDescendants.py:758
+#: plugins/FtmStyleAncestors.py:362 plugins/FtmStyleDescendants.py:759
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Han gifte sig i %(place)s%(endnotes)s med %(spouse)s."
 
-#: plugins/FtmStyleAncestors.py:372 plugins/FtmStyleDescendants.py:769
+#: plugins/FtmStyleAncestors.py:373 plugins/FtmStyleDescendants.py:770
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr "Han var gift med %(spouse)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:377 plugins/FtmStyleDescendants.py:773
+#: plugins/FtmStyleAncestors.py:378 plugins/FtmStyleDescendants.py:774
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr "Hon var gift med %(spouse)s%(endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:400 plugins/FtmStyleDescendants.py:455
-#: plugins/FtmStyleDescendants.py:795
+#: plugins/FtmStyleAncestors.py:401 plugins/FtmStyleDescendants.py:456
+#: plugins/FtmStyleDescendants.py:796
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
@@ -4994,8 +5307,8 @@ msgstr ""
 "(birth_endnotes)s, och dog %(death_date)s i %(death_place)s%(death_endnotes)"
 "s."
 
-#: plugins/FtmStyleAncestors.py:411 plugins/FtmStyleDescendants.py:464
-#: plugins/FtmStyleDescendants.py:806
+#: plugins/FtmStyleAncestors.py:412 plugins/FtmStyleDescendants.py:465
+#: plugins/FtmStyleDescendants.py:807
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
@@ -5003,7 +5316,7 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, och dog %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:473
+#: plugins/FtmStyleAncestors.py:423 plugins/FtmStyleDescendants.py:474
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -5011,7 +5324,7 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, och dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:432
+#: plugins/FtmStyleAncestors.py:433
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s. "
@@ -5019,8 +5332,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:441 plugins/FtmStyleDescendants.py:489
-#: plugins/FtmStyleDescendants.py:836
+#: plugins/FtmStyleAncestors.py:442 plugins/FtmStyleDescendants.py:490
+#: plugins/FtmStyleDescendants.py:837
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -5028,8 +5341,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog %"
 "(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:451 plugins/FtmStyleDescendants.py:498
-#: plugins/FtmStyleDescendants.py:846
+#: plugins/FtmStyleAncestors.py:452 plugins/FtmStyleDescendants.py:499
+#: plugins/FtmStyleDescendants.py:847
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -5037,8 +5350,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog %"
 "(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:460 plugins/FtmStyleDescendants.py:507
-#: plugins/FtmStyleDescendants.py:855
+#: plugins/FtmStyleAncestors.py:461 plugins/FtmStyleDescendants.py:508
+#: plugins/FtmStyleDescendants.py:856
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -5046,12 +5359,12 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog i "
 "%(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:468
+#: plugins/FtmStyleAncestors.py:469
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr "%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:477 plugins/FtmStyleDescendants.py:523
-#: plugins/FtmStyleDescendants.py:873
+#: plugins/FtmStyleAncestors.py:478 plugins/FtmStyleDescendants.py:524
+#: plugins/FtmStyleDescendants.py:874
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -5059,8 +5372,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
 "dog %(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:486 plugins/FtmStyleDescendants.py:532
-#: plugins/FtmStyleDescendants.py:882
+#: plugins/FtmStyleAncestors.py:487 plugins/FtmStyleDescendants.py:533
+#: plugins/FtmStyleDescendants.py:883
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -5068,8 +5381,8 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
 "dog %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:495 plugins/FtmStyleDescendants.py:541
-#: plugins/FtmStyleDescendants.py:891
+#: plugins/FtmStyleAncestors.py:496 plugins/FtmStyleDescendants.py:542
+#: plugins/FtmStyleDescendants.py:892
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -5077,13 +5390,13 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
 "dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:503
+#: plugins/FtmStyleAncestors.py:504
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:511 plugins/FtmStyleDescendants.py:557
-#: plugins/FtmStyleDescendants.py:908
+#: plugins/FtmStyleAncestors.py:512 plugins/FtmStyleDescendants.py:558
+#: plugins/FtmStyleDescendants.py:909
 msgid ""
 "%(male_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
@@ -5091,18 +5404,18 @@ msgstr ""
 "%(male_name)s%(endnotes)s dog %(death_date)s i %(death_place)s%"
 "(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:518 plugins/FtmStyleDescendants.py:563
-#: plugins/FtmStyleDescendants.py:915
+#: plugins/FtmStyleAncestors.py:519 plugins/FtmStyleDescendants.py:564
+#: plugins/FtmStyleDescendants.py:916
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s dog %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:525 plugins/FtmStyleDescendants.py:570
-#: plugins/FtmStyleDescendants.py:923
+#: plugins/FtmStyleAncestors.py:526 plugins/FtmStyleDescendants.py:571
+#: plugins/FtmStyleDescendants.py:924
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:535 plugins/FtmStyleDescendants.py:583
-#: plugins/FtmStyleDescendants.py:934
+#: plugins/FtmStyleAncestors.py:536 plugins/FtmStyleDescendants.py:584
+#: plugins/FtmStyleDescendants.py:935
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s in %(death_place)s%"
@@ -5112,8 +5425,8 @@ msgstr ""
 "(birth_endnotes)s, och dog %(death_date)s i %(death_place)s%(death_endnotes)"
 "s."
 
-#: plugins/FtmStyleAncestors.py:546 plugins/FtmStyleDescendants.py:592
-#: plugins/FtmStyleDescendants.py:945
+#: plugins/FtmStyleAncestors.py:547 plugins/FtmStyleDescendants.py:593
+#: plugins/FtmStyleDescendants.py:946
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
@@ -5121,8 +5434,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, och dog %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:557 plugins/FtmStyleDescendants.py:601
-#: plugins/FtmStyleDescendants.py:956
+#: plugins/FtmStyleAncestors.py:558 plugins/FtmStyleDescendants.py:602
+#: plugins/FtmStyleDescendants.py:957
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -5130,7 +5443,7 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s, och dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:567
+#: plugins/FtmStyleAncestors.py:568
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s. "
@@ -5138,8 +5451,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:575 plugins/FtmStyleDescendants.py:617
-#: plugins/FtmStyleDescendants.py:975
+#: plugins/FtmStyleAncestors.py:576 plugins/FtmStyleDescendants.py:618
+#: plugins/FtmStyleDescendants.py:976
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -5147,8 +5460,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog "
 "%(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:585 plugins/FtmStyleDescendants.py:626
-#: plugins/FtmStyleDescendants.py:985
+#: plugins/FtmStyleAncestors.py:586 plugins/FtmStyleDescendants.py:627
+#: plugins/FtmStyleDescendants.py:986
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
@@ -5156,8 +5469,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog "
 "%(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:594 plugins/FtmStyleDescendants.py:635
-#: plugins/FtmStyleDescendants.py:994
+#: plugins/FtmStyleAncestors.py:595 plugins/FtmStyleDescendants.py:636
+#: plugins/FtmStyleDescendants.py:995
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
@@ -5165,12 +5478,12 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog "
 "i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:602
+#: plugins/FtmStyleAncestors.py:603
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. "
 msgstr "%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:611 plugins/FtmStyleDescendants.py:651
-#: plugins/FtmStyleDescendants.py:1012
+#: plugins/FtmStyleAncestors.py:612 plugins/FtmStyleDescendants.py:652
+#: plugins/FtmStyleDescendants.py:1013
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
@@ -5178,8 +5491,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
 "dog %(death_date)s i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:619 plugins/FtmStyleDescendants.py:660
-#: plugins/FtmStyleDescendants.py:1020
+#: plugins/FtmStyleAncestors.py:620 plugins/FtmStyleDescendants.py:661
+#: plugins/FtmStyleDescendants.py:1021
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s%(death_endnotes)s."
@@ -5187,8 +5500,8 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
 "dog %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:628 plugins/FtmStyleDescendants.py:669
-#: plugins/FtmStyleDescendants.py:1029
+#: plugins/FtmStyleAncestors.py:629 plugins/FtmStyleDescendants.py:670
+#: plugins/FtmStyleDescendants.py:1030
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died in %(death_place)s%(death_endnotes)s."
@@ -5196,14 +5509,14 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
 "dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:636
+#: plugins/FtmStyleAncestors.py:637
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. "
 msgstr ""
 "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s. "
 
-#: plugins/FtmStyleAncestors.py:644 plugins/FtmStyleDescendants.py:685
-#: plugins/FtmStyleDescendants.py:1046
+#: plugins/FtmStyleAncestors.py:645 plugins/FtmStyleDescendants.py:686
+#: plugins/FtmStyleDescendants.py:1047
 msgid ""
 "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%"
 "(death_endnotes)s."
@@ -5211,98 +5524,98 @@ msgstr ""
 "%(female_name)s%(endnotes)s dog %(death_date)s i %(death_place)s%"
 "(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:651 plugins/FtmStyleDescendants.py:691
-#: plugins/FtmStyleDescendants.py:1053
+#: plugins/FtmStyleAncestors.py:652 plugins/FtmStyleDescendants.py:692
+#: plugins/FtmStyleDescendants.py:1054
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
 msgstr "%(female_name)s%(endnotes)s dog %(death_date)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:658 plugins/FtmStyleDescendants.py:698
-#: plugins/FtmStyleDescendants.py:1061
+#: plugins/FtmStyleAncestors.py:659 plugins/FtmStyleDescendants.py:699
+#: plugins/FtmStyleDescendants.py:1062
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr "%(female_name)s%(endnotes)s dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleAncestors.py:676 plugins/FtmStyleDescendants.py:1080
+#: plugins/FtmStyleAncestors.py:677 plugins/FtmStyleDescendants.py:1081
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Han var son till %(father)s och %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:685 plugins/FtmStyleDescendants.py:1089
+#: plugins/FtmStyleAncestors.py:686 plugins/FtmStyleDescendants.py:1090
 msgid "He was the son of %(mother)s."
 msgstr "Han var son till %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:692 plugins/FtmStyleDescendants.py:1096
+#: plugins/FtmStyleAncestors.py:693 plugins/FtmStyleDescendants.py:1097
 msgid "He was the son of %(father)s."
 msgstr "Han var son till %(father)s. "
 
-#: plugins/FtmStyleAncestors.py:700 plugins/FtmStyleDescendants.py:1104
+#: plugins/FtmStyleAncestors.py:701 plugins/FtmStyleDescendants.py:1105
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Hon är dotter till %(father)s och %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:709 plugins/FtmStyleDescendants.py:1113
+#: plugins/FtmStyleAncestors.py:710 plugins/FtmStyleDescendants.py:1114
 msgid "She was the daughter of %(mother)s."
 msgstr "Hon var dotter till %(mother)s."
 
-#: plugins/FtmStyleAncestors.py:716 plugins/FtmStyleDescendants.py:1120
+#: plugins/FtmStyleAncestors.py:717 plugins/FtmStyleDescendants.py:1121
 msgid "She was the daughter of %(father)s."
 msgstr "Hon var dotter till %(father)s"
 
-#: plugins/FtmStyleAncestors.py:783
+#: plugins/FtmStyleAncestors.py:784
 msgid "FTM Style Ancestral Report"
-msgstr "Antavlerapport i FTM-stil"
+msgstr "Antavelrapport i FTM-stil"
 
-#: plugins/FtmStyleAncestors.py:787
+#: plugins/FtmStyleAncestors.py:788
 msgid "FTM Style Ancestral Report for %s"
-msgstr "Antavlerapport i FTM-stil för %s"
+msgstr "Antavelrapport i FTM-stil för %s"
 
-#: plugins/FtmStyleAncestors.py:878 plugins/FtmStyleAncestors.py:1028
-#: plugins/FtmStyleAncestors.py:1039
+#: plugins/FtmStyleAncestors.py:879 plugins/FtmStyleAncestors.py:1029
+#: plugins/FtmStyleAncestors.py:1040
 msgid "FTM Style Ancestor Report"
-msgstr "Antavlerapport i FTM-stil"
+msgstr "Antavelrapport i FTM-stil"
 
-#: plugins/FtmStyleAncestors.py:882
+#: plugins/FtmStyleAncestors.py:883
 msgid "FTM Style Ancestor Report for GRAMPS Book"
-msgstr "Antavlerapport i FTM-stil för GRAMPS-bok"
+msgstr "Antavelrapport i FTM-stil för GRAMPS-bok"
 
-#: plugins/FtmStyleAncestors.py:1031
+#: plugins/FtmStyleAncestors.py:1032
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
-msgstr "Skapar en antavlerapport i textformat liknande Family Tree Maker."
+msgstr "Skapar en antavelrapport i textformat liknande Family Tree Maker."
 
-#: plugins/FtmStyleDescendants.py:163
+#: plugins/FtmStyleDescendants.py:164
 msgid "was born %(date)s in %(place)s%(endnotes)s"
 msgstr "föddes %(date)s i %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleDescendants.py:169
+#: plugins/FtmStyleDescendants.py:170
 msgid "was born %(date)s%(endnotes)s"
 msgstr "föddes %(date)s%(endnotes)s"
 
-#: plugins/FtmStyleDescendants.py:175
+#: plugins/FtmStyleDescendants.py:176
 msgid "was born in %(place)s%(endnotes)s"
 msgstr "föddes i %(place)s%(endnotes)s"
 
-#: plugins/FtmStyleDescendants.py:195
+#: plugins/FtmStyleDescendants.py:196
 msgid "and died %(date)s in %(place)s%(endnotes)s."
 msgstr "och dog %(date)s i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:201
+#: plugins/FtmStyleDescendants.py:202
 msgid "and died %(date)s%(endnotes)s."
 msgstr "och dog %(date)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:207
+#: plugins/FtmStyleDescendants.py:208
 msgid "and died in %(place)s%(endnotes)s."
 msgstr "och dog i %(place)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:370
+#: plugins/FtmStyleDescendants.py:371
 msgid "More about %(husband)s and %(wife)s:"
 msgstr "Mer om %(husband)s och %(wife)s:"
 
-#: plugins/FtmStyleDescendants.py:419
+#: plugins/FtmStyleDescendants.py:420
 msgid "Children of %(person_name)s and %(spouse_name)s are:"
 msgstr "Barn till %(person_name)s och %(spouse_name)s är:"
 
-#: plugins/FtmStyleDescendants.py:422
+#: plugins/FtmStyleDescendants.py:423
 msgid "Children of %(person_name)s are:"
 msgstr "Barn till %(person_name)s är:"
 
-#: plugins/FtmStyleDescendants.py:481 plugins/FtmStyleDescendants.py:827
+#: plugins/FtmStyleDescendants.py:482 plugins/FtmStyleDescendants.py:828
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
@@ -5310,20 +5623,20 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:515 plugins/FtmStyleDescendants.py:863
+#: plugins/FtmStyleDescendants.py:516 plugins/FtmStyleDescendants.py:864
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:549 plugins/FtmStyleDescendants.py:899
+#: plugins/FtmStyleDescendants.py:550 plugins/FtmStyleDescendants.py:900
 msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:576
+#: plugins/FtmStyleDescendants.py:577
 msgid "%(male_name)s%(endnotes)s."
 msgstr "%(male_name)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:609
+#: plugins/FtmStyleDescendants.py:610
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%"
 "(birth_endnotes)s."
@@ -5331,21 +5644,21 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:643 plugins/FtmStyleDescendants.py:1002
+#: plugins/FtmStyleDescendants.py:644 plugins/FtmStyleDescendants.py:1003
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr "%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:677 plugins/FtmStyleDescendants.py:1037
+#: plugins/FtmStyleDescendants.py:678 plugins/FtmStyleDescendants.py:1038
 msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:704
+#: plugins/FtmStyleDescendants.py:705
 msgid "%(female_name)s%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:817
+#: plugins/FtmStyleDescendants.py:818
 msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
@@ -5353,7 +5666,7 @@ msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s %"
 "(birth_endnotes)s, och dog i %(death_place)s%(death_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:966
+#: plugins/FtmStyleDescendants.py:967
 msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %"
 "(birth_endnotes)s."
@@ -5361,26 +5674,26 @@ msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s %"
 "(birth_endnotes)s."
 
-#: plugins/FtmStyleDescendants.py:1192 plugins/FtmStyleDescendants.py:1284
-#: plugins/FtmStyleDescendants.py:1437 plugins/FtmStyleDescendants.py:1448
+#: plugins/FtmStyleDescendants.py:1193 plugins/FtmStyleDescendants.py:1285
+#: plugins/FtmStyleDescendants.py:1438 plugins/FtmStyleDescendants.py:1449
 msgid "FTM Style Descendant Report"
-msgstr "Stamtavlerapport i FTM-stil"
+msgstr "Stamtavelrapport i FTM-stil"
 
-#: plugins/FtmStyleDescendants.py:1196
+#: plugins/FtmStyleDescendants.py:1197
 msgid "FTM Style Descendant Report for %s"
-msgstr "Stamtavlerapport i FTM-stil för %s"
+msgstr "Stamtavelrapport i FTM-stil för %s"
 
-#: plugins/FtmStyleDescendants.py:1201
+#: plugins/FtmStyleDescendants.py:1202
 msgid "Save FTM Style Descendant Report"
-msgstr "Spara stamtavlerapport i FTM-stil"
+msgstr "Spara stamtavelrapport i FTM-stil"
 
-#: plugins/FtmStyleDescendants.py:1288
+#: plugins/FtmStyleDescendants.py:1289
 msgid "FTM Style Descendant Report for GRAMPS Book"
-msgstr "Stamtavlerapport i FTM-stil för GRAMPS-bok"
+msgstr "Stamtavelrapport i FTM-stil för GRAMPS-bok"
 
-#: plugins/FtmStyleDescendants.py:1440
+#: plugins/FtmStyleDescendants.py:1441
 msgid "Produces a textual descendant report similar to Family Tree Maker."
-msgstr "Skapar en stamtavlerapport i textformat liknande Family Tree Maker."
+msgstr "Skapar en stamtavelrapport i textformat liknande Family Tree Maker."
 
 #: plugins/GraphViz.py:62 plugins/GraphViz.py:89
 msgid "Single (scaled)"
@@ -5394,7 +5707,7 @@ msgstr "En sida"
 msgid "Multiple"
 msgstr "Flera"
 
-#: plugins/GraphViz.py:79 plugins/GraphViz.py:499
+#: plugins/GraphViz.py:79 plugins/GraphViz.py:523
 msgid "Relationship Graph"
 msgstr "Släktskapsgraf"
 
@@ -5402,7 +5715,7 @@ msgstr "Släktskapsgraf"
 msgid "Graphviz File"
 msgstr "Graphviz-fil"
 
-#: plugins/GraphViz.py:113 plugins/TimeLine.py:371 plugins/WriteFtree.py:114
+#: plugins/GraphViz.py:113 plugins/TimeLine.py:368 plugins/WriteFtree.py:118
 #: plugins/WriteGedcom.py:397
 msgid "People with common ancestor with %s"
 msgstr "Personer med ana gemensam med %s"
@@ -5423,25 +5736,37 @@ msgstr "Ättlingar <-> Anor"
 msgid "Descendants - Ancestors"
 msgstr "Ättlingar - Anor"
 
-#: plugins/GraphViz.py:146 plugins/GraphViz.py:154 plugins/GraphViz.py:162
-#: plugins/GraphViz.py:172 plugins/GraphViz.py:182 plugins/GraphViz.py:192
-#: plugins/GraphViz.py:200
+#: plugins/GraphViz.py:149
+msgid "TrueType"
+msgstr "Truetype"
+
+#: plugins/GraphViz.py:161 plugins/GraphViz.py:166 plugins/GraphViz.py:174
+#: plugins/GraphViz.py:182 plugins/GraphViz.py:192 plugins/GraphViz.py:202
+#: plugins/GraphViz.py:212 plugins/GraphViz.py:220
 msgid "GraphViz Options"
 msgstr "Alternativ för GraphViz"
 
-#: plugins/GraphViz.py:147
+#: plugins/GraphViz.py:162
+msgid "Font Options"
+msgstr "Typsnittsalternativ"
+
+#: plugins/GraphViz.py:164
+msgid "Choose the font family."
+msgstr "Välj typsnittsfamilj."
+
+#: plugins/GraphViz.py:167
 msgid "Arrowhead Options"
 msgstr "Inställningar för pilar"
 
-#: plugins/GraphViz.py:149
+#: plugins/GraphViz.py:169
 msgid "Choose the direction that the arrows point."
 msgstr "Välj den riktning som pilarna ska peka åt."
 
-#: plugins/GraphViz.py:151
+#: plugins/GraphViz.py:171
 msgid "Include Birth, Marriage and Death Dates"
 msgstr "Inkludera födelse-, giftermåls- och dödsdatum"
 
-#: plugins/GraphViz.py:156
+#: plugins/GraphViz.py:176
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -5449,11 +5774,11 @@ msgstr ""
 "Inkludera de datum när personen föddes, gifte sig och/eller dog i "
 "grafnodsetiketterna."
 
-#: plugins/GraphViz.py:160
+#: plugins/GraphViz.py:180
 msgid "Limit dates to years only"
 msgstr "Begränsa datum till år enbart"
 
-#: plugins/GraphViz.py:164
+#: plugins/GraphViz.py:184
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -5461,11 +5786,11 @@ msgstr ""
 "Skriver enbart ut år för datum, varken månad eller dag eller "
 "datumapproximation eller -intervall visas."
 
-#: plugins/GraphViz.py:170
+#: plugins/GraphViz.py:190
 msgid "Include URLs"
 msgstr "Inkludera URL:er"
 
-#: plugins/GraphViz.py:174
+#: plugins/GraphViz.py:194
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Generate "
@@ -5473,13 +5798,13 @@ msgid ""
 msgstr ""
 "Inkludera en URL i varje grafnod, så att det går att skapa PDF- och "
 "imagemapfiler med aktiva länkar till de filer som skapats med rapporten "
-"'Skapa website'."
+"\"Skapa website\"."
 
-#: plugins/GraphViz.py:180
+#: plugins/GraphViz.py:200
 msgid "Colorize Graph"
 msgstr "Färglägg graf"
 
-#: plugins/GraphViz.py:185
+#: plugins/GraphViz.py:205
 msgid ""
 "Males will be outlined in blue, females will be outlined in pink.  If the "
 "sex of an individual is unknown it will be outlined in black."
@@ -5487,42 +5812,42 @@ msgstr ""
 "Män kommer att få blå kontur, kvinnor rosa. Om könet för en person är okänt, "
 "får den svart kontur."
 
-#: plugins/GraphViz.py:190
+#: plugins/GraphViz.py:210
 msgid "Indicate non-birth relationships with dashed lines"
 msgstr "Visa icke-födelserelationer med streckade linjer"
 
-#: plugins/GraphViz.py:195
+#: plugins/GraphViz.py:215
 msgid "Non-birth relationships will show up as dashed lines in the graph."
 msgstr "Icke-födelserelationer kommer att visas med streckade linjer i grafen."
 
-#: plugins/GraphViz.py:198
+#: plugins/GraphViz.py:218
 msgid "Show family nodes"
 msgstr "Visa familjenoder"
 
-#: plugins/GraphViz.py:203
+#: plugins/GraphViz.py:223
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
-"Familjer kommer att visas som ellipser, länkade till föräldrar och\n"
+"Familjer kommer att visas som ellipser, länkade till föräldrar och "
 "barn."
 
-#: plugins/GraphViz.py:214 plugins/GraphViz.py:217 plugins/GraphViz.py:227
-#: plugins/GraphViz.py:234
+#: plugins/GraphViz.py:234 plugins/GraphViz.py:237 plugins/GraphViz.py:247
+#: plugins/GraphViz.py:254
 msgid "Page Options"
 msgstr "Sidval"
 
-#: plugins/GraphViz.py:215
+#: plugins/GraphViz.py:235
 msgid "Top & Bottom Margins"
 msgstr "Övre och nedre marginaler"
 
-#: plugins/GraphViz.py:218
+#: plugins/GraphViz.py:238
 msgid "Left & Right Margins"
 msgstr "Vänster- och högermarginaler"
 
-#: plugins/GraphViz.py:228
+#: plugins/GraphViz.py:248
 msgid "Number of Horizontal Pages"
 msgstr "Antal liggande sidor"
 
-#: plugins/GraphViz.py:230
+#: plugins/GraphViz.py:250
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -5532,11 +5857,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt."
 
-#: plugins/GraphViz.py:235
+#: plugins/GraphViz.py:255
 msgid "Number of Vertical Pages"
 msgstr "Antal stående sidor"
 
-#: plugins/GraphViz.py:237
+#: plugins/GraphViz.py:257
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -5546,11 +5871,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled."
 
-#: plugins/GraphViz.py:257
+#: plugins/GraphViz.py:277
 msgid "Generate print output"
 msgstr "Skapa rapportutskrifter"
 
-#: plugins/GraphViz.py:484
+#: plugins/GraphViz.py:508
 msgid ""
 "Generates relationship graphs, currently only in GraphViz format. GraphViz "
 "(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and "
@@ -5703,7 +6028,7 @@ msgstr "Inga titlar eller smeknamn upptäcktes"
 msgid "Name and title extraction tool"
 msgstr "Verktyg för namn- och titelextrahering"
 
-#: plugins/PatchNames.py:133
+#: plugins/PatchNames.py:133 plugins/SimpleBookTitle.py:337
 msgid "Select"
 msgstr "Välj"
 
@@ -5822,7 +6147,7 @@ msgstr "Fel vid extrahering till %s"
 msgid "Relationship calculator"
 msgstr "Släktskapsberäknare"
 
-#: plugins/RelCalc.py:88 plugins/TimeLine.py:340
+#: plugins/RelCalc.py:88 plugins/TimeLine.py:380
 msgid "Birth Date"
 msgstr "Födelsedatum"
 
@@ -5858,37 +6183,75 @@ msgstr "Sortera om gramps-ID"
 msgid "Reorders the gramps IDs according to gramps' default rules."
 msgstr "Sorterar gramps-ID efter gramps standardregler."
 
-#: plugins/SimpleBookTitle.py:107
+#: plugins/SimpleBookTitle.py:130
 msgid "The style used for the subtitle."
-msgstr "Stil som används för undertiteln"
+msgstr "Stil som används för undertiteln."
 
-#: plugins/SimpleBookTitle.py:147 plugins/SimpleBookTitle.py:240
+#: plugins/SimpleBookTitle.py:140
+msgid "The style used for the footer."
+msgstr "Stil som används för sidfoten."
+
+#: plugins/SimpleBookTitle.py:150
+msgid "Fit page"
+msgstr "Anpassa till sidstorlek"
+
+#: plugins/SimpleBookTitle.py:151 plugins/SimpleBookTitle.py:152
+#: plugins/SimpleBookTitle.py:153
+msgid "%d cm"
+msgstr "%d cm"
+
+#: plugins/SimpleBookTitle.py:222 plugins/SimpleBookTitle.py:432
 msgid "Title of the Book"
 msgstr "Titel för boken"
 
-#: plugins/SimpleBookTitle.py:155 plugins/SimpleBookTitle.py:247
+#: plugins/SimpleBookTitle.py:227 plugins/SimpleBookTitle.py:436
+msgid "Subtitle of the Book"
+msgstr "Undertitel för boken"
+
+#: plugins/SimpleBookTitle.py:245 plugins/SimpleBookTitle.py:452
 msgid "Copyright %d %s"
 msgstr "Copyright %d %s"
 
-#: plugins/SimpleBookTitle.py:174 plugins/SimpleBookTitle.py:358
+#: plugins/SimpleBookTitle.py:280
 msgid "Simple Book Title"
 msgstr "Enkel boktitel"
 
-#: plugins/SimpleBookTitle.py:178
+#: plugins/SimpleBookTitle.py:284
 msgid "Title Page for GRAMPS Book"
-msgstr "Titlesida för GRAMPS-bok"
+msgstr "Titelsida för GRAMPS-bok"
 
-#: plugins/SimpleBookTitle.py:196
-msgid "Title String"
-msgstr "Titelsträng"
+#: plugins/SimpleBookTitle.py:303
+msgid "Subtitle"
+msgstr "Undertitel"
 
-#: plugins/SimpleBookTitle.py:196 plugins/SimpleBookTitle.py:197
-msgid "Contents"
-msgstr "Innehåll"
+#: plugins/SimpleBookTitle.py:304
+msgid "Footer"
+msgstr "Sidfot"
 
-#: plugins/SimpleBookTitle.py:197
-msgid "Subtitle String"
-msgstr "Sträng för undertitel"
+#: plugins/SimpleBookTitle.py:319
+msgid "From gallery..."
+msgstr "Från galleri..."
+
+#: plugins/SimpleBookTitle.py:321
+msgid "From file..."
+msgstr "Från fil..."
+
+#: plugins/SimpleBookTitle.py:336
+msgid "Preview"
+msgstr "Förhandsgranskning"
+
+#: plugins/SimpleBookTitle.py:336 plugins/SimpleBookTitle.py:337
+#: plugins/SimpleBookTitle.py:338
+msgid "Image"
+msgstr "Bild"
+
+#: plugins/SimpleBookTitle.py:363
+msgid "Select an Object"
+msgstr "Välj ett objekt"
+
+#: plugins/SimpleBookTitle.py:565
+msgid "Title Page"
+msgstr "Titelsida"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
@@ -5958,33 +6321,38 @@ msgstr "Visa"
 msgid "Provides a summary of the current database"
 msgstr "Visar en sammanfattning av den aktuella databasen"
 
-#: plugins/TimeLine.py:315
-msgid "Timeline"
-msgstr "Tidslinje"
-
-#: plugins/TimeLine.py:325
-msgid "Timeline File"
-msgstr "Fil för tidslinje"
-
-#: plugins/TimeLine.py:347
-msgid "Sort by"
-msgstr "Sortera efter"
-
-#: plugins/TimeLine.py:383
+#: plugins/TimeLine.py:326
 msgid "The style used for the person's name."
 msgstr "Stil som används för personens namn."
 
-#: plugins/TimeLine.py:391
+#: plugins/TimeLine.py:334
 msgid "The style used for the year labels."
 msgstr "Stil som används för årsetiketter."
 
-#: plugins/TimeLine.py:459
+#: plugins/TimeLine.py:396 plugins/TimeLine.py:544 plugins/TimeLine.py:656
+#: plugins/TimeLine.py:666
+msgid "Timeline Graph"
+msgstr "Graf för tidslinje"
+
+#: plugins/TimeLine.py:401
+msgid "Timeline Graph for %s"
+msgstr "Graf för tidslinje för %s"
+
+#: plugins/TimeLine.py:410
+msgid "Timeline File"
+msgstr "Fil för tidslinje"
+
+#: plugins/TimeLine.py:433 plugins/TimeLine.py:575
+msgid "Sort by"
+msgstr "Sortera efter"
+
+#: plugins/TimeLine.py:490
 msgid "Generates a timeline graph."
 msgstr "Genererar en graf för tidslinjen."
 
-#: plugins/TimeLine.py:463
-msgid "Timeline Graph"
-msgstr "Graf för tidslinje"
+#: plugins/TimeLine.py:548
+msgid "Timeline Graph for GRAMPS Book"
+msgstr "Tidslinjegraf för GRAMPS-bok"
 
 #: plugins/Verify.py:85 plugins/Verify.py:397
 msgid "Database Verify"
@@ -6184,7 +6552,7 @@ msgstr ""
 #: plugins/Verify.py:296
 msgid "Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n"
 msgstr ""
-"Sent giftermål: %(male_name)s gift vid åldern %(marage)d med\n"
+"Sent giftermål: %(male_name)s gift vid åldern %(marage)d med "
 "%(spouse)s.\n"
 
 #: plugins/Verify.py:299
@@ -6466,7 +6834,7 @@ msgstr "Stil som används för rubriken till bildavdelningen."
 #: plugins/WebPage.py:1047
 msgid "The style used for the header for the marriages and children section."
 msgstr ""
-"Stil som används för rubriken till avdelningen för giftermål och\n"
+"Stil som används för rubriken till avdelningen för giftermål och "
 "barn."
 
 #: plugins/WebPage.py:1062
@@ -7074,179 +7442,203 @@ msgstr "_Visa indexnummer i barnlista"
 msgid "<b>Display</b>"
 msgstr "<b>Utseende</b>"
 
-#: preferences.glade:1097
+#: preferences.glade:1049
+msgid "<b>Default view</b>"
+msgstr "<b>Förvald visning</b>"
+
+#: preferences.glade:1074
+msgid "_Person view"
+msgstr "_Personvisning"
+
+#: preferences.glade:1096
+msgid "_Family view"
+msgstr "_Familjevisning"
+
+#: preferences.glade:1118
+msgid "<b>Family view style</b>"
+msgstr "<b>Stil för visning av familj</b>"
+
+#: preferences.glade:1143
+msgid "Left to right"
+msgstr "Vänster till höger"
+
+#: preferences.glade:1165
+msgid "Top to bottom"
+msgstr "Topp till botten"
+
+#: preferences.glade:1235
 msgid "_Date format:"
 msgstr "_Datumformat:"
 
-#: preferences.glade:1125
+#: preferences.glade:1263
 msgid "_Name format:"
 msgstr "_Namnformat:"
 
-#: preferences.glade:1176
+#: preferences.glade:1314
 msgid "D_ate format:"
 msgstr "Datumformat:"
 
-#: preferences.glade:1227
+#: preferences.glade:1365
 msgid "_Show calendar format selection menu"
 msgstr "_Visa inställningsmenyn för kalenderformat"
 
-#: preferences.glade:1248
+#: preferences.glade:1386
 msgid "<b>Display formats</b>"
 msgstr "<b>Visningsformat</b>"
 
-#: preferences.glade:1272
+#: preferences.glade:1410
 msgid "<b>Entry formats</b>"
 msgstr "<b>Inskrivningsformat</b>"
 
-#: preferences.glade:1296
+#: preferences.glade:1434
 msgid "<b>Calendars</b>"
 msgstr "<b>Kalendrar</b>"
 
-#: preferences.glade:1389 rule.glade:264
+#: preferences.glade:1527 rule.glade:265
 msgid "_Name:"
 msgstr "_Namn:"
 
-#: preferences.glade:1417
+#: preferences.glade:1555
 msgid "_Address:"
 msgstr "_Address:"
 
-#: preferences.glade:1473
+#: preferences.glade:1611
 msgid "_State/Province:"
 msgstr "_Stat/provins:"
 
-#: preferences.glade:1501
+#: preferences.glade:1639
 msgid "_Country:"
 msgstr "_Land:"
 
-#: preferences.glade:1557
+#: preferences.glade:1695
 msgid "_Phone:"
 msgstr "_Telefon:"
 
-#: preferences.glade:1585
+#: preferences.glade:1723
 msgid "_Email:"
 msgstr "_E-post:"
 
-#: preferences.glade:1789
+#: preferences.glade:1927
 msgid "<b>Researcher information</b>"
 msgstr "<b>Forskarinformation</b>"
 
-#: preferences.glade:1861
+#: preferences.glade:1999
 msgid "Preferred _text format:"
 msgstr "Förstahandsval för _textformat:"
 
-#: preferences.glade:1911
+#: preferences.glade:2049
 msgid "Preferred _graphical format:"
 msgstr "Förstahandsval för _grafiskt format:"
 
-#: preferences.glade:1961
+#: preferences.glade:2099
 msgid "Preferred _paper size:"
 msgstr "Förstahandsval för pappersstorlek:"
 
-#: preferences.glade:1999
+#: preferences.glade:2137
 msgid "Letter"
 msgstr "Letter"
 
-#: preferences.glade:2007
+#: preferences.glade:2145
 msgid "A4"
 msgstr "A4"
 
-#: preferences.glade:2027
+#: preferences.glade:2165
 msgid "_Default report directory:"
 msgstr "_Förvald rapportkatalog:"
 
-#: preferences.glade:2057 preferences.glade:2119
+#: preferences.glade:2195 preferences.glade:2257
 msgid "Select default report directory - GRAMPS"
 msgstr "Välj förvald rapportkatalog - GRAMPS"
 
-#: preferences.glade:2064
+#: preferences.glade:2202
 msgid "The default directory for the output of many report generators"
 msgstr "Förvald katalog för utdata från många rapportgeneratorer"
 
-#: preferences.glade:2089
+#: preferences.glade:2227
 msgid "Default _web site directory:"
 msgstr "Förvald katalog för _webbplats:"
 
-#: preferences.glade:2126
+#: preferences.glade:2264
 msgid "The default directory for the output of the Web Site report generators"
 msgstr "Förvald katalog för utdata från rapportgeneratorer för webbsidor"
 
-#: preferences.glade:2151
+#: preferences.glade:2289
 msgid "<b>Report preferences</b>"
 msgstr "<b>Rapportinställningar</b>"
 
-#: preferences.glade:2219
+#: preferences.glade:2357
 msgid "Make a _reference to the object when the object is dropped"
 msgstr "Skapa _referens till objektet när objektet släpps"
 
-#: preferences.glade:2242
+#: preferences.glade:2380
 msgid "Make a local _copy when the object is dropped"
 msgstr "Skapa lokal kopia när objektet släpps"
 
-#: preferences.glade:2266
+#: preferences.glade:2404
 msgid "Display _global properties editor when object is dropped"
 msgstr "Visa redigeraren för _globala egenskaper när objektet släpps"
 
-#: preferences.glade:2289
+#: preferences.glade:2427
 msgid "Display _local properties editor when object is dropped"
 msgstr "Visa redigeraren för _lokala egenskaper när objektet släpps"
 
-#: preferences.glade:2310
+#: preferences.glade:2448
 msgid "<b>Drag and drop from an external source</b>"
 msgstr "<b>Dra och släpp från en extern källa</b> "
 
-#: preferences.glade:2334
+#: preferences.glade:2472
 msgid "<b>Drag and drop from an internal source</b>"
 msgstr "<b>Dra och släpp från en intern källa</b>"
 
-#: preferences.glade:2427
+#: preferences.glade:2565
 msgid "_Family:"
 msgstr "_Familj:"
 
-#: preferences.glade:2483
+#: preferences.glade:2621
 msgid "_Source:"
 msgstr "_Källa:"
 
-#: preferences.glade:2511
+#: preferences.glade:2649
 msgid "_Media object:"
 msgstr "_Medieobjekt:"
 
-#: preferences.glade:2543
+#: preferences.glade:2681
 msgid "I"
 msgstr "I"
 
-#: preferences.glade:2565
+#: preferences.glade:2703
 msgid "F"
 msgstr "F"
 
-#: preferences.glade:2587
+#: preferences.glade:2725
 msgid "P"
 msgstr "P"
 
-#: preferences.glade:2609
+#: preferences.glade:2747
 msgid "S"
 msgstr "S"
 
-#: preferences.glade:2631
+#: preferences.glade:2769
 msgid "O"
 msgstr "O"
 
-#: preferences.glade:2649
+#: preferences.glade:2787
 msgid "<b>User defined IDs</b>"
 msgstr "<b>Användardefinierade identiteter</b>"
 
-#: preferences.glade:2673
+#: preferences.glade:2811
 msgid "<b>GRAMPS ID prefixes</b>"
 msgstr "Prefix för GRAMPS-identiteter"
 
-#: preferences.glade:2699
+#: preferences.glade:2837
 msgid "_Allow internal GRAMPS ID numbers to be edited"
 msgstr "_Tillåt redigering av interna GRAMPS-ID-nummer"
 
-#: preferences.glade:2768
+#: preferences.glade:2906
 msgid "_Family name guessing:"
 msgstr "_Gissning av efternamn:"
 
-#: preferences.glade:2796
+#: preferences.glade:2934
 msgid "<b>Customization</b>"
 msgstr "<b>Anpassning</b>"
 
@@ -7262,113 +7654,113 @@ msgstr "Återgå till en tidigare version från revisionskontroll"
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: rule.glade:105
+#: rule.glade:106
 msgid "<b>Definition</b>"
 msgstr "<b>Definition</b>"
 
-#: rule.glade:129
+#: rule.glade:130
 msgid "<b>Rule List</b>"
 msgstr "<b>Regellista</b>"
 
-#: rule.glade:358
+#: rule.glade:359
 msgid "All _rules must apply"
 msgstr "Alla _regler måste matcha"
 
-#: rule.glade:379
+#: rule.glade:380
 msgid "At least _one rule must apply"
 msgstr "Minst _en regel måste matcha"
 
-#: rule.glade:401
+#: rule.glade:402
 msgid "E_xactly one rule must apply"
 msgstr "E_xakt en regel måste matcha"
 
-#: rule.glade:422
+#: rule.glade:423
 msgid "Rule operations:"
 msgstr "Regeloperationer:"
 
-#: rule.glade:447
+#: rule.glade:448
 msgid "_Return values that do not match the filter rules (invert)"
 msgstr "_Visa värden som inte matchar filterreglerna (invertera)"
 
-#: rule.glade:467
-msgid "<b>Rule Modifiers</b>"
-msgstr "<b>Regelmodifierare</b>"
-
-#: rule.glade:697
+#: rule.glade:674 rule.glade:1276
 msgid "<b>Values</b>"
 msgstr "<b>Värden</b>"
 
-#: rule.glade:725
+#: rule.glade:702
 msgid "<b>Rule</b>"
 msgstr "<b>Regel</b>"
 
-#: rule.glade:877
+#: rule.glade:854
 msgid "Add a new filter"
 msgstr "Lägg till nytt filter"
 
-#: rule.glade:896
+#: rule.glade:873
 msgid "Edit the selected filter"
 msgstr "Redigera det valda filtret"
 
-#: rule.glade:915
+#: rule.glade:892
 msgid "_Test..."
 msgstr "_Test..."
 
-#: rule.glade:931
+#: rule.glade:908
 msgid "Delete the selected filter"
 msgstr "Radera det valda filtret"
 
-#: srcsel.glade:111
+#: rule.glade:1192
+msgid "<b>Selected Rule</b>"
+msgstr "<b>Vald regel</b>"
+
+#: rule.glade:1234 styles.glade:446
+msgid "<b>Description</b>"
+msgstr "<b>Beskrivning</b>"
+
+#: srcsel.glade:109
 msgid "_Confidence:"
 msgstr "_Säkerhet:"
 
-#: srcsel.glade:139
+#: srcsel.glade:137
 msgid "_Volume/Film/Page:"
 msgstr "_Volym/film/sida:"
 
-#: srcsel.glade:192
+#: srcsel.glade:190
 msgid "Te_xt:"
 msgstr "Te_xt:"
 
-#: srcsel.glade:219
+#: srcsel.glade:217
 msgid "Co_mments:"
 msgstr "Ko_mmentar:"
 
-#: srcsel.glade:246
+#: srcsel.glade:244
 msgid "Publication information:"
 msgstr "Publiceringsinformation"
 
-#: srcsel.glade:331
+#: srcsel.glade:329
 msgid "Selects an existing source from the Source View"
 msgstr "Väljer en befintlig källa från källvisningen"
 
-#: srcsel.glade:386
+#: srcsel.glade:384
 msgid "Creates a new source"
 msgstr "Skapar en ny källa"
 
-#: srcsel.glade:388
+#: srcsel.glade:386
 msgid "_New..."
 msgstr "_Ny..."
 
-#: srcsel.glade:609
+#: srcsel.glade:607
 msgid "<b>Source selection</b>"
 msgstr "<b>Markerad källa</b>"
 
-#: srcsel.glade:633
+#: srcsel.glade:631
 msgid "<b>Source details</b>"
 msgstr "<b>Källdetaljer</b>"
 
-#: srcsel.glade:818
+#: srcsel.glade:814
 msgid "Double click will edit the selected source"
 msgstr "Om du dubbelklickar kan du redigera den valda personen"
 
 #: styles.glade:286
 msgid "Style _name:"
 msgstr "Stil_namn:"
-
-#: styles.glade:446
-msgid "<b>Description</b>"
-msgstr "<b>Beskrivning</b>"
 
 #: styles.glade:475
 msgid "pt"
