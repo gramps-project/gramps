@@ -19,8 +19,8 @@
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
     <title>Főablak</title> 
-    <para>When you open a database (either existing or brand new), 
-    the following window is displayed.</para>
+    <para>Ha egy adatbázist nyit meg (akár már létezik, akár újat hoz létre), 
+    a következő ablak jelenik meg.</para>
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
@@ -28,48 +28,49 @@
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows &app; main window. Contains titlebar, menubar, 
-	      toolbar, sidebar, display area, statusbar, progressbar, and
-	      scrollbars. Menubar contains File, Edit, View, Bookmarks, 
-	      Reports, Tools, Settings, and Help menus.  </phrase>
+	<phrase>&app; Főablak. Az ablakban található a címsor, menüsor, 
+	      eszköztár, oldalsó menüsor, megjelenítési terület, állapotjelző, 
+              eseményjelző és a gördítősáv.
+	      A menüsor a Fájl, Szerkesztés, Nézet, Ugrás, Könyvjelzők, 
+	      Összesítők, Eszközök és Súgó menüket tartalmazza.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
     <para>A &app; ablak a következő elemeket tartalmazza: </para>
       <variablelist>
       <varlistentry><term>Menüsor</term>
-	<listitem><para>The menubar is located at the very top of the window
-        (right below the window title) and provides access to all features of
-	&app; through its menus.</para></listitem>
+	<listitem><para>A menüsor az ablak tetejénél található 
+        (az ablakcím alatt), innen el lehet érni a 
+	&app; összes funkcióját a menükön keresztűl.</para></listitem>
       </varlistentry>
       <varlistentry><term>Eszköztár</term>
-	<listitem><para> The toolbar is located immediately below the menubar. 
-        The toolbar provides access to the most frequently used functions 
-        of &app;. The appearance of the toolbar 
-        can be adjusted in the <guilabel>Preferences</guilabel> 
-	dialog. </para></listitem>
+	<listitem><para> Az eszköztár rögtön a menüsor alatt helyezkedik el. 
+        Az eszköztárból a leggyakrabban használt 
+        &app; funkciók érhetőek el. Az eszköztár kinézetét módosítani lehet a 
+        <guilabel>Tulajdonságok...</guilabel> 
+	párbeszédablakban. </para></listitem>
       </varlistentry>
       <varlistentry><term>Eseményjelző</term>
-	<listitem><para>The progressbar is located in the lower left corner 
-	of the &app; window. It displays the 
-	progress of time consuming operations, such as opening and saving 
-	large data bases, importing and exporting to other formats, generating 
-	web sites, etc. </para></listitem>
+	<listitem><para>Az eseményjelző a &app; ablak bal alsó sarkában 
+	helyezkedik el. Az időfüggő műveletek 
+	működési állapotát jelzi; mint pl.: a megnyitás és a mentés, 
+	importálás és exportálás, weboldal létrehozásának
+	folyamatát, stb. </para></listitem>
       </varlistentry>
       <varlistentry><term>Állapotjelző</term>
-	<listitem><para>The statusbar is located to the right of the 
-        progressbar, on the very bottom of the &app; window. 
-	It displays information about current &app; 
-	activity and contextual information about the menu items. 
-	The behavior of the statusbar can be adjusted in 
-	<guilabel>Preferences</guilabel> dialog. </para></listitem>
+	<listitem><para>Az állapotjelző a &app; ablak eseményjelzőjének 
+	jobb oldalán található. 
+	A &app; tevékenysége és a menükkel kapcsolatos szöveges 
+	információk jelennek meg itt. 
+	Az állapotjelző kinézete a 
+	<guilabel>Tulajdonságok...</guilabel> párbeszédablakban állítható. 
+	</para></listitem>
       </varlistentry>
       <varlistentry><term>Megjelenítési terület</term>
-	<listitem><para>The largest area in the center of the
-	&app; window is the display area.  
-	It shows certain aspects of genealogical information, depending on the 
-	currently selected View. The following six Views are available 
-	in &app;: 
+	<listitem><para>A legnagyobb terület a &app; ablak középpontjában a 
+	megjelenítési terület. 
+	Itt jelennek meg az öröklési információk a kiválasztott nézetmódnak 
+	megfelelően. A következő hat Nézet választható a &app;ben: 
 	<itemizedlist>	
 	<listitem><para>Emberek Nézet</para></listitem>
 	<listitem><para>Család Nézet</para></listitem>
@@ -85,7 +86,7 @@
 
     <!-- ================ Main Window Subsection  -->
     <sect2 id="gramps-views">
-      <title>Views</title>
+      <title>Nézetek</title>
       <para>Views are the various ways to display different aspects of 
       genealogical information, as described below. Since the relevant 
       information is very broad and non-uniform in both context and modality, 
