@@ -102,7 +102,7 @@ class ReadTarFile:
                 return map
 	    self.f.read(24) # modes
             l = string.replace(self.f.read(12),chr(0),' ')
-            length = string.atoi(l,8) 
+            length = int(l,8) 
 	    self.f.read(12)
 	    self.f.read(6)
 	    self.f.read(111)
@@ -136,7 +136,7 @@ class ReadTarFile:
             for char in l:
                 if ord(char) != 0:
                     length_string = length_string + char
-            length = string.atoi(length_string,8) 
+            length = int(length_string,8) 
 	    self.f.read(12)
 	    self.f.read(6)
 	    self.f.read(111)

@@ -49,12 +49,13 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-from PedView import PedigreeView
-from PlaceView import PlaceView
-from SourceView import SourceView
-from MediaView import MediaView
-from FamilyView import FamilyView
+#from RelLib import *
+import RelLib
+import PedView
+import MediaView
+import PlaceView
+import FamilyView
+import SourceView
 
 from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
 
@@ -62,21 +63,18 @@ import DisplayTrace
 import Filter
 import const
 import Plugins
-import sort
 import Utils
 import Bookmarks
 import GrampsCfg
 import EditPerson
-import Marriage
 import Find
 import VersionControl
 import ReadXML
-import AddSpouse
 import ListModel
+import GrampsXML
 
-from GrampsXML import GrampsXML
 try:
-    from GrampsZODB import GrampsZODB
+    import GrampsZODB
     zodb_ok = 1
 except:
     zodb_ok = 0
@@ -124,7 +122,7 @@ class Gramps:
         # This will never contain data - It will be replaced by either
         # a GrampsXML or GrampsZODB
         
-        self.db = GrampsDB()
+        self.db = RelLib.GrampsDB()
         self.db.set_iprefix(GrampsCfg.iprefix)
         self.db.set_oprefix(GrampsCfg.oprefix)
         self.db.set_fprefix(GrampsCfg.fprefix)
@@ -237,16 +235,16 @@ class Gramps:
         self.toolbar.set_style(GrampsCfg.toolbar)
         self.notebook.set_show_tabs(0)
 
-        self.family_view = FamilyView(self)
+        self.family_view = FamilyView.FamilyView(self)
 
-        self.pedigree_view = PedigreeView(
+        self.pedigree_view = PedView.PedigreeView(
             self.canvas, self.modify_statusbar, self.statusbar,
             self.change_active_person, self.load_person
             )
         
-        self.place_view  = PlaceView(self.db,self.gtop,self.update_display)
-        self.source_view = SourceView(self.db,self.gtop,self.update_display)
-        self.media_view  = MediaView(self.db,self.gtop,self.update_display)
+        self.place_view  = PlaceView.PlaceView(self.db,self.gtop,self.update_display)
+        self.source_view = SourceView.SourceView(self.db,self.gtop,self.update_display)
+        self.media_view  = MediaView.MediaView(self.db,self.gtop,self.update_display)
 
         self.addbtn = self.gtop.get_widget('addbtn')
         self.removebtn = self.gtop.get_widget('removebtn')
@@ -543,9 +541,6 @@ class Gramps:
             url = "gnome-help:"+url
             gnome.help.goto(url)
 
-    def add_new_cancel(self,obj):
-        Utils.destroy_passed_object(self.addornew)
-
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
         
@@ -577,11 +572,11 @@ class Gramps:
         self.person_model = self.pl_page[-1].model
 
         if zodb == 1:
-            self.db = GrampsZODB()
+            self.db = GrampsZODB.GrampsZODB()
         elif zodb == 2:
-            self.db = GrampsDB()
+            self.db = RelLib.GrampsDB()
         else:
-            self.db = GrampsXML()
+            self.db = GrampsXML.GrampsXML()
         self.db.set_iprefix(GrampsCfg.iprefix)
         self.db.set_oprefix(GrampsCfg.oprefix)
         self.db.set_fprefix(GrampsCfg.fprefix)
@@ -818,7 +813,7 @@ class Gramps:
         self.load_person(self.active_person)
     
     def load_new_person(self,obj):
-        self.active_person = Person()
+        self.active_person = RelLib.Person()
         try:
             EditPerson.EditPerson(self.active_person,self.db,
                                   self.new_after_edit)
@@ -875,7 +870,7 @@ class Gramps:
             del self.id2col[del_id]
             
             if person == self.active_person:
-                self.active_person == None
+                self.active_person = None
     
     def merge_update(self,p1,p2,old_id):
         self.remove_from_person_list(p1,old_id)
@@ -1126,7 +1121,6 @@ class Gramps:
             iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
                               val[6],val[7]],key)
 
-            page = self.model2page[model]
             self.id2col[key] = (model,iter)
 
             if change:
@@ -1297,7 +1291,6 @@ class Gramps:
 
                 iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
                                   val[6],val[7]],key)
-                page = self.model2page[model]
                 self.id2col[key] = (model,iter)
             else:
                 if self.id2col.has_key(key):
