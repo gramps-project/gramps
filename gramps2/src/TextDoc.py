@@ -62,7 +62,6 @@ __version__ = "Revision:$"
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 
 #-------------------------------------------------------------------------
@@ -102,9 +101,9 @@ def cnv2color(text):
     converts a hex value in the form of #XXXXXX into a tuple of integers
     representing the RGB values
     """
-    c0 = string.atoi(text[1:3],16)
-    c1 = string.atoi(text[3:5],16)
-    c2 = string.atoi(text[5:7],16)
+    c0 = int(text[1:3],16)
+    c1 = int(text[3:5],16)
+    c2 = int(text[5:7],16)
     return (c0,c1,c2)
 
 #------------------------------------------------------------------------

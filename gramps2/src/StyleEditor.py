@@ -123,7 +123,6 @@ class StyleListDisplay:
         if not iter:
             return
         name = self.list.model.get_value(iter,0)
-        style = self.sheetlist.get_style_sheet(name)
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
