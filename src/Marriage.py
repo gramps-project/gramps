@@ -253,7 +253,7 @@ class Marriage:
             name = father.getPrimaryName().getName()
         else:
             name = mother.getPrimaryName().getName()
-        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,None,0)
+        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,None,None,0)
 
     def on_update_clicked(self,obj):
         import EventEdit
@@ -270,7 +270,7 @@ class Marriage:
             name = father.getPrimaryName().getName()
         else:
             name = mother.getPrimaryName().getName()
-        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,event,0)
+        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,event,None,0)
 
     def on_delete_clicked(self,obj):
         if utils.delete_selected(obj,self.elist):

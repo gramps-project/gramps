@@ -46,7 +46,7 @@ from RelLib import *
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,list,trans,event,read_only):
+    def __init__(self,parent,name,list,trans,event,def_placename,read_only):
         self.parent = parent
         self.event = event
         self.trans = trans
@@ -71,6 +71,7 @@ class EventEditor:
         self.event_menu.set_popdown_strings(list)
         if read_only:
             self.event_menu.set_sensitive(0)
+            self.date_field.grab_focus()
 
         # Typing CR selects OK button
         self.window.editable_enters(self.name_field);
@@ -85,6 +86,8 @@ class EventEditor:
 
             utils.attach_places(values,self.place_combo,event.getPlace())
             self.place_field.set_text(event.getPlaceName())
+            if (def_placename):
+                self.place_field.set_text(def_placename)
             self.date_field.set_text(event.getDate())
             self.cause_field.set_text(event.getCause())
             self.descr_field.set_text(event.getDescription())
@@ -95,6 +98,8 @@ class EventEditor:
             self.note_field.set_word_wrap(1)
         else:
             utils.attach_places(values,self.place_combo,None)
+            if (def_placename):
+                self.place_field.set_text(def_placename)
 
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
