@@ -26,19 +26,6 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button9">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="merge_places"/>
-	    </widget>
-	  </child>
-
-	  <child>
 	    <widget class="GtkButton" id="button7">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -48,6 +35,19 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_merge_places_clicked" object="merge_places"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button9">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="destroy_passed_object" object="merge_places"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -276,15 +276,15 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button12">
+	    <widget class="GtkButton" id="button14">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">_Merge and close</property>
-	      <property name="use_underline">True</property>
+	      <property name="label">gtk-cancel</property>
+	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_merge_clicked" object="merge"/>
+	      <signal name="clicked" handler="destroy_passed_object" object="merge"/>
 	    </widget>
 	  </child>
 
@@ -302,15 +302,15 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button14">
+	    <widget class="GtkButton" id="button12">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
-	      <property name="label">gtk-cancel</property>
-	      <property name="use_stock">True</property>
+	      <property name="label" translatable="yes">_Merge and close</property>
+	      <property name="use_underline">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="merge"/>
+	      <signal name="clicked" handler="on_merge_clicked" object="merge"/>
 	    </widget>
 	  </child>
 	</widget>

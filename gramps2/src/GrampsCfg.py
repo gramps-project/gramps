@@ -220,9 +220,6 @@ def get_betawarn():
 def save_betawarn(val):
     set_bool("/apps/gramps/behavior/betawarn",val)
 
-def get_index_visible():
-    return client.get_bool("/apps/gramps/index-visible")
-
 def get_media_reference():
     return get_bool("/apps/gramps/behavior/make-reference")
 
@@ -705,7 +702,6 @@ class GrampsPreferences:
     def build(self):
 
         auto = self.top.get_widget("autoload")
-        index_vis = self.top.get_widget("show_child_id")
         auto.set_active(get_autoload())
         auto.connect('toggled',lambda obj: save_autoload(obj.get_active()))
 
@@ -733,10 +729,6 @@ class GrampsPreferences:
         cal.set_active(get_calendar())
 
         cal.connect('toggled',lambda obj: save_calendar(obj.get_active()))
-
-        idedit = self.top.get_widget("gid_edit")
-        idedit.set_active(get_id_edit())
-        idedit.connect('toggled',lambda obj: save_id_edit(obj.get_active()))
 
         index_vis = self.top.get_widget("show_child_id")
         index_vis.set_active(get_index_visible())
