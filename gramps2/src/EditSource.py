@@ -260,9 +260,11 @@ class EditSource:
         p_attr_list = []
         p_addr_list = []
         p_name_list = []
+        p_media_list = []
         m_list = []
         f_event_list = []
         f_attr_list = []
+        f_media_list = []
         person_list = []
         p_list = []
         for key in self.db.get_place_handles():
@@ -295,6 +297,12 @@ class EditSource:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         p_addr_list.append((name,v.get_street()))
+            for v in p.get_media_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        o_handle = v.get_reference_handle()
+                        o = self.db.get_object_from_handle(o_handle)
+                        p_media_list.append((name,o.get_description()))
         for object_handle in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(object_handle)
             name = obj.get_description()
@@ -324,10 +332,16 @@ class EditSource:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         f_event_list.append((name,v.get_name()))
-            for v in p.get_attribute_list():
+            for v in family.get_attribute_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         f_attr_list.append((name,v.get_type()))
+            for v in family.get_media_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        o_handle = v.get_reference_handle()
+                        o = self.db.get_object_from_handle(o_handle)
+                        f_media_list.append((name,o.get_description()))
 
         slist = self.top_window.get_widget('slist')
 
@@ -355,6 +369,12 @@ class EditSource:
             any = 1
             for p in p_name_list:
                 self.model.add([_("Individual Names"),p[0],p[1]])
+
+        if len(p_media_list) > 0:
+            any = 1
+            for p in p_media_list:
+                self.model.add([_("Individual Gallery Objects"),p[0],p[1]])
+
         if len(f_event_list) > 0:
             any = 1
             for p in f_event_list:
@@ -365,6 +385,11 @@ class EditSource:
             for p in f_event_list:
                 self.model.add([_("Family Attributes"),p[0],
                                 const.display_fattr(p[1])])
+        if len(f_media_list) > 0:
+            any = 1
+            for p in f_media_list:
+                self.model.add([_("Family Gallery Objects"),p[0],p[1]])
+
         if len(m_list) > 0:
             any = 1
             for p in m_list:
