@@ -65,6 +65,8 @@ pkgpython_PYTHON = \
 	NoteEdit.py\
 	PaperMenu.py\
 	PedView.py\
+	PeopleView.py\
+	PeopleStore.py\
 	PlaceView.py\
 	Plugins.py\
 	QuestionDialog.py\
