@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>Media View</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.64
+"><LINK
+REL="HOME"
+TITLE="GRAMPS User Manual"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Place View"
+HREF="placelist.html"><LINK
+REL="NEXT"
+TITLE="Bookmarking People"
+HREF="bookmarks.html"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>GRAMPS User Manual</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="placelist.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="bookmarks.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="MEDIAVIEW"
+>Media View</A
+></H1
+><P
+>    The Media View window displays the files associated with the
+    database.  Typically, these files are images, but
+    <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> allows you to attach any type of
+    file to the database. <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> refers to
+    attached files as media objects.  You can access the Media View at
+    any time by either pressing the <B
+CLASS="GUIBUTTON"
+>Media</B
+>
+    button at the top of the screen, or by choosing the
+      <B
+CLASS="GUIMENU"
+>View</B
+>-&gt;<B
+CLASS="GUIMENUITEM"
+>Media</B
+>
+    entry from the menus.
+    </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="MEDIAVIEW-FIG"
+></A
+><P
+><IMG
+SRC="mediaview.png"></P
+><P
+><B
+>Figure 19. Media View</B
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN390"
+>Media Objects</A
+></H2
+><P
+>      Media objects can be either local or external to a
+      <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> database. If
+      <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> is told to import an object as
+      alocal object, it will make its own copy of the file in the
+      database directory. If the object is not imported as a local
+      object, the original file is used.
+      </P
+><P
+>      There are advantages and disadvantages to both methods. If the
+      object is local, then if the original file is moved or deleted,
+      then <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> will still have its own
+      copy. However, this is at the price of having two copies of the
+      file. If the file is not imported as a local object, then a copy
+      is not made, saving disk space. However, altering or deleting
+      the original copy will affect the
+      <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> database.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN398"
+>Adding a Media Object</A
+></H2
+><P
+>      Media objects can be imported in several ways. Adding an object
+      to any gallery adds the object to the Media View. The gallery is
+      will actually contain a reference to the object in the Media
+      View. 
+      </P
+><P
+>      Objects may also be added using the <B
+CLASS="GUIBUTTON"
+>Add Media
+      Object</B
+> button. This will add the object to the Media
+      View, but not to any gallery. When you select the file to be
+      added, a preview will be displayed in the preview window. The
+      the file is an image, the image will be displayed. Otherwise, an
+      icon representing the file type will be displayed. In the dialog
+      box, you may choose to either import the object as a local
+      object, or leave it as an external object.
+      <DIV
+CLASS="FIGURE"
+><A
+NAME="ADDMEDIA"
+></A
+><P
+><IMG
+SRC="addmedia.png"></P
+><P
+><B
+>Figure 20. Add Media Object Dialog Box</B
+></P
+></DIV
+>
+      </P
+><P
+>      Finally, you may drag-and-drop an object from either a file
+      manager or a web browser. If the object is dropped into a
+      gallery, then a reference is made in the gallery, and the object
+      appears in the Media View. If the object is dropped directly
+      into the Media View, then it appears in the Media View, but will
+      not appear in a gallery. Currently, all objects imported via
+      drag-and-drop are imported as external (not local) objects.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN409"
+>Making a Reference to a Media Object</A
+></H2
+><P
+>      Once an object is in the Media View, it is possible to make a
+      reference to it in any gallery. You may place the object in as
+      many galleries as you like, and only one copy of the file will
+      exist.
+      </P
+><P
+>      To make a reference to a media object in a gallery, you may
+      simply drag-and-drop the object from the Media View directly to
+      a gallery. The object will then appear in the
+      gallery. Similarly, you may drag-and-drop from one gallery to
+      another gallery, and a new object reference is created in the
+      target gallery.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN413"
+>Changing a Media Object's Properties</A
+></H2
+><P
+>      Media objects have global and local properties. The title of the
+      object is a global property. It may only be changed from the
+      Media View, and it will affect all references. An object also
+      has a global note and a set of user defined global attributes.
+      A reference in a gallery may a have a local note and local
+      attributes as well. All references share the global properties,
+      but each gallery has its own set of notes a attributes.
+      </P
+><P
+>      The global note can be used to provide a general
+      description. For example, in a family reunion image, you may
+      wish to use the global note to indicate the place, date, and
+      occasion of the photograph. In a local note in Aunt Martha's
+      gallery, you may wish to add a local note indicating that
+      "Aunt Martha is the third person from the right in the
+      second row".
+      </P
+><P
+>      The global properties may be changed by selecting the
+      <B
+CLASS="GUIBUTTON"
+>Edit Media Object</B
+> button.
+      <DIV
+CLASS="FIGURE"
+><A
+NAME="GLOBALMEDIA"
+></A
+><P
+><IMG
+SRC="globalmedia.png"></P
+><P
+><B
+>Figure 21. Edit a Media Object's Global Properties</B
+></P
+></DIV
+>
+      </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="placelist.html"
+>&#60;&#60;&#60; Previous</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="bookmarks.html"
+>Next &#62;&#62;&#62;</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Place View</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Bookmarking People</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -82,7 +82,6 @@ class SourceView:
         for a in self.sort_arrow:
             a.hide()
 
-        print column
         a = self.sort_arrow[column]
         a.show()
         if self.sort_dir == GTK.SORT_ASCENDING:

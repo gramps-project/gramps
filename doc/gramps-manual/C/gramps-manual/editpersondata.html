@@ -5,7 +5,8 @@
 >Editing a person's data</TITLE
 ><META
 NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.59"><LINK
+CONTENT="Modular DocBook HTML Stylesheet Version 1.64
+"><LINK
 REL="HOME"
 TITLE="GRAMPS User Manual"
 HREF="index.html"><LINK
@@ -426,33 +427,17 @@ NAME="GALLERYTAB"
 >Gallery Tab</A
 ></H2
 ><P
->      Photographs and images are stored in the
-      <SPAN
+>      The <SPAN
 CLASS="INTERFACE"
 >Gallery</SPAN
-> tab. Images of a wide variety of
-      formats are stored, including JPEG and
-      PNG.
-      </P
-><P
->       <TT
+> tab allows you to associate
+      files (known in <TT
 CLASS="APPLICATION"
 >GRAMPS</TT
-> can either refer to an
-      existing file, or make its own copy. By default,
-      <TT
-CLASS="APPLICATION"
->GRAMPS</TT
-> will make its own copy. There
-      are advantages and disadvatages to both approaches. Refering to
-      an external copy reduces disk space. Allowing
-      <TT
-CLASS="APPLICATION"
->GRAMPS</TT
-> to make its own copy
-      allows GRAMPS to still have the image if the original
-      is altered, deleted, or moved. It also simplifies the transfer
-      of a database from one machine to another.
+> as media
+      objects) with a particular person. These files are typically
+      images or photographs, but may be of any filetype, such as (but
+      not limited to) sound files and word processing documents.
       </P
 ><DIV
 CLASS="FIGURE"
@@ -468,43 +453,105 @@ SRC="ep_gallery.png"></P
 ></P
 ></DIV
 ><P
->      The first image in the gallery is considered to be the primary
-      image. This image will appear on the <SPAN
-CLASS="INTERFACE"
->General
-      Information</SPAN
-> tab, and will be the image used by
-      report generators. An image can be made the default at any time
-      by selecting the image, and clicking on the <B
-CLASS="GUIBUTTON"
->Make
-      Prmimary</B
-> button. Images may be added by clicking the
-      <B
-CLASS="GUIBUTTON"
->Add</B
-> button, and deleted by clicking the
-      <B
-CLASS="GUIBUTTON"
->Delete</B
-> button. If the image is a
-      reference to another file, <TT
+>      <TT
 CLASS="APPLICATION"
 >GRAMPS</TT
->
-      will remove the reference to the file. If the file is a copy
-      maintained by <TT
-CLASS="APPLICATION"
->GRAMPS</TT
->, then
-      <TT
-CLASS="APPLICATION"
->GRAMPS</TT
-> will remove the file from the
-      file system.
+> provides a central repository
+      for all media objects in the Media View. This allows the same
+      media object to appear in multiple galleries.  Adding a media
+      object to a gallery actually adds the object to the Media View,
+      and makes a local reference in the gallery. 
       </P
 ><P
->      Right clicking on an selected image brings up a menu.
+>      While each media object can have a note and attributes attached
+      to it, each gallery can add its own notes and attributes to the
+      reference in its gallery. This allows media objects to have
+      global and local properties. For example, a photo of a family
+      reunion may have many people in it. A global note may describe
+      the picture in general, identifying the place and date.  When
+      this object is added to a gallery, you can attach a note to the
+      reference in the gallery adding some specific information, such
+      as "Aunt Martha is the third person from the right in the
+      second row". Clicking the <B
+CLASS="GUIBUTTON"
+>Edit
+      Properites</B
+> allows you to edit the local properties.
+      </P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="LOCALMEDIA"
+></A
+><P
+><IMG
+SRC="localmedia.png"></P
+><P
+><B
+>Figure 12. Local Media Properties</B
+></P
+></DIV
+><P
+>      The first object in the gallery is considered to be the primary
+      image. If this object is an image, it will appear on the
+      <SPAN
+CLASS="INTERFACE"
+>General Information</SPAN
+> tab, and will be the
+      primary image used by report generators. An image can be made
+      the default at any time by selecting the thumbnail image and
+      dragging it to the first position in the gallery. In this same
+      manner, the order of the images can be changed using the same
+      drag and drop technique.
+      </P
+><P
+>      Objects may be added to the gallery in several ways. By clicking
+      the <B
+CLASS="GUIBUTTON"
+>Add Media Object</B
+> button, a dialog box
+      is presented which allows you to choose an object from the file
+      system.  This method adds a new object to the Media View and
+      creates a reference in the gallery.  Objects may also be added
+      by either dragging and dropping from one gallery to another, or
+      by dragging from the Media View to a gallery. In this case, a
+      new media object is not created, but a reference to an existing
+      media object is made in the gallery, sharing the same media
+      object between galleries. Finally, new objects may be added to a
+      gallery and the Media View by dragging and dropping from a file
+      manager (such as <TT
+CLASS="APPLICATION"
+>Nautilus</TT
+> or
+      <TT
+CLASS="APPLICATION"
+>Konqueror</TT
+>) or a web browser (such as
+      <TT
+CLASS="APPLICATION"
+>Galeon</TT
+>,
+      <TT
+CLASS="APPLICATION"
+>Mozilla</TT
+>, or
+      <TT
+CLASS="APPLICATION"
+>Konqueror</TT
+>) into a gallery.
+      </P
+><P
+>      Media objects can be removed from a gallery by clicking the
+      <B
+CLASS="GUIBUTTON"
+>Delete Media Object</B
+> button. This action
+      only removes the reference to the current gallery. It does not
+      remove the media object from the Media View or from any other
+      galleries that are referencing it.
+      </P
+><P
+>      Right clicking on a selected object brings up a menu.
       </P
 ><P
 ></P
@@ -516,37 +563,38 @@ CLASS="VARIABLELIST"
 ></P
 ><DL
 ><DT
->View Image</DT
+>View in default viewer</DT
 ><DD
 ><P
->	    Allows you to view the image using the GNOME's default
+>	    Allows you to view an object image using GNOME's default
 	    viewer for the file type.
 	    </P
 ></DD
 ><DT
->Edit Image</DT
+>Edit with the GIMP</DT
 ><DD
 ><P
 >	    Launches the <TT
 CLASS="APPLICATION"
 >gimp</TT
 > program,
-	    allowing you to edit the image.
+	    allowing you to edit the image. This option only shows up
+	    if the media object is an image.
 	    </P
 ></DD
 ><DT
->Edit Description</DT
+>Edit Object Properties</DT
 ><DD
 ><P
->	    Allows you to change the description attached to the
-	    image.
+>	    Allows you to change the attributes and note attached to the
+	    media object.
 	    </P
 ></DD
 ><DT
->Convert to private copy</DT
+>Convert to local copy</DT
 ><DD
 ><P
->	    This option is only displayed if the image is a reference
+>	    This option is only displayed if the media is a reference
 	    to a file that is not controlled by
 	    <TT
 CLASS="APPLICATION"
@@ -556,7 +604,7 @@ CLASS="APPLICATION"
 CLASS="APPLICATION"
 >GRAMPS</TT
 > to make its own
-	    copy of the image.
+	    copy of the media object.
 	    </P
 ></DD
 ></DL
@@ -588,7 +636,7 @@ NAME="EP_INTERNET-FIG"
 SRC="ep_internet.png"></P
 ><P
 ><B
->Figure 12. Internet Tab</B
+>Figure 13. Internet Tab</B
 ></P
 ></DIV
 ><P

@@ -1,5 +1,5 @@
 <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
-<!ENTITY version "0.5.0"> <!-- replace with application version -->
+<!ENTITY version "0.6.0"> <!-- replace with application version -->
 ]>
 
 <!-- =============Document Header ============================= -->
@@ -80,7 +80,7 @@
 
   <!-- This is the manual version, not application version. --> 
     <releaseinfo>
-       This is version 1.0 of the GRAMPS manual.
+       This is version 1.1 of the GRAMPS manual.
     </releaseinfo>
 
   </artheader>
@@ -552,21 +552,11 @@
     <sect2 id="gallerytab">
       <title>Gallery Tab</title>
       <para>
-      Photographs and images are stored in the
-      <interface>Gallery</interface> tab. Images of a wide variety of
-      formats are stored, including JPEG and
-      PNG.
-      </para>
-      <para>
-       <application>GRAMPS</application> can either refer to an
-      existing file, or make its own copy. By default,
-      <application>GRAMPS</application> will make its own copy. There
-      are advantages and disadvatages to both approaches. Refering to
-      an external copy reduces disk space. Allowing
-      <application>GRAMPS</application> to make its own copy
-      allows GRAMPS to still have the image if the original
-      is altered, deleted, or moved. It also simplifies the transfer
-      of a database from one machine to another.
+      The <interface>Gallery</interface> tab allows you to associate
+      files (known in <application>GRAMPS</application> as media
+      objects) with a particular person. These files are typically
+      images or photographs, but may be of any filetype, such as (but
+      not limited to) sound files and word processing documents.
       </para>
       <figure id="ep_gallery-fig">
         <title>Gallery Tab</title>
@@ -577,60 +567,109 @@
         </screenshot>
       </figure>
       <para>
-      The first image in the gallery is considered to be the primary
-      image. This image will appear on the <interface>General
-      Information</interface> tab, and will be the image used by
-      report generators. An image can be made the default at any time
-      by selecting the image, and clicking on the <guibutton>Make
-      Prmimary</guibutton> button. Images may be added by clicking the
-      <guibutton>Add</guibutton> button, and deleted by clicking the
-      <guibutton>Delete</guibutton> button. If the image is a
-      reference to another file, <application>GRAMPS</application>
-      will remove the reference to the file. If the file is a copy
-      maintained by <application>GRAMPS</application>, then
-      <application>GRAMPS</application> will remove the file from the
-      file system.
+      <application>GRAMPS</application> provides a central repository
+      for all media objects in the Media View. This allows the same
+      media object to appear in multiple galleries.  Adding a media
+      object to a gallery actually adds the object to the Media View,
+      and makes a local reference in the gallery. 
       </para>
       <para>
-      Right clicking on an selected image brings up a menu.
+      While each media object can have a note and attributes attached
+      to it, each gallery can add its own notes and attributes to the
+      reference in its gallery. This allows media objects to have
+      global and local properties. For example, a photo of a family
+      reunion may have many people in it. A global note may describe
+      the picture in general, identifying the place and date.  When
+      this object is added to a gallery, you can attach a note to the
+      reference in the gallery adding some specific information, such
+      as &quot;Aunt Martha is the third person from the right in the
+      second row&quot;. Clicking the <guibutton>Edit
+      Properites</guibutton> allows you to edit the local properties.
+      </para>
+      <figure id="localmedia">
+        <title>Local Media Properties</title>
+        <screenshot>
+	  <screeninfo>Local Media Properties</screeninfo>
+	  <graphic fileref="localmedia" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      <para>
+      The first object in the gallery is considered to be the primary
+      image. If this object is an image, it will appear on the
+      <interface>General Information</interface> tab, and will be the
+      primary image used by report generators. An image can be made
+      the default at any time by selecting the thumbnail image and
+      dragging it to the first position in the gallery. In this same
+      manner, the order of the images can be changed using the same
+      drag and drop technique.
+      </para>
+      <para>
+      Objects may be added to the gallery in several ways. By clicking
+      the <guibutton>Add Media Object</guibutton> button, a dialog box
+      is presented which allows you to choose an object from the file
+      system.  This method adds a new object to the Media View and
+      creates a reference in the gallery.  Objects may also be added
+      by either dragging and dropping from one gallery to another, or
+      by dragging from the Media View to a gallery. In this case, a
+      new media object is not created, but a reference to an existing
+      media object is made in the gallery, sharing the same media
+      object between galleries. Finally, new objects may be added to a
+      gallery and the Media View by dragging and dropping from a file
+      manager (such as <application>Nautilus</application> or
+      <application>Konqueror</application>) or a web browser (such as
+      <application>Galeon</application>,
+      <application>Mozilla</application>, or
+      <application>Konqueror</application>) into a gallery.
+      </para>
+      <para>
+      Media objects can be removed from a gallery by clicking the
+      <guibutton>Delete Media Object</guibutton> button. This action
+      only removes the reference to the current gallery. It does not
+      remove the media object from the Media View or from any other
+      galleries that are referencing it.
+      </para>
+      <para>
+      Right clicking on a selected object brings up a menu.
       </para>
       <variablelist><title>Menu options</title>
         <varlistentry>
-	  <term>View Image</term>
+	  <term>View in default viewer</term>
 	  <listitem>
 	    <para>
-	    Allows you to view the image using the GNOME's default
+	    Allows you to view an object image using GNOME's default
 	    viewer for the file type.
 	    </para>
 	  </listitem>
 	</varlistentry>
         <varlistentry>
-	  <term>Edit Image</term>
+	  <term>Edit with the GIMP</term>
           <listitem>
 	    <para>
 	    Launches the <application>gimp</application> program,
-	    allowing you to edit the image.
+	    allowing you to edit the image. This option only shows up
+	    if the media object is an image.
 	    </para>
 	  </listitem>
 	</varlistentry>
         <varlistentry>
-	  <term>Edit Description</term>
+	  <term>Edit Object Properties</term>
           <listitem>
 	    <para>
-	    Allows you to change the description attached to the
-	    image.
+	    Allows you to change the attributes and note attached to the
+	    media object.
 	    </para>
 	  </listitem>
         </varlistentry>
         <varlistentry>
-	  <term>Convert to private copy</term>
+	  <term>Convert to local copy</term>
 	  <listitem>
 	    <para>
-	    This option is only displayed if the image is a reference
+	    This option is only displayed if the media is a reference
 	    to a file that is not controlled by
 	    <application>GRAMPS</application>. Selecting the option
 	    causes <application>GRAMPS</application> to make its own
-	    copy of the image.
+	    copy of the media object.
 	    </para>
 	  </listitem>
         </varlistentry>
@@ -940,6 +979,139 @@
     </para>
   </sect1>
 
+  <sect1 id="mediaview">
+    <title>Media View</title>
+    <para>
+    The Media View window displays the files associated with the
+    database.  Typically, these files are images, but
+    <application>GRAMPS</application> allows you to attach any type of
+    file to the database. <application>GRAMPS</application> refers to
+    attached files as media objects.  You can access the Media View at
+    any time by either pressing the <guibutton>Media</guibutton>
+    button at the top of the screen, or by choosing the
+      <menuchoice>
+        <guimenu>View</guimenu>
+        <guimenuitem>Media</guimenuitem> 
+      </menuchoice>
+    entry from the menus.
+    </para>
+    <figure id="mediaview-fig">
+      <title>Media View</title>
+      <screenshot>
+	<screeninfo>Media View</screeninfo>
+	<graphic fileref="mediaview" format="png" srccredit="Don Allingham">
+        </graphic>
+      </screenshot>
+    </figure>
+    <sect2>
+      <title>Media Objects</title>
+      <para>
+      Media objects can be either local or external to a
+      <application>GRAMPS</application> database. If
+      <application>GRAMPS</application> is told to import an object as
+      alocal object, it will make its own copy of the file in the
+      database directory. If the object is not imported as a local
+      object, the original file is used.
+      </para>
+      <para>
+      There are advantages and disadvantages to both methods. If the
+      object is local, then if the original file is moved or deleted,
+      then <application>GRAMPS</application> will still have its own
+      copy. However, this is at the price of having two copies of the
+      file. If the file is not imported as a local object, then a copy
+      is not made, saving disk space. However, altering or deleting
+      the original copy will affect the
+      <application>GRAMPS</application> database.
+      </para>
+    </sect2>
+    <sect2>
+      <title>Adding a Media Object</title>
+      <para>
+      Media objects can be imported in several ways. Adding an object
+      to any gallery adds the object to the Media View. The gallery is
+      will actually contain a reference to the object in the Media
+      View. 
+      </para>
+      <para>
+      Objects may also be added using the <guibutton>Add Media
+      Object</guibutton> button. This will add the object to the Media
+      View, but not to any gallery. When you select the file to be
+      added, a preview will be displayed in the preview window. The
+      the file is an image, the image will be displayed. Otherwise, an
+      icon representing the file type will be displayed. In the dialog
+      box, you may choose to either import the object as a local
+      object, or leave it as an external object.
+      <figure id="addmedia">
+        <title>Add Media Object Dialog Box</title>
+        <screenshot>
+	  <screeninfo>Add Media Object Dialog Box</screeninfo>
+	  <graphic fileref="addmedia" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      </para>
+      <para>
+      Finally, you may drag-and-drop an object from either a file
+      manager or a web browser. If the object is dropped into a
+      gallery, then a reference is made in the gallery, and the object
+      appears in the Media View. If the object is dropped directly
+      into the Media View, then it appears in the Media View, but will
+      not appear in a gallery. Currently, all objects imported via
+      drag-and-drop are imported as external (not local) objects.
+      </para>
+    </sect2>
+    <sect2>
+      <title>Making a Reference to a Media Object</title>
+      <para>
+      Once an object is in the Media View, it is possible to make a
+      reference to it in any gallery. You may place the object in as
+      many galleries as you like, and only one copy of the file will
+      exist.
+      </para>
+      <para>
+      To make a reference to a media object in a gallery, you may
+      simply drag-and-drop the object from the Media View directly to
+      a gallery. The object will then appear in the
+      gallery. Similarly, you may drag-and-drop from one gallery to
+      another gallery, and a new object reference is created in the
+      target gallery.
+      </para>
+    </sect2>
+    <sect2>
+      <title>Changing a Media Object's Properties</title>
+      <para>
+      Media objects have global and local properties. The title of the
+      object is a global property. It may only be changed from the
+      Media View, and it will affect all references. An object also
+      has a global note and a set of user defined global attributes.
+      A reference in a gallery may a have a local note and local
+      attributes as well. All references share the global properties,
+      but each gallery has its own set of notes a attributes.
+      </para>
+      <para>
+      The global note can be used to provide a general
+      description. For example, in a family reunion image, you may
+      wish to use the global note to indicate the place, date, and
+      occasion of the photograph. In a local note in Aunt Martha's
+      gallery, you may wish to add a local note indicating that
+      &quot;Aunt Martha is the third person from the right in the
+      second row&quot;.
+      </para>
+      <para>
+      The global properties may be changed by selecting the
+      <guibutton>Edit Media Object</guibutton> button.
+      <figure id="globalmedia">
+        <title>Edit a Media Object's Global Properties</title>
+        <screenshot>
+	  <screeninfo>Edit a Media Object's Global Properties</screeninfo>
+	  <graphic fileref="globalmedia" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      </para>
+    </sect2>
+  </sect1>
+
   <sect1 id="bookmarks">
     <title>Bookmarking People</title>
     <para>
@@ -1016,6 +1188,79 @@
           </graphic>
         </screenshot>
       </figure>
+    </sect2>
+  </sect1>
+
+  <sect1 id="revisoncontrol">
+    <title>Using Revision Control</title>
+    <para>
+    Revision control allows you to keep a history of the changes that
+    you have made to your database. Instead of needing to keep
+    multiple sets of back up files, a single revision control database
+    is maintained. At any point, you can revert back to a previously
+    saved version.
+    </para>
+    <para>
+    <application>GRAMPS</application> uses the standard
+    <application>RCS</application> system to handle revisions.
+    </para>
+    <para>
+    Revison control is enabled in the Revision Control tab of the
+    preferences dialog. Once enabled, every save is logged into the
+    revision control database. If you have enabled prompting for a
+    comment, then a dialog box will be displayed on every save asking
+    you to provide a comment about the changes you have made.
+      <figure id="revcomment">
+        <title>Providing a revision control comment</title>
+        <screenshot>
+	  <screeninfo>Providing a revision control comment</screeninfo>
+  	  <graphic fileref="savecomment" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+    </para>
+    <sect2>
+      <title>Reverting to a previous version</title>
+      <para>
+      If revision control has been enabled, you have the option of
+      reverting to a previous version of the database. Selecting the
+      check box will allow you to select a previous version.
+      <figure id="opendb">
+        <title>Opening a database</title>
+        <screenshot>
+	  <screeninfo>Opening a database</screeninfo>
+  	  <graphic fileref="opendb" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      </para>
+      <para>
+      If the check box has be selected, <application>GRAMPS</application>
+      will display a dialog box that will allow you to choose which version 
+      you would like to view. The dialog box displays the version number, the
+      date the version was saved, who saved the database, and any comment supplied 
+      when the datbase was saved.
+      <figure id="revcontrol">
+        <title>Choosing a revision</title>
+        <screenshot>
+	  <screeninfo>Choosing a revision</screeninfo>
+  	  <graphic fileref="revcontrol" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      </para>
+      <para>
+      Choosing a previous revision does not replace your current
+      database. If you do not save the retrieved database, it will not
+      replace the current version. If for some reason you accidentally
+      save the retrieved database when you did not want to replace the
+      current version, you can always use the revison control
+      mechanism to get back the version you replaced.
+      </para>
+      <para>
+      Revision control is applied only to the database itself, not to
+      any media objects have been associated with the database.
+      </para>
     </sect2>
   </sect1>
 
