@@ -45,7 +45,7 @@ from QuestionDialog import ErrorDialog
 import ReportOptions
 import const
 
-_dd = DateHandler.create_display()
+_dd = DateHandler.displayer
 
 #------------------------------------------------------------------------
 #
