@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: Tue Mar 12 07:35:37 2002\n"
+"POT-Creation-Date: Tue Mar 12 20:00:53 2002\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1342,6 +1342,10 @@ msgstr ""
 
 #: Report.py:571
 msgid "Page Count"
+msgstr ""
+
+#: Report.py:581 plugins/eventcmp.glade:225
+msgid "Template"
 msgstr ""
 
 #: Report.py:582
@@ -3898,10 +3902,6 @@ msgstr ""
 
 #: plugins/eventcmp.glade:173
 msgid "OpenOffice Spreadsheet"
-msgstr ""
-
-#: plugins/eventcmp.glade:225
-msgid "Template"
 msgstr ""
 
 #: plugins/eventcmp.glade:246
