@@ -174,7 +174,10 @@ class Marriage:
         else:
             self.lds_temple.entry.set_text("")
             self.seal_stat = 0
-        self.autoplace = AutoComp.AutoCombo(self.lds_place,self.pmap.keys())
+
+        place_list = self.pmap.keys()
+        place_list.sort()
+        self.autoplace = AutoComp.AutoCombo(self.lds_place, place_list)
 
         self.build_seal_menu()
         
