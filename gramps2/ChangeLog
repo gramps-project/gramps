@@ -11,7 +11,6 @@
 	* src/docgen/PSDrawDoc.py (rgb_color): Remove function, import it
 	from ReportUtils instead.
 	* src/ReportUtils.py (rgb_color): Add function.
-	* src/docgen/PdfDoc.py: Use rgb_color from ReportUtils.
 	* src/docgen/LPRDoc.py: Use rgb_color from ReportUtils.
 
 2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
