@@ -1,5 +1,5 @@
 %define ver      0.98.0
-%define rel      0.CVS20031126
+%define rel      1
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 
@@ -11,7 +11,7 @@ Summary: Genealogical Research and Analysis Management Programming System.
 Name: gramps
 Version: %ver
 Release: %rel
-Copyright: GPL
+License: GPL
 Group: Applications/Genealogy
 Source: http://download.sourceforge.net/gramps/gramps-%{ver}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-root
@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f gramps.lang
 %defattr(-, root, root)
 
-%doc README COPYING TODO INSTALL COPYING-DOCS
+%doc AUTHORS COPYING COPYING-DOCS ChangeLog FAQ INSTALL NEWS README TODO 
 %doc %{_mandir}/man1/*
 
 %{prefix}/bin/gramps
@@ -89,6 +89,10 @@ if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
 if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
  
 %changelog
+* Tue Dec  2 2003 Tim Waugh <twaugh@redhat.com>
+- More docs.
+- Change Copyright: to License:.
+
 * Fri Sep 19 2003 Tim Waugh <twaugh@redhat.com>
 - Own %%{_datadir/gramps directory.
 - Ship %%{_libdir}/gramps.

@@ -255,6 +255,7 @@ class XmlWriter:
                         self.write_line("state",address.getState(),4)
                         self.write_line("country",address.getCountry(),4)
                         self.write_line("postal",address.getPostal(),4)
+                        self.write_line("phone",address.getPhone(),4)
                         if address.getNote() != "":
                             self.write_note("note",address.getNote(),4)
                         for s in address.getSourceRefList():
@@ -604,6 +605,8 @@ class XmlWriter:
         state = self.fix(loc.get_state())
         country = self.fix(loc.get_country())
         county = self.fix(loc.get_county())
+        zip = self.fix(loc.get_postal_code())
+        phone = self.fix(loc.get_phone())
         
         if not city and not state and not parish and not county and not country:
             return
@@ -619,6 +622,10 @@ class XmlWriter:
             self.g.write(' state="%s"' % state)
         if country:
             self.g.write(' country="%s"' % country)
+        if zip:
+            self.g.write(' postal="%s"' % zip)
+        if phone:
+            self.g.write(' phone="%s"' % phone)
         self.g.write('/>\n')
 
     def write_attribute_list(self, list, indent=3):

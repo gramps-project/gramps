@@ -1635,7 +1635,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=0.CVS$(head -c 10 ${srcdir}/ChangeLog | tr -d '-')
+RELEASE=1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
@@ -1764,7 +1764,7 @@ echo "${ECHO_T}no" >&6
 fi
 
 
-LANGUAGES="hu zh_CN cs da_DK de es fr it nb nl no pl pt_BR ro ru sv"
+LANGUAGES="hu zh_CN cs da_DK de es fr it nb nl no pl pt_BR ro ru sv eo"
 
 
 DISTLANGS=
@@ -3226,6 +3226,9 @@ cat > conftest.py <<EOF
 $pygtk_require
 try:
     import gconf
+    out("YES")
+except ImportError:
+    import gnome.gconf
     out("YES")
 except ImportError:
     out("NO")

@@ -4,8 +4,11 @@
 	* src/AddrEdit.py: Add phone number
 	* src/EditPlace.py: Add phone number and postal code
 	* src/LocEdit.py: Add phone number and postal code
-	* src/edit_person.glade: Add address fields
-	* src/dialog.glade: Add address and phone fields
+	* src/edit_person.glade: Add postal code fields
+	* src/dialog.glade: Add postal code and phone fields
+	* src/places.glade: Add postal code
+	* src/WriteXML.py: Add support for new place and postal code fields
+	* src/GrampsParser.py: Add support for new place and postal code fields
 	
 2003-12-08  Richard Bos  <radoeka@xs4all.nl>
 	* configure.in: catch the SUSE usage of "gnome.gconf" instead of
