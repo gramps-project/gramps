@@ -11,6 +11,8 @@
 	* src/gramps_main.py: Support for save as.
 	* src/DbPrompter.py: Support for save as.
 
+	* src/WriteGrdb.py: Copy metadata.
+
 2005-01-29 Eero Tamminen <eerot@sf>
 	* src/plugins/StatisticsChart.py:
 	  - Added support for Don's Pie charts + color styles for it
