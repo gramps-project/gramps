@@ -10,6 +10,7 @@
 	* src/DbPrompter.py (open_help_clicked): Add function.
 	* src/PedView.py: Remove references to self.presel_descendants
 	(closes bug #854626).
+	* src/gramps_main.py (__init__): Remove unneeded handler.
 
 2003-12-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/getstart.xml: Remove ZODB support section. 
