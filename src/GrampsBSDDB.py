@@ -29,7 +29,7 @@ from GrampsDbBase import *
 from bsddb import dbshelve, db
 
 def find_surname(key,data):
-    return str(data[3].get_surname())
+    return str(data[3].get_group_as())
 
 def find_idmap(key,data):
     return str(data[1])

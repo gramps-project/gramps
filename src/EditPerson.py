@@ -1618,10 +1618,13 @@ class EditPerson:
             self.person.set_source_reference_list(self.srcreflist)
             self.update_lists()
 
-        if self.person.get_handle() == None:
+        if not self.person.get_handle():
             self.db.add_person(self.person, trans)
         else:
+            if not self.person.get_gramps_id():
+                self.person.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.person, trans)
+        print "id",self.person.get_gramps_id()
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         if self.callback:

@@ -1,4 +1,4 @@
-
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2004  Donald N. Allingham
@@ -483,9 +483,9 @@ class GrampsDbBase:
         Adds a Person to the database, assigning internal IDs if they have
         not already been defined.
         """
-        if person.get_gramps_id() == None:
+        if not person.get_gramps_id():
             person.set_gramps_id(self.find_next_person_gramps_id())
-        if person.get_handle() == None:
+        if not person.get_handle():
             person.set_handle(Utils.create_id())
         self.commit_person(person,transaction)
         self.genderStats.count_person (person, self)
