@@ -47,7 +47,7 @@ _ = gettext
 # AttributeEditor class
 #
 #-------------------------------------------------------------------------
-class AttributeEditor:
+class AttributeEditor(Sources.SourceTab):
     """
     Displays a dialog that allows the user to edit an attribute.
     """
@@ -65,6 +65,7 @@ class AttributeEditor:
         self.top = libglade.GladeXML(const.dialogFile, "attr_edit")
         self.window = self.top.get_widget("attr_edit")
         self.type_field  = self.top.get_widget("attr_type")
+        self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")
         self.note_field = self.top.get_widget("attr_note")
         self.attrib_menu = self.top.get_widget("attr_menu")
@@ -75,6 +76,9 @@ class AttributeEditor:
             self.srcreflist = self.attrib.getSourceRefList()
         else:
             self.srcreflist = []
+
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
+                                           self.slist,src_changed)
 
         # Typing CR selects OK button
         self.window.editable_enters(self.type_field);
@@ -95,18 +99,12 @@ class AttributeEditor:
             self.note_field.insert_defaults(attrib.getNote())
             self.note_field.set_word_wrap(1)
 
-        self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_attr_edit_ok_clicked" : self.on_ok_clicked,
             "on_combo_insert_text"    : Utils.combo_insert_text,
-            "on_source_clicked" : self.on_source_clicked
             })
 
-    def on_source_clicked(self,obj):
-        """Displays the SourceSelector, allowing sources to be edited"""
-        Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
-            
     def on_ok_clicked(self,obj):
         """
         Called when the OK button is pressed. Gets data from the
@@ -119,9 +117,9 @@ class AttributeEditor:
 
         if self.attrib == None:
             self.attrib = Attribute()
-            self.attrib.setSourceRefList(self.srcreflist)
             self.parent.alist.append(self.attrib)
-        
+
+        self.attrib.setSourceRefList(self.srcreflist)
         self.update(type,value,note,priv)
         
         self.parent.redraw_attr_list()

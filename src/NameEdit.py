@@ -33,6 +33,7 @@ import libglade
 import const
 import Utils
 import AutoComp
+import Sources
 from RelLib import *
 
 from intl import gettext
@@ -56,6 +57,7 @@ class NameEditor:
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.type_field = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")
+        self.slist = self.top.get_widget('slist')
         slist = self.top.get_widget("alt_surname_list")
         self.combo = AutoComp.AutoCombo(slist,self.parent.db.getSurnames())
         self.priv = self.top.get_widget("priv")
@@ -81,6 +83,9 @@ class NameEditor:
         self.window.editable_enters(self.suffix_field)
         self.window.editable_enters(self.title_field)
         self.window.editable_enters(self.type_field.entry)
+
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
+                                           self.slist,src_changed)
         
         if name != None:
             self.given_field.set_text(name.getFirstName())
@@ -97,13 +102,8 @@ class NameEditor:
             "destroy_passed_object"   : Utils.destroy_passed_object,
             "on_combo_insert_text"    : Utils.combo_insert_text,
             "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
-            "on_source_clicked"       : self.on_name_source_clicked
             })
 
-    def on_name_source_clicked(self,obj):
-        import Sources
-        Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
-            
     def on_name_edit_ok_clicked(self,obj):
         first = self.given_field.get_text()
         last = self.surname_field.get_text()
@@ -121,8 +121,9 @@ class NameEditor:
         
         if self.name == None:
             self.name = Name()
-            self.name.setSourceRefList(self.srcreflist)
             self.parent.nlist.append(self.name)
+        
+        self.name.setSourceRefList(self.srcreflist)
         
         self.update_name(first,last,suffix,title,type,note,priv)
         self.parent.lists_changed = 1

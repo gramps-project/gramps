@@ -175,9 +175,12 @@ class EditPerson:
         self.event_descr_field = self.get_widget("eventDescription")
         self.event_src_field = self.get_widget("event_srcinfo")
         self.event_conf_field = self.get_widget("event_conf")
-        self.attr_details_field = self.get_widget("attr_details")
-        self.name_details_field = self.get_widget("name_details")
-        self.addr_details_field = self.get_widget("addr_details")
+        self.attr_conf_field = self.get_widget("attr_conf")
+        self.addr_conf_field = self.get_widget("attr_conf")
+        self.name_conf_field = self.get_widget("name_conf")
+        self.attr_src_field = self.get_widget("attr_srcinfo")
+        self.name_src_field = self.get_widget("name_srcinfo")
+        self.addr_src_field = self.get_widget("addr_srcinfo")
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
@@ -996,19 +999,25 @@ class EditPerson:
         self.addr_delete_btn.set_sensitive(enable)
 
     def on_addr_select_row(self,obj,row,b,c):
-        a = obj.get_row_data(row)
+        addr = obj.get_row_data(row)
         self.addr_edit_btn.set_sensitive(1)
         self.addr_delete_btn.set_sensitive(1)
 
-        label = "%s %s %s" % (a.getCity(),a.getState(),a.getCountry())
+        label = "%s %s %s" % (addr.getCity(),addr.getState(),addr.getCountry())
         self.addr_label.set_label(label)
-        self.addr_start.set_text(a.getDate())
-        self.addr_street.set_text(a.getStreet())
-        self.addr_city.set_text(a.getCity())
-        self.addr_state.set_text(a.getState())
-        self.addr_country.set_text(a.getCountry())
-        self.addr_postal.set_text(a.getPostal())
-        self.addr_details_field.set_text(Utils.get_detail_text(a))
+        self.addr_start.set_text(addr.getDate())
+        self.addr_street.set_text(addr.getStreet())
+        self.addr_city.set_text(addr.getCity())
+        self.addr_state.set_text(addr.getState())
+        self.addr_country.set_text(addr.getCountry())
+        self.addr_postal.set_text(addr.getPostal())
+        if len(addr.getSourceRefList()) > 0:
+            psrc = addr.getSourceRefList()[0]
+            self.addr_conf_field.set_text(const.confidence[psrc.getConfidence()])
+            self.addr_src_field.set_text(psrc.getBase().getTitle())
+        else:
+            self.addr_src_field.set_text('')
+            self.addr_conf_field.set_text('')
 
     def on_name_select_row(self,obj,row,b,c):
         self.name_update_btn.set_sensitive(1)
@@ -1020,7 +1029,13 @@ class EditPerson:
         self.alt_last_field.set_text(name.getSurname())
         self.alt_suffix_field.set_text(name.getSuffix())
         self.name_type_field.set_text(name.getType())
-        self.name_details_field.set_text(Utils.get_detail_text(name))
+        if len(name.getSourceRefList()) > 0:
+            psrc = name.getSourceRefList()[0]
+            self.name_src_field.set_text(psrc.getBase().getTitle())
+            self.name_conf_field.set_text(const.confidence[psrc.getConfidence()])
+        else:
+            self.name_src_field.set_text('')
+            self.name_conf_field.set_text('')
 
     def on_name_unselect_row(self,obj,a,b,c):
         enable = len(obj.selection) > 0
@@ -1052,7 +1067,13 @@ class EditPerson:
         attr = obj.get_row_data(row)
         self.attr_type.set_label(const.display_pattr(attr.getType()))
         self.attr_value.set_text(attr.getValue())
-        self.attr_details_field.set_text(Utils.get_detail_text(attr))
+        if len(attr.getSourceRefList()) > 0:
+            psrc = attr.getSourceRefList()[0]
+            self.attr_src_field.set_text(psrc.getBase().getTitle())
+            self.attr_conf_field.set_text(const.confidence[psrc.getConfidence()])
+        else:
+            self.attr_src_field.set_text('')
+            self.attr_conf_field.set_text('')
 
     def on_attr_unselect_row(self,obj,row,b,c):
         enable = len(obj.selection) > 0

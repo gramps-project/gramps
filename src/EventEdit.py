@@ -50,7 +50,7 @@ _ = gettext
 # EventEditor class
 #
 #-------------------------------------------------------------------------
-class EventEditor:
+class EventEditor(Sources.SourceTab):
 
     def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb):
         self.parent = parent
@@ -70,11 +70,13 @@ class EventEditor:
         else:
             self.srcreflist = []
             self.date = Date(None)
+
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")
         self.cause_field = self.top.get_widget("eventCause")
+        self.slist = self.top.get_widget("slist")
         self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
         self.cause_field  = self.top.get_widget("eventCause")
@@ -93,6 +95,9 @@ class EventEditor:
         if read_only:
             self.event_menu.set_sensitive(0)
             self.date_field.grab_focus()
+
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
+                                           self.slist,src_changed)
 
         # Typing CR selects OK button
         self.window.editable_enters(self.name_field);
@@ -131,7 +136,6 @@ class EventEditor:
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_event_edit_ok_clicked" : self.on_event_edit_ok_clicked,
-            "on_source_clicked" : self.on_edit_source_clicked
             })
 
         menu = gtk.GtkMenu()
@@ -149,9 +153,6 @@ class EventEditor:
         self.date.set_calendar(obj.get_data("d"))
         self.date_field.set_text(self.date.getDate())
         
-    def on_edit_source_clicked(self,obj):
-        Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
-
     def get_place(self,field,makenew=0):
         text = strip(field.get_text())
         if text != "":
