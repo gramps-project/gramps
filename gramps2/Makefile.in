@@ -133,7 +133,7 @@ target_alias = @target_alias@
 
 SUBDIRS = src doc example
 
-EXTRA_DIST = autogen.sh gramps.spec.in gramps.spec COPYING-DOCS FAQ
+EXTRA_DIST = autogen.sh gramps.spec.in gramps.spec gramps-mdk.spec gramps-mdk.spec.in COPYING-DOCS FAQ
 
 bin_SCRIPTS = gramps
 
@@ -141,7 +141,7 @@ CLEANFILES = gramps
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
-CONFIG_CLEAN_FILES = gramps.spec gramps.sh
+CONFIG_CLEAN_FILES = gramps.spec gramps-mdk.spec gramps.sh
 SCRIPTS = $(bin_SCRIPTS)
 
 DIST_SOURCES =
@@ -153,8 +153,8 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive pdf-recursive \
 	check-recursive installcheck-recursive
 DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure AUTHORS \
 	COPYING ChangeLog INSTALL Makefile.am NEWS TODO aclocal.m4 \
-	configure configure.in gramps.sh.in gramps.spec.in install-sh \
-	missing mkinstalldirs py-compile
+	configure configure.in gramps-mdk.spec.in gramps.sh.in \
+	gramps.spec.in install-sh missing mkinstalldirs py-compile
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 
@@ -176,6 +176,8 @@ $(srcdir)/configure:  $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENC
 $(ACLOCAL_M4):  configure.in 
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 gramps.spec: $(top_builddir)/config.status gramps.spec.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+gramps-mdk.spec: $(top_builddir)/config.status gramps-mdk.spec.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 gramps.sh: $(top_builddir)/config.status gramps.sh.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@

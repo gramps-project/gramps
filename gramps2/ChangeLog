@@ -1,3 +1,7 @@
+2004-01-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: fix encoding exception
+	* gramps-mdk.spec: Mandrake RPM spec file
+
 2004-01-27  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/ru.po: Minor corrections.
 

@@ -1,5 +1,5 @@
 %define ver      1.0.0
-%define rel      0.CVS20040120
+%define rel      0.CVS20040127
 %define prefix   /usr
 %define localstatedir /var/lib
 # Ensure that internal RPM macros for configure & makeinstall 
@@ -7,23 +7,23 @@
 %define _prefix   %prefix
 %define _localstatedir %localstatedir
 
-Summary:   Genealogical Research and Analysis Management Programming System.
-Name:      gramps
-Version:   %ver
-Release:   %rel
-License:   GPL
-Group:     Applications/Genealogy
-Source:    http://download.sourceforge.net/gramps/gramps-%{ver}.tar.gz
+Summary: Genealogical Research and Analysis Management Programming System.
+Name: gramps
+Version: %ver
+Release: %rel
+License: GPL
+Group: Applications/Genealogy
+Source: http://download.sourceforge.net/gramps/gramps-%{ver}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-root
 
-URL:       http://gramps.sourceforge.net/
+URL: http://gramps.sourceforge.net/
 
-Requires:  python >= 2.2
-Requires:  gnome-python >= 1.99
-Requires:  gnome-python-gconf >= 1.99
-Requires:  gnome-python-canvas >= 1.99
-Requires:  gnome-python-gnomevfs >= 1.99
-Requires:  pygtk2.0-libglade >= 1.99
+Requires: python >= 2.2
+Requires: gnome-python >= 1.99
+Requires: gnome-python-gconf >= 1.99
+Requires: gnome-python-canvas >= 1.99
+Requires: gnome-python-gnomevfs >= 1.99
+Requires: pygtk2.0-libglade >= 1.99
 
 BuildRequires: scrollkeeper >= 0.3.5
 BuildRequires: automake >= 1.6
