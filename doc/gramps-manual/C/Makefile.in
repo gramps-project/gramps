@@ -1,0 +1,21 @@
+include @top_srcdir@/Makefile.comm
+
+MANSRC = ${GM}.sgml
+MANDIR = ${GM}
+
+all: ${MANDIR}/index.html
+
+${MANDIR}/index.html: ${MANSRC}
+	${DB2HTML} -c catalog ${MANSRC} -o ${MANDIR}
+	
+install:
+	-${INSTALL} -d ${GNOMEHELP}/${GM}/C
+	-${INSTALL} ${GM}/*.html ${GNOMEHELP}/${GM}/C
+	-${INSTALL} ${GM}/*.png ${GNOMEHELP}/${GM}/C
+
+uninstall:
+	-rm -f ${GNOMEHELP}/${GM}/C/*.html
+	-rm -f ${GNOMEHELP}/${GM}/C/*.png
+	-rmdir ${GNOMEHELP}/${GM}/C
+
+clean:
