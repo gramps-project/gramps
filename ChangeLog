@@ -3,6 +3,7 @@
 	* src/PedView.py: Fix anchors. Switch from storing person objects
 	to their IDs. Start on building Spouses and Siblings submenus
 	in the context menu.
+	* NEWS: Update.
 
 2004-06-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version number. 

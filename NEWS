@@ -1,3 +1,10 @@
+Version 1.1.1 -- the "Rat cake, rat sorbet, rat pudding, or strawberry tart" release
+* Pedigree View has person-dependent submenus in the context menu:
+  Spouses, Siblings, Children, and Parents.
+* Command line arguments handling is back on track.
+* Sorting improvements.
+* Bug fixes.
+
 Version 1.1.0 -- the "And now for something completely different" release
 * Berkeley database backend!!! Many thanks to Billy Earney for db expertise!
 * Alphabetical tabs are gone. The entire People View is in a single tree now.
