@@ -1217,6 +1217,7 @@ class Gramps:
             if change:
                 self.change_active_person(person)
                 self.goto_active_person()
+            model.sort()
         
     def redisplay_person_list(self,person):
         self.add_to_person_list(person,1)

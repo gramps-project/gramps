@@ -379,7 +379,8 @@ class GedcomWriter:
         self.cal = self.target_ged.get_alt_calendar()
         self.obje = self.target_ged.get_obje()
         self.resi = self.target_ged.get_resi()
-
+        self.prefix = self.target_ged.get_prefix()
+        
         if self.topDialog.get_widget("ansel").get_active():
             self.cnvtxt = latin_to_ansel
         else:
@@ -892,17 +893,33 @@ class GedcomWriter:
     def write_person_name(self,name,nick):
         firstName = self.cnvtxt(name.getFirstName())
         surName = self.cnvtxt(name.getSurname())
+        surPref = self.cnvtxt(name.getSurnamePrefix())
         suffix = self.cnvtxt(name.getSuffix())
         title = self.cnvtxt(name.getTitle())
         if suffix == "":
-            self.g.write("1 NAME %s /%s/\n" % (firstName,surName))
+            if surPref:
+                self.g.write("1 NAME %s /%s/\n" % (firstName,surName))
+            else:
+                self.g.write("1 NAME %s /%s %s/\n" % (firstName,surPref,surName))
         else:
-            self.g.write("1 NAME %s /%s/, %s\n" % (firstName,surName, suffix))
+            if surPref:
+                self.g.write("1 NAME %s /%s %s/, %s\n" % (firstName,surPref,surName,suffix))
+            else:
+                self.g.write("1 NAME %s /%s/, %s\n" % (firstName,surName,suffix))
 
         if name.getFirstName() != "":
             self.g.write("2 GIVN %s\n" % firstName)
-        if name.getSurname() != "":
-            self.g.write("2 SURN %s\n" % surName)
+        if self.prefix:
+            if surPref:
+                self.g.write('2 SPFX %s\n' % surPref)
+            if surName != "":
+                self.g.write("2 SURN %s\n" % surName)
+        else:
+            if surPref:
+                self.g.write("2 SURN %s %s\n" % (surPref,surName))
+            else if surName:
+                self.g.write("2 SURN %s\n" % surName)
+                
         if name.getSuffix() != "":
             self.g.write("2 NSFX %s\n" % suffix)
         if name.getTitle() != "":

@@ -179,10 +179,12 @@ class EditPerson:
         self.alt_last_field = self.get_widget("alt_last")
         self.alt_title_field = self.get_widget("alt_title")
         self.alt_suffix_field = self.get_widget("alt_suffix")
+        self.alt_prefix_field = self.get_widget("alt_prefix")
         self.name_type_field = self.get_widget("name_type")
         self.surname_field = self.get_widget("surname")
         self.ntype_field = self.get_widget("ntype")
         self.suffix = self.get_widget("suffix")
+        self.prefix = self.get_widget("prefix")
         self.given = self.get_widget("givenName")
         self.nick = self.get_widget("nickname")
         self.title = self.get_widget("title")
@@ -774,6 +776,7 @@ class EditPerson:
         surname = self.surname_field.get_text()
         ntype = self.ntype_field.entry.get_text()
         suffix = self.suffix.get_text()
+        prefix = self.prefix.get_text()
         given = self.given.get_text()
         nick = self.nick.get_text()
         title = self.title.get_text()
@@ -790,6 +793,8 @@ class EditPerson:
         if self.person.getId() != idval:
             changed = 1
         if suffix != name.getSuffix():
+            changed = 1
+        if prefix != name.getSurnamePrefix():
             changed = 1
         if surname != name.getSurname():
             changed = 1
@@ -995,6 +1000,7 @@ class EditPerson:
             self.alt_title_field.set_text(name.getTitle())
             self.alt_last_field.set_text(name.getSurname())
             self.alt_suffix_field.set_text(name.getSuffix())
+            self.alt_prefix_field.set_text(name.getSurnamePrefix())
             self.name_type_field.set_text(name.getType())
             if len(name.getSourceRefList()) > 0:
                 psrc = name.getSourceRefList()[0]
@@ -1010,6 +1016,7 @@ class EditPerson:
             self.alt_title_field.set_text('')
             self.alt_last_field.set_text('')
             self.alt_suffix_field.set_text('')
+            self.alt_prefix_field.set_text('')
             self.name_type_field.set_text('')
             self.name_src_field.set_text('')
             self.name_conf_field.set_text('')
@@ -1104,6 +1111,7 @@ class EditPerson:
     
         surname = self.surname_field.get_text()
         suffix = self.suffix.get_text()
+        prefix = self.prefix.get_text()
         ntype = self.ntype_field.entry.get_text()
         given = self.given.get_text()
         nick = self.nick.get_text()
@@ -1130,6 +1138,9 @@ class EditPerson:
 
         if suffix != name.getSuffix():
             name.setSuffix(suffix)
+
+        if prefix != name.getSurnamePrefix():
+            name.setSurnamePrefix(prefix)
 
         if const.NameTypesMap.has_key(ntype):
             ntype = const.NameTypesMap[ntype]
@@ -1382,6 +1393,7 @@ class EditPerson:
         name = GrampsCfg.nameof(self.person)
         self.get_widget("activepersonTitle").set_text(name)
         self.suffix.set_text(self.pname.getSuffix())
+        self.prefix.set_text(self.pname.getSurnamePrefix())
 
         self.surname_field.set_text(self.pname.getSurname())
         self.given.set_text(self.pname.getFirstName())
