@@ -22,16 +22,19 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
+PACKAGE=@PACKAGE@
 
 export GRAMPSDIR=@datadir@/@PACKAGE@
+export GRAMPSPYDIR=@pkgpythondir@
+export GRAMPSPLUGINSDIR=$GRAMPSPYDIR/plugins:$GRAMPSPYDIR/docgen:$GRAMPSPYDIR/filters
 export GRAMPSLIBDIR=@libdir@/@PACKAGE@
 export GRAMPSI18N=@prefix@/share/locale
 
 if [ "$PYTHONPATH" = "" ]
 then
-    export PYTHONPATH=$GRAMPSDIR:$GRAMPSLIBDIR
+    export PYTHONPATH=$GRAMPSDIR:$GRAMPSPLUGINSDIR:$GRAMPSLIBDIR
 else
-    export PYTHONPATH=$GRAMPSDIR:$GRAMPSLIBDIR:$PYTHONPATH
+    export PYTHONPATH=$GRAMPSDIR:$GRAMPSLIBDIR:$GRAMPSPLUGINSDIR:$PYTHONPATH
 fi
 
-exec @PYTHON@ $GRAMPSDIR/gramps.py $*
+exec @PYTHON@ $GRAMPSPYDIR/gramps.py $*

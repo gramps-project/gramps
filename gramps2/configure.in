@@ -19,6 +19,7 @@ AC_SUBST(VERSIONSTRING)
 
 AC_PATH_PROG(MSGFMT, msgfmt)
 AC_PATH_PROG(MSGCONV, msgconv)
+AC_PATH_PROG(ICONV, iconv)
 
 LANGUAGES="hu zh_CN cs da_DK de es fr it nl pl pt_BR ro ru sv" 
 AC_SUBST(LANGUAGES)

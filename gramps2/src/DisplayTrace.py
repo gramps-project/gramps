@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -74,7 +76,8 @@ class DisplayTrace:
                     'email message to gramps-bugs@lists.sourceforge.net\n\n'))
 
         msg.write("GRAMPS : %s\n" % const.version)
-        msg.write("LANG : %s\n" % os.environ['LANG'])
+        if os.environ.has_key('LANG'):
+            msg.write("LANG : %s\n" % os.environ['LANG'])
         msg.write("Python : %s.%s.%s %s\n" % (ver[0],ver[1],ver[2],ver[3]))
         msg.write("GTK : %s.%s.%s\n" % gtk.gtk_version)
         msg.write('PyGTK : %d.%d.%d\n' % gtk.pygtk_version)

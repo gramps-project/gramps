@@ -20,12 +20,12 @@ uninstall-local:
 SUFFIXES = .po .mo
 
 .po.mo:
-	@MSGCONV@ --to-code=UTF-8 $< -o temp.po
+	$(MSGCONV) --to-code=UTF-8 $< -o temp.po
 	$(MSGFMT) -v temp.po -o $@
 	rm temp.po
 
 zh_CN.mo: $(top_srcdir)/src/po/zh_CN.po
-	iconv --from-code=GB2312 --to-code=UTF-8 $< -o temp.po
+	$(ICONV) -f GB2312 -t UTF-8 $< > temp.po
 	$(MSGFMT) -v temp.po -o $@
 	rm temp.po
 
