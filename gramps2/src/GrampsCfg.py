@@ -85,6 +85,11 @@ def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
     DateHandler.set_format(GrampsKeys.get_date_format(format_list))
 
+def _update_calendar_date_format(active,dlist):
+    GrampsKeys.save_date_format(active,dlist)
+    format_list = DateHandler.get_date_formats()
+    DateHandler.set_format(active)
+
 #-------------------------------------------------------------------------
 #
 # make_path - 
@@ -273,11 +278,6 @@ class GrampsPreferences:
             store.append(row=[item])
 
         date_option.set_model(store)
-        date_option.connect("changed",
-                lambda obj: 
-                GrampsKeys.save_date_format(obj.get_active(),dlist)
-                )
-
         try:
             # Technically, a selected format might be out of range
             # for this locale's format list.
@@ -285,6 +285,10 @@ class GrampsPreferences:
         except:
             date_option.set_active(0)
 
+        date_option.connect("changed",
+                lambda obj: 
+                _update_calendar_date_format(obj.get_active(),dlist)
+                )
 
         resname = self.top.get_widget("resname")
         resname.set_text(GrampsKeys.get_researcher_name())

@@ -1,3 +1,11 @@
+2005-01-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateDisplay.py: Make DateDisplayEn inherit from DateDisplay, make
+	DateDisplay handle only ISO dates
+	* src/DateHandler.py: use DateDisplayEn for English languages, use
+	DateDisplay for CJK
+	* src/GrampsCfg.py: Don't do initial redisplay of Person List when
+	dialog comes up, update dates dynamically when date format changes
+	
 2005-01-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayModels.py: Add Date and Place columns to Media model;
 	Zip to Place model.
