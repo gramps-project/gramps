@@ -1,3 +1,10 @@
+2004-11-29 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py: Support for re-building Open Recent submenu
+	and opening files from it.
+	* src/ArgHandler.py: Rebuild recent menu after adding to recent.
+	* src/DbPrompter.py (open_native): Add function.
+	* src/RecentFiles.py (remove_filename): Add function.
+
 2004-11-28 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/PatchNames.py: Typo.
 	* src/plugins/ChangeNames.py: Correct description.

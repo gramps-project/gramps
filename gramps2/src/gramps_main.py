@@ -419,13 +419,21 @@ class Gramps:
             index = index + 1
             name = os.path.basename(item.get_path())
             menu_item = gtk.MenuItem(name,False)
-            menu_item.connect("activate",self.recent_callback,item.get_path())
+            menu_item.connect("activate",self.recent_callback,
+                            item.get_path(),item.get_mime())
             menu_item.show()
             recent_menu.append(menu_item)
         self.open_recent.set_submenu(recent_menu)
 
-    def recent_callback(self,obj,filename):
-        print "Will open %s when finished" % filename
+    def recent_callback(self,obj,filename,filetype):
+        if os.path.exists(filename):
+            DbPrompter.open_native(self,filename,filetype)
+        else:
+            ErrorDialog(_('File does not exist'),
+                    _("The file %s cannot be found. "
+                    "It will be removed from the list of recent files.") % filename )
+            RecentFiles.remove_filename(filename)
+            self.build_recent_menu()
 
     def undo_callback(self,text):
         if text == None:
