@@ -1,5 +1,11 @@
 2004-07-28  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Uninstall everything that we install.
+	* src/GrampsCfg.py: Remove unneeded id_edit widget. 
+	* src/gramps.glade: Manually switch toolbar items from 
+	to ToolButtons to buttons to work around libglade bug. Remove
+	unused id_edit widget and the label. 
+	* src/mergedata.glade: Switch button order to comply with HIG.
+	* src/plugins/merge.glade: Switch button order to comply with HIG.
 
 2004-07-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py, etc.: convert get_id to get_handle

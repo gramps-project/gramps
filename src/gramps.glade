@@ -702,209 +702,129 @@
 	      <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
 	      <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
 	      <property name="tooltips">True</property>
-	      <property name="show_arrow">True</property>
 
 	      <child>
-		<widget class="GtkToolButton" id="button2">
+		<widget class="button" id="button2">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Open database</property>
 		  <property name="label" translatable="yes">Open</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-open</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-open</property>
 		  <signal name="clicked" handler="on_open_activate"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkSeparatorToolItem" id="separatortoolitem1">
+		<widget class="button" id="button3">
 		  <property name="visible">True</property>
-		  <property name="draw">True</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
+		  <property name="tooltip" translatable="yes">Save database</property>
+		  <property name="label" translatable="yes">Save As...</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_pixmap">gtk-save-as</property>
+		  <signal name="clicked" handler="on_export_activate"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">False</property>
-		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="back_btn">
+		<widget class="button" id="back_btn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Go back in history</property>
 		  <property name="label" translatable="yes">Back</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-go-back</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-go-back</property>
+		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_back_clicked" last_modification_time="Thu, 14 Aug 2003 02:19:55 GMT"/>
 		  <signal name="button_press_event" handler="on_back_pressed" last_modification_time="Tue, 19 Aug 2003 00:07:23 GMT"/>
 		</widget>
 		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
+		  <property name="new_group">True</property>
 		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="fwd_btn">
+		<widget class="button" id="fwd_btn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Go forward in history</property>
 		  <property name="label" translatable="yes">Forward</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-go-forward</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-go-forward</property>
 		  <signal name="clicked" handler="on_fwd_clicked" last_modification_time="Thu, 14 Aug 2003 02:20:17 GMT"/>
 		  <signal name="button_press_event" handler="on_fwd_pressed" last_modification_time="Tue, 19 Aug 2003 00:27:51 GMT"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="button97">
+		<widget class="button" id="button97">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Make the Home Person the active person</property>
 		  <property name="label" translatable="yes">Home</property>
 		  <property name="use_underline">True</property>
-		  <property name="icon">home.png</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-home</property>
 		  <signal name="clicked" handler="on_home_clicked"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkSeparatorToolItem" id="separatortoolitem2">
-		  <property name="visible">True</property>
-		  <property name="draw">True</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkToolButton" id="reports">
+		<widget class="button" id="reports">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Generate reports</property>
 		  <property name="label" translatable="yes">Reports</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-dnd-multiple</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-dnd-multiple</property>
+		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_reports_clicked"/>
 		</widget>
 		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
+		  <property name="new_group">True</property>
 		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="tools">
+		<widget class="button" id="tools">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Run tools</property>
 		  <property name="label" translatable="yes">Tools</property>
 		  <property name="use_underline">True</property>
 		  <property name="icon">tools.png</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
 		  <signal name="clicked" handler="on_tools_clicked"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkSeparatorToolItem" id="separatortoolitem3">
-		  <property name="visible">True</property>
-		  <property name="draw">True</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">False</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkToolButton" id="addbtn">
+		<widget class="button" id="addbtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Add a new item</property>
 		  <property name="label" translatable="yes">Add</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-add</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-add</property>
+		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_addbtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:19 GMT"/>
 		</widget>
 		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
+		  <property name="new_group">True</property>
 		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="removebtn">
+		<widget class="button" id="removebtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Remove the currently selected item</property>
 		  <property name="label" translatable="yes">Remove</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_id">gtk-remove</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
+		  <property name="stock_pixmap">gtk-remove</property>
 		  <signal name="clicked" handler="on_removebtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:33 GMT"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="editbtn">
+		<widget class="button" id="editbtn">
 		  <property name="visible">True</property>
 		  <property name="tooltip" translatable="yes">Edit the selected item</property>
 		  <property name="label" translatable="yes">Edit</property>
 		  <property name="use_underline">True</property>
 		  <property name="icon">edit.png</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
 		  <signal name="clicked" handler="on_editbtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:44 GMT"/>
 		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
 	      </child>
 	    </widget>
 	  </child>
@@ -19544,30 +19464,6 @@
 			      </child>
 
 			      <child>
-				<widget class="GtkLabel" id="label136">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;User defined IDs&lt;/b&gt;</property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">True</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="left_attach">0</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">6</property>
-				  <property name="bottom_attach">7</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkLabel" id="label135">
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">&lt;b&gt;GRAMPS ID prefixes&lt;/b&gt;</property>
@@ -19586,29 +19482,6 @@
 				  <property name="right_attach">3</property>
 				  <property name="top_attach">0</property>
 				  <property name="bottom_attach">1</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkCheckButton" id="gid_edit">
-				  <property name="border_width">5</property>
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">_Allow internal GRAMPS ID numbers to be edited</property>
-				  <property name="use_underline">True</property>
-				  <property name="relief">GTK_RELIEF_NORMAL</property>
-				  <property name="focus_on_click">True</property>
-				  <property name="active">False</property>
-				  <property name="inconsistent">False</property>
-				  <property name="draw_indicator">True</property>
-				</widget>
-				<packing>
-				  <property name="left_attach">1</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">7</property>
-				  <property name="bottom_attach">8</property>
 				  <property name="x_options">fill</property>
 				  <property name="y_options"></property>
 				</packing>
