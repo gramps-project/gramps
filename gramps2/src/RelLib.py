@@ -297,7 +297,7 @@ class DataObj(SourceNote):
         """
         return self.private
 
-class Person(PrimaryObject,SourceNote):
+class Person(PrimaryObject,DataObj):
     """
     Introduction
     ============
@@ -332,6 +332,7 @@ class Person(PrimaryObject,SourceNote):
         handle.
         """
         PrimaryObject.__init__(self)
+        DataObj.__init__(self)
         SourceNote.__init__(self)
         self.primary_name = Name()
         self.event_list = []
@@ -350,7 +351,8 @@ class Person(PrimaryObject,SourceNote):
         self.lds_endow = None
         self.lds_seal = None
         self.complete = False
-
+        self.private = False
+        
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
         # GenderStats.count_person.
@@ -378,7 +380,8 @@ class Person(PrimaryObject,SourceNote):
                 self.event_list, self.family_list, self.parent_family_list,
                 self.media_list, self.address_list, self.attribute_list,
                 self.urls, self.lds_bapt, self.lds_endow, self.lds_seal,
-                self.complete, self.source_list, self.note, self.change)
+                self.complete, self.source_list, self.note, self.change,
+                self.private)
 
     def unserialize(self,data):
         """
@@ -395,7 +398,7 @@ class Person(PrimaryObject,SourceNote):
          self.parent_family_list, self.media_list, self.address_list,
          self.attribute_list, self.urls, self.lds_bapt, self.lds_endow,
          self.lds_seal, self.complete, self.source_list, self.note,
-         self.change) = data
+         self.change,self.private) = (data + (False,))[0:23]
             
     def set_complete_flag(self,val):
         """

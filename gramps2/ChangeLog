@@ -1,3 +1,10 @@
+2005-02-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: add privacy marker
+	* src/GrampBSDDB.py: record database version, handle person privacy flag
+	* src/RelLIb.py: Privacy flag for person (inherit from DataObj instead of SourceNote)
+	* src/ReportUtils.py: update to use person privacy flag
+	* src/gramps.glade: person privacy flag
+
 2005-02-19 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ArgHandler.py: Command line support for geneweb import
 	and export; Fix command line exports for gedcom, XML, and package.

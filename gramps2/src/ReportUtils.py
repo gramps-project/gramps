@@ -260,15 +260,24 @@ def sanitize_person(db,person):
     @rtype: Person
     """
     new_person = RelLib.Person()
-    name = person.get_primary_name()
 
     # copy gender
     new_person.set_gender(person.get_gender())
 
     # copy names if not private
-    if not name.get_privacy():
-        new_person.set_primary_name(name)
+    if name.get_privacy() or person.get_privacy():
+        name = RelLib.Name()
+        name.set_first_name(_('Private'))
+        name.set_surname(_('Private'))
+    else:
+        name = person.get_primary_name()
         new_person.set_nick_name(person.get_nick_name())
+
+    if person.get_privacy():
+        return new_person
+
+    new_person.set_primary_name(name)
+        
     for name in person.get_alternate_names():
         if not name.get_privacy():
             new_person.add_alternate_name(name)

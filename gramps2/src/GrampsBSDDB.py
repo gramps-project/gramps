@@ -33,6 +33,8 @@ from RelLib import *
 from GrampsDbBase import *
 from bsddb import dbshelve, db
 
+_DBVERSION = 1
+
 def find_surname(key,data):
     return str(data[3].get_surname())
 
@@ -166,7 +168,11 @@ class GrampsBSDDB(GrampsDbBase):
             self.event_map.associate(self.eventnames, find_eventname, openflags)
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
-        
+
+        if self.metadata.get('version') == None:
+            self.metadata['version'] == _DBVERSION
+            
+        self.metadata   = self.dbopen(name, "meta")
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
             self.bookmarks = []
