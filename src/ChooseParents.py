@@ -418,16 +418,16 @@ class ChooseParents:
 
     def save_parents_clicked(self,obj):
         """
-        Called with the OK button is pressed. Saves the selected people as parents
-        of the main perosn.
+        Called with the OK button is pressed. Saves the selected people
+        as parents of the main person.
         """
         try:
-            mother_rel = self.keys[self.mcombo.get_active()]
+            mother_rel = self.mcombo.get_active()
         except KeyError:
             mother_rel = RelLib.Person.CHILD_REL_BIRTH
 
         try:
-            father_rel = self.keys[self.fcombo.get_active()]
+            father_rel = self.fcombo.get_active()
         except KeyError:
             father_rel = RelLib.Person.CHILD_REL_BIRTH
 
@@ -589,6 +589,8 @@ class ModifyParents:
         self.father_rel = self.glade.get_widget("frel")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
+        self.fcombo = self.glade.get_widget('fcombo')
+        self.mcombo = self.glade.get_widget('mcombo')
 
         self.orig_mrel = RelLib.Person.CHILD_REL_BIRTH
         self.orig_frel = RelLib.Person.CHILD_REL_BIRTH
@@ -610,18 +612,17 @@ class ModifyParents:
             self.mlabel.set_label('<b>%s</b>' % _("Mother"))
             self.flabel.set_label('<b>%s</b>' % _("Father"))
 
-
         if self.father:
             fname = NameDisplay.displayer.display(self.father)
             self.glade.get_widget("fname").set_text(fname)
         else:
-            self.father_rel.set_sensitive(False)
+            self.fcombo.set_sensitive(False)
             
         if self.mother:
             mname = NameDisplay.displayer.display(self.mother)
             self.glade.get_widget("mname").set_text(mname)
         else:
-            self.mother_rel.set_sensitive(False)
+            self.mcombo.set_sensitive(False)
 
         self.pref = self.glade.get_widget('preferred')
         if len(self.person.get_parent_family_handle_list()) > 1:
@@ -634,9 +635,6 @@ class ModifyParents:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-
-        self.fcombo = self.glade.get_widget('fcombo')
-        self.mcombo = self.glade.get_widget('mcombo')
 
         if self.db.readonly:
             self.fcombo.set_sensitive(False)
@@ -669,8 +667,8 @@ class ModifyParents:
 
     def save_parents_clicked(self):
         """
-        Called with the OK button nis pressed. Saves the selected people as parents
-        of the main perosn.
+        Called with the OK button nis pressed. Saves the selected people
+        as parents of the main person.
         """
 
         mother_rel = self.mcombo.get_active()

@@ -238,7 +238,8 @@ class FamilyView:
             self.spouse_list.append_column(column)
         self.selected_spouse = None
 
-        self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                      pycode_tgts,ACTION_COPY)
         self.child_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.child_list.connect('drag_data_get', self.drag_data_get)
         self.child_list.connect('drag_data_received',self.drag_data_received)
@@ -1065,8 +1066,11 @@ class FamilyView:
             mother_handle = fam.get_mother_handle()
             f = self.parent.db.get_person_from_handle(father_handle)
             m = self.parent.db.get_person_from_handle(mother_handle)
-            father = self.nameof(_("Father"),f,frel)
-            mother = self.nameof(_("Mother"),m,mrel)
+
+            father = self.nameof(_("Father"),f,
+                                 const.child_rel_list[frel])
+            mother = self.nameof(_("Mother"),m,
+                                 const.child_rel_list[mrel])
 
             node = model.append()
             if not sel:
