@@ -16,6 +16,9 @@
 	src/docgen/OpenOfficeDoc.py, src/docgen/PdfDoc.py, 
 	src/docgen/RTFDoc.py: Translate type descriptions; correct print_label.
 
+	* src/plugins/WebPage.py: Use gramps ID for naming the files
+	and creating links. 
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
 
