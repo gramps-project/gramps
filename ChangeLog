@@ -15,6 +15,7 @@
 	* src/plugins/StatisticsChart.py (define_graphics_styles):
 	Add method.
 	* src/plugins/TimeLine.py (define_graphics_styles): Add method.
+	* src/plugins/DesGraph.py: Add styles before initializing doc.
 
 2005-01-23  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/BaseDoc.py: don't check for init on table or cell addition
