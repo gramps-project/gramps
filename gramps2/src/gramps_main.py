@@ -1764,7 +1764,7 @@ class Gramps:
         return self.post_load(name)
 
     def setup_bookmarks(self):
-        self.bookmarks = Bookmarks.Bookmarks(self.db.get_bookmarks(),
+        self.bookmarks = Bookmarks.Bookmarks(self.db,self.db.get_bookmarks(),
                                              self.gtop.get_widget("jump_to"),
                                              self.bookmark_callback)
 
