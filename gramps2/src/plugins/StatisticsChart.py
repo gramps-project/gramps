@@ -396,17 +396,19 @@ class Extract:
                 continue
         
             # check whether birth year is within required range
-            birth = self.get_birth(person).get_date_object()
+            birth = self.get_birth(person)
             if birth:
-                if birth.get_year_valid():
-                    year = birth.get_year()
+                birthdate = birth.get_date_object()
+                if birthdate.get_year_valid():
+                    year = birthdate.get_year()
                     if not (year >= year_from and year <= year_to):
                         continue
                 else:
                     # if death before range, person's out of range too...
-                    death = self.get_death(person).get_date_object()
+                    death = self.get_death(person)
                     if death:
-                        if death.get_year_valid() and death.get_year() < year_from:
+                        deathdate = death.get_date_object()
+                        if deathdate.get_year_valid() and deathdate.get_year() < year_from:
                             continue
                         if not no_years:
                             # do not accept people who are not known to be in range

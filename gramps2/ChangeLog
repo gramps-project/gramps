@@ -1,3 +1,6 @@
+2005-02-18  Eero Tamminen <eerot@sf>
+	* src/plugins/StatisticsChart.py: fix date object checking
+
 2005-02-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: more readonly support
 	* src/NoteEdit.py: more readonly support
