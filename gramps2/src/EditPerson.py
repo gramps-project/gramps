@@ -214,9 +214,10 @@ class EditPerson:
                                          self.on_web_select_row,
                                          self.on_update_url_clicked)
 
-        self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
-        self.autodeath = AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),
-                                            self.autoplace)
+        place_list = self.pmap.keys()
+        place_list.sort()
+        self.autoplace = AutoComp.AutoCombo(self.bpcombo, place_list)
+        self.autodeath = AutoComp.AutoCombo(self.dpcombo, place_list, self.autoplace)
         self.comp = AutoComp.AutoCombo(self.sncombo,self.db.getSurnames())
             
         self.gid.set_text(person.getId())
