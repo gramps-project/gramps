@@ -138,15 +138,9 @@ class MyPlaces(gtk.Entry):
     def __init__(self,places):
         gtk.Entry.__init__(self)
         
-        AutoComp.AutoEntry(self,places)
+        self.comp = AutoComp.AutoEntry(self,places)
         self.show()
         
-    def get_text(self):
-        return self.entry.get_text()
-
-    def set_text(self,val):
-        self.entry.set_text(val)
-
 #-------------------------------------------------------------------------
 #
 # MyID - Person/GRAMPS ID selection box with a standard interface
