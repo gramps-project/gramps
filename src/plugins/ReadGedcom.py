@@ -1322,18 +1322,21 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == "TYPE":
-                if event.getName() != "":
+                if event.getName() == "" or event.getName() == 'EVEN': 
                     try:
                         event.setName(ged2fam[matches[2]])
                     except:
                         event.setName(matches[2])
+                else:
+                    note = 'Status = %s\n' % matches[2]
             elif matches[1] == "DATE":
                 event.setDateObj(self.extract_date(matches[2]))
             elif matches[1] == "CAUS":
                 info = matches[2] + self.parse_continue_data(level+1)
                 event.setCause(info)
                 self.parse_cause(event,level+1)
-            elif matches[1] in ["TIME","AGE","AGNC","ADDR","STAT","TEMP","HUSB","WIFE","OBJE","_CHUR"]:
+            elif matches[1] in ["TIME","AGE","AGNC","ADDR","STAT",
+                                "TEMP","HUSB","WIFE","OBJE","_CHUR"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 event.addSourceRef(self.handle_source(matches,level+1))
