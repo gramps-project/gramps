@@ -28,7 +28,6 @@
 import string
 import os
 import locale
-import time
 
 #-------------------------------------------------------------------------
 #
@@ -53,15 +52,6 @@ import GrampsMime
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
-# Random
-#
-#-------------------------------------------------------------------------
-import random
-
-rand = random.Random(time.time())
 
 #-------------------------------------------------------------------------
 #
@@ -537,7 +527,21 @@ def unbold_label(label):
     label.set_text(text)
     label.set_use_markup(0)
 
+#-------------------------------------------------------------------------
+#
+# create_id
+#
+#-------------------------------------------------------------------------
+import random
+import time
+rand = random.Random(time.time())
+
 def create_id():
-    return str("%08x%08x" % (
-        int(time.time()*10000),
-        rand.randint(0,0x7fffffff)))
+    s = ""
+    for val in [ int(time.time()*10000) & 0x7fffffff,
+                 rand.randint(0,0x7fffffff),
+                 rand.randint(0,0x7fffffff)]:
+        while val != 0:
+            s += chr(val%57+65)
+            val = int(val/57)
+    return s

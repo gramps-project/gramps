@@ -1324,6 +1324,9 @@ class FamilyView:
                               _("Children must be ordered by their birth dates."))
                 return
             self.family.set_child_id_list(list)
+            trans = self.parent.db.start_transaction()
+            self.parent.db.commit_family(self.family,trans)
+            self.parent.db.add_transaction(trans,_('Reorder children'))
             self.display_marriage(self.family)
             
     def drag_data_get(self,widget, context, sel_data, info, time):

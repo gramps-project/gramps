@@ -214,12 +214,28 @@ class AddSpouse:
         been closed.
         """
         person = epo.person
-        if person.get_id() == "":
-            self.db.add_person(person)
+        trans = self.db.start_transaction()
+        id = person.get_id()
+        if id == "":
+            id = self.db.add_person(person,trans)
         else:
-            self.db.add_person_no_map(person,person.get_id())
+            self.db.add_person_no_map(person,id,trans)
+
+        person = self.db.try_to_find_person_from_id(id)
+        n = person.get_primary_name().get_name()
+        self.db.add_transaction(trans,_('Add Person (%s)' % n))
         self.addperson(person)
-        self.update_data(person.get_id())
+        self.update_data(id)
+        
+        self.slist = PeopleModel.PeopleModel(self.db)
+        self.slist.rebuild_data()
+        self.spouse_list.set_model(self.slist)
+        
+        path = self.slist.on_get_path(person.get_id())
+        top_path = self.slist.on_get_path(person.get_primary_name().get_surname())
+        self.spouse_list.expand_row(top_path,0)
+        self.selection.select_path(path)
+        #self.spouse_list.scroll_to_cell(path,None,1,0.5,0)
         #self.slist.center_selected()
 
     def select_spouse_clicked(self,obj):
