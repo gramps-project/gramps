@@ -1,5 +1,7 @@
 2003-06-13  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenOfficeDoc.py: Escape special XML characters. 
+	* src/docgen/HtmlDoc.py: Properly build style declaration.
+	* src/plugins/FtmStyleDescendants.py: Setup before opening. 
 
 2003-06-12  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenOfficeDoc.py: Surround images by paragraph tags

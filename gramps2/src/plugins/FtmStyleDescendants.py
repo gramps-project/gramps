@@ -60,6 +60,7 @@ class FtmDescendantReport(Report.Report):
         self.max_generations = max
         self.pgbrk = pgbrk
         self.doc = doc
+        self.setup()
         if output:
             self.standalone = 1
             self.doc.open(output)
@@ -82,7 +83,6 @@ class FtmDescendantReport(Report.Report):
         cell = TextDoc.TableCellStyle()
         self.doc.add_cell_style('Normal',cell)
 
-
     def apply_filter(self,person,index,generation=1):
 
         if person == None or generation > self.max_generations:
@@ -102,7 +102,6 @@ class FtmDescendantReport(Report.Report):
 
 
     def write_report(self):
-        self.setup()
         self.apply_filter(self.start,1)
         
         name = self.start.getPrimaryName().getRegularName()
