@@ -462,6 +462,10 @@ class Note:
         """return the note contents"""
         return self.text
 
+    def append(self,text):
+        """adds the text to the note's contents"""
+        return self.text + text
+
 class Photo(SourceNote):
     """Containter for information about an image file, including location,
     description and privacy"""

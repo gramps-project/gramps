@@ -47,6 +47,9 @@ try:
         def bindtextdomain(s,x):
             return
 except:
+    import traceback
+    traceback.print_exc()
+    
     def gettext(s):
         return s
     
