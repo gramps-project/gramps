@@ -1,3 +1,9 @@
+2003-09-28  Tim Waugh  <twaugh@redhat.com>
+	* configure.in: Fetch ChangeLog from srcdir, not builddir (fixes
+	'make distcheck').
+	* src/po/Makefile.am: Fetch zh_CN.po from srcdir, not builddir (fixes
+	'make distcheck').
+
 2003-09-27  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/filtref.xml: Manual corrections. 
 	* doc/gramps-manual/C/cmdline.xml: Likewise.
