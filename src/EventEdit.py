@@ -51,11 +51,13 @@ _ = gettext
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,list,trans,event,def_placename,read_only):
+    def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb):
         self.parent = parent
         self.event = event
         self.trans = trans
-
+        self.callback = cb
+        self.plist = []
+        
         self.pmap = {}
         for p in self.parent.db.getPlaces():
             self.pmap[p.get_title()] = p
@@ -157,6 +159,7 @@ class EventEditor:
                 place.set_title(text)
                 self.pmap[text] = place
                 self.parent.db.addPlace(place)
+                self.plist.append(place)
                 utils.modified()
                 return place
             else:
@@ -184,6 +187,7 @@ class EventEditor:
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
         self.parent.redraw_event_list()
+        self.callback(None,self.plist)
         utils.destroy_passed_object(obj)
 
     def update_event(self,name,date,place,desc,note,priv,cause):

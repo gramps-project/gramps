@@ -59,11 +59,12 @@ pycode_tgts = [('fevent', 0, 0),
 #-------------------------------------------------------------------------
 class Marriage:
 
-    def __init__(self,family,db):
+    def __init__(self,family,db,callback):
         """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.db = db
         self.path = db.getSavePath()
+        self.cb = callback
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")
@@ -427,7 +428,8 @@ class Marriage:
     def on_add_clicked(self,obj):
         import EventEdit
         name = utils.family_name(self.family)
-        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,None,None,0)
+        EventEdit.EventEditor(self,name,const.marriageEvents,
+                              const.save_pevent,None,None,0,self.cb)
 
     def on_update_clicked(self,obj):
         import EventEdit
@@ -436,7 +438,8 @@ class Marriage:
 
         event = obj.get_row_data(obj.selection[0])
         name = utils.family_name(self.family)
-        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,event,None,0)
+        EventEdit.EventEditor(self,name,const.marriageEvents,
+                              const.save_pevent,event,None,0,self.cb)
 
     def on_delete_clicked(self,obj):
         if utils.delete_selected(obj,self.elist):

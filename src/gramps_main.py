@@ -284,7 +284,7 @@ def on_add_sp_clicked(obj):
 def on_edit_sp_clicked(obj):
     """Edit the marriage information for the current family"""
     if active_person:
-        Marriage.Marriage(active_family,database)
+        Marriage.Marriage(active_family,database,new_after_edit)
 
 def on_delete_sp_clicked(obj):
     """Delete the currently selected spouse from the family"""
@@ -477,7 +477,7 @@ def update_display(changed):
     elif page == 3:
         source_view.load_sources()
     elif page == 4:
-        place_view.load_places()
+        pass
     else:
         media_view.load_media()
 
@@ -1279,7 +1279,7 @@ def on_notebook1_switch_page(obj,junk,page):
         source_view.load_sources()
     elif page == 4:
         merge_button.set_sensitive(1)
-        place_view.load_places()
+        #place_view.load_places()
     elif page == 5:
         merge_button.set_sensitive(0)
         media_view.load_media()
@@ -1340,13 +1340,16 @@ def on_spouselist_changed(obj):
 #
 #
 #-------------------------------------------------------------------------
-def new_after_edit(epo):
-    if epo.person.getId() == "":
-        database.addPerson(epo.person)
-    else:
-        database.addPersonNoMap(epo.person,epo.person.getId())
-    change_active_person(epo.person)
-    redisplay_person_list(epo.person)
+def new_after_edit(epo,plist):
+    if epo:
+        if epo.person.getId() == "":
+            database.addPerson(epo.person)
+        else:
+            database.addPersonNoMap(epo.person,epo.person.getId())
+        change_active_person(epo.person)
+        redisplay_person_list(epo.person)
+    for p in plist:
+        place_view.new_place_after_edit(p)
 
 #-------------------------------------------------------------------------
 #
@@ -1362,9 +1365,12 @@ def update_after_newchild(family,person):
 #
 #
 #-------------------------------------------------------------------------
-def update_after_edit(epo):
-    remove_from_person_list(epo.person)
-    redisplay_person_list(epo.person)
+def update_after_edit(epo,plist):
+    if epo:
+        remove_from_person_list(epo.person)
+        redisplay_person_list(epo.person)
+    for p in plist:
+        place_view.new_place_after_edit(p)
     update_display(0)
 
 #-------------------------------------------------------------------------
