@@ -407,7 +407,8 @@ class Gramps:
         Plugins.PluginStatus()
 
     def on_sidebar_activate(self,obj):
-        self.enable_sidebar(obj.get_active())
+        val = obj.get_active()
+        self.enable_sidebar(val)
         GrampsCfg.save_view(val)
 
     def enable_sidebar(self,val):
@@ -1431,7 +1432,7 @@ class Gramps:
                                 6, val[6], 7, val[7])
             else:
                 if self.id2col.has_key(key):
-                    (model,iter) = self.id2col[key]
+                    (model,iter,page) = self.id2col[key]
                     model.remove(iter)
 
     def on_home_clicked(self,obj):
