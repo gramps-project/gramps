@@ -425,6 +425,49 @@ class ScratchMediaObj(ScratchPadWrapper):
                "%s" % (_("Media Object"),
                        escape(self._obj))
 
+class ScratchPersonLink(ScratchPadWrapper):
+
+    DROP_TARGETS = [DdTargets.PERSON_LINK]
+    DRAG_TARGET  = DdTargets.PERSON_LINK
+    ICON         = LINK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadWrapper.__init__(self,db,obj)
+        self._type  = _("Person Link")
+
+        person = self._db.get_person_from_handle(self._obj)
+        self._title = person.get_primary_name().get_name()
+        birth_handle = person.get_birth_handle()
+        if birth_handle:
+            birth = self._db.get_event_from_handle(birth_handle)
+            if birth.get_date() and birth.get_date() != "":
+                self._value = escape(birth.get_date())
+
+
+    def tooltip(self):
+        global escape
+
+        person = self._db.get_person_from_handle(self._obj)
+
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Person Link"),
+            _("Name"),escape(self._title),
+            _("Birth"),escape(self._value))
+
+        if len(person.get_source_references()) > 0:
+            psrc_ref = person.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
 
 #-------------------------------------------------------------------------
 #
@@ -518,6 +561,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadName)
         self.register_wrapper_class(ScratchPadText)
         self.register_wrapper_class(ScratchMediaObj)
+        self.register_wrapper_class(ScratchPersonLink)
         
 
     def register_wrapper_class(self,wrapper_class):
@@ -676,12 +720,20 @@ class ScratchPadWindow:
         self.window = self.top.get_widget("scratch_pad")
         self.window.set_icon(self.parent.topWindow.get_icon())
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
+        self.clear_btn = self.top.get_widget("btn_clear")
         
         self.object_list = ScratchPadListView(self.db,self.top.get_widget('objectlist'))
-
+        self.object_list.get_selection().connect('changed',self.set_clear_btn_sensitivity)
+        self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
+        
         if not ScratchPadWindow.otree:
             ScratchPadWindow.otree = ScratchPadListModel()
 
+        self.set_clear_all_btn_sensitivity(treemodel=ScratchPadWindow.otree)
+        ScratchPadWindow.otree.connect('row-deleted',self.set_clear_all_btn_sensitivity)
+        ScratchPadWindow.otree.connect('row-inserted',self.set_clear_all_btn_sensitivity)
+        
+        
         self.object_list.set_model(ScratchPadWindow.otree)
         
         self.top.signal_autoconnect({
@@ -696,6 +748,19 @@ class ScratchPadWindow:
         
         self.add_itself_to_menu()
         self.window.show()
+
+    def set_clear_all_btn_sensitivity(self, treemodel=None, path=None, iter=None, user_param1=None):
+        if len(treemodel) == 0:
+            self.clear_all_btn.set_sensitive(False)
+        else:
+            self.clear_all_btn.set_sensitive(True)
+
+    def set_clear_btn_sensitivity(self, sel=None, user_param1=None):
+        if sel.count_selected_rows() == 0:
+            self.clear_btn.set_sensitive(False)
+        else:
+            self.clear_btn.set_sensitive(True)
+        
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()

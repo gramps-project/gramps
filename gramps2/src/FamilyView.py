@@ -255,10 +255,12 @@ class FamilyView:
         self.selected_spouse = None
 
         self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      [DdTargets.CHILD.target()],
+                                      [DdTargets.CHILD.target(),
+                                       DdTargets.PERSON_LINK.target()],
                                       ACTION_COPY)
         self.child_list.drag_source_set(BUTTON1_MASK,
-                                        [DdTargets.CHILD.target()],
+                                        [DdTargets.CHILD.target(),
+                                         DdTargets.PERSON_LINK.target()],
                                         ACTION_COPY)
         self.child_list.connect('drag_data_get', self.drag_data_get)
         self.child_list.connect('drag_data_received',self.drag_data_received)
@@ -1392,8 +1394,41 @@ class FamilyView:
             row = len(self.family.get_child_handle_list())
         else:
             row = path[0][0] -1
+
+        if DdTargets.PERSON_LINK.drag_type in context.targets:
+            drop_person_handle = sel_data.data
+            
+            # Check child is not already in the family
+            if drop_person_handle in self.family.get_child_handle_list():
+                return
+
+            family = self.family
+            person = self.person
+            new_person = self.parent.db.get_person_from_handle(drop_person_handle)
+            trans = self.parent.db.transaction_begin()
+            if not family:
+                # Add family to active person, 
+                # if it does not exist yet (child with no spouse)
+                family = RelLib.Family()
+                self.parent.db.add_family(family,trans)
+                person.add_family_handle(family.get_handle())
+                if person.get_gender() == RelLib.Person.MALE:
+                    family.set_father_handle(person.get_handle())
+                else:
+                    family.set_mother_handle(person.get_handle())
+                self.parent.db.commit_family(family,trans)
+                self.parent.db.commit_person(person,trans)
+
+            family.add_child_handle(new_person.get_handle())
+            new_person.add_parent_family_handle(family.get_handle(),
+                                                RelLib.Person.CHILD_REL_BIRTH,
+                                                RelLib.Person.CHILD_REL_BIRTH)
+            self.parent.db.commit_person(new_person,trans)
+            self.parent.db.commit_family(family,trans)
+            self.parent.db.transaction_commit(trans,_("Add Child to Family"))
+            self.display_marriage(family)
         
-        if sel_data and sel_data.data:
+        elif sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
@@ -1465,8 +1500,12 @@ class FamilyView:
             return
         handle = self.child_model.get_value(node,_HANDLE_COL)
         bits_per = 8; # we're going to pass a string
-        data = str(('child',handle));
-        sel_data.set(sel_data.target, bits_per, data)
+
+        if sel_data.target == DdTargets.PERSON_LINK.drag_type:
+            sel_data.set(sel_data.target, bits_per, handle)
+        else:
+            data = str(('child',handle));
+            sel_data.set(sel_data.target, bits_per, data)
 
     def sp_drag_data_get(self,widget, context, sel_data, info, time):
         store,node = self.spouse_selection.get_selected()

@@ -1,3 +1,12 @@
+2005-04-04  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ScratchPad.py: made clear buttons sensitive to contents of 
+	list and current selection. Added support for PERSON_LINK dnd.
+	* src/DdTargets.py: added PERSON_LINK target and simplified generation of
+	targets lists.
+	* src/FamilyView.py: added dnd of person handles to and from the child list.
+	* src/PeopleView.py: added dnd of person handles from the person list.
+	
+	
 2005-04-05  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsBSDDB.py (upgrade_5): Make work with half-upgraded data.
 
@@ -13,7 +22,7 @@
 	patch from Jim Smart.
 	* src/PeopleView.py: Enable makup that PeopleModel can render fallback data in italics.
 
-2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+2005-04-04  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: added support for disconnecting callbacks,
 	better test code and lots of logging. Improved the comments.
 	

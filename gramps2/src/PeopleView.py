@@ -45,6 +45,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #-------------------------------------------------------------------------
 import PeopleModel
 import GenericFilter
+from DdTargets import DdTargets
 
 column_names = [
     _('Name'),
@@ -94,6 +95,24 @@ class PeopleView:
         self.parent.db.connect('person-update', self.person_updated)
         self.parent.db.connect('person-delete', self.person_removed)
         self.parent.db.connect('person-rebuild', self.redisplay_person_list)
+
+        #
+        # DnD support
+        #
+        self.person_tree.drag_source_set(BUTTON1_MASK,
+                                         [DdTargets.PERSON_LINK.target()],
+                                         ACTION_COPY)
+        self.person_tree.connect('drag_data_get', self.person_drag_data_get)
+
+    def person_drag_data_get(self, widget, context, sel_data, info, time):
+        selected_ids = self.get_selected_objects()
+
+        if len(selected_ids) == 1:
+            sel_data.set(sel_data.target, 8, selected_ids[0])
+        elif len(selected_ids) > 1:
+            # TBD
+            pass
+        
 
     def sort_clicked(self,obj):
         for col in self.columns:
