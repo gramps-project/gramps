@@ -122,7 +122,6 @@ class PdfDoc(TextDoc):
 
     def end_paragraph(self):
         if self.in_table == 0 and self.image == 0:
-            print self.text
 	    self.story.append(Paragraph(self.text,self.current_para))
 	    self.story.append(Spacer(1,0.25*cm))
         else:
