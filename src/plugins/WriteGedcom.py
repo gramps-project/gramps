@@ -432,14 +432,21 @@ class GedcomWriter:
         self.copy = 2
 
     def on_restrict_toggled(self,restrict):
-        living = self.topDialog.get_widget("living")
-        living.set_sensitive (restrict.get_active ())
+        active = restrict.get_active ()
+        map (lambda x: x.set_sensitive (active),
+             [self.topDialog.get_widget("living"),
+              self.topDialog.get_widget("notes"),
+              self.topDialog.get_widget("sources")])
 
     def on_ok_clicked(self,obj):
     
         self.restrict = self.topDialog.get_widget("restrict").get_active()
         self.living = (self.restrict and
                        self.topDialog.get_widget("living").get_active())
+        self.exclnotes = (self.restrict and
+                          self.topDialog.get_widget("notes").get_active())
+        self.exclsrcs = (self.restrict and
+                         self.topDialog.get_widget("sources").get_active())
         self.private = self.topDialog.get_widget("private").get_active()
 
         cfilter = self.filter_menu.get_active().get_data("filter")
@@ -780,6 +787,14 @@ class GedcomWriter:
             primaryname = person.getPrimaryName ()
             nickname = person.getNickName ()
 
+        if restricted and self.exclnotes:
+            primaryname = RelLib.Name (primaryname)
+            primaryname.setNote ('')
+
+        if restricted and self.exclsrcs:
+            primaryname = RelLib.Name (primaryname)
+            primaryname.setSourceRefList ([])
+
         self.write_person_name(primaryname, nickname)
 
         if (self.altname == GedcomInfo.ALT_NAME_STD and
@@ -939,6 +954,7 @@ class GedcomWriter:
                     if url.get_path():
                         self.writeln('2 FILE %s' % url.get_path())
 
+        if not restricted or not self.exclnotes:
             if person.getNote():
                 self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
 
