@@ -1651,9 +1651,9 @@ class GedcomParser:
 
                 # new ID is not used
                 if not pmap.has_key(new_key):
-                   del pmap[person.getId()]
-                   pmap[new_key] = person
-                   person.setId(new_key)
+                    del pmap[person.getId()]
+                    pmap[new_key] = person
+                    person.setId(new_key)
                 else:
                     tp = pmap[new_key]
                     # same person, just change it
@@ -1663,16 +1663,12 @@ class GedcomParser:
                         person.setId(new_key)
                     # person currently using it was just added, change it
                     elif tp in self.added:
-                        if not self.refn.has_key(tp):
-                            renamed.append(tp)
                         del pmap[person.getId()]
                         pmap[new_key] = person
                         person.setId(new_key)
+                        self.db.addPerson(tp)
 
         self.db.pmapIndex = new_pmax
-        for person in renamed:
-            del pmap[person]
-            self.db.addPerson(person)
 
 #-------------------------------------------------------------------------
 #
