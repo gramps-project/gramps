@@ -59,7 +59,7 @@ CONF_VERY_LOW  = 0
 
 #-------------------------------------------------------------------------
 #
-# Class definitions
+# Base classes
 #
 #-------------------------------------------------------------------------
 class BaseObject:
@@ -315,8 +315,7 @@ class SourceNote(BaseObject):
         self.note = None
 
         if source:
-            for sref in source.source_list:
-                self.source_list.append(SourceRef(sref))
+            self.source_list = [SourceRef(sref) for sref in source.source_list]
             if source.note:
                 self.note = Note(source.note.get())
 
@@ -643,20 +642,19 @@ class DateBase:
         """
         self.date = date
 
-class PrivateObject(SourceNote):
+class PrivacyBase:
     """
-    Same as SourceNote, plus the privacy capabilities.
+    Base class for privacy-aware objects.
     """
 
     def __init__(self,source=None):
         """
-        Initialize a PrivateObject. If the source is not None, then object
+        Initialize a PrivacyBase. If the source is not None, then object
         is initialized from values of the source object.
 
         @param source: Object used to initialize the new object
-        @type source: DateObj
+        @type source: PrivacyBase
         """
-        SourceNote.__init__(self,source)
         
         if source:
             self.private = source.private
@@ -682,7 +680,100 @@ class PrivateObject(SourceNote):
         """
         return self.private
 
-class Person(PrimaryObject,PrivateObject,MediaBase):
+class AttributeBase:
+    """
+    Base class for attribute-aware objects.
+    """
+
+    def __init__(self,source=None):
+        """
+        Initialize a AttributeBase. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: AttributeBase
+        """
+        
+        if source:
+            # Ugly hack: the existing objects may have their attribute lists
+            # called either attr_list or attribute_list.
+            try:
+            	self.attribute_list = [ Attribute(attribute) \
+                                    for attribute in source.attribute_list ]
+            except:
+            	self.attribute_list = [ Attribute(attribute) \
+                                    for attribute in source.attrlist ]
+        else:
+            self.attribute_list = []
+
+    def add_attribute(self,attribute):
+        """
+        Adds the L{Attribute} instance to the object's list of attributes
+
+        @param attribute: L{Attribute} instance to add.
+        @type attribute: L{Attribute}
+        """
+        self.attribute_list.append(attribute)
+
+    def remove_attribute(self,attribute):
+        """
+        Removes the specified L{Attribute} instance from the attribute list
+        If the instance does not exist in the list, the operation has
+        no effect.
+
+        @param attribute: L{Attribute} instance to remove from the list
+        @type attribute: L{Attribute}
+
+        @return: True if the attribute was removed, False if it was not
+            in the list.
+        @rtype: bool
+        """
+        if attribute in self.attribute_list:
+            self.attribute_list.remove(attribute)
+            return True
+        else:
+            return False
+
+    def get_attribute_list(self):
+        """
+        Returns the list of L{Attribute} instances associated with the object.
+        
+        @returns: Returns the list of L{Attribute} instances.
+        @rtype: list
+        """
+        return self.attribute_list
+
+    def set_attribute_list(self,attribute_list):
+        """
+        Assigns the passed list to the Person's list of L{Attribute} instances.
+
+        @param attribute_list: List of L{Attribute} instances to ba associated
+            with the Person
+        @type attribute_list: list
+        """
+        self.attribute_list = attribute_list
+
+class PrivateSourceNote(SourceNote,PrivacyBase):
+    """
+    Same as SourceNote, plus the privacy capabilities.
+    """
+    def __init__(self,source=None):
+        """
+        Initialize a PrivateSourceNote. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: PrivateSourceNote
+        """
+        SourceNote.__init__(self,source)
+        PrivacyBase.__init__(self,source)
+
+#-------------------------------------------------------------------------
+#
+# Actual GRAMPS objects
+#
+#-------------------------------------------------------------------------
+class Person(PrimaryObject,PrivateSourceNote,MediaBase,AttributeBase):
     """
     Introduction
     ============
@@ -726,9 +817,9 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
         handle.
         """
         PrimaryObject.__init__(self)
-        PrivateObject.__init__(self)
-        SourceNote.__init__(self)
+        PrivateSourceNote.__init__(self)
         MediaBase.__init__(self)
+        AttributeBase.__init__(self)
         self.primary_name = Name()
         self.event_list = []
         self.family_list = []
@@ -739,13 +830,11 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
         self.death_handle = None
         self.birth_handle = None
         self.address_list = []
-        self.attribute_list = []
         self.urls = []
         self.lds_bapt = None
         self.lds_endow = None
         self.lds_seal = None
         self.complete = False
-        self.private = False
         
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
@@ -1248,54 +1337,6 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
         """
         self.address_list = address_list
 
-    def add_attribute(self,attribute):
-        """
-        Adds the L{Attribute} instance to the Person's list of attributes
-
-        @param attribute: L{Attribute} instance to add to the Person's address
-            list
-        @type attribute: list
-        """
-        self.attribute_list.append(attribute)
-
-    def remove_attribute(self,attribute):
-        """
-        Removes the specified L{Attribute} instance from the attribute list
-        If the instance does not exist in the list, the operation has
-        no effect.
-
-        @param attribute: L{Attribute} instance to remove from the list
-        @type attribute: L{Attribute}
-
-        @return: True if the attribute was removed, False if it was not
-            in the list.
-        @rtype: bool
-        """
-        if attribute in self.attribute_list:
-            self.attribute_list.remove(attribute)
-            return True
-        else:
-            return False
-
-    def get_attribute_list(self):
-        """
-        Returns the list of L{Attribute} instances associated with the
-        Person
-        @return: Returns the list of L{Attribute} instances
-        @rtype: list
-        """
-        return self.attribute_list
-
-    def set_attribute_list(self,attribute_list):
-        """
-        Assigns the passed list to the Person's list of L{Attribute} instances.
-
-        @param attribute_list: List of L{Attribute} instances to ba associated
-            with the Person
-        @type attribute_list: list
-        """
-        self.attribute_list = attribute_list
-
     def get_parent_family_handle_list(self):
         """
         Returns the list of L{Family} handles in which the person is a
@@ -1491,7 +1532,7 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
         """
         return self.lds_seal
 
-class Family(PrimaryObject,SourceNote,MediaBase):
+class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
     """
     Introduction
     ============
@@ -1528,12 +1569,12 @@ class Family(PrimaryObject,SourceNote,MediaBase):
         PrimaryObject.__init__(self)
         SourceNote.__init__(self)
         MediaBase.__init__(self)
+        AttributeBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_list = []
         self.type = Family.MARRIED
         self.event_list = []
-        self.attribute_list = []
         self.lds_seal = None
         self.complete = 0
 
@@ -1677,51 +1718,6 @@ class Family(PrimaryObject,SourceNote,MediaBase):
         @rtype: L{LdsOrd}
         """
         return self.lds_seal
-
-    def add_attribute(self,attribute) :
-        """
-        Adds the L{Attribute} instance to the Family's list of attributes
-
-        @param attribute: L{Attribute} instance to add to the Family's
-            address list
-        @type attribute: list
-        """
-        self.attribute_list.append(attribute)
-
-    def remove_attribute(self,attribute):
-        """
-        Removes the specified L{Attribute} instance from the attribute list
-        If the instance does not exist in the list, the operation has
-        no effect.
-
-        @param attribute: L{Attribute} instance to remove from the list
-        @type attribute: L{Attribute}
-
-        @return: True if the attribute was removed, False if it was not
-            in the list.
-        @rtype: bool
-        """
-        if attribute in self.attribute_list:
-            self.attribute_list.remove(attribute)
-
-    def get_attribute_list(self) :
-        """
-        Returns the list of L{Attribute} instances associated with the
-        Famliy
-        @return: Returns the list of L{Attribute} instances
-        @rtype: list
-        """
-        return self.attribute_list
-
-    def set_attribute_list(self,attribute_list) :
-        """
-        Assigns the passed list to the Family's list of L{Attribute} instances.
-
-        @param attribute_list: List of L{Attribute} instances to ba associated
-            with the Person
-        @type attribute_list: list
-        """
-        self.attribute_list = attribute_list
 
     def set_relationship(self,relationship_type):
         """
@@ -1877,7 +1873,7 @@ class Family(PrimaryObject,SourceNote,MediaBase):
         """
         self.event_list = event_list
 
-class Event(PrimaryObject,PrivateObject,MediaBase,DateBase):
+class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase):
     """
     Introduction
     ============
@@ -1898,7 +1894,7 @@ class Event(PrimaryObject,PrivateObject,MediaBase,DateBase):
         """
 
         PrimaryObject.__init__(self,source)
-        PrivateObject.__init__(self,source)
+        PrivateSourceNote.__init__(self,source)
         MediaBase.__init__(self,source)
         DateBase.__init__(self,source)
 
@@ -2434,7 +2430,7 @@ class Place(PrimaryObject,SourceNote,MediaBase):
             return [self.title,self.gramps_id,'','','','','',
                     self.title.upper(), '','','','','']
         
-class MediaObject(PrimaryObject,SourceNote,DateBase):
+class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
     """
     Containter for information about an image file, including location,
     description and privacy
@@ -2451,16 +2447,14 @@ class MediaObject(PrimaryObject,SourceNote,DateBase):
         PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
         DateBase.__init__(self,source)
+        AttributeBase.__init__(self,source)
 
-        self.attrlist = []
         if source:
             self.path = source.path
             self.mime = source.mime
             self.desc = source.desc
             self.thumb = source.thumb
             self.place = source.place
-            for attr in source.attrlist:
-                self.attrlist.append(Attribute(attr))
         else:
             self.path = ""
             self.mime = ""
@@ -2485,7 +2479,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase):
         @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
-                self.desc, self.attrlist, self.source_list, self.note,
+                self.desc, self.attribute_list, self.source_list, self.note,
                 self.change, self.date, self.place)
 
     def unserialize(self,data):
@@ -2497,7 +2491,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase):
         @type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.attrlist, self.source_list, self.note, self.change,
+         self.attribute_list, self.source_list, self.note, self.change,
          self.date, self.place) = data
     
 
@@ -2530,7 +2524,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.attrlist + self.source_list
+        check_list = self.attribute_list + self.source_list
         if self.note:
             check_list.append(self.note)
         return check_list
@@ -2542,7 +2536,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        return self.attrlist
+        return self.attribute_list
 
     def set_place_handle(self,place_handle):
         """
@@ -2596,19 +2590,6 @@ class MediaObject(PrimaryObject,SourceNote,DateBase):
     def get_description(self):
         """returns the description of the image"""
         return self.desc
-
-    def add_attribute(self,attr):
-        """Adds a propery to the MediaObject object. This is not used by gramps,
-        but provides a means for XML users to attach other properties to
-        the image"""
-        self.attrlist.append(attr)
-
-    def get_attribute_list(self):
-        """returns the property list associated with the image"""
-        return self.attrlist
-
-    def set_attribute_list(self,list):
-        self.attrlist = list
 
 class Source(PrimaryObject,MediaBase):
     """A record of a source of information"""
@@ -3119,24 +3100,18 @@ class Note(BaseObject):
         """
         return self.format
 
-class MediaRef(SourceNote):
+class MediaRef(PrivateSourceNote,AttributeBase):
     """Media reference class"""
     def __init__(self,source=None):
 
         SourceNote.__init__(self,source)
+        AttributeBase.__init__(self,source)
 
-        self.attrlist = []
         if source:
-            self.private = source.private
             self.ref = source.ref
-            self.note = Note(source.note)
-            for attr in source.attrlist:
-                self.attrlist.append(Attribute(attr))
             self.rect = source.rect
         else:
-            self.private = False
             self.ref = None
-            self.note = None
             self.rect = None
 
     def get_text_data_child_list(self):
@@ -3146,7 +3121,7 @@ class MediaRef(SourceNote):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        check_list = self.attrlist + self.source_list
+        check_list = self.attribute_list + self.source_list
         if self.note:
             check_list.append(self.note)
         return check_list
@@ -3158,26 +3133,7 @@ class MediaRef(SourceNote):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        return self.attrlist
-
-    def set_privacy(self,val):
-        """
-        Sets or clears the privacy flag of the data
-
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
-        @type val: bool
-        """
-        self.private = val
-
-    def get_privacy(self):
-        """
-        Returns the privacy level of the data. 
-
-        @returns: True indicates that the record is private
-        @rtype: bool
-        """
-        return self.private
+        return self.attribute_list
 
     def set_rectangle(self,coord):
         """Sets subection of an image"""
@@ -3193,27 +3149,13 @@ class MediaRef(SourceNote):
     def get_reference_handle(self):
         return self.ref
 
-    def add_attribute(self,attr):
-        """Adds a propery to the MediaObject object. This is not used by gramps,
-        but provides a means for XML users to attach other properties to
-        the image"""
-        self.attrlist.append(attr)
-
-    def get_attribute_list(self):
-        """returns the property list associated with the image"""
-        return self.attrlist
-
-    def set_attribute_list(self,list):
-        """sets the property list associated with the image"""
-        self.attrlist = list
-
-class Attribute(PrivateObject):
+class Attribute(PrivateSourceNote):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
     def __init__(self,source=None):
         """creates a new Attribute object, copying from the source if provided"""
-        PrivateObject.__init__(self,source)
+        PrivateSourceNote.__init__(self,source)
         
         if source:
             self.type = source.type
@@ -3259,13 +3201,13 @@ class Attribute(PrivateObject):
         """returns the value of the Attribute instance"""
         return self.value
 
-class Address(PrivateObject,DateBase):
+class Address(PrivateSourceNote,DateBase):
     """Provides address information for a person"""
 
     def __init__(self,source=None):
         """Creates a new Address instance, copying from the source
         if provided"""
-        PrivateObject.__init__(self,source)
+        PrivateSourceNote.__init__(self,source)
         DateBase.__init__(self,source)
 
         if source:
@@ -3353,7 +3295,7 @@ class Address(PrivateObject,DateBase):
         """returns the postal code of the Address"""
         return self.postal
 
-class Name(PrivateObject,DateBase):
+class Name(PrivateSourceNote,DateBase):
     """Provides name information about a person. A person may have more
     that one name throughout his or her life."""
 
@@ -3363,7 +3305,7 @@ class Name(PrivateObject,DateBase):
     
     def __init__(self,source=None):
         """creates a new Name instance, copying from the source if provided"""
-        PrivateObject.__init__(self,source)
+        PrivateSourceNote.__init__(self,source)
         DateBase.__init__(self,source)
 
         if source:
@@ -3661,20 +3603,19 @@ class Name(PrivateObject,DateBase):
             index += 1
         return True
 
-class Url(BaseObject):
+class Url(BaseObject,PrivacyBase):
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
 
     def __init__(self,source=None):
         """creates a new URL instance, copying from the source if present"""
+        PrivacyBase.__init__(self,source)
         if source:
             self.path = source.path
             self.desc = source.desc
-            self.private = source.private
         else:
             self.path = ""
             self.desc = ""
-            self.private = 0
 
     def get_text_data_list(self):
         """
@@ -3684,25 +3625,6 @@ class Url(BaseObject):
         @rtype: list
         """
         return [self.path,self.desc]
-
-    def set_privacy(self,val):
-        """
-        Sets or clears the privacy flag of the data
-
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
-        @type val: bool
-        """
-        self.private = val
-
-    def get_privacy(self):
-        """
-        Returns the privacy level of the data. 
-
-        @returns: True indicates that the record is private
-        @rtype: bool
-        """
-        return self.private
 
     def set_path(self,path):
         """sets the URL path"""
@@ -3730,7 +3652,7 @@ class Url(BaseObject):
             return 0
         return 1
 
-class Witness(BaseObject):
+class Witness(BaseObject,PrivacyBase):
     """
     The Witness class is used to represent a person who may or may
     not be in the database. If the person is in the database, the
@@ -3740,10 +3662,10 @@ class Witness(BaseObject):
     the person's name.
     """
     def __init__(self,type=Event.NAME,val="",comment=""):
+        PrivacyBase.__init__(self,source)
         self.set_type(type)
         self.set_value(val)
         self.set_comment(comment)
-        self.private = False
 
     def get_text_data_list(self):
         """
@@ -3753,25 +3675,6 @@ class Witness(BaseObject):
         @rtype: list
         """
         return [self.val,self.comment]
-
-    def set_privacy(self,val):
-        """
-        Sets or clears the privacy flag of the data
-
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
-        @type val: bool
-        """
-        self.private = val
-
-    def get_privacy(self):
-        """
-        Returns the privacy level of the data. 
-
-        @returns: True indicates that the record is private
-        @rtype: bool
-        """
-        return self.private
 
     def set_type(self,type):
         self.type = type
@@ -3791,27 +3694,26 @@ class Witness(BaseObject):
     def get_comment(self):
         return self.comment
 
-class SourceRef(BaseObject,DateBase):
+class SourceRef(BaseObject,DateBase,PrivacyBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
         DateBase.__init__(self,source)
+        PrivacyBase.__init__(self,source)
         if source:
             self.confidence = source.confidence
             self.ref = source.ref
             self.page = source.page
             self.comments = Note(source.comments.get())
             self.text = source.text
-            self.private = source.private
         else:
             self.confidence = CONF_NORMAL
             self.ref = None
             self.page = ""
             self.comments = Note()
             self.text = ""
-            self.private = False
 
     def get_text_data_list(self):
         """
@@ -3830,25 +3732,6 @@ class SourceRef(BaseObject,DateBase):
         @rtype: list
         """
         return [self.comments]
-
-    def set_privacy(self,val):
-        """
-        Sets or clears the privacy flag of the data
-
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
-        @type val: bool
-        """
-        self.private = val
-
-    def get_privacy(self):
-        """
-        Returns the privacy level of the data. 
-
-        @returns: True indicates that the record is private
-        @rtype: bool
-        """
-        return self.private
 
     def set_confidence_level(self,val):
         """Sets the confidence level"""
