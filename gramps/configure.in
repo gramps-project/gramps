@@ -7,7 +7,6 @@ PACKAGE=gramps
 
 AC_PATH_PROG(PYTHON, python)
 AC_PATH_PROG(BINSH, sh)
-AC_PATH_PROG(DOCBOOKHTML, db2html)
 
 changequote(<<, >>)dnl
 PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
@@ -264,6 +263,51 @@ AC_SUBST(INTLLIBS)
 AC_MSG_RESULT(ok)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
+
+
+AC_PATH_PROG(DOCBOOKHTML, db2html)
+if test $DOCBOOKHTML; then
+  AC_MSG_CHECKING(for correct gnome-doc DTD)
+  changequote(,)
+  cat > conftest.sgml <<EOF
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+<!ENTITY version "0.0.1"> 
+]>
+<article id="index"> 
+  <artheader>
+   <title>Test</title>
+  </artheader>
+
+  <sect1 id="test">
+    <title>A Test</title>
+    <para>  
+    This is a test. 
+    </para>
+  </sect1>
+</article> 
+EOF
+  $DOCBOOKHTML conftest.sgml -o conftest >&5 2>dbconf.err 
+  testresult=`cat dbconf.err | wc | awk '{print $1}'`
+  changequote([, ])
+  if test $testresult = "0"; then
+    rm -f dbconf.err
+    AC_MSG_RESULT(ok)
+  else
+    AC_MSG_RESULT([
+********
+    I had some problem with the gnome-doc DTD.  Please install
+    gnome-doc-tools from http://people.redhat.com/dcm/software.html.
+    Refer to dbconf.err for details.
+    		  I will not create documentation.
+********])
+    DOCBOOKHTML=
+  fi  
+  rm -rf conftest 
+else
+  AC_MSG_RESULT([********
+  Failed to find docbook (db2html) so will not create documentation.
+********])
+fi
 
 dnl Checks for library functions.
 
