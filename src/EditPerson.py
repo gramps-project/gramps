@@ -103,7 +103,6 @@ class EditPerson:
         self.web_list = self.get_widget("web_list")
         self.web_url = self.get_widget("url_addr")
         self.web_description = self.get_widget("url_des")
-        self.web_browse = self.get_widget("browse")
         self.address_label = self.get_widget("address_label")
         self.address_list = self.get_widget("address_list")
         self.address_start = self.get_widget("address_start")
@@ -658,7 +657,7 @@ def on_web_list_select_row(obj,row,b,c):
     epo = obj.get_data(EDITPERSON)
     url = obj.get_row_data(row)
 
-    epo.web_url.set_text(":%s " % url.get_path())
+    epo.web_url.set_text(": %s " % url.get_path())
     epo.web_description.set_text(": %s" % url.get_description())
 
 #-------------------------------------------------------------------------
@@ -1644,7 +1643,7 @@ def on_ok_clicked(obj):
 def on_browse_clicked(obj):
     import gnome.url
 
-    path = obj.get()
+    path = obj.get()[2:]
     if path != "":
         gnome.url.show(path)
 
