@@ -1,3 +1,9 @@
+2004-08-31  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Sources.py (SourceTab.redraw, SourceSelector.redraw):
+	Use gramps ID instead of handle for display.
+	* src/ImageSelect.py (GlobalMediaProperties.display_refs):
+	Use gramps ID instead of handle for display.
+
 2004-08-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: use new MediaList update routine
 	* src/DisplayModels.py: new update list routine

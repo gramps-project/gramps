@@ -164,7 +164,7 @@ class SourceSelector:
             base_handle = s.get_base_handle()
             base = self.db.get_source_from_handle(base_handle)
             node = self.model.append()
-            self.model.set(node,0,base_handle,1,base.get_title())
+            self.model.set(node,0,base.get_gramps_id(),1,base.get_title())
 
     def src_ok_clicked(self,obj):
         del self.orig[:]
@@ -245,7 +245,7 @@ class SourceTab:
             base_handle = s.get_base_handle()
             node = self.model.append()
             base = self.db.get_source_from_handle(base_handle)
-            self.model.set(node,0,base_handle,1,base.get_title())
+            self.model.set(node,0,base.get_gramps_id(),1,base.get_title())
         if self.list:
             Utils.bold_label(self.parent.sources_label)
         else:

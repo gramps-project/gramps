@@ -28,6 +28,8 @@
 import os
 import string
 import urlparse
+from gettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -54,9 +56,7 @@ import ListModel
 import SelectObject
 import GrampsMime
 import Sources
-
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
 
 _IMAGEX = 140
 _IMAGEY = 150
@@ -201,7 +201,7 @@ class ImageSelect:
 
     def savephoto(self, photo):
         """Save the photo in the dataobj object - must be overridden"""
-    	pass
+        pass
 
 _drag_targets = [
     ('STRING', 0, 0),
@@ -233,7 +233,7 @@ class Gallery(ImageSelect):
 
         _iconlist_refs.append(icon_list)
         self.in_event = 0
-	
+
         # Remember arguments
         self.path      = path;
         self.dataobj   = dataobj;
@@ -1059,25 +1059,25 @@ class GlobalMediaProperties:
             p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Person"),p.get_handle(),GrampsCfg.get_nameof()(p)])
+                    self.refmodel.add([_("Person"),p.get_gramps_id(),GrampsCfg.get_nameof()(p)])
                     any = 1
         for key in self.db.get_family_handles():
             p = self.db.get_family_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Family"),p.get_handle(),Utils.family_name(p,self.db)])
+                    self.refmodel.add([_("Family"),p.get_gramps_id(),Utils.family_name(p,self.db)])
                     any = 1
         for key in self.db.get_source_handles():
             p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Source"),p.get_handle(),p.get_title()])
+                    self.refmodel.add([_("Source"),p.get_gramps_id(),p.get_title()])
                     any = 1
         for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Place"),p.get_handle(),p.get_title()])
+                    self.refmodel.add([_("Place"),p.get_gramps_id(),p.get_title()])
                     any = 1
         if any:
             Utils.bold_label(self.refs_label)
@@ -1224,4 +1224,3 @@ class DeleteMediaQuery:
         self.db.transaction_commit(trans,_("Remove Media Object"))
         if self.update:
             self.update()
-
