@@ -1,3 +1,6 @@
+2005-01-18  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/NameEdit.py: Fix patronymic show/save.
+
 2005-01-18 Eero Tamminen <eerot@sf>
 	* src/plugins/GraphViz.py:
 	  - Content options are now on the Report tab, Layout/looks
