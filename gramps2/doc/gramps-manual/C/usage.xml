@@ -2536,7 +2536,7 @@
 	<figure id="cfe-ar-fig"> 
 	<title>Add Rule dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/cfe-df.png" format="PNG"/></imageobject>
+		fileref="figures/cfe-ar.png" format="PNG"/></imageobject>
 	<textobject> 
 	<phrase>Shows Add Rule dialog. </phrase>
 	</textobject></mediaobject></screenshot></figure>
