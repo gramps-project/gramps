@@ -66,12 +66,19 @@ class GedcomDescription:
         self.gramps2tag_map = {}
         self.tag2gramps_map = {}
         self.prefix = PREFIX_YES
+        self.endl = "\n"
         
     def set_dest(self,val):
         self.dest = val
 
     def get_dest(self):
         return self.dest
+
+    def set_endl(self,val):
+        self.endl = val.replace('\\r','\r').replace('\\n','\n')
+
+    def get_endl(self):
+        return self.endl
 
     def set_adopt(self,val):
         self.adopt = val
@@ -194,6 +201,8 @@ class GedInfoParser:
             self.parent.add_description(name,self.current)
         elif tag == "dest":
             self.current.set_dest(attrs['val'])
+        elif tag == "endl":
+            self.current.set_endl(attrs['val'])
         elif tag == "adopt":
             val = attrs['val']
             if val == 'none':

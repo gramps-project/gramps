@@ -6,6 +6,7 @@
     <conc val="standard"/>
     <alternate_names val="none"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -19,6 +20,7 @@
     <conc val="broken"/>
     <alternate_names val="event_aka"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -32,6 +34,7 @@
     <conc val="broken"/>
     <alternate_names val="alias"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
       <event tag="_DEG" value="Degree"/>
@@ -49,6 +52,7 @@
     <conc val="broken"/>
     <alternate_names val="none"/>
     <prefix val="no"/>
+    <endl val="\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -62,6 +66,7 @@
     <conc val="standard"/>
     <alternate_names val="none"/>
     <prefix val="no"/>
+    <endl val="\n"/>
     <calendar val="yes"/>
     <extended_events>
     </extended_events>
@@ -74,6 +79,7 @@
     <adopt val="legacy"/>
     <conc val="broken"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <alternate_names val="standard"/>
     <calendar val="no"/>
     <extended_events>
@@ -88,6 +94,7 @@
     <conc val="standard"/>
     <alternate_names val="aka"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -101,6 +108,7 @@
     <conc val="broken"/>
     <alternate_names val="none"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -114,6 +122,7 @@
     <conc val="broken"/>
     <alternate_names val="_alias"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -127,6 +136,7 @@
     <conc val="broken"/>
     <alternate_names val="none"/>
     <prefix val="no"/>
+    <endl val="\r\n"/>
     <calendar val="no"/>
     <extended_events>
     </extended_events>
