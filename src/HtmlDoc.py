@@ -40,9 +40,7 @@ try:
 except:
     no_pil = 1
 
-t_one_line_re = re.compile(r"^(.*)<TITLE>.*</TITLE>(.*)$")
-t_start_re = re.compile(r"^(.*)<TITLE>.*$")
-t_stop_re = re.compile(r"^(.*)</TITLE>")
+t_header_line_re = re.compile(r"(.*)<TITLE>.*</TITLE>(.*)", re.DOTALL)
 
 #------------------------------------------------------------------------
 #
@@ -53,23 +51,23 @@ _top = [
     '<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\">\n',
     '<HTML>\n',
     '<HEAD>\n',
-    '<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n',
-    '<TITLE>\n',
-    '</TITLE>\n',
-    '<STYLE type="text/css">\n',
-    '<!--\n',
-    'BODY { background-color: #ffffff }\n',
-    '.parent_name { font-family: Arial; font-style: bold }\n',
-    '.child_name { font-family: Arial; font-style: bold }\n',
-    '-->\n',
-    '</STYLE>\n',
+    '  <META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\n',
+    '  <TITLE>\n',
+    '  </TITLE>\n',
+    '  <STYLE type="text/css">\n',
+    '  <!--\n',
+    '    BODY { background-color: #ffffff }\n',
+    '    .parent_name { font-family: Arial; font-style: bold }\n',
+    '    .child_name { font-family: Arial; font-style: bold }\n',
+    '    -->\n',
+    '  </STYLE>\n',
     '</HEAD>\n',
     '<BODY>\n',
-    '<!-- START -->\n'
+    '  <!-- START -->\n'
     ]
 
 _bottom = [
-    '<!-- STOP -->\n',
+    '  <!-- STOP -->\n',
     '</BODY>\n',
     '</HTML>\n'
     ]
@@ -87,6 +85,9 @@ class HtmlDoc(TextDoc):
             self.base = ""
             
             self.load_template()
+            self.build_header()
+            self.build_style_declaration()
+            
         else:
             self.f = None
             self.filename = source.filename
@@ -94,6 +95,10 @@ class HtmlDoc(TextDoc):
             self.top = source.top
             self.bottom = source.bottom
             self.base = source.base
+            self.file_header = source.file_header
+            self.style_declaration = source.style_declaration
+            self.table_styles = source.table_styles;
+            self.cell_styles = source.cell_styles;
 
     def load_template(self):
         start = re.compile(r"<!--\s*START\s*-->")
@@ -150,108 +155,85 @@ class HtmlDoc(TextDoc):
         self.base = os.path.dirname(self.filename)
 
         self.f = open(self.filename,"w")
+        self.f.write(self.file_header % self.title)
+        self.f.write(self.style_declaration)
 
-        need_start = 1
-        need_stop = 0
+    def build_header(self):
+        top = string.join(self.top, "")
+        match = t_header_line_re.match(top)
+        if match:
+            m = match.groups()
+            self.file_header = '%s<TITLE>%%s</TITLE>%s\n' % (m[0],m[1])
+        else:
+            self.file_header = None
+
+    def build_style_declaration(self):
         fl2txt = utils.fl2txt
-        for line in self.top:
-            if need_start:
-                match = t_one_line_re.match(line)
-                if match:
-                    m = match.groups()
-                    self.f.write('%s<TITLE>%s</TITLE>%s\n' % (m[0],self.title,m[1]))
-                    need_start = 0
-                    continue
-                match = t_start_re.match(line)
-                if match:
-                    m = match.groups()
-                    self.f.write('%s<TITLE>%s\n' % (m[0],self.title))
-                    need_start = 0
-                    need_stop = 1
-                    continue
-            elif need_stop:
-                if t_stop_re.match(line):
-                    self.f.write('</TITLE>\n')
-                    need_stop = 0
-                    continue 
-            self.f.write(line)
-
-        self.f.write('<style type="text/css">\n<!--\n')
+        text = ['<style type="text/css">\n<!--']
         for key in self.cell_styles.keys():
             style = self.cell_styles[key]
-
-            self.f.write('.')
-            self.f.write(key)
+            
             pad = fl2txt("%.3fcm ",style.get_padding())
-            self.f.write(' { padding:' + pad + pad + pad + pad +'; ')
+            top = bottom = left = right = 'none'
             if style.get_top_border():
-	       self.f.write('border-top:thin solid #000000; ')
-            else:
-	       self.f.write('border-top:none; ')
+                top = 'thin solid #000000'
             if style.get_bottom_border():
-	       self.f.write('border-bottom:thin solid #000000; ')
-            else: 
-	       self.f.write('border-bottom:none; ')
-            if style.get_right_border():
-	       self.f.write('border-right:thin solid #000000; ')
-            else:
-	       self.f.write('border-right:none; ')
+                bottom = 'thin solid #000000'
             if style.get_left_border():
-	       self.f.write('border-left:thin solid #000000 }\n')
-            else:
-	       self.f.write('border-left:none }\n')
+	       left = 'thin solid #000000'
+            if style.get_right_border():
+                right = 'thin solid #000000'
+            text.append('.%s {\n' \
+                        '\tpadding: %s %s %s %s;\n' \
+                        '\tborder-top:%s; border-bottom:%s;\n' \
+                        '\tborder-left:%s; border-right:%s;\n}' \
+                        % (key, pad, pad, pad, pad, top, bottom, left, right))
 
         for key in self.style_list.keys():
             style = self.style_list[key]
             font = style.get_font()
-            self.f.write('.')
-            self.f.write(key)
-            self.f.write(' { font-size:' + str(font.get_size()) + 'pt; ')
+            font_size = font.get_size()
+            font_color = '#%02x%02x%02x' % font.get_color()
+            align = style.get_alignment_text()
+            text_indent = fl2txt("%.2f",style.get_first_indent())
+            right_margin = fl2txt("%.2f",style.get_right_margin())
+            left_margin = fl2txt("%.2f",style.get_left_margin())
 
-            self.f.write('color:#%02x%02x%02x; ' % font.get_color())
-
-            align = style.get_alignment()
-            if align == PARA_ALIGN_LEFT:
-                self.f.write('text-align:left; ')
-            elif align == PARA_ALIGN_CENTER:
-                self.f.write('text-align:center; ')
-            elif align == PARA_ALIGN_RIGHT:
-                self.f.write('text-align:right; ')
-            elif align == PARA_ALIGN_JUSTIFY:
-                self.f.write('text-align:justify; ')
-            self.f.write('text-indent:%scm; ' % \
-                         fl2txt("%.2f",style.get_first_indent()))
-            self.f.write('margin-right:%scm; ' % \
-                         fl2txt("%.2f",style.get_right_margin()))
-            self.f.write('margin-left:%scm; ' % \
-                         fl2txt("%.2f",style.get_left_margin()))
+            top = bottom = left = right = 'none'
             if style.get_top_border():
-	       self.f.write('border-top:thin solid #000000; ')
-            else:
-	       self.f.write('border-top:none; ')
+                top = 'thin solid #000000'
             if style.get_bottom_border():
-	       self.f.write('border-bottom:thin solid #000000; ')
-            else: 
-	       self.f.write('border-bottom:none; ')
-            if style.get_right_border():
-	       self.f.write('border-right:thin solid #000000; ')
-            else:
-	       self.f.write('border-right:none; ')
+                bottom = 'thin solid #000000'
             if style.get_left_border():
-	       self.f.write('border-left:thin solid #000000; ')
-            else:
-	       self.f.write('border-left:none; ')
+	       left = 'thin solid #000000'
+            if style.get_right_border():
+                right = 'thin solid #000000'
+
+            italic = bold = ''
             if font.get_italic():
-                self.f.write('font-style:italic; ')
+                italic = 'font-style:italic; '
             if font.get_bold():
-                self.f.write('font-weight:bold; ')
+                bold = 'font-weight:bold; '
             if font.get_type_face() == FONT_SANS_SERIF:
-                self.f.write('font-family:"Helvetica","Arial","sans-serif"}\n')
+                family = '"Helvetica","Arial","sans-serif"'
             else:
-                self.f.write('font-family:"Times New Roman","Times","serif"}\n')
-                
-            
-        self.f.write('-->\n</style>\n')
+                family = '"Times New Roman","Times","serif"'
+
+            text.append('.%s {\n' \
+                        '\tfont-size: %dpt; color: %s;\n' \
+                        '\ttext-align: %s; text-indent: %scm;\n' \
+                        '\tmargin-right: %scm; margin-left: %scm;\n' \
+                        '\tborder-top:%s; border-bottom:%s;\n' \
+                        '\tborder-left:%s; border-right:%s;\n' \
+                        '\t%s%sfont-family:%s;\n}' \
+                        % (key, font_size, font_color,
+                           align, text_indent,
+                           right_margin, left_margin,
+                           top, bottom, left, right,
+                           italic, bold, family))
+
+        text.append('-->\n</style>')
+        self.style_declaration = string.join(text,'\n')
 
     def close(self):
         for line in self.bottom:

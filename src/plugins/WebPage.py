@@ -86,22 +86,6 @@ class IndividualPage:
         self.slist = []
         self.scnt = 1
 
-        tbl = TableStyle()
-        tbl.set_width(100)
-        tbl.set_column_widths([15,85])
-        self.doc.add_table_style("IndTable",tbl)
-
-        cell = TableCellStyle()
-        self.doc.add_cell_style("NormalCell",cell)
-
-        cell = TableCellStyle()
-        cell.set_padding(0.2)
-        self.doc.add_cell_style("ImageCell",cell)
-
-        cell = TableCellStyle()
-        cell.set_padding(0.2)
-        self.doc.add_cell_style("NoteCell",cell)
-
         name = person.getPrimaryName().getRegularName()
         self.doc.set_title(_("Summary of %s") % name)
 
@@ -743,6 +727,9 @@ class WebReport(Report):
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,self.template_name)
+        self.add_styles(doc)
+        doc.build_style_declaration()
+
         my_map = {}
         for l in ind_list:
             my_map[l] = 1
@@ -761,6 +748,24 @@ class WebReport(Report):
             self.dump_index(ind_list,self.selected_style,self.template_name,dir_name)
     
         self.progress_bar_done()
+
+    def add_styles(self,doc):
+        tbl = TableStyle()
+        tbl.set_width(100)
+        tbl.set_column_widths([15,85])
+        doc.add_table_style("IndTable",tbl)
+
+        cell = TableCellStyle()
+        doc.add_cell_style("NormalCell",cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.2)
+        doc.add_cell_style("ImageCell",cell)
+
+        cell = TableCellStyle()
+        cell.set_padding(0.2)
+        doc.add_cell_style("NoteCell",cell)
+
 
 #------------------------------------------------------------------------
 #

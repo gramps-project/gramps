@@ -370,6 +370,17 @@ class ParagraphStyle:
     def get_alignment(self):
         return self.align
 
+    def get_alignment_text(self):
+        if self.align == PARA_ALIGN_LEFT:
+            return "left"
+        elif self.align == PARA_ALIGN_CENTER:
+            return "center"
+        elif self.align == PARA_ALIGN_RIGHT:
+            return "right"
+        elif self.align == PARA_ALIGN_JUSTIFY:
+            return "justify"
+        return "unknown"
+
     def set_left_margin(self,value):
 	"sets the left paragraph margin in centimeters"
         self.lmargin = value
