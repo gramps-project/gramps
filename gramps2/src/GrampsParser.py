@@ -171,6 +171,7 @@ class GrampsParser:
             "resemail"   : (None, self.stop_resemail),
             "sauthor"    : (None, self.stop_sauthor),
             "scallno"    : (None, self.stop_scallno),
+            "sabbrev"    : (None, self.stop_sabbrev),
             "scomments"  : (None, self.stop_scomments),
             "sdate"      : (None,self.stop_sdate),
             "source"     : (self.start_source, self.stop_source),
@@ -762,6 +763,9 @@ class GrampsParser:
 
     def stop_scallno(self,tag):
         self.source.setCallNumber(tag)
+        
+    def stop_sabbrev(self,tag):
+        self.source.setAbbrev(tag)
         
     def stop_stext(self,tag):
         if self.use_p:

@@ -1,3 +1,18 @@
+2003-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/filters/Complete.py: Add filter matching people with the 
+	complete flag.
+	* src/GenericFilter.py (HasCompleteRecord): Add rule matching people 
+	with the complete records. 
+	* src/RelLib.py (Source.setAbbrev, Source.getAbbrev): Add functions.
+	* src/WriteXML.py (write_xml_data): Save abbreviation info for sources.
+	* src/GrampsParser.py (GrampsParser.stop_sabbrev): Parse abbreviation.
+	* src/gramps.glade (sourceEditor): Add widgets for Call Number and 
+	Abbreviation. 
+	* src/EditSource.py: Support Call Number and Abbreviation. 
+	* src/plugins/ReadGedcom.py (parse_source): Parse abbreviation.
+	* src/plugins/WriteGedcom.py (write_sources): Export abbreviation.
+	* NEWS: Update. 
+
 2003-12-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* Version 0.98.0: the "Round me off" release.
 

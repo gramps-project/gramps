@@ -1832,6 +1832,7 @@ class Source:
         self.note = Note()
         self.photoList = []
         self.id = ""
+        self.abbrev = ""
         
     def getDisplayInfo(self):
         return [self.title,self.id,self.author,upper(self.title),
@@ -1910,6 +1911,14 @@ class Source:
         """returns the call number (or some identification indicator)
         of the Source"""
         return self.callno
+
+    def setAbbrev(self,abbrev):
+        """sets the title abbreviation of the Source"""
+        self.abbrev = abbrev
+
+    def getAbbrev(self):
+        """returns the title abbreviation of the Source"""
+        return self.abbrev
 
 class SourceRef:
     """Source reference, containing detailed information about how a

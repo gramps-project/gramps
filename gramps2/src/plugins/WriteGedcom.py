@@ -775,8 +775,8 @@ class GedcomWriter:
                 self.writeln("1 AUTH %s" % self.cnvtxt(source.getAuthor()))
             if source.getPubInfo():
                 self.writeln("1 PUBL %s" % self.cnvtxt(source.getPubInfo()))
-            if source.getTitle():
-                self.writeln("1 ABBR %s" % self.cnvtxt(source.getTitle()))
+            if source.getAbbrev():
+                self.writeln("1 ABBR %s" % self.cnvtxt(source.getAbbrev()))
             if source.getCallNumber():
                 self.writeln("1 CALN %s" % self.cnvtxt(source.getCallNumber()))
             if source.getNote():

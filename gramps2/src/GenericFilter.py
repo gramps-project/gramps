@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """Generic Filtering Routines"""
 
 __author__ = "Don Allingham"
@@ -265,6 +267,29 @@ class HasIdOf(Rule):
 
     def apply(self,db,p):
         return p.getId() == self.list[0]
+
+#-------------------------------------------------------------------------
+#
+# HasCompleteRecord
+#
+#-------------------------------------------------------------------------
+class HasCompleteRecord(Rule):
+    """Rule that checks for a person whose record is complete"""
+
+    labels = []
+    
+    def name(self):
+        return 'Has complete record'
+
+    def category(self): 
+        return _('General filters')
+    
+    def description(self):
+        return _('Matches all people whose records are complete')
+
+    def apply(self,db,p):
+        return p.getComplete() == 1
+
 
 #-------------------------------------------------------------------------
 #
@@ -1419,6 +1444,7 @@ tasks = {
                                               : HasCommonAncestorWithFilterMatch,
     _("Is a female")                          : IsFemale,
     _("Is a male")                            : IsMale,
+    _("Has complete record")                  : HasCompleteRecord,
     _("Has the personal event")               : HasEvent,
     _("Has the family event")                 : HasFamilyEvent,
     _("Has the personal attribute")           : HasAttribute,
