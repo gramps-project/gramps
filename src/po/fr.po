@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr_new\n"
-"POT-Creation-Date: Tue Jan 20 09:24:36 2004\n"
-"PO-Revision-Date: 2004-01-20 17:17+0100\n"
+"POT-Creation-Date: Fri Jan 23 14:46:54 2004\n"
+"PO-Revision-Date: 2004-01-23 14:50+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,9 +29,9 @@ msgstr "Le fichier indiqué est introuvable"
 
 #: AddSpouse.py:90 ChooseParents.py:57 EditPerson.py:250 FamilyView.py:208
 #: PeopleStore.py:58 SelectChild.py:120 SelectPerson.py:74 gramps_main.py:103
-#: plugins/BookReport.py:612 plugins/FilterEditor.py:315
+#: plugins/BookReport.py:612 plugins/FilterEditor.py:316
 #: plugins/IndivComplete.py:394 plugins/IndivSummary.py:232
-#: plugins/PatchNames.py:145 plugins/RelCalc.py:86 plugins/TimeLine.py:378
+#: plugins/PatchNames.py:145 plugins/RelCalc.py:87 plugins/TimeLine.py:378
 #: plugins/WebPage.py:322
 msgid "Name"
 msgstr "Nom"
@@ -40,7 +40,7 @@ msgstr "Nom"
 #: MediaView.py:77 PeopleStore.py:58 PlaceView.py:62 SelectChild.py:120
 #: SelectObject.py:86 SelectPerson.py:74 SourceView.py:70 Sources.py:79
 #: Sources.py:175 Witness.py:57 gramps_main.py:103 plugins/PatchNames.py:136
-#: plugins/RelCalc.py:86
+#: plugins/RelCalc.py:87
 msgid "ID"
 msgstr "Id"
 
@@ -57,12 +57,12 @@ msgstr "Sélectionner l'époux(se) ou le Partenaire de %s"
 msgid "Choose Spouse/Partner"
 msgstr "Sélectionner l'époux(se) ou le Partenaire"
 
-#: AddSpouse.py:116 const.py:493 const.py:501 plugins/FamilyGroup.py:304
+#: AddSpouse.py:116 const.py:424 const.py:432 plugins/FamilyGroup.py:304
 #: plugins/FamilyGroup.py:306
 msgid "Married"
 msgstr "Marié(e)"
 
-#: AddSpouse.py:228 const.py:495 const.py:503
+#: AddSpouse.py:228 const.py:426 const.py:434
 msgid "Partners"
 msgstr "Partenaires"
 
@@ -96,7 +96,7 @@ msgstr ""
 
 #: Bookmarks.py:93 Bookmarks.py:98
 msgid "Edit Bookmarks"
-msgstr "Afficher l'annuaire"
+msgstr "Gérer les signets"
 
 #: Calendar.py:52
 msgid "abt\\.?"
@@ -216,7 +216,7 @@ msgstr "ap"
 
 #: Calendar.py:141
 msgid "Undefined Calendar"
-msgstr "Calendrier non défini"
+msgstr " non défini"
 
 #: ChooseParents.py:100
 msgid "Choose the Parents of %s"
@@ -227,7 +227,7 @@ msgid "Choose Parents"
 msgstr "Sélectionner les Parents"
 
 #: ChooseParents.py:129 ChooseParents.py:130 ChooseParents.py:520
-#: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:170
+#: ChooseParents.py:521 SelectChild.py:116 SelectChild.py:118 const.py:171
 #: gramps.glade:4521 gramps.glade:4714 gramps.glade:5154 gramps.glade:5334
 #: gramps.glade:6957 gramps.glade:7203 gramps.glade:7811 gramps.glade:7982
 #: plugins/EventCmp.py:308 plugins/FamilyGroup.py:153 plugins/GraphViz.py:398
@@ -263,14 +263,14 @@ msgstr "Modifier les Parents"
 msgid "Parent"
 msgstr "Parent"
 
-#: ChooseParents.py:540 FamilyView.py:840 plugins/FamilyGroup.py:212
+#: ChooseParents.py:540 FamilyView.py:882 plugins/FamilyGroup.py:212
 #: plugins/IndivComplete.py:213 plugins/IndivComplete.py:215
 #: plugins/IndivComplete.py:434 plugins/IndivSummary.py:293
 #: plugins/WebPage.py:341 plugins/WebPage.py:344
 msgid "Mother"
 msgstr "Mère"
 
-#: ChooseParents.py:541 FamilyView.py:839 plugins/FamilyGroup.py:199
+#: ChooseParents.py:541 FamilyView.py:881 plugins/FamilyGroup.py:199
 #: plugins/IndivComplete.py:205 plugins/IndivComplete.py:207
 #: plugins/IndivComplete.py:429 plugins/IndivSummary.py:279
 #: plugins/WebPage.py:340 plugins/WebPage.py:343
@@ -328,7 +328,7 @@ msgstr "Erreur Interne"
 msgid "Edit Person"
 msgstr "Afficher l'individu"
 
-#: EditPerson.py:230 EditPerson.py:256 EditPlace.py:109 const.py:393
+#: EditPerson.py:230 EditPerson.py:256 EditPlace.py:109 const.py:368
 #: plugins/pafexport.glade:217
 msgid "Description"
 msgstr "Description"
@@ -349,7 +349,7 @@ msgstr "Lieu"
 
 #: EditPerson.py:238 EditSource.py:191 ImageSelect.py:683 ImageSelect.py:855
 #: ImageSelect.py:951 Marriage.py:173 marriage.glade:888
-#: plugins/FilterEditor.py:315 plugins/PatchNames.py:142
+#: plugins/FilterEditor.py:316 plugins/PatchNames.py:142
 msgid "Value"
 msgstr "Valeur"
 
@@ -371,17 +371,17 @@ msgstr "Type"
 msgid "Path"
 msgstr "Chemin"
 
-#: EditPerson.py:475 GrampsCfg.py:73 const.py:175 gramps.glade:4609
+#: EditPerson.py:475 GrampsCfg.py:73 const.py:176 gramps.glade:4609
 #: gramps.glade:4802 gramps.glade:5220 gramps.glade:5400 gramps.glade:7045
 #: gramps.glade:7291 gramps.glade:7877 gramps.glade:8048
 msgid "None"
 msgstr "Aucun(e)"
 
-#: EditPerson.py:492 EditSource.py:173
+#: EditPerson.py:492 EditPlace.py:457 EditSource.py:173
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
 
-#: EditPerson.py:500 choose.glade:218 const.py:140 plugins/Check.py:294
+#: EditPerson.py:500 choose.glade:218 const.py:141 plugins/Check.py:294
 #: plugins/FamilyGroup.py:657 plugins/IndivComplete.py:275
 #: plugins/IndivSummary.py:172 plugins/WebPage.py:591 select_person.glade:218
 msgid "unknown"
@@ -549,68 +549,77 @@ msgstr "Genre"
 msgid "Status"
 msgstr "Statut"
 
-#: FamilyView.py:301 PeopleView.py:384
+#: FamilyView.py:302 FamilyView.py:310 FamilyView.py:331 FamilyView.py:338
+#: FamilyView.py:359 FamilyView.py:368 FamilyView.py:389 FamilyView.py:398
+#: FamilyView.py:438 FamilyView.py:444 FamilyView.py:502 FamilyView.py:508
+#: FamilyView.py:970 FamilyView.py:976 FamilyView.py:1008 FamilyView.py:1014
+#: PedView.py:493 PedView.py:503 PeopleView.py:378 PeopleView.py:391
+#: gramps.glade:781 gramps_main.py:399
+msgid "Home"
+msgstr "de Cujus"
+
+#: FamilyView.py:303 PeopleView.py:379
 msgid "Add Bookmark"
 msgstr "Ajouter un signet"
 
-#: FamilyView.py:304 FamilyView.py:325 FamilyView.py:348 FamilyView.py:371
-#: PedView.py:497 PeopleView.py:392
+#: FamilyView.py:306 FamilyView.py:334 FamilyView.py:364 FamilyView.py:394
+#: PedView.py:499 PeopleView.py:387
 msgid "People Menu"
 msgstr "Menu Individu"
 
-#: FamilyView.py:345 FamilyView.py:368 FamilyView.py:940 FamilyView.py:971
+#: FamilyView.py:361 FamilyView.py:391 FamilyView.py:989 FamilyView.py:1027
 msgid "Add parents"
 msgstr "Ajouter des parents"
 
-#: FamilyView.py:401
+#: FamilyView.py:429
 msgid "Child Menu"
 msgstr "Menu Enfant"
 
-#: FamilyView.py:420
+#: FamilyView.py:455
 msgid "Make the selected child an active person"
 msgstr "Sélectionner l'enfant en cours"
 
-#: FamilyView.py:421 FamilyView.py:939 FamilyView.py:970
+#: FamilyView.py:456 FamilyView.py:988 FamilyView.py:1026
 msgid "Edit the child/parent relationships"
 msgstr "Modifier la relation Parent/Enfant"
 
-#: FamilyView.py:422
+#: FamilyView.py:457
 msgid "Edit the selected child"
 msgstr "Modifier l'enfant en cours"
 
-#: FamilyView.py:423
+#: FamilyView.py:458
 msgid "Remove the selected child"
 msgstr "Supprimer l'enfant en cours"
 
-#: FamilyView.py:458
+#: FamilyView.py:493
 msgid "Spouse Menu"
 msgstr "Menu Époux(se)"
 
-#: FamilyView.py:477
+#: FamilyView.py:519
 msgid "Make the selected spouse an active person"
 msgstr "Sélectionner l'époux(se) en cours"
 
-#: FamilyView.py:478
+#: FamilyView.py:520
 msgid "Edit relationship"
 msgstr "Modifier la relation"
 
-#: FamilyView.py:479
+#: FamilyView.py:521
 msgid "Remove the selected spouse"
 msgstr "Supprimer l'époux(se) en cours"
 
-#: FamilyView.py:480
+#: FamilyView.py:522
 msgid "Edit the selected spouse"
 msgstr "Modifier l'époux(se) en cours"
 
-#: FamilyView.py:481
+#: FamilyView.py:523
 msgid "Set the selected spouse as the preferred spouse"
 msgstr "Choisir l'époux(se) en cours comme favori(te)"
 
-#: FamilyView.py:682
+#: FamilyView.py:724
 msgid "Remove %s as a spouse of %s?"
 msgstr "Voulez vous supprimer %s en tant qu'époux(se) de %s?"
 
-#: FamilyView.py:683
+#: FamilyView.py:725
 msgid ""
 "Removing a spouse removes the relationship between the spouse and the active "
 "person. It does not remove the spouse from the database"
@@ -618,11 +627,11 @@ msgstr ""
 "Détruire un époux(se) revient à détruire son lien avec la personne "
 "sélectionné. Cela ne supprime pas l'époux(se) de la base de données"
 
-#: FamilyView.py:686
+#: FamilyView.py:728
 msgid "_Remove Spouse"
 msgstr "_Enlever un(e) époux(se)"
 
-#: FamilyView.py:856
+#: FamilyView.py:898
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
@@ -630,40 +639,40 @@ msgstr ""
 "%s: %s\n"
 "\tRelation: %s"
 
-#: FamilyView.py:858
+#: FamilyView.py:900
 msgid "%s: unknown"
 msgstr "%s: inconnu"
 
-#: FamilyView.py:892 Plugins.py:457 Plugins.py:458 Plugins.py:459
-#: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:176
-#: const.py:496 const.py:504 gramps.glade:4631 gramps.glade:4824
+#: FamilyView.py:934 Plugins.py:457 Plugins.py:458 Plugins.py:459
+#: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:177
+#: const.py:427 const.py:435 gramps.glade:4631 gramps.glade:4824
 #: gramps.glade:5242 gramps.glade:5422 gramps.glade:7067 gramps.glade:7313
 #: gramps.glade:7899 gramps.glade:8070 gramps_main.py:1648
 #: plugins/WebPage.py:336
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: FamilyView.py:919
+#: FamilyView.py:961
 msgid "Parents Menu"
 msgstr "Menu Parents"
 
-#: FamilyView.py:938 FamilyView.py:969
+#: FamilyView.py:987 FamilyView.py:1025
 msgid "Make the selected parents the active family"
 msgstr "Choisir les parents en cours comme famille en cours"
 
-#: FamilyView.py:941 FamilyView.py:972
+#: FamilyView.py:990 FamilyView.py:1028
 msgid "Remove parents"
 msgstr "Supprimer les parents"
 
-#: FamilyView.py:950
+#: FamilyView.py:999
 msgid "Spouse Parents Menu"
 msgstr "Menu des parents de l'époux(se)"
 
-#: FamilyView.py:1034 FamilyView.py:1049
+#: FamilyView.py:1090 FamilyView.py:1105
 msgid "Remove Parents of %s"
 msgstr "Supprimer les Parents de %s"
 
-#: FamilyView.py:1035 FamilyView.py:1050
+#: FamilyView.py:1091 FamilyView.py:1106
 msgid ""
 "Removing the parents of a person removes the person as a child of the "
 "parents. The parents are not removed from the database, and the relationship "
@@ -673,15 +682,15 @@ msgstr ""
 "parents. Cela ne supprime pas les parents de la base de données et la "
 "relation entre les parents ne sera nullement modifiée."
 
-#: FamilyView.py:1039 FamilyView.py:1054
+#: FamilyView.py:1095 FamilyView.py:1110
 msgid "_Remove Parents"
 msgstr "_Supprimer les Parents"
 
-#: FamilyView.py:1156
+#: FamilyView.py:1212
 msgid "Attempt to Reorder Children Failed"
 msgstr "La tentative de réordonner les enfants a échoué"
 
-#: FamilyView.py:1157
+#: FamilyView.py:1213
 msgid "Children must be ordered by their birth dates."
 msgstr "Les enfants doivent être triés par date de naissance"
 
@@ -693,7 +702,7 @@ msgstr "Tout le monde"
 msgid "Qualifier"
 msgstr "Qualificatif"
 
-#: Filter.py:82 GenericFilter.py:103 VersionControl.py:304 rule.glade:1255
+#: Filter.py:82 GenericFilter.py:104 VersionControl.py:304 rule.glade:1255
 msgid "No description"
 msgstr "Pas de description"
 
@@ -721,33 +730,33 @@ msgstr "Chercher un Média"
 msgid "French Republican"
 msgstr "Révolutionnaire"
 
-#: GenericFilter.py:100
+#: GenericFilter.py:101
 msgid "Miscellaneous filters"
 msgstr "Filtres divers"
 
-#: GenericFilter.py:132 GenericFilter.py:266 GenericFilter.py:285
-#: GenericFilter.py:308 GenericFilter.py:913 GenericFilter.py:1215
+#: GenericFilter.py:133 GenericFilter.py:253 GenericFilter.py:272
+#: GenericFilter.py:295 GenericFilter.py:900 GenericFilter.py:1202
 msgid "General filters"
 msgstr "Filtres Généraux"
 
-#: GenericFilter.py:135
+#: GenericFilter.py:136
 msgid "Matches everyone in the database"
 msgstr "Assortir tout un chacun dans la base"
 
-#: GenericFilter.py:149 GenericFilter.py:257 GenericFilter.py:325
-#: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:544
-#: GenericFilter.py:589 GenericFilter.py:687 GenericFilter.py:739
-#: GenericFilter.py:830 choose.glade:536 gramps.glade:3370 imagesel.glade:552
+#: GenericFilter.py:150 GenericFilter.py:244 GenericFilter.py:312
+#: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:531
+#: GenericFilter.py:576 GenericFilter.py:674 GenericFilter.py:726
+#: GenericFilter.py:817 choose.glade:536 gramps.glade:3370 imagesel.glade:552
 #: imagesel.glade:1409 mergedata.glade:468 mergedata.glade:1060
-#: plugins/FilterEditor.py:462
+#: plugins/FilterEditor.py:461
 msgid "ID:"
 msgstr "ID:"
 
-#: GenericFilter.py:160
+#: GenericFilter.py:161
 msgid "Relationship filters"
 msgstr "Filtres relationnels"
 
-#: GenericFilter.py:163
+#: GenericFilter.py:164
 msgid ""
 "Matches the ancestors of two people back to a common ancestor, producing the "
 "relationship path between two people."
@@ -755,331 +764,331 @@ msgstr ""
 "Assortir les ancêtres de deux individus à un ancêtre commun, de façon à "
 "relier ces deux personnes."
 
-#: GenericFilter.py:263
+#: GenericFilter.py:250
 msgid "Matches the person with a specified GRAMPS ID"
 msgstr "Assortir l'individu à son identifiant GRAMPS"
 
-#: GenericFilter.py:288
+#: GenericFilter.py:275
 msgid "Matches all people whose records are complete"
 msgstr "Rassemble les individus aux enregistrements complets"
 
-#: GenericFilter.py:311
+#: GenericFilter.py:298
 msgid "Matches all females"
 msgstr "Comparer les femmes"
 
-#: GenericFilter.py:325 GenericFilter.py:374 GenericFilter.py:589
-#: GenericFilter.py:645 plugins/FilterEditor.py:468
+#: GenericFilter.py:312 GenericFilter.py:361 GenericFilter.py:576
+#: GenericFilter.py:632 plugins/FilterEditor.py:468
 msgid "Inclusive:"
 msgstr "Inclusif:"
 
-#: GenericFilter.py:336 GenericFilter.py:383 GenericFilter.py:426
-#: GenericFilter.py:475 GenericFilter.py:550
+#: GenericFilter.py:323 GenericFilter.py:370 GenericFilter.py:413
+#: GenericFilter.py:462 GenericFilter.py:537
 msgid "Descendant filters"
 msgstr "Filtres des descendants"
 
-#: GenericFilter.py:339
+#: GenericFilter.py:326
 msgid "Matches all descendants for the specified person"
 msgstr "Assortir les descendants à une personne"
 
-#: GenericFilter.py:374 GenericFilter.py:503 GenericFilter.py:645
-#: GenericFilter.py:789 GenericFilter.py:876 GenericFilter.py:1245
-#: GenericFilter.py:1268 plugins/FilterEditor.py:464
+#: GenericFilter.py:361 GenericFilter.py:490 GenericFilter.py:632
+#: GenericFilter.py:776 GenericFilter.py:863 GenericFilter.py:1232
+#: GenericFilter.py:1255 plugins/FilterEditor.py:463
 msgid "Filter name:"
 msgstr "Filtre sur le Nom:"
 
-#: GenericFilter.py:386
+#: GenericFilter.py:373
 msgid "Matches people that are descendants of someone matched by a filter"
 msgstr "Assortir les descendants d'un individu aux résultats du filtrage"
 
-#: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:687
-#: GenericFilter.py:739 plugins/FilterEditor.py:460
+#: GenericFilter.py:402 GenericFilter.py:447 GenericFilter.py:674
+#: GenericFilter.py:726 plugins/FilterEditor.py:459
 msgid "Number of generations:"
 msgstr "Nombre de générations:"
 
-#: GenericFilter.py:429
+#: GenericFilter.py:416
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr "Assortir les descendants d'un individu sur moins de N générations"
 
-#: GenericFilter.py:471
+#: GenericFilter.py:458
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr "Assortir les descendants d'un individu sur au moins N générations"
 
-#: GenericFilter.py:514
+#: GenericFilter.py:501
 msgid "Matches the person that is a child of someone matched by a filter"
 msgstr "Assortir les enfants d'un individu aux résultats du filtrage"
 
-#: GenericFilter.py:517 GenericFilter.py:803 GenericFilter.py:1033
-#: GenericFilter.py:1277
+#: GenericFilter.py:504 GenericFilter.py:790 GenericFilter.py:1020
+#: GenericFilter.py:1264
 msgid "Family filters"
 msgstr "Filtres Familles"
 
-#: GenericFilter.py:553
+#: GenericFilter.py:540
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
 msgstr "Assortir les descendants ou leurs époux(se) à un individu"
 
-#: GenericFilter.py:600
+#: GenericFilter.py:587
 msgid "Matches people that are ancestors of a specified person"
 msgstr "Assortir les ascendants à un individu"
 
-#: GenericFilter.py:603 GenericFilter.py:658 GenericFilter.py:702
-#: GenericFilter.py:754 GenericFilter.py:840 GenericFilter.py:886
+#: GenericFilter.py:590 GenericFilter.py:645 GenericFilter.py:689
+#: GenericFilter.py:741 GenericFilter.py:827 GenericFilter.py:873
 msgid "Ancestral filters"
 msgstr "Filtres Ascendants"
 
-#: GenericFilter.py:654
+#: GenericFilter.py:641
 msgid "Matches people that are ancestors of someone matched by a filter"
 msgstr "Assortir les ascendants d'un individu aux résultats du filtrage"
 
-#: GenericFilter.py:698
+#: GenericFilter.py:685
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr "Assortir les ascendants d'un individu sur moins de N générations"
 
-#: GenericFilter.py:750
+#: GenericFilter.py:737
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr "Assortir les ascendants d'un individu sur au moins N générations"
 
-#: GenericFilter.py:800
+#: GenericFilter.py:787
 msgid "Matches the person that is a parent of someone matched by a filter"
 msgstr "Assortir les parents d'un individu aux résultats du filtrage"
 
-#: GenericFilter.py:836
+#: GenericFilter.py:823
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr "Assortir les individus ayant des ascendants commun à un individu"
 
-#: GenericFilter.py:882
+#: GenericFilter.py:869
 msgid "Matches people that have a common ancestor with someone matched by a filter"
 msgstr "Assortir les individus ayant des ascendants commun aux résultats du filtrage"
 
-#: GenericFilter.py:916
+#: GenericFilter.py:903
 msgid "Matches all males"
 msgstr "Comparer les hommes"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:1907 edit_person.glade:3979
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:1907 edit_person.glade:3979
 #: marriage.glade:444 places.glade:1710
 msgid "Description:"
 msgstr "Description:"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:1955 marriage.glade:1771
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:1955 marriage.glade:1771
 #: mergedata.glade:534 mergedata.glade:717 mergedata.glade:1108
-#: mergedata.glade:1156 plugins/FilterEditor.py:458
+#: mergedata.glade:1156 plugins/FilterEditor.py:457
 msgid "Place:"
 msgstr "Lieu:"
 
-#: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
-#: GenericFilter.py:1118 edit_person.glade:2003 edit_person.glade:2869
+#: GenericFilter.py:916 GenericFilter.py:963 GenericFilter.py:1065
+#: GenericFilter.py:1105 edit_person.glade:2003 edit_person.glade:2869
 #: marriage.glade:348 marriage.glade:1723 mergedata.glade:558
 #: mergedata.glade:693 mergedata.glade:1084 mergedata.glade:1132
 msgid "Date:"
 msgstr "Date:"
 
-#: GenericFilter.py:929 plugins/FilterEditor.py:58
+#: GenericFilter.py:916 plugins/FilterEditor.py:58
 msgid "Personal event:"
 msgstr "Évènement Individuel:"
 
-#: GenericFilter.py:943
+#: GenericFilter.py:930
 msgid "Matches the person with a personal event of a particular value"
 msgstr "Assortir les individus ayant un évènement individuel de même valeur"
 
-#: GenericFilter.py:946 GenericFilter.py:993 GenericFilter.py:1095
-#: GenericFilter.py:1135
+#: GenericFilter.py:933 GenericFilter.py:980 GenericFilter.py:1082
+#: GenericFilter.py:1122
 msgid "Event filters"
 msgstr "Filtres Évènements"
 
-#: GenericFilter.py:976 plugins/FilterEditor.py:59
+#: GenericFilter.py:963 plugins/FilterEditor.py:59
 msgid "Family event:"
 msgstr "Évènement Familial:"
 
-#: GenericFilter.py:990
+#: GenericFilter.py:977
 msgid "Matches the person with a family event of a particular value"
 msgstr "Assortir les individu ayant un événement familial de même valeur"
 
-#: GenericFilter.py:1022
+#: GenericFilter.py:1009
 msgid "Number of relationships:"
 msgstr "Nombre de relations:"
 
-#: GenericFilter.py:1023 plugins/FilterEditor.py:62
+#: GenericFilter.py:1010 plugins/FilterEditor.py:62
 msgid "Relationship type:"
 msgstr "Type de relation:"
 
-#: GenericFilter.py:1024
+#: GenericFilter.py:1011
 msgid "Number of children:"
 msgstr "Nombre d'enfants:"
 
-#: GenericFilter.py:1030
+#: GenericFilter.py:1017
 msgid "Matches the person who has a particular relationship"
 msgstr "Assortir les individus ayant une relation identique"
 
-#: GenericFilter.py:1092
+#: GenericFilter.py:1079
 msgid "Matches the person with a birth of a particular value"
 msgstr "Assortir les individus ayant une même date de naissance"
 
-#: GenericFilter.py:1132
+#: GenericFilter.py:1119
 msgid "Matches the person with a death of a particular value"
 msgstr "Assortir les individus ayant une même date de décès"
 
-#: GenericFilter.py:1158 GenericFilter.py:1180 edit_person.glade:2487
+#: GenericFilter.py:1145 GenericFilter.py:1167 edit_person.glade:2487
 #: imagesel.glade:957 imagesel.glade:1727
 msgid "Value:"
 msgstr "Valeur:"
 
-#: GenericFilter.py:1158 plugins/FilterEditor.py:60
+#: GenericFilter.py:1145 plugins/FilterEditor.py:60
 msgid "Personal attribute:"
 msgstr "Attribut Individuel:"
 
-#: GenericFilter.py:1180 plugins/FilterEditor.py:61
+#: GenericFilter.py:1167 plugins/FilterEditor.py:61
 msgid "Family attribute:"
 msgstr "Attribut Familial:"
 
-#: GenericFilter.py:1206 choose.glade:630 edit_person.glade:1415
+#: GenericFilter.py:1193 choose.glade:630 edit_person.glade:1415
 #: gramps.glade:3464 imagesel.glade:718
 msgid "Title:"
 msgstr "Titre:"
 
-#: GenericFilter.py:1206 edit_person.glade:1343
+#: GenericFilter.py:1193 edit_person.glade:1343
 msgid "Suffix:"
 msgstr "Suffixe:"
 
-#: GenericFilter.py:1206 edit_person.glade:1367
+#: GenericFilter.py:1193 edit_person.glade:1367
 msgid "Family name:"
 msgstr "Patronyme:"
 
-#: GenericFilter.py:1206 edit_person.glade:1391
+#: GenericFilter.py:1193 edit_person.glade:1391
 msgid "Given name:"
 msgstr "Prénom:"
 
-#: GenericFilter.py:1212
+#: GenericFilter.py:1199
 msgid "Matches the person with a specified (partial) name"
 msgstr "Assortir les individus ayant quasiment le même nom"
 
-#: GenericFilter.py:1274
+#: GenericFilter.py:1261
 msgid "Matches the person married to someone matching a filter"
 msgstr "Assortir les individus marriés à un individu résultant du filtrage"
 
-#: GenericFilter.py:1421
+#: GenericFilter.py:1408
 msgid "Everyone"
 msgstr "Tout le monde"
 
-#: GenericFilter.py:1422
+#: GenericFilter.py:1409
 msgid "Has the Id"
 msgstr "A l'identifiant"
 
-#: GenericFilter.py:1423
+#: GenericFilter.py:1410
 msgid "Has a name"
 msgstr "A un Nom"
 
-#: GenericFilter.py:1424
+#: GenericFilter.py:1411
 msgid "Has the relationships"
 msgstr "A les Relations"
 
-#: GenericFilter.py:1425
+#: GenericFilter.py:1412
 msgid "Has the death"
 msgstr "A le Décès"
 
-#: GenericFilter.py:1426
+#: GenericFilter.py:1413
 msgid "Has the birth"
 msgstr "A la Naissance"
 
-#: GenericFilter.py:1427
+#: GenericFilter.py:1414
 msgid "Is a descendant of"
 msgstr "est le descendant de"
 
-#: GenericFilter.py:1428
+#: GenericFilter.py:1415
 msgid "Is a descendant family member of"
 msgstr "est un membre de la famille descendant de"
 
-#: GenericFilter.py:1430
+#: GenericFilter.py:1416
 msgid "Is a descendant of filter match"
 msgstr "est le descendant d'un individu résultant du filtrage"
 
-#: GenericFilter.py:1432
+#: GenericFilter.py:1417
 msgid "Is a descendant of person not more than N generations away"
 msgstr "Est le descendant d'un individu sur moins de N générations"
 
-#: GenericFilter.py:1434
+#: GenericFilter.py:1419
 msgid "Is a descendant of person at least N generations away"
 msgstr "Est le descendant d'un individu sur au moins N générations"
 
-#: GenericFilter.py:1436
+#: GenericFilter.py:1421
 msgid "Is a child of filter match"
 msgstr "Est un enfant d'un individu résultant du filtrage"
 
-#: GenericFilter.py:1438
+#: GenericFilter.py:1422
 msgid "Is an ancestor of"
 msgstr "est l'ancêtre de"
 
-#: GenericFilter.py:1440
+#: GenericFilter.py:1423
 msgid "Is an ancestor of filter match"
 msgstr "Est l'ascendant d'un individu résultant du filtrage"
 
-#: GenericFilter.py:1442
+#: GenericFilter.py:1424
 msgid "Is an ancestor of person not more than N generations away"
 msgstr "Est l'ascendant d'un individu sur moins de N générations"
 
-#: GenericFilter.py:1444
+#: GenericFilter.py:1426
 msgid "Is an ancestor of person at least N generations away"
 msgstr "Est l'ascendant d'un individu sur au moins N générations"
 
-#: GenericFilter.py:1446
+#: GenericFilter.py:1428
 msgid "Is a parent of filter match"
 msgstr "Est le parent d'un individu résultant du filtrage"
 
-#: GenericFilter.py:1448
+#: GenericFilter.py:1429
 msgid "Has a common ancestor with"
 msgstr "a un ancêtre commun avec"
 
-#: GenericFilter.py:1450
+#: GenericFilter.py:1430
 msgid "Has a common ancestor with filter match"
 msgstr "Est l'ascendant commun d'individus résultant du filtrage"
 
-#: GenericFilter.py:1452
+#: GenericFilter.py:1432
 msgid "Is a female"
 msgstr "est une femme"
 
-#: GenericFilter.py:1453
+#: GenericFilter.py:1433
 msgid "Is a male"
 msgstr "est un homme"
 
-#: GenericFilter.py:1454
+#: GenericFilter.py:1434
 msgid "Has complete record"
 msgstr "A un enregistrement complet"
 
-#: GenericFilter.py:1455
+#: GenericFilter.py:1435
 msgid "Has the personal event"
 msgstr "A l'évènement individuel"
 
-#: GenericFilter.py:1456
+#: GenericFilter.py:1436
 msgid "Has the family event"
 msgstr "A l'évènement Familial"
 
-#: GenericFilter.py:1457
+#: GenericFilter.py:1437
 msgid "Has the personal attribute"
 msgstr "A l'attribut individuel"
 
-#: GenericFilter.py:1458
+#: GenericFilter.py:1438
 msgid "Has the family attribute"
 msgstr "A l'attribut familial"
 
-#: GenericFilter.py:1459
+#: GenericFilter.py:1439
 msgid "Matches the filter named"
 msgstr "Correspond au critère suivant"
 
-#: GenericFilter.py:1460
+#: GenericFilter.py:1440
 msgid "Is spouse of filter match"
 msgstr "Est l'époux(se) d'un individu résultant du filtrage"
 
-#: GenericFilter.py:1461
+#: GenericFilter.py:1441
 msgid "Relationship path between two people"
 msgstr "Relation entre deux individus"
 
@@ -1422,11 +1431,11 @@ msgstr "Ancre"
 msgid "Double clicking will make %s the active person"
 msgstr "Un double clic activera l'individu %s"
 
-#: PedView.py:493
+#: PedView.py:495
 msgid "Set anchor"
 msgstr "Jeter l'ancre"
 
-#: PedView.py:494
+#: PedView.py:496
 msgid "Remove anchor"
 msgstr "Lever l'ancre"
 
@@ -1434,16 +1443,12 @@ msgstr "Lever l'ancre"
 msgid "Death date"
 msgstr "Date de décès"
 
-#: PeopleStore.py:250 PeopleView.py:255 PeopleView.py:274 gramps_main.py:946
+#: PeopleStore.py:250 PeopleView.py:250 PeopleView.py:269 gramps_main.py:946
 #: gramps_main.py:1546
 msgid "Updating display..."
 msgstr "Chargement en cours ..."
 
-#: PeopleView.py:383 PeopleView.py:396 gramps.glade:781 gramps_main.py:399
-msgid "Home"
-msgstr "de Cujus"
-
-#: PeopleView.py:388 PlaceView.py:177 SourceView.py:143 gramps.glade:844
+#: PeopleView.py:383 PlaceView.py:177 SourceView.py:143 gramps.glade:844
 #: plugins/BookReport.py:814
 msgid "Edit"
 msgstr "Éditer"
@@ -1807,7 +1812,7 @@ msgstr "Éditeur de style"
 msgid "Report Options"
 msgstr "Options d'édition"
 
-#: Report.py:532 plugins/FilterEditor.py:254 plugins/pafexport.glade:127
+#: Report.py:532 plugins/FilterEditor.py:255 plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Filtre"
 
@@ -1930,7 +1935,7 @@ msgstr "Relation avec le %(father)s"
 msgid "Relationship to %(mother)s"
 msgstr "Relation avec la %(mother)s"
 
-#: SelectChild.py:105 plugins/RelCalc.py:81
+#: SelectChild.py:105 plugins/RelCalc.py:82
 msgid "Relationship to %s"
 msgstr "Relation avec %s"
 
@@ -2081,7 +2086,7 @@ msgstr "AAAA-MM-JJ (ISO)"
 
 #: StartupDialog.py:240
 msgid "Alternate calendar support"
-msgstr "Autres Calendriers Supportés"
+msgstr "Support des Autres Calendriers"
 
 #: StartupDialog.py:249
 msgid ""
@@ -2095,7 +2100,7 @@ msgstr ""
 "Calendrier Grégorien. Ce qui devrait convenir à la majorité des "
 "utilisateurs \n"
 "Les Calendriers Julien, Républicain et Hébreux sont également disponibles \n"
-"Si vous pensez en avoir besoin, cochez: Autres Calendriers Supportés.\n"
+"Si vous pensez en avoir besoin, cochez: Support des Autres Calendriers.\n"
 
 #: StartupDialog.py:260
 msgid "Enable support for alternate calendars"
@@ -2121,7 +2126,7 @@ msgstr ""
 
 #: StartupDialog.py:294
 msgid "Enable LDS ordinance support"
-msgstr "Activer l'ordonnance des Mormons"
+msgstr "Ordonnance des Mormons Active"
 
 #: StyleEditor.py:68
 msgid "Document Styles"
@@ -2172,7 +2177,7 @@ msgstr "Modifier par"
 msgid "Revision"
 msgstr "Révision"
 
-#: VersionControl.py:118 plugins/FilterEditor.py:254
+#: VersionControl.py:118 plugins/FilterEditor.py:255
 msgid "Comment"
 msgstr "Commentaire"
 
@@ -2208,11 +2213,11 @@ msgstr "Islamique"
 msgid "Persian"
 msgstr "Perse"
 
-#: choose.glade:128 const.py:139 select_person.glade:128
+#: choose.glade:128 const.py:140 select_person.glade:128
 msgid "female"
 msgstr "féminin"
 
-#: choose.glade:173 const.py:138 select_person.glade:173
+#: choose.glade:173 const.py:139 select_person.glade:173
 msgid "male"
 msgstr "masculin"
 
@@ -2239,7 +2244,7 @@ msgstr "Type:"
 msgid "<b>Information</b>"
 msgstr "<b>Information</b>"
 
-#: const.py:112
+#: const.py:113
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -2247,349 +2252,349 @@ msgstr ""
 "Gramps (Genealogical Research et Analysis Management Programming System) est "
 "un logiciel de généalogie individuelle."
 
-#: const.py:127
+#: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "TRADUCTEURS: Traduis ça en ton nom dans ta langue natale"
 
-#: const.py:171 const.py:291 gramps.glade:4543 gramps.glade:4736
+#: const.py:172 const.py:284 gramps.glade:4543 gramps.glade:4736
 #: gramps.glade:5176 gramps.glade:5356 gramps.glade:6979 gramps.glade:7225
 #: gramps.glade:7833 gramps.glade:8004
 msgid "Adopted"
 msgstr "Adopté(e)"
 
-#: const.py:172 gramps.glade:4565 gramps.glade:4758 gramps.glade:5198
+#: const.py:173 gramps.glade:4565 gramps.glade:4758 gramps.glade:5198
 #: gramps.glade:5378 gramps.glade:7001 gramps.glade:7247 gramps.glade:7855
 #: gramps.glade:8026
 msgid "Stepchild"
 msgstr "Bel-enfant"
 
-#: const.py:173
+#: const.py:174
 msgid "Sponsored"
 msgstr "Supporté(e)"
 
-#: const.py:174 gramps.glade:4587 gramps.glade:4780 gramps.glade:7023
+#: const.py:175 gramps.glade:4587 gramps.glade:4780 gramps.glade:7023
 #: gramps.glade:7269
 msgid "Foster"
 msgstr "Élever"
 
-#: const.py:177 const.py:497 const.py:505 gramps.glade:1455
+#: const.py:178 const.py:428 const.py:436 gramps.glade:1455
 #: mergedata.glade:218
 msgid "Other"
 msgstr "Autre"
 
-#: const.py:186 srcsel.glade:459
+#: const.py:187 srcsel.glade:459
 msgid "Very High"
 msgstr "Très Haut"
 
-#: const.py:187 plugins/Merge.py:115 srcsel.glade:451
+#: const.py:188 plugins/Merge.py:115 srcsel.glade:451
 msgid "High"
 msgstr "Haut"
 
-#: const.py:188 srcsel.glade:443
+#: const.py:189 srcsel.glade:443
 msgid "Normal"
 msgstr "Normal"
 
-#: const.py:189 plugins/Merge.py:107 srcsel.glade:435
+#: const.py:190 plugins/Merge.py:107 srcsel.glade:435
 msgid "Low"
 msgstr "Bas"
 
-#: const.py:190 srcsel.glade:427
+#: const.py:191 srcsel.glade:427
 msgid "Very Low"
 msgstr "Très Bas"
 
-#: const.py:210
+#: const.py:217
 msgid "Alternate Marriage"
 msgstr "Autre Mariage"
 
-#: const.py:211
+#: const.py:218
 msgid "Annulment"
 msgstr "Annulation"
 
-#: const.py:212 const.py:306
+#: const.py:219 const.py:299
 msgid "Divorce Filing"
 msgstr "Classement du divorce"
 
-#: const.py:213
+#: const.py:220
 msgid "Divorce"
 msgstr "Divorce"
 
-#: const.py:214
+#: const.py:221
 msgid "Engagement"
 msgstr "Engagement"
 
-#: const.py:215
+#: const.py:222
 msgid "Marriage Contract"
 msgstr "Contrat de mariage"
 
-#: const.py:216
+#: const.py:223
 msgid "Marriage License"
 msgstr "Publication du mariage"
 
-#: const.py:217
+#: const.py:224
 msgid "Marriage Settlement"
 msgstr "Contrat de mariage"
 
-#: const.py:218
+#: const.py:225
 msgid "Marriage"
 msgstr "Mariage"
 
-#: const.py:292
+#: const.py:285
 msgid "Alternate Birth"
 msgstr "Naissances successives (?)"
 
-#: const.py:293
+#: const.py:286
 msgid "Alternate Death"
 msgstr "Décès successifs (?)"
 
-#: const.py:294
+#: const.py:287
 msgid "Adult Christening"
 msgstr "Baptême Chrétien Adulte"
 
-#: const.py:295
+#: const.py:288
 msgid "Baptism"
 msgstr "Baptême"
 
-#: const.py:296
+#: const.py:289
 msgid "Bar Mitzvah"
 msgstr "Bar Mitzvah"
 
-#: const.py:297
+#: const.py:290
 msgid "Bas Mitzvah"
 msgstr "Bas Mitzvah"
 
-#: const.py:298
+#: const.py:291
 msgid "Blessing"
 msgstr "Bénédiction"
 
-#: const.py:299
+#: const.py:292
 msgid "Burial"
 msgstr "Inhumation"
 
-#: const.py:300
+#: const.py:293
 msgid "Cause Of Death"
 msgstr "Cause du décès"
 
-#: const.py:301
+#: const.py:294
 msgid "Census"
 msgstr "Blâme"
 
-#: const.py:302
+#: const.py:295
 msgid "Christening"
 msgstr "Baptême Chrétien"
 
-#: const.py:303
+#: const.py:296
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: const.py:304
+#: const.py:297
 msgid "Cremation"
 msgstr "Incinération"
 
-#: const.py:305
+#: const.py:298
 msgid "Degree"
 msgstr "Niveau"
 
-#: const.py:307
+#: const.py:300
 msgid "Education"
 msgstr "Éducation"
 
-#: const.py:308
+#: const.py:301
 msgid "Elected"
 msgstr "Élection"
 
-#: const.py:309
+#: const.py:302
 msgid "Emigration"
 msgstr "Émigration"
 
-#: const.py:310
+#: const.py:303
 msgid "First Communion"
 msgstr "Première Communion"
 
-#: const.py:311
+#: const.py:304
 msgid "Immigration"
 msgstr "Immigration"
 
-#: const.py:312
+#: const.py:305
 msgid "Graduation"
 msgstr "Diplôme"
 
-#: const.py:313
+#: const.py:306
 msgid "Medical Information"
 msgstr "Information médicale"
 
-#: const.py:314
+#: const.py:307
 msgid "Military Service"
 msgstr "Service Militaire"
 
-#: const.py:315
+#: const.py:308
 msgid "Naturalization"
 msgstr "Naturalisation"
 
-#: const.py:316
+#: const.py:309
 msgid "Nobility Title"
 msgstr "Titre Nobiliaire"
 
-#: const.py:317
+#: const.py:310
 msgid "Number of Marriages"
 msgstr "Nombre de Mariages"
 
-#: const.py:318
+#: const.py:311
 msgid "Occupation"
 msgstr "Profession"
 
-#: const.py:319
+#: const.py:312
 msgid "Ordination"
 msgstr "Ordination"
 
-#: const.py:320
+#: const.py:313
 msgid "Probate"
 msgstr "Validation"
 
-#: const.py:321
+#: const.py:314
 msgid "Property"
 msgstr "Propriété"
 
-#: const.py:322
+#: const.py:315
 msgid "Religion"
 msgstr "Religion"
 
-#: const.py:323
+#: const.py:316
 msgid "Residence"
 msgstr "Résidence"
 
-#: const.py:324
+#: const.py:317
 msgid "Retirement"
 msgstr "Retraite"
 
-#: const.py:325
+#: const.py:318
 msgid "Will"
 msgstr "Voeux"
 
-#: const.py:392
+#: const.py:367
 msgid "Caste"
 msgstr "Caste"
 
-#: const.py:394
+#: const.py:369
 msgid "Identification Number"
 msgstr "Identifiant"
 
-#: const.py:395
+#: const.py:370
 msgid "National Origin"
 msgstr "Nationalité"
 
-#: const.py:396
+#: const.py:371
 msgid "Social Security Number"
 msgstr "N° Sécurité Sociale (INSEE)"
 
-#: const.py:435
+#: const.py:389
 msgid "Number of Children"
 msgstr "Nombre d'enfants"
 
-#: const.py:493
+#: const.py:424
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "Une relation légalisée par le droit coutumier entre un homme et une femme"
 
-#: const.py:494
+#: const.py:425
 msgid "No legal or common-law relationship between man and woman"
 msgstr "Relation non légalisée entre un homme et une femme"
 
-#: const.py:494 const.py:502
+#: const.py:425 const.py:433
 msgid "Unmarried"
 msgstr "Plus Marié(e)"
 
-#: const.py:495
+#: const.py:426
 msgid "An established relationship between members of the same sex"
 msgstr "Relation Homosexuelle"
 
-#: const.py:496
+#: const.py:427
 msgid "Unknown relationship between a man and woman"
 msgstr "Relation Non identifiée entre Homme et Femme"
 
-#: const.py:497
+#: const.py:428
 msgid "An unspecified relationship between a man and woman"
 msgstr "Relation Hétérosexuelle Non Officielle"
 
-#: const.py:521
+#: const.py:448
 msgid "No definition available"
 msgstr "Aucune description disponible"
 
-#: const.py:947
-msgid "Child"
-msgstr "Enfant"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "<No Status>"
-msgstr "<Pas de Statut>"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "Cleared"
-msgstr "Correct"
-
-#: const.py:947 const.py:953 const.py:959
-msgid "Completed"
-msgstr "Complet"
-
-#: const.py:948
-msgid "Infant"
-msgstr "Nourrisson"
-
-#: const.py:948 const.py:954
-msgid "Stillborn"
-msgstr "Mort-né"
-
-#: const.py:948 const.py:954 const.py:960
-msgid "Pre-1970"
-msgstr "Pre-1970"
-
-#: const.py:948 const.py:954 const.py:960
-msgid "Qualified"
-msgstr "Qualifié"
-
-#: const.py:949 const.py:955 const.py:961
-msgid "Submitted"
-msgstr "Demandé"
-
-#: const.py:949 const.py:955 const.py:961
-msgid "Uncleared"
-msgstr "Incorrect"
-
-#: const.py:953
-msgid "BIC"
-msgstr "BIC"
-
-#: const.py:954 const.py:960
-msgid "DNS"
-msgstr "DNS"
-
-#: const.py:959
-msgid "Canceled"
-msgstr "Annulé"
-
-#: const.py:960
-msgid "DNS/CAN"
-msgstr "DNS/CAN"
-
-#: const.py:966 const.py:973
+#: const.py:463
 msgid "Also Known As"
 msgstr "Connu également comme"
 
-#: const.py:967 const.py:974
+#: const.py:464
 msgid "Birth Name"
 msgstr "Nom de naissance"
 
-#: const.py:968 const.py:975
+#: const.py:465
 msgid "Married Name"
 msgstr "Nom Marital"
 
-#: const.py:969 const.py:976
+#: const.py:466
 msgid "Other Name"
 msgstr "Autre Nom"
 
-#: const.py:982
+#: const.py:861
+msgid "Child"
+msgstr "Enfant"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "<No Status>"
+msgstr "<Pas de Statut>"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "Cleared"
+msgstr "Correct"
+
+#: const.py:861 const.py:867 const.py:873
+msgid "Completed"
+msgstr "Complet"
+
+#: const.py:862
+msgid "Infant"
+msgstr "Nourrisson"
+
+#: const.py:862 const.py:868
+msgid "Stillborn"
+msgstr "Mort-né"
+
+#: const.py:862 const.py:868 const.py:874
+msgid "Pre-1970"
+msgstr "Pre-1970"
+
+#: const.py:862 const.py:868 const.py:874
+msgid "Qualified"
+msgstr "Qualifié"
+
+#: const.py:863 const.py:869 const.py:875
+msgid "Submitted"
+msgstr "Demandé"
+
+#: const.py:863 const.py:869 const.py:875
+msgid "Uncleared"
+msgstr "Incorrect"
+
+#: const.py:867
+msgid "BIC"
+msgstr "BIC"
+
+#: const.py:868 const.py:874
+msgid "DNS"
+msgstr "DNS"
+
+#: const.py:873
+msgid "Canceled"
+msgstr "Annulé"
+
+#: const.py:874
+msgid "DNS/CAN"
+msgstr "DNS/CAN"
+
+#: const.py:881
 msgid "Flowed"
 msgstr "Libre"
 
-#: const.py:983
+#: const.py:882
 msgid "Preformatted"
 msgstr "Préformaté"
 
@@ -3298,8 +3303,8 @@ msgid ""
 "be presented for any missing medial files."
 msgstr ""
 "Si vous valider cette option, tous les média seront automatiquement traiter "
-"selon les options actuellement retenues, aucun message ne vous avertira "
-"lors de fichier média manquant."
+"selon les options actuellement retenues, aucun message ne vous avertira lors "
+"de fichier média manquant."
 
 #: errdialogs.glade:1088
 msgid "_Use this selection for all missing media files"
@@ -3498,7 +3503,7 @@ msgstr "_Barre d'outils"
 
 #: gramps.glade:461
 msgid "_Bookmarks"
-msgstr "_Annuaire"
+msgstr "_Signets"
 
 #: gramps.glade:470
 msgid "_Add bookmark"
@@ -3510,7 +3515,7 @@ msgstr "_Gérer les signets"
 
 #: gramps.glade:520
 msgid "_Go to bookmark"
-msgstr "_Aller à l'annuaire"
+msgstr "_Voir les signets"
 
 #: gramps.glade:532
 msgid "_Reports"
@@ -3694,11 +3699,11 @@ msgstr "<b>_Enfants</b>"
 
 #: gramps.glade:1912 gramps.glade:2820
 msgid "<b>_Active person</b>"
-msgstr "<b>_Activer l'individu</b>"
+msgstr "<b>_Individu Actif</b>"
 
 #: gramps.glade:1937 gramps.glade:2845
 msgid "<b>Active person's _parents</b>"
-msgstr "<b>Activer les _Parents</b>"
+msgstr "<b>_Parents Actifs</b>"
 
 #: gramps.glade:1962 gramps.glade:2701
 msgid "<b>Relati_onship</b>"
@@ -4072,7 +4077,7 @@ msgstr "%s a été signalé"
 
 #: gramps_main.py:1782
 msgid "Could Not Set a Bookmark"
-msgstr "Configuration de l'annuaire impossible."
+msgstr "Gestion des signets impossible."
 
 #: gramps_main.py:1783
 msgid "A bookmark could not be set because no one was selected."
@@ -4085,7 +4090,7 @@ msgstr "Accès à un individu impossible"
 #: gramps_main.py:1795
 msgid "Either stale bookmark or broken history caused by IDs reorder."
 msgstr ""
-"L'annuaire ou l'historique est endommagé par le réordonnancement des "
+"Les signets ou l'historique sont endommagés par le réordonnancement des "
 "identifiants"
 
 #: gramps_main.py:1803
@@ -4390,7 +4395,7 @@ msgstr "Arbre Généalogique Mural"
 
 #: plugins/AncestorReport.py:84 plugins/AncestorReport.py:242
 msgid "Ahnentafel Report for %s"
-msgstr "Liste Ahnentafel pour %s"
+msgstr "Liste Ahnentafel (Sosa-Stradonitz) pour %s"
 
 #: plugins/AncestorReport.py:97 plugins/DetAncestralReport.py:606
 #: plugins/DetDescendantReport.py:614
@@ -4468,7 +4473,7 @@ msgstr ", et fût inhumé le %s."
 #: plugins/AncestorReport.py:238 plugins/AncestorReport.py:334
 #: plugins/AncestorReport.py:513 plugins/AncestorReport.py:524
 msgid "Ahnentafel Report"
-msgstr "Liste Ahnentafel"
+msgstr "Liste Ahnentafel (Sosa-Stradonitz)"
 
 #: plugins/AncestorReport.py:238 plugins/AncestorReport.py:514
 #: plugins/Ancestors.py:846 plugins/Ancestors.py:1119
@@ -4484,11 +4489,11 @@ msgstr "Éditions"
 
 #: plugins/AncestorReport.py:247
 msgid "Save Ahnentafel Report"
-msgstr "Enregistre la Liste Ahnentafel"
+msgstr "Enregistre la Liste Ahnentafel (Sosa-Stradonitz)"
 
 #: plugins/AncestorReport.py:338
 msgid "Ahnentafel Report for GRAMPS Book"
-msgstr "Liste Ahnentafel pour le Livre GRAMPS"
+msgstr "Liste Ahnentafel (Sosa-Stradonitz) pour le Livre GRAMPS"
 
 #: plugins/AncestorReport.py:397 plugins/Ancestors.py:776
 #: plugins/DescendReport.py:293 plugins/FamilyGroup.py:612
@@ -5230,7 +5235,7 @@ msgstr "Liste Détaillée des Ancêtres de %s"
 
 #: plugins/DetAncestralReport.py:702 plugins/DetDescendantReport.py:710
 msgid "Gramps - Ahnentafel Report"
-msgstr "Gramps - Liste Ahnentafel"
+msgstr "Gramps - Liste Ahnentafel (Sosa-Stradonitz)"
 
 #: plugins/DetAncestralReport.py:753 plugins/DetAncestralReport.py:973
 #: plugins/DetDescendantReport.py:762 plugins/DetDescendantReport.py:983
@@ -5484,19 +5489,19 @@ msgstr "Sélectionner un individu"
 msgid "Not a valid person"
 msgstr "Personne incorrecte"
 
-#: plugins/FilterEditor.py:243
+#: plugins/FilterEditor.py:244
 msgid "User defined filters"
 msgstr "Filtres Utilisateurs"
 
-#: plugins/FilterEditor.py:311
+#: plugins/FilterEditor.py:312
 msgid "Define filter"
 msgstr "Définir un Filtre"
 
-#: plugins/FilterEditor.py:394
+#: plugins/FilterEditor.py:395
 msgid "Add Rule"
 msgstr "Ajouter une règle"
 
-#: plugins/FilterEditor.py:400
+#: plugins/FilterEditor.py:401
 msgid "Edit Rule"
 msgstr "Modifier une règle"
 
@@ -5521,7 +5526,7 @@ msgid "Custom Filter Editor"
 msgstr "Éditeur Multi-critères"
 
 #: plugins/FilterEditor.py:637 plugins/FilterEditor.py:650
-#: plugins/RelCalc.py:160 plugins/Verify.py:418 plugins/soundgen.py:97
+#: plugins/RelCalc.py:161 plugins/Verify.py:418 plugins/soundgen.py:97
 msgid "Utilities"
 msgstr "Utilitaires"
 
@@ -6146,7 +6151,7 @@ msgstr "Indiquer les relations autres que la Naissance avec des hachures"
 
 #: plugins/GraphViz.py:218 plugins/RelGraph.py:280
 msgid "Non-birth relationships will show up as dashed lines in the graph."
-msgstr "Les relations autres que la Naissance seront hachurées sur le graphique."
+msgstr "Les relations autres que la Naissance seront en pointillé sur le graphique."
 
 #: plugins/GraphViz.py:221 plugins/RelGraph.py:215
 msgid "Show family nodes"
@@ -6484,35 +6489,35 @@ msgstr "Temporary directory %s is not writable"
 msgid "Error extracting into %s"
 msgstr "Erreur d'extraction vers %s"
 
-#: plugins/RelCalc.py:82 plugins/RelCalc.py:159
+#: plugins/RelCalc.py:83 plugins/RelCalc.py:160
 msgid "Relationship calculator"
 msgstr "Calcul relationnel"
 
-#: plugins/RelCalc.py:87 plugins/TimeLine.py:377
+#: plugins/RelCalc.py:88 plugins/TimeLine.py:377
 msgid "Birth Date"
 msgstr "Date de naissance"
 
-#: plugins/RelCalc.py:119
+#: plugins/RelCalc.py:120
 msgid "Their common ancestor is %s."
 msgstr "Leur ancêtre commun est %s."
 
-#: plugins/RelCalc.py:123
+#: plugins/RelCalc.py:124
 msgid "Their common ancestors are %s and %s."
 msgstr "Leurs ancêtres communs est %s et %s."
 
-#: plugins/RelCalc.py:128
+#: plugins/RelCalc.py:129
 msgid "Their common ancestors are : "
 msgstr "Leurs ancêtres communs sont: "
 
-#: plugins/RelCalc.py:143
+#: plugins/RelCalc.py:144
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s and %(active_person)s are not related."
 
-#: plugins/RelCalc.py:146
+#: plugins/RelCalc.py:147
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s est le %(relationship)s de %(active_person)s."
 
-#: plugins/RelCalc.py:161
+#: plugins/RelCalc.py:162
 msgid "Calculates the relationship between two people"
 msgstr "Calcul des relations entre deux individus"
 
@@ -7206,7 +7211,7 @@ msgstr "Exporter sur un CD"
 
 #: plugins/WriteFtree.py:55
 msgid "Export to Web Family Tree"
-msgstr "Exporter l'arbre familial pour le web"
+msgstr "Exporter l'arbre familial vers Web Family Tree"
 
 #: plugins/WriteGedcom.py:65
 msgid "Export to GEDCOM"
@@ -7280,11 +7285,11 @@ msgid ""
 "After exporting, go to the <b>burn:///</b> directory in nautilus and select "
 "the Write to CD button."
 msgstr ""
-"Exporting to a CD will not immediately write the CD. It will prepare the "
-"nautilus-cd-burner so that you can burn the CD from nautilus.\n"
-"\n"
-"After exporting, go to the <b>burn:///</b> directory in nautilus and select "
-"the Write to CD button."
+"L'exportation vers un CD ne l'écrit pas immédiatement. Elle prépare le "
+"logiciel de gravage CD de Nautilus pour vous permettre de graver \n"
+" le CD avec Nautilus.\n"
+"Après l'exportation, allez dans le répertoire <b>graveur:///</b> dans "
+"Nautilus et sélectionnez le bouton Ecrire sur le CD."
 
 #: plugins/changetype.glade:92
 msgid ""
@@ -7736,7 +7741,7 @@ msgstr "<b>Chercher</b>"
 
 #: preferences.glade:658
 msgid "_Enable autocompletion"
-msgstr "_Activer la complétion"
+msgstr "_Complétion Active"
 
 #: preferences.glade:726
 msgid "<b>Toolbar</b>"
@@ -8156,7 +8161,7 @@ msgstr "à G_auche:"
 
 #: styles.glade:875
 msgid "_Padding:"
-msgstr "_Rembourrage:"
+msgstr "_Remplissage:"
 
 #: styles.glade:1039
 msgid "_Left"
