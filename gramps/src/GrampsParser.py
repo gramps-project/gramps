@@ -162,7 +162,10 @@ class GrampsParser(handler.ContentHandler):
             self.attribute.setType(string.capwords(attrs["type"]))
         else:
             self.in_old_attr = 0
-        self.person.addAttribute(self.attribute)
+        if self.in_people:
+            self.person.addAttribute(self.attribute)
+        elif self.in_family:
+            self.family.addAttribute(self.attribute)
 
     #---------------------------------------------------------------------
     #
