@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -612,9 +612,9 @@ class BookReportSelector:
         av_titles = [(_('Name'),0,150),(_('Type'),1,50)]
         bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),
             (_('Center person'),-1,50)]
-	
-	self.av_ncols = len(av_titles)
-	self.bk_ncols = len(bk_titles)
+        
+        self.av_ncols = len(av_titles)
+        self.bk_ncols = len(bk_titles)
 
         self.av_model = ListModel.ListModel(self.avail_tree,av_titles)
         self.bk_model = ListModel.ListModel(self.book_tree,bk_titles)
@@ -675,12 +675,12 @@ class BookReportSelector:
             item.set_options(options)
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
-	    
+            
             data = [ item.get_name(), item.get_category() ]
             if data[1] == _("Title"):
                 data.append(_("Not Applicable"))
             else:
-                pname = self.db.get_person(options[0])
+                pname = self.db.find_person_from_id(options[0])
                 data.append(pname.get_primary_name().get_regular_name())
             self.bk_model.add(data)
 
@@ -693,7 +693,7 @@ class BookReportSelector:
         store,iter = self.av_model.get_selected()
         if not iter:
             return
-	data = self.av_model.get_data(iter,range(self.av_ncols))
+        data = self.av_model.get_data(iter,range(self.av_ncols))
         if data[1] == _("Title"):
             data.append(_("Not Applicable"))
         else:
@@ -732,7 +732,7 @@ class BookReportSelector:
         if not row or row == -1:
             return
         store,iter = self.bk_model.get_selected()
-	data = self.bk_model.get_data(iter,range(self.bk_ncols))
+        data = self.bk_model.get_data(iter,range(self.bk_ncols))
         self.bk_model.remove(iter)
         self.bk_model.insert(row-1,data,None,1)
         item = self.book.pop_item(row)
@@ -744,9 +744,9 @@ class BookReportSelector:
         """
         row = self.bk_model.get_selected_row()
         if row + 1 >= self.bk_model.count or row == -1:
-	    return
-	store,iter = self.bk_model.get_selected()
-	data = self.bk_model.get_data(iter,range(self.bk_ncols))
+            return
+        store,iter = self.bk_model.get_selected()
+        data = self.bk_model.get_data(iter,range(self.bk_ncols))
         self.bk_model.remove(iter)
         self.bk_model.insert(row+1,data,None,1)
         item = self.book.pop_item(row)
@@ -759,7 +759,7 @@ class BookReportSelector:
         store,iter = self.bk_model.get_selected()
         if not iter:
             return
-	data = self.bk_model.get_data(iter,range(self.bk_ncols))
+        data = self.bk_model.get_data(iter,range(self.bk_ncols))
         row = self.bk_model.get_selected_row()
         item = self.book.get_item(row)
         options_dialog = item.get_dialog()
@@ -989,96 +989,6 @@ def report(database,person):
 # 
 #
 #------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 33 1",
-        " 	c None",
-        ".	c #1A1A1A",
-        "+	c #6A665E",
-        "@	c #A6A6A6",
-        "#	c #BABAB6",
-        "$	c #D2D2D2",
-        "%	c #EDE2D2",
-        "&	c #7A7262",
-        "*	c #F1EADF",
-        "=	c #867A6E",
-        "-	c #56524E",
-        ";	c #868686",
-        ">	c #E2CAA2",
-        ",	c #F2EEE2",
-        "'	c #4E4E4E",
-        ")	c #B2966E",
-        "!	c #FAFAFA",
-        "~	c #A29E96",
-        "{	c #BEA27A",
-        "]	c #CECABE",
-        "^	c #968A76",
-        "/	c #DAD2C6",
-        "(	c #423E3E",
-        "_	c #BA9E72",
-        ":	c #B7AC9A",
-        "<	c #E9DAC3",
-        "[	c #E6E2E2",
-        "}	c #322E2A",
-        "|	c #9E9286",
-        "1	c #E6D2B6",
-        "2	c #F2EEE9",
-        "3	c #5E5A56",
-        "4	c #F6F2EE",
-        "                                                ",
-        "                                                ",
-        "             ^=^=====&&&+&++++333+&             ",
-        "             =##############:#:~;33&            ",
-        "             =#!!!!!!!!!!!!!!*[$#;;|-           ",
-        "             ;#!!!!!!!!!!!!!!!2[$@&]|(          ",
-        "             =#!!!!!!!!!!!!!!!!2[$-[];}         ",
-        "             =#!!!!@@@@@@@@!!!!![4'![];}        ",
-        "             =#!!!!!!4!!4!!!!!!!!4'!![];}       ",
-        "             =#!!!!!!!!!!!!!!!!!!!'*!![];(      ",
-        "             =#!!!!!!!!!!!!!!!!!!!'[*!![]|-     ",
-        "             &#!!!!@@~@@@~@@~@@@@@'][4!![#|+    ",
-        "             &#!4!!!!!!!!!!!!!4!!!'..}('3&=+&   ",
-        "             =#!!!!@@@@@@@@@@@@@@@@##@~;=+3(+   ",
-        "             &#!!!!!!!!!!!!!!!!!!!![$##~;;='(   ",
-        "             &#!!!!@@@@@~@@@~@@@@~@@@@@#~~;+(   ",
-        "             &#!!!!!!!!!!!!!!!!!!!!444[]#@~&}   ",
-        "             &#!!!!!!!!!!!!!!!!!!4442[[$]#@=}   ",
-        "             &#!!!!!!!!!!!!!!!!!!4444[[$]]:;}   ",
-        "             +#!!!!@~@@@@@@@@~@@@@@~~~|;]]];}   ",
-        "             +#!!!!!!!!!!!!!!!!!44444,[$/]:^}   ",
-        "             +#!!!!@@@~@@@@@@@@~@~~~~~~|1>$|}   ",
-        "             +#!!!!!!!!!!!!!!!44442[*%[[<$]|}   ",
-        "             +#!!!!@@@@~@@@@~~@~~~~~~~~|1/>~}   ",
-        "             +#!!!!!!!!!!!!!!44444**[%%</1])}   ",
-        "             +#!!!!!!!!!!!!!4422******%%<1/|}   ",
-        "             +#!!!!!!!!!!!!!!4,*,**2***%<1/)}   ",
-        "             3#!!!!@@@@@~,442,*,*,2**,,[<1/)}   ",
-        "             +#!!!!!!4!!444444**[%%%%%%<<1>~}   ",
-        "             3#!!!!@@4*@@@~~~~~~~~~~||||<11)}   ",
-        "             +#4!!4444444,24[[*[<%<%<<<<<11|}   ",
-        "             3#!!!44,,,@~~~~~~~~~|||||||111_}   ",
-        "             3#!!!!!44444[4[[%%%%%<<<<11111)}   ",
-        "             3#!!!!~@,*~~~~~~~~||||||^|^1>1_}   ",
-        "             3#!!!444442%**[%<%%%<<<<11111>_}   ",
-        "             3#!!!4***[~~~~~~|||||||^|^^1>>{}   ",
-        "             -#!444444**[%<%%%<<<<11111>1>>_}   ",
-        "             -#4444~~[[~~~|||||||^)^^^^^>>>_}   ",
-        "             -#4444[**[%%%%%%<<<<11111>>>>>)}   ",
-        "             '#4444****%%%%%<<<111<11>>>>>>_}   ",
-        "             ':44****%%%%%<<<1<1<1>>1>>>>>>)}   ",
-        "             -@4******%%%<%<1<<1111>>>>>>>>)}   ",
-        "             '#****%%%%<%<<<<1<11>1>>>>>>>>)}   ",
-        "             ':##:::::::{{{{{{__{___))^)))))}   ",
-        "             }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
 
 Plugins.register_report(
     report,
@@ -1086,7 +996,7 @@ Plugins.register_report(
     category=_("Books"),
     status=(_("Unstable")),
     description=_("Creates a book containing several reports."),
-    xpm=get_xpm_image(),
+    xpm=Utils.get_xpm_image(),
     author_name="Alex Roitman",
     author_email="shura@alex.neuro.umn.edu"
     )

@@ -9,9 +9,10 @@
 	instead of count_anc.py.
 	
 	* src/gramps.glade: Resolve widget naming conflict. 
-	* src/SelectPerson: Resolve widget naming conflict. 
+	* src/SelectPerson.py: Resolve widget naming conflict. 
 	
 	* src/Sort.py (by_date): Add function.
+	* src/plugins/BookReport.py: Convert to db. 
 
 2004-05-05  Don Allingham  <donaldallingham@users.sourceforge.net>
 	* src/plugins/ReadGedcom.py: commit after media object change
