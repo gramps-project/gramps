@@ -1,3 +1,7 @@
+2003-09-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/ReadGedcom.py: Handle Legacy's method of
+	handling separations and divorces
+
 2003-09-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/OpenOfficeDoc.py: set z-index properly for paths
 	so they appear over text, fix font for draw_text
