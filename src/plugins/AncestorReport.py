@@ -385,6 +385,8 @@ register_report(
     category=_("Text Reports"),
     status=(_("Beta")),
     description= _("Produces a textual ancestral report"),
-    xpm=get_xpm_image()
+    xpm=get_xpm_image(),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net"
     )
 

@@ -496,7 +496,10 @@ register_report(
     status=(_("Beta")),
     category=_("Text Reports"),
     description=_("Produces a detailed report on the selected person."),
-    xpm=get_xpm_image()
+    xpm=get_xpm_image(),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net"
+    
     )
 
 

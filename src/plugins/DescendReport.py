@@ -281,6 +281,8 @@ register_report(
     category=_("Text Reports"),
     status=(_("Beta")),
     description=_("Generates a list of descendants of the active person"),
-    xpm=get_xpm_image()
+    xpm=get_xpm_image(),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net"
     )
 

@@ -446,6 +446,8 @@ register_report(
     _("Relationship Graph"),
     status=(_("Beta")),
     category=_("Graphical Reports"),
-    description=get_description()
+    description=get_description(),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net"
     )
 

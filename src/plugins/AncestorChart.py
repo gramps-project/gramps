@@ -425,6 +425,8 @@ register_report(
     category=_("Graphical Reports"),
     status=(_("Beta")),
     description=_("Produces a graphical ancestral tree graph"),
-    xpm=get_xpm_image()
+    xpm=get_xpm_image(),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net"
     )
 

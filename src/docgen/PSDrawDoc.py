@@ -126,7 +126,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('(%s) show\n' % text)
         self.f.write('grestore\n')
 
-    def draw_path(self,style,path,fill):
+    def draw_path(self,style,path):
         stype = self.draw_styles[style]
         self.f.write('gsave\n')
         self.f.write('newpath\n')
@@ -146,7 +146,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
             y1 = point[1]+self.tmargin
             self.f.write('%f cm %f cm lineto\n' % self.translate(x1,y1))
         self.f.write('closepath\n')
-        if fill:
+        if self.color[0] == 0:
             self.f.write('fill\n')
         else:
             self.f.write('stroke\n')
