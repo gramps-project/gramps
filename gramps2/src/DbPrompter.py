@@ -386,7 +386,15 @@ def open_native(parent,filename,filetype):
         parent.db = GrampsBSDDB.GrampsBSDDB()
         msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
         msg_top = msgxml.get_widget('load_message')
-        parent.read_file(filename)
+        msg_label = msgxml.get_widget('message')
+
+        def update_msg(msg):
+            msg_label.set_text("<i>%s</i>" % msg)
+            msg_label.set_use_markup(True)
+            while gtk.events_pending():
+                gtk.main_iteration()
+
+        parent.read_file(filename,update_msg)
         msg_top.destroy()
         success = True
     elif filetype == const.app_gramps_xml:

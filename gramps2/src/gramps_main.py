@@ -1068,7 +1068,7 @@ class Gramps:
         os.rmdir(tmpdir_path)
         self.import_tool_callback()
 
-    def read_file(self,filename):
+    def read_file(self,filename,callback=None):
         self.topWindow.set_resizable(gtk.FALSE)
         filename = os.path.normpath(os.path.abspath(filename))
         
@@ -1090,7 +1090,7 @@ class Gramps:
                 return 0
 
         try:
-            if self.load_database(filename) == 1:
+            if self.load_database(filename,callback) == 1:
                 if filename[-1] == '/':
                     filename = filename[:-1]
                 name = os.path.basename(filename)
@@ -1540,17 +1540,12 @@ class Gramps:
         else:
             return GrampsCfg.get_nameof()(person)
 
-    def load_progress(self,value):
-        self.statusbar.set_progress_percentage(value)
-        while gtk.events_pending():
-            gtk.main_iteration()
-
     def status_text(self,text):
         self.statusbar.set_status(text)
         while gtk.events_pending():
             gtk.main_iteration()
         
-    def post_load(self,name):
+    def post_load(self,name,callback=None):
         self.db.set_save_path(name)
         res = self.db.get_researcher()
         owner = GrampsCfg.get_researcher()
@@ -1558,22 +1553,31 @@ class Gramps:
         if res.get_name() == "" and owner.get_name():
             self.db.set_researcher(owner)
 
+        if callback:
+            callback(_('Setting up bookmarks...'))
         self.setup_bookmarks()
 
         GrampsGconfKeys.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     
-        self.statusbar.set_progress_percentage(1.0)
-
+        if callback:
+            callback(_('Building Person list...'))
         self.people_view.change_db(self.db)
+        if callback:
+            callback(_('Building Place list...'))
         self.place_view.change_db(self.db)
+        if callback:
+            callback(_('Building Source list...'))
         self.source_view.change_db(self.db)
+        if callback:
+            callback(_('Building Media list...'))
         self.media_view.change_db(self.db)
         self.relationship = self.RelClass(self.db)
 
         self.change_active_person(self.find_initial_person())
         self.goto_active_person()
-        self.statusbar.set_progress_percentage(0.0)
+        if callback:
+            callback(_('Setup complete'))
         return 1
 
     def find_initial_person(self):
@@ -1585,18 +1589,21 @@ class Gramps:
                 person = self.db.get_person_from_handle(the_ids[0])
         return person
     
-    def load_database(self,name):
+    def load_database(self,name,callback=None):
 
         filename = name
 
         self.status_text(_("Loading %s...") % name)
 
-        if self.db.load(filename,self.load_progress) == 0:
+        if callback:
+            callback(_('Opening database...'))
+            
+        if self.db.load(filename,callback) == 0:
             self.status_text('')
             return 0
         self.status_text('')
 
-        val = self.post_load(name)
+        val = self.post_load(name,callback)
         return val
 
     def setup_bookmarks(self):

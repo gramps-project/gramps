@@ -27,6 +27,7 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 import os
 import time
 import locale
+from gettext import gettext as _
 
 from RelLib import *
 from GrampsDbBase import *
@@ -120,7 +121,6 @@ class GrampsBSDDB(GrampsDbBase):
         self.name_group = db.DB(self.env)
         self.name_group.set_flags(db.DB_DUP)
         self.name_group.open(name, "name_group", db.DB_HASH, flags=db.DB_CREATE)
-
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(name, "idtrans", db.DB_HASH, flags=db.DB_CREATE)
