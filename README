@@ -9,7 +9,6 @@ The following packages *MUST* be installed in order for Gramps to work:
    Gnome 2.0 or greater
    PyGTK2 1.99.14 or greater
    Gnome-python 1.99.14 or greater
-   PyXML 0.7.1 or greater
 
 Many distributions already provide PyXML, but if your
 installation does not have it, you can get it from

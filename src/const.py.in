@@ -69,7 +69,7 @@ caution_xpm    = "%s/caution.png" % rootDir
 
 system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
-icon           = "%s/gramps.xpm" % rootDir
+icon           = "%s/gramps.png" % rootDir
 logo           = "%s/logo.png" % rootDir
 gladeFile      = "%s/gramps.glade" % rootDir
 placesFile     = "%s/gramps.glade" % rootDir

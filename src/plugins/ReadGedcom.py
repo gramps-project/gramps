@@ -507,7 +507,6 @@ class GedcomParser:
                 self.person = self.find_or_create_person(id)
                 self.added[self.person.get_id()] = self.person
                 self.parse_individual()
-                self.db.build_person_display(self.person.get_id())
                 self.db.commit_person(self.person)
             elif matches[2] in ["SUBM","SUBN","REPO"]:
                 self.ignore_sub_junk(1)
@@ -1695,7 +1694,6 @@ class GedcomParser:
             source_ref.set_base_id(s.get_id())
             s.set_title('Imported Source #%d' % self.localref)
             s.set_note(matches[2] + self.parse_continue_data(level))
-            self.db.build_source_display(s.get_id())
             self.ignore_sub_junk(level+1)
         else:
             source_ref.set_base_id(self.db.find_source(matches[2],self.smap).get_id())
