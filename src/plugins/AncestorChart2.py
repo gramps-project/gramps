@@ -28,6 +28,7 @@
 import os
 import string
 import math
+import types
 
 import gtk
 
@@ -121,6 +122,9 @@ class GenChart :
     def get_xy(self,x,y):
         return self.array[y][x]
 
+    def set_xy(self,x,y,value):
+        self.array[y][x] = value
+
     def dimensions(self):
         return (len(self.array),self.max_x+1)
 
@@ -153,7 +157,7 @@ class GenChart :
 
     def not_blank(self,line):
         for i in line:
-            if i:
+            if i and type(i) == types.TupleType:
                 return 1
         return 0
 
@@ -164,7 +168,7 @@ class GenChart :
 #------------------------------------------------------------------------
 class AncestorChart:
 
-    def __init__(self,database,person,max,display,doc,output,scale,
+    def __init__(self,database,person,max,display,doc,output,scale,compress,
                  title,newpage=0):
         self.doc = doc
         self.title = title.strip()
@@ -180,6 +184,7 @@ class AncestorChart:
         self.display = display
         self.newpage = newpage
         self.force_fit = scale
+        self.compress = compress
         if output:
             self.doc.open(output)
         self.standalone = output
@@ -249,7 +254,7 @@ class AncestorChart:
                     colx += 1
                     startx += self.generations_per_page
                 coly += 1
-                starty += maxh-1
+                starty += maxh
         if self.standalone:
             self.doc.close()
             
@@ -260,7 +265,9 @@ class AncestorChart:
         the elements on a page.
         """
 
-        self.genchart.compress()
+        self.add_lines()
+        if self.compress:
+            self.genchart.compress()
 
         self.box_pad_pts = 10
         if self.title and self.force_fit:
@@ -329,14 +336,6 @@ class AncestorChart:
         if self.standalone:
             self.doc.init()
 
-    def get_numbers(self,start,index,vals):
-        if index > 4:
-            return
-        if self.map.has_key(start):
-            vals.append(start)
-        self.get_numbers(start*2,index+1,vals)
-        self.get_numbers((start*2)+1,index+1,vals)
-
     def print_page(self,startx,stopx,starty,stopy,colx,coly):
 
         self.doc.start_page()
@@ -348,25 +347,32 @@ class AncestorChart:
             for x in range(startx,stopx):
                 value = self.genchart.get_xy(x,y)
                 if value:
-                    (person,index) = value
-                    text = string.join(self.text[index],"\n")
-                    self.doc.draw_box("box",text,phys_x*self.delta,phys_y*self.box_height+self.offset)
-                    if self.genchart.get(index*2):
-                        (px,py) = self.genchart.index_to_xy(index*2)
-                        x2 = min(self.doc.get_usable_width(),(px-startx)*self.delta)
-                        x1 = (x-startx)*self.delta+(0.5 * self.box_width)
-                        y2 = self.box_height * (py-starty) + 0.5*self.box_height + self.offset
-                        y1 = self.box_height * (y-starty) + self.offset
+                    if type(value) == types.TupleType:
+                        (person,index) = value
+                        text = string.join(self.text[index],"\n")
+                        self.doc.draw_box("box",text,phys_x*self.delta,
+                                          phys_y*self.box_height+self.offset)
+                    elif value == 2:
+                        self.doc.draw_line("line",
+                                           phys_x*self.delta+self.box_width*0.5,
+                                           phys_y*self.box_height+self.offset,
+                                           phys_x*self.delta+self.box_width*0.5,
+                                           (phys_y+1)*self.box_height+self.offset)
+                    elif value == 1:
+                        x1 = phys_x*self.delta+self.box_width*0.5
+                        x2 = (phys_x+1)*self.delta
+                        y1 = phys_y*self.box_height+self.offset+self.box_height/2
+                        y2 = (phys_y+1)*self.box_height+self.offset
                         self.doc.draw_line("line",x1,y1,x1,y2)
-                        self.doc.draw_line("line",x1,y2,x2,y2)
-                    if self.genchart.get(index*2+1):
-                        (px,py) = self.genchart.index_to_xy(index*2+1)
-                        x2 = min(self.doc.get_usable_width(),(px-startx)*self.delta)
-                        x1 = (x-startx)*self.delta+(0.5 * self.box_width)
-                        y2 = self.box_height * (py-starty) + 0.5*self.box_height + self.offset
-                        y1 = self.box_height * (y-starty+1) + self.offset
+                        self.doc.draw_line("line",x1,y1,x2,y1)
+                    elif value == 3:
+                        x1 = phys_x*self.delta+self.box_width*0.5
+                        x2 = (phys_x+1)*self.delta
+                        y1 = (phys_y)*self.box_height+self.offset+self.box_height/2
+                        y2 = (phys_y)*self.box_height+self.offset
                         self.doc.draw_line("line",x1,y1,x1,y2)
-                        self.doc.draw_line("line",x1,y2,x2,y2)
+                        self.doc.draw_line("line",x1,y1,x2,y1)
+                        
                 phys_x +=1
             phys_y += 1
                     
@@ -377,6 +383,28 @@ class AncestorChart:
                                self.doc.get_usable_height()+0.75)
         self.doc.end_page()
 
+    def add_lines(self):
+
+        (my,mx) = self.genchart.dimensions()
+        
+        for y in range(0,my):
+            for x in range(0,mx):
+                value = self.genchart.get_xy(x,y)
+                if not value:
+                    continue
+                if type(value) == types.TupleType:
+                    (person,index) = value
+                    if self.genchart.get(index*2):
+                        (px,py) = self.genchart.index_to_xy(index*2)
+                        self.genchart.set_xy(x,py,1)
+                        for ty in range(py+1,y):
+                            self.genchart.set_xy(x,ty,2)
+                    if self.genchart.get(index*2+1):
+                        (px,py) = self.genchart.index_to_xy(index*2+1)
+                        self.genchart.set_xy(px-1,py,3)
+                        for ty in range(y+1,py):
+                            self.genchart.set_xy(x,ty,2)
+                    
 #------------------------------------------------------------------------
 #
 # 
@@ -418,6 +446,10 @@ class AncestorChartDialog(Report.DrawReportDialog):
         self.title.set_text(self.get_header(self.person.getPrimaryName().getName()))
         self.title.show()
         self.add_option(_('Title'),self.title)
+        self.compress = gtk.CheckButton(_('Compress chart'))
+        self.compress.set_active(1)
+        self.compress.show()
+        self.add_option('',self.compress)
         self.scale = gtk.CheckButton(_('Scale to fit on a single page'))
         self.scale.set_active(1)
         self.scale.show()
@@ -462,6 +494,7 @@ class AncestorChartDialog(Report.DrawReportDialog):
                                      self.max_gen, self.report_text,
                                      self.doc,self.target_path,
                                      self.scale.get_active(),
+                                     self.compress.get_active(),
                                      self.title.get_text()
                                      )
             MyReport.write_report()
