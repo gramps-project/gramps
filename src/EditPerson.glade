@@ -3548,6 +3548,11 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Tue, 27 Mar 2001 22:01:31 GMT</last_modification_time>
 	    </signal>
+	    <signal>
+	      <name>drag_data_received</name>
+	      <handler>on_photolist_drag_data_received</handler>
+	      <last_modification_time>Tue, 09 Oct 2001 20:50:19 GMT</last_modification_time>
+	    </signal>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	    <icon_width>100</icon_width>
 	    <row_spacing>20</row_spacing>

@@ -31,6 +31,7 @@ import string
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+from GDK import *
 from gtk import *
 from gnome.ui import *
 import libglade
@@ -97,8 +98,9 @@ class EditPerson:
 
         # widgets
         self.window = self.get_widget("editPerson")
+        self.gallery_widget = self.top.get_widget("photolist")
         self.gallery = PersonGallery(self, self.path, "i%s" % person.getId(), \
-                                     self.top.get_widget("photolist"), self.db)
+                                     self.gallery_widget, self.db)
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")

@@ -33,6 +33,7 @@ import string
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
+import GDK
 import gnome.mime
 import libglade
 import GdkImlib
@@ -133,7 +134,7 @@ class ImageSelect:
         photo = Photo()
         photo.setPath(name)
         photo.setDescription(description)
-        photo.setMimeType(gnome.mime.type_or_default(name,"unknown"))
+        photo.setMimeType(gnome.mime.type_or_default_of_file(name,"unknown"))
 
         self.savephoto(photo)
 
@@ -158,6 +159,19 @@ class ImageSelect:
 class Gallery(ImageSelect):
     def __init__(self, dataobj, path, prefix, icon_list, db):
         ImageSelect.__init__(self, path, prefix, db)
+
+        t = [
+            ('STRING', 0, 0),
+            ('text/plain',0,0),
+            ('application/x-rootwin-drop',0,1)]
+
+        icon_list.drag_dest_set(DEST_DEFAULT_ALL, t, GDK.ACTION_COPY)
+        icon_list.connect("drag_data_received", self.on_photolist_drag_data_received)
+
+        icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,\
+                                   GDK.ACTION_COPY)
+        icon_list.connect("drag_data_get", self.on_photolist_drag_data_get)
+        
 
         # Be paranoid - development only error messages
         assert dataobj.addPhoto, "Gallery data object must contain an addPhoto routine."
@@ -216,7 +230,6 @@ class Gallery(ImageSelect):
             self.add_thumbnail(photo)
         self.icon_list.thaw()
 
-
     #-------------------------------------------------------------------------
     #
     # on_photo_select_icon - User clicked on a photo.  Remember which one.
@@ -225,6 +238,36 @@ class Gallery(ImageSelect):
     def on_photo_select_icon(self, obj,iconNumber,event):
         self.selectedIcon = iconNumber
 
+    def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
+	if data and data.format == 8:
+            if data.data[0:5] == "file:":
+                name = string.strip(data.data[5:])
+                mime = gnome.mime.type_or_default_of_file(name,"unknown")
+                if mime[0:5] == "image":
+                    photo = Photo()
+                    photo.setPath(name)
+                    photo.setMimeType(mime)
+                    self.savephoto(photo)
+                else:
+                    print name,mime
+            else:
+                if self.db.getObjectMap().has_key(data.data):
+                    w.drag_finish(context, TRUE, FALSE, time)
+                    oref = ObjectRef()
+                    oref.setReference(self.db.findObjectNoMap(data.data))
+                    self.dataobj.addPhoto(oref)
+                    self.add_thumbnail(oref)
+                    utils.modified()
+	else:
+            w.drag_finish(context, FALSE, FALSE, time)
+                
+    def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
+        if info == 1:
+            return
+        if self.selectedIcon != -1:
+            ref = self.dataobj.getPhotoList()[self.selectedIcon]
+            id = ref.getReference().getId()
+            selection_data.set(selection_data.target, 8, id)	
 
     #-------------------------------------------------------------------------
     #

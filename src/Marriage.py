@@ -25,6 +25,7 @@
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
+import GDK
 
 import libglade
 import os
