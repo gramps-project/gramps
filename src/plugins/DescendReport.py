@@ -30,6 +30,7 @@ _ = intl.gettext
 
 import RelLib
 import const
+import Config
 import utils
 import const
 from TextDoc import *
@@ -133,6 +134,7 @@ class DesReportWindow:
 
         glade_file = os.path.dirname(__file__) + os.sep + "desreport.glade"
         self.top = GladeXML(glade_file,"dialog1")
+        self.top.get_widget("fileentry1").set_default_path(Config.report_dir)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_style_edit_clicked" : on_style_edit_clicked,

@@ -27,6 +27,7 @@ import re
 import sort
 import string
 import utils
+import Config
 import intl
 
 _ = intl.gettext
@@ -346,6 +347,7 @@ def report(database,person):
     base = os.path.dirname(__file__)
     glade_file = base + os.sep + "indsum.glade"
     topDialog = GladeXML(glade_file,"dialog1")
+    topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
 
     name = person.getPrimaryName().getRegularName()
     label = topDialog.get_widget("labelTitle")
