@@ -649,7 +649,12 @@ class Gramps:
         elif page == 3:
             self.source_view.load_sources()
         elif page == 4:
+            if len(self.db.getPlaceKeys()) > 2000:
+                self.status_text(_('Updating display - this may take a few seconds...'))
+            else:
+                self.status_text(_('Updating display...'))
             self.place_view.load_places()
+            self.modify_statusbar()
             self.place_loaded = 1
         elif page == 5:
             self.media_view.load_media()
@@ -671,7 +676,12 @@ class Gramps:
         elif page == 3:
             self.source_view.load_sources()
         elif page == 4:
+            if len(self.db.getPlaceKeys()) > 2000:
+                self.status_text(_('Updating display - this may take a few seconds...'))
+            else:
+                self.status_text(_('Updating display...'))
             self.place_view.load_places()
+            self.modify_statusbar()
             self.place_loaded = 1
         else:
             self.media_view.load_media()
@@ -1117,9 +1127,14 @@ class Gramps:
 
     def on_places_activate(self,obj):
         """Switches to the places view"""
+        if len(self.db.getPlaceKeys()) > 2000:
+            self.status_text(_('Updating display - this may take a few seconds...'))
+        else:
+            self.status_text(_('Updating display...'))
         if self.place_loaded == 0:
             self.place_view.load_places()
             self.place_loaded = 1
+        self.modify_statusbar()
         self.notebook.set_current_page(4)
 
     def on_media_activate(self,obj):
