@@ -521,8 +521,6 @@ class GedcomWriter:
         self.flist = {}
         self.fidval = 0
         self.fidmap = {}
-        self.pidval = 0
-        self.pidmap = {}
         self.sidval = 0
         self.sidmap = {}
         
@@ -743,14 +741,16 @@ class GedcomWriter:
             self.frefn(family_id)
             person_id = family.get_father_id()
             if person_id != None and self.plist.has_key(person_id):
-                self.writeln("1 HUSB @%s@" % self.pid(person_id))
                 person = self.db.try_to_find_person_from_id(person_id)
+                gramps_id = person.get_gramps_id()
+                self.writeln("1 HUSB @%s@" % gramps_id)
                 father_alive = person.probably_alive(self.db)
 
-            person = family.get_mother_id()
-            if person != None and self.plist.has_key(person_id):
-                self.writeln("1 WIFE @%s@" % self.pid(person_id))
+            person_id = family.get_mother_id()
+            if person_id != None and self.plist.has_key(person_id):
                 person = self.db.try_to_find_person_from_id(person_id)
+                gramps_id = person.get_gramps_id()
+                self.writeln("1 WIFE @%s@" % gramps_id)
                 mother_alive = person.probably_alive(self.db)
 
             if not self.restrict or ( not father_alive and not mother_alive ):
@@ -779,8 +779,8 @@ class GedcomWriter:
             for person_id in family.get_child_id_list():
                 if not self.plist.has_key(person_id):
                     continue
-                self.writeln("1 CHIL @%s@" % self.pid(person_id))
                 person = self.db.try_to_find_person_from_id(person_id)
+                self.writeln("1 CHIL @%s@" % person.get_gramps_id())
                 if self.adopt == GedcomInfo.ADOPT_FTW:
                     if person.get_main_parents_family_id() == family.get_id():
                         self.writeln('2 _FREL Natural')
@@ -830,7 +830,7 @@ class GedcomWriter:
 #            self.sbar.set_fraction(1.0)
 
     def write_person(self,person):
-        self.writeln("0 @%s@ INDI" % self.pid(person.get_gramps_id()))
+        self.writeln("0 @%s@ INDI" % person.get_gramps_id())
         restricted = self.restrict and person.probably_alive (self.db)
         self.prefn(person)
         primaryname = person.get_primary_name ()
@@ -1251,9 +1251,6 @@ class GedcomWriter:
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     
-    def pid(self,id):
-        return id
- 
     def sid(self,id):
         if self.sidmap.has_key(id):
             return self.sidmap[id]

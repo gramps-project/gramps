@@ -1,3 +1,6 @@
+2004-07-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/WriteGedcom.py: use the correct id value
+
 2004-07-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Exporter.py: Keep track of added extra pages.
 	* src/plugins/WriteGedcom.py: Switch from radiobuttons to menu
