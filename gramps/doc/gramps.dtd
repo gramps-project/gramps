@@ -4,11 +4,12 @@
 
 Copyright (c) 2001 Graham J. Williams
 
-Time-stamp: <2001/09/14 09:54:20 Graham.Williams@cmis.csiro.au>
+Time-stamp: <2002/01/22 15:41:37 Graham.Williams@csiro.au>
 
 Freely Redistributable under the terms of the GNU General Public License.
 
-Based on GEDCOM and conforming with Gramps XML encoding.
+Based on GEDCOM and conforming to the Gramps XML encoding.
+Still under development and Gramps XML not complete.
 
 Information on Gramps is available from http://
 
@@ -16,12 +17,22 @@ Information on Gramps is available from http://
 
 <!--
 
-	Define an XML document which is a <database> consisting of a
-	<header>, <people>, <families>, <sources>, <places> and <bookmarks>.
+DATABASE
+
+	Defines an XML document which is a <database> consisting of a
+
+	header	   Information about the "owner" of the database
+	people
+	families
+	sources
+	places
+	objects
+	bookmarks
 
 -->
 
-<!ELEMENT database (header, people?, families?, sources?, places?, bookmarks?)>
+<!ELEMENT database (header, people?, families?, sources?, places?, objects?, 
+                    bookmarks?)>
 
 <!--	************************************************************
 
@@ -66,12 +77,44 @@ PEOPLE
 <!ELEMENT people (person)*>
 <!ATTLIST people default CDATA #IMPLIED>
 
+<!--
+
+PERSON
+
+	gender	Either M or F.
+	name	
+	aka	Also known as. Alternative names from marriage,
+		adoption, legal name change, etc
+
+	nick	The nick name - a name the person is sometimes known by.
+
+-->
+
 <!ELEMENT person (gender, name?, aka*, nick?, pos?, uid?, event*,
-                  img*, url*, childof*, parentin*, address*,
+                  objref*, url*, childof*, address*, parentin*,
                   sourceref?, attribute*, note?)>
 <!ATTLIST person id ID #REQUIRED>
 
-<!ELEMENT name    (first?, last?,suffix?)>
+<!--
+
+GENDER has values of M or F.
+
+-->
+
+<!ELEMENT gender  (#PCDATA)>
+
+<!-- 
+
+NAME and AKA
+
+	first	Given names
+	last	Surname
+	suffix
+	title	E.g., Sargent Major
+
+-->
+
+<!ELEMENT name    (first?, last?,suffix?,title?)>
 <!ATTLIST name    conf CDATA #IMPLIED
                   priv CDATA #IMPLIED>
 
@@ -79,10 +122,11 @@ PEOPLE
 <!ATTLIST aka     conf CDATA #IMPLIED
                   priv CDATA #IMPLIED>
 
-<!ELEMENT gender  (#PCDATA)>
 <!ELEMENT first   (#PCDATA)>
 <!ELEMENT last    (#PCDATA)>
 <!ELEMENT suffix  (#PCDATA)>
+<!ELEMENT title   (#PCDATA)>
+
 <!ELEMENT nick    (#PCDATA)>
 <!ELEMENT uid     (#PCDATA)>
 
@@ -100,7 +144,7 @@ PEOPLE
 <!ATTLIST parentin
   ref    IDREF #REQUIRED>
 
-<!ELEMENT address (date?,street?,city?,state?,country?,postal?,
+<!ELEMENT address (dateval?,street?,city?,state?,country?,postal?,
                    note?,sourceref?)>
 <!ATTLIST address conf CDATA #IMPLIED
                   priv CDATA #IMPLIED>
@@ -121,7 +165,7 @@ FAMILY
 
 <!ELEMENT families (family)*>
 
-<!ELEMENT family (father?,mother?,event*,img*,child*,attribute*,note?)>
+<!ELEMENT family (father?,mother?,event*,objref*,child*,attribute*,note?)>
 <!ATTLIST family
   id        ID    #REQUIRED
   type      (Married|Unmarried|Partners|Other|Unkown) #IMPLIED>
@@ -156,19 +200,31 @@ PLACES
 
 <!ELEMENT places (placeobj)*>
 
-<!ELEMENT placeobj (coord?,location*,img*,url*,note?)>
-<!ATTLIST placeobj id ID #REQUIRED title CDATA #REQUIRED>
+<!ELEMENT placeobj (coord?,location*,objref*,url*,note?)>
+<!ATTLIST placeobj id ID #REQUIRED title CDATA #IMPLIED>
 
 <!ELEMENT coord EMPTY>
 <!ATTLIST coord long CDATA #REQUIRED lat CDATA #REQUIRED>
 
 <!ELEMENT location EMPTY>
 <!ATTLIST location
-    city        CDATA #REQUIRED
-    county      CDATA #REQUIRED
-    state       CDATA #REQUIRED
-    country     CDATA #REQUIRED
+    city        CDATA #IMPLIED
+    county      CDATA #IMPLIED
+    state       CDATA #IMPLIED
+    country     CDATA #IMPLIED
+    parish      CDATA #IMPLIED
 >
+
+
+<!ELEMENT objects (object)*>
+
+<!ELEMENT object (attribute)*>
+<!ATTLIST object
+    id 		ID 	#REQUIRED
+    src		CDATA	#IMPLIED
+    mime	CDATA	#IMPLIED
+    description	CDATA	#IMPLIED>
+
 
 
 <!--	************************************************************
@@ -187,21 +243,20 @@ SHARED ELEMENTS
 
 -->
 
-<!ELEMENT attribute  (attr_type,attr_value,note?,sourceref?)>
-<!ATTLIST attribute  conf CDATA #IMPLIED
-                     priv CDATA #IMPLIED>
+<!ELEMENT attribute  (note?,sourceref?)>
+<!ATTLIST attribute  conf 	CDATA 	#IMPLIED
+                     priv 	CDATA 	#IMPLIED
+                     type	CDATA	#IMPLIED
+                     value	CDATA	#IMPLIED
+>
 
-<!ELEMENT attr_type  (#PCDATA)>
-<!ELEMENT attr_value (#PCDATA)>
+<!--ELEMENT attr_type  (#PCDATA)>
+<!ELEMENT attr_value (#PCDATA)-->
 
-
-<!ELEMENT event (date?,place?,description?,sourceref?,note?)>
-<!ATTLIST event type
-   (Birth|Death|Christening|Baptism|Engagement|Marriage|
-   Occupation|Education|Degree|Immi|Burial|Cremation)
-   #REQUIRED>
 
 <!--
+
+EVENT
 
   We can enumerate all possibilities for an event and then this will
   not conform to Gramps as Gramps allows any type of events (i.e., a
@@ -212,9 +267,25 @@ SHARED ELEMENTS
   So decide to use the enumerated list for now unless there is a storm
   of protest.
 
+	Alternative Birth	Another possible birth date
+	Degree			Awarding of a degree
+	Education		Some step in the education process
+	Graduation		Graduation (often same as degree)
+
 -->
 
-<!ELEMENT date        (#PCDATA)>
+<!ELEMENT event (dateval?,place?,description?,sourceref?,note?)>
+<!ATTLIST event type
+   (Annulment|Birth|Death|Christening|Baptism|Engagement|Marriage|
+   Occupation|Education|Degree|Immi|Burial|Cremation)
+   #REQUIRED>
+
+<!ELEMENT dateval EMPTY>
+<!ATTLIST dateval
+    val  CDATA #REQUIRED
+    type CDATA #IMPLIED>
+
+<!--ELEMENT date        (#PCDATA) replaced by dateval-->
 <!ELEMENT description (#PCDATA)>
 
 <!ELEMENT note (#PCDATA)>
@@ -235,6 +306,11 @@ SHARED ELEMENTS
 <!ELEMENT scomments (#PCDATA)>
 <!ELEMENT sdate     (#PCDATA)>
 <!ELEMENT stext     (#PCDATA)>
+
+<!ELEMENT objref (attribute)*>
+<!ATTLIST objref
+    ref		IDREF	#REQUIRED
+>
 
 <!ELEMENT img EMPTY>
 <!ATTLIST img
