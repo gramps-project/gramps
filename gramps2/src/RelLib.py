@@ -2252,6 +2252,9 @@ class GrampsDB(Persistent):
         self.omapIndex = self.omapIndex + 1
         return index
 
+    def getObject(self,id):
+        return self.objectMap[id]
+
     def findObject(self,idVal,map):
         """finds an Object in the database using the idVal and map
         variables to translate between the external ID and gramps'
@@ -2302,6 +2305,9 @@ class GrampsDB(Persistent):
         self.lmapIndex = self.lmapIndex + 1
         self.placeTable[index] = place.getDisplayInfo()
         return index
+
+    def removeObject(self,id):
+        del self.placeMap[id]
 
     def removePlace(self,id):
         del self.placeMap[id]

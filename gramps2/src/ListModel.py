@@ -54,8 +54,9 @@ class ListModel:
             self.cids.append(name[1])
             if name[1] != -1:
                 self.tree.append_column(column)
-            
-        self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
+
+        if self.cids[0] > 0:
+            self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
         self.connect_model()
         
         if select_func:

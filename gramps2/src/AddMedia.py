@@ -88,7 +88,6 @@ class AddMediaObject:
             "destroy_passed_object" : Utils.destroy_passed_object
             })
         
-        self.window.editable_enters(self.description)
         self.window.show()
 
     def on_savephoto_clicked(self,obj):
@@ -143,8 +142,10 @@ class AddMediaObject:
 
         if os.path.isfile(filename):
             type = Utils.get_mime_type(filename)
-            if type[0:5] == 'image':
+
+            if type[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
-                self.image.load_imlib(image)
+                self.image.set_from_pixbuf(image)
             else:
-                self.image.load_file(Utils.find_icon(type))
+                i = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
+            self.image.set_from_pixbuf(i)

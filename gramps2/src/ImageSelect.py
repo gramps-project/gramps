@@ -234,14 +234,11 @@ class Gallery(ImageSelect):
         self.photo = None
 
     def close(self):
-        pass
-#        self.iconlist.hide()
-#        print self.canvas_list
-#        print self.p_map
-#        self.canvas_list = None
-#        self.p_map = None
+        self.iconlist.hide()
+        self.canvas_list = None
+        self.p_map = None
 #        gc.collect()
-#        self.iconlist.destroy()
+        self.iconlist.destroy()
         
     def on_canvas1_event(self,obj,event):
         """Handle resize events over the canvas, redrawing if the size changes"""
@@ -267,11 +264,11 @@ class Gallery(ImageSelect):
 
                 item = widget.get_item_at(event.x,event.y)
                 if item:
-                    (i,t,b,self.photo) = self.p_map[item]
+                    (i,t,b,self.photo,oid) = self.p_map[item]
                     t.set(fill_color_gdk=style.fg[gtk.STATE_SELECTED])
                     b.set(fill_color_gdk=style.bg[gtk.STATE_SELECTED])
                     if self.sel:
-                        (i,t,b,photo) = self.p_map[self.sel]
+                        (i,t,b,photo,oid) = self.p_map[self.sel]
                         t.set(fill_color_gdk=style.fg[gtk.STATE_NORMAL])
                         b.set(fill_color_gdk=style.bg[gtk.STATE_NORMAL])
                         
@@ -285,7 +282,7 @@ class Gallery(ImageSelect):
             elif event.button == 3:
                 item = widget.get_item_at(event.x,event.y)
                 if item:
-                    (i,t,b,self.photo) = self.p_map[item]
+                    (i,t,b,self.photo,oid) = self.p_map[item]
                     self.show_popup(self.photo)
                 return gtk.TRUE
         elif event.type == gtk.gdk.BUTTON_RELEASE:
@@ -293,7 +290,7 @@ class Gallery(ImageSelect):
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             item = widget.get_item_at(event.x,event.y)
             if item:
-                (i,t,b,self.photo) = self.p_map[item]
+                (i,t,b,self.photo,oid) = self.p_map[item]
                 LocalMediaProperties(self.photo,self.path,self)
             return gtk.TRUE
         elif event.type == gtk.gdk.MOTION_NOTIFY:
@@ -365,7 +362,7 @@ class Gallery(ImageSelect):
             self.cx = _PAD
             self.cy = self.cy + _PAD + _IMAGEY
         else:
-            self.cx = _PAD + self.cx + _IMAGEX
+            self.cx = self.cx + _PAD + _IMAGEX
         
     def load_images(self):
         """clears the currentImages list to free up any cached 
@@ -502,7 +499,7 @@ class Gallery(ImageSelect):
         thumbnails, and remove it from the dataobj photo list."""
 
         if self.sel:
-            (i,t,b,photo) = self.p_map[self.sel]
+            (i,t,b,photo,oid) = self.p_map[self.sel]
             val = self.canvas_list[photo.getReference().getId()]
             val[0].hide()
             val[1].hide()
@@ -591,7 +588,7 @@ class LocalMediaProperties:
         self.attr_details = self.change_dialog.get_widget("attr_details")
 
         self.attr_list = self.change_dialog.get_widget("attr_list")
-        titles = [(_('Attribute'),-1,150),(_('Value'),-1,100)]
+        titles = [(_('Attribute'),0,150),(_('Value'),0,100)]
 
         self.atree = ListModel.ListModel(self.attr_list,titles,
                                          self.on_attr_list_select_row,
@@ -723,7 +720,7 @@ class GlobalMediaProperties:
 
         self.attr_list = self.change_dialog.get_widget("attr_list")
 
-        titles = [(_('Attribute'),-1,150),(_('Value'),-1,100)]
+        titles = [(_('Attribute'),0,150),(_('Value'),1,100)]
 
         self.atree = ListModel.ListModel(self.attr_list,titles,
                                          self.on_attr_list_select_row,

@@ -233,24 +233,27 @@ class MediaView:
 #            self.list.moveto(0)
 #        self.list.thaw()
 
-    def create_add_dialog(self,obj):
+    def on_add_clicked(self,obj):
         """Add a new media object to the media list"""
         import AddMedia
         AddMedia.AddMediaObject(self.db,self.load_media)
 
-    def on_edit_media_clicked(self,obj):
+    def on_edit_clicked(self,obj):
         """Edit the properties of an existing media object in the media list"""
-        if len(self.list.selection) <= 0:
-            return
-        object = self.list.get_row_data(self.list.selection[0])
-        ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
+
+        list_store, iter = self.selection.get_selected()
+        if iter:
+            id = list_store.get_value(iter,1)
+            object = self.db.getObject(id)
+            ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
 
     def on_delete_clicked(self,obj):
-        if len(self.list.selection) <= 0:
+        store,iter = self.selection.get_selected()
+        if not iter:
             return
-        else:
-            index = self.list.selection[0]
-        mobj = self.list.get_row_data(index)
+
+        id = store.get_value(iter,1)
+        mobj = self.db.getObject(id)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
             QuestionDialog(_('Delete Object'),
@@ -258,12 +261,11 @@ class MediaView:
                              "Delete anyway?"),
                            ans.query_response)
         else:
-            map = self.db.getObjectMap()
-            del map[mobj.getId()]
+            self.db.removeObject(mobj.getId())
             Utils.modified()
             self.update(0)
 
-    def is_media_object_used(self,mobj):
+    def is_object_used(self,mobj):
         for p in self.db.getFamilyMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
