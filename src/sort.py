@@ -19,7 +19,7 @@
 #
 
 import string
-from Date import compare_dates
+from Date import compare_dates, UNDEF
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +35,7 @@ def build_sort_name(n):
 #
 #
 #-------------------------------------------------------------------------
-def build_sort_birth(n):
+def build_sort_event(n):
     y = n.start.year
     if y < 0:
         y = 9999
@@ -44,23 +44,6 @@ def build_sort_birth(n):
         m = 99
     d = n.start.day
     if d < 0:
-        d = 99
-    return "%04d%02d%02d" % (y,m,d)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def build_sort_death(n):
-    y = n.start.year
-    if y == -1:
-        y = 9999
-    m = n.start.month
-    if m == -1:
-        m = 99
-    d = n.start.day
-    if d == -1:
         d = 99
     return "%04d%02d%02d" % (y,m,d)
 
