@@ -267,8 +267,9 @@
 <!-- This section is optional and is commented out by default. 
      You can use it to describe known bugs and limitations of the 
 	  program if there are any - please be frank and list all
-     problems you know of. -->
-  
+     problems you know of. 
+-->
+ 
   <sect1 id="mayapp-bugs">
   <title>Jelenleg ismert korlátozó tényezők</title>
   <para>Jelenleg a &app; minden adatot a memóriában tárol, ami jelentősen 
@@ -285,6 +286,7 @@
   megoldást tud nyújtani, ha az összesítőket OpenOffice.org formátumba menti és 
   utána az OpenOffice.org programból készít PDF mentést.</para>
  </sect1>
+-->
 
 <!-- ============= About ================================== -->
 <!-- This section contains info about the program (not docs), such as

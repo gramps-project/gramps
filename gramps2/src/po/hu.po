@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Mon Jan 19 14:10:17 2004\n"
-"PO-Revision-Date: 2004-01-20 21:17+0100\n"
+"PO-Revision-Date: 2004-01-24 22:30+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -3622,7 +3622,7 @@ msgstr "Eltávolítás"
 
 #: gramps.glade:1001
 msgid "Pedigree"
-msgstr "Leszármazás"
+msgstr "Családfa"
 
 #: gramps.glade:1142
 msgid "Media"
@@ -3754,7 +3754,7 @@ msgstr "<b>Család</b>"
 
 #: gramps.glade:3046
 msgid "<b>Pedigree</b>"
-msgstr "<b>Leszármazás</b>"
+msgstr "<b>Családfa</b>"
 
 #: gramps.glade:3104
 msgid "<b>Sources</b>"

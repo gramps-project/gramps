@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -18,13 +18,13 @@
 
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
-    <title>Fő ablak</title> 
-    <para>Amikor megnyit egy adatbázist (akár újat, akár egy már létezőt), 
-    a következő ablak jelenik meg.</para>
+    <title>Főablak</title> 
+    <para>When you open a database (either existing or brand new), 
+    the following window is displayed.</para>
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
-	<title>&app; Main Window</title> 
+	<title>&app; Főablak</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -35,28 +35,28 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-    <para>The &app; window contains the following elements: </para>
+    <para>A &app; ablak a következő elemeket tartalmazza: </para>
       <variablelist>
-      <varlistentry><term>Menubar</term>
+      <varlistentry><term>Menüsor</term>
 	<listitem><para>The menubar is located at the very top of the window
         (right below the window title) and provides access to all features of
 	&app; through its menus.</para></listitem>
       </varlistentry>
-      <varlistentry><term>Toolbar</term>
+      <varlistentry><term>Eszköztár</term>
 	<listitem><para> The toolbar is located immediately below the menubar. 
         The toolbar provides access to the most frequently used functions 
         of &app;. The appearance of the toolbar 
         can be adjusted in the <guilabel>Preferences</guilabel> 
 	dialog. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Progressbar</term>
+      <varlistentry><term>Eseményjelző</term>
 	<listitem><para>The progressbar is located in the lower left corner 
 	of the &app; window. It displays the 
 	progress of time consuming operations, such as opening and saving 
 	large data bases, importing and exporting to other formats, generating 
 	web sites, etc. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Statusbar</term>
+      <varlistentry><term>Állapotjelző</term>
 	<listitem><para>The statusbar is located to the right of the 
         progressbar, on the very bottom of the &app; window. 
 	It displays information about current &app; 
@@ -64,19 +64,19 @@
 	The behavior of the statusbar can be adjusted in 
 	<guilabel>Preferences</guilabel> dialog. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Display area</term>
+      <varlistentry><term>Megjelenítési terület</term>
 	<listitem><para>The largest area in the center of the
 	&app; window is the display area.  
 	It shows certain aspects of genealogical information, depending on the 
 	currently selected View. The following six Views are available 
 	in &app;: 
 	<itemizedlist>	
-	<listitem><para>People View</para></listitem>
-	<listitem><para>Family View</para></listitem>
-	<listitem><para>Pedigree View</para></listitem>
-	<listitem><para>Sources View</para></listitem>
-	<listitem><para>Places View</para></listitem>
-	<listitem><para>Media View</para></listitem>
+	<listitem><para>Emberek Nézet</para></listitem>
+	<listitem><para>Család Nézet</para></listitem>
+	<listitem><para>Családfa Nézet</para></listitem>
+	<listitem><para>Források Nézet</para></listitem>
+	<listitem><para>Helyszínek Nézet</para></listitem>
+	<listitem><para>Média Nézet</para></listitem>
 
 	</itemizedlist>
 	</para></listitem>
@@ -143,7 +143,7 @@
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="people-view">
-        <title>People View</title>
+        <title>Emberek Nézet</title>
 	<para>When &app; first opens a database, 
 	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
 	and <xref linkend="noside-nofilt-fig"/>). The People View lists 
@@ -171,7 +171,7 @@
 
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="filters">
-          <title>Filters</title>
+          <title>Szűrők</title>
 	  <para>Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
 	  &app; provides a convenient way to limit 
@@ -194,7 +194,7 @@
 	  filter is set to the trivial filter called <guilabel>All
 	  people</guilabel>, i.e. no filtering is in effect. To choose a 
 	  filter, use the pop-up <guilabel>Filter</guilabel> menu above the 
-	  people's list. Once the filter is chosen, click the 
+	  people''s list. Once the filter is chosen, click the 
 	  <guibutton>Apply</guibutton> button in the upper right corner of the 
 	  window. The filtering will take effect upon clicking the 
 	  <guibutton>Apply</guibutton> button. To invert the filtering rule, 
@@ -240,7 +240,7 @@
       
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="family-view">
-        <title>Family View</title>
+        <title>Család Nézet</title>
 	<para>Family View displays the family information of a currently 
 	selected (or Active) person. Specifically, this view shows the 
 	relationships (e.g marriages, partnerships, etc.) of the active 
@@ -281,7 +281,7 @@
 	
 	<para>The parents of both the Active person and the Current spouse 
 	are listed in the corresponding list boxes in the right-hand part of 
-	the window (Active person's parents on top, Current spouse parents 
+	the window (Active person''s parents on top, Current spouse parents 
 	on the bottom). Both list boxes have a set of three buttons on their 
 	right side. The <guibutton>+</guibutton> and <guibutton>-</guibutton>
 	buttons allow you to add and remove parents of the Active person and the 
@@ -293,7 +293,7 @@
         selecting an appropriate items from the context menu. </para>
 	
 	<para>The bottom list box displays children of the Active person and 
-	the Current  Spouse. The Children's list can be ordered by the Birth date 
+	the Current  Spouse. The Children''s list can be ordered by the Birth date 
 	in the usual way of clicking on the <guilabel>Birth date</guilabel> column 
 	header. In addition to the <guilabel>Name</guilabel>,
 	<guilabel>ID</guilabel>, <guilabel>Gender</guilabel>, and
@@ -357,7 +357,7 @@
 	represent birth relations, while dashed lines represent non-birth 
 	relations (such as adoption, step-parenthood, guardianship, etc.). 
 	When the mouse moves over the white box, it expands to display the 
-	corresponding person's dates of birth and death. When the mouse is 
+	corresponding person''s dates of birth and death. When the mouse is 
 	placed over the family line, the line become highlighted to indicate 
 	an active link: double-clicking on the line makes the corresponding 
 	ancestor the Active person. The display in that case is re-adjusted 
@@ -377,7 +377,7 @@
 	<para>The left-hand side of the window shows the left arrow button. 
 	Upon clicking, the button expands to the menu listing the children 
 	of the Active person. Selecting the menu item makes the corresponding 
-	child the Active person. The appearance of the children's names 
+	child the Active person. The appearance of the children''s names 
 	in the menu serves to differentiate the "dead ends" of the tree from 
 	the continuing branches as follows. The children who have children 
 	appear in the menu in the boldface and italic typeset, while the 
@@ -392,6 +392,44 @@
 	the Active person the Active person. Again, the display is re-adjusted 
 	to show four generations, starting from the newly selected Active 
 	person.</para> 
+
+	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-anchor-fig"> 
+	<title>Pedigree View with the Anchor</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/pedigree-anchor.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Pedigree View with the anchor set.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+    
+    <para>An additional advanced scheme of labeling generations exists in 
+    Pedigree View. It becomes available by setting the anchor on some active 
+    person. If the anchor is set, the generations are labeled as follows. 
+    The anchor
+    person (and his/her generation) is labeled as <guilabel>0</guilabel>. 
+    The ancestor generations are numbered with positive integers 
+    (<guilabel>1</guilabel>, <guilabel>2</guilabel>, <guilabel>3</guilabel>, 
+    etc.) while the descendant generations are numbered with negative integers
+    (<guilabel>-1</guilabel>, <guilabel>-2</guilabel>, <guilabel>-3</guilabel>, 
+    etc.). In all cases, the number represents the number of generations 
+    between the labeled generation and the anchor person. In this mode, 
+    you can travel along the extensive pedigree line and see the number 
+    of generations counting from the anchor person.</para>
+    
+    <para>To set the anchor, select the <guilabel>Set anchor</guilabel> menu
+    item from the right-click context menu, when the desired person is the 
+    Active person in the Pedigree View. The labels will change immediately, 
+    and the name of the anchor person will appear at the lower left corner
+    of the display area. 
+    The set anchor person will stay in effect until either the anchor is 
+    removed (by selecting the <guilabel>Remove anchor</guilabel> item from the 
+    context menu) or until the active person chosen is unrelated to the anchor 
+    person. The latter move can be made using extensive navigation tools 
+    available in &app;, see <xref linkend="gramps-nav"/> for the detailed 
+    reference. 
+    </para>
+
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
@@ -438,7 +476,7 @@
 	of the database took place. These could be places of birth, death, 
 	and marriages of people, as well as their home, employment, education 
 	addresses, or any other conceivable reference to the geographical 
-	location. The Places View lists the places' <guilabel>Name</guilabel>,
+	location. The Places View lists the places'' <guilabel>Name</guilabel>,
 	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
 	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
 	<guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of
