@@ -425,8 +425,6 @@ info: info-recursive
 info-am:
 
 install-data-am:
-	@$(NORMAL_INSTALL)
-	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
 
 install-exec-am: install-binSCRIPTS
 
@@ -445,7 +443,7 @@ mostlyclean: mostlyclean-recursive
 
 mostlyclean-am: mostlyclean-generic
 
-uninstall-am: uninstall-binSCRIPTS uninstall-info-am uninstall-local
+uninstall-am: uninstall-binSCRIPTS uninstall-info-am
 
 uninstall-info: uninstall-info-recursive
 
@@ -463,7 +461,7 @@ uninstall-info: uninstall-info-recursive
 	maintainer-clean-recursive mostlyclean mostlyclean-generic \
 	mostlyclean-recursive tags tags-recursive uninstall \
 	uninstall-am uninstall-binSCRIPTS uninstall-info-am \
-	uninstall-info-recursive uninstall-local uninstall-recursive
+	uninstall-info-recursive uninstall-recursive
 
 
 gramps: gramps.sh
@@ -471,16 +469,6 @@ gramps: gramps.sh
 
 dist-hook: gramps.spec
 	cp gramps.spec $(distdir)
-
-# Build/rebuild the catalog
-install-data-hook:
-	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
-
-# Remove generated files
-uninstall-local:
-	-rm -rf $(DESTDIR)$(gramps_localstate_dir)
-	-rm -f $(DESTDIR)$(localstatedir)/log/gramps.log
-	-rm -f $(DESTDIR)$(localstatedir)/log/gramps.log.1
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

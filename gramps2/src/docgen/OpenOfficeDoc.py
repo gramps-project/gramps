@@ -336,15 +336,15 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         
     def _write_styles_file(self):
         self.styles_xml = tempfile.mktemp()
-
+        
         try:
             self.f = open(self.styles_xml,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
             raise Errors.ReportError(errmsg)
         except:
-            raise Errors.ReportError((_("Could not create %s") % self.styles_xml)
-        
+            raise Errors.ReportError(_("Could not create %s") % self.styles_xml)
+                                     
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
