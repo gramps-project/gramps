@@ -1081,6 +1081,7 @@ def change_family_type(family,mrel,frel):
                     fam.removeChild(active_person)
                     return
     elif family == active_person.getMainFamily():
+        family.addChild(active_person)
         if not is_main:
             utils.modified()
             active_person.setMainFamily(None)
@@ -1094,6 +1095,7 @@ def change_family_type(family,mrel,frel):
             else:
                 active_person.addAltFamily(family,mrel,frel)
     else:
+        family.addChild(active_person)
         for fam in active_person.getAltFamilyList():
             if family == fam[0]:
                 if is_main:
