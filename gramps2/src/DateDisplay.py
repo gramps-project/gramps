@@ -90,7 +90,7 @@ class DateDisplay:
         unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).upper(),
         )
 
-    _tformat = locale.nl_langinfo(locale.D_FMT)
+    _tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
     
     _hebrew = (
         "", "Tishri", "Heshvan", "Kislev", "Tevet", "Shevat",
@@ -213,8 +213,9 @@ class DateDisplay:
             if date_val[0] == 0 and date_val[1] == 0:
                 return str(date_val[2])
             else:
-                return time.strftime(self._tformat,(date_val[2],date_val[1],
-                                                    date_val[0],0,0,0,0,0,0))
+                val = self._tformat.replace('%m',str(date_val[1]))
+                val = val.replace('%d',str(date_val[0]))
+                return val.replace('%Y',str(date_val[2]))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:

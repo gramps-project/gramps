@@ -1,3 +1,7 @@
+2004-09-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateDisplay: don't rely on strftime, since it does not
+	handle dates before 1900
+
 2004-09-25  Don Allingham  <dallingham@users.sourceforge.net>
         * src/DateDisplay.py: add set_format function
 	* src/GrampsCfg.py: update RelLib display

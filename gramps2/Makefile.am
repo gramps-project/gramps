@@ -14,4 +14,7 @@ pycheck:
 trans:
 	(cd src; make trans) 
 
+distuninstallcheck:
+	@:
+
 CLEANFILES = gramps
