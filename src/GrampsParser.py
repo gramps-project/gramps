@@ -802,6 +802,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_aka(self,tag):
         self.person.addAlternateName(self.name)
+        self.name = None
 
     func_map = {
         "address"    : (start_address, stop_address),
