@@ -301,11 +301,14 @@ class AncestorChartDialog(DrawReportDialog):
         """Create the object that will produce the Ancestor Chart.
         All user dialog has already been handled and the output file
         opened."""
-        MyReport = AncestorChart(self.db, self.person, self.target_path,
-                                 self.max_gen, self.doc, self.report_text)
-        MyReport.write_report()
 
-
+        try:
+            MyReport = AncestorChart(self.db, self.person, self.target_path,
+                                     self.max_gen, self.doc, self.report_text)
+            MyReport.write_report()
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #

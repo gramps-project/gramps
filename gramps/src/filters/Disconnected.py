@@ -21,7 +21,6 @@
 "Disconnected individuals"
 
 import Filter
-import RelLib
 import intl
 _ = intl.gettext
 

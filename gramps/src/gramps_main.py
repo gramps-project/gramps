@@ -67,7 +67,6 @@ import sort
 import Utils
 import Bookmarks
 import Sorter
-import ListColors
 import GrampsCfg
 import EditPerson
 import Marriage
@@ -334,8 +333,7 @@ class Gramps:
         elif self.notebook.get_current_page() == 3:
             Find.FindSource(self.source_view.source_list,self.find_goto_source,self.db)
         elif self.notebook.get_current_page() == 5:
-            Find.FindMedia(self.media_view.media_list,self.find_goto_media,
-                           self.db.getObjectMap().values())
+            Find.FindMedia(self.media_view.media_list,self.find_goto_media,self.db)
         else:
             Find.FindPerson(self.person_list,self.find_goto_to,self.db)
 
@@ -593,7 +591,7 @@ class Gramps:
                        
     def new_database_response(self):
         import DbPrompter
-        self.clear_database()
+        self.clear_database(2)
         DbPrompter.DbPrompter(self,1)
     
     def clear_database(self,zodb=1):
@@ -604,8 +602,10 @@ class Gramps:
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
     
-        if zodb:
+        if zodb == 1:
             self.db = GrampsZODB()
+        elif zodb == 2:
+            self.db = GrampsDB()
         else:
             self.db = GrampsXML()
         self.db.set_iprefix(GrampsCfg.iprefix)
@@ -696,7 +696,7 @@ class Gramps:
         if filename == "" or filename == None:
             return
         
-        self.clear_database()
+        self.clear_database(0)
     
         if getoldrev.get_active():
             vc = VersionControl.RcsVersionControl(filename)
@@ -1269,8 +1269,7 @@ class Gramps:
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):
-        if epo:
-            print person,old_id
+        if person:
             self.remove_from_person_list(person,old_id)
             self.redisplay_person_list(person)
         self.update_display(0)
@@ -1710,7 +1709,7 @@ class Gramps:
             self.statusbar.set_status(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
-            GnomeWarningDialog(_("Bookmark could not be set because no one was selected"))
+            gramps.ui.GnomeWarningDialog(_("Bookmark could not be set because no one was selected"))
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()

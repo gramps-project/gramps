@@ -23,7 +23,6 @@ locale.setlocale(locale.LC_NUMERIC,"C")
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import traceback
 import sys
 
 #-------------------------------------------------------------------------
@@ -56,12 +55,8 @@ try:
     else:
         gramps_main.Gramps(arg)
 except:
-    traceback.print_exc()
+    import DisplayTrace
+    DisplayTrace.DisplayTrace()
         
-    fname = os.path.expanduser("~/gramps.err")
-    errfile = open(fname,"w")
-    traceback.print_exc(file=errfile)
-    errfile.close()
-
 gtk.mainloop()
 

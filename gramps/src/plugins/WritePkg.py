@@ -20,113 +20,132 @@
 
 "Export to GRAMPS package"
 
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
+import time
+import os
+from cStringIO import StringIO
+
+#-------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#-------------------------------------------------------------------------
+import libglade
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 from RelLib import *
 
 import WriteXML
-import time
-import os
 import TarFile
 import Utils
-import libglade
 
-from cStringIO import StringIO
 import intl
 _ = intl.gettext
 
+#-------------------------------------------------------------------------
+#
+# writeData
+#
+#-------------------------------------------------------------------------
 def writeData(database,person):
-    global db
-    global topDialog
-    global active_person
+    try:
+        PackageWriter(database)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
     
-    db = database
-    active_person = person
-    
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "pkgexport.glade"
+#-------------------------------------------------------------------------
+#
+# PackageWriter
+#
+#-------------------------------------------------------------------------
+class PackageWriter:
+
+    def __init__(self,database):
+        self.db = database
         
-    dic = {
-        "destroy_passed_object" : Utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked
-        }
+        base = os.path.dirname(__file__)
+        glade_file = "%s/%s" % (base,"pkgexport.glade")
+        
+        
+        dic = {
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "on_ok_clicked" : self.on_ok_clicked
+            }
+        
+        self.top = libglade.GladeXML(glade_file,"packageExport")
+        self.top.signal_autoconnect(dic)
+        self.top.get_widget("packageExport").show()
 
-    topDialog = libglade.GladeXML(glade_file,"packageExport")
-    topDialog.signal_autoconnect(dic)
+    def on_ok_clicked(self,obj):
+        name = self.top.get_widget("filename").get_text()
+        Utils.destroy_passed_object(obj)
+        self.export(name)
 
-    topDialog.get_widget("packageExport").show()
+    def export(self, filename):
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    global db
-    global topDialog
-    
-    name = topDialog.get_widget("filename").get_text()
-    Utils.destroy_passed_object(obj)
-    exportData(db,name)
+        t = TarFile.TarFile(filename)
+        g = StringIO()
+        
+        gfile = WriteXML.XmlWriter(self.db,None,1)
+        gfile.write_handle(g)
+        mtime = time.time()
+        t.add_file("data.gramps",mtime,g)
+        g.close()
 
-def callback(a):
-    pass
-
-def exportData(database, filename):
-
-    t = TarFile.TarFile(filename)
-    g = StringIO()
-
-    gfile = WriteXML.XmlWriter(database,None,1)
-    gfile.write_handle(g)
-    mtime = time.time()
-    t.add_file("data.gramps",mtime,g)
-    g.close()
-
-    for f in database.getPersonMap().values():
-        for p in f.getPhotoList():
-            object = p.getReference()
-            base = os.path.basename(object.getPath())
-            try:
-                g = open(object.getPath(),"rb")
-                t.add_file(base,mtime,g)
-                g.close()
-            except:
-                pass
-    for f in database.getFamilyMap().values():
-        for p in f.getPhotoList():
-            object = p.getReference()
-            base = os.path.basename(object.getPath())
-            try:
-                g = open(object.getPath(),"rb")
-                t.add_file(base,mtime,g)
-                g.close()
-            except:
-                pass
-    for f in database.getSourceMap().values():
-        for p in f.getPhotoList():
-            object = p.getReference()
-            base = os.path.basename(object.getPath())
-            try:
-                g = open(object.getPath(),"rb")
-                t.add_file(base,mtime,g)
-                g.close()
-            except:
-                pass
-    for f in database.getPlaceMap().values():
-        for p in f.getPhotoList():
-            object = p.getReference()
-            base = os.path.basename(object.getPath())
-            try:
-                g = open(object.getPath(),"rb")
-                t.add_file(base,mtime,g)
-                g.close()
-            except:
-                pass
-            
-    t.close()
+        for f in self.db.getPersonMap().values():
+            for p in f.getPhotoList():
+                object = p.getReference()
+                base = os.path.basename(object.getPath())
+                try:
+                    g = open(object.getPath(),"rb")
+                    t.add_file(base,mtime,g)
+                    g.close()
+                except:
+                    pass
+        for f in self.db.getFamilyMap().values():
+            for p in f.getPhotoList():
+                object = p.getReference()
+                base = os.path.basename(object.getPath())
+                try:
+                    g = open(object.getPath(),"rb")
+                    t.add_file(base,mtime,g)
+                    g.close()
+                except:
+                    pass
+        for f in self.db.getSourceMap().values():
+            for p in f.getPhotoList():
+                object = p.getReference()
+                base = os.path.basename(object.getPath())
+                try:
+                    g = open(object.getPath(),"rb")
+                    t.add_file(base,mtime,g)
+                    g.close()
+                except:
+                    pass
+        for f in self.db.getPlaceMap().values():
+            for p in f.getPhotoList():
+                object = p.getReference()
+                base = os.path.basename(object.getPath())
+                try:
+                    g = open(object.getPath(),"rb")
+                    t.add_file(base,mtime,g)
+                    g.close()
+                except:
+                    pass
+        t.close()
     
 #-------------------------------------------------------------------------
 #
-#
+# Register the plugin
 #
 #-------------------------------------------------------------------------
 from Plugins import register_export

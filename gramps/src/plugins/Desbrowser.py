@@ -20,14 +20,30 @@
 
 "Analysis and Exploration/Interactive descendant browser"
 
-from RelLib import *
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+from RelLib import *
 import Utils
 import intl
 import GrampsCfg
 
 _ = intl.gettext
 
+#------------------------------------------------------------------------
+#
+# GTK/GNOME modules
+#
+#------------------------------------------------------------------------
 import GDK
 import gtk
 import libglade
@@ -38,7 +54,11 @@ import libglade
 #
 #------------------------------------------------------------------------
 def runTool(database,person,callback):
-    DesBrowse(database,person,callback)
+    try:
+        DesBrowse(database,person,callback)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 class DesBrowse:
     def __init__(self,database,person,callback):

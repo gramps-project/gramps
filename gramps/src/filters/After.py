@@ -22,7 +22,6 @@
 
 import Filter
 import Date
-import RelLib
 import intl
 _ = intl.gettext
 

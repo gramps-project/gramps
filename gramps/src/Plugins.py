@@ -254,8 +254,6 @@ class PluginStatus:
         window.show_string(info.read())
         self.top.run_and_close()
         
-
-
 #-------------------------------------------------------------------------
 #
 # load_plugins

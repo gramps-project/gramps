@@ -20,16 +20,31 @@
 
 "Generate files/Descendant Report"
 
-import GraphLayout
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
+import string
 
+#------------------------------------------------------------------------
+#
+# GTK/GNOME modules
+#
+#------------------------------------------------------------------------
+import libglade
+import gtk
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import GraphLayout
 from FontScale import string_width
 from DrawDoc import *
 from Report import *
 from TextDoc import *
-
-import libglade
-import gtk
-import string
 
 import intl
 _ = intl.gettext
@@ -44,13 +59,13 @@ _sep = 0.5
 def pt2cm(pt):
     return (float(pt)/72.0)*2.54
 
+#------------------------------------------------------------------------
+#
+# DescendantReport
+#
+#------------------------------------------------------------------------
 class DescendantReport:
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,database,display,person,output,doc):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
@@ -97,7 +112,6 @@ class DescendantReport:
                 self.box_width = max(self.box_width,new_width)
 
             self.lines = max(self.lines,len(self.text[p]))    
-
 
     def write_report(self):
 
@@ -214,14 +228,10 @@ class DescendantReport:
         except:
             print "Document close failure"
 
-    #--------------------------------------------------------------------
-    #
-    # calc - calculate the maximum width that a box needs to be. From
-    # that and the page dimensions, calculate the proper place to put
-    # the elements on a page.
-    #
-    #--------------------------------------------------------------------
     def calc(self):
+        """calc - calculate the maximum width that a box needs to be. From
+        that and the page dimensions, calculate the proper place to put
+        the elements on a page."""
 	self.height = self.lines*pt2cm(1.25*self.font.get_size())
 	self.box_width = pt2cm(self.box_width+20)
 
@@ -238,11 +248,6 @@ class DescendantReport:
         g = GraphicsStyle()
         self.doc.add_draw_style("line",g)
 
-    #--------------------------------------------------------------------
-    #
-    #
-    #
-    #--------------------------------------------------------------------
     def print_page(self, plist,elist,r,c):
         self.doc.start_page()
 
@@ -299,6 +304,11 @@ class DescendantReport:
         self.doc.end_page()
 
 
+#------------------------------------------------------------------------
+#
+# DescendantReportDialog
+#
+#------------------------------------------------------------------------
 class DescendantReportDialog(DrawReportDialog):
     def __init__(self,database,person):
         DrawReportDialog.__init__(self,database,person)
@@ -337,10 +347,14 @@ class DescendantReportDialog(DrawReportDialog):
         """Create the object that will produce the Descendant Graph.
         All user dialog has already been handled and the output file
         opened."""
-        MyReport = DescendantReport(self.db,self.report_text,
-                                    self.person, self.target_path, self.doc)
-        MyReport.write_report()
-
+        try:
+            MyReport = DescendantReport(self.db,self.report_text,
+                                        self.person, self.target_path, self.doc)
+            MyReport.write_report()
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+            
 #------------------------------------------------------------------------
 #
 # 

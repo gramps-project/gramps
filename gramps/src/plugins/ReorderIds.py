@@ -33,7 +33,11 @@ _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
 def runTool(db,active_person,callback):
     """Changed person, family, object, source, and place ids"""
-    ReorderIds(db,callback)
+    try:
+        ReorderIds(db,callback)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 class ReorderIds:
 

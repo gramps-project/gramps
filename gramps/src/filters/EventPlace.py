@@ -22,7 +22,6 @@
 
 import Filter
 import re
-import RelLib
 import intl
 _ = intl.gettext
 
@@ -38,7 +37,6 @@ class EventPlace(Filter.Filter):
         Filter.Filter.__init__(self,text)
 
     def match(self,person):
-        val = 0
         list = person.getEventList()[:]
         list.append(person.getBirth())
         list.append(person.getDeath())

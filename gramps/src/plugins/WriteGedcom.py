@@ -283,7 +283,11 @@ def ged_subdate(date):
 #
 #-------------------------------------------------------------------------
 def writeData(database,person):
-    GedcomWriter(database,person)
+    try:
+        GedcomWriter(database,person)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #

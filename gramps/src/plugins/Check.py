@@ -37,12 +37,16 @@ import libglade
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
 
-    checker = CheckIntegrity(database)
-    checker.check_for_broken_family_links()
-    checker.cleanup_missing_photos()
-    checker.check_parent_relationships()
-    checker.cleanup_empty_families(0)
-    checker.report()
+    try:
+        checker = CheckIntegrity(database)
+        checker.check_for_broken_family_links()
+        checker.cleanup_missing_photos()
+        checker.check_parent_relationships()
+        checker.cleanup_empty_families(0)
+        checker.report()
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #

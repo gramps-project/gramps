@@ -208,7 +208,7 @@ class Marriage:
         ord = self.family.getLdsSeal()
         if ord == None:
             ord = LdsOrd()
-            self.person.setLdsSeal(ord)
+            self.family.setLdsSeal(ord)
         Sources.SourceSelector(ord.getSourceRefList(),self,src_changed)
 
     def lds_note_clicked(self,obj):
@@ -216,7 +216,7 @@ class Marriage:
         ord = self.family.getLdsSeal()
         if ord == None:
             ord = LdsOrd()
-            self.person.setLdsSeal(ord)
+            self.family.setLdsSeal(ord)
         NoteEdit.NoteEditor(ord)
 
     def on_up_clicked(self,obj):

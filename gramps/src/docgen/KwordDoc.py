@@ -21,7 +21,6 @@
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
 
-import Utils
 import time
 import StringIO
 import os

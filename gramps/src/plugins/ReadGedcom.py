@@ -1705,7 +1705,11 @@ def on_ok_clicked(obj):
     if name == "":
         return
     Utils.destroy_passed_object(obj)
-    importData(db,name)
+    try:
+        importData(db,name)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #

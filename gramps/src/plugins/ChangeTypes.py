@@ -37,7 +37,11 @@ _ = intl.gettext
 #
 #-------------------------------------------------------------------------
 def runTool(database,person,callback):
-    ChangeTypes(database,person)
+    try:
+        ChangeTypes(database,person)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 class ChangeTypes:
     def __init__(self,db,person):

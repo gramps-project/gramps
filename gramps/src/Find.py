@@ -217,15 +217,15 @@ class FindSource(FindBase):
 class FindMedia(FindBase):
     """Opens a Find Media Object dialog for GRAMPS"""
     
-    def __init__(self,clist,task,plist):
+    def __init__(self,clist,task,db):
         """Opens a dialog box instance that allows users to
         search for a place.
 
         clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Media Object"))
-        for n in plist:
+        FindBase.__init__(self,clist,task,_("Find Media Object"),db)
+        for n in self.db.getObjectMap().values():
             self.nlist.append(n.getDescription())
         self.enable_autocomp()
         
