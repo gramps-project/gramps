@@ -173,3 +173,4 @@ install-data-local:
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
 	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
+	-rm $(DESTDIR)$(pkglibdir)/grampslib.so
