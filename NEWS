@@ -8,13 +8,17 @@ Version 0.9.4 -- the "This used to bug me..." release
 * Intelligent guessing of whether the person is alive.
 * Various Merge and Import fixes.
 * More privacy options for GEDCOM export.
-* New types of filters: 
+* New types of filter rules: 
     (1) iterating over other filters, 
     (2) specifying number of generations away for ancestors and descendants.
 * Preliminary support for printing copies of reports. 
 * Performance improvements for list views. 
 * Context menus in Family View upon right-click.
-* Fair share of bug fixes.
+* Relationship Graph improvements. 
+* Proper saving of standard family relations, event types, and attributes. 
+* New interface for adding/editing filter rules. 
+* Configure/build improvements. 
+* Fair share of bug fixes. 
 
 Version 0.9.3
 * New reports: Ancestors (text), Fan Chart (graphics), and 
