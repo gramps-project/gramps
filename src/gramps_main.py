@@ -370,7 +370,7 @@ def redraw_child_list(filter):
 
                 if pdday.getYear() != -1:
                     # reject if child deathdate < parents birthdate+ 10
-                    if pdday.getLowYear() < limit.getHighYear()+10:
+                    if pdday.getLowYear() < bday.getHighYear()+10:
                         continue
                 
             if dday_valid:
@@ -1028,7 +1028,7 @@ def find_family(father,mother):
 #-------------------------------------------------------------------------
 def change_family_type(family,mrel,frel):
 
-    is_main = mrel == "Birth" and frel == "Birth"
+    is_main = (mrel == "Birth") and (frel == "Birth")
     
     if not family:
         if is_main:
@@ -1043,18 +1043,17 @@ def change_family_type(family,mrel,frel):
                     fam.removeChild(active_person)
                     return
     elif family == active_person.getMainFamily():
-        if is_main:
+        if not is_main:
             utils.modified()
             active_person.setMainFamily(None)
-            found = 0
             for fam in active_person.getAltFamilyList():
                 if fam[0] == family:
                     fam[1] = type
-                    found = 1
+                    break
                 elif fam[1] == type:
                     fam[0] = family
-                    found = 1
-            if found == 0:
+                    break
+            else:
                 active_person.addAltFamily(family,mrel,frel)
     else:
         for fam in active_person.getAltFamilyList():
@@ -1114,15 +1113,15 @@ def on_save_parents_clicked(obj):
     else:    
         family = None
 
-    family.setRelationship(type)
-
-    change_family_type(family,mrel,frel)
-
     active_mother = select_mother
     active_father = select_father
     active_family = family
 
     utils.destroy_passed_object(obj)
+    if family:
+        family.setRelationship(type)
+
+    change_family_type(family,mrel,frel)
     load_family()
 	
 #-------------------------------------------------------------------------
@@ -1440,9 +1439,42 @@ def on_person_list_click_column(obj,column):
         return
     person_list.set_sort_type(sort_direct)
     person_list.set_sort_column(sort_column)
-    person_list.sort()
-    person_list.moveto()
 
+    sort_person_list()
+
+    if id2col.has_key(active_person):
+        row = person_list.find_row_from_data(id2col[active_person])
+        person_list.moveto(row)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def sort_person_list():
+    person_list.freeze()
+    person_list.sort()
+    if ListColors.get_enable():
+        try:
+            oddbg = GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
+            oddfg = GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
+            evenbg = GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
+            evenfg = GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
+            rows = person_list.rows
+            for i in range(0,rows,2):
+                person_list.set_background(i,oddbg)
+                person_list.set_foreground(i,oddfg)
+                if i != rows:
+                    person_list.set_background(i+1,evenbg)
+                    person_list.set_foreground(i+1,evenfg)
+        except OverflowError:
+            pass
+    person_list.thaw()
+    
+    if id2col.has_key(active_person):
+        row = person_list.find_row_from_data(id2col[active_person])
+        person_list.moveto(row)
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -1843,7 +1875,24 @@ def on_spouselist_changed(obj):
 #-------------------------------------------------------------------------
 def new_after_edit(person):
     database.addPerson(person.person)
-    update_display(1)
+    pos = (person.person,0)
+    id2col[person] = pos
+    gname = utils.phonebook_from_name
+    if DataFilter.compare(person.person):
+        if person.person.getGender():
+            gender = const.male
+        else:
+            gender = const.female
+        bday = person.person.getBirth().getDateObj()
+        dday = person.person.getDeath().getDateObj()
+        name = person.person.getPrimaryName()
+        person_list.insert(0,[gname(name,0),person.person.getId(), gender,bday.getQuoteDate(),
+                  dday.getQuoteDate(), sort.build_sort_name(name),
+                  sort.build_sort_birth(bday), sort.build_sort_death(dday)])
+        person_list.set_row_data(0,pos)
+        sort_person_list()
+        
+#    update_display(1)
 
 #-------------------------------------------------------------------------
 #
@@ -2307,14 +2356,9 @@ def apply_filter():
             clistadd([gname(name,alt),person.getId(), gender,bday.getQuoteDate(),
                       dday.getQuoteDate(), sort.build_sort_name(name),
                       sort.build_sort_birth(bday), sort.build_sort_death(dday)], pos)
-        i = i + 1
 
-    person_list.sort()
-    person_list.moveto()
+    sort_person_list()
     person_list.thaw()
-
-    if i > 0:
-        goto_active_person()
 
 #-------------------------------------------------------------------------
 #

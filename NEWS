@@ -13,8 +13,12 @@ Version 0.4.0
 * Added privacy flag and confidence level to events, attributes, etc.
 * Automatically detect gzip'ed XML vs. XML
 * Added option to write either gzip'ed XML or straight XML
-* Warn on closing the edit person window when modifications have been
-  made.
+* Warn on closing the edit person and marriage/relationshp window 
+  when modifications have been made.
+* French translation
+* New plugin from Jesper Zedlitz that implements a graphical   
+  representation of the people in the database, allowing you to
+  reposition people according to your own desires.
 
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.
