@@ -28,6 +28,7 @@ import string
 import os
 
 import PaperMenu
+import Plugins
 
 #-------------------------------------------------------------------------
 #
@@ -569,6 +570,8 @@ class GrampsPreferences:
         self.apply = self.top.get_widget("apply")
         self.tree = self.top.get_widget("tree")
         self.panel = self.top.get_widget("panel")
+        self.ofmt = self.top.get_widget("output_format")
+
         self.build_tree()
         self.build()
         self.build_ext()
@@ -684,13 +687,12 @@ class GrampsPreferences:
         menu.set_active(lastnamegen)
         lastnamegen_obj.set_menu(menu)
 
-        output_obj = self.top.get_widget("output_format")
         menu = gtk.GtkMenu()
         choice = 0
 
         choice = 0
         index = 0
-        for name in const.output_formats:
+        for name in Plugins.get_text_doc_list():
             if name == output_preference:
                 choice = index
             item = gtk.GtkMenuItem(name)
@@ -700,7 +702,7 @@ class GrampsPreferences:
             menu.append(item)
             index = index + 1
         menu.set_active(choice)
-        output_obj.set_menu(menu)
+        self.ofmt.set_menu(menu)
 
         date_option = self.top.get_widget("date_format")
         date_menu = gtk.GtkMenu()

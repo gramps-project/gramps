@@ -276,7 +276,7 @@ def load_plugins(dir):
             a = __import__(plugin)
             _success.append(a)
         except:
-            print _("Note: failed to load the plugin module: %s") % plugin
+            print _("Note: %s support could not be loaded") % plugin
 
 #-------------------------------------------------------------------------
 #
@@ -492,6 +492,19 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
             callback(menuitem)
         index = index + 1
     main_menu.set_menu(myMenu)
+
+#-------------------------------------------------------------------------
+#
+# get_text_doc_menu
+#
+#-------------------------------------------------------------------------
+def get_text_doc_list():
+
+    l = []
+    _textdoc.sort()
+    for item in _textdoc:
+        l.append(item[0])
+    return l
 
 #-------------------------------------------------------------------------
 #
