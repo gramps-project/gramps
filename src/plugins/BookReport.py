@@ -588,13 +588,13 @@ class BookReportSelector:
         Utils.set_titles(self.top,title_label,_('Book Report'))
 
         self.name_entry = self.xml.get_widget("name_entry")
-        self.name_entry.set_text('New Book')
+        self.name_entry.set_text(_('New Book'))
 
         avail_label = self.xml.get_widget('avail_label')
-        avail_label.set_text("<b>%s</b>" % "Available items")
+        avail_label.set_text("<b>%s</b>" % _("Available items"))
         avail_label.set_use_markup(gtk.TRUE)
         book_label = self.xml.get_widget('book_label')
-        book_label.set_text("<b>%s</b>" % "Current book")
+        book_label.set_text("<b>%s</b>" % _("Current book"))
         book_label.set_use_markup(gtk.TRUE)
 
         av_titles = [(_('Name'),0,150),(_('Type'),1,50)]
@@ -856,6 +856,10 @@ class BookReportDialog(Report.ReportDialog):
 
     def get_header(self,name):
         return _("GRAMPS Book")
+
+    def get_stylesheet_savefile(self):
+        """Needed solely for forming sane filename for the output."""
+        return "book.xml"
 
     def make_doc_menu(self):
         """Build a menu of document types that are appropriate for

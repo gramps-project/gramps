@@ -1,3 +1,10 @@
+2003-07-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py (BookReportSelector.__init__): 
+	Enable translation for interface strings,   
+	* src/plugins/BookReport.py (BookReportDialog.get_stylesheet_savefile):
+	Add this function to form sane filename for the output. 
+	* src/plugins/SimpleBookTitle.py: Add configurable title and copyright. 
+
 2003-07-04  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Really fixed text style for '(no photo)'.
 
