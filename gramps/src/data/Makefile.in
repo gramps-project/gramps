@@ -11,14 +11,9 @@ pycomp		= ${srcdir}/py-compile
 all:
 
 install:
-	${INSTALL} -d ${data}
-	${INSTALL} -c *.sxd table.* ${data}
 
 uninstall:
-	rm -f ${data}/*.sxd ${data}/table.html ${data}/table.sxc
-	-rmdir ${data}
 
 clean:
-	-rm -f core *.pyo *.pyc *.bak *~	
 
 
