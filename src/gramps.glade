@@ -603,7 +603,7 @@
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">Edit</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-yes</property>
+		  <property name="icon">edit.png</property>
 		  <signal name="clicked" handler="on_editbtn_clicked" last_modification_time="Sun, 22 Sep 2002 04:17:44 GMT"/>
 		</widget>
 	      </child>
@@ -1187,52 +1187,6 @@
 			  <property name="column_spacing">0</property>
 
 			  <child>
-			    <widget class="GtkFrame" id="frame13">
-			      <property name="visible">True</property>
-			      <property name="label_xalign">0</property>
-			      <property name="label_yalign">0.5</property>
-			      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
-
-			      <child>
-				<widget class="GtkTreeView" id="chlist">
-				  <property name="border_width">5</property>
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="headers_visible">True</property>
-				  <property name="rules_hint">True</property>
-				  <property name="reorderable">False</property>
-				  <property name="enable_search">False</property>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkLabel" id="label327">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Children&lt;/b&gt;</property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">True</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="type">label_item</property>
-				</packing>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="left_attach">0</property>
-			      <property name="right_attach">4</property>
-			      <property name="top_attach">2</property>
-			      <property name="bottom_attach">3</property>
-			    </packing>
-			  </child>
-
-			  <child>
 			    <widget class="GtkFrame" id="frame10">
 			      <property name="visible">True</property>
 			      <property name="label_xalign">0</property>
@@ -1814,6 +1768,113 @@
 			      <property name="x_padding">5</property>
 			      <property name="y_padding">5</property>
 			      <property name="y_options">fill</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkHBox" id="hbox80">
+			      <property name="visible">True</property>
+			      <property name="homogeneous">False</property>
+			      <property name="spacing">0</property>
+
+			      <child>
+				<widget class="GtkFrame" id="frame13">
+				  <property name="visible">True</property>
+				  <property name="label_xalign">0</property>
+				  <property name="label_yalign">0.5</property>
+				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+				  <child>
+				    <widget class="GtkTreeView" id="chlist">
+				      <property name="border_width">5</property>
+				      <property name="visible">True</property>
+				      <property name="can_focus">True</property>
+				      <property name="headers_visible">True</property>
+				      <property name="rules_hint">True</property>
+				      <property name="reorderable">False</property>
+				      <property name="enable_search">False</property>
+				    </widget>
+				  </child>
+
+				  <child>
+				    <widget class="GtkLabel" id="label327">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes">&lt;b&gt;Children&lt;/b&gt;</property>
+				      <property name="use_underline">False</property>
+				      <property name="use_markup">True</property>
+				      <property name="justify">GTK_JUSTIFY_LEFT</property>
+				      <property name="wrap">False</property>
+				      <property name="selectable">False</property>
+				      <property name="xalign">0.5</property>
+				      <property name="yalign">0.5</property>
+				      <property name="xpad">0</property>
+				      <property name="ypad">0</property>
+				    </widget>
+				    <packing>
+				      <property name="type">label_item</property>
+				    </packing>
+				  </child>
+				</widget>
+				<packing>
+				  <property name="padding">5</property>
+				  <property name="expand">True</property>
+				  <property name="fill">True</property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkVBox" id="vbox65">
+				  <property name="visible">True</property>
+				  <property name="homogeneous">True</property>
+				  <property name="spacing">0</property>
+
+				  <child>
+				    <placeholder/>
+				  </child>
+
+				  <child>
+				    <widget class="GtkButton" id="fam_back">
+				      <property name="visible">True</property>
+				      <property name="tooltip" translatable="yes">Make the selected child the active family</property>
+				      <property name="can_focus">True</property>
+				      <property name="relief">GTK_RELIEF_NORMAL</property>
+
+				      <child>
+					<widget class="GtkImage" id="image93">
+					  <property name="visible">True</property>
+					  <property name="stock">gtk-go-back</property>
+					  <property name="icon_size">4</property>
+					  <property name="xalign">0.5</property>
+					  <property name="yalign">0.5</property>
+					  <property name="xpad">0</property>
+					  <property name="ypad">0</property>
+					</widget>
+				      </child>
+				    </widget>
+				    <packing>
+				      <property name="padding">0</property>
+				      <property name="expand">False</property>
+				      <property name="fill">False</property>
+				    </packing>
+				  </child>
+
+				  <child>
+				    <placeholder/>
+				  </child>
+				</widget>
+				<packing>
+				  <property name="padding">0</property>
+				  <property name="expand">False</property>
+				  <property name="fill">True</property>
+				</packing>
+			      </child>
+			    </widget>
+			    <packing>
+			      <property name="left_attach">0</property>
+			      <property name="right_attach">4</property>
+			      <property name="top_attach">2</property>
+			      <property name="bottom_attach">3</property>
+			      <property name="x_options">fill</property>
 			    </packing>
 			  </child>
 			</widget>

@@ -86,6 +86,7 @@ class FamilyView:
         self.top.get_widget('del_parents').connect('clicked',self.del_parents_clicked)
         self.top.get_widget('add_spparents').connect('clicked',self.add_sp_parents)
         self.top.get_widget('del_spparents').connect('clicked',self.del_sp_parents)
+        self.top.get_widget('fam_back').connect('clicked',self.child_back)
         
         column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.spouse_list.append_column(column)
@@ -113,19 +114,10 @@ class FamilyView:
         self.child_list.set_search_column(0)
         self.child_selection = self.child_list.get_selection()
 
-        colno = 0
-        for title in [ (_('Order'),0), (_('Name'),1), (_('ID'),2),
-                       (_('Gender'),3), (_('Birth Date'),4),
-                       (_('Status'),5), ('',6) ]:
-            renderer = gtk.CellRendererText ()
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_clickable(gtk.TRUE)
-                column.set_visible(gtk.FALSE)
-            column.set_sort_column_id(title[1])
-            self.child_list.append_column (column)
+        Utils.build_columns(self.child_list,
+                            [ (_(''),30,0), (_('Name'),250,1), (_('ID'),50,2),
+                              (_('Gender'),100,3), (_('Birth Date'),150,4),
+                              (_('Status'),150,5), ('',0,6) ])
 
     def on_child_list_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -378,6 +370,14 @@ class FamilyView:
 
     def del_sp_parents(self,obj):
         self.parent_deleter(self.selected_spouse,self.sp_selection)
+
+    def child_back(self,obj):
+        """makes the currently select child the active person"""
+        model, iter = self.child_selection.get_selected()
+        if iter:
+            id = self.child_model.get_value(iter,2)
+            self.parent.change_active_person(self.parent.db.getPerson(id))
+            self.load_family()
 
     def parent_editor(self,person,selection):
         if not person:

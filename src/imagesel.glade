@@ -1075,8 +1075,6 @@
                             <property name="headers-visible">yes</property>
                             <property name="visible">yes</property>
 
-                            <signal name="select_row" handler="on_attr_list_select_row" />
-
                             <child>
                               <widget class="GtkLabel" id="label144">
                                 <property name="child_name">CList:title</property>
@@ -2032,8 +2030,6 @@
                             <property name="headers-visible">yes</property>
                             <property name="height-request">100</property>
                             <property name="visible">yes</property>
-
-                            <signal name="select_row" handler="on_attr_list_select_row" />
 
                             <child>
                               <widget class="GtkLabel" id="label167">
