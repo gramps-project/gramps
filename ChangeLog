@@ -1,3 +1,7 @@
+2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GrampsDBCallback.py: improved error reporting when there is an error in 
+	a callback function. Added unittest for exception in callback function.
+
 2005-04-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gramps_main.py (post_load): Emit "database-changed" signal instead of
 	calling change_db().
@@ -11,7 +15,7 @@
 	* src/SourceView.py (__init__): dont call change_cb because on initialisation
 	there is no real database and this will be done by the signal.
 
-2005-04-04  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: made clear buttons sensitive to contents of 
 	list and current selection. Added support for PERSON_LINK dnd.
 	* src/DdTargets.py: added PERSON_LINK target and simplified generation of
