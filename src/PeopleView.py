@@ -208,7 +208,17 @@ class PeopleView:
             else:
                 model = self.default_list
 
-            iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
+            if val[3]:
+                bdate = self.parent.db.find_event_from_id(val[3]).get_date()
+            else:
+                bdate = ""
+                
+            if val[4]:
+                ddate = self.parent.db.find_event_from_id(val[4]).get_date()
+            else:
+                ddate = ""
+                
+            iter = model.add([val[0],val[1],val[2],bdate,ddate,val[5],
                               val[6],val[7],val[8]],1)
 
             self.id2col[key] = (model,iter)
@@ -303,7 +313,16 @@ class PeopleView:
                     model = self.default_list
 
                 if current_model == model:
-                    iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
+                    if val[3]:
+                        bdate = self.parent.db.find_event_from_id(val[3]).get_date()
+                    else:
+                        bdate = ""
+                
+                    if val[4]:
+                        ddate = self.parent.db.find_event_from_id(val[4]).get_date()
+                    else:
+                        ddate = ""
+                    iter = model.add([val[0],val[1],val[2],bdate,ddate,val[5],
                                       val[6],val[7],val[8]])
                     self.id2col[key] = (model,iter)
             else:

@@ -196,8 +196,10 @@ class EditPerson:
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
 
-        self.death = RelLib.Event(person.get_death())
-        self.birth = RelLib.Event(person.get_birth())
+        self.orig_birth = self.db.find_event_from_id(person.get_birth_id())
+        self.orig_death = self.db.find_event_from_id(person.get_death_id())
+        self.death = RelLib.Event(self.orig_death)
+        self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
 
         self.elist = person.get_event_list()[:]
@@ -810,7 +812,8 @@ class EditPerson:
 
         self.etree.clear()
         self.emap = {}
-        for event in self.elist:
+        for event_id in self.elist:
+            event = self.db.find_event_from_id(event_id)
             pname = place_title(self.db,event)
             iter = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
                                     event.get_quote_date(),pname],event)
@@ -1065,9 +1068,9 @@ class EditPerson:
                 changed = 1
             self.death.set_place_id('')
 
-        if not self.birth.are_equal(self.person.get_birth()):
+        if not self.birth.are_equal(self.orig_birth):
             changed = 1
-        if not self.death.are_equal(self.person.get_death()):
+        if not self.death.are_equal(self.orig_death):
             changed = 1
         if male and self.person.get_gender() != RelLib.Person.male:
             changed = 1
@@ -1175,7 +1178,7 @@ class EditPerson:
         store,iter = obj.get_selected()
         if iter:
             row = store.get_path(iter)
-            event = self.elist[row[0]]
+            event = self.db.find_event_from_id(self.elist[row[0]])
             self.event_date_field.set_text(event.get_date())
             self.event_place_field.set_text(place_title(self.db,event))
             self.event_name_field.set_text(const.display_pevent(event.get_name()))
@@ -1354,8 +1357,8 @@ class EditPerson:
             self.person.set_url_list(self.ulist)
             self.person.set_attribute_list(self.alist)
             self.person.set_address_list(self.plist)
-            self.person.set_birth(self.birth)
-            self.person.set_death(self.death)
+            self.person.set_birth_id(self.birth.get_id())
+            self.person.set_death_id(self.death.get_id())
             Utils.modified()
 
     def on_apply_person_clicked(self,obj):
@@ -1429,8 +1432,15 @@ class EditPerson:
             p = self.db.get_place_display(key)
             self.pdmap[p[0]] = key
 
-        if not self.person.get_birth().are_equal(self.birth):
-            self.person.set_birth(self.birth)
+        if not self.orig_birth.are_equal(self.birth):
+            if self.orig_birth == None:
+                self.db.add_event(self.birth)
+                self.set_birth_id(self.birth_id)
+            else:
+                self.orig_birth.clone(self.death)
+                # commit change
+                
+            self.orig_birth.clone(self.birth)
             Utils.modified()
 
         # Update each of the families child lists to reflect any
@@ -1448,8 +1458,14 @@ class EditPerson:
         self.death.set_date(unicode(self.ddate.get_text()))
         self.death.set_place_id(self.get_place(self.dplace,1))
 
-        if not self.person.get_death().are_equal(self.death):
-            self.person.set_death(self.death)
+        if not self.orig_death.are_equal(self.death):
+            if self.orig_death == None:
+                self.db.add_event(self.death)
+                self.set_death_id(self.death.get_id())
+            else:
+                self.orig_death.clone(self.death)
+                # commit change
+                
             Utils.modified()
 
         male = self.is_male.get_active()
@@ -1691,9 +1707,11 @@ class EditPerson:
         for i in range(len(list)):
             child_id = list[i]
             child = self.db.find_person_from_id(child_id)
-            bday = child.get_birth().get_date_object()
-            child_date = sort.build_sort_date(bday)
-            if (child_date == "99999999"):
+            if child.get_birth_id():
+                event = self.db.find_event_from_id(child.get_birth_id())
+                bday = event.get_date_object()
+                child_date = sort.build_sort_date(bday)
+            else:
                 continue
             if (prev_date <= child_date):	# <= allows for twins
                 prev_date = child_date
@@ -1710,28 +1728,43 @@ class EditPerson:
             return(list)
 
         # Build the person's date string once
-        person_bday = sort.build_sort_date(person.get_birth().get_date_object())
+        event_id = person.get_birth_id()
+        if event_id:
+            event = self.db.find_event_from_id(event_id)
+            person_bday = sort.build_sort_date(event.get_date_object())
+        else:
+            person_bday = "99999999"
 
         # First, see if the person needs to be moved forward in the list
         index = list.index(person)
         target = index
         for i in range(index-1, -1, -1):
             other = self.db.find_person_from_id(list[i])
-            other_bday = sort.build_sort_date(other.get_birth().get_date_object())
-            if (other_bday == "99999999"):
-                continue;
-            if (person_bday < other_bday):
-                target = i
+            event_id = other.get_birth_id()
+            if event_id:
+                event = self.db.find_event_from_id(event_id)
+                other_bday = sort.build_sort_date(event.get_date_object())
+                if (other_bday == "99999999"):
+                    continue;
+                if (person_bday < other_bday):
+                    target = i
+            else:
+                continue
 
         # Now try moving to a later position in the list
         if (target == index):
             for i in range(index, len(list)):
                 other = self.db.find_person_from_id(list[i])
-                other_bday = sort.build_sort_date(other.get_birth().get_date_object())
-                if (other_bday == "99999999"):
-                    continue;
-                if (person_bday > other_bday):
-                    target = i
+                event_id = other.get_birth_id()
+                if event_id:
+                    event = self.db.find_event_from_id(event_id)
+                    other_bday = sort.build_sort_date(event.get_date_object())
+                    if (other_bday == "99999999"):
+                        continue;
+                    if (person_bday > other_bday):
+                        target = i
+                else:
+                    continue
 
         # Actually need to move?  Do it now.
         if (target != index):
