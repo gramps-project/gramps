@@ -23,26 +23,13 @@
 prefix=@prefix@
 
 export GRAMPSDIR=@datadir@/@PACKAGE@
-export PYTHONPATH=$GRAMPSDIR
 export GRAMPSI18N=@prefix@/share/locale
 
-preload=""
-
-#
-# Mandrake has a tendency to build dynamic libraries without the proper
-# dependencies in them. This causes havoc with the python gtk libraries.
-# Preload the know problem libraries so that gramps does not fail under
-# Mandrake
-#
-for l in /usr/X11R6/lib/libX11.so
-do
-  if [ -f $l ]; then
-    preload="$preload $l"
-  fi
-done
-
-if [ "$preload" != "" ]; then
-    export LD_PRELOAD="$preload"
+if [ "$PYTHONPATH" == "" ]
+then
+    export PYTHONPATH=$GRAMPSDIR
+else
+    export PYTHONPATH=$GRAMPSDIR:$PYTHONPATH
 fi
 
 exec @PYTHON@ $GRAMPSDIR/gramps.py $*
