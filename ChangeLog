@@ -1,6 +1,7 @@
 2004-01-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PedView.py (load_canvas): Produce generation labels based on
 	the anchor.
+	* NEWS: Update status.
 
 2004-01-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PedView.py (PedigreeView.load_canvas): switched anchor label from a label
@@ -216,6 +217,7 @@
 	* src/plugins/FtmStyleAncestors.py (print_notes): Call write_note().
 	* src/plugins/IndivComplete.py (write_note): Call doc.write_note().
 	* src/plugins/WebPage.py (write_gallery,write_notes): Call write_note().
+
 2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_note): Implement function.
 	* src/edit_person.glade: Correct hotkeys.

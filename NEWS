@@ -1,9 +1,18 @@
 Version 1.0.0 -- the "Stable as a tombstone" release
+* Added Norwegian translation (Frode Jemtland).
 * New filter and custom filter rule based on the personal completeness flag.
-* Improved GEDCOM support. 
+* Improved GEDCOM support.
+* Support for EasyTree flavor of GEDCOM. 
 * Phone field in Addresses and Places.
 * New "Add from database..." button in gallery tabs. 
 * Format of the Notes can be set to Flowed or Preformatted.
+* Reports can be opened with the appropriate application right after they
+  have been generated. 
+* Interface improvements.
+* Anchor can be set in Pedigree View -- in that case generations are labeled
+  relative to that anchor.
+* Manual is translated into French (Michel Guitel), German (Sebastian Vöcking),
+  and Russian (Alex Roitman) languages.
 
 Version 0.98.0 -- the "Round me off" release
 * More compliance with GNOME HIG.
