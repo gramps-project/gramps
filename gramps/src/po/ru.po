@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3-snap20020414\n"
 "POT-Creation-Date: Mon Apr 15 10:48:50 2002\n"
-"PO-Revision-Date: 2002-04-15 10:51-0500\n"
+"PO-Revision-Date: 2002-04-15 16:23-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3600,7 +3600,7 @@ msgstr ""
 
 #: plugins/GraphViz.py:157
 msgid "Indicate non-birth relationships with dashed lines"
-msgstr "Показывать пункиром отношения не являющиеся рождением"
+msgstr "Показывать пунктиром отношения не являющиеся рождением"
 
 #: plugins/GraphViz.py:162
 msgid "Non-birth relationships will show up as dashed lines in the graph."
@@ -3702,7 +3702,7 @@ msgid ""
 "represent the same person."
 msgstr ""
 "Просматривает всю базу данных в поиске индивидуальных единиц которые могут "
-"представять одно лицо."
+"представлять одно лицо."
 
 #: plugins/PatchNames.py:74
 msgid "%s will be extracted as a nickname from %s\n"
