@@ -48,14 +48,9 @@ import const
 #-------------------------------------------------------------------------
 try:
     from ZODB import Persistent
-    from ZODB.PersistentList import PersistentList
     
 except ImportError:
     class Persistent:
-        pass
-
-    from UserList import UserList
-    class PersistentList(UserList):
         pass
 
 #-------------------------------------------------------------------------
@@ -91,7 +86,7 @@ class SourceNote(Persistent):
     def __init__(self,source=None):
         """Create a new SourceNote, copying from source if not None"""
         
-        self.source_list = PersistentList()
+        self.source_list = []
 
         if source:
             if len(source.source_list) > 0:
@@ -269,14 +264,14 @@ class Place(SourceNote):
             self.lat = source.lat
             self.title = source.title
             self.main_loc = Location(source.main_loc)
-            self.alt_loc = PersistentList()
+            self.alt_loc = []
             for loc in source.alt_loc:
                 self.alt_loc = Location(loc)
             self.id = source.id
-            self.urls = PersistentList()
+            self.urls = []
             for u in source.urls:
                 self.urls.append(Url(u))
-            self.photoList = PersistentList()
+            self.photoList = []
             for photo in source.photoList:
                 self.photoList.append(ObjectRef(photo))
         else:
@@ -284,10 +279,10 @@ class Place(SourceNote):
             self.lat = ""
             self.title = ""
             self.main_loc = None
-            self.alt_loc = PersistentList()
+            self.alt_loc = []
             self.id = ""
-            self.urls = PersistentList()
-            self.photoList = PersistentList()
+            self.urls = []
+            self.photoList = []
             
     def getUrlList(self):
         """Return the list of URLs"""
@@ -539,7 +534,7 @@ class Photo(SourceNote):
 
         SourceNote.__init__(self,source)
 
-        self.attrlist = PersistentList()
+        self.attrlist = []
         if source:
             self.path = source.path
             self.mime = source.mime
@@ -611,7 +606,7 @@ class Photo(SourceNote):
 class ObjectRef(Persistent):
     """Object reference class"""
     def __init__(self,source=None):
-        self.attrlist = PersistentList()
+        self.attrlist = []
         if source:
             self.private = source.private
             self.ref = source.ref
@@ -963,18 +958,18 @@ class Person(Persistent):
         
         self.id = ""
         self.PrimaryName = None
-        self.EventList = PersistentList()
-        self.FamilyList = PersistentList()
-        self.AltFamilyList = PersistentList()
-        self.photoList = PersistentList()
+        self.EventList = []
+        self.FamilyList = []
+        self.AltFamilyList = []
+        self.photoList = []
         self.nickname = ""
-        self.alternateNames = PersistentList()
+        self.alternateNames = []
         self.gender = 2
         self.death = None
         self.birth = None
-        self.addressList = PersistentList()
-        self.attributeList = PersistentList()
-        self.urls = PersistentList()
+        self.addressList = []
+        self.attributeList = []
+        self.urls = []
         self.note = None
         self.paf_uid = ""
         self.position = None
@@ -1133,7 +1128,7 @@ class Person(Persistent):
         return extlist(self.FamilyList)
 
     def clearFamilyList(self) :
-        self.FamilyList = PersistentList()
+        self.FamilyList = []
 
     def removeFamily(self,family):
         """removes the specified Family instance from the list
@@ -1191,7 +1186,7 @@ class Person(Persistent):
         self.AltFamilyList.append((family,mrel,frel))
 
     def clearAltFamilyList(self):
-        self.AltFamilyList = PersistentList()
+        self.AltFamilyList = []
 
     def removeAltFamily(self,family):
         """removes a Family instance from the alternate family list"""
@@ -1442,15 +1437,15 @@ class Family(Persistent):
         """creates a new Family instance"""
         self.Father = None
         self.Mother = None
-        self.Children = PersistentList()
+        self.Children = []
         self.Marriage = None
         self.Divorce = None
         self.type = "Married"
-        self.EventList = PersistentList()
+        self.EventList = []
         self.id = ""
-        self.photoList = PersistentList()
+        self.photoList = []
         self.note = Note()
-        self.attributeList = PersistentList()
+        self.attributeList = []
         self.position = None
         self.lds_seal = None
 
@@ -1637,7 +1632,7 @@ class Source(Persistent):
         self.pubinfo = ""
         self.callno = ""
         self.note = Note()
-        self.photoList = PersistentList()
+        self.photoList = []
         self.id = ""
         
     def getDisplayInfo(self):
@@ -1820,7 +1815,7 @@ class GrampsDB(Persistent):
 
     def __init__(self):
         """creates a new GrampsDB"""
-        self.surnames = PersistentList()
+        self.surnames = []
         self.personTable = {}
         self.placeTable = {}
         self.sourceTable = {}
@@ -1899,7 +1894,7 @@ class GrampsDB(Persistent):
             p.clearAltFamilyList()
             p.clearFamilyList()
 
-        self.surnames = PersistentList()
+        self.surnames = []
         self.personMap = {}
         self.sourceMap = {}
         self.placeMap  = {}
@@ -1911,7 +1906,7 @@ class GrampsDB(Persistent):
         self.omapIndex = 0
         self.default = None
         self.owner = Researcher()
-        self.bookmarks = PersistentList()
+        self.bookmarks = []
         self.path = ""
         self.place2title = {}
 
