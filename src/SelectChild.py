@@ -60,11 +60,12 @@ import ListModel
 #-------------------------------------------------------------------------
 class SelectChild:
 
-    def __init__(self,db,family,person,redraw):
+    def __init__(self,db,family,person,redraw,add_person):
         self.db = db
         self.person = person
         self.family = family
         self.redraw = redraw
+        self.add_person = add_person
         self.xml = gtk.glade.XML(const.gladeFile,"selectChild")
     
         self.xml.signal_autoconnect({
@@ -108,9 +109,10 @@ class SelectChild:
 
         self.frel.set_text(_("Birth"))
 
-        self.refmodel = ListModel.ListModel(self.add_child,[(_('Name'),150,3),(_('ID'),50,1),
-                                                            (_('Birth Date'),100,4),
-                                                            ('',0,0),('',0,0)])
+        titles = [(_('Name'),3,150),(_('ID'),1,50), (_('Birth Date'),4,100),
+                  ('',-1,0),('',-1,0)]
+        
+        self.refmodel = ListModel.ListModel(self.add_child,titles)
         self.redraw_child_list(2)
         self.top.show()
 
@@ -233,6 +235,7 @@ class SelectChild:
         depending on the gender of the person."""
         id = person.getId()
         dinfo = self.db.getPersonDisplay(id)
+        print dinfo
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
-        self.refmodel.add(rdata)
-
+        self.refmodel.add_and_select(rdata)
+        self.add_person(person)

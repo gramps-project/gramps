@@ -97,14 +97,8 @@ class Gramps:
         self.program = gnome.program_init("gramps",const.version)
         
         self.DataFilter = Filter.Filter("")
-        self.active_child = None
-        self.active_family = None
-        self.active_father = None
-        self.active_mother = None
-        self.active_parents = None
         self.parents_index = 0
         self.active_person = None
-        self.active_spouse = None
         self.bookmarks = None
         self.c_details = 6
         self.id2col = {}
@@ -290,9 +284,6 @@ class Gramps:
             "on_alpha_switch_page" : self.change_alpha_page,
             "delete_event" : self.delete_event,
             "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_family_up_clicked" : self.family_up_clicked,
-            "on_family_down_clicked" : self.family_down_clicked,
-            "on_spouse_list_changed" : self.spouse_list_changed,
             "on_about_activate" : self.on_about_activate,
             "on_add_bookmark_activate" : self.on_add_bookmark_activate,
             "on_add_place_clicked" : self.place_view.on_add_place_clicked,
@@ -324,7 +315,6 @@ class Gramps:
             "on_open_activate" : self.on_open_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
-            "on_person_list_button_press" : self.alpha_event,
             "on_main_key_release_event" : self.on_main_key_release_event,
             "on_add_media_clicked" : self.media_view.create_add_dialog,
             "on_media_activate" : self.on_media_activate,
@@ -337,7 +327,6 @@ class Gramps:
             "on_places_activate" : self.on_places_activate,
             "on_preferences_activate" : self.on_preferences_activate,
             "on_reload_plugins_activate" : Plugins.reload_plugins,
-            "on_remove_child_clicked" : self.on_remove_child_clicked,
             "on_reports_clicked" : self.on_reports_clicked,
             "on_revert_activate" : self.on_revert_activate,
             "on_save_activate" : self.on_save_activate,
@@ -345,7 +334,6 @@ class Gramps:
             "on_show_plugin_status" : self.on_show_plugin_status,
             "on_source_list_button_press" : self.source_view.button_press,
             "on_sources_activate" : self.on_sources_activate,
-            "on_swap_clicked" : self.on_swap_clicked,
             "on_tools_clicked" : self.on_tools_clicked,
             "on_gramps_home_page_activate" : self.on_gramps_home_page_activate,
             "on_gramps_report_bug_activate" : self.on_gramps_report_bug_activate,
@@ -575,31 +563,6 @@ class Gramps:
         if url:
             url = "gnome-help:"+url
             gnome.help.goto(url)
-    
-    def on_remove_child_clicked(self,obj):
-        if not self.active_family or not self.active_child or not self.active_person:
-            return
-
-        self.active_family.removeChild(self.active_child)
-        self.active_child.removeAltFamily(self.active_child)
-        
-        if len(self.active_family.getChildList()) == 0:
-            if self.active_family.getFather() == None:
-                self.delete_family_from(self.active_family.getMother())
-            elif self.active_family.getMother() == None:
-                self.delete_family_from(self.active_family.getFather())
-
-        Utils.modified()
-        self.family_view.load_family()
-
-    def delete_family_from(self,person):
-        person.removeFamily(self.active_family)
-        self.db.deleteFamily(self.active_family)
-        flist = self.active_person.getFamilyList()
-        if len(flist) > 0:
-            self.active_family = flist[0][0]
-        else:
-            self.active_family = None
 
     def add_new_cancel(self,obj):
         Utils.destroy_passed_object(self.addornew)
@@ -641,11 +604,6 @@ class Gramps:
 
         self.topWindow.set_title("GRAMPS")
         self.active_person = None
-        self.active_father = None
-        self.active_family = None
-        self.active_mother = None
-        self.active_child  = None
-        self.active_spouse = None
         self.id2col        = {}
 
         Utils.clearModified()
@@ -939,9 +897,8 @@ class Gramps:
         self.redisplay_person_list(p1)
         self.update_display(0)
     
-    def alpha_event(self,obj,event):
-        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.load_person(self.active_person)
+    def alpha_event(self,obj):
+        self.load_person(self.active_person)
 
     def goto_active_person(self):
         if not self.active_person:
@@ -964,23 +921,10 @@ class Gramps:
             self.statusbar.set_status("")
         else:
             pname = GrampsCfg.nameof(self.active_person)
-            if GrampsCfg.status_bar == 1:
-                name = "[%s] %s" % (self.active_person.getId(),pname)
-            elif GrampsCfg.status_bar == 2:
-                name = pname
-                for attr in self.active_person.getAttributeList():
-                    if attr.getType() == GrampsCfg.attr_name:
-                        name = "[%s] %s" % (attr.getValue(),pname)
-                        break
-            else:
-                name = pname
+            name = "[%s] %s" % (self.active_person.getId(),pname)
             self.statusbar.set_status(name)
         return 0
 	
-    def on_child_list_select_row(self,obj,row,b,c):
-        id = obj.get_row_data(row)
-        self.active_child = id 
-
     def on_child_list_row_move(self,clist,fm,to):
         """Validate whether or not this child can be moved within the clist.
         This routine is called in the middle of the clist's callbacks, so
@@ -1083,11 +1027,6 @@ class Gramps:
         file = self.db.getSavePath()
         self.db.new()
         self.active_person = None
-        self.active_father = None
-        self.active_family = None
-        self.active_mother = None
-        self.active_child  = None
-        self.active_spouse = None
         self.id2col        = {}
         self.read_file(file)
         Utils.clearModified()
@@ -1181,14 +1120,6 @@ class Gramps:
             self.merge_button.set_sensitive(0)
             self.media_view.load_media()
             
-    def on_swap_clicked(self,obj):
-        if not self.active_person:
-            return
-
-        if self.active_spouse:
-            self.change_active_person(self.active_spouse)
-            self.family_view.load_family()
-
     def on_apply_filter_clicked(self,obj):
         invert_filter = self.filter_inv.get_active()
         qualifer = self.filter_text.get_text()
@@ -1244,7 +1175,7 @@ class Gramps:
             self.redisplay_person_list(person)
         self.update_display(0)
 
-    def redisplay_person_list(self,person):
+    def add_to_person_list(self,person,change):
         key = person.getId()
         val = self.db.getPersonDisplay(person.getId())
         pg = val[0]
@@ -1257,12 +1188,19 @@ class Gramps:
             iter = model.model.append()
             page = self.model2page[model]
             self.id2col[key] = (model,iter,page)
-            
+
             model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                             3, val[3], 4, val[4], 5, val[5],
                             6, val[6], 7, val[7])
-            self.change_active_person(person)
-            self.goto_active_person()
+            if change:
+                self.change_active_person(person)
+                self.goto_active_person()
+        
+    def redisplay_person_list(self,person):
+        self.add_to_person_list(person,1)
+
+    def update_person_list(self,person):
+        self.add_to_person_list(person,0)
             
     def load_person(self,person):
         if person:
@@ -1270,30 +1208,6 @@ class Gramps:
                 EditPerson.EditPerson(person, self.db, self.update_after_edit)
             except:
                 DisplayTrace.DisplayTrace()
-
-    def build_spouse_dropdown(self):
-        list = []
-        mymap = {}
-        mynmap = {}
-        sel = None
-        for f in self.active_person.getFamilyList():
-            if self.active_person == f.getFather():
-                sname = self.parent_name(f.getMother())
-            else:
-                sname = self.parent_name(f.getFather())
-            c = self.list_item(sname,f.getId())
-            list.append(c)
-            if f == self.active_family or sel == None:
-                sel = c
-            mynmap[f.getId()] = sname
-            mymap[f.getId()] = c
-        self.spouse_combo.disable_activate()
-        self.spouse_combo.list.clear_items(0,-1)
-        self.spouse_combo.list.append_items(list)
-            
-        for v in mymap.keys():
-            self.spouse_combo.set_item_string(mymap[v],mynmap[v])
-        self.spouse_combo.list.select_child(sel)
 
     def list_item(self,label,filter):
         l = gtk.Label(label)
@@ -1469,48 +1383,6 @@ class Gramps:
     def set_person(self):
         self.db.setDefaultPerson(self.active_person)
         Utils.modified()
-
-    def family_up_clicked(self,obj):
-        if self.active_parents == None:
-            return
-        flist = self.active_person.getParentList()
-        if self.parents_index == 0:
-            self.parents_index = len(flist)-1
-        else:
-            self.parents_index = self.parents_index - 1
-        self.active_parents = flist[self.parents_index][0]
-        self.change_parents(self.active_parents)
-
-    def family_down_clicked(self,obj):
-        if self.active_parents == None:
-            return
-        flist = self.active_person.getParentList()
-        if self.parents_index == len(flist)-1:
-            self.parents_index = 0
-        else:
-            self.parents_index = self.parents_index + 1
-        self.active_parents = flist[self.parents_index][0]
-        self.change_parents(self.active_parents)
-
-    def spouse_list_changed(self,obj):
-        if self.active_family == None:
-            return
-        select = self.spouse_combo.list.get_selection()
-        if len(select) == 0:
-            self.active_family = None
-        else:
-            self.active_family = self.db.getFamily(select[0].get_data('d'))
-
-        if self.active_family == self.active_person.getFamilyList()[0]:
-            self.pref_spouse.set_sensitive(0)
-            msg = _("Preferred Relationship")
-        else:
-            msg = _("Relationship")
-            self.pref_spouse.set_sensitive(1)
-            
-        self.gtop.get_widget('rel_frame').set_label(msg)
-        
-        self.display_marriage(self.active_family)
 
     def export_callback(self,obj,plugin_function):
         """Call the export plugin, with the active person and database"""

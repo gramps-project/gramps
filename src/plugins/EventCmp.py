@@ -204,7 +204,7 @@ class DisplayChart:
         titles = []
         index = 0
         for v in self.event_titles:
-            titles.append((v,150,index))
+            titles.append((v,index,150))
             index = index + 1
             
         self.list = ListModel.ListModel(self.eventlist,titles)

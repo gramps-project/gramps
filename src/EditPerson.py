@@ -36,6 +36,8 @@ import gtk
 import gnome.ui 
 import gtk.glade
 
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -153,7 +155,7 @@ class EditPerson:
         self.event_src_field = self.get_widget("event_srcinfo")
         self.event_conf_field = self.get_widget("event_conf")
         self.attr_conf_field = self.get_widget("attr_conf")
-        self.addr_conf_field = self.get_widget("attr_conf")
+        self.addr_conf_field = self.get_widget("addr_conf")
         self.name_conf_field = self.get_widget("name_conf")
         self.attr_src_field = self.get_widget("attr_srcinfo")
         self.name_src_field = self.get_widget("name_srcinfo")
@@ -260,20 +262,6 @@ class EditPerson:
 
         self.event_list = self.get_widget("eventList")
 
-        if GrampsCfg.display_attr:
-            self.get_widget("user_label").set_text(GrampsCfg.attr_name)
-            val = ""
-            for attr in self.person.getAttributeList():
-                if attr.getType() == const.save_pattr(GrampsCfg.attr_name):
-                    val = attr.getValue()
-                    break
-            self.get_widget("user_data").set_text(val)
-            self.get_widget("user_colon").show()
-        else:
-            self.get_widget("user_label").hide()
-            self.get_widget("user_colon").hide()
-            self.get_widget("user_data").hide()
-
         self.lds_baptism = LdsOrd(self.person.getLdsBaptism())
         self.lds_endowment = LdsOrd(self.person.getLdsEndowment())
         self.lds_sealing = LdsOrd(self.person.getLdsSeal())
@@ -304,34 +292,33 @@ class EditPerson:
         self.notes_buffer = self.notes_field.get_buffer()
         self.notes_buffer.set_text(person.getNote())
 
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,gtk.gdk.ACTION_COPY)
-        self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK, pycode_tgts, gtk.gdk.ACTION_COPY)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_drag_data_get)
         self.event_list.connect('drag_data_received',
                                 self.ev_drag_data_received)
 
-#        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-#                                    pycode_tgts,ACTION_COPY)
-#        self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, gtk.gdk.ACTION_COPY)
-#        self.web_list.connect('drag_data_get', self.url_drag_data_get)
-#        self.web_list.connect('drag_data_received',
-#                              self.url_drag_data_received)
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.web_list.connect('drag_data_get', self.url_drag_data_get)
+        self.web_list.connect('drag_data_received',
+                              self.url_drag_data_received)
         
-#        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
-#                                     gtk.gdk.ACTION_COPY)
-#        self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK, pycode_tgts,
-#                                       gtk.gdk.ACTION_COPY)
-#        self.attr_list.connect('drag_data_get', self.at_drag_data_get)
-#        self.attr_list.connect('drag_data_received',
-#                               self.at_drag_data_received)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
+                                     ACTION_COPY)
+        self.attr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,
+                                       ACTION_COPY)
+        self.attr_list.connect('drag_data_get', self.at_drag_data_get)
+        self.attr_list.connect('drag_data_received',
+                               self.at_drag_data_received)
 
-#        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-#                                     pycode_tgts,ACTION_COPY)
-#        self.addr_list.drag_source_set(gtk.gdk.BUTTON1_MASK, pycode_tgts,
-#                                       gtk.gdk.ACTION_COPY)
-#        self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
-#        self.addr_list.connect('drag_data_received',
-#                               self.ad_drag_data_received)
+        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                     pycode_tgts,ACTION_COPY)
+        self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,
+                                       ACTION_COPY)
+        self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
+        self.addr_list.connect('drag_data_received',
+                               self.ad_drag_data_received)
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -1088,12 +1075,12 @@ class EditPerson:
             self.get_widget("personPix").hide()
         else:
             try:
-                i = gtk.gdk.pixbuf_new_from_file(photo)
+                i = pixbuf_new_from_file(photo)
                 ratio = float(max(i.get_height(),i.get_width()))
                 scale = float(const.picWidth)/ratio
                 x = int(scale*(i.get_width()))
                 y = int(scale*(i.get_height()))
-                i = i.scale_simple(x,y,gtk.gdk.INTERP_BILINEAR)
+                i = i.scale_simple(x,y,INTERP_BILINEAR)
                 self.get_widget("personPix").set_from_pixbuf(i)
                 self.get_widget("personPix").show()
             except:
