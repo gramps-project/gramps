@@ -596,7 +596,7 @@
       </para>
       <variablelist><title>Menu options</title>
         <varlistentry>
-	  <term><guilabel>View Image</guilabel></term>
+	  <term>View Image</term>
 	  <listitem>
 	    <para>
 	    Allows you to view the image using the GNOME's default
@@ -605,7 +605,7 @@
 	  </listitem>
 	</varlistentry>
         <varlistentry>
-	  <term><guilabel>Edit Image</guilabel></term>
+	  <term>Edit Image</term>
           <listitem>
 	    <para>
 	    Launches the <application>gimp</application> program,
@@ -614,7 +614,7 @@
 	  </listitem>
 	</varlistentry>
         <varlistentry>
-	  <term><guilabel>Edit Description</guilabel></term>
+	  <term>Edit Description</term>
           <listitem>
 	    <para>
 	    Allows you to change the description attached to the
@@ -623,7 +623,7 @@
 	  </listitem>
         </varlistentry>
         <varlistentry>
-	  <term><guilabel>Convert to private copy</guilabel></term>
+	  <term>Convert to private copy</term>
 	  <listitem>
 	    <para>
 	    This option is only displayed if the image is a reference
@@ -1050,7 +1050,7 @@
       <variablelist>
         <title>General Preferences options</title>
 	<varlistentry>
-  	  <term><guilabel>Automatically load last database</guilabel></term>
+  	  <term>Automatically load last database</term>
           <listitem>
             <para>
 	    With this selected it will automatically load your last
@@ -1059,7 +1059,7 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>Do not compress XML data file</guilabel></term>
+	  <term>Do not compress XML data file</term>
           <listitem>
             <para>
 	    <application>GRAMPS</application> normally compresses its
@@ -1072,7 +1072,7 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>Use tabbed pages</guilabel></term>
+	  <term>Use tabbed pages</term>
           <listitem>
             <para>
 	    When this is selected there will be a row of tabs below
@@ -1082,16 +1082,26 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>Display GRAMPS ID in list</guilabel></term>
+	  <term>Display GRAMPS ID in list</term>
           <listitem>
             <para>
 	    This will add a new column to the Person View with the
-	    GRAMPS ID for each individual.
+	    <application>GRAMPS</application> ID for each individual.
 	    </para>
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>Display attribute on Edit Person form</guilabel></term>
+	  <term>Allow internal GRAMPS ID numbers to be edited</term>
+          <listitem>
+            <para>
+	    This option allows advanced users to edit the internal
+	    <application>GRAMPS</application> indentification strings
+	    for certain entries.
+	    </para>
+          </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>Display attribute on Edit Person form</term>
           <listitem>
 	    <para>
 	    Selecting this and adding a comment/word will add that
@@ -1120,7 +1130,7 @@
       <variablelist>
         <title>Formats Preferences options</title>
 	<varlistentry>
-  	  <term><guilabel>Display Formats</guilabel></term>
+  	  <term>Display Formats</term>
           <listitem>
             <para>
 	    Allows you to choose your preferences for displaying dates
@@ -1133,7 +1143,7 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-  	  <term><guilabel>Entry Formats</guilabel></term>
+  	  <term>Entry Formats</term>
           <listitem>
             <para>
 	    Numerical date formats can be ambiguous. Some people enter
@@ -1159,7 +1169,7 @@
       <variablelist>
         <title>Appearance Preferences</title>
         <varlistentry>
-	  <term><guilabel>Custom Colors</guilabel></term>
+	  <term>Custom Colors</term>
           <listitem>
 	    <para>
 	    Enabling custom colors allows you to choose foreground and
@@ -1172,7 +1182,7 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>Status Bar</guilabel></term>
+	  <term>Status Bar</term>
           <listitem>
             <para>
 	    Allows you to change the information displayed in the
@@ -1190,7 +1200,7 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term><guilabel>List Display Options</guilabel></term>
+	  <term>List Display Options</term>
   	  <listitem>
 	    <para>
   	    Allows you to control what gets displayed in lists. You can
