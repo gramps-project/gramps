@@ -896,7 +896,11 @@ class SingleDate:
                 self.day = int(string.replace(val,',',''))
             else:
                 self.day = UNDEF
-            self.setYearVal(matches[3])
+            val = matches[3]
+            if val:
+                self.setYearVal(matches[3])
+            else:
+                self.setYearVal(UNDEF)
             return 1
 
         match = SingleDate.fmt4.match(text)
