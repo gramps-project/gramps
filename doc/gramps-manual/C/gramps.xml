@@ -2501,7 +2501,7 @@
 
 	<varlistentry><term>Detailed Ancestral Report</term>
 	<listitem><para>This report covers in detail the ancestors of the
-	active person. It includes vital (birth and death) as well as 
+	active person. It includes vital data (birth and death) as well as 
 	marriages. Specific options: number of backward generations 
 	to consider, as well as a variety of options on what exactly 
 	contents to include. </para></listitem>
@@ -2524,8 +2524,16 @@
 	</varlistentry>
 
 	<varlistentry><term>Ahnentafel Report</term>
-	<listitem><para>
-	[ FIXME: Someone who know exactly what this is has to fill it in. ]
+	<listitem><para>This report lists the active person and his or her 
+	ancestors along with their vital data. The people are numbered in a 
+	special way which is an established standard called Ahnentafel. 
+	The active person is given number 1. His or her father and mother 
+	have numbers 2 and 3, respectively. This rule holds for every person 
+	while going back in generations: father's parents are numbered 4 and 5, 
+	and mother's parents are numbered 6 and 7, fathers always numbered 
+	with even and mothers with odd numbers. Therefore, for any person 
+	having number N in this tree, the numbers of father and mother 
+	are 2N and 2N+1, respectively. 
 	</para></listitem>
 	</varlistentry>
 
@@ -2534,8 +2542,8 @@
 	<para>Common options for text reports are the filename of the
 	output, the format of the output, selected style, and page size and 
 	orientation. For HTML reports, there is no page information. 
-	Instead, HTML options includes the choice of the HTML template, 
-	either available in &app; or custom template defined by you. </para>
+	Instead, HTML options include the choice of the HTML template, 
+	either available in &app; or a custom template defined by you. </para>
 
       </sect3>
 
@@ -2728,39 +2736,115 @@
     <title>Settings</title> 
     <para>To configure <application>&app;</application>, choose 
       <menuchoice><guimenu>Settings</guimenu>
-      <guimenuitem>Preferences</guimenuitem></menuchoice>. </para>
-    
+      <guimenuitem>Preferences</guimenuitem></menuchoice>. 
+      The <guilabel>Preferences</guilabel> dialog contains the following 
+      categories: </para>
+      
+      <itemizedlist>
+      <listitem><para><xref linkend="gramps-prefs-usage"/></para></listitem>
+      <listitem><para><xref linkend="gramps-prefs-display"/></para></listitem>
+      <listitem><para><xref linkend="gramps-prefs-db"/></para></listitem>
+      </itemizedlist>
+
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
       <title>Usage</title> 
-	<para> </para>
-
-<!--
-[ FIXME: STOPPED HERE ] 
--->
+	<para> This category contains preferences relevant to the 
+	general usage of &app;. It has the following subcategories:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-find"> 
         <title>Find</title> 
-	<para> </para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel>Enable autocompletion</guilabel></term>
+	<listitem><para>If this box is checked, &app; will attempt to complete
+	the text as you type it into text entry fields such as family name,
+	place of birth, etc. Completion is attempted based on the match 
+	between the beginning of the text being typed and the corresponding 
+	data already stored in the database. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-report"> 
         <title>Report Preferences</title> 
-	<para> </para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel>Preferred text format</guilabel></term>
+	<listitem><para> Select the preferred format for text reports 
+	from the available formats listed in this menu. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Preferred graphical format</guilabel></term>
+	<listitem><para> Select the preferred format for graphical reports 
+	from the available formats listed in this menu.
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Preferred paper size</guilabel></term>
+	<listitem><para> Select the preferred paper size used for reports 
+	from the available sizes listed in this menu.
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Default report directory</guilabel></term>
+	<listitem><para> Choose the default directory for the reports using
+	<guibutton>Browse...</guibutton> button or type it in the text entry
+	field. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Default web site directory</guilabel></term>
+	<listitem><para> Choose the default directory for the web site using
+	<guibutton>Browse...</guibutton> button or type it in the text entry
+	field. </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-res"> 
         <title>Researcher Information</title> 
-	<para> </para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel>Researcher information</guilabel></term>
+	<listitem><para> Enter your personal information in the corresponding
+	text entry fields. Although GRAMPS requests information about you, 
+	this information is used only so that it can create valid GEDCOM 
+	output files. A valid GEDCOM file requires information about the files 
+	creator. If you choose, you may leave the information empty, however
+	all the GEDCOM files you export will not be valid. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-guess"> 
         <title>Data Guessing</title> 
-	<para> </para>
+
+	<variablelist>
+	
+	<varlistentry><term><guilabel>Surname guessing</guilabel></term>
+	<listitem><para> Select the surname guessing method which is used 
+[ FIXME: where exactly is this used ? ]
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
       </sect3>
 
     </sect2>
@@ -2768,24 +2852,82 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-display"> 
       <title>Display</title> 
-	<para> </para>
+	<para> This category contains preferences relevant to  
+	displaying database records and controls in &app;. 
+	It has the following subcategories:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-gen"> 
         <title>General</title> 
-	<para> </para>
+
+	<variablelist>
+	
+	<varlistentry><term><guilabel>Always display the LDS ordinance tabs</guilabel></term>
+	<listitem><para> Check this box to have LDS ordinance tabs displayed. 
+	If you do not know what LDS is then you probably should not check it. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Show index numbers in child list</guilabel></term>
+	<listitem><para> 
+[ FIXME: where exactly is this used ? ]
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-date"> 
         <title>Dates and Calendar</title> 
-	<para> </para>
+
+	<variablelist>
+	
+	<varlistentry><term><guilabel>Display: Date format</guilabel></term>
+	<listitem><para> Select the display format for the dates
+	from the available formats listed in this menu. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Name format</guilabel></term>
+	<listitem><para> Select the display format for the names  
+	from the available formats listed in this menu. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Entry: Date format</guilabel></term>
+	<listitem><para> Select the entry format for the dates
+	from the available formats listed in this menu. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
+	<listitem><para> Check this box to enable calendar format selection menu 
+[ FIXME: where exactly? ]
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-bars"> 
         <title>Tool and Status Bars</title> 
-	<para> </para>
+	<variablelist>
+	
+	<varlistentry><term><guilabel>Toolbar</guilabel></term>
+	<listitem><para> Select the desired appearance of the toolbar icons
+	using the radio buttons. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Status bar</guilabel></term>
+	<listitem><para> Select the desired contents displayed in the 
+	statusbar using the radio buttons. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
     </sect2>
@@ -2793,30 +2935,118 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-db"> 
       <title>Database</title> 
-	<para> </para>
+	<para> This category contains preferences relevant to the 
+	database itself. It has the following subcategories: </para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-gen"> 
         <title>General</title> 
-	<para> </para>
+
+	<variablelist>
+	
+	<varlistentry><term><guilabel>Automatically load last database</guilabel></term>
+	<listitem><para> Check this box to automatically load the last open
+	database on startup. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Do not compress XML data file</guilabel></term>
+	<listitem><para> Check this box to disable compression of the XML
+	data file. Compression significantly reduces the file size. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Capitalize surnames</guilabel></term>
+	<listitem><para> Check this box to capitalize surnames entered into the
+	database. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
+	<listitem><para> Set the interval (in minutes) after which &app; will
+	automatically save your database. Zero interval completely disables 
+	autosave. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Default database directory</guilabel></term>
+	<listitem><para> Choose the default directory in which &app; starts
+	looking when saving the database using <guibutton>Browse..</guibutton> 
+	or type its path into the text entry field. </para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-media"> 
         <title>Media Objects</title> 
-	<para> </para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel>Drag and drop from an external source</guilabel></term>
+	<listitem><para> Choose between a reference and a local copy made when
+	the object is dropped into the gallery. The reference saves disk 
+	space as it does not copy the object. The local copy makes your 
+	database portable as it does not depend on an external file. Consult
+	your need to make best choice.</para> 
+	
+	<para>Check <guilabel>Display global properties editor when object is
+	dropped</guilabel> box to invoke global properties editor after you 
+	drop an external object into the gallery. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Drag and drop from an internal source</guilabel></term>
+	<listitem><para> Check <guilabel>Display local properties editor when 
+	object is dropped</guilabel> box to invoke local properties editor 
+	after you drop an internal object into the gallery. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
         <title>&app; internal IDs</title> 
-	<para> </para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel> GRAMPS ID prefixes</guilabel></term>
+	<listitem><para> Enter ID prefixes for various kinds of database 
+	entries into the corresponding text entry fields. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Allow internal GRAMPS ID numbers to be
+	edited</guilabel></term>
+	<listitem><para> Check this box to enable editing of the internal &app;
+	ID numbers. Unless you know what you are doing, leave it unchecked.
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-rcs"> 
         <title>Revision Control</title> 
-	<para> </para>
+
+	<variablelist>
+
+	<varlistentry><term><guilabel>Use revision control</guilabel></term>
+	<listitem><para> Check this box to enable &app; to use revision control
+	system for your database. If you choose this option, select the
+	particular revision control system from the menu. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term><guilabel>Prompt for comment on save</guilabel></term>
+	<listitem><para> Check this box to instruct &app; to prompt you to enter
+	the comment when you save the database. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
       </sect3>
 
     </sect2>
