@@ -282,7 +282,7 @@ class MergePeople:
             self.p1.setNote(old_note + self.p2.getNote())
 
         del self.db.getPersonMap()[self.p2.getId()]
-        self.update(self.p2)
+        self.update(self.p1,self.p2)
         utils.destroy_passed_object(self.top)
         
     #---------------------------------------------------------------------

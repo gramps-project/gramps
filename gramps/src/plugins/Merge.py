@@ -23,16 +23,18 @@
 import RelLib
 import utils
 import soundex
-import Check
 import intl
+import Config
 _ = intl.gettext
 
 import string
 import os
+import MergeData
 
 from gtk import *
 from gnome.ui import *
 from libglade import *
+
 
 #-------------------------------------------------------------------------
 #
@@ -48,13 +50,7 @@ def is_initial(name):
     else:
         return name[0] in string.uppercase
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def ancestors_of(p1,list):
-
     if p1 == None:
         return
     list.append(p1)
@@ -62,17 +58,6 @@ def ancestors_of(p1,list):
     if f1 != None:
         ancestors_of(f1.getFather(),list)
         ancestors_of(f1.getMother(),list)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_name_obj(p1):
-    if p1 == None:
-        return None
-    else:
-        return p1.getPrimaryName()
 
 #-------------------------------------------------------------------------
 #
@@ -195,6 +180,11 @@ class Merge:
                 index = index + 1
                 if p1 == p2:
                     continue
+                if self.map.has_key(p2):
+                    (v,c) = self.map[p2]
+                    if v == p1:
+                        continue
+                    
                 chance = self.compare_people(p1,p2)
                 if chance >= thresh:
                     if self.map.has_key(p1):
@@ -208,6 +198,7 @@ class Merge:
         self.list.sort(by_id)
         self.length = len(self.list)
         self.topWin.destroy()
+        self.dellist = {}
 
     #---------------------------------------------------------------------
     #
@@ -215,422 +206,57 @@ class Merge:
     #
     #---------------------------------------------------------------------
     def show(self):
-        self.topDialog = GladeXML(self.glade_file,"merge")
-        self.merge_btn = self.topDialog.get_widget("merge_btn")
-        self.next_btn = self.topDialog.get_widget("next_btn")
-        self.altname = self.topDialog.get_widget("altname")
-        
-        self.topDialog.signal_autoconnect({
-            "on_next_clicked" : self.on_next_clicked,
-            "on_merge_clicked" : self.on_merge_clicked,
-            "destroy_passed_object" : self.update_and_destroy
+        top = GladeXML(self.glade_file,"mergelist")
+        self.window = top.get_widget("mergelist")
+        self.mlist = top.get_widget("mlist")
+        top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_do_merge_clicked" : self.on_do_merge_clicked,
             })
+        self.redraw()
 
-        if len(self.map) > 0:
-            top = self.topDialog.get_widget("merge")
-            top.show()
-            self.load_next()
+    def redraw(self):
+        list = []
+        for p1 in self.map.keys():
+            if self.dellist.has_key(p1):
+                continue
+            (p2,c) = self.map[p1]
+            if self.dellist.has_key(p2):
+                p2 = self.dellist[p2]
+            if p1 == p2:
+                continue
+            list.append(c,p1,p2)
+        list.sort()
+        list.reverse()
+
+        index = 0
+        self.mlist.freeze()
+        self.mlist.clear()
+        for (c,p1,p2) in list:
+            c = "%5.2f" % c
+            self.mlist.append([c, name_of(p1), name_of(p2)])
+            self.mlist.set_row_data(index,(p1,p2))
+            index = index + 1
+        self.mlist.thaw()
+
+    def on_do_merge_clicked(self,obj):
+        if len(self.mlist.selection) != 1:
+            return
+        row = self.mlist.selection[0]
+        (p1,p2) = self.mlist.get_row_data(row)
+        MergeData.MergePeople(self.db,p1,p2,self.on_update)
+
+    def on_update(self,p1,p2):
+        self.dellist[p2] = p1
+        for key in self.dellist.keys():
+            if self.dellist[key] == p2:
+                self.dellist[key] = p1
+        self.redraw()
         
-    def on_merge_clicked(self,obj):
-        self.merge()
-
-    def on_next_clicked(self,obj):
-        self.load_next()
-
     def update_and_destroy(self,obj):
         self.update(1)
         utils.destroy_passed_object(obj)
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def merge(self):
-        self.merge_btn.set_sensitive(0)
-        utils.modified()
-        if self.topDialog.get_widget("bname2").get_active():
-            if self.altname.get_active():
-                self.mergee.addAlternateName(self.mergee.getPrimaryName())
-            self.mergee.setPrimaryName(self.merger.getPrimaryName())
-        else:
-            if self.altname.get_active():
-                self.mergee.addAlternateName(self.merger.getPrimaryName())
-        if self.topDialog.get_widget("bbirth2").get_active():
-            self.mergee.getBirth().setDate(self.merger.getBirth().getDate())
-        if self.topDialog.get_widget("bplace2").get_active():
-            self.mergee.getBirth().setPlace(self.merger.getBirth().getPlace())
-        if self.topDialog.get_widget("death2").get_active():
-            self.mergee.getDeath().setDate(self.merger.getDeath().getDate())
-        if self.topDialog.get_widget("dplace2").get_active():
-            self.mergee.getDeath().setPlace(self.merger.getDeath().getPlace())
-
-        if self.topDialog.get_widget("bfather2").get_active():
-            orig_family = self.mergee.getMainFamily()
-            if orig_family:
-                orig_family.removeChild(self.mergee)
-            
-            source_family = self.merger.getMainFamily()
-            self.mergee.setMainFamily(source_family)
-
-            if source_family:
-                if self.merger in source_family.getChildList():
-                    source_family.removeChild(self.merger)
-                if self.mergee not in source_family.getChildList():
-                    source_family.addChild(self.mergee)
-        else:
-            source_family = self.merger.getMainFamily()
-            if source_family:
-                source_family.removeChild(self.merger)
-                self.merger.setMainFamily(None)
-
-        self.merge_families()
-
-        for event in self.merger.getEventList():
-            self.mergee.addEvent(event)
-        for photo in self.merger.getPhotoList():
-            self.mergee.addPhoto(photo)
-        for name in self.merger.getAlternateNames():
-            self.mergee.addAlternateName(name)
-        if self.mergee.getNickName() == "":
-            self.mergee.setNickName(self.merger.getNickName())
-        if self.merger.getNote() != "":
-            old_note = self.mergee.getNote()
-            if old_note:
-                old_note = old_note + "\n\n"
-            self.mergee.setNote(old_note + self.merger.getNote())
-
-        del self.db.getPersonMap()[self.merger.getId()]
-            
-        self.removed[self.merger] = self.mergee
-        self.removed[self.mergee] = self.mergee
-
-        checker = Check.CheckIntegrity(self.db)
-        checker.cleanup_empty_families(1)
-        checker.check_for_broken_family_links()
-        self.load_next()
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def find_family(self,family):
-        if self.mergee.getGender() == RelLib.Person.male:
-            mother = family.getMother()
-            father = self.mergee
-        else:
-            father = family.getFather()
-            mother = self.mergee
-
-        for myfamily in self.family_list:
-            if myfamily.getFather() == father and \
-               myfamily.getMother() == mother:
-                return myfamily
-
-        return None
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def merge_families(self):
-        
-        family_num = 0
-        mylist = self.merger.getFamilyList()[:]
-        for src_family in mylist:
-            
-            family_num = family_num + 1
-
-            if not self.db.getFamilyMap().has_key(src_family.getId()):
-                continue
-            if src_family in self.mergee.getFamilyList():
-                continue
-
-            tgt_family = self.find_family(src_family)
-
-
-            #
-            # This is the case where a new family to be added to the
-            # mergee as a result of the merge already exists as a
-            # family.  In this case, we need to remove the old source
-            # family (with the pre-merge identity of the mergee) from
-            # both the parents
-            #
-            if tgt_family in self.mergee.getFamilyList():
-                if tgt_family.getFather() != None and \
-                   src_family in tgt_family.getFather().getFamilyList():
-                    tgt_family.getFather().removeFamily(src_family)
-                if tgt_family.getMother() != None and \
-                   src_family in tgt_family.getMother().getFamilyList():
-                    tgt_family.getMother().removeFamily(src_family)
-
-                # copy children from source to target
-
-                # delete the old source family
-                del self.db.getFamilyMap()[src_family.getId()]
-
-                continue
-            
-            #
-            # This is the case where a new family to be added 
-            # and it is not already in the list.
-            #
-
-            if tgt_family:
-
-                # tgt_family a duplicate family, transfer children from
-                # the merger family, and delete the family.  Not sure
-                # what to do about marriage/divorce date/place yet.
-
-                # transfer child to new family, alter children to
-                # point to the correct family
-                
-                for child in src_family.getChildList():
-                    if child not in tgt_family.getChildList():
-                        tgt_family.addChild(child)
-                        if child.getMainFamily() == src_family:
-                            child.setMainFamily(tgt_family)
-                        else:
-                            index = 0
-                            for fam in child.getAltFamilies():
-                                if fam == src_family:
-                                    child.getAltFamilies()[index] = tgt_family
-                                index = index + 1
-
-                # add family events from the old to the new
-                for event in src_family.getEventList():
-                    tgt_family.addEvent(event)
-
-                # change parents of the family to point to the new
-                # family
-                
-                if src_family.getFather():
-                    src_family.getFather().removeFamily(src_family)
-                    src_family.getFather().addFamily(tgt_family)
-
-                if src_family.getMother():
-                    src_family.getMother().removeFamily(src_family)
-                    src_family.getMother().addFamily(tgt_family)
-
-                del self.db.getFamilyMap()[src_family.getId()]
-            else:
-                self.remove_marriage(src_family,self.merger)
-                if src_family not in self.mergee.getFamilyList():
-                    self.mergee.addFamily(src_family)
-                    if self.mergee.getGender() == RelLib.Person.male:
-                        src_family.setFather(self.mergee)
-                    else:
-                        src_family.setMother(self.mergee)
-
-        # a little debugging here
-        
-        for fam in self.db.getFamilyMap().values():
-            name = self.merger.getPrimaryName().getName()
-            if self.merger in fam.getChildList():
-                fam.removeChild(self.merger)
-                fam.addChild(self.mergee)
-            if self.merger == fam.getFather():
-                fam.setFather(self.mergee)
-            if self.merger == fam.getMother():
-                fam.setMother(self.mergee)
-                
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def remove_marriage(self,family,person):
-        if not person:
-            return
-        index = 0
-        for fam in person.getFamilyList():
-            if fam == family:
-                del person.getFamilyList()[index]
-                return
-            index = index + 1
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def load_next(self):
-
-        if self.length == 0:
-            return
-
-        done = 0
-        while not done:
-            person1 = self.list[self.index]
-            self.index = self.index + 1
-            if self.index > len(self.list):
-                return
-            if self.removed.has_key(person1):
-                continue
-            (person2,val) = self.map[person1]
-            if self.removed.has_key(person2):
-                continue
-            done = 1
-
-        label_text = "Merge %d of %d" % (self.index,self.length)
-        self.topDialog.get_widget("progress").set_text(label_text)
-        f1 = person1.getMainFamily()
-        f2 = person2.getMainFamily()
-        
-        name1 = person1.getPrimaryName().getName()
-        death1 = person1.getDeath().getDate()
-        dplace1 = person1.getDeath().getPlaceName()
-        birth1 = person1.getBirth().getDate()
-        bplace1 = person1.getBirth().getPlaceName()
-
-        name2 = person2.getPrimaryName().getName()
-        death2 = person2.getDeath().getDate()
-        dplace2 = person2.getDeath().getPlaceName()
-        birth2 = person2.getBirth().getDate()
-        bplace2 = person2.getBirth().getPlaceName()
-
-        if f2 and not f1:
-            self.topDialog.get_widget("bfather2").set_active(1)
-        else:
-            self.topDialog.get_widget("bfather1").set_active(1)
-            
-        if f1 and f1.getFather():
-            father1 = f1.getFather().getPrimaryName().getName() 
-        else:
-            father1 = ""
-
-        if f1 and f1.getMother():
-            mother1 = f1.getMother().getPrimaryName().getName()
-        else:
-            mother1 = ""
-
-        if f2 and f2.getFather():
-            father2 = f2.getFather().getPrimaryName().getName()
-        else:
-            father2 = ""
-
-        if f2 and f2.getMother():
-            mother2 = f2.getMother().getPrimaryName().getName()
-        else:
-            mother2 = ""
-
-        label1 = "%s (%s)" % (_("First Person"),person1.getId())
-        label2 = "%s (%s)" % (_("Second Person"),person2.getId())
-        
-        self.topDialog.get_widget("PersonFrame1").set_label(label1)
-        self.topDialog.get_widget("PersonFrame2").set_label(label2)
-        self.topDialog.get_widget("name1_text").set_text(name1)
-        self.topDialog.get_widget("name1_text").set_position(0)
-        self.topDialog.get_widget("name2_text").set_text(name2)
-        self.topDialog.get_widget("name2_text").set_position(0)
-
-        self.topDialog.get_widget("bname1").set_active(1)
-
-        self.topDialog.get_widget("birth1_text").set_text(birth1)
-        self.topDialog.get_widget("birth1_text").set_position(0)
-        self.topDialog.get_widget("birth2_text").set_text(birth2)
-        self.topDialog.get_widget("birth2_text").set_position(0)
-        if birth2 and not birth1:
-            self.topDialog.get_widget("bbirth2").set_active(1)
-        else:
-            self.topDialog.get_widget("bbirth1").set_active(1)
-
-        self.topDialog.get_widget("bplace1_text").set_text(bplace1)
-        self.topDialog.get_widget("bplace1_text").set_position(0)
-        self.topDialog.get_widget("bplace2_text").set_text(bplace2)
-        self.topDialog.get_widget("bplace2_text").set_position(0)
-        if bplace2 and not bplace1:
-            self.topDialog.get_widget("bplace2").set_active(1)
-        else:
-            self.topDialog.get_widget("bplace1").set_active(1)
-
-        self.topDialog.get_widget("death1_text").set_text(death1)
-        self.topDialog.get_widget("death1_text").set_position(0)
-        self.topDialog.get_widget("death2_text").set_text(death2)
-        self.topDialog.get_widget("death2_text").set_position(0)
-        if death2 and not death1:
-            self.topDialog.get_widget("death2").set_active(1)
-        else:
-            self.topDialog.get_widget("death1").set_active(1)
-
-        self.topDialog.get_widget("dplace1_text").set_text(dplace1)
-        self.topDialog.get_widget("dplace1_text").set_position(0)
-        self.topDialog.get_widget("dplace2_text").set_text(dplace2)
-        self.topDialog.get_widget("dplace2_text").set_position(0)
-        if dplace2 and not dplace1:
-            self.topDialog.get_widget("dplace2").set_active(1)
-        else:
-            self.topDialog.get_widget("dplace1").set_active(1)
-
-        self.topDialog.get_widget("father1").set_text(father1)
-        self.topDialog.get_widget("father1").set_position(0)
-        self.topDialog.get_widget("father2").set_text(father2)
-        self.topDialog.get_widget("father2").set_position(0)
-        self.topDialog.get_widget("mother1").set_text(mother1)
-        self.topDialog.get_widget("mother1").set_position(0)
-        self.topDialog.get_widget("mother2").set_text(mother2)
-        self.topDialog.get_widget("mother2").set_position(0)
-
-        p1list = person1.getFamilyList()
-        p2list = person2.getFamilyList()
-        
-        length = min(len(p1list),3)
-        self.topDialog.get_widget("spouse1").clear()
-        for index in range(0,3):
-            if index < length and p1list[index]:
-                if person1.getGender() == RelLib.Person.male:
-                    spouse = p1list[index].getMother()
-                    x = p1list[index].getFather()
-                else:
-                    spouse = p1list[index].getFather()
-                    x = p1list[index].getMother()
-
-                if spouse == None:
-                    name = "unknown"
-                else:
-                    name = spouse.getPrimaryName().getName() + \
-                           " (" + spouse.getId() + ")"
-                self.topDialog.get_widget("spouse1").append([name])
-
-        length = min(len(p2list),3)
-        self.topDialog.get_widget("spouse2").clear()
-        for index in range(0,3):
-            if index < length and p2list[index]:
-                if person2.getGender() == RelLib.Person.male:
-                    spouse = p2list[index].getMother()
-                    x = p2list[index].getFather()
-                else:
-                    spouse = p2list[index].getFather()
-                    x = p2list[index].getMother()
-
-                if spouse == None:
-                    name = "unknown"
-                else:
-                    name = spouse.getPrimaryName().getName()  + \
-                           " (" + spouse.getId() + ")"
-                self.topDialog.get_widget("spouse2").append([name])
-
-        self.mergee = person1
-        self.merger = person2
-
-        self.topDialog.get_widget("chance").set_text(str(val))
-
-        if len(self.list) > self.index+1:
-            self.merge_btn.set_sensitive(1)
-            self.next_btn.set_sensitive(1)
-        else:
-            self.merge_btn.set_sensitive(0)
-            self.next_btn.set_sensitive(0)
-
-        if name1 != name2:
-            self.altname.set_sensitive(1)
-            self.altname.set_active(1)
-        else:
-            self.altname.set_sensitive(0)
-            self.altname.set_active(0)
-
     #---------------------------------------------------------------------
     #
     #
@@ -775,6 +401,9 @@ class Merge:
     #
     #---------------------------------------------------------------------
     def place_match(self,p1,p2):
+        if p1 == p2:
+            return 1
+        
         if p1 == None:
             name1 = ""
         else:
@@ -908,6 +537,18 @@ class Merge:
 
         return chance
 
+
+def name_of(p):
+    if not p:
+        return ""
+    return "%s (%s)" % ( Config.nameof(p),p.getId())
+
+def get_name_obj(person):
+    if person:
+        return person.getPrimaryName()
+    else:
+        return None
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -933,7 +574,7 @@ from Plugins import register_tool
 
 register_tool(
     runTool,
-    _("Merge people"),
+    _("Find possible duplicate people"),
     category=_("Database Processing"),
     description=_("Searches the entire database, looking for individual entries that may represent the same person.")
     )
