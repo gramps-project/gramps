@@ -361,6 +361,8 @@ class GedcomParser:
                 self.source.setAuthor(matches[2] + self.parse_continue_data(2))
             elif matches[1] == "PUBL":
                 self.source.setPubInfo(matches[2] + self.parse_continue_data(2))
+            elif matches[1] == "OBJE":
+                pass
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
                     note = matches[1] + self.parse_continue_data(1)
@@ -426,7 +428,7 @@ class GedcomParser:
                     noteobj.set(text + self.parse_continue_data(1))
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
-                self.ignore_sub_junk(1)
+                self.ignore_sub_junk(2)
 	    elif matches[1] == "TRLR":
                 self.backup()
                 return
@@ -763,6 +765,8 @@ class GedcomParser:
                 file = matches[2]
             elif matches[1] == "NOTE":
                 note = matches[2] + self.parse_continue_data(level+1)
+            elif matches[1][0] == "_":
+                self.ignore_sub_junk(level+1)
 	    elif int(matches[0]) < level:
                 self.backup()
                 break
@@ -787,7 +791,51 @@ class GedcomParser:
                 db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
-                self.person.addPhoto(photo)
+                self.person.addPhoto(oref)
+        else:
+            self.warn(_("Could not import %s: currently an unknown file type") % \
+                      file + "\n")
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_source_object(self,source,level):
+        form = ""
+        file = ""
+        title = ""
+        note = ""
+        while 1:
+            matches = self.get_next()
+            if matches[1] == "FORM":
+                form = string.lower(matches[2])
+            elif matches[1] == "TITL":
+                title = matches[2]
+            elif matches[1] == "FILE":
+                file = matches[2]
+            elif matches[1] == "NOTE":
+                note = matches[2] + self.parse_continue_data(level+1)
+	    elif int(matches[0]) < level:
+                self.backup()
+                break
+            else:
+	        self.barf(level+1)
+
+        if form in photo_types:
+            path = find_file(file,self.dir_path)
+            if path == "":
+                self.warn(_("Could not import %s: either the file could not be found, or it was not a valid image")\
+                          % file + "\n")
+            else:
+                photo = Photo()
+                photo.setPath(path)
+                photo.setDescription(title)
+                photo.setMimeType(utils.get_mime_type(path))
+                db.addObject(photo)
+                oref = ObjectRef()
+                oref.setReference(photo)
+                source.addPhoto(oref)
         else:
             self.warn(_("Could not import %s: currently an unknown file type") % \
                       file + "\n")
@@ -817,24 +865,22 @@ class GedcomParser:
                 break
             else:
 	        self.barf(level+1)
-
-        if form == "url":
-            pass
-#            url = Url(file,title)
-#            self.family.addUrl(url)
-        elif form in photo_types:
+                
+        if form in photo_types:
             path = find_file(file,self.dir_path)
             if path == "":
-                self.warn("Could not import %s: the file could not be found\n" % \
-                          file)
+                self.warn("Could not import %s: the file could not be found\n" % file)
             else:
                 photo = Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
+                photo.setMimeType(utils.get_mime_type(path))
+                db.addObject(photo)
+                oref = ObjectRef()
+                oref.setReference(photo)
                 self.family.addPhoto(photo)
         else:
-            self.warn("Could not import %s: current an unknown file type\n" % \
-                      file)
+            self.warn("Could not import %s: current an unknown file type\n" % file)
 
     #---------------------------------------------------------------------
     #
@@ -1089,6 +1135,11 @@ class GedcomParser:
                 d.set(date)
                 source.setDate(d)
                 source.setText(text)
+            elif matches[1] == "OBJE":
+                if matches[2] and matches[2][0] == '@':
+                    self.barf(2)
+                else:
+                    self.parse_source_object(source,level+1)
             elif matches[1] == "QUAY":
                 val = int(matches[2])
                 if val > 1:
@@ -1156,7 +1207,7 @@ class GedcomParser:
                 name.setSurname(matches[2])
 	    elif matches[1] == "NSFX":
                 name.setSuffix(matches[2])
-	    elif matches[1] == "NICK":
+	    elif matches[1] == "NICK" or matches[1] == "_AKA":
                 self.person.setNickName(matches[2])
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
