@@ -1,3 +1,8 @@
+2004-01-12  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PlaceView.py (on_delete_clicked): Use list's copy to avoid
+	modifying the real EventList (closes # 875332).
+	* src/paper.xml: Remove from CVS (superseded by papersize.xml).
+
 2004-01-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Makefile.am: export papersize.xml
 	* src/RelLib.py: Don't call setAncestor if default person is None
