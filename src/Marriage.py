@@ -110,6 +110,9 @@ class Marriage:
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
 
+        self.event_list.set_column_visibility(3,Config.show_detail)
+        self.attr_list.set_column_visibility(2,Config.show_detail)
+
         # set initial data
         mevent_list = self.get_widget("marriageEvent")
         mevent_list.set_popdown_strings(const.marriageEvents)
@@ -149,8 +152,14 @@ class Marriage:
         self.attr_list.clear()
 
 	self.attr_index = 0
+        details = ""
         for attr in self.family.getAttributeList():
-            self.attr_list.append([attr.getType(),attr.getValue()])
+            if Config.show_detail:
+                if attr.getNote() != "":
+                    detail = "N"
+                if attr.getSourceRef():
+                    detail = detail + "S"
+            self.attr_list.append([attr.getType(),attr.getValue(),details])
             self.attr_list.set_row_data(self.attr_index,attr)
             self.attr_index = self.attr_index + 1
 
@@ -175,7 +184,13 @@ class Marriage:
     def add_event(self,text,event):
         if not event:
             return
-        self.event_list.append([text,event.getQuoteDate(),event.getPlace()])
+        detail = ""
+        if Config.show_detail:
+            if event.getNote() != "":
+                detail = "N"
+            if event.getSourceRef():
+                detail = detail + "S"
+        self.event_list.append([text,event.getQuoteDate(),event.getPlace(),detail])
         self.event_list.set_row_data(self.lines,event)
         self.lines = self.lines + 1
 

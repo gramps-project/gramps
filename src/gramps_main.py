@@ -593,7 +593,11 @@ def marriage_edit(family):
 #-------------------------------------------------------------------------
 def full_update():
     Main.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
-    update_display(1)
+    Main.get_widget("child_list").set_column_visibility(4,Config.show_detail)
+    apply_filter()
+    load_family()
+    load_sources()
+    load_tree()
 
 #-------------------------------------------------------------------------
 #
@@ -764,6 +768,7 @@ def read_file(filename):
         statusbar.set_status("")
         Config.save_last_file("")
 
+    full_update()
     statusbar.set_progress(0.0)
 
 #-------------------------------------------------------------------------
@@ -1843,6 +1848,7 @@ def display_marriage(family):
             
         child_list = family.getChildList()
         child_list.sort(sort.by_birthdate)
+        attr = ""
         for child in child_list:
             status = "unknown"
             if child.getGender():
@@ -1855,7 +1861,24 @@ def display_marriage(family):
                 for fam in child.getAltFamilyList():
                     if fam[0] == family:
                         status = fam[1]
-            clist.append([Config.nameof(child),gender,birthday(child),status])
+
+            if Config.show_detail:
+                attr = ""
+                if child.getNote() != "":
+                    attr = attr + "N"
+                if len(child.getEventList())>0:
+                    attr = attr + "E"
+                if len(child.getAttributeList())>0:
+                    attr = attr + "A"
+                if len(child.getFamilyList()) > 0:
+                    for f in child.getFamilyList():
+                        if f.getFather() and f.getMother():
+                            attr = attr + "M"
+                            break
+                if len(child.getPhotoList()) > 0:
+                    attr = attr + "P"
+
+            clist.append([Config.nameof(child),gender,birthday(child),status,attr])
             clist.set_row_data(i,child)
             i=i+1
             if i != 0:
@@ -2231,7 +2254,8 @@ def main(arg):
     database = RelDataBase()
     Config.loadConfig(full_update)
     Main.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
-
+    Main.get_widget("child_list").set_column_visibility(4,Config.show_detail)
+        
     if arg != None:
         read_file(arg)
     elif Config.lastfile != None and Config.lastfile != "" and Config.autoload:

@@ -1585,8 +1585,8 @@
 		<handler>on_child_list_button_press_event</handler>
 		<last_modification_time>Thu, 21 Dec 2000 20:47:47 GMT</last_modification_time>
 	      </signal>
-	      <columns>4</columns>
-	      <column_widths>251,80,149,100</column_widths>
+	      <columns>5</columns>
+	      <column_widths>210,50,200,75,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -1621,7 +1621,7 @@
 		<class>GtkLabel</class>
 		<child_name>CList:title</child_name>
 		<name>label15</name>
-		<label>Birthdate</label>
+		<label>Birth Date</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
@@ -1635,6 +1635,19 @@
 		<child_name>CList:title</child_name>
 		<name>familyStatus</name>
 		<label>Status</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>noteinfo</name>
+		<label>Details</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
