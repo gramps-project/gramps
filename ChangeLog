@@ -1,3 +1,8 @@
+2004-11-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/Makefile.am: Remove gramps.desktop from
+        dist_pkgdata_DATA which was causing it to get installed
+        under .../share/gramps.
+
 2004-11-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ImageSelect.py: load global note in a read only buffer
 	* src/gramps.glade: change buttons to icons, add global note
