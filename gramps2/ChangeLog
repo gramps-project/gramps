@@ -1,3 +1,6 @@
+2004-10-03 Frederick Noronha  <fred@bytesforall.org>
+	* src/data/tips.xml: Add more tips.
+
 2004-10-03  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Date.py: fix get_month_valid call
 	* src/DateDisplay.py: pychecker fixes
