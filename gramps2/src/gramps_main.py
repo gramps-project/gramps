@@ -1388,26 +1388,26 @@ class Gramps:
             if not family_handle:
                 continue
             family = self.db.get_family_from_handle(family_handle)
+            family_to_remove = False
             if self.active_person.get_handle() == family.get_father_handle():
-                if family.get_mother_handle() == None:
-                    for child_handle in family.get_child_handle_list():
-                        child = self.db.get_person_from_handle(child_handle)
-                        child.remove_parent_family_handle(family.get_handle())
-                        self.db.commit_person(child,trans)
-                    self.db.remove_family(family.get_handle(),trans)
-                else:
+                if family.get_mother_handle():
                     family.set_father_handle(None)
-            else:
-                if family.get_father_handle() == None:
-                    for child_handle in family.get_child_handle_list():
-                        child = self.db.get_person_from_handle(child_handle)
-                        child.remove_parent_family_handle(family)
-                        self.db.commit_person(child,trans)
-                    self.db.remove_family(family,trans)
                 else:
+                    family_to_remove = True
+            else:
+                if family.get_father_handle():
                     family.set_mother_handle(None)
-            self.db.commit_family(family,trans)
-            
+                else:
+                    family_to_remove = True
+            if family_to_remove:
+                for child_handle in family.get_child_handle_list():
+                    child = self.db.get_person_from_handle(child_handle)
+                    child.remove_parent_family_handle(family_handle)
+                    self.db.commit_person(child,trans)
+                self.db.remove_family(family_handle,trans)
+            else:
+                self.db.commit_family(family,trans)
+
         for (family_handle,mrel,frel) in self.active_person.get_parent_family_handle_list():
             if family_handle:
                 family = self.db.get_family_from_handle(family_handle)
