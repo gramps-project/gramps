@@ -179,7 +179,8 @@ class PluginDialog:
         the dialog box with the description of the selected report"""
 
         store,iter = self.selection.get_selected()
-        path = store.get_path(iter)
+        if iter:
+            path = store.get_path(iter)
         if not iter or not self.imap.has_key(path):
             self.statbox.hide()
             return 

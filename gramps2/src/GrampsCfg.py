@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -765,7 +765,8 @@ class GrampsPreferences:
             
     def select(self,obj):
         store,iter = self.selection.get_selected()
-        path = store.get_path(iter)
+        if iter:
+            path = store.get_path(iter)
         if iter and self.imap.has_key(path):
             self.panel.set_current_page(self.imap[path])
         
