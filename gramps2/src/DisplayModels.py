@@ -244,13 +244,13 @@ class SourceModel(BaseModel):
         return unicode(data[3])
 
     def column_abbrev(self,data):
-        return unicode(data[4])
+        return unicode(data[7])
 
     def column_id(self,data):
         return unicode(data[1])
 
     def column_pubinfo(self,data):
-        return unicode(data[5])
+        return unicode(data[4])
 
     def column_change(self,data):
         return unicode(time.asctime(time.localtime(data[8])))

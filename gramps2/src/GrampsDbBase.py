@@ -1103,7 +1103,7 @@ class GrampsDbBase:
         Returns the Source display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(0,4),(0,5)]
+        default = [(1,1),(1,2),(0,3),(1,4),(0,5)]
         if self.metadata == None:
             return default
         else:
