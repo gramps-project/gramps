@@ -107,11 +107,9 @@ class BaseModel(gtk.GenericTreeModel):
         return 0
 
     def on_iter_nth_child(self,node,n):
-        path = self.iter2path.get(node)
-        if path:
-            return self.path2iter.get((node,n))
-        else:
-            return None
+        if node == None:
+            return self.path2iter.get((n,))
+        return None
 
     def on_iter_parent(self, node):
 	'''returns the parent of this node'''

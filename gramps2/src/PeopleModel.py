@@ -50,8 +50,7 @@ import accent
 #
 #-------------------------------------------------------------------------
 COLUMN_NAME      = 0
-COLUMN_NAME_SORT = 8
-COLUMN_VIEW      = COLUMN_NAME_SORT + 1
+COLUMN_VIEW      = 6
 COLUMN_BOLD      = COLUMN_VIEW + 1
 COLUMN_INT_ID    = COLUMN_BOLD + 1
 
@@ -86,7 +85,6 @@ class PeopleModel(gtk.GenericTreeModel):
             self.column_death_day,
             self.column_death_place,
             self.column_spouse,
-            self.sort_name,
             ]
 
         maps = self.db.get_people_view_maps()
@@ -266,8 +264,6 @@ class PeopleModel(gtk.GenericTreeModel):
         elif self.top_iter2path.has_key(iter):
             if col == 0:
                 return iter
-            elif col == COLUMN_NAME_SORT:
-                return accent.deaccent(iter.upper())
             else:
                 return u''            
         else:
