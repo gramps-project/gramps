@@ -10,6 +10,10 @@
 	* src/plugins/BookReport.py: Import Plugins module.
 	* src/NameEdit.py (NameEditor.__init__): Typos.
 
+	* src/plugins/SimpleBookTitle.py: Convert to new scheme.
+	* src/docgen/LPRDoc.py: Support photo alignments. 
+	* src/Report.py: Fix interface creation order.
+
 2005-01-07 Eero Tamminen <eerot@sf>
 	* src/Makefile.am: Added GrampsKeys.py and GrampsIniKeys.py so
 	  that Gramps starts up after installation

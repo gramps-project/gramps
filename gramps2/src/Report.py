@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001  David R. Hampton
-# Copyright (C) 2001-2004  Donald N. Allingham
+# Copyright (C) 2001-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -337,10 +337,6 @@ class BareReportDialog:
 #        self.window.set_response_sensitive(1,gtk.TRUE)
         self.window.set_resize_mode(0)
 
-        # Build the list of widgets that are used to extend the Options
-        # frame and to create other frames
-        self.add_user_options()
-
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
         # interaction between the various frames.
@@ -353,6 +349,11 @@ class BareReportDialog:
         self.tbl.set_border_width(6)
         self.col = 0
         self.window.vbox.add(self.tbl)
+
+        # Build the list of widgets that are used to extend the Options
+        # frame and to create other frames
+        self.add_user_options()
+
         self.setup_center_person()
         self.setup_target_frame()
         self.setup_format_frame()
