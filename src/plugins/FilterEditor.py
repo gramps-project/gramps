@@ -394,6 +394,6 @@ if ((os.path.exists(const.system_filters) and
         category=_("Utilities"),
         description=_("The System Filter Editor builds custom "
                       "filters that can be used by anyone on the system "
-                      "to select people included reports, exports, "
+                      "to select people included in reports, exports, "
                       "and other utilities.")
         )
