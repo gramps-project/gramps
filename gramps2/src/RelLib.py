@@ -2372,9 +2372,6 @@ class GrampsDB(Persistent):
         """adds a Place instance to the database, assigning it a gramps'
         ID number"""
 
-#        import traceback
-#        traceback.print_stack()
-        
         index = self.pprefix % self.lmapIndex
         while self.placeMap.has_key(index):
             self.lmapIndex = self.lmapIndex + 1
