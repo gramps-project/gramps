@@ -1,4 +1,4 @@
-.TH gramps 1 "0.9.3" "July 2003" "0.9.3"
+.TH gramps 1 "0.9.4" "September 2003" "0.9.4"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -45,7 +45,8 @@ directory), \fBgedcom\fR (guessed if \fIFILENAME\fR ends with \fB.ged\fR), and
 .br
 
 Formats available for export are \fBgramps\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, 
-and \fBiso\fR (never guessed, always specify with \fB\-f\fR option).
+\fBwft\fR (guessed if \fIFILENAME\fR ends with \fB.wft\fR), and \fBiso\fR 
+(never guessed, always specify with \fB\-f\fR option).
 
 .TP 
 .BI \-i " FILENAME"
@@ -65,8 +66,8 @@ gramps IDs in the resulting database.
 .BI \-o " FILENAME"
 Export data into \fIFILENAME\fR. For \fBgramps\fR and \fBiso\fR formats, the 
 \fIFILENAME\fR is actually the name of directory the gramps database will be 
-written into. For \fBgedcom\fR and \fBgramps\-pkg\fR, the \fIFILENAME\fR 
-is the name of the resulting file. 
+written into. For \fBgedcom\fR, \fBwft\fR, and \fBgramps\-pkg\fR, 
+the \fIFILENAME\fR is the name of the resulting file. 
 .br
 
 When more than one output file is given, each has to be preceded 
@@ -106,11 +107,11 @@ of \fIstdout\fR and \fIstderr\fR to save messages and errors in files.
 
 .SH EXAMPLES
 .TP 
-To import three databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type: 
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3\fR \fB\-a\fR \fIcheck\fR 
+To import four databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
 To explicitly specify the formats in the above example, append filenames with appropriate \fB\-f\fR options: 
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/dir3\fR \fB\-f\fR \fIgramps\fR  \fB\-a\fR \fIcheck\fR 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3\fR \fB\-f\fR \fIgramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
 To record the database resulting from all imports, supply \fB\-o\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 

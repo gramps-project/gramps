@@ -1,3 +1,13 @@
+2003-09-15  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/WriteGedcom.py (cl_setup): Define newline char.
+	* src/plugins/WriteFtree.py: Provide command line interface. 
+	* src/gramps_main.py (handle_args): Add function. Add WFT export 
+	format; (cl_export): Add WFT format. 
+	* doc/gramps.1.in: Update man page to reflect new format option. 
+	* doc/gramps.1: Likewise. 
+	* NEWS: Likewise. 
+	* TODO: Add recently discussed items from gramps-devel.  
+
 2003-09-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SourceView.py (button_press,on_add_clicked,on_delete_clicked,
 	on_edit_clicked): Pass parent window to the child dialog. 

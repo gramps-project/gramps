@@ -154,120 +154,7 @@ class Gramps:
         self.init_interface()
 
         if args:
-            try:
-                options,leftargs = getopt.getopt(args,
-                    const.shortopts,const.longopts)
-            except getopt.GetoptError,msg:
-                print "Error: %s. Exiting." % msg
-                os._exit(1)
-            except:
-                print "Error parsing arguments: %s " % args
-            if leftargs:
-                print "Unrecognized option: %s" % leftargs[0]
-                os._exit(1)
-            exports = []
-            actions = []
-	    imports = []
-            for opt_ix in range(len(options)):
-                o = options[opt_ix][0][1]
-                if o == '-':
-                    continue
-                elif o == 'i':
-                    fname = options[opt_ix][1]
-                    if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
-                        format = options[opt_ix+1][1]
-                        if format not in [ 'gedcom', 'gramps', 'gramps-pkg' ]:
-                            print "Invalid format:  %s" % format
-                            os._exit(1)
-                    elif fname[-3:].upper()== "GED":
-                        format = 'gedcom'
-                    elif fname[-3:].upper() == "TGZ":
-                        format = 'gramps-pkg'
-                    elif os.path.isdir(fname):
-                        format = 'gramps'
-                    else:
-                        print "Unrecognized format for input file %s" % fname
-                        os._exit(1)
-		    imports.append((fname,format))
-                elif o == 'o':
-                    outfname = options[opt_ix][1]
-                    if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
-                        outformat = options[opt_ix+1][1]
-                        if outformat not in [ 'gedcom', 'gramps', 'gramps-pkg', 'iso' ]:
-                            print "Invalid format:  %s" % outformat
-                            os._exit(1)
-                    elif outfname[-3:].upper() == "GED":
-                        outformat = 'gedcom'
-                    elif outfname[-3:].upper() == "TGZ":
-                        outformat = 'gramps-pkg'
-                    elif not os.path.isfile(outfname):
-                        if not os.path.isdir(outfname):
-                            try:
-                                os.makedirs(outfname,0700)
-                            except:
-                                print "Cannot create directory %s" % outfname
-                                os._exit(1)
-                        outformat = 'gramps'
-                    else:
-                        print "Unrecognized format for output file %s" % outfname
-                        os._exit(1)
-                    exports.append((outfname,outformat))
-                elif o == 'a':
-                    action = options[opt_ix][1]
-                    if action not in [ 'check', 'summary' ]:
-                        print "Unknown action: %s." % action
-                        os._exit(1)
-                    actions.append(action)
-            
-            if imports:
-                self.cl = bool(exports or actions)
-                # Create dir for imported database(s)
-                self.impdir_path = os.path.expanduser("~/.gramps/import" )
-                if not os.path.isdir(self.impdir_path):
-                    try:
-                        os.mkdir(self.impdir_path,0700)
-                    except:
-                        print "Could not create import directory %s. Exiting." \
-                            % self.impdir_path 
-                        os._exit(1)
-                elif not os.access(self.impdir_path,os.W_OK):
-                    print "Import directory %s is not writable. Exiting." \
-                        % self.impdir_path 
-                    os._exit(1)
-                # and clean it up before use
-                files = os.listdir(self.impdir_path) ;
-                for fn in files:
-                    if os.path.isfile(os.path.join(self.impdir_path,fn)):
-                        os.remove(os.path.join(self.impdir_path,fn))
-
-                self.clear_database(0)
-                self.db.setSavePath(self.impdir_path)
-                for imp in imports:
-                    print "Importing: file %s, format %s." % (imp[0],imp[1])
-                    self.cl_import(imp[0],imp[1])
-            else:
-                print "No data was given. Launching interactive session."
-                print "To use in the command-line mode,", \
-                    "supply at least one input file to process."
-
-            if self.cl:
-                for expt in exports:
-                    print "Exporting: file %s, format %s." % (expt[0],expt[1])
-                    self.cl_export(expt[0],expt[1])
-
-                for action in actions:
-                    print "Performing action: %s." % action
-                    self.cl_action(action)
-            
-                print "Cleaning up."
-                # clean import dir up after use
-                files = os.listdir(self.impdir_path) ;
-                for fn in files:
-                    if os.path.isfile(os.path.join(self.impdir_path,fn)):
-                        os.remove(os.path.join(self.impdir_path,fn))
-                print "Exiting."
-                os._exit(0)
-
+            self.handle_args(args)
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
             self.auto_save_load(GrampsCfg.lastfile)
         else:
@@ -1195,6 +1082,123 @@ class Gramps:
         self.apply_filter()
         self.goto_active_person(1)
         
+    def handle_args(self,args):
+        try:
+            options,leftargs = getopt.getopt(args,
+                    const.shortopts,const.longopts)
+        except getopt.GetoptError,msg:
+            print "Error: %s. Exiting." % msg
+            os._exit(1)
+        except:
+            print "Error parsing arguments: %s " % args
+        if leftargs:
+            print "Unrecognized option: %s" % leftargs[0]
+            os._exit(1)
+        exports = []
+        actions = []
+        imports = []
+        for opt_ix in range(len(options)):
+            o = options[opt_ix][0][1]
+            if o == '-':
+                continue
+            elif o == 'i':
+                fname = options[opt_ix][1]
+                if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
+                    format = options[opt_ix+1][1]
+                    if format not in [ 'gedcom', 'gramps', 'gramps-pkg' ]:
+                        print "Invalid format:  %s" % format
+                        os._exit(1)
+                elif fname[-3:].upper()== "GED":
+                    format = 'gedcom'
+                elif fname[-3:].upper() == "TGZ":
+                    format = 'gramps-pkg'
+                elif os.path.isdir(fname):
+                    format = 'gramps'
+                else:
+                    print "Unrecognized format for input file %s" % fname
+                    os._exit(1)
+		imports.append((fname,format))
+            elif o == 'o':
+                outfname = options[opt_ix][1]
+                if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
+                    outformat = options[opt_ix+1][1]
+                    if outformat not in [ 'gedcom', 'gramps', 'gramps-pkg', 'iso', 'wft' ]:
+                        print "Invalid format:  %s" % outformat
+                        os._exit(1)
+                elif outfname[-3:].upper() == "GED":
+                    outformat = 'gedcom'
+                elif outfname[-3:].upper() == "TGZ":
+                    outformat = 'gramps-pkg'
+                elif outfname[-3:].upper() == "WFT":
+                    outformat = 'wft'
+                elif not os.path.isfile(outfname):
+                    if not os.path.isdir(outfname):
+                        try:
+                            os.makedirs(outfname,0700)
+                        except:
+                            print "Cannot create directory %s" % outfname
+                            os._exit(1)
+                    outformat = 'gramps'
+                else:
+                    print "Unrecognized format for output file %s" % outfname
+                    os._exit(1)
+                exports.append((outfname,outformat))
+            elif o == 'a':
+                action = options[opt_ix][1]
+                if action not in [ 'check', 'summary' ]:
+                    print "Unknown action: %s." % action
+                    os._exit(1)
+                actions.append(action)
+            
+        if imports:
+            self.cl = bool(exports or actions)
+            # Create dir for imported database(s)
+            self.impdir_path = os.path.expanduser("~/.gramps/import" )
+            if not os.path.isdir(self.impdir_path):
+                try:
+                    os.mkdir(self.impdir_path,0700)
+                except:
+                    print "Could not create import directory %s. Exiting." \
+                        % self.impdir_path 
+                    os._exit(1)
+            elif not os.access(self.impdir_path,os.W_OK):
+                print "Import directory %s is not writable. Exiting." \
+                    % self.impdir_path 
+                os._exit(1)
+            # and clean it up before use
+            files = os.listdir(self.impdir_path) ;
+            for fn in files:
+                if os.path.isfile(os.path.join(self.impdir_path,fn)):
+                    os.remove(os.path.join(self.impdir_path,fn))
+
+            self.clear_database(0)
+            self.db.setSavePath(self.impdir_path)
+            for imp in imports:
+                print "Importing: file %s, format %s." % (imp[0],imp[1])
+                self.cl_import(imp[0],imp[1])
+        else:
+            print "No data was given. Launching interactive session."
+            print "To use in the command-line mode,", \
+                "supply at least one input file to process."
+
+        if self.cl:
+            for expt in exports:
+                print "Exporting: file %s, format %s." % (expt[0],expt[1])
+                self.cl_export(expt[0],expt[1])
+
+            for action in actions:
+                print "Performing action: %s." % action
+                self.cl_action(action)
+            
+            print "Cleaning up."
+            # clean import dir up after use
+            files = os.listdir(self.impdir_path) ;
+            for fn in files:
+                if os.path.isfile(os.path.join(self.impdir_path,fn)):
+                    os.remove(os.path.join(self.impdir_path,fn))
+            print "Exiting."
+            os._exit(0)
+
     def cl_import(self,filename,format):
         if format == 'gedcom':
             import ReadGedcom
@@ -1323,6 +1327,13 @@ class Gramps:
             import WriteCD
             try:
                 WriteCD.PackageWriter(self.db,1,filename)
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
+        elif format == 'wft':
+            import WriteFtree
+            try:
+                WriteFtree.FtreeWriter(self.db,None,1,filename)
             except:
                 print "Error exporting %s" % filename
                 os._exit(1)
