@@ -37,19 +37,18 @@ class AutoComp:
         self.nlist.sort()
         self.entry.connect("insert-text",self.insert_text)
 
-    #-------------------------------------------------------------------------
-    #
-    # Sets up a delayed (0.005 sec) handler for text completion.  Text
-    # completion cannot be handled directly in this routine because, for
-    # some reason, the select_region() function doesn't work when called
-    # from signal handlers.  Go figure.
-    #
-    # Thanks to iain@nodata.demon.co.uk (in mail from 1999) for the idea
-    # to use a timer to get away from the problems with signal handlers
-    # and the select_region function.
-    #
-    #-------------------------------------------------------------------------
     def insert_text(self,entry,new_text,new_text_len,i_dont_care):
+        """
+        Sets up a delayed (0.005 sec) handler for text completion.  Text
+        completion cannot be handled directly in this routine because, for
+        some reason, the select_region() function doesn't work when called
+        from signal handlers.  Go figure.
+
+        Thanks to iain@nodata.demon.co.uk (in mail from 1999) for the idea
+        to use a timer to get away from the problems with signal handlers
+        and the select_region function.
+        """
+        
         # One time setup to clear selected region when user moves on
         if (not entry.get_data("signal_set")):
             entry.set_data("signal_set",1)
@@ -64,29 +63,23 @@ class AutoComp:
         timer = gtk.timeout_add(5, self.timer_callback, entry)
         entry.set_data("timer", timer);
 
-    #-------------------------------------------------------------------------
-    #
-    # The entry box entry field lost focus.  Go clear any selection.  Why
-    # this form of a select_region() call works in a signal handler and
-    # the other form doesn't is a mystery.
-    #
-    #-------------------------------------------------------------------------
     def lost_focus(self,entry,a,b):
+        """
+        The entry box entry field lost focus.  Go clear any selection.  Why
+        this form of a select_region() call works in a signal handler and
+        the other form doesn't is a mystery.
+        """
         entry.select_region(0, 0)
 
-    #-------------------------------------------------------------------------
-    #
-    # The workhorse routine of file completion.  This routine grabs the
-    # current text of the entry box, and grubs through the list item
-    # looking for any case insensitive matches.  This routine relies on
-    # public knowledge of the GtkEntry data structure, not on any private
-    # data.
-    #
-    # These three completion routines have only one gramps specific hook,
-    # and can be easily ported to any program.
-    #
-    #-------------------------------------------------------------------------
     def timer_callback(self,entry):
+        """
+        The workhorse routine of file completion.  This routine grabs the
+        current text of the entry box, and grubs through the list item
+        looking for any case insensitive matches.  This routine relies on
+        public knowledge of the GtkEntry data structure, not on any private
+        data.
+        """
+        
         # Clear any timer
         timer = entry.get_data("timer");
         if (timer):
