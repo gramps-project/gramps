@@ -136,7 +136,7 @@ pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
 
 EXTRA_DIST = grampslib.i
 
-DIST_SOURCES = intl.c
+DIST_SOURCES = intl.c grampslib_wrap.c
 dist_pkgdata_DATA = ${pkgdata_DATA} 
 subdir = src
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs

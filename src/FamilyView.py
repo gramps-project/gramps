@@ -440,9 +440,9 @@ class FamilyView:
             return
         QuestionDialog(_('Delete Parents'),
                        _('Do you wish to remove the selected parents?'),
-                       self.really_del_parents)
+                       self.really_del_sp_parents)
 
-    def really_del_parents(self):
+    def really_del_sp_parents(self):
         self.parent_deleter(self.selected_spouse,self.sp_selection)
 
     def child_back(self,obj):

@@ -187,21 +187,22 @@ class Gramps:
         self.pl_yz       = self.gtop.get_widget("pl_yz")
         self.pl_other    = self.gtop.get_widget("pl_other")
 
+        m = gtk.SELECTION_MULTIPLE
         self.pl_page = [
-            ListModel.ListModel(self.pl_ab, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_cd, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_ef, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_gh, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_ij, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_kl, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_mn, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_op, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_qr, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_st, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_uv, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_wx, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_yz, pl_titles, self.row_changed, self.alpha_event),
-            ListModel.ListModel(self.pl_other, pl_titles, self.row_changed, self.alpha_event),
+            ListModel.ListModel(self.pl_ab, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_cd, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_ef, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_gh, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_ij, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_kl, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_mn, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_op, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_qr, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_st, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_uv, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_wx, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_yz, pl_titles, self.row_changed, self.alpha_event,m),
+            ListModel.ListModel(self.pl_other, pl_titles, self.row_changed, self.alpha_event,m),
             ]
 
         self.person_list = self.pl_page[0].tree
@@ -398,10 +399,10 @@ class Gramps:
         self.editbtn.set_sensitive(val)
             
     def row_changed(self,obj):
-        store,iter = obj.get_selected()
-        if iter:
-            id = store.get_value(iter,1)
-            self.change_active_person(self.db.getPerson(id))
+        mlist = []
+        self.person_selection.selected_foreach(self.blist,mlist)
+        if mlist:
+            self.change_active_person(mlist[0])
 
     def on_show_plugin_status(self,obj):
         Plugins.PluginStatus()
@@ -503,21 +504,25 @@ class Gramps:
     def on_gramps_report_bug_activate(self,obj):
         import gnome.url
         gnome.url.show("http://sourceforge.net/tracker/?group_id=25770&atid=385137")
+
+    def blist(self,store,path,iter,list):
+        id = self.db.getPerson(store.get_value(iter,1))
+        list.append(id)
     
     def on_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""
         page = self.notebook.get_current_page()
         if page == 0:
-            if len(self.person_list.selection) != 2:
+
+            mlist = []
+            self.person_selection.selected_foreach(self.blist,mlist)
+
+            if len(mlist) != 2:
                 msg = _("Exactly two people must be selected to perform a merge")
                 ErrorDialog(msg)
             else:
                 import MergeData
-                p1 = self.person_list.get_row_data(self.person_list.selection[0])
-                p2 = self.person_list.get_row_data(self.person_list.selection[1])
-                p1 = self.db.getPerson(p1)
-                p2 = self.db.getPerson(p2)
-                MergeData.MergePeople(self.db,p1,p2,self.merge_update,
+                MergeData.MergePeople(self.db,mlist[0],mlist[1],self.merge_update,
                                       self.update_after_edit)
         elif page == 4:
             self.place_view.merge()
@@ -638,6 +643,7 @@ class Gramps:
         
     def full_update(self):
         """Brute force display update, updating all the pages"""
+
         self.complete_rebuild()
         self.family_view.load_family()
         self.source_view.load_sources()
@@ -1354,11 +1360,7 @@ class Gramps:
     def complete_rebuild(self):
         self.status_text(_("Updating display..."))
         keys = self.alpha_page.keys()
-        for key in keys:
-            self.alpha_page[key].new_model()
         self.apply_filter()
-        for key in keys:
-            self.alpha_page[key].connect_model()
         self.modify_statusbar()
 
     def apply_filter(self):

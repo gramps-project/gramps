@@ -22,7 +22,7 @@ from gobject import TYPE_STRING, TYPE_PYOBJECT
 import gtk
 
 class ListModel:
-    def __init__(self,tree,dlist,select_func=None,event_func=None):
+    def __init__(self,tree,dlist,select_func=None,event_func=None,mode=gtk.SELECTION_SINGLE):
         self.tree = tree
         l = len(dlist)
         self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
@@ -30,6 +30,7 @@ class ListModel:
         self.tree.set_rules_hint(gtk.TRUE)
         self.new_model()
         self.selection = self.tree.get_selection()
+        self.selection.set_mode(mode)
 
         self.data_index = l
 

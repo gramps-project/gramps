@@ -130,7 +130,7 @@ def report(database,person):
     
     top = topDialog.get_widget("summary")
     textwindow = topDialog.get_widget("textwindow")
-    textwindow.show_string(text)
+    textwindow.get_buffer().set_text(text)
     top.show()
     
 #-------------------------------------------------------------------------

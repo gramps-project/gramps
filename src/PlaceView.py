@@ -77,6 +77,7 @@ class PlaceView:
 
         self.id2col = {}
         self.selection = self.list.get_selection()
+        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         colno = 0
         for title in _column_headers:
             renderer = gtk.CellRendererText ()
@@ -128,16 +129,16 @@ class PlaceView:
         self.list.connect('button-press-event',self.button_press)
         
     def merge(self):
-        if len(self.place_list.selection) != 2:
+
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        
+        if len(mlist) != 2:
             msg = _("Exactly two places must be selected to perform a merge")
             ErrorDialog(msg)
         else:
             import MergeData
-            p1 = self.place_list.get_row_data(self.place_list.selection[0])
-            P2 = self.place_list.get_row_data(self.place_list.selection[1])
-            p1 = self.db.getPlace(p1)
-            p2 = self.db.getPlace(p2)
-            MergeData.MergePlaces(self.db,p1,p2,self.load_places)
+            MergeData.MergePlaces(self.db,mlist[0],mlist[1],self.load_places)
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -217,6 +218,6 @@ class PlaceView:
             place = self.db.getPlace(id)
             EditPlace.EditPlace(self, place, self.update_display)
 
-
-
-
+    def blist(self,store,path,iter,list):
+        id = self.db.getPlace(store.get_value(iter,1))
+        list.append(id)

@@ -565,6 +565,8 @@ class EditPerson:
         self.ntree.clear()
         for name in self.nlist:
             self.ntree.add([name.getName(),_(name.getType())],name)
+        if self.ntree:
+            self.ntree.select_row(0)
 
     def redraw_url_list(self):
         """redraws the url list, disabling the go button if no url
@@ -575,6 +577,7 @@ class EditPerson:
 
         if len(self.ulist) > 0:
             self.web_go.set_sensitive(0)
+            self.wtree.select_row(0)
         else:
             self.web_go.set_sensitive(0)
             self.web_url.set_text("")
@@ -587,12 +590,16 @@ class EditPerson:
             location = "%s %s %s %s" % (addr.getStreet(),addr.getCity(),
                                         addr.getState(),addr.getCountry())
             self.ptree.add([addr.getDate(),location],addr)
+        if self.plist:
+            self.ptree.select_row(0)
 
     def redraw_attr_list(self):
         """redraws the attribute list for the person"""
         self.atree.clear()
         for attr in self.alist:
             self.atree.add([const.display_pattr(attr.getType()),attr.getValue()],attr)
+        if self.alist:
+            self.atree.select_row(0)
 
     def redraw_event_list(self):
         """redraw_event_list - Update both the birth and death place combo
@@ -606,6 +613,8 @@ class EditPerson:
         for event in self.elist:
             self.etree.add([const.display_pevent(event.getName()),event.getDescription(),
                             event.getQuoteDate(),event.getPlaceName()],event)
+        if self.elist:
+            self.etree.select_row(0)
 
         # Remember old combo list input
         prev_btext = Utils.strip_id(self.bplace.get_text())
