@@ -20,10 +20,10 @@
 
 #------------------------------------------------------------------------
 #
-# Load the base TextDoc class
+# Load the base BaseDoc class
 #
 #------------------------------------------------------------------------
-import TextDoc
+import BaseDoc
 import Plugins
 import ImgManip
 import Errors
@@ -48,7 +48,7 @@ def twips(cm):
 # use style sheets. Instead it writes raw formatting.
 #
 #------------------------------------------------------------------------
-class RTFDoc(TextDoc.TextDoc):
+class RTFDoc(BaseDoc.BaseDoc):
 
     #--------------------------------------------------------------------
     #
@@ -140,7 +140,7 @@ class RTFDoc(TextDoc.TextDoc):
         size = f.get_size()*2
         bgindex = self.color_map[p.get_background_color()]
         fgindex = self.color_map[f.get_color()]
-        if f.get_type_face() == TextDoc.FONT_SERIF:
+        if f.get_type_face() == BaseDoc.FONT_SERIF:
             self.font_type = '\\f0\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
         else:
             self.font_type = '\\f1\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
@@ -155,14 +155,14 @@ class RTFDoc(TextDoc.TextDoc):
 
 	if not self.in_table:
             self.f.write('\\pard')
-        if p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
+        if p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
             self.f.write('\\qr')
-        elif p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
+        elif p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
             self.f.write('\\qc')
         self.f.write('\\ri%d' % twips(p.get_right_margin()))
         self.f.write('\\li%d' % twips(p.get_left_margin()))
         self.f.write('\\fi%d' % twips(p.get_first_indent()))
-        if p.get_alignment() == TextDoc.PARA_ALIGN_JUSTIFY:
+        if p.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
             self.f.write('\\qj')
         if p.get_padding():
             self.f.write('\\sa%d' % twips(p.get_padding()/2.0))

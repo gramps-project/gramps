@@ -211,7 +211,6 @@ class FanChart:
 
     def circle_1(self,center,y,size):
         (xc,yc) = self.doc.draw_wedge("c1", center, y, size, 180, 360)
-        print center, y, xc, yc
         self.doc.rotate_text("c1n", self.get_info(self.map[0]), xc, yc ,0)
 
     def circle_2(self,center,y,size):

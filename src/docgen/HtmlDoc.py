@@ -29,7 +29,7 @@ import ImgManip
 import TarFile
 import const
 import Errors
-import TextDoc
+import BaseDoc
 
 from gettext import gettext as _
 
@@ -74,10 +74,10 @@ _bottom = [
 # HtmlDoc
 #
 #------------------------------------------------------------------------
-class HtmlDoc(TextDoc.TextDoc):
+class HtmlDoc(BaseDoc.BaseDoc):
 
     def __init__(self,styles,type,template,orientation,source=None):
-        TextDoc.TextDoc.__init__(self,styles,TextDoc.PaperStyle("",0,0),template,None)
+        BaseDoc.BaseDoc.__init__(self,styles,BaseDoc.PaperStyle("",0,0),template,None)
         self.year = time.localtime(time.time())[0]
         self.ext = '.html'
         if source == None:
@@ -116,7 +116,7 @@ class HtmlDoc(TextDoc.TextDoc):
         self.ext = val
         
     def set_owner(self,owner):
-        TextDoc.TextDoc.set_owner(self,owner)
+        BaseDoc.BaseDoc.set_owner(self,owner)
         self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
         
     def set_image_dir(self,dirname):
@@ -295,7 +295,7 @@ class HtmlDoc(TextDoc.TextDoc):
                 italic = 'font-style:italic; '
             if font.get_bold():
                 bold = 'font-weight:bold; '
-            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 family = '"Helvetica","Arial","sans-serif"'
             else:
                 family = '"Times New Roman","Times","serif"'

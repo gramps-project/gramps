@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import TextDoc
+import BaseDoc
 from latin_utf8 import latin_to_utf8
 
 import time
@@ -40,7 +40,7 @@ def points(val):
 #
 #
 #------------------------------------------------------------------------
-class KwordDoc(TextDoc.TextDoc):
+class KwordDoc(BaseDoc.BaseDoc):
 
     def open(self,filename):
         self.photo_list = []
@@ -99,7 +99,7 @@ class KwordDoc(TextDoc.TextDoc):
 
         self.f.write('width="%d" ' % points(self.width))
         self.f.write('height="%d" ' % points(self.height))
-        if self.orientation == TextDoc.PAPER_PORTRAIT:
+        if self.orientation == BaseDoc.PAPER_PORTRAIT:
             self.f.write('orientation="0" ')
         else:
             self.f.write('orientation="1" ')
@@ -174,11 +174,11 @@ class KwordDoc(TextDoc.TextDoc):
 
             pad = points(p.get_padding())/2
             self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
-            if p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
+            if p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
                 self.f.write('<FLOW value="center"/>\n')
-            elif p.get_alignment() == TextDoc.PARA_ALIGN_JUSTIFY:
+            elif p.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
                 self.f.write('<FLOW value="justify"/>\n')
-            elif p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
+            elif p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
                 self.f.write('<FLOW value="right"/>\n')
             else:
                 self.f.write('<FLOW value="left"/>\n')
@@ -191,7 +191,7 @@ class KwordDoc(TextDoc.TextDoc):
 
             font = p.get_font()
             self.f.write('<FORMAT>\n')
-            if font.get_type_face==TextDoc.FONT_SANS_SERIF:
+            if font.get_type_face==BaseDoc.FONT_SANS_SERIF:
                 self.f.write('<FONT name="helvetica"/>\n')
             else:
                 self.f.write('<FONT name="times"/>\n')
@@ -269,7 +269,7 @@ class KwordDoc(TextDoc.TextDoc):
         self.style_name = style_name
         self.p = self.style_list[self.style_name]
         self.font = self.p.get_font()
-        if self.font.get_type_face() == TextDoc.FONT_SERIF:
+        if self.font.get_type_face() == BaseDoc.FONT_SERIF:
             self.font_face = "Arial"
         else:
             self.font_face = "Times New Roman"
@@ -305,11 +305,11 @@ class KwordDoc(TextDoc.TextDoc):
         pad = points(self.p.get_padding())/2
         self.f.write('<OFFSETS before="%d" after="%d"/>\n' % (pad,pad))
 
-        if self.p.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
+        if self.p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
             self.f.write('<FLOW value="center"/>\n')
-        elif self.p.get_alignment() == TextDoc.PARA_ALIGN_JUSTIFY:
+        elif self.p.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
             self.f.write('<FLOW value="justify"/>\n')
-        elif self.p.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
+        elif self.p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
             self.f.write('<FLOW value="right"/>\n')
         else:
             self.f.write('<FLOW value="left"/>\n')

@@ -28,7 +28,7 @@ Provides a TextDoc based interface to the AbiWord document format.
 #-------------------------------------------------------------------------
 import base64
 
-import TextDoc
+import BaseDoc
 import Errors
 import Plugins
 import ImgManip
@@ -41,14 +41,14 @@ from gettext import gettext as _
 # Class Definitions
 #
 #-------------------------------------------------------------------------
-class AbiWordDoc(TextDoc.TextDoc):
-    """AbiWord document generator. Inherits from the TextDoc generic
+class AbiWordDoc(BaseDoc.BaseDoc):
+    """AbiWord document generator. Inherits from the BaseDoc generic
     document interface class."""
 
     def __init__(self,styles,type,template,orientation):
         """Initializes the AbiWordDoc class, calling the __init__ routine
-        of the parent TextDoc class"""
-        TextDoc.TextDoc.__init__(self,styles,type,template,orientation)
+        of the parent BaseDoc class"""
+        BaseDoc.BaseDoc.__init__(self,styles,type,template,orientation)
         self.f = None
         self.level = 0
         self.new_page = 0
@@ -96,7 +96,7 @@ class AbiWordDoc(TextDoc.TextDoc):
         # page size section
         self.f.write('<pagesize ')
         self.f.write('pagetype="%s" ' % self.paper.get_name())
-        if self.orientation == TextDoc.PAPER_PORTRAIT:
+        if self.orientation == BaseDoc.PAPER_PORTRAIT:
             self.f.write('orientation="portrait" ')
         else:
             self.f.write('orientation="landscape" ')
@@ -118,11 +118,11 @@ class AbiWordDoc(TextDoc.TextDoc):
             self.f.write('<s type="P" name="%s" basedon="" followedby="" props="' % style_name)
             self.f.write('margin-top:%.4fin; ' % (float(style.get_padding())/2.54))
             self.f.write('margin-bottom:%.4fin; ' % (float(style.get_padding())/2.54))
-            if style.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
+            if style.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
                 self.f.write('text-align:right;')
-            elif style.get_alignment() == TextDoc.PARA_ALIGN_LEFT:
+            elif style.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
                 self.f.write('text-align:left;')
-            elif style.get_alignment() == TextDoc.PARA_ALIGN_CENTER:
+            elif style.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
                 self.f.write('text-align:center;')
             else:
                 self.f.write('text-align:justify;')
@@ -135,7 +135,7 @@ class AbiWordDoc(TextDoc.TextDoc):
             self.f.write(' text-indent:%.4fin;' % indent)
             font = style.get_font()
             self.f.write(' font-family:')
-            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 self.f.write('Arial; ')
             else:
                 self.f.write('Times New Roman; ')

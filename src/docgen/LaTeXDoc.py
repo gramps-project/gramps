@@ -35,7 +35,7 @@ import string
 # gramps modules 
 #
 #------------------------------------------------------------------------
-import TextDoc
+import BaseDoc
 import Plugins
 import ImgManip
 import Errors
@@ -65,8 +65,8 @@ class TexFont:
 # LaTeXDon
 #
 #------------------------------------------------------------------------
-class LaTeXDoc(TextDoc.TextDoc):
-    """LaTeX document interface class. Derived from TextDoc"""
+class LaTeXDoc(BaseDoc.BaseDoc):
+    """LaTeX document interface class. Derived from BaseDoc"""
     
     def open(self,filename):
         """Opens the specified file, making sure that it has the
@@ -90,7 +90,7 @@ class LaTeXDoc(TextDoc.TextDoc):
         
         options = "12pt"
 
-        if self.orientation == TextDoc.PAPER_LANDSCAPE:
+        if self.orientation == BaseDoc.PAPER_LANDSCAPE:
             options = options + ",landscape"
 
         # Paper selections are somewhat limited on a stock installation. 
@@ -176,7 +176,7 @@ class LaTeXDoc(TextDoc.TextDoc):
 		thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
 
 	    # Establish font face and shape
-	    if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+	    if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
 		thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
 		thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
 	    if font.get_bold():
