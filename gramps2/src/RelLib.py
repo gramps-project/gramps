@@ -1788,7 +1788,7 @@ class Family(SourceNote):
     
     def set_father_id(self,person_id):
         """sets the father of the Family to the specfied Person"""
-        update = self.some_child_is_ancestor()
+#        update = self.some_child_is_ancestor()
 #        if update and father_id:
 #            father_id.set_ancestor(0)
         self.father_id = person_id
@@ -1801,7 +1801,7 @@ class Family(SourceNote):
 
     def set_mother_id(self,person):
         """sets the mother of the Family to the specfied Person"""
-        update = self.some_child_is_ancestor()
+#        update = self.some_child_is_ancestor()
 #        if self.mother_id and update:
 #            self.mother_id.set_ancestor(0)
         self.mother_id = person
