@@ -1,3 +1,7 @@
+2003-09-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in: Switch to the next release's version in CVS. 
+	Replace build-date with the last ChangeLog entry date in release number.
+
 2003-09-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py (BookList.save): Write encoding. 
 	* src/plugins/FilterEditor.py (MyBoolean): Add class. 
