@@ -479,8 +479,8 @@ class StyleSheetList:
             parser.parse(self.file)
         except IOError:
             pass
-#        except:
-#            print "could not parse file"
+        except OSError:
+            pass
         
 #------------------------------------------------------------------------
 #
