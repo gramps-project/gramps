@@ -1248,7 +1248,7 @@ class Family(PrimaryObject,SourceNote):
         @returns: L{Person} database handle
         @rtype: str
         """
-       	return self.father_handle
+        return self.father_handle
 
     def set_mother_handle(self,person_handle):
         """
@@ -1269,7 +1269,7 @@ class Family(PrimaryObject,SourceNote):
         @returns: L{Person} database handle
         @rtype: str
         """
-       	return self.mother_handle
+        return self.mother_handle
 
     def add_child_handle(self,person_handle):
         """
@@ -1705,7 +1705,7 @@ class Event(PrimaryObject,DataObj):
         """
         if not self.date:
             self.date = Date.Date()
-       	return self.date
+        return self.date
 
     def set_date_object(self,date):
         """
@@ -1934,7 +1934,7 @@ class MediaObject(PrimaryObject,SourceNote):
         """returns the Date object associated with the Event"""
         if not self.date:
             self.date = Date.Date()
-       	return self.date
+        return self.date
 
     def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
@@ -2159,7 +2159,7 @@ class LdsOrd(SourceNote):
         """returns the Date object associated with the ordinance"""
         if not self.date:
             self.date = Date.Date()
-       	return self.date
+        return self.date
 
     def set_date_object(self,date):
         """sets the Date object associated with the ordinance"""
