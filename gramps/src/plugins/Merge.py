@@ -88,7 +88,6 @@ class Merge:
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "merge.glade"
         top = GladeXML(self.glade_file,"dialog")
-        topWin = top.get_widget("dialog")
         
         my_menu = GtkMenu()
         item = GtkMenuItem(_("Low"))
@@ -555,7 +554,7 @@ def get_name_obj(person):
 #
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
-    mergeObj = Merge(database,callback)
+    Merge(database,callback)
 
 #-------------------------------------------------------------------------
 #

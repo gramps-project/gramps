@@ -214,7 +214,7 @@ def option_switch(obj):
 #
 #------------------------------------------------------------------------
 def report(database,person):
-    report = DesReportWindow(person,database)
+    DesReportWindow(person,database)
 
 #------------------------------------------------------------------------
 #

@@ -24,7 +24,6 @@
 #
 #-------------------------------------------------------------------------
 import string
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -270,15 +269,15 @@ class ChooseParents:
                 main = self.person.getMainFamily()
                 if main:
                     main.removeChild(self.person)
-                active_person.setMainFamily(None)
+                self.person.setMainFamily(None)
             else:
                 for fam in self.person.getAltFamilyList():
                     if is_main:
                         self.person.removeAltFamily(fam[0])
-                        fam.removeChild(active_person)
+                        fam.removeChild(self.person)
                         return
         elif family == self.person.getMainFamily():
-            family.addChild(selfperson)
+            family.addChild(self.person)
             if not is_main:
                 utils.modified()
                 self.person.setMainFamily(None)

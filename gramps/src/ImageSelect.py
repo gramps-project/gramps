@@ -212,7 +212,6 @@ class Gallery(ImageSelect):
     #-------------------------------------------------------------------------
     def add_thumbnail(self, photo):
         object = photo.getReference()
-        path = object.getPath()
         thumb = utils.thumb_path(self.db.getSavePath(),object)
         self.icon_list.append(thumb,object.getDescription())
         
@@ -435,7 +434,6 @@ class LocalMediaProperties:
         
         fname = self.object.getPath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_description")
-        window = self.change_dialog.get_widget("change_description")
         descr_window = self.change_dialog.get_widget("description")
         pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
@@ -520,7 +518,6 @@ class GlobalMediaProperties:
 
         self.path = self.db.getSavePath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_global")
-        window = self.change_dialog.get_widget("change_global")
         descr_window = self.change_dialog.get_widget("description")
         pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")

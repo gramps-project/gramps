@@ -70,7 +70,6 @@ class RevisionSelect:
         self.load = load
 
         dialog = libglade.GladeXML(const.gladeFile, "revselect")
-        revsel = dialog.get_widget("revselect")
         dialog.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_loadrev_clicked"    : self.on_loadrev_clicked,

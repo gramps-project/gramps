@@ -24,7 +24,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 
 #-------------------------------------------------------------------------
@@ -32,16 +31,17 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-import intl
-_ = intl.gettext
+
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
+#from gtk import *
+from gnome.ui import GnomeErrorDialog
 import libglade
 
 #-------------------------------------------------------------------------
@@ -49,11 +49,10 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-
 import const
 import utils
 import RelImage
+from RelLib import Photo
 
 class AddMediaObject:
 

@@ -21,12 +21,6 @@
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
 
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
-
 #------------------------------------------------------------------------
 #
 # 

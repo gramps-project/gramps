@@ -175,7 +175,7 @@ class SelectChild:
         for row in self.add_child.selection:
             select_child = self.add_child.get_row_data(row)
             if self.family == None:
-                self.family = database.newFamily()
+                self.family = self.db.newFamily()
                 self.person.addFamily(self.family)
                 if self.person.getGender() == Person.male:
                     self.family.setFather(self.person)
@@ -304,7 +304,7 @@ class NewChild:
                 self.family.setFather(self.person)
             else:
                 self.family.setMother(self.person)
-            self.person.addFamily(active_family)
+            self.person.addFamily(self.family)
 
         mrel = const.childRelations[self.mrel.get_text()]
         frel = const.childRelations[self.frel.get_text()]

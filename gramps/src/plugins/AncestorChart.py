@@ -237,7 +237,6 @@ class AncestorReport:
     #--------------------------------------------------------------------
     def draw_graph(self,index,start,level):
         if self.map.has_key(start) and index <= 15:
-            person = self.map[start]
 	    text = self.text[start]
 
 	    name = string.join(text,"\n")
@@ -269,7 +268,6 @@ def report(database,person):
     global style_sheet_list
     global active_person
     global topDialog
-    global glade_file
     global db
     
     active_person = person

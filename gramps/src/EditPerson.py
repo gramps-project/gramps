@@ -23,7 +23,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import string
 
 #-------------------------------------------------------------------------
@@ -46,7 +45,6 @@ import const
 import utils
 import Config
 from RelLib import *
-import RelImage
 import ImageSelect
 import sort
 

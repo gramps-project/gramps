@@ -51,15 +51,6 @@ class GrampsDocTemplate(BaseDocTemplate):
 # 
 #
 #------------------------------------------------------------------------
-def page_def(canvas,doc):
-    canvas.saveState()
-    canvas.restoreState()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
 def make_color(color):
     return Color(float(color[0])/255.0, float(color[1])/255.0,
                  float(color[2])/255.0)

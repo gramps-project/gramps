@@ -24,7 +24,6 @@ import RelLib
 import const
 import os
 import re
-import sort
 import string
 import FindDoc
 import utils

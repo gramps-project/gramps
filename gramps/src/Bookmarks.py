@@ -153,7 +153,7 @@ class Bookmarks :
     def on_ok_clicked(self,obj):
         del self.bookmarks[0:]
     
-        for index in range(0,self.index):
+        for index in range(0,self.namelist.rows):
             person = self.namelist.get_row_data(index)
             if person:
                 self.bookmarks.append(person)

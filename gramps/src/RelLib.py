@@ -23,8 +23,9 @@
 __author__ = "Don Allingham"
 
 
-import re
-from Date import *
+from re import compile
+from Date import Date, compare_dates
+from string import strip
 
 CONF_VERY_HIGH = 4
 CONF_HIGH      = 3
@@ -32,7 +33,7 @@ CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
 
-_id_reg = re.compile("%\d+d")
+_id_reg = compile("%\d+d")
 
 class SourceNote:
     """Base class for storing source references and notes"""
@@ -268,14 +269,14 @@ class Researcher:
 
     def set(self,name,addr,city,state,country,postal,phone,email):
         """sets the information about the database owner"""
-        self.name = string.strip(name)
-        self.addr = string.strip(addr)
-        self.city = string.strip(city)
-        self.state = string.strip(state)
-        self.country = string.strip(country)
-        self.postal = string.strip(postal)
-        self.phone = string.strip(phone)
-        self.email = string.strip(email)
+        self.name = strip(name)
+        self.addr = strip(addr)
+        self.city = strip(city)
+        self.state = strip(state)
+        self.country = strip(country)
+        self.postal = strip(postal)
+        self.phone = strip(phone)
+        self.email = strip(email)
 
 class Location:
     """Provides information about a place, including city, county, state,
@@ -362,7 +363,9 @@ class Photo(SourceNote):
     
     def __init__(self,source=None):
         """Create a new Photo object, copying from the source if provided"""
+
         SourceNote.__init__(self,source)
+
         self.attrlist = []
         if source:
             self.path = source.path

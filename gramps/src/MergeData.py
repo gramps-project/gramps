@@ -19,7 +19,6 @@
 #
 
 import RelLib
-import soundex
 import intl
 import utils
 import Config
@@ -240,7 +239,7 @@ class MergePeople:
                     self.copy_sources(xdata,data)
                     break
             else:
-                self.p1.addAlternateName(xname)
+                self.p1.addAlternateName(xdata)
 
         list = self.p1.getAttributeList()[:]
         for xdata in self.p2.getAttributeList():
@@ -251,7 +250,7 @@ class MergePeople:
                     self.copy_sources(xdata,data)
                     break
             else:
-                self.p1.addAttribute(xname)
+                self.p1.addAttribute(xdata)
 
         list = self.p1.getEventList()[:]
         for xdata in self.p2.getEventList():
@@ -261,7 +260,7 @@ class MergePeople:
                     self.copy_sources(xdata,data)
                     break
             else:
-                self.p1.addEvent(xevent)
+                self.p1.addEvent(xdata)
 
         list = self.p1.getUrlList()[:]
         for xdata in self.p2.getUrlList():
@@ -458,7 +457,6 @@ class MergePeople:
         # a little debugging here
         
         for fam in self.db.getFamilyMap().values():
-            name = self.p2.getPrimaryName().getName()
             if self.p2 in fam.getChildList():
                 fam.removeChild(self.p2)
                 fam.addChild(self.p1)

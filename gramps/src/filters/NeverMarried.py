@@ -21,8 +21,6 @@
 "People with no marriage records"
 
 import Filter
-import string
-import utils
 import intl
 _ = intl.gettext
 
