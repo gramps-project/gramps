@@ -2,6 +2,7 @@
 	* doc/gramps-manual/fr/faq.xml: Update.
 	* doc/gramps-manual/fr/gramps-manual.xml: Update.
 	* doc/gramps-manual/fr/usage.xml: Update.
+	* doc/gramps-manual/fr/figures/*.png: Update figures.
 
 2004-01-31  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: better error messages on database write failure
