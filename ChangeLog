@@ -1,3 +1,6 @@
+2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (post_load): Upgrade even if no callback.
+
 2005-03-06  Don Allingham  <don@gramps-project.org>
 	* src/GrampsBSDDB.py: display upgrade messages to stdout
 
