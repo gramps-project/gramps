@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+Provides the Berkeley DB (BSDDB) database backend for GRAMPS
+"""
+
 import os
 import time
 import locale
@@ -41,6 +45,20 @@ def find_fidmap(key,data):
 def find_eventname(key,data):
     return str(data[1])
 
+class GrampsBSDDBCursor(GrampsCursor):
+
+    def __init__(self,source):
+        self.cursor = source.cursor()
+        
+    def first(self):
+        return self.cursor.first()
+
+    def next(self):
+        return self.cursor.next()
+
+    def close(self):
+        self.cursor.close()
+
 #-------------------------------------------------------------------------
 #
 # GrampsBSDDB
@@ -61,7 +79,7 @@ class GrampsBSDDB(GrampsDbBase):
         return dbmap
     
     def get_person_cursor(self):
-        return self.person_map.cursor()
+        return GrampsBSDDBCursor(self.person_map)
 
     def load(self,name,callback):
         if self.person_map:

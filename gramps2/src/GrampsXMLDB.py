@@ -20,6 +20,11 @@
 
 # $Id$
 
+"""
+Provides the GRAMPS DB interface for supporting in-memory editing
+of GRAMPS XML format.
+"""
+
 from RelLib import *
 from GrampsInMemDB import *
 

@@ -20,6 +20,11 @@
 
 # $Id$
 
+"""
+Provides the common infrastructure for database formats that
+must hold all of their data in memory.
+"""
+
 from RelLib import *
 from GrampsDbBase import *
 
@@ -28,8 +33,12 @@ import md5
 import gtk
 
 
-class GrampsCursor:
-
+class GrampsInMemCursor(GrampsCursor):
+    """
+    Cursor class for in-memory database classes. Since the in-memory
+    classes use python dictionaries, the python iter class is used
+    to provide the cursor function.
+    """
     def __init__(self,src_map):
         self.src_map = src_map
         self.current = iter(src_map)
@@ -81,7 +90,7 @@ class GrampsInMemDB(GrampsDbBase):
         pass
 
     def get_person_cursor(self):
-        return GrampsCursor(self.person_map)
+        return GrampsInMemCursor(self.person_map)
 
     def close(self):
         pass
