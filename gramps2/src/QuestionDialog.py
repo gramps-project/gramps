@@ -143,4 +143,29 @@ class OkDialog:
         self.top.run()
         self.top.destroy()
 
+class MissingMediaDialog:
+    def __init__(self,msg1,msg2,task1,task2,task3):
+        self.xml = gtk.glade.XML(const.errdialogsFile,"missmediadialog")
+        self.top = self.xml.get_widget('missmediadialog')
+        self.task1 = task1
+        self.task2 = task2
+        self.task3 = task3
         
+        label1 = self.xml.get_widget('label4')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_use_markup(gtk.TRUE)
+        
+        label2 = self.xml.get_widget('label3')
+        label2.set_text(msg2)
+        label2.set_use_markup(gtk.TRUE)
+
+        self.top.show()
+        response = self.top.run()
+        if response == 1:
+            self.task1()
+        elif response == 2:
+            self.task2()
+        elif response == 3:
+            self.task3()
+        self.top.destroy()
+
