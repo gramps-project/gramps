@@ -1,7 +1,7 @@
 Version 0.98.0 -- the "Round me off" release
 * More compliance with GNOME HIG.
 * New BookReport dialog layout.
-* Person View uses a tree format instead of list format.
+* People View uses a tree format instead of list format.
 * Captialization is done as a display format, not as a database modification.
 * New Advanced Relationship Graph report generator (Lorenzo Cappelletti).
 * Italian relationship calculator (Lorenzo Cappelletti).
@@ -9,15 +9,14 @@ Version 0.98.0 -- the "Round me off" release
   make picking a family quicker.
 * Instant preferences.
 * FreeBSD compatibility. 
-* People and Relationships can now have sources not associated with any
-  event
+* People and Relationships can now have sources not associated with any event.
 * Report options (paper size, orientation, style, and filter) are kept 
   within the session.
 * Substantial speedups in updating display in tree views. 
 * Children are enumerated in Family View.
 * ZODB backend is removed. Real database backend is being worked on and will
   appear in post-1.0 releases.
-* Tab labels in tabbed dialogs reflect the presence of data (bold).
+* Tab labels in tabbed dialogs reflect the presence of data (boldface).
 * Help button available in most dialogs.
 * Keyboard navigation and functionality in Family View.
 * In Pedigree View, children are marked up differently in popup menus 

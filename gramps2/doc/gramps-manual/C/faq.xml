@@ -38,7 +38,8 @@
 
       <varlistentry><term>Where do I get it and how much does it cost?</term>
       <listitem><para> 
-GRAMPS can be downloaded from http://sf.net/projects/gramps at no charge. 
+GRAMPS can be downloaded from <ulink url="http://sf.net/projects/gramps" 
+type="http">http://sf.net/projects/gramps</ulink> at no charge. 
 GRAMPS is an Open Source project covered by the GNU General Public License. 
 You have full access to the source code and are allowed to distribute the 
 program and source code freely. 
@@ -55,7 +56,8 @@ This, however, may change in the future.
 
       <varlistentry><term>Does it work with the Mac?</term>
       <listitem><para> 
-The Fink project (http://fink.sf.net) has ported an old version of 
+The Fink project (<ulink url="http://fink.sf.net" 
+type="http">http://fink.sf.net</ulink>) has ported an old version of 
 GRAMPS (0.8.0) to OSX. The Mac OSX port is not directly supported by 
 the GRAMPS project, primarily because none of the GRAMPS developers 
 have access to Mac OSX.</para>
@@ -233,7 +235,9 @@ to PDF from the OpenOffice.org application.
       in People View and Family View?</term>
       <listitem><para> 
 This will be addressed after the TreeModelSort bug is fixed in pygtk,
-see http://bugzilla.gnome.org/show_bug.cgi?id=125172 for the details.
+see <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
+type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
+ for the details.
 Once the patch is committed and incorporated into pygtk, we will add the 
 ability to add/remove/edit sortable columns.
       </para></listitem>
@@ -252,7 +256,7 @@ one of the two ways: (1) send your report to
 <ulink url="mailto:gramps-bugs@lists.sf.net" 
 type="mailto">gramps-bugs@lists.sf.net</ulink>
 or (2) file your report with the bug tracker system at 
-<ulink url="http://sf.net/projects/gramps" type="http">
+<ulink url="http://sf.net/tracker/?group_id=25770" type="http">
 http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
 (this function is also available by selecting 
 <menuchoice><guisubmenu>Help</guisubmenu><guimenuitem>Report a 
@@ -295,8 +299,8 @@ report anonymously, at least check every so often whether your report page
 has something new posted, as it probably would.</para>
 
 <para>If the above explanations seem vague, please follow 
-<ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" type="http">
-this link.</ulink>
+<ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
+type="http">this link.</ulink>
 
       </para></listitem>
       </varlistentry>

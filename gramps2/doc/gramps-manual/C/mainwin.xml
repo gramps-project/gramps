@@ -351,15 +351,15 @@
 	<guilabel>1</guilabel> to his/her parents <guilabel>2</guilabel>, 
 	to grandparents <guilabel>3</guilabel>, to great-grandparents 
 	<guilabel>4</guilabel>. 
-	Each person is denoted by a white box bearing the person's name. 
+	Each person is denoted by a box bearing the person's name. 
 	The two lines that converge on the box represent ties with the 
 	person's Father (top line) and mother (bottom line). Solid lines 
 	represent birth relations, while dashed lines represent non-birth 
 	relations (such as adoption, step-parenthood, guardianship, etc.). 
 	When the mouse moves over the white box, it expands to display the 
 	corresponding person's dates of birth and death. When the mouse is 
-	placed over the family line, the line changes color to indicate an 
-	active link: double-clicking on the line makes the corresponding 
+	placed over the family line, the line become highlighted to indicate 
+	an active link: double-clicking on the line makes the corresponding 
 	ancestor the Active person. The display in that case is re-adjusted 
 	to show four generations, starting from the newly selected Active 
 	person. </para>
@@ -367,7 +367,14 @@
 	<para>The left-hand side of the window shows the left arrow button. 
 	Upon clicking, the button expands to the menu listing the children 
 	of the Active person. Selecting the menu item makes the corresponding 
-	child the Active person. </para>
+	child the Active person. The appearance of the children's names 
+	in the menu serves to differentiate the "dead ends" of the tree from 
+	the continuing branches as follows. The children who have children 
+	appear in the menu in the boldface and italic typeset, while the 
+	children without children ("dead ends") appear in a regular 
+	font. If the Active person has a single child, no menu will be 
+	displayed (since there is no choice) and the child will become 
+	the Active person upon clicking	the arrow button. </para>
 
 	<para>The right-hand side of the window shows two right arrow buttons. 
 	When the top button is clicked, the Father of the Active person 
