@@ -14,6 +14,8 @@
 	* src/Witness.py: Make WittnessEditor dialog modal and transient for 
 	its parent. Call SelectPerson with itself as a parent. 
 	* src/SelectPerson.py (__init__): Make dialog transient for its parent.
+	* src/ImageSelect.py (ImageSelect.__init__): Make dialog transient for 
+	its parent; (Gallery.__init__): Accept parent_window and pass it on. 
 	* src/imagesel.glade: Define proper responses and delete unneeded handlers 
 	for buttons. Make gtkFileEntry modal. 
 	* src/dialog.glade (all dialogs): Define proper responses for buttons. 
