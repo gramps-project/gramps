@@ -292,13 +292,17 @@ class GedcomParser:
             elif matches[2] == "REPO":
                 print "REPO",matches[1]
                 self.ignore_sub_junk(1)
-            elif matches[2] == "NOTE":
+            elif matches[2][0:4] == "NOTE":
                 if self.nmap.has_key(matches[1]):
                     noteobj = self.nmap[matches[1]]
                 else:
                     noteobj = Note()
                     self.nmap[matches[1]] = noteobj
-                noteobj.set(self.parse_continue_data(1))
+                text =  matches[2][4:]
+                if text == "":
+                    noteobj.set(self.parse_continue_data(1))
+                else:
+                    noteobj.set(text + self.parse_continue_data(1))
                 self.parse_note_data(1)
             elif matches[2] == "OBJE":
                 print "OBJE",matches[1]
@@ -377,6 +381,7 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "CHIL":
                 self.family.addChild(self.db.findPerson(matches[2],self.pmap))
+                self.ignore_sub_junk(2)
 	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
             elif matches[1] == "REFN" or matches[1] == "CHAN":
@@ -406,9 +411,9 @@ class GedcomParser:
             else:
                 event = Event()
                 try:
-                    event.setName(ged2fam[matches[2]])
+                    event.setName(ged2fam[matches[1]])
                 except:
-                    event.setName(matches[2])
+                    event.setName(matches[1])
                 self.family.addEvent(event)
 	        self.parse_family_event(event,2)
 
@@ -695,7 +700,7 @@ class GedcomParser:
                 source_ref = SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
                 event.setSourceRef(source_ref)
-                self.parse_source_reference(source,level+1)
+                self.parse_source_reference(source_ref,level+1)
             elif matches[1] == "FAMC":
                 family = self.db.findFamily(matches[2],self.fmap)
                 if event.getName() == "Birth":
@@ -717,6 +722,9 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_family_event(self,event,level):
+        global ged2fam
+        global ged2rel
+        
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
@@ -859,7 +867,6 @@ class GedcomParser:
         while 1:
 	    matches = self.get_next()
 
-            print matches[0],matches[1],matches[2]
 	    if int(matches[0]) == 0:
                 self.backup()
                 return
@@ -881,7 +888,7 @@ class GedcomParser:
    	    elif matches[1] == "DEST":
                 pass
    	    elif matches[1] == "FILE":
-                self.ignore_sub_junk(1)
+                self.ignore_sub_junk(2)
    	    elif matches[1] == "COPR":
                 pass
    	    elif matches[1] == "CHAR":
@@ -890,9 +897,11 @@ class GedcomParser:
                     self.code = UNICODE
                 elif matches[2] == "ANSEL":
                     self.code = ANSEL
-                self.parse_sub_char(2)
+                self.ignore_sub_junk(2)
    	    elif matches[1] == "GEDC":
-                self.parse_gedc(2)
+                self.ignore_sub_junk(2)
+   	    elif matches[1] == "_SCHEMA":
+                self.parse_ftw_schema(2)
    	    elif matches[1] == "LANG":
                 print "Language is",matches[2]
    	    elif matches[1] == "PLAC":
@@ -902,11 +911,78 @@ class GedcomParser:
                 date.date = matches[2]
    	    elif matches[1] == "NOTE":
                 note = matches[2] + self.parse_continue_data(2)
-                print note
             elif matches[1][0] == "_":
                 self.ignore_sub_junk(2)
             else:
 	        self.barf(2)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_ftw_schema(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "INDI":
+                self.parse_ftw_indi_schema(level+1)
+            elif matches[1] == "FAM":
+                self.parse_ftw_fam_schema(level+1)
+            else:
+	        self.barf(2)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_ftw_indi_schema(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            else:
+                label = self.parse_label(level+1)
+                ged2rel[matches[1]] = label
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_label(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "LABL":
+                return matches[2]
+            else:
+	        self.barf(2)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_ftw_fam_schema(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            else:
+                label = self.parse_label(level+1)
+                ged2fam[matches[1]] = label
 
     #---------------------------------------------------------------------
     #
@@ -945,23 +1021,6 @@ class GedcomParser:
     #
     #
     #---------------------------------------------------------------------
-    def parse_sub_char(self,level):
-        while 1:
-            matches = self.get_next()
-
-	    if int(matches[0]) < level:
-                self.backup()
-                return
-            elif matches[1] == "VERS":
-               print "CHAR version is",matches[2]
-            else:
-	        self.barf(level+1)
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_place_form(self,level):
         while 1:
             matches = self.get_next()
@@ -991,25 +1050,6 @@ class GedcomParser:
             else:
                 self.backup()
                 return data
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_gedc(self,level):
-        while 1:
-            matches = self.get_next()
-
-	    if int(matches[0]) < level:
-                self.backup()
-                return
-            elif matches[1] == "VERS":
-               print "Gedcom version is",matches[2]
-            elif matches[1] == "FORM":
-               print "Gedcom form is",matches[2]
-            else:
-	        self.barf(level+1)
 
     #---------------------------------------------------------------------
     #

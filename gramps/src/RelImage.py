@@ -61,7 +61,7 @@ def import_photo(filename,path,prefix):
             shutil.copy(filename,name)
         else:
             if no_pil:
-                cmd = "%s %s %s" % (const.convert,filename,name)
+                cmd = "%s '%s' '%s'" % (const.convert,filename,name)
                 os.system(cmd)
             else:
                 PIL.Image.open(filename).save(name)

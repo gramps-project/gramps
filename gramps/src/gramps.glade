@@ -3719,7 +3719,7 @@ Other
 	    <class>GtkText</class>
 	    <name>source_note</name>
 	    <can_focus>True</can_focus>
-	    <editable>False</editable>
+	    <editable>True</editable>
 	    <text></text>
 	  </widget>
 	</widget>

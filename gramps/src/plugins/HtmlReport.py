@@ -419,8 +419,7 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
         width = int( (float(image.rgb_width) * 200.0) / float(image.rgb_height))
         base = os.path.basename(file)
         image_name = targetDir + os.sep + base
-        cmd = const.convert + " -size " + str(width) + "x200 "\
-              + file + " " + image_name
+        cmd = "%s -size %dx200 '%s' '%s'" % (const.convert,width,file,image_name)
         os.system(cmd)
         html.write('<IMG SRC="' + base + '" ALT="')
         html.write(photo_list[0].getDescription())

@@ -96,11 +96,11 @@ def on_source_apply_clicked(obj):
         utils.modified()
         
     if title != edit.source.getTitle():
-        edit.source.setAuthor(title)
+        edit.source.setTitle(title)
         utils.modified()
         
     if pubinfo != edit.source.getPubInfo():
-        edit.source.setAuthor(pubinfo)
+        edit.source.sePubInfo(pubinfo)
         utils.modified()
         
     if note != edit.source.getNote():
@@ -108,6 +108,6 @@ def on_source_apply_clicked(obj):
         utils.modified()
 
     utils.destroy_passed_object(edit.top)
-    edit.callback(1)
+    edit.callback(edit.source)
 
     
