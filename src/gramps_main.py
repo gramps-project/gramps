@@ -2468,7 +2468,7 @@ def add_box(root,x,y,bwidth,bheight,person,style):
                      y1=0,
                      x2=bwidth,
                      y2=bheight,
-                     outline_color_gdk=style.fg[STATE_NORMAL],
+                     outline_color_gdk=style.bg[STATE_NORMAL],
                      fill_color_gdk=style.white)
     canvas_items.append(item)
     item = group.add("text",
@@ -2496,8 +2496,7 @@ def box_event(obj,event):
         obj.raise_to_top()
         box = obj.children()[1]
         x,y,w,h = box.get_bounds()
-        box.set(x1=x,y1=y,x2=w,y2=h*3,
-                outline_color_gdk=canvas['style'].black)
+        box.set(x1=x,y1=y,x2=w,y2=h*3)
         box2 = obj.children()[0]
         x,y,w,h1 = box2.get_bounds()
         box2.set(x1=x,y1=y,x2=w,y2=(3*h)+PAD)
@@ -2520,8 +2519,7 @@ def box_event(obj,event):
         canvas = gtop.get_widget("canvas1")
         box = obj.children()[1]
         x,y,w,h = box.get_bounds()
-        box.set(x1=x,y1=y,x2=w,y2=h/3,
-                outline_color_gdk=canvas['style'].fg[STATE_NORMAL])
+        box.set(x1=x,y1=y,x2=w,y2=h/3)
         box2 = obj.children()[0]
         x,y,w,h1 = box2.get_bounds()
         box2.set(x1=x,y1=y,x2=w,y2=(h/3)+PAD)
