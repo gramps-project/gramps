@@ -8,7 +8,6 @@ pkgpython_PYTHON = \
 	HtmlDoc.py\
 	KwordDoc.py\
 	LaTeXDoc.py\
-	OpenDrawDoc.py\
 	OpenOfficeDoc.py\
 	OpenSpreadSheet.py\
 	PdfDoc.py\

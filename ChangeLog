@@ -21,6 +21,8 @@
 	main window to set the transient. 
 	* src/gramps.glade (fileselection dialog): Remove auto_estroy and modal.
 	* src/revision.glade (dbopen dialog): Add modal and set responses.
+	* src/docgen/Makefile.am: Don't ship OpenDrawDoc.py anymore.
+	* src/docgen/Makefile.in: Likewise.
 
 2003-09-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SourceView.py (button_press,on_add_clicked,on_delete_clicked,
