@@ -1,3 +1,6 @@
+2004-12-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GenericFilter.py: use DateParser to parse dates.
+
 2004-11-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: use Steve Swales' method for handling 
 	locale determination
