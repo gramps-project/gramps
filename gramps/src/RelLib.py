@@ -88,6 +88,9 @@ class SourceNote:
         """Return in note instance, not just the text"""
         return self.note
 
+    def unique_note(self):
+        self.note = Note(self.note.get())
+
 class LdsOrd(SourceNote):
     """LDS Ordinance support"""
     def __init__(self,source=None):
@@ -1142,6 +1145,9 @@ class Person:
         if self.note == None:
             self.note = Note()
         return self.note
+
+    def unique_note(self):
+        self.note = Note(self.note.get())
 
     def setPosition(self,pos):
         """sets a graphical location pointer for graphic display (x,y)"""
