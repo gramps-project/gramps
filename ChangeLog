@@ -6,6 +6,9 @@
 	* src/plugins/FtmStyleAncestors.py, src/plugins/FtmStyleDescendants.py:
 	Remove options_dialog function as it is not nedded anymore.
 	* src/plugins/BookReport.py: Add lots of doc strings.
+	* src/PedView.py (DispBox.__init__): Conditional display of "b." 
+	and "d." strings depending on the availability of the appropriate date.
+	* NEWS: Start new section for 0.9.3 release. 
 
 2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: added select/edit buttions to family view
