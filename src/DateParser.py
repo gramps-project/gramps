@@ -355,7 +355,7 @@ class DateParser:
                 s = groups[4] != None
             value = (d,m,y,s)
             if check and not check((d,m,y)):
-                value = DATE.EMPTY
+                value = Date.EMPTY
             return value
         
         return Date.EMPTY
