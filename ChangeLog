@@ -1,3 +1,8 @@
+2003-08-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (build_backhistmenu,build_fwdhistmenu): 
+	Limit of 20 for the Back/Forward history menus. 
+	Add hotkeys for these menus.
+
 2003-08-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/preferences.glade: Provide hotkeys for the new default view 
 	options. 
