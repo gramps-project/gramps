@@ -840,7 +840,8 @@ class MergePlaces:
                     self.p1.add_alternate_locations(l)
 
 
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():
                 if event.getPlace() == self.p2:
                     event.setPlace(self.p1)

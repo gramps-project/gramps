@@ -234,15 +234,18 @@ class MediaView:
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
                     return 1
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
                     return 1
-        for p in self.db.getSourceMap().values():
+        for key in self.db.getSourceKeys()
+            p = self.db.getSource(key)
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
                     return 1
-        for p in self.db.getPlaceMap().values():
+        for key in self.db.getPlaceKeys():
+            p = self.db.getPlace(key)
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
                     return 1

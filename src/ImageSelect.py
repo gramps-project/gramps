@@ -728,7 +728,8 @@ class DeleteMediaQuery:
         del self.db.getObjectMap()[self.media.getId()]
         Utils.modified()
 
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            key = self.db.getPerson(key)
             nl = []
             change = 0
             for photo in p.getPhotoList():
@@ -750,7 +751,8 @@ class DeleteMediaQuery:
             if change:
                 p.setPhotoList(nl)
 
-        for p in self.db.getSourceMap().values():
+        for key in self.db.getSourceKeys():
+            p = self.db.getSource(key)
             nl = []
             change = 0
             for photo in p.getPhotoList():
@@ -761,7 +763,8 @@ class DeleteMediaQuery:
             if change:
                 p.setPhotoList(nl)
 
-        for p in self.db.getPlaceMap().values():
+        for key in self.db.getPlaceKeys():
+            p = self.db.getPlace(key)
             nl = []
             change = 0
             for photo in p.getPhotoList():
