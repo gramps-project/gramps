@@ -13,6 +13,13 @@
 	* src/ReportUtils.py (rgb_color): Add function.
 	* src/docgen/LPRDoc.py: Use rgb_color from ReportUtils.
 
+	* src/ReportUtils.py (rgb_color): Add docs; (child_str): Fixes.
+	* src/plugins/Ancestors.py: Misc fixes.
+	* src/plugins/DetAncestralReport.py: Properly call child_str.
+	* src/plugins/DetDescendantReport.py: Properly call child_str.
+	* src/plugins/FtmStyleAncestors.py: Properly call child_str.
+	* src/plugins/FtmStyleDescendants.py: Properly call child_str.
+
 2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py (draw_path,draw_bar): Set proper linewidth.
 	* doc/gramps-manual/C/usage.xml: Update.

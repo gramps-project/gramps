@@ -46,7 +46,9 @@ import BaseDoc
 import RelLib
 import PluginMgr
 import ReportOptions
+import ReportUtils
 from DateHandler import displayer as _dd
+from NameDisplay import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -519,7 +521,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             birth = self.database.get_event_from_handle(birth_handle)
             date = birth.get_date ()
             if date:
-                ret += _(" b. %(date)s") % {'date': date}
+                ret += _(" b. %(birth_date)s") % {'birth_date': date}
                 ret += self.cite_sources (birth.get_source_references ())
 
         death_handle = person.get_death_handle ()
@@ -527,7 +529,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             death = self.database.get_event_from_handle(death_handle)
             date = death.get_date ()
             if date:
-                ret += _(" d. %(date)s") % {'date': date}
+                ret += _(" d. %(death_date)s") % {'death_date': date}
                 ret += self.cite_sources (death.get_source_references ())
 
         return ret
@@ -557,49 +559,27 @@ class ComprehensiveAncestorsReport (Report.Report):
         return ret
 
     def parents_of (self, person_handle):
+
         ret = '.  '
         person = self.database.get_person_from_handle(person_handle)
-        gender = person.get_gender ()
-
-        family_handle = person.get_main_parents_family_handle ()
+        family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
-            fathername = mothername = None
-            father_handle = family.get_father_handle ()
-            if father_handle:
-                #father = self.database.get_person_from_handle(father_handle)
-                fathername = self.person_name (father_handle)
-            mother_handle = family.get_mother_handle ()
+            mother_handle = family.get_mother_handle()
+            father_handle = family.get_father_handle()
             if mother_handle:
-                #mother = self.database.get_person_from_handle(mother_handle)
-                mothername = self.person_name (mother_handle)
-
-            if not mother_handle and not father_handle:
-                pass
-            elif not father_handle:
-                if gender == RelLib.Person.FEMALE:
-                    ret += _("She is the daughter of %(mother)s.") % \
-                           {'mother': mothername}
-                else:
-                    ret += _("He is the son of %(mother)s.") % \
-                           {'mother': mothername}
-            elif not mother_handle:
-                if gender == RelLib.Person.FEMALE:
-                    ret += _("She is the daughter of %(father)s.") % \
-                           {'father': fathername}
-                else:
-                    ret += _("He is the son of %(father)s.") % \
-                           {'father': fathername}
+                mother = self.database.get_person_from_handle(mother_handle)
+                mother_name = _nd.display_name(mother.get_primary_name())
             else:
-                if gender == RelLib.Person.FEMALE:
-                    ret += \
-                        _("She is the daughter of %(father)s and %(mother)s.")%\
-                        {'father': fathername,
-                         'mother': mothername}
-                else:
-                    ret +=_("He is the son of %(father)s and %(mother)s.") % \
-                           {'father': fathername,
-                            'mother': mothername}
+                mother_name = ""
+            if father_handle:
+                father = self.database.get_person_from_handle(father_handle)
+                father_name = _nd.display_name(father.get_primary_name())
+            else:
+                father_name = ""
+                
+            ret += ReportUtils.child_str(person,father_name,mother_name,
+                                bool(person.get_death_handle()))
 
         return ret
 
@@ -646,13 +626,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 citation += "[%d" % ind
                 comments = ref.get_comments ()
                 if comments and comments.find ('\n') == -1:
-                    # Work around rstrip('.') which is not working 
-                    # with python2.2.1 and earlier
-                    #citation += " - %s" % comments.rstrip ('.')
-                    comments = comments.rstrip()
-                    if comments[-1] == '.':
-                        comments = comments[:-1]
-                    citation += " - %s" % comments
+                    citation += " - %s" % comments.rstrip ('.')
 
                 citation += "]"
 
@@ -676,15 +650,9 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         nick = person.get_nick_name ()
         if nick:
-            #nick = nick.strip ('"')
-            # Work around strip('"') which is not working 
-            # with python2.2.1 and earlier
+            nick = nick.strip ('"')
             nick = nick.strip()
-            if nick[0] == '"':
-                nick = nick[1:]
-            if nick[-1] == '"':
-                nick = nick[:-1]
-                name += ' ("%s")' % nick
+            name += ' ("%s")' % nick
 
         spfx = primary.get_surname_prefix ()
         if spfx:
@@ -716,9 +684,9 @@ class ComprehensiveAncestorsReport (Report.Report):
             mother_handle = family.get_mother_handle ()
             mother = self.database.get_person_from_handle(mother_handle)
             for spouse_handle in [family.get_father_handle (), mother_handle]:
-                spouse = self.database.get_person_from_handle(spouse_handle)
                 if spouse_handle == person.get_handle() or not spouse_handle:
                     continue
+                spouse = self.database.get_person_from_handle(spouse_handle)
 
                 children = ''
                 childlist = family.get_child_handle_list ()

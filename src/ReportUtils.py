@@ -63,6 +63,14 @@ def cm2pt(cm):
     return cm*182.88
 
 def rgb_color(color):
+    """
+    Converts color value from 0-255 integer range into 0-1 float range.
+
+    @param color: list or tuple of integer values for red, green, and blue
+    @type color: int
+    @returns: (r,g,b) tuple of floating point color values
+    @rtype: 3-tuple
+    """
     r = float(color[0])/255.0
     g = float(color[1])/255.0
     b = float(color[2])/255.0
@@ -932,7 +940,7 @@ def married_rel_str(database,person,family,is_first=True):
         text = text + " "
     return text
 
-def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
+def child_str(person,father_name="",mother_name="",dead=0):
     """
     Composes a string describing person being a child.
     
@@ -952,14 +960,6 @@ def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
     @rtype: unicode
     """
     
-    if person_name == None:
-        person_name = _nd.display_name(person.get_primary_name())
-    elif person_name == 0:
-        if person.get_gender() == RelLib.Person.MALE:
-            person_name = _('He')
-        else:
-            person_name = _('She')
-
     text = ""
 
     if person.get_gender() == RelLib.Person.MALE:

@@ -146,7 +146,7 @@ class DetDescendantReport(Report.Report):
     def write_report(self):
         self.apply_filter(self.start_person.get_handle(),1)
 
-        name = self.start_person.get_primary_name().get_regular_name()
+        name = _nd.display_name(self.start_person.get_primary_name())
 
         spouseName = ""
         for family_handle in self.start_person.get_family_handle_list():
@@ -278,16 +278,16 @@ class DetDescendantReport(Report.Report):
             father_handle = family.get_father_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                mother_name = mother.get_primary_name().get_regular_name()
+                mother_name = _nd.display_name(mother.get_primary_name())
             else:
                 mother_name = ""
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                father_name = father.get_primary_name().get_regular_name()
+                father_name = _nd.display_name(father.get_primary_name())
             else:
                 father_name = ""
                 
-            text = ReportUtils.child_str(person,firstName,
+            text = ReportUtils.child_str(person,
                                 father_name,mother_name,
                                 bool(person.get_death_handle()))
             if text:
