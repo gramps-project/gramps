@@ -1084,7 +1084,9 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == "TEMP":
-                ord.set_temple(matches[2])
+                value = extract_temple(matches[2])
+                if value:
+                    ord.setTemple(value)
             elif matches[1] == "DATE":
                 ord.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":
@@ -1735,6 +1737,16 @@ class GedcomParser:
                         pass
 
         self.db.pmap_index = new_pmax
+
+def extract_temple(text):
+    try:
+        if const.lds_temple_to_abrev.has_key(matches[2]):
+            return const.lds_temple_to_abrev[matches[2]]
+        else:
+            values = split(matches[2])
+            return const.lds_temple_to_abrev[values[0]]
+    except:
+        return None
 
 #-------------------------------------------------------------------------
 #
