@@ -1,3 +1,7 @@
+2003-09-21  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/book.glade: Minor improvements to the dialogs. 
+	* doc/gramps-manual/C/gramps-manual.xml: Update manual.
+
 2003-09-21  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddrEdit.py: Fixed OK button callback
 
