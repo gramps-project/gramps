@@ -12,6 +12,8 @@ Version 0.5.0
   database.
 * Improvements in GEDCOM import, including handling some
   Family Tree Maker pecularities.
+* Spanish translation is now available. This brings the languages
+  to English, Spanish, Swedish, German, and French.
 
 Version 0.4.1
 * Tool/Report menus added to top level menu bar
