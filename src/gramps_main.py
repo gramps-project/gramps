@@ -1431,12 +1431,10 @@ class Gramps:
         self.enable_interface()
 
     def merge_update(self,p1,p2,old_id):
-        self.people_view.remove_from_person_list(p1,old_id)
         self.people_view.remove_from_person_list(p2)
-        self.people_view.remove_from_history(p1,old_id)
         self.people_view.remove_from_history(p2)
         self.redraw_histmenu()
-        self.people_view.redisplay_person_list(p1)
+        self.people_view.build_tree()
         self.update_display(0)
     
     def goto_active_person(self):

@@ -154,7 +154,9 @@ class EventEditor:
         self.preform.set_sensitive(not noedit)
         self.gallery_label = self.top.get_widget("galleryEvent")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
-        self.top.get_widget('ok').set_sensitive(not noedit)
+        self.ok = self.top.get_widget('ok')
+        
+        self.ok.set_sensitive(not noedit)
             
         if read_only or noedit:
             self.event_menu.set_sensitive(False)
@@ -244,9 +246,17 @@ class EventEditor:
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
         self.top.get_widget('add_obj').set_sensitive(not noedit)
 
+        if not noedit:
+            self.event_menu.connect('changed',self.menu_changed)
+            self.menu_changed(self.event_menu)
+
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
+
+    def menu_changed(self,obj):
+        text = not obj.get_active_text()
+        self.ok.set_sensitive(not text)
 
     def on_delete_event(self,obj,b):
         self.gallery.close()
