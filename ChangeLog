@@ -1,3 +1,9 @@
+2003-11-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py (OpenOfficeDoc.close): replace hardcoded
+	"oowriter" with the command found by querying the mime database with
+	the open office document type. Different distributions seem to install
+	OOo with different names (oofice, oowriter, soffice).
+
 2003-11-29  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/filters/MatchSndEx2.py: Typo.
 	* src/plugins/RelGraph.py: Typo.
@@ -11,6 +17,12 @@
 	* doc/gramps-manual/C/faq.xml: Add to CVS.
 	* doc/gramps-manual/C/keybind.xml: Add to CVS.
 	* doc/gramps-manual/C/Makefile.am: Add new files to the distribution.
+
+2003-11-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EventEdit.py (EventEditor.__init__): add translated name to the
+	popdown menu list if isn't already there. Prevents a parital match on 
+	other strings
+	* src/PedView.py: add a '*' to the popup menu if the child has children
 
 2003-11-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/po/template.po: updated translatable strings
