@@ -158,7 +158,7 @@ class XmlWriter:
         
         total = person_len + family_len + place_len + source_len
 
-        self.g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
+        self.g.write('<?xml version="1.0"?>\n')
         self.g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
         self.g.write("<database>\n")
         self.g.write("  <header>\n")

@@ -23,9 +23,8 @@
 import RelLib
 import Utils
 import soundex
-import intl
 import GrampsCfg
-_ = intl.gettext
+from intl import gettext as _ 
 
 import string
 import os
@@ -34,7 +33,6 @@ import MergeData
 from gnome.ui import *
 import gtk 
 import gtk.glade
-
 
 #-------------------------------------------------------------------------
 #
@@ -116,8 +114,8 @@ class Merge:
     
     def progress_update(self,val):
         self.progress.set_value(val)
-        while events_pending():
-            mainiteration()
+        while gtk.events_pending():
+            gtk.mainiteration()
 
     def find_potentials(self,thresh):
         top = gtk.glade.XML(self.glade_file,"message")
