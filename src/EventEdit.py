@@ -61,8 +61,8 @@ from QuestionDialog import WarningDialog
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,elist,trans,event,def_placename,read_only,cb,
-                 def_event=None):
+    def __init__(self,parent,name,elist,trans,event,def_placename,
+                 read_only, cb, def_event=None, noedit=False):
         self.parent = parent
         self.db = self.parent.db
         if event:
@@ -128,38 +128,58 @@ class EventEditor:
                          _('Event Editor'))
         
         self.place_field = self.top.get_widget("eventPlace")
+        self.place_field.set_editable(not noedit)
         self.cause_field = self.top.get_widget("eventCause")
+        self.cause_field.set_editable(not noedit)
         self.slist = self.top.get_widget("slist")
         self.wlist = self.top.get_widget("wlist")
         self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
-        self.cause_field  = self.top.get_widget("eventCause")
+        self.date_field.set_editable(not noedit)
         self.descr_field = self.top.get_widget("event_description")
+        self.descr_field.set_editable(not noedit)
         self.note_field = self.top.get_widget("eventNote")
+        self.note_field.set_editable(not noedit)
         self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
+        self.priv.set_sensitive(not noedit)
         self.sources_label = self.top.get_widget("sourcesEvent")
         self.notes_label = self.top.get_widget("notesEvent")
         self.flowed = self.top.get_widget("eventflowed")
+        self.flowed.set_sensitive(not noedit)
         self.preform = self.top.get_widget("eventpreform")
+        self.preform.set_sensitive(not noedit)
         self.gallery_label = self.top.get_widget("galleryEvent")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
-
-        if read_only:
-            self.event_menu.set_sensitive(0)
+        self.top.get_widget('ok').set_sensitive(not noedit)
+            
+        if read_only or not noedit:
+            self.event_menu.set_sensitive(False)
             self.date_field.grab_focus()
+
+        add_src = self.top.get_widget('add_src')
+        add_src.set_sensitive(not noedit)
+        del_src = self.top.get_widget('del_src')
+        del_src.set_sensitive(not noedit)
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top,self.window,self.slist,
-                                           self.top.get_widget('add_src'),
+                                           add_src,
                                            self.top.get_widget('edit_src'),
-                                           self.top.get_widget('del_src'))
+                                           del_src, self.db.readonly
+                                           )
 
+        add_witness = self.top.get_widget('add_witness')
+        add_witness.set_sensitive(not noedit)
+        edit_witness = self.top.get_widget('edit_witness')
+        del_witness = self.top.get_widget('del_witness')
+        del_witness.set_sensitive(not noedit)
+        
         self.witnesstab = Witness.WitnessTab(self.witnesslist,self,
-                                           self.top,self.window,self.wlist,
-                                           self.top.get_widget('add_witness'),
-                                           self.top.get_widget('edit_witness'),
-                                           self.top.get_widget('del_witness'))
+                                             self.top,self.window,self.wlist,
+                                             add_witness,
+                                             edit_witness,
+                                             del_witness)
 
         AutoComp.fill_combo(self.event_menu,self.elist)
         AutoComp.fill_entry(self.place_field,self.pmap.keys())
@@ -204,7 +224,8 @@ class EventEditor:
         if not event:
             event = RelLib.Event()
         self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(event, self.db.commit_event, self.path, self.icon_list,
+        self.gallery = ImageSelect.Gallery(event, self.db.commit_event,
+                                           self.path, self.icon_list,
                                            self.db,self,self.window)
 
         self.top.signal_autoconnect({
@@ -219,6 +240,10 @@ class EventEditor:
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
             })
+
+        self.top.get_widget('del_obj').set_sensitive(not noedit)
+        self.top.get_widget('sel_obj').set_sensitive(not noedit)
+        self.top.get_widget('add_obj').set_sensitive(not noedit)
 
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()

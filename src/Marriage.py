@@ -131,6 +131,8 @@ class Marriage:
             })
 
 
+        mode = not self.db.readonly
+
         fid = family.get_father_handle()
         mid = family.get_mother_handle()
 
@@ -152,14 +154,18 @@ class Marriage:
 
         # widgets
         self.complete = self.get_widget('complete')
+        self.complete.set_sensitive(mode)
         self.date_field  = self.get_widget("marriageDate")
         self.place_field = self.get_widget("marriagePlace")
         self.cause_field = self.get_widget("marriageCause")
         self.name_field  = self.get_widget("marriageEventName")
         self.descr_field = self.get_widget("marriageDescription")
         self.type_field  = self.get_widget("marriage_type")
+        self.type_field.set_sensitive(mode)
         self.notes_field = self.get_widget("marriageNotes")
+        self.notes_field.set_editable(mode)
         self.gid = self.get_widget("gid")
+        self.gid.set_editable(mode)
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
@@ -168,9 +174,13 @@ class Marriage:
         self.attr_src_field = self.get_widget("attr_srcinfo")
         self.attr_conf_field = self.get_widget("attr_conf")
         self.lds_date = self.get_widget("lds_date")
+        self.lds_date.set_editable(mode)
         self.lds_temple = self.get_widget("lds_temple")
+        self.lds_temple.set_sensitive(mode)
         self.lds_status = self.get_widget("lds_status")
+        self.lds_status.set_sensitive(mode)
         self.lds_place = self.get_widget("lds_place")
+        self.lds_place.set_sensitive(mode)
         self.slist = self.get_widget("slist")
         self.sources_label = self.get_widget("sourcesMarriage")
         self.gallery_label = self.get_widget("galleryMarriage")
@@ -181,7 +191,9 @@ class Marriage:
         self.lds_label = self.get_widget("ldsMarriage")
 
         self.flowed = self.get_widget("mar_flowed")
+        self.flowed.set_sensitive(mode)
         self.preform = self.get_widget("mar_preform")
+        self.preform.set_sensitive(mode)
 
         self.elist = family.get_event_list()[:]
         self.alist = family.get_attribute_list()[:]
@@ -210,7 +222,6 @@ class Marriage:
         frel = family.get_relationship()
         self.type_field.set_active(frel)
         self.gid.set_text(family.get_gramps_id())
-        self.gid.set_editable(1)
 
         AutoComp.fill_combo(self.lds_temple,_temple_names)
 
@@ -286,7 +297,6 @@ class Marriage:
         self.add_itself_to_winsmenu()
         self.top.get_widget('ok').set_sensitive(not self.db.readonly)
 
-        mode = not self.db.readonly
         self.top.get_widget('marriage_del').set_sensitive(mode)
         self.top.get_widget('marriage_add').set_sensitive(mode)
         self.top.get_widget('attr_del').set_sensitive(mode)

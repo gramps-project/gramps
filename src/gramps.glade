@@ -26496,7 +26496,7 @@ Very High</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button113">
+	    <widget class="GtkButton" id="ok">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Accept changes and close window</property>
 	      <property name="can_default">True</property>
@@ -27451,7 +27451,7 @@ Very High</property>
 			  <property name="spacing">6</property>
 
 			  <child>
-			    <widget class="GtkButton" id="button170">
+			    <widget class="GtkButton" id="add_obj">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
 			      <property name="can_focus">True</property>
@@ -27479,7 +27479,7 @@ Very High</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button171">
+			    <widget class="GtkButton" id="sel_obj">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
 			      <property name="can_focus">True</property>
@@ -27534,7 +27534,7 @@ Very High</property>
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button173">
+			    <widget class="GtkButton" id="del_obj">
 			      <property name="visible">True</property>
 			      <property name="tooltip" translatable="yes">Remove selected object from this gallery only</property>
 			      <property name="can_focus">True</property>
