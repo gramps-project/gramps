@@ -20,6 +20,9 @@
 
 "Handle bookmarks for the gramps interface"
 
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -27,7 +30,7 @@
 #-------------------------------------------------------------------------
 import gtk 
 import GTK
-from gnome.ui import *
+import gnome.ui
 
 #-------------------------------------------------------------------------
 #
@@ -86,9 +89,10 @@ class Bookmarks :
         self.myMenu.append(item)
 
     def draw_window(self):
-
+        """Draws the bookmark dialog box"""
         title = "%s - GRAMPS" % _("Edit Bookmarks")
-        self.top = GnomeDialog(title,STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
+        self.top = gnome.ui.GnomeDialog(title,gnome.ui.STOCK_BUTTON_OK,
+                                        gnome.ui.STOCK_BUTTON_CANCEL)
         self.top.set_policy(0,1,0)
         self.top.vbox.set_spacing(5)
         self.top.vbox.pack_start(gtk.GtkLabel(_("Edit Bookmarks")),0,0,5)
@@ -103,8 +107,8 @@ class Bookmarks :
         box.pack_start(slist,1,1,5)
         bbox = gtk.GtkVButtonBox()
         bbox.set_layout_default(GTK.BUTTONBOX_START)
-        up = GnomePixmapButton(GnomeStock(STOCK_PIXMAP_UP),_("Up"))
-        down = GnomePixmapButton(GnomeStock(STOCK_PIXMAP_DOWN),_("Down"))
+        up = gnome.ui.GnomePixmapButton(gnome.ui.GnomeStock(gnome.ui.STOCK_PIXMAP_UP),_("Up"))
+        down = gnome.ui.GnomePixmapButton(gnome.ui.GnomeStock(gnome.ui.STOCK_PIXMAP_DOWN),_("Down"))
         delete = gtk.GtkButton(_("Delete"))
         up.connect('clicked', self.up_clicked)
         down.connect('clicked',self.down_clicked)

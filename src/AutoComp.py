@@ -24,7 +24,7 @@ strings as the possible completions. This work was adapted from code
 written by David Hampton.
 """
 
-__author__ = "Donald N. Allingham"
+__author__ = "David R. Hampton, Donald N. Allingham"
 __version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
@@ -41,6 +41,11 @@ import string
 #-------------------------------------------------------------------------
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# AutoCompBase
+#
+#-------------------------------------------------------------------------
 class AutoCompBase:
 
     def __init__(self,widget,plist,source=None):
@@ -57,9 +62,8 @@ class AutoCompBase:
         if source:
             self.nlist = source.nlist
         else:
-            cnv = string.lower
             self.nlist = []
-            self.nlist = map((lambda n: (cnv(n),n)),plist)
+            self.nlist = map((lambda n: (string.lower(n),n)),plist)
             self.nlist.sort()
         self.nl = "xzsdkdjecsc"
         self.l = 0
@@ -105,6 +109,11 @@ class AutoCompBase:
         """
         pass
 
+#-------------------------------------------------------------------------
+#
+# AutoCombo
+#
+#-------------------------------------------------------------------------
 class AutoCombo(AutoCompBase):
     """
     Allows allow completion of the GtkCombo widget with the entries
@@ -197,6 +206,11 @@ class AutoCombo(AutoCompBase):
         else:
             self.vals = [""]
 
+#-------------------------------------------------------------------------
+#
+# AutoEntry
+#
+#-------------------------------------------------------------------------
 class AutoEntry(AutoCompBase):
     """
     Allows allow completion of the GtkEntry widget with the entries

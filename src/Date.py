@@ -18,7 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Support for the dates"
+"Support for dates"
+
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
