@@ -75,13 +75,17 @@ pycode_tgts = [('url', 0, 0),
 #-------------------------------------------------------------------------
 class EditPerson:
 
-    def __init__(self,person,db,callback=None):
+    def __init__(self,parent,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
         self.person = person
         self.original_id = person.get_id()
+        self.parent = parent
+        if self.parent.wins_dict.has_key(self.original_id):
+            return
         self.db = db
         self.callback = callback
+        self.child_windows = []
         self.path = db.get_save_path()
         self.not_loaded = 1
         self.lds_not_loaded = 1
@@ -403,7 +407,25 @@ class EditPerson:
         self.redraw_url_list()
         self.get_widget("notebook").set_current_page(0)
         self.given.grab_focus()
+        self.add_itself_to_winsmenu()
         self.window.show()
+
+    def add_itself_to_winsmenu(self):
+        self.parent.wins_dict[self.original_id] = self.window
+        label = GrampsCfg.nameof(self.person)
+        if not label.strip():
+            label = _("NewPerson %(gramps_id)s") % { 'gramps_id' : self.original_id }
+        self.menu_item = gtk.MenuItem(label)
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.parent.winsmenu.append(self.menu_item)
+
+    def remove_itself_from_winsmenu(self):
+        self.parent.wins_dict.pop(self.original_id,None)
+        self.menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -974,6 +996,7 @@ class EditPerson:
                        self.save)
         else:
             self.gallery.close(0)
+            self.remove_itself_from_winsmenu()
             self.window.destroy()
 
     def save(self):
@@ -992,12 +1015,14 @@ class EditPerson:
             return 1
         else:
             self.gallery.close(0)
+            self.remove_itself_from_winsmenu()
             self.window.destroy()
             return 0
 
     def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
         self.gallery.close(0)
+        self.remove_itself_from_winsmenu()
         self.window.destroy()
 
     def did_data_change(self):
@@ -1558,6 +1583,7 @@ class EditPerson:
             self.callback(self)
 
         self.gallery.close(1)
+        self.remove_itself_from_winsmenu()
         self.window.destroy()
 
     def get_place(self,field,makenew=0):
