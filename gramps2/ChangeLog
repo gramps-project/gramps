@@ -1,3 +1,16 @@
+2003-09-22  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/po/ru.po: Update Russian translation. 
+	* doc/gramps-manual/C/gramps-manual.xml: Update manual.
+	* doc/gramps-manual/C/filtref.xml: Add file -- split appendix 
+	into a separate file.
+	* doc/gramps-manual/C/cmdline.xml: Likewise.
+	* doc/gramps-manual/C/getstart.xml: Likewise.
+	* doc/gramps-manual/C/mainwin.xml: Likewise.
+	* doc/gramps-manual/C/usage.xml: Likewise.
+	* doc/gramps-manual/C/custom.xml: Likewise.
+	* doc/gramps-manual/C/Makefile.am: Ship new files. 
+	* doc/gramps-manual/C/Makefile.in: Likewise. 
+
 2003-09-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/book.glade: Minor improvements to the dialogs. 
 	* doc/gramps-manual/C/gramps-manual.xml: Update manual.

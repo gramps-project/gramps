@@ -167,7 +167,14 @@ figdir = figures
 docname = gramps-manual
 lang = C
 omffile = gramps-manual-C.omf
-entities = legal.xml 
+entities = legal.xml\
+	getstart.xml\
+	mainwin.xml\
+	usage.xml\
+	custom.xml\
+	filtref.xml\
+	cmdline.xml 
+
 
 # ************* Begin of section some packagers may need to modify  **************
 # This variable (docdir) specifies where the documents should be installed.
