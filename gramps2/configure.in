@@ -179,7 +179,7 @@ then
 fi
 AC_MSG_RESULT(ok)
 
-AC_MSG_CHECKING(Python bindin for glade)
+AC_MSG_CHECKING(Python bindings for glade)
 cat > conftest.py <<EOF
 $pygtk_require
 try:
