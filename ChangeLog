@@ -1,7 +1,7 @@
 2003-06-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: De-uglify center_person frame.
 	* src/plugins/BookReport.py: Add a center person column to a book
-        selector dialog.
+	selector dialog.
 	* src/plugins/FtmStyleDescendants.py: Get the style right.
 
 2003-06-08  Alex Roitman  <shura@alex.neuro.umn.edu>
