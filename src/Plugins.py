@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -127,7 +127,7 @@ class PluginDialog:
         self.dialog = gtk.glade.XML(const.pluginsFile,"report")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
-            "on_report_ok_clicked"    : self.on_apply_clicked,
+            "on_report_ok_clicked"    : self.on_ok_clicked,
             "destroy_passed_object"   : Utils.destroy_passed_object
             })
 
@@ -160,12 +160,17 @@ class PluginDialog:
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
-        Utils.destroy_passed_object(obj)
         if self.run_tool:
             if self.update:
                 self.run_tool(self.db,self.active,self.update)
             else:
                 self.run_tool(self.db,self.active)
+
+    def on_ok_clicked(self,obj):
+        """Execute the selected report and close the dialog window"""
+
+        Utils.destroy_passed_object(obj)
+        self.on_apply_clicked(obj)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
