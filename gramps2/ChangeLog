@@ -1,3 +1,16 @@
+2003-12-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: Add phone to address, postal code and phone to
+	place
+	* src/AddrEdit.py: Add phone number
+	* src/EditPlace.py: Add phone number and postal code
+	* src/LocEdit.py: Add phone number and postal code
+	* src/edit_person.glade: Add address fields
+	* src/dialog.glade: Add address and phone fields
+	
+2003-12-08  Richard Bos  <radoeka@xs4all.nl>
+	* configure.in: catch the SUSE usage of "gnome.gconf" instead of
+	the standard "gconf"
+
 2003-12-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/de: Add directory for German manual 
 	translation to CVS.
