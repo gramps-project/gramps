@@ -2126,17 +2126,18 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
 
         witness_list = self.get_witness_list()
         other_list = other.get_witness_list()
-        if (not witness_list) and (not other_list):
-            return True
-        elif not (witness_list and other_list):
+        if (witness_list and not other_list) or \
+                        (other_list and not witness_list):
             return False
-        for a in witness_list:
-            if a in other_list:
-                other_list.remove(a)
-            else:
+        if witness_list and other_list:
+            another_list = other_list[:]
+            for a in witness_list:
+                if a in another_list:
+                    another_list.remove(a)
+                else:
+                    return False
+            if another_list:
                 return False
-        if other_list:
-            return False
         return True
         
     def set_name(self,name):
@@ -3735,8 +3736,10 @@ class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
                 return False
             if (self.date and other.date and \
                                         not self.date.is_equal(other.date)) \
-                        or (self.date and not other.date) \
-                        or (not self.date and other.date):
+                        or ((not self.date) and other.date and \
+                                not other.date.is_empty()) \
+                        or ((not other.date) and self.date and \
+                                not self.date.is_empty()):
                 return False
             if self.get_text() != other.get_text():
                 return False

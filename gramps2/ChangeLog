@@ -1,3 +1,11 @@
+2005-04-04  Alex Roitman  <shura@gramps-project.org>
+	* src/Marriage.py: proper window management on delete event.
+	* src/RelLib.py (Event.are_equal): Correction.
+	* src/Date.py (is_empty): Require empty text for a date to be empty.
+	* src/WriteXML (write_object): Remove places from Media.
+	* src/GrampsDbBase.py (undo): Typos.
+	* src/GrampsDBCallback: Pretty printing for warnings.
+
 2005-04-04  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: fix father/mother relationship
 	* src/FamilyView.py: fix update of child pointers after add

@@ -338,7 +338,7 @@ class Marriage:
             child_window.close(None)
         self.child_windows = {}
 
-    def close(self,ok=0):
+    def close(self):
         self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_winsmenu()
@@ -611,25 +611,32 @@ class Marriage:
         return changed
 
     def cancel_callback(self):
-        self.close(0)
+        self.close()
 
     def on_cancel_edit(self,obj):
         if self.did_data_change() and not GrampsKeys.get_dont_ask():
-            global quit
-            self.quit = obj
             SaveDialog(_('Save Changes?'),
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
                        self.cancel_callback,
                        self.save)
         else:
-            self.close(0)
+            self.close()
 
     def save(self):
         self.on_close_marriage_editor(None)
 
     def on_delete_event(self,obj,b):
-        self.on_cancel_edit(obj)
+        if self.did_data_change() and not GrampsKeys.get_dont_ask():
+            SaveDialog(_('Save Changes?'),
+                       _('If you close without saving, the changes you '
+                         'have made will be lost'),
+                       self.cancel_callback,
+                       self.save)
+            return True
+        else:
+            self.close()
+            return False
 
     def on_close_marriage_editor(self,*obj):
 
@@ -700,7 +707,7 @@ class Marriage:
         self.db.commit_family(self.family,trans)
         self.db.transaction_commit(trans,_("Edit Marriage"))
 
-        self.close(1)
+        self.close()
 
     def event_edit_callback(self,event):
         """Birth and death events may not be in the map"""

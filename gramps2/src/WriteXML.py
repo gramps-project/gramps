@@ -844,19 +844,16 @@ class XmlWriter:
         self.g.write(' description="%s"' % self.fix(obj.get_description()))
         alist = obj.get_attribute_list()
         note = obj.get_note()
-        phandle = obj.get_place_handle()
         dval = obj.get_date_object()
         slist = obj.get_source_references()
-        if len(alist) == 0 and len(slist) == 0 and note == "" and \
-               phandle == "" and not dval.is_empty():
+        if len(alist) == 0 and len(slist) == 0 and note == "" \
+               and not dval.is_empty():
             self.g.write('/>\n')
         else:
             self.g.write('>\n')
             self.write_attribute_list(alist)
             if note != "":
                 self.write_note("note",obj.get_note_object(),3)
-            if phandle:
-                self.g.write('      <place ref="%s"/>\n' % phandle)
             if not dval.is_empty():
                 self.write_date(dval,3)
             for s in slist:
