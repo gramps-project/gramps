@@ -1,5 +1,6 @@
 2003-07-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Plugins.py (PluginDialog.build_tree): Remove reverse() call.
+	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
 
 2003-07-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/IndivSummary.py (IndivSummary.__init__):
