@@ -1455,7 +1455,6 @@ class EditPerson:
             
         if surname != name.get_surname():
             name.set_surname(surname)
-            self.db.add_surname(surname)
 
         if given != name.get_first_name():
             name.set_first_name(given)

@@ -2519,6 +2519,15 @@ class GrampsDB:
         self.place2title = {}
         self.genderStats = GenderStats ()
 
+    def start_transaction(self):
+        pass
+
+    def end_transaction(self):
+        pass
+
+    def abort_transaction(self):
+        pass
+
     #EARNEY, may eventually be able to use secondary indexes for this
     #that way we will not have to track these with code.
     def get_surnames(self):
@@ -2529,14 +2538,6 @@ class GrampsDB:
         vals = a.keys()
         vals.sort()
         return vals
-
-    #this function may eventually become obsolete.. if we use
-    #secondary indexes.
-    def add_surname(self,name):
-        pass
-#         if name and name not in self.surnames:
-#             self.surnames.append(name)
-#             self.surnames.sort()
 
     def get_bookmarks(self):
         """returns the list of Person instances in the bookmarks"""
