@@ -272,9 +272,9 @@ class CheckIntegrity:
             else:
                 fgender = father.get_gender()
                 mgender = mother.get_gender()
-                if type != const.FAMILY_CIVIL_UNION:
+                if type != RelLib.Family._CIVIL_UNION:
                     if fgender == mgender and fgender != RelLib.Person.unknown:
-                        family.set_relationship(const.FAMILY_CIVIL_UNION)
+                        family.set_relationship(RelLib.Family._CIVIL_UNION)
                         self.fam_rel.append(family_handle)
                         self.db.commit_family(family,self.trans)
                     elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
@@ -283,7 +283,7 @@ class CheckIntegrity:
                         self.fam_rel.append(family_handle)
                         self.db.commit_family(family,self.trans)
                 elif fgender != mgender:
-                    family.set_relationship(const.FAMILY_UNKNOWN)
+                    family.set_relationship(RelLib.Family._UNKNOWN)
                     self.fam_rel.append(family_handle)
                     if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
                         family.set_father_handle(mother_handle)

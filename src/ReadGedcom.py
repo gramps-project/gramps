@@ -66,7 +66,6 @@ ANSEL = 1
 UNICODE = 2
 UPDATE = 25
 
-db = None
 callback = None
 
 _title_string = _("GEDCOM")
@@ -823,7 +822,7 @@ class GedcomParser:
                 except:
                     event.set_name(matches[1])
                 if event.get_name() == "Marriage":
-                    self.family.set_relationship(const.FAMILY_MARRIED)
+                    self.family.set_relationship(RelLib.Family.MARRIED)
                 self.db.add_event(event,self.trans)
                 self.family.add_event_handle(event.get_handle())
                 self.parse_family_event(event,2)
@@ -1941,11 +1940,9 @@ def extract_temple(matches):
 #
 #-------------------------------------------------------------------------
 def readData(database,active_person,cb):
-    global db
     global callback
     global file_topa
     
-    db = database
     callback = cb
 
     choose = gtk.FileChooserDialog("%s - GRAMPS" % _title_string,
@@ -1971,7 +1968,7 @@ def readData(database,active_person,cb):
         filename = choose.get_filename()
         choose.destroy()
         try:
-            importData(db,filename)
+            importData(database,filename)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

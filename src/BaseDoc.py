@@ -150,9 +150,9 @@ class PaperStyle:
         """
         Creates a new paper style with.
 
-        name - Name of the new style
-        height - page height in centimeters
-        width - page width in centimeters
+        @param name: name of the new style
+        @param height: page height in centimeters
+        @param width: page width in centimeters
         """
         self.name = name
         self.orientation = PAPER_PORTRAIT
@@ -171,8 +171,8 @@ class PaperStyle:
         """
         Sets the page orientation.
 
-        val - new orientation, should be either PAPER_PORTRAIT or
-              PAPER_LANDSCAPE
+        @param val: new orientation, should be either PAPER_PORTRAIT or
+            PAPER_LANDSCAPE
         """
         self.orientation = val
 
@@ -221,8 +221,8 @@ class FontStyle:
         """
         Creates a new FontStyle object, accepting the default values.
 
-        style - if specified, initializes the FontStyle from the passed
-                FontStyle instead of using the defaults.
+        @param style: if specified, initializes the FontStyle from the passed
+            FontStyle instead of using the defaults.
         """
         if style:
             self.face   = style.face
@@ -243,14 +243,14 @@ class FontStyle:
         """
         Sets font characteristics.
 
-        face - font type face, either FONT_SERIF or FONT_SANS_SERIF
-        size - type face size in points
-        italic - 1 enables italics, 0 disables italics
-        bold - 1 enables bold face, 0 disables bold face
-        underline - 1 enables underline, 0 disables underline
-        color - an RGB color representation in the form of three integers
-                in the range of 0-255 represeting the red, green, and blue
-                components of a color.
+        @param face: font type face, either FONT_SERIF or FONT_SANS_SERIF
+        @param size: type face size in points
+        @param italic: True enables italics, False disables italics
+        @param bold: True enables bold face, False disables bold face
+        @param underline: True enables underline, False disables underline
+        @param color: an RGB color representation in the form of three integers
+            in the range of 0-255 represeting the red, green, and blue
+            components of a color.
         """
         if face != None:
             self.set_type_face(face)
@@ -330,8 +330,8 @@ class TableStyle:
         Creates a new TableStyle object, with the values initialized to
         empty, with allocating space for up to 100 columns.
 
-        obj - if not None, then the object created gets is attributes from
-              the passed object instead of being initialized to empty.
+        @param obj: if not None, then the object created gets is attributes
+            from the passed object instead of being initialized to empty.
         """
         if obj:
             self.width = obj.width
@@ -343,38 +343,47 @@ class TableStyle:
             self.colwid = [ 0 ] * 100
 
     def set_width(self,width):
-        """Sets the width of the table in terms of percent of the available
-           width"""
+        """
+        Sets the width of the table in terms of percent of the available
+        width
+        """
         self.width = width
 
     def get_width(self):
-        "Returns the specified width as a percentage of the available space"
+        """
+        Returns the specified width as a percentage of the available space
+        """
         return self.width
 
     def set_columns(self,columns):
-        """Sets the number of columns.
+        """
+        Sets the number of columns.
 
-           columns - number of columns that should be used.
+        @param columns: number of columns that should be used.
         """
         self.columns = columns
 
     def get_columns(self):
-        "Returns the number of columns"
+        """
+        Returns the number of columns
+        """
         return self.columns 
 
     def set_column_widths(self, list):
-        """Sets the width of all the columns at once, taking the percentages
-           from the passed list.
+        """
+        Sets the width of all the columns at once, taking the percentages
+        from the passed list.
         """
         self.columns = len(list)
         for i in range(self.columns):
             self.colwid[i] = list[i]
 
     def set_column_width(self,index,width):
-        """Sets the width of a specified column to the specified width.
+        """
+        Sets the width of a specified column to the specified width.
 
-           index - column being set (index starts at 0)
-           width - percentage of the table width assigned to the column
+        @param index: column being set (index starts at 0)
+        @param width: percentage of the table width assigned to the column
         """
 	self.colwid[index] = width
 
@@ -383,7 +392,7 @@ class TableStyle:
         Returns the column width of the specified column as a percentage of
         the entire table width.
 
-        index - column to return (index starts at 0)
+        @param index: column to return (index starts at 0)
         """
 	return self.colwid[index]
 
@@ -401,8 +410,8 @@ class TableCellStyle:
         """
         Creates a new TableCellStyle instance.
 
-        obj - if not None, specifies that the values should be copied from
-              the passed object instead of being initialized to empty.
+        @param obj: if not None, specifies that the values should be
+            copied from the passed object instead of being initialized to empty.
         """
         if obj:
             self.rborder = obj.rborder
@@ -427,7 +436,7 @@ class TableCellStyle:
         """
         Defines if a right border in used
 
-        val - if 1, a right border is used, if 0, it is not
+        @param val: if True, a right border is used, if False, it is not
         """
         self.rborder = val
 
@@ -435,7 +444,7 @@ class TableCellStyle:
         """
         Defines if a left border in used
 
-        val - if 1, a left border is used, if 0, it is not
+        @param val: if True, a left border is used, if False, it is not
         """
         self.lborder = val
 
@@ -443,7 +452,7 @@ class TableCellStyle:
         """
         Defines if a top border in used
 
-        val - if 1, a top border is used, if 0, it is not
+        @param val: if True, a top border is used, if False, it is not
         """
         self.tborder = val
 
@@ -451,7 +460,7 @@ class TableCellStyle:
         """
         Defines if a bottom border in used
 
-        val - if 1, a bottom border is used, if 0, it is not
+        @param val: if 1, a bottom border is used, if 0, it is not
         """
         self.bborder = val
 
@@ -493,10 +502,12 @@ class ParagraphStyle:
     alignment, level, top border, bottom border, right border, left
     border, padding, and background color.
 
-    source - if not None, then the ParagraphStyle is created using the
-             values of the source instead of the default values.
     """
     def __init__(self,source=None):
+        """
+        @param source: if not None, then the ParagraphStyle is created
+            using the values of the source instead of the default values.
+        """
         if source:
             self.font    = FontStyle(source.font)
             self.rmargin = source.rmargin
@@ -538,18 +549,18 @@ class ParagraphStyle:
         """
         Allows the values of the object to be set.
 
-        rmargin - right margin in centimeters
-        lmargin - left margin in centimeters
-        first_indent - first line indent in centimeters
-        align - alignment type (PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
-                PARA_ALIGN_CENTER, or PARA_ALIGN_JUSTIFY)
-        tborder - non zero indicates that a top border should be used
-        bborder - non zero indicates that a bottom border should be used
-        rborder - non zero indicates that a right border should be used
-        lborder - non zero indicates that a left border should be used
-        pad - padding in centimeters
-        bgcolor - background color of the paragraph as an RGB tuple.
-        font - FontStyle instance that defines the font
+        @param rmargin: right margin in centimeters
+        @param lmargin: left margin in centimeters
+        @param first_indent: first line indent in centimeters
+            align - alignment type (PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
+            PARA_ALIGN_CENTER, or PARA_ALIGN_JUSTIFY)
+        @param tborder: non zero indicates that a top border should be used
+        @param bborder: non zero indicates that a bottom border should be used
+        @param rborder: non zero indicates that a right border should be used
+        @param lborder: non zero indicates that a left border should be used
+        @param pad: padding in centimeters
+        @param bgcolor: background color of the paragraph as an RGB tuple.
+        @param font: FontStyle instance that defines the font
         """
         if font != None:
             self.font = FontStyle(font)
@@ -591,7 +602,7 @@ class ParagraphStyle:
         """
         Sets the font style of the paragraph.
 
-        font - FontStyle object containing the font definition to use.
+        @param font: FontStyle object containing the font definition to use.
         """
         self.font = FontStyle(font)
 
@@ -603,7 +614,7 @@ class ParagraphStyle:
         """
         Sets the paragraph padding in centimeters
 
-        val - floating point value indicating the padding in centimeters
+        @param val: floating point value indicating the padding in centimeters
         """
         self.pad = val
 
@@ -615,7 +626,8 @@ class ParagraphStyle:
         """
         Sets the presence or absence of top border.
 
-        val - 1 indicates a border should be used, 0 indicates no border.
+        @param val: True indicates a border should be used, False indicates
+            no border.
         """
         self.top_border = val
 
@@ -627,7 +639,8 @@ class ParagraphStyle:
         """
         Sets the presence or absence of bottom border.
 
-        val - 1 indicates a border should be used, 0 indicates no border.
+        @param val: True indicates a border should be used, False
+            indicates no border.
         """
         self.bottom_border = val
 
@@ -639,7 +652,8 @@ class ParagraphStyle:
         """
         Sets the presence or absence of left border.
 
-        val - 1 indicates a border should be used, 0 indicates no border.
+        @param val: True indicates a border should be used, False
+            indicates no border.
         """
         self.left_border = val
 
@@ -651,7 +665,8 @@ class ParagraphStyle:
         """
         Sets the presence or absence of rigth border.
 
-        val - 1 indicates a border should be used, 0 indicates no border.
+        @param val: True indicates a border should be used, False
+            indicates no border.
         """
         self.right_border = val
 
@@ -670,8 +685,8 @@ class ParagraphStyle:
         """
         Sets the background color of the paragraph.
 
-        color - tuple representing the RGB components of a color (0,0,0)
-                to (255,255,255)
+        @param color: tuple representing the RGB components of a color
+            (0,0,0) to (255,255,255)
         """
         self.bgcolor = color
 
@@ -679,8 +694,8 @@ class ParagraphStyle:
         """
         Sets the paragraph alignment.
 
-        align - PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, or
-                PARA_ALIGN_JUSTIFY
+        @param align: PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER,
+            or PARA_ALIGN_JUSTIFY
         """
         self.align = align
 
@@ -859,8 +874,8 @@ class StyleSheet:
         """
         Creates a new empty StyleSheet.
 
-        obj - if not None, creates the StyleSheet from the values in
-              obj, instead of creating an empty StyleSheet
+        @param obj: if not None, creates the StyleSheet from the values in
+            obj, instead of creating an empty StyleSheet
         """
         self.style_list = {}
         self.name = ""
@@ -1065,14 +1080,14 @@ class BaseDoc:
         interface. This class should never be instantiated directly, but
         only through a derived class.
 
-        styles      - StyleSheet containing the paragraph styles used.
-        paper_type  - PaperStyle instance containing information about
-                      the paper. If set to None, then the document is
-                      not a page oriented document (e.g. HTML)
-        template    - Format template for document generators that are
-                      not page oriented.
-        orientation - page orientation, either PAPER_PORTRAIT or
-                      PAPER_LANDSCAPE
+        @param styles: StyleSheet containing the paragraph styles used.
+        @param paper_type: PaperStyle instance containing information about
+            the paper. If set to None, then the document is not a page
+            oriented document (e.g. HTML)
+        @param template: Format template for document generators that are
+            not page oriented.
+        @param orientation: page orientation, either PAPER_PORTRAIT or
+            PAPER_LANDSCAPE
         """
         self.orientation = orientation
         self.template = template
@@ -1119,7 +1134,7 @@ class BaseDoc:
         """
         Sets the name of the owner of the document.
 
-        owner - User's name
+        @param owner: User's name
         """
         self.owner = owner
         
@@ -1127,11 +1142,11 @@ class BaseDoc:
         """
         Adds a photo of the specified width (in centimeters)
 
-        name  - filename of the image to add
-        align - alignment of the image. Valid values are 'left', 'right',
-                'center', and 'single'
-        w_cm  - width in centimeters
-        h_cm  - height in centimeters
+        @param name: filename of the image to add
+        @param align: alignment of the image. Valid values are 'left',
+            'right', 'center', and 'single'
+        @param w_cm: width in centimeters
+        @param h_cm: height in centimeters
         """
         pass
     
@@ -1169,7 +1184,7 @@ class BaseDoc:
         """
         Sets the title of the document.
 
-        name - Title of the document
+        @param name: Title of the document
         """
         self.title = name
 
@@ -1180,8 +1195,8 @@ class BaseDoc:
         """
         Adds the TableStyle with the specfied name.
 
-        name  - name of the table style
-        style - TableStyle instance to be added
+        @param name: name of the table style
+        @param style: TableStyle instance to be added
         """
         self.table_styles[name] = TableStyle(style)
 
@@ -1189,8 +1204,8 @@ class BaseDoc:
         """
         Adds the TableCellStyle with the specfied name.
 
-        name  - name of the table cell style
-        style - TableCellStyle instance to be added
+        @param name: name of the table cell style
+        @param style: TableCellStyle instance to be added
         """
         self.cell_styles[name] = TableCellStyle(style)
 
@@ -1198,7 +1213,7 @@ class BaseDoc:
         """
         Opens the document.
 
-        filename - path name of the file to create
+        @param filename: path name of the file to create
         """
         pass
 
@@ -1234,7 +1249,7 @@ class BaseDoc:
         """
 	Starts a new listing block, using the specified style name.
 
-        style_name - name of the ParagraphStyle to use for the block.
+        @param style_name: name of the ParagraphStyle to use for the block.
 	"""
         pass
 
@@ -1245,8 +1260,10 @@ class BaseDoc:
         """
         Starts a new paragraph, using the specified style name.
 
-        style_name - name of the ParagraphStyle to use for the paragraph.
-        leader     - Leading text for a paragraph. Typically used for numbering.
+        @param style_name: name of the ParagraphStyle to use for the
+            paragraph.
+        @param leader: Leading text for a paragraph. Typically used
+            for numbering.
         """
         pass
 
@@ -1258,8 +1275,8 @@ class BaseDoc:
         """
         Starts a new table.
 
-        name       - Unique name of the table.
-        style_name - TableStyle to use for the new table
+        @param name: Unique name of the table.
+        @param style_name: TableStyle to use for the new table
         """
         pass
 
@@ -1279,8 +1296,8 @@ class BaseDoc:
         """
         Starts a new table cell, using the paragraph style specified.
 
-        style_name - TableCellStyle to use for the cell
-        span       - number of columns to span
+        @param style_name: TableCellStyle to use for the cell
+        @param span: number of columns to span
         """
         pass
 
@@ -1297,9 +1314,8 @@ class BaseDoc:
         Writes the note's text and take care of paragraphs, 
         depending on the format. 
 
-        text - text to write.
-        format - format to use for writing: 
-            0 for flowed text, 
+        @param text: text to write.
+        @param format: format to use for writing. True for flowed text, 
             1 for preformatted text.
         """
         pass
@@ -1309,7 +1325,7 @@ class BaseDoc:
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
 
-        text - text to write.
+        @param text: text to write.
         """
         pass
 
@@ -1318,7 +1334,7 @@ class BaseDoc:
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
 
-        text - text to write.
+        @param text: text to write.
         """
         pass
 

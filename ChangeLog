@@ -1,3 +1,19 @@
+2004-12-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: documentation improvements, move family 
+	relations constants from const.py.in
+	* src/AddSpouse.py: relationship constant changes
+	* src/BaseDoc.py: documentation improvements
+	* src/ChooseParents.py: relationship constant changes
+	* src/Date.py: documentation changes
+	* src/ReadGedcom.py: relationship constant changes, remove 
+	unused global
+	* src/ReadXML.py: relationship constant changes
+	* src/SelectChild.py: has_family to get_parent_family
+	* src/const.py.in: moved family relation constants to RelLib
+	* src/plugins/Check.py: relationship constant changes
+	* src/plugins/ImportGeneWeb.py: relationship constant changes
+	* src/plugins/WriteGeneWeb.py: relationship constant changes
+
 2004-12-23 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReportOptions.py (ReportOptions): Add wrappers to hide handler.
 	* src/plugins/BookReport.py: Use wrappers.

@@ -784,7 +784,7 @@ class GrampsParser:
 
         if attrs.has_key("type"):
             self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
-                                                           const.FAMILY_UNKNOWN))
+                                                           RelLib.Family.UNKNOWN))
         if attrs.has_key("complete"):
             self.family.set_complete_flag(int(attrs['complete']))
         else:
