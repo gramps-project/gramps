@@ -1,4 +1,5 @@
 2003-09-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/OpenOfficeDoc.py: Fix styles
 	* src/docgen/PSDrawDoc.py: Change from Text/DrawDoc to BaseDoc
 	* src/docgen/SvgDrawDoc.py: Change from Text/DrawDoc to BaseDoc
 
