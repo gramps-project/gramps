@@ -324,9 +324,9 @@ try:
     mtype = GrampsMime.get_description('application/x-abiword')
     
     if Utils.search_for(prog[0]):
-        print_label=_("Open in %s" % prog[1])
+        print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
     Plugins.register_text_doc(mtype,AbiWordDoc,1,1,1,".abw", print_label)
 except:
-    Plugins.register_text_doc('AbiWord document',AbiWordDoc,1,1,1,".abw", None)
+    Plugins.register_text_doc(_('AbiWord document'),AbiWordDoc,1,1,1,".abw", None)

@@ -976,6 +976,7 @@ def pt2cm(val):
 # Register plugins
 #
 #--------------------------------------------------------------------------
+print_label = None
 try:
     import Utils
     
@@ -987,17 +988,10 @@ try:
     else:
         print_label = None
 
-    Plugins.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw", print_label)
+    Plugins.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
     Plugins.register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
+    Plugins.register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxd",print_label);
 except:
-    Plugins.register_text_doc('OpenOffice.org Writer', OpenOfficeDoc,1,1,1,".sxw", None)
-    Plugins.register_book_doc("OpenOffice.org Writer", OpenOfficeDoc,1,1,1,".sxw")
-
-
-Plugins.register_draw_doc(
-    _("OpenOffice.org Draw"),
-    OpenOfficeDoc,
-    1,
-    1,
-    ".sxd",
-    print_label);
+    Plugins.register_text_doc(_('OpenOffice.org Writer'), OpenOfficeDoc,1,1,1,".sxw", None)
+    Plugins.register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
+    Plugins.register_draw_doc(_("OpenOffice.org Draw"),   OpenOfficeDoc,1,1,".sxd",None);

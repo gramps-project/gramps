@@ -489,4 +489,4 @@ try:
         print_label=None
     Plugins.register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
 except:
-    Plugins.register_text_doc('HTML',HtmlDoc,1,0,1,".html", None)
+    Plugins.register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)
