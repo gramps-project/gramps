@@ -57,6 +57,7 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
+papersize      = "%s/papersize.xml" % rootDir
 good_xpm       = "%s/good.xpm" % rootDir
 bad_xpm        = "%s/bad.xpm" % rootDir
 caution_xpm    = "%s/caution.xpm" % rootDir
