@@ -387,9 +387,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         else:
             self.f.write('<draw:image draw:style-name="Row" ')
 
-        self.f.write('draw:name="')
-        self.f.write(tag)
-        self.f.write('" text:anchor-type="paragraph" ')
+        self.f.write('draw:name="%s" ' % tag)
+        self.f.write('text:anchor-type="paragraph" ')
         self.f.write('svg:width="%.3fcm" ' % act_width)
         self.f.write('svg:height="%.3fcm" ' % act_height)
         self.f.write('draw:z-index="0" ')
@@ -401,9 +400,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.f.write('</text:p>\n')
 
     def start_table(self,name,style_name):
-        self.f.write('<table:table table:name="')
-	self.f.write(name)
-	self.f.write('" table:style-name="%s">\n' % style_name)
+        self.f.write('<table:table table:name="%s" ' % name)
+	self.f.write('table:style-name="%s">\n' % style_name)
 	table = self.table_styles[style_name]
 	for col in range(0,table.get_columns()):
 	    self.f.write('<table:table-column table:style-name="')
@@ -420,9 +418,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def start_cell(self,style_name,span=1):
 	self.span = span
-	self.f.write('<table:table-cell table:style-name="')
-        self.f.write(style_name)
-        self.f.write('" table:value-type="string"')
+	self.f.write('<table:table-cell table:style-name="%s" ' % style_name)
+        self.f.write('table:value-type="string"')
         if span > 1:
             self.f.write(' table:number-columns-spanned="%s">\n' % span)
 	else:	     
@@ -442,7 +439,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('</text:span>')
 
     def _write_zip(self):
-        
         file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
         file.write(self.manifest_xml,str("META-INF/manifest.xml"))
         file.write(self.content_xml,str("content.xml"))
@@ -801,12 +797,12 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             maxy = max(point[1],maxy)
 
         self.f.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
+	self.f.write('draw:z-index="1" ')
         x = int((minx)*1000)
         y = int((miny)*1000)
         
         self.f.write('svg:x="%d" svg:y="%d" ' % (x,y))
         self.f.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
-        self.f.write('draw:z-index="0" ')
         self.f.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.f.write('svg:height="%.4fcm" ' % (maxy-miny))
         
@@ -824,9 +820,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
     def draw_line(self,style,x1,y1,x2,y2):
 	box_style = self.draw_styles[style]
 
-        self.f.write('<draw:line draw:style="')
-        self.f.write(style)
-        self.f.write('" svg:x1="%.3fcm" ' % x1)
+        self.f.write('<draw:line draw:style="%s" '% style)
+        self.f.write('svg:x1="%.3fcm" ' % x1)
         self.f.write('svg:y1="%.3fcm" ' % y1)
         self.f.write('svg:x2="%.3fcm" ' % x2)
         self.f.write('svg:y2="%.3fcm" ' % y2)
@@ -840,17 +835,17 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         font = pstyle.get_font()
         sw = FontScale.string_width(font,text)*1.3
 
-	self.f.write('<draw:text-box draw:style-name="')
-	self.f.write(style)
-	self.f.write('" draw:layer="layout" ')
+	self.f.write('<draw:text-box draw:style-name="%s" ' % style)
+	self.f.write('draw:layer="layout" ')
         # fix this
+	self.f.write('draw:z-index="0" ')
 	self.f.write('svg:width="%.3fcm" ' % sw)
 	self.f.write('svg:height="%.4fpt" ' % (font.get_size()*1.4))
 
 	self.f.write('svg:x="%.3fcm" ' % float(x))
         self.f.write('svg:y="%.3fcm">' % float(y))
-        self.f.write('<text:p text:style-name="P1">')
-        self.f.write('<text:span text:style-name="%s">' % para_name)
+        self.f.write('<text:p text:style-name="X%s">' % para_name)
+        self.f.write('<text:span text:style-name="F%s">' % para_name)
         self.f.write(text)
         self.f.write('</text:span></text:p>')
         self.f.write('</draw:text-box>\n')
