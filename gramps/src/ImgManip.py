@@ -69,7 +69,7 @@ class ImgManip:
             return buf
 
         def fmt_scale_data(self,x,y,cnv):
-            cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,cnv,self.src)
+            cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,self.src,cnv)
             r,w = popen2.popen2(cmd)
             buf = r.read()
             r.close()
