@@ -142,11 +142,11 @@ msgstr "september"
 
 #: Date.py:108
 msgid "(from|between|bet|bet."
-msgstr "(från|mellan|mellan|mellan)"
+msgstr "(från|mellan|mellan|mellan"
 
 #: Date.py:109
 msgid "(and|to|-"
-msgstr "(och|till|-)"
+msgstr "(och|till|-"
 
 #: Date.py:242 Date.py:268 Date.py:281
 msgid "from"
