@@ -28,6 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -48,19 +49,8 @@ import StyleEditor
 import Report
 import Errors
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
-# Set up sane defaults for the book_item
-#
-#------------------------------------------------------------------------
-
-_person_handle = ""
-_max_gen = 0
-_pg_brk = 0
-_options = ( _person_handle, _max_gen, _pg_brk )
-
+import ReportOptions
+import const
 
 #------------------------------------------------------------------------
 #
@@ -69,23 +59,47 @@ _options = ( _person_handle, _max_gen, _pg_brk )
 #------------------------------------------------------------------------
 class IndivSummary(Report.Report):
 
-    def __init__(self,database,person,output,document,newpage=0):
-        self.d = document
+    def __init__(self,database,person,options_class):
+        """
+        Creates the Ftm-Style Descendant object that produces the report.
         
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        document  - BaseDoc instance for the output file. Any class derived
+                    from BaseDoc may be used
+        output    - name of the output file. 
+                    None if report is not a standalone, in which case
+                    somebody must take care of opening and initializing report
+                    prior to writing.
+        newpage   - if True, newpage is made before writing a report
+
+        """
+        self.database = database
+        self.person = person
+        self.options_class = options_class
+
+
+        self.d = options_class.handler.doc
+        self.output = options_class.handler.output
+        self.newpage = options_class.handler.newpage
+
         c = database.get_researcher().get_name()
         self.d.creator(c)
         self.map = {}
-        self.database = database
-        self.person = person
-        self.output = output
         self.setup()
-        if output:
+        if self.output:
             self.standalone = 1
-            self.d.open(output)
+            self.d.open(self.output)
             self.d.init()
         else:
             self.standalone = 0
-        self.newpage = newpage
         
     def setup(self):
         tbl = BaseDoc.TableStyle()
@@ -347,233 +361,71 @@ class IndivSummary(Report.Report):
 
 #------------------------------------------------------------------------
 #
-# IndivSummaryDialog
+# 
 #
 #------------------------------------------------------------------------
-class IndivSummaryDialog(Report.TextReportDialog):
+class IndivSummaryOptions(ReportOptions.ReportOptions):
 
-    report_options = {}
+    """
+    Defines options and provides handling interface.
+    """
 
-    def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person, self.report_options)
+    def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
 
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" %(_("Individual Summary"),_("Text Reports"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Individual Summary for %s") % name
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Save Individual Summary")
-    
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return "individual_summary.xml"
-    
-    def doc_uses_tables(self):
-        """This report requires table support."""
-        return 1
-
-    def make_default_style(self):
+    def make_default_style(self,default_style):
         """Make the default output style for the Individual Summary Report."""
-        _make_default_style(self.default_style)
-    
-    def setup_report_options(self):
-        """The 'Report Options' frame is not used in this dialog."""
-        pass
-
-    def make_report(self):
-        """Create the object that will produce the Ancestor Chart.
-        All user dialog has already been handled and the output file
-        opened."""
-        try:
-            MyReport = IndivSummary(self.db, self.person, 
-                self.target_path, self.doc)
-            MyReport.setup()
-            MyReport.write_report()
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except Errors.ReportError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# report
-#
-#------------------------------------------------------------------------
-def report(database,person):
-    IndivSummaryDialog(database,person)
-
-#------------------------------------------------------------------------
-#
-# Book Item Options dialog
-#
-#------------------------------------------------------------------------
-class IndivSummaryBareReportDialog(Report.BareReportDialog):
-
-    def __init__(self,database,person,opt,stl):
-
-        self.options = opt
-        self.db = database
-        if self.options[0]:
-            self.person = self.db.get_person_from_handle(self.options[0])
-        else:
-            self.person = person
-        self.style_name = stl
-
-        Report.BareReportDialog.__init__(self,database,self.person)
-
-        self.max_gen = int(self.options[1])
-        self.pg_brk = int(self.options[2])
-        self.new_person = None
-
-        self.generations_spinbox.set_value(self.max_gen)
-        self.pagebreak_checkbox.set_active(self.pg_brk)
+        font = BaseDoc.FontStyle()
+        font.set_bold(1)
+        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_size(16)
+        p = BaseDoc.ParagraphStyle()
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_font(font)
+        p.set_description(_("The style used for the title of the page."))
+        default_style.add_style("IVS-Title",p)
         
-        self.window.run()
-
-    def get_report_filters(self):
-        return []
-
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Individual Summary"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Individual Summary Report for GRAMPS Book") 
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return "individual_summary.xml"
+        font = BaseDoc.FontStyle()
+        font.set_bold(1)
+        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_size(12)
+        font.set_italic(1)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for category labels."))
+        default_style.add_style("IVS-TableTitle",p)
     
-    def on_cancel(self, obj):
-        pass
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
-
-        # Preparation
-        self.parse_style_frame()
-        self.parse_report_options_frame()
-        
-        if self.new_person:
-            self.person = self.new_person
-        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk )
-        self.style_name = self.selected_style.get_name()
-
-
-#------------------------------------------------------------------------
-#
-# Function to write Book Item 
-#
-#------------------------------------------------------------------------
-def write_book_item(database,person,doc,options,newpage=0):
-    """Write the FTM Style Descendant Report options set.
-    All user dialog has already been handled and the output file opened."""
-    try:
-        if options[0]:
-            person = database.get_person_from_handle(options[0])
-        max_gen = int(options[1])
-        pg_brk = int(options[2])
-        return IndivSummary(database, person, None, doc, newpage)
-    except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# Makes the default styles
-#
-#------------------------------------------------------------------------
-def _make_default_style(default_style):
-    """Make the default output style for the Individual Summary Report."""
-    font = BaseDoc.FontStyle()
-    font.set_bold(1)
-    font.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    font.set_size(16)
-    p = BaseDoc.ParagraphStyle()
-    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    p.set_font(font)
-    p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("IVS-Title",p)
-        
-    font = BaseDoc.FontStyle()
-    font.set_bold(1)
-    font.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    font.set_size(12)
-    font.set_italic(1)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(font)
-    p.set_description(_("The style used for category labels."))
-    default_style.add_style("IVS-TableTitle",p)
+        font = BaseDoc.FontStyle()
+        font.set_bold(1)
+        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_size(12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_("The style used for the spouse's name."))
+        default_style.add_style("IVS-Spouse",p)
     
-    font = BaseDoc.FontStyle()
-    font.set_bold(1)
-    font.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    font.set_size(12)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(font)
-    p.set_description(_("The style used for the spouse's name."))
-    default_style.add_style("IVS-Spouse",p)
-    
-    font = BaseDoc.FontStyle()
-    font.set_size(12)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(font)
-    p.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("IVS-Normal",p)
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(font)
+        p.set_description(_('The basic style used for the text display.'))
+        default_style.add_style("IVS-Normal",p)
 
 #------------------------------------------------------------------------
 #
 # Register plugins
 #
 #------------------------------------------------------------------------
-from Plugins import register_report, register_book_item
-
+from Plugins import register_report
 register_report(
-    report,
-    _("Individual Summary"),
+    name = 'individual_summary',
+    category = const.CATEGORY_TEXT,
+    report_class = IndivSummary,
+    options_class = IndivSummaryOptions,
+    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    translated_name = _("Individual Summary"),
     status=(_("Beta")),
-    category=_("Text Reports"),
     description=_("Produces a detailed report on the selected person."),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
-    
     )
-
-register_book_item( 
-    _("Individual Summary"), 
-    _("Text"),
-    IndivSummaryBareReportDialog,
-    write_book_item,
-    _options,
-    "default" ,
-    "individual_summary.xml",
-    _make_default_style
-    )
-

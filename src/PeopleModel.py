@@ -66,7 +66,7 @@ _CHANGE_COL= 21
 #-------------------------------------------------------------------------
 class PeopleModel(gtk.GenericTreeModel):
 
-    def __init__(self,db,data_filter):
+    def __init__(self,db,data_filter=None):
         gtk.GenericTreeModel.__init__(self)
 
         self.db = db
